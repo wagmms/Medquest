@@ -1,0 +1,16 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Segurança Infantil, Prevenção de Acidentes e Maus-Tratos"
+  },
+  "reviewed_question_ids": [8559, 8814, 9426, 10216, 10696, 11170, 11273, 11392, 11504, 12158, 12215, 12300, 12409, 12610, 12917, 13226, 13508, 14162, 14317, 14511, 14969, 14973, 15069, 15070, 15071, 15372, 15882, 16057, 16419, 16911, 16961, 17011, 17059, 17061, 17109],
+  "moves": [
+    {"question_id": 15882, "area": "Ginecologia e Obstetrícia", "subtema": "Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual", "rationale": "Atendimento, profilaxias e contracepção após violência sexual em adolescente."},
+    {"question_id": 16057, "area": "Pediatria", "subtema": "Baixa Estatura, Puberdade Precoce e Atraso Puberal", "rationale": "Investigação das causas de puberdade precoce central."},
+    {"question_id": 16911, "area": "Cirurgia", "subtema": "Cirurgia Pediátrica e Malformações Digestivas Neonatais", "rationale": "Criptorquidia e orientação/conduta cirúrgica na infância."},
+    {"question_id": 16961, "area": "Cirurgia", "subtema": "Avaliação Pré-Operatória e Estratificação de Risco Cirúrgico", "rationale": "Manejo de antidiabéticos no período pré-operatório."},
+    {"question_id": 17011, "area": "Ginecologia e Obstetrícia", "subtema": "Climatério, Menopausa e Terapia de Reposição Hormonal (TRH)", "rationale": "Fisiopatologia hormonal do climatério."},
+    {"question_id": 17061, "area": "Cirurgia", "subtema": "Ortopedia Pediátrica: Displasia do Quadril, Pé Torto e Epifisiólise", "rationale": "Epifisiólise proximal do fêmur em adolescente."}
+  ]
+}

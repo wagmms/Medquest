@@ -1,0 +1,15 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Cirurgia","subtema":"Hérnias da Parede Abdominal (Inguinais, Femorais e Incisionais)"},
+  "reviewed_question_ids":[8679,8747,8837,9453,9660,10340,10532,11292,11522,12129,12134,12198,12270,12506,12778,12877,12979,13193,13382,13736,14147,14268,14354,14357,14425,14426,14501,14651,14748,14836,14845,14948,15051,15054,15055,15057,15067,15150,15251,15360,15557,15649,15667,15861,15864,16036,16039,16113,16125,16225,16466,16476,16526,16626,17158,17218],
+  "moves":[
+    {"question_id":12134,"area":"Cirurgia","subtema":"Cirurgia Torácica Geral e Doenças Pleurais","rationale":"Hérnia diafragmática com vísceras abdominais no hemitórax."},
+    {"question_id":16036,"area":"Clínica Médica","subtema":"Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas","rationale":"Manejo de artrite reumatoide e dor crônica associada."},
+    {"question_id":16039,"area":"Clínica Médica","subtema":"Hipertensão Arterial Sistêmica e Crises Hipertensivas","rationale":"Otimização farmacológica de hipertensão arterial em DRC."},
+    {"question_id":16125,"area":"Clínica Médica","subtema":"Valvopatias Adquiridas e Miocardiopatias","rationale":"Miocardite como complicação cardiovascular de Covid-19."},
+    {"question_id":16225,"area":"Ginecologia e Obstetrícia","subtema":"Fisiologia do Ciclo Menstrual e Eixo Hipotálamo-Hipófise-Ovário","rationale":"Síndrome pré-menstrual e transtorno disfórico pré-menstrual."},
+    {"question_id":16476,"area":"Cirurgia","subtema":"Cicatrização, Tratamento de Feridas, Enxertos e Retalhos","rationale":"Fases de integração de enxerto cutâneo."},
+    {"question_id":16526,"area":"Clínica Médica","subtema":"Síndromes Glomerulares: Nefrítica, Nefrótica e Tubulopatias","rationale":"Glomeruloesclerose focal e segmentar colapsante associada ao HIV."},
+    {"question_id":16626,"area":"Pediatria","subtema":"Vasculites na Infância (Henoch-Schönlein e Kawasaki)","rationale":"Doença de Kawasaki incompleta em lactente."}
+  ]
+}

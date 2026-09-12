@@ -1,0 +1,11 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Cirurgia", "subtema": "Cirurgia Bariátrica e Metabólica"},
+  "reviewed_question_ids": [8537, 8850, 8944, 9225, 9461, 9818, 10310, 11318, 12594, 12694, 12973, 13102, 13205, 13879, 14648, 14654, 15564, 15650, 15661, 16889, 16989, 17039],
+  "moves": [
+    {"question_id": 9818, "area": "Clínica Médica", "subtema": "Sepse no Adulto, Choque Séptico e Ressuscitação Hemodinâmica", "rationale": "Choque séptico com avaliação hemodinâmica invasiva e responsividade a fluidos."},
+    {"question_id": 16889, "area": "Cirurgia", "subtema": "Aneurismas de Aorta Abdominal e Torácica", "rationale": "Planejamento de reparo endovascular de aneurisma aortoilíaco."},
+    {"question_id": 16989, "area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital", "rationale": "Incontinência urinária de esforço e indicação de sling."},
+    {"question_id": 17039, "area": "Pediatria", "subtema": "Neonatologia: Desconforto Respiratório e Doença da Membrana Hialina", "rationale": "Desconforto respiratório neonatal e doença da membrana hialina."}
+  ]
+}

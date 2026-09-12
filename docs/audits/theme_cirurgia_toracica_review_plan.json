@@ -1,0 +1,17 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Cirurgia", "subtema": "Cirurgia Torácica Geral e Doenças Pleurais"},
+  "reviewed_question_ids": [9665, 9694, 10614, 10722, 10768, 10843, 10913, 10914, 11121, 11123, 11298, 11302, 11305, 11419, 11421, 11512, 12605, 12705, 12884, 13119, 13438, 13439, 13588, 13805, 13949, 14653, 14756, 14953, 16268, 16368, 16418, 16466, 16566, 16616, 16665, 16715, 16815, 16897, 16943, 17216],
+  "moves": [
+    {"question_id": 10722, "area": "Pediatria", "subtema": "Calendário Vacinal do PNI e Imunizações Especiais", "rationale": "Atualização vacinal de criança de 15 meses."},
+    {"question_id": 16268, "area": "Cirurgia", "subtema": "Hemorragia Digestiva Alta e Baixa na Emergência Cirúrgica", "rationale": "Hemorragia digestiva alta por hipertensão portal em cirrose."},
+    {"question_id": 16368, "area": "Clínica Médica", "subtema": "Ventilação Mecânica, SARA e Insuficiência Respiratória Aguda", "rationale": "Manejo de sedação e ventilação mecânica em crise asmática grave."},
+    {"question_id": 16418, "area": "Clínica Médica", "subtema": "Leucemias, Linfomas e Mieloma Múltiplo", "rationale": "Cuidados paliativos integrados durante tratamento de leucemia linfoblástica aguda."},
+    {"question_id": 16466, "area": "Cirurgia", "subtema": "Hérnias da Parede Abdominal (Inguinais, Femorais e Incisionais)", "rationale": "Hérnia femoral em mulher idosa e tratamento laparoscópico."},
+    {"question_id": 16566, "area": "Ginecologia e Obstetrícia", "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade", "rationale": "NIPT positivo para trissomia 21 e confirmação por amniocentese."},
+    {"question_id": 16616, "area": "Pediatria", "subtema": "Arritmias, Síncope e Parada Cardiorrespiratória Pediátrica (PALS)", "rationale": "Taquicardia supraventricular estável em lactente e manobras vagais."},
+    {"question_id": 16665, "area": "Cirurgia", "subtema": "Abdome Agudo Obstrutivo (Bridas, Neoplasias e Volvo)", "rationale": "Pseudo-obstrução colônica pós-parto e uso de neostigmina após correção eletrolítica."},
+    {"question_id": 16715, "area": "Clínica Médica", "subtema": "Pneumonia Adquirida na Comunidade (PAC) e Síndromes Respiratórias Agudas", "rationale": "Pneumonia por Legionella após cruzeiro e tratamento com levofloxacino."},
+    {"question_id": 16815, "area": "Pediatria", "subtema": "Aleitamento Materno, Alimentação Complementar e Desnutrição Infantil", "rationale": "Suporte nutricional inicial de prematuro extremo com leite humano e nutrição parenteral."}
+  ]
+}

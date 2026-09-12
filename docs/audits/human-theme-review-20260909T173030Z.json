@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T173030Z-5775e950",
+  "plan": "docs\\audits\\theme_sca_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T173030Z.db",
+  "questions_reviewed": 74,
+  "questions_reclassified": 31
+}

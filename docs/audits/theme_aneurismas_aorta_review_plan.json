@@ -1,0 +1,9 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Cirurgia", "subtema": "Aneurismas de Aorta Abdominal e Torácica"},
+  "reviewed_question_ids": [9227, 10345, 10547, 10548, 10761, 11091, 11291, 11308, 11416, 12505, 13381, 13739, 14145, 14343, 15548, 15560, 15857, 16032, 16473],
+  "moves": [
+    {"question_id": 10548, "area": "Cirurgia", "subtema": "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas", "rationale": "Colite isquêmica no pós-operatório de correção aberta de aneurisma roto."},
+    {"question_id": 16032, "area": "Clínica Médica", "subtema": "Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas", "rationale": "Síndrome demencial progressiva em idosa e indicação de donepezila."}
+  ]
+}

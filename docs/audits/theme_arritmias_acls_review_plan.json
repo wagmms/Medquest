@@ -1,0 +1,17 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Clínica Médica", "subtema": "Taquiarritmias, Bradiarritmias, Síncope e Suporte Avançado (ACLS)"},
+  "reviewed_question_ids": [8579,8636,8649,8741,8864,8980,9012,9385,9390,9392,9425,9613,10272,10386,10703,10933,10939,11033,11172,11188,11208,11430,12015,12016,12017,12088,12089,12162,12169,12213,12302,12369,12375,12418,12419,12520,12788,12816,12889,12904,12905,12994,12996,13006,13020,13083,13086,13169,13341,13445,13539,13576,13596,13716,13718,13744,13890,13932,14024,14098,14139,14164,14211,14263,14264,14409,14410,14411,14441,14480,14490,14559,14596,14640,14670,14672,14891,14930,14969,14982,15143,15147,15284,15328,15370,15444,15446,15568,15679,15729,15879,15933,15970,16038,16054,16158,17074,17096,17206,17254],
+  "moves": [
+    {"question_id":10386,"area":"Clínica Médica","subtema":"Distúrbios Eletrolíticos (Sódio, Potássio) e Equilíbrio Ácido-Base","rationale":"Tratamento eletrocardiográfico da hipercalemia."},
+    {"question_id":12996,"area":"Clínica Médica","subtema":"Acidente Vascular Cerebral Isquêmico e Hemorrágico (Janela de Trombólise)","rationale":"AVC isquêmico agudo elegível para trombólise."},
+    {"question_id":13020,"area":"Pediatria","subtema":"Puericultura: Marcos do Desenvolvimento (DNPM) e Curvas de Crescimento","rationale":"Orientação familiar em episódio de perda de fôlego cianótica."},
+    {"question_id":13169,"area":"Clínica Médica","subtema":"Valvopatias Adquiridas e Miocardiopatias","rationale":"Estenose mitral reumática com fibrilação atrial e prevenção de embolia."},
+    {"question_id":14670,"area":"Pediatria","subtema":"Diarreia Aguda, Reidratação Oral e Doenças Disabsortivas","rationale":"Desidratação/hipovolemia secundária a diarreia aguda."},
+    {"question_id":14672,"area":"Pediatria","subtema":"Puericultura: Marcos do Desenvolvimento (DNPM) e Curvas de Crescimento","rationale":"Estratificação de risco de BRUE em lactente."},
+    {"question_id":14969,"area":"Pediatria","subtema":"Segurança Infantil, Prevenção de Acidentes e Maus-Tratos","rationale":"Prevenção de síndrome da morte súbita do lactente."},
+    {"question_id":15933,"area":"Cirurgia","subtema":"Trauma Torácico: Pneumotórax, Hemotórax e Tamponamento Cardíaco","rationale":"Manejo de trauma torácico penetrante instável."},
+    {"question_id":16054,"area":"Cirurgia","subtema":"Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana","rationale":"Conduta após traumatismo craniano leve pediátrico."},
+    {"question_id":16158,"area":"Pediatria","subtema":"Distúrbios Obstrutivos, Asma e Bronquiolite na Infância","rationale":"Bronquiolite com desconforto respiratório e indicação de internação."}
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Ginecologia e Obstetrícia",
+    "subtema": "Trabalho de Parto Prematuro e Tocólise"
+  },
+  "reviewed_question_ids": [8620, 8621, 8967, 9762, 9768, 9901, 9988, 10258, 10551, 10555, 10677, 10856, 10958, 11142, 12444, 12631, 12731, 13348, 13520, 13825, 14078, 14186, 14705, 15400, 15976, 16282, 16382, 16432, 17157, 17271],
+  "moves": [
+    {
+      "question_id": 9768,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Amniorrexe Prematura (RPMO) e Corioamnionite",
+      "rationale": "A decisão é dirigida pela ruptura de membranas, incluindo a profilaxia para EGB e a condução após RPMO."
+    },
+    {
+      "question_id": 9901,
+      "area": "Clínica Médica",
+      "subtema": "Diabetes Mellitus: Metas Glicêmicas, Complicações e Tratamento",
+      "rationale": "O caso aborda intensificação farmacológica do diabetes mellitus tipo 2 fora da gestação."
+    },
+    {
+      "question_id": 9988,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias",
+      "rationale": "Parto a termo com período expulsivo prolongado e indicação de resolução operatória pertence à assistência intraparto."
+    },
+    {
+      "question_id": 12631,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade",
+      "rationale": "A interpretação do Doppler de ducto venoso na restrição de crescimento fetal é conteúdo de medicina fetal."
+    },
+    {
+      "question_id": 16282,
+      "area": "Clínica Médica",
+      "subtema": "Sepse no Adulto, Choque Séptico e Ressuscitação Hemodinâmica",
+      "rationale": "A conduta após choque séptico refratário à noradrenalina é o eixo central da questão."
+    },
+    {
+      "question_id": 16382,
+      "area": "Cirurgia",
+      "subtema": "Uro-Oncologia: Câncer de Próstata, Rim, Bexiga e Testículo",
+      "rationale": "O ajuste de opioide é contextualizado em paciente com câncer de próstata metastático."
+    },
+    {
+      "question_id": 16432,
+      "area": "Pediatria",
+      "subtema": "Constipação Intestinal Funcional e Orgânica",
+      "rationale": "A questão trata do primeiro passo terapêutico na constipação funcional infantil com fecaloma."
+    },
+    {
+      "question_id": 17271,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Amniorrexe Prematura (RPMO) e Corioamnionite",
+      "rationale": "As medidas medicamentosas são definidas pela RPMO pré-termo com trabalho de parto inicial."
+    }
+  ]
+}

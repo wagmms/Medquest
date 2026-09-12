@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T215549Z-f11d35f8",
+  "plan": "docs\\audits\\theme_hiv_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T215549Z.db",
+  "questions_reviewed": 14,
+  "questions_reclassified": 2
+}

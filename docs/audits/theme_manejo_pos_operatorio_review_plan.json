@@ -1,0 +1,29 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Cirurgia", "subtema": "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas"},
+  "reviewed_question_ids": [8551,8683,8690,8848,8931,8934,8935,8936,8937,9216,9217,9221,9445,9452,9669,9915,10291,10292,10306,10308,10338,10342,10548,10617,10618,10769,10923,11088,11089,12004,12006,12273,12501,12589,12596,12688,12689,12696,13563,13737,14151,14154,14213,14215,14217,14221,14222,14273,14507,14574,14578,14750,14841,15053,15155,15348,15349,15456,15457,15466,15467,15554,15558,15565,15655,15761,15766,15855,15859,15866,15948,16030,16034,16271,16463,16903,16953,17003,17053,17176,17178,17217],
+  "moves": [
+    {"question_id":10769,"area":"Cirurgia","subtema":"Cirurgia Pediátrica e Malformações Digestivas Neonatais","rationale":"Complicação metabólica perioperatória em recém-nascido submetido a cirurgia intestinal."},
+    {"question_id":11088,"area":"Cirurgia","subtema":"Cirurgia Torácica Geral e Doenças Pleurais","rationale":"Perfuração esofágica iatrogênica com mediastinite e indicação de toracotomia."},
+    {"question_id":12589,"area":"Clínica Médica","subtema":"Celulite, Erisipela, Osteomielite e Infecções de Partes Moles","rationale":"Tratamento ambulatorial de abscesso cutâneo por MSSA."},
+    {"question_id":12596,"area":"Clínica Médica","subtema":"Ventilação Mecânica, SARA e Insuficiência Respiratória Aguda","rationale":"Dessaturação após intubação por intubação seletiva e ajuste da cânula."},
+    {"question_id":12688,"area":"Clínica Médica","subtema":"Pneumonia Adquirida na Comunidade (PAC) e Síndromes Respiratórias Agudas","rationale":"Pneumonia hospitalar e seus fatores de risco."},
+    {"question_id":12689,"area":"Clínica Médica","subtema":"Doenças da Suprarrenal, Paratireoides e Distúrbios do Cálcio","rationale":"Insuficiência adrenal aguda por supressão de corticoterapia crônica."},
+    {"question_id":13563,"area":"Cirurgia","subtema":"Trauma Abdominal Fechado e Penetrante (FAST e Laparotomia)","rationale":"Vacinação após esplenectomia realizada por trauma abdominal."},
+    {"question_id":13737,"area":"Cirurgia","subtema":"Cirurgia Pediátrica e Malformações Digestivas Neonatais","rationale":"Consequência nutricional de ressecção intestinal por intussuscepção em lactente."},
+    {"question_id":14151,"area":"Medicina Preventiva","subtema":"Vigilância em Saúde e Notificação Compulsória (SINAN)","rationale":"Prevenção de infecção relacionada à assistência à saúde."},
+    {"question_id":14221,"area":"Cirurgia","subtema":"Fundamentos da Anestesiologia, Farmacologia e Bloqueios","rationale":"Complicação mais comum de intubação orotraqueal de urgência."},
+    {"question_id":14222,"area":"Cirurgia","subtema":"Hiperplasia Prostática Benigna (HPB) e Litíase Urinária","rationale":"Síndrome de ressecção transuretral de próstata."},
+    {"question_id":15558,"area":"Clínica Médica","subtema":"Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas","rationale":"Delirium pós-operatório em paciente idosa."},
+    {"question_id":15766,"area":"Cirurgia","subtema":"Litíase Biliar, Colecistite, Coledocolitíase e Colangite","rationale":"Lesão de via biliar após colecistectomia com coleperitônio."},
+    {"question_id":15948,"area":"Clínica Médica","subtema":"Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas","rationale":"Avaliação de quedas e hipotensão ortostática no idoso."},
+    {"question_id":16030,"area":"Clínica Médica","subtema":"Hipotireoidismo, Hipertireoidismo e Nódulos Tireoidianos","rationale":"Tireotoxicose com captação tireoidiana baixa."},
+    {"question_id":16034,"area":"Clínica Médica","subtema":"Toxicologia Clínica e Acidentes por Animais Peçonhentos","rationale":"Rabdomiólise e injúria renal aguda relacionadas ao uso de cocaína."},
+    {"question_id":16271,"area":"Clínica Médica","subtema":"Celulite, Erisipela, Osteomielite e Infecções de Partes Moles","rationale":"Gangrena de Fournier, infecção necrosante de partes moles."},
+    {"question_id":16903,"area":"Cirurgia","subtema":"Atendimento ao Paciente Queimado e Reposição Volêmica","rationale":"Queimadura extensa com lesão inalatória e necessidade de via aérea precoce."},
+    {"question_id":16953,"area":"Clínica Médica","subtema":"Síndromes Coronarianas Agudas (Com e Sem Supra de ST)","rationale":"Terapia antitrombótica após síndrome coronariana aguda e angioplastia."},
+    {"question_id":17003,"area":"Ginecologia e Obstetrícia","subtema":"Uroginecologia: Incontinência Urinária e Prolapso Genital","rationale":"Complicações das técnicas de sling para incontinência urinária de esforço."},
+    {"question_id":17053,"area":"Clínica Médica","subtema":"Toxicologia Clínica e Acidentes por Animais Peçonhentos","rationale":"Intoxicação por salicilato e distúrbio ácido-base."},
+    {"question_id":17176,"area":"Cirurgia","subtema":"Cirurgia Bariátrica e Metabólica","rationale":"Hérnia interna tardia após bypass gástrico em Y de Roux."}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Anatomia Cirúrgica e Estruturas Pélvicas Femininas"},
+  "reviewed_question_ids": [8917, 9234, 12233, 12530, 14240, 15206, 15389, 16223, 16498, 17009],
+  "moves": [
+    {"question_id": 9234, "area": "Cirurgia", "subtema": "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas", "rationale": "Sequência técnica de histerectomia abdominal no contexto de procedimento cirúrgico."},
+    {"question_id": 16498, "area": "Cirurgia", "subtema": "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas", "rationale": "Lesão ureteral reconhecida no pós-operatório de histerectomia."},
+    {"question_id": 17009, "area": "Ginecologia e Obstetrícia", "subtema": "Patologias Benignas e Neoplásicas da Vulva e Vagina", "rationale": "Hímen imperfurado com hematocolpo e hematometra em adolescente."}
+  ]
+}

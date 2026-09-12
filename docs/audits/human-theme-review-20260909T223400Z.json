@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T223400Z-13581005",
+  "plan": "docs\\audits\\theme_neuropatias_miastenia_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T223400Z.db",
+  "questions_reviewed": 44,
+  "questions_reclassified": 12
+}

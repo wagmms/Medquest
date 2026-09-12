@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T151734Z-055fad9d",
+  "plan": "docs\\audits\\theme_disturbios_motores_esofago_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T151734Z.db",
+  "questions_reviewed": 43,
+  "questions_reclassified": 29
+}

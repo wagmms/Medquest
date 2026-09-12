@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260910T040509Z-7bc8b75c",
+  "plan": "docs\\audits\\theme_les_esclerose_miopatias_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260910T040509Z.db",
+  "questions_reviewed": 33,
+  "questions_reclassified": 7
+}

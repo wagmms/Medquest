@@ -1,0 +1,21 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Valvopatias Adquiridas e Miocardiopatias"},"reviewed_question_ids":[8513,9389,9734,9777,9794,9954,9997,10029,10352,10571,10635,10779,10828,10889,11168,11209,11397,11499,11530,12384,12583,12613,12683,12713,12807,12821,12990,13001,13169,13715,13858,13867,13891,13958,14138,14232,14336,14368,14443,14639,14867,15230,15237,15434,15445,15955,16111,16125,16328,16484,16534,16584,16634,16705,16755,16805,16855,16915,16954,16965,17015],"moves":[
+{"question_id":9794,"area":"Cirurgia","subtema":"Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas","rationale":"Suspeita de deiscência anastomótica no pós-operatório de gastrectomia."},
+{"question_id":9954,"area":"Pediatria","subtema":"Distúrbios Obstrutivos, Asma e Bronquiolite na Infância","rationale":"Manejo de bronquiolite em lactente."},
+{"question_id":9997,"area":"Medicina Preventiva","subtema":"Legislação, Diretrizes e Evolução do SUS","rationale":"Decreto 7.508/2011 e organização do SUS."},
+{"question_id":10889,"area":"Pediatria","subtema":"Distúrbios Obstrutivos, Asma e Bronquiolite na Infância","rationale":"Bronquiolite em lactente."},
+{"question_id":12583,"area":"Cirurgia","subtema":"Abdome Agudo Inflamatório (Apendicite e Diverticulite Aguda)","rationale":"Conduta diante de apêndice macroscopicamente normal em laparoscopia por suspeita de apendicite."},
+{"question_id":12613,"area":"Clínica Médica","subtema":"Injúria Renal Aguda (IRA) e Doença Renal Crônica (DRC)","rationale":"Síndrome hemolítico-urêmica com injúria renal aguda e hipercalemia."},
+{"question_id":13867,"area":"Cirurgia","subtema":"Trauma Abdominal Fechado e Penetrante (FAST e Laparotomia)","rationale":"Interpretação de FAST no trauma abdominal fechado."},
+{"question_id":16111,"area":"Cirurgia","subtema":"Fraturas Ósseas e Princípios Gerais de Osteossíntese","rationale":"Fratura diafisária de úmero e lesão do nervo radial."},
+{"question_id":16328,"area":"Ginecologia e Obstetrícia","subtema":"Amniorrexe Prematura (RPMO) e Corioamnionite","rationale":"Profilaxia de EGB em rotura prematura de membranas."},
+{"question_id":16484,"area":"Cirurgia","subtema":"Litíase Biliar, Colecistite, Coledocolitíase e Colangite","rationale":"Colecistite difícil e estratégia de colecistectomia subtotal."},
+{"question_id":16534,"area":"Clínica Médica","subtema":"Asma e Doença Pulmonar Obstrutiva Crônica (DPOC)","rationale":"Aspergilose broncopulmonar alérgica."},
+{"question_id":16584,"area":"Ginecologia e Obstetrícia","subtema":"Câncer de Colo Uterino e Lesões Precursoras","rationale":"Tratamento do carcinoma invasivo de colo uterino."},
+{"question_id":16634,"area":"Pediatria","subtema":"Convulsão Febril, Epilepsias e Síndromes Convulsivas na Infância","rationale":"Síndrome de West e hipsarritmia."},
+{"question_id":16705,"area":"Cirurgia","subtema":"Cicatrização, Tratamento de Feridas, Enxertos e Retalhos","rationale":"Cobertura com retalho de tendões expostos após desenluvamento."},
+{"question_id":16805,"area":"Ginecologia e Obstetrícia","subtema":"Uroginecologia: Incontinência Urinária e Prolapso Genital","rationale":"Tratamento de bexiga hiperativa/incontinência de urgência."},
+{"question_id":16855,"area":"Clínica Médica","subtema":"Dermatologia Clínica: Farmacodermias Graves, Eczemas e Psoríase","rationale":"Hemangioma infantil com indicação de propranolol por localização de risco."},
+{"question_id":16915,"area":"Clínica Médica","subtema":"Leucemias, Linfomas e Mieloma Múltiplo","rationale":"Febre neutropênica durante indução de leucemia mieloide aguda."},
+{"question_id":16965,"area":"Ginecologia e Obstetrícia","subtema":"Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade","rationale":"Sequência anemia-policitemia em gestação gemelar monocoriônica."},
+{"question_id":17015,"area":"Clínica Médica","subtema":"Meningites, Encefalites e Infecções do SNC","rationale":"Meningite tuberculosa provável com líquor hipoglicorráquico e linfocitário."}
+]}

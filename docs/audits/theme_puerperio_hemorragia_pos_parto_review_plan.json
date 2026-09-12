@@ -1,0 +1,82 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Ginecologia e Obstetrícia",
+    "subtema": "Puerpério Fisiológico, Patológico e Hemorragia Pós-Parto"
+  },
+  "reviewed_question_ids": [8605, 8614, 8719, 8725, 8960, 9244, 9482, 9602, 9767, 9873, 9886, 9895, 10060, 10253, 10259, 10408, 10666, 10721, 11023, 11138, 11362, 11363, 11557, 11981, 12121, 12124, 12326, 12327, 12441, 12442, 12632, 12662, 12732, 12833, 12947, 13040, 13146, 13303, 13458, 13606, 13762, 13828, 13966, 14073, 14185, 14304, 14373, 14377, 14523, 14699, 14807, 14883, 15106, 15200, 15300, 15302, 15497, 15556, 15610, 15790, 15797, 15895, 16075, 16173, 16174, 16327, 16511, 16561, 16611, 16661, 17151, 17228],
+  "moves": [
+    {
+      "question_id": 9886,
+      "area": "Medicina Preventiva",
+      "subtema": "Estudos Epidemiológicos: Medidas de Associação e Análise Estatística",
+      "rationale": "O impacto da adesão diferencial na análise por intenção de tratar é uma questão de análise de ensaio clínico."
+    },
+    {
+      "question_id": 9895,
+      "area": "Medicina Preventiva",
+      "subtema": "Legislação, Diretrizes e Evolução do SUS",
+      "rationale": "A pergunta cobra os determinantes e condicionantes da saúde previstos na Lei nº 8.080/1990."
+    },
+    {
+      "question_id": 10060,
+      "area": "Pediatria",
+      "subtema": "Neonatologia: Icterícia Neonatal e Doenças Hematológicas",
+      "rationale": "A interpretação de hiperbilirrubinemia neonatal por incompatibilidade ABO pertence à neonatologia."
+    },
+    {
+      "question_id": 12632,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade",
+      "rationale": "O diagnóstico ultrassonográfico de corionicidade e amnionicidade é conteúdo de medicina fetal."
+    },
+    {
+      "question_id": 14377,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Vulvovaginites e Diagnóstico Diferencial dos Corrimentos Vaginais",
+      "rationale": "A questão é centrada na orientação para corrimento vaginal em paciente não puérpera."
+    },
+    {
+      "question_id": 15797,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos",
+      "rationale": "A escolha de contraceptivo no puerpério e em aleitamento misto é conteúdo de planejamento reprodutivo."
+    },
+    {
+      "question_id": 16075,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias",
+      "rationale": "A conduta frente à distócia de ombros pertence à assistência intraparto."
+    },
+    {
+      "question_id": 16174,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias",
+      "rationale": "A classificação de Robson é instrumento de classificação da assistência e via de parto."
+    },
+    {
+      "question_id": 16511,
+      "area": "Cirurgia",
+      "subtema": "Cirurgia Cardíaca: Revascularização Miocárdica e Cirurgia Valvar",
+      "rationale": "O caso define a estratégia de revascularização em doença coronariana complexa com aorta em porcelana."
+    },
+    {
+      "question_id": 16561,
+      "area": "Medicina Preventiva",
+      "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)",
+      "rationale": "A consulta de cessação do tabagismo e as ações preventivas de rastreamento pertencem à atenção primária."
+    },
+    {
+      "question_id": 16611,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos",
+      "rationale": "A pergunta solicita o método contraceptivo mais adequado diante de antecedente de AVC e sangramento menstrual."
+    },
+    {
+      "question_id": 16661,
+      "area": "Pediatria",
+      "subtema": "Reanimação Neonatal e Assistência em Sala de Parto",
+      "rationale": "A conduta inicial do recém-nascido com desconforto respiratório na mesa de reanimação é conteúdo de reanimação neonatal."
+    }
+  ]
+}

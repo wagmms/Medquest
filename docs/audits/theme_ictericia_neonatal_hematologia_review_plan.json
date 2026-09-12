@@ -1,0 +1,12 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Pediatria","subtema":"Neonatologia: Icterícia Neonatal e Doenças Hematológicas"},
+  "reviewed_question_ids":[8580,8734,8745,9021,9198,9209,9685,9686,9951,10060,10373,10597,11280,11501,12208,12423,13211,13344,13734,13814,13887,13894,14295,14438,14447,14976,15179,15268,15277,15379,15487,16048,16142,16151,16251,16311,16438,16639,17033,17091,17275],
+  "moves":[
+    {"question_id":13734,"area":"Cirurgia","subtema":"Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos","rationale":"Dor epigástrica irradiada para dorso com amilase e lipase elevadas caracteriza pancreatite aguda."},
+    {"question_id":16142,"area":"Pediatria","subtema":"Imunodeficiências, Alergias e Anafilaxia na Infância","rationale":"O caso apresenta anafilaxia alimentar e seu manejo imediato."},
+    {"question_id":16151,"area":"Pediatria","subtema":"Baixa Estatura, Puberdade Precoce e Atraso Puberal","rationale":"Crescimento peniano e pubarca precoces exigem investigação de puberdade precoce."},
+    {"question_id":16251,"area":"Ginecologia e Obstetrícia","subtema":"Climatério, Menopausa e Terapia de Reposição Hormonal (TRH)","rationale":"A conduta para sintomas vasomotores em sobrevivente de câncer de mama é tema de climatério."},
+    {"question_id":16639,"area":"Clínica Médica","subtema":"Diagnóstico Diferencial das Anemias e Hemoglobinopatias","rationale":"Hemólise oxidativa por sulfametoxazol com corpúsculos de Heinz indica deficiência de G6PD."}
+  ]
+}

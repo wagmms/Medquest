@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T154440Z-32044b42",
+  "plan": "docs\\audits\\theme_trauma_extremidades_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T154440Z.db",
+  "questions_reviewed": 28,
+  "questions_reclassified": 13
+}

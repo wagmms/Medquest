@@ -1,0 +1,40 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Ginecologia e Obstetrícia",
+    "subtema": "Massas Anexiais e Neoplasias Ovarianas"
+  },
+  "reviewed_question_ids": [8913, 9597, 10110, 10504, 10564, 10680, 10957, 11014, 11131, 11262, 11476, 11607, 12308, 13032, 13128, 13235, 13237, 13465, 13829, 14067, 14298, 14432, 14448, 14451, 14691, 14793, 15295, 15495, 15689, 15887, 16062, 16169, 16229, 16596, 16993, 16996, 17226],
+  "moves": [
+    {
+      "question_id": 10110,
+      "area": "Medicina Preventiva",
+      "subtema": "Ética Médica, Bioética e Prontuários / Documentos",
+      "rationale": "A questão cobra regras do Código de Ética Médica e sigilo profissional."
+    },
+    {
+      "question_id": 10504,
+      "area": "Cirurgia",
+      "subtema": "Atendimento ao Paciente Queimado e Reposição Volêmica",
+      "rationale": "A reposição volêmica pela fórmula de Parkland em grande queimado é conteúdo de atendimento ao paciente queimado."
+    },
+    {
+      "question_id": 14067,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos",
+      "rationale": "A conduta após esquecimento de anticoncepcional oral combinado pertence à contracepção hormonal."
+    },
+    {
+      "question_id": 16062,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos",
+      "rationale": "A questão avalia elegibilidade e contraindicações de métodos contraceptivos."
+    },
+    {
+      "question_id": 16169,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal",
+      "rationale": "A conduta é definida pela redução de movimentos fetais e pelo perfil biofísico fetal."
+    }
+  ]
+}

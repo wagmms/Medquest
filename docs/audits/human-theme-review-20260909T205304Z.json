@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T205304Z-a60d1372",
+  "plan": "docs\\audits\\theme_tireoide_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T205304Z.db",
+  "questions_reviewed": 68,
+  "questions_reclassified": 14
+}

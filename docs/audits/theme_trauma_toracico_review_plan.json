@@ -1,0 +1,18 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Cirurgia","subtema":"Trauma Torácico: Pneumotórax, Hemotórax e Tamponamento Cardíaco"},
+  "reviewed_question_ids":[8553,8678,8839,8938,9447,9834,10344,10502,10531,10628,10694,10763,11101,11117,11299,11315,11515,11996,11998,12205,12606,12706,13203,13329,13333,13493,13498,13557,13558,13728,13941,14041,14121,14277,14420,14495,14498,14763,14829,14830,14959,14961,15060,15355,15367,15462,15666,15751,15757,15850,15856,15858,16025,16031,16033,16469,16519,16569,16905,16955,17005,17057,17165,17215],
+  "moves":[
+    {"question_id":9834,"area":"Pediatria","subtema":"Aleitamento Materno, Alimentação Complementar e Desnutrição Infantil","rationale":"Regurgitação e déficit ponderal em lactente."},
+    {"question_id":12606,"area":"Clínica Médica","subtema":"Síndromes Coronarianas Agudas (Com e Sem Supra de ST)","rationale":"Falha de reperfusão pós-fibrinólise em síndrome coronariana aguda."},
+    {"question_id":16025,"area":"Clínica Médica","subtema":"Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas","rationale":"Profilaxias em pessoa vivendo com HIV e CD4 baixo."},
+    {"question_id":16031,"area":"Clínica Médica","subtema":"Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas","rationale":"Diagnóstico de demência de Alzheimer."},
+    {"question_id":16033,"area":"Clínica Médica","subtema":"Injúria Renal Aguda (IRA) e Doença Renal Crônica (DRC)","rationale":"Manejo de hipertensão e nefropatia diabética em DRC."},
+    {"question_id":16469,"area":"Cirurgia","subtema":"Cirurgia Pediátrica e Malformações Digestivas Neonatais","rationale":"Manejo comparativo de hérnias umbilical e inguinal na infância."},
+    {"question_id":16519,"area":"Clínica Médica","subtema":"Diabetes Mellitus: Metas Glicêmicas, Complicações e Tratamento","rationale":"Hipogonadismo funcional associado à obesidade."},
+    {"question_id":16569,"area":"Ginecologia e Obstetrícia","subtema":"Assistência Pré-Natal de Baixo e Alto Risco","rationale":"Rastreamento combinado de aneuploidias no primeiro trimestre."},
+    {"question_id":16905,"area":"Cirurgia","subtema":"Cicatrização, Tratamento de Feridas, Enxertos e Retalhos","rationale":"Escolha de enxerto cutâneo para cobertura de ferida."},
+    {"question_id":16955,"area":"Clínica Médica","subtema":"Endocardite Infecciosa e Sepse de Foco Endovascular","rationale":"Endocardite infecciosa e antibioticoterapia inicial."},
+    {"question_id":17005,"area":"Ginecologia e Obstetrícia","subtema":"Uroginecologia: Incontinência Urinária e Prolapso Genital","rationale":"Síndrome da bexiga dolorosa e úlcera de Hunner."}
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T030235Z-1d70690e",
+  "plan": "docs\\audits\\theme_ulceras_genitais_ist_mulher_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T030235Z.db",
+  "questions_reviewed": 38,
+  "questions_reclassified": 2
+}

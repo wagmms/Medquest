@@ -1,0 +1,29 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos"},
+  "reviewed_question_ids": [8527, 8624, 8625, 8628, 8898, 8910, 8956, 9232, 9473, 9755, 9905, 9906, 9975, 10053, 10062, 10250, 10270, 10397, 10450, 10568, 10675, 10676, 10801, 10858, 10896, 10956, 11015, 11132, 11148, 11357, 11477, 11550, 11559, 12039, 12117, 12232, 12436, 12451, 12466, 12644, 12744, 12839, 13133, 13142, 13299, 13462, 13521, 13766, 13768, 13902, 14187, 14236, 14311, 14392, 14609, 14617, 14725, 15018, 15091, 15092, 15093, 15097, 15203, 15293, 15399, 15489, 15694, 15799, 15805, 15896, 15983, 15991, 16080, 16167, 16226, 16246, 16250, 16284, 16337, 16384, 16434, 16504, 16554, 16604, 16654, 16786, 17142, 17239],
+  "moves": [
+    {"question_id": 8956, "area": "Ginecologia e Obstetrícia", "subtema": "Investigação e Propêdêutica da Infertilidade Conjugal", "rationale": "Indução de ovulação com citrato de clomifeno no tratamento de infertilidade."},
+    {"question_id": 9905, "area": "Pediatria", "subtema": "Afecções de Vias Aéreas Superiores: OMA, Sinusite e Faringoamigdalite", "rationale": "Quadro respiratório infeccioso pediátrico e sua conduta."},
+    {"question_id": 9906, "area": "Cirurgia", "subtema": "Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos", "rationale": "Pancreatite aguda biliar e decisão terapêutica."},
+    {"question_id": 9975, "area": "Ginecologia e Obstetrícia", "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade", "rationale": "Aloimunização anti-RhD e monitoramento fetal."},
+    {"question_id": 10053, "area": "Clínica Médica", "subtema": "Injúria Renal Aguda (IRA) e Doença Renal Crônica (DRC)", "rationale": "Diagnóstico e classificação de injúria renal aguda."},
+    {"question_id": 10062, "area": "Cirurgia", "subtema": "Abordagem Cirúrgica das Doenças Inflamatórias Intestinais (Crohn e RCU)", "rationale": "Doenças inflamatórias intestinais."},
+    {"question_id": 12644, "area": "Ginecologia e Obstetrícia", "subtema": "Síndromes Hipertensivas na Gravidez (Pré-eclâmpsia e Eclâmpsia)", "rationale": "Pré-eclâmpsia com sinais de gravidade e conduta imediata."},
+    {"question_id": 13766, "area": "Ginecologia e Obstetrícia", "subtema": "Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual", "rationale": "Atendimento a homem trans após violência sexual."},
+    {"question_id": 13768, "area": "Ginecologia e Obstetrícia", "subtema": "Sangramento Uterino Anormal (SUA) e Classificação PALM-COEIN / Miomatose", "rationale": "Irregularidade menstrual após cirurgia bariátrica."},
+    {"question_id": 14617, "area": "Clínica Médica", "subtema": "Dermatologia Clínica: Farmacodermias Graves, Eczemas e Psoríase", "rationale": "Manejo clínico de acne."},
+    {"question_id": 14725, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Acolhimento e abordagem integral em contexto de vulnerabilidade na atenção primária."},
+    {"question_id": 15983, "area": "Ginecologia e Obstetrícia", "subtema": "Hemorragias da Segunda Metade: Placenta Prévia e DPP", "rationale": "Sangramento indolor no terceiro trimestre sugestivo de placenta prévia."},
+    {"question_id": 15991, "area": "Medicina Preventiva", "subtema": "Legislação, Diretrizes e Evolução do SUS", "rationale": "Plano Nacional de Saúde e planejamento de políticas públicas de saúde."},
+    {"question_id": 16080, "area": "Ginecologia e Obstetrícia", "subtema": "Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)", "rationale": "Conduta frente a HSIL identificada no pré-natal."},
+    {"question_id": 16167, "area": "Ginecologia e Obstetrícia", "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal", "rationale": "Critérios do padrão sinusoidal na cardiotocografia."},
+    {"question_id": 16284, "area": "Clínica Médica", "subtema": "Acidente Vascular Cerebral Isquêmico e Hemorrágico (Janela de Trombólise)", "rationale": "Síndrome vestibular central sugestiva de AVC de circulação posterior."},
+    {"question_id": 16337, "area": "Medicina Preventiva", "subtema": "Delineamentos e Classificação dos Estudos Epidemiológicos", "rationale": "Estudo ecológico de associação entre poluição e prevalência de asma."},
+    {"question_id": 16384, "area": "Cirurgia", "subtema": "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino", "rationale": "Síndrome de veia cava superior causada por câncer de pulmão."},
+    {"question_id": 16434, "area": "Pediatria", "subtema": "Constipação Intestinal Funcional e Orgânica", "rationale": "Critérios diagnósticos de cólica funcional do lactente."},
+    {"question_id": 16504, "area": "Cirurgia", "subtema": "Doença Arterial Obstrutiva Periférica e Oclusões Arteriais Agudas", "rationale": "Suspeita de aprisionamento da artéria poplítea em atleta."},
+    {"question_id": 16604, "area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital", "rationale": "Interpretação de POP-Q em prolapso genital."},
+    {"question_id": 16654, "area": "Clínica Médica", "subtema": "Celulite, Erisipela, Osteomielite e Infecções de Partes Moles", "rationale": "Investigação de osteomielite pediátrica e diagnóstico diferencial com neoplasia óssea."}
+  ]
+}

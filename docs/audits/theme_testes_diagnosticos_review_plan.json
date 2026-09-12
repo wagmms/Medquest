@@ -1,0 +1,25 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Medicina Preventiva","subtema":"Avaliação de Testes Diagnósticos e Curva ROC"},
+  "reviewed_question_ids":[8522,9395,9640,9649,9720,9803,9940,9991,9992,10091,10094,10095,10099,10234,10323,10463,10708,10710,10748,10898,11050,11152,11244,11383,11460,11464,11570,12063,12262,12263,12449,12653,12848,12950,13061,13358,13410,13976,13977,14247,14712,14820,15026,15217,15411,15412,15413,15513,15514,15519,15521,15522,15611,15619,15708,15717,16085,16099,16340,16691,16791,16841,16924,17024,17188,17260],
+  "moves":[
+    {"question_id":8522,"area":"Clínica Médica","subtema":"Insuficiência Cardíaca: Diagnóstico, Estadiamento e Terapia Farmacológica","rationale":"Achado clínico e diagnóstico de insuficiência cardíaca."},
+    {"question_id":9803,"area":"Cirurgia","subtema":"Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas","rationale":"Complicação pós-operatória de gastroduodenopancreatectomia."},
+    {"question_id":9940,"area":"Clínica Médica","subtema":"Injúria Renal Aguda (IRA) e Doença Renal Crônica (DRC)","rationale":"Manejo de DRC e suas complicações."},
+    {"question_id":10323,"area":"Ginecologia e Obstetrícia","subtema":"Assistência Pré-Natal de Baixo e Alto Risco","rationale":"Uso de sorologia para rubéola no pré-natal."},
+    {"question_id":11152,"area":"Medicina Preventiva","subtema":"Estudos Epidemiológicos: Medidas de Associação e Análise Estatística","rationale":"Correção de odds ratio por acurácia da mensuração de exposição."},
+    {"question_id":11464,"area":"Ginecologia e Obstetrícia","subtema":"Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento","rationale":"Rastreamento mamográfico por faixa etária."},
+    {"question_id":12262,"area":"Clínica Médica","subtema":"Síndromes Coronarianas Agudas (Com e Sem Supra de ST)","rationale":"Probabilidade clínica de infarto em dor torácica."},
+    {"question_id":15519,"area":"Medicina Preventiva","subtema":"Delineamentos e Classificação dos Estudos Epidemiológicos","rationale":"Avaliação de causalidade em estudo observacional."},
+    {"question_id":15521,"area":"Medicina Preventiva","subtema":"História Natural da Doença e Níveis de Prevenção","rationale":"Critérios para rastreamento populacional."},
+    {"question_id":15522,"area":"Medicina Preventiva","subtema":"História Natural da Doença e Níveis de Prevenção","rationale":"Critérios para indicar rastreamento."},
+    {"question_id":15611,"area":"Ginecologia e Obstetrícia","subtema":"Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento","rationale":"Exames de mama."},
+    {"question_id":15619,"area":"Medicina Preventiva","subtema":"História Natural da Doença e Níveis de Prevenção","rationale":"Escolha de teste em programa de rastreamento."},
+    {"question_id":15708,"area":"Clínica Médica","subtema":"Dermatoses Infecciosas, Hanseníase e Leishmanioses","rationale":"Diagnóstico e tratamento de hanseníase."},
+    {"question_id":16691,"area":"Cirurgia","subtema":"Doença Arterial Obstrutiva Periférica e Oclusões Arteriais Agudas","rationale":"Interpretação de Doppler carotídeo e doença aterosclerótica."},
+    {"question_id":16791,"area":"Ginecologia e Obstetrícia","subtema":"Fundamentos em Sexualidade Humana e Saúde Reprodutiva","rationale":"Distúrbio do desenvolvimento sexual 46,XY."},
+    {"question_id":16841,"area":"Clínica Médica","subtema":"Toxicologia Clínica e Acidentes por Animais Peçonhentos","rationale":"Acidente por animal peçonhento em criança."},
+    {"question_id":16924,"area":"Clínica Médica","subtema":"Doenças da Suprarrenal, Paratireoides e Distúrbios do Cálcio","rationale":"Insuficiência adrenal primária."},
+    {"question_id":17024,"area":"Pediatria","subtema":"Parasitoses Intestinais: Helmintíases e Protozooses","rationale":"Enterobíase pediátrica."}
+  ]
+}

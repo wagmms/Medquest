@@ -1,0 +1,14 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Pediatria", "subtema": "Parasitoses Intestinais: Helmintíases e Protozooses"},
+  "reviewed_question_ids": [8595, 9876, 11185, 11493, 12293, 12624, 12724, 12824, 13224, 13227, 13742, 14050, 14061, 14135, 16302],
+  "moves": [
+    {"question_id": 9876, "area": "Ginecologia e Obstetrícia", "subtema": "Hemorragias da Primeira Metade: Abortamento, Ectópica e Mola", "rationale": "Sangramento, dor abdominal, choque e beta-hCG positivo sugerem gravidez ectópica rota."},
+    {"question_id": 11185, "area": "Clínica Médica", "subtema": "Dermatoses Infecciosas, Hanseníase e Leishmanioses", "rationale": "Larva migrans cutânea é dermatose parasitária, não parasitose intestinal."},
+    {"question_id": 11493, "area": "Cirurgia", "subtema": "Abdome Agudo Obstrutivo (Bridas, Neoplasias e Volvo)", "rationale": "Obstrução intestinal por bolo de Ascaris com vômitos e distensão requer abordagem de abdome agudo obstrutivo."},
+    {"question_id": 12624, "area": "Pediatria", "subtema": "Distúrbios Obstrutivos, Asma e Bronquiolite na Infância", "rationale": "Pneumonias recorrentes, desnutrição e baqueteamento digital motivam investigação de fibrose cística."},
+    {"question_id": 12724, "area": "Ginecologia e Obstetrícia", "subtema": "Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual", "rationale": "Dor em hipocôndrio direito em adolescente sexualmente ativa sugere perihepatite por DIP (Fitz-Hugh-Curtis)."},
+    {"question_id": 13224, "area": "Pediatria", "subtema": "Diarreia Aguda, Reidratação Oral e Doenças Disabsortivas", "rationale": "A questão trata de terapia antimicrobiana complementar da cólera, doença diarreica aguda."},
+    {"question_id": 14050, "area": "Pediatria", "subtema": "Distúrbios Obstrutivos, Asma e Bronquiolite na Infância", "rationale": "A investigação de episódios recorrentes de sintomas respiratórios é de doença obstrutiva pediátrica, não parasitose."}
+  ]
+}

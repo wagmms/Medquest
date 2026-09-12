@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T124110Z-8b798481",
+  "plan": "docs\\audits\\theme_cardiopatias_congenitas_pediatricas_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T124110Z.db",
+  "questions_reviewed": 27,
+  "questions_reclassified": 4
+}

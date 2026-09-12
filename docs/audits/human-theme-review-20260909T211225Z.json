@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T211225Z-f4f254f8",
+  "plan": "docs\\audits\\theme_cirrose_hipertensao_portal_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T211225Z.db",
+  "questions_reviewed": 63,
+  "questions_reclassified": 18
+}

@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T144353Z-3a3dcce5",
+  "plan": "docs\\audits\\theme_cicatrizacao_feridas_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T144353Z.db",
+  "questions_reviewed": 41,
+  "questions_reclassified": 10
+}

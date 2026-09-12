@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T123814Z-fcf3767a",
+  "plan": "docs\\audits\\theme_abdome_agudo_obstrutivo_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T123814Z.db",
+  "questions_reviewed": 45,
+  "questions_reclassified": 0
+}

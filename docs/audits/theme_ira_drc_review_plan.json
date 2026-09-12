@@ -1,0 +1,12 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Injúria Renal Aguda (IRA) e Doença Renal Crônica (DRC)"},"reviewed_question_ids":[8531,10362,10588,10641,10816,10944,11201,11224,11271,11338,11435,11438,12103,12377,12613,12802,13071,13186,13326,13428,13790,13793,13931,14566,14730,14903,14947,15135,15137,15242,15333,15428,15530,15644,15671,15730,15731,15860,15940,16033,16035,16116,16303,16523,16686,16885,16935],"moves":[
+{"question_id":8531,"area":"Clínica Médica","subtema":"Hipertensão Arterial Sistêmica e Crises Hipertensivas","rationale":"Avaliação de lesão aguda de órgão-alvo em crise hipertensiva."},
+{"question_id":10816,"area":"Clínica Médica","subtema":"Transtornos por Uso de Substâncias (Álcool, Tabaco e Drogas de Abuso)","rationale":"Abstinência alcoólica complicada."},
+{"question_id":13790,"area":"Clínica Médica","subtema":"Hipertensão Arterial Sistêmica e Crises Hipertensivas","rationale":"Lesão renal associada ao ajuste terapêutico anti-hipertensivo."},
+{"question_id":14947,"area":"Cirurgia","subtema":"Hiperplasia Prostática Benigna (HPB) e Litíase Urinária","rationale":"IRA pós-renal por retenção urinária em HPB."},
+{"question_id":15860,"area":"Cirurgia","subtema":"Doença Arterial Obstrutiva Periférica e Oclusões Arteriais Agudas","rationale":"Prevenção de lesão renal após clampagem aórtica vascular."},
+{"question_id":15940,"area":"Cirurgia","subtema":"Hérnias da Parede Abdominal (Inguinais, Femorais e Incisionais)","rationale":"Hérnia femoral encarcerada e indicação operatória."},
+{"question_id":16035,"area":"Clínica Médica","subtema":"Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática","rationale":"Caracterização etiológica de ascite por gradiente soro-ascite."},
+{"question_id":16116,"area":"Cirurgia","subtema":"Abdome Agudo Vascular e Isquemia Mesentérica","rationale":"Diagnóstico e conduta na isquemia mesentérica."},
+{"question_id":16303,"area":"Pediatria","subtema":"Imunodeficiências, Alergias e Anafilaxia na Infância","rationale":"Moduladores de CFTR no tratamento da fibrose cística."},
+{"question_id":16686,"area":"Cirurgia","subtema":"Hiperplasia Prostática Benigna (HPB) e Litíase Urinária","rationale":"Obstrução infravesical por HPB e ureterohidronefrose."}
+]}

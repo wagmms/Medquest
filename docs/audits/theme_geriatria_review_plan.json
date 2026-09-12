@@ -1,0 +1,29 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Clínica Médica",
+    "subtema": "Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas"
+  },
+  "reviewed_question_ids": [8529, 8644, 8880, 8881, 8977, 9158, 9160, 9378, 9823, 10035, 10038, 10280, 10285, 10480, 10575, 10642, 10649, 10824, 10903, 10937, 10949, 11040, 11041, 11196, 11202, 11328, 11433, 11539, 11548, 12071, 12183, 12329, 12330, 12339, 12344, 12379, 12661, 12761, 12806, 12856, 13072, 13269, 13272, 13324, 13538, 14491, 14613, 14615, 14628, 14645, 14659, 15022, 15337, 15345, 15431, 15558, 15745, 15746, 15839, 15844, 15948, 15987, 15989, 16019, 16031, 16032, 16347, 16493, 16502, 16543, 16552, 16593, 16602, 16643, 16652, 16881, 16931, 16938, 16981, 17031, 17064, 17250],
+  "moves": [
+    {"question_id": 10480, "area": "Cirurgia", "subtema": "Emergências Oftalmológicas e Patologias Oculares Frequentes", "rationale": "Arco senil é uma patologia ocular frequente; a idade é apenas o contexto clínico."},
+    {"question_id": 11548, "area": "Cirurgia", "subtema": "Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana", "rationale": "O quadro é de hematoma subdural crônico, cujo eixo diagnóstico é a lesão intracraniana."},
+    {"question_id": 12661, "area": "Medicina Preventiva", "subtema": "Legislação, Diretrizes e Evolução do SUS", "rationale": "A questão cobra diretamente as diretrizes da Política Nacional do Idoso prevista em lei."},
+    {"question_id": 15987, "area": "Medicina Preventiva", "subtema": "Estudos Epidemiológicos: Medidas de Associação e Análise Estatística", "rationale": "Interpreta intervalo de confiança, heterogeneidade e resultado de meta-análise."},
+    {"question_id": 15989, "area": "Medicina Preventiva", "subtema": "Vigilância Epidemiológica: Endemias, Epidemias e Surtos", "rationale": "Classifica o padrão epidemiológico da dengue a partir de diagrama de controle."},
+    {"question_id": 16019, "area": "Cirurgia", "subtema": "Trauma Ortopédico de Extremidades e Síndrome Compartimental", "rationale": "A profilaxia antitetânica é definida no atendimento da fratura exposta de tíbia após trauma de extremidade."},
+    {"question_id": 16347, "area": "Medicina Preventiva", "subtema": "Vigilância em Saúde e Notificação Compulsória (SINAN)", "rationale": "O enunciado solicita a periodicidade de notificação no SINAN."},
+    {"question_id": 16493, "area": "Cirurgia", "subtema": "Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos", "rationale": "Manejo de necrose pancreática infectada em pancreatite aguda grave."},
+    {"question_id": 16502, "area": "Cirurgia", "subtema": "Aneurismas de Aorta Abdominal e Torácica", "rationale": "O foco é a indicação de reparo de aneurisma arterial periférico; esta é a categoria canônica de aneurismas disponível."},
+    {"question_id": 16543, "area": "Clínica Médica", "subtema": "Lúpus Eritematoso Sistêmico (LES), Esclerose Sistêmica e Miopatias Inflamatórias", "rationale": "Complicação gastrointestinal de esclerose sistêmica, com provável supercrescimento bacteriano."},
+    {"question_id": 16552, "area": "Clínica Médica", "subtema": "Síndromes Coronarianas Agudas (Com e Sem Supra de ST)", "rationale": "IAM com supra de ST complicado por choque cardiogênico durante reperfusão."},
+    {"question_id": 16593, "area": "Ginecologia e Obstetrícia", "subtema": "Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)", "rationale": "Conduta após citologia com células glandulares atípicas."},
+    {"question_id": 16602, "area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital", "rationale": "Classificação urodinâmica da incontinência urinária de esforço."},
+    {"question_id": 16643, "area": "Pediatria", "subtema": "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo", "rationale": "Reconhecimento de síndrome de Prader-Willi em criança com hiperfagia e hipotonia prévia."},
+    {"question_id": 16652, "area": "Pediatria", "subtema": "Distúrbios Obstrutivos, Asma e Bronquiolite na Infância", "rationale": "Exacerbação grave de asma na infância refratária ao tratamento inicial."},
+    {"question_id": 16881, "area": "Cirurgia", "subtema": "Distúrbios Motores do Esôfago, Megaesôfago e Síndrome Disfágica", "rationale": "Disfagia por acalásia/megaesôfago e indicação de cardiomiotomia."},
+    {"question_id": 16931, "area": "Clínica Médica", "subtema": "Acidente Vascular Cerebral Isquêmico e Hemorrágico (Janela de Trombólise)", "rationale": "AVC isquêmico ao despertar e definição por imagem da elegibilidade para reperfusão."},
+    {"question_id": 16981, "area": "Ginecologia e Obstetrícia", "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)", "rationale": "Assistência ao parto de gestante com HIV e prevenção de transmissão vertical."},
+    {"question_id": 17031, "area": "Cirurgia", "subtema": "Cirurgia Pediátrica e Malformações Digestivas Neonatais", "rationale": "Emergência por hepatopatia de atresia biliar em criança, uma malformação digestiva pediátrica."}
+  ]
+}

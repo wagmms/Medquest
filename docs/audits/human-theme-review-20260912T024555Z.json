@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T024555Z-4e70fa93",
+  "plan": "docs\\audits\\theme_hemorragias_primeira_metade_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T024555Z.db",
+  "questions_reviewed": 60,
+  "questions_reclassified": 8
+}

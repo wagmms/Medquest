@@ -1,0 +1,100 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Ginecologia e Obstetrícia",
+    "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias"
+  },
+  "reviewed_question_ids": [8919, 8920, 9036, 9037, 9246, 9248, 9487, 9609, 9765, 9985, 10256, 10257, 10435, 10437, 10469, 10558, 10560, 10796, 10893, 10965, 11024, 11141, 11364, 11365, 11366, 11487, 12029, 12043, 12122, 12239, 12240, 12241, 12243, 12247, 12318, 12319, 12321, 12322, 12325, 12640, 12646, 12647, 12928, 12936, 12938, 13039, 13042, 13145, 13401, 13407, 13607, 13608, 13757, 13835, 13895, 13975, 14183, 14238, 14310, 14386, 14471, 14605, 14703, 14705, 14800, 14878, 14880, 14887, 15406, 15491, 15493, 15589, 15604, 15699, 15701, 15789, 15796, 15905, 15979, 16078, 16176, 16177, 16330, 16332, 16341, 16573, 16581, 16769, 16781, 17144, 17272],
+  "moves": [
+    {
+      "question_id": 9985,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Diabetes Gestacional e Pré-Gestacional",
+      "rationale": "A decisão sobre o momento da resolução é determinada pelo diabetes gestacional mal controlado em insulinoterapia."
+    },
+    {
+      "question_id": 10256,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Amniorrexe Prematura (RPMO) e Corioamnionite",
+      "rationale": "O diagnóstico e a orientação são guiados pela ruptura prematura de membranas a termo."
+    },
+    {
+      "question_id": 10469,
+      "area": "Pediatria",
+      "subtema": "Baixa Estatura, Puberdade Precoce e Atraso Puberal",
+      "rationale": "A questão interpreta baixa estatura e atraso puberal constitucional a partir da curva de crescimento e idade óssea."
+    },
+    {
+      "question_id": 10893,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal",
+      "rationale": "O ponto decisório é oligodrâmnio no termo, avaliado por ultrassonografia, com definição de vigilância e interrupção da gestação."
+    },
+    {
+      "question_id": 13757,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal",
+      "rationale": "O caso apresenta cardiotocografia para avaliação do bem-estar fetal."
+    },
+    {
+      "question_id": 13895,
+      "area": "Pediatria",
+      "subtema": "Distúrbios Obstrutivos, Asma e Bronquiolite na Infância",
+      "rationale": "Lactente com quadro de bronquiolite e desconforto respiratório requer classificação em doença respiratória aguda pediátrica."
+    },
+    {
+      "question_id": 14471,
+      "area": "Clínica Médica",
+      "subtema": "Hipertensão Arterial Sistêmica e Crises Hipertensivas",
+      "rationale": "A questão trata da confirmação diagnóstica de hipertensão arterial em adulta fora do contexto gestacional."
+    },
+    {
+      "question_id": 14705,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Trabalho de Parto Prematuro e Tocólise",
+      "rationale": "Contrações regulares com dilatação cervical às 32 semanas caracterizam trabalho de parto prematuro."
+    },
+    {
+      "question_id": 15979,
+      "area": "Pediatria",
+      "subtema": "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo",
+      "rationale": "Translucência nucal aumentada e osso nasal ausente são marcadores de rastreio de cromossomopatias."
+    },
+    {
+      "question_id": 16078,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Pré-Natal de Baixo e Alto Risco",
+      "rationale": "A identificação de alterações fisiológicas versus patológicas na consulta de pré-natal é o eixo da questão."
+    },
+    {
+      "question_id": 16332,
+      "area": "Medicina Preventiva",
+      "subtema": "Estudos Epidemiológicos: Medidas de Associação e Análise Estatística",
+      "rationale": "O reconhecimento de viés de publicação em meta-análise é conteúdo de análise epidemiológica."
+    },
+    {
+      "question_id": 16341,
+      "area": "Clínica Médica",
+      "subtema": "Políticas de Saúde Mental e Atenção Psicossocial (CAPS)",
+      "rationale": "A pergunta cobra a organização da Rede de Atenção Psicossocial do SUS."
+    },
+    {
+      "question_id": 16573,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal",
+      "rationale": "A conduta é definida pela interpretação de cardiotocografia intraparto."
+    },
+    {
+      "question_id": 16769,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal",
+      "rationale": "A alteração de frequência cardíaca fetal e a cardiotocografia são o núcleo da decisão clínica."
+    },
+    {
+      "question_id": 16781,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal",
+      "rationale": "O maior bolsão de líquido amniótico e a avaliação fetal definem a conduta no oligodrâmnio."
+    }
+  ]
+}

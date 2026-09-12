@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T124724Z-6d690306",
+  "plan": "docs\\audits\\theme_doencas_exantematicas_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T124724Z.db",
+  "questions_reviewed": 77,
+  "questions_reclassified": 40
+}

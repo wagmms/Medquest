@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T154521Z-cd23be64",
+  "plan": "docs\\audits\\theme_neoplasias_cabeca_pescoco_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T154521Z.db",
+  "questions_reviewed": 21,
+  "questions_reclassified": 9
+}

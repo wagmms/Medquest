@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260911T150049Z-d40bd64c",
+  "plan": "docs\\audits\\theme_anatomia_pelvica_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260911T150049Z.db",
+  "questions_reviewed": 10,
+  "questions_reclassified": 3
+}

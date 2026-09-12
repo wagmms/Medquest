@@ -1,0 +1,11 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Fisiologia do Ciclo Menstrual e Eixo Hipotálamo-Hipófise-Ovário"},
+  "reviewed_question_ids": [9468, 9469, 10805, 12838, 13134, 14873, 15098, 15303, 15390, 15593, 15597, 15599, 15889, 16177, 16222, 16225, 16312, 17007],
+  "moves": [
+    {"question_id": 9468, "area": "Ginecologia e Obstetrícia", "subtema": "Disfunções Sexuais Femininas e Dispareunia", "rationale": "Manejo de redução de libido relacionada a antidepressivo."},
+    {"question_id": 10805, "area": "Ginecologia e Obstetrícia", "subtema": "Sangramento Uterino Anormal (SUA) e Classificação PALM-COEIN / Miomatose", "rationale": "Avaliação do padrão menstrual e de sangramento uterino anormal pela FIGO."},
+    {"question_id": 16177, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias", "rationale": "Classificação e reparo de lacerações perineais do parto."},
+    {"question_id": 16222, "area": "Ginecologia e Obstetrícia", "subtema": "Investigação das Amenorreias e Síndrome dos Ovários Policísticos (SOP)", "rationale": "Investigação de irregularidade menstrual e infertilidade associadas a hiperprolactinemia secundária ao hipotireoidismo."}
+  ]
+}

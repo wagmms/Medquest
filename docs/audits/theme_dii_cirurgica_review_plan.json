@@ -1,0 +1,12 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Cirurgia", "subtema": "Abordagem Cirúrgica das Doenças Inflamatórias Intestinais (Crohn e RCU)"},
+  "reviewed_question_ids": [9709,9742,9929,11186,11213,11330,12133,12147,12393,12969,13098,13197,13598,14115,14204,14427,14581,14735,15034,15233,15955,16107,16830],
+  "moves": [
+    {"question_id":9929,"area":"Cirurgia","subtema":"Litíase Biliar, Colecistite, Coledocolitíase e Colangite","rationale":"Estenose iatrogênica de via biliar e colangite após colecistectomia."},
+    {"question_id":11186,"area":"Cirurgia","subtema":"Litíase Biliar, Colecistite, Coledocolitíase e Colangite","rationale":"Colangite esclerosante primária como causa de colestase."},
+    {"question_id":15955,"area":"Clínica Médica","subtema":"Valvopatias Adquiridas e Miocardiopatias","rationale":"Indicação de TAVI em estenose aórtica grave."},
+    {"question_id":16107,"area":"Cirurgia","subtema":"Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas","rationale":"Momento da antibioticoprofilaxia operatória."},
+    {"question_id":16830,"area":"Pediatria","subtema":"Aleitamento Materno, Alimentação Complementar e Desnutrição Infantil","rationale":"Candidíase mamilar no contexto do aleitamento."}
+  ]
+}

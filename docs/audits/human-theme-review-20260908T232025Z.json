@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260908T232025Z-7ed598ae",
+  "plan": "docs\\audits\\theme_hpb_litiase_urinaria_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260908T232025Z.db",
+  "questions_reviewed": 23,
+  "questions_reclassified": 0
+}

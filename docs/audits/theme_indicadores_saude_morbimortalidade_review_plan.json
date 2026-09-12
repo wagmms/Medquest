@@ -1,0 +1,23 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Medicina Preventiva",
+    "subtema": "Indicadores de Saúde e Coeficientes de Morbimortalidade"
+  },
+  "reviewed_question_ids": [8582, 8585, 8601, 8656, 8673, 8882, 9400, 9639, 9645, 9712, 9866, 9882, 10101, 10247, 10320, 10724, 10739, 10864, 11064, 11150, 11377, 11382, 12086, 12360, 12493, 12567, 12654, 12857, 12952, 13155, 13309, 13314, 13316, 13409, 13476, 13477, 13526, 13531, 13618, 13620, 13772, 13773, 13775, 13838, 13914, 13915, 14085, 14192, 14474, 14475, 14819, 15122, 15126, 15173, 15269, 15312, 15409, 15508, 15510, 15511, 15516, 15618, 15725, 15726, 15812, 15826, 15988, 16186, 16293, 16334, 16335, 16393, 16683, 16783, 16833, 17114, 17183],
+  "moves": [
+    {"question_id": 9400, "area": "Ginecologia e Obstetrícia", "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)", "rationale": "Prevenção de sífilis congênita pelo diagnóstico e tratamento materno no pré-natal."},
+    {"question_id": 9712, "area": "Ginecologia e Obstetrícia", "subtema": "Causas de Mortalidade Materna e Estratégias de Redução", "rationale": "Modelo das três demoras em mortalidade materna."},
+    {"question_id": 9866, "area": "Ginecologia e Obstetrícia", "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade", "rationale": "Restrição de crescimento fetal com alteração de Doppler."},
+    {"question_id": 9882, "area": "Clínica Médica", "subtema": "Neuropatias Periféricas, Miastenia Gravis e Doenças Neuromusculares", "rationale": "Mielopatia associada ao HTLV-1 (paraparesia espástica tropical)."},
+    {"question_id": 10724, "area": "Medicina Preventiva", "subtema": "Vigilância Epidemiológica: Endemias, Epidemias e Surtos", "rationale": "Inquérito sorológico e subnotificação de COVID-19 na vigilância epidemiológica."},
+    {"question_id": 13526, "area": "Medicina Preventiva", "subtema": "Saúde do Trabalhador e Doenças Ocupacionais", "rationale": "Riscos ocupacionais, intoxicação por agrotóxicos e lombalgia em trabalhadores rurais."},
+    {"question_id": 15725, "area": "Ginecologia e Obstetrícia", "subtema": "Fundamentos em Sexualidade Humana e Saúde Reprodutiva", "rationale": "Políticas de saúde sexual e reprodutiva na gravidez na adolescência."},
+    {"question_id": 16293, "area": "Ginecologia e Obstetrícia", "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)", "rationale": "Profilaxia antirretroviral neonatal em exposição vertical ao HIV."},
+    {"question_id": 16393, "area": "Clínica Médica", "subtema": "Lúpus Eritematoso Sistêmico (LES), Esclerose Sistêmica e Miopatias Inflamatórias", "rationale": "Nefrite lúpica proliferativa e tratamento antes de planejamento gestacional."},
+    {"question_id": 16683, "area": "Cirurgia", "subtema": "Hiperplasia Prostática Benigna (HPB) e Litíase Urinária", "rationale": "Priapismo isquêmico e sua avaliação urológica."},
+    {"question_id": 16783, "area": "Ginecologia e Obstetrícia", "subtema": "Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos", "rationale": "Escolha de contraceptivo em paciente em uso de fenitoína."},
+    {"question_id": 16833, "area": "Pediatria", "subtema": "Segurança Infantil, Prevenção de Acidentes e Maus-Tratos", "rationale": "Transporte seguro de crianças em veículo conforme legislação."},
+    {"question_id": 17114, "area": "Clínica Médica", "subtema": "Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas", "rationale": "Indicador de controle assistencial em serviço especializado de HIV/aids."}
+  ]
+}

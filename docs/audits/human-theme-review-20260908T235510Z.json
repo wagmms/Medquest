@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260908T235510Z-9c1f73f1",
+  "plan": "docs\\audits\\theme_cirurgia_pediatrica_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260908T235510Z.db",
+  "questions_reviewed": 91,
+  "questions_reclassified": 26
+}

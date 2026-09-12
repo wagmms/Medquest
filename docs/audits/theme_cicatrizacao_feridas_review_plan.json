@@ -1,0 +1,17 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Cirurgia","subtema":"Cicatrização, Tratamento de Feridas, Enxertos e Retalhos"},
+  "reviewed_question_ids":[8547,8838,8943,9230,9458,9668,9708,10294,10333,10535,10540,10767,10911,10915,11295,11312,11415,12275,12488,12770,12869,12977,13088,13562,14570,14655,14757,14839,15153,15154,15562,15944,16679,16729,16829,16899,16949,16999,17049,17171,17214],
+  "moves":[
+    {"question_id":8943,"area":"Cirurgia","subtema":"Atendimento ao Paciente Queimado e Reposição Volêmica","rationale":"Manejo inicial de queimadura térmica."},
+    {"question_id":15153,"area":"Cirurgia","subtema":"Doença Arterial Obstrutiva Periférica e Oclusões Arteriais Agudas","rationale":"Pé diabético infectado com indicação de desbridamento urgente."},
+    {"question_id":15944,"area":"Clínica Médica","subtema":"Diabetes Mellitus: Metas Glicêmicas, Complicações e Tratamento","rationale":"Uso de tirzepatida no diabetes tipo 2 e obesidade."},
+    {"question_id":16679,"area":"Cirurgia","subtema":"Distúrbios Motores do Esôfago, Megaesôfago e Síndrome Disfágica","rationale":"Investigação de divertículo de Zenker."},
+    {"question_id":16729,"area":"Clínica Médica","subtema":"Acidente Vascular Cerebral Isquêmico e Hemorrágico (Janela de Trombólise)","rationale":"AVC isquêmico agudo e reperfusão."},
+    {"question_id":16829,"area":"Medicina Preventiva","subtema":"Ética Médica, Bioética e Prontuários / Documentos","rationale":"Sigilo médico no atendimento de adolescente."},
+    {"question_id":16899,"area":"Cirurgia","subtema":"Cirurgia Torácica Geral e Doenças Pleurais","rationale":"Empiema pleural loculado e decorticação por videotoracoscopia."},
+    {"question_id":16949,"area":"Ginecologia e Obstetrícia","subtema":"Climatério, Menopausa e Terapia de Reposição Hormonal (TRH)","rationale":"Osteoporose grave pós-menopausa e tratamento anabólico."},
+    {"question_id":16999,"area":"Ginecologia e Obstetrícia","subtema":"Mastologia Benigna: Fibroadenomas, Cistos e Mastites","rationale":"Conduta em fibroadenoma com crescimento."},
+    {"question_id":17049,"area":"Clínica Médica","subtema":"Toxicologia Clínica e Acidentes por Animais Peçonhentos","rationale":"Identificação de acidente ofídico crotálico."}
+  ]
+}

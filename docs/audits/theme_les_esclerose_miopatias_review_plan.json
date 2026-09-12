@@ -1,0 +1,9 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Lúpus Eritematoso Sistêmico (LES), Esclerose Sistêmica e Miopatias Inflamatórias"},"reviewed_question_ids":[8859,8867,9372,9373,10096,10488,10490,10583,10599,10814,11031,11217,11332,11593,12025,12482,12486,12617,12896,13051,13178,13185,13573,14369,15543,15643,15833,15841,16008,16016,16543,16751,17065],"moves":[
+{"question_id":10096,"area":"Medicina Preventiva","subtema":"Delineamentos e Classificação dos Estudos Epidemiológicos","rationale":"Estudo observacional transversal por questionário aplicado em um ponto da pandemia."},
+{"question_id":12486,"area":"Clínica Médica","subtema":"Coagulopatias, Trombofilias, Púrpuras e Hemoterapia","rationale":"Investigação de síndrome antifosfolípide em paciente com nefrite lúpica e TVP."},
+{"question_id":13051,"area":"Cirurgia","subtema":"Emergências Oftalmológicas e Patologias Oculares Frequentes","rationale":"Rastreamento de toxicidade retiniana por hidroxicloroquina."},
+{"question_id":13573,"area":"Clínica Médica","subtema":"Vasculites Sistêmicas dos Grandes, Médios e Pequenos Vasos","rationale":"Síndrome pulmão-rim com vasculite como diagnóstico diferencial prioritário."},
+{"question_id":16008,"area":"Cirurgia","subtema":"Litíase Biliar, Colecistite, Coledocolitíase e Colangite","rationale":"Icterícia obstrutiva e manejo de doença biliar por imagem."},
+{"question_id":16016,"area":"Cirurgia","subtema":"Abdome Agudo Obstrutivo (Bridas, Neoplasias e Volvo)","rationale":"Obstrução colônica por neoplasia retal."},
+{"question_id":14369,"area":"Pediatria","subtema":"Vasculites na Infância (Henoch-Schönlein e Kawasaki)","rationale":"Síndrome inflamatória sistêmica pediátrica com artrite e manifestações vasculíticas."}
+]}

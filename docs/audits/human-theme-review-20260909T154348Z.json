@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T154348Z-a587742b",
+  "plan": "docs\\audits\\theme_trauma_raquimedular_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T154348Z.db",
+  "questions_reviewed": 17,
+  "questions_reclassified": 0
+}

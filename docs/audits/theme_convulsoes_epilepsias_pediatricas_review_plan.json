@@ -1,0 +1,8 @@
+{"reviewer":"codex-theme-review","source":{"area":"Pediatria","subtema":"Convulsão Febril, Epilepsias e Síndromes Convulsivas na Infância"},"reviewed_question_ids":[8567,8827,8828,8829,9022,9419,9439,10214,10225,10389,10591,10851,12297,12421,12611,12711,12818,13113,13743,13955,14782,14853,14978,14979,15185,15586,15686,15713,15770,15878,16053,16277,16370,16377,16427,16634,16650,16859,17108,17198],"moves":[
+{"question_id":12611,"area":"Cirurgia","subtema":"Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana","rationale":"Alteração do estado mental após queda demanda avaliação de TCE."},
+{"question_id":13955,"area":"Clínica Médica","subtema":"Distúrbios Eletrolíticos (Sódio, Potássio) e Equilíbrio Ácido-Base","rationale":"Desmopressina pode causar hiponatremia responsável por crise convulsiva."},
+{"question_id":15713,"area":"Ginecologia e Obstetrícia","subtema":"Assistência Pré-Natal de Baixo e Alto Risco","rationale":"Epilepsia em uso de carbamazepina é indicação de pré-natal de alto risco."},
+{"question_id":16277,"area":"Clínica Médica","subtema":"Leucemias, Linfomas e Mieloma Múltiplo","rationale":"A investigação confirmatória de doença linfoproliferativa é tema de linfomas."},
+{"question_id":16377,"area":"Clínica Médica","subtema":"Injúria Renal Aguda (IRA) e Doença Renal Crônica (DRC)","rationale":"A lesão renal aguda por AINE e nefrite intersticial é o foco clínico."},
+{"question_id":16427,"area":"Clínica Médica","subtema":"Síndromes Glomerulares: Nefrítica, Nefrótica e Tubulopatias","rationale":"A questão avalia indicação de biópsia na síndrome nefrótica infantil."}
+]}

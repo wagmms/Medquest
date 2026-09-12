@@ -1,0 +1,11 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Tromboembolismo Pulmonar (TEP) e Hipertensão Pulmonar"},"reviewed_question_ids":[8863,8975,9693,9913,10487,10657,10945,11227,11443,12170,12337,12368,12485,13377,13719,13938,14048,14265,14488,14560,14759,15631,15632,15934,16532,16714,16940,17082,17266],"moves":[
+{"question_id":9913,"area":"Cirurgia","subtema":"Oncologia Cutânea: Melanoma, CBC e CEC","rationale":"Conduta após diagnóstico histopatológico de melanoma cutâneo."},
+{"question_id":10657,"area":"Clínica Médica","subtema":"Asma e Doença Pulmonar Obstrutiva Crônica (DPOC)","rationale":"Cor pulmonale e hipertensão pulmonar secundária à DPOC muito grave."},
+{"question_id":12368,"area":"Clínica Médica","subtema":"Sepse no Adulto, Choque Séptico e Ressuscitação Hemodinâmica","rationale":"Choque em paciente com pielonefrite, com ultrassom sem sinais de disfunção aguda de VD por TEP."},
+{"question_id":12485,"area":"Clínica Médica","subtema":"Coagulopatias, Trombofilias, Púrpuras e Hemoterapia","rationale":"Trombose venosa associada a provável síndrome antifosfolípide no contexto de nefrite lúpica."},
+{"question_id":13938,"area":"Cirurgia","subtema":"Trauma Ortopédico de Extremidades e Síndrome Compartimental","rationale":"Síndrome de embolia gordurosa após fraturas de ossos longos."},
+{"question_id":14048,"area":"Cirurgia","subtema":"Trauma Ortopédico de Extremidades e Síndrome Compartimental","rationale":"Síndrome de embolia gordurosa após fraturas de fêmur e tíbia."},
+{"question_id":14759,"area":"Cirurgia","subtema":"Trauma Ortopédico de Extremidades e Síndrome Compartimental","rationale":"Embolia gordurosa após trauma e fixação de fraturas de membros inferiores."},
+{"question_id":15934,"area":"Cirurgia","subtema":"Litíase Biliar, Colecistite, Coledocolitíase e Colangite","rationale":"Avaliação pós-operatória de exploração de vias biliares e dreno de Kehr."},
+{"question_id":16714,"area":"Clínica Médica","subtema":"Dermatoses Infecciosas, Hanseníase e Leishmanioses","rationale":"Reação hansênica em paciente sob poliquimioterapia."}
+]}

@@ -1,0 +1,12 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Afecções do Corpo Uterino, Endométrio e Sangramento Pós-Menopausa"},
+  "reviewed_question_ids": [8954, 8958, 9751, 9758, 10444, 10679, 10968, 11130, 11136, 11251, 11252, 11350, 11472, 12110, 12312, 12313, 12428, 12430, 12528, 12845, 13135, 13233, 13525, 13614, 13769, 13830, 13965, 14375, 14610, 14870, 14993, 15100, 15207, 15404, 15892, 15984, 16067, 16235, 16321, 16459, 16598, 16600, 16987, 16992, 17139],
+  "moves": [
+    {"question_id": 12313, "area": "Ginecologia e Obstetrícia", "subtema": "Climatério, Menopausa e Terapia de Reposição Hormonal (TRH)", "rationale": "Osteoporose no climatério e menopausa."},
+    {"question_id": 13233, "area": "Ginecologia e Obstetrícia", "subtema": "Patologias Benignas e Neoplásicas da Vulva e Vagina", "rationale": "Sarcoma botrioide vaginal na infância."},
+    {"question_id": 15984, "area": "Ginecologia e Obstetrícia", "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)", "rationale": "Susceptibilidade e prevenção de toxoplasmose na gestação."},
+    {"question_id": 16067, "area": "Ginecologia e Obstetrícia", "subtema": "Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)", "rationale": "Conduta diante de células glandulares atípicas no exame citopatológico."},
+    {"question_id": 16321, "area": "Ginecologia e Obstetrícia", "subtema": "Sangramento Uterino Anormal (SUA) e Classificação PALM-COEIN / Miomatose", "rationale": "Mioma submucoso FIGO 0 associado a sangramento uterino anormal."}
+  ]
+}

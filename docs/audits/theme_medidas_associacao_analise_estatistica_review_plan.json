@@ -1,0 +1,32 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Medicina Preventiva",
+    "subtema": "Estudos Epidemiológicos: Medidas de Associação e Análise Estatística"
+  },
+  "reviewed_question_ids": [8584, 8587, 8588, 8590, 8591, 8596, 8660, 8672, 8884, 8892, 8894, 8902, 8905, 9006, 9007, 9008, 9183, 9188, 9398, 9401, 9647, 9650, 9727, 9869, 9871, 9872, 9883, 9886, 9888, 9947, 10085, 10086, 10093, 10098, 10100, 10246, 10321, 10460, 10520, 10718, 10899, 10905, 10990, 10991, 10994, 11006, 11049, 11051, 11057, 11059, 11062, 11149, 11153, 11155, 11160, 11161, 11236, 11245, 11376, 11379, 11381, 11386, 11450, 11453, 11461, 11576, 11582, 11583, 11587, 12264, 12265, 12267, 12493, 12548, 12656, 12658, 12690, 12756, 12758, 12948, 12962, 13314, 13362, 13616, 13617, 13836, 13838, 13912, 13978, 14084, 14397, 14398, 14401, 14475, 14625, 14626, 14717, 14719, 14720, 14726, 14821, 14912, 14920, 14922, 14923, 15414, 15620, 15720, 15724, 15812, 15826, 15916, 15987, 16000, 16041, 16089, 16091, 16332, 16333, 16343, 16698, 16798, 16848, 16957, 17118, 17125, 17132, 17186, 17256],
+  "moves": [
+    {"question_id": 9869, "area": "Ginecologia e Obstetrícia", "subtema": "Amniorrexe Prematura (RPMO) e Corioamnionite", "rationale": "Ruptura prematura de membranas e conduta obstétrica."},
+    {"question_id": 9871, "area": "Ginecologia e Obstetrícia", "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade", "rationale": "Restrição de crescimento fetal e programação do parto."},
+    {"question_id": 9872, "area": "Ginecologia e Obstetrícia", "subtema": "Diabetes Gestacional e Pré-Gestacional", "rationale": "Ajuste de insulinoterapia em diabetes pré-gestacional."},
+    {"question_id": 9947, "area": "Clínica Médica", "subtema": "Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas", "rationale": "Diagnóstico de artrite microcristalina por microscopia do líquido sinovial."},
+    {"question_id": 10085, "area": "Ginecologia e Obstetrícia", "subtema": "Amniorrexe Prematura (RPMO) e Corioamnionite", "rationale": "Ruptura prematura de membranas em gestação pré-termo."},
+    {"question_id": 10086, "area": "Ginecologia e Obstetrícia", "subtema": "Puerpério Fisiológico, Patológico e Hemorragia Pós-Parto", "rationale": "Hemorragia pós-parto por atonia uterina e conduta inicial."},
+    {"question_id": 11059, "area": "Medicina Preventiva", "subtema": "Saúde do Trabalhador e Doenças Ocupacionais", "rationale": "Prevalência de problemas de saúde mental entre médicos."},
+    {"question_id": 12493, "area": "Medicina Preventiva", "subtema": "Indicadores de Saúde e Coeficientes de Morbimortalidade", "rationale": "Frequência de neoplasias na população brasileira."},
+    {"question_id": 12656, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Organização e características das equipes de APS previstas na PNAB."},
+    {"question_id": 12658, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Método Clínico Centrado na Pessoa na atenção primária."},
+    {"question_id": 12690, "area": "Cirurgia", "subtema": "Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)", "rationale": "Suspeita clínica de neoplasia colorretal."},
+    {"question_id": 13314, "area": "Medicina Preventiva", "subtema": "Indicadores de Saúde e Coeficientes de Morbimortalidade", "rationale": "Taxa de mortalidade infantil segundo escolaridade materna."},
+    {"question_id": 13838, "area": "Medicina Preventiva", "subtema": "Indicadores de Saúde e Coeficientes de Morbimortalidade", "rationale": "Cálculo de ocorrência populacional de câncer de próstata."},
+    {"question_id": 14475, "area": "Medicina Preventiva", "subtema": "Indicadores de Saúde e Coeficientes de Morbimortalidade", "rationale": "Interpretação de indicadores de mortalidade e letalidade."},
+    {"question_id": 15812, "area": "Medicina Preventiva", "subtema": "Indicadores de Saúde e Coeficientes de Morbimortalidade", "rationale": "Interpretação de coeficientes de incidência de coinfecção TB-HIV."},
+    {"question_id": 15826, "area": "Medicina Preventiva", "subtema": "Indicadores de Saúde e Coeficientes de Morbimortalidade", "rationale": "Tendência e projeção de coeficiente de incidência de tuberculose."},
+    {"question_id": 16000, "area": "Pediatria", "subtema": "Transtornos do Neurodesenvolvimento (TEA, TDAH) e Saúde Mental na Infância", "rationale": "Triagem e conduta diante de M-CHAT-R alterado."},
+    {"question_id": 16091, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Coordenação do cuidado por referência e contrarreferência na APS."},
+    {"question_id": 16343, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Genograma como ferramenta de avaliação familiar na APS."},
+    {"question_id": 16698, "area": "Clínica Médica", "subtema": "Leucemias, Linfomas e Mieloma Múltiplo", "rationale": "Linfoma com massa mediastinal anterior e síndrome de veia cava superior."},
+    {"question_id": 16798, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento", "rationale": "Doença de Paget mamária e investigação de neoplasia associada."},
+    {"question_id": 16848, "area": "Clínica Médica", "subtema": "Diabetes Mellitus: Metas Glicêmicas, Complicações e Tratamento", "rationale": "Rastreamento de complicações crônicas no diabetes mellitus tipo 1."}
+  ]
+}

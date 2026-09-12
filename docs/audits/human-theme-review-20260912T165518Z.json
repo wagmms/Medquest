@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T165518Z-6e1091a7",
+  "plan": "docs\\audits\\theme_transicao_demografica_perfis_populacionais_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T165518Z.db",
+  "questions_reviewed": 41,
+  "questions_reclassified": 9
+}

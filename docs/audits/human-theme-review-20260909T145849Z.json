@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T145849Z-11c65140",
+  "plan": "docs\\audits\\theme_hemorragia_digestiva_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T145849Z.db",
+  "questions_reviewed": 39,
+  "questions_reclassified": 12
+}

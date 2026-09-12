@@ -1,0 +1,7 @@
+{"reviewer":"codex-theme-review","source":{"area":"Cirurgia","subtema":"Fraturas Ósseas e Princípios Gerais de Osteossíntese"},"reviewed_question_ids":[8691,8842,8948,9229,9466,9667,10029,10926,11027,11124,11286,11466,11526,11527,12872,12971,13207,13868,13943,14758,14846,14951,16481,16530,16531,16581,16631,17181],"moves":[
+{"question_id":10029,"area":"Clínica Médica","subtema":"Valvopatias Adquiridas e Miocardiopatias","rationale":"Estenose aórtica grave e indicação de TAVI."},
+{"question_id":16481,"area":"Clínica Médica","subtema":"Doenças da Suprarrenal, Paratireoides e Distúrbios do Cálcio","rationale":"Hiperparatireoidismo primário em contexto de síndrome endócrina."},
+{"question_id":16530,"area":"Cirurgia","subtema":"Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino","rationale":"Carcinoma epidermoide pulmonar."},
+{"question_id":16531,"area":"Clínica Médica","subtema":"Sepse no Adulto, Choque Séptico e Ressuscitação Hemodinâmica","rationale":"Neutropenia febril pós-quimioterapia e antibiótico empírico hospitalar."},
+{"question_id":16581,"area":"Ginecologia e Obstetrícia","subtema":"Assistência Clínica ao Trabalho de Parto, Partograma e Distocias","rationale":"Indicações obstétricas de cesariana."},
+{"question_id":16631,"area":"Pediatria","subtema":"Imunodeficiências, Alergias e Anafilaxia na Infância","rationale":"Anafilaxia pediátrica e adrenalina intramuscular."}]}

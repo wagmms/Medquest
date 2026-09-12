@@ -1,0 +1,16 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Cirurgia",
+    "subtema": "Tendinopatias, Bursites e Síndromes por Sobrecarga Musculoesquelética"
+  },
+  "reviewed_question_ids": [8548, 8985, 10330, 11528, 11568, 16900, 17000, 17050, 17336, 17337, 17339, 17344, 17361, 17362, 17363, 17364, 17365, 17366, 17367, 17368, 17369, 17370, 17371, 17372, 17373, 17374, 17376, 17377, 17378, 17379, 17380, 17381, 17382, 17383, 17384, 17385, 17386, 17387, 17388, 17389, 17390],
+  "moves": [
+    {"question_id": 8548, "area": "Cirurgia", "subtema": "Trauma Raquimedular (TRM) e Lesões Vertebrais", "rationale": "Fatores prognósticos na lombalgia com irradiação para membro inferior."},
+    {"question_id": 10330, "area": "Cirurgia", "subtema": "Trauma Raquimedular (TRM) e Lesões Vertebrais", "rationale": "Hérnia discal lombar e correlação radiculopática."},
+    {"question_id": 11568, "area": "Cirurgia", "subtema": "Trauma Raquimedular (TRM) e Lesões Vertebrais", "rationale": "Imagem de doença degenerativa discal e hérnia discal extrusa."},
+    {"question_id": 16900, "area": "Cirurgia", "subtema": "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino", "rationale": "Estadiamento e tratamento cirúrgico do adenocarcinoma pulmonar."},
+    {"question_id": 17000, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento", "rationale": "Classificação BI-RADS de lesão mamária suspeita."},
+    {"question_id": 17050, "area": "Pediatria", "subtema": "Baixa Estatura, Puberdade Precoce e Atraso Puberal", "rationale": "Avaliação de baixa estatura e desenvolvimento puberal em criança."}
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Baixa Estatura, Puberdade Precoce e Atraso Puberal"
+  },
+  "reviewed_question_ids": [8617, 9432, 9433, 9471, 9713, 9898, 10067, 10236, 10390, 10469, 10608, 10693, 10850, 11405, 11503, 12115, 12164, 12228, 12521, 12639, 12739, 13108, 13120, 13225, 13228, 13507, 13746, 14059, 14172, 14365, 14515, 14521, 14775, 15172, 15231, 15270, 15271, 15387, 15500, 15787, 15963, 16056, 16057, 16105, 16144, 16145, 16151, 16244, 16245, 16276, 16308, 16376, 16403, 16407, 16426, 16644, 16734, 16784, 16810, 16834, 17050, 17051],
+  "moves": [
+    {"question_id": 9898, "area": "Clínica Médica", "subtema": "Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses", "rationale": "Quadro adulto compatível com transtorno de personalidade e risco suicida."},
+    {"question_id": 12639, "area": "Ginecologia e Obstetrícia", "subtema": "Condições Clínicas Intercorrentes na Gravidez", "rationale": "Manejo de cardiopatia valvar reumática durante a gestação."},
+    {"question_id": 13120, "area": "Clínica Médica", "subtema": "Diagnóstico Diferencial das Anemias e Hemoglobinopatias", "rationale": "Doença falciforme e suas particularidades."},
+    {"question_id": 14521, "area": "Pediatria", "subtema": "Aleitamento Materno, Alimentação Complementar e Desnutrição Infantil", "rationale": "Avaliação nutricional de adolescente e conduta correspondente."},
+    {"question_id": 15231, "area": "Pediatria", "subtema": "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo", "rationale": "Síndrome de Marfan e medidas que alteram seu prognóstico."},
+    {"question_id": 15787, "area": "Pediatria", "subtema": "Aleitamento Materno, Alimentação Complementar e Desnutrição Infantil", "rationale": "Obesidade infantil e fisiopatologia de resistência insulínica/metabólica."},
+    {"question_id": 16105, "area": "Cirurgia", "subtema": "Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana", "rationale": "Hematoma extradural grave após trauma cranioencefálico."},
+    {"question_id": 16144, "area": "Cirurgia", "subtema": "Ortopedia Pediátrica: Displasia do Quadril, Pé Torto e Epifisiólise", "rationale": "Epifisiólise proximal do fêmur em adolescente obeso."},
+    {"question_id": 16145, "area": "Pediatria", "subtema": "Calendário Vacinal do PNI e Imunizações Especiais", "rationale": "Atualização do calendário vacinal infantil."},
+    {"question_id": 16244, "area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital", "rationale": "Tratamento cirúrgico com sling para incontinência urinária de esforço."},
+    {"question_id": 16245, "area": "Ginecologia e Obstetrícia", "subtema": "Investigação das Amenorreias e Síndrome dos Ovários Policísticos (SOP)", "rationale": "Investigação de amenorreia primária em adolescente."},
+    {"question_id": 16276, "area": "Clínica Médica", "subtema": "Leucemias, Linfomas e Mieloma Múltiplo", "rationale": "Leucemia promielocítica aguda com coagulopatia e tratamento imediato."},
+    {"question_id": 16376, "area": "Clínica Médica", "subtema": "Leucemias, Linfomas e Mieloma Múltiplo", "rationale": "Hipercalcemia associada a doença linfoproliferativa, com resposta a corticoide."},
+    {"question_id": 16426, "area": "Pediatria", "subtema": "Alojamento Conjunto e Testes de Triagem Neonatal (Pezinho, Olhinho, Coraçãozinho)", "rationale": "Triagem neonatal para fibrose cística por tripsinogênio imunorreativo elevado."},
+    {"question_id": 16734, "area": "Clínica Médica", "subtema": "Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas", "rationale": "Síndrome demencial progressiva em idosa."},
+    {"question_id": 16784, "area": "Ginecologia e Obstetrícia", "subtema": "Anatomia Cirúrgica e Estruturas Pélvicas Femininas", "rationale": "Perfuração uterina durante curetagem diagnóstica e conduta imediata."},
+    {"question_id": 16834, "area": "Pediatria", "subtema": "Anemias Carenciais e Distúrbios de Micronutrientes (Ferro, Vitamina D)", "rationale": "Manutenção de suplementação de vitamina D em adolescente."}
+  ]
+}

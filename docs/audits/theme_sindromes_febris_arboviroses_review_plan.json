@@ -1,0 +1,14 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Síndromes Febris Agudas e Arboviroses (Dengue, Chikungunya, Febre Amarela)"},"reviewed_question_ids":[8746,9427,10283,10381,10648,10820,10884,10980,12305,12415,12508,12919,13177,13327,13503,13799,14028,14113,14408,14634,15044,15232,15276,15282,15339,15574,15999,16106,16126,16150,16156,16250,16274,16323,16357,16402,17104,17281],"moves":[
+{"question_id":9427,"area":"Pediatria","subtema":"Infecção do Trato Urinário (ITU) e Refluxo Vesicoureteral na Infância","rationale":"Retorno de febre sem foco em lactente após doença diarreica exige investigação de ITU."},
+{"question_id":10648,"area":"Clínica Médica","subtema":"Dermatoses Infecciosas, Hanseníase e Leishmanioses","rationale":"Leishmaniose visceral com amastigotas em macrófagos."},
+{"question_id":12415,"area":"Pediatria","subtema":"Sepse Pediátrica, Choque e Ressuscitação Hemodinâmica","rationale":"Abordagem de febre sem sinais localizatórios na emergência pediátrica."},
+{"question_id":12919,"area":"Clínica Médica","subtema":"Endocardite Infecciosa e Sepse de Foco Endovascular","rationale":"Etiologia da endocardite infecciosa pediátrica."},
+{"question_id":15276,"area":"Pediatria","subtema":"Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo","rationale":"Deficiência de G6PD e risco de hemólise por exposições específicas."},
+{"question_id":15339,"area":"Clínica Médica","subtema":"Dermatoses Infecciosas, Hanseníase e Leishmanioses","rationale":"Lesão cutânea típica de doença infecciosa com diagnóstico dermatológico central."},
+{"question_id":16106,"area":"Cirurgia","subtema":"Litíase Biliar, Colecistite, Coledocolitíase e Colangite","rationale":"Colecistite aguda calculosa e conduta cirúrgica."},
+{"question_id":16150,"area":"Pediatria","subtema":"Arritmias, Síncope e Parada Cardiorrespiratória Pediátrica (PALS)","rationale":"Dose de adrenalina e ventilação na parada pediátrica."},
+{"question_id":16156,"area":"Pediatria","subtema":"Imunodeficiências, Alergias e Anafilaxia na Infância","rationale":"Fibrose cística como doença multissistêmica pediátrica."},
+{"question_id":16250,"area":"Ginecologia e Obstetrícia","subtema":"Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos","rationale":"Escolha contraceptiva após cirurgia bariátrica."},
+{"question_id":16323,"area":"Ginecologia e Obstetrícia","subtema":"Assistência Pré-Natal de Baixo e Alto Risco","rationale":"Bacteriúria assintomática identificada no pré-natal."},
+{"question_id":16402,"area":"Pediatria","subtema":"Distúrbios Obstrutivos, Asma e Bronquiolite na Infância","rationale":"Síndrome gripal em adolescente com asma e conduta inicial."}
+]}

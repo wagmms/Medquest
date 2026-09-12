@@ -1,0 +1,24 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Imunodeficiências, Alergias e Anafilaxia na Infância"
+  },
+  "reviewed_question_ids": [8524, 8566, 8638, 8737, 9010, 9207, 9617, 9739, 9838, 9855, 9959, 10058, 10107, 10218, 10274, 10374, 10516, 10598, 10971, 10972, 11067, 11199, 11272, 11491, 11492, 11604, 12217, 12289, 12510, 12622, 12627, 12805, 12822, 13111, 13393, 13426, 13443, 13850, 13937, 14111, 14158, 14223, 14286, 14513, 14514, 14892, 14984, 14985, 15086, 15087, 15376, 15442, 15471, 15580, 15681, 16122, 16123, 16156, 16303, 16352, 16631, 16710, 16712, 16760, 16810, 16860, 16876, 16926, 17026, 17058, 17087, 17200],
+  "moves": [
+    {"question_id": 9959, "area": "Pediatria", "subtema": "Infecção do Trato Urinário (ITU) e Refluxo Vesicoureteral na Infância", "rationale": "A questão trata exclusivamente de diagnóstico e antibioticoterapia da ITU febril pediátrica."},
+    {"question_id": 10107, "area": "Pediatria", "subtema": "Transtornos do Neurodesenvolvimento (TEA, TDAH) e Saúde Mental na Infância", "rationale": "O quadro clínico explora transtorno alimentar e saúde mental em escolar."},
+    {"question_id": 12627, "area": "Clínica Médica", "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos", "rationale": "Os sinais muscarínicos e nicotínicos após exposição ambiental caracterizam intoxicação exógena."},
+    {"question_id": 15442, "area": "Pediatria", "subtema": "Distúrbios Obstrutivos, Asma e Bronquiolite na Infância", "rationale": "A associação cobrada inclui infecção brônquica na fibrose cística, afecção respiratória pediátrica."},
+    {"question_id": 15471, "area": "Pediatria", "subtema": "Distúrbios Obstrutivos, Asma e Bronquiolite na Infância", "rationale": "A conduta solicitada é para asma recorrente na infância."},
+    {"question_id": 16156, "area": "Pediatria", "subtema": "Distúrbios Obstrutivos, Asma e Bronquiolite na Infância", "rationale": "A questão aborda fibrose cística, doença respiratória crônica pediátrica."},
+    {"question_id": 16303, "area": "Pediatria", "subtema": "Distúrbios Obstrutivos, Asma e Bronquiolite na Infância", "rationale": "A questão trata de terapêutica moduladora da CFTR na fibrose cística."},
+    {"question_id": 16710, "area": "Cirurgia", "subtema": "Cirurgia Pediátrica e Malformações Digestivas Neonatais", "rationale": "A malformação congênita da parede abdominal e seu manejo são tema de cirurgia pediátrica neonatal."},
+    {"question_id": 16760, "area": "Clínica Médica", "subtema": "Valvopatias Adquiridas e Miocardiopatias", "rationale": "O caso avalia estenose aórtica e a propedêutica de valvopatia adquirida."},
+    {"question_id": 16810, "area": "Pediatria", "subtema": "Baixa Estatura, Puberdade Precoce e Atraso Puberal", "rationale": "O enunciado avalia puberdade precoce central e sua condução."},
+    {"question_id": 16860, "area": "Pediatria", "subtema": "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo", "rationale": "O diagnóstico e seguimento de neurofibromatose tipo 1 pertencem à genética pediátrica."},
+    {"question_id": 16876, "area": "Cirurgia", "subtema": "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas", "rationale": "A questão descreve lesão iatrogênica de via biliar e fístula no pós-operatório de colecistectomia."},
+    {"question_id": 16926, "area": "Clínica Médica", "subtema": "Ventilação Mecânica, SARA e Insuficiência Respiratória Aguda", "rationale": "A interpretação de curvas ventilatórias e ajuste de PEEP em SARA é o foco central."},
+    {"question_id": 17026, "area": "Pediatria", "subtema": "Puericultura: Marcos do Desenvolvimento (DNPM) e Curvas de Crescimento", "rationale": "A questão usa curva OMS para avaliação nutricional e conduta em adolescente."}
+  ]
+}

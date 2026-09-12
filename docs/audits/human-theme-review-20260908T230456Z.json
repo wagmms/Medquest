@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260908T230456Z-57281c74",
+  "plan": "docs/audits/theme_abdome_agudo_vascular_review_plan.json",
+  "backup": "backups/taxonomy-reclassification/medquest-pre-theme-review-20260908T230456Z.db",
+  "questions_reviewed": 23,
+  "questions_reclassified": 12
+}

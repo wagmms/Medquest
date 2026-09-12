@@ -1,0 +1,11 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Vasculites na Infância (Henoch-Schönlein e Kawasaki)"
+  },
+  "reviewed_question_ids": [9679, 10379, 10688, 11083, 12021, 13012, 14058, 14229, 14293, 14369, 14590, 14783, 14786, 14863, 14866, 15184, 15670, 15677, 15769, 15959, 16422, 16626, 17030],
+  "moves": [
+    {"question_id": 14369, "area": "Clínica Médica", "subtema": "Lúpus Eritematoso Sistêmico (LES), Esclerose Sistêmica e Miopatias Inflamatórias", "rationale": "Quadro sistêmico com artrite, citopenias, nefrite, Coombs positivo e manifestações cutâneas compatível com LES."}
+  ]
+}

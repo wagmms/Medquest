@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260908T231327Z-e80f7a05",
+  "plan": "docs\\audits\\theme_abdome_agudo_perfurativo_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260908T231327Z.db",
+  "questions_reviewed": 33,
+  "questions_reclassified": 13
+}

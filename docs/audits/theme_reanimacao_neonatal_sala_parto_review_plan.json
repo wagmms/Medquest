@@ -1,0 +1,9 @@
+{"reviewer":"codex-theme-review","source":{"area":"Pediatria","subtema":"Reanimação Neonatal e Assistência em Sala de Parto"},"reviewed_question_ids":[8581,8726,8821,9204,9438,9678,9689,9844,10428,10595,10687,10772,10855,11181,11496,12024,12211,12813,12910,12911,13292,13448,13505,13812,13881,14065,14364,14446,14516,14855,15168,15473,15683,15778,15883,15884,15958,16046,16058,16059,16154,16281,16381,16415,16431,16661,17038,17092,17094,17204],"moves":[
+{"question_id":9689,"area":"Cirurgia","subtema":"Ortopedia Pediátrica: Displasia do Quadril, Pé Torto e Epifisiólise","rationale":"A postura e fraqueza do membro superior após parto caracterizam paralisia obstétrica do plexo braquial."},
+{"question_id":16058,"area":"Cirurgia","subtema":"Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana","rationale":"A questão avalia indicação de exames e conduta no TCE pediátrico."},
+{"question_id":16059,"area":"Clínica Médica","subtema":"Síndromes Glomerulares: Nefrítica, Nefrótica e Tubulopatias","rationale":"Tipos anatomopatológicos de síndrome nefrótica são tema de nefrologia."},
+{"question_id":16281,"area":"Clínica Médica","subtema":"Transtornos por Uso de Substâncias (Álcool, Tabaco e Drogas de Abuso)","rationale":"O quadro é de abstinência de opioides com repercussão autonômica."},
+{"question_id":16381,"area":"Clínica Médica","subtema":"Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas","rationale":"Síndrome parkinsoniana atípica com declínio cognitivo em idoso é tema geriátrico."},
+{"question_id":16431,"area":"Cirurgia","subtema":"Doença do Refluxo Gastroesofágico (DRGE) e Úlcera Péptica","rationale":"Regurgitação persistente com falha de crescimento exige abordagem de refluxo gastroesofágico."},
+{"question_id":16661,"area":"Pediatria","subtema":"Neonatologia: Desconforto Respiratório e Doença da Membrana Hialina","rationale":"Após estabilização cardiorrespiratória, o problema central é desconforto respiratório neonatal."}
+]}

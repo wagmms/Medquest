@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T141119Z-3f6755a2",
+  "plan": "docs\\audits\\theme_puericultura_dnpm_curvas_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T141119Z.db",
+  "questions_reviewed": 78,
+  "questions_reclassified": 44
+}

@@ -1,0 +1,31 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Medicina Preventiva", "subtema": "Legislação, Diretrizes e Evolução do SUS"},
+  "reviewed_question_ids": [8589, 8603, 8654, 8655, 8885, 8889, 8896, 8993, 8995, 8997, 8998, 9005, 9186, 9187, 9409, 9415, 9643, 9724, 9884, 9892, 9893, 9894, 9895, 9997, 10087, 10104, 10106, 10319, 10329, 10467, 10742, 10866, 10868, 10900, 10999, 11004, 11054, 11164, 11230, 11231, 11232, 11234, 11452, 11454, 11456, 11458, 11584, 12051, 12052, 12062, 12082, 12083, 12085, 12087, 12258, 12259, 12260, 12366, 12448, 12555, 12661, 12953, 12954, 12963, 13471, 13843, 13922, 13984, 13987, 14709, 14816, 14917, 14918, 14932, 15109, 15113, 15114, 15118, 15120, 15121, 15124, 15219, 15709, 15811, 15816, 15818, 15819, 15822, 15912, 15913, 15925, 15926, 15991, 15994, 16100, 16101, 16188, 16195, 16295, 16338, 16344, 16395, 16445, 16695, 16795, 16845, 17117, 17126, 17131, 17184, 17194],
+  "moves": [
+    {"question_id": 9005, "area": "Medicina Preventiva", "subtema": "História Natural da Doença e Níveis de Prevenção", "rationale": "Exemplos práticos de promoção da saúde."},
+    {"question_id": 9415, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Indicador de desempenho da atenção básica."},
+    {"question_id": 9884, "area": "Medicina Preventiva", "subtema": "Estudos Epidemiológicos: Medidas de Associação e Análise Estatística", "rationale": "Medidas de efeito em ensaio clínico randomizado."},
+    {"question_id": 10087, "area": "Ginecologia e Obstetrícia", "subtema": "Síndromes Hipertensivas na Gravidez (Pré-eclâmpsia e Eclâmpsia)", "rationale": "Propedêutica de síndrome hipertensiva gestacional."},
+    {"question_id": 11054, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Pré-Natal de Baixo e Alto Risco", "rationale": "Rede Cegonha e atenção materno-infantil."},
+    {"question_id": 11164, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento", "rationale": "Acesso a tratamento oncológico de câncer de mama."},
+    {"question_id": 12051, "area": "Medicina Preventiva", "subtema": "Vigilância Epidemiológica: Endemias, Epidemias e Surtos", "rationale": "Inquérito telefônico Vigitel para vigilância epidemiológica."},
+    {"question_id": 12052, "area": "Medicina Preventiva", "subtema": "Vigilância Epidemiológica: Endemias, Epidemias e Surtos", "rationale": "Pesquisa PeNSE como fonte de vigilância em saúde."},
+    {"question_id": 12087, "area": "Medicina Preventiva", "subtema": "História Natural da Doença e Níveis de Prevenção", "rationale": "Ações de promoção da saúde na prevenção do câncer."},
+    {"question_id": 14917, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Composição e organização da equipe segundo a PNAB."},
+    {"question_id": 15219, "area": "Medicina Preventiva", "subtema": "Vigilância Epidemiológica: Endemias, Epidemias e Surtos", "rationale": "Classificação de caso suspeito de dengue."},
+    {"question_id": 15818, "area": "Medicina Preventiva", "subtema": "Vigilância Epidemiológica: Endemias, Epidemias e Surtos", "rationale": "Controle de doenças negligenciadas em populações vulneráveis."},
+    {"question_id": 15822, "area": "Medicina Preventiva", "subtema": "Vigilância Epidemiológica: Endemias, Epidemias e Surtos", "rationale": "Detecção e resposta coordenada a surtos emergentes."},
+    {"question_id": 15926, "area": "Clínica Médica", "subtema": "Hepatites Virais (A, B, C) e Icterícias Metabólicas", "rationale": "Tratamento da hepatite C crônica com antivirais de ação direta."},
+    {"question_id": 16100, "area": "Medicina Preventiva", "subtema": "Saúde do Trabalhador e Doenças Ocupacionais", "rationale": "Pneumoconiose relacionada à exposição ocupacional à sílica."},
+    {"question_id": 16101, "area": "Medicina Preventiva", "subtema": "Ética Médica, Bioética e Prontuários / Documentos", "rationale": "Ética de ensaio clínico com placebo quando há tratamento eficaz."},
+    {"question_id": 16188, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Financiamento da atenção primária."},
+    {"question_id": 16295, "area": "Cirurgia", "subtema": "Cirurgia Pediátrica e Malformações Digestivas Neonatais", "rationale": "Enterocolite necrosante no recém-nascido prematuro."},
+    {"question_id": 16338, "area": "Medicina Preventiva", "subtema": "Vigilância em Saúde e Notificação Compulsória (SINAN)", "rationale": "Natureza institucional e atuação regulatória da ANVISA."},
+    {"question_id": 16395, "area": "Clínica Médica", "subtema": "Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas", "rationale": "Artrite crônica pós-chikungunya e tratamento."},
+    {"question_id": 16445, "area": "Pediatria", "subtema": "Parasitoses Intestinais: Helmintíases e Protozooses", "rationale": "Manifestações clínicas de helmintíases intestinais."},
+    {"question_id": 16695, "area": "Cirurgia", "subtema": "Neoplasias de Cabeça e Pescoço e Nódulos Tireoidianos Cirúrgicos", "rationale": "Estadiamento e tratamento de carcinoma de orofaringe."},
+    {"question_id": 16795, "area": "Ginecologia e Obstetrícia", "subtema": "Massas Anexiais e Neoplasias Ovarianas", "rationale": "Manejo de carcinoma seroso de ovário avançado."},
+    {"question_id": 16845, "area": "Pediatria", "subtema": "Imunodeficiências, Alergias e Anafilaxia na Infância", "rationale": "Anafilaxia medicamentosa em criança."}
+  ]
+}

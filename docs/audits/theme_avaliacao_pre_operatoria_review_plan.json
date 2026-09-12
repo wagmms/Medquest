@@ -1,0 +1,31 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Cirurgia", "subtema": "Avaliação Pré-Operatória e Estratificação de Risco Cirúrgico"},
+  "reviewed_question_ids": [8543,8544,8694,9046,9047,9215,9824,10277,10293,10349,10613,10751,10953,11044,11358,11508,11990,12138,12395,12771,12868,12871,12881,12968,12980,12986,14216,14274,14564,14575,14955,15048,15050,15058,15448,15450,15847,15938,15949,16022,16313,16462,16512,16562,16612,16895,16896,16945,16946,16995,16996,17045,17046,17168],
+  "moves": [
+    {"question_id":9215,"area":"Cirurgia","subtema":"Litíase Biliar, Colecistite, Coledocolitíase e Colangite","rationale":"Duração de antibiótico após colecistectomia por colecistite aguda."},
+    {"question_id":9824,"area":"Cirurgia","subtema":"Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino","rationale":"Manejo paliativo de dispneia em adenocarcinoma pulmonar metastático."},
+    {"question_id":12881,"area":"Clínica Médica","subtema":"Coagulopatias, Trombofilias, Púrpuras e Hemoterapia","rationale":"Indicações de transfusão de hemácias e plaquetas."},
+    {"question_id":12980,"area":"Cirurgia","subtema":"Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)","rationale":"Via alimentar para carcinoma esofágico estenosante."},
+    {"question_id":14216,"area":"Cirurgia","subtema":"Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas","rationale":"Profilaxia de tromboembolismo no pós-operatório."},
+    {"question_id":14274,"area":"Cirurgia","subtema":"Fundamentos da Anestesiologia, Farmacologia e Bloqueios","rationale":"Reposição de perdas insensíveis no intraoperatório."},
+    {"question_id":15448,"area":"Cirurgia","subtema":"Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos","rationale":"Hipertensão portal regional por pancreatite crônica e embolização esplênica pré-operatória."},
+    {"question_id":15450,"area":"Cirurgia","subtema":"Distúrbios Motores do Esôfago, Megaesôfago e Síndrome Disfágica","rationale":"Suporte nutricional em dolicomegaesôfago chagásico."},
+    {"question_id":15938,"area":"Cirurgia","subtema":"Abdome Agudo Inflamatório (Apendicite e Diverticulite Aguda)","rationale":"Apendicite complicada com abscesso hepático."},
+    {"question_id":15949,"area":"Clínica Médica","subtema":"Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo","rationale":"Derrame pleural tuberculoso."},
+    {"question_id":16022,"area":"Clínica Médica","subtema":"Infecções Sexualmente Transmissíveis (ISTs) no Adulto","rationale":"Sífilis secundária e tratamento com penicilina benzatina."},
+    {"question_id":16313,"area":"Ginecologia e Obstetrícia","subtema":"Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual","rationale":"Profilaxia de hepatite B após violência sexual."},
+    {"question_id":16462,"area":"Cirurgia","subtema":"Abdome Agudo Inflamatório (Apendicite e Diverticulite Aguda)","rationale":"Indicação de imagem na investigação de apendicite em adolescente."},
+    {"question_id":16512,"area":"Clínica Médica","subtema":"Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas","rationale":"Seguimento de profilaxia pré-exposição ao HIV."},
+    {"question_id":16562,"area":"Ginecologia e Obstetrícia","subtema":"Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade","rationale":"Diagnóstico de síndrome de transfusão feto-fetal."},
+    {"question_id":16612,"area":"Cirurgia","subtema":"Particularidades das Queimaduras na Faixa Etária Pediátrica","rationale":"Reposição volêmica pela fórmula de Parkland em criança queimada."},
+    {"question_id":16895,"area":"Clínica Médica","subtema":"Doenças da Suprarrenal, Paratireoides e Distúrbios do Cálcio","rationale":"Seguimento após paratireoidectomia por hiperparatireoidismo."},
+    {"question_id":16896,"area":"Cirurgia","subtema":"Neoplasias de Cabeça e Pescoço e Nódulos Tireoidianos Cirúrgicos","rationale":"Investigação de massa cervical pulsátil."},
+    {"question_id":16945,"area":"Cirurgia","subtema":"Abordagem Cirúrgica das Doenças Inflamatórias Intestinais (Crohn e RCU)","rationale":"Doença de Crohn com manifestações extraintestinais."},
+    {"question_id":16946,"area":"Pediatria","subtema":"Diarreia Aguda, Reidratação Oral e Doenças Disabsortivas","rationale":"Investigação de doença celíaca, afecção disabsortiva."},
+    {"question_id":16995,"area":"Ginecologia e Obstetrícia","subtema":"Câncer de Colo Uterino e Lesões Precursoras","rationale":"Tratamento conservador de câncer cervical microinvasivo."},
+    {"question_id":16996,"area":"Ginecologia e Obstetrícia","subtema":"Massas Anexiais e Neoplasias Ovarianas","rationale":"Redução de risco de câncer ovariano em portadora de BRCA2."},
+    {"question_id":17045,"area":"Pediatria","subtema":"Infecção do Trato Urinário (ITU) e Refluxo Vesicoureteral na Infância","rationale":"ITU de repetição em lactente e investigação de disrafismo oculto."},
+    {"question_id":17046,"area":"Pediatria","subtema":"Distúrbios Obstrutivos, Asma e Bronquiolite na Infância","rationale":"Exacerbação respiratória de fibrose cística na infância."}
+  ]
+}

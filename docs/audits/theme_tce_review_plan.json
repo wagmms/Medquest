@@ -1,0 +1,12 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Cirurgia","subtema":"Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana"},
+  "reviewed_question_ids":[8682,8939,9381,9420,10544,10629,10838,11304,12193,12196,12216,12299,12399,12498,12525,12627,12727,12984,12993,13284,13383,13430,13431,13582,13730,13755,13823,13878,14038,14045,14114,14348,14356,14499,14765,14838,14864,14983,15059,15062,15552,15581,15759,15853,16028,16263,16363,16413,16669,17161,17223],
+  "moves":[
+    {"question_id":12627,"area":"Pediatria","subtema":"Imunodeficiências, Alergias e Anafilaxia na Infância","rationale":"Acidente escorpiônico grave em criança."},
+    {"question_id":16028,"area":"Clínica Médica","subtema":"Doenças da Suprarrenal, Paratireoides e Distúrbios do Cálcio","rationale":"Indicação de paratireoidectomia no hiperparatireoidismo primário."},
+    {"question_id":16263,"area":"Cirurgia","subtema":"Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)","rationale":"Obstrução intestinal por neoplasia de ceco e proposta cirúrgica."},
+    {"question_id":16363,"area":"Clínica Médica","subtema":"Coagulopatias, Trombofilias, Púrpuras e Hemoterapia","rationale":"Conduta na trombocitopenia imune assintomática."},
+    {"question_id":16413,"area":"Pediatria","subtema":"Neonatologia: Infecções Congênitas (TORCH) e Sepse Neonatal","rationale":"Observação de recém-nascida com risco de sepse por rotura prolongada de membranas."}
+  ]
+}

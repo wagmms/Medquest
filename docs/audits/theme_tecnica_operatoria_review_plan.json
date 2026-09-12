@@ -1,0 +1,11 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Cirurgia","subtema":"Técnica Operatória, Diérese, Hemostasia e Síntese (Fios Cirúrgicos)"},
+  "reviewed_question_ids":[8951,11096,12401,12494,12772,13163,13204,13286,13334,13386,14122,15264,15750,15843,15865,16018,16138,16238],
+  "moves":[
+    {"question_id":15843,"area":"Clínica Médica","subtema":"Coagulopatias, Trombofilias, Púrpuras e Hemoterapia","rationale":"Investigação de trombofilia após TVP em paciente jovem."},
+    {"question_id":16018,"area":"Cirurgia","subtema":"Oncologia Cutânea: Melanoma, CBC e CEC","rationale":"Tratamento cirúrgico do melanoma segundo índice de Breslow."},
+    {"question_id":16138,"area":"Clínica Médica","subtema":"Toxicologia Clínica e Acidentes por Animais Peçonhentos","rationale":"Intoxicação colinérgica por organofosforado e antídoto."},
+    {"question_id":16238,"area":"Ginecologia e Obstetrícia","subtema":"Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)","rationale":"Achados colposcópicos de lesão intraepitelial cervical de alto grau."}
+  ]
+}

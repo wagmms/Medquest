@@ -1,0 +1,14 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Cirurgia",
+    "subtema": "Emergências Oftalmológicas e Patologias Oculares Frequentes"
+  },
+  "reviewed_question_ids": [8569, 8732, 8736, 8972, 9435, 9850, 10707, 10969, 10984, 11147, 11203, 11246, 11247, 11348, 12623, 12723, 13022, 15032],
+  "moves": [
+    {"question_id": 9850, "area": "Pediatria", "subtema": "Calendário Vacinal do PNI e Imunizações Especiais", "rationale": "Esquema vacinal contra poliomielite."},
+    {"question_id": 10969, "area": "Pediatria", "subtema": "Neonatologia: Infecções Congênitas (TORCH) e Sepse Neonatal", "rationale": "Conjuntivite neonatal purulenta no sexto dia de vida."},
+    {"question_id": 10984, "area": "Clínica Médica", "subtema": "Celulite, Erisipela, Osteomielite e Infecções de Partes Moles", "rationale": "Celulite palpebral com sinais inflamatórios e secreção purulenta."},
+    {"question_id": 12623, "area": "Pediatria", "subtema": "Distúrbios Obstrutivos, Asma e Bronquiolite na Infância", "rationale": "Exacerbação grave de asma em criança."}
+  ]
+}

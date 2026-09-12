@@ -1,0 +1,12 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Cirurgia",
+    "subtema": "Cirurgia Cardíaca: Revascularização Miocárdica e Cirurgia Valvar"
+  },
+  "reviewed_question_ids": [10924, 11100, 11113, 11313, 13490, 13497, 16320],
+  "moves": [
+    {"question_id": 11100, "area": "Clínica Médica", "subtema": "Insuficiência Cardíaca: Diagnóstico, Estadiamento e Terapia Farmacológica", "rationale": "Indicação de terapia de ressincronização na insuficiência cardíaca com BRE."},
+    {"question_id": 16320, "area": "Ginecologia e Obstetrícia", "subtema": "Endometriose, Adenomiose e Dor Pélvica Crônica", "rationale": "Via preferencial para tratamento cirúrgico da endometriose pélvica."}
+  ]
+}

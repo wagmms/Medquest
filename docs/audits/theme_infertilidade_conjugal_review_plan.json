@@ -1,0 +1,9 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Investigação e Propêdêutica da Infertilidade Conjugal"},
+  "reviewed_question_ids": [8912, 8956, 9035, 9240, 9598, 9753, 9973, 10061, 10268, 10448, 10567, 10952, 11013, 11092, 11352, 11480, 11558, 12237, 12429, 13612, 14308, 14453, 14876, 15496, 15806, 16589, 16607, 16803, 16809, 16986, 17008, 17010, 17137],
+  "moves": [
+    {"question_id": 9973, "area": "Ginecologia e Obstetrícia", "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade", "rationale": "Rastreamento de aneuploidias por ultrassonografia de primeiro trimestre."},
+    {"question_id": 10061, "area": "Pediatria", "subtema": "Diarreia Aguda, Reidratação Oral e Doenças Disabsortivas", "rationale": "Doença celíaca em criança com diarreia crônica e déficit ponderoestatural."}
+  ]
+}

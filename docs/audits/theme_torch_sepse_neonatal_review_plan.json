@@ -1,0 +1,12 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Pediatria","subtema":"Neonatologia: Infecções Congênitas (TORCH) e Sepse Neonatal"},
+  "reviewed_question_ids":[8824,9019,9206,9687,9748,9952,10094,10108,10228,10429,10610,10684,10773,10892,10969,10975,11082,11277,11390,11404,11506,11507,11591,11605,12166,12710,12826,13451,13509,13510,13886,14294,14296,14358,14363,14445,14774,15176,15177,15272,15380,15480,15684,15685,15961,16044,16047,16146,16331,16413,16417,16443,16812,17032,17093,17202],
+  "moves":[
+    {"question_id":10094,"area":"Medicina Preventiva","subtema":"Avaliação de Testes Diagnósticos e Curva ROC","rationale":"A interpretação de razões de verossimilhança e chance diagnóstica é epidemiologia clínica."},
+    {"question_id":10108,"area":"Clínica Médica","subtema":"Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses","rationale":"O quadro sem alterações orgânicas é de crise de ansiedade/pânico e seu manejo inicial."},
+    {"question_id":16331,"area":"Clínica Médica","subtema":"Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas","rationale":"Ruptura de preservativo com parceiro não tratado demanda profilaxia pós-exposição ao HIV."},
+    {"question_id":16417,"area":"Pediatria","subtema":"Sepse Pediátrica, Choque e Ressuscitação Hemodinâmica","rationale":"A avaliação de febre em lactente jovem busca infecção bacteriana grave e sepse pediátrica."},
+    {"question_id":16443,"area":"Pediatria","subtema":"Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo","rationale":"Pescoço alado, implantação baixa de orelhas e cardiopatia sugerem síndrome cromossômica."}
+  ]
+}

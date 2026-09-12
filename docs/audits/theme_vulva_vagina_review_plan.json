@@ -1,0 +1,11 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Patologias Benignas e Neoplásicas da Vulva e Vagina"},
+  "reviewed_question_ids": [10442, 11552, 13130, 13131, 13233, 13460, 14871, 15975, 16506, 16599, 16606, 16656, 17009],
+  "moves": [
+    {"question_id":16506,"area":"Cirurgia","subtema":"Insuficiência Venosa Crônica e Trombose Venosa Profunda (TVP)","rationale":"A investigação da síndrome do quebra-nozes decorre de compressão venosa renal e hematúria."},
+    {"question_id":16606,"area":"Ginecologia e Obstetrícia","subtema":"Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos","rationale":"A pergunta solicita escolha de método contraceptivo em paciente com lúpus."},
+    {"question_id":16656,"area":"Pediatria","subtema":"Calendário Vacinal do PNI e Imunizações Especiais","rationale":"O evento pós-vacinação em lactente é avaliado no contexto de imunizações pediátricas."},
+    {"question_id":17009,"area":"Ginecologia e Obstetrícia","subtema":"Anatomia Cirúrgica e Estruturas Pélvicas Femininas","rationale":"Amenorreia primária com hematocolpos por malformação obstrutiva é anatomia do trato genital feminino."}
+  ]
+}

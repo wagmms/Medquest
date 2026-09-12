@@ -1,0 +1,11 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Cirurgia",
+    "subtema": "Neoplasias Ósseas Benignas e Sarcomas Ósseos"
+  },
+  "reviewed_question_ids": [8845, 8949, 11288],
+  "moves": [
+    {"question_id": 8845, "area": "Cirurgia", "subtema": "Sarcomas de Partes Moles", "rationale": "Sarcoma de alto grau em compartimento muscular posterior da coxa."}
+  ]
+}

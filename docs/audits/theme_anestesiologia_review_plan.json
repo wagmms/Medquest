@@ -1,0 +1,8 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Cirurgia", "subtema": "Fundamentos da Anestesiologia, Farmacologia e Bloqueios"},
+  "reviewed_question_ids": [8856, 9220, 9465, 10685, 10909, 11108, 11109, 11110, 11300, 11309, 11310, 11408, 12773, 12870, 12985, 13090, 13496, 13555, 13740, 13950, 14344, 14582, 15052, 15956],
+  "moves": [
+    {"question_id": 15956, "area": "Clínica Médica", "subtema": "Síndromes Coronarianas Agudas (Com e Sem Supra de ST)", "rationale": "Terapia antitrombótica após síndrome coronariana aguda sem supra e angioplastia em paciente com fibrilação atrial."}
+  ]
+}

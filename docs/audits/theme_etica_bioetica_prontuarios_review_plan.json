@@ -1,0 +1,26 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Medicina Preventiva",
+    "subtema": "Ética Médica, Bioética e Prontuários / Documentos"
+  },
+  "reviewed_question_ids": [8669, 8900, 9000, 9173, 9177, 9200, 9403, 9414, 9899, 10077, 10081, 10083, 10103, 10104, 10110, 10235, 10715, 10922, 11005, 11162, 11174, 11229, 11235, 11238, 11373, 11387, 11465, 11574, 11578, 11579, 11580, 11601, 12000, 12061, 12249, 12352, 12357, 12358, 12364, 12365, 12387, 12456, 12560, 12814, 12849, 12891, 12908, 12925, 12967, 12975, 13062, 13075, 13076, 13084, 13096, 13104, 13106, 13107, 13267, 13311, 13363, 13367, 13417, 13469, 13532, 13786, 13787, 13806, 13845, 13920, 13921, 13926, 13980, 13981, 14089, 14090, 14096, 14123, 14202, 14220, 14393, 14450, 14476, 14540, 14627, 14913, 14921, 14968, 15027, 15222, 15359, 15512, 15608, 15714, 15723, 15817, 15885, 15886, 15914, 16001, 16089, 16406, 16829, 17112, 17189, 17192],
+  "moves": [
+    {"question_id": 10077, "area": "Cirurgia", "subtema": "Cirurgia Pediátrica e Malformações Digestivas Neonatais", "rationale": "Onfalocele fetal e sua conduta."},
+    {"question_id": 10081, "area": "Ginecologia e Obstetrícia", "subtema": "Hemorragias da Primeira Metade: Abortamento, Ectópica e Mola", "rationale": "Gestação ectópica como causa de abdome agudo e beta-hCG positivo."},
+    {"question_id": 10083, "area": "Ginecologia e Obstetrícia", "subtema": "Hemorragias da Primeira Metade: Abortamento, Ectópica e Mola", "rationale": "Gravidez molar com sangramento e exteriorização de vesículas."},
+    {"question_id": 10104, "area": "Medicina Preventiva", "subtema": "Legislação, Diretrizes e Evolução do SUS", "rationale": "Organização das Redes de Atenção à Saúde e Regiões de Saúde."},
+    {"question_id": 10235, "area": "Clínica Médica", "subtema": "Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses", "rationale": "Depressão grave com ideação e planejamento suicida."},
+    {"question_id": 11387, "area": "Ginecologia e Obstetrícia", "subtema": "Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos", "rationale": "Critérios legais para esterilização cirúrgica voluntária."},
+    {"question_id": 12061, "area": "Ginecologia e Obstetrícia", "subtema": "Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual", "rationale": "Violência doméstica contra a mulher e sua prevenção/identificação."},
+    {"question_id": 12365, "area": "Clínica Médica", "subtema": "Dermatoses Infecciosas, Hanseníase e Leishmanioses", "rationale": "Diagnóstico e manejo de hanseníase paucibacilar."},
+    {"question_id": 13076, "area": "Cirurgia", "subtema": "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino", "rationale": "Manifestações paraneoplásicas do câncer de pulmão."},
+    {"question_id": 13267, "area": "Clínica Médica", "subtema": "Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas", "rationale": "Cuidado clínico e funcional de idoso com demência avançada."},
+    {"question_id": 13787, "area": "Ginecologia e Obstetrícia", "subtema": "Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual", "rationale": "Acolhimento e condução diante de violência doméstica contra mulher."},
+    {"question_id": 14540, "area": "Ginecologia e Obstetrícia", "subtema": "Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual", "rationale": "Violência patrimonial e doméstica contra mulher."},
+    {"question_id": 15222, "area": "Ginecologia e Obstetrícia", "subtema": "Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual", "rationale": "Atendimento e notificação em violência física contra mulher."},
+    {"question_id": 15714, "area": "Ginecologia e Obstetrícia", "subtema": "Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos", "rationale": "Planejamento familiar e esterilização voluntária no período gestacional."},
+    {"question_id": 15723, "area": "Ginecologia e Obstetrícia", "subtema": "Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual", "rationale": "Notificação de violência doméstica, sexual e patrimonial contra mulher."},
+    {"question_id": 16089, "area": "Medicina Preventiva", "subtema": "Estudos Epidemiológicos: Medidas de Associação e Análise Estatística", "rationale": "Interpretação de análises por intenção de tratar e por protocolo em ensaio clínico."}
+  ]
+}

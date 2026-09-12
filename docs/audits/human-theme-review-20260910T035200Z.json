@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260910T035200Z-47f20854",
+  "plan": "docs\\audits\\theme_psiquiatria_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260910T035200Z.db",
+  "questions_reviewed": 56,
+  "questions_reclassified": 24
+}

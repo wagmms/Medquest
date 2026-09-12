@@ -1,0 +1,18 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento"},
+  "reviewed_question_ids": [8908, 9235, 9475, 9599, 9611, 9759, 10261, 10398, 10399, 10659, 10671, 10802, 10951, 10966, 11134, 11253, 11354, 11475, 12114, 12235, 12317, 12434, 12533, 12601, 12647, 12747, 12844, 13029, 13137, 13212, 13241, 13402, 13464, 13517, 13831, 13898, 13903, 14076, 14237, 14454, 14533, 14598, 14789, 14992, 15104, 15201, 15307, 15313, 15488, 15762, 15801, 15894, 15972, 16063, 16181, 16187, 16231, 16234, 16236, 16239, 16240, 16288, 16388, 16438, 16456, 16457, 16458, 16588, 16594, 16595, 16597, 16738, 16998, 17000, 17001, 17149],
+  "moves": [
+    {"question_id": 9611, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Ações de prevenção e promoção de saúde em consulta de atenção primária."},
+    {"question_id": 12601, "area": "Clínica Médica", "subtema": "Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas", "rationale": "Cuidados de fim de vida em idosa com demência avançada e insuficiência respiratória."},
+    {"question_id": 12647, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias", "rationale": "Distócia de apresentação facial em trabalho de parto."},
+    {"question_id": 13212, "area": "Pediatria", "subtema": "Constipação Intestinal Funcional e Orgânica", "rationale": "Critérios de Roma IV para síndrome do intestino irritável pediátrica."},
+    {"question_id": 15972, "area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital", "rationale": "Fatores de risco para prolapso de órgãos pélvicos."},
+    {"question_id": 16181, "area": "Ginecologia e Obstetrícia", "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal", "rationale": "Interpretação de cardiotocografia anteparto."},
+    {"question_id": 16187, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Organização de agenda conforme necessidades do território na medicina de família."},
+    {"question_id": 16288, "area": "Clínica Médica", "subtema": "Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas", "rationale": "Crise aguda de gota com cristais de urato monossódico."},
+    {"question_id": 16388, "area": "Clínica Médica", "subtema": "Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática", "rationale": "Síndrome hepatopulmonar em paciente com sinais de hepatopatia crônica."},
+    {"question_id": 16438, "area": "Pediatria", "subtema": "Neonatologia: Icterícia Neonatal e Doenças Hematológicas", "rationale": "Icterícia neonatal em lactente de 20 dias."},
+    {"question_id": 16595, "area": "Ginecologia e Obstetrícia", "subtema": "Mastologia Benigna: Fibroadenomas, Cistos e Mastites", "rationale": "Papiloma intraductal com descarga papilar hemorrágica monoductal."}
+  ]
+}

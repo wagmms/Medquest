@@ -1,0 +1,694 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Medicina Preventiva",
+    "subtema": "Vigilância Epidemiológica: Endemias, Epidemias e Surtos"
+  },
+  "reviewed_question_ids": [
+    8597,
+    8657,
+    8662,
+    8668,
+    8677,
+    8890,
+    8891,
+    8895,
+    8990,
+    8996,
+    9039,
+    9040,
+    9041,
+    9172,
+    9174,
+    9178,
+    9179,
+    9184,
+    9189,
+    9397,
+    9405,
+    9406,
+    9407,
+    9637,
+    9638,
+    9648,
+    9726,
+    9729,
+    9878,
+    9946,
+    10092,
+    10102,
+    10244,
+    10322,
+    10324,
+    10327,
+    10452,
+    10455,
+    10458,
+    10462,
+    10464,
+    10517,
+    10518,
+    10527,
+    10528,
+    10712,
+    10716,
+    10724,
+    10729,
+    10736,
+    10863,
+    10906,
+    10993,
+    11158,
+    11163,
+    11167,
+    11237,
+    11589,
+    12051,
+    12052,
+    12055,
+    12056,
+    12066,
+    12067,
+    12068,
+    12072,
+    12348,
+    12353,
+    12549,
+    12556,
+    12559,
+    12563,
+    12650,
+    12651,
+    12652,
+    12750,
+    12751,
+    12949,
+    12966,
+    13052,
+    13056,
+    13151,
+    13166,
+    13256,
+    13258,
+    13260,
+    13262,
+    13264,
+    13360,
+    13365,
+    13411,
+    13412,
+    14043,
+    14094,
+    14246,
+    14249,
+    14319,
+    14320,
+    14389,
+    14390,
+    14399,
+    14464,
+    14466,
+    14538,
+    14543,
+    14622,
+    14624,
+    14708,
+    14710,
+    14716,
+    14915,
+    15108,
+    15123,
+    15127,
+    15219,
+    15225,
+    15227,
+    15320,
+    15410,
+    15424,
+    15509,
+    15524,
+    15525,
+    15526,
+    15527,
+    15609,
+    15612,
+    15616,
+    15625,
+    15626,
+    15627,
+    15722,
+    15818,
+    15822,
+    15909,
+    15989,
+    15996,
+    15997,
+    15998,
+    16084,
+    16194,
+    16292,
+    16339,
+    16350,
+    16392,
+    16442,
+    16697,
+    16700,
+    16747,
+    16750,
+    16797,
+    16800,
+    16847,
+    17110,
+    17259
+  ],
+  "moves": [
+    {
+      "question_id": 8597,
+      "area": "Clínica Médica",
+      "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 8657,
+      "area": "Clínica Médica",
+      "subtema": "Infecções Sexualmente Transmissíveis (ISTs) no Adulto",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 8668,
+      "area": "Clínica Médica",
+      "subtema": "Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 8677,
+      "area": "Clínica Médica",
+      "subtema": "Síndromes Febris Agudas e Arboviroses (Dengue, Chikungunya, Febre Amarela)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 8890,
+      "area": "Clínica Médica",
+      "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 8891,
+      "area": "Clínica Médica",
+      "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 8990,
+      "area": "Clínica Médica",
+      "subtema": "Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 9039,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 9172,
+      "area": "Pediatria",
+      "subtema": "Calendário Vacinal do PNI e Imunizações Especiais",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 9178,
+      "area": "Clínica Médica",
+      "subtema": "Infecções Sexualmente Transmissíveis (ISTs) no Adulto",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 9189,
+      "area": "Clínica Médica",
+      "subtema": "Síndromes Febris Agudas e Arboviroses (Dengue, Chikungunya, Febre Amarela)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 9406,
+      "area": "Clínica Médica",
+      "subtema": "Hepatites Virais (A, B, C) e Icterícias Metabólicas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 9407,
+      "area": "Clínica Médica",
+      "subtema": "Dermatoses Infecciosas, Hanseníase e Leishmanioses",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 9648,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 9726,
+      "area": "Clínica Médica",
+      "subtema": "Infecções Sexualmente Transmissíveis (ISTs) no Adulto",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 9729,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 9878,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 9946,
+      "area": "Cirurgia",
+      "subtema": "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10092,
+      "area": "Medicina Preventiva",
+      "subtema": "História Natural da Doença e Níveis de Prevenção",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10244,
+      "area": "Clínica Médica",
+      "subtema": "Síndromes Febris Agudas e Arboviroses (Dengue, Chikungunya, Febre Amarela)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10322,
+      "area": "Clínica Médica",
+      "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10327,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10452,
+      "area": "Clínica Médica",
+      "subtema": "Dermatoses Infecciosas, Hanseníase e Leishmanioses",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10455,
+      "area": "Clínica Médica",
+      "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10458,
+      "area": "Clínica Médica",
+      "subtema": "Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10464,
+      "area": "Pediatria",
+      "subtema": "Calendário Vacinal do PNI e Imunizações Especiais",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10518,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10527,
+      "area": "Pediatria",
+      "subtema": "Doenças Exantemáticas e Diagnóstico Diferencial dos Exantemas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10528,
+      "area": "Clínica Médica",
+      "subtema": "Dermatoses Infecciosas, Hanseníase e Leishmanioses",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10716,
+      "area": "Pediatria",
+      "subtema": "Calendário Vacinal do PNI e Imunizações Especiais",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10736,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Pré-Natal de Baixo e Alto Risco",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10863,
+      "area": "Clínica Médica",
+      "subtema": "Síndromes Febris Agudas e Arboviroses (Dengue, Chikungunya, Febre Amarela)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10906,
+      "area": "Clínica Médica",
+      "subtema": "Dermatoses Infecciosas, Hanseníase e Leishmanioses",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 11163,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 11167,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 11237,
+      "area": "Clínica Médica",
+      "subtema": "Infecções Sexualmente Transmissíveis (ISTs) no Adulto",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 12056,
+      "area": "Clínica Médica",
+      "subtema": "Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 12066,
+      "area": "Pediatria",
+      "subtema": "Calendário Vacinal do PNI e Imunizações Especiais",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 12067,
+      "area": "Medicina Preventiva",
+      "subtema": "Vigilância em Saúde e Notificação Compulsória (SINAN)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 12348,
+      "area": "Clínica Médica",
+      "subtema": "Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 12556,
+      "area": "Medicina Preventiva",
+      "subtema": "Vigilância em Saúde e Notificação Compulsória (SINAN)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 12751,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Pré-Natal de Baixo e Alto Risco",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13052,
+      "area": "Clínica Médica",
+      "subtema": "Síndromes Febris Agudas e Arboviroses (Dengue, Chikungunya, Febre Amarela)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13151,
+      "area": "Pediatria",
+      "subtema": "Doenças Exantemáticas e Diagnóstico Diferencial dos Exantemas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13166,
+      "area": "Clínica Médica",
+      "subtema": "Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13258,
+      "area": "Pediatria",
+      "subtema": "Calendário Vacinal do PNI e Imunizações Especiais",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13264,
+      "area": "Pediatria",
+      "subtema": "Doenças Exantemáticas e Diagnóstico Diferencial dos Exantemas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13360,
+      "area": "Clínica Médica",
+      "subtema": "Dermatoses Infecciosas, Hanseníase e Leishmanioses",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13365,
+      "area": "Medicina Preventiva",
+      "subtema": "Vigilância em Saúde e Notificação Compulsória (SINAN)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13411,
+      "area": "Clínica Médica",
+      "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14043,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14094,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14389,
+      "area": "Clínica Médica",
+      "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14390,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Pré-Natal de Baixo e Alto Risco",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14399,
+      "area": "Pediatria",
+      "subtema": "Calendário Vacinal do PNI e Imunizações Especiais",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14464,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14466,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14538,
+      "area": "Clínica Médica",
+      "subtema": "Síndromes Febris Agudas e Arboviroses (Dengue, Chikungunya, Febre Amarela)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14543,
+      "area": "Clínica Médica",
+      "subtema": "Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14622,
+      "area": "Clínica Médica",
+      "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14624,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14710,
+      "area": "Clínica Médica",
+      "subtema": "Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14915,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 15225,
+      "area": "Clínica Médica",
+      "subtema": "Infecções Sexualmente Transmissíveis (ISTs) no Adulto",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 15227,
+      "area": "Clínica Médica",
+      "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 15320,
+      "area": "Pediatria",
+      "subtema": "Doenças Exantemáticas e Diagnóstico Diferencial dos Exantemas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 15609,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Pré-Natal de Baixo e Alto Risco",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 15612,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 15616,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 15626,
+      "area": "Pediatria",
+      "subtema": "Calendário Vacinal do PNI e Imunizações Especiais",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 15627,
+      "area": "Pediatria",
+      "subtema": "Doenças Exantemáticas e Diagnóstico Diferencial dos Exantemas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 15909,
+      "area": "Medicina Preventiva",
+      "subtema": "Vigilância em Saúde e Notificação Compulsória (SINAN)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 15996,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 15997,
+      "area": "Clínica Médica",
+      "subtema": "Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 15998,
+      "area": "Clínica Médica",
+      "subtema": "Síndromes Febris Agudas e Arboviroses (Dengue, Chikungunya, Febre Amarela)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16194,
+      "area": "Medicina Preventiva",
+      "subtema": "História Natural da Doença e Níveis de Prevenção",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16292,
+      "area": "Clínica Médica",
+      "subtema": "Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16350,
+      "area": "Medicina Preventiva",
+      "subtema": "Ética Médica, Bioética e Prontuários / Documentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16392,
+      "area": "Clínica Médica",
+      "subtema": "Coagulopatias, Trombofilias, Púrpuras e Hemoterapia",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16442,
+      "area": "Clínica Médica",
+      "subtema": "Dermatoses Infecciosas, Hanseníase e Leishmanioses",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16697,
+      "area": "Cirurgia",
+      "subtema": "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16700,
+      "area": "Cirurgia",
+      "subtema": "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16747,
+      "area": "Clínica Médica",
+      "subtema": "Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16750,
+      "area": "Clínica Médica",
+      "subtema": "Hepatites Virais (A, B, C) e Icterícias Metabólicas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16797,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16800,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Afecções do Corpo Uterino, Endométrio e Sangramento Pós-Menopausa",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16847,
+      "area": "Clínica Médica",
+      "subtema": "Neuropatias Periféricas, Miastenia Gravis e Doenças Neuromusculares",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 17259,
+      "area": "Clínica Médica",
+      "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo",
+      "rationale": "Conteúdo central específico."
+    }
+  ]
+}

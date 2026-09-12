@@ -1,0 +1,26 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Afecções de Vias Aéreas Superiores: OMA, Sinusite e Faringoamigdalite"
+  },
+  "reviewed_question_ids": [8578, 8814, 8862, 9167, 9195, 9429, 9674, 9851, 9859, 9905, 10103, 10216, 10482, 10717, 10777, 10853, 10978, 10979, 11600, 12215, 12219, 12298, 12621, 12721, 12815, 12918, 13019, 13157, 13390, 13508, 13541, 13813, 14055, 14161, 14338, 14359, 14468, 14517, 15035, 15069, 15078, 15079, 15382, 15583, 15710, 15962, 16279, 16379, 16421, 16429, 16820, 16821, 17029, 17102, 17273],
+  "moves": [
+    {"question_id": 8814, "area": "Pediatria", "subtema": "Segurança Infantil, Prevenção de Acidentes e Maus-Tratos", "rationale": "Engasgo por alimento e manobras prioritárias na obstrução por corpo estranho."},
+    {"question_id": 9674, "area": "Pediatria", "subtema": "Calendário Vacinal do PNI e Imunizações Especiais", "rationale": "Coqueluche em lactente e conduta profilática para contato sem vacinação."},
+    {"question_id": 9859, "area": "Ginecologia e Obstetrícia", "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal", "rationale": "Interpretação do perfil biofísico fetal e decisão obstétrica."},
+    {"question_id": 9905, "area": "Clínica Médica", "subtema": "Pneumonia Adquirida na Comunidade (PAC) e Síndromes Respiratórias Agudas", "rationale": "Quadro de pneumonia/síndrome respiratória aguda na criança."},
+    {"question_id": 10103, "area": "Medicina Preventiva", "subtema": "Ética Médica, Bioética e Prontuários / Documentos", "rationale": "Comunicação de más notícias e abordagem ética do cuidado paliativo."},
+    {"question_id": 10216, "area": "Pediatria", "subtema": "Segurança Infantil, Prevenção de Acidentes e Maus-Tratos", "rationale": "Investigação de ingestão de corpo estranho em criança."},
+    {"question_id": 11600, "area": "Pediatria", "subtema": "Distúrbios Obstrutivos, Asma e Bronquiolite na Infância", "rationale": "Distúrbio respiratório obstrutivo do sono na infância."},
+    {"question_id": 12215, "area": "Pediatria", "subtema": "Segurança Infantil, Prevenção de Acidentes e Maus-Tratos", "rationale": "Corpo estranho nasal em criança."},
+    {"question_id": 12621, "area": "Clínica Médica", "subtema": "Leucemias, Linfomas e Mieloma Múltiplo", "rationale": "Complicação metabólica de paciente em tratamento de linfoma."},
+    {"question_id": 13508, "area": "Pediatria", "subtema": "Segurança Infantil, Prevenção de Acidentes e Maus-Tratos", "rationale": "Aspiração de corpo estranho e repercussões respiratórias."},
+    {"question_id": 14468, "area": "Clínica Médica", "subtema": "Acidente Vascular Cerebral Isquêmico e Hemorrágico (Janela de Trombólise)", "rationale": "Síndrome vestibular central identificada pelo protocolo HINTS, sugestiva de AVC."},
+    {"question_id": 15069, "area": "Pediatria", "subtema": "Segurança Infantil, Prevenção de Acidentes e Maus-Tratos", "rationale": "Aspiração de corpo estranho e seus achados radiológicos."},
+    {"question_id": 15710, "area": "Clínica Médica", "subtema": "Acidente Vascular Cerebral Isquêmico e Hemorrágico (Janela de Trombólise)", "rationale": "Protocolo HINTS com sinais de lesão central em paciente de alto risco vascular."},
+    {"question_id": 16279, "area": "Cirurgia", "subtema": "Trauma Torácico: Pneumotórax, Hemotórax e Tamponamento Cardíaco", "rationale": "Reconhecimento ultrassonográfico de tamponamento cardíaco."},
+    {"question_id": 16379, "area": "Cirurgia", "subtema": "Trauma Abdominal Fechado e Penetrante (FAST e Laparotomia)", "rationale": "Manejo prioritário de hipoperfusão após trauma abdominal com lesão hepática."},
+    {"question_id": 16429, "area": "Pediatria", "subtema": "Imunodeficiências, Alergias e Anafilaxia na Infância", "rationale": "Síndrome de enterocolite induzida por proteína alimentar."}
+  ]
+}

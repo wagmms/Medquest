@@ -1,0 +1,14 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Cardiopatias Congênitas Cianogênicas e Acianogênicas"
+  },
+  "reviewed_question_ids": [9731, 9951, 9969, 10063, 10211, 10413, 10602, 10697, 10786, 10787, 11069, 11099, 12820, 12888, 12988, 13024, 13109, 13222, 13346, 13593, 14673, 14778, 16508, 16702, 16802, 16852, 17040],
+  "moves": [
+    {"question_id": 9951, "area": "Pediatria", "subtema": "Neonatologia: Icterícia Neonatal e Doenças Hematológicas", "rationale": "A questão investiga etiologia de hiperbilirrubinemia neonatal hemolítica."},
+    {"question_id": 16702, "area": "Clínica Médica", "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos", "rationale": "A exposição cutânea à soda cáustica e sua descontaminação inicial são tema de toxicologia."},
+    {"question_id": 16802, "area": "Ginecologia e Obstetrícia", "subtema": "Fisiologia do Ciclo Menstrual e Eixo Hipotálamo-Hipófise-Ovário", "rationale": "O quadro avalia alteração menstrual por hiperprolactinemia medicamentosa no eixo reprodutivo."},
+    {"question_id": 16852, "area": "Clínica Médica", "subtema": "Síndromes Glomerulares: Nefrítica, Nefrótica e Tubulopatias", "rationale": "A questão trata de síndrome nefrótica infantil e do esquema de corticoterapia."}
+  ]
+}

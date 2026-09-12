@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T134112Z-675167ac",
+  "plan": "docs\\audits\\theme_alojamento_conjunto_triagem_neonatal_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T134112Z.db",
+  "questions_reviewed": 51,
+  "questions_reclassified": 15
+}

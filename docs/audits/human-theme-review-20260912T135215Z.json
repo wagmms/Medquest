@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T135215Z-48802322",
+  "plan": "docs\\audits\\theme_anemias_carenciais_micronutrientes_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T135215Z.db",
+  "questions_reviewed": 47,
+  "questions_reclassified": 19
+}

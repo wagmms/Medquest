@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260911T130451Z-5b1a1070",
+  "plan": "docs\\audits\\theme_infeccoes_perinatais_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260911T130451Z.db",
+  "questions_reviewed": 62,
+  "questions_reclassified": 11
+}

@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T173304Z-1e898d7c",
+  "plan": "docs\\audits\\theme_dermatoses_infecciosas_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T173304Z.db",
+  "questions_reviewed": 69,
+  "questions_reclassified": 14
+}

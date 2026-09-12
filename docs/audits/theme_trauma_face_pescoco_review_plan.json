@@ -1,0 +1,18 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Cirurgia","subtema":"Trauma de Face e Pescoço (Trauma Cervical e Fraturas Maxilofaciais)"},
+  "reviewed_question_ids":[8840,9696,9916,10882,11514,12285,14035,14039,14214,14665,15248,15364,15852,15854,16027,16029,16122,16222,16321,16468,16518,16717,16767,16817],
+  "moves":[
+    {"question_id":9916,"area":"Cirurgia","subtema":"Atendimento ao Paciente Queimado e Reposição Volêmica","rationale":"Queimadura elétrica extensa e cálculo de reposição pela fórmula de Parkland."},
+    {"question_id":16027,"area":"Pediatria","subtema":"Anemias Carenciais e Distúrbios de Micronutrientes (Ferro, Vitamina D)","rationale":"Anemia ferropriva sem resposta adequada e investigação de má absorção."},
+    {"question_id":16029,"area":"Clínica Médica","subtema":"Hipotireoidismo, Hipertireoidismo e Nódulos Tireoidianos","rationale":"Diagnóstico diferencial de tireotoxicose com baixa captação."},
+    {"question_id":16122,"area":"Pediatria","subtema":"Imunodeficiências, Alergias e Anafilaxia na Infância","rationale":"Relação entre imunodeficiências primárias e agentes infecciosos."},
+    {"question_id":16222,"area":"Ginecologia e Obstetrícia","subtema":"Fisiologia do Ciclo Menstrual e Eixo Hipotálamo-Hipófise-Ovário","rationale":"Hiperprolactinemia secundária a hipotireoidismo primário."},
+    {"question_id":16321,"area":"Ginecologia e Obstetrícia","subtema":"Afecções do Corpo Uterino, Endométrio e Sangramento Pós-Menopausa","rationale":"Mioma submucoso FIGO 0 e tratamento de sangramento uterino anormal."},
+    {"question_id":16468,"area":"Cirurgia","subtema":"Cirurgia Pediátrica e Malformações Digestivas Neonatais","rationale":"Atresia de esôfago com fístula traqueoesofágica em recém-nascido."},
+    {"question_id":16518,"area":"Clínica Médica","subtema":"Hipotireoidismo, Hipertireoidismo e Nódulos Tireoidianos","rationale":"Hipotireoidismo induzido por imunoterapia."},
+    {"question_id":16717,"area":"Clínica Médica","subtema":"Dislipidemias, Síndrome Metabólica e Risco Cardiovascular","rationale":"Hiperferritinemia relacionada à síndrome metabólica."},
+    {"question_id":16767,"area":"Ginecologia e Obstetrícia","subtema":"Hemorragias da Primeira Metade: Abortamento, Ectópica e Mola","rationale":"Ameaça de abortamento com hematoma retrocoriônico e embrião viável."},
+    {"question_id":16817,"area":"Clínica Médica","subtema":"Pneumonia Adquirida na Comunidade (PAC) e Síndromes Respiratórias Agudas","rationale":"Pneumonia complicada na infância."}
+  ]
+}

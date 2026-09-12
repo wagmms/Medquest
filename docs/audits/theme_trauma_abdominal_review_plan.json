@@ -1,0 +1,24 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Cirurgia","subtema":"Trauma Abdominal Fechado e Penetrante (FAST e Laparotomia)"},
+  "reviewed_question_ids":[8536,8554,8947,9048,9049,9218,9450,9451,9657,9658,9659,9697,9835,9917,10297,10347,10500,10879,11115,11322,11989,11992,11994,11995,11999,12003,12136,12137,12141,12142,12202,12286,12775,13198,13199,13379,13554,13556,13563,13590,13724,13807,13872,13946,13951,14117,14118,14149,14157,14270,14276,14279,14280,14429,14660,14661,14664,14753,14764,14832,14834,14835,14960,14962,15061,15156,15350,15354,15365,15451,15453,15455,15461,15464,15465,15551,15556,15563,15651,15657,15660,15754,15758,15760,15851,16013,16026,16317,16718,16888,16906,16938,16956,16988,17006,17038,17166,17224],
+  "moves":[
+    {"question_id":9835,"area":"Clínica Médica","subtema":"Diagnóstico Diferencial das Anemias e Hemoglobinopatias","rationale":"Indicação de hidroxiureia na anemia falciforme."},
+    {"question_id":9917,"area":"Cirurgia","subtema":"Técnica Operatória, Diérese, Hemostasia e Síntese (Fios Cirúrgicos)","rationale":"Antibioticoprofilaxia de hernioplastia eletiva."},
+    {"question_id":14276,"area":"Cirurgia","subtema":"Técnica Operatória, Diérese, Hemostasia e Síntese (Fios Cirúrgicos)","rationale":"Organização de instrumentos na mesa cirúrgica."},
+    {"question_id":14661,"area":"Cirurgia","subtema":"Atendimento Inicial ao Politraumatizado (Protocolo xABCDE)","rationale":"Definição de prioridade de via aérea no atendimento inicial do politraumatizado."},
+    {"question_id":15453,"area":"Cirurgia","subtema":"Técnica Operatória, Diérese, Hemostasia e Síntese (Fios Cirúrgicos)","rationale":"Controle de sangramento por lesão esplênica iatrogênica em operação."},
+    {"question_id":15556,"area":"Ginecologia e Obstetrícia","subtema":"Puerpério Fisiológico, Patológico e Hemorragia Pós-Parto","rationale":"Complicação urológica no pós-operatório de cesariana."},
+    {"question_id":15758,"area":"Cirurgia","subtema":"Atendimento Inicial ao Politraumatizado (Protocolo xABCDE)","rationale":"Indicação de tomografia de corpo inteiro no politrauma."},
+    {"question_id":16026,"area":"Pediatria","subtema":"Infecção do Trato Urinário (ITU) e Refluxo Vesicoureteral na Infância","rationale":"Diagnóstico e antibioticoterapia de infecção urinária."},
+    {"question_id":16317,"area":"Ginecologia e Obstetrícia","subtema":"Uroginecologia: Incontinência Urinária e Prolapso Genital","rationale":"Classificação POP-Q de prolapso de órgãos pélvicos."},
+    {"question_id":16718,"area":"Clínica Médica","subtema":"Leucemias, Linfomas e Mieloma Múltiplo","rationale":"Tricoleucemia e possibilidades de manejo."},
+    {"question_id":16888,"area":"Cirurgia","subtema":"Doença Arterial Obstrutiva Periférica e Oclusões Arteriais Agudas","rationale":"Isquemia aguda de membro por aneurisma poplíteo trombosado."},
+    {"question_id":16906,"area":"Cirurgia","subtema":"Cicatrização, Tratamento de Feridas, Enxertos e Retalhos","rationale":"Manejo cirúrgico de lesão por pressão sacral avançada."},
+    {"question_id":16938,"area":"Clínica Médica","subtema":"Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas","rationale":"Diagnóstico e intervenção na pré-fragilidade segundo Fried."},
+    {"question_id":16956,"area":"Clínica Médica","subtema":"Síndromes Coronarianas Agudas (Com e Sem Supra de ST)","rationale":"SCA com choque cardiogênico e estratégia de reperfusão."},
+    {"question_id":16988,"area":"Ginecologia e Obstetrícia","subtema":"Climatério, Menopausa e Terapia de Reposição Hormonal (TRH)","rationale":"Manejo de sintomas climatéricos após câncer de mama."},
+    {"question_id":17006,"area":"Ginecologia e Obstetrícia","subtema":"Uroginecologia: Incontinência Urinária e Prolapso Genital","rationale":"Estadiamento POP-Q de prolapso anterior."},
+    {"question_id":17038,"area":"Pediatria","subtema":"Reanimação Neonatal e Assistência em Sala de Parto","rationale":"Complicação de procedimento durante reanimação neonatal."}
+  ]
+}

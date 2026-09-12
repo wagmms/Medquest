@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T211037Z-5819b60d",
+  "plan": "docs\\audits\\theme_geriatria_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T211037Z.db",
+  "questions_reviewed": 82,
+  "questions_reclassified": 19
+}

@@ -1,0 +1,15 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Distúrbios Obstrutivos, Asma e Bronquiolite na Infância"
+  },
+  "reviewed_question_ids": [8731, 8738, 8810, 8811, 8812, 8813, 9014, 9026, 9677, 9680, 9681, 9954, 9970, 10224, 10375, 10414, 10513, 10691, 10889, 10986, 11068, 11070, 11166, 11176, 11276, 11494, 11596, 11600, 11602, 12157, 12210, 12301, 12304, 12427, 12527, 12623, 12624, 12915, 13025, 13124, 13297, 13753, 13895, 14050, 14288, 14439, 14519, 14585, 14678, 14772, 14773, 14848, 14859, 14860, 15442, 15471, 15474, 15676, 15776, 15784, 15869, 15871, 16156, 16158, 16303, 16402, 16420, 16652, 17046, 17052, 17086, 17207, 17276],
+  "moves": [
+    {"question_id": 9026, "area": "Pediatria", "subtema": "Afecções de Vias Aéreas Superiores: OMA, Sinusite e Faringoamigdalite", "rationale": "Complicação otológica de infecção viral respiratória, com retorno de febre e irritabilidade."},
+    {"question_id": 11166, "area": "Pediatria", "subtema": "Afecções de Vias Aéreas Superiores: OMA, Sinusite e Faringoamigdalite", "rationale": "Estridor congênito por laringomalácia, afecção de via aérea superior."},
+    {"question_id": 15776, "area": "Clínica Médica", "subtema": "Pneumonia Adquirida na Comunidade (PAC) e Síndromes Respiratórias Agudas", "rationale": "Pneumonia complicada por derrame parapneumônico loculado."},
+    {"question_id": 16402, "area": "Clínica Médica", "subtema": "Pneumonia Adquirida na Comunidade (PAC) e Síndromes Respiratórias Agudas", "rationale": "Síndrome gripal aguda em adolescente com doença respiratória crônica."},
+    {"question_id": 16420, "area": "Pediatria", "subtema": "Afecções de Vias Aéreas Superiores: OMA, Sinusite e Faringoamigdalite", "rationale": "Crupe viral com estridor, condição de via aérea superior."}
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Ginecologia e Obstetrícia",
+    "subtema": "Câncer de Colo Uterino e Lesões Precursoras"
+  },
+  "reviewed_question_ids": [9478, 10967, 11137, 11250, 11488, 12036, 12534, 12855, 13306, 13351, 13406, 13770, 14313, 14527, 15804, 16228, 16237, 16241, 16584, 16995],
+  "moves": [
+    {
+      "question_id": 12855,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)",
+      "rationale": "Indicação do exame preventivo de rastreamento em mulher assintomática."
+    },
+    {
+      "question_id": 13770,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)",
+      "rationale": "Aborda início e periodicidade da citologia, além de vacinação contra HPV em transplantada."
+    },
+    {
+      "question_id": 16228,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)",
+      "rationale": "O foco é a conduta após resultado citopatológico alterado e o encaminhamento à colposcopia."
+    }
+  ]
+}

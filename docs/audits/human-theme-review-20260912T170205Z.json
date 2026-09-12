@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T170205Z-736304bd",
+  "plan": "docs\\audits\\theme_historia_natural_prevencao_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T170205Z.db",
+  "questions_reviewed": 152,
+  "questions_reclassified": 77
+}

@@ -1,0 +1,26 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Diarreia Aguda, Reidratação Oral e Doenças Disabsortivas"
+  },
+  "reviewed_question_ids": [8518, 8563, 8825, 9651, 9799, 10056, 10061, 10098, 10109, 10212, 10220, 10479, 10593, 10601, 10785, 10974, 11073, 11078, 11079, 11173, 11283, 11402, 11595, 11606, 12099, 12135, 12160, 12294, 12306, 12408, 12424, 12455, 12473, 12474, 12475, 12625, 12626, 12725, 12817, 13114, 13118, 13215, 13388, 13488, 13600, 13712, 13816, 13884, 14057, 14335, 14362, 14510, 14670, 14781, 14851, 15081, 15082, 15139, 15234, 15278, 15344, 15369, 15373, 15381, 15538, 15673, 15674, 15872, 15876, 15967, 16047, 16051, 16108, 16152, 16304, 16920, 16946, 16970, 17020, 17199],
+  "moves": [
+    {"question_id": 9799, "area": "Cirurgia", "subtema": "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas", "rationale": "A questão trata da conduta no pós-operatório imediato de colecistectomia."},
+    {"question_id": 10098, "area": "Medicina Preventiva", "subtema": "Estudos Epidemiológicos: Medidas de Associação e Análise Estatística", "rationale": "O foco é confundimento em estudo transversal e controle analítico de viés."},
+    {"question_id": 10109, "area": "Pediatria", "subtema": "Calendário Vacinal do PNI e Imunizações Especiais", "rationale": "A questão avalia profilaxia antitetânica após ferimento perfurante."},
+    {"question_id": 11079, "area": "Pediatria", "subtema": "Imunodeficiências, Alergias e Anafilaxia na Infância", "rationale": "O quadro de proctocolite por proteína do leite de vaca é alergia alimentar."},
+    {"question_id": 12294, "area": "Pediatria", "subtema": "Imunodeficiências, Alergias e Anafilaxia na Infância", "rationale": "Sangue nas fezes, atopia e aleitamento materno indicam alergia à proteína do leite de vaca."},
+    {"question_id": 12625, "area": "Clínica Médica", "subtema": "Coagulopatias, Trombofilias, Púrpuras e Hemoterapia", "rationale": "Hemartrose recorrente após trauma mínimo é investigação de coagulopatia hereditária."},
+    {"question_id": 12725, "area": "Clínica Médica", "subtema": "Síndromes Glomerulares: Nefrítica, Nefrótica e Tubulopatias", "rationale": "Diarreia sanguinolenta seguida de anemia hemolítica, plaquetopenia e IRA caracteriza SHU."},
+    {"question_id": 13118, "area": "Pediatria", "subtema": "Imunodeficiências, Alergias e Anafilaxia na Infância", "rationale": "A comparação entre intolerância à lactose e APLV tem foco em alergia alimentar."},
+    {"question_id": 16047, "area": "Pediatria", "subtema": "Neonatologia: Infecções Congênitas (TORCH) e Sepse Neonatal", "rationale": "A questão avalia o manejo do risco de sepse neonatal precoce por rotura prolongada de membranas."},
+    {"question_id": 16051, "area": "Pediatria", "subtema": "Arritmias, Síncope e Parada Cardiorrespiratória Pediátrica (PALS)", "rationale": "A questão solicita recomendação de suporte avançado durante PCR pediátrica."},
+    {"question_id": 16108, "area": "Cirurgia", "subtema": "Coloproctologia: Doenças Orificiais e Afecções Colorretais", "rationale": "A questão descreve fístula anal após abscesso perianal e sua abordagem coloproctológica."},
+    {"question_id": 16152, "area": "Cirurgia", "subtema": "Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana", "rationale": "A avaliação pelo PECARN após trauma craniano é tema de TCE pediátrico."},
+    {"question_id": 16304, "area": "Clínica Médica", "subtema": "Síndromes Glomerulares: Nefrítica, Nefrótica e Tubulopatias", "rationale": "O quadro clínico-laboratorial corresponde a síndrome hemolítico-urêmica com injúria renal."},
+    {"question_id": 16920, "area": "Clínica Médica", "subtema": "Diagnóstico Diferencial das Anemias e Hemoglobinopatias", "rationale": "A questão investiga anemia microcítica persistente com ferritina normal."},
+    {"question_id": 16970, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Pré-Natal de Baixo e Alto Risco", "rationale": "A pergunta calcula a idade gestacional para indicar o ultrassom de rotina no pré-natal."},
+    {"question_id": 17020, "area": "Pediatria", "subtema": "Sepse Pediátrica, Choque e Ressuscitação Hemodinâmica", "rationale": "O adolescente imunossuprimido em choque febril é um caso de sepse pediátrica e ressuscitação."}
+  ]
+}

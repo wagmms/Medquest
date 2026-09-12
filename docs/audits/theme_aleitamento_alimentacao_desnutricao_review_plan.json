@@ -1,0 +1,22 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Aleitamento Materno, Alimentação Complementar e Desnutrição Infantil"
+  },
+  "reviewed_question_ids": [9733, 9834, 10229, 10230, 10371, 10682, 10683, 10886, 10982, 10985, 11177, 11274, 12220, 12291, 12307, 12422, 12515, 12608, 12803, 12819, 13117, 13125, 13216, 13347, 13815, 13880, 14289, 14586, 14771, 14849, 14862, 15076, 15170, 15483, 15576, 15780, 15795, 15960, 15964, 15971, 16055, 16325, 16629, 16648, 16649, 16704, 16754, 16804, 16815, 16830, 16854, 16857, 17043, 17044, 17107, 17208],
+  "moves": [
+    {"question_id": 9834, "area": "Cirurgia", "subtema": "Doença do Refluxo Gastroesofágico (DRGE) e Úlcera Péptica", "rationale": "Doença do refluxo gastroesofágico na infância, com repercussão ponderal."},
+    {"question_id": 10886, "area": "Cirurgia", "subtema": "Doença do Refluxo Gastroesofágico (DRGE) e Úlcera Péptica", "rationale": "Regurgitação fisiológica do lactente, conteúdo do espectro de refluxo gastroesofágico."},
+    {"question_id": 12291, "area": "Clínica Médica", "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo", "rationale": "Investigação e conduta em contato neonatal de tuberculose materna."},
+    {"question_id": 12608, "area": "Pediatria", "subtema": "Anemias Carenciais e Distúrbios de Micronutrientes (Ferro, Vitamina D)", "rationale": "Avaliação de deficiência de ferro em lactente."},
+    {"question_id": 14862, "area": "Cirurgia", "subtema": "Doença do Refluxo Gastroesofágico (DRGE) e Úlcera Péptica", "rationale": "Diagnóstico e manejo de refluxo gastroesofágico patológico."},
+    {"question_id": 15960, "area": "Pediatria", "subtema": "Transtornos do Neurodesenvolvimento (TEA, TDAH) e Saúde Mental na Infância", "rationale": "Instrumento de avaliação para TDAH."},
+    {"question_id": 15971, "area": "Pediatria", "subtema": "Imunodeficiências, Alergias e Anafilaxia na Infância", "rationale": "Proctocolite alérgica por proteína do leite de vaca em lactente."},
+    {"question_id": 16325, "area": "Ginecologia e Obstetrícia", "subtema": "Puerpério Fisiológico, Patológico e Hemorragia Pós-Parto", "rationale": "Hemorragia pós-parto e conduta obstétrica."},
+    {"question_id": 16704, "area": "Cirurgia", "subtema": "Oncologia Cutânea: Melanoma, CBC e CEC", "rationale": "Carcinoma basocelular cutâneo e reconstrução após ressecção."},
+    {"question_id": 16754, "area": "Clínica Médica", "subtema": "Lúpus Eritematoso Sistêmico (LES), Esclerose Sistêmica e Miopatias Inflamatórias", "rationale": "Lúpus induzido por anti-TNF."},
+    {"question_id": 16804, "area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital", "rationale": "Prolapso genital e sua abordagem."},
+    {"question_id": 16854, "area": "Pediatria", "subtema": "Imunodeficiências, Alergias e Anafilaxia na Infância", "rationale": "Deficiência seletiva de IgA."}
+  ]
+}

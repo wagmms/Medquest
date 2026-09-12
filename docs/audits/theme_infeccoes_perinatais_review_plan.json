@@ -1,0 +1,18 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)"},
+  "reviewed_question_ids": [8629, 9485, 9486, 9986, 10251, 10252, 10404, 10431, 10439, 10554, 10556, 10794, 10862, 10961, 11021, 11025, 11143, 11565, 12126, 12238, 12830, 12930, 12936, 13035, 13139, 13229, 13298, 13352, 13398, 13826, 13899, 13900, 14069, 14173, 14241, 14455, 14531, 14600, 14802, 14882, 14884, 15000, 15198, 15299, 15607, 15700, 15825, 15901, 15974, 15981, 15984, 16073, 16162, 16173, 16178, 16289, 16389, 16439, 16827, 16963, 16981, 17233],
+  "moves": [
+    {"question_id": 9485, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Pré-Natal de Baixo e Alto Risco", "rationale": "Atualização do esquema vacinal de rotina no pré-natal."},
+    {"question_id": 10431, "area": "Ginecologia e Obstetrícia", "subtema": "Úlceras Genitais e Infecções Sexualmente Transmissíveis na Mulher", "rationale": "Tratamento de herpes genital em gestante."},
+    {"question_id": 12936, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias", "rationale": "Componentes do índice de Bishop para avaliação cervical."},
+    {"question_id": 14241, "area": "Ginecologia e Obstetrícia", "subtema": "Condições Clínicas Intercorrentes na Gravidez", "rationale": "Manejo de infecção por SARS-CoV-2 em gestante no trabalho de parto."},
+    {"question_id": 15000, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Pré-Natal de Baixo e Alto Risco", "rationale": "Esquema de imunização antitetânica durante o pré-natal."},
+    {"question_id": 15974, "area": "Ginecologia e Obstetrícia", "subtema": "Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)", "rationale": "Instrumento para biópsia dirigida de colo uterino em colposcopia."},
+    {"question_id": 16073, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Pré-Natal de Baixo e Alto Risco", "rationale": "Exames de rotina da primeira consulta pré-natal."},
+    {"question_id": 16173, "area": "Ginecologia e Obstetrícia", "subtema": "Puerpério Fisiológico, Patológico e Hemorragia Pós-Parto", "rationale": "Tratamento de atonia uterina e sangramento durante cesárea."},
+    {"question_id": 16289, "area": "Cirurgia", "subtema": "Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos", "rationale": "Pancreatite crônica alcoólica com esteatorreia e calcificações pancreáticas."},
+    {"question_id": 16389, "area": "Cirurgia", "subtema": "Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos", "rationale": "Pseudocisto pancreático pós-pancreatite aguda e sua drenagem."},
+    {"question_id": 16439, "area": "Pediatria", "subtema": "Anemias Carenciais e Distúrbios de Micronutrientes (Ferro, Vitamina D)", "rationale": "Profilaxia de anemia ferropriva em lactente."}
+  ]
+}

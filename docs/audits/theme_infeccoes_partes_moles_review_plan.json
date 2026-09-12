@@ -1,0 +1,11 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Celulite, Erisipela, Osteomielite e Infecções de Partes Moles"},"reviewed_question_ids":[9027,9382,10301,10714,10847,10984,12185,12336,12589,12906,13336,13338,13390,13540,14032,14679,15263,15573,16137,16237,16271,16273,16275,16373,16423],"moves":[
+{"question_id":9027,"area":"Clínica Médica","subtema":"Dermatoses Infecciosas, Hanseníase e Leishmanioses","rationale":"Impetigo bolhoso infantil e agente etiológico."},
+{"question_id":13390,"area":"Pediatria","subtema":"Afecções de Vias Aéreas Superiores: OMA, Sinusite e Faringoamigdalite","rationale":"Celulite orbitária como complicação de sinusite infantil."},
+{"question_id":15263,"area":"Cirurgia","subtema":"Coloproctologia: Doenças Orificiais e Afecções Colorretais","rationale":"Gangrena de Fournier perianal e desbridamento cirúrgico urgente."},
+{"question_id":16137,"area":"Clínica Médica","subtema":"Dislipidemias, Síndrome Metabólica e Risco Cardiovascular","rationale":"Hipercolesterolemia familiar heterozigótica."},
+{"question_id":16237,"area":"Ginecologia e Obstetrícia","subtema":"Câncer de Colo Uterino e Lesões Precursoras","rationale":"Estadiamento FIGO de carcinoma invasor de colo uterino."},
+{"question_id":16271,"area":"Cirurgia","subtema":"Coloproctologia: Doenças Orificiais e Afecções Colorretais","rationale":"Gangrena de Fournier em idoso diabético."},
+{"question_id":16273,"area":"Clínica Médica","subtema":"Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo","rationale":"Meningite tuberculosa em pessoa vivendo com HIV."},
+{"question_id":16373,"area":"Clínica Médica","subtema":"Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas","rationale":"Manejo de demência de Alzheimer em estágio avançado."},
+{"question_id":16423,"area":"Clínica Médica","subtema":"Valvopatias Adquiridas e Miocardiopatias","rationale":"Profilaxia secundária de febre reumática com insuficiência mitral residual."}
+]}

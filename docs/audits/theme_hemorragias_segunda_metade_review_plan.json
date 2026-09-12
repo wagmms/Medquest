@@ -1,0 +1,58 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Ginecologia e Obstetrícia",
+    "subtema": "Hemorragias da Segunda Metade: Placenta Prévia e DPP"
+  },
+  "reviewed_question_ids": [8609, 9243, 9250, 9890, 10793, 10987, 11256, 12118, 12242, 12443, 12638, 12738, 12929, 12943, 13238, 13522, 13604, 13758, 14070, 14233, 14303, 14456, 14799, 14803, 14881, 15001, 15289, 15398, 15501, 15605, 15702, 15902, 15904, 15983, 16074, 16077, 16163, 16340, 16778, 17156, 17234],
+  "moves": [
+    {
+      "question_id": 8609,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias",
+      "rationale": "A questão avalia apresentação no segundo período, descida fetal e conduta intraparto."
+    },
+    {
+      "question_id": 9890,
+      "area": "Medicina Preventiva",
+      "subtema": "Delineamentos e Classificação dos Estudos Epidemiológicos",
+      "rationale": "A comparação entre pirâmides de evidência é conteúdo de hierarquia e delineamentos de estudos."
+    },
+    {
+      "question_id": 12638,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Bacia Obstétrica, Estática Fetal e Mecanismo do Parto",
+      "rationale": "Linha de orientação e diâmetro de insinuação em apresentação defletida são conteúdos de estática fetal."
+    },
+    {
+      "question_id": 14303,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias",
+      "rationale": "A hiperestimulação por ocitocina e a suspeita de rotura uterina ocorrem no contexto de manejo intraparto."
+    },
+    {
+      "question_id": 16074,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Diabetes Gestacional e Pré-Gestacional",
+      "rationale": "A interpretação do TOTG de 75 g na gestação define diagnóstico de diabetes gestacional."
+    },
+    {
+      "question_id": 16077,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Causas de Mortalidade Materna e Estratégias de Redução",
+      "rationale": "A questão solicita a classificação de óbito materno por complicação clínica durante a gestação."
+    },
+    {
+      "question_id": 16163,
+      "area": "Pediatria",
+      "subtema": "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo",
+      "rationale": "Risco ajustado de trissomia 21 no rastreio de primeiro trimestre requer investigação de cromossomopatia."
+    },
+    {
+      "question_id": 16340,
+      "area": "Medicina Preventiva",
+      "subtema": "Avaliação de Testes Diagnósticos e Curva ROC",
+      "rationale": "O cálculo da acurácia a partir da tabela 2x2 é avaliação de teste diagnóstico."
+    }
+  ]
+}

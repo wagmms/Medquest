@@ -1,0 +1,11 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Transtornos por Uso de Substâncias (Álcool, Tabaco e Drogas de Abuso)"},"reviewed_question_ids":[8667,8904,9374,9714,10816,11207,11339,11571,12333,12791,12898,13069,14140,14545,14618,14713,14890,15138,15342,15719,15992,16140,16685,16735,16785,16835,17121,17129,17311,17312,17313,17314,17315,17316,17317,17318,17319,17320,17321,17322,17323,17324,17326,17327,17329,17330],"moves":[
+{"question_id":8904,"area":"Ginecologia e Obstetrícia","subtema":"Disfunções Sexuais Femininas e Dispareunia","rationale":"Avaliação de fases da resposta sexual e disfunções sexuais do casal."},
+{"question_id":12791,"area":"Clínica Médica","subtema":"Asma e Doença Pulmonar Obstrutiva Crônica (DPOC)","rationale":"Doença de alta prevalência associada ao tabagismo, com foco em DPOC."},
+{"question_id":15992,"area":"Cirurgia","subtema":"Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino","rationale":"Rastreamento de câncer de pulmão em tabagista conforme USPSTF."},
+{"question_id":16140,"area":"Clínica Médica","subtema":"Toxicologia Clínica e Acidentes por Animais Peçonhentos","rationale":"Manejo da crise hipertensiva associada à intoxicação aguda por cocaína."},
+{"question_id":16685,"area":"Cirurgia","subtema":"Hiperplasia Prostática Benigna (HPB) e Litíase Urinária","rationale":"Litíase urinária e agente infeccioso associado a cálculo de infecção."},
+{"question_id":16735,"area":"Clínica Médica","subtema":"Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas","rationale":"Intervenção terapêutica na síndrome de fragilidade do idoso."},
+{"question_id":16785,"area":"Ginecologia e Obstetrícia","subtema":"Úlceras Genitais e Infecções Sexualmente Transmissíveis na Mulher","rationale":"Diagnóstico e tratamento de úlcera genital por IST."},
+{"question_id":16835,"area":"Pediatria","subtema":"Sepse Pediátrica, Choque e Ressuscitação Hemodinâmica","rationale":"Phoenix Sepsis Score e diagnóstico de sepse pediátrica."},
+{"question_id":17314,"area":"Clínica Médica","subtema":"Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses","rationale":"Avaliação motivacional de comportamento compulsivo e ansiedade."}
+]}

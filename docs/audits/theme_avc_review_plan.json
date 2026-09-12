@@ -1,0 +1,11 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Acidente Vascular Cerebral Isquêmico e Hemorrágico (Janela de Trombólise)"},"reviewed_question_ids":[8520,8632,9154,9784,9801,10004,10348,10536,10622,10654,10873,10928,11127,11260,11448,11471,11975,12172,12374,12378,12477,12597,12890,12996,13369,14209,14331,14489,14837,14899,15535,15831,15832,15946,16006,16007,16304,16520,16729,16872,16922,16931,17022,17084,17244],"moves":[
+{"question_id":9784,"area":"Clínica Médica","subtema":"Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática","rationale":"Diagnóstico diferencial de encefalopatia em paciente cirrótica."},
+{"question_id":9801,"area":"Cirurgia","subtema":"Cirurgia Bariátrica e Metabólica","rationale":"Indicação de tratamento cirúrgico da obesidade."},
+{"question_id":10004,"area":"Ginecologia e Obstetrícia","subtema":"Endometriose, Adenomiose e Dor Pélvica Crônica","rationale":"Adenomiose e sangramento uterino anormal."},
+{"question_id":16006,"area":"Cirurgia","subtema":"Hérnias da Parede Abdominal (Inguinais, Femorais e Incisionais)","rationale":"Estratégia de reparo de hérnia incisional."},
+{"question_id":16007,"area":"Cirurgia","subtema":"Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos","rationale":"Complicação tardia de pancreatite aguda."},
+{"question_id":16304,"area":"Pediatria","subtema":"Diarreia Aguda, Reidratação Oral e Doenças Disabsortivas","rationale":"Síndrome hemolítico-urêmica após diarreia sanguinolenta."},
+{"question_id":16872,"area":"Cirurgia","subtema":"Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas","rationale":"Complicação respiratória após esofagectomia."},
+{"question_id":16922,"area":"Clínica Médica","subtema":"Diabetes Mellitus: Metas Glicêmicas, Complicações e Tratamento","rationale":"Critérios diagnósticos de diabetes mellitus."},
+{"question_id":17022,"area":"Pediatria","subtema":"Neonatologia: Asfixia Perinatal, Encefalopatia e Doenças Neurológicas","rationale":"Disfunção de derivação ventriculoperitoneal e hipertensão intracraniana pediátrica."}
+]}

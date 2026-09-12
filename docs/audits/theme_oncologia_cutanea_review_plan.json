@@ -1,0 +1,11 @@
+{"reviewer":"codex-theme-review","source":{"area":"Cirurgia","subtema":"Oncologia Cutânea: Melanoma, CBC e CEC"},"reviewed_question_ids":[8540,8684,8854,9211,9699,9919,10296,10298,10341,10472,10503,10541,10543,10625,10758,10910,11103,11216,11293,11341,11511,12886,12974,13055,13105,13196,13571,14355,14463,14742,16018,16465,16515,16565,16720,16770,16820,16892,16904,16942,16992,17169],"moves":[
+{"question_id":9919,"area":"Cirurgia","subtema":"Trauma Abdominal Fechado e Penetrante (FAST e Laparotomia)","rationale":"Politrauma com lesão hepática e decisão por tratamento não operatório."},
+{"question_id":16465,"area":"Cirurgia","subtema":"Litíase Biliar, Colecistite, Coledocolitíase e Colangite","rationale":"Colecistite aguda em paciente crítico e indicação de colecistostomia."},
+{"question_id":16515,"area":"Clínica Médica","subtema":"Doenças da Suprarrenal, Paratireoides e Distúrbios do Cálcio","rationale":"Investigação de síndrome de Cushing ACTH-dependente."},
+{"question_id":16565,"area":"Ginecologia e Obstetrícia","subtema":"Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade","rationale":"Critérios de restrição de crescimento fetal precoce."},
+{"question_id":16720,"area":"Clínica Médica","subtema":"Diagnóstico Diferencial das Anemias e Hemoglobinopatias","rationale":"Deficiência de vitamina B12 associada ao uso crônico de IBP."},
+{"question_id":16770,"area":"Ginecologia e Obstetrícia","subtema":"Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade","rationale":"Restrição de crescimento fetal e vigilância em gestação de alto risco."},
+{"question_id":16820,"area":"Pediatria","subtema":"Afecções de Vias Aéreas Superiores: OMA, Sinusite e Faringoamigdalite","rationale":"Mastoidite como complicação de otite média aguda."},
+{"question_id":16892,"area":"Cirurgia","subtema":"Cirurgia Pediátrica e Malformações Digestivas Neonatais","rationale":"Cisto de segundo arco branquial em criança."},
+{"question_id":16942,"area":"Clínica Médica","subtema":"Asma e Doença Pulmonar Obstrutiva Crônica (DPOC)","rationale":"Tratamento não farmacológico da DPOC muito grave."},
+{"question_id":16992,"area":"Ginecologia e Obstetrícia","subtema":"Afecções do Corpo Uterino, Endométrio e Sangramento Pós-Menopausa","rationale":"Carcinoma de células claras do endométrio."}]}

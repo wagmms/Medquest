@@ -1,0 +1,356 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Medicina Preventiva",
+    "subtema": "Saúde do Trabalhador e Doenças Ocupacionais"
+  },
+  "reviewed_question_ids": [
+    10459,
+    10871,
+    10872,
+    10907,
+    11059,
+    11066,
+    11239,
+    11375,
+    11436,
+    12073,
+    12077,
+    12081,
+    12350,
+    12664,
+    12764,
+    12865,
+    13059,
+    13060,
+    13064,
+    13067,
+    13310,
+    13359,
+    13414,
+    13415,
+    13526,
+    13527,
+    13528,
+    13533,
+    13535,
+    13536,
+    13537,
+    13622,
+    13623,
+    13627,
+    13779,
+    13780,
+    13781,
+    13841,
+    13842,
+    13846,
+    13916,
+    13917,
+    13918,
+    13979,
+    13982,
+    14091,
+    14092,
+    14093,
+    14258,
+    14814,
+    14824,
+    15117,
+    15215,
+    15325,
+    15728,
+    15823,
+    15911,
+    15920,
+    16095,
+    16100,
+    16199,
+    16201,
+    16300,
+    16301,
+    16347,
+    16348,
+    16349,
+    16351,
+    16400,
+    16401,
+    16450,
+    16451,
+    17182,
+    17193,
+    17341
+  ],
+  "moves": [
+    {
+      "question_id": 10871,
+      "area": "Clínica Médica",
+      "subtema": "Dermatologia Clínica: Farmacodermias Graves, Eczemas e Psoríase",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10872,
+      "area": "Clínica Médica",
+      "subtema": "Doenças Pulmonares Intersticiais e Fibrose Pulmonar",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10907,
+      "area": "Clínica Médica",
+      "subtema": "Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 11059,
+      "area": "Clínica Médica",
+      "subtema": "Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 11066,
+      "area": "Cirurgia",
+      "subtema": "Emergências Oftalmológicas e Patologias Oculares Frequentes",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 11239,
+      "area": "Cirurgia",
+      "subtema": "Emergências Oftalmológicas e Patologias Oculares Frequentes",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 11436,
+      "area": "Medicina Preventiva",
+      "subtema": "Legislação, Diretrizes e Evolução do SUS",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 12664,
+      "area": "Clínica Médica",
+      "subtema": "Dermatologia Clínica: Farmacodermias Graves, Eczemas e Psoríase",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 12764,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13060,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13064,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13310,
+      "area": "Cirurgia",
+      "subtema": "Tendinopatias, Bursites e Síndromes por Sobrecarga Musculoesquelética",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13359,
+      "area": "Clínica Médica",
+      "subtema": "Asma e Doença Pulmonar Obstrutiva Crônica (DPOC)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13414,
+      "area": "Clínica Médica",
+      "subtema": "Dermatologia Clínica: Farmacodermias Graves, Eczemas e Psoríase",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13415,
+      "area": "Clínica Médica",
+      "subtema": "Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13526,
+      "area": "Medicina Preventiva",
+      "subtema": "Indicadores de Saúde e Coeficientes de Morbimortalidade",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13527,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13533,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13535,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13536,
+      "area": "Cirurgia",
+      "subtema": "Emergências Oftalmológicas e Patologias Oculares Frequentes",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13622,
+      "area": "Clínica Médica",
+      "subtema": "Dermatologia Clínica: Farmacodermias Graves, Eczemas e Psoríase",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13623,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13627,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13779,
+      "area": "Cirurgia",
+      "subtema": "Tendinopatias, Bursites e Síndromes por Sobrecarga Musculoesquelética",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13841,
+      "area": "Clínica Médica",
+      "subtema": "Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13842,
+      "area": "Clínica Médica",
+      "subtema": "Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13846,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13916,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13982,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14091,
+      "area": "Clínica Médica",
+      "subtema": "Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14093,
+      "area": "Clínica Médica",
+      "subtema": "Asma e Doença Pulmonar Obstrutiva Crônica (DPOC)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14258,
+      "area": "Cirurgia",
+      "subtema": "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14824,
+      "area": "Medicina Preventiva",
+      "subtema": "Legislação, Diretrizes e Evolução do SUS",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16095,
+      "area": "Clínica Médica",
+      "subtema": "Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16199,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Investigação das Amenorreias e Síndrome dos Ovários Policísticos (SOP)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16201,
+      "area": "Cirurgia",
+      "subtema": "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16300,
+      "area": "Pediatria",
+      "subtema": "Afecções de Vias Aéreas Superiores: OMA, Sinusite e Faringoamigdalite",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16301,
+      "area": "Pediatria",
+      "subtema": "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16348,
+      "area": "Clínica Médica",
+      "subtema": "Dermatologia Clínica: Farmacodermias Graves, Eczemas e Psoríase",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16349,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16351,
+      "area": "Medicina Preventiva",
+      "subtema": "Indicadores de Saúde e Coeficientes de Morbimortalidade",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16400,
+      "area": "Clínica Médica",
+      "subtema": "Síndromes Coronarianas Agudas (Com e Sem Supra de ST)",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16401,
+      "area": "Medicina Preventiva",
+      "subtema": "História Natural da Doença e Níveis de Prevenção",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16450,
+      "area": "Pediatria",
+      "subtema": "Aleitamento Materno, Alimentação Complementar e Desnutrição Infantil",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16451,
+      "area": "Cirurgia",
+      "subtema": "Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana",
+      "rationale": "Conteúdo central específico."
+    }
+  ]
+}

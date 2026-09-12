@@ -1,0 +1,18 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Clínica Médica",
+    "subtema": "Meningites, Encefalites e Infecções do SNC"
+  },
+  "reviewed_question_ids": [8827, 8829, 8986, 9155, 9629, 10925, 10977, 11039, 11279, 12163, 12225, 12296, 12410, 12514, 12575, 12675, 13323, 13486, 13543, 13544, 13723, 13789, 13962, 14104, 14561, 14592, 14646, 14782, 14938, 14977, 15187, 15642, 15736, 15737, 15846, 15935, 15966, 16021, 16828, 17015, 17068, 17243],
+  "moves": [
+    {"question_id": 8827, "area": "Pediatria", "subtema": "Convulsão Febril, Epilepsias e Síndromes Convulsivas na Infância", "rationale": "Crise convulsiva febril em criança e escolha de anticonvulsivante por via não venosa."},
+    {"question_id": 8829, "area": "Pediatria", "subtema": "Convulsão Febril, Epilepsias e Síndromes Convulsivas na Infância", "rationale": "Caracterização e manejo do quadro convulsivo febril infantil."},
+    {"question_id": 10977, "area": "Pediatria", "subtema": "Sepse Pediátrica, Choque e Ressuscitação Hemodinâmica", "rationale": "Meningococcemia em criança com choque e manifestações petequiais, sem sinais meníngeos."},
+    {"question_id": 12575, "area": "Cirurgia", "subtema": "Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos", "rationale": "Diagnóstico e conduta no trauma pancreático."},
+    {"question_id": 14782, "area": "Pediatria", "subtema": "Convulsão Febril, Epilepsias e Síndromes Convulsivas na Infância", "rationale": "Crise convulsiva febril em lactente, sem sinais sugestivos de meningite."},
+    {"question_id": 15935, "area": "Cirurgia", "subtema": "Hiperplasia Prostática Benigna (HPB) e Litíase Urinária", "rationale": "Quadro urológico agudo de dor escrotal, epididimite e conduta diferencial com torção."},
+    {"question_id": 15966, "area": "Pediatria", "subtema": "Calendário Vacinal do PNI e Imunizações Especiais", "rationale": "Indicação de nirsevimabe para prevenção de VSR em lactente."},
+    {"question_id": 16021, "area": "Cirurgia", "subtema": "Hemorragia Digestiva Alta e Baixa na Emergência Cirúrgica", "rationale": "Hemorragia digestiva alta grave por provável úlcera associada a AINE."}
+  ]
+}

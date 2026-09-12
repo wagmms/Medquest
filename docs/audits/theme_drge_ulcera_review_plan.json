@@ -1,0 +1,13 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Cirurgia","subtema":"Doença do Refluxo Gastroesofágico (DRGE) e Úlcera Péptica"},
+  "reviewed_question_ids":[8555,8642,8680,8861,9625,9925,10356,10357,10643,10731,10753,10754,10938,11211,11334,11492,11523,12091,12140,12201,12777,12876,13375,13548,13871,14101,14282,15028,15066,15386,15387,15459,15756,15838,17173],
+  "moves":[
+    {"question_id":10357,"area":"Cirurgia","subtema":"Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)","rationale":"Apresentação clínica compatível com neoplasia pancreática."},
+    {"question_id":10754,"area":"Cirurgia","subtema":"Hemorragia Digestiva Alta e Baixa na Emergência Cirúrgica","rationale":"Melena por úlcera péptica e orientação após endoscopia na hemorragia digestiva alta."},
+    {"question_id":11492,"area":"Pediatria","subtema":"Imunodeficiências, Alergias e Anafilaxia na Infância","rationale":"Suspeita de esofagite eosinofílica em criança com antecedente atópico."},
+    {"question_id":12140,"area":"Cirurgia","subtema":"Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)","rationale":"Tratamento cirúrgico de adenocarcinoma gástrico estadiado."},
+    {"question_id":15387,"area":"Pediatria","subtema":"Baixa Estatura, Puberdade Precoce e Atraso Puberal","rationale":"Avaliação prognóstica de criança com baixa estatura."},
+    {"question_id":15756,"area":"Cirurgia","subtema":"Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas","rationale":"Diagnóstico de complicação hemorrágica no pós-operatório de gastrectomia."}
+  ]
+}

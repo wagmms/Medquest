@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T131256Z-efd7b716",
+  "plan": "docs\\audits\\theme_ictericia_neonatal_hematologia_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T131256Z.db",
+  "questions_reviewed": 41,
+  "questions_reclassified": 5
+}

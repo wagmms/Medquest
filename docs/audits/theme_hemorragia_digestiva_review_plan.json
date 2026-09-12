@@ -1,0 +1,19 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Cirurgia","subtema":"Hemorragia Digestiva Alta e Baixa na Emergência Cirúrgica"},
+  "reviewed_question_ids":[8697,9656,10839,11094,11294,11319,11425,12207,12281,12282,12402,12489,12591,12592,12593,12602,12691,12692,12693,12702,12780,13587,13714,13804,13860,14042,14156,14500,14666,14842,15065,15654,15941,16264,16268,16364,16414,17172,17262],
+  "moves":[
+    {"question_id":11294,"area":"Cirurgia","subtema":"Cirurgia Pediátrica e Malformações Digestivas Neonatais","rationale":"Enterorragia infantil e investigação de divertículo de Meckel."},
+    {"question_id":11319,"area":"Cirurgia","subtema":"Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)","rationale":"Adenocarcinoma de cólon direito."},
+    {"question_id":12402,"area":"Cirurgia","subtema":"Coloproctologia: Doenças Orificiais e Afecções Colorretais","rationale":"Investigação de sangramento retal e doença hemorroidária."},
+    {"question_id":12591,"area":"Clínica Médica","subtema":"Leucemias, Linfomas e Mieloma Múltiplo","rationale":"Síndrome de lise tumoral em linfoma."},
+    {"question_id":12592,"area":"Cirurgia","subtema":"Cirurgia Bariátrica e Metabólica","rationale":"Tratamento farmacológico da obesidade."},
+    {"question_id":12593,"area":"Clínica Médica","subtema":"Doenças da Suprarrenal, Paratireoides e Distúrbios do Cálcio","rationale":"Insuficiência adrenal secundária por opioide."},
+    {"question_id":12602,"area":"Clínica Médica","subtema":"Doenças Pulmonares Intersticiais e Fibrose Pulmonar","rationale":"Fibrose pulmonar idiopática e terapia antifibrótica."},
+    {"question_id":13804,"area":"Cirurgia","subtema":"Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)","rationale":"Suspeita de neoplasia de cólon direito."},
+    {"question_id":14156,"area":"Cirurgia","subtema":"Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)","rationale":"Sangramento por adenocarcinoma gástrico metastático."},
+    {"question_id":16264,"area":"Cirurgia","subtema":"Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)","rationale":"Conduta em adenocarcinoma gástrico precoce."},
+    {"question_id":16364,"area":"Clínica Médica","subtema":"Doenças da Suprarrenal, Paratireoides e Distúrbios do Cálcio","rationale":"Investigação de hiperparatireoidismo primário."},
+    {"question_id":16414,"area":"Pediatria","subtema":"Arritmias, Síncope e Parada Cardiorrespiratória Pediátrica (PALS)","rationale":"Bradicardia pediátrica por insuficiência respiratória e ventilação com pressão positiva."}
+  ]
+}

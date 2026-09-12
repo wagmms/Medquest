@@ -1,0 +1,12 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Doenças Pulmonares Intersticiais e Fibrose Pulmonar"},"reviewed_question_ids":[8984,9630,9788,10008,10578,12156,12582,12602,12682,13179,13423,13794,15039,15146,15236,15952,16110,16261,16361,16411,16461,16547,16741,16941,17267],"moves":[
+{"question_id":10008,"area":"Clínica Médica","subtema":"Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas","rationale":"Paciente com HIV avançado e síndrome respiratória por provável infecção oportunista."},
+{"question_id":12156,"area":"Clínica Médica","subtema":"Pneumonia Adquirida na Comunidade (PAC) e Síndromes Respiratórias Agudas","rationale":"Coqueluche em lactente, com indicação de macrolídeo."},
+{"question_id":12582,"area":"Ginecologia e Obstetrícia","subtema":"Condições Clínicas Intercorrentes na Gravidez","rationale":"Particularidades da abordagem ao trauma na gestante."},
+{"question_id":15039,"area":"Clínica Médica","subtema":"Toxicologia Clínica e Acidentes por Animais Peçonhentos","rationale":"Lesão pulmonar associada a cigarro eletrônico/vaping (EVALI)."},
+{"question_id":15146,"area":"Cirurgia","subtema":"Cirurgia Torácica Geral e Doenças Pleurais","rationale":"Fator de risco de mesotelioma pleural maligno."},
+{"question_id":16110,"area":"Cirurgia","subtema":"Uro-Oncologia: Câncer de Próstata, Rim, Bexiga e Testículo","rationale":"Diagnóstico e conduta na torção testicular."},
+{"question_id":16261,"area":"Clínica Médica","subtema":"Neurointensivismo, Morte Encefálica e Cuidados Críticos","rationale":"Morte encefálica com diabetes insipidus e instabilidade hemodinâmica."},
+{"question_id":16361,"area":"Clínica Médica","subtema":"Coagulopatias, Trombofilias, Púrpuras e Hemoterapia","rationale":"Conduta imediata diante de reação transfusional aguda."},
+{"question_id":16411,"area":"Pediatria","subtema":"Puericultura: Marcos do Desenvolvimento (DNPM) e Curvas de Crescimento","rationale":"Classificação antropométrica infantil por escores-z."},
+{"question_id":16461,"area":"Ginecologia e Obstetrícia","subtema":"Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade","rationale":"Gestação gemelar monocoriônica com síndrome de transfusão feto-fetal."}
+]}

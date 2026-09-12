@@ -1,0 +1,19 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual"},
+  "reviewed_question_ids": [8612, 8618, 8619, 9034, 9476, 9591, 9893, 9899, 9900, 10562, 10806, 10810, 10859, 12108, 12109, 12309, 12437, 13045, 13129, 13240, 13304, 13305, 13357, 13609, 13747, 13766, 13771, 14174, 14255, 14301, 14536, 14690, 14790, 14844, 14994, 15088, 15391, 15494, 15596, 15695, 15803, 16065, 16285, 16313, 16319, 16339, 16385, 16408, 16435, 16591, 16991, 17048, 17152],
+  "moves": [
+    {"question_id": 9893, "area": "Medicina Preventiva", "subtema": "Legislação, Diretrizes e Evolução do SUS", "rationale": "Efeitos da EC 95 e do arcabouço fiscal no financiamento da saúde pública."},
+    {"question_id": 9899, "area": "Medicina Preventiva", "subtema": "Ética Médica, Bioética e Prontuários / Documentos", "rationale": "Diretivas antecipadas de vontade, autonomia e limitação de tratamento fútil."},
+    {"question_id": 9900, "area": "Clínica Médica", "subtema": "Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses", "rationale": "Quadro de psicose com delírios persecutórios e alucinações."},
+    {"question_id": 10859, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Colo Uterino e Lesões Precursoras", "rationale": "Lesão cervical com sangramento à coleta citológica."},
+    {"question_id": 14255, "area": "Clínica Médica", "subtema": "Infecções Sexualmente Transmissíveis (ISTs) no Adulto", "rationale": "Manejo de corrimento uretral em paciente masculino."},
+    {"question_id": 14301, "area": "Ginecologia e Obstetrícia", "subtema": "Úlceras Genitais e Infecções Sexualmente Transmissíveis na Mulher", "rationale": "Cervicite mucopurulenta e terapia para IST na mulher."},
+    {"question_id": 14844, "area": "Clínica Médica", "subtema": "Infecções Sexualmente Transmissíveis (ISTs) no Adulto", "rationale": "Proctite infecciosa e úlceras anais após coito anal receptivo."},
+    {"question_id": 15494, "area": "Clínica Médica", "subtema": "Infecções Sexualmente Transmissíveis (ISTs) no Adulto", "rationale": "Características clínicas gerais das infecções sexualmente transmissíveis."},
+    {"question_id": 16285, "area": "Clínica Médica", "subtema": "Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas", "rationale": "Demência de Alzheimer e farmacoterapia para prejuízo cognitivo."},
+    {"question_id": 16339, "area": "Medicina Preventiva", "subtema": "Vigilância Epidemiológica: Endemias, Epidemias e Surtos", "rationale": "Interpretação de curva epidêmica de dengue em monitoramento epidemiológico."},
+    {"question_id": 16385, "area": "Clínica Médica", "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo", "rationale": "Investigação de quadro respiratório subagudo sugestivo de tuberculose pleural."},
+    {"question_id": 16435, "area": "Pediatria", "subtema": "Constipação Intestinal Funcional e Orgânica", "rationale": "Disquezia do lactente e orientação expectante."}
+  ]
+}

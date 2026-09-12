@@ -1,0 +1,34 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Cirurgia",
+    "subtema": "Ortopedia Pediátrica: Displasia do Quadril, Pé Torto e Epifisiólise"
+  },
+  "reviewed_question_ids": [9749, 9969, 10550, 10616, 10885, 11105, 13214, 13294, 13396, 13511, 13603, 13960, 14054, 14064, 14170, 14284, 14518, 14683, 14784, 14856, 14987, 16324, 17274],
+  "moves": [
+    {
+      "question_id": 9969,
+      "area": "Pediatria",
+      "subtema": "Cardiopatias Congênitas Cianogênicas e Acianogênicas",
+      "rationale": "Crise hipoxêmica em criança com tetralogia de Fallot."
+    },
+    {
+      "question_id": 11105,
+      "area": "Cirurgia",
+      "subtema": "Cirurgia de Cabeça e Pescoço: Afecções Cervicais Benignas e Cistos Congênitos",
+      "rationale": "Torcicolo muscular congênito, tratado com fisioterapia."
+    },
+    {
+      "question_id": 13294,
+      "area": "Cirurgia",
+      "subtema": "Luxações Articulares e Lesões Ligamentares / Meniscais",
+      "rationale": "Subluxação da cabeça do rádio (cotovelo de babá)."
+    },
+    {
+      "question_id": 16324,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Pré-Natal de Baixo e Alto Risco",
+      "rationale": "Vacinação indicada durante a gestação no contexto de pré-natal."
+    }
+  ]
+}

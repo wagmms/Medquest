@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260911T155219Z-ee42b17f",
+  "plan": "docs\\audits\\theme_endometriose_dor_pelvica_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260911T155219Z.db",
+  "questions_reviewed": 53,
+  "questions_reclassified": 16
+}

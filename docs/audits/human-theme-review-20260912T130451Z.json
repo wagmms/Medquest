@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T130451Z-c31d5fd9",
+  "plan": "docs\\audits\\theme_calendario_vacinal_pni_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T130451Z.db",
+  "questions_reviewed": 98,
+  "questions_reclassified": 14
+}

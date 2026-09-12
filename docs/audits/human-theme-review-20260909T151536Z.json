@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T151536Z-580bff5b",
+  "plan": "docs\\audits\\theme_queimaduras_pediatricas_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T151536Z.db",
+  "questions_reviewed": 24,
+  "questions_reclassified": 0
+}

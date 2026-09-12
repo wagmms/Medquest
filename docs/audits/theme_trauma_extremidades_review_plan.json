@@ -1,0 +1,23 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Cirurgia",
+    "subtema": "Trauma Ortopédico de Extremidades e Síndrome Compartimental"
+  },
+  "reviewed_question_ids": [8557, 9706, 9838, 10539, 10876, 11116, 11517, 11991, 11997, 13285, 13387, 13494, 13942, 14219, 14220, 14840, 14847, 16312, 16471, 16677, 16727, 16827, 16902, 16909, 16959, 17009, 17059, 17279],
+  "moves": [
+    {"question_id": 9838, "area": "Pediatria", "subtema": "Imunodeficiências, Alergias e Anafilaxia na Infância", "rationale": "Anafilaxia após ingestão acidental de leite em criança com APLV."},
+    {"question_id": 11116, "area": "Cirurgia", "subtema": "Trauma de Face e Pescoço (Trauma Cervical e Fraturas Maxilofaciais)", "rationale": "Momento de tratamento da fratura nasal traumática."},
+    {"question_id": 14220, "area": "Medicina Preventiva", "subtema": "Ética Médica, Bioética e Prontuários / Documentos", "rationale": "Aspectos éticos e legais da doação de órgãos e tecidos."},
+    {"question_id": 14840, "area": "Cirurgia", "subtema": "Atendimento ao Paciente Queimado e Reposição Volêmica", "rationale": "Avaliação de extensão e profundidade de queimadura por chama."},
+    {"question_id": 16312, "area": "Ginecologia e Obstetrícia", "subtema": "Fisiologia do Ciclo Menstrual e Eixo Hipotálamo-Hipófise-Ovário", "rationale": "Momento do ciclo menstrual para dosagem de FSH."},
+    {"question_id": 16471, "area": "Cirurgia", "subtema": "Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)", "rationale": "Técnica de gastrectomia total por adenocarcinoma gástrico."},
+    {"question_id": 16677, "area": "Cirurgia", "subtema": "Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)", "rationale": "Manejo de adenocarcinoma de cabeça de pâncreas localmente avançado."},
+    {"question_id": 16727, "area": "Cirurgia", "subtema": "Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)", "rationale": "Suporte nutricional no câncer de esôfago antes de esofagectomia."},
+    {"question_id": 16827, "area": "Ginecologia e Obstetrícia", "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)", "rationale": "Conduta com lactente exposto ao HIV materno identificado durante aleitamento."},
+    {"question_id": 16909, "area": "Cirurgia", "subtema": "Cirurgia Pediátrica e Malformações Digestivas Neonatais", "rationale": "Atresia duodenal neonatal e associação com polidrâmnio."},
+    {"question_id": 16959, "area": "Clínica Médica", "subtema": "Sepse no Adulto, Choque Séptico e Ressuscitação Hemodinâmica", "rationale": "Conduta nutricional no paciente crítico com choque séptico."},
+    {"question_id": 17009, "area": "Ginecologia e Obstetrícia", "subtema": "Anatomia Cirúrgica e Estruturas Pélvicas Femininas", "rationale": "Amenorreia primária com hematocolpo por obstrução do trato genital."},
+    {"question_id": 17059, "area": "Pediatria", "subtema": "Segurança Infantil, Prevenção de Acidentes e Maus-Tratos", "rationale": "Avaliação de lesão sugestiva de possível maus-tratos em criança."}
+  ]
+}

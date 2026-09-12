@@ -1,0 +1,30 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Medicina Preventiva",
+    "subtema": "Delineamentos e Classificação dos Estudos Epidemiológicos"
+  },
+  "reviewed_question_ids": [8586, 8661, 8670, 8893, 8991, 8997, 9180, 9182, 9396, 9399, 9418, 9646, 9728, 9867, 9887, 9889, 9890, 9948, 9993, 10084, 10088, 10089, 10096, 10097, 10240, 10245, 10737, 10744, 10869, 10995, 11002, 11007, 11053, 11055, 11159, 11228, 11384, 11417, 11468, 11575, 11581, 11585, 11586, 12050, 12053, 12266, 12359, 12457, 12458, 12461, 12557, 12558, 12652, 12654, 12752, 12754, 12859, 13057, 13149, 13466, 13467, 13468, 13530, 13619, 13625, 13774, 13837, 13913, 14083, 14086, 14198, 14248, 14250, 14325, 14326, 14327, 14546, 14547, 14548, 14549, 14811, 14812, 14815, 14818, 14822, 14911, 15009, 15209, 15216, 15324, 15416, 15417, 15418, 15420, 15421, 15422, 15427, 15515, 15518, 15520, 15621, 15622, 15623, 15721, 15807, 15813, 15821, 15915, 16083, 16090, 16198, 16298, 16336, 16337, 16398, 16448, 16699, 16749, 16799, 16849, 17113, 17258],
+  "moves": [
+    {"question_id": 8997, "area": "Medicina Preventiva", "subtema": "Legislação, Diretrizes e Evolução do SUS", "rationale": "Competências e relatórios da CONITEC no SUS."},
+    {"question_id": 9867, "area": "Ginecologia e Obstetrícia", "subtema": "Trabalho de Parto Prematuro e Tocólise", "rationale": "Prevenção de recorrência de parto prematuro."},
+    {"question_id": 9948, "area": "Clínica Médica", "subtema": "Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas", "rationale": "Artrite reumatoide e tratamento de primeira linha."},
+    {"question_id": 10084, "area": "Ginecologia e Obstetrícia", "subtema": "Diabetes Gestacional e Pré-Gestacional", "rationale": "Diagnóstico de diabetes gestacional por curva glicêmica."},
+    {"question_id": 10088, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias", "rationale": "Classificação de laceração obstétrica no parto vaginal."},
+    {"question_id": 10089, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Pré-Natal de Baixo e Alto Risco", "rationale": "Modificações fisiológicas esperadas na gestação."},
+    {"question_id": 10744, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Condições sensíveis à APS e organização da atenção primária."},
+    {"question_id": 12652, "area": "Medicina Preventiva", "subtema": "Vigilância Epidemiológica: Endemias, Epidemias e Surtos", "rationale": "Conceito epidemiológico de endemia."},
+    {"question_id": 12654, "area": "Medicina Preventiva", "subtema": "Indicadores de Saúde e Coeficientes de Morbimortalidade", "rationale": "Definição de letalidade."},
+    {"question_id": 15422, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento", "rationale": "Recomendações de rastreamento do câncer de mama."},
+    {"question_id": 15813, "area": "Clínica Médica", "subtema": "Neuropatias Periféricas, Miastenia Gravis e Doenças Neuromusculares", "rationale": "Síndrome de Guillain-Barré e escolha terapêutica baseada em meta-análise."},
+    {"question_id": 16090, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Cuidado longitudinal à população em situação de rua na atenção primária."},
+    {"question_id": 16198, "area": "Ginecologia e Obstetrícia", "subtema": "Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)", "rationale": "Diretriz de rastreamento de câncer do colo uterino."},
+    {"question_id": 16298, "area": "Pediatria", "subtema": "Afecções de Vias Aéreas Superiores: OMA, Sinusite e Faringoamigdalite", "rationale": "Crupe viral e agente etiológico mais frequente."},
+    {"question_id": 16398, "area": "Clínica Médica", "subtema": "Taquiarritmias, Bradiarritmias, Síncope e Suporte Avançado (ACLS)", "rationale": "Fibrilação atrial, cardioversão e estratégia de anticoagulação."},
+    {"question_id": 16448, "area": "Ginecologia e Obstetrícia", "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)", "rationale": "Profilaxia antirretroviral em recém-nascido exposto ao HIV."},
+    {"question_id": 16699, "area": "Clínica Médica", "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo", "rationale": "Tuberculose pleural com ADA elevado e predomínio linfocitário."},
+    {"question_id": 16749, "area": "Clínica Médica", "subtema": "Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas", "rationale": "Artrite psoriásica e tratamento inicial."},
+    {"question_id": 16799, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento", "rationale": "Terapia endócrina adjuvante para câncer de mama Luminal A."},
+    {"question_id": 16849, "area": "Pediatria", "subtema": "Vasculites na Infância (Henoch-Schönlein e Kawasaki)", "rationale": "Vasculite leucocitoclástica/edema hemorrágico agudo da infância."}
+  ]
+}

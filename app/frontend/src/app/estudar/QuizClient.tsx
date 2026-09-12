@@ -1412,15 +1412,35 @@ export function QuizClient({
           {/* Explanation Block */}
           {attemptResult && (
             <div className="animate-in slide-in-from-bottom-4 fade-in duration-300 flex flex-col gap-6">
-              {/* If user had written an answer on discursive question, show it prominently */}
-              {Boolean(q.is_discursive || (q.alternatives || []).length <= 1) && userWrittenAnswer && (
-                <div className="bg-card border border-border shadow-1 rounded-2xl p-6 flex flex-col gap-3">
-                  <div className="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider">
-                    <span className="material-symbols-outlined text-[16px]">draw</span>
-                    <span>Sua Resposta Anotada</span>
-                  </div>
-                  <div className="text-foreground text-base leading-relaxed whitespace-pre-wrap bg-muted/40 p-4 rounded-xl border border-border font-medium">
-                    {userWrittenAnswer}
+              {/* If question is discursive, show user's written answer and the board's short expected answer */}
+              {Boolean(q.is_discursive || (q.alternatives || []).length <= 1) && (
+                <div className="bg-card border border-border shadow-1 rounded-2xl p-5 md:p-6 flex flex-col gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {userWrittenAnswer ? (
+                      <div className="flex flex-col gap-2 bg-muted/40 p-4 rounded-xl border border-border">
+                        <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                          <span className="material-symbols-outlined text-[16px]">draw</span>
+                          <span>Sua Resposta Anotada</span>
+                        </div>
+                        <div className="text-foreground text-base leading-relaxed whitespace-pre-wrap font-medium">
+                          {userWrittenAnswer}
+                        </div>
+                      </div>
+                    ) : null}
+                    {q.alternatives?.[0]?.text && !/^(?:anote sua|questão dissertativa|ver padrão)/i.test(q.alternatives[0].text) && (
+                      <div className={clsx(
+                        "flex flex-col gap-2 bg-emerald-500/10 p-4 rounded-xl border border-emerald-500/25",
+                        !userWrittenAnswer && "md:col-span-2"
+                      )}>
+                        <div className="flex items-center gap-2 text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">
+                          <CheckCircle2 size={16} />
+                          <span>Resposta Curta Esperada pela Banca</span>
+                        </div>
+                        <div className="text-foreground text-base leading-relaxed font-bold">
+                          {q.alternatives[0].text}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}

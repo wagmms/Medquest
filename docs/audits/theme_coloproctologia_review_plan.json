@@ -1,0 +1,124 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Cirurgia",
+    "subtema": "Coloproctologia: Doenças Orificiais e Afecções Colorretais"
+  },
+  "reviewed_question_ids": [8851, 8933, 8945, 9462, 9464, 9710, 9930, 10755, 10919, 11297, 12200, 12268, 12392, 12404, 12405, 12490, 12492, 12598, 12599, 12600, 12698, 12699, 12700, 12783, 13206, 13732, 13800, 13953, 14578, 14649, 14749, 14843, 14952, 15162, 15265, 15359, 15362, 15463, 15566, 15952, 16010, 16139, 16239, 16781, 16831, 17180],
+  "moves": [
+    {
+      "question_id": 9464,
+      "area": "Cirurgia",
+      "subtema": "Abdome Agudo Inflamatório (Apendicite e Diverticulite Aguda)",
+      "rationale": "Fístula colovesical por doença diverticular complicada."
+    },
+    {
+      "question_id": 9930,
+      "area": "Cirurgia",
+      "subtema": "Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)",
+      "rationale": "Estadiamento e neoadjuvância do adenocarcinoma de reto."
+    },
+    {
+      "question_id": 12392,
+      "area": "Clínica Médica",
+      "subtema": "Infecções Sexualmente Transmissíveis (ISTs) no Adulto",
+      "rationale": "Tratamento tópico de condiloma anogenital."
+    },
+    {
+      "question_id": 12490,
+      "area": "Clínica Médica",
+      "subtema": "Infecções Sexualmente Transmissíveis (ISTs) no Adulto",
+      "rationale": "Conduta em condiloma anogenital por HPV."
+    },
+    {
+      "question_id": 12598,
+      "area": "Clínica Médica",
+      "subtema": "Neuropatias Periféricas, Miastenia Gravis e Doenças Neuromusculares",
+      "rationale": "Síndrome de Guillain-Barré e imunoglobulina intravenosa."
+    },
+    {
+      "question_id": 12599,
+      "area": "Clínica Médica",
+      "subtema": "Doenças da Suprarrenal, Paratireoides e Distúrbios do Cálcio",
+      "rationale": "Hipercalcemia por tuberculose granulomatosa."
+    },
+    {
+      "question_id": 12600,
+      "area": "Clínica Médica",
+      "subtema": "Diabetes Mellitus: Metas Glicêmicas, Complicações e Tratamento",
+      "rationale": "Nefropatia diabética e terapia cardiorrenal."
+    },
+    {
+      "question_id": 12700,
+      "area": "Clínica Médica",
+      "subtema": "Infecções Sexualmente Transmissíveis (ISTs) no Adulto",
+      "rationale": "Condiloma anogenital extenso por HPV."
+    },
+    {
+      "question_id": 13732,
+      "area": "Cirurgia",
+      "subtema": "Cirurgia Pediátrica e Malformações Digestivas Neonatais",
+      "rationale": "Divertículo de Meckel, afecção congênita tratada em cirurgia pediátrica."
+    },
+    {
+      "question_id": 13800,
+      "area": "Cirurgia",
+      "subtema": "Abdome Agudo Inflamatório (Apendicite e Diverticulite Aguda)",
+      "rationale": "Fístula colovesical cuja etiologia principal é diverticulite."
+    },
+    {
+      "question_id": 13953,
+      "area": "Cirurgia",
+      "subtema": "Cirurgia Pediátrica e Malformações Digestivas Neonatais",
+      "rationale": "Hemorragia digestiva baixa infantil por divertículo de Meckel."
+    },
+    {
+      "question_id": 14578,
+      "area": "Cirurgia",
+      "subtema": "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas",
+      "rationale": "Estenose anal como complicação tardia de hemorroidectomia."
+    },
+    {
+      "question_id": 15162,
+      "area": "Cirurgia",
+      "subtema": "Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)",
+      "rationale": "Cuidados de colostomia no contexto de câncer colorretal."
+    },
+    {
+      "question_id": 15359,
+      "area": "Medicina Preventiva",
+      "subtema": "Ética Médica, Bioética e Prontuários / Documentos",
+      "rationale": "Sigilo médico frente a familiares de paciente adulto."
+    },
+    {
+      "question_id": 15952,
+      "area": "Clínica Médica",
+      "subtema": "Doenças Pulmonares Intersticiais e Fibrose Pulmonar",
+      "rationale": "Diagnóstico de fibrose pulmonar idiopática."
+    },
+    {
+      "question_id": 16139,
+      "area": "Clínica Médica",
+      "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos",
+      "rationale": "Intoxicação colinérgica por organofosforado e fármaco para intubação."
+    },
+    {
+      "question_id": 16239,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento",
+      "rationale": "Manejo de carcinoma de mama diagnosticado na gestação."
+    },
+    {
+      "question_id": 16781,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias",
+      "rationale": "Indução do parto a termo por oligodrâmnio."
+    },
+    {
+      "question_id": 16831,
+      "area": "Pediatria",
+      "subtema": "Transtornos do Neurodesenvolvimento (TEA, TDAH) e Saúde Mental na Infância",
+      "rationale": "Rastreamento de TEA com M-CHAT."
+    }
+  ]
+}

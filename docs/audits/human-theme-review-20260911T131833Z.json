@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260911T131833Z-7207f041",
+  "plan": "docs\\audits\\theme_climaterio_menopausa_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260911T131833Z.db",
+  "questions_reviewed": 73,
+  "questions_reclassified": 23
+}

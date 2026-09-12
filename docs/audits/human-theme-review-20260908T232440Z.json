@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260908T232440Z-cb34cc17",
+  "plan": "docs\\audits\\theme_cirurgia_bariatrica_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260908T232440Z.db",
+  "questions_reviewed": 22,
+  "questions_reclassified": 4
+}

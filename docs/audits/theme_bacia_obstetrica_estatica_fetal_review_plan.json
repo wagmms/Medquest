@@ -1,0 +1,34 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Ginecologia e Obstetrícia",
+    "subtema": "Bacia Obstétrica, Estática Fetal e Mecanismo do Parto"
+  },
+  "reviewed_question_ids": [8715, 8724, 8968, 9481, 10064, 10665, 11561, 12045, 12246, 12540, 12541, 12542, 12543, 12544, 12545, 12546, 12547, 12642, 12939, 14524, 14604, 14701, 14804, 15002, 15003, 15590, 15601, 15788, 15978, 16391, 16441],
+  "moves": [
+    {
+      "question_id": 10064,
+      "area": "Cirurgia",
+      "subtema": "Emergências Oftalmológicas e Patologias Oculares Frequentes",
+      "rationale": "Febre, proptose e oftalmoplegia configuram investigação e manejo de emergência oftalmológica, como celulite orbitária."
+    },
+    {
+      "question_id": 15978,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Climatério, Menopausa e Terapia de Reposição Hormonal (TRH)",
+      "rationale": "A seleção de terapia hormonal para sintomas vasomotores do climatério é o foco da questão."
+    },
+    {
+      "question_id": 16391,
+      "area": "Clínica Médica",
+      "subtema": "Doenças da Suprarrenal, Paratireoides e Distúrbios do Cálcio",
+      "rationale": "O caso cobra tratamento de osteoporose grave com fraturas por fragilidade, tema de metabolismo mineral e ósseo."
+    },
+    {
+      "question_id": 16441,
+      "area": "Clínica Médica",
+      "subtema": "Celulite, Erisipela, Osteomielite e Infecções de Partes Moles",
+      "rationale": "A questão trata diretamente de diagnóstico e manejo de osteomielite."
+    }
+  ]
+}

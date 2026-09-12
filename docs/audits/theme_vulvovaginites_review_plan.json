@@ -1,0 +1,12 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Vulvovaginites e Diagnóstico Diferencial dos Corrimentos Vaginais"},
+  "reviewed_question_ids": [8709, 8911, 8923, 9594, 9606, 9770, 10269, 10511, 11249, 12042, 12529, 12614, 12714, 12843, 12944, 13028, 13047, 13132, 13234, 13515, 13972, 14081, 14177, 14234, 14528, 14689, 14791, 15205, 15614, 16064, 16227, 16334, 16454, 16788, 17155, 17231],
+  "moves": [
+    {"question_id": 8911, "area": "Ginecologia e Obstetrícia", "subtema": "Climatério, Menopausa e Terapia de Reposição Hormonal (TRH)", "rationale": "Síndrome geniturinária da menopausa e tratamento local."},
+    {"question_id": 9594, "area": "Ginecologia e Obstetrícia", "subtema": "Climatério, Menopausa e Terapia de Reposição Hormonal (TRH)", "rationale": "Vaginite atrófica e terapia estrogênica vaginal no climatério."},
+    {"question_id": 12614, "area": "Clínica Médica", "subtema": "Meningites, Encefalites e Infecções do SNC", "rationale": "Meningite bacteriana meningocócica com choque e púrpura."},
+    {"question_id": 12714, "area": "Pediatria", "subtema": "Infecção do Trato Urinário (ITU) e Refluxo Vesicoureteral na Infância", "rationale": "Quadro de infecção urinária em criança e antibioticoterapia empírica."},
+    {"question_id": 16334, "area": "Medicina Preventiva", "subtema": "Indicadores de Saúde e Coeficientes de Morbimortalidade", "rationale": "Cálculo de mortalidade específica por câncer de colo uterino."}
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260908T231549Z-2950778d",
+  "plan": "docs\\audits\\theme_atendimento_inicial_politraumatizado_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260908T231549Z.db",
+  "questions_reviewed": 58,
+  "questions_reclassified": 16
+}

@@ -1,0 +1,17 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Transtornos do Neurodesenvolvimento (TEA, TDAH) e Saúde Mental na Infância"
+  },
+  "reviewed_question_ids": [8576, 9676, 10102, 10107, 10217, 10372, 10378, 10383, 10427, 10690, 10698, 11505, 11599, 12227, 12426, 12618, 12718, 13018, 13054, 13219, 14436, 14686, 15584, 15783, 15960, 16647, 16831, 17018],
+  "moves": [
+    {"question_id": 10102, "area": "Medicina Preventiva", "subtema": "Vigilância Epidemiológica: Endemias, Epidemias e Surtos", "rationale": "Princípios e funcionamento da vigilância epidemiológica no SUS."},
+    {"question_id": 10372, "area": "Pediatria", "subtema": "Puericultura: Marcos do Desenvolvimento (DNPM) e Curvas de Crescimento", "rationale": "Avaliação clínica de dor do crescimento e de seus sinais de alarme."},
+    {"question_id": 10383, "area": "Pediatria", "subtema": "Puericultura: Marcos do Desenvolvimento (DNPM) e Curvas de Crescimento", "rationale": "Orientação de hábitos de sono em consulta de rotina pediátrica."},
+    {"question_id": 11505, "area": "Pediatria", "subtema": "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo", "rationale": "Transtorno do espectro alcoólico fetal e suas manifestações congênitas."},
+    {"question_id": 12227, "area": "Pediatria", "subtema": "Puericultura: Marcos do Desenvolvimento (DNPM) e Curvas de Crescimento", "rationale": "Orientações de rotina sobre uso de telas, sono, atividade física e hábitos de adolescente."},
+    {"question_id": 12618, "area": "Clínica Médica", "subtema": "Síndromes Glomerulares: Nefrítica, Nefrótica e Tubulopatias", "rationale": "Síndrome nefrótica, achados laboratoriais e complicações."},
+    {"question_id": 15584, "area": "Pediatria", "subtema": "Afecções de Vias Aéreas Superiores: OMA, Sinusite e Faringoamigdalite", "rationale": "Perda auditiva como causa de dificuldades escolares e comportamentais."}
+  ]
+}

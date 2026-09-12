@@ -1,0 +1,118 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Medicina Preventiva",
+    "subtema": "Vigilância em Saúde e Notificação Compulsória (SINAN)"
+  },
+  "reviewed_question_ids": [
+    8598,
+    8666,
+    8886,
+    8994,
+    9408,
+    9879,
+    9881,
+    10745,
+    10992,
+    11048,
+    11151,
+    11156,
+    11243,
+    11380,
+    11385,
+    11451,
+    11455,
+    11573,
+    12054,
+    12057,
+    12060,
+    12067,
+    12077,
+    12078,
+    12081,
+    12351,
+    12467,
+    12556,
+    12561,
+    12566,
+    12767,
+    12951,
+    12961,
+    13058,
+    13153,
+    13315,
+    13317,
+    13365,
+    13472,
+    13473,
+    13621,
+    14151,
+    14194,
+    14252,
+    14919,
+    15815,
+    15820,
+    15909,
+    16338,
+    16347,
+    17120,
+    17128,
+    17190
+  ],
+  "moves": [
+    {
+      "question_id": 8666,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 9879,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Massas Anexiais e Neoplasias Ovarianas",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 10745,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 12077,
+      "area": "Medicina Preventiva",
+      "subtema": "Saúde do Trabalhador e Doenças Ocupacionais",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 12081,
+      "area": "Medicina Preventiva",
+      "subtema": "Saúde do Trabalhador e Doenças Ocupacionais",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 12561,
+      "area": "Medicina Preventiva",
+      "subtema": "Ética Médica, Bioética e Prontuários / Documentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 13317,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 14252,
+      "area": "Medicina Preventiva",
+      "subtema": "Ética Médica, Bioética e Prontuários / Documentos",
+      "rationale": "Conteúdo central específico."
+    },
+    {
+      "question_id": 16347,
+      "area": "Medicina Preventiva",
+      "subtema": "Saúde do Trabalhador e Doenças Ocupacionais",
+      "rationale": "Conteúdo central específico."
+    }
+  ]
+}

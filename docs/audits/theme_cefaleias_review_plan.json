@@ -1,0 +1,9 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Cefaleias Primárias (Enxaqueca, Tensional) e Secundárias de Alarme"},"reviewed_question_ids":[9152,9377,9626,10369,10498,10836,10930,11026,12106,12469,12484,12914,12920,13320,13568,14136,14542,14897,15638,15640,16258,16358,16408,16458,17246],"moves":[
+{"question_id":10836,"area":"Clínica Médica","subtema":"Neuropatias Periféricas, Miastenia Gravis e Doenças Neuromusculares","rationale":"Neuralgia do trigêmeo e tratamento de primeira linha."},
+{"question_id":12484,"area":"Clínica Médica","subtema":"Hipertensão Arterial Sistêmica e Crises Hipertensivas","rationale":"Emergência hipertensiva com sintomas neurológicos."},
+{"question_id":12920,"area":"Pediatria","subtema":"Constipação Intestinal Funcional e Orgânica","rationale":"Diferenciação de quadro intestinal orgânico em criança."},
+{"question_id":16258,"area":"Cirurgia","subtema":"Hiperplasia Prostática Benigna (HPB) e Litíase Urinária","rationale":"Priapismo de alto fluxo pós-trauma."},
+{"question_id":16358,"area":"Clínica Médica","subtema":"Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas","rationale":"Esquema vacinal em pessoa vivendo com HIV."},
+{"question_id":16408,"area":"Ginecologia e Obstetrícia","subtema":"Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual","rationale":"Imunização contra HPV após violência sexual."},
+{"question_id":16458,"area":"Ginecologia e Obstetrícia","subtema":"Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento","rationale":"Subtipo e tratamento de carcinoma de mama HER2 positivo."}
+]}

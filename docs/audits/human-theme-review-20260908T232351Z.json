@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260908T232351Z-15d05bf8",
+  "plan": "docs\\audits\\theme_aneurismas_aorta_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260908T232351Z.db",
+  "questions_reviewed": 19,
+  "questions_reclassified": 2
+}

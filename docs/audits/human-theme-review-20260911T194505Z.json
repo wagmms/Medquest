@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260911T194505Z-50bafa6e",
+  "plan": "docs\\audits\\theme_massas_anexiais_neoplasias_ovarianas_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260911T194505Z.db",
+  "questions_reviewed": 37,
+  "questions_reclassified": 5
+}

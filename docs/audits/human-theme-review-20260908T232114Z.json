@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260908T232114Z-5ca009a2",
+  "plan": "docs\\audits\\theme_anestesiologia_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260908T232114Z.db",
+  "questions_reviewed": 24,
+  "questions_reclassified": 1
+}

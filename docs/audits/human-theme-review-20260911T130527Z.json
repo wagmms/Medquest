@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260911T130527Z-f002601f",
+  "plan": "docs\\audits\\theme_fisiologia_ciclo_menstrual_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260911T130527Z.db",
+  "questions_reviewed": 18,
+  "questions_reclassified": 4
+}

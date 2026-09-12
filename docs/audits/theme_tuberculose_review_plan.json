@@ -1,0 +1,24 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Clínica Médica",
+    "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo"
+  },
+  "reviewed_question_ids": [8630, 8631, 9442, 10636, 10835, 11038, 11401, 11489, 11543, 12008, 12340, 12341, 12579, 12615, 12715, 13123, 13429, 13482, 13570, 13708, 13751, 13754, 14208, 14285, 14334, 14371, 14633, 14906, 14935, 15037, 15254, 15469, 15470, 15682, 15949, 16128, 16228, 16257, 16308, 16357, 16407, 16457, 16497, 16547, 16597, 16647, 17012, 17242],
+  "moves": [
+    {"question_id": 12579, "area": "Cirurgia", "subtema": "Trauma Abdominal Fechado e Penetrante (FAST e Laparotomia)", "rationale": "Ferimento penetrante em transição toracoabdominal com investigação de lesão diafragmática/abdominal."},
+    {"question_id": 12615, "area": "Pediatria", "subtema": "Neonatologia: Desconforto Respiratório e Doença da Membrana Hialina", "rationale": "Taquipneia transitória/desconforto respiratório no recém-nascido após cesárea."},
+    {"question_id": 15469, "area": "Pediatria", "subtema": "Puericultura: Marcos do Desenvolvimento (DNPM) e Curvas de Crescimento", "rationale": "Classificação de pressão arterial em consulta de rotina pediátrica."},
+    {"question_id": 16128, "area": "Clínica Médica", "subtema": "Coagulopatias, Trombofilias, Púrpuras e Hemoterapia", "rationale": "Manejo de INR supraterapêutico sob varfarina em paciente com síndrome antifosfolípide."},
+    {"question_id": 16228, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Colo Uterino e Lesões Precursoras", "rationale": "Carcinoma escamoso detectado na citologia e encaminhamento oncológico."},
+    {"question_id": 16257, "area": "Cirurgia", "subtema": "Cirurgia Torácica Geral e Doenças Pleurais", "rationale": "Empiema/derrame parapneumônico complicado e indicação de drenagem pleural."},
+    {"question_id": 16308, "area": "Pediatria", "subtema": "Baixa Estatura, Puberdade Precoce e Atraso Puberal", "rationale": "Investigação etiológica de baixa estatura e atraso de idade óssea em adolescente."},
+    {"question_id": 16357, "area": "Clínica Médica", "subtema": "Síndromes Febris Agudas e Arboviroses (Dengue, Chikungunya, Febre Amarela)", "rationale": "Leptospirose grave em síndrome febril aguda pós-alagamento, com IRA e acometimento pulmonar."},
+    {"question_id": 16407, "area": "Pediatria", "subtema": "Baixa Estatura, Puberdade Precoce e Atraso Puberal", "rationale": "Orientação sobre adrenarca/pubertação e produtos de higiene em criança."},
+    {"question_id": 16457, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento", "rationale": "Conduta no carcinoma de mama associado à mutação germinativa BRCA1."},
+    {"question_id": 16497, "area": "Cirurgia", "subtema": "Uro-Oncologia: Câncer de Próstata, Rim, Bexiga e Testículo", "rationale": "Investigação inicial de neoplasia testicular."},
+    {"question_id": 16547, "area": "Clínica Médica", "subtema": "Doenças Pulmonares Intersticiais e Fibrose Pulmonar", "rationale": "Síndrome de Löfgren, apresentação de sarcoidose pulmonar."},
+    {"question_id": 16597, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento", "rationale": "Sequência terapêutica do carcinoma de mama triplo-negativo."},
+    {"question_id": 16647, "area": "Pediatria", "subtema": "Transtornos do Neurodesenvolvimento (TEA, TDAH) e Saúde Mental na Infância", "rationale": "Diagnóstico de TDAH em criança com sintomas persistentes em casa e na escola."}
+  ]
+}

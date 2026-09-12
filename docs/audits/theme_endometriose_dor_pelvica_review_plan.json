@@ -1,0 +1,23 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Endometriose, Adenomiose e Dor Pélvica Crônica"},
+  "reviewed_question_ids": [8627, 8909, 9238, 9477, 10004, 10054, 10057, 10265, 10391, 10563, 10857, 11010, 11551, 11554, 12037, 12041, 12112, 12113, 12432, 12535, 12640, 12740, 12840, 13400, 13907, 13969, 14176, 14376, 14534, 14611, 14693, 14795, 14995, 14996, 15602, 15897, 15906, 16069, 16081, 16283, 16320, 16383, 16433, 16505, 16508, 16555, 16558, 16582, 16605, 16608, 16655, 16658, 17230],
+  "moves": [
+    {"question_id": 10054, "area": "Pediatria", "subtema": "Calendário Vacinal do PNI e Imunizações Especiais", "rationale": "Elegibilidade para vacina de rotavírus no calendário infantil."},
+    {"question_id": 10057, "area": "Clínica Médica", "subtema": "Neuropatias Periféricas, Miastenia Gravis e Doenças Neuromusculares", "rationale": "Distrofia muscular de Duchenne com sinal de Gowers."},
+    {"question_id": 10563, "area": "Clínica Médica", "subtema": "Neuropatias Periféricas, Miastenia Gravis e Doenças Neuromusculares", "rationale": "Dor neuropática crônica em território inguinal após cirurgia pélvica."},
+    {"question_id": 12640, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias", "rationale": "Conduta no segundo período do parto com bradicardia fetal sustentada."},
+    {"question_id": 15906, "area": "Ginecologia e Obstetrícia", "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade", "rationale": "Interpretação de marcadores ultrassonográficos fetais de aneuploidia."},
+    {"question_id": 16081, "area": "Ginecologia e Obstetrícia", "subtema": "Amniorrexe Prematura (RPMO) e Corioamnionite", "rationale": "Rotura de membranas identificada em gestante com contrações pré-termo."},
+    {"question_id": 16283, "area": "Clínica Médica", "subtema": "Neurointensivismo, Morte Encefálica e Cuidados Críticos", "rationale": "Poliúria e distúrbio hidroeletrolítico após hemorragia subaracnoide em UTI."},
+    {"question_id": 16433, "area": "Pediatria", "subtema": "Constipação Intestinal Funcional e Orgânica", "rationale": "Doença de Hirschsprung e investigação de constipação orgânica."},
+    {"question_id": 16505, "area": "Cirurgia", "subtema": "Aneurismas de Aorta Abdominal e Torácica", "rationale": "Seguimento de aneurisma de aorta abdominal infrarrenal assintomático."},
+    {"question_id": 16508, "area": "Pediatria", "subtema": "Cardiopatias Congênitas Cianogênicas e Acianogênicas", "rationale": "Cardiopatia congênita acianogênica com hiperfluxo pulmonar."},
+    {"question_id": 16555, "area": "Clínica Médica", "subtema": "Doenças da Suprarrenal, Paratireoides e Distúrbios do Cálcio", "rationale": "Hipertensão paroxística e investigação de feocromocitoma."},
+    {"question_id": 16558, "area": "Clínica Médica", "subtema": "Síndromes Coronarianas Agudas (Com e Sem Supra de ST)", "rationale": "Conduta em infarto com supra de ST sem hemodinâmica disponível."},
+    {"question_id": 16605, "area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital", "rationale": "Tratamento de prolapso apical avançado em idosa."},
+    {"question_id": 16608, "area": "Ginecologia e Obstetrícia", "subtema": "Climatério, Menopausa e Terapia de Reposição Hormonal (TRH)", "rationale": "Manejo de sintomas vasomotores e geniturinários do climatério."},
+    {"question_id": 16655, "area": "Pediatria", "subtema": "Arritmias, Síncope e Parada Cardiorrespiratória Pediátrica (PALS)", "rationale": "Capnografia durante reanimação cardiopulmonar pediátrica."},
+    {"question_id": 16658, "area": "Pediatria", "subtema": "Arritmias, Síncope e Parada Cardiorrespiratória Pediátrica (PALS)", "rationale": "Interpretação de monitor de ventilação mecânica em paciente pediátrico crítico."}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Infecção do Trato Urinário (ITU) e Refluxo Vesicoureteral na Infância"
+  },
+  "reviewed_question_ids": [8575, 9388, 9427, 9781, 9959, 10001, 10101, 10311, 10605, 10783, 10826, 11087, 11119, 11205, 11403, 11598, 12038, 12165, 12382, 12412, 12714, 12810, 12903, 12909, 13002, 13502, 13722, 13852, 14283, 14312, 14361, 14385, 14479, 14562, 14584, 14684, 14875, 15430, 15436, 15437, 15502, 15875, 15936, 15969, 16026, 16050, 16061, 16684, 16882, 17045, 17100],
+  "moves": [
+    {"question_id": 9388, "area": "Clínica Médica", "subtema": "Geriatria: Avaliação Ampla do Idoso, Síndromes Demenciais e Quedas", "rationale": "Delirium agudo, provável retenção urinária e polifarmácia em idosa são tema de avaliação geriátrica."},
+    {"question_id": 10001, "area": "Pediatria", "subtema": "Doenças Exantemáticas e Diagnóstico Diferencial dos Exantemas", "rationale": "O exantema vesicular polimórfico e a conduta para contactantes tratam de varicela."},
+    {"question_id": 10101, "area": "Medicina Preventiva", "subtema": "Indicadores de Saúde e Coeficientes de Morbimortalidade", "rationale": "A questão explora o efeito de maior sobrevida sobre incidência e prevalência."},
+    {"question_id": 10826, "area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital", "rationale": "Urgência miccional com perdas em mulher idosa é investigação de incontinência urinária."},
+    {"question_id": 11205, "area": "Clínica Médica", "subtema": "Sepse no Adulto, Choque Séptico e Ressuscitação Hemodinâmica", "rationale": "Pielonefrite com hipotensão, torpor e necessidade de tratamento inicial é sepse urinária no adulto."},
+    {"question_id": 11598, "area": "Cirurgia", "subtema": "Hiperplasia Prostática Benigna (HPB) e Litíase Urinária", "rationale": "O cálculo coraliforme por germe urease-positivo é tema de litíase urinária."},
+    {"question_id": 14312, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Pré-Natal de Baixo e Alto Risco", "rationale": "Bacteriúria assintomática na gestação e sua antibioticoterapia são cuidados pré-natais."},
+    {"question_id": 14479, "area": "Clínica Médica", "subtema": "Sepse no Adulto, Choque Séptico e Ressuscitação Hemodinâmica", "rationale": "Pielonefrite em choque refratário após reposição volêmica exige manejo de choque séptico."},
+    {"question_id": 15430, "area": "Cirurgia", "subtema": "Hiperplasia Prostática Benigna (HPB) e Litíase Urinária", "rationale": "Cálculos de estruvita associados a bactérias produtoras de urease são litíase urinária."},
+    {"question_id": 15502, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Pré-Natal de Baixo e Alto Risco", "rationale": "Cistite na gestante demanda escolha terapêutica própria do pré-natal."},
+    {"question_id": 15936, "area": "Cirurgia", "subtema": "Trauma Ortopédico de Extremidades e Síndrome Compartimental", "rationale": "O caso foca trauma grave de membro inferior, avaliação vascular e condutas ortopédicas de urgência."},
+    {"question_id": 16050, "area": "Pediatria", "subtema": "Diarreia Aguda, Reidratação Oral e Doenças Disabsortivas", "rationale": "A orientação solicitada trata de hidratação e alimentação na diarreia aguda sem desidratação."}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area":"Cirurgia","subtema":"Doença Arterial Obstrutiva Periférica e Oclusões Arteriais Agudas"},
+  "reviewed_question_ids": [8946,9456,9692,10019,10300,10339,10491,10509,10545,10549,10624,10631,10762,10844,10881,10898,10918,11090,11125,11516,12390,13287,13337,13591,13802,14049,14275,14346,15549,15863,16038,16269,16319,16369,16419,16520,16570,16620,16663,16713,16763,16813,16887,17221],
+  "moves": [
+    {"question_id":10019,"area":"Cirurgia","subtema":"Distúrbios Motores do Esôfago, Megaesôfago e Síndrome Disfágica","rationale":"Investigação de acalásia por manometria esofágica."},
+    {"question_id":10898,"area":"Medicina Preventiva","subtema":"Avaliação de Testes Diagnósticos e Curva ROC","rationale":"Interpretação comparativa de curvas ROC."},
+    {"question_id":13802,"area":"Cirurgia","subtema":"Insuficiência Venosa Crônica e Trombose Venosa Profunda (TVP)","rationale":"Sinais de insuficiência venosa crônica e trombose superficial."},
+    {"question_id":16038,"area":"Clínica Médica","subtema":"Taquiarritmias, Bradiarritmias, Síncope e Suporte Avançado (ACLS)","rationale":"Taquiarritmia ventricular em cardiopatia estrutural e indicação de CDI."},
+    {"question_id":16269,"area":"Cirurgia","subtema":"Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas","rationale":"Hematoma cervical compressivo após tireoidectomia."},
+    {"question_id":16319,"area":"Ginecologia e Obstetrícia","subtema":"Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual","rationale":"Doença inflamatória pélvica e tratamento recomendado."},
+    {"question_id":16369,"area":"Clínica Médica","subtema":"Ventilação Mecânica, SARA e Insuficiência Respiratória Aguda","rationale":"Ajuste de ventilação mecânica em asma grave."},
+    {"question_id":16419,"area":"Pediatria","subtema":"Segurança Infantil, Prevenção de Acidentes e Maus-Tratos","rationale":"Ingestão de bateria em esôfago na criança."},
+    {"question_id":16520,"area":"Clínica Médica","subtema":"Acidente Vascular Cerebral Isquêmico e Hemorrágico (Janela de Trombólise)","rationale":"Ataque isquêmico transitório e dupla antiagregação."},
+    {"question_id":16570,"area":"Ginecologia e Obstetrícia","subtema":"Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade","rationale":"Malformação de Arnold-Chiari II diagnosticada no pré-natal."},
+    {"question_id":16620,"area":"Pediatria","subtema":"Neonatologia: Distúrbios Metabólicos e Hipoglicemia no Recém-Nascido","rationale":"Hipoglicemia assintomática em recém-nascido PIG."},
+    {"question_id":16663,"area":"Cirurgia","subtema":"Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas","rationale":"Deiscência de ferida após colectomia e sua prevenção."},
+    {"question_id":16713,"area":"Clínica Médica","subtema":"Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas","rationale":"Tratamento de infecção latente por tuberculose em pessoa vivendo com HIV."},
+    {"question_id":16763,"area":"Ginecologia e Obstetrícia","subtema":"Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade","rationale":"Restrição de crescimento fetal e Doppler umbilical alterado."},
+    {"question_id":16813,"area":"Pediatria","subtema":"Neonatologia: Asfixia Perinatal, Encefalopatia e Doenças Neurológicas","rationale":"Crise convulsiva neonatal e tratamento de primeira linha."}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Cirurgia",
+    "subtema": "Luxações Articulares e Lesões Ligamentares / Meniscais"
+  },
+  "reviewed_question_ids": [10031, 10533, 10728, 11427, 11528, 13294, 14950, 16482, 16532, 16582, 16632, 17331, 17332, 17333, 17334, 17336, 17337, 17338, 17339, 17340, 17341, 17342, 17343, 17344, 17345, 17346, 17347, 17348, 17349, 17350, 17351, 17352, 17353, 17354, 17355, 17356, 17357, 17358, 17359, 17360],
+  "moves": [
+    {"question_id": 10031, "area": "Clínica Médica", "subtema": "Leucemias, Linfomas e Mieloma Múltiplo", "rationale": "Linfocitose e investigação de provável leucemia linfocítica crônica."},
+    {"question_id": 10533, "area": "Cirurgia", "subtema": "Trauma Raquimedular (TRM) e Lesões Vertebrais", "rationale": "Lombociatalgia por provável hérnia discal, com tratamento conservador."},
+    {"question_id": 11528, "area": "Cirurgia", "subtema": "Tendinopatias, Bursites e Síndromes por Sobrecarga Musculoesquelética", "rationale": "Lesão do tendão infraespinhal do manguito rotador."},
+    {"question_id": 16482, "area": "Cirurgia", "subtema": "Distúrbios Motores do Esôfago, Megaesôfago e Síndrome Disfágica", "rationale": "Acalasia avançada com megaesôfago e indicação de esofagectomia."},
+    {"question_id": 16532, "area": "Clínica Médica", "subtema": "Tromboembolismo Pulmonar (TEP) e Hipertensão Pulmonar", "rationale": "Suspeita de hipertensão pulmonar tromboembólica crônica após TEP."},
+    {"question_id": 16582, "area": "Ginecologia e Obstetrícia", "subtema": "Endometriose, Adenomiose e Dor Pélvica Crônica", "rationale": "Aspectos clínicos e fisiopatológicos da endometriose."},
+    {"question_id": 16632, "area": "Pediatria", "subtema": "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo", "rationale": "Reconhecimento de síndrome de Down."},
+    {"question_id": 17336, "area": "Cirurgia", "subtema": "Tendinopatias, Bursites e Síndromes por Sobrecarga Musculoesquelética", "rationale": "Ruptura aguda do tendão de Aquiles."},
+    {"question_id": 17337, "area": "Cirurgia", "subtema": "Tendinopatias, Bursites e Síndromes por Sobrecarga Musculoesquelética", "rationale": "Anatomia e lesão do manguito rotador."},
+    {"question_id": 17339, "area": "Cirurgia", "subtema": "Tendinopatias, Bursites e Síndromes por Sobrecarga Musculoesquelética", "rationale": "Teste de Jobe para ruptura do supraespinhal."},
+    {"question_id": 17341, "area": "Medicina Preventiva", "subtema": "Saúde do Trabalhador e Doenças Ocupacionais", "rationale": "Acidente de trabalho, emissão de CAT e benefício previdenciário."},
+    {"question_id": 17344, "area": "Cirurgia", "subtema": "Tendinopatias, Bursites e Síndromes por Sobrecarga Musculoesquelética", "rationale": "Avaliação clínica de lesão do tendão de Aquiles."},
+    {"question_id": 17357, "area": "Cirurgia", "subtema": "Técnica Operatória, Diérese, Hemostasia e Síntese (Fios Cirúrgicos)", "rationale": "Classificação de ferida operatória e indicação de antibioticoprofilaxia."}
+  ]
+}

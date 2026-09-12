@@ -1,0 +1,31 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Condições Clínicas Intercorrentes na Gravidez"},
+  "reviewed_question_ids": [8606, 8611, 8629, 8721, 8961, 9241, 9242, 9479, 9489, 9769, 9887, 9989, 10433, 10559, 10667, 10670, 10800, 10940, 11019, 11022, 11025, 11259, 11261, 11264, 11483, 12123, 12192, 12445, 12582, 12834, 13041, 13144, 13229, 13230, 13399, 13611, 13756, 13761, 13865, 13897, 14175, 14388, 14391, 14403, 14602, 15190, 15290, 15302, 15343, 15603, 15604, 15706, 15792, 15976, 16164, 16176, 16323, 16464, 16548, 16973, 17150],
+  "moves": [
+    {"question_id": 8629, "area": "Ginecologia e Obstetrícia", "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)", "rationale": "Profilaxia intraparto para estreptococo do grupo B."},
+    {"question_id": 9887, "area": "Medicina Preventiva", "subtema": "Delineamentos e Classificação dos Estudos Epidemiológicos", "rationale": "Interpretação metodológica de ensaio clínico randomizado."},
+    {"question_id": 9989, "area": "Ginecologia e Obstetrícia", "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade", "rationale": "Aloimunização Rh com Doppler da artéria cerebral média fetal."},
+    {"question_id": 10940, "area": "Clínica Médica", "subtema": "Coagulopatias, Trombofilias, Púrpuras e Hemoterapia", "rationale": "Síndrome antifosfolípide, trombose prévia e anticoagulação."},
+    {"question_id": 11025, "area": "Ginecologia e Obstetrícia", "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)", "rationale": "Profilaxia da transmissão vertical de hepatite B."},
+    {"question_id": 11259, "area": "Clínica Médica", "subtema": "Coagulopatias, Trombofilias, Púrpuras e Hemoterapia", "rationale": "Critérios diagnósticos da síndrome antifosfolípide."},
+    {"question_id": 11264, "area": "Cirurgia", "subtema": "Abdome Agudo Inflamatório (Apendicite e Diverticulite Aguda)", "rationale": "Suspeita de apendicite aguda na gestação e conduta cirúrgica."},
+    {"question_id": 12192, "area": "Ginecologia e Obstetrícia", "subtema": "Hemorragias da Primeira Metade: Abortamento, Ectópica e Mola", "rationale": "Gestação ectópica rota."},
+    {"question_id": 13144, "area": "Clínica Médica", "subtema": "Coagulopatias, Trombofilias, Púrpuras e Hemoterapia", "rationale": "Indicação para investigação de trombofilia adquirida."},
+    {"question_id": 13229, "area": "Ginecologia e Obstetrícia", "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)", "rationale": "Infecção materna por parvovírus B19 e repercussão fetal."},
+    {"question_id": 13230, "area": "Clínica Médica", "subtema": "Síndromes Febris Agudas e Arboviroses (Dengue, Chikungunya, Febre Amarela)", "rationale": "Sinais de alarme e manejo de dengue."},
+    {"question_id": 13761, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Pré-Natal de Baixo e Alto Risco", "rationale": "Estratificação de risco no pré-natal após óbito fetal prévio."},
+    {"question_id": 14391, "area": "Ginecologia e Obstetrícia", "subtema": "Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)", "rationale": "Orientação sobre indicação e periodicidade do rastreamento cervical."},
+    {"question_id": 14403, "area": "Clínica Médica", "subtema": "Coagulopatias, Trombofilias, Púrpuras e Hemoterapia", "rationale": "Efeito da síndrome antifosfolípide no TTPA."},
+    {"question_id": 15302, "area": "Ginecologia e Obstetrícia", "subtema": "Puerpério Fisiológico, Patológico e Hemorragia Pós-Parto", "rationale": "Embolia por líquido amniótico em contexto de cesariana."},
+    {"question_id": 15343, "area": "Clínica Médica", "subtema": "Coagulopatias, Trombofilias, Púrpuras e Hemoterapia", "rationale": "Trombose venosa associada a síndrome antifosfolípide."},
+    {"question_id": 15604, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias", "rationale": "Fisiologia e condutas do terceiro período do parto."},
+    {"question_id": 15706, "area": "Clínica Médica", "subtema": "Coagulopatias, Trombofilias, Púrpuras e Hemoterapia", "rationale": "Indicação de investigação de trombofilias em perdas gestacionais recorrentes."},
+    {"question_id": 15792, "area": "Clínica Médica", "subtema": "Diagnóstico Diferencial das Anemias e Hemoglobinopatias", "rationale": "Diagnóstico de anemia macrocítica."},
+    {"question_id": 15976, "area": "Ginecologia e Obstetrícia", "subtema": "Trabalho de Parto Prematuro e Tocólise", "rationale": "Rastreamento de colo curto após parto prematuro espontâneo prévio."},
+    {"question_id": 16164, "area": "Ginecologia e Obstetrícia", "subtema": "Síndromes Hipertensivas na Gravidez (Pré-eclâmpsia e Eclâmpsia)", "rationale": "Pré-eclâmpsia com restrição de crescimento e Doppler anormal."},
+    {"question_id": 16176, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Clínica ao Trabalho de Parto, Partograma e Distocias", "rationale": "Fatores de risco e manobras para distocia de ombros."},
+    {"question_id": 16548, "area": "Clínica Médica", "subtema": "Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas", "rationale": "Tratamento de artrite reumatoide ativa na gestação."},
+    {"question_id": 16973, "area": "Ginecologia e Obstetrícia", "subtema": "Hemorragias da Primeira Metade: Abortamento, Ectópica e Mola", "rationale": "Quadro sugestivo de gestação molar, com hipertensão precoce e sangramento."}
+  ]
+}

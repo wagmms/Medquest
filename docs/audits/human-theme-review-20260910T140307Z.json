@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260910T140307Z-2771f1f5",
+  "plan": "docs\\audits\\theme_sindromes_hipertensivas_gravidez_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260910T140307Z.db",
+  "questions_reviewed": 73,
+  "questions_reclassified": 11
+}

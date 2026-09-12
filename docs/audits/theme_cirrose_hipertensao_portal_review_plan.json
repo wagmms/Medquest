@@ -1,0 +1,28 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Clínica Médica",
+    "subtema": "Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática"
+  },
+  "reviewed_question_ids": [8512, 8631, 8696, 8865, 9228, 9612, 10475, 10656, 10830, 10833, 10874, 10941, 11978, 12014, 12100, 12194, 12347, 12381, 12470, 12472, 12576, 12604, 12676, 12701, 12785, 12790, 13068, 13080, 13099, 13180, 13183, 13186, 13271, 13561, 13798, 13848, 13849, 14025, 14103, 14150, 14267, 14333, 14481, 14770, 15029, 15144, 15336, 15338, 15536, 15636, 15637, 15640, 15837, 16012, 16255, 16355, 16405, 16455, 16545, 16864, 16944, 16948, 17073],
+  "moves": [
+    {"question_id": 8631, "area": "Clínica Médica", "subtema": "Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo", "rationale": "Ascite de baixo gradiente e alta proteína com indicação de ADA investiga tuberculose peritoneal."},
+    {"question_id": 10833, "area": "Pediatria", "subtema": "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo", "rationale": "Doença de Wilson é erro inato do metabolismo do cobre em adolescente."},
+    {"question_id": 12194, "area": "Cirurgia", "subtema": "Trauma Torácico: Pneumotórax, Hemotórax e Tamponamento Cardíaco", "rationale": "Trauma penetrante torácico com pneumotórax hipertensivo e descompressão imediata."},
+    {"question_id": 12576, "area": "Cirurgia", "subtema": "Atendimento Inicial ao Politraumatizado (Protocolo xABCDE)", "rationale": "A questão avalia via aérea cirúrgica no atendimento inicial ao trauma."},
+    {"question_id": 13080, "area": "Clínica Médica", "subtema": "Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas", "rationale": "Manifestações da artrite psoriásica, uma espondiloartrite."},
+    {"question_id": 13180, "area": "Pediatria", "subtema": "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo", "rationale": "Doença de Wilson por mutação ATP7B, erro inato do metabolismo do cobre."},
+    {"question_id": 13186, "area": "Clínica Médica", "subtema": "Injúria Renal Aguda (IRA) e Doença Renal Crônica (DRC)", "rationale": "A questão cobra a lesão histopatológica renal da leptospirose."},
+    {"question_id": 13271, "area": "Clínica Médica", "subtema": "Hepatites Virais (A, B, C) e Icterícias Metabólicas", "rationale": "Interpretação de sorologias e definição diagnóstica da hepatite B crônica."},
+    {"question_id": 14267, "area": "Pediatria", "subtema": "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo", "rationale": "Tratamento da doença de Wilson associada à mutação ATP7B."},
+    {"question_id": 14770, "area": "Clínica Médica", "subtema": "Hepatites Virais (A, B, C) e Icterícias Metabólicas", "rationale": "Hepatite A aguda fulminante e indicação de internação e avaliação para transplante."},
+    {"question_id": 15029, "area": "Pediatria", "subtema": "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo", "rationale": "Diagnóstico da doença de Wilson, condição genética do metabolismo do cobre."},
+    {"question_id": 15640, "area": "Clínica Médica", "subtema": "Cefaleias Primárias (Enxaqueca, Tensional) e Secundárias de Alarme", "rationale": "Profilaxia de enxaqueca crônica."},
+    {"question_id": 16012, "area": "Cirurgia", "subtema": "Fundamentos da Anestesiologia, Farmacologia e Bloqueios", "rationale": "Toxicidade sistêmica por anestésico local e seu manejo."},
+    {"question_id": 16255, "area": "Cirurgia", "subtema": "Insuficiência Venosa Crônica e Trombose Venosa Profunda (TVP)", "rationale": "Classificação CEAP na insuficiência venosa crônica com lipodermatoesclerose."},
+    {"question_id": 16355, "area": "Clínica Médica", "subtema": "Infecções Sexualmente Transmissíveis (ISTs) no Adulto", "rationale": "Uretrite persistente por Mycoplasma genitalium e esquema antimicrobiano."},
+    {"question_id": 16405, "area": "Clínica Médica", "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos", "rationale": "Escorpionismo grave em lactente e indicação de soro antiescorpiônico."},
+    {"question_id": 16455, "area": "Ginecologia e Obstetrícia", "subtema": "Investigação das Amenorreias e Síndrome dos Ovários Policísticos (SOP)", "rationale": "Amenorreia hipotalâmica funcional associada à baixa disponibilidade energética."},
+    {"question_id": 16864, "area": "Cirurgia", "subtema": "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas", "rationale": "Síndrome compartimental abdominal no pós-operatório de hernioplastia."}
+  ]
+}

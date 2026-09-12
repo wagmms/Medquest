@@ -1,0 +1,100 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Ginecologia e Obstetrícia",
+    "subtema": "Sangramento Uterino Anormal (SUA) e Classificação PALM-COEIN / Miomatose"
+  },
+  "reviewed_question_ids": [8708, 8906, 8907, 8959, 9474, 9600, 9752, 9880, 10266, 10392, 10441, 10805, 10954, 11135, 11248, 11351, 12310, 12311, 12536, 12841, 12932, 12942, 13031, 13239, 13355, 13457, 13768, 13832, 14178, 14235, 14239, 14300, 14307, 14374, 14458, 14535, 14692, 14794, 14868, 14869, 14991, 14997, 15204, 15296, 15392, 15595, 15693, 15696, 15698, 15707, 15891, 16066, 16170, 16224, 16321, 16335, 16452, 16592, 16787, 16982, 17154, 17232],
+  "moves": [
+    {
+      "question_id": 10954,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Endometriose, Adenomiose e Dor Pélvica Crônica",
+      "rationale": "Os achados de zona juncional espessada e miométrio heterogêneo indicam adenomiose."
+    },
+    {
+      "question_id": 11248,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Endometriose, Adenomiose e Dor Pélvica Crônica",
+      "rationale": "Dismenorreia progressiva, dispareunia e padrão ultrassonográfico descrito caracterizam adenomiose."
+    },
+    {
+      "question_id": 12310,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Endometriose, Adenomiose e Dor Pélvica Crônica",
+      "rationale": "O espessamento assimétrico do miométrio, zona juncional irregular e cistos miometriais são de adenomiose."
+    },
+    {
+      "question_id": 12942,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Endometriose, Adenomiose e Dor Pélvica Crônica",
+      "rationale": "A hipótese clínica e ultrassonográfica central é adenomiose."
+    },
+    {
+      "question_id": 13031,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Afecções do Corpo Uterino, Endométrio e Sangramento Pós-Menopausa",
+      "rationale": "Sangramento pós-menopausa com endométrio espessado requer propedêutica endometrial."
+    },
+    {
+      "question_id": 13239,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Afecções do Corpo Uterino, Endométrio e Sangramento Pós-Menopausa",
+      "rationale": "O sangramento em pós-menopausa associado a lesão endometrial focal é afecção endometrial."
+    },
+    {
+      "question_id": 14307,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Afecções do Corpo Uterino, Endométrio e Sangramento Pós-Menopausa",
+      "rationale": "A conduta para pólipo endometrial em paciente pós-menopausa é conteúdo de sangramento pós-menopausa."
+    },
+    {
+      "question_id": 15693,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Endometriose, Adenomiose e Dor Pélvica Crônica",
+      "rationale": "A questão aborda diretamente características clínicas da adenomiose."
+    },
+    {
+      "question_id": 15696,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Endometriose, Adenomiose e Dor Pélvica Crônica",
+      "rationale": "O quadro de útero difusamente aumentado e sangramento doloroso direciona-se à adenomiose."
+    },
+    {
+      "question_id": 15707,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Pré-Natal de Baixo e Alto Risco",
+      "rationale": "As recomendações de micronutrientes para gestantes e lactantes pertencem ao cuidado pré-natal."
+    },
+    {
+      "question_id": 16066,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Investigação das Amenorreias e Síndrome dos Ovários Policísticos (SOP)",
+      "rationale": "A investigação de hiperprolactinemia integra a propedêutica de disfunções ovulatórias e amenorreias."
+    },
+    {
+      "question_id": 16170,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade",
+      "rationale": "A interpretação de polidrâmnio na ultrassonografia obstétrica é conteúdo de medicina fetal."
+    },
+    {
+      "question_id": 16335,
+      "area": "Medicina Preventiva",
+      "subtema": "Indicadores de Saúde e Coeficientes de Morbimortalidade",
+      "rationale": "O cálculo solicitado é uma razão de prevalência populacional."
+    },
+    {
+      "question_id": 16592,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Afecções do Corpo Uterino, Endométrio e Sangramento Pós-Menopausa",
+      "rationale": "O diagnóstico de sarcoma estromal endometrial e a conduta sequencial são afecções neoplásicas uterinas."
+    },
+    {
+      "question_id": 17232,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Endometriose, Adenomiose e Dor Pélvica Crônica",
+      "rationale": "O padrão clínico, ultrassonográfico e de anemia por sangramento se deve à adenomiose."
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Cirurgia",
+    "subtema": "Abdome Agudo Perfurativo e Úlcera Péptica Perfurada"
+  },
+  "reviewed_question_ids": [8549, 8932, 9830, 10765, 11097, 12189, 12191, 13499, 13864, 14034, 14148, 14153, 14272, 14422, 14431, 14569, 14667, 15049, 15152, 15261, 15352, 15449, 15662, 15859, 15943, 16135, 16235, 16751, 16901, 16951, 17001, 17051, 17179],
+  "moves": [
+    {
+      "question_id": 9830,
+      "area": "Clínica Médica",
+      "subtema": "Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas",
+      "rationale": "Quadro e manejo de fibromialgia, inserido no eixo reumatológico; não há abdome agudo."
+    },
+    {
+      "question_id": 12189,
+      "area": "Cirurgia",
+      "subtema": "Abdome Agudo Vascular e Isquemia Mesentérica",
+      "rationale": "O diagnóstico cobrado é explicitamente abdome agudo vascular."
+    },
+    {
+      "question_id": 15352,
+      "area": "Cirurgia",
+      "subtema": "Abdome Agudo Vascular e Isquemia Mesentérica",
+      "rationale": "Isquemia mesentérica extensa em paciente com fibrilação atrial, com decisão operatória/paliativa."
+    },
+    {
+      "question_id": 15662,
+      "area": "Cirurgia",
+      "subtema": "Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)",
+      "rationale": "A questão exige identificar adenocarcinoma gástrico, ainda que apresente perfuração."
+    },
+    {
+      "question_id": 15859,
+      "area": "Cirurgia",
+      "subtema": "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas",
+      "rationale": "Peritonite por perfuração no quinto pós-operatório, com foco na reexploração e controle de fonte."
+    },
+    {
+      "question_id": 15943,
+      "area": "Clínica Médica",
+      "subtema": "Diagnóstico Diferencial das Anemias e Hemoglobinopatias",
+      "rationale": "Anemia megaloblástica por deficiência de B12 associada à metformina."
+    },
+    {
+      "question_id": 16135,
+      "area": "Clínica Médica",
+      "subtema": "Doenças da Suprarrenal, Paratireoides e Distúrbios do Cálcio",
+      "rationale": "Investigação e lateralização de hiperaldosteronismo primário com nódulo adrenal."
+    },
+    {
+      "question_id": 16235,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Afecções do Corpo Uterino, Endométrio e Sangramento Pós-Menopausa",
+      "rationale": "Leiomiossarcoma uterino em paciente pós-menopausada e respectivo tratamento cirúrgico."
+    },
+    {
+      "question_id": 16751,
+      "area": "Clínica Médica",
+      "subtema": "Lúpus Eritematoso Sistêmico (LES), Esclerose Sistêmica e Miopatias Inflamatórias",
+      "rationale": "Nefrite lúpica classe IV e terapia de indução."
+    },
+    {
+      "question_id": 16901,
+      "area": "Cirurgia",
+      "subtema": "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino",
+      "rationale": "Seguimento de nódulo pulmonar em vidro fosco."
+    },
+    {
+      "question_id": 16951,
+      "area": "Clínica Médica",
+      "subtema": "Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas",
+      "rationale": "Artrite por cristais de pirofosfato de cálcio e tratamento da crise."
+    },
+    {
+      "question_id": 17001,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento",
+      "rationale": "Tratamento adjuvante de câncer de mama HER2 positivo."
+    },
+    {
+      "question_id": 17051,
+      "area": "Pediatria",
+      "subtema": "Baixa Estatura, Puberdade Precoce e Atraso Puberal",
+      "rationale": "Estadiamento de Tanner e normalidade do desenvolvimento puberal."
+    }
+  ]
+}

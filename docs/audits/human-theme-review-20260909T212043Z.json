@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T212043Z-cba89731",
+  "plan": "docs\\audits\\theme_pneumonia_sindromes_respiratorias_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T212043Z.db",
+  "questions_reviewed": 114,
+  "questions_reclassified": 37
+}

@@ -1,0 +1,19 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Investigação das Amenorreias e Síndrome dos Ovários Policísticos (SOP)"},
+  "reviewed_question_ids": [8616, 8702, 8705, 8706, 8707, 8710, 8952, 8953, 9231, 9236, 9239, 9467, 9593, 9760, 9897, 10267, 10394, 10395, 10445, 10619, 10664, 10668, 10808, 10894, 11012, 11129, 11191, 11257, 11356, 12229, 12314, 12315, 12429, 12530, 12531, 12935, 13033, 13034, 13130, 13243, 13246, 13350, 13524, 13765, 13908, 13968, 14071, 14308, 14384, 14537, 14599, 14694, 14788, 14796, 14989, 15095, 15194, 15196, 15298, 15305, 15486, 15499, 15688, 15973, 16068, 16133, 16172, 16179, 16222, 16247, 16333, 16455, 16590, 17141, 17236],
+  "moves": [
+    {"question_id": 8707, "area": "Clínica Médica", "subtema": "Dermatologia Clínica: Farmacodermias Graves, Eczemas e Psoríase", "rationale": "Tratamento específico de acne."},
+    {"question_id": 9593, "area": "Ginecologia e Obstetrícia", "subtema": "Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos", "rationale": "Amenorreia de privação associada ao uso regular de contraceptivo hormonal combinado."},
+    {"question_id": 9897, "area": "Clínica Médica", "subtema": "Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas", "rationale": "Prevenção de HIV e cuidado de homens que fazem sexo com homens."},
+    {"question_id": 12429, "area": "Ginecologia e Obstetrícia", "subtema": "Investigação e Propêdêutica da Infertilidade Conjugal", "rationale": "Tratamento de primeira linha de infertilidade anovulatória na SOP."},
+    {"question_id": 12530, "area": "Ginecologia e Obstetrícia", "subtema": "Anatomia Cirúrgica e Estruturas Pélvicas Femininas", "rationale": "Malformação mülleriana: útero didelfo com septo vaginal."},
+    {"question_id": 13130, "area": "Ginecologia e Obstetrícia", "subtema": "Patologias Benignas e Neoplásicas da Vulva e Vagina", "rationale": "Cisto do ducto de Gartner."},
+    {"question_id": 13243, "area": "Ginecologia e Obstetrícia", "subtema": "Climatério, Menopausa e Terapia de Reposição Hormonal (TRH)", "rationale": "Sintomas climatéricos após tratamento de câncer de mama e manejo apropriado."},
+    {"question_id": 14308, "area": "Ginecologia e Obstetrícia", "subtema": "Investigação e Propêdêutica da Infertilidade Conjugal", "rationale": "Infertilidade por anovulação crônica na SOP."},
+    {"question_id": 15298, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Pré-Natal de Baixo e Alto Risco", "rationale": "Confirmação diagnóstica inicial de gravidez."},
+    {"question_id": 15973, "area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital", "rationale": "Estadiamento de prolapso pela classificação POP-Q."},
+    {"question_id": 16172, "area": "Ginecologia e Obstetrícia", "subtema": "Hemorragias da Primeira Metade: Abortamento, Ectópica e Mola", "rationale": "Critérios e seguimento de tratamento medicamentoso de gestação ectópica."},
+    {"question_id": 16333, "area": "Medicina Preventiva", "subtema": "Estudos Epidemiológicos: Medidas de Associação e Análise Estatística", "rationale": "Apresentação e interpretação de distribuição de dados estatísticos."}
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T025853Z-c7b868d9",
+  "plan": "docs\\audits\\theme_vitalidade_fetal_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T025853Z.db",
+  "questions_reviewed": 73,
+  "questions_reclassified": 18
+}

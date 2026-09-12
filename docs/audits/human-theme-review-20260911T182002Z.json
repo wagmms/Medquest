@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260911T182002Z-2b7c8f87",
+  "plan": "docs\\audits\\theme_dip_violencia_sexual_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260911T182002Z.db",
+  "questions_reviewed": 53,
+  "questions_reclassified": 12
+}

@@ -1,0 +1,16 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Síndromes Glomerulares: Nefrítica, Nefrótica e Tubulopatias"},"reviewed_question_ids":[8742,9016,9205,9683,9750,9970,10380,10425,10484,10485,10584,10594,10647,10692,10701,10784,10852,10981,11028,11029,11200,11281,11968,11969,12011,12103,12159,12303,12413,12795,13015,13122,13221,13376,13428,13442,13599,13819,13851,13931,13957,14030,14056,14132,14163,14227,14360,14440,14509,14593,14632,14769,14861,15073,15074,15136,15241,15275,15283,15334,15438,15472,15537,15771,15967,16115,16149,16157,16249,16259,16278,16359,16378,16409,16428,16459,16522,16526,16936,17028,17090,17253,17277],"moves":[
+{"question_id":9970,"area":"Pediatria","subtema":"Distúrbios Obstrutivos, Asma e Bronquiolite na Infância","rationale":"Diagnóstico e controle de asma infantil."},
+{"question_id":12103,"area":"Clínica Médica","subtema":"Injúria Renal Aguda (IRA) e Doença Renal Crônica (DRC)","rationale":"Nefrite intersticial aguda induzida por AINE."},
+{"question_id":13428,"area":"Clínica Médica","subtema":"Injúria Renal Aguda (IRA) e Doença Renal Crônica (DRC)","rationale":"Rabdomiólise com lesão renal aguda."},
+{"question_id":13931,"area":"Clínica Médica","subtema":"Injúria Renal Aguda (IRA) e Doença Renal Crônica (DRC)","rationale":"Mioglobinúria e prevenção de lesão renal aguda."},
+{"question_id":15967,"area":"Pediatria","subtema":"Diarreia Aguda, Reidratação Oral e Doenças Disabsortivas","rationale":"Doença celíaca em criança com trissomia 21."},
+{"question_id":16115,"area":"Cirurgia","subtema":"Fundamentos da Anestesiologia, Farmacologia e Bloqueios","rationale":"Dose máxima de lidocaína em anestesia local."},
+{"question_id":16149,"area":"Pediatria","subtema":"Alojamento Conjunto e Testes de Triagem Neonatal (Pezinho, Olhinho, Coraçãozinho)","rationale":"Ampliação da triagem neonatal."},
+{"question_id":16157,"area":"Pediatria","subtema":"Neonatologia: Distúrbios Metabólicos e Hipoglicemia no Recém-Nascido","rationale":"Hiperinsulinismo e hipoglicemia em lactente."},
+{"question_id":16249,"area":"Ginecologia e Obstetrícia","subtema":"Climatério, Menopausa e Terapia de Reposição Hormonal (TRH)","rationale":"Avaliação para terapia hormonal no climatério."},
+{"question_id":16259,"area":"Cirurgia","subtema":"Abdome Agudo Obstrutivo (Bridas, Neoplasias e Volvo)","rationale":"Volvo intestinal em paciente com distensão abdominal."},
+{"question_id":16278,"area":"Clínica Médica","subtema":"Diabetes Mellitus: Metas Glicêmicas, Complicações e Tratamento","rationale":"Otimização farmacológica do diabetes com albuminúria."},
+{"question_id":16359,"area":"Clínica Médica","subtema":"Leucemias, Linfomas e Mieloma Múltiplo","rationale":"Confirmação diagnóstica de leucemia mieloide crônica."},
+{"question_id":16409,"area":"Pediatria","subtema":"Arritmias, Síncope e Parada Cardiorrespiratória Pediátrica (PALS)","rationale":"Taquicardia supraventricular pediátrica."},
+{"question_id":16459,"area":"Ginecologia e Obstetrícia","subtema":"Afecções do Corpo Uterino, Endométrio e Sangramento Pós-Menopausa","rationale":"Sangramento pós-menopausa e lesão endometrial."}
+]}

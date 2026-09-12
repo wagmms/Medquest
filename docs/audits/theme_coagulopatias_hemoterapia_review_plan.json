@@ -1,0 +1,14 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Coagulopatias, Trombofilias, Púrpuras e Hemoterapia"},"reviewed_question_ids":[8527,8633,8706,8730,8979,9201,9422,9619,9652,9808,10223,10387,10418,10655,10822,10891,11192,11218,11269,11970,12019,12020,12090,12568,12584,12668,12684,12881,12895,12900,13000,13289,13549,13586,14105,14351,14352,14433,14905,14931,15072,15385,15442,15443,15476,15534,15579,15668,15768,15777,15843,16128,16330,16363,16929,17029,17075],"moves":[
+{"question_id":8527,"area":"Ginecologia e Obstetrícia","subtema":"Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos","rationale":"Aconselhamento sobre contraceptivo combinado e rastreio de trombofilia."},
+{"question_id":8706,"area":"Ginecologia e Obstetrícia","subtema":"Investigação das Amenorreias e Síndrome dos Ovários Policísticos (SOP)","rationale":"Objetivo do contraceptivo oral combinado na SOP."},
+{"question_id":8979,"area":"Clínica Médica","subtema":"Taquiarritmias, Bradiarritmias, Síncope e Suporte Avançado (ACLS)","rationale":"Fibrilação atrial e prevenção de AVC."},
+{"question_id":9808,"area":"Cirurgia","subtema":"Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)","rationale":"Estadiamento e conduta no câncer de reto."},
+{"question_id":12568,"area":"Cirurgia","subtema":"Hérnias da Parede Abdominal (Inguinais, Femorais e Incisionais)","rationale":"Dor crônica após hernioplastia inguinal."},
+{"question_id":12584,"area":"Cirurgia","subtema":"Litíase Biliar, Colecistite, Coledocolitíase e Colangite","rationale":"Abscesso hepático piogênico e etiologia biliar."},
+{"question_id":13549,"area":"Clínica Médica","subtema":"Acidente Vascular Cerebral Isquêmico e Hemorrágico (Janela de Trombólise)","rationale":"Evento intracraniano hemorrágico sob anticoagulação."},
+{"question_id":14352,"area":"Cirurgia","subtema":"Litíase Biliar, Colecistite, Coledocolitíase e Colangite","rationale":"Manejo da coledocolitíase em preparo para colecistectomia."},
+{"question_id":15442,"area":"Pediatria","subtema":"Imunodeficiências, Alergias e Anafilaxia na Infância","rationale":"Associação de bactérias com doenças infecciosas pediátricas."},
+{"question_id":16330,"area":"Ginecologia e Obstetrícia","subtema":"Assistência Clínica ao Trabalho de Parto, Partograma e Distocias","rationale":"Interpretação do trabalho de parto pelo partograma."},
+{"question_id":16929,"area":"Clínica Médica","subtema":"Neuropatias Periféricas, Miastenia Gravis e Doenças Neuromusculares","rationale":"HINTS em neurite vestibular periférica."},
+{"question_id":17029,"area":"Pediatria","subtema":"Afecções de Vias Aéreas Superiores: OMA, Sinusite e Faringoamigdalite","rationale":"Faringoamigdalite e conduta pediátrica."}
+]}

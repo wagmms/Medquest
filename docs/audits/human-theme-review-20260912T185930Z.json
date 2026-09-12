@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T185930Z-99da902c",
+  "plan": "docs\\audits\\theme_vigilancia_saude_sinan_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T185930Z.db",
+  "questions_reviewed": 53,
+  "questions_reclassified": 9
+}

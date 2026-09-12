@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260910T133541Z-2b076628",
+  "plan": "docs\\audits\\theme_rastreamento_citopatologico_hpv_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260910T133541Z.db",
+  "questions_reviewed": 77,
+  "questions_reclassified": 15
+}

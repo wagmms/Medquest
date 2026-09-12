@@ -1,0 +1,106 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Clínica Médica",
+    "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos"
+  },
+  "reviewed_question_ids": [8818, 8978, 9717, 9730, 9937, 10213, 10275, 10382, 10385, 10430, 10579, 10596, 10733, 10776, 11034, 11985, 12012, 12153, 12176, 12214, 12343, 12513, 12519, 12580, 12612, 12626, 12680, 12712, 12726, 12893, 12912, 12921, 12926, 13296, 13318, 13342, 13368, 13394, 13444, 13481, 13717, 13731, 13792, 13818, 13861, 13888, 14023, 14052, 14100, 14141, 14159, 14212, 14224, 14337, 14939, 14941, 14985, 14986, 15039, 15047, 15429, 15475, 15781, 16003, 16014, 16034, 16052, 16138, 16139, 16140, 16404, 16405, 16688, 16701, 16726, 16738, 16788, 16801, 16838, 16851, 16928, 17049, 17053, 17203, 17263],
+  "moves": [
+    {
+      "question_id": 9937,
+      "area": "Clínica Médica",
+      "subtema": "Diabetes Mellitus: Metas Glicêmicas, Complicações e Tratamento",
+      "rationale": "Quadro de cetoacidose diabética; o foco é diagnóstico e manejo do diabetes agudamente descompensado."
+    },
+    {
+      "question_id": 12580,
+      "area": "Cirurgia",
+      "subtema": "Trauma de Face e Pescoço (Trauma Cervical e Fraturas Maxilofaciais)",
+      "rationale": "Aborda trauma esofágico cervical, uma lesão traumática de pescoço, e não toxicologia."
+    },
+    {
+      "question_id": 12626,
+      "area": "Pediatria",
+      "subtema": "Diarreia Aguda, Reidratação Oral e Doenças Disabsortivas",
+      "rationale": "Caso pediátrico de diarreia aguda e avaliação de desidratação."
+    },
+    {
+      "question_id": 12912,
+      "area": "Pediatria",
+      "subtema": "Calendário Vacinal do PNI e Imunizações Especiais",
+      "rationale": "Questão sobre a vacina contra rotavírus e suas regras de administração."
+    },
+    {
+      "question_id": 14941,
+      "area": "Clínica Médica",
+      "subtema": "Diabetes Mellitus: Metas Glicêmicas, Complicações e Tratamento",
+      "rationale": "Quadro de cetoacidose diabética e sua condução terapêutica."
+    },
+    {
+      "question_id": 14985,
+      "area": "Pediatria",
+      "subtema": "Imunodeficiências, Alergias e Anafilaxia na Infância",
+      "rationale": "Anafilaxia pediátrica refratária, com ênfase no tratamento adjuvante."
+    },
+    {
+      "question_id": 16003,
+      "area": "Cirurgia",
+      "subtema": "Trauma Abdominal Fechado e Penetrante (FAST e Laparotomia)",
+      "rationale": "Ferimento penetrante abdominal com suspeita de lesão colorretal; a decisão é de abordagem do trauma abdominal."
+    },
+    {
+      "question_id": 16014,
+      "area": "Cirurgia",
+      "subtema": "Cirurgia Bariátrica e Metabólica",
+      "rationale": "Dor obstrutiva tardia após bypass gástrico em Y de Roux, típica complicação bariátrica."
+    },
+    {
+      "question_id": 16034,
+      "area": "Clínica Médica",
+      "subtema": "Injúria Renal Aguda (IRA) e Doença Renal Crônica (DRC)",
+      "rationale": "A pergunta solicita o diagnóstico e a conduta da IRA por rabdomiólise."
+    },
+    {
+      "question_id": 16688,
+      "area": "Cirurgia",
+      "subtema": "Aneurismas de Aorta Abdominal e Torácica",
+      "rationale": "Aneurisma de aorta abdominal roto, com choque e hematoma retroperitoneal."
+    },
+    {
+      "question_id": 16701,
+      "area": "Cirurgia",
+      "subtema": "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino",
+      "rationale": "Estadiamento mediastinal e estratégia terapêutica no câncer de pulmão."
+    },
+    {
+      "question_id": 16738,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento",
+      "rationale": "Manejo de náuseas e vômitos induzidos pela quimioterapia adjuvante do câncer de mama."
+    },
+    {
+      "question_id": 16788,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Vulvovaginites e Diagnóstico Diferencial dos Corrimentos Vaginais",
+      "rationale": "Corrimento vaginal por vaginose citolítica, um diagnóstico diferencial de vulvovaginite."
+    },
+    {
+      "question_id": 16801,
+      "area": "Cirurgia",
+      "subtema": "Polipose Adenomatosa Familiar (PAF) e Síndromes Hereditárias",
+      "rationale": "Mutação em MLH1 e conduta na síndrome hereditária de câncer colorretal."
+    },
+    {
+      "question_id": 16838,
+      "area": "Pediatria",
+      "subtema": "Arritmias, Síncope e Parada Cardiorrespiratória Pediátrica (PALS)",
+      "rationale": "O foco é o suporte avançado de via aérea pediátrica e a escolha do tubo endotraqueal."
+    },
+    {
+      "question_id": 16851,
+      "area": "Pediatria",
+      "subtema": "Sepse Pediátrica, Choque e Ressuscitação Hemodinâmica",
+      "rationale": "Neutropenia febril com choque séptico e enterocolite em paciente pediátrico oncológico."
+    }
+  ]
+}

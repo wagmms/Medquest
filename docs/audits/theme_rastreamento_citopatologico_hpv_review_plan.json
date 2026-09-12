@@ -1,0 +1,25 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Ginecologia e Obstetrícia",
+    "subtema": "Rastreamento Citopatológico e Conduta em Lesões Cervicais (HPV)"
+  },
+  "reviewed_question_ids": [8623, 8713, 8915, 8957, 8999, 9904, 10063, 10262, 10449, 10557, 10565, 10661, 10897, 11009, 11267, 11355, 11474, 11560, 12111, 12236, 12292, 12433, 12435, 12641, 12642, 12741, 12742, 12846, 12855, 12932, 12946, 13231, 13304, 13405, 13523, 13610, 13763, 13770, 13834, 13904, 13971, 14180, 14381, 14460, 14529, 14607, 14695, 14741, 14792, 14872, 15099, 15197, 15304, 15507, 15523, 15692, 15798, 15808, 15888, 15981, 15985, 16063, 16178, 16228, 16232, 16238, 16290, 16315, 16338, 16390, 16440, 16586, 16593, 16601, 16990, 17138, 17240],
+  "moves": [
+    {"question_id": 9904, "area": "Clínica Médica", "subtema": "Cefaleias Primárias (Enxaqueca, Tensional) e Secundárias de Alarme", "rationale": "Migrânea com cefaleia por uso excessivo de analgésicos."},
+    {"question_id": 10063, "area": "Pediatria", "subtema": "Cardiopatias Congênitas Cianogênicas e Acianogênicas", "rationale": "Lactente com cardiopatia congênita cianótica e crise hipoxêmica."},
+    {"question_id": 10557, "area": "Ginecologia e Obstetrícia", "subtema": "Úlceras Genitais e Infecções Sexualmente Transmissíveis na Mulher", "rationale": "Condilomatose anogenital na gestação."},
+    {"question_id": 12641, "area": "Ginecologia e Obstetrícia", "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal", "rationale": "Interpretação de perfil biofísico fetal e cardiotocografia."},
+    {"question_id": 12642, "area": "Ginecologia e Obstetrícia", "subtema": "Bacia Obstétrica, Estática Fetal e Mecanismo do Parto", "rationale": "Mecanismo do parto e progressão fetal no trajeto pélvico."},
+    {"question_id": 12932, "area": "Ginecologia e Obstetrícia", "subtema": "Sangramento Uterino Anormal (SUA) e Classificação PALM-COEIN / Miomatose", "rationale": "Classificação e manejo etiológico de sangramento uterino anormal."},
+    {"question_id": 13304, "area": "Ginecologia e Obstetrícia", "subtema": "Doença Inflamatória Pélvica (DIP) e Atendimento à Violência Sexual", "rationale": "Atendimento após violência sexual e profilaxia vacinal indicada."},
+    {"question_id": 15304, "area": "Ginecologia e Obstetrícia", "subtema": "Úlceras Genitais e Infecções Sexualmente Transmissíveis na Mulher", "rationale": "Diagnóstico e tratamento inicial de verrugas genitais por HPV."},
+    {"question_id": 15981, "area": "Ginecologia e Obstetrícia", "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)", "rationale": "Profilaxia intraparto para estreptococo do grupo B."},
+    {"question_id": 16063, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento", "rationale": "Fatores que modificam o risco de câncer de mama."},
+    {"question_id": 16178, "area": "Ginecologia e Obstetrícia", "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)", "rationale": "Prevenção de toxoplasmose congênita em gestante suscetível."},
+    {"question_id": 16290, "area": "Cirurgia", "subtema": "Abordagem Cirúrgica das Doenças Inflamatórias Intestinais (Crohn e RCU)", "rationale": "Retocolite ulcerativa, diagnóstico e tratamento inicial."},
+    {"question_id": 16338, "area": "Medicina Preventiva", "subtema": "Legislação, Diretrizes e Evolução do SUS", "rationale": "Natureza administrativa e autonomia regulatória da ANVISA."},
+    {"question_id": 16390, "area": "Clínica Médica", "subtema": "Vasculites Sistêmicas dos Grandes, Médios e Pequenos Vasos", "rationale": "Doença de Behçet com trombose venosa e indicação de imunossupressão."},
+    {"question_id": 16440, "area": "Pediatria", "subtema": "Anemias Carenciais e Distúrbios de Micronutrientes (Ferro, Vitamina D)", "rationale": "Anemia ferropriva em lactente e recomendações nutricionais pediátricas."}
+  ]
+}

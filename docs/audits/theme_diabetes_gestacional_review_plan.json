@@ -1,0 +1,11 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Diabetes Gestacional e Pré-Gestacional"},
+  "reviewed_question_ids": [8608, 8717, 8921, 9490, 9607, 9764, 9889, 10067, 10254, 10407, 10440, 10799, 11140, 11145, 11263, 11479, 11484, 11564, 12032, 12447, 12634, 12653, 12734, 12753, 12945, 13038, 13302, 13455, 13516, 13760, 13905, 14080, 14380, 14462, 14525, 14801, 14885, 15006, 15102, 15191, 15403, 15498, 15791, 15793, 17145, 17227],
+  "moves": [
+    {"question_id": 9889, "area": "Medicina Preventiva", "subtema": "Delineamentos e Classificação dos Estudos Epidemiológicos", "rationale": "Mascaramento e prevenção de vieses em ensaios clínicos randomizados."},
+    {"question_id": 10067, "area": "Pediatria", "subtema": "Baixa Estatura, Puberdade Precoce e Atraso Puberal", "rationale": "Investigação de baixa estatura e atraso de idade óssea em adolescente."},
+    {"question_id": 12634, "area": "Ginecologia e Obstetrícia", "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade", "rationale": "Fisiologia do líquido amniótico e sua eliminação fetal."},
+    {"question_id": 12653, "area": "Medicina Preventiva", "subtema": "Avaliação de Testes Diagnósticos e Curva ROC", "rationale": "Cálculo e interpretação de sensibilidade, especificidade e resultados de teste diagnóstico."}
+  ]
+}

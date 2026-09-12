@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T141233Z-2f5c6dfa",
+  "plan": "docs\\audits\\theme_vasculites_infancia_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T141233Z.db",
+  "questions_reviewed": 23,
+  "questions_reclassified": 1
+}

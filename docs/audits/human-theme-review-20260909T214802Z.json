@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T214802Z-52d3a3af",
+  "plan": "docs\\audits\\theme_infeccoes_partes_moles_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T214802Z.db",
+  "questions_reviewed": 25,
+  "questions_reclassified": 9
+}

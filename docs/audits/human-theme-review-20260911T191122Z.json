@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260911T191122Z-e9c4f4e3",
+  "plan": "docs\\audits\\theme_vulvovaginites_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260911T191122Z.db",
+  "questions_reviewed": 36,
+  "questions_reclassified": 5
+}

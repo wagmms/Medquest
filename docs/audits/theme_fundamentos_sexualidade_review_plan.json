@@ -1,0 +1,8 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Fundamentos em Sexualidade Humana e Saúde Reprodutiva"},
+  "reviewed_question_ids": [10457, 11323, 14809, 16193, 16645],
+  "moves": [
+    {"question_id":16645,"area":"Ginecologia e Obstetrícia","subtema":"Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos","rationale":"A decisão clínica solicitada é sobre início de contracepção hormonal na adolescência."}
+  ]
+}

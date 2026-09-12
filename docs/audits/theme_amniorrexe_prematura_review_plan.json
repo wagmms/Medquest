@@ -1,0 +1,40 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Ginecologia e Obstetrícia",
+    "subtema": "Amniorrexe Prematura (RPMO) e Corioamnionite"
+  },
+  "reviewed_question_ids": [8621, 8928, 8929, 9610, 9902, 9982, 10066, 10256, 10438, 10791, 10962, 11266, 11563, 13759, 13909, 14379, 15101, 15105, 15202, 15292, 15900, 16072, 16081, 16166, 16328, 17153],
+  "moves": [
+    {
+      "question_id": 8621,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Trabalho de Parto Prematuro e Tocólise",
+      "rationale": "Há trabalho de parto prematuro com colo dilatado e membranas íntegras, sem diagnóstico de RPMO."
+    },
+    {
+      "question_id": 9902,
+      "area": "Pediatria",
+      "subtema": "Anemias Carenciais e Distúrbios de Micronutrientes (Ferro, Vitamina D)",
+      "rationale": "A questão cobra a dose profilática de vitamina D na criança."
+    },
+    {
+      "question_id": 10066,
+      "area": "Clínica Médica",
+      "subtema": "Hipertensão Arterial Sistêmica e Crises Hipertensivas",
+      "rationale": "O quadro de hipertensão grave com sintomas neurológicos e PRES exige manejo de crise hipertensiva."
+    },
+    {
+      "question_id": 16072,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Assistência Pré-Natal de Baixo e Alto Risco",
+      "rationale": "A questão trata da atualização vacinal na primeira consulta de pré-natal."
+    },
+    {
+      "question_id": 16166,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade",
+      "rationale": "A confirmação ultrassonográfica de corionicidade em gestação gemelar é conteúdo de medicina fetal."
+    }
+  ]
+}

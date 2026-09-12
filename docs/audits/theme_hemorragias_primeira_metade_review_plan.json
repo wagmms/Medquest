@@ -1,0 +1,58 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Ginecologia e Obstetrícia",
+    "subtema": "Hemorragias da Primeira Metade: Abortamento, Ectópica e Mola"
+  },
+  "reviewed_question_ids": [8714, 8964, 9245, 9601, 9754, 9763, 9974, 10410, 10446, 10566, 10658, 10663, 10964, 11146, 11482, 11556, 12031, 12046, 12120, 12192, 12446, 12628, 12633, 12643, 12728, 12733, 12828, 12941, 13044, 13138, 13195, 13245, 13307, 13404, 13615, 13764, 13964, 14072, 14075, 14305, 14378, 14532, 14606, 14879, 15188, 15199, 15257, 15980, 15982, 16079, 16172, 16510, 16560, 16610, 16660, 16767, 16771, 16973, 17136, 17235],
+  "moves": [
+    {
+      "question_id": 9974,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade",
+      "rationale": "O diagnóstico é determinado pela discordância de crescimento e pelo líquido amniótico em gestação gemelar."
+    },
+    {
+      "question_id": 12628,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal",
+      "rationale": "A interpretação de taquicardia, variabilidade reduzida e ausência de acelerações na cardiotocografia é avaliação de vitalidade fetal."
+    },
+    {
+      "question_id": 12633,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade",
+      "rationale": "A avaliação de líquido amniótico em gestação monocoriônica monoamniótica pertence à medicina fetal."
+    },
+    {
+      "question_id": 15980,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Bacia Obstétrica, Estática Fetal e Mecanismo do Parto",
+      "rationale": "A identificação do tipo de pelve pela pelvimetria clínica é conteúdo de estática fetal e bacia obstétrica."
+    },
+    {
+      "question_id": 16510,
+      "area": "Cirurgia",
+      "subtema": "Cirurgia Cardíaca: Revascularização Miocárdica e Cirurgia Valvar",
+      "rationale": "O caso trata da indicação terapêutica para estenose aórtica grave em paciente idosa."
+    },
+    {
+      "question_id": 16560,
+      "area": "Clínica Médica",
+      "subtema": "Endocardite Infecciosa e Sepse de Foco Endovascular",
+      "rationale": "A pergunta cobra critérios e relação diagnóstica de endocardite infecciosa."
+    },
+    {
+      "question_id": 16610,
+      "area": "Ginecologia e Obstetrícia",
+      "subtema": "Investigação das Amenorreias e Síndrome dos Ovários Policísticos (SOP)",
+      "rationale": "Amenorreia secundária com FSH persistentemente elevado exige investigação de insuficiência ovariana primária."
+    },
+    {
+      "question_id": 16660,
+      "area": "Pediatria",
+      "subtema": "Doenças Exantemáticas e Diagnóstico Diferencial dos Exantemas",
+      "rationale": "Exantema morbiliforme e manchas de Koplik caracterizam sarampo e a conduta em contatos pediátricos."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Neuropatias Periféricas, Miastenia Gravis e Doenças Neuromusculares"},"reviewed_question_ids":[8643,8987,8989,9166,9208,9627,9628,10505,10603,10836,10927,11046,11107,11194,11369,11370,11388,11426,11469,12092,12093,12598,12774,12892,12995,12998,13079,13168,13182,13371,13483,13545,14040,14413,14671,14896,15033,15340,15375,15828,16371,16372,16932,17080],"moves":[
+{"question_id":8987,"area":"Cirurgia","subtema":"Trauma Raquimedular (TRM) e Lesões Vertebrais","rationale":"Síndrome medular com nível sensitivo e disfunção esfincteriana."},
+{"question_id":9166,"area":"Cirurgia","subtema":"Trauma Raquimedular (TRM) e Lesões Vertebrais","rationale":"Síndrome da cauda equina e descompressão urgente."},
+{"question_id":9628,"area":"Clínica Médica","subtema":"Neurointensivismo, Morte Encefálica e Cuidados Críticos","rationale":"Aplicação da escala de coma de Glasgow."},
+{"question_id":10603,"area":"Cirurgia","subtema":"Luxações Articulares e Lesões Ligamentares / Meniscais","rationale":"Sedação para redução de luxação de cotovelo."},
+{"question_id":12774,"area":"Clínica Médica","subtema":"Neurointensivismo, Morte Encefálica e Cuidados Críticos","rationale":"Componentes da escala de coma de Glasgow."},
+{"question_id":13182,"area":"Clínica Médica","subtema":"Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses","rationale":"Síndrome neuroléptica maligna e terapêutica."},
+{"question_id":13371,"area":"Cirurgia","subtema":"Tendinopatias, Bursites e Síndromes por Sobrecarga Musculoesquelética","rationale":"Síndrome radicular lombar por lombociatalgia."},
+{"question_id":14040,"area":"Cirurgia","subtema":"Fraturas Ósseas e Princípios Gerais de Osteossíntese","rationale":"Lesão do nervo radial em trauma de braço."},
+{"question_id":14413,"area":"Cirurgia","subtema":"Trauma Raquimedular (TRM) e Lesões Vertebrais","rationale":"Síndrome da cauda equina."},
+{"question_id":14896,"area":"Clínica Médica","subtema":"Neurointensivismo, Morte Encefálica e Cuidados Críticos","rationale":"Cálculo da escala de coma de Glasgow."},
+{"question_id":15033,"area":"Clínica Médica","subtema":"Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses","rationale":"Síndrome neuroléptica maligna por antipsicótico."},
+{"question_id":15828,"area":"Clínica Médica","subtema":"Psiquiatria: Transtornos do Humor, Ansiedade e Psicoses","rationale":"Diagnóstico diferencial de síndrome neuroléptica maligna."}
+]}

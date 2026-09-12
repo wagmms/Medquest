@@ -1,0 +1,11 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Clínica Médica",
+    "subtema": "Políticas de Saúde Mental e Atenção Psicossocial (CAPS)"
+  },
+  "reviewed_question_ids": [10904, 11165, 12070, 12080, 12453, 14396, 14714, 16348],
+  "moves": [
+    {"question_id": 16348, "area": "Medicina Preventiva", "subtema": "Saúde do Trabalhador e Doenças Ocupacionais", "rationale": "Dermatose ocupacional associada a exposição em construção civil."}
+  ]
+}

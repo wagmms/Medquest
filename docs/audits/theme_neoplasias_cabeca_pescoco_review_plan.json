@@ -1,0 +1,19 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Cirurgia",
+    "subtema": "Neoplasias de Cabeça e Pescoço e Nódulos Tireoidianos Cirúrgicos"
+  },
+  "reviewed_question_ids": [8942, 9455, 9663, 9707, 9927, 10307, 10332, 10770, 10842, 13202, 13331, 13432, 14572, 15946, 16267, 16367, 16417, 16778, 16828, 16896, 17213],
+  "moves": [
+    {"question_id": 9707, "area": "Clínica Médica", "subtema": "Leucemias, Linfomas e Mieloma Múltiplo", "rationale": "Investigação diagnóstica de provável linfoma por biópsia excisional."},
+    {"question_id": 9927, "area": "Cirurgia", "subtema": "Cirurgia Bariátrica e Metabólica", "rationale": "Critérios de indicação de cirurgia bariátrica."},
+    {"question_id": 13432, "area": "Cirurgia", "subtema": "Cirurgia de Cabeça e Pescoço: Afecções Cervicais Benignas e Cistos Congênitos", "rationale": "Massa cervical lateral crônica compatível com cisto branquial."},
+    {"question_id": 15946, "area": "Clínica Médica", "subtema": "Acidente Vascular Cerebral Isquêmico e Hemorrágico (Janela de Trombólise)", "rationale": "Etiologia de AVC isquêmico por estenose carotídea."},
+    {"question_id": 16267, "area": "Cirurgia", "subtema": "Trauma Abdominal Fechado e Penetrante (FAST e Laparotomia)", "rationale": "Trauma vesical após colisão automobilística."},
+    {"question_id": 16367, "area": "Clínica Médica", "subtema": "Neurointensivismo, Morte Encefálica e Cuidados Críticos", "rationale": "Critérios CFM para morte encefálica."},
+    {"question_id": 16417, "area": "Pediatria", "subtema": "Neonatologia: Infecções Congênitas (TORCH) e Sepse Neonatal", "rationale": "Avaliação de febre em lactente jovem."},
+    {"question_id": 16778, "area": "Ginecologia e Obstetrícia", "subtema": "Hemorragias da Segunda Metade: Placenta Prévia e DPP", "rationale": "Descolamento prematuro de placenta a termo."},
+    {"question_id": 16828, "area": "Clínica Médica", "subtema": "Meningites, Encefalites e Infecções do SNC", "rationale": "Meningite viral com líquor linfocitário."}
+  ]
+}

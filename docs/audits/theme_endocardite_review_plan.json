@@ -1,0 +1,11 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Endocardite Infecciosa e Sepse de Foco Endovascular"},"reviewed_question_ids":[8564,8846,9814,9845,10043,10271,11434,11540,11983,12180,13573,14342,14928,15244,15447,15531,15542,15647,16118,16494,16544,16594,16644,16955],"moves":[
+{"question_id":9845,"area":"Pediatria","subtema":"Alojamento Conjunto e Testes de Triagem Neonatal (Pezinho, Olhinho, Coraçãozinho)","rationale":"Interpretação do teste do coraçãozinho."},
+{"question_id":10043,"area":"Clínica Médica","subtema":"Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas","rationale":"Osteoartrite de mãos e manejo inicial."},
+{"question_id":11540,"area":"Cirurgia","subtema":"Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas","rationale":"Coleção subfrênica infectada no pós-operatório abdominal."},
+{"question_id":13573,"area":"Clínica Médica","subtema":"Lúpus Eritematoso Sistêmico (LES), Esclerose Sistêmica e Miopatias Inflamatórias","rationale":"Lúpus com manifestação renal e pulmonar; diagnóstico diferencial reumatológico."},
+{"question_id":16118,"area":"Cirurgia","subtema":"Trauma Abdominal Fechado e Penetrante (FAST e Laparotomia)","rationale":"Ferimento penetrante abdominal com evisceração e peritonite."},
+{"question_id":16494,"area":"Cirurgia","subtema":"Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)","rationale":"Metástases hepáticas de adenocarcinoma de cólon e estratégia terapêutica."},
+{"question_id":16544,"area":"Clínica Médica","subtema":"Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática","rationale":"Colestase em paciente com DII, compatível com colangite esclerosante primária."},
+{"question_id":16594,"area":"Ginecologia e Obstetrícia","subtema":"Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento","rationale":"Carcinoma oculto de mama manifestado como adenocarcinoma axilar."},
+{"question_id":16644,"area":"Pediatria","subtema":"Baixa Estatura, Puberdade Precoce e Atraso Puberal","rationale":"Estadiamento de Tanner e aconselhamento sobre puberdade."}
+]}

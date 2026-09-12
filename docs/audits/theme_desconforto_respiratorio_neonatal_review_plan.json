@@ -1,0 +1,6 @@
+{"reviewer":"codex-theme-review","source":{"area":"Pediatria","subtema":"Neonatologia: Desconforto Respiratório e Doença da Membrana Hialina"},"reviewed_question_ids":[9746,10095,10100,10976,11398,11500,11592,11597,12615,12619,12719,14168,14677,15377,15569,15571,15572,15779,16412,17035,17039],"moves":[
+{"question_id":10095,"area":"Medicina Preventiva","subtema":"Avaliação de Testes Diagnósticos e Curva ROC","rationale":"A seleção de ponto de corte e associação de testes em série/paralelo é avaliação diagnóstica."},
+{"question_id":10100,"area":"Medicina Preventiva","subtema":"Estudos Epidemiológicos: Medidas de Associação e Análise Estatística","rationale":"O cálculo de NNT e NNH em ensaio clínico é medida de efeito epidemiológica."},
+{"question_id":12619,"area":"Pediatria","subtema":"Constipação Intestinal Funcional e Orgânica","rationale":"O quadro descreve constipação funcional com retenção e escapes fecais."},
+{"question_id":15572,"area":"Pediatria","subtema":"Alojamento Conjunto e Testes de Triagem Neonatal (Pezinho, Olhinho, Coraçãozinho)","rationale":"A questão solicita conduta após teste de oximetria/coraçãozinho alterado."}
+]}

@@ -1,0 +1,21 @@
+{"reviewer":"codex-theme-review","source":{"area":"Pediatria","subtema":"Anemias Carenciais e Distúrbios de Micronutrientes (Ferro, Vitamina D)"},"reviewed_question_ids":[9673,9902,9999,10036,10052,10279,10363,10377,10651,10788,10827,10890,11374,11529,11533,12150,12221,12288,12523,12803,13480,13885,13939,13954,14063,14129,14230,14629,14685,14945,14970,15274,15968,16027,16148,16248,16329,16439,16440,16483,16487,16533,16537,16583,16587,16633,16637],"moves":[
+{"question_id":10036,"area":"Clínica Médica","subtema":"Injúria Renal Aguda (IRA) e Doença Renal Crônica (DRC)","rationale":"A questão trata de tratamento e complicações da DRC diabética."},
+{"question_id":10279,"area":"Cirurgia","subtema":"Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos","rationale":"Esteatorreia por pancreatite crônica e deficiência de vitaminas lipossolúveis."},
+{"question_id":10363,"area":"Cirurgia","subtema":"Cirurgia Bariátrica e Metabólica","rationale":"Deficiência vitamínica tardia após cirurgia bariátrica."},
+{"question_id":10827,"area":"Cirurgia","subtema":"Cirurgia Bariátrica e Metabólica","rationale":"Deficiência de tiamina após nutrição parenteral incompleta em pós-operatório digestivo."},
+{"question_id":11374,"area":"Clínica Médica","subtema":"Diagnóstico Diferencial das Anemias e Hemoglobinopatias","rationale":"Manifestações neurológicas de deficiência de B12 requerem diagnóstico diferencial de anemia."},
+{"question_id":11533,"area":"Cirurgia","subtema":"Cirurgia Bariátrica e Metabólica","rationale":"Encefalopatia de Wernicke tardia após cirurgia bariátrica."},
+{"question_id":12803,"area":"Pediatria","subtema":"Aleitamento Materno, Alimentação Complementar e Desnutrição Infantil","rationale":"A questão é sobre desnutrição infantil."},
+{"question_id":13939,"area":"Clínica Médica","subtema":"Distúrbios Eletrolíticos (Sódio, Potássio) e Equilíbrio Ácido-Base","rationale":"Hipofosfatemia, hipomagnesemia e hipocalemia após dieta indicam síndrome de realimentação."},
+{"question_id":16027,"area":"Clínica Médica","subtema":"Diagnóstico Diferencial das Anemias e Hemoglobinopatias","rationale":"Anemia ferropriva refratária em adulto requer investigação etiológica."},
+{"question_id":16148,"area":"Clínica Médica","subtema":"Diagnóstico Diferencial das Anemias e Hemoglobinopatias","rationale":"Crise falciforme em criança é doença hematológica hereditária."},
+{"question_id":16248,"area":"Ginecologia e Obstetrícia","subtema":"Investigação das Amenorreias e Síndrome dos Ovários Policísticos (SOP)","rationale":"Amenorreia hipotalâmica funcional é causa de amenorreia."},
+{"question_id":16329,"area":"Ginecologia e Obstetrícia","subtema":"Hemorragias da Segunda Metade: Placenta Prévia e DPP","rationale":"A questão aborda fisiopatologia e amniotomia no descolamento prematuro de placenta."},
+{"question_id":16487,"area":"Cirurgia","subtema":"Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)","rationale":"Câncer de vesícula biliar e reabordagem oncológica são cirurgia oncológica gastrointestinal."},
+{"question_id":16533,"area":"Clínica Médica","subtema":"Asma e Doença Pulmonar Obstrutiva Crônica (DPOC)","rationale":"Dispneia e hipoxemia em obesidade com avaliação respiratória são síndrome de hipoventilação da obesidade."},
+{"question_id":16537,"area":"Clínica Médica","subtema":"Asma e Doença Pulmonar Obstrutiva Crônica (DPOC)","rationale":"A pergunta trata de escalonamento farmacológico na DPOC."},
+{"question_id":16583,"area":"Ginecologia e Obstetrícia","subtema":"Afecções do Corpo Uterino, Endométrio e Sangramento Pós-Menopausa","rationale":"Sangramento pós-menopausa com endométrio espessado requer investigação endometrial."},
+{"question_id":16587,"area":"Ginecologia e Obstetrícia","subtema":"Sangramento Uterino Anormal (SUA) e Classificação PALM-COEIN / Miomatose","rationale":"SUA refratário associado a miomatose é o foco."},
+{"question_id":16633,"area":"Clínica Médica","subtema":"Leucemias, Linfomas e Mieloma Múltiplo","rationale":"Dor óssea, palidez, equimoses e hepatoesplenomegalia sugerem leucemia aguda."},
+{"question_id":16637,"area":"Pediatria","subtema":"Sepse Pediátrica, Choque e Ressuscitação Hemodinâmica","rationale":"Criança em choque com foco pulmonar requer ressuscitação e abordagem de sepse."}
+]}

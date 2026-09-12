@@ -1,0 +1,13 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Sepse Pediátrica, Choque e Ressuscitação Hemodinâmica"
+  },
+  "reviewed_question_ids": [8562, 8727, 8729, 9015, 9203, 9682, 9837, 10221, 10789, 10970, 10977, 12415, 12616, 13752, 15084, 15085, 15384, 15775, 15877, 16143, 16416, 16417, 16635, 16637, 16640, 16835, 16851, 17019, 17020, 17106],
+  "moves": [
+    {"question_id": 12616, "area": "Clínica Médica", "subtema": "Valvopatias Adquiridas e Miocardiopatias", "rationale": "Miocardite aguda evoluindo com choque cardiogênico."},
+    {"question_id": 13752, "area": "Clínica Médica", "subtema": "Celulite, Erisipela, Osteomielite e Infecções de Partes Moles", "rationale": "Artrite séptica e identificação de agente bacteriano em criança não vacinada."},
+    {"question_id": 16851, "area": "Clínica Médica", "subtema": "Leucemias, Linfomas e Mieloma Múltiplo", "rationale": "Neutropenia febril e enterocolite neutropênica em paciente com leucemia aguda."}
+  ]
+}

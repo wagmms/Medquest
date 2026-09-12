@@ -1,0 +1,11 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Cirurgia", "subtema": "Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos"},
+  "reviewed_question_ids": [8687, 8853, 9214, 9449, 9654, 9778, 9998, 10494, 10627, 10752, 11412, 12005, 12143, 12203, 12283, 12396, 12397, 12604, 12704, 12787, 13100, 13200, 13944, 14037, 14218, 14493, 14597, 14662, 14761, 15151, 15167, 15361, 15555, 15741, 15765, 15971, 15999, 17174],
+  "moves": [
+    {"question_id": 9998, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Interpretação de ecomapa em contexto de atenção familiar e comunitária."},
+    {"question_id": 12604, "area": "Clínica Médica", "subtema": "Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática", "rationale": "Peritonite bacteriana espontânea e prevenção de síndrome hepatorrenal em paciente cirrótico."},
+    {"question_id": 15971, "area": "Pediatria", "subtema": "Aleitamento Materno, Alimentação Complementar e Desnutrição Infantil", "rationale": "Proctocolite alérgica em lactente em aleitamento materno e exclusão materna de leite de vaca."},
+    {"question_id": 15999, "area": "Clínica Médica", "subtema": "Síndromes Febris Agudas e Arboviroses (Dengue, Chikungunya, Febre Amarela)", "rationale": "Síndrome febril aguda compatível com leptospirose após exposição a alagamento."}
+  ]
+}

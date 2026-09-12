@@ -1,0 +1,14 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Cirurgia",
+    "subtema": "Polipose Adenomatosa Familiar (PAF) e Síndromes Hereditárias"
+  },
+  "reviewed_question_ids": [10021, 12269, 12499, 12987, 13389],
+  "moves": [
+    {"question_id": 10021, "area": "Cirurgia", "subtema": "Coloproctologia: Doenças Orificiais e Afecções Colorretais", "rationale": "Estratificação histológica de risco de pólipo colorretal esporádico."},
+    {"question_id": 12269, "area": "Cirurgia", "subtema": "Coloproctologia: Doenças Orificiais e Afecções Colorretais", "rationale": "Seguimento colonoscópico após polipectomia por adenomas colorretais."},
+    {"question_id": 12499, "area": "Cirurgia", "subtema": "Coloproctologia: Doenças Orificiais e Afecções Colorretais", "rationale": "Características dos pólipos colorretais."},
+    {"question_id": 13389, "area": "Cirurgia", "subtema": "Cirurgia Pediátrica e Malformações Digestivas Neonatais", "rationale": "Invaginação intestinal em lactente."}
+  ]
+}

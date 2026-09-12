@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260911T131203Z-a12cd4f2",
+  "plan": "docs\\audits\\theme_metodos_contraceptivos_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260911T131203Z.db",
+  "questions_reviewed": 88,
+  "questions_reclassified": 22
+}

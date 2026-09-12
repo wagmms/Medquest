@@ -1,0 +1,25 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Cirurgia", "subtema": "Litíase Biliar, Colecistite, Coledocolitíase e Colangite"},
+  "reviewed_question_ids": [8545, 8550, 8552, 8681, 8686, 8849, 9213, 9448, 9653, 9705, 10612, 10874, 11098, 11314, 11567, 12007, 12199, 12206, 12271, 12278, 12279, 12371, 12703, 12786, 12978, 13097, 13183, 13188, 13385, 13440, 13589, 13803, 13849, 14347, 14424, 14502, 14579, 14663, 14760, 14831, 14963, 15149, 15151, 15164, 15266, 15351, 15452, 15454, 15458, 15567, 15766, 15862, 15953, 16307, 16897, 16902, 16904, 16947, 16952, 16954, 16997, 17002, 17004, 17052, 17054, 17167, 17280],
+  "moves": [
+    {"question_id": 10874, "area": "Clínica Médica", "subtema": "Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática", "rationale": "Diagnóstico de colangite biliar primária por padrão colestático e anticorpo antimitocôndria."},
+    {"question_id": 13183, "area": "Clínica Médica", "subtema": "Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática", "rationale": "Colangite biliar primária crônica, com propedêutica sorológica específica."},
+    {"question_id": 13849, "area": "Clínica Médica", "subtema": "Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática", "rationale": "Investigação de hepatopatia colestática e colangite biliar primária."},
+    {"question_id": 15151, "area": "Cirurgia", "subtema": "Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos", "rationale": "Quadro clínico de pancreatite aguda; a pergunta cobra sua etiologia predominante."},
+    {"question_id": 15766, "area": "Cirurgia", "subtema": "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas", "rationale": "Coleperitônio e lesão iatrogênica após colecistectomia videolaparoscópica."},
+    {"question_id": 15953, "area": "Clínica Médica", "subtema": "Insuficiência Cardíaca: Diagnóstico, Estadiamento e Terapia Farmacológica", "rationale": "Ascite cardíaca por insuficiência cardíaca congestiva, identificada pelo GASA e proteína ascítica."},
+    {"question_id": 16307, "area": "Pediatria", "subtema": "Arritmias, Síncope e Parada Cardiorrespiratória Pediátrica (PALS)", "rationale": "Lactente instável com arritmia no monitor e conduta de suporte avançado pediátrico."},
+    {"question_id": 16897, "area": "Cirurgia", "subtema": "Cirurgia Torácica Geral e Doenças Pleurais", "rationale": "Estenose traqueal pós-intubação e indicação de broncoscopia com dilatação."},
+    {"question_id": 16902, "area": "Cirurgia", "subtema": "Trauma Ortopédico de Extremidades e Síndrome Compartimental", "rationale": "Lesão de Morel-Lavallée após trauma de coxa, com desbridamento e drenagem."},
+    {"question_id": 16904, "area": "Cirurgia", "subtema": "Oncologia Cutânea: Melanoma, CBC e CEC", "rationale": "Reconstrução após ressecção de carcinoma basocelular nasal."},
+    {"question_id": 16947, "area": "Cirurgia", "subtema": "Distúrbios Motores do Esôfago, Megaesôfago e Síndrome Disfágica", "rationale": "Disfagia por candidíase esofágica, com tratamento antifúngico oral."},
+    {"question_id": 16952, "area": "Clínica Médica", "subtema": "Síndromes Coronarianas Agudas (Com e Sem Supra de ST)", "rationale": "Estratificação e tratamento clínico de doença coronariana aterosclerótica."},
+    {"question_id": 16954, "area": "Clínica Médica", "subtema": "Valvopatias Adquiridas e Miocardiopatias", "rationale": "Choque cardiogênico em provável miocardite, com suporte inotrópico e vasopressor."},
+    {"question_id": 16997, "area": "Ginecologia e Obstetrícia", "subtema": "Mastologia Benigna: Fibroadenomas, Cistos e Mastites", "rationale": "Classificação clínica da mastalgia."},
+    {"question_id": 17002, "area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital", "rationale": "Complicação de sling retropúbico com perfuração vesical."},
+    {"question_id": 17004, "area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital", "rationale": "Hiperatividade detrusora na avaliação urodinâmica de incontinência urinária."},
+    {"question_id": 17052, "area": "Pediatria", "subtema": "Distúrbios Obstrutivos, Asma e Bronquiolite na Infância", "rationale": "Bronquiolite por VSR e suporte com cateter nasal de alto fluxo/intubação."},
+    {"question_id": 17054, "area": "Clínica Médica", "subtema": "Distúrbios Eletrolíticos (Sódio, Potássio) e Equilíbrio Ácido-Base", "rationale": "Alteração eletrocardiográfica associada a distúrbio eletrolítico por lise tumoral."}
+  ]
+}

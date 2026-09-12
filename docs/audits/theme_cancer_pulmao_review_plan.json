@@ -1,0 +1,19 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Cirurgia",
+    "subtema": "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino"
+  },
+  "reviewed_question_ids": [8941, 9224, 9380, 9824, 10546, 10630, 10821, 10880, 11122, 11303, 11320, 11321, 11420, 11513, 12182, 12976, 13003, 13281, 13380, 13559, 13727, 14124, 14345, 15158, 15235, 15256, 15755, 15950, 16109, 16130, 16230, 16318, 16467, 16478, 16517, 16530, 16567, 16898, 16900, 16901, 17159],
+  "moves": [
+    {"question_id": 9224, "area": "Cirurgia", "subtema": "Cirurgia Torácica Geral e Doenças Pleurais", "rationale": "Manejo de derrame pleural maligno recorrente com pleurodese."},
+    {"question_id": 16109, "area": "Cirurgia", "subtema": "Atendimento ao Paciente Queimado e Reposição Volêmica", "rationale": "Estimativa de superfície corporal queimada pela regra de Wallace."},
+    {"question_id": 16130, "area": "Clínica Médica", "subtema": "Diagnóstico Diferencial das Anemias e Hemoglobinopatias", "rationale": "Síndrome torácica aguda na anemia falciforme."},
+    {"question_id": 16230, "area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital", "rationale": "Tratamento cirúrgico da incontinência urinária de esforço."},
+    {"question_id": 16318, "area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital", "rationale": "Terapia farmacológica da incontinência urinária de urgência."},
+    {"question_id": 16467, "area": "Cirurgia", "subtema": "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas", "rationale": "Protocolo ERAS e jejum pré-operatório com carboidratos."},
+    {"question_id": 16517, "area": "Clínica Médica", "subtema": "Diabetes Mellitus: Metas Glicêmicas, Complicações e Tratamento", "rationale": "Classificação etiológica do diabetes pelo anti-GAD e peptídeo C."},
+    {"question_id": 16567, "area": "Ginecologia e Obstetrícia", "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal", "rationale": "Conduta diante de perfil biofísico fetal alterado."},
+    {"question_id": 17159, "area": "Cirurgia", "subtema": "Cirurgia Torácica Geral e Doenças Pleurais", "rationale": "Investigação diagnóstica de provável mesotelioma pleural."}
+  ]
+}

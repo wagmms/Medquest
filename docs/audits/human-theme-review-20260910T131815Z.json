@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260910T131815Z-abc4a64a",
+  "plan": "docs\\audits\\theme_ventilacao_sara_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260910T131815Z.db",
+  "questions_reviewed": 71,
+  "questions_reclassified": 30
+}

@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T211359Z-d0142bb5",
+  "plan": "docs\\audits\\theme_meningites_encefalites_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T211359Z.db",
+  "questions_reviewed": 42,
+  "questions_reclassified": 8
+}

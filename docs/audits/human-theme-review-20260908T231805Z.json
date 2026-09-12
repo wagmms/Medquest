@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260908T231805Z-f5030a37",
+  "plan": "docs\\audits\\theme_litiase_biliar_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260908T231805Z.db",
+  "questions_reviewed": 67,
+  "questions_reclassified": 18
+}

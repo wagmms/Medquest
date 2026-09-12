@@ -1,0 +1,21 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Pediatria", "subtema": "Calendário Vacinal do PNI e Imunizações Especiais"},
+  "reviewed_question_ids": [8565, 8676, 8830, 8833, 8888, 9013, 9023, 9025, 9194, 9441, 9672, 9740, 9850, 9957, 10054, 10106, 10109, 10384, 10424, 10607, 10722, 10780, 10883, 11075, 11391, 11490, 11603, 12009, 12027, 12065, 12104, 12148, 12149, 12150, 12151, 12218, 12420, 12511, 12609, 12616, 12716, 12912, 12913, 13009, 13011, 13210, 13218, 13223, 13391, 13420, 13421, 13595, 13749, 13820, 13862, 13883, 13974, 14188, 14253, 14287, 14482, 14522, 14635, 14680, 14681, 14785, 14787, 14857, 14972, 14974, 15077, 15169, 15171, 15228, 15285, 15286, 15539, 15680, 15687, 15772, 15874, 15922, 15966, 16049, 16097, 16102, 16160, 16410, 16656, 16711, 16761, 16811, 16819, 16825, 16861, 16994, 17097, 17209],
+  "moves": [
+    {"question_id": 10106, "area": "Medicina Preventiva", "subtema": "Legislação, Diretrizes e Evolução do SUS", "rationale": "A questão trata de portaria e incentivo de atenção especializada aos povos indígenas."},
+    {"question_id": 12149, "area": "Clínica Médica", "subtema": "Pneumonia Adquirida na Comunidade (PAC) e Síndromes Respiratórias Agudas", "rationale": "A conduta solicitada refere-se à persistência de quadro pulmonar após pneumonia."},
+    {"question_id": 12150, "area": "Pediatria", "subtema": "Anemias Carenciais e Distúrbios de Micronutrientes (Ferro, Vitamina D)", "rationale": "O foco é interpretação de anemia microcítica em criança."},
+    {"question_id": 12616, "area": "Pediatria", "subtema": "Sepse Pediátrica, Choque e Ressuscitação Hemodinâmica", "rationale": "A criança em choque com insuficiência cardíaca pós-viral requer ressuscitação hemodinâmica pediátrica."},
+    {"question_id": 13011, "area": "Clínica Médica", "subtema": "Infecções Sexualmente Transmissíveis (ISTs) no Adulto", "rationale": "A questão aborda formas de transmissão de ISTs em adolescentes."},
+    {"question_id": 13974, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Pré-Natal de Baixo e Alto Risco", "rationale": "A indicação vacinal solicitada é específica do acompanhamento pré-natal."},
+    {"question_id": 16049, "area": "Pediatria", "subtema": "Alojamento Conjunto e Testes de Triagem Neonatal (Pezinho, Olhinho, Coraçãozinho)", "rationale": "A questão solicita conduta após resultado limítrofe do teste do coraçãozinho."},
+    {"question_id": 16097, "area": "Clínica Médica", "subtema": "Artrite Reumatoide, Espondiloartrites e Artrites Microcristalinas", "rationale": "O quadro de artrite, entesite e sacroileíte sugere espondiloartrite."},
+    {"question_id": 16102, "area": "Cirurgia", "subtema": "Hérnias da Parede Abdominal (Inguinais, Femorais e Incisionais)", "rationale": "A questão discute classificação e técnica de correção de hérnia inguinal."},
+    {"question_id": 16160, "area": "Clínica Médica", "subtema": "Síndromes Febris Agudas e Arboviroses (Dengue, Chikungunya, Febre Amarela)", "rationale": "A condução solicitada é de dengue com sinais de alarme."},
+    {"question_id": 16711, "area": "Cirurgia", "subtema": "Abdome Agudo Obstrutivo (Bridas, Neoplasias e Volvo)", "rationale": "Vômitos em jato, oliva palpável e distensão alta indicam estenose hipertrófica de piloro."},
+    {"question_id": 16761, "area": "Cirurgia", "subtema": "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino", "rationale": "A questão pede conduta de rastreamento de câncer de pulmão."},
+    {"question_id": 16811, "area": "Ginecologia e Obstetrícia", "subtema": "Endometriose, Adenomiose e Dor Pélvica Crônica", "rationale": "Infertilidade, dismenorreia e achado de imagem são abordagem de endometriose."},
+    {"question_id": 16861, "area": "Clínica Médica", "subtema": "Diagnóstico Diferencial das Anemias e Hemoglobinopatias", "rationale": "Microcitose persistente após ferro e eletroforese alterada indicam hemoglobinopatia."}
+  ]
+}

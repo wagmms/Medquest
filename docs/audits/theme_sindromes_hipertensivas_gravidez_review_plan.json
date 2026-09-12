@@ -1,0 +1,18 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Síndromes Hipertensivas na Gravidez (Pré-eclâmpsia e Eclâmpsia)"},
+  "reviewed_question_ids": [8720, 8926, 9480, 9604, 9721, 9766, 9986, 10260, 10400, 10409, 10432, 10434, 10553, 10678, 10798, 10861, 10895, 11017, 11258, 11360, 11562, 11987, 12044, 12637, 12737, 12933, 13036, 13043, 13140, 13247, 13349, 13403, 13459, 13461, 13824, 13896, 13967, 14077, 14137, 14179, 14242, 14302, 14314, 14387, 14461, 14526, 14601, 14704, 14805, 14806, 15004, 15094, 15107, 15163, 15192, 15291, 15592, 15704, 15705, 15898, 15903, 16070, 16076, 16164, 16165, 16287, 16336, 16387, 16437, 16774, 16962, 17147, 17238],
+  "moves": [
+    {"question_id": 8720, "area": "Ginecologia e Obstetrícia", "subtema": "Condições Clínicas Intercorrentes na Gravidez", "rationale": "Descompensação de valvopatia mitral durante trabalho de parto."},
+    {"question_id": 9986, "area": "Ginecologia e Obstetrícia", "subtema": "Infecções Perinatais e Transmissão Vertical (HIV, Sífilis, Hepatites, EGB)", "rationale": "Aumento de título de VDRL após tratamento de sífilis na gestação."},
+    {"question_id": 12637, "area": "Ginecologia e Obstetrícia", "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade", "rationale": "Definição ultrassonográfica de restrição de crescimento fetal tardia."},
+    {"question_id": 16070, "area": "Ginecologia e Obstetrícia", "subtema": "Úlceras Genitais e Infecções Sexualmente Transmissíveis na Mulher", "rationale": "Diagnóstico diferencial de úlceras genitais."},
+    {"question_id": 16076, "area": "Ginecologia e Obstetrícia", "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal", "rationale": "Classificação de cardiotocografia anteparto após estímulo sonoro."},
+    {"question_id": 16165, "area": "Ginecologia e Obstetrícia", "subtema": "Avaliação da Vitalidade Fetal, Cardiotocografia e Sofrimento Fetal", "rationale": "Conduta para traçado cardiotocográfico intraparto não tranquilizador."},
+    {"question_id": 16287, "area": "Clínica Médica", "subtema": "Neuropatias Periféricas, Miastenia Gravis e Doenças Neuromusculares", "rationale": "Neuralgia do trigêmeo e tratamento profilático de primeira linha."},
+    {"question_id": 16336, "area": "Medicina Preventiva", "subtema": "Delineamentos e Classificação dos Estudos Epidemiológicos", "rationale": "Análise por protocolo em ensaio clínico randomizado."},
+    {"question_id": 16387, "area": "Clínica Médica", "subtema": "Tromboembolismo Pulmonar (TEP) e Hipertensão Pulmonar", "rationale": "Ecocardiografia em embolia pulmonar de alto risco."},
+    {"question_id": 16437, "area": "Cirurgia", "subtema": "Hemorragia Digestiva Alta e Baixa na Emergência Cirúrgica", "rationale": "Hemorragia digestiva por varizes esofágicas em paciente pediátrica."},
+    {"question_id": 16962, "area": "Ginecologia e Obstetrícia", "subtema": "Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade", "rationale": "Datação gestacional por ultrassonografia precoce e suspeita de restrição de crescimento fetal."}
+  ]
+}

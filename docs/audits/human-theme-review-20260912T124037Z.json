@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T124037Z-8617c307",
+  "plan": "docs\\audits\\theme_imunodeficiencias_alergias_anafilaxia_infancia_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T124037Z.db",
+  "questions_reviewed": 72,
+  "questions_reclassified": 14
+}

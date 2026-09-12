@@ -1,0 +1,9 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Úlceras Genitais e Infecções Sexualmente Transmissíveis na Mulher"},
+  "reviewed_question_ids": [9470, 9595, 10405, 10431, 10557, 10660, 10672, 10792, 10948, 10960, 11018, 11367, 12034, 12230, 12537, 12934, 13136, 13141, 13242, 13456, 13605, 13767, 13901, 13970, 14074, 14184, 14301, 14688, 15195, 15304, 15306, 15504, 15600, 16070, 16180, 16585, 16785, 17269],
+  "moves": [
+    {"question_id":14074,"area":"Ginecologia e Obstetrícia","subtema":"Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento","rationale":"A pergunta trata de prevenção primária de câncer de mama."},
+    {"question_id":16180,"area":"Ginecologia e Obstetrícia","subtema":"Assistência Pré-Natal de Baixo e Alto Risco","rationale":"A avaliação e suplementação para anemia ferropriva na gestação integram o pré-natal."}
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T153850Z-09d5f4c7",
+  "plan": "docs\\audits\\theme_luxacoes_ligamentos_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T153850Z.db",
+  "questions_reviewed": 40,
+  "questions_reclassified": 13
+}

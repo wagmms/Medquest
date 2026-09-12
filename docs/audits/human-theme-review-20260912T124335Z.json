@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T124335Z-0e9ff44d",
+  "plan": "docs\\audits\\theme_diarreia_reidratacao_disabsorcao_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T124335Z.db",
+  "questions_reviewed": 80,
+  "questions_reclassified": 16
+}

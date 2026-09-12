@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T221827Z-e9603a42",
+  "plan": "docs\\audits\\theme_disturbios_eletroliticos_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T221827Z.db",
+  "questions_reviewed": 76,
+  "questions_reclassified": 17
+}

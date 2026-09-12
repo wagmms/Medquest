@@ -1,0 +1,19 @@
+{"reviewer":"codex-theme-review","source":{"area":"Clínica Médica","subtema":"Distúrbios Eletrolíticos (Sódio, Potássio) e Equilíbrio Ácido-Base"},"reviewed_question_ids":[8511,8530,8560,8634,8735,8826,8874,9169,9197,9421,9741,9772,9992,10386,10419,10476,10775,10947,11440,11536,11976,11977,12105,12471,12573,12574,12673,12674,12768,12794,12798,12916,12997,13322,13343,13434,13711,13788,13854,13855,13956,14019,14563,14643,14644,14674,14937,14940,15043,15128,15129,15371,15460,15528,15639,15747,15786,15829,15834,15937,16004,16009,16143,16302,16375,16490,16540,16590,16640,16882,16932,16982,17032,17054,17072,17105],"moves":[
+{"question_id":8560,"area":"Cirurgia","subtema":"Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana","rationale":"Avaliação laboratorial no TCE pediátrico."},
+{"question_id":9992,"area":"Medicina Preventiva","subtema":"Avaliação de Testes Diagnósticos e Curva ROC","rationale":"Cálculo de acurácia diagnóstica."},
+{"question_id":12573,"area":"Cirurgia","subtema":"Cicatrização, Tratamento de Feridas, Enxertos e Retalhos","rationale":"Fases da cicatrização."},
+{"question_id":12574,"area":"Cirurgia","subtema":"Litíase Biliar, Colecistite, Coledocolitíase e Colangite","rationale":"Prescrição na pancreatite biliar."},
+{"question_id":13434,"area":"Clínica Médica","subtema":"Neurointensivismo, Morte Encefálica e Cuidados Críticos","rationale":"Diabetes insipidus após craniectomia."},
+{"question_id":16004,"area":"Cirurgia","subtema":"Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana","rationale":"Conduta inicial em TCE grave."},
+{"question_id":16009,"area":"Cirurgia","subtema":"Distúrbios Motores do Esôfago, Megaesôfago e Síndrome Disfágica","rationale":"Classificação manométrica da disfagia."},
+{"question_id":16143,"area":"Pediatria","subtema":"Sepse Pediátrica, Choque e Ressuscitação Hemodinâmica","rationale":"Choque séptico/meningococcemia pediátrica."},
+{"question_id":16302,"area":"Pediatria","subtema":"Parasitoses Intestinais: Helmintíases e Protozooses","rationale":"Parasitose associada à bacteremia em imunossuprimido."},
+{"question_id":16490,"area":"Cirurgia","subtema":"Litíase Biliar, Colecistite, Coledocolitíase e Colangite","rationale":"Icterícia obstrutiva e investigação de via biliar."},
+{"question_id":16540,"area":"Cirurgia","subtema":"Doença do Refluxo Gastroesofágico (DRGE) e Úlcera Péptica","rationale":"Esofagite eosinofílica e impactação alimentar."},
+{"question_id":16590,"area":"Ginecologia e Obstetrícia","subtema":"Investigação das Amenorreias e Síndrome dos Ovários Policísticos (SOP)","rationale":"SOP e manejo de ciclos irregulares."},
+{"question_id":16640,"area":"Clínica Médica","subtema":"Leucemias, Linfomas e Mieloma Múltiplo","rationale":"Neutropenia febril em leucemia aguda."},
+{"question_id":16882,"area":"Pediatria","subtema":"Infecção do Trato Urinário (ITU) e Refluxo Vesicoureteral na Infância","rationale":"Refluxo vesicoureteral e ITU recorrente."},
+{"question_id":16932,"area":"Clínica Médica","subtema":"Neuropatias Periféricas, Miastenia Gravis e Doenças Neuromusculares","rationale":"Crise miastênica."},
+{"question_id":16982,"area":"Ginecologia e Obstetrícia","subtema":"Sangramento Uterino Anormal (SUA) e Classificação PALM-COEIN / Miomatose","rationale":"Sangramento uterino aumentado e alteração ultrassonográfica."},
+{"question_id":17032,"area":"Pediatria","subtema":"Neonatologia: Infecções Congênitas (TORCH) e Sepse Neonatal","rationale":"Conduta em sífilis congênita."}
+]}

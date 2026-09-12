@@ -11,6 +11,7 @@ import {
   X
 } from "lucide-react";
 import { FormattedContent, preprocessMarkdown } from "@/components/FormattedContent";
+import clsx from "clsx";
 
 interface ExplanationViewerProps {
   explanation: string | null | undefined;
@@ -64,7 +65,7 @@ function parseExplanation(raw: string, isDiscursive?: boolean): { parsed: Parsed
   // 1. Extract Gabarito
   const gabaritoMatch = clean.match(/(?:\*\*Gabarito(?:\s+Oficial)?\*\*|Gabarito(?:\s+Oficial)?):\s*([^\n]+)/i);
   if (gabaritoMatch) {
-    const candidate = gabaritoMatch[1].trim();
+    const candidate = gabaritoMatch[1].replace(/^[*_~]+|[*_~]+$/g, "").trim();
     const isGenericPlaceholder = /^(?:DISSERTATIVA|DISCURSIVA|\(Ver Padrão|Letra\s+[A-E]$|^[A-E]$)/i.test(candidate);
     if (isDiscursiveDetected) {
       if (!isGenericPlaceholder && !/^(?:DISSERTATIVA|DISCURSIVA)/i.test(candidate)) {
@@ -245,12 +246,21 @@ export function ExplanationViewer({
       <div className="space-y-5">
         {/* Top Banner: Gabarito Oficial */}
         {parsed.gabarito && (
-          <div className="flex items-center gap-3 bg-primary/10 border border-primary/20 text-primary px-4 py-2.5 rounded-xl w-fit">
-            <Award size={18} className="text-primary shrink-0" />
-            <span className="font-bold text-sm md:text-base">
-              {isDiscursiveDetected ? "Gabarito Oficial (Padrão de Resposta):" : "Gabarito Oficial:"}{" "}
-              <span className="underline decoration-2 underline-offset-2">{parsed.gabarito}</span>
-            </span>
+          <div className={clsx(
+            "flex items-start sm:items-center gap-3 px-4 py-3 rounded-2xl shadow-xs transition-all",
+            isDiscursiveDetected
+              ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 dark:text-emerald-200 w-full"
+              : "bg-primary/10 border border-primary/20 text-primary w-fit"
+          )}>
+            <Award size={20} className={clsx("shrink-0 mt-0.5 sm:mt-0", isDiscursiveDetected ? "text-emerald-600 dark:text-emerald-400" : "text-primary")} />
+            <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
+              <span className="font-bold text-xs sm:text-sm uppercase tracking-wider opacity-90">
+                {isDiscursiveDetected ? "Resposta Esperada pela Banca (Gabarito):" : "Gabarito Oficial:"}
+              </span>
+              <span className="font-extrabold text-sm sm:text-base underline decoration-2 underline-offset-2 text-foreground">
+                {parsed.gabarito}
+              </span>
+            </div>
           </div>
         )}
 

@@ -1,0 +1,13 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Mastologia Benigna: Fibroadenomas, Cistos e Mastites"},
+  "reviewed_question_ids": [8610, 8704, 8922, 8950, 9891, 10263, 10398, 10399, 10443, 10569, 10809, 10951, 11008, 12033, 12842, 13300, 13353, 13613, 13903, 14309, 14696, 15103, 15388, 15697, 15801, 16233, 16997, 16999, 17146, 17229],
+  "moves": [
+    {"question_id": 9891, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Fundamentos do Método Clínico Centrado na Pessoa na atenção primária."},
+    {"question_id": 10398, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento", "rationale": "Hiperplasia ductal atípica após biópsia de microcalcificações suspeitas."},
+    {"question_id": 10399, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento", "rationale": "Complementação diagnóstica de mamografia BI-RADS 0."},
+    {"question_id": 10951, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento", "rationale": "Hiperplasia ductal atípica identificada em biópsia mamária."},
+    {"question_id": 13903, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento", "rationale": "Lesões mamárias precursoras e estratificação de risco para câncer de mama."},
+    {"question_id": 15801, "area": "Ginecologia e Obstetrícia", "subtema": "Câncer de Mama: Rastreamento, Diagnóstico e Estadiamento", "rationale": "Conduta após mamografia BI-RADS 0 em rastreamento."}
+  ]
+}

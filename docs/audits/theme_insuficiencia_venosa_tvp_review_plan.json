@@ -1,0 +1,10 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Cirurgia","subtema":"Insuficiência Venosa Crônica e Trombose Venosa Profunda (TVP)"},
+  "reviewed_question_ids":[8676,8698,8974,10302,10346,10623,10757,10845,10917,11126,11290,12504,13092,13370,13738,13802,14127,14506,14754,16370,16420,16890,17212],
+  "moves":[
+    {"question_id":8676,"area":"Pediatria","subtema":"Calendário Vacinal do PNI e Imunizações Especiais","rationale":"Eficácia e indicações de vacinas contra dengue."},
+    {"question_id":16370,"area":"Pediatria","subtema":"Convulsão Febril, Epilepsias e Síndromes Convulsivas na Infância","rationale":"Epilepsia mioclônica e escolha de fármaco antiepiléptico."},
+    {"question_id":16420,"area":"Pediatria","subtema":"Distúrbios Obstrutivos, Asma e Bronquiolite na Infância","rationale":"Crupe com estridor em repouso."}
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T124527Z-0d179e9f",
+  "plan": "docs\\audits\\theme_itu_refluxo_pediatrico_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T124527Z.db",
+  "questions_reviewed": 51,
+  "questions_reclassified": 12
+}

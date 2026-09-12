@@ -1,0 +1,19 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Medicina Preventiva",
+    "subtema": "Transição Demográfica e Perfis Populacionais"
+  },
+  "reviewed_question_ids": [8659, 8675, 8887, 8897, 9190, 9411, 10514, 10902, 11157, 12064, 12076, 12565, 12667, 12767, 12866, 12951, 13308, 13313, 13315, 13534, 13923, 13985, 14088, 14190, 14191, 14199, 14251, 14324, 14473, 15012, 15110, 15112, 15115, 15315, 15415, 15918, 16093, 16189, 16346, 17115, 17191],
+  "moves": [
+    {"question_id": 12667, "area": "Medicina Preventiva", "subtema": "Ética Médica, Bioética e Prontuários / Documentos", "rationale": "Sigilo médico no atendimento de adolescente sexualmente ativa."},
+    {"question_id": 12767, "area": "Medicina Preventiva", "subtema": "Vigilância em Saúde e Notificação Compulsória (SINAN)", "rationale": "Integração e qualidade de registros dos sistemas de informação na investigação de sífilis congênita."},
+    {"question_id": 12866, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Internações por condições sensíveis à atenção primária."},
+    {"question_id": 12951, "area": "Medicina Preventiva", "subtema": "Vigilância em Saúde e Notificação Compulsória (SINAN)", "rationale": "Sistemas nacionais de informação usados na vigilância epidemiológica."},
+    {"question_id": 13315, "area": "Medicina Preventiva", "subtema": "Vigilância em Saúde e Notificação Compulsória (SINAN)", "rationale": "Sistema de informação adequado à investigação de Mpox."},
+    {"question_id": 13534, "area": "Clínica Médica", "subtema": "Toxicologia Clínica e Acidentes por Animais Peçonhentos", "rationale": "Intoxicação aguda por organofosforado/agrotóxico."},
+    {"question_id": 16093, "area": "Medicina Preventiva", "subtema": "História Natural da Doença e Níveis de Prevenção", "rationale": "Fisioterapia para limitação funcional como nível de prevenção."},
+    {"question_id": 16189, "area": "Medicina Preventiva", "subtema": "Atenção Primária à Saúde e Estratégia Saúde da Família (ESF)", "rationale": "Método Clínico Centrado na Pessoa e decisão compartilhada."},
+    {"question_id": 16346, "area": "Ginecologia e Obstetrícia", "subtema": "Métodos Contraceptivos: Hormonais, DIU e Cirúrgicos", "rationale": "Sangramento irregular relacionado ao implante contraceptivo subdérmico."}
+  ]
+}

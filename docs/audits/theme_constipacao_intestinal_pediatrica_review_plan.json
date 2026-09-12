@@ -1,0 +1,12 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Constipação Intestinal Funcional e Orgânica"
+  },
+  "reviewed_question_ids": [10726, 10774, 10988, 11184, 11495, 12825, 12909, 12920, 13212, 13290, 13321, 13339, 13450, 13750, 14372, 16432, 16433, 16434, 16435],
+  "moves": [
+    {"question_id": 12909, "area": "Pediatria", "subtema": "Infecção do Trato Urinário (ITU) e Refluxo Vesicoureteral na Infância", "rationale": "A questão aborda enurese noturna, distúrbio do trato urinário infantil, não constipação."},
+    {"question_id": 13321, "area": "Cirurgia", "subtema": "Abdome Agudo Obstrutivo (Bridas, Neoplasias e Volvo)", "rationale": "O fecaloma com obstipação e distensão em adulto é apresentado como obstrução intestinal aguda."}
+  ]
+}

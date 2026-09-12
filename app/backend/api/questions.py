@@ -4,7 +4,7 @@ import os
 import random
 import re
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from threading import Lock
 
 from flask import Blueprint, g, jsonify, request
@@ -568,6 +568,17 @@ def question_detail(qid):
     })
 
 
+def _defer_question_review(db, qid, user_id):
+    """Give an unrated answer a day of rest without inventing an FSRS rating."""
+    resume_at = (datetime.now(timezone.utc) + timedelta(days=1)).isoformat()
+    db.execute(
+        """UPDATE spaced_repetition SET next_review_date = ?
+           WHERE question_id = ? AND user_id = ?
+             AND (next_review_date IS NULL OR next_review_date < ?)""",
+        (resume_at, qid, user_id, resume_at),
+    )
+
+
 @bp.route("/questions/<int:qid>/attempt", methods=["POST"])
 def submit_attempt(qid):
     db = get_db()
@@ -620,6 +631,8 @@ def submit_attempt(qid):
 
             # Repetição espaçada (FSRS)
             next_review = None
+            if payload.confidence == "defer":
+                _defer_question_review(db, qid, g.user_id)
             if payload.confidence != "defer":
                 sr = db.execute("SELECT fsrs_card FROM spaced_repetition WHERE question_id = ? AND user_id = ?", (qid, g.user_id)).fetchone()
                 card_json, next_review = srs.review(sr["fsrs_card"] if sr else None, is_correct, payload.confidence)
@@ -821,14 +834,18 @@ def submit_attempt_batch():
                     (item.question_id, selected, is_correct, answered_at, item.time_spent_ms, conf, g.user_id),
                 )
 
-                old_card = srs_map.get(item.question_id)
-                card_json, next_review = srs.review(old_card, is_correct, conf)
-                db.execute("""
-                    INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id)
-                    VALUES (?, ?, ?, ?)
-                    ON CONFLICT(question_id, user_id) DO UPDATE SET
-                        next_review_date = excluded.next_review_date, fsrs_card = excluded.fsrs_card
-                """, (item.question_id, next_review, card_json, g.user_id))
+                next_review = None
+                if conf == "defer":
+                    _defer_question_review(db, item.question_id, g.user_id)
+                else:
+                    old_card = srs_map.get(item.question_id)
+                    card_json, next_review = srs.review(old_card, is_correct, conf)
+                    db.execute("""
+                        INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id)
+                        VALUES (?, ?, ?, ?)
+                        ON CONFLICT(question_id, user_id) DO UPDATE SET
+                            next_review_date = excluded.next_review_date, fsrs_card = excluded.fsrs_card
+                    """, (item.question_id, next_review, card_json, g.user_id))
 
                 results.append({
                     "question_id": item.question_id,

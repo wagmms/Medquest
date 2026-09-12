@@ -1,0 +1,17 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {"area": "Ginecologia e Obstetrícia", "subtema": "Uroginecologia: Incontinência Urinária e Prolapso Genital"},
+  "reviewed_question_ids": [8607, 8615, 8626, 8703, 8916, 8955, 9233, 9592, 9756, 9888, 9896, 9907, 10058, 10264, 10393, 10447, 10570, 10669, 10803, 10804, 10955, 11016, 11133, 11254, 11353, 11473, 11555, 12035, 12116, 12234, 12316, 12431, 13030, 13046, 13301, 13463, 14066, 14306, 14382, 14459, 14612, 14697, 14797, 14874, 14990, 15193, 15294, 15393, 15506, 15594, 15598, 15691, 15749, 15972, 15973, 15986, 16168, 16230, 16242, 16243, 16314, 16317, 16318, 16453, 16509, 16559, 16602, 16603, 16604, 16605, 16609, 16659, 16805, 16808, 16886, 16989, 17002, 17003, 17004, 17005, 17006, 17140, 17268],
+  "moves": [
+    {"question_id":9888,"area":"Medicina Preventiva","subtema":"Estudos Epidemiológicos: Medidas de Associação e Análise Estatística","rationale":"A interpretação de forest plot e de resultado combinado de meta-análise é análise epidemiológica."},
+    {"question_id":9896,"area":"Cirurgia","subtema":"Oncologia Cutânea: Melanoma, CBC e CEC","rationale":"A questão discute encaminhamento e investigação de lesão cutânea suspeita."},
+    {"question_id":9907,"area":"Clínica Médica","subtema":"Tuberculose Pulmonar e Extrapulmonar: Diagnóstico e Manejo","rationale":"A conduta diante de IGRA positivo em imunossuprimida é manejo de tuberculose latente."},
+    {"question_id":10058,"area":"Pediatria","subtema":"Imunodeficiências, Alergias e Anafilaxia na Infância","rationale":"Infecções graves e recorrentes, ausência de timo e candidíase sugerem imunodeficiência primária."},
+    {"question_id":15986,"area":"Ginecologia e Obstetrícia","subtema":"Afecções do Corpo Uterino, Endométrio e Sangramento Pós-Menopausa","rationale":"O quadro é sangramento pós-menopausa com investigação de causa endometrial."},
+    {"question_id":16168,"area":"Ginecologia e Obstetrícia","subtema":"Medicina Fetal: RCIU, Isoimunização Rh e Gemelaridade","rationale":"Anastomoses placentárias e suas complicações pertencem à medicina fetal em gemelaridade monocoriônica."},
+    {"question_id":16509,"area":"Cirurgia","subtema":"Cirurgia Cardíaca: Revascularização Miocárdica e Cirurgia Valvar","rationale":"Os métodos de cardioplegia são conteúdo de cirurgia cardíaca."},
+    {"question_id":16559,"area":"Clínica Médica","subtema":"Síndromes Coronarianas Agudas (Com e Sem Supra de ST)","rationale":"A complicação mecânica após IAM com supra e a conduta imediata pertencem às síndromes coronarianas agudas."},
+    {"question_id":16609,"area":"Ginecologia e Obstetrícia","subtema":"Investigação das Amenorreias e Síndrome dos Ovários Policísticos (SOP)","rationale":"A pergunta trata diretamente de fenótipos e tratamento da SOP."},
+    {"question_id":16659,"area":"Clínica Médica","subtema":"Diabetes Mellitus: Metas Glicêmicas, Complicações e Tratamento","rationale":"Cetoacidose diabética é complicação aguda do diabetes mellitus e requer estabilização imediata."}
+  ]
+}

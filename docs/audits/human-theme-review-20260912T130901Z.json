@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T130901Z-7a7f5f47",
+  "plan": "docs\\audits\\theme_parasitoses_intestinais_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T130901Z.db",
+  "questions_reviewed": 15,
+  "questions_reclassified": 7
+}

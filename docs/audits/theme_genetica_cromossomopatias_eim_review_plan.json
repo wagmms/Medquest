@@ -1,0 +1,23 @@
+{
+  "reviewer": "codex-theme-review",
+  "source": {
+    "area": "Pediatria",
+    "subtema": "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo"
+  },
+  "reviewed_question_ids": [9379, 10417, 10702, 10706, 10782, 10833, 11128, 11175, 11393, 11470, 11505, 13174, 13180, 13395, 13748, 13817, 14165, 14267, 14594, 14698, 15029, 15186, 15276, 15378, 15578, 15968, 15979, 16159, 16163, 16632, 16643, 16860],
+  "moves": [
+    {"question_id": 10706, "area": "Pediatria", "subtema": "Neonatologia: Distúrbios Metabólicos e Hipoglicemia no Recém-Nascido", "rationale": "Icterícia, catarata e insuficiência hepática no recém-nascido em aleitamento apontam para galactosemia neonatal."},
+    {"question_id": 10833, "area": "Clínica Médica", "subtema": "Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática", "rationale": "A questão investiga doença de Wilson com manifestações hepáticas e neurológicas."},
+    {"question_id": 11505, "area": "Pediatria", "subtema": "Transtornos do Neurodesenvolvimento (TEA, TDAH) e Saúde Mental na Infância", "rationale": "A síndrome alcoólica fetal é abordada pelos seus déficits cognitivos e comportamentais do neurodesenvolvimento."},
+    {"question_id": 13180, "area": "Clínica Médica", "subtema": "Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática", "rationale": "A apresentação e o tratamento quelante da doença de Wilson são de hepatologia clínica."},
+    {"question_id": 13395, "area": "Pediatria", "subtema": "Neonatologia: Distúrbios Metabólicos e Hipoglicemia no Recém-Nascido", "rationale": "A questão trata de hipoglicemia neonatal por hiperinsulinismo na síndrome de Beckwith-Wiedemann."},
+    {"question_id": 13817, "area": "Pediatria", "subtema": "Alojamento Conjunto e Testes de Triagem Neonatal (Pezinho, Olhinho, Coraçãozinho)", "rationale": "O foco é a investigação confirmatória após triagem neonatal positiva para fibrose cística."},
+    {"question_id": 14165, "area": "Pediatria", "subtema": "Neonatologia: Distúrbios Metabólicos e Hipoglicemia no Recém-Nascido", "rationale": "A conduta imediata da galactosemia detectada no teste do pezinho é tema metabólico neonatal."},
+    {"question_id": 14267, "area": "Clínica Médica", "subtema": "Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática", "rationale": "Tratamento da doença de Wilson em paciente cirrótico é tema de hepatologia."},
+    {"question_id": 15029, "area": "Clínica Médica", "subtema": "Cirrose Hepática, Hipertensão Portal e Insuficiência Hepática", "rationale": "A questão revisa diagnóstico e investigação da doença de Wilson, doença hepática metabólica."},
+    {"question_id": 15276, "area": "Clínica Médica", "subtema": "Diagnóstico Diferencial das Anemias e Hemoglobinopatias", "rationale": "Deficiência de G6PD e risco de hemólise são tema de anemia hemolítica hereditária."},
+    {"question_id": 15968, "area": "Pediatria", "subtema": "Anemias Carenciais e Distúrbios de Micronutrientes (Ferro, Vitamina D)", "rationale": "A pergunta solicita a suplementação profilática de ferro conforme a idade do lactente."},
+    {"question_id": 15979, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Pré-Natal de Baixo e Alto Risco", "rationale": "Rastreamento de aneuploidias pelo ultrassom morfológico de primeiro trimestre é cuidado pré-natal."},
+    {"question_id": 16163, "area": "Ginecologia e Obstetrícia", "subtema": "Assistência Pré-Natal de Baixo e Alto Risco", "rationale": "A questão solicita conduta obstétrica após rastreamento de alto risco para trissomia 21."}
+  ]
+}

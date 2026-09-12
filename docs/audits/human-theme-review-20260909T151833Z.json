@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T151833Z-62667548",
+  "plan": "docs\\audits\\theme_drge_ulcera_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T151833Z.db",
+  "questions_reviewed": 35,
+  "questions_reclassified": 6
+}

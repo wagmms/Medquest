@@ -21,6 +21,7 @@ BACKEND_DIR = SCRIPTS_DIR.parent
 REPO_ROOT = BACKEND_DIR.parents[1]
 TAXONOMY_PATH = BACKEND_DIR / "data" / "taxonomy.json"
 SUBTEMA_MAP_PATH = BACKEND_DIR / "data" / "subtema_map.json"
+CANONICAL_TAXONOMY_PATH = BACKEND_DIR / "data" / "canonical_taxonomy.json"
 PLANNER_JSON_PATH = SCRIPTS_DIR / "plannerData.json"
 PLANNER_TS_PATH = REPO_ROOT / "app" / "frontend" / "src" / "lib" / "plannerData.ts"
 
@@ -75,6 +76,18 @@ def build_subtema_map(catalog: list[dict], existing: dict[str, str]) -> dict[str
     return {key: compiled[key] for key in sorted(compiled)}
 
 
+def build_canonical_taxonomy(catalog: list[dict], subtema_map: dict[str, str]) -> dict[str, dict[str, str]]:
+    """Render the API catalogue from the same 170-theme source and ID map."""
+    canonical: dict[str, dict[str, str]] = {}
+    for area_group in catalog:
+        area = area_group["area"]
+        canonical[area] = {}
+        for macro in area_group.get("macroThemes", []):
+            for subtema in macro.get("dbSubtemas", []):
+                canonical[area][subtema] = subtema_map[subtema]
+    return canonical
+
+
 def render_json(value: object) -> str:
     return json.dumps(value, ensure_ascii=False, indent=2) + "\n"
 
@@ -100,6 +113,7 @@ def compile_artifacts(
     compiled_map = build_subtema_map(catalog, existing)
     return {
         map_path: render_json(compiled_map),
+        CANONICAL_TAXONOMY_PATH: render_json(build_canonical_taxonomy(catalog, compiled_map)),
         planner_json_path: render_json(catalog),
         planner_ts_path: render_planner_ts(catalog, planner_ts_path.read_text(encoding="utf-8")),
     }

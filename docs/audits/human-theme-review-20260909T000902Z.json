@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T000902Z-14bf8cc5",
+  "plan": "docs\\audits\\theme_doenca_arterial_obstrutiva_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T000902Z.db",
+  "questions_reviewed": 44,
+  "questions_reclassified": 15
+}

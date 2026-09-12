@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260909T153943Z-a814fa24",
+  "plan": "docs\\audits\\theme_tendinopatias_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260909T153943Z.db",
+  "questions_reviewed": 41,
+  "questions_reclassified": 6
+}

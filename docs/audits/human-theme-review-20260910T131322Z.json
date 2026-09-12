@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260910T131322Z-dec37e7c",
+  "plan": "docs\\audits\\theme_sepse_adulto_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260910T131322Z.db",
+  "questions_reviewed": 64,
+  "questions_reclassified": 43
+}

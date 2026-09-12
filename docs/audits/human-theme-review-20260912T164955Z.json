@@ -1,0 +1,7 @@
+{
+  "run_id": "human-theme-review-20260912T164955Z-ad687698",
+  "plan": "docs\\audits\\theme_medidas_associacao_analise_estatistica_review_plan.json",
+  "backup": "backups\\taxonomy-reclassification\\medquest-pre-theme-review-20260912T164955Z.db",
+  "questions_reviewed": 129,
+  "questions_reclassified": 22
+}

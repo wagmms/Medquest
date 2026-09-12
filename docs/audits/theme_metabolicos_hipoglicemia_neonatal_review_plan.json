@@ -1,0 +1,8 @@
+{
+  "reviewer":"codex-theme-review",
+  "source":{"area":"Pediatria","subtema":"Neonatologia: Distúrbios Metabólicos e Hipoglicemia no Recém-Nascido"},
+  "reviewed_question_ids":[8823,9437,9688,10706,12022,12167,13295,13395,14165,15774,15782,16157,16620,16642,17037],
+  "moves":[
+    {"question_id":15782,"area":"Clínica Médica","subtema":"Diabetes Mellitus: Metas Glicêmicas, Complicações e Tratamento","rationale":"O adolescente apresenta diabetes tipo 1 recém-diagnosticado com cetose e avaliação de cetoacidose."}
+  ]
+}

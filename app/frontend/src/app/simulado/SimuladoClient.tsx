@@ -1650,7 +1650,9 @@ export function SimuladoClient({
                         {alt.letter}
                       </div>
                       <div className="pt-1.5 text-foreground leading-relaxed flex-1">
-                        {alt.text}
+                        {!isReview && (qDetail.is_discursive || (qDetail.alternatives || []).length <= 1)
+                          ? "Confirmar resposta da questão discursiva"
+                          : alt.text}
                       </div>
                     </button>
                   );
