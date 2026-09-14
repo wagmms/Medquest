@@ -33,8 +33,8 @@ export default defineConfig({
       PLAYWRIGHT_TEST: 'true',
       // Chave de teste sintática do domínio clerk.example.com; evita que o
       // middleware do Clerk rejeite o ambiente E2E antes dos mocks de rota.
-      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Y2xlcmsuZXhhbXBsZS5jb20k',
-      CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY || 'sk_test_mock',
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: (process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY.trim() !== '') ? process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY : 'pk_test_Y2xlcmsuZXhhbXBsZS5jb20k',
+      CLERK_SECRET_KEY: (process.env.CLERK_SECRET_KEY && process.env.CLERK_SECRET_KEY.trim() !== '') ? process.env.CLERK_SECRET_KEY : 'sk_test_mock',
     },
     // The app shell may depend on an external API, so use a static asset as
     // the readiness probe. Browser requests are mocked by the E2E suite.
