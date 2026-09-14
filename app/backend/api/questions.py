@@ -749,6 +749,94 @@ def review_fsrs(qid):
             fail_idempotency(db, g.user_id, lease_token)
         raise
 
+def _fetch_batch_metadata(db, q_ids: list[int], chunk_size: int = 500) -> tuple[dict, dict, dict]:
+    q_map = {}
+    correct_alts_map = {}
+    exp_map = {}
+
+    for i in range(0, len(q_ids), chunk_size):
+        chunk = q_ids[i:i + chunk_size]
+        placeholders = ",".join("?" * len(chunk))
+
+        qs = db.execute(f"SELECT id, correct_letter FROM questions WHERE id IN ({placeholders})", chunk).fetchall()
+        for q in qs:
+            q_map[q["id"]] = q["correct_letter"]
+
+        alts_rows = db.execute(f"SELECT question_id, letter FROM alternatives WHERE question_id IN ({placeholders}) AND is_correct = 1", chunk).fetchall()
+        for a in alts_rows:
+            correct_alts_map.setdefault(a["question_id"], set()).add(a["letter"].strip().upper())
+
+        exps = db.execute(f"SELECT question_id, explanation_text FROM explanations WHERE question_id IN ({placeholders})", chunk).fetchall()
+        for e in exps:
+            exp_map[e["question_id"]] = e["explanation_text"]
+
+    return q_map, correct_alts_map, exp_map
+
+
+def _fetch_srs_map(db, q_ids: list[int], user_id: int, chunk_size: int = 500) -> dict:
+    srs_map = {}
+    for i in range(0, len(q_ids), chunk_size):
+        chunk = q_ids[i:i + chunk_size]
+        placeholders = ",".join("?" * len(chunk))
+        chunk_args = [*chunk, user_id]
+        srs_data = db.execute(
+            f"SELECT question_id, fsrs_card FROM spaced_repetition WHERE question_id IN ({placeholders}) AND user_id = ?",
+            chunk_args
+        ).fetchall()
+        for card in srs_data:
+            srs_map[card["question_id"]] = card["fsrs_card"]
+    return srs_map
+
+
+def _process_single_attempt(
+    db,
+    item,
+    user_id: int,
+    answered_at: str,
+    q_map: dict,
+    correct_alts_map: dict,
+    exp_map: dict,
+    srs_map: dict
+) -> dict | None:
+    correct_letter = q_map.get(item.question_id)
+    if not correct_letter:
+        return None
+
+    selected = (item.selected_letter or "A").upper()
+    if item.is_correct is not None:
+        is_correct = 1 if item.is_correct else 0
+    else:
+        is_correct = check_is_correct(selected, correct_letter, correct_alts_map.get(item.question_id))
+    conf = item.confidence or "certeza"
+
+    db.execute(
+        """INSERT INTO attempts (question_id, selected_letter, is_correct, answered_at, time_spent_ms, confidence, user_id)
+           VALUES (?,?,?,?,?,?,?)""",
+        (item.question_id, selected, is_correct, answered_at, item.time_spent_ms, conf, user_id),
+    )
+
+    next_review = None
+    if conf == "defer":
+        _defer_question_review(db, item.question_id, user_id)
+    else:
+        old_card = srs_map.get(item.question_id)
+        card_json, next_review = srs.review(old_card, is_correct, conf)
+        db.execute("""
+            INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id)
+            VALUES (?, ?, ?, ?)
+            ON CONFLICT(question_id, user_id) DO UPDATE SET
+                next_review_date = excluded.next_review_date, fsrs_card = excluded.fsrs_card
+        """, (item.question_id, next_review, card_json, user_id))
+
+    return {
+        "question_id": item.question_id,
+        "is_correct": bool(is_correct),
+        "correct_letter": correct_letter,
+        "explanation": exp_map.get(item.question_id),
+        "next_review_date": next_review
+    }
+
+
 @bp.route("/attempt/batch", methods=["POST"])
 def submit_attempt_batch():
     db = get_db()
@@ -780,80 +868,19 @@ def submit_attempt_batch():
                     complete_idempotency(db, g.user_id, 200, resp_data, lease_token)
             return jsonify(resp_data)
 
-        CHUNK_SIZE = 500
-        q_map = {}
-        exp_map = {}
-        correct_alts_map = {}
-
-        for i in range(0, len(q_ids), CHUNK_SIZE):
-            chunk = q_ids[i:i + CHUNK_SIZE]
-            placeholders = ",".join("?" * len(chunk))
-            
-            qs = db.execute(f"SELECT id, correct_letter FROM questions WHERE id IN ({placeholders})", chunk).fetchall()
-            for q in qs:
-                q_map[q["id"]] = q["correct_letter"]
-
-            alts_rows = db.execute(f"SELECT question_id, letter FROM alternatives WHERE question_id IN ({placeholders}) AND is_correct = 1", chunk).fetchall()
-            for a in alts_rows:
-                correct_alts_map.setdefault(a["question_id"], set()).add(a["letter"].strip().upper())
-                
-            exps = db.execute(f"SELECT question_id, explanation_text FROM explanations WHERE question_id IN ({placeholders})", chunk).fetchall()
-            for e in exps:
-                exp_map[e["question_id"]] = e["explanation_text"]
+        q_map, correct_alts_map, exp_map = _fetch_batch_metadata(db, q_ids)
                 
         with db_transaction(db, immediate=True):
             # Read FSRS cards after acquiring the write transaction. Otherwise
             # a concurrent batch can advance a card between this read and UPSERT.
-            srs_map = {}
-            for i in range(0, len(q_ids), CHUNK_SIZE):
-                chunk = q_ids[i:i + CHUNK_SIZE]
-                placeholders = ",".join("?" * len(chunk))
-                chunk_args = [*chunk, g.user_id]
-                srs_data = db.execute(
-                    f"SELECT question_id, fsrs_card FROM spaced_repetition WHERE question_id IN ({placeholders}) AND user_id = ?",
-                    chunk_args
-                ).fetchall()
-                for card in srs_data:
-                    srs_map[card["question_id"]] = card["fsrs_card"]
+            srs_map = _fetch_srs_map(db, q_ids, g.user_id)
 
             for item in payload.attempts:
-                correct_letter = q_map.get(item.question_id)
-                if not correct_letter:
-                    continue
-
-                selected = (item.selected_letter or "A").upper()
-                if item.is_correct is not None:
-                    is_correct = 1 if item.is_correct else 0
-                else:
-                    is_correct = check_is_correct(selected, correct_letter, correct_alts_map.get(item.question_id))
-                conf = item.confidence or "certeza"
-
-                db.execute(
-                    """INSERT INTO attempts (question_id, selected_letter, is_correct, answered_at, time_spent_ms, confidence, user_id)
-                       VALUES (?,?,?,?,?,?,?)""",
-                    (item.question_id, selected, is_correct, answered_at, item.time_spent_ms, conf, g.user_id),
+                res = _process_single_attempt(
+                    db, item, g.user_id, answered_at, q_map, correct_alts_map, exp_map, srs_map
                 )
-
-                next_review = None
-                if conf == "defer":
-                    _defer_question_review(db, item.question_id, g.user_id)
-                else:
-                    old_card = srs_map.get(item.question_id)
-                    card_json, next_review = srs.review(old_card, is_correct, conf)
-                    db.execute("""
-                        INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id)
-                        VALUES (?, ?, ?, ?)
-                        ON CONFLICT(question_id, user_id) DO UPDATE SET
-                            next_review_date = excluded.next_review_date, fsrs_card = excluded.fsrs_card
-                    """, (item.question_id, next_review, card_json, g.user_id))
-
-                results.append({
-                    "question_id": item.question_id,
-                    "is_correct": bool(is_correct),
-                    "correct_letter": correct_letter,
-                    "explanation": exp_map.get(item.question_id),
-                    "next_review_date": next_review
-                })
+                if res:
+                    results.append(res)
 
             resp_data = {"results": results}
             if lease_token:
