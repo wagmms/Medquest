@@ -1318,6 +1318,78 @@ def get_sample_status(attempts: int) -> str:
     return "reliable"
 
 
+def _get_institution_label(db, institution_code: str | None) -> str:
+    """Retorna o rótulo de uma instituição."""
+    if not institution_code:
+        return "Desempenho Geral"
+
+    l_row = db.execute(
+        "SELECT institution_label FROM questions WHERE institution_code = ? LIMIT 1",
+        (institution_code,)
+    ).fetchone()
+    return l_row["institution_label"] if l_row else institution_code
+
+
+def _fetch_priority_topics(db, user_id: str, area_name: str, institution_code: str | None, inst_clause: str) -> list[dict]:
+    """Busca tópicos prioritários para estudo baseados nas estatísticas de desempenho."""
+    sub_params = [user_id, area_name]
+    if institution_code:
+        sub_params.append(institution_code)
+
+    sub_rows = db.execute(f"""
+        SELECT
+            q.subtema,
+            COUNT(DISTINCT q.id) AS sub_available,
+            COUNT(DISTINCT a.question_id) AS sub_answered,
+            COUNT(a.id) AS sub_attempts,
+            COALESCE(SUM(a.is_correct), 0) AS sub_correct
+        FROM questions q
+        LEFT JOIN attempts a ON a.question_id = q.id AND a.user_id = ?
+        WHERE q.missing_alts = 0 AND q.area = ? {inst_clause}
+              AND q.subtema IS NOT NULL AND q.subtema != ''
+        GROUP BY q.subtema
+        ORDER BY
+            (CASE WHEN COUNT(a.id) = 0 THEN 0 WHEN (CAST(COALESCE(SUM(a.is_correct), 0) AS FLOAT) / COUNT(a.id)) < 0.65 THEN 1 ELSE 2 END) ASC,
+            (CASE WHEN COUNT(a.id) > 0 THEN (CAST(COALESCE(SUM(a.is_correct), 0) AS FLOAT) / COUNT(a.id)) ELSE 0 END) ASC,
+            sub_available DESC
+        LIMIT 3
+    """, sub_params).fetchall()
+
+    priority_topics = []
+    for sr in sub_rows:
+        s_att = sr["sub_attempts"]
+        s_cor = sr["sub_correct"]
+        s_acc = round(s_cor / s_att, 4) if s_att > 0 else None
+
+        if s_att == 0:
+            gap_type = "unanswered"
+        elif s_acc is not None and s_acc < 0.65:
+            gap_type = "low_accuracy"
+        else:
+            gap_type = "low_coverage"
+
+        study_params = {"area": area_name, "subtema": sr["subtema"], "status": "all", "limit": 20}
+        simulado_params = {"area": area_name}
+        if institution_code:
+            study_params["institution"] = institution_code
+            simulado_params["institutions"] = institution_code
+
+        priority_topics.append({
+            "subtema": sr["subtema"],
+            "available": sr["sub_available"],
+            "answered": sr["sub_answered"],
+            "attempts": s_att,
+            "correct": s_cor,
+            "accuracy": s_acc,
+            "gap_type": gap_type,
+            "study_url": f"/estudar?{urlencode(study_params)}",
+            "simulado_url": f"/simulado?{urlencode(simulado_params)}",
+            "review_url": "/revisao-ativa",
+        })
+
+    return priority_topics
+
+
 def _build_institution_stats(db, user_id: str, institution_code: str | None = None):
     canonical_order = [
         "Clínica Médica",
@@ -1348,15 +1420,7 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
 
     row_map = {r["area"]: r for r in rows}
 
-    label = None
-    if institution_code:
-        l_row = db.execute(
-            "SELECT institution_label FROM questions WHERE institution_code = ? LIMIT 1",
-            (institution_code,)
-        ).fetchone()
-        label = l_row["institution_label"] if l_row else institution_code
-    else:
-        label = "Desempenho Geral"
+    label = _get_institution_label(db, institution_code)
 
     areas = []
     total_available = 0
@@ -1381,61 +1445,7 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
         ci_lower, ci_upper = calculate_wilson_ci(cor, att)
         sample_status = get_sample_status(att)
 
-        # Priority gap subtemas
-        sub_params = [user_id, area_name]
-        if institution_code:
-            sub_params.append(institution_code)
-
-        sub_rows = db.execute(f"""
-            SELECT
-                q.subtema,
-                COUNT(DISTINCT q.id) AS sub_available,
-                COUNT(DISTINCT a.question_id) AS sub_answered,
-                COUNT(a.id) AS sub_attempts,
-                COALESCE(SUM(a.is_correct), 0) AS sub_correct
-            FROM questions q
-            LEFT JOIN attempts a ON a.question_id = q.id AND a.user_id = ?
-            WHERE q.missing_alts = 0 AND q.area = ? {inst_clause}
-                  AND q.subtema IS NOT NULL AND q.subtema != ''
-            GROUP BY q.subtema
-            ORDER BY
-                (CASE WHEN COUNT(a.id) = 0 THEN 0 WHEN (CAST(COALESCE(SUM(a.is_correct), 0) AS FLOAT) / COUNT(a.id)) < 0.65 THEN 1 ELSE 2 END) ASC,
-                (CASE WHEN COUNT(a.id) > 0 THEN (CAST(COALESCE(SUM(a.is_correct), 0) AS FLOAT) / COUNT(a.id)) ELSE 0 END) ASC,
-                sub_available DESC
-            LIMIT 3
-        """, sub_params).fetchall()
-
-        priority_topics = []
-        for sr in sub_rows:
-            s_att = sr["sub_attempts"]
-            s_cor = sr["sub_correct"]
-            s_acc = round(s_cor / s_att, 4) if s_att > 0 else None
-
-            if s_att == 0:
-                gap_type = "unanswered"
-            elif s_acc is not None and s_acc < 0.65:
-                gap_type = "low_accuracy"
-            else:
-                gap_type = "low_coverage"
-
-            study_params = {"area": area_name, "subtema": sr["subtema"], "status": "all", "limit": 20}
-            simulado_params = {"area": area_name}
-            if institution_code:
-                study_params["institution"] = institution_code
-                simulado_params["institutions"] = institution_code
-
-            priority_topics.append({
-                "subtema": sr["subtema"],
-                "available": sr["sub_available"],
-                "answered": sr["sub_answered"],
-                "attempts": s_att,
-                "correct": s_cor,
-                "accuracy": s_acc,
-                "gap_type": gap_type,
-                "study_url": f"/estudar?{urlencode(study_params)}",
-                "simulado_url": f"/simulado?{urlencode(simulado_params)}",
-                "review_url": "/revisao-ativa",
-            })
+        priority_topics = _fetch_priority_topics(db, user_id, area_name, institution_code, inst_clause)
 
         areas.append({
             "area": area_name,
