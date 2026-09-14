@@ -239,10 +239,20 @@ def overview():
     return jsonify(result)
 
 
+ALLOWED_BREAKDOWN_COLS = {
+    "institution_code", "institution_label", "source_file",
+    "year", "topic", "area", "subtema", "specialty"
+}
+
 def _breakdown(db, group_col, label_col=None):
+    if group_col not in ALLOWED_BREAKDOWN_COLS:
+        raise ValueError(f"Invalid group_col for _breakdown: {group_col}")
+    if label_col and label_col not in ALLOWED_BREAKDOWN_COLS:
+        raise ValueError(f"Invalid label_col for _breakdown: {label_col}")
+
     label_expr = label_col or group_col
     rows = db.execute(f"""
-        SELECT q.{group_col} AS key, MIN({label_expr}) AS label,
+        SELECT q.{group_col} AS key, MIN(q.{label_expr}) AS label,
                COUNT(a.id) AS attempts, SUM(a.is_correct) AS correct
         FROM attempts a JOIN questions q ON q.id = a.question_id
         WHERE a.user_id = ? AND q.{group_col} IS NOT NULL AND q.{group_col} != ''
