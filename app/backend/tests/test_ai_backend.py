@@ -10,8 +10,7 @@ def test_ai_health(client):
     assert "total_keys" in data
 
 
-def test_ask_ai_endpoint(client, monkeypatch):
-    monkeypatch.setenv("GROQ_API_KEY", "mock")
+def test_ask_ai_endpoint(client):
     res = client.post(
         "/api/questions/1/ask_ai",
         json={"user_question": "Qual a conduta padrão ouro?", "user_letter": "A"}
