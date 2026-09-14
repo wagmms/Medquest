@@ -296,8 +296,8 @@ echo "  [VPS 1/4] Atualizando repositorio..."
 cd "$PROJ"
 git pull --ff-only origin main
 DEPLOY_SHA=$(git rev-parse HEAD)
-BACKEND_IMAGE="ghcr.io/wagmmss/medquest-backend:sha-$DEPLOY_SHA"
-FRONTEND_IMAGE="ghcr.io/wagmmss/medquest-frontend:sha-$DEPLOY_SHA"
+BACKEND_IMAGE="ghcr.io/wagmms/medquest-backend:sha-$DEPLOY_SHA"
+FRONTEND_IMAGE="ghcr.io/wagmms/medquest-frontend:sha-$DEPLOY_SHA"
 
 echo "  [VPS 2/4] Aguardando e baixando imagens Docker em paralelo do commit $DEPLOY_SHA..."
 pull_commit_image "$BACKEND_IMAGE" "Backend" &
@@ -315,8 +315,8 @@ fi
 
 # O arquivo Compose referencia :latest. Atualizamos essa tag local somente apos
 # baixar as imagens imutaveis deste commit, para o Compose recriar com a versao certa.
-sudo docker tag "$BACKEND_IMAGE" ghcr.io/wagmmss/medquest-backend:latest
-sudo docker tag "$FRONTEND_IMAGE" ghcr.io/wagmmss/medquest-frontend:latest
+sudo docker tag "$BACKEND_IMAGE" ghcr.io/wagmms/medquest-backend:latest
+sudo docker tag "$FRONTEND_IMAGE" ghcr.io/wagmms/medquest-frontend:latest
 
 echo "  [VPS 3/4] Recriando containers com as novas imagens..."
 # O Compose compara a imagem/configuracao desejada com cada container existente.
