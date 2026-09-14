@@ -55,6 +55,7 @@ def apply_pending_migrations(db) -> list[str]:
     }
     now = datetime.now(timezone.utc).isoformat()
     applied: list[str] = []
+    records_to_insert = []
 
     for path in sorted(MIGRATIONS_DIR.glob("*.sql")):
         if not MIGRATION_NAME.fullmatch(path.name):
@@ -66,16 +67,27 @@ def apply_pending_migrations(db) -> list[str]:
         if existing:
             continue
         if path.name in BASELINE_MIGRATIONS:
-            db.execute(
-                "INSERT INTO schema_migrations (migration_id, checksum, applied_at, source) VALUES (?, ?, ?, ?)",
-                (path.name, checksum, now, "legacy-bootstrap-baseline"),
-            )
+            records_to_insert.append((path.name, checksum, now, "legacy-bootstrap-baseline"))
             continue
-        for statement in _statements(path):
-            db.execute(statement)
-        db.execute(
-            "INSERT INTO schema_migrations (migration_id, checksum, applied_at, source) VALUES (?, ?, ?, ?)",
-            (path.name, checksum, now, "forward-migration"),
-        )
+
+        try:
+            for statement in _statements(path):
+                db.execute(statement)
+        except Exception:
+            if records_to_insert:
+                db.executemany(
+                    "INSERT INTO schema_migrations (migration_id, checksum, applied_at, source) VALUES (?, ?, ?, ?)",
+                    records_to_insert,
+                )
+            raise
+
+        records_to_insert.append((path.name, checksum, now, "forward-migration"))
         applied.append(path.name)
+
+    if records_to_insert:
+        db.executemany(
+            "INSERT INTO schema_migrations (migration_id, checksum, applied_at, source) VALUES (?, ?, ?, ?)",
+            records_to_insert,
+        )
+
     return applied
