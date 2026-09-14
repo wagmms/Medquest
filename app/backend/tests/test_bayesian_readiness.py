@@ -5,7 +5,7 @@ from api.edital_profiles import (
     EditalProfile,
     CANONICAL_AREAS,
 )
-from api.stats import calculate_bayesian_readiness, beta_credible_interval
+from api.stats import calculate_bayesian_readiness, beta_credible_interval, weighted_beta_credible_interval
 from api.db import get_db
 
 
@@ -44,6 +44,44 @@ def test_edital_profiles_registry_and_fallback():
     assert custom.status == "experimental"
     assert custom.institution_code == "HOSPITAL_UNKNOWN"
     assert sum(custom.weights.values()) == pytest.approx(1.0, 0.001)
+
+
+def test_weighted_beta_credible_interval():
+    # Mean and variance within limits
+    # beta_credible_interval with a = bounded_mean * c, b = (1 - bounded_mean) * c
+    # bounded_mean = 0.5, variance = 0.05
+    # max_var = 0.25. c = 0.25 / 0.05 - 1 = 4
+    # a = 0.5 * 4 = 2, b = 0.5 * 4 = 2
+    # beta_credible_interval(2, 2) => expects [0.0943, 0.9057] (roughly)
+    lower, upper = weighted_beta_credible_interval(0.5, 0.05)
+    assert 0.0 < lower < 0.5 < upper < 1.0
+
+    # Variance <= 0.0 edge case
+    lower, upper = weighted_beta_credible_interval(0.5, 0.0)
+    assert lower == 0.5
+    assert upper == 0.5
+
+    lower, upper = weighted_beta_credible_interval(0.5, -0.1)
+    assert lower == 0.5
+    assert upper == 0.5
+
+    # Variance >= max_variance edge case
+    # max_variance for 0.5 is 0.25
+    lower, upper = weighted_beta_credible_interval(0.5, 0.3)
+    assert lower == 0.5
+    assert upper == 0.5
+
+    # Extreme means (mean < 1e-12)
+    # bounded_mean will be 1e-12, max_var = 1e-12
+    lower, upper = weighted_beta_credible_interval(0.0, 1e-15)
+    # concentration > 0, bounds are checked
+    assert 0.0 <= lower <= 1.0
+    assert 0.0 <= upper <= 1.0
+
+    # Extreme means (mean > 1 - 1e-12)
+    lower, upper = weighted_beta_credible_interval(1.0, 1e-15)
+    assert 0.0 <= lower <= 1.0
+    assert 0.0 <= upper <= 1.0
 
 
 def test_beta_credible_interval_is_exact_at_small_and_extreme_posteriors():
