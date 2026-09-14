@@ -130,6 +130,41 @@ def test_clean_anki_html():
     assert "• Dor precordial" in cleaned
     assert "Sudorese & dispneia" in cleaned
 
+def test_clean_anki_html_empty():
+    assert clean_anki_html("") == ""
+    assert clean_anki_html(None) == ""
+
+def test_clean_anki_html_comments():
+    html_input = "Some text <!-- hidden comment --> with comments."
+    cleaned = clean_anki_html(html_input)
+    assert cleaned == "Some text  with comments."
+
+def test_clean_anki_html_images():
+    html_input = "Look at this <img src='test.jpg' alt='Test'> image."
+    cleaned = clean_anki_html(html_input)
+    assert "![imagem](test.jpg)" in cleaned
+    assert "Look at this" in cleaned
+    assert "image." in cleaned
+
+def test_clean_anki_html_formatting():
+    html_input = "<strong>Strong</strong> and <em>Emph</em> and <i>Italic</i> and <b>Bold</b>."
+    cleaned = clean_anki_html(html_input)
+    assert "**Strong**" in cleaned
+    assert "*Emph*" in cleaned
+    assert "*Italic*" in cleaned
+    assert "**Bold**" in cleaned
+
+def test_clean_anki_html_lists():
+    html_input = "<ul><li>Item 1</li><li class='test'>Item 2</li></ul>"
+    cleaned = clean_anki_html(html_input)
+    assert "• Item 1" in cleaned
+    assert "• Item 2" in cleaned
+
+def test_clean_anki_html_newlines():
+    html_input = "<p>Para 1</p><p>Para 2</p>\n\r\nLots of blanks\n\n\n\n"
+    cleaned = clean_anki_html(html_input)
+    assert "Para 1\n\nPara 2\n\nLots of blanks" in cleaned
+
 
 def test_parse_anki_tags():
     # Empty string or None
