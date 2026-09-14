@@ -7,6 +7,7 @@ const testServerPort = new URL(baseURL).port || '3100';
 
 export default defineConfig({
   testDir: './e2e',
+  testMatch: '**/e2e/**/*.spec.ts',
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: 0,
@@ -41,9 +42,5 @@ export default defineConfig({
     url: `${baseURL}/favicon.ico`,
     reuseExistingServer: false,
     timeout: 120000,
-
-
-
-
   },
 });
