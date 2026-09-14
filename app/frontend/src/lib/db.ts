@@ -215,7 +215,14 @@ export class MedQuestDB extends Dexie {
             try {
               const parsed = JSON.parse(s.body);
               if (typeof parsed === "string") {
-                s.body = parsed;
+                try {
+                  const innerParsed = JSON.parse(parsed);
+                  if (typeof innerParsed === "object" && innerParsed !== null) {
+                    s.body = parsed;
+                  }
+                } catch {
+                  // The inner string is not a valid JSON object/array, so it was not double-serialized
+                }
               }
             } catch {
               // ignore
