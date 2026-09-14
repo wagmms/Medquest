@@ -27,8 +27,8 @@ class EditalProfile(BaseModel):
     weights: Dict[str, float] = Field(description="Pesos por grande área médica normalizados para soma 1.0")
 
 
-def normalize_weights(raw_weights: Dict[str, float]) -> Dict[str, float]:
-    """Valida e normaliza pesos de grandes áreas para somarem exatamente 1.0."""
+def _clean_weights(raw_weights: Dict[str, float]) -> Dict[str, float]:
+    """Extrai e sanitiza os pesos brutos."""
     cleaned: Dict[str, float] = {}
     for area in CANONICAL_AREAS:
         val = raw_weights.get(area, 0.0)
@@ -37,12 +37,20 @@ def normalize_weights(raw_weights: Dict[str, float]) -> Dict[str, float]:
             cleaned[area] = max(0.0, val_f)
         except (ValueError, TypeError):
             cleaned[area] = 0.0
+    return cleaned
 
+def _get_fallback_weights() -> Dict[str, float]:
+    """Retorna pesos equitativos padrão (20% para cada área canônica)."""
+    equal_w = 1.0 / len(CANONICAL_AREAS)
+    return {area: equal_w for area in CANONICAL_AREAS}
+
+def normalize_weights(raw_weights: Dict[str, float]) -> Dict[str, float]:
+    """Valida e normaliza pesos de grandes áreas para somarem exatamente 1.0."""
+    cleaned = _clean_weights(raw_weights)
     total = sum(cleaned.values())
+
     if total <= 0:
-        # Fallback equitativo (20% para cada área canônica)
-        equal_w = 1.0 / len(CANONICAL_AREAS)
-        return {area: equal_w for area in CANONICAL_AREAS}
+        return _get_fallback_weights()
 
     return {area: round(w / total, 4) for area, w in cleaned.items()}
 
@@ -136,7 +144,6 @@ def get_edital_profile(institution_code: Optional[str]) -> EditalProfile:
     if code in EDITAL_PROFILES_REGISTRY:
         return EDITAL_PROFILES_REGISTRY[code]
 
-    equal_w = 1.0 / len(CANONICAL_AREAS)
     return EditalProfile(
         institution_code=institution_code or "GERAL",
         institution_label=institution_code or "Banco Geral",
@@ -144,5 +151,5 @@ def get_edital_profile(institution_code: Optional[str]) -> EditalProfile:
         validity_period="2025-2026",
         curation_source="Perfil padrão experimental (pesos equitativos pelas 5 grandes áreas)",
         status="experimental",
-        weights={area: equal_w for area in CANONICAL_AREAS},
+        weights=_get_fallback_weights(),
     )
