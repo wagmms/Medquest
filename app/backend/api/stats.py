@@ -516,12 +516,8 @@ def learning_profile():
     return jsonify(build_learning_profile(get_db(), g.user_id))
 
 
-def calculate_bayesian_readiness(area_records: list[dict], edital_profile: EditalProfile) -> dict:
-    """
-    Calcula a prontidão bayesiana agregada usando modelo Beta-Binomial
-    conjugado com prior plano Beta(1, 1) em cada grande área médica.
-    """
-    # Mapeia registros recebidos usando normalização de área se necessário
+
+def _aggregate_area_records(area_records: list[dict]) -> dict:
     row_map = {}
     for r in area_records:
         norm_a = get_normalized_area(r.get("area", ""))
@@ -537,7 +533,11 @@ def calculate_bayesian_readiness(area_records: list[dict], edital_profile: Edita
             row_map[norm_a]["correct"] += r.get("correct", 0)
             row_map[norm_a]["available"] += r.get("available", 0)
             row_map[norm_a]["answered"] += r.get("answered", 0)
+    return row_map
 
+
+
+def _process_canonical_areas(row_map: dict, edital_profile: EditalProfile) -> tuple[list[dict], float, float, dict]:
     enriched_areas = []
     weighted_mean_sum = 0.0
     weighted_var_sum = 0.0
@@ -589,22 +589,26 @@ def calculate_bayesian_readiness(area_records: list[dict], edital_profile: Edita
             "action": "/estudar?" + urlencode({"area": area, "status": "new", "limit": 20}),
         })
 
-    readiness_score = round(weighted_mean_sum, 4)
-    ci_lower, ci_upper = weighted_beta_credible_interval(weighted_mean_sum, weighted_var_sum)
+    return enriched_areas, weighted_mean_sum, weighted_var_sum, area_attempts
 
+
+
+def _determine_evidence_status(area_attempts: dict, edital_profile: EditalProfile) -> str:
     total_attempts = sum(area_attempts.values())
     active_weights = {a: w for a, w in edital_profile.weights.items() if w > 0}
     all_areas_have_5 = all(area_attempts.get(a, 0) >= 5 for a in active_weights)
     all_areas_have_10 = all(area_attempts.get(a, 0) >= 10 for a in active_weights)
 
     if total_attempts < 20 or not all_areas_have_5:
-        evidence_status = "insufficient"
+        return "insufficient"
     elif total_attempts >= 50 and all_areas_have_10:
-        evidence_status = "reliable"
+        return "reliable"
     else:
-        evidence_status = "forming"
+        return "forming"
 
-    # Fatores e recomendações principais para o usuário fechar lacunas
+
+
+def _generate_key_factors(enriched_areas: list[dict]) -> list[dict]:
     key_factors = []
     for a_info in enriched_areas:
         w_pct = round(a_info["weight"] * 100)
@@ -624,6 +628,25 @@ def calculate_bayesian_readiness(area_records: list[dict], edital_profile: Edita
                 "recommendation": f"Revisar conceitos prioritários de {a_info['area']} para elevar a prontidão.",
                 "factor_type": "low_accuracy",
             })
+    return key_factors
+
+
+def calculate_bayesian_readiness(area_records: list[dict], edital_profile: EditalProfile) -> dict:
+    """
+    Calcula a prontidão bayesiana agregada usando modelo Beta-Binomial
+    conjugado com prior plano Beta(1, 1) em cada grande área médica.
+    """
+    row_map = _aggregate_area_records(area_records)
+
+    enriched_areas, weighted_mean_sum, weighted_var_sum, area_attempts = _process_canonical_areas(
+        row_map, edital_profile
+    )
+
+    readiness_score = round(weighted_mean_sum, 4)
+    ci_lower, ci_upper = weighted_beta_credible_interval(weighted_mean_sum, weighted_var_sum)
+
+    evidence_status = _determine_evidence_status(area_attempts, edital_profile)
+    key_factors = _generate_key_factors(enriched_areas)
 
     limitations = [
         "A prontidão estimada reflete exclusivamente as questões resolvidas no MedQuest sob o perfil de edital configurado.",
