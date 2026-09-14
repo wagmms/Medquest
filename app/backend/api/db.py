@@ -233,197 +233,213 @@ def _table_cols(db, table):
         return [r["name"] for r in res]
     return [r[0] for r in db.execute("SELECT name FROM pragma_table_info(?)", (table,))]
 
+
+def _create_tables(db):
+    db.execute('''CREATE TABLE IF NOT EXISTS questions(
+        id INTEGER PRIMARY KEY, source_file TEXT, source_number INTEGER, year INTEGER,
+        institution_code TEXT, institution_label TEXT, topic TEXT, stem TEXT,
+        correct_letter TEXT, missing_alts INTEGER DEFAULT 0, area TEXT, subtema TEXT,
+        subtema_id TEXT, subtema_orig TEXT, editorial_status TEXT, status TEXT DEFAULT 'active')''')
+    db.execute('''CREATE TABLE IF NOT EXISTS alternatives(
+        id INTEGER PRIMARY KEY, question_id INTEGER, letter TEXT,
+        text TEXT, is_correct INTEGER)''')
+    db.execute('''CREATE TABLE IF NOT EXISTS explanations(
+        question_id INTEGER PRIMARY KEY, explanation_text TEXT, generated_at TEXT)''')
+    db.execute('''CREATE TABLE IF NOT EXISTS question_images(
+        id INTEGER PRIMARY KEY, question_id INTEGER, file_path TEXT, order_index INTEGER)''')
+    db.execute('''CREATE TABLE IF NOT EXISTS attempts(
+        id INTEGER PRIMARY KEY, question_id INTEGER, selected_letter TEXT,
+        is_correct INTEGER, answered_at TEXT, confidence TEXT, user_id TEXT DEFAULT '1', time_spent_ms INTEGER)''')
+
+    db.execute("CREATE TABLE IF NOT EXISTS favorites (question_id INTEGER, user_id TEXT DEFAULT '1', PRIMARY KEY (question_id, user_id))")
+    db.execute('''CREATE TABLE IF NOT EXISTS spaced_repetition (
+        question_id INTEGER, efactor REAL, interval INTEGER,
+        next_review_date TEXT, user_id TEXT DEFAULT '1', fsrs_card TEXT,
+        PRIMARY KEY (question_id, user_id))''')
+    db.execute('''CREATE TABLE IF NOT EXISTS planner_progress (
+        week INTEGER, studied INTEGER DEFAULT 0, studied_at TEXT,
+        rev24h INTEGER DEFAULT 0, rev7d INTEGER DEFAULT 0, rev30d INTEGER DEFAULT 0,
+         user_id TEXT DEFAULT '1', PRIMARY KEY (week, user_id))''')
+    db.execute('''CREATE TABLE IF NOT EXISTS planner_topic_progress (
+        week INTEGER NOT NULL, subtema TEXT NOT NULL, completed INTEGER DEFAULT 0,
+        completed_at TEXT, user_id TEXT DEFAULT '1',
+        PRIMARY KEY (week, subtema, user_id))''')
+    db.execute('''CREATE TABLE IF NOT EXISTS planner_config (
+        user_id TEXT PRIMARY KEY, exam_date TEXT, start_date TEXT,
+        days_per_week INTEGER DEFAULT 6, questions_per_day INTEGER DEFAULT 30, hours_per_day INTEGER DEFAULT 4, target_score REAL,
+        target_institution TEXT, target_specialty TEXT,
+        updated_at TEXT)''')
+
+    db.execute('''CREATE TABLE IF NOT EXISTS flashcards (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        question_id INTEGER,
+        front TEXT NOT NULL,
+        back TEXT,
+        created_at TEXT NOT NULL,
+        next_review_date TEXT,
+        fsrs_card TEXT,
+        user_id TEXT DEFAULT '1',
+        source_context TEXT,
+        is_ai_generated INTEGER DEFAULT 0,
+        report_status TEXT,
+        deck_name TEXT DEFAULT 'Geral',
+        tags TEXT,
+        source_type TEXT DEFAULT 'medquest',
+        anki_nid INTEGER)''')
+    db.execute('''CREATE TABLE IF NOT EXISTS simulado_sessions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, client_session_id TEXT NOT NULL,
+        planned_duration_seconds INTEGER NOT NULL, elapsed_seconds INTEGER NOT NULL,
+        total_questions INTEGER NOT NULL, answered_count INTEGER NOT NULL, correct_count INTEGER NOT NULL,
+        filters_json TEXT NOT NULL, area_results_json TEXT NOT NULL, completed_at TEXT NOT NULL,
+        user_id TEXT DEFAULT '1', UNIQUE(user_id, client_session_id))''')
+
+    db.execute('''CREATE TABLE IF NOT EXISTS clinical_cases (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        stem TEXT NOT NULL,
+        images TEXT,
+        medical_references TEXT)''')
+
+    db.execute('''CREATE TABLE IF NOT EXISTS learning_sessions (
+        user_id TEXT NOT NULL,
+        session_type TEXT NOT NULL,
+        state_json TEXT NOT NULL,
+        updated_at TEXT NOT NULL,
+        PRIMARY KEY (user_id, session_type))''')
+
+    db.execute('''CREATE TABLE IF NOT EXISTS idempotency_keys (
+        user_id TEXT NOT NULL,
+        key TEXT NOT NULL,
+        method TEXT NOT NULL,
+        path TEXT NOT NULL,
+        payload_hash TEXT NOT NULL,
+        status TEXT NOT NULL DEFAULT 'completed',
+        status_code INTEGER,
+        response_body TEXT,
+        lease_expires_at REAL DEFAULT 0,
+        lease_owner_token TEXT,
+        created_at TEXT NOT NULL,
+        PRIMARY KEY (user_id, key))''')
+
+    db.execute('''CREATE TABLE IF NOT EXISTS telemetry_daily_aggregates (
+        date TEXT NOT NULL,
+        route TEXT NOT NULL,
+        method TEXT NOT NULL,
+        p50_ms REAL NOT NULL,
+        p95_ms REAL NOT NULL,
+        p99_ms REAL NOT NULL,
+        request_count INTEGER NOT NULL,
+        error_count INTEGER NOT NULL,
+        created_at TEXT NOT NULL,
+        PRIMARY KEY (date, route, method))''')
+
+    db.execute('''CREATE TABLE IF NOT EXISTS notification_configs (
+        user_id TEXT PRIMARY KEY,
+        enabled INTEGER DEFAULT 0,
+        preferred_hour INTEGER DEFAULT 8,
+        days_of_week TEXT DEFAULT '[0,1,2,3,4,5,6]',
+        max_daily_reminders INTEGER DEFAULT 1,
+        updated_at TEXT)''')
+
+    db.execute('''CREATE TABLE IF NOT EXISTS push_subscriptions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id TEXT NOT NULL,
+        endpoint TEXT NOT NULL,
+        p256dh TEXT NOT NULL,
+        auth TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        UNIQUE(user_id, endpoint))''')
+
+    db.execute('''CREATE TABLE IF NOT EXISTS notification_dispatches (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id TEXT NOT NULL,
+        dispatch_date TEXT NOT NULL,
+        status TEXT NOT NULL,
+        error_message TEXT,
+        created_at TEXT NOT NULL,
+        UNIQUE(user_id, dispatch_date))''')
+
+
+def _migrate_legacy_columns(db):
+    existing_pc_cols = _table_cols(db, "planner_config")
+    if "target_score" not in existing_pc_cols:
+        db.execute("ALTER TABLE planner_config ADD COLUMN target_score REAL")
+    if "target_institution" not in existing_pc_cols:
+        db.execute("ALTER TABLE planner_config ADD COLUMN target_institution TEXT")
+    if "target_specialty" not in existing_pc_cols:
+        db.execute("ALTER TABLE planner_config ADD COLUMN target_specialty TEXT")
+    if "hours_per_day" not in existing_pc_cols:
+        db.execute("ALTER TABLE planner_config ADD COLUMN hours_per_day INTEGER DEFAULT 4")
+
+    existing_fc_cols = _table_cols(db, "flashcards")
+    if "source_context" not in existing_fc_cols:
+        db.execute("ALTER TABLE flashcards ADD COLUMN source_context TEXT")
+    if "is_ai_generated" not in existing_fc_cols:
+        db.execute("ALTER TABLE flashcards ADD COLUMN is_ai_generated INTEGER DEFAULT 0")
+    if "report_status" not in existing_fc_cols:
+        db.execute("ALTER TABLE flashcards ADD COLUMN report_status TEXT")
+    if "deck_name" not in existing_fc_cols:
+        db.execute("ALTER TABLE flashcards ADD COLUMN deck_name TEXT DEFAULT 'Geral'")
+    if "tags" not in existing_fc_cols:
+        db.execute("ALTER TABLE flashcards ADD COLUMN tags TEXT")
+    if "source_type" not in existing_fc_cols:
+        db.execute("ALTER TABLE flashcards ADD COLUMN source_type TEXT DEFAULT 'medquest'")
+    if "anki_nid" not in existing_fc_cols:
+        db.execute("ALTER TABLE flashcards ADD COLUMN anki_nid INTEGER")
+
+    existing_cols = _table_cols(db, "idempotency_keys")
+    if "status" not in existing_cols:
+        db.execute("ALTER TABLE idempotency_keys ADD COLUMN status TEXT NOT NULL DEFAULT 'completed'")
+    if "lease_expires_at" not in existing_cols:
+        db.execute("ALTER TABLE idempotency_keys ADD COLUMN lease_expires_at REAL DEFAULT 0")
+    if "lease_owner_token" not in existing_cols:
+        db.execute("ALTER TABLE idempotency_keys ADD COLUMN lease_owner_token TEXT")
+
+
+def _create_indexes(db):
+    db.execute("CREATE INDEX IF NOT EXISTS idx_idempotency_created ON idempotency_keys(created_at)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_idempotency_lease ON idempotency_keys(user_id, lease_expires_at)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_push_subscriptions_user ON push_subscriptions(user_id)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_notification_dispatches_user_date ON notification_dispatches(user_id, dispatch_date)")
+
+    db.execute("CREATE INDEX IF NOT EXISTS idx_attempts_user_question ON attempts (user_id, question_id)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_attempts_user_question_latest ON attempts (user_id, question_id, id DESC)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_attempts_correct ON attempts (user_id, is_correct)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_questions_area_subtema ON questions (area, subtema)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_questions_missing_alts ON questions (missing_alts)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_spaced_repetition_review ON spaced_repetition (user_id, next_review_date)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_flashcards_user_review ON flashcards (user_id, next_review_date)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_flashcards_user_deck ON flashcards (user_id, deck_name)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_flashcards_user_anki_nid ON flashcards (user_id, anki_nid)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_simulado_sessions_user_completed ON simulado_sessions (user_id, completed_at DESC)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_questions_area ON questions (area)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_questions_institution ON questions (institution_code)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_questions_inst_code_label ON questions (institution_code, institution_label)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_questions_year ON questions (year)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_questions_source ON questions (source_file)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_attempts_answered_at ON attempts (answered_at)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_attempts_user_answered_at ON attempts (user_id, answered_at)")
+
+
+def _setup_fts(db):
+    try:
+        with db_transaction(db, immediate=True):
+            db.execute('''CREATE VIRTUAL TABLE IF NOT EXISTS questions_fts USING fts5(
+                stem,
+                explanation
+            )''')
+    except Exception as e:
+        logger.warning("FTS table creation is unavailable: %s", e)
+
+
 def init_db(app):
     """Cria tabelas de usuário se não existirem e garante colunas novas."""
     with app.app_context():
         db = get_db()
         with db_transaction(db, immediate=True):
-            db.execute("""CREATE TABLE IF NOT EXISTS questions(
-                id INTEGER PRIMARY KEY, source_file TEXT, source_number INTEGER, year INTEGER,
-                institution_code TEXT, institution_label TEXT, topic TEXT, stem TEXT,
-                correct_letter TEXT, missing_alts INTEGER DEFAULT 0, area TEXT, subtema TEXT,
-                subtema_id TEXT, subtema_orig TEXT, editorial_status TEXT, status TEXT DEFAULT 'active')""")
-            db.execute("""CREATE TABLE IF NOT EXISTS alternatives(
-                id INTEGER PRIMARY KEY, question_id INTEGER, letter TEXT,
-                text TEXT, is_correct INTEGER)""")
-            db.execute("""CREATE TABLE IF NOT EXISTS explanations(
-                question_id INTEGER PRIMARY KEY, explanation_text TEXT, generated_at TEXT)""")
-            db.execute("""CREATE TABLE IF NOT EXISTS question_images(
-                id INTEGER PRIMARY KEY, question_id INTEGER, file_path TEXT, order_index INTEGER)""")
-            db.execute("""CREATE TABLE IF NOT EXISTS attempts(
-                id INTEGER PRIMARY KEY, question_id INTEGER, selected_letter TEXT,
-                is_correct INTEGER, answered_at TEXT, confidence TEXT, user_id TEXT DEFAULT '1', time_spent_ms INTEGER)""")
-
-            db.execute("CREATE TABLE IF NOT EXISTS favorites (question_id INTEGER, user_id TEXT DEFAULT '1', PRIMARY KEY (question_id, user_id))")
-            db.execute("""CREATE TABLE IF NOT EXISTS spaced_repetition (
-                question_id INTEGER, efactor REAL, interval INTEGER,
-                next_review_date TEXT, user_id TEXT DEFAULT '1', fsrs_card TEXT,
-                PRIMARY KEY (question_id, user_id))""")
-            db.execute("""CREATE TABLE IF NOT EXISTS planner_progress (
-                week INTEGER, studied INTEGER DEFAULT 0, studied_at TEXT,
-                rev24h INTEGER DEFAULT 0, rev7d INTEGER DEFAULT 0, rev30d INTEGER DEFAULT 0,
-                 user_id TEXT DEFAULT '1', PRIMARY KEY (week, user_id))""")
-            db.execute("""CREATE TABLE IF NOT EXISTS planner_topic_progress (
-                week INTEGER NOT NULL, subtema TEXT NOT NULL, completed INTEGER DEFAULT 0,
-                completed_at TEXT, user_id TEXT DEFAULT '1',
-                PRIMARY KEY (week, subtema, user_id))""")
-            db.execute("""CREATE TABLE IF NOT EXISTS planner_config (
-                user_id TEXT PRIMARY KEY, exam_date TEXT, start_date TEXT,
-                days_per_week INTEGER DEFAULT 6, questions_per_day INTEGER DEFAULT 30, hours_per_day INTEGER DEFAULT 4, target_score REAL,
-                target_institution TEXT, target_specialty TEXT,
-                updated_at TEXT)""")
-            existing_pc_cols = _table_cols(db, "planner_config")
-            if "target_score" not in existing_pc_cols:
-                db.execute("ALTER TABLE planner_config ADD COLUMN target_score REAL")
-            if "target_institution" not in existing_pc_cols:
-                db.execute("ALTER TABLE planner_config ADD COLUMN target_institution TEXT")
-            if "target_specialty" not in existing_pc_cols:
-                db.execute("ALTER TABLE planner_config ADD COLUMN target_specialty TEXT")
-            if "hours_per_day" not in existing_pc_cols:
-                db.execute("ALTER TABLE planner_config ADD COLUMN hours_per_day INTEGER DEFAULT 4")
-
-            db.execute("""CREATE TABLE IF NOT EXISTS flashcards (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                question_id INTEGER,
-                front TEXT NOT NULL,
-                back TEXT,
-                created_at TEXT NOT NULL,
-                next_review_date TEXT,
-                fsrs_card TEXT,
-                user_id TEXT DEFAULT '1',
-                source_context TEXT,
-                is_ai_generated INTEGER DEFAULT 0,
-                report_status TEXT,
-                deck_name TEXT DEFAULT 'Geral',
-                tags TEXT,
-                source_type TEXT DEFAULT 'medquest',
-                anki_nid INTEGER)""")
-            db.execute("""CREATE TABLE IF NOT EXISTS simulado_sessions (
-                id INTEGER PRIMARY KEY AUTOINCREMENT, client_session_id TEXT NOT NULL,
-                planned_duration_seconds INTEGER NOT NULL, elapsed_seconds INTEGER NOT NULL,
-                total_questions INTEGER NOT NULL, answered_count INTEGER NOT NULL, correct_count INTEGER NOT NULL,
-                filters_json TEXT NOT NULL, area_results_json TEXT NOT NULL, completed_at TEXT NOT NULL,
-                user_id TEXT DEFAULT '1', UNIQUE(user_id, client_session_id))""")
-            existing_fc_cols = _table_cols(db, "flashcards")
-            if "source_context" not in existing_fc_cols:
-                db.execute("ALTER TABLE flashcards ADD COLUMN source_context TEXT")
-            if "is_ai_generated" not in existing_fc_cols:
-                db.execute("ALTER TABLE flashcards ADD COLUMN is_ai_generated INTEGER DEFAULT 0")
-            if "report_status" not in existing_fc_cols:
-                db.execute("ALTER TABLE flashcards ADD COLUMN report_status TEXT")
-            if "deck_name" not in existing_fc_cols:
-                db.execute("ALTER TABLE flashcards ADD COLUMN deck_name TEXT DEFAULT 'Geral'")
-            if "tags" not in existing_fc_cols:
-                db.execute("ALTER TABLE flashcards ADD COLUMN tags TEXT")
-            if "source_type" not in existing_fc_cols:
-                db.execute("ALTER TABLE flashcards ADD COLUMN source_type TEXT DEFAULT 'medquest'")
-            if "anki_nid" not in existing_fc_cols:
-                db.execute("ALTER TABLE flashcards ADD COLUMN anki_nid INTEGER")
-            
-            db.execute("""CREATE TABLE IF NOT EXISTS clinical_cases (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                stem TEXT NOT NULL,
-                images TEXT,
-                medical_references TEXT)""")
-            
-            db.execute("""CREATE TABLE IF NOT EXISTS learning_sessions (
-                user_id TEXT NOT NULL,
-                session_type TEXT NOT NULL,
-                state_json TEXT NOT NULL,
-                updated_at TEXT NOT NULL,
-                PRIMARY KEY (user_id, session_type))""")
-
-            db.execute("""CREATE TABLE IF NOT EXISTS idempotency_keys (
-                user_id TEXT NOT NULL,
-                key TEXT NOT NULL,
-                method TEXT NOT NULL,
-                path TEXT NOT NULL,
-                payload_hash TEXT NOT NULL,
-                status TEXT NOT NULL DEFAULT 'completed',
-                status_code INTEGER,
-                response_body TEXT,
-                lease_expires_at REAL DEFAULT 0,
-                lease_owner_token TEXT,
-                created_at TEXT NOT NULL,
-                PRIMARY KEY (user_id, key))""")
-            existing_cols = _table_cols(db, "idempotency_keys")
-            if "status" not in existing_cols:
-                db.execute("ALTER TABLE idempotency_keys ADD COLUMN status TEXT NOT NULL DEFAULT 'completed'")
-            if "lease_expires_at" not in existing_cols:
-                db.execute("ALTER TABLE idempotency_keys ADD COLUMN lease_expires_at REAL DEFAULT 0")
-            if "lease_owner_token" not in existing_cols:
-                db.execute("ALTER TABLE idempotency_keys ADD COLUMN lease_owner_token TEXT")
-
-            db.execute("""CREATE TABLE IF NOT EXISTS telemetry_daily_aggregates (
-                date TEXT NOT NULL,
-                route TEXT NOT NULL,
-                method TEXT NOT NULL,
-                p50_ms REAL NOT NULL,
-                p95_ms REAL NOT NULL,
-                p99_ms REAL NOT NULL,
-                request_count INTEGER NOT NULL,
-                error_count INTEGER NOT NULL,
-                created_at TEXT NOT NULL,
-                PRIMARY KEY (date, route, method))""")
-
-            db.execute("""CREATE TABLE IF NOT EXISTS notification_configs (
-                user_id TEXT PRIMARY KEY,
-                enabled INTEGER DEFAULT 0,
-                preferred_hour INTEGER DEFAULT 8,
-                days_of_week TEXT DEFAULT '[0,1,2,3,4,5,6]',
-                max_daily_reminders INTEGER DEFAULT 1,
-                updated_at TEXT)""")
-
-            db.execute("""CREATE TABLE IF NOT EXISTS push_subscriptions (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id TEXT NOT NULL,
-                endpoint TEXT NOT NULL,
-                p256dh TEXT NOT NULL,
-                auth TEXT NOT NULL,
-                created_at TEXT NOT NULL,
-                UNIQUE(user_id, endpoint))""")
-
-            db.execute("""CREATE TABLE IF NOT EXISTS notification_dispatches (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id TEXT NOT NULL,
-                dispatch_date TEXT NOT NULL,
-                status TEXT NOT NULL,
-                error_message TEXT,
-                created_at TEXT NOT NULL,
-                UNIQUE(user_id, dispatch_date))""")
-
-            # Indexes that reference migrated columns must be created only
-            # after every supported legacy schema has those columns.
-            db.execute("CREATE INDEX IF NOT EXISTS idx_idempotency_created ON idempotency_keys(created_at)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_idempotency_lease ON idempotency_keys(user_id, lease_expires_at)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_push_subscriptions_user ON push_subscriptions(user_id)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_notification_dispatches_user_date ON notification_dispatches(user_id, dispatch_date)")
-
-            db.execute("CREATE INDEX IF NOT EXISTS idx_attempts_user_question ON attempts (user_id, question_id)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_attempts_user_question_latest ON attempts (user_id, question_id, id DESC)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_attempts_correct ON attempts (user_id, is_correct)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_questions_area_subtema ON questions (area, subtema)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_questions_missing_alts ON questions (missing_alts)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_spaced_repetition_review ON spaced_repetition (user_id, next_review_date)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_flashcards_user_review ON flashcards (user_id, next_review_date)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_flashcards_user_deck ON flashcards (user_id, deck_name)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_flashcards_user_anki_nid ON flashcards (user_id, anki_nid)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_simulado_sessions_user_completed ON simulado_sessions (user_id, completed_at DESC)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_questions_area ON questions (area)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_questions_institution ON questions (institution_code)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_questions_inst_code_label ON questions (institution_code, institution_label)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_questions_year ON questions (year)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_questions_source ON questions (source_file)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_attempts_answered_at ON attempts (answered_at)")
-            db.execute("CREATE INDEX IF NOT EXISTS idx_attempts_user_answered_at ON attempts (user_id, answered_at)")
+            _create_tables(db)
+            _migrate_legacy_columns(db)
+            _create_indexes(db)
             apply_pending_migrations(db)
 
         # FTS is an optional capability and must not invalidate the required schema.
-        try:
-            with db_transaction(db, immediate=True):
-                db.execute("""CREATE VIRTUAL TABLE IF NOT EXISTS questions_fts USING fts5(
-                    stem,
-                    explanation
-                )""")
-        except Exception as e:
-            logger.warning("FTS table creation is unavailable: %s", e)
+        _setup_fts(db)
