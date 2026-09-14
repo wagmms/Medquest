@@ -93,6 +93,7 @@ def mock_ai_providers_hermetic(monkeypatch, request):
 
     monkeypatch.setattr(universal_pool, "generate_content_with_fallback", fake_generate_content_with_fallback)
     monkeypatch.setattr(ai, "generate_content_with_fallback", fake_generate_content_with_fallback)
+    monkeypatch.setattr("api.ai.generate_content_with_fallback", fake_generate_content_with_fallback)
 
 
 
