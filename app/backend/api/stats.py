@@ -128,20 +128,7 @@ def responsible_streak(days_studied, today, days_per_week=6):
         "policy": "rest_days_preserve_continuity",
     }
 
-@bp.route("/stats/overview")
-def overview():
-    try:
-        tz_offset = int(request.args.get('tz_offset', 0))
-    except (ValueError, TypeError):
-        tz_offset = 0
-
-    cache_key = f"{g.user_id}_{tz_offset}"
-    cached = overview_cache.get(cache_key)
-    if cached:
-        return jsonify(cached)
-
-    db = get_db()
-    now_utc = datetime.now(timezone.utc)
+def _get_overview_metrics(db, user_id: str, now_utc: datetime) -> dict:
     last7_start = (now_utc - timedelta(days=7)).isoformat()
     prev7_start = (now_utc - timedelta(days=14)).isoformat()
     now_value = now_utc.isoformat()
@@ -169,12 +156,13 @@ def overview():
             (SELECT COUNT(*) FROM attempts
              WHERE answered_at >= ? AND answered_at < ? AND user_id = ?) AS prev7_total
     """, (
-        g.user_id, g.user_id, g.user_id, g.user_id, g.user_id,
-        now_value, g.user_id, now_value, g.user_id,
-        last7_start, g.user_id, last7_start, g.user_id,
-        prev7_start, last7_start, g.user_id,
-        prev7_start, last7_start, g.user_id,
+        user_id, user_id, user_id, user_id, user_id,
+        now_value, user_id, now_value, user_id,
+        last7_start, user_id, last7_start, user_id,
+        prev7_start, last7_start, user_id,
+        prev7_start, last7_start, user_id,
     )).fetchone()
+
     total_q = overview["total_q"]
     total_attempts = overview["total_attempts"]
     distinct_answered = overview["distinct_answered"]
@@ -189,13 +177,28 @@ def overview():
     accuracy_last7 = (overview["last7_correct"] / overview["last7_total"]) if overview["last7_total"] else None
     accuracy_prev7 = (overview["prev7_correct"] / overview["prev7_total"]) if overview["prev7_total"] else None
 
+    return {
+        "total_questions": total_q,
+        "distinct_answered": distinct_answered,
+        "total_attempts": total_attempts,
+        "accuracy_all_attempts": accuracy,
+        "accuracy_latest_attempt": accuracy_latest,
+        "coverage_pct": coverage_pct,
+        "srs_due_count": srs_due_count,
+        "flashcards_due_count": flashcards_due_count,
+        "accuracy_last7": accuracy_last7,
+        "accuracy_prev7": accuracy_prev7,
+    }
+
+
+def _get_streak_and_target_info(db, user_id: str, now_utc: datetime, tz_offset: int) -> dict:
     day_rows = db.execute(
-        "SELECT DISTINCT substr(answered_at, 1, 10) AS day FROM attempts WHERE user_id = ? ORDER BY day DESC", (g.user_id,)
+        "SELECT DISTINCT substr(answered_at, 1, 10) AS day FROM attempts WHERE user_id = ? ORDER BY day DESC", (user_id,)
     ).fetchall()
     days_studied = {r["day"] for r in day_rows}
 
     config_row = db.execute(
-        "SELECT * FROM planner_config WHERE user_id = ?", (g.user_id,)
+        "SELECT * FROM planner_config WHERE user_id = ?", (user_id,)
     ).fetchone()
     config = dict(config_row) if config_row else {}
 
@@ -206,7 +209,7 @@ def overview():
     # Contagem de questões distintas resolvidas hoje no fuso local
     today_answered_row = db.execute(
         "SELECT COUNT(DISTINCT question_id) AS today_answered FROM attempts WHERE user_id = ? AND substr(answered_at, 1, 10) = ?",
-        (g.user_id, local_today_str)
+        (user_id, local_today_str)
     ).fetchone()
     today_answered_count = today_answered_row["today_answered"] if today_answered_row else 0
 
@@ -220,14 +223,9 @@ def overview():
         except Exception:
             days_until_exam = None
 
-    result = {
-        "total_questions": total_q, "distinct_answered": distinct_answered,
-        "total_attempts": total_attempts, "accuracy_all_attempts": accuracy,
-        "accuracy_latest_attempt": accuracy_latest, "coverage_pct": coverage_pct,
-        "srs_due_count": srs_due_count, "accuracy_last7": accuracy_last7,
-        "accuracy_prev7": accuracy_prev7, "streak_days": streak["days"],
+    return {
+        "streak_days": streak["days"],
         "streak": streak,
-        "flashcards_due_count": flashcards_due_count,
         "today_answered": today_answered_count,
         "daily_target": daily_target,
         "days_until_exam": days_until_exam,
@@ -235,6 +233,28 @@ def overview():
         "target_score": config.get("target_score"),
         "target_institution": config.get("target_institution"),
     }
+
+
+@bp.route("/stats/overview")
+def overview():
+    try:
+        tz_offset = int(request.args.get('tz_offset', 0))
+    except (ValueError, TypeError):
+        tz_offset = 0
+
+    cache_key = f"{g.user_id}_{tz_offset}"
+    cached = overview_cache.get(cache_key)
+    if cached:
+        return jsonify(cached)
+
+    db = get_db()
+    now_utc = datetime.now(timezone.utc)
+
+    metrics = _get_overview_metrics(db, g.user_id, now_utc)
+    streak_info = _get_streak_and_target_info(db, g.user_id, now_utc, tz_offset)
+
+    result = {**metrics, **streak_info}
+
     overview_cache.set(cache_key, result)
     return jsonify(result)
 
