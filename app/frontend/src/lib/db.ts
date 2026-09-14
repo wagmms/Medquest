@@ -160,14 +160,24 @@ export class MedQuestDB extends Dexie {
               s.idempotency_key = s.idempotency_key || crypto.randomUUID();
 
               // v2 bug: loss of method and content-type from options
-              if (typeof s.options === "object" && s.options !== null) {
-                const opts = s.options as Record<string, unknown>;
-                s.method = typeof opts.method === "string"
-                  ? opts.method.toUpperCase()
+              let optsObj: Record<string, unknown> | null = null;
+              if (typeof s.options === "string") {
+                try {
+                  optsObj = JSON.parse(s.options) as Record<string, unknown>;
+                } catch {
+                  optsObj = null;
+                }
+              } else if (typeof s.options === "object" && s.options !== null) {
+                optsObj = s.options as Record<string, unknown>;
+              }
+
+              if (optsObj !== null) {
+                s.method = typeof optsObj.method === "string"
+                  ? optsObj.method.toUpperCase()
                   : (s.method || "POST");
 
                 let cType = "application/json";
-                const oldHeaders = opts.headers;
+                const oldHeaders = optsObj.headers;
                 if (oldHeaders instanceof Headers) {
                   cType = oldHeaders.get("content-type") || cType;
                 } else if (Array.isArray(oldHeaders)) {
@@ -185,7 +195,7 @@ export class MedQuestDB extends Dexie {
                 }
                 s.content_type = cType;
 
-                const rawBody = opts.body;
+                const rawBody = optsObj.body;
                 if (typeof rawBody === "string") {
                   s.body = rawBody;
                 } else if (rawBody !== undefined && rawBody !== null) {
@@ -193,10 +203,13 @@ export class MedQuestDB extends Dexie {
                 } else {
                   s.body = null;
                 }
-                delete s.options;
               } else {
                 s.method = s.method || "POST";
                 s.content_type = s.content_type || "application/json";
+              }
+
+              if ("options" in s) {
+                delete s.options;
               }
             }),
         ]);
