@@ -5,7 +5,7 @@ import re
 import time
 
 from api.gemini_pool import gemini_pool
-from api.universal_pool import generate_content_with_fallback
+from .universal_pool import generate_content_with_fallback
 
 logger = logging.getLogger(__name__)
 
