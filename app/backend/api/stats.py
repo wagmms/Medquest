@@ -930,39 +930,7 @@ def _get_planner_metadata():
     return _cached_planner_meta, _cached_kat_subs
 
 
-@bp.route("/coverage")
-def coverage():
-    db = get_db()
-    area_filter = request.args.get("area", "").strip()
-    summary_only = request.args.get("summary_only", "false").lower() == "true"
-    planner_meta, kat_subs = _get_planner_metadata()
-
-    # 1. Total de questões por área e subtema (em memória/cache)
-    q_map = _get_cached_q_totals_map(db)
-
-    # 2. Resoluções do usuário
-    user_rows = db.execute("""
-        SELECT q.area, q.subtema,
-               COUNT(DISTINCT a.question_id) AS answered,
-               COUNT(a.id) AS attempts,
-               COALESCE(SUM(a.is_correct), 0) AS correct
-        FROM attempts a
-        JOIN questions q ON q.id = a.question_id
-        WHERE a.user_id = ? AND q.missing_alts = 0 AND q.area IS NOT NULL AND q.area != '' AND q.subtema IS NOT NULL AND q.subtema != ''
-        GROUP BY q.area, q.subtema
-    """, (g.user_id,)).fetchall()
-
-    u_map = {}
-    for r in user_rows:
-        norm_a = get_normalized_area(r["area"])
-        sub = r["subtema"]
-        u_map[(norm_a, sub)] = {
-            "answered": r["answered"],
-            "attempts": r["attempts"],
-            "correct": r["correct"]
-        }
-
-    # 3. Monta estrutura baseada no catálogo canônico
+def _build_coverage_structure(planner_meta, kat_subs, q_map, u_map, summary_only):
     areas_dict = {}
     for area_group in planner_meta:
         raw_area_name = area_group.get("area", "")
@@ -1043,7 +1011,10 @@ def coverage():
                     "highYield": is_high_yield,
                     "theory_hours": theory_hours,
                 })
+    return areas_dict
 
+
+def _format_coverage_response(areas_dict, area_filter, summary_only):
     area_order = ["Clínica Médica", "Cirurgia", "Ginecologia e Obstetrícia", "Pediatria", "Medicina Preventiva"]
     out = []
     for name in area_order:
@@ -1065,8 +1036,8 @@ def coverage():
         norm_filter = get_normalized_area(area_filter)
         out = [a for a in out if a["area"] == norm_filter or a["area"] == area_filter]
 
+    summary_out = []
     if summary_only:
-        summary_out = []
         for a in out:
             summary_out.append({
                 "area": a["area"],
@@ -1083,6 +1054,52 @@ def coverage():
                 "high_yield_count": a["high_yield_count"],
                 "high_yield_mastered": a["high_yield_mastered"]
             })
+    return out, summary_out
+
+
+def _get_user_coverage_stats(db, user_id):
+    user_rows = db.execute("""
+        SELECT q.area, q.subtema,
+               COUNT(DISTINCT a.question_id) AS answered,
+               COUNT(a.id) AS attempts,
+               COALESCE(SUM(a.is_correct), 0) AS correct
+        FROM attempts a
+        JOIN questions q ON q.id = a.question_id
+        WHERE a.user_id = ? AND q.missing_alts = 0 AND q.area IS NOT NULL AND q.area != '' AND q.subtema IS NOT NULL AND q.subtema != ''
+        GROUP BY q.area, q.subtema
+    """, (user_id,)).fetchall()
+
+    u_map = {}
+    for r in user_rows:
+        norm_a = get_normalized_area(r["area"])
+        sub = r["subtema"]
+        u_map[(norm_a, sub)] = {
+            "answered": r["answered"],
+            "attempts": r["attempts"],
+            "correct": r["correct"]
+        }
+    return u_map
+
+
+@bp.route("/coverage")
+def coverage():
+    db = get_db()
+    area_filter = request.args.get("area", "").strip()
+    summary_only = request.args.get("summary_only", "false").lower() == "true"
+    planner_meta, kat_subs = _get_planner_metadata()
+
+    # 1. Total de questões por área e subtema (em memória/cache)
+    q_map = _get_cached_q_totals_map(db)
+
+    # 2. Resoluções do usuário
+    u_map = _get_user_coverage_stats(db, g.user_id)
+
+    # 3. Monta estrutura baseada no catálogo canônico
+    areas_dict = _build_coverage_structure(planner_meta, kat_subs, q_map, u_map, summary_only)
+
+    out, summary_out = _format_coverage_response(areas_dict, area_filter, summary_only)
+
+    if summary_only:
         return jsonify({"areas": summary_out, "summary": True})
 
     return jsonify({"areas": out})
