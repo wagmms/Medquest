@@ -19,6 +19,22 @@ class PediatriaClassifier(BaseClassifier):
         sn = normalize_text(stem)
 
         # =========================================================================
+        res = self._classify_cirurgia(fn, sn)
+        if res: return res
+
+        res = self._classify_clinica_medica(fn, sn)
+        if res: return res
+
+        res = self._classify_pediatria_themes(fn, sn)
+        if res: return res
+
+        # Fallback to current subtema if it already matches a valid canonical theme
+        if cur_sub in self.taxonomy.get("Pediatria", []):
+            return ClassificationResult("Pediatria", cur_sub, f"Classificação clínica baseada no contexto do tema {cur_sub}.")
+
+        return ClassificationResult("Pediatria", "Puericultura: Marcos do Desenvolvimento (DNPM) e Curvas de Crescimento", "Acompanhamento geral de puericultura e desenvolvimento pediátrico.")
+
+    def _classify_cirurgia(self, fn: str, sn: str) -> Optional[ClassificationResult]:
         # 1. CIRURGIA / TRAUMA / CIRURGIA PEDIÁTRICA & ORTOPEDIA
         # =========================================================================
         # Wilms tumor
@@ -60,6 +76,9 @@ class PediatriaClassifier(BaseClassifier):
             return ClassificationResult("Cirurgia", "Trauma Torácico: Pneumotórax, Hemotórax e Tamponamento Cardíaco", "Trauma torácico, hemotórax, pneumotórax e abordagem pleural.")
 
         # =========================================================================
+        return None
+
+    def _classify_clinica_medica(self, fn: str, sn: str) -> Optional[ClassificationResult]:
         # 2. TOXICOLOGIA & ANIMAIS PEÇONHENTOS / DERMATO / ENDOCRINO / NEFRO / HEMATO (CLÍNICA MÉDICA)
         # =========================================================================
         # Scorpion / Spider / Snake / Envenomation
@@ -120,6 +139,9 @@ class PediatriaClassifier(BaseClassifier):
             return ClassificationResult("Clínica Médica", "Infecção pelo HIV: Diagnóstico, TARV e Infecções Oportunistas", "Diagnóstico, acompanhamento e profilaxia da infecção pelo HIV pediátrico.")
 
         # =========================================================================
+        return None
+
+    def _classify_pediatria_themes(self, fn: str, sn: str) -> Optional[ClassificationResult]:
         # 3. PEDIATRIA CANÔNICA (28 TEMAS)
         # =========================================================================
         # Neonatology - Resuscitation & Delivery Room
@@ -232,8 +254,4 @@ class PediatriaClassifier(BaseClassifier):
         if any(k in fn for k in ['sindrome de down', 'trissomia do 21', 'sindrome de turner', 'sindrome de klinefelter', 'sindrome de edwards', 'sindrome de patau', 'erro inato do metabolismo', 'fenilcetonuria', 'galactosemia', 'mucopolissacaridose', 'fibrose cistica']):
             return ClassificationResult("Pediatria", "Genética Médica, Cromossomopatias e Erros Inatos do Metabolismo", "Genética médica, cromossomopatias clássicas e investigação dos erros inatos do metabolismo.")
 
-        # Fallback to current subtema if it already matches a valid canonical theme
-        if cur_sub in self.taxonomy.get("Pediatria", []):
-            return ClassificationResult("Pediatria", cur_sub, f"Classificação clínica baseada no contexto do tema {cur_sub}.")
-
-        return ClassificationResult("Pediatria", "Puericultura: Marcos do Desenvolvimento (DNPM) e Curvas de Crescimento", "Acompanhamento geral de puericultura e desenvolvimento pediátrico.")
+        return None
