@@ -10,7 +10,13 @@ def test_ai_health(client):
     assert "total_keys" in data
 
 
-def test_ask_ai_endpoint(client):
+def test_ask_ai_endpoint(client, monkeypatch):
+    from api import ai
+    monkeypatch.setattr(
+        ai,
+        "ask_preceptor_ai",
+        lambda **_: {"answer": "Gabarito: é a A porque sim", "model": "mock_ai", "source": "gemini"},
+    )
     res = client.post(
         "/api/questions/1/ask_ai",
         json={"user_question": "Qual a conduta padrão ouro?", "user_letter": "A"}
