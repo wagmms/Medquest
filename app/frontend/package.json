@@ -6,13 +6,13 @@
     "dev": "next dev --turbo",
     "build": "next build --webpack",
     "postbuild": "node scripts/validate-sw.mjs && node scripts/check-performance-budgets.mjs && node scripts/copy-standalone-assets.mjs",
-
     "start": "next start",
     "lint": "eslint",
     "test:e2e": "playwright test",
     "test:e2e:list": "playwright test --list",
     "audit:deps": "npm audit --audit-level=high",
-    "check:performance": "node scripts/check-performance-budgets.mjs"
+    "check:performance": "node scripts/check-performance-budgets.mjs",
+    "test:unit": "vitest run"
   },
   "dependencies": {
     "@clerk/localizations": "^4.15.4",
@@ -45,8 +45,10 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
+    "jsdom": "^29.1.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^2.1.9"
   },
   "overrides": {
     "serialize-javascript": "^7.1.0"
