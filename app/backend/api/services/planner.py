@@ -43,16 +43,12 @@ def get_normalized_area(raw_area):
     return "Outros"
 
 
-def generate_annual_plan(rows, start_date_str, exam_date_str, hours_per_week, intensive=False, user_progress=None):
-    """
-    Gera um plano de estudos fatiado por semanas com base no tempo disponível
-    e no peso histórico das áreas na prova de Residência da USP.
-    """
+def _parse_dates_and_weeks(start_date_str, exam_date_str):
     try:
         start_date = datetime.fromisoformat(start_date_str.replace("Z", "+00:00"))
         exam_date = datetime.fromisoformat(exam_date_str.replace("Z", "+00:00"))
     except ValueError:
-        return {"error": "Formato de data inválido."}
+        return None, None, {"error": "Formato de data inválido."}
 
     # Normaliza para naive: exam_date costuma vir só com a data (sem timezone),
     # enquanto start_date pode vir com timezone (ex.: default gerado no backend).
@@ -63,11 +59,14 @@ def generate_annual_plan(rows, start_date_str, exam_date_str, hours_per_week, in
 
     total_weeks = math.ceil((exam_date - start_date).days / 7)
     if total_weeks <= 0:
-        return {"error": "A data da prova deve ser no futuro."}
+        return None, None, {"error": "A data da prova deve ser no futuro."}
 
     # Cap at 5 years to prevent memory/rendering issues in frontend
     total_weeks = min(total_weeks, 260)
+    return start_date, total_weeks, None
 
+
+def _load_catalogs():
     # Carrega o mesmo catálogo pedagógico exibido no frontend.
     planner_data_path = _resolve_data_path("plannerData.json")
     try:
@@ -88,7 +87,10 @@ def generate_annual_plan(rows, start_date_str, exam_date_str, hours_per_week, in
         "practice_hours_per_subtema",
         DEFAULT_PRACTICE_HOURS_PER_SUBTEMA,
     )
+    return planner_meta, katomart_subtemas, practice_hours_per_subtema
 
+
+def _build_meta_dict(planner_meta, katomart_subtemas):
     # Cria o catálogo canônico de subtemas para fácil acesso. O banco pode
     # conter classificações históricas, incompletas ou ainda não migradas; ele
     # só deve complementar as estatísticas dos temas, nunca definir o edital.
@@ -114,7 +116,10 @@ def generate_annual_plan(rows, start_date_str, exam_date_str, hours_per_week, in
                     "theory_source": "curriculum" if course_match else "pedagogical_estimate",
                     "course_module": course_match.get("module") if course_match else None,
                 }
+    return meta_dict
 
+
+def _consolidate_row_stats(rows, meta_dict):
     # Consolida as estatísticas do banco apenas para os 170 temas do catálogo.
     # Isso também protege contra a mesma classificação aparecer em mais de uma
     # área durante uma migração de dados.
@@ -134,7 +139,10 @@ def generate_annual_plan(rows, start_date_str, exam_date_str, hours_per_week, in
         topics = row.get("topics") if isinstance(row, dict) else (row["topics"] if "topics" in row.keys() else None)
         if topics:
             stats["subtopics"].extend(topic for topic in str(topics).split(",") if topic)
+    return row_stats
 
+
+def _prepare_topics(meta_dict, row_stats, user_progress, intensive, practice_hours_per_subtema):
     # Prepara exatamente os tópicos canônicos, calculando as horas de cada um.
     all_topics = []
     total_required_hours = 0.0
@@ -189,12 +197,10 @@ def generate_annual_plan(rows, start_date_str, exam_date_str, hours_per_week, in
 
     # Sort topics by priority (descending)
     all_topics.sort(key=lambda x: x["priority"], reverse=True)
+    return all_topics, total_required_hours
 
-    total_available_hours = total_weeks * hours_per_week
-    warning_msg = None
-    if total_required_hours > total_available_hours:
-        warning_msg = f"Você tem {total_available_hours} horas disponíveis, mas precisa de {round(total_required_hours)} horas para cobrir {'este plano' if intensive else 'todo o edital'}."
 
+def _build_weekly_plan(all_topics, start_date, total_weeks, hours_per_week):
     # Group by area, with topics already sorted by priority (High Yield first)
     topics_by_area = {}
     for t in all_topics:
@@ -279,6 +285,33 @@ def generate_annual_plan(rows, start_date_str, exam_date_str, hours_per_week, in
             "recommended_hours": hours_per_week,
             "allocated_hours": round(current_week_hours, 1)
         })
+
+    return plan
+
+
+def generate_annual_plan(rows, start_date_str, exam_date_str, hours_per_week, intensive=False, user_progress=None):
+    """
+    Gera um plano de estudos fatiado por semanas com base no tempo disponível
+    e no peso histórico das áreas na prova de Residência da USP.
+    """
+    start_date, total_weeks, err = _parse_dates_and_weeks(start_date_str, exam_date_str)
+    if err:
+        return err
+
+    planner_meta, katomart_subtemas, practice_hours_per_subtema = _load_catalogs()
+    meta_dict = _build_meta_dict(planner_meta, katomart_subtemas)
+    row_stats = _consolidate_row_stats(rows, meta_dict)
+
+    all_topics, total_required_hours = _prepare_topics(
+        meta_dict, row_stats, user_progress, intensive, practice_hours_per_subtema
+    )
+
+    plan = _build_weekly_plan(all_topics, start_date, total_weeks, hours_per_week)
+
+    total_available_hours = total_weeks * hours_per_week
+    warning_msg = None
+    if total_required_hours > total_available_hours:
+        warning_msg = f"Você tem {total_available_hours} horas disponíveis, mas precisa de {round(total_required_hours)} horas para cobrir {'este plano' if intensive else 'todo o edital'}."
 
     result = {"plan": plan}
     if warning_msg:
