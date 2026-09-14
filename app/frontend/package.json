@@ -6,13 +6,13 @@
     "dev": "next dev --turbo",
     "build": "next build --webpack",
     "postbuild": "node scripts/validate-sw.mjs && node scripts/check-performance-budgets.mjs && node scripts/copy-standalone-assets.mjs",
-
     "start": "next start",
     "lint": "eslint",
     "test:e2e": "playwright test",
     "test:e2e:list": "playwright test --list",
     "audit:deps": "npm audit --audit-level=high",
-    "check:performance": "node scripts/check-performance-budgets.mjs"
+    "check:performance": "node scripts/check-performance-budgets.mjs",
+    "test": "jest"
   },
   "dependencies": {
     "@clerk/localizations": "^4.15.4",
@@ -27,7 +27,7 @@
     "framer-motion": "^13.0.0",
     "lucide-react": "^1.30.0",
     "material-symbols": "^0.46.0",
-    "next": "16.3.0",
+    "next": "^16.3.5",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-hot-toast": "^2.6.0",
@@ -40,12 +40,16 @@
     "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4",
     "@types/canvas-confetti": "^1.9.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
+    "jest": "^30.5.1",
     "tailwindcss": "^4",
+    "ts-jest": "^29.4.12",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   },
   "overrides": {
