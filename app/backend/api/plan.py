@@ -204,32 +204,7 @@ def generate_plan():
     start_date = data.start_date or datetime.now(timezone.utc).isoformat()
     
     db = get_db()
-    q_query = """
-        SELECT area, subtema, GROUP_CONCAT(DISTINCT topic) as topics, COUNT(id) as q_count 
-        FROM questions 
-        WHERE area IS NOT NULL AND subtema IS NOT NULL AND missing_alts = 0
-        GROUP BY area, subtema
-    """
-    a_query = """
-        SELECT q.subtema, COUNT(DISTINCT a.question_id) as ans_count, SUM(a.is_correct) as correct_count, COUNT(a.id) as attempts
-        FROM attempts a
-        JOIN questions q ON q.id = a.question_id
-        WHERE a.user_id = ? AND q.subtema IS NOT NULL
-        GROUP BY q.subtema
-    """
-    
-    if hasattr(db, "batch"):
-        res = db.batch([
-            (q_query, ()),
-            (a_query, (g.user_id,))
-        ])
-        rows = res[0].fetchall()
-        answered = res[1].fetchall()
-    else:
-        rows = [dict(r) for r in db.execute(q_query).fetchall()]
-        answered = [dict(r) for r in db.execute(a_query, (g.user_id,)).fetchall()]
-    
-    answered_map = {r["subtema"]: r for r in answered}
+    rows, answered_map = _fetch_plan_data(db, g.user_id)
     
     plan = generate_annual_plan(
         rows, start_date, data.exam_date, data.hours_per_week, 
@@ -238,7 +213,7 @@ def generate_plan():
     return jsonify(plan)
 
 
-def _generate_calendar_ics_content(db, user_id):
+def _get_planner_config(db, user_id):
     row = db.execute("SELECT * FROM planner_config WHERE user_id = ?", (user_id,)).fetchone()
     
     if not row or not row["exam_date"]:
@@ -254,6 +229,10 @@ def _generate_calendar_ics_content(db, user_id):
         hours = (row["hours_per_day"] if "hours_per_day" in row_keys else row["questions_per_day"]) or 4
         hours_per_week = min(168, days * hours)
 
+    return start_date, exam_date, days, hours_per_week
+
+
+def _fetch_plan_data(db, user_id):
     q_query = """
         SELECT area, subtema, GROUP_CONCAT(DISTINCT topic) as topics, COUNT(id) as q_count 
         FROM questions 
@@ -267,9 +246,40 @@ def _generate_calendar_ics_content(db, user_id):
         WHERE a.user_id = ? AND q.subtema IS NOT NULL
         GROUP BY q.subtema
     """
-    rows = [dict(r) for r in db.execute(q_query).fetchall()]
-    answered = [dict(r) for r in db.execute(a_query, (user_id,)).fetchall()]
+    if hasattr(db, "batch"):
+        res = db.batch([
+            (q_query, ()),
+            (a_query, (user_id,))
+        ])
+        rows = [dict(r) for r in res[0].fetchall()]
+        answered = [dict(r) for r in res[1].fetchall()]
+    else:
+        rows = [dict(r) for r in db.execute(q_query).fetchall()]
+        answered = [dict(r) for r in db.execute(a_query, (user_id,)).fetchall()]
+
     answered_map = {r["subtema"]: r for r in answered}
+    return rows, answered_map
+
+
+def _get_base_url():
+    base_url = ""
+    try:
+        req_origin = request.headers.get("Origin") or request.headers.get("Referer")
+        if req_origin:
+            parsed = urllib.parse.urlparse(req_origin)
+            base_url = f"{parsed.scheme}://{parsed.netloc}"
+        elif request.host_url:
+            base_url = request.host_url.rstrip("/")
+            if ":5050" in base_url:
+                base_url = "http://localhost:3000"
+    except Exception:
+        base_url = ""
+    return base_url
+
+
+def _generate_calendar_ics_content(db, user_id):
+    start_date, exam_date, days, hours_per_week = _get_planner_config(db, user_id)
+    rows, answered_map = _fetch_plan_data(db, user_id)
 
     plan_result = generate_annual_plan(
         rows, start_date, exam_date, hours_per_week, 
@@ -290,20 +300,76 @@ def _generate_calendar_ics_content(db, user_id):
     ]
 
     study_days_count = max(1, min(7, days))
+    base_url = _get_base_url()
 
-    base_url = ""
-    try:
-        req_origin = request.headers.get("Origin") or request.headers.get("Referer")
-        if req_origin:
-            parsed = urllib.parse.urlparse(req_origin)
-            base_url = f"{parsed.scheme}://{parsed.netloc}"
-        elif request.host_url:
-            base_url = request.host_url.rstrip("/")
-            if ":5050" in base_url:
-                base_url = "http://localhost:3000"
-    except Exception:
-        base_url = ""
+    _generate_ics_events(ics_lines, plan_weeks, now_dt, study_days_count, base_url, user_id)
 
+    ics_lines.append("END:VCALENDAR")
+    return "\r\n".join(ics_lines)
+
+
+def _build_consolidation_event(ics_lines, w_num, week_start_dt, w_date_str, now_dt, user_id, base_url):
+    start_str = week_start_dt.strftime("%Y%m%dT080000")
+    end_str = (week_start_dt + timedelta(hours=3)).strftime("%Y%m%dT110000")
+    uid = f"medquest-week-consolidation-{w_num}-{user_id}-{w_date_str}@medquest"
+    ics_lines.extend([
+        "BEGIN:VEVENT",
+        f"UID:{uid}",
+        f"DTSTAMP:{now_dt}",
+        f"DTSTART:{start_str}",
+        f"DTEND:{end_str}",
+        f"SUMMARY:[MedQuest] Semana {w_num}: Revisão Geral & Consolidação",
+        f"DESCRIPTION:Semana reservada para consolidação de metas e simulados.{f'\\n\\n🔗 {base_url}/planner' if base_url else ''}",
+        "STATUS:CONFIRMED",
+        "END:VEVENT",
+    ])
+
+
+def _build_topic_events(ics_lines, topics, w_num, week_start_dt, study_days_count, now_dt, user_id, base_url):
+    day_slot_minutes = [0] * study_days_count
+    for t_idx, topic in enumerate(topics):
+        subtema = topic.get("subtema", "Aula")
+        area = topic.get("area", "Geral")
+        theory_h = topic.get("estimated_theory_hours", 1.0)
+        practice_h = topic.get("estimated_practice_hours", 2.0)
+        total_h = topic.get("estimated_hours", theory_h + practice_h)
+
+        day_offset = t_idx % study_days_count
+        topic_date = week_start_dt + timedelta(days=day_offset)
+        date_str = topic_date.strftime("%Y%m%d")
+        topic_id_clean = urllib.parse.quote(subtema[:30]).replace("%", "")
+
+        # Duração REAL da aula (minutos calculados com precisão)
+        duration_minutes = max(30, int(round(total_h * 60)))
+        start_minutes = (8 * 60) + day_slot_minutes[day_offset]
+        dt_start = topic_date.replace(hour=start_minutes // 60, minute=start_minutes % 60, second=0)
+        dt_end = dt_start + timedelta(minutes=duration_minutes)
+        day_slot_minutes[day_offset] += duration_minutes + 15
+
+        start_str = dt_start.strftime("%Y%m%dT%H%M%S")
+        end_str = dt_end.strftime("%Y%m%dT%H%M%S")
+        uid_lecture = f"medquest-lec-{w_num}-{t_idx}-{topic_id_clean}-{user_id}-{date_str}@medquest"
+
+        encoded_sub = urllib.parse.quote(subtema)
+        # O subtema canônico é a chave de associação estável. Não inclua
+        # a área aqui: nomes de área de bases antigas podem divergir da
+        # normalização exibida no planner e zerar indevidamente a fila.
+        study_url_text = f"\\n\\n🔗 Questões: {base_url}/estudar?subtema={encoded_sub}&limit=25" if base_url else ""
+
+        ics_lines.extend([
+            "BEGIN:VEVENT",
+            f"UID:{uid_lecture}",
+            f"DTSTAMP:{now_dt}",
+            f"DTSTART:{start_str}",
+            f"DTEND:{end_str}",
+            f"SUMMARY:[MedQuest] 📖 {subtema} ({area})",
+            f"DESCRIPTION:📚 Carga: {total_h}h (Teoria: {theory_h}h + Questões: {practice_h}h)\\nSemana {w_num} • {area}{study_url_text}",
+            "STATUS:CONFIRMED",
+            "END:VEVENT",
+        ])
+
+
+def _generate_ics_events(ics_lines, plan_weeks, now_dt, study_days_count, base_url, user_id):
     for w in plan_weeks:
         w_num = w.get("week")
         w_date_str = w.get("date", "")[:10]
@@ -316,67 +382,10 @@ def _generate_calendar_ics_content(db, user_id):
             continue
 
         topics = w.get("topics", [])
-        day_slot_minutes = [0] * study_days_count
         if not topics:
-            start_str = week_start_dt.strftime("%Y%m%dT080000")
-            end_str = (week_start_dt + timedelta(hours=3)).strftime("%Y%m%dT110000")
-            uid = f"medquest-week-consolidation-{w_num}-{user_id}-{w_date_str}@medquest"
-            ics_lines.extend([
-                "BEGIN:VEVENT",
-                f"UID:{uid}",
-                f"DTSTAMP:{now_dt}",
-                f"DTSTART:{start_str}",
-                f"DTEND:{end_str}",
-                f"SUMMARY:[MedQuest] Semana {w_num}: Revisão Geral & Consolidação",
-                f"DESCRIPTION:Semana reservada para consolidação de metas e simulados.{f'\\n\\n🔗 {base_url}/planner' if base_url else ''}",
-                "STATUS:CONFIRMED",
-                "END:VEVENT",
-            ])
-            continue
-
-        for t_idx, topic in enumerate(topics):
-            subtema = topic.get("subtema", "Aula")
-            area = topic.get("area", "Geral")
-            theory_h = topic.get("estimated_theory_hours", 1.0)
-            practice_h = topic.get("estimated_practice_hours", 2.0)
-            total_h = topic.get("estimated_hours", theory_h + practice_h)
-            
-            day_offset = t_idx % study_days_count
-            topic_date = week_start_dt + timedelta(days=day_offset)
-            date_str = topic_date.strftime("%Y%m%d")
-            topic_id_clean = urllib.parse.quote(subtema[:30]).replace("%", "")
-
-            # Duração REAL da aula (minutos calculados com precisão)
-            duration_minutes = max(30, int(round(total_h * 60)))
-            start_minutes = (8 * 60) + day_slot_minutes[day_offset]
-            dt_start = topic_date.replace(hour=start_minutes // 60, minute=start_minutes % 60, second=0)
-            dt_end = dt_start + timedelta(minutes=duration_minutes)
-            day_slot_minutes[day_offset] += duration_minutes + 15
-
-            start_str = dt_start.strftime("%Y%m%dT%H%M%S")
-            end_str = dt_end.strftime("%Y%m%dT%H%M%S")
-            uid_lecture = f"medquest-lec-{w_num}-{t_idx}-{topic_id_clean}-{user_id}-{date_str}@medquest"
-
-            encoded_sub = urllib.parse.quote(subtema)
-            # O subtema canônico é a chave de associação estável. Não inclua
-            # a área aqui: nomes de área de bases antigas podem divergir da
-            # normalização exibida no planner e zerar indevidamente a fila.
-            study_url_text = f"\\n\\n🔗 Questões: {base_url}/estudar?subtema={encoded_sub}&limit=25" if base_url else ""
-
-            ics_lines.extend([
-                "BEGIN:VEVENT",
-                f"UID:{uid_lecture}",
-                f"DTSTAMP:{now_dt}",
-                f"DTSTART:{start_str}",
-                f"DTEND:{end_str}",
-                f"SUMMARY:[MedQuest] 📖 {subtema} ({area})",
-                f"DESCRIPTION:📚 Carga: {total_h}h (Teoria: {theory_h}h + Questões: {practice_h}h)\\nSemana {w_num} • {area}{study_url_text}",
-                "STATUS:CONFIRMED",
-                "END:VEVENT",
-            ])
-
-    ics_lines.append("END:VCALENDAR")
-    return "\r\n".join(ics_lines)
+            _build_consolidation_event(ics_lines, w_num, week_start_dt, w_date_str, now_dt, user_id, base_url)
+        else:
+            _build_topic_events(ics_lines, topics, w_num, week_start_dt, study_days_count, now_dt, user_id, base_url)
 
 
 @bp.route("/planner/export/ics", methods=["GET"])
