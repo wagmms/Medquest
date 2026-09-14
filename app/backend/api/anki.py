@@ -15,6 +15,41 @@ from typing import Any
 logger = logging.getLogger(__name__)
 
 
+def _get_mime_type(filename: str) -> str:
+    """Retorna o tipo MIME de uma imagem baseado em sua extensão."""
+    ext = os.path.splitext(filename)[1].lower().lstrip(".")
+    if ext in ("jpg", "jpeg"):
+        return "image/jpeg"
+    if ext == "gif":
+        return "image/gif"
+    if ext == "svg":
+        return "image/svg+xml"
+    if ext == "webp":
+        return "image/webp"
+    return "image/png"
+
+
+def _process_image_match(
+    m: re.Match, filename_to_key: dict[str, str], namelist: list[str], z: zipfile.ZipFile
+) -> str:
+    """Processa um regex match de imagem e retorna o markdown correspondente (base64 se for local)."""
+    alt = m.group(1)
+    src = m.group(2).strip()
+    if src.startswith("data:") or src.startswith("http://") or src.startswith("https://"):
+        return m.group(0)
+
+    key = filename_to_key.get(src) or filename_to_key.get(os.path.basename(src))
+    if key and key in namelist:
+        try:
+            img_bytes = z.read(key)
+            mime = _get_mime_type(src)
+            b64 = base64.b64encode(img_bytes).decode("ascii")
+            return f"![{alt}](data:{mime};base64,{b64})"
+        except Exception as err:
+            logger.warning("Erro ao ler media %s (%s): %s", key, src, err)
+    return m.group(0)
+
+
 def clean_anki_html(text: str) -> str:
     """Converte HTML exportado do Anki para texto limpo e legível mantendo quebras de linha, destaques e imagens."""
     if not text:
@@ -113,34 +148,11 @@ def parse_apkg_bytes(apkg_bytes: bytes, fallback_deck_name: str = "Anki") -> lis
                 if not text_content or "![" not in text_content:
                     return text_content
 
-                def _replace_img(m: re.Match) -> str:
-                    alt = m.group(1)
-                    src = m.group(2).strip()
-                    if src.startswith("data:") or src.startswith("http://") or src.startswith("https://"):
-                        return m.group(0)
-
-                    key = filename_to_key.get(src) or filename_to_key.get(os.path.basename(src))
-                    if key and key in namelist:
-                        try:
-                            img_bytes = z.read(key)
-                            ext = os.path.splitext(src)[1].lower().lstrip(".")
-                            mime = "image/png"
-                            if ext in ("jpg", "jpeg"):
-                                mime = "image/jpeg"
-                            elif ext == "gif":
-                                mime = "image/gif"
-                            elif ext == "svg":
-                                mime = "image/svg+xml"
-                            elif ext == "webp":
-                                mime = "image/webp"
-
-                            b64 = base64.b64encode(img_bytes).decode("ascii")
-                            return f"![{alt}](data:{mime};base64,{b64})"
-                        except Exception as err:
-                            logger.warning("Erro ao ler media %s (%s): %s", key, src, err)
-                    return m.group(0)
-
-                return re.sub(r'!\[(.*?)\]\((.*?)\)', _replace_img, text_content)
+                return re.sub(
+                    r'!\[(.*?)\]\((.*?)\)',
+                    lambda m: _process_image_match(m, filename_to_key, namelist, z),
+                    text_content,
+                )
 
             z.extract(db_name, temp_dir)
             extracted_db_path = os.path.join(temp_dir, db_name)
