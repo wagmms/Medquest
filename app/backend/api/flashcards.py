@@ -551,6 +551,66 @@ def delete_deck():
     })
 
 
+def _format_flashcard(item: dict) -> dict:
+    front = item.get("front", "")
+    back = item.get("back", "")
+    stem = item.get("stem", "")
+    tags_raw = item.get("tags")
+
+    if tags_raw and isinstance(tags_raw, str):
+        try:
+            item["tags"] = json.loads(tags_raw)
+        except Exception:
+            item["tags"] = [t.strip() for t in tags_raw.split() if t.strip()]
+    else:
+        item["tags"] = tags_raw or []
+
+    if not item.get("deck_name"):
+        item["deck_name"] = "Geral"
+
+    if (
+        "A alternativa correta era" in front
+        or front.startswith(("Neste caso clínico, em vez de", "Para este quadro clínico,"))
+    ):
+        cloze_match = re.search(r'{{c1::(.*?)}}', front)
+        term = cloze_match.group(1) if cloze_match else ""
+        term = re.sub(r'^[A-Ea-e][\)\.\:\-]\s*', '', term).strip()
+
+        wrong_match = re.search(r"Você marcou\s*['\"](.*?)['\"]", back, re.IGNORECASE) or re.search(r"em vez de\s*[\"'](.*?)[\"']", back, re.IGNORECASE)
+        wrong_term = re.sub(r'^[A-Ea-e][\)\.\:\-]\s*', '', wrong_match.group(1)).strip() if wrong_match else ""
+
+        scenario = ""
+        if stem:
+            scenario = re.sub(r'\s+', ' ', stem.strip())
+            end_match = re.search(
+                r'(?:Diante disso|Diante do exposto|Diante desse quadro|Nesse momento|Nesse caso|Considerando o caso|Em relação ao caso|Sobre o caso descrito|Qual a conduta|Qual o diagnóstico|Qual é o diagnóstico|A melhor conduta|A conduta mais adequada|O diagnóstico mais provável).*$',
+                scenario,
+                re.IGNORECASE
+            )
+            if end_match and end_match.start() > 30:
+                scenario = scenario[:end_match.start()].strip()
+            scenario = re.sub(r'[\s,;:]+$', '', scenario).strip()
+            if scenario and not scenario.endswith('.'):
+                scenario += '.'
+
+        tag = "[Caso Clínico / Conduta]"
+        item["front"] = (
+            f"{tag} {scenario}\n\n👉 Diagnóstico / Conduta indicada: {{{{c1::{term}}}}}"
+            if scenario and len(scenario) > 20
+            else f"{tag}\n\n👉 Diagnóstico / Conduta indicada: {{{{c1::{term}}}}}"
+        )
+        if back.startswith(("Você marcou", "Alternativa correta:")):
+            item["back"] = (
+                f"💡 Gabarito Oficial:\n{term}\n\n⚠️ Atenção ao distrator:\nA opção '{wrong_term}' é incorreta para este quadro clínico."
+                if wrong_term
+                else f"💡 Gabarito Oficial:\n{term}"
+            )
+    else:
+        item["front"] = re.sub(r'{{c1::[A-Ea-e][\)\.\:\-]\s*(.*?)}}', r'{{c1::\1}}', front)
+
+    return item
+
+
 @bp.route("/flashcards/review", methods=["GET"])
 def get_due_flashcards():
     db = get_db()
@@ -560,108 +620,39 @@ def get_due_flashcards():
     limit = _bounded_int(request.args.get("limit"), 50, 1, 100)
     deck = request.args.get("deck")
 
-    params = [g.user_id]
+    params = []
+    base_sql = """
+        SELECT f.id, f.question_id, f.front, f.back, f.next_review_date,
+               f.source_context, f.is_ai_generated, f.deck_name, f.tags, f.source_type, f.anki_nid, f.anki_cid,
+               q.stem, q.area, q.subtema
+        FROM flashcards f LEFT JOIN questions q ON f.question_id = q.id
+        WHERE f.user_id = ? AND (f.report_status IS NULL OR TRIM(f.report_status) = '')
+    """
+    params.append(g.user_id)
+
+    where_clause = ""
+    if not include_all:
+        if scope == "upcoming":
+            where_clause = " AND f.next_review_date > ?"
+            params.append(now)
+        else:
+            where_clause = " AND f.next_review_date <= ?"
+            params.append(now)
+
     deck_clause = ""
     if deck and deck.lower() != "all":
         deck_clause = " AND f.deck_name = ?"
         params.append(deck)
 
-    if include_all:
-        sql = f"""
-            SELECT f.id, f.question_id, f.front, f.back, f.next_review_date,
-                   f.source_context, f.is_ai_generated, f.deck_name, f.tags, f.source_type, f.anki_nid, f.anki_cid,
-                   q.stem, q.area, q.subtema
-            FROM flashcards f LEFT JOIN questions q ON f.question_id = q.id
-            WHERE f.user_id = ? AND (f.report_status IS NULL OR TRIM(f.report_status) = ''){deck_clause}
-            ORDER BY f.next_review_date ASC LIMIT ?
-        """
-        params.append(limit)
-    elif scope == "upcoming":
-        sql = f"""
-            SELECT f.id, f.question_id, f.front, f.back, f.next_review_date,
-                   f.source_context, f.is_ai_generated, f.deck_name, f.tags, f.source_type, f.anki_nid, f.anki_cid,
-                   q.stem, q.area, q.subtema
-            FROM flashcards f LEFT JOIN questions q ON f.question_id = q.id
-            WHERE f.user_id = ? AND f.next_review_date > ?
-              AND (f.report_status IS NULL OR TRIM(f.report_status) = ''){deck_clause}
-            ORDER BY f.next_review_date ASC LIMIT ?
-        """
-        params.insert(1, now)
-        params.append(limit)
-    else:
-        sql = f"""
-            SELECT f.id, f.question_id, f.front, f.back, f.next_review_date,
-                   f.source_context, f.is_ai_generated, f.deck_name, f.tags, f.source_type, f.anki_nid, f.anki_cid,
-                   q.stem, q.area, q.subtema
-            FROM flashcards f LEFT JOIN questions q ON f.question_id = q.id
-            WHERE f.next_review_date <= ? AND f.user_id = ?
-              AND (f.report_status IS NULL OR TRIM(f.report_status) = ''){deck_clause}
-            ORDER BY f.next_review_date ASC LIMIT ?
-        """
-        params.insert(0, now)
-        params.append(limit)
+    order_limit_clause = " ORDER BY f.next_review_date ASC LIMIT ?"
+    params.append(limit)
 
+    sql = base_sql + where_clause + deck_clause + order_limit_clause
     rows = db.execute(sql, tuple(params)).fetchall()
 
     items = []
     for r in rows:
-        item = dict(r)
-        front = item.get("front", "")
-        back = item.get("back", "")
-        stem = item.get("stem", "")
-        tags_raw = item.get("tags")
-
-        if tags_raw and isinstance(tags_raw, str):
-            try:
-                item["tags"] = json.loads(tags_raw)
-            except Exception:
-                item["tags"] = [t.strip() for t in tags_raw.split() if t.strip()]
-        else:
-            item["tags"] = tags_raw or []
-
-        if not item.get("deck_name"):
-            item["deck_name"] = "Geral"
-
-        if (
-            "A alternativa correta era" in front
-            or front.startswith(("Neste caso clínico, em vez de", "Para este quadro clínico,"))
-        ):
-            cloze_match = re.search(r'{{c1::(.*?)}}', front)
-            term = cloze_match.group(1) if cloze_match else ""
-            term = re.sub(r'^[A-Ea-e][\)\.\:\-]\s*', '', term).strip()
-
-            wrong_match = re.search(r"Você marcou\s*['\"](.*?)['\"]", back, re.IGNORECASE) or re.search(r"em vez de\s*[\"'](.*?)[\"']", back, re.IGNORECASE)
-            wrong_term = re.sub(r'^[A-Ea-e][\)\.\:\-]\s*', '', wrong_match.group(1)).strip() if wrong_match else ""
-
-            scenario = ""
-            if stem:
-                scenario = re.sub(r'\s+', ' ', stem.strip())
-                end_match = re.search(
-                    r'(?:Diante disso|Diante do exposto|Diante desse quadro|Nesse momento|Nesse caso|Considerando o caso|Em relação ao caso|Sobre o caso descrito|Qual a conduta|Qual o diagnóstico|Qual é o diagnóstico|A melhor conduta|A conduta mais adequada|O diagnóstico mais provável).*$',
-                    scenario,
-                    re.IGNORECASE
-                )
-                if end_match and end_match.start() > 30:
-                    scenario = scenario[:end_match.start()].strip()
-                scenario = re.sub(r'[\s,;:]+$', '', scenario).strip()
-                if scenario and not scenario.endswith('.'):
-                    scenario += '.'
-
-            tag = "[Caso Clínico / Conduta]"
-            item["front"] = (
-                f"{tag} {scenario}\n\n👉 Diagnóstico / Conduta indicada: {{{{c1::{term}}}}}"
-                if scenario and len(scenario) > 20
-                else f"{tag}\n\n👉 Diagnóstico / Conduta indicada: {{{{c1::{term}}}}}"
-            )
-            if back.startswith(("Você marcou", "Alternativa correta:")):
-                item["back"] = (
-                    f"💡 Gabarito Oficial:\n{term}\n\n⚠️ Atenção ao distrator:\nA opção '{wrong_term}' é incorreta para este quadro clínico."
-                    if wrong_term
-                    else f"💡 Gabarito Oficial:\n{term}"
-                )
-        else:
-            item["front"] = re.sub(r'{{c1::[A-Ea-e][\)\.\:\-]\s*(.*?)}}', r'{{c1::\1}}', front)
-
+        item = _format_flashcard(dict(r))
         items.append(item)
 
     return jsonify(items)
