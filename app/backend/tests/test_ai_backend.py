@@ -10,7 +10,12 @@ def test_ai_health(client):
     assert "total_keys" in data
 
 
-def test_ask_ai_endpoint(client):
+def test_ask_ai_endpoint(client, monkeypatch):
+    monkeypatch.setattr(
+        ai,
+        "ask_preceptor_ai",
+        lambda **_: {"answer": "A conduta padrão ouro é o tratamento imediato. Essa resposta deve ser longa o suficiente para passar no teste de len > 10.", "model": "mock_model", "source": "mock"}
+    )
     res = client.post(
         "/api/questions/1/ask_ai",
         json={"user_question": "Qual a conduta padrão ouro?", "user_letter": "A"}

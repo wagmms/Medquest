@@ -37,7 +37,7 @@ test.describe('Validações Unitárias e de Integridade de Pacotes Offline', () 
     });
 
     await page.goto('/simulado');
-    await page.waitForFunction(() => typeof (window as unknown as { localDb?: unknown }).localDb !== 'undefined');
+
 
     // Grava pacote com status 'incomplete'
     await page.evaluate(async (ownerId) => {
@@ -92,7 +92,7 @@ test.describe('Validações Unitárias e de Integridade de Pacotes Offline', () 
     });
 
     await page.goto('/simulado');
-    await page.waitForFunction(() => typeof (window as unknown as { localDb?: unknown }).localDb !== 'undefined');
+
 
     // Grava pacote expirado (expires_at no passado)
     await page.evaluate(async (ownerId) => {
@@ -137,7 +137,7 @@ test.describe('Validações Unitárias e de Integridade de Pacotes Offline', () 
     });
 
     await page.goto('/simulado');
-    await page.waitForFunction(() => typeof (window as unknown as { localDb?: unknown }).localDb !== 'undefined');
+
 
     // Popula pacote para o Usuário A
     await page.evaluate(async () => {
@@ -219,7 +219,7 @@ test.describe('Validações Unitárias e de Integridade de Pacotes Offline', () 
     });
 
     await page.goto('/simulado');
-    await page.waitForFunction(() => typeof (window as unknown as { localDb?: unknown }).localDb !== 'undefined');
+
 
     // 1. Grava um pacote anterior compatível para garantir que o novo download o substitui.
     await page.evaluate(async (ownerId) => {
@@ -334,7 +334,7 @@ test.describe('Validações Unitárias e de Integridade de Pacotes Offline', () 
     });
 
     await page.goto('/simulado');
-    await page.waitForFunction(() => typeof (window as unknown as { localDb?: unknown }).localDb !== 'undefined');
+
 
     const downloadResult = await page.evaluate(async () => {
       const sp = (window as unknown as { simuladoPackage: {
@@ -369,7 +369,7 @@ test.describe('Validações Unitárias e de Integridade de Pacotes Offline', () 
     });
 
     await page.goto('/simulado');
-    await page.waitForFunction(() => typeof (window as unknown as { localDb?: unknown }).localDb !== 'undefined');
+
 
     // 1. Simula estado OFFLINE_SUBMITTED diretamente no localStorage com a chave v2 correta
     await page.evaluate(() => {
