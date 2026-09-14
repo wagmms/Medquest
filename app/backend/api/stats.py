@@ -325,33 +325,36 @@ def weak_topics():
     ])
 
 
-@bp.route("/stats/recommendations")
-def recommendations():
-    db = get_db()
-    recs = []
+def _get_srs_due_recommendation(db, user_id):
     srs_due = db.execute(
         "SELECT COUNT(*) n FROM spaced_repetition WHERE next_review_date <= ? AND user_id = ?",
-        (datetime.now(timezone.utc).isoformat(), g.user_id),
+        (datetime.now(timezone.utc).isoformat(), user_id),
     ).fetchone()["n"]
     if srs_due > 0:
-        recs.append({
+        return {
             "type": "srs_due", "icon": "ph-alarm",
             "title": f"{srs_due} questão(ões) para revisar hoje",
             "description": "Sua repetição espaçada tem itens prontos para revisão. Reforce agora o que você já viu antes de esquecer.",
             "cta": "Revisar agora", "filters": {"status": "srs_due"},
-        })
+        }
+    return None
 
+
+def _get_adaptive_recommendation(db, user_id):
     attempt_count = db.execute(
-        "SELECT COUNT(*) n FROM attempts WHERE user_id = ?", (g.user_id,)
+        "SELECT COUNT(*) n FROM attempts WHERE user_id = ?", (user_id,)
     ).fetchone()["n"]
     if attempt_count >= 3:
-        recs.append({
+        return {
             "type": "adaptive", "icon": "ph-brain",
             "title": "Sessão adaptativa personalizada",
             "description": "Uma fila equilibrada por revisões vencidas, risco de esquecimento, erros recentes e lacunas de cobertura.",
             "cta": "Iniciar sessão", "filters": {"mode": "adaptive", "limit": "30"},
-        })
+        }
+    return None
 
+
+def _get_weak_topics_recommendations(db, user_id):
     weak_subtemas = db.execute("""
         SELECT q.subtema AS subtema, MIN(q.area) AS area,
                COUNT(a.id) AS attempts, SUM(a.is_correct) AS correct
@@ -359,7 +362,8 @@ def recommendations():
         WHERE a.user_id = ? AND q.subtema IS NOT NULL AND q.subtema != ''
         GROUP BY q.subtema HAVING attempts >= 3
         ORDER BY (CAST(correct AS FLOAT) / attempts) ASC LIMIT 3
-    """, (g.user_id,)).fetchall()
+    """, (user_id,)).fetchall()
+    recs = []
     covered_areas = set()
     for r in weak_subtemas:
         acc = r["correct"] / r["attempts"]
@@ -371,14 +375,18 @@ def recommendations():
                 "description": f"Sua acurácia aqui é de {round(acc * 100)}% em {r['attempts']} tentativas. Vale revisar a teoria e praticar mais questões.",
                 "cta": "Praticar agora", "filters": {"subtema": r["subtema"]},
             })
+    return recs, covered_areas
 
+
+def _get_weak_area_recommendations(db, user_id, covered_areas):
     weak_areas = db.execute("""
         SELECT q.area AS area, COUNT(a.id) AS attempts, SUM(a.is_correct) AS correct
         FROM attempts a JOIN questions q ON q.id = a.question_id
         WHERE a.user_id = ? AND q.area IS NOT NULL AND q.area != ''
         GROUP BY q.area HAVING attempts >= 5
         ORDER BY (CAST(correct AS FLOAT) / attempts) ASC LIMIT 1
-    """, (g.user_id,)).fetchall()
+    """, (user_id,)).fetchall()
+    recs = []
     for r in weak_areas:
         acc = r["correct"] / r["attempts"]
         if acc < 0.65 and r["area"] not in covered_areas:
@@ -388,13 +396,16 @@ def recommendations():
                 "description": f"{round(acc * 100)}% de acerto em {r['attempts']} tentativas nessa área. Considere revisar os fundamentos antes de continuar.",
                 "cta": "Estudar área", "filters": {"area": r["area"]},
             })
+    return recs
 
+
+def _get_explore_recommendation(db, user_id):
     area_totals = _get_cached_area_totals(db)
     area_answered = db.execute("""
         SELECT q.area AS area, COUNT(DISTINCT a.question_id) n
         FROM attempts a JOIN questions q ON q.id = a.question_id
         WHERE a.user_id = ? AND q.area IS NOT NULL AND q.area != '' GROUP BY q.area
-    """, (g.user_id,)).fetchall()
+    """, (user_id,)).fetchall()
     answered_map = {r["area"]: r["n"] for r in area_answered}
     least_explored = None
     for r in area_totals:
@@ -404,34 +415,69 @@ def recommendations():
         if least_explored is None or coverage < least_explored["coverage"]:
             least_explored = {"area": r["area"], "coverage": coverage, "total": r["n"]}
     if least_explored is not None and least_explored["coverage"] < 0.1:
-        recs.append({
+        return {
             "type": "explore", "icon": "ph-compass",
             "title": f"Explore mais {least_explored['area']}",
             "description": f"Você ainda não praticou quase nada nessa área ({round(least_explored['coverage'] * 100)}% de {least_explored['total']} questões). Bom momento para começar.",
             "cta": "Começar a explorar",
             "filters": {"area": least_explored["area"], "status": "unanswered"},
-        })
+        }
+    return None
 
-    total_attempts = db.execute("SELECT COUNT(*) n FROM attempts WHERE user_id = ?", (g.user_id,)).fetchone()["n"]
+
+def _get_fallback_recommendations(db, user_id, has_recs):
+    if has_recs:
+        return []
+    total_attempts = db.execute("SELECT COUNT(*) n FROM attempts WHERE user_id = ?", (user_id,)).fetchone()["n"]
     last_correct = db.execute("""
         SELECT COUNT(*) n FROM attempts a1 WHERE a1.user_id = ? AND a1.is_correct = 1
         AND a1.id = (SELECT MAX(a2.id) FROM attempts a2 WHERE a2.user_id = ? AND a2.question_id = a1.question_id)
-    """, (g.user_id, g.user_id)).fetchone()["n"]
-    distinct_answered = db.execute("SELECT COUNT(DISTINCT question_id) n FROM attempts WHERE user_id = ?", (g.user_id,)).fetchone()["n"]
+    """, (user_id, user_id)).fetchone()["n"]
+    distinct_answered = db.execute("SELECT COUNT(DISTINCT question_id) n FROM attempts WHERE user_id = ?", (user_id,)).fetchone()["n"]
     accuracy_latest = (last_correct / distinct_answered) if distinct_answered else None
 
-    if not recs and distinct_answered >= 10 and accuracy_latest is not None and accuracy_latest >= 0.8:
-        recs.append({
+    if distinct_answered >= 10 and accuracy_latest is not None and accuracy_latest >= 0.8:
+        return [{
             "type": "praise", "icon": "ph-trophy", "title": "Ótimo desempenho geral!",
             "description": f"Você está acertando {round(accuracy_latest * 100)}% das últimas tentativas. Que tal se desafiar em um simulado cronometrado?",
             "cta": "Ir para os filtros", "filters": {},
-        })
-    elif not recs and total_attempts < 10:
-        recs.append({
+        }]
+    elif total_attempts < 10:
+        return [{
             "type": "start", "icon": "ph-rocket-launch", "title": "Comece a responder questões",
             "description": "Ainda não há tentativas suficientes para gerar recomendações personalizadas. Responda algumas questões para começar.",
             "cta": "Ir para os filtros", "filters": {},
-        })
+        }]
+    return []
+
+
+@bp.route("/stats/recommendations")
+def recommendations():
+    db = get_db()
+    user_id = g.user_id
+    recs = []
+
+    srs_rec = _get_srs_due_recommendation(db, user_id)
+    if srs_rec:
+        recs.append(srs_rec)
+
+    adaptive_rec = _get_adaptive_recommendation(db, user_id)
+    if adaptive_rec:
+        recs.append(adaptive_rec)
+
+    weak_topics_recs, covered_areas = _get_weak_topics_recommendations(db, user_id)
+    recs.extend(weak_topics_recs)
+
+    weak_areas_recs = _get_weak_area_recommendations(db, user_id, covered_areas)
+    recs.extend(weak_areas_recs)
+
+    explore_rec = _get_explore_recommendation(db, user_id)
+    if explore_rec:
+        recs.append(explore_rec)
+
+    fallback_recs = _get_fallback_recommendations(db, user_id, bool(recs))
+    recs.extend(fallback_recs)
+
     return jsonify(recs[:5])
 
 
