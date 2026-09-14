@@ -203,3 +203,32 @@ def test_flashcards_batch_rejects_duplicates_and_avoids_n_plus_one(client, monke
     assert response.status_code == 200
     assert response.get_json()["count"] == 2
     assert select_count == 3
+
+
+def test_bounded_int():
+    from api.flashcards import _bounded_int
+
+    # Normal cases
+    assert _bounded_int(50, 10, 1, 100) == 50
+    assert _bounded_int(1, 10, 1, 100) == 1
+    assert _bounded_int(100, 10, 1, 100) == 100
+
+    # String numbers
+    assert _bounded_int("50", 10, 1, 100) == 50
+    assert _bounded_int("1", 10, 1, 100) == 1
+    assert _bounded_int("100", 10, 1, 100) == 100
+
+    # Floats (cast to int by int())
+    assert _bounded_int(50.5, 10, 1, 100) == 50
+
+    # Out of bounds
+    assert _bounded_int(-10, 10, 1, 100) == 1
+    assert _bounded_int(0, 10, 1, 100) == 1
+    assert _bounded_int(101, 10, 1, 100) == 100
+    assert _bounded_int(500, 10, 1, 100) == 100
+
+    # Invalid inputs
+    assert _bounded_int(None, 10, 1, 100) == 10
+    assert _bounded_int("invalid", 10, 1, 100) == 10
+    assert _bounded_int("", 10, 1, 100) == 10
+    assert _bounded_int([], 10, 1, 100) == 10
