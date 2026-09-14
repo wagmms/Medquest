@@ -27,7 +27,7 @@ test.describe('isDynamicServerUsageError', () => {
   });
 
   test('handles digest property of different types safely', () => {
-    const error = new Error("Regular message") as any;
+    const error = new Error("Regular message") as Error & { digest?: unknown };
     error.digest = 12345;
     expect(isDynamicServerUsageError(error)).toBe(false);
 
