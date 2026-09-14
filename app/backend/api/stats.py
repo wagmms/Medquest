@@ -1150,6 +1150,45 @@ def bottlenecks():
     return jsonify(out)
 
 
+def _create_area_stats(area_name: str) -> dict:
+    return {
+        "area": area_name,
+        "total_subtemas": 0,
+        "mastered_subtemas": 0,
+        "proficient_subtemas": 0,
+        "in_progress_subtemas": 0,
+        "not_started_subtemas": 0,
+        "attempts": 0,
+        "correct": 0,
+        "accuracy": None,
+        "domain_pct": 0.0
+    }
+
+def _update_area_stats(item: dict, attempts: int, correct: int) -> None:
+    item["total_subtemas"] += 1
+    item["attempts"] += attempts
+    item["correct"] += correct
+
+    if attempts == 0:
+        item["not_started_subtemas"] += 1
+    else:
+        acc = correct / attempts
+        # Critério pedagógico robusto:
+        # - Dominado/Consolidado: >= 15 tentativas e acurácia >= 75%
+        # - Proficiente / Sinal de domínio: 5 a 14 tentativas e acurácia >= 70%
+        if attempts >= 15 and acc >= 0.75:
+            item["mastered_subtemas"] += 1
+        elif attempts >= 5 and acc >= 0.70:
+            item["proficient_subtemas"] += 1
+        else:
+            item["in_progress_subtemas"] += 1
+
+def _calculate_area_metrics(item: dict) -> None:
+    if item["attempts"] > 0:
+        item["accuracy"] = round(item["correct"] / item["attempts"], 3)
+    if item["total_subtemas"] > 0:
+        item["domain_pct"] = round((item["mastered_subtemas"] / item["total_subtemas"]) * 100, 1)
+
 @bp.route("/stats/domain-summary")
 def domain_summary():
     """Inspirado no MedBrain da Medway: progresso de domínio de focos/subtemas por Grande Área."""
@@ -1172,73 +1211,27 @@ def domain_summary():
     canonical_order = ["Clínica Médica", "Cirurgia", "Ginecologia e Obstetrícia", "Pediatria", "Medicina Preventiva"]
 
     for area_name in canonical_order:
-        areas_map[area_name] = {
-            "area": area_name,
-            "total_subtemas": 0,
-            "mastered_subtemas": 0,
-            "proficient_subtemas": 0,
-            "in_progress_subtemas": 0,
-            "not_started_subtemas": 0,
-            "attempts": 0,
-            "correct": 0,
-            "accuracy": None,
-            "domain_pct": 0.0
-        }
+        areas_map[area_name] = _create_area_stats(area_name)
 
     for r in rows:
         area = r["area"]
         if area not in areas_map:
-            areas_map[area] = {
-                "area": area,
-                "total_subtemas": 0,
-                "mastered_subtemas": 0,
-                "proficient_subtemas": 0,
-                "in_progress_subtemas": 0,
-                "not_started_subtemas": 0,
-                "attempts": 0,
-                "correct": 0,
-                "accuracy": None,
-                "domain_pct": 0.0
-            }
+            areas_map[area] = _create_area_stats(area)
 
-        item = areas_map[area]
-        item["total_subtemas"] += 1
         att = r["attempts"] or 0
         cor = r["correct"] or 0
-        item["attempts"] += att
-        item["correct"] += cor
-
-        if att == 0:
-            item["not_started_subtemas"] += 1
-        else:
-            acc = cor / att
-            # Critério pedagógico robusto:
-            # - Dominado/Consolidado: >= 15 tentativas e acurácia >= 75%
-            # - Proficiente / Sinal de domínio: 5 a 14 tentativas e acurácia >= 70%
-            if att >= 15 and acc >= 0.75:
-                item["mastered_subtemas"] += 1
-            elif att >= 5 and acc >= 0.70:
-                item["proficient_subtemas"] += 1
-            else:
-                item["in_progress_subtemas"] += 1
+        _update_area_stats(areas_map[area], att, cor)
 
     result = []
     for area_name in canonical_order:
         if area_name in areas_map:
-            item = areas_map[area_name]
-            if item["attempts"] > 0:
-                item["accuracy"] = round(item["correct"] / item["attempts"], 3)
-            if item["total_subtemas"] > 0:
-                item["domain_pct"] = round((item["mastered_subtemas"] / item["total_subtemas"]) * 100, 1)
+            item = areas_map.pop(area_name)
+            _calculate_area_metrics(item)
             result.append(item)
 
-    for k, item in areas_map.items():
-        if k not in canonical_order:
-            if item["attempts"] > 0:
-                item["accuracy"] = round(item["correct"] / item["attempts"], 3)
-            if item["total_subtemas"] > 0:
-                item["domain_pct"] = round((item["mastered_subtemas"] / item["total_subtemas"]) * 100, 1)
-            result.append(item)
+    for item in areas_map.values():
+        _calculate_area_metrics(item)
+        result.append(item)
 
     total_subtemas_all = sum(x["total_subtemas"] for x in result)
     total_mastered_all = sum(x["mastered_subtemas"] for x in result)
