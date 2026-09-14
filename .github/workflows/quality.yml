@@ -123,4 +123,4 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run end-to-end tests
-        run: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_bW9jay1rZXk' }} npm run test:e2e
+        run: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Y2xlcmsuZXhhbXBsZS5jb20k' }} npm run test:e2e
