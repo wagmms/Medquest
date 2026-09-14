@@ -73,6 +73,12 @@ app/frontend/public/swe-worker-*.js
 !/package.json
 !/tsconfig.json
 !/tslint.json
+!/canonical_*.json
+!/full_topic_map.json
+!/pediatria_*.json
 classification_*.json
 medway_match_*.json
 medquest.db.backup*
+*.db.before-*
+archive/legacy/data/
+

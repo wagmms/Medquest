@@ -34,19 +34,23 @@ def resolve_ssh_key(custom_key=None):
     if custom_key and os.path.exists(custom_key):
         return custom_key
 
-    env_key = os.environ.get("MEDQUEST_DEPLOY_KEY")
+    env_key = os.environ.get("MEDQUEST_DEPLOY_KEY") or os.environ.get("SSH_KEY_PATH")
     if env_key and os.path.exists(env_key):
         return env_key
-    
+
+    home_medquest_key = os.path.expanduser("~/.ssh/medquest_deploy.key")
+    if os.path.exists(home_medquest_key):
+        return home_medquest_key
+
+    home_ssh = os.path.expanduser("~/.ssh/id_rsa")
+    if os.path.exists(home_ssh):
+        return home_ssh
+
     script_dir = os.path.dirname(os.path.abspath(__file__))
     local_key = os.path.join(script_dir, "sua-chave.key")
     if os.path.exists(local_key):
         return local_key
-    
-    home_ssh = os.path.expanduser("~/.ssh/id_rsa")
-    if os.path.exists(home_ssh):
-        return home_ssh
-    
+
     return None
 
 

@@ -7,7 +7,7 @@ from urllib.parse import urlencode, quote
 
 from flask import Blueprint, g, jsonify, request
 
-from scripts.planner import USP_WEIGHTS, get_normalized_area
+from .services.planner import USP_WEIGHTS, get_normalized_area
 
 from .adaptive import build_learning_profile, fsrs_metrics
 from .db import get_db, db_transaction

@@ -3,8 +3,8 @@ from datetime import datetime, timedelta, timezone
 
 from flask import Blueprint, Response, g, jsonify, request
 
-# planner.py (raiz do backend) — geração do plano anual por pesos históricos USP
-from scripts.planner import generate_annual_plan
+# planner service — geração do plano anual por pesos históricos USP
+from .services.planner import generate_annual_plan
 
 from .db import db_transaction, get_db
 from .observability import record_domain_event

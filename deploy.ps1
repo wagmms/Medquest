@@ -109,13 +109,21 @@ Set-Location $ProjectRoot
 
 # 2. Localizar chave SSH
 if (-not $KeyFile) {
-    $CandidateKey = Join-Path $ProjectRoot "sua-chave.key"
-    if (Test-Path $CandidateKey) {
-        $KeyFile = $CandidateKey
+    if ($env:MEDQUEST_DEPLOY_KEY -and (Test-Path $env:MEDQUEST_DEPLOY_KEY)) {
+        $KeyFile = $env:MEDQUEST_DEPLOY_KEY
+    } elseif ($env:SSH_KEY_PATH -and (Test-Path $env:SSH_KEY_PATH)) {
+        $KeyFile = $env:SSH_KEY_PATH
     } else {
+        $UserMedquestKey = Join-Path $env:USERPROFILE ".ssh\medquest_deploy.key"
         $DefaultSSHKey = Join-Path $env:USERPROFILE ".ssh\id_rsa"
-        if (Test-Path $DefaultSSHKey) {
+        $CandidateKey = Join-Path $ProjectRoot "sua-chave.key"
+
+        if (Test-Path $UserMedquestKey) {
+            $KeyFile = $UserMedquestKey
+        } elseif (Test-Path $DefaultSSHKey) {
             $KeyFile = $DefaultSSHKey
+        } elseif (Test-Path $CandidateKey) {
+            $KeyFile = $CandidateKey
         }
     }
 }

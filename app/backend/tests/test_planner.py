@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 
-from scripts.planner import generate_annual_plan
+from api.services.planner import generate_annual_plan
 
 
 def test_intensive_plan_uses_high_yield_catalog():

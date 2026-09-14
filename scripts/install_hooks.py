@@ -50,8 +50,9 @@ def install_hooks():
     pre_commit_path = HOOKS_DIR / "pre-commit"
     pre_push_path = HOOKS_DIR / "pre-push"
 
-    pre_commit_path.write_text(PRE_COMMIT_SCRIPT, encoding="utf-8")
-    pre_push_path.write_text(PRE_PUSH_SCRIPT, encoding="utf-8")
+    # Força terminação de linha LF (\n) para compatibilidade com bash no Git do Windows
+    pre_commit_path.write_bytes(PRE_COMMIT_SCRIPT.replace("\r\n", "\n").encode("utf-8"))
+    pre_push_path.write_bytes(PRE_PUSH_SCRIPT.replace("\r\n", "\n").encode("utf-8"))
 
     # Garante permissões de execução em sistemas Unix
     for hook_file in [pre_commit_path, pre_push_path]:
