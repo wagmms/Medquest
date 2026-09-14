@@ -40,7 +40,7 @@ jobs:
 
       - name: Run Hermetic Pytest Suite (Parallel)
         run: |
-          pytest -q -n auto
+          GROQ_API_KEY="mock" pytest -q -n auto
 
       - name: Run Performance SLA Guardrails
         run: |
@@ -89,7 +89,7 @@ jobs:
       - name: Next.js Production Build & Performance Budgets
         run: npm run build
         env:
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Y2xlcmsuZXhhbXBsZS5jb20k' }}
           CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
           FLASK_API_PROXY_SECRET: ci-placeholder-not-used-during-build
 
@@ -115,7 +115,7 @@ jobs:
       - name: Build standalone application
         run: npm run build
         env:
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Y2xlcmsuZXhhbXBsZS5jb20k' }}
           CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
           FLASK_API_PROXY_SECRET: ci-placeholder-not-used-during-build
 
@@ -124,3 +124,6 @@ jobs:
 
       - name: Run end-to-end tests
         run: npm run test:e2e
+        env:
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Y2xlcmsuZXhhbXBsZS5jb20k' }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
