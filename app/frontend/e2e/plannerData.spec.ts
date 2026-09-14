@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { getSubtemaDetails } from './plannerData';
+import { getSubtemaDetails } from '../src/lib/plannerData';
 
 test.describe('plannerData unit tests', () => {
   test('getSubtemaDetails returns null for unknown subtema', () => {
