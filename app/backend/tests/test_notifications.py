@@ -17,6 +17,7 @@ from api.webpush import (
     is_safe_push_endpoint,
     send_web_push,
     set_mock_webpush_sender,
+    is_vapid_configured,
 )
 
 
@@ -479,3 +480,36 @@ def test_cron_dispatch_vapid_absent_fail_safe(app, client, monkeypatch):
     )
     assert res.status_code == 200
     assert res.get_json()["success"] is True
+
+def test_is_vapid_configured_both_present(monkeypatch):
+    """Testa se is_vapid_configured retorna True quando chaves públicas e privadas estão presentes."""
+    monkeypatch.setenv("VAPID_PUBLIC_KEY", "pub_key")
+    monkeypatch.setenv("VAPID_PRIVATE_KEY", "priv_key")
+    assert is_vapid_configured() is True
+
+def test_is_vapid_configured_next_public_and_private_present(monkeypatch):
+    """Testa se is_vapid_configured retorna True usando a chave pública alternativa (NEXT_PUBLIC...)."""
+    monkeypatch.delenv("VAPID_PUBLIC_KEY", raising=False)
+    monkeypatch.setenv("NEXT_PUBLIC_VAPID_PUBLIC_KEY", "pub_key_next")
+    monkeypatch.setenv("VAPID_PRIVATE_KEY", "priv_key")
+    assert is_vapid_configured() is True
+
+def test_is_vapid_configured_only_public_present(monkeypatch):
+    """Testa se is_vapid_configured retorna False quando apenas a chave pública está presente."""
+    monkeypatch.setenv("VAPID_PUBLIC_KEY", "pub_key")
+    monkeypatch.delenv("VAPID_PRIVATE_KEY", raising=False)
+    assert is_vapid_configured() is False
+
+def test_is_vapid_configured_only_private_present(monkeypatch):
+    """Testa se is_vapid_configured retorna False quando apenas a chave privada está presente."""
+    monkeypatch.delenv("VAPID_PUBLIC_KEY", raising=False)
+    monkeypatch.delenv("NEXT_PUBLIC_VAPID_PUBLIC_KEY", raising=False)
+    monkeypatch.setenv("VAPID_PRIVATE_KEY", "priv_key")
+    assert is_vapid_configured() is False
+
+def test_is_vapid_configured_none_present(monkeypatch):
+    """Testa se is_vapid_configured retorna False quando nenhuma chave está presente."""
+    monkeypatch.delenv("VAPID_PUBLIC_KEY", raising=False)
+    monkeypatch.delenv("NEXT_PUBLIC_VAPID_PUBLIC_KEY", raising=False)
+    monkeypatch.delenv("VAPID_PRIVATE_KEY", raising=False)
+    assert is_vapid_configured() is False
