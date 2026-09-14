@@ -40,6 +40,7 @@ jobs:
 
       - name: Run Hermetic Pytest Suite (Parallel)
         run: |
+          export GROQ_API_KEY="mock"
           pytest -q -n auto
 
       - name: Run Performance SLA Guardrails
@@ -124,3 +125,7 @@ jobs:
 
       - name: Run end-to-end tests
         run: npm run test:e2e
+        env:
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_Y2xlcmsuZXhhbXBsZS5jb20k
+          CLERK_SECRET_KEY: sk_test_mock
+          FLASK_API_PROXY_SECRET: ci-placeholder-not-used-during-build
