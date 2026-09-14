@@ -455,6 +455,25 @@ def test_favorite_toggle_replay_does_not_toggle_back(idemp_client):
     assert second.get_json()["is_favorite"] is True
 
 
+def test_cleanup_idempotency_keys_error_handling():
+    """
+    Test that cleanup function correctly handles and re-raises database errors.
+    """
+    class MockDB:
+        def execute(self, sql, params=()):
+            if "DELETE FROM idempotency_keys" in sql:
+                raise Exception("Mocked DB error during cleanup")
+
+        def commit(self):
+            pass
+
+        def rollback(self):
+            pass
+
+    with pytest.raises(Exception, match="Mocked DB error during cleanup"):
+        cleanup_idempotency_keys(MockDB(), max_age_days=7)
+
+
 def test_review_replay_advances_fsrs_only_once(idemp_client):
     guest_id = str(uuid.uuid4())
     base_headers = {
