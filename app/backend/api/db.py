@@ -131,9 +131,21 @@ class TursoConnection:
             raise
 
     def batch(self, queries):
+        started_tx = False
+        if not self.tx:
+            self.begin()
+            started_tx = True
+
         res = []
-        for sql, parameters in queries:
-            res.append(self.execute(sql, parameters))
+        try:
+            for sql, parameters in queries:
+                res.append(self.execute(sql, parameters))
+            if started_tx:
+                self.commit()
+        except Exception:
+            if started_tx:
+                self.rollback()
+            raise
         return res
             
     def commit(self):
