@@ -13,14 +13,14 @@ export default defineConfig({
   workers: 1,
   reporter: 'list',
   timeout: 30000,
-  use: {
+  use: { baseURL: "http://127.0.0.1:3100",
     baseURL,
     trace: 'off',
   },
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { baseURL: "http://127.0.0.1:3100", ...devices['Desktop Chrome'] },
     },
   ],
   webServer: {
