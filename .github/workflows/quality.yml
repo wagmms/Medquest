@@ -40,7 +40,7 @@ jobs:
 
       - name: Run Hermetic Pytest Suite (Parallel)
         run: |
-          pytest -q -n auto
+          GROQ_API_KEY=mock pytest -q -n auto
 
       - name: Run Performance SLA Guardrails
         run: |
@@ -123,4 +123,4 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run end-to-end tests
-        run: npm run test:e2e
+        run: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_Y2xlcmsuZXhhbXBsZS5jb20k npm run test:e2e
