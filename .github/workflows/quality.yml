@@ -124,5 +124,3 @@ jobs:
 
       - name: Run end-to-end tests
         run: npm run test:e2e
-        env:
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
