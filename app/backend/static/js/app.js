@@ -50,56 +50,76 @@ $$(".tab").forEach((btn) => {
 
 // ── Filtros ──────────────────────────────────────────────────
 
-function chip(value, label, active = false) {
+function chip(value, label, active = false, onClick = null) {
   const b = document.createElement("button");
   b.className = "chip" + (active ? " active" : "");
   b.dataset.value = value;
   b.innerHTML = label;
+  if (onClick) {
+    b.addEventListener("click", (e) => onClick(e, b));
+  }
   return b;
 }
 
-async function initFilters() {
-  try {
-    state.meta = await api("/api/meta");
-  } catch (err) {
-    console.error("Failed to load meta:", err);
-    return;
-  }
+function renderChipGroup(containerSel, items, valueKey, labelFn, onClickHandler) {
+  const box = $(containerSel);
+  if (!box || !items) return box;
+  items.forEach((item) => {
+    const value = valueKey ? item[valueKey] : item;
+    const label = labelFn ? labelFn(item) : String(item);
+    const c = chip(value, label, false, (e, btn) => onClickHandler(value, btn));
+    box.appendChild(c);
+  });
+  return box;
+}
 
-  const instBox = $("#f-institution");
-  if (instBox && state.meta.institutions) {
-    state.meta.institutions.forEach((inst) => {
-      const c = chip(inst.institution_code, `${inst.institution_code} <span class="n">${inst.n}</span>`);
-      c.addEventListener("click", () => {
-        c.classList.toggle("active");
-        toggleSetValue(state.filters.institution, inst.institution_code);
-        refreshLiveCount();
-      });
-      instBox.appendChild(c);
-    });
-  }
-
-  const areaBox = $("#f-area");
-  if (areaBox) {
-    (state.meta.areas || []).forEach((a) => {
-      const c = chip(a.area, `${a.area} <span class="n">${a.n}</span>`);
-      c.addEventListener("click", () => {
-        c.classList.toggle("active");
-        toggleSetValue(state.filters.area, a.area);
-        refreshSubtemaSuggestions();
-        refreshLiveCount();
-      });
-      areaBox.appendChild(c);
-    });
-    if (!state.meta.areas || state.meta.areas.length === 0) {
-      areaBox.innerHTML = '<span class="muted small">Classificação por área ainda não gerada.</span>';
+function setupInstitutionFilter() {
+  renderChipGroup(
+    "#f-institution",
+    state.meta.institutions,
+    "institution_code",
+    (inst) => `${inst.institution_code} <span class="n">${inst.n}</span>`,
+    (val, btn) => {
+      btn.classList.toggle("active");
+      toggleSetValue(state.filters.institution, val);
+      refreshLiveCount();
     }
+  );
+}
+
+function setupAreaFilter() {
+  const box = renderChipGroup(
+    "#f-area",
+    state.meta.areas || [],
+    "area",
+    (a) => `${a.area} <span class="n">${a.n}</span>`,
+    (val, btn) => {
+      btn.classList.toggle("active");
+      toggleSetValue(state.filters.area, val);
+      refreshSubtemaSuggestions();
+      refreshLiveCount();
+    }
+  );
+  if (box && (!state.meta.areas || state.meta.areas.length === 0)) {
+    box.innerHTML = '<span class="muted small">Classificação por área ainda não gerada.</span>';
   }
+}
 
-  wireGroupActions("f-institution");
-  wireGroupActions("f-area");
-  wireGroupActions("f-year");
+function setupYearFilter() {
+  renderChipGroup(
+    "#f-year",
+    state.meta.years,
+    null,
+    (y) => String(y),
+    (val, btn) => {
+      btn.classList.toggle("active");
+      toggleSetValue(state.filters.year, val);
+      refreshLiveCount();
+    }
+  );
+}
 
+function setupSubtemaFilter() {
   const fSubtemaInput = $("#f-subtema-input");
   if (fSubtemaInput) {
     fSubtemaInput.addEventListener("input", debounce(refreshSubtemaSuggestions, 250));
@@ -110,20 +130,9 @@ async function initFilters() {
     });
     refreshSubtemaSuggestions();
   }
+}
 
-  const yearBox = $("#f-year");
-  if (yearBox && state.meta.years) {
-    state.meta.years.forEach((y) => {
-      const c = chip(y, String(y));
-      c.addEventListener("click", () => {
-        c.classList.toggle("active");
-        toggleSetValue(state.filters.year, y);
-        refreshLiveCount();
-      });
-      yearBox.appendChild(c);
-    });
-  }
-
+function setupStatusFilter() {
   $$("#f-status .chip").forEach((c) => {
     c.addEventListener("click", () => {
       $$("#f-status .chip").forEach((x) => x.classList.remove("active"));
@@ -132,7 +141,9 @@ async function initFilters() {
       refreshLiveCount();
     });
   });
+}
 
+function setupMiscFilters() {
   const fFav = $("#f-favorite");
   if (fFav) {
     fFav.addEventListener("click", () => {
@@ -154,6 +165,27 @@ async function initFilters() {
   if (filtersSummary && state.meta) {
     filtersSummary.textContent = `${state.meta.total_questions || 0} questões no banco · ${state.meta.answered_questions || 0} já respondidas`;
   }
+}
+
+async function initFilters() {
+  try {
+    state.meta = await api("/api/meta");
+  } catch (err) {
+    console.error("Failed to load meta:", err);
+    return;
+  }
+
+  setupInstitutionFilter();
+  setupAreaFilter();
+  setupYearFilter();
+
+  wireGroupActions("f-institution");
+  wireGroupActions("f-area");
+  wireGroupActions("f-year");
+
+  setupSubtemaFilter();
+  setupStatusFilter();
+  setupMiscFilters();
 
   // ★ Presets
   renderPresets();
