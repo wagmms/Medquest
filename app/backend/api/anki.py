@@ -156,13 +156,23 @@ def parse_apkg_bytes(apkg_bytes: bytes, fallback_deck_name: str = "Anki") -> lis
                 col_row = cursor.execute("SELECT decks FROM col").fetchone()
                 if col_row:
                     try:
-                        decks_data = json.loads(col_row["decks"]) if col_row["decks"] else {}
-                        for did_str, dinfo in decks_data.items():
+                        decks_str = col_row["decks"]
+                        if decks_str:
+                            decks_data = json.loads(decks_str)
                             try:
-                                did = int(did_str)
-                                deck_map[did] = dinfo.get("name", fallback_deck_name)
-                            except (ValueError, TypeError):
-                                pass
+                                # Fast path dict comprehension
+                                deck_map = {
+                                    int(did_str): dinfo.get("name", fallback_deck_name)
+                                    for did_str, dinfo in decks_data.items()
+                                }
+                            except Exception:
+                                # Fallback path if data is malformed (e.g. non-int strings or missing .get)
+                                for did_str, dinfo in decks_data.items():
+                                    try:
+                                        did = int(did_str)
+                                        deck_map[did] = dinfo.get("name", fallback_deck_name)
+                                    except (ValueError, TypeError, AttributeError):
+                                        pass
                     except Exception as e:
                         logger.warning("Falha ao analisar decks do col: %s", e)
 
