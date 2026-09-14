@@ -246,6 +246,15 @@ def cron_dispatch():
         "tag": "medquest-fsrs-review",
     }
 
+    # Pré-carrega todos os usuários que possuem revisões pendentes (FSRS ou Flashcards)
+    due_users_query = """
+        SELECT DISTINCT user_id FROM spaced_repetition WHERE next_review_date <= ?
+        UNION
+        SELECT DISTINCT user_id FROM flashcards WHERE next_review_date <= ?
+    """
+    due_users_rows = db.execute(due_users_query, (today_date, today_date)).fetchall()
+    due_user_ids = {str(row[0]) for row in due_users_rows}
+
     for cfg in configs:
         user_id = str(cfg["user_id"])
 
@@ -261,18 +270,7 @@ def cron_dispatch():
             except Exception:
                 pass
 
-        # Verifica se há revisões FSRS vencidas na data de hoje ou anterior
-        due_srs = db.execute(
-            "SELECT 1 FROM spaced_repetition WHERE user_id = ? AND next_review_date <= ? LIMIT 1",
-            (user_id, today_date),
-        ).fetchone()
-
-        due_fc = db.execute(
-            "SELECT 1 FROM flashcards WHERE user_id = ? AND next_review_date <= ? LIMIT 1",
-            (user_id, today_date),
-        ).fetchone()
-
-        if not due_srs and not due_fc:
+        if user_id not in due_user_ids:
             continue
 
         # Reserva atômica em transação imediata: apenas o processo que efetuar o INSERT pode disparar
