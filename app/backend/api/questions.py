@@ -916,21 +916,7 @@ def toggle_favorite(qid):
         raise
 
 
-@bp.route("/questions/batch", methods=["POST"])
-def question_batch_detail():
-    """Retorna detalhes completos de múltiplas questões em uma única requisição.
-    
-    Aceita {"ids": [1, 2, ...]} com no máximo 200 IDs.
-    Substitui até 120 chamadas individuais GET /questions/:id no simulado.
-    """
-    try:
-        data = QuestionBatchIn.model_validate(request.get_json(force=True) or {})
-    except ValidationError as e:
-        return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
-    ids = data.ids
-    force_4_options = data.force_4_options
-
-    db = get_db()
+def _fetch_batch_data(db, ids, user_id):
     CHUNK = 500
     q_map = {}
     alt_map = {}
@@ -952,7 +938,7 @@ def question_batch_detail():
         for r in db.execute(f"SELECT question_id, file_path FROM question_images WHERE question_id IN ({ph}) ORDER BY order_index", chunk).fetchall():
             img_map.setdefault(r["question_id"], []).append(r["file_path"])
 
-        chunk_user = list(chunk) + [g.user_id]
+        chunk_user = list(chunk) + [user_id]
         for r in db.execute(
             f"SELECT question_id, selected_letter, is_correct FROM attempts WHERE question_id IN ({ph}) AND user_id = ? ORDER BY id DESC",
             chunk_user,
@@ -969,6 +955,9 @@ def question_batch_detail():
         for r in db.execute(f"SELECT question_id FROM favorites WHERE question_id IN ({ph}) AND user_id = ?", chunk_user).fetchall():
             fav_set.add(r["question_id"])
 
+    return q_map, alt_map, img_map, attempt_map, wrong_map, fav_set
+
+def _fetch_clinical_cases(db, q_map):
     cc_map = {}
     cc_ids = list({q["clinical_case_id"] for q in q_map.values() if q.get("clinical_case_id")})
     if cc_ids:
@@ -978,6 +967,64 @@ def question_batch_detail():
                 "stem": r["stem"],
                 "images": json.loads(r["images"]) if r["images"] else []
             }
+    return cc_map
+
+def _filter_alternatives(alts, correct_letter):
+    incorrects = [a for a in alts if a["letter"] != correct_letter]
+    if incorrects:
+        # Escolhe um distrator para remover para que sobrem apenas 4 alternativas
+        # Se len for 5, remove 1. Se len for N, remove N-4
+        remove_count = len(alts) - 4
+        to_remove = random.sample(incorrects, remove_count)
+        to_remove_letters = {a["letter"] for a in to_remove}
+        return [a for a in alts if a["letter"] not in to_remove_letters]
+    return alts
+
+def _format_question_dict(q, alts, imgs, attempt, wrong_count, is_favorite, cc):
+    return {
+        "id": q["id"],
+        "source_file": q["source_file"],
+        "source_number": q["source_number"],
+        "year": q["year"],
+        "institution_code": q["institution_code"],
+        "institution_label": q["institution_label"],
+        "topic": q["topic"],
+        "area": q["area"],
+        "subtema": q["subtema"],
+        "stem": q["stem"],
+        "is_autoral": bool(q.get("editorial_status") == "autoral" or (q.get("source_file") and "AUTORAL" in str(q.get("source_file")).upper())),
+        "is_discursive": bool(len(alts) <= 1),
+        "is_verified": bool(q.get("is_verified", 0)),
+        "last_updated_at": q.get("last_updated_at"),
+        "technical_note": q.get("technical_note"),
+        "clinical_case": cc,
+        "usp_macro": q.get("usp_macro"),
+        "usp_micro": q.get("usp_micro"),
+        "alternatives": alts,
+        "images": imgs,
+        "already_answered": attempt,
+        "is_favorite": is_favorite,
+        "times_wrong": wrong_count,
+    }
+
+@bp.route("/questions/batch", methods=["POST"])
+def question_batch_detail():
+    """Retorna detalhes completos de múltiplas questões em uma única requisição.
+
+    Aceita {"ids": [1, 2, ...]} com no máximo 200 IDs.
+    Substitui até 120 chamadas individuais GET /questions/:id no simulado.
+    """
+    try:
+        data = QuestionBatchIn.model_validate(request.get_json(force=True) or {})
+    except ValidationError as e:
+        return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
+
+    ids = data.ids
+    force_4_options = data.force_4_options
+    db = get_db()
+
+    q_map, alt_map, img_map, attempt_map, wrong_map, fav_set = _fetch_batch_data(db, ids, g.user_id)
+    cc_map = _fetch_clinical_cases(db, q_map)
 
     out = []
     for qid in ids:
@@ -987,41 +1034,17 @@ def question_batch_detail():
             
         alts = alt_map.get(qid, [])
         if force_4_options and len(alts) > 4:
-            correct_letter = q.get("correct_letter")
-            incorrects = [a for a in alts if a["letter"] != correct_letter]
-            if incorrects:
-                # Escolhe um distrator para remover para que sobrem apenas 4 alternativas
-                # Se len for 5, remove 1. Se len for N, remove N-4
-                remove_count = len(alts) - 4
-                to_remove = random.sample(incorrects, remove_count)
-                to_remove_letters = {a["letter"] for a in to_remove}
-                alts = [a for a in alts if a["letter"] not in to_remove_letters]
+            alts = _filter_alternatives(alts, q.get("correct_letter"))
 
-        out.append({
-            "id": q["id"],
-            "source_file": q["source_file"],
-            "source_number": q["source_number"],
-            "year": q["year"],
-            "institution_code": q["institution_code"],
-            "institution_label": q["institution_label"],
-            "topic": q["topic"],
-            "area": q["area"],
-            "subtema": q["subtema"],
-            "stem": q["stem"],
-            "is_autoral": bool(q.get("editorial_status") == "autoral" or (q.get("source_file") and "AUTORAL" in str(q.get("source_file")).upper())),
-            "is_discursive": bool(len(alts) <= 1),
-            "is_verified": bool(q.get("is_verified", 0)),
-            "last_updated_at": q.get("last_updated_at"),
-            "technical_note": q.get("technical_note"),
-            "clinical_case": cc_map.get(q.get("clinical_case_id")),
-            "usp_macro": q.get("usp_macro"),
-            "usp_micro": q.get("usp_micro"),
-            "alternatives": alts,
-            "images": img_map.get(qid, []),
-            "already_answered": attempt_map.get(qid),
-            "is_favorite": qid in fav_set,
-            "times_wrong": wrong_map.get(qid, 0),
-        })
+        out.append(_format_question_dict(
+            q,
+            alts,
+            img_map.get(qid, []),
+            attempt_map.get(qid),
+            wrong_map.get(qid, 0),
+            qid in fav_set,
+            cc_map.get(q.get("clinical_case_id"))
+        ))
 
     return jsonify({"questions": out})
 
