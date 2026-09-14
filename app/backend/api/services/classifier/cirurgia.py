@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from typing import Optional
 from .base import BaseClassifier, ClassificationResult, match_any, normalize_text
@@ -6,6 +6,53 @@ from .base import BaseClassifier, ClassificationResult, match_any, normalize_tex
 
 class CirurgiaClassifier(BaseClassifier):
     """Classificador determinístico para a Grande Área de Cirurgia (42 temas e regras clínicas)."""
+
+    def __init__(self):
+        super().__init__()
+        self._rules = [
+            self._rule_1,
+            self._rule_2,
+            self._rule_3,
+            self._rule_4,
+            self._rule_5,
+            self._rule_6,
+            self._rule_7,
+            self._rule_8,
+            self._rule_9,
+            self._rule_10,
+            self._rule_11,
+            self._rule_12,
+            self._rule_13,
+            self._rule_14,
+            self._rule_15,
+            self._rule_16,
+            self._rule_17,
+            self._rule_18,
+            self._rule_19,
+            self._rule_20,
+            self._rule_21,
+            self._rule_22,
+            self._rule_23,
+            self._rule_24,
+            self._rule_25,
+            self._rule_26,
+            self._rule_27,
+            self._rule_28,
+            self._rule_29,
+            self._rule_30,
+            self._rule_31,
+            self._rule_32,
+            self._rule_33,
+            self._rule_34,
+            self._rule_35,
+            self._rule_36,
+            self._rule_37,
+            self._rule_38,
+            self._rule_39,
+            self._rule_40,
+            self._rule_41,
+            self._rule_42,
+        ]
 
     def classify(self, q: dict) -> ClassificationResult:
         stem = q.get('stem', '')
@@ -18,181 +65,1005 @@ class CirurgiaClassifier(BaseClassifier):
         full_norm = normalize_text(full_text)
         stem_norm = normalize_text(stem)
 
-        # 1. Fournier gangrene & Necrotizing soft tissue infections & Pressure ulcers & Degloving
-        if match_any(full_norm, ['gangrena de fournier', 'fournier', 'fasceite necrosante', 'fasceite necrotizante', 'infeccao necrosante', 'morel-lavallee', 'ferimento descolante', 'degloving', 'lesao por pressao', 'curativo por pressao negativa', 'enxerto de pele', 'enxertia de pele', 'emagrecimento da pele descolada']):
-            if not match_any(full_norm, ['apendicite', 'diverticulite']):
-                return ClassificationResult("Cirurgia", "Cicatrização, Tratamento de Feridas, Enxertos e Retalhos", "Fisiologia da cicatrização, enxertos, retalhos e infecções necrosantes de partes moles.")
-
-        # 2. Pediatric Burns
-        if match_any(full_norm, ['queimadura', 'queimado', 'queimaduras', 'escaldo', 'escaldadura']) and match_any(stem_norm, ['lactente', 'meses de vida', 'recem-nascido', 'crianca de 1 ano', 'crianca de 2 ano', 'crianca de 3 ano', 'menino de 1 ano', 'menino de 2 ano', 'menina de 1 ano', 'menina de 2 ano']):
-            return ClassificationResult("Cirurgia", "Particularidades das Queimaduras na Faixa Etária Pediátrica", "Particularidades do manejo e reposição volêmica em queimaduras na faixa etária pediátrica.")
-
-        # 3. Adult/General Burns
-        if match_any(full_norm, ['queimadura', 'queimado', 'queimaduras', 'superficie corporal queimada', 'scq', 'escarotomia', 'flictena', 'flictenas', 'grau de queimadura', 'parkland']) and not match_any(full_norm, ['marjolin', 'cicatriz antiga de queimadura']):
-            return ClassificationResult("Cirurgia", "Atendimento ao Paciente Queimado e Reposição Volêmica", "Atendimento inicial, classificação de profundidade e ressuscitação volêmica do paciente queimado.")
-
-        # 4. Marjolin ulcer & Cutaneous Oncology
-        if match_any(full_norm, ['marjolin', 'carcinoma espinocelular cutaneo', 'carcinoma basocelular', 'melanoma', 'breslow', 'linfonodo sentinela', 'clark', 'cbc', 'cec cutaneo']):
-            if not match_any(full_norm, ['parotida', 'lingua', 'laringe', 'canal anal', 'esofago']):
-                return ClassificationResult("Cirurgia", "Oncologia Cutânea: Melanoma, CBC e CEC", "Neoplasias malignas da pele (Melanoma, CBC, CEC e Úlcera de Marjolin).")
-
-        # 5. Polipose Adenomatosa Familiar (PAF) e Síndromes Hereditárias
-        if match_any(full_norm, ['polipose adenomatosa familiar', 'paf', 'sindrome de lynch', 'hnpcc', 'peutz-jeghers', 'gardner', 'turcot', 'incontaveis polipos']):
-            return ClassificationResult("Cirurgia", "Polipose Adenomatosa Familiar (PAF) e Síndromes Hereditárias", "Síndromes hereditárias de polipose intestinal e câncer colorretal familiar (PAF e Lynch).")
-
-        # 6. Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino
-        if match_any(full_norm, ['nodulo pulmonar solitario', 'timoma', 'tumor de mediastino', 'massa no mediastino', 'miastenia gravis', 'cancer de pulmao', 'carcinoma broncogenico', 'lobectomia pulmonar']) and not match_any(full_norm, ['trauma', 'hemotorax', 'pneumotorax hipertensivo']):
-            return ClassificationResult("Cirurgia", "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino", "Nódulo pulmonar solitário, estadiamento do câncer de pulmão e neoplasias do mediastino (Timoma).")
-
-        # 7. Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)
-        if match_any(full_norm, ['adenocarcinoma gastrico', 'cancer gastrico', 'cancer de estomago', 'linfadenectomia d2', 'adenocarcinoma de colon', 'cancer de colon', 'cancer colorretal', 'cancer de reto', 'mesorreto', 'adenocarcinoma de pancreas', 'cancer de pancreas', 'whipple', 'duodenopancreatectomia', 'gist gastrico', 'cancer de esofago', 'ipmn', 'neoplasia mucinosa papilar intraductal']):
-            if not match_any(full_norm, ['diverticulite', 'apendicite', 'pancreatite aguda biliar', 'coledocolitiase', 'cpre']):
-                return ClassificationResult("Cirurgia", "Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)", "Diagnóstico, estadiamento e tratamento cirúrgico das neoplasias do trato gastrointestinal.")
-
-        # 8. Abordagem Cirúrgica das Doenças Inflamatórias Intestinais (Crohn e RCU)
-        if match_any(full_norm, ['doenca de crohn', 'retocolite ulcerativa', 'rcu', 'proctocolectomia total com bolsa ileal', 'estrituroplastia', 'megacolon toxico']):
-            return ClassificationResult("Cirurgia", "Abordagem Cirúrgica das Doenças Inflamatórias Intestinais (Crohn e RCU)", "Manejo e indicações cirúrgicas na Doença de Crohn e Retocolite Ulcerativa.")
-
-        # 9. Distúrbios Motores do Esôfago, Megaesôfago e Síndrome Disfágica
-        if match_any(full_norm, ['acalasia', 'megaesofago', 'rezende', 'heller', 'cardiomiotomia', 'dilatacao pneumatica', 'diverticulo de zenker', 'espasmo esofagiano difuso', 'sindrome disfagica']):
-            return ClassificationResult("Cirurgia", "Distúrbios Motores do Esôfago, Megaesôfago e Síndrome Disfágica", "Distúrbios da motilidade esofágica, megaesôfago e divertículos esofágicos.")
-
-        # 10. Doença do Refluxo Gastroesofágico (DRGE) e Úlcera Péptica
-        if match_any(full_norm, ['drge', 'refluxo gastroesofagico', 'fundoplicatura', 'nissen', 'hernia de hiato', 'esofago de barrett', 'barrett']) and not match_any(full_norm, ['perfurada', 'hematemese', 'hda']):
-            return ClassificationResult("Cirurgia", "Doença do Refluxo Gastroesofágico (DRGE) e Úlcera Péptica", "Quadro clínico, seguimento de Esôfago de Barrett e cirurgia antirrefluxo na DRGE.")
-
-        # 11. Hemorragia Digestiva Alta e Baixa na Emergência Cirúrgica
-        if match_any(full_norm, ['hemorragia digestiva alta', 'hda', 'hematemese', 'melena', 'forrest', 'varizes esofagicas', 'sengstaken', 'hemorragia digestiva baixa', 'hdb', 'hematoquezia macica']):
-            return ClassificationResult("Cirurgia", "Hemorragia Digestiva Alta e Baixa na Emergência Cirúrgica", "Abordagem de emergência, estabilização hemodinâmica e conduta na hemorragia digestiva alta e baixa.")
-
-        # 12. Cirurgia Bariátrica e Metabólica
-        if match_any(full_norm, ['cirurgia bariatrica', 'bypass gastrico', 'bypass em y de roux', 'gastrectomia vertical', 'sleeve', 'fistula gastrojejunal', 'hernia interna pos bariatrica', 'estenose da gastroenteroanastomose', 'estenose de anastomose pos bariatrica']):
-            return ClassificationResult("Cirurgia", "Cirurgia Bariátrica e Metabólica", "Indicações cirúrgicas, técnicas e manejo de complicações pós-operatórias na cirurgia bariátrica.")
-
-        # 13. Cirurgia Pediátrica e Malformações Digestivas Neonatais
-        if match_any(full_norm, ['estenose hipertrofica do piloro', 'atresia de esofago', 'fistula traqueoesofagica', 'hernia diafragmatica congenita', 'bochdalek', 'morgagni', 'atresia duodenal', 'ma rotacao intestinal', 'volvo de intestino medio', 'hirschsprung', 'anomalia anorretal', 'imperfuracao anal', 'onfalocele', 'gastrosquise', 'atresia biliar', 'kasai', 'intussuscepcao ileocolica', 'invaginacao intestinal', 'fecaloma na crianca', 'hipotermia no recem-nascido']):
-            return ClassificationResult("Cirurgia", "Cirurgia Pediátrica e Malformações Digestivas Neonatais", "Malformações congênitas neonatais e patologias cirúrgicas pediátricas.")
-
-        # 14. Cirurgia de Cabeça e Pescoço: Afecções Cervicais Benignas e Cistos Congênitos
-        if match_any(full_norm, ['cisto tireoglosso', 'sistrunk', 'cisto branquial', 'higroma cistico', 'adenoma pleomorfico', 'warthin', 'parotidectomia', 'glandula parotida', 'biopsia de linfonodo cervical', 'triangulo cervical', 'nivel vb', 'nivel iv']):
-            if not match_any(full_norm, ['carcinoma papilifero', 'bethesda', 'carcinoma medular']):
-                return ClassificationResult("Cirurgia", "Cirurgia de Cabeça e Pescoço: Afecções Cervicais Benignas e Cistos Congênitos", "Afecções cervicais congênitas, massas benignas de pescoço e patologias de glândulas salivares.")
-
-        # 15. Neoplasias de Cabeça e Pescoço e Nódulos Tireoidianos Cirúrgicos
-        if match_any(full_norm, ['nodulo tireoidiano', 'carcinoma papilifero', 'carcinoma folicular', 'carcinoma medular', 'bethesda', 'tireoidectomia', 'cancer de laringe', 'cancer de lingua', 'cancer de orofaringe', 'carcinoma epidermoide de cabeca e pescoco', 'esvaziamento cervical']):
-            return ClassificationResult("Cirurgia", "Neoplasias de Cabeça e Pescoço e Nódulos Tireoidianos Cirúrgicos", "Nódulos tireoidianos cirúrgicos, câncer de tireoide e carcinomas espinocelulares de cabeça e pescoço.")
-
-        # 16. Coloproctologia: Doenças Orificiais e Afecções Colorretais
-        if match_any(full_norm, ['hemorroida', 'hemorroidectomia', 'doenca hemorroidaria', 'trombose hemorroidaria', 'fissura anal', 'abscesso perianal', 'fistula perianal', 'fistula anorretal', 'goodsall', 'cisto pilonidal', 'cancer de canal anal', 'carcinoma espinocelular de canal anal']):
-            return ClassificationResult("Cirurgia", "Coloproctologia: Doenças Orificiais e Afecções Colorretais", "Doenças orificiais benignas e malignas anorretais (hemorroidas, fissuras, abscessos, fístulas e CEC anal).")
-
-        # 17. Uro-Oncologia: Câncer de Próstata, Rim, Bexiga e Testículo
-        if match_any(full_norm, ['cancer de prostata', 'psa', 'biopsia de prostata', 'prostatectomia', 'cancer de rim', 'carcinoma de celulas renais', 'angiomiolipoma', 'cancer de bexiga', 'rtu de bexiga', 'cancer de testiculo', 'orquiectomia', 'escroto agudo', 'torcao testicular', 'sinal de prehn', 'massa testicular', 'tumor de testiculo', 'neoplasia testicular']):
-            return ClassificationResult("Cirurgia", "Uro-Oncologia: Câncer de Próstata, Rim, Bexiga e Testículo", "Uro-oncologia (próstata, rim, bexiga, testículo) e propedêutica do escroto agudo.")
-
-        # 18. Hiperplasia Prostática Benigna (HPB) e Litíase Urinária
-        if match_any(full_norm, ['hiperplasia prostatica benigna', 'hpb', 'litiase urinaria', 'nefrolitiase', 'calculo renal', 'calculo ureteral', 'leco', 'ureterolitotripsia', 'rtu de prostata']):
-            return ClassificationResult("Cirurgia", "Hiperplasia Prostática Benigna (HPB) e Litíase Urinária", "Manejo clínico e cirúrgico da HPB e intervenções na litíase urinária.")
-
-        # 19. Aneurismas de Aorta Abdominal e Torácica
-        if match_any(full_norm, ['aneurisma de aorta', 'aneurisma da aorta', 'aneurisma abdominal infra-renal', 'disseccao de aorta', 'disseccao aortica', 'stanford a', 'stanford b', 'evar']):
-            return ClassificationResult("Cirurgia", "Aneurismas de Aorta Abdominal e Torácica", "Diagnóstico, critérios de intervenção e tratamento cirúrgico/endovascular de aneurismas e dissecções aórticas.")
-
-        # 20. Doença Arterial Obstrutiva Periférica e Oclusões Arteriais Agudas
-        if match_any(full_norm, ['doenca arterial obstrutiva periferica', 'daop', 'claudicacao intermitente', 'isquemia critica', 'indice tornozelo-braco', 'itb', 'oclusao arterial aguda', 'embolia arterial', 'trombose arterial aguda', 'cateter de fogarty', 'tromboembolectomia', 'revascularizacao arterial']):
-            return ClassificationResult("Cirurgia", "Doença Arterial Obstrutiva Periférica e Oclusões Arteriais Agudas", "Quadro clínico, exames de imagem e condutas na DAOP crônica e na oclusão arterial aguda.")
-
-        # 21. Insuficiência Venosa Crônica e Trombose Venosa Profunda (TVP)
-        if match_any(full_norm, ['trombose venosa profunda', 'tvp', 'tromboembolismo venoso', 'tev', 'insuficiencia venosa cronica', 'varizes', 'ulcera venosa', 'tromboprofilaxia']):
-            return ClassificationResult("Cirurgia", "Insuficiência Venosa Crônica e Trombose Venosa Profunda (TVP)", "Diagnóstico, escores de risco, profilaxia e anticoagulação na TVP e insuficiência venosa crônica.")
-
-        # 22. Cirurgia Cardíaca: Revascularização Miocárdica e Cirurgia Valvar
-        if match_any(full_norm, ['revascularizacao miocardica', 'ponte de safena', 'arteria mamaria', 'troca valvar mitral', 'troca valvar aortica', 'circulacao extracorporea']) and not match_any(full_norm, ['apendicite', 'diverticulite']):
-            return ClassificationResult("Cirurgia", "Cirurgia Cardíaca: Revascularização Miocárdica e Cirurgia Valvar", "Princípios da cirurgia de revascularização miocárdica e cirurgias orovalvares.")
-
-        # 23. Cirurgia Torácica Geral e Doenças Pleurais
-        if match_any(full_norm, ['empiema pleural', 'derrame pleural parapneumonico', 'decorticacao pleuropulmonar', 'pneumotorax espontaneo', 'fistula broncopleural', 'estenose traqueal', 'estenose subglotica', 'traqueostomia']) and not match_any(full_norm, ['trauma toracico', 'ferimento por arma']):
-            return ClassificationResult("Cirurgia", "Cirurgia Torácica Geral e Doenças Pleurais", "Patologias pleurais infecciosas, pneumotórax espontâneo e cirurgia das vias aéreas centrais.")
-
-        # 24. Fundamentos da Anestesiologia, Farmacologia e Bloqueios
-        if match_any(full_norm, ['anestesiologia', 'anestesia geral', 'raquianestesia', 'anestesia peridural', 'bloqueador neuromuscular', 'succinilcolina', 'rocuronio', 'sugamadex', 'lidocaina', 'bupivacaina', 'anestesico local sem vasoconstritor', 'anestesico local', 'toxicidade por anestesico local']):
-            if match_any(full_norm, ['vasoconstritor', 'anestesia', 'anestesico', 'bloqueio']):
-                return ClassificationResult("Cirurgia", "Fundamentos da Anestesiologia, Farmacologia e Bloqueios", "Farmacologia anestésica, uso seguro de anestésicos locais e bloqueios regionais.")
-
-        # 25. Trauma de Face e Pescoço (Trauma Cervical e Fraturas Maxilofaciais)
-        if match_any(full_norm, ['trauma cervical', 'ferimento cervical', 'zona i do pescoco', 'zona ii do pescoco', 'zona iii do pescoco', 'platisma', 'fratura de le fort', 'le fort', 'fratura de mandibula', 'fratura zigomatica', 'fratura nasal', 'trauma maxilofacial', 'trauma de face', 'blow-out', 'blowout']):
-            return ClassificationResult("Cirurgia", "Trauma de Face e Pescoço (Trauma Cervical e Fraturas Maxilofaciais)", "Trauma cervical contuso/penetrante e fraturas maxilofaciais.")
-
-        # 26. Trauma Raquimedular (TRM) e Lesões Vertebrais
-        if match_any(full_norm, ['trauma raquimedular', 'trm', 'choque medular', 'choque neurogenico', 'fratura de chance', 'brown-sequard', 'sindrome medular']):
-            return ClassificationResult("Cirurgia", "Trauma Raquimedular (TRM) e Lesões Vertebrais", "Avaliação diagnóstica e condutas no trauma raquimedular e lesões da coluna vertebral.")
-
-        # 27. Trauma Ortopédico de Extremidades e Síndrome Compartimental
-        if match_any(full_norm, ['sindrome compartimental', 'fasciotomia', 'pressao intracompartimental']) or (match_any(full_norm, ['trauma vascular', 'lesao de arteria']) and match_any(full_norm, ['membro', 'coxa', 'perna', 'braco', 'fratura'])):
-            return ClassificationResult("Cirurgia", "Trauma Ortopédico de Extremidades e Síndrome Compartimental", "Trauma grave de membros, síndrome compartimental e lesões vasculares associadas.")
-
-        # 28. Fraturas Ósseas e Princípios Gerais de Osteossíntese
-        if match_any(full_norm, ['fratura exposta', 'gustilo', 'osteossintese', 'placa e parafuso', 'haste intramedular', 'fixador externo', 'consolidacao ossea', 'pseudoartrose', 'fratura do colo do femur', 'fratura de tibia', 'fratura de radio', 'fratura diafisaria']):
-            return ClassificationResult("Cirurgia", "Fraturas Ósseas e Princípios Gerais de Osteossíntese", "Classificação, princípios biológicos de consolidação e métodos de osteossíntese de fraturas ósseas.")
-
-        # 29. Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana
-        if match_any(full_norm, ['trauma cranioencefalico', 'tce', 'hematoma extradural', 'hematoma epidural', 'hematoma subdural', 'lesao axonal difusa', 'hipertensao intracraniana', 'anisocoria', 'pupila midriatica', 'monro-kellie', 'craniossinostose', 'cranioestenose', 'escafocefalia', 'plagiocefalia']):
-            return ClassificationResult("Cirurgia", "Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana", "Manejo agudo do traumatismo cranioencefálico, hipertensão intracraniana e craniossinostoses.")
-
-        # 30. Trauma Torácico: Pneumotórax, Hemotórax e Tamponamento Cardíaco
-        if match_any(full_norm, ['pneumotorax hipertensivo', 'pneumotorax aberto', 'hemotorax macico', 'tamponamento cardiaco', 'triade de beck', 'toracostomia', 'drenagem de torax', 'torax instavel', 'contusao pulmonar', 'trauma toracico', 'fratura de costelas', 'fraturas de arcos costais']):
-            return ClassificationResult("Cirurgia", "Trauma Torácico: Pneumotórax, Hemotórax e Tamponamento Cardíaco", "Diagnóstico e condutas de urgência no trauma torácico (pneumotórax, hemotórax, tamponamento, contusão).")
-
-        # 31. Atendimento Inicial ao Politraumatizado (Protocolo xABCDE)
-        if match_any(full_norm, ['atendimento inicial ao politraumatizado', 'xabcde', 'protocolo de transfusao macica', 'triade letal', 'triade da morte', 'choque no trauma', 'fratura de bacia instavel', 'avaliacao primaria no trauma', 'atls']):
-            return ClassificationResult("Cirurgia", "Atendimento Inicial ao Politraumatizado (Protocolo xABCDE)", "Sistematização do atendimento inicial ao politraumatizado pelo protocolo xABCDE e ressuscitação hemodinâmica.")
-
-        # 32. Trauma Abdominal Fechado e Penetrante (FAST e Laparotomia)
-        if match_any(full_norm, ['trauma abdominal', 'fast', 'e-fast', 'trauma esplenico', 'trauma hepatico', 'trauma renal', 'trauma pancreatico', 'controle de danos', 'laparotomia no trauma', 'ferimento por arma de fogo no abdome', 'ferimento por arma branca no abdome', 'trauma toracoabdominal']):
-            return ClassificationResult("Cirurgia", "Trauma Abdominal Fechado e Penetrante (FAST e Laparotomia)", "Abordagem do trauma abdominal contuso e penetrante, indicações cirúrgicas e tratamento não operatório.")
-
-        # 33. Abdome Agudo Perfurativo e Úlcera Péptica Perfurada
-        if match_any(full_norm, ['ulcera perfurada', 'ulcera gastrica perfurada', 'abdome agudo perfurativo', 'pneumoperitonio', 'jobert', 'ulcorrafia', 'tampao de graham']):
-            return ClassificationResult("Cirurgia", "Abdome Agudo Perfurativo e Úlcera Péptica Perfurada", "Diagnóstico e manejo cirúrgico do abdome agudo perfurativo por úlcera péptica.")
-
-        # 34. Abdome Agudo Vascular e Isquemia Mesentérica
-        if match_any(full_norm, ['isquemia mesenterica aguda', 'isquemia mesenterica cronica', 'embolia de arteria mesenterica', 'trombose venosa mesenterica', 'colite isquemica', 'abdome agudo vascular', 'angina mesenterica']):
-            return ClassificationResult("Cirurgia", "Abdome Agudo Vascular e Isquemia Mesentérica", "Diagnóstico clínico, angiográfico e conduta nas diferentes apresentações de isquemia mesentérica.")
-
-        # 35. Abdome Agudo Obstrutivo (Bridas, Neoplasias e Volvo)
-        if match_any(full_norm, ['abdome agudo obstrutivo', 'obstrucao intestinal', 'obstrucao de delgado', 'obstrucao de colon', 'bridas', 'volvo de sigmoide', 'volvo de ceco', 'sindrome de ogilvie', 'pseudo-obstrucao colica', 'grao de cafe', 'u invertido', 'hematoma da bainha do reto']):
-            return ClassificationResult("Cirurgia", "Abdome Agudo Obstrutivo (Bridas, Neoplasias e Volvo)", "Etiologia, diagnóstico por imagem e manejo clínico/cirúrgico das obstruções intestinais mecânicas e funcionais.")
-
-        # 36. Abdome Agudo Inflamatório (Apendicite e Diverticulite Aguda)
-        if match_any(full_norm, ['apendicite aguda', 'apendicectomia', 'diverticulite aguda', 'hinchey', 'apendagite epiploica', 'abscesso periapendicular', 'plastrao apendicular', 'abdome agudo inflamatorio']):
-            return ClassificationResult("Cirurgia", "Abdome Agudo Inflamatório (Apendicite e Diverticulite Aguda)", "Diagnóstico clínico/tomográfico e condutas na apendicite aguda e diverticulite colônica.")
-
-        # 37. Litíase Biliar, Colecistite, Coledocolitíase e Colangite
-        if match_any(full_norm, ['colelitiase', 'colecistite aguda', 'criterios de tokyo', 'coledocolitiase', 'colangite aguda', 'charcot', 'reynolds', 'cpre', 'colecistectomia', 'colangiografia intraoperatoria', 'colangioressonancia', 'colecistostomia']):
-            return ClassificationResult("Cirurgia", "Litíase Biliar, Colecistite, Coledocolitíase e Colangite", "Litíase biliar e complicações infecciosas/obstrutivas das vias biliares.")
-
-        # 38. Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos
-        if match_any(full_norm, ['pancreatite aguda', 'atlanta', 'ranson', 'balthazar', 'necrose pancreatica', 'pseudocisto pancreatico', 'pancreatite cronica']):
-            return ClassificationResult("Cirurgia", "Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos", "Diagnóstico, estratificação de gravidade e tratamento das pancreatites aguda e crônica.")
-
-        # 39. Hérnias da Parede Abdominal (Inguinais, Femorais e Incisionais)
-        if match_any(full_norm, ['hernia inguinal', 'hernia femoral', 'hernia crural', 'hernia incisional', 'hernia umbilical', 'hernia epigastrica', 'hernia de spiegel', 'hernioplastia', 'herniorrafia', 'lichtenstein', 'tapp', 'tep', 'anel inguinal']):
-            return ClassificationResult("Cirurgia", "Hérnias da Parede Abdominal (Inguinais, Femorais e Incisionais)", "Diagnóstico anatômico, indicações cirúrgicas e técnicas de reparo de hérnias da parede abdominal.")
-
-        # 40. Técnica Operatória, Diérese, Hemostasia e Síntese (Fios Cirúrgicos)
-        if match_any(full_norm, ['fio cirurgico', 'fio de sutura', 'vicryl', 'nylon', 'monocryl', 'pds', 'prolene', 'catgut', 'ponto de donati', 'ponto simples', 'ponto continuo', 'ponto intradermico', 'bisturi eletrico', 'dierese', 'hemostasia', 'sintese']):
-            return ClassificationResult("Cirurgia", "Técnica Operatória, Diérese, Hemostasia e Síntese (Fios Cirúrgicos)", "Fundamentos de técnica cirúrgica, propriedades dos fios e técnicas de síntese tecidual.")
-
-        # 41. Avaliação Pré-Operatória e Estratificação de Risco Cirúrgico
-        if match_any(full_norm, ['avaliacao pre-operatoria', 'risco cirurgico', 'asa', 'escore de lee', 'goldman', 'jejum pre-operatorio', 'acerto', 'eras', 'antibioticoprofilaxia', 'suspensao de medicamento']):
-            return ClassificationResult("Cirurgia", "Avaliação Pré-Operatória e Estratificação de Risco Cirúrgico", "Avaliação de risco cirúrgico/anestésico e preparo pré-operatório.")
-
-        # 42. Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas
-        if match_any(full_norm, ['pos-operatorio', 'complicacao pos-operatoria', 'infeccao de sitio cirurgico', 'isc', 'deiscencia', 'febre no pos-operatorio', 'atelectasia', 'ileo paralitico', 'dreno cirurgico', 'dreno']):
-            return ClassificationResult("Cirurgia", "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas", "Monitorização e manejo de intercorrências e complicações pós-operatórias.")
+        for rule in self._rules:
+            result = rule(full_norm, stem_norm)
+            if result:
+                return result
 
         # Fallback to current if canonical Cirurgia theme
         if subtema_orig in self.all_canonical and self.all_canonical[subtema_orig] == "Cirurgia":
-            return ClassificationResult("Cirurgia", subtema_orig, f"Tema cirúrgico canônico validado ({subtema_orig}).")
+            return ClassificationResult(
+                "Cirurgia",
+                subtema_orig,
+                f"Tema cirúrgico canônico validado ({subtema_orig}).")
 
-        return ClassificationResult("Cirurgia", "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas", "Classificação cirúrgica geral.")
+        return ClassificationResult(
+            "Cirurgia",
+            "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas",
+            "Classificação cirúrgica geral.")
+
+    def _rule_1(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 1. Fournier gangrene & Necrotizing soft tissue infections & Pressure
+        # ulcers & Degloving
+        if match_any(full_norm,
+                     ['gangrena de fournier',
+                      'fournier',
+                      'fasceite necrosante',
+                      'fasceite necrotizante',
+                      'infeccao necrosante',
+                      'morel-lavallee',
+                      'ferimento descolante',
+                      'degloving',
+                      'lesao por pressao',
+                      'curativo por pressao negativa',
+                      'enxerto de pele',
+                      'enxertia de pele',
+                      'emagrecimento da pele descolada']):
+            if not match_any(full_norm, ['apendicite', 'diverticulite']):
+                return ClassificationResult(
+                    "Cirurgia",
+                    "Cicatrização, Tratamento de Feridas, Enxertos e Retalhos",
+                    "Fisiologia da cicatrização, enxertos, retalhos e infecções necrosantes de partes moles.")
+        return None
+
+    def _rule_2(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 2. Pediatric Burns
+        if match_any(full_norm,
+                     ['queimadura',
+                      'queimado',
+                      'queimaduras',
+                      'escaldo',
+                      'escaldadura']) and match_any(stem_norm,
+                                                    ['lactente',
+                                                     'meses de vida',
+                                                     'recem-nascido',
+                                                     'crianca de 1 ano',
+                                                     'crianca de 2 ano',
+                                                     'crianca de 3 ano',
+                                                     'menino de 1 ano',
+                                                     'menino de 2 ano',
+                                                     'menina de 1 ano',
+                                                     'menina de 2 ano']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Particularidades das Queimaduras na Faixa Etária Pediátrica",
+                "Particularidades do manejo e reposição volêmica em queimaduras na faixa etária pediátrica.")
+        return None
+
+    def _rule_3(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 3. Adult/General Burns
+        if match_any(full_norm,
+                     ['queimadura',
+                      'queimado',
+                      'queimaduras',
+                      'superficie corporal queimada',
+                      'scq',
+                      'escarotomia',
+                      'flictena',
+                      'flictenas',
+                      'grau de queimadura',
+                      'parkland']) and not match_any(full_norm,
+                                                     ['marjolin',
+                                                      'cicatriz antiga de queimadura']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Atendimento ao Paciente Queimado e Reposição Volêmica",
+                "Atendimento inicial, classificação de profundidade e ressuscitação volêmica do paciente queimado.")
+        return None
+
+    def _rule_4(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 4. Marjolin ulcer & Cutaneous Oncology
+        if match_any(full_norm,
+                     ['marjolin',
+                      'carcinoma espinocelular cutaneo',
+                      'carcinoma basocelular',
+                      'melanoma',
+                      'breslow',
+                      'linfonodo sentinela',
+                      'clark',
+                      'cbc',
+                      'cec cutaneo']):
+            if not match_any(
+                full_norm, [
+                    'parotida', 'lingua', 'laringe', 'canal anal', 'esofago']):
+                return ClassificationResult(
+                    "Cirurgia",
+                    "Oncologia Cutânea: Melanoma, CBC e CEC",
+                    "Neoplasias malignas da pele (Melanoma, CBC, CEC e Úlcera de Marjolin).")
+        return None
+
+    def _rule_5(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 5. Polipose Adenomatosa Familiar (PAF) e Síndromes Hereditárias
+        if match_any(full_norm,
+                     ['polipose adenomatosa familiar',
+                      'paf',
+                      'sindrome de lynch',
+                      'hnpcc',
+                      'peutz-jeghers',
+                      'gardner',
+                      'turcot',
+                      'incontaveis polipos']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Polipose Adenomatosa Familiar (PAF) e Síndromes Hereditárias",
+                "Síndromes hereditárias de polipose intestinal e câncer colorretal familiar (PAF e Lynch).")
+        return None
+
+    def _rule_6(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 6. Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do
+        # Mediastino
+        if match_any(full_norm,
+                     ['nodulo pulmonar solitario',
+                      'timoma',
+                      'tumor de mediastino',
+                      'massa no mediastino',
+                      'miastenia gravis',
+                      'cancer de pulmao',
+                      'carcinoma broncogenico',
+                      'lobectomia pulmonar']) and not match_any(full_norm,
+                                                                ['trauma',
+                                                                 'hemotorax',
+                                                                 'pneumotorax hipertensivo']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Câncer de Pulmão, Nódulo Pulmonar Solitário e Tumores do Mediastino",
+                "Nódulo pulmonar solitário, estadiamento do câncer de pulmão e neoplasias do mediastino (Timoma).")
+        return None
+
+    def _rule_7(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 7. Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas
+        # e Cólon)
+        if match_any(full_norm,
+                     ['adenocarcinoma gastrico',
+                      'cancer gastrico',
+                      'cancer de estomago',
+                      'linfadenectomia d2',
+                      'adenocarcinoma de colon',
+                      'cancer de colon',
+                      'cancer colorretal',
+                      'cancer de reto',
+                      'mesorreto',
+                      'adenocarcinoma de pancreas',
+                      'cancer de pancreas',
+                      'whipple',
+                      'duodenopancreatectomia',
+                      'gist gastrico',
+                      'cancer de esofago',
+                      'ipmn',
+                      'neoplasia mucinosa papilar intraductal']):
+            if not match_any(full_norm,
+                             ['diverticulite',
+                              'apendicite',
+                              'pancreatite aguda biliar',
+                              'coledocolitiase',
+                              'cpre']):
+                return ClassificationResult(
+                    "Cirurgia",
+                    "Neoplasias do Trato Gastrointestinal (Esôfago, Estômago, Pâncreas e Cólon)",
+                    "Diagnóstico, estadiamento e tratamento cirúrgico das neoplasias do trato gastrointestinal.")
+        return None
+
+    def _rule_8(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 8. Abordagem Cirúrgica das Doenças Inflamatórias Intestinais (Crohn e
+        # RCU)
+        if match_any(full_norm,
+                     ['doenca de crohn',
+                      'retocolite ulcerativa',
+                      'rcu',
+                      'proctocolectomia total com bolsa ileal',
+                      'estrituroplastia',
+                      'megacolon toxico']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Abordagem Cirúrgica das Doenças Inflamatórias Intestinais (Crohn e RCU)",
+                "Manejo e indicações cirúrgicas na Doença de Crohn e Retocolite Ulcerativa.")
+        return None
+
+    def _rule_9(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 9. Distúrbios Motores do Esôfago, Megaesôfago e Síndrome Disfágica
+        if match_any(full_norm,
+                     ['acalasia',
+                      'megaesofago',
+                      'rezende',
+                      'heller',
+                      'cardiomiotomia',
+                      'dilatacao pneumatica',
+                      'diverticulo de zenker',
+                      'espasmo esofagiano difuso',
+                      'sindrome disfagica']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Distúrbios Motores do Esôfago, Megaesôfago e Síndrome Disfágica",
+                "Distúrbios da motilidade esofágica, megaesôfago e divertículos esofágicos.")
+        return None
+
+    def _rule_10(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 10. Doença do Refluxo Gastroesofágico (DRGE) e Úlcera Péptica
+        if match_any(full_norm,
+                     ['drge',
+                      'refluxo gastroesofagico',
+                      'fundoplicatura',
+                      'nissen',
+                      'hernia de hiato',
+                      'esofago de barrett',
+                      'barrett']) and not match_any(full_norm,
+                                                    ['perfurada',
+                                                     'hematemese',
+                                                     'hda']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Doença do Refluxo Gastroesofágico (DRGE) e Úlcera Péptica",
+                "Quadro clínico, seguimento de Esôfago de Barrett e cirurgia antirrefluxo na DRGE.")
+        return None
+
+    def _rule_11(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 11. Hemorragia Digestiva Alta e Baixa na Emergência Cirúrgica
+        if match_any(full_norm,
+                     ['hemorragia digestiva alta',
+                      'hda',
+                      'hematemese',
+                      'melena',
+                      'forrest',
+                      'varizes esofagicas',
+                      'sengstaken',
+                      'hemorragia digestiva baixa',
+                      'hdb',
+                      'hematoquezia macica']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Hemorragia Digestiva Alta e Baixa na Emergência Cirúrgica",
+                "Abordagem de emergência, estabilização hemodinâmica e conduta na hemorragia digestiva alta e baixa.")
+        return None
+
+    def _rule_12(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 12. Cirurgia Bariátrica e Metabólica
+        if match_any(full_norm,
+                     ['cirurgia bariatrica',
+                      'bypass gastrico',
+                      'bypass em y de roux',
+                      'gastrectomia vertical',
+                      'sleeve',
+                      'fistula gastrojejunal',
+                      'hernia interna pos bariatrica',
+                      'estenose da gastroenteroanastomose',
+                      'estenose de anastomose pos bariatrica']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Cirurgia Bariátrica e Metabólica",
+                "Indicações cirúrgicas, técnicas e manejo de complicações pós-operatórias na cirurgia bariátrica.")
+        return None
+
+    def _rule_13(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 13. Cirurgia Pediátrica e Malformações Digestivas Neonatais
+        if match_any(full_norm,
+                     ['estenose hipertrofica do piloro',
+                      'atresia de esofago',
+                      'fistula traqueoesofagica',
+                      'hernia diafragmatica congenita',
+                      'bochdalek',
+                      'morgagni',
+                      'atresia duodenal',
+                      'ma rotacao intestinal',
+                      'volvo de intestino medio',
+                      'hirschsprung',
+                      'anomalia anorretal',
+                      'imperfuracao anal',
+                      'onfalocele',
+                      'gastrosquise',
+                      'atresia biliar',
+                      'kasai',
+                      'intussuscepcao ileocolica',
+                      'invaginacao intestinal',
+                      'fecaloma na crianca',
+                      'hipotermia no recem-nascido']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Cirurgia Pediátrica e Malformações Digestivas Neonatais",
+                "Malformações congênitas neonatais e patologias cirúrgicas pediátricas.")
+        return None
+
+    def _rule_14(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 14. Cirurgia de Cabeça e Pescoço: Afecções Cervicais Benignas e
+        # Cistos Congênitos
+        if match_any(full_norm,
+                     ['cisto tireoglosso',
+                      'sistrunk',
+                      'cisto branquial',
+                      'higroma cistico',
+                      'adenoma pleomorfico',
+                      'warthin',
+                      'parotidectomia',
+                      'glandula parotida',
+                      'biopsia de linfonodo cervical',
+                      'triangulo cervical',
+                      'nivel vb',
+                      'nivel iv']):
+            if not match_any(
+                full_norm, [
+                    'carcinoma papilifero', 'bethesda', 'carcinoma medular']):
+                return ClassificationResult(
+                    "Cirurgia",
+                    "Cirurgia de Cabeça e Pescoço: Afecções Cervicais Benignas e Cistos Congênitos",
+                    "Afecções cervicais congênitas, massas benignas de pescoço e patologias de glândulas salivares.")
+        return None
+
+    def _rule_15(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 15. Neoplasias de Cabeça e Pescoço e Nódulos Tireoidianos Cirúrgicos
+        if match_any(full_norm,
+                     ['nodulo tireoidiano',
+                      'carcinoma papilifero',
+                      'carcinoma folicular',
+                      'carcinoma medular',
+                      'bethesda',
+                      'tireoidectomia',
+                      'cancer de laringe',
+                      'cancer de lingua',
+                      'cancer de orofaringe',
+                      'carcinoma epidermoide de cabeca e pescoco',
+                      'esvaziamento cervical']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Neoplasias de Cabeça e Pescoço e Nódulos Tireoidianos Cirúrgicos",
+                "Nódulos tireoidianos cirúrgicos, câncer de tireoide e carcinomas espinocelulares de cabeça e pescoço.")
+        return None
+
+    def _rule_16(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 16. Coloproctologia: Doenças Orificiais e Afecções Colorretais
+        if match_any(full_norm,
+                     ['hemorroida',
+                      'hemorroidectomia',
+                      'doenca hemorroidaria',
+                      'trombose hemorroidaria',
+                      'fissura anal',
+                      'abscesso perianal',
+                      'fistula perianal',
+                      'fistula anorretal',
+                      'goodsall',
+                      'cisto pilonidal',
+                      'cancer de canal anal',
+                      'carcinoma espinocelular de canal anal']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Coloproctologia: Doenças Orificiais e Afecções Colorretais",
+                "Doenças orificiais benignas e malignas anorretais (hemorroidas, fissuras, abscessos, fístulas e CEC anal).")
+        return None
+
+    def _rule_17(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 17. Uro-Oncologia: Câncer de Próstata, Rim, Bexiga e Testículo
+        if match_any(full_norm,
+                     ['cancer de prostata',
+                      'psa',
+                      'biopsia de prostata',
+                      'prostatectomia',
+                      'cancer de rim',
+                      'carcinoma de celulas renais',
+                      'angiomiolipoma',
+                      'cancer de bexiga',
+                      'rtu de bexiga',
+                      'cancer de testiculo',
+                      'orquiectomia',
+                      'escroto agudo',
+                      'torcao testicular',
+                      'sinal de prehn',
+                      'massa testicular',
+                      'tumor de testiculo',
+                      'neoplasia testicular']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Uro-Oncologia: Câncer de Próstata, Rim, Bexiga e Testículo",
+                "Uro-oncologia (próstata, rim, bexiga, testículo) e propedêutica do escroto agudo.")
+        return None
+
+    def _rule_18(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 18. Hiperplasia Prostática Benigna (HPB) e Litíase Urinária
+        if match_any(full_norm,
+                     ['hiperplasia prostatica benigna',
+                      'hpb',
+                      'litiase urinaria',
+                      'nefrolitiase',
+                      'calculo renal',
+                      'calculo ureteral',
+                      'leco',
+                      'ureterolitotripsia',
+                      'rtu de prostata']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Hiperplasia Prostática Benigna (HPB) e Litíase Urinária",
+                "Manejo clínico e cirúrgico da HPB e intervenções na litíase urinária.")
+        return None
+
+    def _rule_19(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 19. Aneurismas de Aorta Abdominal e Torácica
+        if match_any(full_norm,
+                     ['aneurisma de aorta',
+                      'aneurisma da aorta',
+                      'aneurisma abdominal infra-renal',
+                      'disseccao de aorta',
+                      'disseccao aortica',
+                      'stanford a',
+                      'stanford b',
+                      'evar']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Aneurismas de Aorta Abdominal e Torácica",
+                "Diagnóstico, critérios de intervenção e tratamento cirúrgico/endovascular de aneurismas e dissecções aórticas.")
+        return None
+
+    def _rule_20(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 20. Doença Arterial Obstrutiva Periférica e Oclusões Arteriais Agudas
+        if match_any(full_norm,
+                     ['doenca arterial obstrutiva periferica',
+                      'daop',
+                      'claudicacao intermitente',
+                      'isquemia critica',
+                      'indice tornozelo-braco',
+                      'itb',
+                      'oclusao arterial aguda',
+                      'embolia arterial',
+                      'trombose arterial aguda',
+                      'cateter de fogarty',
+                      'tromboembolectomia',
+                      'revascularizacao arterial']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Doença Arterial Obstrutiva Periférica e Oclusões Arteriais Agudas",
+                "Quadro clínico, exames de imagem e condutas na DAOP crônica e na oclusão arterial aguda.")
+        return None
+
+    def _rule_21(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 21. Insuficiência Venosa Crônica e Trombose Venosa Profunda (TVP)
+        if match_any(full_norm,
+                     ['trombose venosa profunda',
+                      'tvp',
+                      'tromboembolismo venoso',
+                      'tev',
+                      'insuficiencia venosa cronica',
+                      'varizes',
+                      'ulcera venosa',
+                      'tromboprofilaxia']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Insuficiência Venosa Crônica e Trombose Venosa Profunda (TVP)",
+                "Diagnóstico, escores de risco, profilaxia e anticoagulação na TVP e insuficiência venosa crônica.")
+        return None
+
+    def _rule_22(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 22. Cirurgia Cardíaca: Revascularização Miocárdica e Cirurgia Valvar
+        if match_any(full_norm,
+                     ['revascularizacao miocardica',
+                      'ponte de safena',
+                      'arteria mamaria',
+                      'troca valvar mitral',
+                      'troca valvar aortica',
+                      'circulacao extracorporea']) and not match_any(full_norm,
+                                                                     ['apendicite',
+                                                                      'diverticulite']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Cirurgia Cardíaca: Revascularização Miocárdica e Cirurgia Valvar",
+                "Princípios da cirurgia de revascularização miocárdica e cirurgias orovalvares.")
+        return None
+
+    def _rule_23(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 23. Cirurgia Torácica Geral e Doenças Pleurais
+        if match_any(full_norm,
+                     ['empiema pleural',
+                      'derrame pleural parapneumonico',
+                      'decorticacao pleuropulmonar',
+                      'pneumotorax espontaneo',
+                      'fistula broncopleural',
+                      'estenose traqueal',
+                      'estenose subglotica',
+                      'traqueostomia']) and not match_any(full_norm,
+                                                          ['trauma toracico',
+                                                           'ferimento por arma']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Cirurgia Torácica Geral e Doenças Pleurais",
+                "Patologias pleurais infecciosas, pneumotórax espontâneo e cirurgia das vias aéreas centrais.")
+        return None
+
+    def _rule_24(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 24. Fundamentos da Anestesiologia, Farmacologia e Bloqueios
+        if match_any(full_norm,
+                     ['anestesiologia',
+                      'anestesia geral',
+                      'raquianestesia',
+                      'anestesia peridural',
+                      'bloqueador neuromuscular',
+                      'succinilcolina',
+                      'rocuronio',
+                      'sugamadex',
+                      'lidocaina',
+                      'bupivacaina',
+                      'anestesico local sem vasoconstritor',
+                      'anestesico local',
+                      'toxicidade por anestesico local']):
+            if match_any(
+                full_norm, [
+                    'vasoconstritor', 'anestesia', 'anestesico', 'bloqueio']):
+                return ClassificationResult(
+                    "Cirurgia",
+                    "Fundamentos da Anestesiologia, Farmacologia e Bloqueios",
+                    "Farmacologia anestésica, uso seguro de anestésicos locais e bloqueios regionais.")
+        return None
+
+    def _rule_25(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 25. Trauma de Face e Pescoço (Trauma Cervical e Fraturas
+        # Maxilofaciais)
+        if match_any(full_norm,
+                     ['trauma cervical',
+                      'ferimento cervical',
+                      'zona i do pescoco',
+                      'zona ii do pescoco',
+                      'zona iii do pescoco',
+                      'platisma',
+                      'fratura de le fort',
+                      'le fort',
+                      'fratura de mandibula',
+                      'fratura zigomatica',
+                      'fratura nasal',
+                      'trauma maxilofacial',
+                      'trauma de face',
+                      'blow-out',
+                      'blowout']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Trauma de Face e Pescoço (Trauma Cervical e Fraturas Maxilofaciais)",
+                "Trauma cervical contuso/penetrante e fraturas maxilofaciais.")
+        return None
+
+    def _rule_26(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 26. Trauma Raquimedular (TRM) e Lesões Vertebrais
+        if match_any(full_norm,
+                     ['trauma raquimedular',
+                      'trm',
+                      'choque medular',
+                      'choque neurogenico',
+                      'fratura de chance',
+                      'brown-sequard',
+                      'sindrome medular']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Trauma Raquimedular (TRM) e Lesões Vertebrais",
+                "Avaliação diagnóstica e condutas no trauma raquimedular e lesões da coluna vertebral.")
+        return None
+
+    def _rule_27(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 27. Trauma Ortopédico de Extremidades e Síndrome Compartimental
+        if match_any(
+            full_norm, [
+                'sindrome compartimental', 'fasciotomia', 'pressao intracompartimental']) or (
+            match_any(
+                full_norm, [
+                    'trauma vascular', 'lesao de arteria']) and match_any(
+                        full_norm, [
+                            'membro', 'coxa', 'perna', 'braco', 'fratura'])):
+            return ClassificationResult(
+                "Cirurgia",
+                "Trauma Ortopédico de Extremidades e Síndrome Compartimental",
+                "Trauma grave de membros, síndrome compartimental e lesões vasculares associadas.")
+        return None
+
+    def _rule_28(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 28. Fraturas Ósseas e Princípios Gerais de Osteossíntese
+        if match_any(full_norm,
+                     ['fratura exposta',
+                      'gustilo',
+                      'osteossintese',
+                      'placa e parafuso',
+                      'haste intramedular',
+                      'fixador externo',
+                      'consolidacao ossea',
+                      'pseudoartrose',
+                      'fratura do colo do femur',
+                      'fratura de tibia',
+                      'fratura de radio',
+                      'fratura diafisaria']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Fraturas Ósseas e Princípios Gerais de Osteossíntese",
+                "Classificação, princípios biológicos de consolidação e métodos de osteossíntese de fraturas ósseas.")
+        return None
+
+    def _rule_29(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 29. Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana
+        if match_any(full_norm,
+                     ['trauma cranioencefalico',
+                      'tce',
+                      'hematoma extradural',
+                      'hematoma epidural',
+                      'hematoma subdural',
+                      'lesao axonal difusa',
+                      'hipertensao intracraniana',
+                      'anisocoria',
+                      'pupila midriatica',
+                      'monro-kellie',
+                      'craniossinostose',
+                      'cranioestenose',
+                      'escafocefalia',
+                      'plagiocefalia']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Trauma Cranioencefálico (TCE) e Hipertensão Intracraniana",
+                "Manejo agudo do traumatismo cranioencefálico, hipertensão intracraniana e craniossinostoses.")
+        return None
+
+    def _rule_30(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 30. Trauma Torácico: Pneumotórax, Hemotórax e Tamponamento Cardíaco
+        if match_any(full_norm,
+                     ['pneumotorax hipertensivo',
+                      'pneumotorax aberto',
+                      'hemotorax macico',
+                      'tamponamento cardiaco',
+                      'triade de beck',
+                      'toracostomia',
+                      'drenagem de torax',
+                      'torax instavel',
+                      'contusao pulmonar',
+                      'trauma toracico',
+                      'fratura de costelas',
+                      'fraturas de arcos costais']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Trauma Torácico: Pneumotórax, Hemotórax e Tamponamento Cardíaco",
+                "Diagnóstico e condutas de urgência no trauma torácico (pneumotórax, hemotórax, tamponamento, contusão).")
+        return None
+
+    def _rule_31(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 31. Atendimento Inicial ao Politraumatizado (Protocolo xABCDE)
+        if match_any(full_norm,
+                     ['atendimento inicial ao politraumatizado',
+                      'xabcde',
+                      'protocolo de transfusao macica',
+                      'triade letal',
+                      'triade da morte',
+                      'choque no trauma',
+                      'fratura de bacia instavel',
+                      'avaliacao primaria no trauma',
+                      'atls']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Atendimento Inicial ao Politraumatizado (Protocolo xABCDE)",
+                "Sistematização do atendimento inicial ao politraumatizado pelo protocolo xABCDE e ressuscitação hemodinâmica.")
+        return None
+
+    def _rule_32(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 32. Trauma Abdominal Fechado e Penetrante (FAST e Laparotomia)
+        if match_any(full_norm,
+                     ['trauma abdominal',
+                      'fast',
+                      'e-fast',
+                      'trauma esplenico',
+                      'trauma hepatico',
+                      'trauma renal',
+                      'trauma pancreatico',
+                      'controle de danos',
+                      'laparotomia no trauma',
+                      'ferimento por arma de fogo no abdome',
+                      'ferimento por arma branca no abdome',
+                      'trauma toracoabdominal']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Trauma Abdominal Fechado e Penetrante (FAST e Laparotomia)",
+                "Abordagem do trauma abdominal contuso e penetrante, indicações cirúrgicas e tratamento não operatório.")
+        return None
+
+    def _rule_33(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 33. Abdome Agudo Perfurativo e Úlcera Péptica Perfurada
+        if match_any(full_norm,
+                     ['ulcera perfurada',
+                      'ulcera gastrica perfurada',
+                      'abdome agudo perfurativo',
+                      'pneumoperitonio',
+                      'jobert',
+                      'ulcorrafia',
+                      'tampao de graham']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Abdome Agudo Perfurativo e Úlcera Péptica Perfurada",
+                "Diagnóstico e manejo cirúrgico do abdome agudo perfurativo por úlcera péptica.")
+        return None
+
+    def _rule_34(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 34. Abdome Agudo Vascular e Isquemia Mesentérica
+        if match_any(full_norm,
+                     ['isquemia mesenterica aguda',
+                      'isquemia mesenterica cronica',
+                      'embolia de arteria mesenterica',
+                      'trombose venosa mesenterica',
+                      'colite isquemica',
+                      'abdome agudo vascular',
+                      'angina mesenterica']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Abdome Agudo Vascular e Isquemia Mesentérica",
+                "Diagnóstico clínico, angiográfico e conduta nas diferentes apresentações de isquemia mesentérica.")
+        return None
+
+    def _rule_35(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 35. Abdome Agudo Obstrutivo (Bridas, Neoplasias e Volvo)
+        if match_any(full_norm,
+                     ['abdome agudo obstrutivo',
+                      'obstrucao intestinal',
+                      'obstrucao de delgado',
+                      'obstrucao de colon',
+                      'bridas',
+                      'volvo de sigmoide',
+                      'volvo de ceco',
+                      'sindrome de ogilvie',
+                      'pseudo-obstrucao colica',
+                      'grao de cafe',
+                      'u invertido',
+                      'hematoma da bainha do reto']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Abdome Agudo Obstrutivo (Bridas, Neoplasias e Volvo)",
+                "Etiologia, diagnóstico por imagem e manejo clínico/cirúrgico das obstruções intestinais mecânicas e funcionais.")
+        return None
+
+    def _rule_36(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 36. Abdome Agudo Inflamatório (Apendicite e Diverticulite Aguda)
+        if match_any(full_norm,
+                     ['apendicite aguda',
+                      'apendicectomia',
+                      'diverticulite aguda',
+                      'hinchey',
+                      'apendagite epiploica',
+                      'abscesso periapendicular',
+                      'plastrao apendicular',
+                      'abdome agudo inflamatorio']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Abdome Agudo Inflamatório (Apendicite e Diverticulite Aguda)",
+                "Diagnóstico clínico/tomográfico e condutas na apendicite aguda e diverticulite colônica.")
+        return None
+
+    def _rule_37(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 37. Litíase Biliar, Colecistite, Coledocolitíase e Colangite
+        if match_any(full_norm,
+                     ['colelitiase',
+                      'colecistite aguda',
+                      'criterios de tokyo',
+                      'coledocolitiase',
+                      'colangite aguda',
+                      'charcot',
+                      'reynolds',
+                      'cpre',
+                      'colecistectomia',
+                      'colangiografia intraoperatoria',
+                      'colangioressonancia',
+                      'colecistostomia']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Litíase Biliar, Colecistite, Coledocolitíase e Colangite",
+                "Litíase biliar e complicações infecciosas/obstrutivas das vias biliares.")
+        return None
+
+    def _rule_38(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 38. Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos
+        if match_any(full_norm,
+                     ['pancreatite aguda',
+                      'atlanta',
+                      'ranson',
+                      'balthazar',
+                      'necrose pancreatica',
+                      'pseudocisto pancreatico',
+                      'pancreatite cronica']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Pancreatites Aguda e Crônica e Pseudocistos Pancreáticos",
+                "Diagnóstico, estratificação de gravidade e tratamento das pancreatites aguda e crônica.")
+        return None
+
+    def _rule_39(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 39. Hérnias da Parede Abdominal (Inguinais, Femorais e Incisionais)
+        if match_any(full_norm,
+                     ['hernia inguinal',
+                      'hernia femoral',
+                      'hernia crural',
+                      'hernia incisional',
+                      'hernia umbilical',
+                      'hernia epigastrica',
+                      'hernia de spiegel',
+                      'hernioplastia',
+                      'herniorrafia',
+                      'lichtenstein',
+                      'tapp',
+                      'tep',
+                      'anel inguinal']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Hérnias da Parede Abdominal (Inguinais, Femorais e Incisionais)",
+                "Diagnóstico anatômico, indicações cirúrgicas e técnicas de reparo de hérnias da parede abdominal.")
+        return None
+
+    def _rule_40(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 40. Técnica Operatória, Diérese, Hemostasia e Síntese (Fios
+        # Cirúrgicos)
+        if match_any(full_norm,
+                     ['fio cirurgico',
+                      'fio de sutura',
+                      'vicryl',
+                      'nylon',
+                      'monocryl',
+                      'pds',
+                      'prolene',
+                      'catgut',
+                      'ponto de donati',
+                      'ponto simples',
+                      'ponto continuo',
+                      'ponto intradermico',
+                      'bisturi eletrico',
+                      'dierese',
+                      'hemostasia',
+                      'sintese']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Técnica Operatória, Diérese, Hemostasia e Síntese (Fios Cirúrgicos)",
+                "Fundamentos de técnica cirúrgica, propriedades dos fios e técnicas de síntese tecidual.")
+        return None
+
+    def _rule_41(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 41. Avaliação Pré-Operatória e Estratificação de Risco Cirúrgico
+        if match_any(full_norm,
+                     ['avaliacao pre-operatoria',
+                      'risco cirurgico',
+                      'asa',
+                      'escore de lee',
+                      'goldman',
+                      'jejum pre-operatorio',
+                      'acerto',
+                      'eras',
+                      'antibioticoprofilaxia',
+                      'suspensao de medicamento']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Avaliação Pré-Operatória e Estratificação de Risco Cirúrgico",
+                "Avaliação de risco cirúrgico/anestésico e preparo pré-operatório.")
+        return None
+
+    def _rule_42(
+            self,
+            full_norm: str,
+            stem_norm: str) -> Optional[ClassificationResult]:
+        # 42. Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas
+        if match_any(full_norm,
+                     ['pos-operatorio',
+                      'complicacao pos-operatoria',
+                      'infeccao de sitio cirurgico',
+                      'isc',
+                      'deiscencia',
+                      'febre no pos-operatorio',
+                      'atelectasia',
+                      'ileo paralitico',
+                      'dreno cirurgico',
+                      'dreno']):
+            return ClassificationResult(
+                "Cirurgia",
+                "Manejo Pós-Operatório e Tratamento de Complicações Cirúrgicas",
+                "Monitorização e manejo de intercorrências e complicações pós-operatórias.")
+        return None
