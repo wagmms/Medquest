@@ -193,17 +193,7 @@ def save():
     })
 
 
-@bp.route("/flashcards/generate-batch", methods=["POST"])
-def generate_batch():
-    try:
-        payload = FlashcardBatchIn.model_validate(request.get_json(force=True) or {})
-    except ValidationError as e:
-        return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
-
-    db = get_db()
-    now = datetime.now(timezone.utc).isoformat()
-    created_or_updated = []
-    question_ids = [item.question_id for item in payload.items]
+def _fetch_batch_data(db, question_ids):
     placeholders = ",".join("?" * len(question_ids))
     question_rows = db.execute(
         f"""SELECT q.id, q.stem, q.correct_letter, q.area, q.subtema, q.topic,
@@ -214,6 +204,7 @@ def generate_batch():
         question_ids,
     ).fetchall()
     question_map = {row["id"]: row for row in question_rows}
+
     alternative_rows = db.execute(
         f"SELECT question_id, letter, text FROM alternatives WHERE question_id IN ({placeholders})",
         question_ids,
@@ -223,9 +214,12 @@ def generate_batch():
         for row in alternative_rows
     }
 
-    # Do not hold a write transaction while waiting for an AI provider.
+    return question_map, alternative_map
+
+
+def _prepare_flashcards(payload_items, question_map, alternative_map):
     prepared = []
-    for item in payload.items:
+    for item in payload_items:
         qid = item.question_id
         wrong_letter = item.wrong_letter.upper()
         q = question_map.get(qid)
@@ -253,11 +247,17 @@ def generate_batch():
             correct_letter=q["correct_letter"],
             wrong_letter=wrong_letter,
         )))
+    return prepared
+
+
+def _save_flashcards(db, user_id, question_ids, prepared, now):
+    created_or_updated = []
+    placeholders = ",".join("?" * len(question_ids))
 
     with db_transaction(db, immediate=True):
         existing_rows = db.execute(
             f"SELECT id, question_id FROM flashcards WHERE question_id IN ({placeholders}) AND user_id = ?",
-            [*question_ids, g.user_id],
+            [*question_ids, user_id],
         ).fetchall()
         existing_map = {row["question_id"]: row["id"] for row in existing_rows}
 
@@ -268,7 +268,7 @@ def generate_batch():
                     UPDATE flashcards
                     SET front = ?, back = ?, source_context = ?, next_review_date = ?
                     WHERE id = ? AND user_id = ?
-                """, (card_data.get("front", ""), card_data.get("back", ""), card_data.get("context", ""), now, existing_id, g.user_id))
+                """, (card_data.get("front", ""), card_data.get("back", ""), card_data.get("context", ""), now, existing_id, user_id))
                 created_or_updated.append({
                     "id": existing_id,
                     "question_id": qid,
@@ -279,13 +279,37 @@ def generate_batch():
                 cursor = db.execute("""
                     INSERT INTO flashcards (question_id, front, back, created_at, next_review_date, fsrs_card, user_id, source_context, is_ai_generated)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)
-                """, (qid, card_data.get("front", ""), card_data.get("back", ""), now, now, None, g.user_id, card_data.get("context", "")))
+                """, (qid, card_data.get("front", ""), card_data.get("back", ""), now, now, None, user_id, card_data.get("context", "")))
                 created_or_updated.append({
                     "id": cursor.lastrowid,
                     "question_id": qid,
                     "front": card_data.get("front", ""),
                     "back": card_data.get("back", "")
                 })
+
+    return created_or_updated
+
+
+@bp.route("/flashcards/generate-batch", methods=["POST"])
+def generate_batch():
+    try:
+        payload = FlashcardBatchIn.model_validate(request.get_json(force=True) or {})
+    except ValidationError as e:
+        return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
+
+    question_ids = [item.question_id for item in payload.items]
+    if not question_ids:
+        return jsonify({"success": True, "count": 0, "flashcards": []})
+
+    db = get_db()
+    now = datetime.now(timezone.utc).isoformat()
+
+    question_map, alternative_map = _fetch_batch_data(db, question_ids)
+
+    # Do not hold a write transaction while waiting for an AI provider.
+    prepared = _prepare_flashcards(payload.items, question_map, alternative_map)
+
+    created_or_updated = _save_flashcards(db, g.user_id, question_ids, prepared, now)
 
     invalidate_user_caches(g.user_id)
     for c in created_or_updated:
@@ -295,6 +319,7 @@ def generate_batch():
             question_id=c["question_id"],
             flashcard_id=c["id"],
         )
+
     return jsonify({
         "success": True,
         "count": len(created_or_updated),
