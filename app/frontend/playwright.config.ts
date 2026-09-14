@@ -38,8 +38,8 @@ export default defineConfig({
     },
     // The app shell may depend on an external API, so use a static asset as
     // the readiness probe. Browser requests are mocked by the E2E suite.
-    url: `${baseURL}/favicon.ico`,
-    reuseExistingServer: false,
+    url: `http://127.0.0.1:${testServerPort}/favicon.ico`,
+    reuseExistingServer: !process.env.CI,
     timeout: 120000,
 
 
