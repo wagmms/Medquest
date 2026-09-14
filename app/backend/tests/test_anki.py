@@ -131,6 +131,27 @@ def test_clean_anki_html():
     assert "Sudorese & dispneia" in cleaned
 
 
+def test_parse_anki_tags():
+    # Empty string or None
+    assert parse_anki_tags("") == []
+    assert parse_anki_tags(None) == []
+
+    # Normal, space-separated tags
+    assert parse_anki_tags("tag1 tag2 tag3") == ["tag1", "tag2", "tag3"]
+
+    # Tags with :: replaced by /
+    assert parse_anki_tags("tag::subtag parent::child::grandchild") == ["tag/subtag", "parent/child/grandchild"]
+
+    # Leading and trailing underscores stripped
+    assert parse_anki_tags("_tag1_ __tag2__ _tag_3_") == ["tag1", "tag2", "tag_3"]
+
+    # Duplicates removed, preserving order of first appearance
+    assert parse_anki_tags("tag1 tag2 tag1 tag3 tag2") == ["tag1", "tag2", "tag3"]
+
+    # Mixed conditions, extra whitespaces
+    assert parse_anki_tags("  _tag1_  tag::subtag::child  tag1  __tag2__ ") == ["tag1", "tag/subtag/child", "tag2"]
+
+
 def test_parse_anki_text():
     raw_text = """#separator:tab
 #html:true
