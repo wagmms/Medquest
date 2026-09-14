@@ -217,9 +217,9 @@ def close_db(exception=None):
 
 def _table_cols(db, table):
     if isinstance(db, TursoConnection):
-        res = db.execute(f"PRAGMA table_info({table})").fetchall()
+        res = db.execute("SELECT name FROM pragma_table_info(?)", (table,)).fetchall()
         return [r["name"] for r in res]
-    return [r[1] for r in db.execute(f"PRAGMA table_info({table})")]
+    return [r[0] for r in db.execute("SELECT name FROM pragma_table_info(?)", (table,))]
 
 def init_db(app):
     """Cria tabelas de usuário se não existirem e garante colunas novas."""
