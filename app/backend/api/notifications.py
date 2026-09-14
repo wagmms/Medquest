@@ -8,6 +8,7 @@ Implementa:
 """
 
 from datetime import datetime, timezone
+import collections
 import hmac
 import json
 import logging
@@ -239,6 +240,19 @@ def cron_dispatch():
     eligible_count = 0
     skipped_already_dispatched = 0
 
+    active_user_ids = list({str(cfg["user_id"]) for cfg in configs})
+    subs_by_user = collections.defaultdict(list)
+    if active_user_ids:
+        for i in range(0, len(active_user_ids), 900):
+            chunk = active_user_ids[i:i+900]
+            placeholders = ",".join("?" * len(chunk))
+            rows = db.execute(
+                f"SELECT id, user_id, endpoint, p256dh, auth FROM push_subscriptions WHERE user_id IN ({placeholders})",
+                chunk
+            ).fetchall()
+            for r in rows:
+                subs_by_user[str(r["user_id"])].append(r)
+
     generic_payload = {
         "title": "MedQuest",
         "body": "Você tem revisões pendentes para hoje. Mantenha seu ritmo de estudos!",
@@ -295,10 +309,7 @@ def cron_dispatch():
         eligible_count += 1
 
         # Busca subscriptions do usuário
-        subscriptions = db.execute(
-            "SELECT id, endpoint, p256dh, auth FROM push_subscriptions WHERE user_id = ?",
-            (user_id,),
-        ).fetchall()
+        subscriptions = subs_by_user.get(str(user_id), [])
 
         if not subscriptions:
             with db_transaction(db, immediate=True):
