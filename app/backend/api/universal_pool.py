@@ -206,7 +206,8 @@ def _try_openrouter(prompt: str, system_instruction: Optional[str], json_mode: b
                 with urllib.request.urlopen(request, timeout=timeout) as response:
                     data = json.loads(response.read().decode("utf-8"))
                 choices = data.get("choices") or []
-                text = choices[0].get("message", {}).get("content", "") if choices else ""
+                msg = choices[0].get("message", {}) if choices else {}
+                text = msg.get("content") or msg.get("reasoning") or ""
                 if _valid_text(text, validator):
                     return {"text": text.strip(), "source": "openrouter", "model": data.get("model") or model}
                 logger.warning("[UniversalPool] OpenRouter retornou resposta vazia/invalida (%s).", model)
@@ -255,6 +256,7 @@ def generate_content_with_fallback(
     temperature: float = 0.2,
     timeout: Optional[int] = None,
     response_validator: Optional[Callable[[str], bool]] = None,
+    provider_order: Optional[list[str] | tuple[str, ...]] = None,
 ) -> Dict[str, Any]:
     """Tenta os provedores configurados dentro de um orçamento total compartilhado.
 
@@ -269,7 +271,8 @@ def generate_content_with_fallback(
         float(os.environ.get("AI_PROVIDER_TIMEOUT", str(DEFAULT_PROVIDER_TIMEOUT))),
     )
     provider_timeout = float(timeout) if timeout is not None else configured_provider_timeout
-    providers = [provider for provider in _provider_order() if provider != "ollama" or _ollama_enabled()]
+    order = provider_order if provider_order is not None else _provider_order()
+    providers = [provider for provider in order if provider != "ollama" or _ollama_enabled()]
     start_time = time.perf_counter()
 
     for provider_index, provider in enumerate(providers):
