@@ -27,10 +27,14 @@ export class OfflineQueuedError extends Error {
   }
 }
 
+interface ApiFetchOptions extends RequestInit {
+  timeoutMs?: number;
+}
+
 /**
  * Base fetch function with default headers and resilient timeout
  */
-async function apiFetch<T>(endpoint: string, options?: RequestInit): Promise<T> {
+async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise<T> {
   const url = `${API_BASE}${endpoint}`;
 
   const isMutation = options?.method && ["POST", "PUT", "PATCH", "DELETE"].includes(options.method.toUpperCase());
@@ -63,7 +67,11 @@ async function apiFetch<T>(endpoint: string, options?: RequestInit): Promise<T> 
     throw new TypeError("Falha de rede: navegador está offline");
   }
 
-  const timeoutMs = endpoint.includes("/batch") || endpoint.includes("/generate") ? 8000 : 4500;
+  const timeoutMs = options?.timeoutMs ?? (
+    endpoint.includes("/ask_ai") || endpoint.includes("/ai") ? 35000 :
+    endpoint.includes("/batch") || endpoint.includes("/generate") ? 15000 :
+    8000
+  );
   const controller = new AbortController();
   let isInternalTimeout = false;
   const timeoutId = setTimeout(() => {
@@ -421,7 +429,8 @@ export const api = {
     askAI: (id: number, user_question?: string, user_letter?: string) =>
       apiFetch<{ answer: string; model: string; source: string }>(`/api/questions/${id}/ask_ai`, {
         method: "POST",
-        body: JSON.stringify({ user_question, user_letter })
+        body: JSON.stringify({ user_question, user_letter }),
+        timeoutMs: 35000,
       }),
     getSimuladoUSP: async () => {
       const getLocalFallback = async () => {
