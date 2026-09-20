@@ -39,7 +39,7 @@ export default async function AnalisePage() {
   const atRiskTopics = results[5].status === 'fulfilled' ? results[5].value : [];
   const learningProfile = results[6].status === 'fulfilled' ? results[6].value : {
     generated_at: '',
-    goal: { questions_today: 30, configured_daily_questions: 30, reviews_due: 0, target_score: null, exam_date: null },
+    goal: { questions_today: 30, configured_daily_questions: 30, reviews_due: 0, reviews_to_do_today: 0, backlog_pending: 0, hours_budget: 4, max_capacity: 80, target_score: null, exam_date: null },
     topics: [],
     method: { deterministic: true, signals: [] },
   };

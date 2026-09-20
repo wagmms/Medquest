@@ -227,15 +227,29 @@ def build_learning_profile(db, user_id, now=None, subtema=None, limit=15):
     if subtema is not None:
         topics = [item for item in topics if item["topic"] == subtema]
     config = db.execute(
-        "SELECT questions_per_day, target_score, exam_date FROM planner_config WHERE user_id=?",
+        "SELECT questions_per_day, target_score, exam_date, hours_per_day FROM planner_config WHERE user_id=?",
         (user_id,),
     ).fetchone()
     daily_goal = int(config["questions_per_day"] if config and config["questions_per_day"] else 30)
+    hours_per_day = int(config["hours_per_day"] if config and config["hours_per_day"] else 4)
+    
+    # Orçamento de tempo: 1 questão = 3 min (resolução + leitura + flashcard) -> 20 q/h
+    max_capacity = hours_per_day * 20
+    reviews_to_do_today = min(due_total, max_capacity)
+    backlog_pending = max(0, due_total - max_capacity)
+    questions_today = max(daily_goal, reviews_to_do_today)
+
     return {
         "generated_at": now.isoformat(),
         "goal": {
-            "questions_today": max(daily_goal, due_total), "configured_daily_questions": daily_goal,
-            "reviews_due": due_total, "target_score": config["target_score"] if config else None,
+            "questions_today": questions_today, 
+            "configured_daily_questions": daily_goal,
+            "reviews_due": due_total,
+            "reviews_to_do_today": reviews_to_do_today,
+            "backlog_pending": backlog_pending,
+            "hours_budget": hours_per_day,
+            "max_capacity": max_capacity,
+            "target_score": config["target_score"] if config else None,
             "exam_date": config["exam_date"] if config else None,
         },
         "topics": topics[:limit] if limit is not None else topics,

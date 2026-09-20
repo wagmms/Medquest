@@ -151,6 +151,10 @@ export interface LearningProfile {
     questions_today: number;
     configured_daily_questions: number;
     reviews_due: number;
+    reviews_to_do_today: number;
+    backlog_pending: number;
+    hours_budget: number;
+    max_capacity: number;
     target_score: number | null;
     exam_date: string | null;
   };

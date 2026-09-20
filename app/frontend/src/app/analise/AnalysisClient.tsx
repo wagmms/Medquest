@@ -5,6 +5,7 @@ import { TimelineStat, WeakTopic, BreakdownStat, DistractorStat, PredictiveScore
 import Link from "next/link";
 import clsx from "clsx";
 import { api } from "@/lib/api";
+import { Clock } from "lucide-react";
 
 
 import { InstitutionRadarSection } from "@/components/analytics/InstitutionRadarSection";
@@ -106,7 +107,7 @@ export function AnalysisClient({
   }, [localTimeline]);
 
   const priorityTopic = learningProfile.topics[0];
-  const adaptiveRemainder = Math.max(0, learningProfile.goal.questions_today - learningProfile.goal.reviews_due);
+  const adaptiveRemainder = Math.max(0, learningProfile.goal.questions_today - learningProfile.goal.reviews_to_do_today);
   const scoreReliable = predictiveScore.is_reliable === true;
   const hasSufficientReadinessEvidence = localReadiness.evidence_status !== "insufficient";
 
@@ -126,11 +127,19 @@ export function AnalysisClient({
                 <h2 className="text-xl font-bold text-foreground">Meta adaptativa de hoje</h2>
               </div>
 
-              <p className="text-muted-foreground">
-                {learningProfile.goal.questions_today} questões: {learningProfile.goal.reviews_due} revisões vencidas e até {adaptiveRemainder} questões adaptativas.
+              <p className="text-muted-foreground mt-2">
+                {learningProfile.goal.questions_today} questões: {learningProfile.goal.reviews_to_do_today} revisões críticas e até {adaptiveRemainder} questões adaptativas.
               </p>
+              
+              {learningProfile.goal.backlog_pending > 0 && (
+                <div className="mt-3 p-3 bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400 rounded-lg text-sm flex items-start gap-2 max-w-xl">
+                  <Clock size={16} className="mt-0.5 shrink-0" />
+                  <p>Orçamento de tempo ({learningProfile.goal.hours_budget}h/dia) ativado: limitamos suas revisões a {learningProfile.goal.max_capacity} questões hoje para proteger sua rotina. As {learningProfile.goal.backlog_pending} pendências foram redistribuídas.</p>
+                </div>
+              )}
+
               {priorityTopic && (
-                <p className="text-sm text-muted-foreground mt-2">
+                <p className="text-sm text-muted-foreground mt-3">
                   Prioridade atual: <span className="font-semibold text-foreground">{priorityTopic.topic}</span>
                   {priorityTopic.reasons.length > 0 && <span> · {priorityTopic.reasons.map(reason => ({ low_accuracy: "baixa acurácia", reviews_due: "revisões vencidas", memory_at_risk: "risco de esquecimento", low_coverage: "baixa cobertura", balanced_practice: "prática equilibrada" }[reason] || reason)).join(", ")}</span>}
                 </p>
