@@ -26,6 +26,13 @@ const formatHours = (hours: number) => hours.toLocaleString("pt-BR", {
   maximumFractionDigits: 1,
 });
 
+const PRIORITY_REASON_META: Record<string, { label: string; tooltip: string }> = {
+  low_accuracy: { label: "baixa acurácia", tooltip: "Prioridade ajustada pela taxa de acerto no histórico de tentativas" },
+  reviews_due: { label: "revisões pendentes", tooltip: "Prioridade ajustada por revisões espaçadas pendentes" },
+  memory_at_risk: { label: "risco de esquecimento", tooltip: "Prioridade ajustada por queda na retenção estimada" },
+  low_coverage: { label: "baixa cobertura", tooltip: "Prioridade ajustada por baixa cobertura de questões" },
+};
+
 const TopicRow = memo(function TopicRow({ 
   t, 
   completed,
@@ -103,6 +110,18 @@ const TopicRow = memo(function TopicRow({
               <Flame size={12} className="fill-current text-orange-500" /> Foco USP
             </span>
           )}
+          {t.priority_reasons?.map((reason) => {
+            const meta = PRIORITY_REASON_META[reason] || { label: reason, tooltip: `Prioridade adaptativa: ${reason}` };
+            return (
+              <span
+                key={reason}
+                title={meta.tooltip}
+                className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20"
+              >
+                {meta.label}
+              </span>
+            );
+          })}
         </div>
 
         <div className="text-xs text-muted-foreground flex items-center flex-wrap gap-1.5 mt-1.5">
@@ -116,6 +135,9 @@ const TopicRow = memo(function TopicRow({
         </div>
 
         <div className="mt-2.5 flex items-center gap-2 flex-wrap">
+          <Link href={`/temas?subtema=${encodeURIComponent(t.subtema)}`} className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-lg">
+            Abrir tema
+          </Link>
           <Link 
             href={`/estudar?subtema=${encodeURIComponent(t.subtema)}&limit=25`}
             className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary/10 hover:bg-primary/20 text-primary text-xs font-semibold rounded-lg transition-colors border border-primary/20"

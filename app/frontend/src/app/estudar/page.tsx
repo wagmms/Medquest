@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { getSubtemaDetails } from "@/lib/plannerData";
 import { isDynamicServerUsageError, serverApi, QuestionMeta } from "@/lib/server-api";
 import { QuizClient } from "./QuizClient";
 
@@ -30,6 +32,11 @@ export default async function EstudarPage({
 
   return (
     <div className="animate-in fade-in duration-500 w-full h-full">
+      {initialFilters.subtema && getSubtemaDetails(initialFilters.subtema) && (
+        <Link href={`/temas?subtema=${encodeURIComponent(initialFilters.subtema)}`} className="inline-block mb-4 text-sm font-semibold text-primary hover:underline">
+          ← Voltar ao tema
+        </Link>
+      )}
       <QuizClient 
         meta={meta} 
         initialFilters={initialFilters}

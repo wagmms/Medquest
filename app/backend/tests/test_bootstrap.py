@@ -50,6 +50,8 @@ def test_production_worker_skips_bootstrap_after_release_migration(tmp_path, mon
     db_path = tmp_path / "release_managed.db"
     monkeypatch.setenv("MEDQUEST_DB", str(db_path))
     monkeypatch.setattr(Config, "AUTO_MIGRATE", False)
+    monkeypatch.delenv("TURSO_DATABASE_URL", raising=False)
+    monkeypatch.delenv("TURSO_AUTH_TOKEN", raising=False)
 
     # Com a flag de produção, o worker não executa DDL no boot.
     create_app()

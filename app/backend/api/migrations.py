@@ -40,6 +40,17 @@ def _statements(path: Path) -> list[str]:
     return [statement.strip() for statement in sql.split(";") if statement.strip()]
 
 
+def _record_migrations(db, records: list[tuple[str, str, str, str]]) -> None:
+    if not records:
+        return
+    sql = "INSERT INTO schema_migrations (migration_id, checksum, applied_at, source) VALUES (?, ?, ?, ?)"
+    if hasattr(db, "executemany"):
+        db.executemany(sql, records)
+    else:
+        for record in records:
+            db.execute(sql, record)
+
+
 def apply_pending_migrations(db) -> list[str]:
     db.execute("""
         CREATE TABLE IF NOT EXISTS schema_migrations (
@@ -74,20 +85,12 @@ def apply_pending_migrations(db) -> list[str]:
             for statement in _statements(path):
                 db.execute(statement)
         except Exception:
-            if records_to_insert:
-                db.executemany(
-                    "INSERT INTO schema_migrations (migration_id, checksum, applied_at, source) VALUES (?, ?, ?, ?)",
-                    records_to_insert,
-                )
+            _record_migrations(db, records_to_insert)
             raise
 
         records_to_insert.append((path.name, checksum, now, "forward-migration"))
         applied.append(path.name)
 
-    if records_to_insert:
-        db.executemany(
-            "INSERT INTO schema_migrations (migration_id, checksum, applied_at, source) VALUES (?, ?, ?, ?)",
-            records_to_insert,
-        )
+    _record_migrations(db, records_to_insert)
 
     return applied

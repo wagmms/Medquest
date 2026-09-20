@@ -1,7 +1,7 @@
 """Validação de entrada com Pydantic."""
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator, field_validator
 
 __all__ = [
     "AnkiDeleteDeckIn",
@@ -149,12 +149,30 @@ class FavoriteIn(APIInput):
 
 class FlashcardGenerateIn(APIInput):
     question_id: int = Field(gt=0)
-    wrong_letter: str = Field(default="", pattern=r"^(?:[A-Ea-e])?$")
+    wrong_letter: str = Field(default="", max_length=10)
+
+    @field_validator("wrong_letter", mode="before")
+    @classmethod
+    def sanitize_wrong_letter(cls, v):
+        if not v:
+            return ""
+        s = str(v).strip()
+        c = s[:1].upper()
+        return c if c in "ABCDE" else ""
 
 
 class FlashcardPreviewIn(APIInput):
     question_id: int = Field(gt=0)
-    wrong_letter: str = Field(default="", pattern=r"^(?:[A-Ea-e])?$")
+    wrong_letter: str = Field(default="", max_length=10)
+
+    @field_validator("wrong_letter", mode="before")
+    @classmethod
+    def sanitize_wrong_letter(cls, v):
+        if not v:
+            return ""
+        s = str(v).strip()
+        c = s[:1].upper()
+        return c if c in "ABCDE" else ""
 
 
 class FlashcardSaveIn(APIInput):

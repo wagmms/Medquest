@@ -142,7 +142,7 @@ def _consolidate_row_stats(rows, meta_dict):
     return row_stats
 
 
-def _prepare_topics(meta_dict, row_stats, user_progress, intensive, practice_hours_per_subtema):
+def _prepare_topics(meta_dict, row_stats, user_progress, intensive, practice_hours_per_subtema, adaptive_signals=None):
     # Prepara exatamente os tópicos canônicos, calculando as horas de cada um.
     all_topics = []
     total_required_hours = 0.0
@@ -178,9 +178,21 @@ def _prepare_topics(meta_dict, row_stats, user_progress, intensive, practice_hou
         priority = 100 if meta["highYield"] else 0
         priority += weight * 10
 
-        # Boost priority if accuracy is low (user needs to study this!)
-        if attempts >= 3 and acc < 0.6:
-            priority += 50
+        priority_reasons = []
+        if adaptive_signals is not None:
+            sig = adaptive_signals.get(subtema)
+            if sig:
+                reasons = sig.get("reasons", [])
+                if reasons:
+                    # Sinais adaptativos com evidências reais de dificuldade ou revisão pendente
+                    score = float(sig.get("priority_score", 0.0) or 0.0)
+                    priority += round(score * 50.0, 2)
+                    priority_reasons = list(reasons)
+        else:
+            # Fallback retrocompatível para chamadas sem sinais adaptativos
+            if attempts >= 3 and acc < 0.6:
+                priority += 50
+                priority_reasons.append("low_accuracy")
 
         all_topics.append({
             "area": norm_area,
@@ -192,7 +204,8 @@ def _prepare_topics(meta_dict, row_stats, user_progress, intensive, practice_hou
             "estimated_hours": round(total_topic_hours, 2),
             "theory_source": meta["theory_source"],
             "course_module": meta["course_module"],
-            "priority": priority
+            "priority": round(priority, 2),
+            "priority_reasons": priority_reasons,
         })
 
     # Sort topics by priority (descending)
@@ -289,7 +302,7 @@ def _build_weekly_plan(all_topics, start_date, total_weeks, hours_per_week):
     return plan
 
 
-def generate_annual_plan(rows, start_date_str, exam_date_str, hours_per_week, intensive=False, user_progress=None):
+def generate_annual_plan(rows, start_date_str, exam_date_str, hours_per_week, intensive=False, user_progress=None, adaptive_signals=None):
     """
     Gera um plano de estudos fatiado por semanas com base no tempo disponível
     e no peso histórico das áreas na prova de Residência da USP.
@@ -303,7 +316,8 @@ def generate_annual_plan(rows, start_date_str, exam_date_str, hours_per_week, in
     row_stats = _consolidate_row_stats(rows, meta_dict)
 
     all_topics, total_required_hours = _prepare_topics(
-        meta_dict, row_stats, user_progress, intensive, practice_hours_per_subtema
+        meta_dict, row_stats, user_progress, intensive, practice_hours_per_subtema,
+        adaptive_signals=adaptive_signals
     )
 
     plan = _build_weekly_plan(all_topics, start_date, total_weeks, hours_per_week)

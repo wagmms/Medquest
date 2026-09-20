@@ -83,44 +83,60 @@ def _is_read_only_query(sql):
     return sql.strip().upper().startswith(("SELECT", "WITH", "PRAGMA", "EXPLAIN"))
 
 
+class TursoRow(dict):
+    """Expose DB-API cursor rows as mappings, matching sqlite3.Row usage."""
+    def __init__(self, mapping, values):
+        super().__init__(mapping)
+        self._values = tuple(values)
+
+    def __getitem__(self, item):
+        if isinstance(item, int):
+            return self._values[item]
+        return super().__getitem__(item)
+
+
 class TursoCursor:
     """Expose DB-API cursor rows as mappings, matching sqlite3.Row usage."""
 
     def __init__(self, cursor):
         self.cursor = cursor
-        self.columns = [column[0] for column in (cursor.description or [])]
+        self.columns = [column[0] for column in (getattr(cursor, "description", None) or [])]
         self._closed = False
         
     def __del__(self):
         self.close()
         
     def fetchone(self):
+        if self.cursor is None:
+            return None
         row = self.cursor.fetchone()
         self.close()
         if row is None:
             return None
-        return dict(zip(self.columns, row))
+        return TursoRow(zip(self.columns, row), row)
         
     def fetchall(self):
+        if self.cursor is None:
+            return []
         rows = self.cursor.fetchall()
         self.close()
-        return [dict(zip(self.columns, row)) for row in rows]
+        return [TursoRow(zip(self.columns, row), row) for row in rows]
 
     def close(self):
         if getattr(self, '_closed', True):
             return
-        close_method = getattr(self.cursor, "close", None)
+        close_method = getattr(self.cursor, "close", None) if self.cursor else None
         if callable(close_method):
             close_method()
         self._closed = True
         
     @property
     def lastrowid(self):
-        return getattr(self.cursor, "lastrowid", None)
+        return getattr(self.cursor, "lastrowid", None) if self.cursor else None
 
     @property
     def rowcount(self):
-        return getattr(self.cursor, "rowcount", 0)
+        return getattr(self.cursor, "rowcount", 0) if self.cursor else 0
 
 class TursoConnection:
     def __init__(self, client, persistent=False, reconnect=None):
@@ -143,6 +159,24 @@ class TursoConnection:
             self.client = self._reconnect(self.client)
             return self.client.execute(sql, args)
         
+    def _executemany_with_reconnect(self, sql, seq_of_args, retry_stale_stream):
+        def _dispatch(target):
+            if hasattr(target, "executemany"):
+                return target.executemany(sql, seq_of_args)
+            last_cur = None
+            for args in seq_of_args:
+                last_cur = target.execute(sql, args)
+            return last_cur
+
+        try:
+            return _dispatch(self.client)
+        except Exception as error:
+            if not (retry_stale_stream and self.persistent and self._reconnect and _is_stale_turso_stream(error)):
+                raise
+            logger.warning("Turso stream expired; reconnecting and retrying executemany")
+            self.client = self._reconnect(self.client)
+            return _dispatch(self.client)
+
     def begin(self, immediate=False):
         if self.tx:
             raise RuntimeError("A Turso transaction is already active")
@@ -162,6 +196,33 @@ class TursoConnection:
                 except Exception:
                     pass
             logger.error("Turso query failed: %s", e)
+            raise
+
+    def executemany(self, sql, seq_of_parameters=()):
+        clean_seq = []
+        for params in seq_of_parameters:
+            if isinstance(params, dict):
+                clean_seq.append({
+                    k: (v if not isinstance(v, bytes) else v.decode('utf-8', 'ignore'))
+                    for k, v in params.items()
+                })
+            elif isinstance(params, (list, tuple)):
+                clean_seq.append([
+                    x if not isinstance(x, bytes) else x.decode('utf-8', 'ignore')
+                    for x in params
+                ])
+            else:
+                clean_seq.append(params)
+        try:
+            cursor = self._executemany_with_reconnect(sql, clean_seq, retry_stale_stream=not self.tx)
+            return TursoCursor(cursor)
+        except Exception as e:
+            if not self.tx and self.persistent and self._reconnect and _is_stale_turso_stream(e):
+                try:
+                    self.client = self._reconnect(self.client)
+                except Exception:
+                    pass
+            logger.error("Turso executemany failed: %s", e)
             raise
 
     def batch(self, queries):

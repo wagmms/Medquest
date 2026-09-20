@@ -140,3 +140,182 @@ def test_planner_topic_progress_and_reset(client):
     assert r.get_json().get("1:Taquiarritmias") is None
 
 
+def test_planner_without_history_preserves_prior_behavior():
+    start = date.today()
+    result = generate_annual_plan(
+        [],
+        start.isoformat(),
+        (start + timedelta(weeks=12)).isoformat(),
+        hours_per_week=20,
+        adaptive_signals={},
+    )
+    topics = [t for week in result["plan"] for t in week["topics"]]
+    assert len(topics) > 0
+    for t in topics:
+        assert t["priority_reasons"] == []
+        if t["priority"] >= 100:
+            assert t["priority"] in (101.5, 102.0, 103.0)
+
+
+def test_planner_adaptive_priority_boosts_theme_with_difficulty():
+    start = date.today()
+    theme_normal = "Hipertensão Arterial Sistêmica e Crises Hipertensivas"
+    theme_struggling = "Síndromes Coronarianas Agudas (Com e Sem Supra de ST)"
+
+    adaptive_signals = {
+        theme_struggling: {
+            "topic": theme_struggling,
+            "attempts": 8,
+            "correct": 1,
+            "accuracy": 0.125,
+            "priority_score": 0.75,
+            "reasons": ["low_accuracy"],
+            "due_count": 0,
+            "retrievability": None,
+        }
+    }
+
+    result = generate_annual_plan(
+        [],
+        start.isoformat(),
+        (start + timedelta(weeks=12)).isoformat(),
+        hours_per_week=20,
+        adaptive_signals=adaptive_signals,
+    )
+    topics = [t for week in result["plan"] for t in week["topics"]]
+    t_normal = next(t for t in topics if t["subtema"] == theme_normal)
+    t_struggling = next(t for t in topics if t["subtema"] == theme_struggling)
+
+    assert "low_accuracy" in t_struggling["priority_reasons"]
+    assert t_normal["priority_reasons"] == []
+    assert t_struggling["priority"] > t_normal["priority"]
+
+    struggling_idx = topics.index(t_struggling)
+    normal_idx = topics.index(t_normal)
+    assert struggling_idx < normal_idx
+
+
+def test_planner_user_isolation(client, app):
+    from api.db import get_db
+    with app.app_context():
+        db = get_db()
+        db.execute(
+            """INSERT INTO questions(id, area, subtema, stem, correct_letter, missing_alts, year, institution_code, institution_label)
+               VALUES (101, 'Clínica Médica', 'Hipertensão Arterial Sistêmica e Crises Hipertensivas', 'Stem HAS', 'B', 0, 2025, 'USP', 'USP'),
+                      (102, 'Clínica Médica', 'Síndromes Coronarianas Agudas (Com e Sem Supra de ST)', 'Stem SCA', 'A', 0, 2025, 'USP', 'USP')"""
+        )
+        for _ in range(5):
+            db.execute(
+                """INSERT INTO attempts(question_id, selected_letter, is_correct, answered_at, user_id)
+                   VALUES (101, 'A', 0, '2026-09-20T10:00:00Z', ?)""",
+                ("user_alpha",)
+            )
+        db.commit()
+
+    start = date.today()
+    exam = (start + timedelta(weeks=12)).isoformat()
+    payload = {"start_date": start.isoformat(), "exam_date": exam, "hours_per_week": 20}
+
+    resp_alpha = client.post("/api/generate_plan", json=payload, headers={"X-User-ID": "user_alpha"})
+    assert resp_alpha.status_code == 200
+    topics_alpha = [t for w in resp_alpha.get_json()["plan"] for t in w["topics"]]
+    has_alpha = next(t for t in topics_alpha if t["subtema"] == "Hipertensão Arterial Sistêmica e Crises Hipertensivas")
+    assert "low_accuracy" in has_alpha["priority_reasons"]
+    assert has_alpha["priority"] > 103.0
+
+    resp_beta = client.post("/api/generate_plan", json=payload, headers={"X-User-ID": "user_beta"})
+    assert resp_beta.status_code == 200
+    topics_beta = [t for w in resp_beta.get_json()["plan"] for t in w["topics"]]
+    has_beta = next(t for t in topics_beta if t["subtema"] == "Hipertensão Arterial Sistêmica e Crises Hipertensivas")
+    assert has_beta["priority_reasons"] == []
+    assert has_beta["priority"] == 103.0
+
+
+def test_planner_supports_topic_outside_top_15(client, app):
+    import json
+    from api.adaptive import build_learning_profile
+    from api.db import get_db
+    from api.services.planner import _resolve_data_path
+
+    with open(_resolve_data_path("plannerData.json"), "r", encoding="utf-8") as f:
+        meta = json.load(f)
+    canonical_subtemas = []
+    for area in meta:
+        for macro in area.get("macroThemes", []):
+            for s in macro.get("dbSubtemas", []):
+                if s not in canonical_subtemas:
+                    canonical_subtemas.append(s)
+                if len(canonical_subtemas) >= 20:
+                    break
+            if len(canonical_subtemas) >= 20:
+                break
+        if len(canonical_subtemas) >= 20:
+            break
+
+    assert len(canonical_subtemas) == 20
+
+    user_id = "user_top15_test"
+    with app.app_context():
+        db = get_db()
+        for idx, subtema in enumerate(canonical_subtemas):
+            qid = 200 + idx
+            db.execute(
+                """INSERT INTO questions(id, area, subtema, stem, correct_letter, missing_alts, year, institution_code, institution_label)
+                   VALUES (?, 'Clínica Médica', ?, 'Stem', 'B', 0, 2025, 'USP', 'USP')""",
+                (qid, subtema)
+            )
+            attempts_count = 25 - idx
+            for _ in range(attempts_count):
+                db.execute(
+                    """INSERT INTO attempts(question_id, selected_letter, is_correct, answered_at, user_id)
+                       VALUES (?, 'A', 0, '2026-09-20T10:00:00Z', ?)""",
+                    (qid, user_id)
+                )
+        db.commit()
+
+        profile = build_learning_profile(db, user_id)
+        top15_topics = {t["topic"] for t in profile["topics"]}
+        assert len(top15_topics) == 15
+
+        outside_topic = canonical_subtemas[19]
+        assert outside_topic not in top15_topics
+
+    start = date.today()
+    exam = (start + timedelta(weeks=12)).isoformat()
+    payload = {"start_date": start.isoformat(), "exam_date": exam, "hours_per_week": 20}
+
+    resp = client.post("/api/generate_plan", json=payload, headers={"X-User-ID": user_id})
+    assert resp.status_code == 200
+    plan_topics = [t for w in resp.get_json()["plan"] for t in w["topics"]]
+    outside_item = next(t for t in plan_topics if t["subtema"] == outside_topic)
+
+    assert "low_accuracy" in outside_item["priority_reasons"]
+    assert outside_item["priority"] > 100.0
+
+
+
+
+
+def test_empty_adaptive_history_matches_legacy_plan_exactly():
+    start = date.today()
+    kwargs = dict(rows=[], start_date_str=start.isoformat(),
+                  exam_date_str=(start + timedelta(weeks=52)).isoformat(), hours_per_week=40)
+    assert generate_annual_plan(**kwargs, adaptive_signals={}) == generate_annual_plan(**kwargs)
+
+
+def test_adaptive_signals_preserve_catalog_and_intensive_filter():
+    start = date.today()
+    kwargs = dict(rows=[], start_date_str=start.isoformat(),
+                  exam_date_str=(start + timedelta(weeks=52)).isoformat(), hours_per_week=40)
+    def topics(plan):
+        return {topic['subtema']: topic for week in plan['plan'] for topic in week['topics']}
+    baseline = topics(generate_annual_plan(**kwargs))
+    signals = {name: {'priority_score': 0.8, 'reasons': ['memory_at_risk']} for name in baseline}
+    adaptive = topics(generate_annual_plan(**kwargs, adaptive_signals=signals))
+    assert len(baseline) == len(adaptive) == 170
+    for name, previous in baseline.items():
+        for key in ('estimated_theory_hours', 'estimated_practice_hours', 'estimated_hours'):
+            assert adaptive[name][key] == previous[key]
+    intensive_before = topics(generate_annual_plan(**kwargs, intensive=True))
+    intensive_after = topics(generate_annual_plan(**kwargs, intensive=True, adaptive_signals=signals))
+    assert intensive_before.keys() == intensive_after.keys()

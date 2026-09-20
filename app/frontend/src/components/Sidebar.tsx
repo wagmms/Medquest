@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
@@ -26,18 +26,7 @@ export function Sidebar() {
   const { user, isLoaded } = useUser();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOfflineOpen, setIsOfflineOpen] = useState(false);
-  const [shortcut, setShortcut] = useState("Cmd+K");
   const { isZenMode, toggleZenMode } = useZenMode();
-
-  useEffect(() => {
-    if (typeof navigator !== "undefined") {
-      const isMac = navigator.userAgent.indexOf("Mac") !== -1;
-      const timer = setTimeout(() => {
-        setShortcut(isMac ? "⌘K" : "Ctrl+K");
-      }, 0);
-      return () => clearTimeout(timer);
-    }
-  }, []);
 
   return (
     <>
@@ -73,22 +62,14 @@ export function Sidebar() {
 
         <div className="mt-auto flex flex-col gap-2 pt-4 border-t border-border/50">
           <div className="flex items-center justify-between gap-1 px-1">
-            <button 
-              className="flex items-center gap-2 px-2 py-2 rounded-md text-muted-foreground hover:bg-surface-variant/50 hover:text-foreground transition-all duration-200 text-left flex-1 cursor-pointer"
-              onClick={() => window.dispatchEvent(new Event('open-command-palette'))}
-              aria-label="Abrir barra de busca"
-            >
-              <span className="material-symbols-outlined text-[18px]" data-icon="search" aria-hidden="true">search</span>
-              <span className="text-xs font-medium flex-1">Buscar...</span>
-              <kbd className="text-[10px] bg-background px-1.5 py-0.5 rounded border border-border shadow-sm text-muted-foreground">{shortcut}</kbd>
-            </button>
             <button
               onClick={() => setIsOfflineOpen(true)}
-              className="flex items-center justify-center p-2 rounded-md text-muted-foreground hover:bg-surface-variant/50 hover:text-foreground transition-colors text-left cursor-pointer"
+              className="flex items-center gap-2 px-2.5 py-2 rounded-md text-muted-foreground hover:bg-surface-variant/50 hover:text-foreground transition-colors text-left flex-1 cursor-pointer"
               title="Modo Plantão (Offline)"
               aria-label="Abrir Modo Plantão"
             >
               <span className="material-symbols-outlined text-[18px]" data-icon="cloud_download">cloud_download</span>
+              <span className="text-xs font-medium">Modo Plantão</span>
             </button>
             <button
               onClick={toggleZenMode}

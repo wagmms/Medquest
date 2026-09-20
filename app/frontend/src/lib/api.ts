@@ -1,5 +1,5 @@
 import {
-  OverviewStats, CoverageResponse, TimelineStat, WeakTopic, Recommendation,
+  ThemeProgress, OverviewStats, CoverageResponse, TimelineStat, WeakTopic, Recommendation,
   BreakdownStat, DistractorStat, PlannerConfig, PlannerProgressMap, PlannerTopicProgressMap, PlannerPlanResponse,
   QuestionMeta, SubtemaItem, QuestionListItem, QuestionDetail, AttemptResult, SearchResult,
   BatchAttemptItem, BatchAttemptResult, BatchDetailResponse, Flashcard, FlashcardGenerateResponse,
@@ -140,6 +140,12 @@ async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise
  * API endpoints
  */
 export const api = {
+  themes: {
+    saveProgress: (subtema: string, progress: Pick<ThemeProgress, "theory_completed" | "study_path">) =>
+      apiFetch<ThemeProgress>(`/api/themes/progress?${new URLSearchParams({ subtema })}`, {
+        method: "PUT", body: JSON.stringify(progress),
+      }),
+  },
   stats: {
     getOverview: () => apiFetch<OverviewStats>("/api/stats/overview", { cache: 'no-store' }),
     getCoverage: () => apiFetch<CoverageResponse>("/api/coverage", { cache: 'no-store' }),
@@ -812,20 +818,25 @@ export const api = {
       try {
         const res = await apiFetch<BatchFlashcardGenerateResponse>(`/api/flashcards/generate-batch`, {
           method: "POST",
-          body: JSON.stringify({ items })
+          body: JSON.stringify({ items }),
+          timeoutMs: 90000,
         });
-        if (typeof window !== "undefined" && localDb && res.flashcards) {
-          const uid = getLocalOwnerId();
-          const cardsToPut: Array<Flashcard & { _owner_id: string }> = res.flashcards.map(f => ({
-            id: f.id,
-            question_id: f.question_id,
-            front: f.front,
-            back: f.back,
-            next_review_date: new Date().toISOString(),
-            is_ai_generated: true,
-            _owner_id: uid,
-          }));
-          await localDb.flashcards.bulkPut(cardsToPut);
+        if (typeof window !== "undefined" && localDb && res.flashcards && res.flashcards.length > 0) {
+          try {
+            const uid = getLocalOwnerId();
+            const cardsToPut: Array<Flashcard & { _owner_id: string }> = res.flashcards.map(f => ({
+              id: f.id || (Date.now() + Math.floor(Math.random() * 100000)),
+              question_id: f.question_id,
+              front: f.front,
+              back: f.back,
+              next_review_date: new Date().toISOString(),
+              is_ai_generated: true,
+              _owner_id: uid,
+            }));
+            await localDb.flashcards.bulkPut(cardsToPut);
+          } catch (dexieErr) {
+            console.warn("[API] Aviso ao sincronizar flashcards em lote no Dexie local:", dexieErr);
+          }
         }
         return res;
       } catch (err) {
@@ -835,12 +846,13 @@ export const api = {
       }
     },
     getDecks: () => apiFetch<FlashcardDecksResponse>("/api/flashcards/decks", { cache: "no-store" }),
-    getDue: async (includeAll: boolean = false, signal?: AbortSignal, deck?: string) => {
+    getDue: async (includeAll: boolean = false, signal?: AbortSignal, deck?: string, subtema?: string) => {
       const getLocalFallback = async () => {
         if (typeof window !== "undefined" && localDb) {
           try {
             const uid = getLocalOwnerId();
             let cards = await localDb.flashcards.where('_owner_id').equals(uid).toArray();
+            if (subtema !== undefined) cards = cards.filter(card => card.subtema === subtema);
             if (deck && deck !== "all") {
               cards = cards.filter(c => (c.deck_name || "Geral").toLowerCase() === deck.toLowerCase());
             }
@@ -865,6 +877,7 @@ export const api = {
         const params = new URLSearchParams();
         if (includeAll) params.append("all", "true");
         if (deck && deck !== "all") params.append("deck", deck);
+        if (subtema !== undefined) params.append("subtema", subtema);
         const qs = params.toString();
         return await apiFetch<Flashcard[]>(`/api/flashcards/review${qs ? `?${qs}` : ""}`, { cache: 'no-store', signal });
       } catch (err) {
@@ -874,11 +887,12 @@ export const api = {
         throw err;
       }
     },
-    getUpcoming: async (signal?: AbortSignal, deck?: string) => {
+    getUpcoming: async (signal?: AbortSignal, deck?: string, subtema?: string) => {
       try {
         const params = new URLSearchParams();
         params.append("scope", "upcoming");
         if (deck && deck !== "all") params.append("deck", deck);
+        if (subtema !== undefined) params.append("subtema", subtema);
         const qs = params.toString();
         return await apiFetch<Flashcard[]>(`/api/flashcards/review?${qs}`, { cache: 'no-store', signal });
       } catch (err) {
@@ -887,6 +901,7 @@ export const api = {
           try {
             const uid = getLocalOwnerId();
             let cards = await localDb.flashcards.where('_owner_id').equals(uid).toArray();
+            if (subtema !== undefined) cards = cards.filter(card => card.subtema === subtema);
             if (deck && deck !== "all") {
               cards = cards.filter(c => (c.deck_name || "Geral").toLowerCase() === deck.toLowerCase());
             }

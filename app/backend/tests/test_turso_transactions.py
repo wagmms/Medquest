@@ -178,3 +178,61 @@ def test_turso_stale_detection_covers_various_disconnects():
     assert _is_stale_turso_stream(Exception("stale baton expired")) is True
     assert _is_stale_turso_stream(Exception("syntax error near WHERE")) is False
 
+
+class ClientWithExecutemany(FakeClient):
+    def __init__(self):
+        super().__init__()
+        self.executemany_calls = []
+
+    def executemany(self, sql, seq_of_args):
+        self.executemany_calls.append((sql, list(seq_of_args)))
+        self.last_cursor = FakeCursor(rows_affected=len(seq_of_args))
+        return self.last_cursor
+
+
+def test_turso_executemany_dispatches_to_client_executemany():
+    client = ClientWithExecutemany()
+    db = TursoConnection(client)
+
+    params = [("row1", 1), ("row2", 2)]
+    cur = db.executemany("INSERT INTO t VALUES (?, ?)", params)
+
+    assert len(client.executemany_calls) == 1
+    assert client.executemany_calls[0] == ("INSERT INTO t VALUES (?, ?)", [["row1", 1], ["row2", 2]])
+    assert cur.rowcount == 2
+
+
+def test_turso_executemany_falls_back_when_client_lacks_executemany():
+    client = FakeClient()
+    assert not hasattr(client, "executemany")
+    db = TursoConnection(client)
+
+    params = [("a", b"bytes_val"), ("b", "str_val")]
+    cur = db.executemany("INSERT INTO t VALUES (?, ?)", params)
+
+    assert len(client.statements) == 2
+    assert client.statements[0] == ("INSERT INTO t VALUES (?, ?)", ["a", "bytes_val"])
+    assert client.statements[1] == ("INSERT INTO t VALUES (?, ?)", ["b", "str_val"])
+
+
+def test_turso_executemany_retries_after_stale_stream():
+    class StaleStreamExecutemanyClient(ClientWithExecutemany):
+        def executemany(self, sql, seq_of_args):
+            raise ValueError('Hrana: api error: status=404 Not Found, body={"error":"stream not found"}')
+
+    stale_client = StaleStreamExecutemanyClient()
+    fresh_client = ClientWithExecutemany()
+    reconnect_calls = []
+    db = TursoConnection(
+        stale_client,
+        persistent=True,
+        reconnect=lambda failed: reconnect_calls.append(failed) or fresh_client,
+    )
+
+    db.executemany("INSERT INTO t VALUES (?)", [(1,), (2,)])
+
+    assert reconnect_calls == [stale_client]
+    assert len(fresh_client.executemany_calls) == 1
+    assert fresh_client.executemany_calls[0][1] == [[1], [2]]
+
+

@@ -38,6 +38,42 @@ def test_review_existing_card():
     # State deve refletir aprendizado
     assert "due" in card_dict_2
     
-    # Erro -> Again -> agendamento deve ser para um futuro muito próximo
+    # Erro em questão médica que já tinha alta estabilidade -> agendamento de revisão espaçado
     due_date_2 = datetime.fromisoformat(due_iso_2)
     assert due_date_2 > datetime.now(timezone.utc)
+    diff_days = (due_date_2 - datetime.now(timezone.utc)).total_seconds() / 86400
+    assert diff_days >= 6.5
+
+
+def test_review_question_intervals():
+    # Errou questão -> 7 dias
+    _, due_err = review(None, False, None)
+    err_days = round((datetime.fromisoformat(due_err) - datetime.now(timezone.utc)).total_seconds() / 86400)
+    assert err_days == 7
+
+    # Chutei questão -> ~15 dias
+    _, due_hard = review(None, True, "chutei")
+    hard_days = round((datetime.fromisoformat(due_hard) - datetime.now(timezone.utc)).total_seconds() / 86400)
+    assert hard_days == 15
+
+    # Dúvida / Bom -> ~34 dias
+    _, due_good = review(None, True, "duvida")
+    good_days = round((datetime.fromisoformat(due_good) - datetime.now(timezone.utc)).total_seconds() / 86400)
+    assert good_days == 34
+
+    # Certeza / Fácil -> ~76 dias
+    _, due_easy = review(None, True, "certeza")
+    easy_days = round((datetime.fromisoformat(due_easy) - datetime.now(timezone.utc)).total_seconds() / 86400)
+    assert easy_days == 76
+
+
+def test_review_flashcard_intervals():
+    # Erro em flashcard -> 1 dia (mínimo D+1, sem passos em minutos)
+    _, due_err = review(None, False, "errei", is_flashcard=True)
+    err_days = round((datetime.fromisoformat(due_err) - datetime.now(timezone.utc)).total_seconds() / 86400)
+    assert err_days == 1
+
+    # Acerto fácil em flashcard -> ~8 dias
+    _, due_easy = review(None, True, "certeza", is_flashcard=True)
+    easy_days = round((datetime.fromisoformat(due_easy) - datetime.now(timezone.utc)).total_seconds() / 86400)
+    assert easy_days == 8

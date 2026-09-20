@@ -118,17 +118,47 @@ def rank_adaptive_candidates(db, user_id, where, params, limit, now=None):
     return ranked[:limit]
 
 
-def build_learning_profile(db, user_id, now=None):
-    """Build a transparent personalized diagnosis and daily goal."""
+def get_adaptive_signals_by_topic(db, user_id, now=None):
+    """Compute deterministic adaptive signals for ALL topics for the given user."""
     now = _utc(now)
     rows = db.execute(
         """
+        WITH AttemptRanks AS (
+            SELECT
+                q.id as question_id,
+                COALESCE(NULLIF(q.subtema, ''), q.topic) as topic,
+                a.is_correct,
+                ROW_NUMBER() OVER (PARTITION BY COALESCE(NULLIF(q.subtema, ''), q.topic) ORDER BY a.answered_at ASC) as rn
+            FROM attempts a
+            JOIN questions q ON q.id = a.question_id
+            WHERE a.user_id = ? AND q.missing_alts=0 AND COALESCE(NULLIF(q.subtema, ''), q.topic) IS NOT NULL
+        ),
+        TopicStats AS (
+            SELECT
+                topic,
+                COUNT(DISTINCT question_id) AS answered,
+                SUM(CASE WHEN rn <= 5 THEN is_correct ELSE 0 END) as diag_correct,
+                SUM(CASE WHEN rn <= 5 THEN 1 ELSE 0 END) as diag_attempts,
+                SUM(CASE WHEN rn > 5 THEN is_correct ELSE 0 END) as prac_correct,
+                SUM(CASE WHEN rn > 5 THEN 1 ELSE 0 END) as prac_attempts,
+                SUM(is_correct) as correct,
+                COUNT(is_correct) as attempts
+            FROM AttemptRanks
+            GROUP BY topic
+        )
         SELECT COALESCE(NULLIF(q.subtema, ''), q.topic) AS topic, MIN(q.area) AS area,
-               COUNT(DISTINCT q.id) AS available, COUNT(a.id) AS attempts,
-               COUNT(DISTINCT a.question_id) AS answered, COALESCE(SUM(a.is_correct), 0) AS correct
-        FROM questions q LEFT JOIN attempts a ON a.question_id=q.id AND a.user_id=?
+               COUNT(DISTINCT q.id) AS available,
+               COALESCE(ts.attempts, 0) AS attempts,
+               COALESCE(ts.answered, 0) AS answered,
+               COALESCE(ts.correct, 0) AS correct,
+               COALESCE(ts.diag_correct, 0) AS diag_correct,
+               COALESCE(ts.diag_attempts, 0) AS diag_attempts,
+               COALESCE(ts.prac_correct, 0) AS prac_correct,
+               COALESCE(ts.prac_attempts, 0) AS prac_attempts
+        FROM questions q 
+        LEFT JOIN TopicStats ts ON ts.topic = COALESCE(NULLIF(q.subtema, ''), q.topic)
         WHERE q.missing_alts=0 AND COALESCE(NULLIF(q.subtema, ''), q.topic) IS NOT NULL
-        GROUP BY topic
+        GROUP BY COALESCE(NULLIF(q.subtema, ''), q.topic)
         """,
         (user_id,),
     ).fetchall()
@@ -140,7 +170,6 @@ def build_learning_profile(db, user_id, now=None):
         (user_id,),
     ).fetchall()
     memory = {}
-    due_total = 0
     for row in fsrs_rows:
         metrics = fsrs_metrics(row["fsrs_card"], now)
         bucket = memory.setdefault(row["topic"], {"values": [], "due": 0})
@@ -148,11 +177,11 @@ def build_learning_profile(db, user_id, now=None):
             bucket["values"].append(metrics["retrievability"])
         if _due(row["next_review_date"], now):
             bucket["due"] += 1
-            due_total += 1
 
-    topics = []
+    signals = {}
     for row in rows:
-        mem = memory.get(row["topic"], {"values": [], "due": 0})
+        topic_name = row["topic"]
+        mem = memory.get(topic_name, {"values": [], "due": 0})
         retrievability = min(mem["values"]) if mem["values"] else None
         coverage = row["answered"] / row["available"] if row["available"] else 0.0
         score, confidence = topic_priority(row["attempts"], row["correct"], retrievability, coverage)
@@ -163,17 +192,40 @@ def build_learning_profile(db, user_id, now=None):
             reasons.append("reviews_due")
         if retrievability is not None and retrievability < 0.9:
             reasons.append("memory_at_risk")
-        if coverage < 0.2:
+        if row["attempts"] > 0 and coverage < 0.2:
+            reasons.append("low_coverage")
+        signals[topic_name] = {
+            "topic": topic_name, "area": row["area"], "available": row["available"],
+            "attempts": row["attempts"], "correct": row["correct"], "answered": row["answered"],
+            "accuracy": round(row["correct"] / row["attempts"], 4) if row["attempts"] else None,
+            "diag_accuracy": round(row["diag_correct"] / row["diag_attempts"], 4) if row["diag_attempts"] else None,
+            "prac_accuracy": round(row["prac_correct"] / row["prac_attempts"], 4) if row["prac_attempts"] else None,
+            "coverage": round(coverage, 4), "confidence": round(confidence, 4),
+            "retrievability": retrievability, "due_count": mem["due"],
+            "priority_score": score, "reasons": reasons,
+        }
+    return signals
+
+
+def build_learning_profile(db, user_id, now=None, subtema=None, limit=15):
+    """Build a transparent personalized diagnosis and daily goal."""
+    now = _utc(now)
+    signals = get_adaptive_signals_by_topic(db, user_id, now=now)
+    due_total = sum(item["due_count"] for item in signals.values())
+
+    topics = []
+    for item in signals.values():
+        reasons = list(item["reasons"])
+        if item["coverage"] < 0.2 and "low_coverage" not in reasons:
             reasons.append("low_coverage")
         topics.append({
-            "topic": row["topic"], "area": row["area"], "available": row["available"],
-            "attempts": row["attempts"], "correct": row["correct"],
-            "accuracy": round(row["correct"] / row["attempts"], 4) if row["attempts"] else None,
-            "coverage": round(coverage, 4), "confidence": confidence,
-            "retrievability": retrievability, "due_count": mem["due"],
-            "priority_score": score, "reasons": reasons or ["balanced_practice"],
+            **item,
+            "reasons": reasons or ["balanced_practice"],
         })
+
     topics.sort(key=lambda item: (-item["priority_score"], item["topic"]))
+    if subtema is not None:
+        topics = [item for item in topics if item["topic"] == subtema]
     config = db.execute(
         "SELECT questions_per_day, target_score, exam_date FROM planner_config WHERE user_id=?",
         (user_id,),
@@ -186,9 +238,10 @@ def build_learning_profile(db, user_id, now=None):
             "reviews_due": due_total, "target_score": config["target_score"] if config else None,
             "exam_date": config["exam_date"] if config else None,
         },
-        "topics": topics[:15],
+        "topics": topics[:limit] if limit is not None else topics,
         "method": {
             "deterministic": True,
             "signals": ["FSRS retrievability", "accuracy with evidence confidence", "coverage", "due reviews"],
         },
     }
+

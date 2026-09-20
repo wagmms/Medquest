@@ -7,7 +7,6 @@ import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
 import TopNav from "@/components/TopNav";
 import { Toaster } from "react-hot-toast";
-import { CommandPalette } from "@/components/CommandPalette";
 import { DemoButton } from "@/components/DemoButton";
 import { DemoBanner } from "@/components/DemoBanner";
 import { SyncProvider } from "@/components/SyncProvider";
@@ -108,7 +107,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                     {children}
                   </main>
                 </div>
-                <CommandPalette />
               </div>
               <OnboardingTour />
             </div>

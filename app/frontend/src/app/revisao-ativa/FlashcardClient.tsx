@@ -26,7 +26,7 @@ import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-export function FlashcardClient() {
+export function FlashcardClient({ subtema }: { subtema?: string }) {
   const [queue, setQueue] = useState<Flashcard[]>([]);
   const [loading, setLoading] = useState(true);
   const [flipped, setFlipped] = useState(false);
@@ -54,10 +54,12 @@ export function FlashcardClient() {
   const fetchDue = useCallback(async (signal?: AbortSignal, deckFilter: string = selectedDeck) => {
     setLoading(true);
     setLoadError(null);
+    setFlipped(false);
+    setLastScheduled(null);
     try {
       const [cards, upcomingCards, decksRes] = await Promise.all([
-        api.flashcards.getDue(false, signal, deckFilter),
-        api.flashcards.getUpcoming(signal, deckFilter),
+        api.flashcards.getDue(false, signal, deckFilter, subtema),
+        api.flashcards.getUpcoming(signal, deckFilter, subtema),
         api.flashcards.getDecks().catch(() => ({ decks: [], total_cards: 0, due_cards: 0 })),
       ]);
       if (signal?.aborted) return;
@@ -90,7 +92,7 @@ export function FlashcardClient() {
     } finally {
       if (!signal?.aborted) setLoading(false);
     }
-  }, [selectedDeck]);
+  }, [selectedDeck, subtema]);
 
   const handleReview = useCallback(async (confidence: string) => {
     if (queue.length === 0 || submitting) return;
@@ -101,8 +103,6 @@ export function FlashcardClient() {
     setQueue(prev => prev.slice(1));
     setFlipped(false);
     
-    // Libera o estado de submitting quase imediatamente para não travar a próxima carta
-    setTimeout(() => setSubmitting(false), 50);
 
     try {
       const result = await api.flashcards.review(currentCard.id, confidence);
@@ -141,8 +141,11 @@ export function FlashcardClient() {
           }
         }
       } else {
-        toast.error("Erro ao enviar avaliação.");
+        setQueue(prev => [currentCard, ...prev.filter(card => card.id !== currentCard.id)]);
+        toast.error("Não foi possível salvar. O cartão voltou para a fila.");
       }
+    } finally {
+      setSubmitting(false);
     }
   }, [queue, submitting]);
 
@@ -252,6 +255,10 @@ export function FlashcardClient() {
 
   return (
     <div className="max-w-3xl mx-auto w-full flex flex-col items-center gap-6 pb-12">
+      {subtema && <div className="w-full rounded-xl border border-primary/20 bg-primary/5 p-4">
+        <p className="font-semibold">Flashcards de {subtema}</p>
+        <div className="flex flex-wrap gap-4 mt-2 text-sm text-primary"><Link href={`/temas?${new URLSearchParams({ subtema })}`}>← Voltar ao tema</Link><Link href="/revisao-ativa">Ver todos os temas</Link></div>
+      </div>}
       {/* Header com Seletor de Baralho e Botão Anki */}
       <div className="w-full flex items-center justify-between flex-wrap gap-3 pb-2 border-b border-border">
         <div className="flex items-center gap-2">
@@ -271,10 +278,10 @@ export function FlashcardClient() {
                 className="bg-transparent font-semibold text-foreground focus:outline-none cursor-pointer"
                 aria-label="Filtrar por baralho"
               >
-                <option value="all">Todos os Baralhos ({totalDueAcrossDecks})</option>
+                <option value="all">Todos os Baralhos{subtema ? "" : ` (${totalDueAcrossDecks})`}</option>
                 {decks.map((d) => (
                   <option key={d.name} value={d.name}>
-                    {d.name} ({d.due_cards})
+                    {d.name}{subtema ? "" : ` (${d.due_cards})`}
                   </option>
                 ))}
               </select>
@@ -318,14 +325,14 @@ export function FlashcardClient() {
             <CheckCircle2 size={48} />
           </motion.div>
           <h2 className="text-2xl font-black text-foreground mb-3 tracking-tight">
-            {initialDueCount > 0 ? "Revisões de hoje concluídas" : "Nenhuma revisão vencida"}
+            {loadError ? "Revisão indisponível" : initialDueCount > 0 ? "Fila carregada concluída" : "Nenhuma revisão vencida"}
           </h2>
           <p className="text-muted-foreground mb-8 text-lg max-w-md">
-            {initialDueCount > 0
+            {loadError ? "Não foi possível verificar suas revisões agora." : initialDueCount > 0
               ? `Você revisou ${initialDueCount} ${initialDueCount === 1 ? "cartão" : "cartões"}.`
               : selectedDeck !== "all"
               ? `Você não tem revisões pendentes no baralho "${selectedDeck}".`
-              : "Você não tem flashcards vencidos no momento."}
+              : subtema ? "Não há flashcards vencidos vinculados a este tema." : "Você não tem flashcards vencidos no momento."}
           </p>
           {loadError && (
             <div className="mb-6 w-full rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-left text-sm text-destructive flex items-center gap-2">
@@ -333,6 +340,7 @@ export function FlashcardClient() {
               <button onClick={() => void fetchDue()} className="ml-auto font-bold underline">Tentar novamente</button>
             </div>
           )}
+          {!loadError && initialDueCount > 0 && <button onClick={() => void fetchDue()} className="mb-4 text-primary text-sm font-semibold underline">Verificar próximas revisões</button>}
           {!loadError && upcoming[0] && (
             <p className="mb-6 text-sm text-muted-foreground flex items-center gap-2">
               <CalendarClock size={16} /> Próximo cartão: {new Date(upcoming[0].next_review_date).toLocaleDateString("pt-BR")}
@@ -340,7 +348,7 @@ export function FlashcardClient() {
           )}
           <div className="flex items-center gap-3 flex-wrap justify-center">
             <Link
-              href="/estudar"
+              href={subtema ? `/estudar?${new URLSearchParams({ subtema, mode: "adaptive", limit: "10" })}` : "/estudar"}
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:-translate-y-0.5 flex items-center gap-2 text-sm"
             >
               <span className="material-symbols-outlined text-lg" data-icon="menu_book">menu_book</span>

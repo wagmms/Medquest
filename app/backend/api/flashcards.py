@@ -1,12 +1,14 @@
 import json
 import logging
 import re
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 
 from flask import Blueprint, Response, g, jsonify, request
 
 from . import srs
-from .ai import generate_cloze_flashcard
+from .ai import generate_cloze_flashcard, _extract_medical_cloze_fallback
 from .anki import parse_apkg_bytes, parse_anki_text
 from .db import db_transaction, get_db
 from .observability import record_domain_event
@@ -206,25 +208,34 @@ def _fetch_batch_data(db, question_ids):
     question_map = {row["id"]: row for row in question_rows}
 
     alternative_rows = db.execute(
-        f"SELECT question_id, letter, text FROM alternatives WHERE question_id IN ({placeholders})",
+        f"SELECT question_id, letter, text, is_correct FROM alternatives WHERE question_id IN ({placeholders})",
         question_ids,
     ).fetchall()
     alternative_map = {
-        (row["question_id"], row["letter"].upper()): row["text"]
+        (row["question_id"], (row["letter"] or "").strip().upper()): row["text"]
         for row in alternative_rows
     }
+    correct_alt_by_qid = {
+        row["question_id"]: row["text"]
+        for row in alternative_rows
+        if row["is_correct"] == 1
+    }
 
-    return question_map, alternative_map
+    return question_map, alternative_map, correct_alt_by_qid
 
 
-def _prepare_flashcards(payload_items, question_map, alternative_map):
-    prepared = []
+def _prepare_flashcards(payload_items, question_map, alternative_map, correct_alt_by_qid=None):
+    if correct_alt_by_qid is None:
+        correct_alt_by_qid = {}
+
+    tasks = []
     for item in payload_items:
         qid = item.question_id
-        wrong_letter = item.wrong_letter.upper()
+        wrong_letter = (item.wrong_letter or "").strip()[:1].upper()
         q = question_map.get(qid)
         if not q:
             continue
+
         corr_letters = [c.strip().upper() for c in (q["correct_letter"] or "").split(",") if c.strip()]
         correct_text = None
         for cl in corr_letters:
@@ -232,21 +243,83 @@ def _prepare_flashcards(payload_items, question_map, alternative_map):
                 correct_text = alternative_map[(qid, cl)]
                 break
         if not correct_text and q["correct_letter"]:
-            correct_text = alternative_map.get((qid, q["correct_letter"].upper()))
-        wrong_text = alternative_map.get((qid, wrong_letter))
-        if not correct_text or not wrong_text:
+            correct_text = alternative_map.get((qid, q["correct_letter"].strip().upper()))
+        if not correct_text:
+            correct_text = correct_alt_by_qid.get(qid)
+        if not correct_text and q["explanation_text"]:
+            m = re.search(r'(?:\*\*Padrão de Resposta\*\*|\*\*RESPOSTA OBJETIVA\*\*|Padrão de Resposta|Resposta Esperada):?\s*([^\n\r]+)', q["explanation_text"], re.I)
+            if m:
+                correct_text = m.group(1).strip()
+            else:
+                first_line = q["explanation_text"].strip().split("\n")[0].strip()
+                if first_line and len(first_line) < 200:
+                    correct_text = first_line
+
+        if not correct_text:
             continue
-        prepared.append((qid, generate_cloze_flashcard(
-            stem=q["stem"],
-            correct_text=correct_text,
-            wrong_text=wrong_text,
-            explanation=q["explanation_text"] or "",
-            area=q["area"] or "",
-            subtema=q["subtema"] or "",
-            topic=q["topic"] or "",
-            correct_letter=q["correct_letter"],
-            wrong_letter=wrong_letter,
-        )))
+
+        wrong_text = alternative_map.get((qid, wrong_letter), "")
+
+        tasks.append((
+            qid,
+            q["stem"],
+            correct_text,
+            wrong_text,
+            q["explanation_text"] or "",
+            q["area"] or "",
+            q["subtema"] or "",
+            q["topic"] or "",
+            q["correct_letter"] or "",
+            wrong_letter,
+        ))
+
+    if not tasks:
+        return []
+
+    def _gen_one(task):
+        qid, stem, c_text, w_text, exp, area, sub, top, c_let, w_let = task
+        try:
+            card = generate_cloze_flashcard(
+                stem=stem,
+                correct_text=c_text,
+                wrong_text=w_text,
+                explanation=exp,
+                area=area,
+                subtema=sub,
+                topic=top,
+                correct_letter=c_let,
+                wrong_letter=w_let,
+            )
+            return (qid, card)
+        except Exception as err:
+            logger.warning(f"Falha na geração AI do card para questão {qid}, usando fallback determinístico: {err}")
+            card = _extract_medical_cloze_fallback(
+                stem=stem,
+                correct_text=c_text,
+                wrong_text=w_text,
+                explanation=exp,
+                area=area,
+                subtema=sub,
+                topic=top,
+                correct_letter=c_let,
+                wrong_letter=w_let,
+            )
+            return (qid, card)
+
+    prepared = []
+    max_workers = min(len(tasks), 6)
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(_gen_one, t) for t in tasks]
+        for f in as_completed(futures):
+            try:
+                res = f.result()
+                if res and res[1] and res[1].get("front"):
+                    prepared.append(res)
+            except Exception as e:
+                logger.warning(f"Erro ao processar futuro do flashcard: {e}")
+
+    qid_order = {t[0]: i for i, t in enumerate(tasks)}
+    prepared.sort(key=lambda x: qid_order.get(x[0], 0))
     return prepared
 
 
@@ -273,18 +346,24 @@ def _save_flashcards(db, user_id, question_ids, prepared, now):
                     "id": existing_id,
                     "question_id": qid,
                     "front": card_data.get("front", ""),
-                    "back": card_data.get("back", "")
+                    "back": card_data.get("back", ""),
+                    "context": card_data.get("context", "")
                 })
             else:
                 cursor = db.execute("""
                     INSERT INTO flashcards (question_id, front, back, created_at, next_review_date, fsrs_card, user_id, source_context, is_ai_generated)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)
                 """, (qid, card_data.get("front", ""), card_data.get("back", ""), now, now, None, user_id, card_data.get("context", "")))
+                new_id = getattr(cursor, "lastrowid", None)
+                if not new_id:
+                    row = db.execute("SELECT id FROM flashcards WHERE question_id = ? AND user_id = ? ORDER BY id DESC LIMIT 1", (qid, user_id)).fetchone()
+                    new_id = row["id"] if row else None
                 created_or_updated.append({
-                    "id": cursor.lastrowid,
+                    "id": new_id or int(time.time() * 1000),
                     "question_id": qid,
                     "front": card_data.get("front", ""),
-                    "back": card_data.get("back", "")
+                    "back": card_data.get("back", ""),
+                    "context": card_data.get("context", "")
                 })
 
     return created_or_updated
@@ -304,10 +383,10 @@ def generate_batch():
     db = get_db()
     now = datetime.now(timezone.utc).isoformat()
 
-    question_map, alternative_map = _fetch_batch_data(db, question_ids)
+    question_map, alternative_map, correct_alt_by_qid = _fetch_batch_data(db, question_ids)
 
     # Do not hold a write transaction while waiting for an AI provider.
-    prepared = _prepare_flashcards(payload.items, question_map, alternative_map)
+    prepared = _prepare_flashcards(payload.items, question_map, alternative_map, correct_alt_by_qid)
 
     created_or_updated = _save_flashcards(db, g.user_id, question_ids, prepared, now)
 
@@ -669,10 +748,16 @@ def get_due_flashcards():
         deck_clause = " AND f.deck_name = ?"
         params.append(deck)
 
+    theme_clause = ""
+    subtema = request.args.get("subtema")
+    if subtema is not None:
+        theme_clause = " AND q.subtema = ?"
+        params.append(subtema)
+
     order_limit_clause = " ORDER BY f.next_review_date ASC LIMIT ?"
     params.append(limit)
 
-    sql = base_sql + where_clause + deck_clause + order_limit_clause
+    sql = base_sql + where_clause + deck_clause + theme_clause + order_limit_clause
     rows = db.execute(sql, tuple(params)).fetchall()
 
     items = []
@@ -698,7 +783,7 @@ def review_flashcard(fid):
         card = db.execute("SELECT fsrs_card, anki_cid FROM flashcards WHERE id = ? AND user_id = ?", (fid, g.user_id)).fetchone()
         if not card:
             return jsonify({"error": "Flashcard nao encontrado."}), 404
-        card_json, next_review = srs.review(card["fsrs_card"], is_correct, confidence if is_correct else "chutei")
+        card_json, next_review = srs.review(card["fsrs_card"], is_correct, confidence if is_correct else "chutei", is_flashcard=True)
         db.execute("""
             UPDATE flashcards 
             SET next_review_date = ?, fsrs_card = ? 

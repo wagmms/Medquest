@@ -573,17 +573,33 @@ export function SimuladoClient({
   };
 
   const handleGenerateAllSimuladoWrongFlashcards = async () => {
-    const wrongItems = queue
-      .filter(q => resultsMap[q.id] && !resultsMap[q.id].is_correct && answers[q.id])
-      .map(q => ({ question_id: q.id, wrong_letter: answers[q.id] }));
+    const seen = new Set<number>();
+    const wrongItems: Array<{ question_id: number; wrong_letter: string }> = [];
+    for (const q of queue) {
+      if (resultsMap[q.id] && !resultsMap[q.id].is_correct && !seen.has(q.id)) {
+        seen.add(q.id);
+        const rawLetter = (answers[q.id] || "A").trim().slice(0, 1).toUpperCase();
+        const wrong_letter = /^[A-E]$/.test(rawLetter) ? rawLetter : "A";
+        wrongItems.push({ question_id: q.id, wrong_letter });
+      }
+    }
 
-    if (wrongItems.length === 0) return;
+    if (wrongItems.length === 0) {
+      toast("Nenhuma questão errada encontrada neste simulado.", { icon: "ℹ️" });
+      return;
+    }
+
     setGeneratingBatchFlashcards(true);
     try {
       const res = await api.flashcards.generateBatch(wrongItems);
       setBatchFlashcardsResult({ count: res.count });
-      toast.success(`${res.count} flashcard(s) criado(s) e adicionado(s) à Revisão Ativa!`);
-    } catch {
+      if (res.count > 0) {
+        toast.success(`${res.count} flashcard(s) criado(s) e adicionado(s) à Revisão Ativa!`);
+      } else {
+        toast("Nenhum novo flashcard criado (já cadastrados).", { icon: "ℹ️" });
+      }
+    } catch (e) {
+      console.error("Erro ao gerar flashcards em lote no simulado:", e);
       toast.error("Erro ao gerar flashcards em lote.");
     } finally {
       setGeneratingBatchFlashcards(false);

@@ -267,7 +267,7 @@ def cron_dispatch():
         SELECT DISTINCT user_id FROM flashcards WHERE next_review_date <= ?
     """
     due_users_rows = db.execute(due_users_query, (today_date, today_date)).fetchall()
-    due_user_ids = {str(row[0]) for row in due_users_rows}
+    due_user_ids = {str(row["user_id"] if "user_id" in row else row[0]) for row in due_users_rows}
 
     for cfg in configs:
         user_id = str(cfg["user_id"])

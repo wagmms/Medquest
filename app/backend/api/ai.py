@@ -27,7 +27,7 @@ def _extract_pulo_do_gato(explanation: str) -> str:
     # Captura a seção inteira do Pulo do Gato até o próximo cabeçalho estruturado ou fim do texto,
     # garantindo máxima relevância clínica e profundidade médica sem truncamento artificial (Guardrail 5).
     match = re.search(
-        r'\*\*Pulo do Gato\*\*:\s*([\s\S]*?)(?=(?:\n\s*\n\s*(?:\*\*[A-ZÀ-Úa-zà-ú0-9#]|###)|\Z))',
+        r'(?:\*\*Pulo[\s_]+do[\s_]+Gato:?\*\*|\*\*Pulo[\s_]+do[\s_]+Gato\*\*|💡\s*\*\*Pulo do Gato\*\*|Pulo[\s_]+do[\s_]+Gato):?\s*([\s\S]*?)(?=(?:\n\s*\n\s*(?:#{1,6}\s+|\*\*[A-ZÀ-Úa-zà-ú0-9#]|[-*+]\s+\*\*)|(?:\n\s*(?:#{1,6}\s+|\*\*[A-ZÀ-Úa-zà-ú0-9#]))|\Z))',
         explanation,
         re.IGNORECASE
     )
@@ -35,7 +35,11 @@ def _extract_pulo_do_gato(explanation: str) -> str:
         pulo = match.group(1).strip()
         if pulo:
             return pulo
-    match_fallback = re.search(r'\*\*Pulo do Gato\*\*:\s*([^\n\r]+)', explanation, re.IGNORECASE)
+    match_fallback = re.search(
+        r'(?:\*\*Pulo[\s_]+do[\s_]+Gato:?\*\*|\*\*Pulo[\s_]+do[\s_]+Gato\*\*|💡\s*\*\*Pulo do Gato\*\*|Pulo[\s_]+do[\s_]+Gato):?\s*([^\n\r]+)',
+        explanation,
+        re.IGNORECASE
+    )
     if match_fallback:
         return match_fallback.group(1).strip()
     return ""
@@ -172,7 +176,7 @@ def generate_cloze_flashcard(
 ) -> dict:
     """
     Gera um flashcard no formato Cloze de alta fidelidade médica.
-    Se AI (Gemini ou Groq) estiver disponível, sintetiza com IA; caso contrário, executa o extrator determinístico.
+    Se AI (Gemini) estiver disponível, sintetiza com IA; caso contrário, executa o extrator determinístico.
     """
     correct_clean = _clean_option_text(correct_text)
     wrong_clean = _clean_option_text(wrong_text)
@@ -292,7 +296,7 @@ Responda EXCLUSIVAMENTE em JSON válido:
 
 def expand_search_query(query: str) -> list[str]:
     """
-    Usa Gemini (ou fallback Groq) para expandir a pesquisa em 3 a 7 sinônimos ou termos relacionados.
+    Usa Gemini para expandir a pesquisa em 3 a 7 sinônimos ou termos relacionados.
     Retorna uma lista de strings. Se a IA falhar ou não houver chave, retorna apenas a query original.
     Resultados são cacheados por 5 minutos para evitar chamadas redundantes à IA.
     """
@@ -391,7 +395,7 @@ INSTRUÇÕES PEDAGÓGICAS DO PRECEPTOR:
     try:
         preceptor_order = [
             p.strip().lower()
-            for p in os.environ.get("AI_PRECEPTOR_PROVIDER_ORDER", "openrouter,gemini,groq,ollama").split(",")
+            for p in os.environ.get("AI_PRECEPTOR_PROVIDER_ORDER", "gemini").split(",")
             if p.strip()
         ]
         resp = generate_content_with_fallback(

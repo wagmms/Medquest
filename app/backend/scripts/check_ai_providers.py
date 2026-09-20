@@ -16,7 +16,7 @@ def main() -> None:
     try:
         os.environ["AI_GLOBAL_TIMEOUT_BUDGET"] = "6"
         os.environ["AI_PROVIDER_TIMEOUT"] = "5"
-        for provider in ("gemini", "groq", "openrouter", "ollama"):
+        for provider in ("gemini",):
             os.environ["AI_PROVIDER_ORDER"] = provider
             try:
                 result = generate_content_with_fallback("Responda apenas: OK", timeout=5)

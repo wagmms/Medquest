@@ -3,7 +3,6 @@ flask-cors
 pydantic
 pdfplumber
 pymupdf
-groq
 python-dotenv
 libsql==0.1.11
 PyJWT>=2.8

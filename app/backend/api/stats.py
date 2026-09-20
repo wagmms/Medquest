@@ -513,7 +513,7 @@ def recommendations():
 
 @bp.route("/stats/learning-profile")
 def learning_profile():
-    return jsonify(build_learning_profile(get_db(), g.user_id))
+    return jsonify(build_learning_profile(get_db(), g.user_id, subtema=request.args.get("subtema")))
 
 
 
@@ -920,6 +920,7 @@ def reset_stats():
             db.execute("DELETE FROM flashcards WHERE user_id = ?", (g.user_id,))
             db.execute("DELETE FROM planner_progress WHERE user_id = ?", (g.user_id,))
             db.execute("DELETE FROM planner_topic_progress WHERE user_id = ?", (g.user_id,))
+            db.execute("DELETE FROM theme_progress WHERE user_id = ?", (g.user_id,))
             db.execute("DELETE FROM favorites WHERE user_id = ?", (g.user_id,))
             db.execute("DELETE FROM planner_config WHERE user_id = ?", (g.user_id,))
     except Exception:

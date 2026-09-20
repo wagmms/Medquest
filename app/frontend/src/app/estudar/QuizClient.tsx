@@ -437,7 +437,89 @@ export function QuizClient({
     toast("Sessão anterior descartada.", { icon: "🗑️" });
   }, []);
 
+  const currentDetailRef = useRef(currentDetail);
+  const attemptResultRef = useRef(attemptResult);
+  useEffect(() => {
+    currentDetailRef.current = currentDetail;
+    attemptResultRef.current = attemptResult;
+  }, [currentDetail, attemptResult]);
+
+  const ensureCurrentQuestionReviewed = useCallback(() => {
+    const cur = currentDetailRef.current;
+    const att = attemptResultRef.current;
+    if (cur && att && !att.next_review_date) {
+      const qid = cur.id;
+      const explicitCorr = att.is_correct;
+      if (explicitCorr !== null && explicitCorr !== undefined) {
+        api.questions.reviewFSRS(qid, "duvida", explicitCorr).then(res => {
+          setSessionAnswers(prev => {
+            const current = prev[qid];
+            if (!current) return prev;
+            return {
+              ...prev,
+              [qid]: {
+                ...current,
+                result: current.result ? { ...current.result, next_review_date: res.next_review_date } : undefined
+              }
+            };
+          });
+        }).catch(() => {});
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      const cur = currentDetailRef.current;
+      const att = attemptResultRef.current;
+      if (cur && att && !att.next_review_date && att.is_correct !== null && att.is_correct !== undefined) {
+        api.questions.reviewFSRS(cur.id, "duvida", att.is_correct).catch(() => {});
+      }
+    };
+  }, []);
+
+  const [showFinishModal, setShowFinishModal] = useState(false);
+
+  const confirmFinish = useCallback(() => {
+    ensureCurrentQuestionReviewed();
+    setShowFinishModal(false);
+    setState("FINISHED");
+  }, [ensureCurrentQuestionReviewed]);
+
+  const handleRequestFinish = useCallback(() => {
+    const answeredInSession = Object.values(sessionAnswers).filter(a => a.result || a.isOffline).length;
+    const currentHasResult = attemptResult !== null;
+    const effectiveAnswered = currentHasResult && currentDetail && !sessionAnswers[currentDetail.id]?.result 
+      ? answeredInSession + 1 
+      : answeredInSession;
+
+    if (effectiveAnswered === 0) {
+      toast("Você ainda não respondeu nenhuma questão. Use '← Voltar' para retornar aos filtros.", { icon: "ℹ️" });
+      return;
+    }
+
+    if (effectiveAnswered >= queue.length) {
+      confirmFinish();
+      return;
+    }
+
+    setShowFinishModal(true);
+  }, [sessionAnswers, attemptResult, currentDetail, queue.length, confirmFinish]);
+
+  useEffect(() => {
+    if (!showFinishModal) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setShowFinishModal(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [showFinishModal]);
+
   const handleBackToFilters = useCallback(() => {
+    setShowFinishModal(false);
+    ensureCurrentQuestionReviewed();
     removeLearningSession("quiz");
     if (typeof window !== "undefined") {
       sessionStorage.removeItem("medquest_active_quiz");
@@ -456,7 +538,7 @@ export function QuizClient({
     setHasSavedState(false);
     setSavedSessionData(null);
     setState("FILTERS");
-  }, []);
+  }, [ensureCurrentQuestionReviewed]);
 
   // Se os filtros mudarem posteriormente via navegação de rota cliente (ex: CommandPalette / Sidebar)
   const prevFiltersJson = useRef(JSON.stringify(initialFilters));
@@ -760,17 +842,34 @@ export function QuizClient({
   };
 
   const handleGenerateAllWrongFlashcards = async () => {
-    const wrongItems = Object.entries(sessionAnswers)
-      .filter(([, ans]) => ans.result && !ans.result.is_correct)
-      .map(([qid, ans]) => ({ question_id: Number(qid), wrong_letter: ans.letter || "A" }));
+    const seen = new Set<number>();
+    const wrongItems: Array<{ question_id: number; wrong_letter: string }> = [];
+    for (const [qidStr, ans] of Object.entries(sessionAnswers)) {
+      const qid = Number(qidStr);
+      if (ans.result && !ans.result.is_correct && !seen.has(qid)) {
+        seen.add(qid);
+        const rawLetter = (ans.letter || "A").trim().slice(0, 1).toUpperCase();
+        const wrong_letter = /^[A-E]$/.test(rawLetter) ? rawLetter : "A";
+        wrongItems.push({ question_id: qid, wrong_letter });
+      }
+    }
 
-    if (wrongItems.length === 0) return;
+    if (wrongItems.length === 0) {
+      toast("Nenhuma questão errada encontrada nesta sessão.", { icon: "ℹ️" });
+      return;
+    }
+
     setGeneratingBatchFlashcards(true);
     try {
       const res = await api.flashcards.generateBatch(wrongItems);
       setBatchFlashcardsResult({ count: res.count });
-      toast.success(`${res.count} flashcard(s) criado(s) e adicionado(s) à Revisão Ativa!`);
-    } catch {
+      if (res.count > 0) {
+        toast.success(`${res.count} flashcard(s) criado(s) e adicionado(s) à Revisão Ativa!`);
+      } else {
+        toast("Nenhum novo flashcard criado (já cadastrados).", { icon: "ℹ️" });
+      }
+    } catch (e) {
+      console.error("Erro ao gerar flashcards em lote:", e);
       toast.error("Erro ao gerar flashcards em lote.");
     } finally {
       setGeneratingBatchFlashcards(false);
@@ -796,13 +895,14 @@ export function QuizClient({
   };
 
   const nextQuestion = useCallback(() => {
+    ensureCurrentQuestionReviewed();
     if (currentIndex + 1 < queue.length) {
       setCurrentIndex(prev => prev + 1);
       loadQuestionDetail(queue[currentIndex + 1].id);
     } else {
       setState("FINISHED");
     }
-  }, [currentIndex, queue, loadQuestionDetail]);
+  }, [currentIndex, queue, loadQuestionDetail, ensureCurrentQuestionReviewed]);
 
   const handleReviewFSRS = useCallback(async (conf: string, explicitIsCorrect?: boolean) => {
     if (!currentDetail || reviewLockRef.current) return;
@@ -818,7 +918,12 @@ export function QuizClient({
 
     // Optimistic UI updates - Advance immediately
     reviewLockRef.current = false;
-    nextQuestion();
+    if (currentIndex + 1 < queue.length) {
+      setCurrentIndex(prev => prev + 1);
+      loadQuestionDetail(queue[currentIndex + 1].id);
+    } else {
+      setState("FINISHED");
+    }
 
     // Call API in background
     try {
@@ -847,14 +952,15 @@ export function QuizClient({
     } catch {
       toast.error("Erro ao salvar revisão (FSRS) em background.");
     }
-  }, [currentDetail, attemptResult, selectedLetter, userWrittenAnswer, nextQuestion]);
+  }, [currentDetail, attemptResult, selectedLetter, userWrittenAnswer, currentIndex, queue, loadQuestionDetail]);
 
   const prevQuestion = useCallback(() => {
+    ensureCurrentQuestionReviewed();
     if (currentIndex > 0) {
       setCurrentIndex(prev => prev - 1);
       loadQuestionDetail(queue[currentIndex - 1].id);
     }
-  }, [currentIndex, queue, loadQuestionDetail]);
+  }, [currentIndex, queue, loadQuestionDetail, ensureCurrentQuestionReviewed]);
 
   const navigateQuestion = useCallback((direction: "next" | "previous") => {
     if (direction === "previous") {
@@ -1049,7 +1155,18 @@ export function QuizClient({
           </div>
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <button 
+            type="button"
+            onClick={handleRequestFinish}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 rounded-lg transition-colors text-xs font-bold cursor-pointer shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            title="Finalizar sessão agora e ver seu desempenho"
+          >
+            <CheckCircle2 size={15} />
+            <span className="hidden sm:inline">Finalizar Sessão</span>
+            <span className="sm:hidden">Finalizar</span>
+          </button>
+
           <button 
             onClick={toggleZenMode}
             className="flex items-center gap-2 px-3 py-1.5 bg-muted hover:bg-muted/80 text-muted-foreground rounded-lg transition-colors border border-border text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 focus-visible:ring-offset-background"
@@ -1466,13 +1583,29 @@ export function QuizClient({
                       <><span className="material-symbols-outlined text-primary text-[20px]">fact_check</span> <span className="text-foreground">Padrão de Resposta Oficial</span></>
                     )}
                   </div>
-                  {attemptResult.is_correct !== null && attemptResult.next_review_date && (
-                    <button
-                      onClick={nextQuestion}
-                      className="flex items-center gap-2 bg-background border border-border hover:bg-muted font-bold px-4 py-2 rounded-md transition-colors text-sm cursor-pointer"
-                    >
-                      Próxima <ArrowRight size={16} />
-                    </button>
+                  {attemptResult.is_correct !== null && (
+                    <div className="flex items-center gap-2">
+                      {currentIndex < queue.length - 1 && (
+                        <button
+                          type="button"
+                          onClick={handleRequestFinish}
+                          className="flex items-center gap-1.5 bg-background border border-border hover:bg-muted font-medium text-muted-foreground hover:text-foreground px-3 py-2 rounded-md transition-colors text-xs cursor-pointer"
+                          title="Finalizar sessão agora"
+                        >
+                          <CheckCircle2 size={14} /> Finalizar
+                        </button>
+                      )}
+                      <button
+                        onClick={nextQuestion}
+                        className="flex items-center gap-2 bg-background border border-border hover:bg-muted font-bold px-4 py-2 rounded-md transition-colors text-sm cursor-pointer"
+                      >
+                        {currentIndex === queue.length - 1 ? (
+                          <>Finalizar <CheckCircle2 size={16} className="text-success" /></>
+                        ) : (
+                          <>Próxima <ArrowRight size={16} /></>
+                        )}
+                      </button>
+                    </div>
                   )}
                 </div>
                 
@@ -1681,22 +1814,22 @@ export function QuizClient({
                               onClick={() => handleReviewFSRS("certeza", true)}
                               className="w-full text-left bg-card hover:bg-success/15 border border-success/30 hover:border-success text-foreground font-semibold px-3.5 py-2.5 rounded-lg text-xs flex items-center justify-between transition-colors shadow-sm cursor-pointer"
                             >
-                              <span>🟢 Tinha Certeza</span>
-                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">Fácil • Atalho: 3</span>
+                              <span>🎯 Domino o Conteúdo</span>
+                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">+76 dias • Atalho: 3</span>
                             </button>
                             <button
                               onClick={() => handleReviewFSRS("duvida", true)}
                               className="w-full text-left bg-card hover:bg-success/15 border border-success/30 hover:border-success text-foreground font-semibold px-3.5 py-2.5 rounded-lg text-xs flex items-center justify-between transition-colors shadow-sm cursor-pointer"
                             >
-                              <span>🟡 Pensei um Pouco</span>
-                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">Bom tempo • Atalho: 2</span>
+                              <span>👍 Acertei com Esforço</span>
+                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">+34 dias • Atalho: 2</span>
                             </button>
                             <button
                               onClick={() => handleReviewFSRS("chutei", true)}
                               className="w-full text-left bg-card hover:bg-success/15 border border-success/30 hover:border-success text-foreground font-semibold px-3.5 py-2.5 rounded-lg text-xs flex items-center justify-between transition-colors shadow-sm cursor-pointer"
                             >
-                              <span>🔴 Acertei no Chute</span>
-                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">Difícil • Atalho: 1</span>
+                              <span>🎲 Chutei / Inseguro</span>
+                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">+15 dias • Atalho: 1</span>
                             </button>
                           </div>
                         </div>
@@ -1708,25 +1841,14 @@ export function QuizClient({
                           </div>
                           <div className="flex flex-col gap-2">
                             <button
-                              onClick={() => handleReviewFSRS("chutei", false)}
-                              className="w-full text-left bg-card hover:bg-destructive/15 border border-destructive/30 hover:border-destructive text-foreground font-semibold px-3.5 py-2.5 rounded-lg text-xs flex items-center justify-between transition-colors shadow-sm cursor-pointer"
-                            >
-                              <span>🔴 Errei no Chute / Não sabia</span>
-                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">Volta amanhã</span>
-                            </button>
-                            <button
                               onClick={() => handleReviewFSRS("duvida", false)}
                               className="w-full text-left bg-card hover:bg-destructive/15 border border-destructive/30 hover:border-destructive text-foreground font-semibold px-3.5 py-2.5 rounded-lg text-xs flex items-center justify-between transition-colors shadow-sm cursor-pointer"
                             >
-                              <span>🟡 Fiquei em Dúvida</span>
-                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">Volta em breve • Atalho: E</span>
-                            </button>
-                            <button
-                              onClick={() => handleReviewFSRS("certeza", false)}
-                              className="w-full text-left bg-card hover:bg-destructive/15 border border-destructive/30 hover:border-destructive text-foreground font-semibold px-3.5 py-2.5 rounded-lg text-xs flex items-center justify-between transition-colors shadow-sm cursor-pointer"
-                            >
-                              <span>🟢 Errei com Certeza</span>
-                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">Preciso fixar</span>
+                              <span className="flex items-center gap-1.5">
+                                <RotateCcw size={14} />
+                                <span>Revisar na Próxima Semana</span>
+                              </span>
+                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">em 7 dias • Atalho: E</span>
                             </button>
                           </div>
                         </div>
@@ -1748,45 +1870,60 @@ export function QuizClient({
                       )}
                     </div>
                   ) : (
-                    <div className="mt-8 pt-4 border-t border-border flex flex-col gap-4">
-                      <span className="text-sm font-bold text-foreground">
-                        {attemptResult.is_correct 
-                          ? "Como foi lembrar dessa resposta? (FSRS)" 
-                          : "Qual era o seu grau de certeza antes de ver o resultado? (FSRS)"}
-                      </span>
-                      <div className="flex flex-col sm:flex-row gap-3">
-                        {attemptResult.is_correct ? (
-                          <>
-                            <button title="O algoritmo agendará a revisão desta questão para um intervalo curto (geralmente no dia seguinte) já que você não dominava o conceito original." onClick={() => handleReviewFSRS("chutei")} className="flex-1 bg-destructive/10 text-destructive hover:bg-destructive/20 font-bold py-3 rounded-lg transition-colors text-sm flex flex-col items-center justify-center gap-1 cursor-pointer">
-                              <span>🔴 Acertei no Chute</span>
-                              <span className="text-[10px] font-normal opacity-80">Volta amanhã (Difícil) • Atalho: 1</span>
-                            </button>
-                            <button title="O algoritmo agendará a revisão com um multiplicador moderado de dias, reforçando a memória sem sobrecarregar sua fila." onClick={() => handleReviewFSRS("duvida")} className="flex-1 bg-warning/10 text-warning hover:bg-warning/20 font-bold py-3 rounded-lg transition-colors text-sm border-2 border-warning/50 shadow-sm flex flex-col items-center justify-center gap-1 cursor-pointer">
-                              <span>🟡 Pensei um Pouco</span>
-                              <span className="text-[10px] font-normal opacity-80">Bom tempo • Atalho: 2 / Enter</span>
-                            </button>
-                            <button title="O algoritmo entenderá que você domina este assunto e agendará a revisão para o mais longe possível (maior estabilidade de memória)." onClick={() => handleReviewFSRS("certeza")} className="flex-1 bg-success/10 text-success hover:bg-success/20 font-bold py-3 rounded-lg transition-colors text-sm flex flex-col items-center justify-center gap-1 cursor-pointer">
-                              <span>🟢 Tinha Certeza</span>
-                              <span className="text-[10px] font-normal opacity-80">Revisa mais tarde (Fácil) • Atalho: 3</span>
-                            </button>
-                          </>
-                        ) : (
-                          <>
-                            <button title="Você não sabia a resposta e foi pego de surpresa. A revisão ocorrerá o mais breve possível (amanhã)." onClick={() => handleReviewFSRS("chutei")} className="flex-1 bg-destructive/10 text-destructive hover:bg-destructive/20 font-bold py-3 rounded-lg transition-colors text-sm flex flex-col items-center justify-center gap-1 cursor-pointer">
-                              <span>🔴 Errei no Chute</span>
-                              <span className="text-[10px] font-normal opacity-80">Volta amanhã • Atalho: 1</span>
-                            </button>
-                            <button title="O algoritmo entenderá que você cometeu um erro que exige reforço imediato e agendará a revisão mais próxima para consertar a falha de memória." onClick={() => handleReviewFSRS("duvida")} className="flex-1 bg-warning/10 text-warning hover:bg-warning/20 font-bold py-3 rounded-lg transition-colors text-sm border-2 border-warning/50 shadow-sm flex flex-col items-center justify-center gap-1 cursor-pointer">
-                              <span>🟡 Fiquei em Dúvida</span>
-                              <span className="text-[10px] font-normal opacity-80">Bom tempo • Atalho: 2 / Enter</span>
-                            </button>
-                            <button title="Você sentiu firmeza, mas se confundiu numa 'pegadinha'. O algoritmo agendará a revisão com certa urgência, mas espaçada o suficiente para testar se a confusão persiste." onClick={() => handleReviewFSRS("certeza")} className="flex-1 bg-success/10 text-success hover:bg-success/20 font-bold py-3 rounded-lg transition-colors text-sm flex flex-col items-center justify-center gap-1 cursor-pointer">
-                              <span>🟢 Errei com Certeza</span>
-                              <span className="text-[10px] font-normal opacity-80">Preciso fixar • Atalho: 3</span>
-                            </button>
-                          </>
-                        )}
+                    <div className="mt-8 pt-4 border-t border-border flex flex-col gap-3">
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-sm font-bold text-foreground">
+                          {attemptResult.is_correct 
+                            ? "Como foi resolver essa questão?" 
+                            : "Revisão agendada (FSRS):"}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          {attemptResult.is_correct
+                            ? "Classifique seu nível de domínio para calibrar a repetição espaçada."
+                            : "Questões erradas retornam na próxima semana para fixar o conceito sem viés de gabarito."}
+                        </span>
                       </div>
+                      
+                      {attemptResult.is_correct ? (
+                        <div className="flex flex-col sm:flex-row gap-3">
+                          <button
+                            title="Acertei no chute ou com grande insegurança. O algoritmo agendará um reforço em cerca de 2 semanas."
+                            onClick={() => handleReviewFSRS("chutei")}
+                            className="flex-1 bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30 font-bold py-3 px-3 rounded-xl transition-colors text-sm flex flex-col items-center justify-center gap-1 cursor-pointer"
+                          >
+                            <span className="flex items-center gap-1.5">🎲 Chutei / Inseguro</span>
+                            <span className="text-[10px] font-normal opacity-85">+15 dias • Atalho: 1</span>
+                          </button>
+                          <button
+                            title="Raciocínio correto, mas exigiu reflexão ou fiquei em dúvida. O algoritmo espaçará em cerca de 1 mês."
+                            onClick={() => handleReviewFSRS("duvida")}
+                            className="flex-1 bg-primary/10 hover:bg-primary/20 text-primary border-2 border-primary/50 shadow-sm font-bold py-3 px-3 rounded-xl transition-colors text-sm flex flex-col items-center justify-center gap-1 cursor-pointer"
+                          >
+                            <span className="flex items-center gap-1.5">👍 Acertei com Esforço</span>
+                            <span className="text-[10px] font-normal opacity-85">+34 dias • Atalho: 2 / Enter</span>
+                          </button>
+                          <button
+                            title="Questão dominada com total convicção e clareza. Intervalo estendido para ~2,5 meses."
+                            onClick={() => handleReviewFSRS("certeza")}
+                            className="flex-1 bg-success/10 hover:bg-success/20 text-success border border-success/30 font-bold py-3 px-3 rounded-xl transition-colors text-sm flex flex-col items-center justify-center gap-1 cursor-pointer"
+                          >
+                            <span className="flex items-center gap-1.5">🎯 Domino o Conteúdo</span>
+                            <span className="text-[10px] font-normal opacity-85">+76 dias • Atalho: 3</span>
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col sm:flex-row gap-3">
+                          <button
+                            title="O algoritmo agendará esta questão para a próxima semana (7 dias), tempo ideal para esquecer a memória do gabarito e exercitar novamente o raciocínio clínico."
+                            onClick={() => handleReviewFSRS("duvida")}
+                            className="flex-1 bg-destructive/10 hover:bg-destructive/20 text-destructive border-2 border-destructive/40 font-bold py-3.5 px-4 rounded-xl transition-colors text-sm flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                          >
+                            <RotateCcw size={18} />
+                            <span>Revisar na Próxima Semana</span>
+                            <span className="text-xs font-normal opacity-80 ml-2 py-0.5 px-2 bg-destructive/15 rounded-md">em 7 dias • Pressione Enter</span>
+                          </button>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -1815,6 +1952,56 @@ export function QuizClient({
             toast.success("Tema da questão atualizado com sucesso!");
           }}
         />
+      )}
+
+      {showFinishModal && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
+          onClick={() => setShowFinishModal(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="finish-modal-title"
+        >
+          <div 
+            className="bg-card border border-border shadow-2xl rounded-2xl p-6 max-w-md w-full flex flex-col gap-4 animate-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                <CheckCircle2 size={22} />
+              </div>
+              <div>
+                <h3 id="finish-modal-title" className="text-lg font-bold text-foreground">Finalizar Sessão de Estudos?</h3>
+                <p className="text-xs text-muted-foreground">Você pode encerrar a sessão a qualquer momento.</p>
+              </div>
+            </div>
+
+            <div className="bg-muted/40 rounded-xl p-3.5 border border-border/60 text-sm text-foreground/90 leading-relaxed">
+              Você respondeu <strong className="text-foreground">{completedCount}</strong> de <strong className="text-foreground">{queue.length}</strong> questões. Restam {queue.length - completedCount} não respondidas.
+              <p className="mt-2 text-xs text-muted-foreground">
+                Todas as questões já respondidas terão suas revisões (FSRS) preservadas. Ao finalizar, você verá seu relatório de acertos e poderá gerar flashcards dos seus erros.
+              </p>
+            </div>
+
+            <div className="flex items-center justify-end gap-3 pt-2">
+              <button
+                type="button"
+                onClick={() => setShowFinishModal(false)}
+                className="px-4 py-2 rounded-xl text-sm font-semibold text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+              >
+                Continuar Respondendo
+              </button>
+              <button
+                type="button"
+                onClick={confirmFinish}
+                className="px-4 py-2 rounded-xl text-sm font-bold bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm transition-all cursor-pointer flex items-center gap-2"
+              >
+                <CheckCircle2 size={16} />
+                Sim, Finalizar
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

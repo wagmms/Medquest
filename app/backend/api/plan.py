@@ -3,6 +3,7 @@ from datetime import datetime, timedelta, timezone
 
 from flask import Blueprint, Response, g, jsonify, request
 
+from .adaptive import get_adaptive_signals_by_topic
 # planner service — geração do plano anual por pesos históricos USP
 from .services.planner import generate_annual_plan
 
@@ -205,10 +206,12 @@ def generate_plan():
     
     db = get_db()
     rows, answered_map = _fetch_plan_data(db, g.user_id)
+    adaptive_signals = get_adaptive_signals_by_topic(db, g.user_id)
     
     plan = generate_annual_plan(
         rows, start_date, data.exam_date, data.hours_per_week, 
-        intensive=data.intensive, user_progress=answered_map
+        intensive=data.intensive, user_progress=answered_map,
+        adaptive_signals=adaptive_signals
     )
     return jsonify(plan)
 
@@ -280,10 +283,12 @@ def _get_base_url():
 def _generate_calendar_ics_content(db, user_id):
     start_date, exam_date, days, hours_per_week = _get_planner_config(db, user_id)
     rows, answered_map = _fetch_plan_data(db, user_id)
+    adaptive_signals = get_adaptive_signals_by_topic(db, user_id)
 
     plan_result = generate_annual_plan(
         rows, start_date, exam_date, hours_per_week, 
-        intensive=False, user_progress=answered_map
+        intensive=False, user_progress=answered_map,
+        adaptive_signals=adaptive_signals
     )
 
     plan_weeks = plan_result.get("plan", [])

@@ -128,12 +128,15 @@ export interface ErrorNotebookSummary {
 }
 
 export interface LearningProfileTopic {
+  answered?: number;
   topic: string;
   area: string;
   available: number;
   attempts: number;
   correct: number;
   accuracy: number | null;
+  diag_accuracy: number | null;
+  prac_accuracy: number | null;
   coverage: number;
   confidence: number;
   retrievability: number | null;
@@ -276,6 +279,8 @@ export interface PlannerTopic {
   estimated_hours: number;
   theory_source: "curriculum" | "pedagogical_estimate";
   course_module: string | null;
+  priority?: number;
+  priority_reasons?: string[];
 }
 
 export interface PlannerWeek {
@@ -549,4 +554,13 @@ export interface InstitutionRadarResponse {
     forming: string;
     reliable: string;
   };
+}
+
+export interface ThemeProgress {
+  subtema: string;
+  theory_completed: boolean;
+  study_path: "essential" | "complete";
+  updated_at: string | null;
+  flashcards_total: number;
+  flashcards_due: number;
 }

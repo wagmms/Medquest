@@ -76,12 +76,12 @@ function parseExplanation(raw: string, isDiscursive?: boolean): { parsed: Parsed
     }
   }
 
-  // Helper to find header positions
-  const distMatch = clean.match(/(?:\n|^)\s*\*\*(?:Análise dos Distratores|Distratores|Alternativas Incorretas|Análise das Alternativas Incorretas|Alternativas Verdadeiras)\*\*:/i);
-  const corrMatch = clean.match(/(?:\n|^)\s*\*\*(?:Por que a Letra [A-E] [eé] a Correta\??|Por que a Letra [A-E] [eé] a Incorreta\??|Alternativa Correta(?:\s*\([A-E]\))?)\*\*:/i);
-  const padraoMatch = clean.match(/(?:\n|^)\s*\*\*(?:RESPOSTA OBJETIVA(?:[^\*:]*)?|Padrão de Resposta(?: Esperado| Oficial)?|Resposta Esperada|Critérios de Correção)\*\*:/i);
-  const racMatch = clean.match(/(?:\n|^)\s*\*\*(?:Raciocínio Clínico(?:[^\*:]*)?|Fundamentação Teórica|Discussão do Caso|Comentário do Caso|Resolução Detalhada(?:[^\*:]*)?)\*\*:/i);
-  const puloMatch = clean.match(/(?:\n|^)\s*(?:\*\*Pulo do Gato\*\*|\*\*Pulo_do_Gato\*\*|Pulo do Gato):\s*/i);
+  // Helper to find header positions (resilient to colon inside/outside asterisks, markdown headers, etc.)
+  const distMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:Análise d[oa]s Distratores(?:[^\n*:]*)?|Distratores|Alternativas Incorretas|Análise das Alternativas Incorretas|Análise das Alternativas Verdadeiras|Alternativas Verdadeiras)\*{0,2}:?\s*/i);
+  const corrMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:Por que a Letra [^\n*:]+|Alternativa Correta(?:\s*\([A-E]\))?|Resposta Correta[^\n*:]*)\*{0,2}:?\s*/i);
+  const padraoMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:RESPOSTA OBJETIVA(?:[^\n*:]*)?|Padrão de Resposta(?:[^\n*:]*)?|Resposta Esperada|Critérios de Correção)\*{0,2}:?\s*/i);
+  const racMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:Raciocínio Clínico(?:[^\n*:]*)?|Fundamentação Teórica|Discussão do Caso(?:[^\n*:]*)?|Comentário do Caso|Resolução Detalhada(?:[^\n*:]*)?)\*{0,2}:?\s*/i);
+  const puloMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?(?:💡\s*)?(?:\*\*Pulo[\s_]+do[\s_]+Gato:?\*\*|\*\*Pulo[\s_]+do[\s_]+Gato\*\*|Pulo[\s_]+do[\s_]+Gato):?\s*/i);
 
   // 2. Extract Distratores (Only for Multiple Choice)
   if (!isDiscursiveDetected && distMatch && distMatch.index !== undefined) {
@@ -92,11 +92,25 @@ function parseExplanation(raw: string, isDiscursive?: boolean): { parsed: Parsed
 
       const distratoresList: Array<{ letter: string; text: string }> = [];
       for (const item of distratorLines) {
-        const matchItem = item.match(/^(?:[-•*]\s*)?(?:\*\*)?Letra\s+([A-E](?:\s+e\s+[A-E])?)(?:\*\*)?(?:\s*\([^)]+\))?:\s*([\s\S]*)$/i);
-        if (matchItem) {
+        const m1 = item.match(/^(?:[-•*]\s*)?(?:\*\*)?Letra\s+([A-E](?:\s*(?:,|e)\s*[A-E])?)(?:\*\*)?(?:\s*\([^)]+\))?:?\s*([\s\S]*)$/i);
+        const m2 = item.match(/^(?:[-•*]\s*)?(?:\*\*)?Letra\s+([A-E](?:\s*(?:,|e)\s*[A-E])?)(?:\s*(\([^)]+\)))\*\*?:?\s*([\s\S]*)$/i);
+        const m3 = item.match(/^(?:[-•*]\s*)?(?:\*\*)?Letra\s+([A-E](?:\s*(?:,|e)\s*[A-E])?)\*\*?:?\s*([\s\S]*)$/i);
+
+        if (m1) {
           distratoresList.push({
-            letter: matchItem[1].trim(),
-            text: matchItem[2].trim()
+            letter: m1[1].trim(),
+            text: m1[2].trim()
+          });
+        } else if (m2) {
+          const prefix = m2[2] ? `**${m2[2]}**: ` : "";
+          distratoresList.push({
+            letter: m2[1].trim(),
+            text: prefix + m2[3].trim()
+          });
+        } else if (m3) {
+          distratoresList.push({
+            letter: m3[1].trim(),
+            text: m3[2].trim()
           });
         } else if (item.trim() && !/^[-•*\s]*Revise os critérios/i.test(item.trim())) {
           distratoresList.push({
@@ -117,8 +131,8 @@ function parseExplanation(raw: string, isDiscursive?: boolean): { parsed: Parsed
     const rawCorr = clean.slice(corrMatch.index + corrMatch[0].length, endIdx).trim();
     const isDummyCorr = /Anote sua principal hipótese|Questão dissertativa|Alternativa indicada no gabarito oficial/i.test(rawCorr);
     if (!isDummyCorr) {
-      const letterMatch = corrMatch[0].match(/(?:Letra|\()\s*([A-E])\b/i) || corrMatch[0].match(/Alternativa\s+Correta\s*([A-E])\b/i);
-      const gabLetter = parsed.gabarito?.match(/(?:Letra|\b)\s*([A-E])\b/i)?.[1]?.toUpperCase();
+      const letterMatch = corrMatch[0].match(/(?:Letra|\()\s*([A-E](?:\s*(?:,|e)\s*[A-E])*)\b/i) || corrMatch[0].match(/Alternativa\s+Correta\s*([A-E](?:\s*(?:,|e)\s*[A-E])*)\b/i);
+      const gabLetter = parsed.gabarito?.match(/(?:Letra|\b)\s*([A-E](?:\s*(?:,|e)\s*[A-E])*)\b/i)?.[1]?.toUpperCase();
       const parsedLetter = letterMatch ? letterMatch[1].toUpperCase() : gabLetter;
       parsed.alternativaCorreta = {
         letter: parsedLetter,

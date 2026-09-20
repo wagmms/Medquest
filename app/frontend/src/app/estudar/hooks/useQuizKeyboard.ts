@@ -79,11 +79,18 @@ export function useQuizKeyboard({
           if (key === "3" || key === "A") { e.preventDefault(); handleReviewFSRS("certeza", true); }
           else if (key === "2" || key === "ENTER" || key === " ") { e.preventDefault(); handleReviewFSRS("duvida", true); }
           else if (key === "1") { e.preventDefault(); handleReviewFSRS("chutei", true); }
-          else if (key === "E") { e.preventDefault(); handleReviewFSRS("duvida", false); }
+          else if (key === "E" || key === "0") { e.preventDefault(); handleReviewFSRS("duvida", false); }
         } else if (!attemptResult.next_review_date) {
-          if (key === "1") handleReviewFSRS("chutei");
-          else if (key === "2" || key === "ENTER" || key === " ") { e.preventDefault(); handleReviewFSRS("duvida"); }
-          else if (key === "3") handleReviewFSRS("certeza");
+          if (attemptResult.is_correct) {
+            if (key === "1") handleReviewFSRS("chutei");
+            else if (key === "2" || key === "ENTER" || key === " ") { e.preventDefault(); handleReviewFSRS("duvida"); }
+            else if (key === "3") handleReviewFSRS("certeza");
+          } else {
+            if (key === "ENTER" || key === " " || key === "1" || key === "2" || key === "3") {
+              e.preventDefault();
+              handleReviewFSRS("duvida");
+            }
+          }
         } else {
           if (key === "ENTER" || key === " " || key === "3" || key === "2" || key === "1") {
             e.preventDefault();

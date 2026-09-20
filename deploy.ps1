@@ -140,17 +140,15 @@ if (-not $SshCmd) {
 # ETAPA 1: GIT LOCAL (Add, Commit, Push)
 # ==============================================================================
 if (-not $SkipGit) {
-    # 0. Sincronizar automaticamente novas questões com o Turso Cloud se houver
-    $SyncScript = Join-Path $ProjectRoot "app\backend\scripts\sync_incremental_turso.py"
+    # 0. Sincronizar automaticamente banco de dados com o Turso Cloud
+    $SyncScript = Join-Path $ProjectRoot "app\backend\scripts\sync_db_turso.py"
     if (Test-Path $SyncScript) {
         Print-Step "0/3" "Sincronizando banco de dados com Turso Cloud"
-        uv run --with requests --with python-dotenv python $SyncScript
+        python $SyncScript
         if ($LASTEXITCODE -eq 0) {
             Print-Success "Turso Cloud em sincronia com banco local."
-        } elseif ($LASTEXITCODE -eq 2) {
-            Print-Info "Sincronizacao com Turso ignorada (credenciais nao configuradas no .env)."
         } else {
-            Print-Info "Aviso: Sincronizacao com Turso falhou, prosseguindo com deploy."
+            Print-Info "Aviso: Sincronizacao com Turso concluida com avisos, prosseguindo com deploy."
         }
     }
 

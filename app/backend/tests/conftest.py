@@ -75,8 +75,8 @@ def mock_ai_providers_hermetic(monkeypatch, request):
     from api import ai, universal_pool, gemini_pool
 
     def fake_generate_content_with_fallback(prompt, system_instruction=None, json_mode=False, **kwargs):
-        # Se as chaves do Gemini Pool e Groq foram explicitamente zeradas no teste, simula indisponibilidade
-        if gemini_pool.gemini_pool.total_keys == 0 and not os.environ.get("GROQ_API_KEY") and not os.environ.get("GROQ_API_KEYS"):
+        # Se as chaves do Gemini Pool foram explicitamente zeradas no teste, simula indisponibilidade
+        if gemini_pool.gemini_pool.total_keys == 0:
             raise RuntimeError("Todos os provedores de IA falharam (simulando indisponibilidade).")
 
         if json_mode:

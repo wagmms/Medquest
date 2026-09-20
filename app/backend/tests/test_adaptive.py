@@ -40,3 +40,40 @@ def test_adaptive_queue_is_deterministic_and_prioritizes_recent_error(client):
     assert json.dumps(first, sort_keys=True) == json.dumps(second, sort_keys=True)
     assert first[0]["id"] == 1
     assert "latest_attempt_wrong" in first[0]["adaptive_reasons"]
+
+
+def test_learning_profile_filters_exact_topic_and_counts_distinct_answers(client):
+    for _ in range(2):
+        response = client.post('/api/questions/1/attempt', json={
+            'selected_letter': 'B', 'confidence': 'certeza', 'time_spent_ms': 1000,
+        })
+        assert response.status_code == 200
+    response = client.get('/api/stats/learning-profile', query_string={
+        'subtema': 'Hipertensão Arterial Sistêmica',
+    })
+    topics = response.get_json()['topics']
+    assert len(topics) == 1
+    assert topics[0]['topic'] == 'Hipertensão Arterial Sistêmica'
+    assert topics[0]['available'] == 1
+    assert topics[0]['answered'] == 1
+    assert topics[0]['attempts'] == 2
+    other = client.get('/api/stats/learning-profile', query_string={
+        'subtema': 'Hipertensão Arterial Sistêmica',
+    }, headers={'X-User-ID': 'other-user'}).get_json()['topics'][0]
+    assert other['answered'] == 0
+    assert other['attempts'] == 0
+    assert other['due_count'] == 0
+
+
+def test_learning_profile_unknown_topic_does_not_return_other_topics(client):
+    response = client.get('/api/stats/learning-profile', query_string={'subtema': 'unknown'})
+    assert response.status_code == 200
+    assert response.get_json()['topics'] == []
+
+
+def test_learning_profile_preserves_topics_with_same_legacy_topic(client):
+    body = client.get('/api/stats/learning-profile').get_json()
+    assert {topic['topic'] for topic in body['topics']} == {
+        'Hipertensão Arterial Sistêmica', 'Imunização (PNI)', 'Vitaminas',
+    }
+    assert all(topic['available'] == 1 for topic in body['topics'])

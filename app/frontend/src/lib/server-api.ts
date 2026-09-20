@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { getGuestSession } from "./session";
 import { 
-  OverviewStats, CoverageResponse, QuestionMeta, PlannerConfig,
+  ThemeProgress, OverviewStats, CoverageResponse, QuestionMeta, PlannerConfig,
   TimelineStat, WeakTopic, Recommendation, BreakdownStat, DistractorStat,
   PlannerPlanResponse, PlannerProgressMap, PlannerTopicProgressMap, PredictiveScore, AtRiskTopic, LearningProfile, ExamReadiness,
   BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary, InstitutionRadarResponse
@@ -88,6 +88,9 @@ async function serverFetch<T>(endpoint: string, options?: RequestInit): Promise<
 }
 
 export const serverApi = {
+  themes: {
+    getProgress: (subtema: string) => serverFetch<ThemeProgress>(`/api/themes/progress?${new URLSearchParams({ subtema })}`, { cache: "no-store" }),
+  },
   stats: {
     getOverview: () => serverFetch<OverviewStats>("/api/stats/overview", { next: { tags: ['stats'] } }),
     getCoverage: () => serverFetch<CoverageResponse>("/api/coverage", { next: { tags: ['stats'] } }),
@@ -97,7 +100,7 @@ export const serverApi = {
     getDistractors: () => serverFetch<DistractorStat[]>("/api/stats/distractors", { next: { tags: ['stats'] } }),
     getPredictiveScore: () => serverFetch<PredictiveScore>("/api/stats/predictive-score", { next: { tags: ['stats'] } }),
     getAtRiskTopics: () => serverFetch<AtRiskTopic[]>("/api/stats/at-risk", { next: { tags: ['stats'] } }),
-    getLearningProfile: () => serverFetch<LearningProfile>("/api/stats/learning-profile", { next: { tags: ['stats'] } }),
+    getLearningProfile: (subtema?: string) => serverFetch<LearningProfile>(`/api/stats/learning-profile${subtema ? `?subtema=${encodeURIComponent(subtema)}` : ""}`, { cache: "no-store" }),
     getExamReadiness: (institution?: string) => serverFetch<ExamReadiness>(`/api/stats/exam-readiness${institution ? `?institution=${encodeURIComponent(institution)}` : ""}`, { next: { tags: ['stats'] } }),
     getBreakdown: (by: 'institution' | 'area' | 'year') => 
       serverFetch<BreakdownStat[]>(`/api/stats/breakdown?by=${by}`, { next: { tags: ['stats'] } }),

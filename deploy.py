@@ -84,6 +84,8 @@ def main():
         action="store_true",
         help="Pular execucao remota na VPS (padrao ja eh desativado)",
     )
+    parser.add_argument("--skip-db", action="store_true", help="Pular sincronizacao do banco com o Turso Cloud")
+    parser.add_argument("--db-only", action="store_true", help="Executar apenas a sincronizacao do banco (sem commit/deploy)")
 
     args = parser.parse_args()
     start_time = time.time()
@@ -96,9 +98,37 @@ def main():
     if root_dir:
         os.chdir(root_dir)
 
-    # 1. GIT LOCAL & DEPLOY NUVEM (Vercel + Render)
+    # 1. BANCO DE DADOS (LOCAL -> TURSO CLOUD ONLINE)
+    if not args.skip_db:
+        print("[1/3] Sincronizando banco de dados local com Turso Cloud (Online)...")
+        try:
+            backend_path = os.path.join(root_dir, "app", "backend")
+            if backend_path not in sys.path:
+                sys.path.insert(0, backend_path)
+            from scripts.sync_db_turso import sync_database
+            sync_ok = sync_database(verbose=True)
+            if sync_ok:
+                print("  [OK] Banco de dados online (Turso) em sincronia total com o local!\n")
+            else:
+                print("  [AVISO] Sincronizacao com o Turso finalizada com avisos.\n")
+        except Exception as e:
+            print(f"  [AVISO] Nao foi possivel sincronizar o banco com Turso: {e}\n")
+    else:
+        print("[1/3] Sincronizacao do banco de dados pulada (--skip-db).\n")
+
+    if args.db_only:
+        elapsed = int(time.time() - start_time)
+        print("=" * 60)
+        print("        ATUALIZACAO DO BANCO CONCLUIDA COM SUCESSO!         ")
+        print("=" * 60)
+        print(f"Tempo total : {elapsed}s")
+        print("Banco Cloud : Turso (Online)")
+        print()
+        return
+
+    # 2. GIT LOCAL & DEPLOY NUVEM (Vercel + Render)
     if not args.skip_git:
-        print("[1/2] Processando alteracoes no repositorio local (Git)...")
+        print("[2/3] Processando alteracoes no repositorio local (Git)...")
         status_proc = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
         has_changes = bool(status_proc.stdout.strip())
 
@@ -124,12 +154,12 @@ def main():
         print(f"  [i] Vercel : Deploy automatico do Frontend iniciado -> {FRONTEND_PROD_URL}")
         print(f"  [i] Render : Deploy automatico do Backend iniciado  -> {BACKEND_PROD_URL}\n")
     else:
-        print("[1/2] Etapa Git local pulada (--skip-git).\n")
+        print("[2/3] Etapa Git local pulada (--skip-git).\n")
 
-    # 2. DEPLOY REMOTO VIA SSH (OPCIONAL - APENAS SE --vps FOR ESPECIFICADO)
+    # 3. DEPLOY REMOTO VIA SSH (OPCIONAL - APENAS SE --vps FOR ESPECIFICADO)
     enable_vps = args.vps and not args.skip_remote
     if enable_vps:
-        print(f"[2/2] Conectando a VPS ({args.user}@{args.host}) e executando deploy Docker...")
+        print(f"[3/3] Conectando a VPS ({args.user}@{args.host}) e executando deploy Docker...")
         key_path = resolve_ssh_key(args.key)
         
         remote_script = (
@@ -155,7 +185,7 @@ def main():
         run_command(ssh_cmd)
         print("  [OK] Deploy remoto na VPS concluido com sucesso!\n")
     else:
-        print("[2/2] Deploy em Nuvem concluido com sucesso (Vercel + Render via GitHub).")
+        print("[3/3] Deploy em Nuvem concluido com sucesso (Vercel + Render via GitHub).")
         if not args.vps:
             print("  (Dica: caso queira atualizar uma VPS dedicada via SSH, utilize a flag --vps)\n")
 

@@ -88,8 +88,9 @@ def create_app(testing=False, initialize_db=None):
         }), 500
 
     # Cada blueprint é montado em /api (compatibilidade) e em /api/v1.
+    from .themes import bp as themes_bp
     from .sessions import bp as sessions_bp
-    for bp in (questions_bp, stats_bp, plan_bp, flashcards_bp, logs_bp, sessions_bp, notifications_bp):
+    for bp in (questions_bp, stats_bp, plan_bp, flashcards_bp, logs_bp, sessions_bp, notifications_bp, themes_bp):
         app.register_blueprint(bp, url_prefix="/api")
         app.register_blueprint(bp, url_prefix="/api/v1", name=f"{bp.name}_v1")
 

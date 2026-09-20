@@ -2,7 +2,6 @@ Flask>=3.0
 Flask-Cors>=4.0
 pydantic>=2.0
 fsrs>=5.0
-groq
 python-dotenv
 # api/db.py uses the synchronous `libsql` driver for Turso connections.
 # `libsql-client` exposes a different module name and does not provide it.
