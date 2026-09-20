@@ -29,14 +29,14 @@ _question_scheduler = Scheduler(
     desired_retention=0.85,
     learning_steps=(),
     relearning_steps=(),
-    enable_fuzzing=False,
+    enable_fuzzing=True,
 )
 
 # Scheduler para flashcards atômicos (sem passos intradia de minutos; mínimo D+1 no erro)
 _flashcard_scheduler = Scheduler(
     learning_steps=(),
     relearning_steps=(),
-    enable_fuzzing=False,
+    enable_fuzzing=True,
 )
 
 _CONFIDENCE_MAP = {
