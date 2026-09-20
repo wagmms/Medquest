@@ -5,8 +5,7 @@ import { useState, useEffect, memo } from "react";
 import Link from "next/link";
 import { PlannerWeek, PlannerProgressMap, PlannerTopic, PlannerConfig, PlannerTopicProgressMap } from "@/types/api";
 import { api } from "@/lib/api";
-import { getSubtemaDetails } from "@/lib/plannerData";
-import { Check, CalendarDays, Clock, Activity, Loader2, RotateCcw, AlertTriangle, Zap, X, Play, Flame, Settings2, ExternalLink, Download, Gem, TrendingUp, AlertCircle } from "lucide-react";
+import { Check, CalendarDays, Clock, Activity, Loader2, RotateCcw, AlertTriangle, Zap, X, Play, Settings2, ExternalLink, Download, Gem, TrendingUp, AlertCircle } from "lucide-react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import { PlannerWizard } from "./PlannerWizard";
@@ -26,12 +25,6 @@ const formatHours = (hours: number) => hours.toLocaleString("pt-BR", {
   maximumFractionDigits: 1,
 });
 
-const PRIORITY_REASON_META: Record<string, { label: string; tooltip: string }> = {
-  low_accuracy: { label: "baixa acurácia", tooltip: "Prioridade ajustada pela taxa de acerto no histórico de tentativas" },
-  reviews_due: { label: "revisões pendentes", tooltip: "Prioridade ajustada por revisões espaçadas pendentes" },
-  memory_at_risk: { label: "risco de esquecimento", tooltip: "Prioridade ajustada por queda na retenção estimada" },
-  low_coverage: { label: "baixa cobertura", tooltip: "Prioridade ajustada por baixa cobertura de questões" },
-};
 
 const TopicRow = memo(function TopicRow({ 
   t, 
@@ -50,8 +43,7 @@ const TopicRow = memo(function TopicRow({
   topicIndex?: number;
   daysPerWeek?: number;
 }) {
-  const info = getSubtemaDetails(t.subtema);
-  const key = `planner-topic-${week}-${t.subtema}`;
+    const key = `planner-topic-${week}-${t.subtema}`;
   const isChecked = completed;
 
   // Cálculo de Link 1-Clique para o Google Agenda
