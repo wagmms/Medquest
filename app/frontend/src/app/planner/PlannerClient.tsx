@@ -6,7 +6,7 @@ import Link from "next/link";
 import { PlannerWeek, PlannerProgressMap, PlannerTopic, PlannerConfig, PlannerTopicProgressMap } from "@/types/api";
 import { api } from "@/lib/api";
 import { getSubtemaDetails } from "@/lib/plannerData";
-import { Check, CalendarDays, Clock, Activity, Loader2, RotateCcw, AlertTriangle, Zap, X, Play, Flame, Settings2, ExternalLink, Download } from "lucide-react";
+import { Check, CalendarDays, Clock, Activity, Loader2, RotateCcw, AlertTriangle, Zap, X, Play, Flame, Settings2, ExternalLink, Download, Gem, TrendingUp, AlertCircle } from "lucide-react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import { PlannerWizard } from "./PlannerWizard";
@@ -105,23 +105,22 @@ const TopicRow = memo(function TopicRow({
           >
             {t.subtema}
           </label>
-          {info?.highYield && (
-            <span title="Tema de Alto Rendimento na USP" className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[11px] font-bold bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/20">
-              <Flame size={12} className="fill-current text-orange-500" /> Foco USP
+          {t.priority_tier && t.priority_tier !== "Normal" && (
+            <span
+              title={t.priority_explanation || "Recomendação adaptativa"}
+              className={clsx(
+                "inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold border cursor-help",
+                t.priority_tier === "Diamante" ? "bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/20" :
+                t.priority_tier === "Alta" ? "bg-red-500/10 text-red-700 dark:text-red-400 border-red-500/20" :
+                "bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/20"
+              )}
+            >
+              {t.priority_tier === "Diamante" ? <Gem size={12} className="fill-current" /> :
+               t.priority_tier === "Alta" ? <TrendingUp size={12} /> : 
+               <AlertCircle size={12} />}
+              {t.priority_tier}
             </span>
           )}
-          {t.priority_reasons?.map((reason) => {
-            const meta = PRIORITY_REASON_META[reason] || { label: reason, tooltip: `Prioridade adaptativa: ${reason}` };
-            return (
-              <span
-                key={reason}
-                title={meta.tooltip}
-                className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20"
-              >
-                {meta.label}
-              </span>
-            );
-          })}
         </div>
 
         <div className="text-xs text-muted-foreground flex items-center flex-wrap gap-1.5 mt-1.5">

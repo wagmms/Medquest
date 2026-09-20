@@ -194,6 +194,37 @@ def _prepare_topics(meta_dict, row_stats, user_progress, intensive, practice_hou
                 priority += 50
                 priority_reasons.append("low_accuracy")
 
+        # Tier and explanation
+        if priority >= 130:
+            priority_tier = "Diamante"
+        elif priority >= 100:
+            priority_tier = "Alta"
+        elif priority >= 50:
+            priority_tier = "Média"
+        else:
+            priority_tier = "Normal"
+
+        explanation_parts = []
+        if meta["highYield"]:
+            explanation_parts.append("é de alto rendimento nas provas")
+        if "low_accuracy" in priority_reasons:
+            explanation_parts.append("houve baixo desempenho recente")
+        if "reviews_due" in priority_reasons:
+            explanation_parts.append("há revisões vencidas")
+        if "memory_at_risk" in priority_reasons:
+            explanation_parts.append("há risco de esquecimento")
+        if "low_coverage" in priority_reasons:
+            explanation_parts.append("você ainda não cobriu este assunto")
+        
+        if explanation_parts:
+            if len(explanation_parts) > 1:
+                exp = ", ".join(explanation_parts[:-1]) + " e " + explanation_parts[-1]
+            else:
+                exp = explanation_parts[0]
+            priority_explanation = f"Recomendado porque {exp}."
+        else:
+            priority_explanation = "Recomendado para cobrir o edital equilibradamente."
+
         all_topics.append({
             "area": norm_area,
             "subtema": subtema,
@@ -206,6 +237,8 @@ def _prepare_topics(meta_dict, row_stats, user_progress, intensive, practice_hou
             "course_module": meta["course_module"],
             "priority": round(priority, 2),
             "priority_reasons": priority_reasons,
+            "priority_tier": priority_tier,
+            "priority_explanation": priority_explanation,
         })
 
     # Sort topics by priority (descending)

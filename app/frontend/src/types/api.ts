@@ -281,6 +281,8 @@ export interface PlannerTopic {
   course_module: string | null;
   priority?: number;
   priority_reasons?: string[];
+  priority_tier?: string;
+  priority_explanation?: string;
 }
 
 export interface PlannerWeek {
