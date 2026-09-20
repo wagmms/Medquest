@@ -40,19 +40,48 @@ def _connect_turso(turso_url, turso_token):
 
 def _is_stale_turso_stream(error):
     """Whether Turso rejected a request before it could run on an expired stream."""
-    return "stream not found" in str(error).lower()
+    err_str = str(error).lower()
+    stale_patterns = (
+        "stream not found",
+        "stream expired",
+        "expired stream",
+        "stream closed",
+        "closed stream",
+        "baton",
+        "connection reset",
+        "connection closed",
+        "broken pipe",
+        "websocket",
+        "transport error",
+        "hrana",
+        "status 408",
+        "status 502",
+        "status 503",
+        "status=404",
+        "status code 404",
+        "timeout",
+    )
+    return any(p in err_str for p in stale_patterns)
 
 
-def _reconnect_turso(turso_url, turso_token, failed_client):
+def _reconnect_turso(turso_url, turso_token, failed_client=None):
     """Discard only the current worker's invalid client and open a fresh stream."""
-    if getattr(_turso_clients, "client", None) is failed_client:
-        delattr(_turso_clients, "client")
-    try:
-        failed_client.close()
-    except Exception:
-        # The stream is already invalid; closing it is best-effort cleanup.
-        pass
+    curr = getattr(_turso_clients, "client", None)
+    if failed_client is None or curr is failed_client:
+        if hasattr(_turso_clients, "client"):
+            delattr(_turso_clients, "client")
+    if failed_client:
+        try:
+            failed_client.close()
+        except Exception:
+            # The stream is already invalid; closing it is best-effort cleanup.
+            pass
     return _connect_turso(turso_url, turso_token)
+
+
+def _is_read_only_query(sql):
+    return sql.strip().upper().startswith(("SELECT", "WITH", "PRAGMA", "EXPLAIN"))
+
 
 class TursoCursor:
     """Expose DB-API cursor rows as mappings, matching sqlite3.Row usage."""
@@ -104,7 +133,7 @@ class TursoConnection:
         try:
             return self.client.execute(sql, args)
         except Exception as error:
-            # A 404 "stream not found" is produced by Turso before the SQL is
+            # A 404 "stream not found" or broken stream is produced by Turso before the SQL is
             # evaluated. It is therefore safe to recreate the client and replay
             # a single statement, but never while a transaction is in progress:
             # replaying part of a transaction could duplicate a mutation.
@@ -127,10 +156,31 @@ class TursoConnection:
             cursor = self._execute_with_reconnect(sql, clean_args, retry_stale_stream=not self.tx)
             return TursoCursor(cursor)
         except Exception as e:
+            if not self.tx and self.persistent and self._reconnect and _is_stale_turso_stream(e):
+                try:
+                    self.client = self._reconnect(self.client)
+                except Exception:
+                    pass
             logger.error("Turso query failed: %s", e)
             raise
 
     def batch(self, queries):
+        if not queries:
+            return []
+
+        all_read_only = all(_is_read_only_query(sql) for sql, _ in queries)
+        if all_read_only and not self.tx:
+            # Consultas de leitura não precisam de transação stateful BEGIN/COMMIT.
+            # Podem ser executadas com retry transparente em caso de stream ocioso.
+            try:
+                return [self.execute(sql, params) for sql, params in queries]
+            except Exception as e:
+                if self.persistent and self._reconnect and _is_stale_turso_stream(e):
+                    logger.warning("Turso read batch hit stale stream; retrying batch after reconnect")
+                    self.client = self._reconnect(self.client)
+                    return [self.execute(sql, params) for sql, params in queries]
+                raise
+
         started_tx = False
         if not self.tx:
             self.begin()

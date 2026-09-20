@@ -42,6 +42,10 @@ def resolve_ssh_key(custom_key=None):
     if os.path.exists(home_medquest_key):
         return home_medquest_key
 
+    home_medquest = os.path.expanduser("~/.ssh/medquest_deploy")
+    if os.path.exists(home_medquest):
+        return home_medquest
+
     home_ssh = os.path.expanduser("~/.ssh/id_rsa")
     if os.path.exists(home_ssh):
         return home_ssh

@@ -518,8 +518,14 @@ def question_detail(qid):
         ("SELECT 1 FROM favorites WHERE question_id = ? AND user_id = ?", (qid, g.user_id))
     ]
     
+    res = None
     if hasattr(db, "batch"):
-        res = db.batch(queries)
+        try:
+            res = db.batch(queries)
+        except Exception:
+            res = None
+
+    if res is not None:
         q = res[0].fetchone()
         alts = res[1].fetchall()
         imgs = res[2].fetchall()

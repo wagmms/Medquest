@@ -12,7 +12,7 @@ export type { QuestionMeta };
 
 const BACKEND_URL = process.env.FLASK_API_URL || process.env.NEXT_PUBLIC_FLASK_API_URL ||
   (process.env.NODE_ENV === "development" ? "http://127.0.0.1:5050" : "");
-const API_REQUEST_TIMEOUT_MS = process.env.PLAYWRIGHT_TEST ? 1_000 : 5_000;
+const API_REQUEST_TIMEOUT_MS = process.env.PLAYWRIGHT_TEST ? 1_000 : 15_000;
 
 export function isDynamicServerUsageError(error: unknown): boolean {
   if (!(error instanceof Error)) return false;

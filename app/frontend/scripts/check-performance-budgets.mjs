@@ -1,7 +1,8 @@
 import { readdir, stat } from "node:fs/promises";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const root = new URL("..", import.meta.url).pathname.replace(/^\/(.:)/, "$1");
+const root = fileURLToPath(new URL("..", import.meta.url));
 const chunksDir = join(root, ".next", "static", "chunks");
 const budgets = {
   totalJavaScript: 2_400_000,

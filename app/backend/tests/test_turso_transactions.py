@@ -145,3 +145,36 @@ def test_partial_turso_configuration_is_rejected(monkeypatch):
     monkeypatch.delenv("TURSO_AUTH_TOKEN", raising=False)
     with pytest.raises(ValueError, match="must be configured together"):
         create_app()
+
+
+def test_turso_read_batch_retries_after_stale_stream():
+    stale_client = StaleStreamClient()
+    fresh_client = FakeClient()
+    reconnect_calls = []
+    db = TursoConnection(
+        stale_client,
+        persistent=True,
+        reconnect=lambda failed: reconnect_calls.append(failed) or fresh_client,
+    )
+
+    queries = [
+        ("SELECT 1", []),
+        ("SELECT 2", []),
+    ]
+    res = db.batch(queries)
+
+    assert len(res) == 2
+    assert reconnect_calls == [stale_client]
+    assert [s[0] for s in fresh_client.statements] == ["SELECT 1", "SELECT 2"]
+    assert db.tx is False
+
+
+def test_turso_stale_detection_covers_various_disconnects():
+    from api.db import _is_stale_turso_stream
+
+    assert _is_stale_turso_stream(Exception("Stream not found")) is True
+    assert _is_stale_turso_stream(Exception("Hrana: connection closed by peer")) is True
+    assert _is_stale_turso_stream(Exception("websocket transport error")) is True
+    assert _is_stale_turso_stream(Exception("stale baton expired")) is True
+    assert _is_stale_turso_stream(Exception("syntax error near WHERE")) is False
+

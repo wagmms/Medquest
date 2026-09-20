@@ -13,6 +13,7 @@ import { DemoBanner } from "@/components/DemoBanner";
 import { SyncProvider } from "@/components/SyncProvider";
 import { OnboardingTour } from "@/components/OnboardingTour";
 import { WebVitals } from "@/components/WebVitals";
+import { AuthSync } from "@/components/AuthSync";
 
 export const viewport: Viewport = {
   themeColor: "#0ea5e9",
@@ -80,20 +81,22 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <WebVitals />
           <a href="#conteudo-principal" className="skip-link">Pular para o conteúdo principal</a>
           {!userId && !isDemoMode ? (
-            <div className="flex w-full h-full items-start justify-center p-8 bg-background relative overflow-y-auto">
-              <div className="absolute inset-0 bg-primary/5" style={{ backgroundImage: "radial-gradient(circle, var(--primary) 1px, transparent 1px)", backgroundSize: "32px 32px", opacity: 0.2 }} />
-              <div className="relative z-10 flex flex-col items-center max-w-md w-full bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border">
-                <div className="w-16 h-16 bg-primary/20 text-primary rounded-2xl flex items-center justify-center mb-6 shadow-sm">
-                  <span className="material-symbols-outlined text-4xl" data-icon="stethoscope">stethoscope</span>
+            <AuthSync ssrAuthenticated={false}>
+              <div className="flex w-full h-full items-start justify-center p-8 bg-background relative overflow-y-auto">
+                <div className="absolute inset-0 bg-primary/5" style={{ backgroundImage: "radial-gradient(circle, var(--primary) 1px, transparent 1px)", backgroundSize: "32px 32px", opacity: 0.2 }} />
+                <div className="relative z-10 flex flex-col items-center max-w-md w-full bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border">
+                  <div className="w-16 h-16 bg-primary/20 text-primary rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                    <span className="material-symbols-outlined text-4xl" data-icon="stethoscope">stethoscope</span>
+                  </div>
+                  <h1 className="text-2xl font-bold text-center mb-2">Bem-vindo ao MedQuest</h1>
+                  <p className="text-muted-foreground text-center mb-8 text-sm">Faça login para salvar seu progresso diário ou experimente sem compromisso.</p>
+                  <div className="w-full flex justify-center border-b border-border pb-8">
+                    <SignIn routing="hash" fallbackRedirectUrl="/" forceRedirectUrl="/" />
+                  </div>
+                  <DemoButton />
                 </div>
-                <h1 className="text-2xl font-bold text-center mb-2">Bem-vindo ao MedQuest</h1>
-                <p className="text-muted-foreground text-center mb-8 text-sm">Faça login para salvar seu progresso diário ou experimente sem compromisso.</p>
-                <div className="w-full flex justify-center border-b border-border pb-8">
-                  <SignIn routing="hash" />
-                </div>
-                <DemoButton />
               </div>
-            </div>
+            </AuthSync>
           ) : (
             <div className="flex flex-col w-full h-full">
               <DemoBanner />
