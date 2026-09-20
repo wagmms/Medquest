@@ -60,6 +60,7 @@ param(
     [string]$RemoteDir = "/home/ubuntu/MedQuest",
     [ValidateRange(15, 3600)]
     [int]$ImageWaitSeconds = 600,
+    [switch]$VPS,
     [switch]$SkipGit,
     [switch]$SkipRemote,
     [switch]$Fast
@@ -230,7 +231,7 @@ if (-not $SkipGit) {
 # ==============================================================================
 # ETAPA 2: DEPLOY REMOTO NA VPS
 # ==============================================================================
-if (-not $SkipRemote) {
+if ($VPS -and -not $SkipRemote) {
     Print-Step "2/3" "Atualizando servicos na VPS ($User@$HostName)"
 
     $SshArgs = @()
@@ -349,7 +350,7 @@ compose ps
     }
     Print-Success "Servicos atualizados com sucesso na VPS!"
 } else {
-    Print-Info "Etapa de deploy remoto pulada conforme solicitado (-SkipRemote)."
+    Print-Info "Deploy em Nuvem ativo (Vercel + Render via GitHub). Para VPS, passe -VPS."
 }
 
 # ==============================================================================

@@ -2,11 +2,16 @@
 """
 MedQuest - Script de Deploy Automatizado (Python)
 
-Uso:
+Uso padrao (Deploy na Nuvem: Vercel + Render):
     python deploy.py
     python deploy.py "Minha mensagem de commit"
+
+Deploy opcional em servidor VPS (Docker Compose via SSH):
+    python deploy.py --vps
+    python deploy.py "Hotfix" --vps --host 136.248.114.130
+
+Outras opcoes:
     python deploy.py --skip-git
-    python deploy.py --skip-remote
 """
 
 import argparse
@@ -19,6 +24,8 @@ import time
 HOST_DEFAULT = os.environ.get("MEDQUEST_DEPLOY_HOST", "136.248.114.130")
 USER_DEFAULT = os.environ.get("MEDQUEST_DEPLOY_USER", "ubuntu")
 REMOTE_DIR_DEFAULT = os.environ.get("MEDQUEST_DEPLOY_DIR", "~/MedQuest")
+FRONTEND_PROD_URL = "https://medquest.live"
+BACKEND_PROD_URL = "https://medquest-188y.onrender.com"
 
 
 def run_command(cmd, shell=False, check=True):
@@ -61,11 +68,22 @@ def resolve_ssh_key(custom_key=None):
 def main():
     parser = argparse.ArgumentParser(description="Deploy automatizado do MedQuest")
     parser.add_argument("message", nargs="?", help="Mensagem do commit")
-    parser.add_argument("--host", default=HOST_DEFAULT, help="IP da VPS")
-    parser.add_argument("--user", default=USER_DEFAULT, help="Usuario SSH")
-    parser.add_argument("--key", default=None, help="Caminho da chave SSH")
+    parser.add_argument(
+        "--vps",
+        "--remote",
+        dest="vps",
+        action="store_true",
+        help="Executar deploy remoto via SSH na VPS (padrao: desativado, usa Vercel + Render)",
+    )
+    parser.add_argument("--host", default=HOST_DEFAULT, help="IP da VPS (quando usado com --vps)")
+    parser.add_argument("--user", default=USER_DEFAULT, help="Usuario SSH da VPS")
+    parser.add_argument("--key", default=None, help="Caminho da chave SSH para a VPS")
     parser.add_argument("--skip-git", action="store_true", help="Pular commit e push local")
-    parser.add_argument("--skip-remote", action="store_true", help="Pular execucao remota na VPS")
+    parser.add_argument(
+        "--skip-remote",
+        action="store_true",
+        help="Pular execucao remota na VPS (padrao ja eh desativado)",
+    )
 
     args = parser.parse_args()
     start_time = time.time()
@@ -78,9 +96,9 @@ def main():
     if root_dir:
         os.chdir(root_dir)
 
-    # 1. GIT LOCAL
+    # 1. GIT LOCAL & DEPLOY NUVEM (Vercel + Render)
     if not args.skip_git:
-        print("[1/3] Processando alteracoes no repositorio local (Git)...")
+        print("[1/2] Processando alteracoes no repositorio local (Git)...")
         status_proc = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
         has_changes = bool(status_proc.stdout.strip())
 
@@ -102,19 +120,22 @@ def main():
 
         print("  [i] Enviando commits para origin main...")
         run_command(["git", "push", "origin", "main"])
-        print("  [OK] Git push concluido com sucesso.\n")
+        print("  [OK] Git push concluido com sucesso!")
+        print(f"  [i] Vercel : Deploy automatico do Frontend iniciado -> {FRONTEND_PROD_URL}")
+        print(f"  [i] Render : Deploy automatico do Backend iniciado  -> {BACKEND_PROD_URL}\n")
     else:
-        print("[1/3] Etapa Git local pulada (--skip-git).\n")
+        print("[1/2] Etapa Git local pulada (--skip-git).\n")
 
-    # 2. DEPLOY REMOTO VIA SSH
-    if not args.skip_remote:
-        print(f"[2/3] Conectando a VPS ({args.user}@{args.host}) e executando deploy...")
+    # 2. DEPLOY REMOTO VIA SSH (OPCIONAL - APENAS SE --vps FOR ESPECIFICADO)
+    enable_vps = args.vps and not args.skip_remote
+    if enable_vps:
+        print(f"[2/2] Conectando a VPS ({args.user}@{args.host}) e executando deploy Docker...")
         key_path = resolve_ssh_key(args.key)
         
         remote_script = (
             "set -e && "
             "echo '  [VPS 1/4] Atualizando codigo do MedQuest via Git...' && "
-            "cd ~/MedQuest && git pull origin main && "
+            f"cd {REMOTE_DIR_DEFAULT} && git pull origin main && "
             "echo '  [VPS 2/4] Reconstruindo e subindo containers Docker...' && "
             "sudo docker-compose up -d --build --force-recreate && "
             "echo '  [VPS 3/4] Limpando imagens antigas...' && "
@@ -134,7 +155,9 @@ def main():
         run_command(ssh_cmd)
         print("  [OK] Deploy remoto na VPS concluido com sucesso!\n")
     else:
-        print("[2/3] Etapa remota pulada (--skip-remote).\n")
+        print("[2/2] Deploy em Nuvem concluido com sucesso (Vercel + Render via GitHub).")
+        if not args.vps:
+            print("  (Dica: caso queira atualizar uma VPS dedicada via SSH, utilize a flag --vps)\n")
 
     elapsed = int(time.time() - start_time)
     minutes = elapsed // 60
@@ -143,8 +166,12 @@ def main():
     print("=" * 60)
     print("              DEPLOY CONCLUIDO COM SUCESSO!                 ")
     print("=" * 60)
-    print(f"Tempo total: {minutes}m {seconds}s")
-    print(f"MedQuest esta online e atualizado no servidor ({args.host}).\n")
+    print(f"Tempo total : {minutes}m {seconds}s")
+    print(f"Frontend    : {FRONTEND_PROD_URL}")
+    print(f"Backend     : {BACKEND_PROD_URL}")
+    if enable_vps:
+        print(f"VPS Host    : {args.host}")
+    print()
 
 
 if __name__ == "__main__":
