@@ -958,34 +958,59 @@ def _fetch_batch_data(db, ids, user_id):
     wrong_map = {}
     fav_set = set()
 
+    if not ids:
+        return q_map, alt_map, img_map, attempt_map, wrong_map, fav_set
+
+    queries = []
     for i in range(0, len(ids), CHUNK):
         chunk = ids[i:i + CHUNK]
         ph = ",".join("?" * len(chunk))
+        chunk_user = list(chunk) + [user_id]
 
-        for r in db.execute(f"SELECT * FROM questions WHERE id IN ({ph})", chunk).fetchall():
+        queries.extend([
+            (f"SELECT * FROM questions WHERE id IN ({ph})", chunk),
+            (f"SELECT question_id, letter, text FROM alternatives WHERE question_id IN ({ph}) ORDER BY letter", chunk),
+            (f"SELECT question_id, file_path FROM question_images WHERE question_id IN ({ph}) ORDER BY order_index", chunk),
+            (f"SELECT question_id, selected_letter, is_correct FROM attempts WHERE question_id IN ({ph}) AND user_id = ? ORDER BY id DESC", chunk_user),
+            (f"SELECT question_id, COUNT(*) as n FROM attempts WHERE question_id IN ({ph}) AND is_correct = 0 AND user_id = ? GROUP BY question_id", chunk_user),
+            (f"SELECT question_id FROM favorites WHERE question_id IN ({ph}) AND user_id = ?", chunk_user),
+        ])
+
+    results = None
+    if hasattr(db, "batch"):
+        try:
+            results = db.batch(queries)
+        except Exception:
+            results = None
+
+    if results is None:
+        results = [db.execute(sql, params) for sql, params in queries]
+
+    for c in range(0, len(results), 6):
+        rows_q = results[c].fetchall()
+        rows_alt = results[c + 1].fetchall()
+        rows_img = results[c + 2].fetchall()
+        rows_att = results[c + 3].fetchall()
+        rows_wrong = results[c + 4].fetchall()
+        rows_fav = results[c + 5].fetchall()
+
+        for r in rows_q:
             q_map[r["id"]] = dict(r)
 
-        for r in db.execute(f"SELECT question_id, letter, text FROM alternatives WHERE question_id IN ({ph}) ORDER BY letter", chunk).fetchall():
+        for r in rows_alt:
             alt_map.setdefault(r["question_id"], []).append({"letter": r["letter"], "text": r["text"]})
 
-        for r in db.execute(f"SELECT question_id, file_path FROM question_images WHERE question_id IN ({ph}) ORDER BY order_index", chunk).fetchall():
+        for r in rows_img:
             img_map.setdefault(r["question_id"], []).append(r["file_path"])
 
-        chunk_user = list(chunk) + [user_id]
-        for r in db.execute(
-            f"SELECT question_id, selected_letter, is_correct FROM attempts WHERE question_id IN ({ph}) AND user_id = ? ORDER BY id DESC",
-            chunk_user,
-        ).fetchall():
+        for r in rows_att:
             if r["question_id"] not in attempt_map:
                 attempt_map[r["question_id"]] = {"selected_letter": r["selected_letter"], "is_correct": bool(r["is_correct"])}
 
-        for r in db.execute(
-            f"SELECT question_id, COUNT(*) as n FROM attempts WHERE question_id IN ({ph}) AND is_correct = 0 AND user_id = ? GROUP BY question_id",
-            chunk_user,
-        ).fetchall():
+        for r in rows_wrong:
             wrong_map[r["question_id"]] = r["n"]
 
-        for r in db.execute(f"SELECT question_id FROM favorites WHERE question_id IN ({ph}) AND user_id = ?", chunk_user).fetchall():
+        for r in rows_fav:
             fav_set.add(r["question_id"])
 
     return q_map, alt_map, img_map, attempt_map, wrong_map, fav_set
