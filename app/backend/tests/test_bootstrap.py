@@ -34,15 +34,57 @@ def test_empty_database_bootstrap(tmp_path):
             "favorites",
             "spaced_repetition",
             "planner_progress",
+            "planner_topic_progress",
+            "planner_config",
             "flashcards",
             "simulado_sessions",
+            "clinical_cases",
+            "learning_sessions",
             "idempotency_keys",
             "telemetry_daily_aggregates",
+            "notification_configs",
+            "push_subscriptions",
+            "notification_dispatches",
         ]
         for table in expected_tables:
             assert table in tables, f"Tabela '{table}' deveria ter sido criada no bootstrap do banco vazio"
     finally:
         os.environ.pop("MEDQUEST_DB", None)
+
+
+def test_create_tables_schema():
+    """Valida se _create_tables cria diretamente todas as tabelas em uma conexão SQLite."""
+    from api.db import _create_tables
+
+    con = sqlite3.connect(":memory:")
+    _create_tables(con)
+    cur = con.cursor()
+    created_tables = [row[0] for row in cur.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()]
+    con.close()
+
+    expected_tables = [
+        "questions",
+        "alternatives",
+        "explanations",
+        "question_images",
+        "attempts",
+        "favorites",
+        "spaced_repetition",
+        "planner_progress",
+        "planner_topic_progress",
+        "planner_config",
+        "flashcards",
+        "simulado_sessions",
+        "clinical_cases",
+        "learning_sessions",
+        "idempotency_keys",
+        "telemetry_daily_aggregates",
+        "notification_configs",
+        "push_subscriptions",
+        "notification_dispatches",
+    ]
+    for table in expected_tables:
+        assert table in created_tables, f"Tabela '{table}' não foi encontrada após _create_tables"
 
 
 def test_production_worker_skips_bootstrap_after_release_migration(tmp_path, monkeypatch):

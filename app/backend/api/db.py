@@ -345,7 +345,7 @@ def _table_cols(db, table):
     return [r[0] for r in db.execute("SELECT name FROM pragma_table_info(?)", (table,))]
 
 
-def _create_tables(db):
+def _create_question_tables(db):
     db.execute('''CREATE TABLE IF NOT EXISTS questions(
         id INTEGER PRIMARY KEY, source_file TEXT, source_number INTEGER, year INTEGER,
         institution_code TEXT, institution_label TEXT, topic TEXT, stem TEXT,
@@ -362,6 +362,8 @@ def _create_tables(db):
         id INTEGER PRIMARY KEY, question_id INTEGER, selected_letter TEXT,
         is_correct INTEGER, answered_at TEXT, confidence TEXT, user_id TEXT DEFAULT '1', time_spent_ms INTEGER)''')
 
+
+def _create_planner_tables(db):
     db.execute("CREATE TABLE IF NOT EXISTS favorites (question_id INTEGER, user_id TEXT DEFAULT '1', PRIMARY KEY (question_id, user_id))")
     db.execute('''CREATE TABLE IF NOT EXISTS spaced_repetition (
         question_id INTEGER, efactor REAL, interval INTEGER,
@@ -381,6 +383,8 @@ def _create_tables(db):
         target_institution TEXT, target_specialty TEXT,
         updated_at TEXT)''')
 
+
+def _create_flashcard_and_session_tables(db):
     db.execute('''CREATE TABLE IF NOT EXISTS flashcards (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         question_id INTEGER,
@@ -417,6 +421,8 @@ def _create_tables(db):
         updated_at TEXT NOT NULL,
         PRIMARY KEY (user_id, session_type))''')
 
+
+def _create_system_tables(db):
     db.execute('''CREATE TABLE IF NOT EXISTS idempotency_keys (
         user_id TEXT NOT NULL,
         key TEXT NOT NULL,
@@ -468,6 +474,13 @@ def _create_tables(db):
         error_message TEXT,
         created_at TEXT NOT NULL,
         UNIQUE(user_id, dispatch_date))''')
+
+
+def _create_tables(db):
+    _create_question_tables(db)
+    _create_planner_tables(db)
+    _create_flashcard_and_session_tables(db)
+    _create_system_tables(db)
 
 
 def _migrate_legacy_columns(db):
