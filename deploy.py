@@ -65,7 +65,8 @@ def resolve_ssh_key(custom_key=None):
     return None
 
 
-def main():
+def parse_args(args=None):
+    """Parse command-line arguments for deploy script."""
     parser = argparse.ArgumentParser(description="Deploy automatizado do MedQuest")
     parser.add_argument("message", nargs="?", help="Mensagem do commit")
     parser.add_argument(
@@ -85,27 +86,25 @@ def main():
         help="Pular execucao remota na VPS (padrao ja eh desativado)",
     )
     parser.add_argument("--skip-db", action="store_true", help="Pular sincronizacao do banco com o Turso Cloud")
-    parser.add_argument("--db-only", action="store_true", help="Executar apenas a sincronizacao do banco (sem commit/deploy)")
+    parser.add_argument(
+        "--db-only",
+        action="store_true",
+        help="Executar apenas a sincronizacao do banco (sem commit/deploy)",
+    )
 
-    args = parser.parse_args()
-    start_time = time.time()
+    return parser.parse_args(args)
 
-    print("\n" + "=" * 60)
-    print("             MEDQUEST - DEPLOY AUTOMATIZADO                 ")
-    print("=" * 60 + "\n")
 
-    root_dir = os.path.dirname(os.path.abspath(__file__))
-    if root_dir:
-        os.chdir(root_dir)
-
-    # 1. BANCO DE DADOS (LOCAL -> TURSO CLOUD ONLINE)
-    if not args.skip_db:
+def sync_database_phase(skip_db, root_dir):
+    """1. BANCO DE DADOS (LOCAL -> TURSO CLOUD ONLINE)"""
+    if not skip_db:
         print("[1/3] Sincronizando banco de dados local com Turso Cloud (Online)...")
         try:
             backend_path = os.path.join(root_dir, "app", "backend")
             if backend_path not in sys.path:
                 sys.path.insert(0, backend_path)
             from scripts.sync_db_turso import sync_database
+
             sync_ok = sync_database(verbose=True)
             if sync_ok:
                 print("  [OK] Banco de dados online (Turso) em sincronia total com o local!\n")
@@ -116,32 +115,26 @@ def main():
     else:
         print("[1/3] Sincronizacao do banco de dados pulada (--skip-db).\n")
 
-    if args.db_only:
-        elapsed = int(time.time() - start_time)
-        print("=" * 60)
-        print("        ATUALIZACAO DO BANCO CONCLUIDA COM SUCESSO!         ")
-        print("=" * 60)
-        print(f"Tempo total : {elapsed}s")
-        print("Banco Cloud : Turso (Online)")
-        print()
-        return
 
-    # 2. GIT LOCAL & DEPLOY NUVEM (Vercel + Render)
-    if not args.skip_git:
+def deploy_git_phase(skip_git, message):
+    """2. GIT LOCAL & DEPLOY NUVEM (Vercel + Render)"""
+    if not skip_git:
         print("[2/3] Processando alteracoes no repositorio local (Git)...")
         status_proc = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
         has_changes = bool(status_proc.stdout.strip())
 
         if has_changes:
-            msg = args.message
+            msg = message
             if not msg:
                 timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
                 if sys.stdin.isatty():
-                    user_input = input(f"  Digite a mensagem do commit (Enter para '[deploy] {timestamp}'): ").strip()
+                    user_input = input(
+                        f"  Digite a mensagem do commit (Enter para '[deploy] {timestamp}'): "
+                    ).strip()
                     msg = user_input if user_input else f"[deploy] Atualizacao {timestamp}"
                 else:
                     msg = f"[deploy] Atualizacao {timestamp}"
-            
+
             print(f"  [i] Adicionando arquivos e realizando commit: '{msg}'")
             run_command(["git", "add", "-A"])
             run_command(["git", "commit", "-m", msg])
@@ -156,12 +149,14 @@ def main():
     else:
         print("[2/3] Etapa Git local pulada (--skip-git).\n")
 
-    # 3. DEPLOY REMOTO VIA SSH (OPCIONAL - APENAS SE --vps FOR ESPECIFICADO)
-    enable_vps = args.vps and not args.skip_remote
+
+def deploy_vps_phase(vps, skip_remote, user, host, key):
+    """3. DEPLOY REMOTO VIA SSH (OPCIONAL - APENAS SE --vps FOR ESPECIFICADO)"""
+    enable_vps = vps and not skip_remote
     if enable_vps:
-        print(f"[3/3] Conectando a VPS ({args.user}@{args.host}) e executando deploy Docker...")
-        key_path = resolve_ssh_key(args.key)
-        
+        print(f"[3/3] Conectando a VPS ({user}@{host}) e executando deploy Docker...")
+        key_path = resolve_ssh_key(key)
+
         remote_script = (
             "set -e && "
             "echo '  [VPS 1/4] Atualizando codigo do MedQuest via Git...' && "
@@ -178,18 +173,33 @@ def main():
         if key_path:
             print(f"  [i] Usando chave SSH: {key_path}")
             ssh_cmd.extend(["-i", key_path])
-        
-        ssh_cmd.append(f"{args.user}@{args.host}")
+
+        ssh_cmd.append(f"{user}@{host}")
         ssh_cmd.append(remote_script)
 
         run_command(ssh_cmd)
         print("  [OK] Deploy remoto na VPS concluido com sucesso!\n")
     else:
         print("[3/3] Deploy em Nuvem concluido com sucesso (Vercel + Render via GitHub).")
-        if not args.vps:
+        if not vps:
             print("  (Dica: caso queira atualizar uma VPS dedicada via SSH, utilize a flag --vps)\n")
 
+    return enable_vps
+
+
+def print_summary(start_time, db_only=False, enable_vps=False, host=HOST_DEFAULT):
+    """Print the final summary of the deploy process."""
     elapsed = int(time.time() - start_time)
+
+    if db_only:
+        print("=" * 60)
+        print("        ATUALIZACAO DO BANCO CONCLUIDA COM SUCESSO!         ")
+        print("=" * 60)
+        print(f"Tempo total : {elapsed}s")
+        print("Banco Cloud : Turso (Online)")
+        print()
+        return
+
     minutes = elapsed // 60
     seconds = elapsed % 60
 
@@ -200,8 +210,36 @@ def main():
     print(f"Frontend    : {FRONTEND_PROD_URL}")
     print(f"Backend     : {BACKEND_PROD_URL}")
     if enable_vps:
-        print(f"VPS Host    : {args.host}")
+        print(f"VPS Host    : {host}")
     print()
+
+
+def main(cli_args=None):
+    args = parse_args(cli_args)
+    start_time = time.time()
+
+    print("\n" + "=" * 60)
+    print("             MEDQUEST - DEPLOY AUTOMATIZADO                 ")
+    print("=" * 60 + "\n")
+
+    root_dir = os.path.dirname(os.path.abspath(__file__))
+    if root_dir:
+        os.chdir(root_dir)
+
+    # 1. BANCO DE DADOS (LOCAL -> TURSO CLOUD ONLINE)
+    sync_database_phase(args.skip_db, root_dir)
+
+    if args.db_only:
+        print_summary(start_time, db_only=True)
+        return
+
+    # 2. GIT LOCAL & DEPLOY NUVEM (Vercel + Render)
+    deploy_git_phase(args.skip_git, args.message)
+
+    # 3. DEPLOY REMOTO VIA SSH (OPCIONAL - APENAS SE --vps FOR ESPECIFICADO)
+    enable_vps = deploy_vps_phase(args.vps, args.skip_remote, args.user, args.host, args.key)
+
+    print_summary(start_time, db_only=False, enable_vps=enable_vps, host=args.host)
 
 
 if __name__ == "__main__":
