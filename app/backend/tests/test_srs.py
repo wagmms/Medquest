@@ -46,34 +46,34 @@ def test_review_existing_card():
 
 
 def test_review_question_intervals():
-    # Errou questão -> 7 dias
+    # Errou questão -> ~7 dias (FSRS com fuzzing)
     _, due_err = review(None, False, None)
     err_days = round((datetime.fromisoformat(due_err) - datetime.now(timezone.utc)).total_seconds() / 86400)
-    assert err_days == 7
+    assert 5 <= err_days <= 10
 
     # Chutei questão -> ~15 dias
     _, due_hard = review(None, True, "chutei")
     hard_days = round((datetime.fromisoformat(due_hard) - datetime.now(timezone.utc)).total_seconds() / 86400)
-    assert hard_days == 15
+    assert 12 <= hard_days <= 18
 
     # Dúvida / Bom -> ~34 dias
     _, due_good = review(None, True, "duvida")
     good_days = round((datetime.fromisoformat(due_good) - datetime.now(timezone.utc)).total_seconds() / 86400)
-    assert good_days == 34
+    assert 28 <= good_days <= 40
 
     # Certeza / Fácil -> ~76 dias
     _, due_easy = review(None, True, "certeza")
     easy_days = round((datetime.fromisoformat(due_easy) - datetime.now(timezone.utc)).total_seconds() / 86400)
-    assert easy_days == 76
+    assert 65 <= easy_days <= 90
 
 
 def test_review_flashcard_intervals():
-    # Erro em flashcard -> 1 dia (mínimo D+1, sem passos em minutos)
+    # Erro em flashcard -> ~1 dia (mínimo D+1, sem passos em minutos)
     _, due_err = review(None, False, "errei", is_flashcard=True)
     err_days = round((datetime.fromisoformat(due_err) - datetime.now(timezone.utc)).total_seconds() / 86400)
-    assert err_days == 1
+    assert 1 <= err_days <= 3
 
     # Acerto fácil em flashcard -> ~8 dias
     _, due_easy = review(None, True, "certeza", is_flashcard=True)
     easy_days = round((datetime.fromisoformat(due_easy) - datetime.now(timezone.utc)).total_seconds() / 86400)
-    assert easy_days == 8
+    assert 6 <= easy_days <= 11
