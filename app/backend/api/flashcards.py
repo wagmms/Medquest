@@ -597,18 +597,48 @@ def sync_anki_scheduling_state():
     db = get_db()
     now = datetime.now(timezone.utc)
     updated = 0
+
+    cids = list({item.anki_cid for item in payload.cards if item.anki_cid is not None})
+    cid_map = {}
+    nid_map = {}
+
     with db_transaction(db, immediate=True):
+        if cids:
+            for i in range(0, len(cids), 500):
+                chunk = cids[i:i + 500]
+                placeholders = ",".join("?" * len(chunk))
+                rows = db.execute(
+                    f"SELECT id, anki_cid FROM flashcards WHERE user_id = ? AND anki_cid IN ({placeholders})",
+                    [g.user_id, *chunk],
+                ).fetchall()
+                for r in rows:
+                    cid_map[r["anki_cid"]] = r["id"]
+
+        nids = list({
+            item.anki_nid
+            for item in payload.cards
+            if item.anki_cid not in cid_map and item.anki_nid is not None
+        })
+
+        if nids:
+            for i in range(0, len(nids), 500):
+                chunk = nids[i:i + 500]
+                placeholders = ",".join("?" * len(chunk))
+                rows = db.execute(
+                    f"SELECT id, anki_nid FROM flashcards WHERE user_id = ? AND anki_nid IN ({placeholders})",
+                    [g.user_id, *chunk],
+                ).fetchall()
+                for r in rows:
+                    nid_map[r["anki_nid"]] = r["id"]
+
+        update_params = []
+        now_iso = now.isoformat()
         for item in payload.cards:
-            row = db.execute(
-                "SELECT id FROM flashcards WHERE user_id = ? AND anki_cid = ?",
-                (g.user_id, item.anki_cid),
-            ).fetchone()
-            if not row and item.anki_nid is not None:
-                row = db.execute(
-                    "SELECT id FROM flashcards WHERE user_id = ? AND anki_nid = ?",
-                    (g.user_id, item.anki_nid),
-                ).fetchone()
-            if not row:
+            card_id = cid_map.get(item.anki_cid)
+            if card_id is None and item.anki_nid is not None:
+                card_id = nid_map.get(item.anki_nid)
+
+            if card_id is None:
                 continue
 
             # Anki usa segundos negativos durante aprendizagem e dias positivos
@@ -619,14 +649,25 @@ def sync_anki_scheduling_state():
                 if item.interval < 0
                 else timedelta(days=item.interval)
             )
-            db.execute(
+            update_params.append((
+                item.anki_cid,
+                item.reps,
+                item.lapses,
+                now_iso,
+                next_due.isoformat(),
+                card_id,
+                g.user_id,
+            ))
+
+        if update_params:
+            db.executemany(
                 """UPDATE flashcards
                    SET anki_cid = ?, anki_reps = ?, anki_lapses = ?,
                        anki_synced_at = ?, next_review_date = ?
                    WHERE id = ? AND user_id = ?""",
-                (item.anki_cid, item.reps, item.lapses, now.isoformat(), next_due.isoformat(), row["id"], g.user_id),
+                update_params,
             )
-            updated += 1
+            updated = len(update_params)
 
     invalidate_user_caches(g.user_id)
     return jsonify({"success": True, "updated": updated})

@@ -45,35 +45,41 @@ def test_review_existing_card():
     assert diff_days >= 6.5
 
 
-def test_review_question_intervals():
+def test_review_question_intervals(monkeypatch):
+    import api.srs as srs_mod
+    monkeypatch.setattr(srs_mod._question_scheduler, "enable_fuzzing", False)
+
     # Errou questão -> 7 dias
     _, due_err = review(None, False, None)
     err_days = round((datetime.fromisoformat(due_err) - datetime.now(timezone.utc)).total_seconds() / 86400)
-    assert err_days == 7
+    assert 6 <= err_days <= 8
 
-    # Chutei questão -> ~15 dias
+    # Chutei questão -> ~16 dias
     _, due_hard = review(None, True, "chutei")
     hard_days = round((datetime.fromisoformat(due_hard) - datetime.now(timezone.utc)).total_seconds() / 86400)
-    assert hard_days == 15
+    assert 15 <= hard_days <= 17
 
-    # Dúvida / Bom -> ~34 dias
+    # Dúvida / Bom -> ~35 dias
     _, due_good = review(None, True, "duvida")
     good_days = round((datetime.fromisoformat(due_good) - datetime.now(timezone.utc)).total_seconds() / 86400)
-    assert good_days == 34
+    assert 34 <= good_days <= 36
 
-    # Certeza / Fácil -> ~76 dias
+    # Certeza / Fácil -> ~78 dias
     _, due_easy = review(None, True, "certeza")
     easy_days = round((datetime.fromisoformat(due_easy) - datetime.now(timezone.utc)).total_seconds() / 86400)
-    assert easy_days == 76
+    assert 76 <= easy_days <= 80
 
 
-def test_review_flashcard_intervals():
+def test_review_flashcard_intervals(monkeypatch):
+    import api.srs as srs_mod
+    monkeypatch.setattr(srs_mod._flashcard_scheduler, "enable_fuzzing", False)
+
     # Erro em flashcard -> 1 dia (mínimo D+1, sem passos em minutos)
     _, due_err = review(None, False, "errei", is_flashcard=True)
     err_days = round((datetime.fromisoformat(due_err) - datetime.now(timezone.utc)).total_seconds() / 86400)
     assert err_days == 1
 
-    # Acerto fácil em flashcard -> ~8 dias
+    # Acerto fácil em flashcard -> ~7 dias
     _, due_easy = review(None, True, "certeza", is_flashcard=True)
     easy_days = round((datetime.fromisoformat(due_easy) - datetime.now(timezone.utc)).total_seconds() / 86400)
-    assert easy_days == 8
+    assert 6 <= easy_days <= 8

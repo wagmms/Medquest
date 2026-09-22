@@ -232,3 +232,86 @@ def test_bounded_int():
     assert _bounded_int("invalid", 10, 1, 100) == 10
     assert _bounded_int("", 10, 1, 100) == 10
     assert _bounded_int([], 10, 1, 100) == 10
+
+
+def test_anki_sync_state_batch_and_no_n_plus_one(client, monkeypatch):
+    # Import 2 cards via batch import
+    imported = client.post("/api/flashcards/import/batch", json={
+        "deck_name": "Test Deck",
+        "cards": [
+            {
+                "front": "Front 1",
+                "back": "Back 1",
+                "anki_cid": 1001,
+                "anki_nid": 2001,
+            },
+            {
+                "front": "Front 2",
+                "back": "Back 2",
+                "anki_cid": 1002,
+                "anki_nid": 2002,
+            },
+        ]
+    })
+    assert imported.status_code == 200
+
+    from api import db as db_module
+    from api import flashcards as flashcards_module
+
+    select_count = 0
+
+    class CountingConnection:
+        def __init__(self, connection):
+            self.connection = connection
+
+        def execute(self, sql, parameters=()):
+            nonlocal select_count
+            if sql.lstrip().upper().startswith("SELECT"):
+                select_count += 1
+            return self.connection.execute(sql, parameters)
+
+        def executemany(self, sql, seq_of_parameters=()):
+            nonlocal select_count
+            if sql.lstrip().upper().startswith("SELECT"):
+                select_count += len(list(seq_of_parameters))
+            return self.connection.executemany(sql, seq_of_parameters)
+
+        def commit(self):
+            self.connection.commit()
+
+        def rollback(self):
+            self.connection.rollback()
+
+    monkeypatch.setattr(
+        flashcards_module,
+        "get_db",
+        lambda: CountingConnection(db_module.get_db()),
+    )
+
+    # Sync state for both cards + one non-existent card
+    # Card 1 and 2 match by anki_cid. Card 3 (9999) fails anki_cid and triggers a single bulk fallback SELECT for anki_nid (8888).
+    sync_resp = client.post("/api/flashcards/anki/sync-state", json={
+        "cards": [
+            {"anki_cid": 1001, "anki_nid": 2001, "interval": 10, "reps": 1, "lapses": 0},
+            {"anki_cid": 1002, "anki_nid": 2002, "interval": -600, "reps": 2, "lapses": 1},
+            {"anki_cid": 9999, "anki_nid": 8888, "interval": 1, "reps": 0, "lapses": 0},
+        ]
+    })
+    assert sync_resp.status_code == 200
+    data = sync_resp.get_json()
+    assert data["success"] is True
+    assert data["updated"] == 2
+    # Exactly 2 bulk SELECTs: 1 for anki_cid chunk, 1 for unmatched anki_nid fallback chunk
+    assert select_count == 2
+
+    select_count = 0
+    # Sync state when all cards match by anki_cid -> requires only 1 bulk SELECT query
+    sync_resp2 = client.post("/api/flashcards/anki/sync-state", json={
+        "cards": [
+            {"anki_cid": 1001, "anki_nid": 2001, "interval": 12, "reps": 2, "lapses": 0},
+            {"anki_cid": 1002, "anki_nid": 2002, "interval": 15, "reps": 3, "lapses": 0},
+        ]
+    })
+    assert sync_resp2.status_code == 200
+    assert sync_resp2.get_json()["updated"] == 2
+    assert select_count == 1
