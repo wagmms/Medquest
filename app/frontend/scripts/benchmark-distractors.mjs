@@ -7,7 +7,7 @@ const generateData = (distractorCount, weakTopicCount) => {
     wrong_choices: [{ letter: 'A', count: i % 5 }]
   }));
 
-  const weakTopics = Array.from({ length: weakTopicCount }, (_, i) => ({
+  const weakTopics = Array.from({ length: weakTopicCount }, () => ({
     topic: `Subtema ${Math.floor(Math.random() * distractorCount)}`,
     attempts: 10,
     correct: 5,
