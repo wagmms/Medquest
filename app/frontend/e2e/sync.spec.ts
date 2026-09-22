@@ -250,4 +250,34 @@ test.describe('Offline Sync e Resiliência', () => {
     // 4. Confirma que avançou para a tela de revisões concluídas
     await expect(page.getByText(/Revisões de hoje concluídas|Tudo Revisado/i)).toBeVisible({ timeout: 10000 });
   });
+
+  test('preserva metodo e content-type ao manipular fila de sincronizacao', async ({ page }) => {
+    await page.goto('/estudar?area=Cl%C3%ADnica+M%C3%A9dica');
+    await page.waitForFunction(() => typeof (window as unknown as { syncManager?: unknown }).syncManager !== 'undefined');
+
+    const itemParams = await page.evaluate(async () => {
+      const win = window as unknown as {
+        syncManager: {
+          enqueue: (endpoint: string, options: RequestInit) => Promise<string>;
+          getQueue: () => Promise<Array<{ id: string; method: string; content_type: string; body: string | null }>>;
+        };
+      };
+
+      const id = await win.syncManager.enqueue('/api/custom-endpoint', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'text/plain',
+        },
+        body: 'test-content',
+      });
+
+      const queue = await win.syncManager.getQueue();
+      return queue.find((i) => i.id === id);
+    });
+
+    expect(itemParams).toBeDefined();
+    expect(itemParams?.method).toBe('PUT');
+    expect(itemParams?.content_type).toBe('text/plain');
+    expect(itemParams?.body).toBe('test-content');
+  });
 });
