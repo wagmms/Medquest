@@ -45,7 +45,10 @@ def test_review_existing_card():
     assert diff_days >= 6.5
 
 
-def test_review_question_intervals():
+def test_review_question_intervals(monkeypatch):
+    from api.srs import _question_scheduler
+    monkeypatch.setattr(_question_scheduler, "enable_fuzzing", False)
+
     # Errou questão -> 7 dias
     _, due_err = review(None, False, None)
     err_days = round((datetime.fromisoformat(due_err) - datetime.now(timezone.utc)).total_seconds() / 86400)
@@ -67,7 +70,10 @@ def test_review_question_intervals():
     assert easy_days == 76
 
 
-def test_review_flashcard_intervals():
+def test_review_flashcard_intervals(monkeypatch):
+    from api.srs import _flashcard_scheduler
+    monkeypatch.setattr(_flashcard_scheduler, "enable_fuzzing", False)
+
     # Erro em flashcard -> 1 dia (mínimo D+1, sem passos em minutos)
     _, due_err = review(None, False, "errei", is_flashcard=True)
     err_days = round((datetime.fromisoformat(due_err) - datetime.now(timezone.utc)).total_seconds() / 86400)
