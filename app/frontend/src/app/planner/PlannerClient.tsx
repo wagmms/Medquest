@@ -235,11 +235,11 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
   const toggleTopic = async (week: number, subtema: string, currentStatus: boolean) => {
     const key = `${week}:${subtema}`;
     const completed = !currentStatus;
-    setTopicProgress(prev => ({ ...prev, [key]: completed }));
+    setTopicProgress(prev => ({ ...prev, [key]: completed, [subtema]: completed }));
     try {
       await api.planner.markTopic(week, subtema, completed);
     } catch {
-      setTopicProgress(prev => ({ ...prev, [key]: currentStatus }));
+      setTopicProgress(prev => ({ ...prev, [key]: currentStatus, [subtema]: currentStatus }));
       toast.error("Erro ao salvar o tema concluído.");
     }
   };
@@ -416,7 +416,7 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
       <div className="space-y-4">
         {plan.map((week) => {
           const weekProgress = progress[week.week.toString()] || { studied: false, rev24h: false, rev7d: false, rev30d: false };
-          const completedInWeek = week.topics.filter(topic => topicProgress[`${week.week}:${topic.subtema}`]).length;
+          const completedInWeek = week.topics.filter(topic => topicProgress[`${week.week}:${topic.subtema}`] || topicProgress[topic.subtema]).length;
           const weekDate = new Date(week.date);
           // Highlight current week if it falls within this week's 7 days
           const isCurrentWeek = weekDate <= today && new Date(weekDate.getTime() + 7 * 24 * 60 * 60 * 1000) > today;
@@ -457,7 +457,7 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
                     <TopicRow 
                       key={idx} 
                       t={t} 
-                       completed={Boolean(topicProgress[`${week.week}:${t.subtema}`])}
+                       completed={Boolean(topicProgress[`${week.week}:${t.subtema}`]) || Boolean(topicProgress[t.subtema])}
                        toggleTopic={toggleTopic}
                        week={week.week}
                       weekDate={weekDate}

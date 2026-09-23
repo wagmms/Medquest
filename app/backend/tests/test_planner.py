@@ -319,3 +319,102 @@ def test_adaptive_signals_preserve_catalog_and_intensive_filter():
     intensive_before = topics(generate_annual_plan(**kwargs, intensive=True))
     intensive_after = topics(generate_annual_plan(**kwargs, intensive=True, adaptive_signals=signals))
     assert intensive_before.keys() == intensive_after.keys()
+
+
+def test_planner_schedule_persisted_and_frozen_across_calls(client, app):
+    from api.db import get_db
+
+    user_id = "user_freeze_test"
+    start = date.today()
+    exam = (start + timedelta(weeks=20)).isoformat()
+    payload = {"start_date": start.isoformat(), "exam_date": exam, "hours_per_week": 20}
+
+    # First call generates and persists
+    resp1 = client.post("/api/generate_plan", json=payload, headers={"X-User-ID": user_id})
+    assert resp1.status_code == 200
+    plan1 = resp1.get_json()["plan"]
+    weeks_order_1 = [(w["week"], [t["subtema"] for t in w["topics"]]) for w in plan1]
+
+    # Verify rows were persisted in planner_schedule
+    with app.app_context():
+        db = get_db()
+        count = db.execute("SELECT COUNT(*) FROM planner_schedule WHERE user_id = ?", (user_id,)).fetchone()[0]
+        assert count > 0
+
+    # Simulate answering questions with many errors in a topic that is scheduled for a later week
+    later_topic = plan1[5]["topics"][0]["subtema"]
+    with app.app_context():
+        db = get_db()
+        db.execute(
+            """INSERT INTO questions(id, area, subtema, stem, correct_letter, missing_alts, year, institution_code, institution_label)
+               VALUES (99901, 'Clínica Médica', ?, 'Stem Error', 'B', 0, 2025, 'USP', 'USP')""",
+            (later_topic,)
+        )
+        for _ in range(8):
+            db.execute(
+                """INSERT INTO attempts(question_id, selected_letter, is_correct, answered_at, user_id)
+                   VALUES (99901, 'A', 0, '2026-09-20T10:00:00Z', ?)""",
+                (user_id,)
+            )
+        db.commit()
+
+    # Second call must return the EXACT same weeks and topic order
+    resp2 = client.post("/api/generate_plan", json=payload, headers={"X-User-ID": user_id})
+    assert resp2.status_code == 200
+    plan2 = resp2.get_json()["plan"]
+    weeks_order_2 = [(w["week"], [t["subtema"] for t in w["topics"]]) for w in plan2]
+
+    assert weeks_order_1 == weeks_order_2
+
+    # But the topic itself should now reflect live adaptive signals
+    topic_in_plan2 = next(t for w in plan2 for t in w["topics"] if t["subtema"] == later_topic)
+    assert "low_accuracy" in topic_in_plan2["priority_reasons"]
+
+
+def test_planner_schedule_cleared_on_reset_and_regenerate(client, app):
+    from api.db import get_db
+
+    user_id = "user_reset_test"
+    start = date.today()
+    exam = (start + timedelta(weeks=20)).isoformat()
+    payload = {"start_date": start.isoformat(), "exam_date": exam, "hours_per_week": 20}
+
+    # Generate
+    resp = client.post("/api/generate_plan", json=payload, headers={"X-User-ID": user_id})
+    assert resp.status_code == 200
+
+    with app.app_context():
+        db = get_db()
+        assert db.execute("SELECT COUNT(*) FROM planner_schedule WHERE user_id = ?", (user_id,)).fetchone()[0] > 0
+
+    # Reset
+    resp_reset = client.post("/api/planner/config/reset", headers={"X-User-ID": user_id})
+    assert resp_reset.status_code == 200
+
+    with app.app_context():
+        db = get_db()
+        assert db.execute("SELECT COUNT(*) FROM planner_schedule WHERE user_id = ?", (user_id,)).fetchone()[0] == 0
+
+    # Force regenerate via flag
+    resp_gen = client.post("/api/generate_plan", json={**payload, "regenerate": True}, headers={"X-User-ID": user_id})
+    assert resp_gen.status_code == 200
+    with app.app_context():
+        db = get_db()
+        assert db.execute("SELECT COUNT(*) FROM planner_schedule WHERE user_id = ?", (user_id,)).fetchone()[0] > 0
+
+
+def test_planner_topics_endpoint_returns_subtema_and_week_composite(client):
+    user_id = "user_topic_progress_test"
+    headers = {"X-User-ID": user_id}
+
+    # Mark topic completed
+    resp = client.post("/api/planner/3/topic", json={"subtema": "Hipertensão", "completed": True}, headers=headers)
+    assert resp.status_code == 200
+
+    # Get topics
+    resp_get = client.get("/api/planner/topics", headers=headers)
+    assert resp_get.status_code == 200
+    data = resp_get.get_json()
+    assert data.get("3:Hipertensão") is True
+    assert data.get("Hipertensão") is True
+

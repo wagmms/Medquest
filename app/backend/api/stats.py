@@ -923,6 +923,7 @@ def reset_stats():
             db.execute("DELETE FROM theme_progress WHERE user_id = ?", (g.user_id,))
             db.execute("DELETE FROM favorites WHERE user_id = ?", (g.user_id,))
             db.execute("DELETE FROM planner_config WHERE user_id = ?", (g.user_id,))
+            db.execute("DELETE FROM planner_schedule WHERE user_id = ?", (g.user_id,))
     except Exception:
         raise
 

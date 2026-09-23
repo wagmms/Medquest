@@ -85,20 +85,25 @@ function areFiltersEquivalent(
         res[k] = String(v);
       }
     }
-    if (!res.limit) res.limit = "50";
     return res;
   };
 
   const normInitial = normalize(initial);
   const normSaved = normalize(saved);
 
-  const initialKeys = Object.keys(normInitial);
-  const savedKeys = Object.keys(normSaved);
-
-  if (initialKeys.length !== savedKeys.length) return false;
-  for (const k of initialKeys) {
-    if (normInitial[k] !== normSaved[k]) return false;
+  // Compare core topic/scope discriminators
+  const coreKeys = ["subtema", "area", "topic", "institution", "mode", "status", "year", "specialty"];
+  for (const k of coreKeys) {
+    if (normInitial[k] && normSaved[k] && normInitial[k] !== normSaved[k]) {
+      return false;
+    }
   }
+
+  // If a specific limit was requested in initialFilters, compare it only if both specify limit
+  if (normInitial.limit && normSaved.limit && normInitial.limit !== normSaved.limit) {
+    return false;
+  }
+
   return true;
 }
 
@@ -118,7 +123,7 @@ export function QuizClient({
   initialFilters = {}
 }: {
   meta?: QuestionMeta;
-  initialFilters?: Record<string, string>;
+  initialFilters?: Record<string, string | string[]>;
 }) {
   const router = useRouter();
   const { user } = useUser();
@@ -353,8 +358,15 @@ export function QuizClient({
     const filterKeys = Object.keys(initialFilters).filter(k => k !== "resume");
     const isSameFilters = saved ? areFiltersEquivalent(initialFilters, saved.filters) : false;
 
-    // Retomada explícita (?resume=true) OU recarregamento de página (F5) na mesma sessão ativa
-    if (saved && (isExplicitResume || (isActiveInSession && filterKeys.length > 0 && isSameFilters))) {
+    // Retomada explícita (?resume=true) OU sessão ativa em andamento com filtros compatíveis
+    const shouldAutoResume = Boolean(
+      saved &&
+      (isExplicitResume ||
+        (saved.state === "PLAYING" && isSameFilters) ||
+        (saved.state === "PLAYING" && isActiveInSession))
+    );
+
+    if (saved && shouldAutoResume) {
       setTimeout(() => {
         setQueue(saved.queue);
         setCurrentIndex(saved.currentIndex);
@@ -555,13 +567,17 @@ export function QuizClient({
       if (isExplicitResume) {
         resumeSavedQuiz();
       } else if (filterKeys.length > 0) {
+        // Se já estiver jogando e os filtros da rota forem equivalentes à sessão atual, preserva a sessão
+        if (state === "PLAYING" && areFiltersEquivalent(initialFilters, filters)) {
+          return;
+        }
         loadQueue({ limit: "50", ...initialFilters });
       } else {
         handleBackToFilters();
       }
     }, 0);
     return () => clearTimeout(timer);
-  }, [initialFilters, loadQueue, resumeSavedQuiz, handleBackToFilters]);
+  }, [initialFilters, state, filters, loadQueue, resumeSavedQuiz, handleBackToFilters]);
 
   const handleNewSession = useCallback(() => {
     setBatchFlashcardsResult(null);

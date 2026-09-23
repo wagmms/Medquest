@@ -21,12 +21,32 @@ export function getLocalOwnerId(): string {
     return "ssr_dummy_owner";
   }
   const clerkUser = window.Clerk?.user?.id;
-  if (clerkUser) return clerkUser;
+  if (clerkUser) {
+    try {
+      localStorage.setItem("medquest_last_user_id", clerkUser);
+    } catch {
+      // Storage unavailable or quota exceeded
+    }
+    return clerkUser;
+  }
 
-  let ownerId = localStorage.getItem("medquest_local_owner");
-  if (!ownerId || ownerId === "guest" || ownerId === "server") {
-    ownerId = crypto.randomUUID();
-    localStorage.setItem("medquest_local_owner", ownerId);
+  // During early hydration before Clerk SDK loads, check if we have a known logged-in user
+  try {
+    const lastUser = localStorage.getItem("medquest_last_user_id");
+    if (lastUser) return lastUser;
+  } catch {
+    // Storage unavailable
+  }
+
+  let ownerId: string | null = null;
+  try {
+    ownerId = localStorage.getItem("medquest_local_owner");
+    if (!ownerId || ownerId === "guest" || ownerId === "server") {
+      ownerId = crypto.randomUUID();
+      localStorage.setItem("medquest_local_owner", ownerId);
+    }
+  } catch {
+    ownerId = "fallback_local_owner";
   }
   return ownerId;
 }

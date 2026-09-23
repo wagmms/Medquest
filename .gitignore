@@ -82,3 +82,8 @@ medquest.db.backup*
 *.db.before-*
 archive/legacy/data/
 
+# ── Artefatos temporários de apresentação / slides ──────────────────
+.chart-data-*/
+.codex_build/
+.codex-finalizer/
+

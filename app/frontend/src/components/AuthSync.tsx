@@ -23,13 +23,26 @@ export function AuthSync({ ssrAuthenticated, children }: AuthSyncProps) {
       setIsSyncing(true);
       router.refresh();
 
-      // Fallback in case router.refresh doesn't re-render the root layout:
-      const timer = setTimeout(() => {
-        window.location.reload();
-      }, 1200);
-      return () => clearTimeout(timer);
+      // Fallback in case router.refresh doesn't re-render the root layout,
+      // guarded against infinite reload loops across continuous renders:
+      const alreadyReloaded = typeof window !== "undefined" && sessionStorage.getItem("medquest_auth_synced") === "1";
+      if (!alreadyReloaded) {
+        const timer = setTimeout(() => {
+          if (typeof window !== "undefined") {
+            sessionStorage.setItem("medquest_auth_synced", "1");
+            window.location.reload();
+          }
+        }, 1500);
+        return () => clearTimeout(timer);
+      }
     }
   }, [ssrAuthenticated, isLoaded, isSignedIn, router]);
+
+  useEffect(() => {
+    if (ssrAuthenticated && typeof window !== "undefined") {
+      sessionStorage.removeItem("medquest_auth_synced");
+    }
+  }, [ssrAuthenticated]);
 
   // If the client is already confirmed signed-in while SSR rendered the sign-in form,
   // show a clean loading state instead of a confusing stuck sign-in card.

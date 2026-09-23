@@ -108,6 +108,7 @@ class GeneratePlanIn(APIInput):
     start_date: str | None = None
     hours_per_week: int = Field(default=20, ge=1, le=168)
     intensive: bool = False
+    regenerate: bool = False
 
 
 class SimuladoCustomIn(APIInput):

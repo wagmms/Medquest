@@ -64,6 +64,8 @@ test.beforeEach(async ({ page, context }) => {
   await context.addCookies([
     { name: 'medquest_demo', value: '1', domain: 'localhost', path: '/' },
     { name: 'medquest_demo', value: '1', domain: '127.0.0.1', path: '/' },
+    { name: '__clerk_db_jwt', value: 'test', domain: 'localhost', path: '/' },
+    { name: '__clerk_db_jwt', value: 'test', domain: '127.0.0.1', path: '/' },
   ]);
   await page.addInitScript(() => localStorage.setItem('medquest_onboarding_v1', 'done'));
 });
@@ -247,3 +249,25 @@ test('iniciar nova sessão com filtros fecha automaticamente a sessão anterior 
   // Na nova sessão, a alternativa não deve vir pré-selecionada da sessão anterior
   await expect(page.getByRole('button', { name: /Mudança de estilo de vida/ })).toHaveAttribute('aria-pressed', 'false');
 });
+
+test('preserva progresso ao recarregar com parâmetros de planner (ex: subtema e limit)', async ({ page, context }) => {
+  await context.addCookies([{ name: 'medquest_demo', value: '1', domain: 'localhost', path: '/' }]);
+  await mockStudyApi(page);
+
+  // Inicia sessão pelo planner com subtema e limit
+  await page.goto('/estudar?subtema=HAS&limit=25', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByText('Qual o tratamento inicial')).toBeVisible();
+
+  // Seleciona alternativa
+  const alternative = page.getByRole('button', { name: /Mudança de estilo de vida/ });
+  await alternative.click();
+  await expect(alternative).toHaveAttribute('aria-pressed', 'true');
+
+  // Recarrega a página na mesma rota
+  await page.reload({ waitUntil: 'domcontentloaded' });
+
+  // Deve retomar na questão sem reiniciar para tela de filtros nem descartar a alternativa
+  await expect(page.getByText('Qual o tratamento inicial')).toBeVisible();
+  await expect(page.getByRole('button', { name: /Mudança de estilo de vida/ })).toHaveAttribute('aria-pressed', 'true');
+});
+

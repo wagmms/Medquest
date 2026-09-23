@@ -380,6 +380,16 @@ def _create_tables(db):
         days_per_week INTEGER DEFAULT 6, questions_per_day INTEGER DEFAULT 30, hours_per_day INTEGER DEFAULT 4, target_score REAL,
         target_institution TEXT, target_specialty TEXT,
         updated_at TEXT)''')
+    db.execute('''CREATE TABLE IF NOT EXISTS planner_schedule (
+        user_id TEXT NOT NULL,
+        mode TEXT NOT NULL DEFAULT 'standard' CHECK (mode IN ('standard', 'intensive')),
+        week INTEGER NOT NULL,
+        subtema TEXT NOT NULL,
+        display_order INTEGER NOT NULL,
+        created_at TEXT NOT NULL,
+        PRIMARY KEY (user_id, mode, week, subtema))''')
+    db.execute('''CREATE INDEX IF NOT EXISTS idx_planner_schedule_lookup 
+        ON planner_schedule(user_id, mode, week, display_order)''')
 
     db.execute('''CREATE TABLE IF NOT EXISTS flashcards (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

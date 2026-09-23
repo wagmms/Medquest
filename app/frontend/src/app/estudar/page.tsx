@@ -21,19 +21,21 @@ export default async function EstudarPage({
   }
   const rawParams = await searchParams;
 
-  // Convert searchParams to a simple record of strings
-  const initialFilters: Record<string, string> = {};
+  // Convert searchParams to record of strings or string arrays
+  const initialFilters: Record<string, string | string[]> = {};
   for (const key in rawParams) {
     const val = rawParams[key];
-    if (typeof val === "string") {
+    if (typeof val === "string" || Array.isArray(val)) {
       initialFilters[key] = val;
     }
   }
 
+  const subtemaStr = typeof initialFilters.subtema === "string" ? initialFilters.subtema : undefined;
+
   return (
     <div className="animate-in fade-in duration-500 w-full h-full">
-      {initialFilters.subtema && getSubtemaDetails(initialFilters.subtema) && (
-        <Link href={`/temas?subtema=${encodeURIComponent(initialFilters.subtema)}`} className="inline-block mb-4 text-sm font-semibold text-primary hover:underline">
+      {subtemaStr && getSubtemaDetails(subtemaStr) && (
+        <Link href={`/temas?subtema=${encodeURIComponent(subtemaStr)}`} className="inline-block mb-4 text-sm font-semibold text-primary hover:underline">
           ← Voltar ao tema
         </Link>
       )}

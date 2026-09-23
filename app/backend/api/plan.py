@@ -5,7 +5,7 @@ from flask import Blueprint, Response, g, jsonify, request
 
 from .adaptive import get_adaptive_signals_by_topic
 # planner service — geração do plano anual por pesos históricos USP
-from .services.planner import generate_annual_plan
+from .services.planner import generate_annual_plan, build_plan_from_schedule
 
 from .db import db_transaction, get_db
 from .observability import record_domain_event
@@ -30,6 +30,7 @@ def planner_config_reset():
         db.execute("DELETE FROM planner_config WHERE user_id = ?", (g.user_id,))
         db.execute("DELETE FROM planner_progress WHERE user_id = ?", (g.user_id,))
         db.execute("DELETE FROM planner_topic_progress WHERE user_id = ?", (g.user_id,))
+        db.execute("DELETE FROM planner_schedule WHERE user_id = ?", (g.user_id,))
     invalidate_user_caches(g.user_id)
     return jsonify({"success": True})
 
@@ -48,6 +49,7 @@ def planner_config():
             target_inst = ", ".join(cfg.target_institutions)
 
         with db_transaction(db, immediate=True):
+            db.execute("DELETE FROM planner_schedule WHERE user_id = ?", (g.user_id,))
             try:
                 db.execute("""
                     INSERT INTO planner_config (user_id, exam_date, start_date, days_per_week, questions_per_day, hours_per_day, updated_at, target_score, target_institution, target_specialty)
@@ -123,7 +125,13 @@ def get_planner():
 def get_planner_topics():
     db = get_db()
     rows = db.execute("SELECT week, subtema, completed FROM planner_topic_progress WHERE user_id = ?", (g.user_id,)).fetchall()
-    return jsonify({f"{r['week']}:{r['subtema']}": bool(r["completed"]) for r in rows})
+    res = {}
+    for r in rows:
+        val = bool(r["completed"])
+        res[f"{r['week']}:{r['subtema']}"] = val
+        if val:
+            res[r["subtema"]] = True
+    return jsonify(res)
 
 
 @bp.route("/planner/<int:week>/topic", methods=["POST"])
@@ -203,16 +211,47 @@ def generate_plan():
     except ValidationError as e:
         return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
     start_date = data.start_date or datetime.now(timezone.utc).isoformat()
+    mode = "intensive" if data.intensive else "standard"
     
     db = get_db()
     rows, answered_map = _fetch_plan_data(db, g.user_id)
     adaptive_signals = get_adaptive_signals_by_topic(db, g.user_id)
+
+    if not data.regenerate:
+        schedule_rows = db.execute(
+            "SELECT week, subtema, display_order FROM planner_schedule WHERE user_id = ? AND mode = ? ORDER BY week ASC, display_order ASC",
+            (g.user_id, mode)
+        ).fetchall()
+        if schedule_rows:
+            plan = build_plan_from_schedule(
+                schedule_rows, start_date, data.hours_per_week,
+                rows=rows, user_progress=answered_map,
+                adaptive_signals=adaptive_signals, intensive=data.intensive
+            )
+            if plan:
+                return jsonify(plan)
     
     plan = generate_annual_plan(
         rows, start_date, data.exam_date, data.hours_per_week, 
         intensive=data.intensive, user_progress=answered_map,
         adaptive_signals=adaptive_signals
     )
+
+    if isinstance(plan, dict) and plan.get("plan"):
+        now_iso = datetime.now(timezone.utc).isoformat()
+        with db_transaction(db, immediate=True):
+            db.execute("DELETE FROM planner_schedule WHERE user_id = ? AND mode = ?", (g.user_id, mode))
+            insert_records = []
+            for w in plan["plan"]:
+                week_num = int(w["week"])
+                for order_idx, t in enumerate(w.get("topics", [])):
+                    insert_records.append((g.user_id, mode, week_num, t["subtema"], order_idx, now_iso))
+            if insert_records:
+                db.executemany("""
+                    INSERT INTO planner_schedule (user_id, mode, week, subtema, display_order, created_at)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """, insert_records)
+
     return jsonify(plan)
 
 
@@ -285,11 +324,22 @@ def _generate_calendar_ics_content(db, user_id):
     rows, answered_map = _fetch_plan_data(db, user_id)
     adaptive_signals = get_adaptive_signals_by_topic(db, user_id)
 
-    plan_result = generate_annual_plan(
-        rows, start_date, exam_date, hours_per_week, 
-        intensive=False, user_progress=answered_map,
-        adaptive_signals=adaptive_signals
-    )
+    schedule_rows = db.execute(
+        "SELECT week, subtema, display_order FROM planner_schedule WHERE user_id = ? AND mode = 'standard' ORDER BY week ASC, display_order ASC",
+        (user_id,)
+    ).fetchall()
+    if schedule_rows:
+        plan_result = build_plan_from_schedule(
+            schedule_rows, start_date, hours_per_week,
+            rows=rows, user_progress=answered_map,
+            adaptive_signals=adaptive_signals, intensive=False
+        ) or {}
+    else:
+        plan_result = generate_annual_plan(
+            rows, start_date, exam_date, hours_per_week, 
+            intensive=False, user_progress=answered_map,
+            adaptive_signals=adaptive_signals
+        )
 
     plan_weeks = plan_result.get("plan", [])
     now_dt = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")

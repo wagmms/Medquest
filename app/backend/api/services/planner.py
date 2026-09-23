@@ -142,6 +142,92 @@ def _consolidate_row_stats(rows, meta_dict):
     return row_stats
 
 
+def _build_topic_item(subtema, meta, stats, prog, practice_hours_per_subtema, adaptive_signals=None):
+    norm_area = meta["area"]
+    q_count = stats["q_count"] if stats else 0
+
+    prog_dict = dict(prog) if prog else {}
+    ans_count = prog_dict.get("ans_count") or 0
+    attempts = prog_dict.get("attempts") or 0
+    correct_count = prog_dict.get("correct_count") or 0
+    acc = (correct_count / attempts) if attempts > 0 else 0
+
+    remaining_q = max(0, q_count - ans_count)
+
+    theory_hours = meta["theory_hours"]
+    practice_hours = practice_hours_per_subtema
+    total_topic_hours = theory_hours + practice_hours
+
+    # Priority score: High Yield = 100, plus area weight
+    weight = USP_WEIGHTS.get(norm_area, 0.1)
+    priority = 100 if meta["highYield"] else 0
+    priority += weight * 10
+
+    priority_reasons = []
+    if adaptive_signals is not None:
+        sig = adaptive_signals.get(subtema)
+        if sig:
+            reasons = sig.get("reasons", [])
+            if reasons:
+                # Sinais adaptativos com evidências reais de dificuldade ou revisão pendente
+                score = float(sig.get("priority_score", 0.0) or 0.0)
+                priority += round(score * 50.0, 2)
+                priority_reasons = list(reasons)
+    else:
+        # Fallback retrocompatível para chamadas sem sinais adaptativos
+        if attempts >= 3 and acc < 0.6:
+            priority += 50
+            priority_reasons.append("low_accuracy")
+
+    # Tier and explanation
+    if priority >= 130:
+        priority_tier = "Diamante"
+    elif priority >= 100:
+        priority_tier = "Alta"
+    elif priority >= 50:
+        priority_tier = "Média"
+    else:
+        priority_tier = "Normal"
+
+    explanation_parts = []
+    if meta["highYield"]:
+        explanation_parts.append("é de alto rendimento nas provas")
+    if "low_accuracy" in priority_reasons:
+        explanation_parts.append("houve baixo desempenho recente")
+    if "reviews_due" in priority_reasons:
+        explanation_parts.append("há revisões vencidas")
+    if "memory_at_risk" in priority_reasons:
+        explanation_parts.append("há risco de esquecimento")
+    if "low_coverage" in priority_reasons:
+        explanation_parts.append("você ainda não cobriu este assunto")
+
+    if explanation_parts:
+        if len(explanation_parts) > 1:
+            exp = ", ".join(explanation_parts[:-1]) + " e " + explanation_parts[-1]
+        else:
+            exp = explanation_parts[0]
+        priority_explanation = f"Recomendado porque {exp}."
+    else:
+        priority_explanation = "Recomendado para cobrir o edital equilibradamente."
+
+    topic_obj = {
+        "area": norm_area,
+        "subtema": subtema,
+        "subtopics": stats["subtopics"] if stats else [],
+        "questions_available": remaining_q,
+        "estimated_theory_hours": round(theory_hours, 2),
+        "estimated_practice_hours": round(practice_hours, 2),
+        "estimated_hours": round(total_topic_hours, 2),
+        "theory_source": meta["theory_source"],
+        "course_module": meta["course_module"],
+        "priority": round(priority, 2),
+        "priority_reasons": priority_reasons,
+        "priority_tier": priority_tier,
+        "priority_explanation": priority_explanation,
+    }
+    return topic_obj, total_topic_hours
+
+
 def _prepare_topics(meta_dict, row_stats, user_progress, intensive, practice_hours_per_subtema, adaptive_signals=None):
     # Prepara exatamente os tópicos canônicos, calculando as horas de cada um.
     all_topics = []
@@ -151,95 +237,16 @@ def _prepare_topics(meta_dict, row_stats, user_progress, intensive, practice_hou
         user_progress = {}
 
     for subtema, meta in meta_dict.items():
-        stats = row_stats[subtema]
-        norm_area = meta["area"]
-        q_count = stats["q_count"]
-
-        prog = user_progress.get(subtema, {"ans_count": 0, "correct_count": 0, "attempts": 0})
-        prog_dict = dict(prog) if prog else {}
-        ans_count = prog_dict.get("ans_count") or 0
-        attempts = prog_dict.get("attempts") or 0
-        correct_count = prog_dict.get("correct_count") or 0
-        acc = (correct_count / attempts) if attempts > 0 else 0
-
-        remaining_q = max(0, q_count - ans_count)
-
         if intensive and not meta["highYield"]:
             continue
 
-        theory_hours = meta["theory_hours"]
-        practice_hours = practice_hours_per_subtema
-        total_topic_hours = theory_hours + practice_hours
-
-        total_required_hours += total_topic_hours
-
-        # Priority score: High Yield = 100, plus area weight
-        weight = USP_WEIGHTS.get(norm_area, 0.1)
-        priority = 100 if meta["highYield"] else 0
-        priority += weight * 10
-
-        priority_reasons = []
-        if adaptive_signals is not None:
-            sig = adaptive_signals.get(subtema)
-            if sig:
-                reasons = sig.get("reasons", [])
-                if reasons:
-                    # Sinais adaptativos com evidências reais de dificuldade ou revisão pendente
-                    score = float(sig.get("priority_score", 0.0) or 0.0)
-                    priority += round(score * 50.0, 2)
-                    priority_reasons = list(reasons)
-        else:
-            # Fallback retrocompatível para chamadas sem sinais adaptativos
-            if attempts >= 3 and acc < 0.6:
-                priority += 50
-                priority_reasons.append("low_accuracy")
-
-        # Tier and explanation
-        if priority >= 130:
-            priority_tier = "Diamante"
-        elif priority >= 100:
-            priority_tier = "Alta"
-        elif priority >= 50:
-            priority_tier = "Média"
-        else:
-            priority_tier = "Normal"
-
-        explanation_parts = []
-        if meta["highYield"]:
-            explanation_parts.append("é de alto rendimento nas provas")
-        if "low_accuracy" in priority_reasons:
-            explanation_parts.append("houve baixo desempenho recente")
-        if "reviews_due" in priority_reasons:
-            explanation_parts.append("há revisões vencidas")
-        if "memory_at_risk" in priority_reasons:
-            explanation_parts.append("há risco de esquecimento")
-        if "low_coverage" in priority_reasons:
-            explanation_parts.append("você ainda não cobriu este assunto")
-        
-        if explanation_parts:
-            if len(explanation_parts) > 1:
-                exp = ", ".join(explanation_parts[:-1]) + " e " + explanation_parts[-1]
-            else:
-                exp = explanation_parts[0]
-            priority_explanation = f"Recomendado porque {exp}."
-        else:
-            priority_explanation = "Recomendado para cobrir o edital equilibradamente."
-
-        all_topics.append({
-            "area": norm_area,
-            "subtema": subtema,
-            "subtopics": stats["subtopics"],
-            "questions_available": remaining_q,
-            "estimated_theory_hours": round(theory_hours, 2),
-            "estimated_practice_hours": round(practice_hours, 2),
-            "estimated_hours": round(total_topic_hours, 2),
-            "theory_source": meta["theory_source"],
-            "course_module": meta["course_module"],
-            "priority": round(priority, 2),
-            "priority_reasons": priority_reasons,
-            "priority_tier": priority_tier,
-            "priority_explanation": priority_explanation,
-        })
+        stats = row_stats[subtema]
+        prog = user_progress.get(subtema)
+        topic_obj, topic_hours = _build_topic_item(
+            subtema, meta, stats, prog, practice_hours_per_subtema, adaptive_signals
+        )
+        total_required_hours += topic_hours
+        all_topics.append(topic_obj)
 
     # Sort topics by priority (descending)
     all_topics.sort(key=lambda x: x["priority"], reverse=True)
@@ -367,3 +374,81 @@ def generate_annual_plan(rows, start_date_str, exam_date_str, hours_per_week, in
         result["total_available_hours"] = round(total_available_hours)
 
     return result
+
+
+def build_plan_from_schedule(
+    schedule_rows,
+    start_date_str,
+    hours_per_week,
+    rows=None,
+    user_progress=None,
+    adaptive_signals=None,
+    intensive=False
+):
+    """
+    Reconstrói a estrutura semanal do plano a partir do cronograma congelado em banco,
+    enriquecendo em tempo real os badges e motivos adaptativos de cada aula sem alterar
+    a ordem ou alocação das semanas.
+    """
+    if not schedule_rows:
+        return None
+
+    try:
+        start_date = datetime.fromisoformat(str(start_date_str).replace("Z", "+00:00"))
+    except (ValueError, TypeError):
+        start_date = datetime.now()
+    if start_date.tzinfo is not None:
+        start_date = start_date.replace(tzinfo=None)
+
+    planner_meta, katomart_subtemas, practice_hours_per_subtema = _load_catalogs()
+    meta_dict = _build_meta_dict(planner_meta, katomart_subtemas)
+    row_stats = _consolidate_row_stats(rows or [], meta_dict)
+
+    if user_progress is None:
+        user_progress = {}
+
+    weeks_map = {}
+    for r in schedule_rows:
+        w_num = int(r["week"])
+        weeks_map.setdefault(w_num, []).append(r["subtema"])
+
+    total_required_hours = 0.0
+    plan = []
+
+    for week_num in sorted(weeks_map.keys()):
+        week_topics = []
+        current_week_hours = 0.0
+        for subtema in weeks_map[week_num]:
+            meta = meta_dict.get(subtema)
+            if not meta:
+                continue
+            stats = row_stats.get(subtema, {"q_count": 0, "subtopics": []})
+            prog = user_progress.get(subtema)
+            topic_obj, topic_hours = _build_topic_item(
+                subtema, meta, stats, prog, practice_hours_per_subtema, adaptive_signals
+            )
+            total_required_hours += topic_hours
+            current_week_hours += topic_hours
+            week_topics.append(topic_obj)
+
+        plan.append({
+            "week": week_num,
+            "date": (start_date + timedelta(weeks=week_num - 1)).isoformat(),
+            "topics": week_topics,
+            "recommended_hours": hours_per_week,
+            "allocated_hours": round(current_week_hours, 1),
+        })
+
+    total_available_hours = len(plan) * hours_per_week
+    warning_msg = None
+    if total_required_hours > total_available_hours:
+        warning_msg = f"Você tem {total_available_hours} horas disponíveis, mas precisa de {round(total_required_hours)} horas para cobrir {'este plano' if intensive else 'todo o edital'}."
+
+    result = {"plan": plan}
+    if warning_msg:
+        result["warning"] = warning_msg
+        result["total_required_hours"] = round(total_required_hours)
+        result["total_available_hours"] = round(total_available_hours)
+
+    return result
+

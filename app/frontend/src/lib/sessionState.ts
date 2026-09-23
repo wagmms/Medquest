@@ -25,22 +25,61 @@ export function readLearningSession<T>(
   removeLegacyState(kind);
   const key = getLearningSessionKey(kind);
   const raw = localStorage.getItem(key);
-  if (!raw) return null;
-
-  try {
-    const parsed: unknown = JSON.parse(raw);
-    if (isValid(parsed)) return parsed;
-  } catch {
-    // Invalid or partial writes are discarded below.
+  if (raw) {
+    try {
+      const parsed: unknown = JSON.parse(raw);
+      if (isValid(parsed)) return parsed;
+    } catch {
+      // Invalid or partial writes are discarded below.
+    }
+    localStorage.removeItem(key);
   }
 
-  localStorage.removeItem(key);
+  // Fallback: search any other key starting with `medquest_${kind}_state_v2:`
+  // (e.g., if saved with Clerk user ID but currently reading with guest ID during early hydration, or vice-versa)
+  try {
+    const prefix = `medquest_${kind}_state_v2:`;
+    for (let i = 0; i < localStorage.length; i++) {
+      const storageKey = localStorage.key(i);
+      if (storageKey && storageKey.startsWith(prefix) && storageKey !== key) {
+        const fallbackRaw = localStorage.getItem(storageKey);
+        if (fallbackRaw) {
+          try {
+            const parsed: unknown = JSON.parse(fallbackRaw);
+            if (isValid(parsed)) {
+              // Migrate data to current active key
+              localStorage.setItem(key, fallbackRaw);
+              localStorage.removeItem(storageKey);
+              return parsed;
+            }
+          } catch {
+            localStorage.removeItem(storageKey);
+          }
+        }
+      }
+    }
+  } catch {
+    // Storage access issue
+  }
+
   return null;
 }
 
 export function removeLearningSession(kind: LearningSessionKind): void {
   removeLegacyState(kind);
   localStorage.removeItem(getLearningSessionKey(kind));
+  try {
+    const prefix = `medquest_${kind}_state_v2:`;
+    const toRemove: string[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith(prefix)) toRemove.push(k);
+    }
+    toRemove.forEach(k => localStorage.removeItem(k));
+  } catch {
+    // Storage error
+  }
+
   if (cloudSaveTimeouts[kind]) {
     clearTimeout(cloudSaveTimeouts[kind]);
     delete cloudSaveTimeouts[kind];
@@ -54,6 +93,11 @@ export function removeLearningSession(kind: LearningSessionKind): void {
 export function clearLearningSessions(): void {
   removeLearningSession("quiz");
   removeLearningSession("simulado");
+  try {
+    localStorage.removeItem("medquest_last_user_id");
+  } catch {
+    // Storage error
+  }
 }
 
 export function deadlineFromNow(seconds: number): number {
