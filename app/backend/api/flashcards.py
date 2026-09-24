@@ -483,7 +483,21 @@ def import_anki_file():
     imported_count = 0
     unique_decks = set()
 
+    nids = list({c.get("anki_nid") for c in cards if c.get("anki_nid") is not None})
+    nid_map = {}
+
     with db_transaction(db, immediate=True):
+        if nids:
+            for i in range(0, len(nids), 500):
+                chunk = nids[i:i + 500]
+                placeholders = ",".join("?" * len(chunk))
+                rows = db.execute(
+                    f"SELECT id, anki_nid FROM flashcards WHERE user_id = ? AND anki_nid IN ({placeholders})",
+                    [g.user_id, *chunk],
+                ).fetchall()
+                for r in rows:
+                    nid_map[r["anki_nid"]] = r["id"]
+
         for c in cards:
             c_deck = (target_deck if target_deck != "Anki" and target_deck else c.get("deck_name") or "Anki").strip()
             unique_decks.add(c_deck)
@@ -493,19 +507,14 @@ def import_anki_file():
             source_type = c.get("source_type") or ("anki_apkg" if filename_lower.endswith((".apkg", ".colpkg")) else "anki_txt")
             source_context = c.get("source_context") or f"Anki: {c_deck}"
 
-            existing = None
-            if anki_nid is not None:
-                existing = db.execute(
-                    "SELECT id FROM flashcards WHERE user_id = ? AND anki_nid = ?",
-                    (g.user_id, anki_nid),
-                ).fetchone()
+            existing_id = nid_map.get(anki_nid) if anki_nid is not None else None
 
-            if existing:
+            if existing_id is not None:
                 db.execute("""
                     UPDATE flashcards
                     SET front = ?, back = ?, deck_name = ?, tags = ?, source_context = ?, source_type = ?
                     WHERE id = ? AND user_id = ?
-                """, (c["front"], c["back"], c_deck, c_tags_json, source_context, source_type, existing["id"], g.user_id))
+                """, (c["front"], c["back"], c_deck, c_tags_json, source_context, source_type, existing_id, g.user_id))
             else:
                 db.execute("""
                     INSERT INTO flashcards (question_id, front, back, created_at, next_review_date, fsrs_card, user_id, source_context, is_ai_generated, deck_name, tags, source_type, anki_nid)
@@ -542,26 +551,35 @@ def import_anki_batch():
     imported_count = 0
     unique_decks = set()
 
+    nids = list({c.anki_nid for c in data.cards if c.anki_nid is not None})
+    nid_map = {}
+
     with db_transaction(db, immediate=True):
+        if nids:
+            for i in range(0, len(nids), 500):
+                chunk = nids[i:i + 500]
+                placeholders = ",".join("?" * len(chunk))
+                rows = db.execute(
+                    f"SELECT id, anki_nid FROM flashcards WHERE user_id = ? AND anki_nid IN ({placeholders})",
+                    [g.user_id, *chunk],
+                ).fetchall()
+                for r in rows:
+                    nid_map[r["anki_nid"]] = r["id"]
+
         for c in data.cards:
             c_deck = (data.deck_name or c.deck_name or "Anki").strip()
             unique_decks.add(c_deck)
             c_tags_json = json.dumps(c.tags or [])
             source_context = c.source_context or f"Anki: {c_deck}"
 
-            existing = None
-            if c.anki_nid is not None:
-                existing = db.execute(
-                    "SELECT id FROM flashcards WHERE user_id = ? AND anki_nid = ?",
-                    (g.user_id, c.anki_nid),
-                ).fetchone()
+            existing_id = nid_map.get(c.anki_nid) if c.anki_nid is not None else None
 
-            if existing:
+            if existing_id is not None:
                 db.execute("""
                     UPDATE flashcards
                     SET front = ?, back = ?, deck_name = ?, tags = ?, source_context = ?, source_type = 'anki_connect', anki_cid = ?
                     WHERE id = ? AND user_id = ?
-                """, (c.front, c.back, c_deck, c_tags_json, source_context, c.anki_cid, existing["id"], g.user_id))
+                """, (c.front, c.back, c_deck, c_tags_json, source_context, c.anki_cid, existing_id, g.user_id))
             else:
                 db.execute("""
                     INSERT INTO flashcards (question_id, front, back, created_at, next_review_date, fsrs_card, user_id, source_context, is_ai_generated, deck_name, tags, source_type, anki_nid, anki_cid)
