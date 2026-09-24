@@ -971,7 +971,12 @@ def _fetch_batch_data(db, ids, user_id):
             (f"SELECT * FROM questions WHERE id IN ({ph})", chunk),
             (f"SELECT question_id, letter, text FROM alternatives WHERE question_id IN ({ph}) ORDER BY letter", chunk),
             (f"SELECT question_id, file_path FROM question_images WHERE question_id IN ({ph}) ORDER BY order_index", chunk),
-            (f"SELECT question_id, selected_letter, is_correct FROM attempts WHERE question_id IN ({ph}) AND user_id = ? ORDER BY id DESC", chunk_user),
+            (f"""SELECT a.question_id, a.selected_letter, a.is_correct
+                 FROM questions q JOIN attempts a ON a.id = (
+                     SELECT latest.id FROM attempts latest
+                     WHERE latest.user_id = ? AND latest.question_id = q.id
+                     ORDER BY latest.id DESC LIMIT 1
+                 ) WHERE q.id IN ({ph})""", [user_id] + list(chunk)),
             (f"SELECT question_id, COUNT(*) as n FROM attempts WHERE question_id IN ({ph}) AND is_correct = 0 AND user_id = ? GROUP BY question_id", chunk_user),
             (f"SELECT question_id FROM favorites WHERE question_id IN ({ph}) AND user_id = ?", chunk_user),
         ])

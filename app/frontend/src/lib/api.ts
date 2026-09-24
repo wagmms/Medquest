@@ -35,6 +35,7 @@ interface ApiFetchOptions extends RequestInit {
  * Base fetch function with default headers and resilient timeout
  */
 async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise<T> {
+  options?.signal?.throwIfAborted();
   const url = `${API_BASE}${endpoint}`;
 
   const isMutation = options?.method && ["POST", "PUT", "PATCH", "DELETE"].includes(options.method.toUpperCase());
@@ -79,15 +80,16 @@ async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise
     controller.abort(new Error("Timeout de conexão"));
   }, timeoutMs);
 
+  const handleAbort = () => {
+    clearTimeout(timeoutId);
+    controller.abort(options?.signal?.reason);
+  };
   if (options?.signal) {
     if (options.signal.aborted) {
       clearTimeout(timeoutId);
       controller.abort(options.signal.reason);
     } else {
-      options.signal.addEventListener("abort", () => {
-        clearTimeout(timeoutId);
-        controller.abort(options.signal!.reason);
-      }, { once: true });
+      options.signal.addEventListener("abort", handleAbort, { once: true });
     }
   }
 
@@ -133,6 +135,7 @@ async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise
     throw error;
   } finally {
     clearTimeout(timeoutId);
+    options?.signal?.removeEventListener("abort", handleAbort);
   }
 }
 

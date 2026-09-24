@@ -279,6 +279,10 @@ def test_cron_dispatch_auth_in_non_testing_mode(tmp_path, monkeypatch):
 
     dbfile = tmp_path / "medquest_nontest.db"
     monkeypatch.setenv("MEDQUEST_DB", str(dbfile))
+    # Exercise production authentication against the isolated local database,
+    # even when the developer's .env configures a remote Turso database.
+    monkeypatch.delenv("TURSO_DATABASE_URL", raising=False)
+    monkeypatch.delenv("TURSO_AUTH_TOKEN", raising=False)
 
     # Cria app explicitamente sem testing mode
     app = create_app(testing=False)

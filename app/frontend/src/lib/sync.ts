@@ -10,6 +10,7 @@ let onlineHandler: (() => void) | null = null;
 let visibilityHandler: (() => void) | null = null;
 let syncTimer: ReturnType<typeof setTimeout> | null = null;
 let syncPromise: Promise<void> | null = null;
+let scheduleVersion = 0;
 
 function serializeBody(body: unknown): string | null {
   if (body === null || body === undefined) {
@@ -130,6 +131,7 @@ export const syncManager = {
 
   async scheduleNextSync(): Promise<void> {
     if (typeof window === "undefined" || !localDb || !isInitialized) return;
+    const version = ++scheduleVersion;
     
     if (syncTimer) {
       clearTimeout(syncTimer);
@@ -147,7 +149,7 @@ export const syncManager = {
 
       // The provider may have unmounted while IndexedDB was resolving.
       // Do not leave a background timer behind in that case.
-      if (!isInitialized) return;
+      if (!isInitialized || version !== scheduleVersion) return;
 
       if (items.length === 0) return;
 
@@ -207,10 +209,13 @@ export const syncManager = {
     }
 
     if (items.length === 0) return;
+    items.sort((a, b) => a.created_at - b.created_at);
 
     console.log(`[Sync] Sincronizando ${items.length} requisições pendentes...`);
 
     for (const item of items) {
+      // A user may switch accounts while an earlier request is in flight.
+      if (getLocalOwnerId() !== uid) break;
       try {
         const fetchHeaders: HeadersInit = {
           "Content-Type": item.content_type,
@@ -374,6 +379,7 @@ export const syncManager = {
 
   cleanup(): void {
     if (typeof window === "undefined" || !isInitialized) return;
+    ++scheduleVersion;
 
     if (syncTimer) {
       clearTimeout(syncTimer);
