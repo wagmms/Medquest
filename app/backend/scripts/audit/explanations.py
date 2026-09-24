@@ -29,6 +29,7 @@ def check_explanations(db: sqlite3.Connection, short_limit: int = 50) -> dict:
         if not text:
             add(qid, "high", "empty_or_missing")
             continue
+        # Audit heuristic rule: check database explanation text for draft/todo markers.
         if re.search(r"\b(?:todo|fixme|placeholder)\b", text, re.IGNORECASE):
             add(qid, "high", "residual_marker")
         if text.endswith(("...", "…")):
