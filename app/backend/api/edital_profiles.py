@@ -4,7 +4,7 @@ Define pesos de grandes áreas, versões e status de validação curricular de f
 puramente local, hermética e determinística, sem dependência de serviços externos.
 """
 
-from typing import Dict, List, Literal, Optional
+from typing import Dict, Literal, Optional
 from pydantic import BaseModel, Field
 
 
