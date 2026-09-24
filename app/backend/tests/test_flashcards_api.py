@@ -315,3 +315,43 @@ def test_anki_sync_state_batch_and_no_n_plus_one(client, monkeypatch):
     assert sync_resp2.status_code == 200
     assert sync_resp2.get_json()["updated"] == 2
     assert select_count == 1
+
+
+def test_anki_import_batch_no_n_plus_one(client, monkeypatch):
+    from api import db as db_module
+    from api import flashcards as flashcards_module
+
+    select_count = 0
+
+    class CountingConnection:
+        def __init__(self, connection):
+            self.connection = connection
+
+        def execute(self, sql, parameters=()):
+            nonlocal select_count
+            if sql.lstrip().upper().startswith("SELECT"):
+                select_count += 1
+            return self.connection.execute(sql, parameters)
+
+        def commit(self):
+            self.connection.commit()
+
+        def rollback(self):
+            self.connection.rollback()
+
+    monkeypatch.setattr(
+        flashcards_module,
+        "get_db",
+        lambda: CountingConnection(db_module.get_db()),
+    )
+
+    # Import 5 cards in a single batch
+    cards_payload = [
+        {"front": f"Front {i}", "back": f"Back {i}", "anki_nid": 3000 + i, "anki_cid": 4000 + i}
+        for i in range(5)
+    ]
+    resp = client.post("/api/flashcards/import/batch", json={"deck_name": "Bulk Deck", "cards": cards_payload})
+    assert resp.status_code == 200
+    assert resp.get_json()["new_cards"] == 5
+    # Should perform only 1 bulk SELECT for existing anki_nids, rather than 5 individual SELECT queries
+    assert select_count == 1
