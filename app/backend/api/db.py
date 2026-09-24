@@ -339,6 +339,8 @@ def close_db(exception=None):
         db.close()
 
 def _table_cols(db, table):
+    if not isinstance(table, str) or not table.isidentifier():
+        raise ValueError(f"Invalid table name: {table!r}")
     if isinstance(db, TursoConnection):
         res = db.execute("SELECT name FROM pragma_table_info(?)", (table,)).fetchall()
         return [r["name"] for r in res]

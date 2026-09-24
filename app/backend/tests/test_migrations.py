@@ -64,6 +64,52 @@ def test_flashcard_migration_allows_unlinked_anki_cards(tmp_path: Path) -> None:
     db.close()
 
 
+def test_table_cols_security_and_functionality(tmp_path: Path) -> None:
+    from api.db import _table_cols, TursoConnection
+
+    db_path = tmp_path / "test_cols.db"
+    db = sqlite3.connect(db_path)
+    db.row_factory = sqlite3.Row
+    db.execute("CREATE TABLE valid_table (id INTEGER PRIMARY KEY, col1 TEXT, col2 INTEGER)")
+
+    # 1. Valid table on standard sqlite3 connection
+    cols = _table_cols(db, "valid_table")
+    assert cols == ["id", "col1", "col2"]
+
+    # 2. Valid table on TursoConnection mock
+    class DummyRawCursor:
+        description = [("name",)]
+        def fetchall(self):
+            return [("id",), ("col1",), ("col2",)]
+
+    class DummyClient:
+        def execute(self, sql, args):
+            assert sql == "SELECT name FROM pragma_table_info(?)"
+            assert args == ["valid_table"]
+            return DummyRawCursor()
+
+    turso_db = TursoConnection(DummyClient())
+    turso_cols = _table_cols(turso_db, "valid_table")
+    assert turso_cols == ["id", "col1", "col2"]
+
+    # 3. Invalid/malicious table names must raise ValueError
+    invalid_table_names = [
+        "questions; DROP TABLE questions; --",
+        "questions) OR 1=1--",
+        "table name with spaces",
+        "table-with-dash",
+        "",
+        "123numeric_start",
+    ]
+    for invalid_name in invalid_table_names:
+        with pytest.raises(ValueError, match="Invalid table name"):
+            _table_cols(db, invalid_name)
+        with pytest.raises(ValueError, match="Invalid table name"):
+            _table_cols(turso_db, invalid_name)
+
+    db.close()
+
+
 def test_applied_migration_checksum_cannot_change(tmp_path: Path) -> None:
     db_path = tmp_path / "ledger.db"
     db = sqlite3.connect(db_path)
