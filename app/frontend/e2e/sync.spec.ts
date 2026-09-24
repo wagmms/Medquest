@@ -33,7 +33,9 @@ test.describe('Offline Sync e Resiliência', () => {
     await context.addCookies([
       { name: 'medquest_demo', value: '1', domain: 'localhost', path: '/' }
     ]);
-    await page.addInitScript(() => localStorage.setItem('medquest_onboarding_v1', 'done'));
+    await page.addInitScript(() => {
+      try { localStorage.setItem('medquest_onboarding_v1', 'done'); } catch {}
+    });
   });
 
   test('enfileira tentativa offline, grava no IndexedDB e sincroniza ao reconectar', async ({ page }) => {
@@ -177,7 +179,7 @@ test.describe('Offline Sync e Resiliência', () => {
   test('inicia e responde simulado 100% offline a partir de questões em cache local', async ({ page }) => {
     const TEST_OWNER = 'test_owner_offline';
     await page.addInitScript((owner) => {
-      localStorage.setItem('medquest_local_owner', owner);
+      try { localStorage.setItem('medquest_local_owner', owner); } catch {}
     }, TEST_OWNER);
 
     // Mock de rotas abortadas para simular desconexão total durante o simulado
@@ -217,7 +219,7 @@ test.describe('Offline Sync e Resiliência', () => {
   test('permite revisar flashcards 100% offline sem travamento', async ({ page }) => {
     const TEST_OWNER = 'test_owner_flashcard';
     await page.addInitScript((owner) => {
-      localStorage.setItem('medquest_local_owner', owner);
+      try { localStorage.setItem('medquest_local_owner', owner); } catch {}
     }, TEST_OWNER);
 
     await page.route('**/api/meta**', async (route) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(MOCK_META) }));

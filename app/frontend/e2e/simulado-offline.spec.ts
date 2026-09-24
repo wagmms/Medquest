@@ -62,7 +62,9 @@ test.describe('Simulado 100% Offline com Pré-download e Sincronização Posteri
     await context.addCookies([
       { name: 'medquest_demo', value: '1', url: baseURL }
     ]);
-    await page.addInitScript(() => localStorage.setItem('medquest_onboarding_v1', 'done'));
+    await page.addInitScript(() => {
+      try { localStorage.setItem('medquest_onboarding_v1', 'done'); } catch {}
+    });
   });
 
   test('baixa pacote offline, executa sem rede, recarrega, finaliza offline e sincroniza ao reconectar', async ({ page }) => {
