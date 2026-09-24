@@ -47,7 +47,7 @@ def _parse_dates_and_weeks(start_date_str, exam_date_str):
     try:
         start_date = datetime.fromisoformat(start_date_str.replace("Z", "+00:00"))
         exam_date = datetime.fromisoformat(exam_date_str.replace("Z", "+00:00"))
-    except ValueError:
+    except (ValueError, TypeError, AttributeError):
         return None, None, {"error": "Formato de data inválido."}
 
     # Normaliza para naive: exam_date costuma vir só com a data (sem timezone),

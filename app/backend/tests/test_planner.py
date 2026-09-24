@@ -420,23 +420,41 @@ def test_planner_topics_endpoint_returns_subtema_and_week_composite(client):
 
 
 def test_invalid_start_date_format_returns_error():
-    result = generate_annual_plan(
-        rows=[],
-        start_date_str="invalid-start-date",
-        exam_date_str="2025-12-31",
-        hours_per_week=20,
-    )
-    assert result == {"error": "Formato de data inválido."}
+    invalid_dates = [
+        "invalid-start-date",
+        "31-12-2025",
+        "2025-02-30",
+        "2025/01/01",
+        None,
+        12345,
+    ]
+    for bad_date in invalid_dates:
+        result = generate_annual_plan(
+            rows=[],
+            start_date_str=bad_date,
+            exam_date_str="2025-12-31",
+            hours_per_week=20,
+        )
+        assert result == {"error": "Formato de data inválido."}
 
 
 def test_invalid_exam_date_format_returns_error():
-    result = generate_annual_plan(
-        rows=[],
-        start_date_str="2025-01-01",
-        exam_date_str="2025-13-45",
-        hours_per_week=20,
-    )
-    assert result == {"error": "Formato de data inválido."}
+    invalid_dates = [
+        "invalid-exam-date",
+        "2025-13-45",
+        "2025-00-10",
+        "2025-05-32",
+        None,
+        999,
+    ]
+    for bad_date in invalid_dates:
+        result = generate_annual_plan(
+            rows=[],
+            start_date_str="2025-01-01",
+            exam_date_str=bad_date,
+            hours_per_week=20,
+        )
+        assert result == {"error": "Formato de data inválido."}
 
 
 def test_invalid_date_formats_api_endpoint(client):
@@ -462,4 +480,26 @@ def test_invalid_date_formats_api_endpoint(client):
     assert resp_exam.status_code == 200
     assert resp_exam.get_json() == {"error": "Formato de data inválido."}
 
+    resp_bad_exam = client.post(
+        "/api/generate_plan",
+        json={
+            "start_date": "2025-01-01",
+            "exam_date": "31/12/2025",
+            "hours_per_week": 20,
+        },
+    )
+    assert resp_bad_exam.status_code == 200
+    assert resp_bad_exam.get_json() == {"error": "Formato de data inválido."}
+
+
+def test_build_plan_from_schedule_handles_malformed_start_date():
+    from api.services.planner import build_plan_from_schedule
+
+    schedule_rows = [{"week": 1, "subtema": "Hipertensão Arterial Sistêmica e Crises Hipertensivas"}]
+    # Non-ISO date or None fall back to datetime.now() without crashing
+    for bad_date in ["not-a-date", None, 123]:
+        res = build_plan_from_schedule(schedule_rows, start_date_str=bad_date, hours_per_week=10)
+        assert res is not None
+        assert "plan" in res
+        assert len(res["plan"]) == 1
 
