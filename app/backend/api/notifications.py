@@ -32,6 +32,116 @@ bp = Blueprint("notifications", __name__)
 logger = logging.getLogger(__name__)
 
 
+def _is_user_time_eligible(cfg, current_hour: int, current_weekday: int, ignore_hour: bool) -> bool:
+    """Verifica se o horário e dia da semana correspondem à preferência do usuário."""
+    if ignore_hour:
+        return True
+
+    if int(cfg["preferred_hour"]) != current_hour:
+        return False
+
+    try:
+        days = json.loads(cfg["days_of_week"])
+        if current_weekday not in days:
+            return False
+    except Exception:
+        pass
+
+    return True
+
+
+def _fetch_subscriptions_by_user(db, active_user_ids: list[str]) -> dict:
+    """Carrega assinaturas Web Push ativas agrupadas por ID do usuário."""
+    subs_by_user = collections.defaultdict(list)
+    if not active_user_ids:
+        return subs_by_user
+
+    for i in range(0, len(active_user_ids), 900):
+        chunk = active_user_ids[i:i + 900]
+        placeholders = ",".join("?" * len(chunk))
+        rows = db.execute(
+            f"SELECT id, user_id, endpoint, p256dh, auth FROM push_subscriptions WHERE user_id IN ({placeholders})",
+            chunk,
+        ).fetchall()
+        for r in rows:
+            subs_by_user[str(r["user_id"])].append(r)
+
+    return subs_by_user
+
+
+def _fetch_due_user_ids(db, today_date: str) -> set[str]:
+    """Retorna conjunto de IDs de usuários com revisões pendentes para hoje."""
+    due_users_query = """
+        SELECT DISTINCT user_id FROM spaced_repetition WHERE next_review_date <= ?
+        UNION
+        SELECT DISTINCT user_id FROM flashcards WHERE next_review_date <= ?
+    """
+    due_users_rows = db.execute(due_users_query, (today_date, today_date)).fetchall()
+    return {str(row["user_id"] if "user_id" in row else row[0]) for row in due_users_rows}
+
+
+def _reserve_dispatch(db, user_id: str, today_date: str, created_at_iso: str) -> bool:
+    """Realiza a reserva atômica do disparo diário para um usuário."""
+    try:
+        with db_transaction(db, immediate=True):
+            cur = db.execute(
+                """
+                INSERT INTO notification_dispatches (user_id, dispatch_date, status, created_at)
+                VALUES (?, ?, 'reserved', ?)
+                ON CONFLICT(user_id, dispatch_date) DO NOTHING
+                """,
+                (user_id, today_date, created_at_iso),
+            )
+            return cur.rowcount > 0
+    except Exception:
+        return False
+
+
+def _dispatch_user_notification(
+    db, user_id: str, subscriptions: list, generic_payload: dict, today_date: str
+) -> bool:
+    """Envia notificações Web Push para o usuário e atualiza status do disparo."""
+    if not subscriptions:
+        with db_transaction(db, immediate=True):
+            db.execute(
+                "UPDATE notification_dispatches SET status = 'no_subscription' WHERE user_id = ? AND dispatch_date = ?",
+                (user_id, today_date),
+            )
+        return False
+
+    user_sent = False
+    expired_count = 0
+
+    for sub in subscriptions:
+        sub_dict = {
+            "endpoint": sub["endpoint"],
+            "keys": {"p256dh": sub["p256dh"], "auth": sub["auth"]},
+        }
+        res = send_web_push(sub_dict, generic_payload)
+
+        if res.get("status") == "delivered":
+            user_sent = True
+        elif res.get("status") == "expired":
+            expired_count += 1
+            with db_transaction(db, immediate=True):
+                db.execute("DELETE FROM push_subscriptions WHERE id = ?", (sub["id"],))
+
+    final_status = "delivered" if user_sent else ("expired" if expired_count == len(subscriptions) else "failed")
+    with db_transaction(db, immediate=True):
+        db.execute(
+            "UPDATE notification_dispatches SET status = ? WHERE user_id = ? AND dispatch_date = ?",
+            (final_status, user_id, today_date),
+        )
+
+    record_domain_event(
+        "notification_dispatched",
+        user_id=user_id,
+        status="delivered" if user_sent else final_status,
+        dispatch_date=today_date,
+    )
+    return user_sent
+
+
 def _verify_cron_secret(req) -> bool:
     """Valida o segredo de autenticação do cron de notificações."""
     configured_secret = os.environ.get("NOTIFICATIONS_CRON_SECRET") or os.environ.get("CRON_SECRET") or ""
@@ -241,17 +351,7 @@ def cron_dispatch():
     skipped_already_dispatched = 0
 
     active_user_ids = list({str(cfg["user_id"]) for cfg in configs})
-    subs_by_user = collections.defaultdict(list)
-    if active_user_ids:
-        for i in range(0, len(active_user_ids), 900):
-            chunk = active_user_ids[i:i+900]
-            placeholders = ",".join("?" * len(chunk))
-            rows = db.execute(
-                f"SELECT id, user_id, endpoint, p256dh, auth FROM push_subscriptions WHERE user_id IN ({placeholders})",
-                chunk
-            ).fetchall()
-            for r in rows:
-                subs_by_user[str(r["user_id"])].append(r)
+    subs_by_user = _fetch_subscriptions_by_user(db, active_user_ids)
 
     generic_payload = {
         "title": "MedQuest",
@@ -260,94 +360,26 @@ def cron_dispatch():
         "tag": "medquest-fsrs-review",
     }
 
-    # Pré-carrega todos os usuários que possuem revisões pendentes (FSRS ou Flashcards)
-    due_users_query = """
-        SELECT DISTINCT user_id FROM spaced_repetition WHERE next_review_date <= ?
-        UNION
-        SELECT DISTINCT user_id FROM flashcards WHERE next_review_date <= ?
-    """
-    due_users_rows = db.execute(due_users_query, (today_date, today_date)).fetchall()
-    due_user_ids = {str(row["user_id"] if "user_id" in row else row[0]) for row in due_users_rows}
+    due_user_ids = _fetch_due_user_ids(db, today_date)
 
     for cfg in configs:
         user_id = str(cfg["user_id"])
 
-        # Validação do horário e dia da semana (a menos que ignore_hour=True)
-        if not data.ignore_hour:
-            if int(cfg["preferred_hour"]) != current_hour:
-                continue
-
-            try:
-                days = json.loads(cfg["days_of_week"])
-                if current_weekday not in days:
-                    continue
-            except Exception:
-                pass
+        if not _is_user_time_eligible(cfg, current_hour, current_weekday, data.ignore_hour):
+            continue
 
         if user_id not in due_user_ids:
             continue
 
-        # Reserva atômica em transação imediata: apenas o processo que efetuar o INSERT pode disparar
-        try:
-            with db_transaction(db, immediate=True):
-                cur = db.execute(
-                    """
-                    INSERT INTO notification_dispatches (user_id, dispatch_date, status, created_at)
-                    VALUES (?, ?, 'reserved', ?)
-                    ON CONFLICT(user_id, dispatch_date) DO NOTHING
-                    """,
-                    (user_id, today_date, now_utc.isoformat()),
-                )
-                reserved = (cur.rowcount > 0)
-        except Exception:
-            reserved = False
-
-        if not reserved:
+        if not _reserve_dispatch(db, user_id, today_date, now_utc.isoformat()):
             skipped_already_dispatched += 1
             continue
 
         eligible_count += 1
 
-        # Busca subscriptions do usuário
-        subscriptions = subs_by_user.get(str(user_id), [])
-
-        if not subscriptions:
-            with db_transaction(db, immediate=True):
-                db.execute(
-                    "UPDATE notification_dispatches SET status = 'no_subscription' WHERE user_id = ? AND dispatch_date = ?",
-                    (user_id, today_date),
-                )
-            continue
-
-        user_sent = False
-        expired_count = 0
-        for sub in subscriptions:
-            sub_dict = {
-                "endpoint": sub["endpoint"],
-                "keys": {"p256dh": sub["p256dh"], "auth": sub["auth"]},
-            }
-            res = send_web_push(sub_dict, generic_payload)
-
-            if res.get("status") == "delivered":
-                user_sent = True
-            elif res.get("status") == "expired":
-                expired_count += 1
-                # Limpeza automática de subscrição expirada
-                with db_transaction(db, immediate=True):
-                    db.execute("DELETE FROM push_subscriptions WHERE id = ?", (sub["id"],))
-
-        final_status = "delivered" if user_sent else ("expired" if expired_count == len(subscriptions) else "failed")
-        with db_transaction(db, immediate=True):
-            db.execute(
-                "UPDATE notification_dispatches SET status = ? WHERE user_id = ? AND dispatch_date = ?",
-                (final_status, user_id, today_date),
-            )
-
-        if user_sent:
+        subscriptions = subs_by_user.get(user_id, [])
+        if _dispatch_user_notification(db, user_id, subscriptions, generic_payload, today_date):
             dispatched_count += 1
-            record_domain_event("notification_dispatched", user_id=user_id, status="delivered", dispatch_date=today_date)
-        else:
-            record_domain_event("notification_dispatched", user_id=user_id, status=final_status, dispatch_date=today_date)
 
     return jsonify({
         "success": True,
