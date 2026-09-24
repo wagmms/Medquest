@@ -14,13 +14,15 @@ test.describe('Validações Unitárias e de Integridade de Pacotes Offline', () 
     await context.addCookies([
       { name: 'medquest_demo', value: '1', url: baseURL }
     ]);
-    await page.addInitScript(() => localStorage.setItem('medquest_onboarding_v1', 'done'));
+    await page.addInitScript(() => {
+      try { localStorage.setItem('medquest_onboarding_v1', 'done'); } catch {}
+    });
   });
 
   test('impede iniciar simulado a partir de pacote incompleto ou corrompido', async ({ page }) => {
     const TEST_OWNER = 'user_corrupt_test';
     await page.addInitScript((owner) => {
-      localStorage.setItem('medquest_local_owner', owner);
+      try { localStorage.setItem('medquest_local_owner', owner); } catch {}
     }, TEST_OWNER);
 
     let shouldAbortApi = false;
@@ -75,7 +77,7 @@ test.describe('Validações Unitárias e de Integridade de Pacotes Offline', () 
   test('rejeita pacote expirado após validade de 30 dias', async ({ page }) => {
     const TEST_OWNER = 'user_expired_test';
     await page.addInitScript((owner) => {
-      localStorage.setItem('medquest_local_owner', owner);
+      try { localStorage.setItem('medquest_local_owner', owner); } catch {}
     }, TEST_OWNER);
 
     let shouldAbortApi = false;
@@ -163,7 +165,7 @@ test.describe('Validações Unitárias e de Integridade de Pacotes Offline', () 
 
     // Simula login do Usuário B
     await page.addInitScript(() => {
-      localStorage.setItem('medquest_local_owner', 'user_beta');
+      try { localStorage.setItem('medquest_local_owner', 'user_beta'); } catch {}
     });
     await page.reload();
 
@@ -174,7 +176,7 @@ test.describe('Validações Unitárias e de Integridade de Pacotes Offline', () 
   test('imagem indisponível não bloqueia pacote de questões e registra aviso', async ({ page }) => {
     const TEST_OWNER = 'user_img_integrity_test';
     await page.addInitScript((owner) => {
-      localStorage.setItem('medquest_local_owner', owner);
+      try { localStorage.setItem('medquest_local_owner', owner); } catch {}
     }, TEST_OWNER);
 
     await page.route('**/api/**', async (route) => {
@@ -289,7 +291,7 @@ test.describe('Validações Unitárias e de Integridade de Pacotes Offline', () 
   test('lote parcial de detalhes não grava status ready e impede início do simulado', async ({ page }) => {
     const TEST_OWNER = 'user_partial_batch_test';
     await page.addInitScript((owner) => {
-      localStorage.setItem('medquest_local_owner', owner);
+      try { localStorage.setItem('medquest_local_owner', owner); } catch {}
     }, TEST_OWNER);
 
     await page.route('**/api/**', async (route) => {

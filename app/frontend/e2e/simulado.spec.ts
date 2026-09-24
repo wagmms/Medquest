@@ -91,7 +91,9 @@ test.describe('Fluxo Completo de Simulado', () => {
     await context.addCookies([
       { name: 'medquest_demo', value: '1', domain: 'localhost', path: '/' }
     ]);
-    await page.addInitScript(() => localStorage.setItem('medquest_onboarding_v1', 'done'));
+    await page.addInitScript(() => {
+      try { localStorage.setItem('medquest_onboarding_v1', 'done'); } catch {}
+    });
   });
 
   test('inicia, responde e entrega simulado com exibição de resultados', async ({ page }) => {

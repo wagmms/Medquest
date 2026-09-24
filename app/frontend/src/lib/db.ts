@@ -179,11 +179,21 @@ export class MedQuestDB extends Dexie {
               delete s.timestamp;
               s.idempotency_key = s.idempotency_key || crypto.randomUUID();
 
-              // v2 bug: loss of method and content-type from options
+              // Parse options and preserve method, content-type, and body
               let optsObj: Record<string, unknown> | null = null;
               if (typeof s.options === "string") {
                 try {
-                  optsObj = JSON.parse(s.options) as Record<string, unknown>;
+                  let parsed = JSON.parse(s.options);
+                  if (typeof parsed === "string") {
+                    try {
+                      parsed = JSON.parse(parsed);
+                    } catch {
+                      // ignore secondary parse error
+                    }
+                  }
+                  if (typeof parsed === "object" && parsed !== null) {
+                    optsObj = parsed as Record<string, unknown>;
+                  }
                 } catch {
                   optsObj = null;
                 }
@@ -191,49 +201,55 @@ export class MedQuestDB extends Dexie {
                 optsObj = s.options as Record<string, unknown>;
               }
 
-              if (optsObj !== null) {
-                s.method = typeof optsObj.method === "string"
-                  ? optsObj.method.toUpperCase()
-                  : (typeof s.method === "string" && s.method ? (s.method as string).toUpperCase() : "POST");
+              let extractedMethod: string | null = null;
+              let extractedContentType: string | null = null;
 
-                let cType = (typeof s.content_type === "string" && s.content_type)
-                  ? (s.content_type as string)
-                  : ((typeof optsObj.content_type === "string" && optsObj.content_type)
-                    ? (optsObj.content_type as string)
-                    : ((typeof optsObj.contentType === "string" && optsObj.contentType)
-                      ? (optsObj.contentType as string)
-                      : "application/json"));
+              if (optsObj !== null) {
+                if (typeof optsObj.method === "string" && optsObj.method.trim()) {
+                  extractedMethod = optsObj.method.trim().toUpperCase();
+                }
 
                 const oldHeaders = optsObj.headers;
-                if (oldHeaders instanceof Headers) {
-                  cType = oldHeaders.get("content-type") || cType;
+                if (oldHeaders && typeof (oldHeaders as { get?: unknown }).get === "function") {
+                  const headerVal = (oldHeaders as Headers).get("content-type") || (oldHeaders as Headers).get("Content-Type");
+                  if (headerVal) extractedContentType = headerVal;
                 } else if (Array.isArray(oldHeaders)) {
                   for (const entry of oldHeaders) {
                     if (Array.isArray(entry) && typeof entry[0] === "string" &&
                         entry[0].toLowerCase() === "content-type" && typeof entry[1] === "string") {
-                      cType = entry[1];
+                      extractedContentType = entry[1];
                       break;
                     }
                   }
                 } else if (typeof oldHeaders === "object" && oldHeaders !== null) {
-                    for (const [k, v] of Object.entries(oldHeaders)) {
-                      if (k.toLowerCase() === "content-type" && typeof v === "string") cType = v;
+                  for (const [k, v] of Object.entries(oldHeaders)) {
+                    if (k.toLowerCase() === "content-type" && typeof v === "string") {
+                      extractedContentType = v;
+                      break;
                     }
+                  }
                 }
-                s.content_type = cType;
+
+                if (!extractedContentType) {
+                  if (typeof optsObj.content_type === "string" && optsObj.content_type.trim()) {
+                    extractedContentType = optsObj.content_type.trim();
+                  } else if (typeof optsObj.contentType === "string" && optsObj.contentType.trim()) {
+                    extractedContentType = optsObj.contentType.trim();
+                  }
+                }
 
                 const rawBody = optsObj.body;
                 if (typeof rawBody === "string") {
                   s.body = rawBody;
                 } else if (rawBody !== undefined && rawBody !== null) {
                   try { s.body = JSON.stringify(rawBody); } catch { s.body = null; }
-                } else {
+                } else if (!("body" in s) || s.body === undefined) {
                   s.body = null;
                 }
-              } else {
-                s.method = typeof s.method === "string" && s.method ? (s.method as string).toUpperCase() : "POST";
-                s.content_type = typeof s.content_type === "string" && s.content_type ? s.content_type : "application/json";
               }
+
+              s.method = extractedMethod || (typeof s.method === "string" && s.method.trim() ? (s.method as string).trim().toUpperCase() : "POST");
+              s.content_type = extractedContentType || (typeof s.content_type === "string" && s.content_type.trim() ? (s.content_type as string).trim() : "application/json");
 
               if ("options" in s) {
                 delete s.options;

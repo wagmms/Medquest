@@ -91,10 +91,17 @@ function areFiltersEquivalent(
   const normInitial = normalize(initial);
   const normSaved = normalize(saved);
 
+  const initialKeys = Object.keys(normInitial).filter(k => k !== "limit");
+  const savedKeys = Object.keys(normSaved).filter(k => k !== "limit");
+
+  if (initialKeys.length === 0 && savedKeys.length > 0) {
+    return false;
+  }
+
   // Compare core topic/scope discriminators
   const coreKeys = ["subtema", "area", "topic", "institution", "mode", "status", "year", "specialty"];
   for (const k of coreKeys) {
-    if (normInitial[k] && normSaved[k] && normInitial[k] !== normSaved[k]) {
+    if ((normInitial[k] || "") !== (normSaved[k] || "")) {
       return false;
     }
   }
@@ -362,8 +369,7 @@ export function QuizClient({
     const shouldAutoResume = Boolean(
       saved &&
       (isExplicitResume ||
-        (saved.state === "PLAYING" && isSameFilters) ||
-        (saved.state === "PLAYING" && isActiveInSession))
+        (saved.state === "PLAYING" && isSameFilters && isActiveInSession))
     );
 
     if (saved && shouldAutoResume) {

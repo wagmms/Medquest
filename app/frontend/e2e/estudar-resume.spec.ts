@@ -67,7 +67,9 @@ test.beforeEach(async ({ page, context }) => {
     { name: '__clerk_db_jwt', value: 'test', domain: 'localhost', path: '/' },
     { name: '__clerk_db_jwt', value: 'test', domain: '127.0.0.1', path: '/' },
   ]);
-  await page.addInitScript(() => localStorage.setItem('medquest_onboarding_v1', 'done'));
+  await page.addInitScript(() => {
+    try { localStorage.setItem('medquest_onboarding_v1', 'done'); } catch {}
+  });
 });
 
 test('retoma questão e alternativa ainda não enviada após reload', async ({ page, context }) => {

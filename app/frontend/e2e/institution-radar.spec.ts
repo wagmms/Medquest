@@ -123,7 +123,9 @@ test.describe('Radar Comparativo de Bancas no Dashboard Analítico (/analise)', 
     await context.addCookies([
       { name: 'medquest_demo', value: '1', domain: 'localhost', path: '/' },
     ]);
-    await page.addInitScript(() => localStorage.setItem('medquest_onboarding_v1', 'done'));
+    await page.addInitScript(() => {
+      try { localStorage.setItem('medquest_onboarding_v1', 'done'); } catch {}
+    });
   });
 
   test('renderiza seção do radar, alerta de amostra insuficiente e alterna entre gráfico e tabela acessível', async ({ page }) => {
