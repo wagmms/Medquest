@@ -236,3 +236,111 @@ def test_turso_executemany_retries_after_stale_stream():
     assert fresh_client.executemany_calls[0][1] == [[1], [2]]
 
 
+def test_turso_execute_stale_stream_recovery_on_persistent_failure():
+    stale_client1 = StaleStreamClient()
+    stale_client2 = StaleStreamClient()
+    fresh_client = FakeClient()
+
+    clients_sequence = [stale_client2, fresh_client]
+    reconnect_calls = []
+
+    def reconnect_fn(failed):
+        reconnect_calls.append(failed)
+        return clients_sequence.pop(0)
+
+    db = TursoConnection(
+        stale_client1,
+        persistent=True,
+        reconnect=reconnect_fn,
+    )
+
+    with pytest.raises(ValueError, match="stream not found"):
+        db.execute("SELECT 1")
+
+    # Reconnect was called twice:
+    # 1) Inside _execute_with_reconnect after initial query failure
+    # 2) Inside execute() except block after retry query failure, to refresh self.client
+    assert reconnect_calls == [stale_client1, stale_client2]
+    assert db.client is fresh_client
+
+
+def test_turso_execute_stale_stream_recovery_suppresses_reconnect_exception():
+    stale_client1 = StaleStreamClient()
+    stale_client2 = StaleStreamClient()
+
+    reconnect_calls = []
+
+    def reconnect_fn(failed):
+        reconnect_calls.append(failed)
+        if len(reconnect_calls) == 1:
+            return stale_client2
+        raise RuntimeError("Network down during secondary reconnect")
+
+    db = TursoConnection(
+        stale_client1,
+        persistent=True,
+        reconnect=reconnect_fn,
+    )
+
+    # Primary stale stream exception should be re-raised, not the reconnect RuntimeError
+    with pytest.raises(ValueError, match="stream not found"):
+        db.execute("SELECT 1")
+
+    assert reconnect_calls == [stale_client1, stale_client2]
+
+
+def test_turso_executemany_stale_stream_recovery_on_persistent_failure():
+    class StaleStreamExecutemanyClient(ClientWithExecutemany):
+        def executemany(self, sql, seq_of_args):
+            raise ValueError('Hrana: api error: status=404 Not Found, body={"error":"stream not found"}')
+
+    stale1 = StaleStreamExecutemanyClient()
+    stale2 = StaleStreamExecutemanyClient()
+    fresh = ClientWithExecutemany()
+
+    clients = [stale2, fresh]
+    reconnect_calls = []
+
+    def reconnect_fn(failed):
+        reconnect_calls.append(failed)
+        return clients.pop(0)
+
+    db = TursoConnection(
+        stale1,
+        persistent=True,
+        reconnect=reconnect_fn,
+    )
+
+    with pytest.raises(ValueError, match="stream not found"):
+        db.executemany("INSERT INTO t VALUES (?)", [(1,)])
+
+    assert reconnect_calls == [stale1, stale2]
+    assert db.client is fresh
+
+
+def test_turso_executemany_stale_stream_recovery_suppresses_reconnect_exception():
+    class StaleStreamExecutemanyClient(ClientWithExecutemany):
+        def executemany(self, sql, seq_of_args):
+            raise ValueError('Hrana: api error: status=404 Not Found, body={"error":"stream not found"}')
+
+    stale1 = StaleStreamExecutemanyClient()
+    stale2 = StaleStreamExecutemanyClient()
+
+    reconnect_calls = []
+
+    def reconnect_fn(failed):
+        reconnect_calls.append(failed)
+        if len(reconnect_calls) == 1:
+            return stale2
+        raise RuntimeError("Secondary reconnect failure")
+
+    db = TursoConnection(
+        stale1,
+        persistent=True,
+        reconnect=reconnect_fn,
+    )
+
+    with pytest.raises(ValueError, match="stream not found"):
+        db.executemany("INSERT INTO t VALUES (?)", [(1,)])
+
+    assert reconnect_calls == [stale1, stale2]
