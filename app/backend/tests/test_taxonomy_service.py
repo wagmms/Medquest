@@ -62,8 +62,69 @@ def test_load_raw_taxonomy_fallback_missing_files(monkeypatch):
 
     tax = taxonomy._load_raw_taxonomy()
     assert tax == {}
-    assert taxonomy.get_areas() == []
-    assert taxonomy.get_subtemas() == []
+
+
+def test_load_raw_taxonomy_fallback_corrupt_json(monkeypatch):
+    import io
+    import api.services.taxonomy as taxonomy
+
+    monkeypatch.setattr(taxonomy, "_TAXONOMY_CACHE", None)
+    monkeypatch.setattr(taxonomy, "_SUBTEMA_TO_AREA", None)
+
+    monkeypatch.setattr("os.path.exists", lambda path: True)
+
+    def mock_open_corrupt(*args, **kwargs):
+        return io.StringIO("{ invalid json content ...")
+
+    monkeypatch.setattr("builtins.open", mock_open_corrupt)
+
+    tax = taxonomy._load_raw_taxonomy()
+    assert tax == {}
+
+
+def test_load_raw_taxonomy_fallback_non_dict_json(monkeypatch):
+    import io
+    import api.services.taxonomy as taxonomy
+
+    monkeypatch.setattr(taxonomy, "_TAXONOMY_CACHE", None)
+    monkeypatch.setattr(taxonomy, "_SUBTEMA_TO_AREA", None)
+
+    monkeypatch.setattr("os.path.exists", lambda path: True)
+
+    def mock_open_list(*args, **kwargs):
+        return io.StringIO("[\"not\", \"a\", \"dict\"]")
+
+    monkeypatch.setattr("builtins.open", mock_open_list)
+
+    tax = taxonomy._load_raw_taxonomy()
+    assert tax == {}
+
+
+def test_load_raw_taxonomy_fallback_first_fails_second_succeeds(monkeypatch):
+    import io
+    import json
+    import api.services.taxonomy as taxonomy
+
+    monkeypatch.setattr(taxonomy, "_TAXONOMY_CACHE", None)
+    monkeypatch.setattr(taxonomy, "_SUBTEMA_TO_AREA", None)
+
+    monkeypatch.setattr("os.path.exists", lambda path: True)
+
+    call_count = 0
+
+    def mock_open_progression(path, *args, **kwargs):
+        nonlocal call_count
+        call_count += 1
+        if call_count == 1:
+            return io.StringIO("{ corrupt json")
+        else:
+            return io.StringIO(json.dumps({"Cirurgia": ["Apendicite"]}))
+
+    monkeypatch.setattr("builtins.open", mock_open_progression)
+
+    tax = taxonomy._load_raw_taxonomy()
+    assert tax == {"Cirurgia": ["Apendicite"]}
+    assert taxonomy.find_area_for_subtema("Apendicite") == "Cirurgia"
 
 
 def test_load_raw_taxonomy_fallback_invalid_file(monkeypatch):
