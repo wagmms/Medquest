@@ -1,6 +1,4 @@
 """Deterministic adaptive-learning scoring for study queues and diagnostics."""
-from __future__ import annotations
-
 import json
 import math
 from datetime import datetime, timezone
