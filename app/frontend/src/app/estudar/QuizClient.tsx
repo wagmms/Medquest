@@ -361,9 +361,9 @@ export function QuizClient({
     // Retomada explícita (?resume=true) OU sessão ativa em andamento com filtros compatíveis
     const shouldAutoResume = Boolean(
       saved &&
+      saved.state === "PLAYING" &&
       (isExplicitResume ||
-        (saved.state === "PLAYING" && isSameFilters) ||
-        (saved.state === "PLAYING" && isActiveInSession))
+        (filterKeys.length > 0 ? isSameFilters : isActiveInSession))
     );
 
     if (saved && shouldAutoResume) {

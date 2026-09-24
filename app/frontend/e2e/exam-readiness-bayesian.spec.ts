@@ -1,6 +1,18 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Prontidão de Prova Bayesiana por Edital', () => {
+  test.beforeEach(async ({ context, page }) => {
+    const baseURL = process.env.PLAYWRIGHT_BASE_URL || 'http://127.0.0.1:3100';
+    await context.addCookies([
+      { name: 'medquest_demo', value: '1', url: baseURL },
+      { name: 'medquest_demo', value: '1', domain: 'localhost', path: '/' },
+      { name: 'medquest_demo', value: '1', domain: '127.0.0.1', path: '/' },
+      { name: '__clerk_db_jwt', value: 'test', domain: 'localhost', path: '/' },
+      { name: '__clerk_db_jwt', value: 'test', domain: '127.0.0.1', path: '/' },
+    ]);
+    await page.addInitScript(() => localStorage.setItem('medquest_onboarding_v1', 'done'));
+  });
+
   test('renderiza prontidão estimada, intervalo de credibilidade e fatores determinantes sem promessa de aprovação', async ({ page }) => {
     // Intercepta e mocka as chamadas de API no frontend
     await page.route('**/api/**', async (route) => {

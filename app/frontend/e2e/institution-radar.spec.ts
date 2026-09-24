@@ -120,8 +120,13 @@ const MOCK_RADAR_DATA = {
 
 test.describe('Radar Comparativo de Bancas no Dashboard Analítico (/analise)', () => {
   test.beforeEach(async ({ context, page }) => {
+    const baseURL = process.env.PLAYWRIGHT_BASE_URL || 'http://127.0.0.1:3100';
     await context.addCookies([
+      { name: 'medquest_demo', value: '1', url: baseURL },
       { name: 'medquest_demo', value: '1', domain: 'localhost', path: '/' },
+      { name: 'medquest_demo', value: '1', domain: '127.0.0.1', path: '/' },
+      { name: '__clerk_db_jwt', value: 'test', domain: 'localhost', path: '/' },
+      { name: '__clerk_db_jwt', value: 'test', domain: '127.0.0.1', path: '/' },
     ]);
     await page.addInitScript(() => localStorage.setItem('medquest_onboarding_v1', 'done'));
   });
