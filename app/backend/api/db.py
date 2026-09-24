@@ -1,6 +1,7 @@
 """Acesso ao banco (SQLite / Turso) e criação/evolução de tabelas."""
 import logging
 import os
+import re
 import sqlite3
 from contextlib import contextmanager
 from threading import local
@@ -338,7 +339,12 @@ def close_db(exception=None):
                 db.execute("ROLLBACK") if hasattr(db, "in_transaction") and getattr(db, "in_transaction", False) else None
         db.close()
 
+_TABLE_NAME_PATTERN = re.compile(r"^[a-zA-Z0-9_]+$")
+
+
 def _table_cols(db, table):
+    if not isinstance(table, str) or not _TABLE_NAME_PATTERN.match(table):
+        raise ValueError(f"Invalid table name: {table!r}")
     if isinstance(db, TursoConnection):
         res = db.execute("SELECT name FROM pragma_table_info(?)", (table,)).fetchall()
         return [r["name"] for r in res]
