@@ -8,7 +8,6 @@ logging.basicConfig(level=logging.DEBUG)
 load_dotenv(os.path.join(os.path.dirname(__file__), "..", "..", ".env"))
 sys.path.insert(0, os.path.dirname(__file__))
 
-from api.db import get_db
 import sqlite3
 from api.ai import ask_preceptor_ai
 
