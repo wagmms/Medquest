@@ -369,8 +369,7 @@ export function QuizClient({
     const shouldAutoResume = Boolean(
       saved &&
       (isExplicitResume ||
-        (saved.state === "PLAYING" && isSameFilters) ||
-        (saved.state === "PLAYING" && isActiveInSession))
+        (saved.state === "PLAYING" && isSameFilters && isActiveInSession))
     );
 
     if (saved && shouldAutoResume) {
