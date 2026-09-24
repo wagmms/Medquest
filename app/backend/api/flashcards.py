@@ -483,7 +483,21 @@ def import_anki_file():
     imported_count = 0
     unique_decks = set()
 
+    nids = list({c.get("anki_nid") for c in cards if c.get("anki_nid") is not None})
+    nid_map = {}
+
     with db_transaction(db, immediate=True):
+        if nids:
+            for i in range(0, len(nids), 500):
+                chunk = nids[i:i + 500]
+                placeholders = ",".join("?" * len(chunk))
+                rows = db.execute(
+                    f"SELECT id, anki_nid FROM flashcards WHERE user_id = ? AND anki_nid IN ({placeholders})",
+                    [g.user_id, *chunk],
+                ).fetchall()
+                for r in rows:
+                    nid_map[r["anki_nid"]] = r["id"]
+
         for c in cards:
             c_deck = (target_deck if target_deck != "Anki" and target_deck else c.get("deck_name") or "Anki").strip()
             unique_decks.add(c_deck)
@@ -493,19 +507,14 @@ def import_anki_file():
             source_type = c.get("source_type") or ("anki_apkg" if filename_lower.endswith((".apkg", ".colpkg")) else "anki_txt")
             source_context = c.get("source_context") or f"Anki: {c_deck}"
 
-            existing = None
-            if anki_nid is not None:
-                existing = db.execute(
-                    "SELECT id FROM flashcards WHERE user_id = ? AND anki_nid = ?",
-                    (g.user_id, anki_nid),
-                ).fetchone()
+            existing_id = nid_map.get(anki_nid) if anki_nid is not None else None
 
-            if existing:
+            if existing_id is not None:
                 db.execute("""
                     UPDATE flashcards
                     SET front = ?, back = ?, deck_name = ?, tags = ?, source_context = ?, source_type = ?
                     WHERE id = ? AND user_id = ?
-                """, (c["front"], c["back"], c_deck, c_tags_json, source_context, source_type, existing["id"], g.user_id))
+                """, (c["front"], c["back"], c_deck, c_tags_json, source_context, source_type, existing_id, g.user_id))
             else:
                 db.execute("""
                     INSERT INTO flashcards (question_id, front, back, created_at, next_review_date, fsrs_card, user_id, source_context, is_ai_generated, deck_name, tags, source_type, anki_nid)
@@ -542,26 +551,35 @@ def import_anki_batch():
     imported_count = 0
     unique_decks = set()
 
+    nids = list({c.anki_nid for c in data.cards if c.anki_nid is not None})
+    nid_map = {}
+
     with db_transaction(db, immediate=True):
+        if nids:
+            for i in range(0, len(nids), 500):
+                chunk = nids[i:i + 500]
+                placeholders = ",".join("?" * len(chunk))
+                rows = db.execute(
+                    f"SELECT id, anki_nid FROM flashcards WHERE user_id = ? AND anki_nid IN ({placeholders})",
+                    [g.user_id, *chunk],
+                ).fetchall()
+                for r in rows:
+                    nid_map[r["anki_nid"]] = r["id"]
+
         for c in data.cards:
             c_deck = (data.deck_name or c.deck_name or "Anki").strip()
             unique_decks.add(c_deck)
             c_tags_json = json.dumps(c.tags or [])
             source_context = c.source_context or f"Anki: {c_deck}"
 
-            existing = None
-            if c.anki_nid is not None:
-                existing = db.execute(
-                    "SELECT id FROM flashcards WHERE user_id = ? AND anki_nid = ?",
-                    (g.user_id, c.anki_nid),
-                ).fetchone()
+            existing_id = nid_map.get(c.anki_nid) if c.anki_nid is not None else None
 
-            if existing:
+            if existing_id is not None:
                 db.execute("""
                     UPDATE flashcards
                     SET front = ?, back = ?, deck_name = ?, tags = ?, source_context = ?, source_type = 'anki_connect', anki_cid = ?
                     WHERE id = ? AND user_id = ?
-                """, (c.front, c.back, c_deck, c_tags_json, source_context, c.anki_cid, existing["id"], g.user_id))
+                """, (c.front, c.back, c_deck, c_tags_json, source_context, c.anki_cid, existing_id, g.user_id))
             else:
                 db.execute("""
                     INSERT INTO flashcards (question_id, front, back, created_at, next_review_date, fsrs_card, user_id, source_context, is_ai_generated, deck_name, tags, source_type, anki_nid, anki_cid)
@@ -588,7 +606,7 @@ def import_anki_batch():
 
 @bp.route("/flashcards/anki/sync-state", methods=["POST"])
 def sync_anki_scheduling_state():
-    """Aplica no MedQuest a agenda calculada pelo Anki local."""
+    """Aplica no MedQuest a agenda calculada pelo Anki local em lote (sem N+1 queries)."""
     try:
         payload = AnkiSyncStateIn.model_validate(request.get_json(force=True) or {})
     except ValidationError as e:
@@ -598,14 +616,15 @@ def sync_anki_scheduling_state():
     now = datetime.now(timezone.utc)
     updated = 0
 
-    cids = list({item.anki_cid for item in payload.cards if item.anki_cid is not None})
+    cids = [item.anki_cid for item in payload.cards if item.anki_cid is not None]
+    unique_cids = list(set(cids))
     cid_map = {}
     nid_map = {}
 
     with db_transaction(db, immediate=True):
-        if cids:
-            for i in range(0, len(cids), 500):
-                chunk = cids[i:i + 500]
+        if unique_cids:
+            for i in range(0, len(unique_cids), 500):
+                chunk = unique_cids[i:i + 500]
                 placeholders = ",".join("?" * len(chunk))
                 rows = db.execute(
                     f"SELECT id, anki_cid FROM flashcards WHERE user_id = ? AND anki_cid IN ({placeholders})",
@@ -614,15 +633,16 @@ def sync_anki_scheduling_state():
                 for r in rows:
                     cid_map[r["anki_cid"]] = r["id"]
 
-        nids = list({
+        unmatched_nids = [
             item.anki_nid
             for item in payload.cards
             if item.anki_cid not in cid_map and item.anki_nid is not None
-        })
+        ]
+        unique_nids = list(set(unmatched_nids))
 
-        if nids:
-            for i in range(0, len(nids), 500):
-                chunk = nids[i:i + 500]
+        if unique_nids:
+            for i in range(0, len(unique_nids), 500):
+                chunk = unique_nids[i:i + 500]
                 placeholders = ",".join("?" * len(chunk))
                 rows = db.execute(
                     f"SELECT id, anki_nid FROM flashcards WHERE user_id = ? AND anki_nid IN ({placeholders})",
