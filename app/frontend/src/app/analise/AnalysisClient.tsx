@@ -106,6 +106,17 @@ export function AnalysisClient({
     }));
   }, [localTimeline]);
 
+  const distractorsBySubtema = useMemo(() => {
+    if (!Array.isArray(distractors)) return new Map<string, DistractorStat>();
+    const map = new Map<string, DistractorStat>();
+    for (const d of distractors) {
+      if (d?.subtema) {
+        map.set(d.subtema, d);
+      }
+    }
+    return map;
+  }, [distractors]);
+
   const priorityTopic = learningProfile.topics[0];
   const adaptiveRemainder = Math.max(0, learningProfile.goal.questions_today - learningProfile.goal.reviews_to_do_today);
   const scoreReliable = predictiveScore.is_reliable === true;
@@ -755,7 +766,7 @@ export function AnalysisClient({
             <div className="divide-y divide-border/50">
               {weakTopics && weakTopics.length > 0 ? (
                 weakTopics.slice(0, 8).map((wt) => {
-                  const distractor = Array.isArray(distractors) ? distractors.find(d => d.subtema === wt.topic) : undefined;
+                  const distractor = distractorsBySubtema.get(wt.topic);
                   const worstChoice = distractor?.wrong_choices?.[0];
                   
                   return (

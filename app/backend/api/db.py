@@ -345,7 +345,7 @@ def _table_cols(db, table):
     return [r[0] for r in db.execute("SELECT name FROM pragma_table_info(?)", (table,))]
 
 
-def _create_tables(db):
+def _create_question_tables(db):
     db.execute('''CREATE TABLE IF NOT EXISTS questions(
         id INTEGER PRIMARY KEY, source_file TEXT, source_number INTEGER, year INTEGER,
         institution_code TEXT, institution_label TEXT, topic TEXT, stem TEXT,
@@ -362,6 +362,8 @@ def _create_tables(db):
         id INTEGER PRIMARY KEY, question_id INTEGER, selected_letter TEXT,
         is_correct INTEGER, answered_at TEXT, confidence TEXT, user_id TEXT DEFAULT '1', time_spent_ms INTEGER)''')
 
+
+def _create_planner_tables(db):
     db.execute("CREATE TABLE IF NOT EXISTS favorites (question_id INTEGER, user_id TEXT DEFAULT '1', PRIMARY KEY (question_id, user_id))")
     db.execute('''CREATE TABLE IF NOT EXISTS spaced_repetition (
         question_id INTEGER, efactor REAL, interval INTEGER,
@@ -391,6 +393,8 @@ def _create_tables(db):
     db.execute('''CREATE INDEX IF NOT EXISTS idx_planner_schedule_lookup 
         ON planner_schedule(user_id, mode, week, display_order)''')
 
+
+def _create_flashcard_and_session_tables(db):
     db.execute('''CREATE TABLE IF NOT EXISTS flashcards (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         question_id INTEGER,
@@ -413,13 +417,11 @@ def _create_tables(db):
         total_questions INTEGER NOT NULL, answered_count INTEGER NOT NULL, correct_count INTEGER NOT NULL,
         filters_json TEXT NOT NULL, area_results_json TEXT NOT NULL, completed_at TEXT NOT NULL,
         user_id TEXT DEFAULT '1', UNIQUE(user_id, client_session_id))''')
-
     db.execute('''CREATE TABLE IF NOT EXISTS clinical_cases (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         stem TEXT NOT NULL,
         images TEXT,
         medical_references TEXT)''')
-
     db.execute('''CREATE TABLE IF NOT EXISTS learning_sessions (
         user_id TEXT NOT NULL,
         session_type TEXT NOT NULL,
@@ -427,6 +429,8 @@ def _create_tables(db):
         updated_at TEXT NOT NULL,
         PRIMARY KEY (user_id, session_type))''')
 
+
+def _create_system_tables(db):
     db.execute('''CREATE TABLE IF NOT EXISTS idempotency_keys (
         user_id TEXT NOT NULL,
         key TEXT NOT NULL,
@@ -440,7 +444,6 @@ def _create_tables(db):
         lease_owner_token TEXT,
         created_at TEXT NOT NULL,
         PRIMARY KEY (user_id, key))''')
-
     db.execute('''CREATE TABLE IF NOT EXISTS telemetry_daily_aggregates (
         date TEXT NOT NULL,
         route TEXT NOT NULL,
@@ -452,7 +455,6 @@ def _create_tables(db):
         error_count INTEGER NOT NULL,
         created_at TEXT NOT NULL,
         PRIMARY KEY (date, route, method))''')
-
     db.execute('''CREATE TABLE IF NOT EXISTS notification_configs (
         user_id TEXT PRIMARY KEY,
         enabled INTEGER DEFAULT 0,
@@ -460,7 +462,6 @@ def _create_tables(db):
         days_of_week TEXT DEFAULT '[0,1,2,3,4,5,6]',
         max_daily_reminders INTEGER DEFAULT 1,
         updated_at TEXT)''')
-
     db.execute('''CREATE TABLE IF NOT EXISTS push_subscriptions (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id TEXT NOT NULL,
@@ -469,7 +470,6 @@ def _create_tables(db):
         auth TEXT NOT NULL,
         created_at TEXT NOT NULL,
         UNIQUE(user_id, endpoint))''')
-
     db.execute('''CREATE TABLE IF NOT EXISTS notification_dispatches (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id TEXT NOT NULL,
@@ -478,6 +478,13 @@ def _create_tables(db):
         error_message TEXT,
         created_at TEXT NOT NULL,
         UNIQUE(user_id, dispatch_date))''')
+
+
+def _create_tables(db):
+    _create_question_tables(db)
+    _create_planner_tables(db)
+    _create_flashcard_and_session_tables(db)
+    _create_system_tables(db)
 
 
 def _migrate_legacy_columns(db):

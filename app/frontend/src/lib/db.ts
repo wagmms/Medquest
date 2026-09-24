@@ -194,9 +194,16 @@ export class MedQuestDB extends Dexie {
               if (optsObj !== null) {
                 s.method = typeof optsObj.method === "string"
                   ? optsObj.method.toUpperCase()
-                  : (s.method || "POST");
+                  : (typeof s.method === "string" && s.method ? (s.method as string).toUpperCase() : "POST");
 
-                let cType = "application/json";
+                let cType = (typeof s.content_type === "string" && s.content_type)
+                  ? (s.content_type as string)
+                  : ((typeof optsObj.content_type === "string" && optsObj.content_type)
+                    ? (optsObj.content_type as string)
+                    : ((typeof optsObj.contentType === "string" && optsObj.contentType)
+                      ? (optsObj.contentType as string)
+                      : "application/json"));
+
                 const oldHeaders = optsObj.headers;
                 if (oldHeaders instanceof Headers) {
                   cType = oldHeaders.get("content-type") || cType;
@@ -224,8 +231,8 @@ export class MedQuestDB extends Dexie {
                   s.body = null;
                 }
               } else {
-                s.method = s.method || "POST";
-                s.content_type = s.content_type || "application/json";
+                s.method = typeof s.method === "string" && s.method ? (s.method as string).toUpperCase() : "POST";
+                s.content_type = typeof s.content_type === "string" && s.content_type ? s.content_type : "application/json";
               }
 
               if ("options" in s) {

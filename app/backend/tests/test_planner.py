@@ -418,3 +418,48 @@ def test_planner_topics_endpoint_returns_subtema_and_week_composite(client):
     assert data.get("3:Hipertensão") is True
     assert data.get("Hipertensão") is True
 
+
+def test_invalid_start_date_format_returns_error():
+    result = generate_annual_plan(
+        rows=[],
+        start_date_str="invalid-start-date",
+        exam_date_str="2025-12-31",
+        hours_per_week=20,
+    )
+    assert result == {"error": "Formato de data inválido."}
+
+
+def test_invalid_exam_date_format_returns_error():
+    result = generate_annual_plan(
+        rows=[],
+        start_date_str="2025-01-01",
+        exam_date_str="2025-13-45",
+        hours_per_week=20,
+    )
+    assert result == {"error": "Formato de data inválido."}
+
+
+def test_invalid_date_formats_api_endpoint(client):
+    resp = client.post(
+        "/api/generate_plan",
+        json={
+            "start_date": "not-a-valid-date",
+            "exam_date": "2025-12-31",
+            "hours_per_week": 20,
+        },
+    )
+    assert resp.status_code == 200
+    assert resp.get_json() == {"error": "Formato de data inválido."}
+
+    resp_exam = client.post(
+        "/api/generate_plan",
+        json={
+            "start_date": "2025-01-01",
+            "exam_date": "invalid-exam-date",
+            "hours_per_week": 20,
+        },
+    )
+    assert resp_exam.status_code == 200
+    assert resp_exam.get_json() == {"error": "Formato de data inválido."}
+
+
