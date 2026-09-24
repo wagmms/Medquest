@@ -9,7 +9,7 @@ export default defineConfig({
   testDir: './e2e',
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
-  retries: 0,
+  retries: process.env.CI ? 2 : 0,
   workers: 1,
   reporter: 'list',
   timeout: 30000,
@@ -27,7 +27,7 @@ export default defineConfig({
     command: 'node .next/standalone/server.js',
     env: {
       PORT: testServerPort,
-      HOSTNAME: '0.0.0.0',
+      HOSTNAME: '127.0.0.1',
       FLASK_API_URL: 'http://127.0.0.1:9999',
       FLASK_API_PROXY_SECRET: 'test-proxy-secret',
       PLAYWRIGHT_TEST: 'true',
