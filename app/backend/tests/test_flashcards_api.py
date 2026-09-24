@@ -103,7 +103,7 @@ def test_flashcards_duplicate_prevention(client):
     assert fid1 == fid2
 
 
-def test_imported_anki_cards_do_not_require_a_medquest_question(client):
+def test_imported_anki_cards_do_not_require_a_medquest_question(client, monkeypatch):
     payload = {
         "deck_name": "Revisão Anki",
         "cards": [{
@@ -115,15 +115,47 @@ def test_imported_anki_cards_do_not_require_a_medquest_question(client):
         }],
     }
 
+    from api import db as db_module
+    from api import flashcards as flashcards_module
+
+    select_count = 0
+
+    class CountingConnection:
+        def __init__(self, connection):
+            self.connection = connection
+
+        def execute(self, sql, parameters=()):
+            nonlocal select_count
+            if sql.lstrip().upper().startswith("SELECT"):
+                select_count += 1
+            return self.connection.execute(sql, parameters)
+
+        def commit(self):
+            self.connection.commit()
+
+        def rollback(self):
+            self.connection.rollback()
+
+    monkeypatch.setattr(
+        flashcards_module,
+        "get_db",
+        lambda: CountingConnection(db_module.get_db()),
+    )
+
     imported = client.post("/api/flashcards/import/batch", json=payload)
     assert imported.status_code == 200
     assert imported.get_json()["new_cards"] == 1
+    # Check that query count for import batch is 1 SELECT query (bulk lookup) instead of N SELECT queries
+    assert select_count == 1
 
+    select_count = 0
     # Reimportar a mesma nota deve atualizar o cartão, sem criar duplicata.
     payload["cards"][0]["back"] = "Resposta atualizada"
     updated = client.post("/api/flashcards/import/batch", json=payload)
     assert updated.status_code == 200
     assert updated.get_json()["new_cards"] == 0
+    assert select_count == 1
+
     cards = client.get("/api/flashcards/review?all=true").get_json()
     imported_card = next(card for card in cards if card["front"] == "Pergunta importada")
     assert imported_card["back"] == "Resposta atualizada"
