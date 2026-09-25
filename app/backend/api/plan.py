@@ -225,6 +225,7 @@ def generate_plan():
         if schedule_rows:
             plan = build_plan_from_schedule(
                 schedule_rows, start_date, data.hours_per_week,
+                exam_date_str=data.exam_date,
                 rows=rows, user_progress=answered_map,
                 adaptive_signals=adaptive_signals, intensive=data.intensive
             )
@@ -331,6 +332,7 @@ def _generate_calendar_ics_content(db, user_id):
     if schedule_rows:
         plan_result = build_plan_from_schedule(
             schedule_rows, start_date, hours_per_week,
+            exam_date_str=exam_date,
             rows=rows, user_progress=answered_map,
             adaptive_signals=adaptive_signals, intensive=False
         ) or {}
@@ -473,3 +475,19 @@ def calendar_feed():
     )
 
 
+
+
+@bp.route("/planner/sync-calendar", methods=["POST"])
+def planner_sync_calendar():
+    from .services.calendar_sync import sync_calendar_engine
+    
+    # Executa a engine com o caminho correto do banco e do token.
+    # Como é um backend Flask, podemos pegar o db via get_db(), mas 
+    # o calendário usa sqlite3 direto no nosso mockup.
+    # Vamos adaptar aqui no futuro para usar a conexão g.db
+    
+    success = sync_calendar_engine("medquest.db")
+    if success:
+        record_domain_event("planner_sync_google_calendar", {"user_id": g.user_id})
+        return jsonify({"success": True, "message": "Agenda sincronizada com sucesso usando Regra de União e Efeito Cascata."})
+    return jsonify({"success": False, "message": "Falha na sincronização."}), 500

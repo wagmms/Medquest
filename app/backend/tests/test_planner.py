@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 
-from api.services.planner import generate_annual_plan
+from api.services.planner import generate_annual_plan, build_plan_from_schedule
 
 
 def test_intensive_plan_uses_high_yield_catalog():
@@ -461,5 +461,84 @@ def test_invalid_date_formats_api_endpoint(client):
     )
     assert resp_exam.status_code == 200
     assert resp_exam.get_json() == {"error": "Formato de data inválido."}
+
+
+def test_no_warning_when_all_topics_fit_or_weeks_sufficient():
+    start = date(2026, 9, 7)
+    exam = date(2027, 11, 15)  # 62 weeks away
+    # With 12 hours/week, 62 * 12 = 744 hours, curriculum needs ~610 hours (50 weeks)
+    res = generate_annual_plan([], start.isoformat(), exam.isoformat(), hours_per_week=12)
+    assert res.get("warning") is None
+    assert len(res["plan"]) > 0
+
+    # Simulate frozen schedule rows
+    schedule_rows = []
+    for w in res["plan"]:
+        for order, t in enumerate(w["topics"]):
+            schedule_rows.append({"week": w["week"], "subtema": t["subtema"], "display_order": order})
+
+    # Reloading with exam_date_str must also not yield a warning
+    reloaded = build_plan_from_schedule(
+        schedule_rows,
+        start.isoformat(),
+        hours_per_week=12,
+        exam_date_str=exam.isoformat(),
+    )
+    assert reloaded is not None
+    assert reloaded.get("warning") is None
+    assert reloaded.get("total_available_hours") is None
+
+
+def test_warning_when_insufficient_time_and_schedule_reloaded():
+    start = date(2026, 9, 7)
+    exam = date(2026, 11, 16)  # 10 weeks away
+    # 10 weeks * 12h = 120h, curriculum needs ~610h -> genuine deficit
+    res = generate_annual_plan([], start.isoformat(), exam.isoformat(), hours_per_week=12)
+    assert res.get("warning") is not None
+    assert "120 horas disponíveis" in res["warning"]
+    assert res.get("total_available_hours") == 120
+    assert res.get("total_required_hours") == 610
+
+    # Build schedule rows for the 10 weeks that could be planned
+    schedule_rows = []
+    for w in res["plan"]:
+        for order, t in enumerate(w["topics"]):
+            schedule_rows.append({"week": w["week"], "subtema": t["subtema"], "display_order": order})
+
+    reloaded = build_plan_from_schedule(
+        schedule_rows,
+        start.isoformat(),
+        hours_per_week=12,
+        exam_date_str=exam.isoformat(),
+    )
+    assert reloaded is not None
+    assert reloaded.get("warning") is not None
+    assert "120 horas disponíveis" in reloaded["warning"]
+    assert reloaded.get("total_available_hours") == 120
+    assert reloaded.get("total_required_hours") == 610
+
+
+def test_generate_plan_api_no_warning_on_reload_when_time_sufficient(client):
+    user_id = "user_sufficient_time_test"
+    start = date(2026, 9, 7)
+    exam = date(2027, 11, 15)
+    payload = {
+        "start_date": start.isoformat(),
+        "exam_date": exam.isoformat(),
+        "hours_per_week": 12,
+    }
+
+    # First call generates and persists
+    resp1 = client.post("/api/generate_plan", json=payload, headers={"X-User-ID": user_id})
+    assert resp1.status_code == 200
+    data1 = resp1.get_json()
+    assert data1.get("warning") is None
+
+    # Second call uses frozen schedule in database
+    resp2 = client.post("/api/generate_plan", json=payload, headers={"X-User-ID": user_id})
+    assert resp2.status_code == 200
+    data2 = resp2.get_json()
+    assert data2.get("warning") is None
+
 
 

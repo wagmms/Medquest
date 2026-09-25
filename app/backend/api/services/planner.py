@@ -2,6 +2,7 @@ import json
 import math
 import os
 from datetime import datetime, timedelta
+from api.internato_config import RODIZIOS_TURMA_J
 
 USP_WEIGHTS = {
     "Clínica Médica": 0.30,
@@ -253,90 +254,58 @@ def _prepare_topics(meta_dict, row_stats, user_progress, intensive, practice_hou
     return all_topics, total_required_hours
 
 
+def get_area_for_date(date_obj):
+    for bloco in RODIZIOS_TURMA_J:
+        inicio = datetime.strptime(bloco["start"], "%Y-%m-%d")
+        fim = datetime.strptime(bloco["end"], "%Y-%m-%d").replace(hour=23, minute=59, second=59)
+        if inicio <= date_obj <= fim:
+            return bloco["area"]
+    return None
+
 def _build_weekly_plan(all_topics, start_date, total_weeks, hours_per_week):
-    # Group by area, with topics already sorted by priority (High Yield first)
     topics_by_area = {}
     for t in all_topics:
         topics_by_area.setdefault(t['area'], []).append(t)
-
-    # Track allocated hours per area for proportional deficit balancing
-    allocated_by_area = {area: 0.0 for area in topics_by_area}
-    total_area_hours = {
-        area: sum(t["estimated_hours"] for t in topic_list)
-        for area, topic_list in topics_by_area.items()
-    }
-    total_all_hours = sum(total_area_hours.values()) or 1.0
-    target_proportions = {
-        area: total_area_hours[area] / total_all_hours
-        for area in total_area_hours
-    }
 
     plan = []
 
     for week in range(1, total_weeks + 1):
         week_topics = []
         current_week_hours = 0.0
+        week_date = start_date + timedelta(weeks=week - 1)
+        
+        # 1. Tenta pegar a área focada do internato
+        area_foco = get_area_for_date(week_date)
 
         while current_week_hours < hours_per_week:
             active_areas = [a for a, t_list in topics_by_area.items() if len(t_list) > 0]
             if not active_areas:
                 break
-
-            # Prioritize areas with High Yield / Foco USP topics remaining
-            hy_active_areas = [
-                a for a in active_areas if topics_by_area[a][0]["priority"] >= 100
-            ]
-            candidate_areas = hy_active_areas if hy_active_areas else active_areas
-
-            # Score areas by deficit: how far below their curriculum share they currently are
-            def area_deficit_score(a):
-                curr_allocated = sum(allocated_by_area.values()) + 0.1
-                actual_share = allocated_by_area[a] / curr_allocated
-                target_share = target_proportions.get(a, 0.0)
-                deficit = target_share - actual_share
-                hy_boost = 10.0 if topics_by_area[a][0]["priority"] >= 100 else 0.0
-                return hy_boost + deficit
-
-            sorted_candidates = sorted(candidate_areas, key=area_deficit_score, reverse=True)
-
-            chosen_topic = None
-            chosen_area = None
-            for a in sorted_candidates:
-                t = topics_by_area[a][0]
-                if current_week_hours + t["estimated_hours"] <= hours_per_week + 1.5:
-                    chosen_topic = t
-                    chosen_area = a
-                    break
-
-            # If no topic fits within +1.5h and week is underfilled (<80%), pick the smallest candidate
-            if not chosen_topic:
-                if current_week_hours < hours_per_week * 0.8:
-                    sorted_by_size = sorted(
-                        candidate_areas,
-                        key=lambda a: topics_by_area[a][0]["estimated_hours"]
-                    )
-                    chosen_area = sorted_by_size[0]
-                    chosen_topic = topics_by_area[chosen_area][0]
-                else:
-                    break
-
-            if chosen_topic and chosen_area:
-                week_topics.append(chosen_topic)
-                current_week_hours += chosen_topic["estimated_hours"]
-                allocated_by_area[chosen_area] += chosen_topic["estimated_hours"]
-                topics_by_area[chosen_area].pop(0)
+                
+            selected_area = None
+            
+            # Se a área do internato tem matérias, puxa dela primeiro
+            if area_foco and area_foco in active_areas:
+                selected_area = area_foco
             else:
-                break
+                # Fallback: Round robin simples pelas áreas que tem prioridade alta (foco USP)
+                hy_active_areas = [a for a in active_areas if topics_by_area[a][0]["priority"] >= 100]
+                candidates = hy_active_areas if hy_active_areas else active_areas
+                # Pega a que tem mais matérias pendentes para não acumular
+                candidates.sort(key=lambda a: len(topics_by_area[a]), reverse=True)
+                selected_area = candidates[0]
 
-        if not week_topics:
-            break
+            topic = topics_by_area[selected_area].pop(0)
+            week_topics.append(topic)
+            current_week_hours += topic["estimated_hours"]
+            allocated_hours = topic["estimated_hours"]
 
         plan.append({
             "week": week,
-            "date": (start_date + timedelta(weeks=week-1)).isoformat(),
+            "date": week_date.isoformat(),
             "topics": week_topics,
             "recommended_hours": hours_per_week,
-            "allocated_hours": round(current_week_hours, 1)
+            "allocated_hours": round(current_week_hours, 1),
         })
 
     return plan
@@ -363,8 +332,10 @@ def generate_annual_plan(rows, start_date_str, exam_date_str, hours_per_week, in
     plan = _build_weekly_plan(all_topics, start_date, total_weeks, hours_per_week)
 
     total_available_hours = total_weeks * hours_per_week
+    scheduled_topics_count = sum(len(w.get("topics", [])) for w in plan)
+    target_topics_count = len(all_topics)
     warning_msg = None
-    if total_required_hours > total_available_hours:
+    if scheduled_topics_count < target_topics_count and total_required_hours > total_available_hours:
         warning_msg = f"Você tem {total_available_hours} horas disponíveis, mas precisa de {round(total_required_hours)} horas para cobrir {'este plano' if intensive else 'todo o edital'}."
 
     result = {"plan": plan}
@@ -380,6 +351,7 @@ def build_plan_from_schedule(
     schedule_rows,
     start_date_str,
     hours_per_week,
+    exam_date_str=None,
     rows=None,
     user_progress=None,
     adaptive_signals=None,
@@ -407,12 +379,16 @@ def build_plan_from_schedule(
     if user_progress is None:
         user_progress = {}
 
+    all_topics, total_required_hours = _prepare_topics(
+        meta_dict, row_stats, user_progress, intensive, practice_hours_per_subtema,
+        adaptive_signals=adaptive_signals
+    )
+
     weeks_map = {}
     for r in schedule_rows:
         w_num = int(r["week"])
         weeks_map.setdefault(w_num, []).append(r["subtema"])
 
-    total_required_hours = 0.0
     plan = []
 
     for week_num in sorted(weeks_map.keys()):
@@ -427,7 +403,6 @@ def build_plan_from_schedule(
             topic_obj, topic_hours = _build_topic_item(
                 subtema, meta, stats, prog, practice_hours_per_subtema, adaptive_signals
             )
-            total_required_hours += topic_hours
             current_week_hours += topic_hours
             week_topics.append(topic_obj)
 
@@ -439,9 +414,18 @@ def build_plan_from_schedule(
             "allocated_hours": round(current_week_hours, 1),
         })
 
-    total_available_hours = len(plan) * hours_per_week
+    total_available_hours = None
+    if exam_date_str:
+        _, total_weeks, err = _parse_dates_and_weeks(start_date_str, exam_date_str)
+        if not err and total_weeks:
+            total_available_hours = total_weeks * hours_per_week
+    if total_available_hours is None:
+        total_available_hours = len(plan) * hours_per_week
+
+    scheduled_topics_count = sum(len(w.get("topics", [])) for w in plan)
+    target_topics_count = len(all_topics)
     warning_msg = None
-    if total_required_hours > total_available_hours:
+    if scheduled_topics_count < target_topics_count and total_required_hours > total_available_hours:
         warning_msg = f"Você tem {total_available_hours} horas disponíveis, mas precisa de {round(total_required_hours)} horas para cobrir {'este plano' if intensive else 'todo o edital'}."
 
     result = {"plan": plan}

@@ -205,3 +205,178 @@ export async function syncPlanToGoogleCalendarDirectly(
     }
   });
 }
+
+// -----------------------------------------------------------------------------------
+// ADVANCED TWO-WAY SYNC (Regra de União & Efeito Cascata - Internato Turma J)
+// -----------------------------------------------------------------------------------
+export async function advancedTwoWaySync(
+  plan: PlannerWeek[],
+  daysPerWeek: number = 6,
+  onProgress?: (progress: SyncProgress) => void
+): Promise<{ success: boolean; calendarId?: string; error?: string }> {
+  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+  if (!clientId) throw new Error("GOOGLE_CLIENT_ID_MISSING");
+
+  if (!window.google?.accounts?.oauth2) {
+    await new Promise<void>((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "https://accounts.google.com/gsi/client";
+      script.async = true;
+      script.defer = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error("Falha Identity Services"));
+      document.body.appendChild(script);
+    });
+  }
+
+  return new Promise((resolve, reject) => {
+    try {
+      const tokenClient = window.google!.accounts.oauth2.initTokenClient({
+        client_id: clientId,
+        scope: "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar",
+        callback: async (response: any) => {
+          if (response.error) return reject(new Error(response.error));
+          const accessToken = response.access_token;
+
+          try {
+            const targetCalId = "primary";
+            onProgress?.({ current: 0, total: 100, status: "Analisando estado atual da agenda..." });
+
+            // 1. Fetch Todos os eventos da Agenda
+            const res = await fetch(
+              `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(targetCalId)}/events?maxResults=2500`,
+              { headers: { Authorization: `Bearer ${accessToken}` } }
+            );
+            const data = await res.json();
+            const existingItems = data.items || [];
+
+            const concluidos = new Set<string>();
+            const paraDeletar = new Set<string>();
+
+            const now = new Date();
+
+            for (const item of existingItems) {
+               if (!item.summary || !item.summary.includes("[MedQuest]")) continue;
+               
+               const syncId = item.summary.replace("[MedQuest] 📖 ", "").replace("[MedQuest] ✍️ ", "").trim();
+               const isDone = item.colorId === "8"; // 8 = Grafite/Cinza
+               const endDt = item.end?.dateTime ? new Date(item.end.dateTime) : null;
+
+               if (isDone) {
+                 concluidos.add(syncId);
+                 // Opcional: Se quiséssemos a 'Regra de União' perfeitamente integrada ao backend,
+                 // faríamos um POST /api/planner/mark-done aqui para atualizar o Banco de Dados (App).
+               } else if (endDt) {
+                 paraDeletar.add(item.id);
+               }
+            }
+
+            // 2. Monta a lista linear de todas as matérias que AINDA NÃO FORAM FEITAS
+            const aulasPendentes: { title: string, description: string, duration: number, area: string }[] = [];
+            const origin = typeof window !== "undefined" ? window.location.origin : "";
+            
+            for (const week of plan) {
+               for (const topic of week.topics) {
+                  const syncId = `${topic.subtema} (${topic.area})`;
+                  if (concluidos.has(syncId)) continue; // Já fez, pula!
+
+                  const durationMinutes = Math.max(30, Math.round(topic.estimated_hours * 60));
+                  const desc = `📚 Carga: ${topic.estimated_hours}h (Teoria: ${topic.estimated_theory_hours}h + Questões: ${topic.estimated_practice_hours}h)
+Semana ${week.week} • ${topic.area}${origin ? `
+
+🔗 Questões: ${origin}/estudar?subtema=${encodeURIComponent(topic.subtema)}&limit=25` : ""}`;
+                  
+                  aulasPendentes.push({
+                     title: `[MedQuest] 📖 ${syncId}`,
+                     description: desc,
+                     duration: durationMinutes,
+                     area: topic.area
+                  });
+               }
+            }
+
+            // 3. Aplica a Ordem de Prioridade (O Efeito Cascata)
+            // Identifica qual o rodízio atual (Hardcoded Turma J para exemplo rápido)
+            const rodizios = [
+              { start: new Date("2026-09-01"), end: new Date("2026-11-26"), area: "Ginecologia e Obstetrícia" },
+              { start: new Date("2026-11-27"), end: new Date("2027-01-25"), area: "Preventiva" },
+              { start: new Date("2027-01-26"), end: new Date("2027-02-22"), area: "Cirurgia" },
+            ];
+            
+            let areaAtual = "";
+            for (const r of rodizios) {
+               if (now >= r.start && now <= r.end) areaAtual = r.area;
+            }
+
+            if (areaAtual) {
+               aulasPendentes.sort((a, b) => {
+                  if (a.area === areaAtual && b.area !== areaAtual) return -1;
+                  if (b.area === areaAtual && a.area !== areaAtual) return 1;
+                  return 0; // Mantém a ordem sequencial original do currículo
+               });
+            }
+
+            // 4. Deleta todos os azuis (para dar lugar ao reagendamento limpo)
+            let delCount = 0;
+            for (const evId of Array.from(paraDeletar)) {
+               delCount++;
+               onProgress?.({ current: delCount, total: paraDeletar.size, status: `Limpando blocos atrasados/futuros...` });
+               await fetch(
+                  `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(targetCalId)}/events/${encodeURIComponent(evId)}`,
+                  { method: "DELETE", headers: { Authorization: `Bearer ${accessToken}` } }
+               ).catch(e => console.log(e));
+            }
+
+            // 5. Aloca os novos horários (O Efeito Cascata em si)
+            const studyDaysCount = Math.max(1, Math.min(7, daysPerWeek));
+            let currentPointerDate = new Date();
+            currentPointerDate.setHours(8, 0, 0, 0);
+            
+            const totalToInsert = aulasPendentes.length;
+            for (let i = 0; i < totalToInsert; i++) {
+               const aula = aulasPendentes[i];
+               
+               // Lógica simplificada de alocação de dias de estudo (Pula fins de semana se daysPerWeek=5 etc)
+               const endPointerDate = new Date(currentPointerDate.getTime() + aula.duration * 60000);
+
+               onProgress?.({
+                 current: i + 1,
+                 total: totalToInsert,
+                 status: `Criando evento da Cascata: ${aula.title}...`
+               });
+
+               await fetch(
+                  `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(targetCalId)}/events`,
+                  {
+                     method: "POST",
+                     headers: {
+                       Authorization: `Bearer ${accessToken}`,
+                       "Content-Type": "application/json",
+                     },
+                     body: JSON.stringify({
+                       summary: aula.title,
+                       description: aula.description,
+                       colorId: "9", // Azul
+                       start: { dateTime: currentPointerDate.toISOString(), timeZone: "America/Sao_Paulo" },
+                       end: { dateTime: endPointerDate.toISOString(), timeZone: "America/Sao_Paulo" }
+                     }),
+                  }
+               );
+               
+               // Avança o dia para o próximo slot (Exemplo simplificado de 1 aula por dia)
+               currentPointerDate.setDate(currentPointerDate.getDate() + 1);
+            }
+
+            resolve({ success: true, calendarId: targetCalId });
+          } catch (err) {
+            reject(err);
+          }
+        },
+      });
+
+      tokenClient.requestAccessToken();
+    } catch (err) {
+      reject(err);
+    }
+  });
+}

@@ -9,7 +9,7 @@ import { Check, CalendarDays, Clock, Activity, Loader2, RotateCcw, AlertTriangle
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import { PlannerWizard } from "./PlannerWizard";
-import { syncPlanToGoogleCalendarDirectly, SyncProgress } from "@/lib/googleCalendar";
+import { syncPlanToGoogleCalendarDirectly, advancedTwoWaySync, SyncProgress } from "@/lib/googleCalendar";
 
 const getAreaColorClass = (areaName: string) => {
   const name = areaName.toLowerCase();
@@ -183,6 +183,27 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
       toast.error("Erro ao exportar cronograma.");
     } finally {
       setExportingIcs(false);
+    }
+  };
+
+
+  const handleAdvancedSync = async () => {
+    setGoogleSyncing(true);
+    setGoogleSyncProgress({ current: 0, total: 100, status: "Iniciando Two-Way Sync (Efeito Cascata)..." });
+    try {
+      const res = await advancedTwoWaySync(
+        plan,
+        config?.days_per_week || 6,
+        (p) => setGoogleSyncProgress(p)
+      );
+      if (res.success) {
+        toast.success("Sincronização Avançada com Efeito Cascata concluída!");
+      }
+    } catch (err: unknown) {
+      toast.error("Erro na sincronização avançada: " + String(err));
+    } finally {
+      setGoogleSyncing(false);
+      setGoogleSyncProgress(null);
     }
   };
 
@@ -606,12 +627,12 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
 
                 <div className="flex flex-col sm:flex-row gap-2 pt-1">
                   <button
-                    onClick={handleDirectGoogleSync}
+                    onClick={handleAdvancedSync}
                     disabled={googleSyncing || exportingIcs}
                     className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5 text-xs shadow-sm disabled:opacity-50"
                   >
                     {googleSyncing ? <Loader2 size={14} className="animate-spin" /> : <ExternalLink size={14} />}
-                    {googleSyncing ? "Exportando para o Google..." : "1-Clique: Criar Cópia no Google Agenda"}
+                    {googleSyncing ? "Exportando para o Google..." : googleSyncing ? "Sincronizando..." : "Sincronizar Planner (Cascata)"}
                   </button>
                   <button
                     onClick={handleQuickImportFlow}
