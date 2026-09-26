@@ -1,0 +1,625 @@
+{
+  "track_id": 3154145,
+  "name": "INEP - Revalida - 2023.2 - Discursiva",
+  "year": 2023,
+  "track_fast": {
+    "id": 3154145,
+    "name": "INEP - Revalida - 2023.2 - Discursiva",
+    "track_type": "c",
+    "question_count": 5,
+    "year": 2023,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "INEP - Revalida",
+    "track_image": "https://cdn.medway.com.br/media/track/exam/inep-revalida/default_4xikHWh.jpeg",
+    "residency_degree": {
+      "id": 3,
+      "abbreviation": "R1"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 220989,
+        "number": 1,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Arritmias, Síncope e PCR",
+        "focus": {
+          "id": 2005,
+          "name": "Arritmias, Síncope e PCR"
+        }
+      },
+      "detail": {
+        "id": 220989,
+        "content": "Uma mulher de 77 anos, professora de matemática aposentada, faz sua primeira visita à unidade básica de saúde (UBS) após mudar-se de região. Ela vai à consulta porque está sentindo dificuldade para segurar objetos e percebe que sua mão está mais fria. Conta que sente dor e formigamento na mão direita, os quais começaram subitamente ontem, por volta das 15h; ela não apresenta outras queixas. A paciente faz tratamento para hipertensão e para diabetes diagnosticados há mais de 10 anos. Ela toma, regularmente, enalapril 10 mg de manhã e metformina 850 mg, 3 vezes ao dia. Suas mucosas estão bem coradas e a ausculta cardíaca revela um ritmo irregularmente irregular com uma frequência aproximada de 60 a 80 batimentos por minuto e, ao exame, é possível perceber uma variação na intensidade do som da primeira bulha cardíaca de batimento para batimento. Além disso, não é possível visualizar onda a normal no pulso venoso jugular. O médico, então, examina a mão direita de forma comparativa e conclui que a mão está mal perfundida. A mão da paciente está pálida e o pulso radial direito está mais fraco se comparado com o esquerdo. O enchimento capilar está lentificado nos dedos da mão direita. A imagem a seguir apresenta um eletrocardiograma (ECG).  \n\n\nConsiderando o quadro clínico dessa paciente, faça o que se pede nos itens a seguir. \na) Com base no ritmo cardíaco observado pelo médico no exame físico, qual é o diagnóstico clínico mais provável? Caso seja escrito mais de um diagnóstico, será considerado apenas o primeiro.\nb) Cite três fatores de risco dessa paciente para o desenvolvimento da alteração de ritmo verificada no ECG. Serão pontuados apenas os três primeiros fatores indicados.  \nc) Quais devem ser as condutas médicas em relação à queixa principal da paciente? Definir quatro condutas. Serão pontuadas apenas as quatro primeiras condutas indicadas.",
+        "options": [],
+        "images": [
+          {
+            "id": 63621,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID220989_2023_institution-object-1468_Q1/question_FXTdAYt.png"
+          }
+        ],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 668,
+            "parent_tag": {
+              "id": 302,
+              "name": "Cardiologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Arritmias, Síncope e PCR",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [
+          {
+            "id": 673,
+            "avatar": "https://cdn.medway.com.br/media/physician/Captura_de_Tela_2026-06-30_as_14.png",
+            "about": "Clínica Médica - Hospital Ipiranga \r\nReumatologia - IAMSPE",
+            "name": "Rafael Alves Banzati Viana",
+            "speciality": {
+              "id": 2,
+              "abbreviation": "CM",
+              "name": "Clínica Médica"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 3779,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2005,
+          "name": "Arritmias, Síncope e PCR",
+          "discipline": {
+            "id": 97,
+            "name": "Clínica Médica",
+            "residency_degree": 3,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 252,
+            "name": "Cardiologia",
+            "discipline": 97,
+            "old_tag": 302,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 400228,
+        "actual_explanation": true,
+        "introduction": "<p>O caso descreve uma paciente idosa, hipertensa e diabética, que chega à unidade básica com queixa de dificuldade para segurar objetos, dor e frialdade súbita na mão direita. Ao exame físico, apresenta ritmo irregularmente irregular, variação da intensidade da primeira bulha e ausência da onda “a” no pulso venoso jugular — achados clássicos e específicos de <span class=\"article-2271\">fibrilação atrial</span>. O ECG  confirma a nossa hipótese e ajuda a diferenciar de um flutter:</p>\n<p> </p>\n<p>Nas derivações <strong>DII e DIII</strong> (marcadas em verde), não observamos as <strong>ondulações negativas</strong> (<strong>ondas F</strong>), afastando a possibilidade de ser um flutter. Além disso, ao observarmos D2 (em vermelho) repare que essas ondulações <strong>não são uniformes nem repetitivas</strong> — cada uma apresenta uma <strong>morfologia ligeiramente diferente</strong>, e há <strong>intervalos RR irregulares</strong>. Já na derivação <strong>V1</strong>, notam-se <strong>oscilações da linha de base também</strong>, mas novamente sem padrão fixo e com amplitude variável. Isso caracteriza a <strong>atividade elétrica caótica e desorganizada típica da <span class=\"article-2271\">fibrilação atrial</span></strong>. No <strong>flutter atrial verdadeiro</strong>, as <strong>ondas F</strong> são <strong>idênticas entre si</strong>, formando um <strong>padrão em “serrote” (sawtooth)</strong>, mais evidente nas derivações <strong>DII, DIII e aVF</strong>, com <strong>ritmo atrial regular</strong> e, muitas vezes, uma <strong>relação fixa de condução (2:1, 3:1)</strong> para os ventrículos. Aqui, ao contrário, temos <strong>ondas múltiplas e desorganizadas</strong>, consequência da <strong>ativação simultânea de diversos focos ectópicos atriais</strong> que geram potenciais elétricos de diferentes intensidades e vetores. Essa <strong>despolarização atrial caótica</strong> impede que se forme uma onda P verdadeira e explica a irregularidade completa do ritmo ventricular.</p>\n<p> </p>\n<p style=\"text-align: center;\"><img alt=\"Pasted Graphic 2.png\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251114T185447857Z694857.png\"/></p>\n<p> </p>\n<p>Essa desorganização elétrica é o que leva à <strong>ausência da onda “a” no pulso venoso jugular (PVJ)</strong>. A onda “a” reflete o <strong>esvaziamento ativo do átrio direito contra a válvula tricúspide fechada</strong> no início da sístole. Em condições normais, ela representa a <strong>contração atrial coordenada</strong>. Na FA, como os átrios não se contraem de forma organizada — apenas fibrilam com microcontrações ineficazes — não há essa pressão atrial sistólica transmitida às veias jugulares. Por isso, o <strong>PVJ perde a onda “a” e se torna irregular</strong>, reproduzindo o padrão caótico da despolarização atrial.</p>\n<p> </p>\n<p style=\"text-align: center;\"><img alt=\"Pasted Graphic 3.png\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251114T185447860Z662431.png\"/></p>\n<p> </p>\n<p>Além disso, há sinais inequívocos de isquemia arterial aguda no membro superior, caracterizados por início abrupto dos sintomas, palidez, pulso radial enfraquecido e enchimento capilar lentificado. O eletrocardiograma confirma a suspeita ao revelar ausência de ondas P e intervalos RR irregularmente irregulares, configurando <span class=\"article-2271\">fibrilação atrial</span>.</p>\n<p> </p>\n<p>O raciocínio aqui integra dois eixos: o diagnóstico do ritmo e a consequência embólica. Assim, o quadro descrito representa uma complicação tromboembólica de FA, com impacto potencialmente grave na perfusão do membro afetado. </p>\n<p> </p>\n<p>Os fatores de risco do caso — idade avançada, hipertensão arterial e diabetes mellitus — contribuem para remodelamento atrial e risco embólico aumentado, explicando tanto a gênese da FA quanto a gravidade da complicação.</p>\n<p> </p>\n<p>As condutas devem priorizar em salvar o membro e a prevenção de novos eventos. O manejo inclui internação em unidade com monitorização cardíaca, anticoagulação sistêmica imediata (heparina endovenosa ou enoxaparina), avaliação vascular urgente para definição da necessidade de trombólise, trombectomia, embolectomia ou by-pass arterial, e proteção térmica do membro. Antiarrítmicos e betabloqueadores não são prioridade no contexto agudo, devendo ser considerados apenas após estabilização e avaliação hemodinâmica.</p>\n<p> </p>\n<p>Gabarito oficial da banca:</p>\n<p> </p>\n<p>A. <span class=\"article-2271\">Fibrilação atrial</span> (ou auricular) é o diagnóstico clínico mais provável.<br/><br/>b. Idade (idoso OU idade avançada), hipertensão e diabetes mellitus.</p>\n<p>c. <br/>c1: Internação hospitalar em unidade de terapia intensiva ou box emergência com monitorização cardíaca;<br/>c2: Manejo da obstrução arterial aguda: Anticoagulação sistêmica (anticoagulantes orais/venosos) para preservar a perfusão da mão direita e evitar amputação;<br/>c3: Realização de trombólise, trombectomia, embolectomia E/OU by-pass arterial; Solicitação de doppler, angiotomografia, angioressonância E/OU arteriografia ;<br/>c4: Avaliação de cirurgião vascular (ou angiologista ou cirurgião cardiovascular) OU encaminhar para centro de referência; </p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O diagnóstico é entregue pelo exame físico — ritmo irregularmente irregular, variação de B1 e ausência da onda “a” no PVJ. A complicação é a embolia arterial aguda, com início súbito e sinais de má perfusão. Em prova, FA + membro frio e pálido = oclusão arterial embólica até que se prove o contrário.</p>\n<p> </p>\n<p><strong>Pistas-chave:</strong></p>\n<ul style=\"list-style-type: disc;\">\n<li>Ritmo irregularmente irregular ao exame físico.</li>\n<li>Variação da intensidade da primeira bulha.</li>\n<li>Ausência de onda “a” no PVJ.</li>\n<li>Início súbito dos sintomas no membro.</li>\n<li>Palidez, pulso fraco, enchimento capilar lento.</li>\n</ul>\n<p> </p>\n<p><strong>Pegadinhas:</strong></p>\n<ul style=\"list-style-type: disc;\">\n<li>Confundir FA com flutter pelo serrilhado em V1.</li>\n<li>Responder a complicação (isquemia) no lugar do ritmo.</li>\n<li>Esquecer a monitorização cardíaca e anticoagulação imediata.</li>\n</ul>\n<p> </p>\n<p><strong>Como cai: </strong>O padrão é o paciente idoso, com comorbidades, apresentando achados de FA e complicação embólica. A prova cobra reconhecimento do ritmo pela semiologia e as condutas emergenciais: internação, anticoagulação e avaliação vascular. Também pode explorar medicamentos que prolongam o QT e induzem arritmias, reforçando a importância de identificar o padrão de FA no contexto clínico.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O caso descreve uma paciente idosa, hipertensa e diabética, que chega à unidade básica com queixa de dificuldade para segurar objetos, dor e frialdade súbita na mão direita. Ao exame físico, apresenta ritmo irregularmente irregular, variação da intensidade da primeira bulha e ausência da onda “a” no pulso venoso jugular — achados clássicos e específicos de <span class=\"article-2271\">fibrilação atrial</span>. O ECG  confirma a nossa hipótese e ajuda a diferenciar de um flutter:</p>\n<p> </p>\n<p>Nas derivações <strong>DII e DIII</strong> (marcadas em verde), não observamos as <strong>ondulações negativas</strong> (<strong>ondas F</strong>), afastando a possibilidade de ser um flutter. Além disso, ao observarmos D2 (em vermelho) repare que essas ondulações <strong>não são uniformes nem repetitivas</strong> — cada uma apresenta uma <strong>morfologia ligeiramente diferente</strong>, e há <strong>intervalos RR irregulares</strong>. Já na derivação <strong>V1</strong>, notam-se <strong>oscilações da linha de base também</strong>, mas novamente sem padrão fixo e com amplitude variável. Isso caracteriza a <strong>atividade elétrica caótica e desorganizada típica da <span class=\"article-2271\">fibrilação atrial</span></strong>. No <strong>flutter atrial verdadeiro</strong>, as <strong>ondas F</strong> são <strong>idênticas entre si</strong>, formando um <strong>padrão em “serrote” (sawtooth)</strong>, mais evidente nas derivações <strong>DII, DIII e aVF</strong>, com <strong>ritmo atrial regular</strong> e, muitas vezes, uma <strong>relação fixa de condução (2:1, 3:1)</strong> para os ventrículos. Aqui, ao contrário, temos <strong>ondas múltiplas e desorganizadas</strong>, consequência da <strong>ativação simultânea de diversos focos ectópicos atriais</strong> que geram potenciais elétricos de diferentes intensidades e vetores. Essa <strong>despolarização atrial caótica</strong> impede que se forme uma onda P verdadeira e explica a irregularidade completa do ritmo ventricular.</p>\n<p> </p>\n<p style=\"text-align: center;\"><img alt=\"Pasted Graphic 2.png\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251114T185447857Z694857.png\"/></p>\n<p> </p>\n<p>Essa desorganização elétrica é o que leva à <strong>ausência da onda “a” no pulso venoso jugular (PVJ)</strong>. A onda “a” reflete o <strong>esvaziamento ativo do átrio direito contra a válvula tricúspide fechada</strong> no início da sístole. Em condições normais, ela representa a <strong>contração atrial coordenada</strong>. Na FA, como os átrios não se contraem de forma organizada — apenas fibrilam com microcontrações ineficazes — não há essa pressão atrial sistólica transmitida às veias jugulares. Por isso, o <strong>PVJ perde a onda “a” e se torna irregular</strong>, reproduzindo o padrão caótico da despolarização atrial.</p>\n<p> </p>\n<p style=\"text-align: center;\"><img alt=\"Pasted Graphic 3.png\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251114T185447860Z662431.png\"/></p>\n<p> </p>\n<p>Além disso, há sinais inequívocos de isquemia arterial aguda no membro superior, caracterizados por início abrupto dos sintomas, palidez, pulso radial enfraquecido e enchimento capilar lentificado. O eletrocardiograma confirma a suspeita ao revelar ausência de ondas P e intervalos RR irregularmente irregulares, configurando <span class=\"article-2271\">fibrilação atrial</span>.</p>\n<p> </p>\n<p>O raciocínio aqui integra dois eixos: o diagnóstico do ritmo e a consequência embólica. Assim, o quadro descrito representa uma complicação tromboembólica de FA, com impacto potencialmente grave na perfusão do membro afetado. </p>\n<p> </p>\n<p>Os fatores de risco do caso — idade avançada, hipertensão arterial e diabetes mellitus — contribuem para remodelamento atrial e risco embólico aumentado, explicando tanto a gênese da FA quanto a gravidade da complicação.</p>\n<p> </p>\n<p>As condutas devem priorizar em salvar o membro e a prevenção de novos eventos. O manejo inclui internação em unidade com monitorização cardíaca, anticoagulação sistêmica imediata (heparina endovenosa ou enoxaparina), avaliação vascular urgente para definição da necessidade de trombólise, trombectomia, embolectomia ou by-pass arterial, e proteção térmica do membro. Antiarrítmicos e betabloqueadores não são prioridade no contexto agudo, devendo ser considerados apenas após estabilização e avaliação hemodinâmica.</p>\n<p> </p>\n<p>Gabarito oficial da banca:</p>\n<p> </p>\n<p>A. <span class=\"article-2271\">Fibrilação atrial</span> (ou auricular) é o diagnóstico clínico mais provável.<br/><br/>b. Idade (idoso OU idade avançada), hipertensão e diabetes mellitus.</p>\n<p>c. <br/>c1: Internação hospitalar em unidade de terapia intensiva ou box emergência com monitorização cardíaca;<br/>c2: Manejo da obstrução arterial aguda: Anticoagulação sistêmica (anticoagulantes orais/venosos) para preservar a perfusão da mão direita e evitar amputação;<br/>c3: Realização de trombólise, trombectomia, embolectomia E/OU by-pass arterial; Solicitação de doppler, angiotomografia, angioressonância E/OU arteriografia ;<br/>c4: Avaliação de cirurgião vascular (ou angiologista ou cirurgião cardiovascular) OU encaminhar para centro de referência; </p><br>Visão do aprovado: <p>O diagnóstico é entregue pelo exame físico — ritmo irregularmente irregular, variação de B1 e ausência da onda “a” no PVJ. A complicação é a embolia arterial aguda, com início súbito e sinais de má perfusão. Em prova, FA + membro frio e pálido = oclusão arterial embólica até que se prove o contrário.</p>\n<p> </p>\n<p><strong>Pistas-chave:</strong></p>\n<ul style=\"list-style-type: disc;\">\n<li>Ritmo irregularmente irregular ao exame físico.</li>\n<li>Variação da intensidade da primeira bulha.</li>\n<li>Ausência de onda “a” no PVJ.</li>\n<li>Início súbito dos sintomas no membro.</li>\n<li>Palidez, pulso fraco, enchimento capilar lento.</li>\n</ul>\n<p> </p>\n<p><strong>Pegadinhas:</strong></p>\n<ul style=\"list-style-type: disc;\">\n<li>Confundir FA com flutter pelo serrilhado em V1.</li>\n<li>Responder a complicação (isquemia) no lugar do ritmo.</li>\n<li>Esquecer a monitorização cardíaca e anticoagulação imediata.</li>\n</ul>\n<p> </p>\n<p><strong>Como cai: </strong>O padrão é o paciente idoso, com comorbidades, apresentando achados de FA e complicação embólica. A prova cobra reconhecimento do ritmo pela semiologia e as condutas emergenciais: internação, anticoagulação e avaliação vascular. Também pode explorar medicamentos que prolongam o QT e induzem arritmias, reforçando a importância de identificar o padrão de FA no contexto clínico.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 220990,
+        "number": 2,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Tumores do Aparelho Digestivo",
+        "focus": {
+          "id": 2089,
+          "name": "Tumores do Aparelho Digestivo"
+        }
+      },
+      "detail": {
+        "id": 220990,
+        "content": "Um homem branco de 68 anos, aposentado, vai a uma consulta no ambulatório de cirurgia geral após ser encaminhado pela unidade básica de saúde (UBS). Ele apresenta queixa de dor abdominal há 2 meses — epigástrica, sem relação com alimentação — e perda de 20 Kg em 3 meses. Há 1 mês vem apresentando icterícia, colúria, acolia e prurido cutâneo. O paciente é etilista de cerca de 20 g de etanol ao dia e tabagista de 20 maços/ano. Tem hipertensão arterial sistêmica, gastrite crônica e diabetes mellitus tipo 2, o qual foi diagnosticado há 1 ano. Ele faz uso contínuo de losartana 50 mg/dia, de hidroclorotiazida 25 mg/dia, de omeprazol 20 mg/dia e de metformina 850 mg 2 vezes ao dia. Ao exame físico, apresenta bom estado geral, hipocorado +/4+, hidratado, eupneico, ictérico 3+/4+ e acianótico; peso de 98 Kg, altura de 1,80 m, frequência cardíaca de 88 batimentos por minuto, pressão arterial de 140 × 88 mmHg; palpação de massa arredondada abaixo do bordo costal direito, de consistência fibroelástica, indolor; dor à palpação profunda em quadrante superior direito abdominal, ruídos hidroaéreos presentes, descompressão brusca negativa; os demais aspectos do exame físico apresentam-se sem particularidades. Os exames séricos apresentaram o seguinte resultado:  \n\nTomografia computadorizada de abdome: massa sólida em cabeça do pâncreas com 5 cm de diâmetro, com sinais de invasão duodenal e de vasos mesentéricos. Dilatação acentuada das vias biliares intra e extra-hepáticas. Vesícula biliar aumentada de volume, com paredes finas e conteúdo homogêneo em seu interior.   \n\nTomografia computadorizada de tórax: normal. \n\nCom relação ao caso clínico apresentado, faça o que se pede nos itens a seguir. \n\na) Cite três fatores de risco para neoplasia de pâncreas apresentados nesse caso. Serão pontuados apenas os três primeiros fatores de risco indicados. \nb) Quais são as duas utilidades do exame CA 19.9 nesse caso? Serão pontuadas apenas as duas primeiras utilidades indicadas.  \nc) O que significa a massa palpável encontrada no exame físico? \nd) Cite duas condutas clínicas e três condutas cirúrgicas possíveis para esse paciente. Serão pontuadas apenas as cinco primeiras condutas indicadas.",
+        "options": [],
+        "images": [
+          {
+            "id": 63622,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID220990_2023_institution-object-1468_Q2/question_18gk7sF.png"
+          }
+        ],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 560,
+            "parent_tag": {
+              "id": 352,
+              "name": "Cirurgia do Aparelho Digestivo",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Tumores do Aparelho Digestivo",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 2993,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2089,
+          "name": "Tumores do Aparelho Digestivo",
+          "discipline": {
+            "id": 64,
+            "name": "Cirurgia Geral",
+            "residency_degree": 3,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 184,
+            "name": "Cirurgia do Aparelho Digestivo",
+            "discipline": 64,
+            "old_tag": 352,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251337,
+        "actual_explanation": false,
+        "introduction": "<h2>Comentário: Câncer de Pâncreas</h2>\n  \n  <p>Estamos diante de um caso clínico bastante representativo de <strong>câncer de pâncreas</strong>, especificamente um adenocarcinoma da cabeça pancreática - uma das principais neoplasias do trato gastrointestinal e tema frequente em provas de residência.</p>\n  \n  <p>O caso apresenta um homem de 68 anos com sintomatologia clássica: dor abdominal epigástrica persistente, <strong>perda ponderal significativa</strong> (20kg em 3 meses) e tríade icterícia-colúria-acolia de aparecimento recente. Os exames mostram uma massa na cabeça do pâncreas, com invasão de estruturas adjacentes e obstrução da via biliar, evidenciada tanto nos exames laboratoriais (padrão colestático, com bilirrubinas elevadas, predominantemente direta) quanto nos achados de imagem (dilatação de vias biliares e vesícula biliar aumentada).</p>\n  \n  <p>A solicitação da questão foi bem objetiva, exigindo conhecimento sobre fatores de risco para neoplasia pancreática, utilidade do marcador tumoral CA 19-9, interpretação de um achado específico do exame físico e condutas apropriadas para o caso.</p>\n  \n  <p>Vamos analisar cada item pedido na questão:</p>\n  \n  <h3><strong>a) Fatores de risco para neoplasia de pâncreas</strong></h3>\n  \n  <p>O gabarito oficial aponta seis possíveis fatores presentes no caso:</p>\n  <ul>\n    <li>Tabagismo (20 maços/ano)</li>\n    <li>Obesidade (IMC = 30,2 kg/m²)</li>\n    <li>Diabetes mellitus tipo 2 (diagnóstico recente - 1 ano)</li>\n    <li>Idade avançada (>60 anos)</li>\n    <li>Sexo masculino</li>\n    <li>Etilismo (20g etanol/dia)</li>\n  </ul>\n  \n  <p>O tabagismo é considerado o fator de risco modificável mais importante, aumentando o risco em 2-3 vezes. O diabetes de início recente (menos de 3 anos) é frequentemente um sinal precoce da própria neoplasia, pela destruição das ilhotas pancreáticas pelo tumor. A obesidade também eleva o risco, assim como a idade avançada e o sexo masculino, que são fatores não modificáveis. Quanto ao etilismo, a correlação é mais controversa, mas consumos moderados a altos estão associados a maior risco.</p>\n  \n  <h3><strong>b) Utilidades do CA 19-9</strong></h3>\n  \n  <p>O marcador CA 19-9 (950 U/mL no caso) tem as seguintes utilidades:</p>\n  <ul>\n    <li>Auxiliar no diagnóstico clínico (nunca isoladamente)</li>\n    <li>Monitoramento da resposta ao tratamento</li>\n    <li>Avaliação prognóstica (níveis muito elevados indicam pior prognóstico)</li>\n    <li>Auxílio na indicação de laparoscopia estadiadora</li>\n  </ul>\n  \n  <p>É importante ressaltar que o CA 19-9 não é específico do câncer pancreático e pode estar elevado em outras condições, como colangite, colestase e outros cânceres gastrointestinais. Além disso, cerca de 5-10% da população não expressa o antígeno Lewis, sendo incapaz de produzir CA 19-9 mesmo na presença de tumor.</p>\n  \n  <h3><strong>c) Significado da massa palpável no exame físico</strong></h3>\n  \n  <p>A massa palpável abaixo do bordo costal direito corresponde à <strong>vesícula biliar distendida</strong>, conhecido como sinal de Courvoisier-Terrier. Este sinal sugere obstrução maligna da via biliar, pois em obstruções benignas (como por cálculos), a vesícula geralmente não distende devido a fibrose prévia. A frase clássica é: \"vesícula palpável e indolor na presença de icterícia sugere neoplasia\".</p>\n  \n  <h3><strong>d) Condutas clínicas e cirúrgicas</strong></h3>\n  \n  <p><em>Condutas clínicas:</em></p>\n  <ul>\n    <li>Terapia nutricional (suplementação oral, uso de sonda nasoenteral)</li>\n    <li>Reposição de vitamina K (para correção de coagulopatia)</li>\n    <li>Medicações para alívio do prurido (ácido ursodesoxicólico, anti-histamínicos)</li>\n    <li>Analgesia adequada</li>\n    <li>Controle glicêmico</li>\n    <li>Quimioterapia paliativa</li>\n  </ul>\n  \n  <p><em>Condutas cirúrgicas/endoscópicas:</em></p>\n  <ul>\n    <li>Passagem de prótese biliar (via endoscópica)</li>\n    <li>Derivação biliodigestiva</li>\n    <li>Gastroenteroanastomose</li>\n    <li>Jejunostomia alimentar</li>\n    <li>Drenagem biliar percutânea</li>\n    <li>Cirurgia de Whipple (duodenopancreatectomia) - em casos selecionados</li>\n    <li>Biópsia da lesão (para confirmação diagnóstica)</li>\n    <li>Neurólise/bloqueio do plexo celíaco (para controle da dor)</li>\n  </ul>\n  \n  <p>A escolha entre as condutas depende fundamentalmente do estadiamento do tumor e da performance status do paciente. No caso apresentado, os sinais de invasão vascular sugerem doença localmente avançada, possivelmente irressecável, direcionando o tratamento para uma abordagem paliativa.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h2>Visão do Aprovado</h2>\n  \n  <p>Este caso é excelente para fixar o padrão clássico de apresentação do adenocarcinoma de pâncreas, especialmente da cabeça pancreática. Nas provas, tenho percebido que eles adoram explorar a tríade icterícia, emagrecimento e dor abdominal, associada a aumento da vesícula biliar.</p>\n  \n  <p>Uma dica importante: sempre que você vir esta apresentação, pense imediatamente no sinal de Courvoisier-Terrier! É um achado patognomônico que frequentemente cai em provas objetivas e discursivas. Lembre-se da regra: \"icterícia + vesícula palpável = neoplasia até prova em contrário\".</p>\n  \n  <p>Para memorizar os fatores de risco, criei o mnemônico \"TABIDE\":</p>\n  <ul>\n    <li><strong>T</strong>abagismo</li>\n    <li><strong>A</strong>lta idade</li>\n    <li><strong>B</strong>ebida alcoólica</li>\n    <li><strong>I</strong>MC elevado (obesidade)</li>\n    <li><strong>D</strong>iabetes recente</li>\n    <li>s<strong>E</strong>xo masculino</li>\n  </ul>\n  \n  <p>Quanto ao CA 19-9, cuidado com a armadilha comum de considerá-lo um exame diagnóstico isolado - ele é auxiliar e tem seu maior valor no acompanhamento. Uma estratégia é decorar o seguinte: \"CA 19-9 direciona, mas não diagnostica\".</p>\n  \n  <p>Nas condutas, tenha sempre em mente a divisão entre tratamento potencialmente curativo (ressecção cirúrgica) e paliativo. Para a ressecabilidade, o principal fator limitante é o envolvimento vascular - a invasão de artéria mesentérica superior, tronco celíaco ou artéria hepática comum geralmente contraindica a ressecção. Já a invasão venosa isolada pode ser abordada com ressecção e reconstrução vascular em centros especializados.</p>\n  \n  <p>A cirurgia de Whipple (duodenopancreatectomia) é complexa e tem alta morbimortalidade - nas provas, geralmente não é a primeira opção para tumores irressecáveis ou em pacientes com mau estado geral. Nestes casos, as medidas paliativas para alívio da obstrução biliar, como stents endoscópicos, são preferenciais.</p>\n  \n  <p>Por fim, conecte este tema com outros assuntos frequentes em provas, como manejo da icterícia obstrutiva, câncer periampular, tumores neuroendócrinos pancreáticos e pancreatite crônica. São temas correlatos que os examinadores frequentemente exploram em questões complementares.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<h2>Comentário: Câncer de Pâncreas</h2>\n  \n  <p>Estamos diante de um caso clínico bastante representativo de <strong>câncer de pâncreas</strong>, especificamente um adenocarcinoma da cabeça pancreática - uma das principais neoplasias do trato gastrointestinal e tema frequente em provas de residência.</p>\n  \n  <p>O caso apresenta um homem de 68 anos com sintomatologia clássica: dor abdominal epigástrica persistente, <strong>perda ponderal significativa</strong> (20kg em 3 meses) e tríade icterícia-colúria-acolia de aparecimento recente. Os exames mostram uma massa na cabeça do pâncreas, com invasão de estruturas adjacentes e obstrução da via biliar, evidenciada tanto nos exames laboratoriais (padrão colestático, com bilirrubinas elevadas, predominantemente direta) quanto nos achados de imagem (dilatação de vias biliares e vesícula biliar aumentada).</p>\n  \n  <p>A solicitação da questão foi bem objetiva, exigindo conhecimento sobre fatores de risco para neoplasia pancreática, utilidade do marcador tumoral CA 19-9, interpretação de um achado específico do exame físico e condutas apropriadas para o caso.</p>\n  \n  <p>Vamos analisar cada item pedido na questão:</p>\n  \n  <h3><strong>a) Fatores de risco para neoplasia de pâncreas</strong></h3>\n  \n  <p>O gabarito oficial aponta seis possíveis fatores presentes no caso:</p>\n  <ul>\n    <li>Tabagismo (20 maços/ano)</li>\n    <li>Obesidade (IMC = 30,2 kg/m²)</li>\n    <li>Diabetes mellitus tipo 2 (diagnóstico recente - 1 ano)</li>\n    <li>Idade avançada (>60 anos)</li>\n    <li>Sexo masculino</li>\n    <li>Etilismo (20g etanol/dia)</li>\n  </ul>\n  \n  <p>O tabagismo é considerado o fator de risco modificável mais importante, aumentando o risco em 2-3 vezes. O diabetes de início recente (menos de 3 anos) é frequentemente um sinal precoce da própria neoplasia, pela destruição das ilhotas pancreáticas pelo tumor. A obesidade também eleva o risco, assim como a idade avançada e o sexo masculino, que são fatores não modificáveis. Quanto ao etilismo, a correlação é mais controversa, mas consumos moderados a altos estão associados a maior risco.</p>\n  \n  <h3><strong>b) Utilidades do CA 19-9</strong></h3>\n  \n  <p>O marcador CA 19-9 (950 U/mL no caso) tem as seguintes utilidades:</p>\n  <ul>\n    <li>Auxiliar no diagnóstico clínico (nunca isoladamente)</li>\n    <li>Monitoramento da resposta ao tratamento</li>\n    <li>Avaliação prognóstica (níveis muito elevados indicam pior prognóstico)</li>\n    <li>Auxílio na indicação de laparoscopia estadiadora</li>\n  </ul>\n  \n  <p>É importante ressaltar que o CA 19-9 não é específico do câncer pancreático e pode estar elevado em outras condições, como colangite, colestase e outros cânceres gastrointestinais. Além disso, cerca de 5-10% da população não expressa o antígeno Lewis, sendo incapaz de produzir CA 19-9 mesmo na presença de tumor.</p>\n  \n  <h3><strong>c) Significado da massa palpável no exame físico</strong></h3>\n  \n  <p>A massa palpável abaixo do bordo costal direito corresponde à <strong>vesícula biliar distendida</strong>, conhecido como sinal de Courvoisier-Terrier. Este sinal sugere obstrução maligna da via biliar, pois em obstruções benignas (como por cálculos), a vesícula geralmente não distende devido a fibrose prévia. A frase clássica é: \"vesícula palpável e indolor na presença de icterícia sugere neoplasia\".</p>\n  \n  <h3><strong>d) Condutas clínicas e cirúrgicas</strong></h3>\n  \n  <p><em>Condutas clínicas:</em></p>\n  <ul>\n    <li>Terapia nutricional (suplementação oral, uso de sonda nasoenteral)</li>\n    <li>Reposição de vitamina K (para correção de coagulopatia)</li>\n    <li>Medicações para alívio do prurido (ácido ursodesoxicólico, anti-histamínicos)</li>\n    <li>Analgesia adequada</li>\n    <li>Controle glicêmico</li>\n    <li>Quimioterapia paliativa</li>\n  </ul>\n  \n  <p><em>Condutas cirúrgicas/endoscópicas:</em></p>\n  <ul>\n    <li>Passagem de prótese biliar (via endoscópica)</li>\n    <li>Derivação biliodigestiva</li>\n    <li>Gastroenteroanastomose</li>\n    <li>Jejunostomia alimentar</li>\n    <li>Drenagem biliar percutânea</li>\n    <li>Cirurgia de Whipple (duodenopancreatectomia) - em casos selecionados</li>\n    <li>Biópsia da lesão (para confirmação diagnóstica)</li>\n    <li>Neurólise/bloqueio do plexo celíaco (para controle da dor)</li>\n  </ul>\n  \n  <p>A escolha entre as condutas depende fundamentalmente do estadiamento do tumor e da performance status do paciente. No caso apresentado, os sinais de invasão vascular sugerem doença localmente avançada, possivelmente irressecável, direcionando o tratamento para uma abordagem paliativa.</p><br>Visão do aprovado: <h2>Visão do Aprovado</h2>\n  \n  <p>Este caso é excelente para fixar o padrão clássico de apresentação do adenocarcinoma de pâncreas, especialmente da cabeça pancreática. Nas provas, tenho percebido que eles adoram explorar a tríade icterícia, emagrecimento e dor abdominal, associada a aumento da vesícula biliar.</p>\n  \n  <p>Uma dica importante: sempre que você vir esta apresentação, pense imediatamente no sinal de Courvoisier-Terrier! É um achado patognomônico que frequentemente cai em provas objetivas e discursivas. Lembre-se da regra: \"icterícia + vesícula palpável = neoplasia até prova em contrário\".</p>\n  \n  <p>Para memorizar os fatores de risco, criei o mnemônico \"TABIDE\":</p>\n  <ul>\n    <li><strong>T</strong>abagismo</li>\n    <li><strong>A</strong>lta idade</li>\n    <li><strong>B</strong>ebida alcoólica</li>\n    <li><strong>I</strong>MC elevado (obesidade)</li>\n    <li><strong>D</strong>iabetes recente</li>\n    <li>s<strong>E</strong>xo masculino</li>\n  </ul>\n  \n  <p>Quanto ao CA 19-9, cuidado com a armadilha comum de considerá-lo um exame diagnóstico isolado - ele é auxiliar e tem seu maior valor no acompanhamento. Uma estratégia é decorar o seguinte: \"CA 19-9 direciona, mas não diagnostica\".</p>\n  \n  <p>Nas condutas, tenha sempre em mente a divisão entre tratamento potencialmente curativo (ressecção cirúrgica) e paliativo. Para a ressecabilidade, o principal fator limitante é o envolvimento vascular - a invasão de artéria mesentérica superior, tronco celíaco ou artéria hepática comum geralmente contraindica a ressecção. Já a invasão venosa isolada pode ser abordada com ressecção e reconstrução vascular em centros especializados.</p>\n  \n  <p>A cirurgia de Whipple (duodenopancreatectomia) é complexa e tem alta morbimortalidade - nas provas, geralmente não é a primeira opção para tumores irressecáveis ou em pacientes com mau estado geral. Nestes casos, as medidas paliativas para alívio da obstrução biliar, como stents endoscópicos, são preferenciais.</p>\n  \n  <p>Por fim, conecte este tema com outros assuntos frequentes em provas, como manejo da icterícia obstrutiva, câncer periampular, tumores neuroendócrinos pancreáticos e pancreatite crônica. São temas correlatos que os examinadores frequentemente exploram em questões complementares.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 220991,
+        "number": 3,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Distúrbios Obstrutivos",
+        "focus": {
+          "id": 2213,
+          "name": "Distúrbios Obstrutivos"
+        }
+      },
+      "detail": {
+        "id": 220991,
+        "content": "Uma paciente de 7 anos vai a um pronto-socorro acompanhada de sua mãe. Essa paciente é asmática e apresenta crise de sibilância de repetição desde o primeiro ano de vida. Ela faz uso de beclometasona 200 mcg/dia e há relato de várias internações por asma uma, inclusive, com necessidade de terapia intensiva. A mãe informa que a paciente começou a apresentar início de tosse seca frequente, dor torácica e gemência há cerca de 2 horas, quando inalou fumaça de um pneu queimado na rua.  \n\nAo exame físico, a paciente apresenta agitação alternada com leve sonolência e incapacidade de falar frases, ou seja, ela pronuncia somente palavras; frequência respiratória de 60 incursões respiratórias por minuto, frequência cardíaca de 156 batimentos por minuto, temperatura axilar de 36,8 °C, saturação de O2 no oxímetro de pulso (ar ambiente) de 88%; tiragens intercostais, batimento de aletas nasais, diminuição difusa de murmúrio vesicular e presença de sibilos bilaterais.  \n\nNo pronto-socorro, a paciente começa a usar salbutamol inalatório na dose de 600 mcg, 20 minutos depois do ciclo de sabultamol, a saturação O2 vai para 89%, mantendo dispneia importante.  \n\nCom base nos dados apresentados, faça o que se pede nos itens a seguir. \na) Classifique a crise de asma da paciente de acordo com a gravidade. Justifique sua resposta citando, ao menos, cinco dados clínicos verificados nesse caso. Serão pontuados apenas os cinco primeiros dados clínicos indicados.  \nb) Há necessidade de exames complementares no atendimento imediato e após estabilização no pronto-socorro? Justifique sua resposta.  \nc) Cite quatro condutas a serem tomadas nesse momento imediato. Serão aceitas apenas as quatro primeiras condutas indicadas.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 363,
+            "parent_tag": {
+              "id": 304,
+              "name": "Pneumologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Distúrbios Obstrutivos",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 2014,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2213,
+          "name": "Distúrbios Obstrutivos",
+          "discipline": {
+            "id": 92,
+            "name": "Pediatria",
+            "residency_degree": 3,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 245,
+            "name": "Pneumologia",
+            "discipline": 92,
+            "old_tag": 304,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251728,
+        "actual_explanation": true,
+        "introduction": "<p data-end=\"1157\" data-start=\"98\">A banca nos apresenta uma criança de 7 anos, sabidamente asmática, com relato de diversas internações por crises e internação em UTI, atualmente em uso de beclometasona 200mcg/dia. Há 2 horas, apresenta tosse seca, dor torácica de gemência, após inalar fumaça de um pneu queimado na rua.</p>\n<p data-end=\"1157\" data-start=\"98\">No exame físico, paciente alternando sonolência e agitação, incapaz de falar frases (falando somente palavras), taquipneia (60 irpm), taquicárdica, saturando 88% em ar ambiente, com redução difusa do MV e sibilos bilaterais.</p>\n<p data-end=\"1157\" data-start=\"98\">É admitida no PS, sendo prescrito salbutamol 600mcg, mantendo desconforto respiratório.</p>\n<p data-end=\"1157\" data-start=\"98\"><strong>a) Classifique a gravidade da exacerbação e cite quatro achados que justifiquem sua resposta. </strong></p>\n<p data-end=\"1157\" data-start=\"98\">Vamos revisar a classificação da crise asmática, segundo o Tratado de Pediatria da SBP:</p>\n<p data-end=\"1157\" data-start=\"98\" style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T154226186Z073201.png\"/></p>\n<p data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Considerando o momento atual do paciente, podemos classificá-lo como uma crise <strong>grave </strong>uma vez que apresenta:</p>\n<ul>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Saturação de O2 88-89% em ar ambiente</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Uso de musculatura acessória</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Frequência respiratória 60irpm (&gt;30)</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Frequência cardíaca 156 bpm (&gt;120bpm)</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Falando apenas palavras</li>\n</ul>\n<p style=\"text-align: left;\"><strong>b) Há necessidade de exames complementares no atendimento imediato e após estabilização no pronto-socorro? </strong></p>\n<p style=\"text-align: left;\">Imediatamente, não são necessários exames pois antes de investigar possíveis complicações, devemos complementar o tratamento. O único \"exame\" que pode ser solicitado é a medida do pico de fluxo expiratório (PFE) para avaliação da gravidade da crise, como podemos ver na tabela acima apresentada.</p>\n<p style=\"text-align: left;\">Após a estabilização do tratamento, como o paciente já tem histórico de internações prévias, podendo-se aguardar (sem exames). Caso o paciente ainda não melhore, pode-se avaliar a coleta de hemograma, gasometria arterial e RX de tórax.</p>\n<p style=\"text-align: left;\"><strong>c) Cite quatro condutas a serem tomadas nesse momento imediato </strong></p>\n<ol>\n<li style=\"text-align: left;\">Internação em UTI</li>\n<li style=\"text-align: left;\">Oxigênio para manter saturação entre 94-98% (cateter nasal ou máscara não reinalante ou máscara de venturi)</li>\n<li style=\"text-align: left;\"><span class=\"article-5691\">Salbutamol</span> 4-10 jatos a cada 20 min + brometo de ipratrópio (por ser uma crise grave)</li>\n<li style=\"text-align: left;\">Corticoide sistêmico 1-2mg/kg/dia </li>\n<li style=\"text-align: left;\">Considerar sulfato de magnésio 50-75 mg/kg</li>\n</ol>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Precisamos saber conduzir exatamente uma crise de asma no PS. Vejam o fluxo de atendimento do Tratado de Pediatria:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T162224839Z563723.png\"/></p>\n<p>Fonte: Tratado de Pediatria</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p data-end=\"1157\" data-start=\"98\">A banca nos apresenta uma criança de 7 anos, sabidamente asmática, com relato de diversas internações por crises e internação em UTI, atualmente em uso de beclometasona 200mcg/dia. Há 2 horas, apresenta tosse seca, dor torácica de gemência, após inalar fumaça de um pneu queimado na rua.</p>\n<p data-end=\"1157\" data-start=\"98\">No exame físico, paciente alternando sonolência e agitação, incapaz de falar frases (falando somente palavras), taquipneia (60 irpm), taquicárdica, saturando 88% em ar ambiente, com redução difusa do MV e sibilos bilaterais.</p>\n<p data-end=\"1157\" data-start=\"98\">É admitida no PS, sendo prescrito salbutamol 600mcg, mantendo desconforto respiratório.</p>\n<p data-end=\"1157\" data-start=\"98\"><strong>a) Classifique a gravidade da exacerbação e cite quatro achados que justifiquem sua resposta. </strong></p>\n<p data-end=\"1157\" data-start=\"98\">Vamos revisar a classificação da crise asmática, segundo o Tratado de Pediatria da SBP:</p>\n<p data-end=\"1157\" data-start=\"98\" style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T154226186Z073201.png\"/></p>\n<p data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Considerando o momento atual do paciente, podemos classificá-lo como uma crise <strong>grave </strong>uma vez que apresenta:</p>\n<ul>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Saturação de O2 88-89% em ar ambiente</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Uso de musculatura acessória</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Frequência respiratória 60irpm (&gt;30)</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Frequência cardíaca 156 bpm (&gt;120bpm)</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Falando apenas palavras</li>\n</ul>\n<p style=\"text-align: left;\"><strong>b) Há necessidade de exames complementares no atendimento imediato e após estabilização no pronto-socorro? </strong></p>\n<p style=\"text-align: left;\">Imediatamente, não são necessários exames pois antes de investigar possíveis complicações, devemos complementar o tratamento. O único \"exame\" que pode ser solicitado é a medida do pico de fluxo expiratório (PFE) para avaliação da gravidade da crise, como podemos ver na tabela acima apresentada.</p>\n<p style=\"text-align: left;\">Após a estabilização do tratamento, como o paciente já tem histórico de internações prévias, podendo-se aguardar (sem exames). Caso o paciente ainda não melhore, pode-se avaliar a coleta de hemograma, gasometria arterial e RX de tórax.</p>\n<p style=\"text-align: left;\"><strong>c) Cite quatro condutas a serem tomadas nesse momento imediato </strong></p>\n<ol>\n<li style=\"text-align: left;\">Internação em UTI</li>\n<li style=\"text-align: left;\">Oxigênio para manter saturação entre 94-98% (cateter nasal ou máscara não reinalante ou máscara de venturi)</li>\n<li style=\"text-align: left;\"><span class=\"article-5691\">Salbutamol</span> 4-10 jatos a cada 20 min + brometo de ipratrópio (por ser uma crise grave)</li>\n<li style=\"text-align: left;\">Corticoide sistêmico 1-2mg/kg/dia </li>\n<li style=\"text-align: left;\">Considerar sulfato de magnésio 50-75 mg/kg</li>\n</ol><br>Visão do aprovado: <p>Precisamos saber conduzir exatamente uma crise de asma no PS. Vejam o fluxo de atendimento do Tratado de Pediatria:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T162224839Z563723.png\"/></p>\n<p>Fonte: Tratado de Pediatria</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 220992,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Amenorréias e Síndrome dos Ovários Policísticos",
+        "focus": {
+          "id": 2000,
+          "name": "Amenorréias e Síndrome dos Ovários Policísticos"
+        }
+      },
+      "detail": {
+        "id": 220992,
+        "content": "Uma paciente de 32 anos procura um ambulatório de ginecologia com queixa de irregularidade menstrual e de infertilidade, pois tenta engravidar há 7 anos sem sucesso. É casada há 9 anos e mantém relações sexuais regulares com o cônjuge, com média de 2 relações semanais. Nunca fez uso de nenhum método contraceptivo hormonal e tem períodos de amenorréia de até 6 meses. Queixa-se, também, de acne e de muitos pelos iniciados na adolescência, com piora progressiva na fase adulta. A paciente traz os exames solicitados pelo centro de saúde, mostrando níveis normais de TSH, T4 livre, prolactina, 17 OH progesterona, FSH e cortisol de 24 horas. Ela também apresenta um ultrassom transvaginal, o qual evidencia ovários direito e esquerdo, medindo respectivamente 12 cm³ e 15 cm³, ambos de padrão multifolicular com pelo menos 12 folículos cada. À inspeção, nota-se pilificação aumentada no rosto, membros superiores, dorso e abdômen, com uma escala de Ferriman-Gallwey de 18. Altura de 1,62 m; peso de 71 Kg; pressão arterial de 120 x 80 mmHg. Os resultados do exame ginecológico especular e de toque não apresentaram alterações.   \n\nCom base na história clínica apresentada e nos resultados dos exames realizados, faça o que se pede nos itens a seguir. \na) Qual é a hipótese diagnóstica desse caso? Caso seja escrita mais de uma hipótese diagnóstica, será considerada apenas a primeira. \nb) Cite três achados observados no caso apresentado que levam ao estabelecimento da hipótese diagnóstica. Serão pontuados apenas os três primeiros fatores indicados.\nc) Cite três diagnósticos diferenciais que devem ser considerados nesse caso. Serão pontuados apenas os três primeiros diagnósticos diferenciais indicados. \nd) Cite três possíveis complicações decorrentes desse diagnóstico. Serão pontuados apenas as três primeiras complicações indicadas.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 675,
+            "parent_tag": {
+              "id": 319,
+              "name": "Ginecologia Endócrina",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Amenorréias e Síndrome dos Ovários Policísticos",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 2968,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2000,
+          "name": "Amenorréias e Síndrome dos Ovários Policísticos",
+          "discipline": {
+            "id": 87,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 3,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 200,
+            "name": "Ginecologia Endócrina",
+            "discipline": 87,
+            "old_tag": 319,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 400153,
+        "actual_explanation": true,
+        "introduction": "<p>O cenário combina irregularidade menstrual, infertilidade e hiperandrogenismo compatíveis com <span class=\"article-6836\">síndrome dos ovários policísticos</span>, pedindo diagnóstico e manejo como próximo passo. Esta é uma questão clássica de ginecologia que testa o conhecimento sobre os <strong>critérios de Rotterdam</strong> para diagnóstico da <strong><span class=\"article-6836\">síndrome dos ovários policísticos</span> (SOP)</strong>, uma das endocrinopatias mais comuns em mulheres em idade reprodutiva.</p>\n<p>O caso apresenta uma paciente com a tríade clássica da SOP: <strong>disfunção ovulatória</strong> (amenorreia por até 6 meses), <strong>hiperandrogenismo clínico</strong> (hirsutismo com Ferriman-Gallwey de 18, acne) e <strong>morfologia ovariana policística</strong> (ovários de 12 e 15 cm³ com múltiplos folículos). A presença de todos os três critérios de Rotterdam caracteriza o <strong>fenótipo A</strong> (clássico) da SOP.</p>\n<p style=\"text-align:center\">\n<figure>\n<img alt=\"FENÓTIPOS DA SOP\n \nBaseado nos critérios de Rotterdam, podemos classificar as pacientes com SOP em 4 diferentes fenótipos, conforme a presença dos critérios clínicos:\n \n\n\nFenótipo A) clássico ou completo: hiperandrogenismo + anovulação + ovários policísticos\n\n\nFenótipo B) hiperandrogenismo + anovulação\n\n\nFenótipo C) hiperandrogenismo + ovários policísticos\n\n\nFenótipo D) anovulação + ovários policísticos\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20240318T181253766Z239680.png\"/>\n<figcaption>FENÓTIPOS DA SOP\n \nBaseado nos critérios de Rotterdam, podemos classificar as pacientes com SOP em 4 diferentes fenótipos, conforme a presença dos critérios clínicos:\n \n\n\nFenótipo A) clássico ou completo: hiperandrogenismo + <span class=\"article-8187\">anovulação</span> + ovários policísticos\n\n\nFenótipo B) hiperandrogenismo + <span class=\"article-8187\">anovulação</span>\n\n\nFenótipo C) hiperandrogenismo + ovários policísticos\n\n\nFenótipo D) <span class=\"article-8187\">anovulação</span> + ovários policísticos</figcaption>\n</figure>\n</p>\n<p>Para o diagnóstico da SOP, utilizamos os <strong>critérios de Rotterdam</strong>, que requerem a presença de pelo menos <strong>2 dos 3 seguintes critérios</strong>: (1) <strong>hiperandrogenismo</strong> clínico ou laboratorial, (2) <strong><span class=\"article-8187\">anovulação</span>/oligoovulação</strong> e (3) <strong>ovários de morfologia policística</strong> ao ultrassom. No caso apresentado, todos os três critérios estão presentes, caracterizando o fenótipo mais completo da síndrome.</p>\n<p>O <strong>hiperandrogenismo</strong> é evidenciado pelo hirsutismo com <strong>Ferriman-Gallwey de 18</strong> (valores &gt;8 são considerados anormais) e presença de acne. A <strong>disfunção ovulatória</strong> manifesta-se pela amenorreia prolongada (até 6 meses) e infertilidade de 7 anos. A <strong>morfologia policística</strong> é confirmada pelos volumes ovarianos aumentados (12 e 15 cm³, ambos &gt;10 cm³) associados à presença de múltiplos folículos.</p>\n<p>É fundamental destacar que os exames laboratoriais normais (TSH, prolactina, 17-OH progesterona, cortisol) ajudam a <strong>excluir diagnósticos diferenciais</strong> importantes como tireoidopatias, <span class=\"article-2194\">hiperprolactinemia</span>, hiperplasia adrenal congênita e síndrome de Cushing.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O diagnóstico de <strong>SOP</strong> se baseia na presença da tríade clássica: <em>hiperandrogenismo clínico</em> (Ferriman-Gallwey 18), <em>disfunção ovulatória</em> (amenorreia até 6 meses) e <em>morfologia ovariana policística</em> (volumes &gt;10 cm³). A exclusão de outras causas através dos exames normais confirma o diagnóstico pelo <strong>fenótipo A</strong> dos critérios de Rotterdam.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Ferriman-Gallwey ≥8 define hirsutismo patológico (paciente tem 18)</li>\n<li>Volumes ovarianos &gt;10 cm³ associados a múltiplos folículos</li>\n<li>Amenorreia &gt;90 dias caracteriza oligoovulação</li>\n<li>Infertilidade prolongada (&gt;1 ano) sem outras causas aparentes</li>\n<li>Exames normais que excluem diagnósticos diferenciais principais</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <span class=\"article-2194\">hiperprolactinemia</span> - verificar sempre prolactina normal</li>\n<li>Não lembrar de descartar gravidez como primeira etapa</li>\n<li>Esquecer que volume ovariano &gt;10 cm³ é critério, não só número de folículos</li>\n<li>Confundir com HAC - 17-OH progesterona normal exclui</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Padrão clássico: apresenta tríade completa para facilitar diagnóstico</li>\n<li>Formato comum: questão discursiva pedindo diagnóstico + critérios + diferenciais</li>\n<li>Banca costuma incluir exclusão de outras causas com exames normais</li>\n<li><strong>Também pode cair:</strong> diferentes fenótipos da SOP (B, C, D) com critérios parciais</li>\n</ul>",
+        "update_note": "<h1 data-end=\"91\" data-start=\"0\" data-section-id=\"g634wf\">Atualiza&ccedil;&atilde;o: S&iacute;ndrome dos Ov&aacute;rios Polic&iacute;sticos (SOP)&nbsp;passa a se chamar S&iacute;ndrome Ovariana Metab&oacute;lica Poliend&oacute;crina (SOMP)</h1>\n<p data-end=\"819\" data-start=\"93\">Se voc&ecirc; aprendeu que a SOP (S&iacute;ndrome dos Ov&aacute;rios Polic&iacute;sticos) &eacute; uma das endocrinopatias mais comuns da mulher em idade reprodutiva, a informa&ccedil;&atilde;o continua correta. O que mudou foi a nomenclatura da doen&ccedil;a. Em maio de 2026, ap&oacute;s um amplo processo de consenso internacional envolvendo especialistas, sociedades m&eacute;dicas e pacientes de diversos pa&iacute;ses, foi oficialmente proposto que a condi&ccedil;&atilde;o passe a ser denominada&nbsp;<strong data-end=\"572\" data-start=\"519\">S&iacute;ndrome Ovariana Metab&oacute;lica Poliend&oacute;crina (SOMP)</strong> &mdash; em ingl&ecirc;s, <em data-end=\"635\" data-start=\"586\">Polyendocrine Metabolic Ovarian Syndrome (PMOS)</em>. A decis&atilde;o foi publicada na revista cient&iacute;fica The Lancet e anunciada durante o European Congress of Endocrinology 2026.</p>\n<p data-end=\"1581\" data-start=\"821\">A principal justificativa para essa mudan&ccedil;a &eacute; que o termo &ldquo;ov&aacute;rios polic&iacute;sticos&rdquo; n&atilde;o representa adequadamente a fisiopatologia da s&iacute;ndrome. Na pr&aacute;tica, muitas pacientes n&atilde;o apresentam ov&aacute;rios com morfologia polic&iacute;stica ao ultrassom, enquanto outras exibem esse padr&atilde;o ovariano sem preencher crit&eacute;rios para a s&iacute;ndrome. Al&eacute;m disso, o nome antigo direcionava excessivamente a aten&ccedil;&atilde;o para os ov&aacute;rios, quando sabemos que se trata de uma condi&ccedil;&atilde;o sist&ecirc;mica, com repercuss&otilde;es end&oacute;crinas, metab&oacute;licas, reprodutivas, dermatol&oacute;gicas e at&eacute; psicol&oacute;gicas. Essa nomenclatura imprecisa contribuiu, ao longo dos anos, para atrasos diagn&oacute;sticos, estigmas e interpreta&ccedil;&otilde;es equivocadas tanto por pacientes quanto por profissionais de sa&uacute;de.</p>\n<p data-end=\"1657\" data-start=\"1583\">O novo nome procura refletir melhor os pilares fisiopatol&oacute;gicos da doen&ccedil;a:</p>\n<ul data-end=\"1910\" data-start=\"1659\">\n<li data-end=\"1732\" data-start=\"1659\" data-section-id=\"19c9mv7\"><strong data-end=\"1678\" data-start=\"1661\">Poliend&oacute;crina</strong>: destaca o envolvimento de m&uacute;ltiplos eixos hormonais;</li>\n<li data-end=\"1829\" data-start=\"1733\" data-section-id=\"9qfsyn\"><strong data-end=\"1749\" data-start=\"1735\">Metab&oacute;lica</strong>: reconhece a import&acirc;ncia da resist&ecirc;ncia insul&iacute;nica e do risco cardiometab&oacute;lico;</li>\n<li data-end=\"1910\" data-start=\"1830\" data-section-id=\"1mktwl5\"><strong data-end=\"1844\" data-start=\"1832\">Ovariana</strong>: mant&eacute;m a refer&ecirc;ncia ao comprometimento reprodutivo e ovulat&oacute;rio.</li>\n</ul>\n<p data-end=\"2520\" data-start=\"1912\">Entretanto, &eacute; fundamental destacar que <strong data-end=\"1989\" data-start=\"1951\">a mudan&ccedil;a &eacute; apenas de nomenclatura</strong>. Os crit&eacute;rios diagn&oacute;sticos permanecem exatamente os mesmos, incluindo os crit&eacute;rios de Rotterdam atualmente adotados pela maioria das diretrizes internacionais. Da mesma forma, n&atilde;o houve qualquer modifica&ccedil;&atilde;o nas recomenda&ccedil;&otilde;es terap&ecirc;uticas: continuam v&aacute;lidas as estrat&eacute;gias baseadas em mudan&ccedil;a de estilo de vida, manejo das altera&ccedil;&otilde;es metab&oacute;licas, contraceptivos hormonais, indutores de ovula&ccedil;&atilde;o e demais tratamentos individualizados conforme o fen&oacute;tipo e os objetivos reprodutivos da paciente.</p>\n<p data-end=\"2907\" data-start=\"2522\">Assim, a mensagem pr&aacute;tica &eacute; simples:&nbsp;<strong data-end=\"2656\" data-start=\"2574\">mudou o nome, mas n&atilde;o mudaram os crit&eacute;rios diagn&oacute;sticos nem o manejo da doen&ccedil;a</strong>. O objetivo da nova nomenclatura &eacute; melhorar a compreens&atilde;o da s&iacute;ndrome, tornando mais evidente seu car&aacute;ter sist&ecirc;mico e multifatorial, sem alterar a forma como diagnosticamos ou tratamos essas pacientes atualmente.</p>\n<p data-is-only-node=\"\" data-is-last-node=\"\" data-end=\"3159\" data-start=\"2909\">&nbsp;</p>\n\nReferência bibliográfica: eede HJ et al. Polyendocrine metabolic ovarian syndrome, the new name for polycystic ovary syndrome: a multistep global consensus process. The Lancet, 2026",
+        "lesson_reference": null,
+        "full_explanation": "<p>O cenário combina irregularidade menstrual, infertilidade e hiperandrogenismo compatíveis com <span class=\"article-6836\">síndrome dos ovários policísticos</span>, pedindo diagnóstico e manejo como próximo passo. Esta é uma questão clássica de ginecologia que testa o conhecimento sobre os <strong>critérios de Rotterdam</strong> para diagnóstico da <strong><span class=\"article-6836\">síndrome dos ovários policísticos</span> (SOP)</strong>, uma das endocrinopatias mais comuns em mulheres em idade reprodutiva.</p>\n<p>O caso apresenta uma paciente com a tríade clássica da SOP: <strong>disfunção ovulatória</strong> (amenorreia por até 6 meses), <strong>hiperandrogenismo clínico</strong> (hirsutismo com Ferriman-Gallwey de 18, acne) e <strong>morfologia ovariana policística</strong> (ovários de 12 e 15 cm³ com múltiplos folículos). A presença de todos os três critérios de Rotterdam caracteriza o <strong>fenótipo A</strong> (clássico) da SOP.</p>\n<p style=\"text-align:center\">\n<figure>\n<img alt=\"FENÓTIPOS DA SOP\n \nBaseado nos critérios de Rotterdam, podemos classificar as pacientes com SOP em 4 diferentes fenótipos, conforme a presença dos critérios clínicos:\n \n\n\nFenótipo A) clássico ou completo: hiperandrogenismo + anovulação + ovários policísticos\n\n\nFenótipo B) hiperandrogenismo + anovulação\n\n\nFenótipo C) hiperandrogenismo + ovários policísticos\n\n\nFenótipo D) anovulação + ovários policísticos\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20240318T181253766Z239680.png\"/>\n<figcaption>FENÓTIPOS DA SOP\n \nBaseado nos critérios de Rotterdam, podemos classificar as pacientes com SOP em 4 diferentes fenótipos, conforme a presença dos critérios clínicos:\n \n\n\nFenótipo A) clássico ou completo: hiperandrogenismo + <span class=\"article-8187\">anovulação</span> + ovários policísticos\n\n\nFenótipo B) hiperandrogenismo + <span class=\"article-8187\">anovulação</span>\n\n\nFenótipo C) hiperandrogenismo + ovários policísticos\n\n\nFenótipo D) <span class=\"article-8187\">anovulação</span> + ovários policísticos</figcaption>\n</figure>\n</p>\n<p>Para o diagnóstico da SOP, utilizamos os <strong>critérios de Rotterdam</strong>, que requerem a presença de pelo menos <strong>2 dos 3 seguintes critérios</strong>: (1) <strong>hiperandrogenismo</strong> clínico ou laboratorial, (2) <strong><span class=\"article-8187\">anovulação</span>/oligoovulação</strong> e (3) <strong>ovários de morfologia policística</strong> ao ultrassom. No caso apresentado, todos os três critérios estão presentes, caracterizando o fenótipo mais completo da síndrome.</p>\n<p>O <strong>hiperandrogenismo</strong> é evidenciado pelo hirsutismo com <strong>Ferriman-Gallwey de 18</strong> (valores &gt;8 são considerados anormais) e presença de acne. A <strong>disfunção ovulatória</strong> manifesta-se pela amenorreia prolongada (até 6 meses) e infertilidade de 7 anos. A <strong>morfologia policística</strong> é confirmada pelos volumes ovarianos aumentados (12 e 15 cm³, ambos &gt;10 cm³) associados à presença de múltiplos folículos.</p>\n<p>É fundamental destacar que os exames laboratoriais normais (TSH, prolactina, 17-OH progesterona, cortisol) ajudam a <strong>excluir diagnósticos diferenciais</strong> importantes como tireoidopatias, <span class=\"article-2194\">hiperprolactinemia</span>, hiperplasia adrenal congênita e síndrome de Cushing.</p><br>Visão do aprovado: <p>O diagnóstico de <strong>SOP</strong> se baseia na presença da tríade clássica: <em>hiperandrogenismo clínico</em> (Ferriman-Gallwey 18), <em>disfunção ovulatória</em> (amenorreia até 6 meses) e <em>morfologia ovariana policística</em> (volumes &gt;10 cm³). A exclusão de outras causas através dos exames normais confirma o diagnóstico pelo <strong>fenótipo A</strong> dos critérios de Rotterdam.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Ferriman-Gallwey ≥8 define hirsutismo patológico (paciente tem 18)</li>\n<li>Volumes ovarianos &gt;10 cm³ associados a múltiplos folículos</li>\n<li>Amenorreia &gt;90 dias caracteriza oligoovulação</li>\n<li>Infertilidade prolongada (&gt;1 ano) sem outras causas aparentes</li>\n<li>Exames normais que excluem diagnósticos diferenciais principais</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <span class=\"article-2194\">hiperprolactinemia</span> - verificar sempre prolactina normal</li>\n<li>Não lembrar de descartar gravidez como primeira etapa</li>\n<li>Esquecer que volume ovariano &gt;10 cm³ é critério, não só número de folículos</li>\n<li>Confundir com HAC - 17-OH progesterona normal exclui</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Padrão clássico: apresenta tríade completa para facilitar diagnóstico</li>\n<li>Formato comum: questão discursiva pedindo diagnóstico + critérios + diferenciais</li>\n<li>Banca costuma incluir exclusão de outras causas com exames normais</li>\n<li><strong>Também pode cair:</strong> diferentes fenótipos da SOP (B, C, D) com critérios parciais</li>\n</ul><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 220993,
+        "number": 5,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Síndrome Coronariana e Diagnósticos Diferenciais",
+        "focus": {
+          "id": 2099,
+          "name": "Síndrome Coronariana e Diagnósticos Diferenciais"
+        }
+      },
+      "detail": {
+        "id": 220993,
+        "content": "Um homem de 56 anos comparece, em demanda espontânea, à unidade básica de saúde (UBS) com queixa de dor precordial há 6 horas, a qual irradia para o pescoço, o ombro e braço esquerdos. Ele é portador de hipertensão arterial sistêmica, tabagista há 30 anos, com Escore de Risco Global de Framingham (ERG) de 22 pontos e faz uso regular de hidroclorotiazida 25 mg, 1 comprimido de manhã, e de losartana 50 mg, 1 comprimido de manhã e 1 comprimido à noite. Nega alergias ou outras comorbidades. Ao exame físico, apresenta pressão arterial de 160 × 100 mmHg e saturação de O2 de 86%, sem outras alterações detectadas. \n\nO eletrocardiograma com 12 derivações, realizado na UBS no momento do atendimento e com o paciente ainda com dor, apresentou ritmo cardíaco sinusal regular, frequência cardíaca de 105 batimentos por minuto, eixo QRS sem desvio, supradesnivelamento de segmento ST de V1 a V4.  \n\nCom base nesse caso clínico, faça o que se pede nos itens a seguir.   \n\na) Qual a hipótese diagnóstica mais provável no caso desse paciente? Caso seja escrita mais de uma hipótese diagnóstica, será considerada apenas a primeira.   \nb) Cite as sete principais medidas de abordagem imediata do caso clínico apresentado na UBS. Serão pontuadas apenas as sete primeiras medidas indicadas. \nc) Indique o tipo de transporte seguro para a condição clínica do paciente.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 546,
+            "parent_tag": {
+              "id": 302,
+              "name": "Cardiologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Síndrome Coronariana e Diagnósticos Diferenciais",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [
+          {
+            "id": 673,
+            "avatar": "https://cdn.medway.com.br/media/physician/Captura_de_Tela_2026-06-30_as_14.png",
+            "about": "Clínica Médica - Hospital Ipiranga \r\nReumatologia - IAMSPE",
+            "name": "Rafael Alves Banzati Viana",
+            "speciality": {
+              "id": 2,
+              "abbreviation": "CM",
+              "name": "Clínica Médica"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 440,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2099,
+          "name": "Síndrome Coronariana e Diagnósticos Diferenciais",
+          "discipline": {
+            "id": 97,
+            "name": "Clínica Médica",
+            "residency_degree": 3,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 252,
+            "name": "Cardiologia",
+            "discipline": 97,
+            "old_tag": 302,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 400229,
+        "actual_explanation": true,
+        "introduction": "<p>O caso deve ser lido como uma SCA até que se prove o contrário. O paciente tem dor precordial há 6 horas, com irradiação para pescoço, ombro e braço esquerdos, em repouso, associada a múltiplos fatores de risco: homem de 56 anos, hipertenso, tabagista de longa data e com escore de risco cardiovascular elevado. O <span class=\"article-5633\">eletrocardiograma</span> realizado ainda durante a dor mostra supradesnivelamento do segmento ST de V1 a V4, ou seja, em derivações precordiais anteriores. Esse conjunto fecha o diagnóstico sindrômico de síndrome coronariana aguda com supradesnivelamento do segmento ST, mais especificamente infarto agudo do miocárdio com supradesnivelamento do ST de parede anterior, geralmente relacionado à oclusão aguda da artéria descendente anterior.</p>\n<p> </p>\n<p>O dado decisivo não é apenas a dor típica, mas a combinação entre dor isquêmica persistente e supra de ST em derivações contíguas. Em homens acima de 40 anos, o supra em V2-V3 é considerado significativo quando atinge pelo menos 2 mm; nas demais derivações, o ponto de corte geral é de pelo menos 1 mm em duas derivações contíguas. Assim, V1 a V4 com supra durante dor torácica configura IAM com supra até que se prove o contrário. A saturação de O2 de 86% acrescenta gravidade, pois indica hipoxemia e justifica oxigenoterapia imediata, diferentemente do paciente com SCA normoxêmico, em que oxigênio de rotina não é indicado. As diretrizes brasileiras e protocolos de SCA reforçam ECG precoce, reconhecimento do supra de ST e acionamento de fluxo de emergência/reperfusão como medidas centrais no atendimento inicial.  </p>\n<p> </p>\n<p>Como a questão é dissertativa, ela não quer apenas o “nome da doença”; ela cobra a organização da conduta inicial na UBS, onde não se deve tentar “resolver” o IAM, mas reconhecer rapidamente, estabilizar o paciente, iniciar medidas seguras e acionar transporte adequado para serviço com capacidade de reperfusão. Em IAM com supra, tempo é miocárdio: quanto maior o atraso até reperfusão, maior a área de necrose, maior o risco de choque, arritmias, insuficiência cardíaca e morte.</p>\n<p> </p>\n<p>Vamos para cada assertiva:</p>\n<p> </p>\n<p>A) A hipótese diagnóstica mais provável é infarto agudo do miocárdio com supradesnivelamento do segmento ST, de parede anterior. Também seriam aceitas formulações sindrômicas como síndrome coronariana aguda com supra de ST ou IAM com supra de ST. O enunciado permite essa conclusão porque há dor torácica típica há 6 horas e supra de ST de V1 a V4. A parede anterior é definida pelo acometimento das derivações precordiais anteriores, sobretudo V1 a V4, e costuma estar associada à artéria descendente anterior. A armadilha seria responder apenas “dor torácica”, “angina” ou “síndrome coronariana aguda” de modo inespecífico. Angina instável não explica o supradesnivelamento persistente do ST com dor em curso; IAM sem supra também não cabe, pois o ECG já mostra supra de ST. Outra armadilha é esperar troponina para fechar a conduta. Em IAM com supra, a decisão de reperfusão é eletrocardiográfica e clínica, não deve aguardar biomarcadores.</p>\n<p> </p>\n<p>B) A abordagem imediata na UBS deve incluir monitorização dos sinais vitais e avaliação seriada do nível de consciência, pressão arterial, frequência cardíaca, frequência respiratória e saturação periférica de oxigênio. Esse paciente está hipertenso, taquicárdico e hipoxêmico, portanto precisa de vigilância contínua enquanto se organiza a transferência. A monitorização é importante porque o IAM com supra pode evoluir abruptamente com arritmias ventriculares, bloqueios, hipotensão, <span class=\"article-5639\">choque cardiogênico</span> ou parada cardiorrespiratória. Não basta “encaminhar”; a UBS deve reconhecer que se trata de paciente instável em potencial.</p>\n<p>A oxigenoterapia está indicada porque a saturação é de 86%. Esse é um ponto muito cobrado: oxigênio não é mais recomendado rotineiramente para todo paciente com síndrome coronariana aguda, mas é indicado quando há hipoxemia, desconforto respiratório ou sinais de insuficiência cardíaca. Neste caso, a banca deu a saturação justamente para que o candidato inclua oxigênio entre as medidas iniciais. O alvo prático é corrigir a hipoxemia, evitando tanto manter saturação baixa quanto hiperóxia desnecessária.</p>\n<p>Deve-se administrar ácido acetilsalicílico, em dose de ataque, usualmente 160 a 300 mg mastigável, se não houver alergia ou contraindicação. O paciente nega alergias, então o AAS é obrigatório. O racional é bloquear rapidamente a agregação plaquetária mediada por tromboxano A2, reduzindo progressão do trombo coronariano. Em prova, AAS é uma das medidas mais “imperdoáveis” em suspeita de SCA, salvo contraindicação clara.</p>\n<p>O uso de nitrato é apropriado para alívio da dor isquêmica e redução de pré-carga, desde que não haja contraindicações, como hipotensão, suspeita de <span class=\"article-6207\">infarto de ventrículo direito</span>, bradicardia importante, taquicardia extrema sem insuficiência cardíaca ou uso recente de inibidor da fosfodiesterase-5. Aqui a pressão arterial é 160 x 100 mmHg, o que favorece segurança hemodinâmica para nitrato. A banca não sugere infarto inferior ou de ventrículo direito, pois o supra está em V1 a V4, e não em DII, DIII e aVF. Portanto, nitrato entra como medida inicial adequada, embora não substitua a reperfusão.</p>\n<p>A morfina pode ser utilizada se houver dor persistente apesar do nitrato, ou quando a dor for intensa e refratária, sempre com cuidado por risco de hipotensão, náuseas, depressão respiratória e possível interferência na absorção de antiagregantes orais. Em provas tradicionais, ela ainda aparece como medida de analgesia no IAM, especialmente quando há falha de resposta aos nitratos. O detalhe importante é que não deve ser lembrada como primeira medida isolada nem como tratamento definitivo; é medida sintomática, não estratégia de reperfusão.</p>\n<p>Deve-se obter acesso venoso calibroso. Parece uma medida simples, mas em cenário de IAM com supra é fundamental para administração de medicações, eventual necessidade de analgesia, antiemético, fluidos ou drogas vasoativas, além de garantir segurança durante o transporte. A ausência de acesso venoso em um paciente com risco de deterioração súbita é falha de abordagem inicial.</p>\n<p> </p>\n<p>Também é necessário referenciar imediatamente para serviço de emergência com transporte seguro o mais precocemente possível. Esse é o eixo da conduta. A UBS não deve manter o paciente em observação, aguardar melhora espontânea, solicitar exames ambulatoriais ou liberar para procurar hospital por meios próprios. O paciente está dentro de janela de reperfusão, com dor há 6 horas. Idealmente, deve ser encaminhado para serviço capaz de realizar angioplastia primária; se isso não for possível em tempo oportuno, deve-se seguir a rede local para avaliação de fibrinólise, conforme protocolos regionais. O ponto da questão, porém, é que a unidade básica deve acionar emergência e transporte adequado, não manejar como dor torácica de baixo risco.</p>\n<p> </p>\n<p>c) O transporte seguro deve ser feito por ambulância com suporte avançado de vida ou UTI móvel. Também é aceitável ambulância de suporte básico desde que haja presença do médico da UBS na equipe de transporte, conforme o padrão de resposta apresentado. A lógica é que o paciente tem IAM com supra em evolução e hipoxemia, com risco de arritmia maligna e parada cardiorrespiratória durante o deslocamento. Encaminhamento por carro próprio, táxi, aplicativo ou orientação verbal para procurar pronto-socorro é conduta inadequada e perigosa. Em prova discursiva, escrever apenas “encaminhar ao hospital” pode ser pouco; é preciso qualificar o transporte como seguro, medicalizado ou com suporte avançado.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Esta questão não cobra apenas reconhecer “infarto”. Ela cobra postura de emergência na atenção primária. Dor típica há 6 horas somada a supra de ST em V1-V4 é IAM com supra de parede anterior, e o candidato preparado imediatamente pensa em monitorização, oxigênio pela hipoxemia, AAS, nitrato se não houver contraindicação, analgesia se dor refratária, acesso venoso e acionamento de transporte seguro para reperfusão. O elemento decisivo é entender que, na UBS, a melhor conduta é estabilizar sem atrasar: tratar o que mata agora e transferir com segurança para o local que reperfunde.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O caso deve ser lido como uma SCA até que se prove o contrário. O paciente tem dor precordial há 6 horas, com irradiação para pescoço, ombro e braço esquerdos, em repouso, associada a múltiplos fatores de risco: homem de 56 anos, hipertenso, tabagista de longa data e com escore de risco cardiovascular elevado. O <span class=\"article-5633\">eletrocardiograma</span> realizado ainda durante a dor mostra supradesnivelamento do segmento ST de V1 a V4, ou seja, em derivações precordiais anteriores. Esse conjunto fecha o diagnóstico sindrômico de síndrome coronariana aguda com supradesnivelamento do segmento ST, mais especificamente infarto agudo do miocárdio com supradesnivelamento do ST de parede anterior, geralmente relacionado à oclusão aguda da artéria descendente anterior.</p>\n<p> </p>\n<p>O dado decisivo não é apenas a dor típica, mas a combinação entre dor isquêmica persistente e supra de ST em derivações contíguas. Em homens acima de 40 anos, o supra em V2-V3 é considerado significativo quando atinge pelo menos 2 mm; nas demais derivações, o ponto de corte geral é de pelo menos 1 mm em duas derivações contíguas. Assim, V1 a V4 com supra durante dor torácica configura IAM com supra até que se prove o contrário. A saturação de O2 de 86% acrescenta gravidade, pois indica hipoxemia e justifica oxigenoterapia imediata, diferentemente do paciente com SCA normoxêmico, em que oxigênio de rotina não é indicado. As diretrizes brasileiras e protocolos de SCA reforçam ECG precoce, reconhecimento do supra de ST e acionamento de fluxo de emergência/reperfusão como medidas centrais no atendimento inicial.  </p>\n<p> </p>\n<p>Como a questão é dissertativa, ela não quer apenas o “nome da doença”; ela cobra a organização da conduta inicial na UBS, onde não se deve tentar “resolver” o IAM, mas reconhecer rapidamente, estabilizar o paciente, iniciar medidas seguras e acionar transporte adequado para serviço com capacidade de reperfusão. Em IAM com supra, tempo é miocárdio: quanto maior o atraso até reperfusão, maior a área de necrose, maior o risco de choque, arritmias, insuficiência cardíaca e morte.</p>\n<p> </p>\n<p>Vamos para cada assertiva:</p>\n<p> </p>\n<p>A) A hipótese diagnóstica mais provável é infarto agudo do miocárdio com supradesnivelamento do segmento ST, de parede anterior. Também seriam aceitas formulações sindrômicas como síndrome coronariana aguda com supra de ST ou IAM com supra de ST. O enunciado permite essa conclusão porque há dor torácica típica há 6 horas e supra de ST de V1 a V4. A parede anterior é definida pelo acometimento das derivações precordiais anteriores, sobretudo V1 a V4, e costuma estar associada à artéria descendente anterior. A armadilha seria responder apenas “dor torácica”, “angina” ou “síndrome coronariana aguda” de modo inespecífico. Angina instável não explica o supradesnivelamento persistente do ST com dor em curso; IAM sem supra também não cabe, pois o ECG já mostra supra de ST. Outra armadilha é esperar troponina para fechar a conduta. Em IAM com supra, a decisão de reperfusão é eletrocardiográfica e clínica, não deve aguardar biomarcadores.</p>\n<p> </p>\n<p>B) A abordagem imediata na UBS deve incluir monitorização dos sinais vitais e avaliação seriada do nível de consciência, pressão arterial, frequência cardíaca, frequência respiratória e saturação periférica de oxigênio. Esse paciente está hipertenso, taquicárdico e hipoxêmico, portanto precisa de vigilância contínua enquanto se organiza a transferência. A monitorização é importante porque o IAM com supra pode evoluir abruptamente com arritmias ventriculares, bloqueios, hipotensão, <span class=\"article-5639\">choque cardiogênico</span> ou parada cardiorrespiratória. Não basta “encaminhar”; a UBS deve reconhecer que se trata de paciente instável em potencial.</p>\n<p>A oxigenoterapia está indicada porque a saturação é de 86%. Esse é um ponto muito cobrado: oxigênio não é mais recomendado rotineiramente para todo paciente com síndrome coronariana aguda, mas é indicado quando há hipoxemia, desconforto respiratório ou sinais de insuficiência cardíaca. Neste caso, a banca deu a saturação justamente para que o candidato inclua oxigênio entre as medidas iniciais. O alvo prático é corrigir a hipoxemia, evitando tanto manter saturação baixa quanto hiperóxia desnecessária.</p>\n<p>Deve-se administrar ácido acetilsalicílico, em dose de ataque, usualmente 160 a 300 mg mastigável, se não houver alergia ou contraindicação. O paciente nega alergias, então o AAS é obrigatório. O racional é bloquear rapidamente a agregação plaquetária mediada por tromboxano A2, reduzindo progressão do trombo coronariano. Em prova, AAS é uma das medidas mais “imperdoáveis” em suspeita de SCA, salvo contraindicação clara.</p>\n<p>O uso de nitrato é apropriado para alívio da dor isquêmica e redução de pré-carga, desde que não haja contraindicações, como hipotensão, suspeita de <span class=\"article-6207\">infarto de ventrículo direito</span>, bradicardia importante, taquicardia extrema sem insuficiência cardíaca ou uso recente de inibidor da fosfodiesterase-5. Aqui a pressão arterial é 160 x 100 mmHg, o que favorece segurança hemodinâmica para nitrato. A banca não sugere infarto inferior ou de ventrículo direito, pois o supra está em V1 a V4, e não em DII, DIII e aVF. Portanto, nitrato entra como medida inicial adequada, embora não substitua a reperfusão.</p>\n<p>A morfina pode ser utilizada se houver dor persistente apesar do nitrato, ou quando a dor for intensa e refratária, sempre com cuidado por risco de hipotensão, náuseas, depressão respiratória e possível interferência na absorção de antiagregantes orais. Em provas tradicionais, ela ainda aparece como medida de analgesia no IAM, especialmente quando há falha de resposta aos nitratos. O detalhe importante é que não deve ser lembrada como primeira medida isolada nem como tratamento definitivo; é medida sintomática, não estratégia de reperfusão.</p>\n<p>Deve-se obter acesso venoso calibroso. Parece uma medida simples, mas em cenário de IAM com supra é fundamental para administração de medicações, eventual necessidade de analgesia, antiemético, fluidos ou drogas vasoativas, além de garantir segurança durante o transporte. A ausência de acesso venoso em um paciente com risco de deterioração súbita é falha de abordagem inicial.</p>\n<p> </p>\n<p>Também é necessário referenciar imediatamente para serviço de emergência com transporte seguro o mais precocemente possível. Esse é o eixo da conduta. A UBS não deve manter o paciente em observação, aguardar melhora espontânea, solicitar exames ambulatoriais ou liberar para procurar hospital por meios próprios. O paciente está dentro de janela de reperfusão, com dor há 6 horas. Idealmente, deve ser encaminhado para serviço capaz de realizar angioplastia primária; se isso não for possível em tempo oportuno, deve-se seguir a rede local para avaliação de fibrinólise, conforme protocolos regionais. O ponto da questão, porém, é que a unidade básica deve acionar emergência e transporte adequado, não manejar como dor torácica de baixo risco.</p>\n<p> </p>\n<p>c) O transporte seguro deve ser feito por ambulância com suporte avançado de vida ou UTI móvel. Também é aceitável ambulância de suporte básico desde que haja presença do médico da UBS na equipe de transporte, conforme o padrão de resposta apresentado. A lógica é que o paciente tem IAM com supra em evolução e hipoxemia, com risco de arritmia maligna e parada cardiorrespiratória durante o deslocamento. Encaminhamento por carro próprio, táxi, aplicativo ou orientação verbal para procurar pronto-socorro é conduta inadequada e perigosa. Em prova discursiva, escrever apenas “encaminhar ao hospital” pode ser pouco; é preciso qualificar o transporte como seguro, medicalizado ou com suporte avançado.</p><br>Visão do aprovado: <p>Esta questão não cobra apenas reconhecer “infarto”. Ela cobra postura de emergência na atenção primária. Dor típica há 6 horas somada a supra de ST em V1-V4 é IAM com supra de parede anterior, e o candidato preparado imediatamente pensa em monitorização, oxigênio pela hipoxemia, AAS, nitrato se não houver contraindicação, analgesia se dor refratária, acesso venoso e acionamento de transporte seguro para reperfusão. O elemento decisivo é entender que, na UBS, a melhor conduta é estabilizar sem atrasar: tratar o que mata agora e transferir com segurança para o local que reperfunde.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T19:01:33.920276+00:00",
+  "complete": true
+}

@@ -1,0 +1,1363 @@
+{
+  "track_id": 4637959,
+  "name": "UERJ - RJ-2024-Discursiva",
+  "year": 2024,
+  "track_fast": {
+    "id": 4637959,
+    "name": "UERJ - RJ-2024-Discursiva",
+    "track_type": "c",
+    "question_count": 12,
+    "year": 2024,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UERJ",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-uerj_uKE5Nhw.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 12,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 12,
+  "questions": [
+    {
+      "meta": {
+        "id": 333063,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 333063,
+        "content": "A realização do pneumoperitônio e as punções acessórias são etapas fundamentais para a cirurgia laparoscópica. Sobre essa etapa: Descreva a técnica de Hasson para a realização do pneumoperitônio.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443123,
+        "actual_explanation": true,
+        "introduction": "<p>Diferentemente da técnica fechada de Veress, a técnica de Hasson utiliza <strong>acesso aberto e visualização direta</strong> para estabelecer o pneumoperitônio na cirurgia laparoscópica. Essa característica fundamental torna o método mais seguro em determinadas situações, como pacientes com cirurgias abdominais prévias, obesidade mórbida ou quando há suspeita de aderências na parede abdominal. A questão pede que descrevamos os passos técnicos dessa abordagem, e precisamos seguir uma sequência lógica e completa para garantir pontuação integral.</p>\n\n<p>Começamos pela <strong>incisão da pele na região umbilical</strong>, que pode ser longitudinal ou transversa - a banca aceita ambas as orientações, então não precisamos especificar uma única opção. O ponto crítico aqui é que estamos fazendo uma incisão real, não apenas uma punção cega como na técnica de Veress. Após a incisão cutânea, procedemos à <strong>exposição da fáscia com afastadores</strong>, tracionando com pinças para facilitar a visualização e o acesso. Esse é um detalhe técnico importante: usamos afastadores para manter o campo aberto e pinças para tracionar a fáscia, otimizando a exposição.</p>\n\n<p>O próximo passo crucial é a <strong>incisão até a abertura do peritônio</strong>, sempre sob visualização direta - esse é o grande diferencial da técnica. Não estamos entrando às cegas na cavidade; estamos vendo camada por camada, o que reduz significativamente o risco de lesões inadvertidas de alças intestinais ou vasos. Uma vez que abrimos o peritônio e visualizamos diretamente a cavidade peritoneal, devemos realizar a <strong>exploração digital</strong>, procurando ativamente por aderências na parede abdominal. Muitos candidatos esquecem de mencionar esse passo, mas ele é fundamental na resposta esperada pela banca - a exploração digital é uma medida de segurança para identificar estruturas aderidas que poderiam ser lesadas durante a insuflação ou passagem de outros trocateres.</p>\n\n<p>Após a exploração, realizamos uma <strong>sutura em bolsa reparando o peritônio</strong>. Essa sutura tem dupla função: ajuda a fixar o trocar e permite a vedação adequada do orifício para manutenção do pneumoperitônio. Em seguida, inserimos o <strong>trocar</strong>, e aqui vale mencionar que pode-se usar um trocar específico de Hasson, que possui um <strong>anel cônico utilizado para vedação do orifício aberto</strong>. Esse detalhe técnico aparece no espelho de resposta e demonstra conhecimento mais aprofundado do método - o trocar de Hasson é desenhado especificamente para essa técnica, com sistema de fixação próprio que mantém a vedação mesmo em um acesso aberto.</p>\n\n<p>Finalmente, após a inserção e fixação adequada do trocar, é <strong>iniciada a insuflação</strong> com CO2 para criar o pneumoperitônio. Somente depois de estabelecido o pneumoperitônio adequado é que procedemos às punções acessórias para inserção dos demais trocateres. Um erro comum é descrever a técnica de forma muito superficial ou confundi-la com a técnica de Veress - lembre-se sempre de enfatizar que é uma técnica ABERTA, com visualização direta em todos os passos. A banca espera uma descrição sequencial completa: incisão umbilical, exposição da fáscia com afastadores e tração, abertura do peritônio sob visão direta, exploração digital, sutura em bolsa, inserção do trocar (preferencialmente mencionando o trocar específico com anel cônico) e início da insuflação.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h2>Visão do aprovado</h2>\n\n<p>Em questões discursivas sobre técnicas cirúrgicas, a banca espera uma descrição sequencial e completa, como se estivéssemos guiando alguém pelos passos do procedimento. O diferencial para pontuar bem aqui está em demonstrar que entendemos o conceito central da Hasson — <strong>acesso aberto com visualização direta em todas as etapas</strong> — e em não omitir passos intermediários que parecem óbvios mas são critérios de correção, como a exploração digital da cavidade antes de inserir o trocar. Muitos candidatos descrevem apenas \"faz incisão, abre o peritônio e coloca o trocar\", perdendo pontos por não detalhar a exposição da fáscia, a exploração digital e a sutura em bolsa.</p>\n\n<p>A principal armadilha é tratar Hasson e Veress como sinônimos ou misturar elementos das duas técnicas na resposta. Se em algum momento mencionamos <em>\"agulha de Veress\"</em> ou <em>\"punção às cegas\"</em>, perdemos a essência do método aberto. Outro erro frequente é esquecer de explicitar que a visualização é direta e que exploramos digitalmente a cavidade — esses são justamente os pontos que justificam a escolha da técnica em pacientes com aderências ou cirurgias prévias, e a banca valoriza quando conectamos a técnica à sua indicação clínica. Por fim, citar o trocar específico com anel cônico não é obrigatório para acertar, mas demonstra conhecimento técnico mais refinado e pode diferenciar respostas medianas de excelentes.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Diferentemente da técnica fechada de Veress, a técnica de Hasson utiliza <strong>acesso aberto e visualização direta</strong> para estabelecer o pneumoperitônio na cirurgia laparoscópica. Essa característica fundamental torna o método mais seguro em determinadas situações, como pacientes com cirurgias abdominais prévias, obesidade mórbida ou quando há suspeita de aderências na parede abdominal. A questão pede que descrevamos os passos técnicos dessa abordagem, e precisamos seguir uma sequência lógica e completa para garantir pontuação integral.</p>\n\n<p>Começamos pela <strong>incisão da pele na região umbilical</strong>, que pode ser longitudinal ou transversa - a banca aceita ambas as orientações, então não precisamos especificar uma única opção. O ponto crítico aqui é que estamos fazendo uma incisão real, não apenas uma punção cega como na técnica de Veress. Após a incisão cutânea, procedemos à <strong>exposição da fáscia com afastadores</strong>, tracionando com pinças para facilitar a visualização e o acesso. Esse é um detalhe técnico importante: usamos afastadores para manter o campo aberto e pinças para tracionar a fáscia, otimizando a exposição.</p>\n\n<p>O próximo passo crucial é a <strong>incisão até a abertura do peritônio</strong>, sempre sob visualização direta - esse é o grande diferencial da técnica. Não estamos entrando às cegas na cavidade; estamos vendo camada por camada, o que reduz significativamente o risco de lesões inadvertidas de alças intestinais ou vasos. Uma vez que abrimos o peritônio e visualizamos diretamente a cavidade peritoneal, devemos realizar a <strong>exploração digital</strong>, procurando ativamente por aderências na parede abdominal. Muitos candidatos esquecem de mencionar esse passo, mas ele é fundamental na resposta esperada pela banca - a exploração digital é uma medida de segurança para identificar estruturas aderidas que poderiam ser lesadas durante a insuflação ou passagem de outros trocateres.</p>\n\n<p>Após a exploração, realizamos uma <strong>sutura em bolsa reparando o peritônio</strong>. Essa sutura tem dupla função: ajuda a fixar o trocar e permite a vedação adequada do orifício para manutenção do pneumoperitônio. Em seguida, inserimos o <strong>trocar</strong>, e aqui vale mencionar que pode-se usar um trocar específico de Hasson, que possui um <strong>anel cônico utilizado para vedação do orifício aberto</strong>. Esse detalhe técnico aparece no espelho de resposta e demonstra conhecimento mais aprofundado do método - o trocar de Hasson é desenhado especificamente para essa técnica, com sistema de fixação próprio que mantém a vedação mesmo em um acesso aberto.</p>\n\n<p>Finalmente, após a inserção e fixação adequada do trocar, é <strong>iniciada a insuflação</strong> com CO2 para criar o pneumoperitônio. Somente depois de estabelecido o pneumoperitônio adequado é que procedemos às punções acessórias para inserção dos demais trocateres. Um erro comum é descrever a técnica de forma muito superficial ou confundi-la com a técnica de Veress - lembre-se sempre de enfatizar que é uma técnica ABERTA, com visualização direta em todos os passos. A banca espera uma descrição sequencial completa: incisão umbilical, exposição da fáscia com afastadores e tração, abertura do peritônio sob visão direta, exploração digital, sutura em bolsa, inserção do trocar (preferencialmente mencionando o trocar específico com anel cônico) e início da insuflação.</p><br>Visão do aprovado: <h2>Visão do aprovado</h2>\n\n<p>Em questões discursivas sobre técnicas cirúrgicas, a banca espera uma descrição sequencial e completa, como se estivéssemos guiando alguém pelos passos do procedimento. O diferencial para pontuar bem aqui está em demonstrar que entendemos o conceito central da Hasson — <strong>acesso aberto com visualização direta em todas as etapas</strong> — e em não omitir passos intermediários que parecem óbvios mas são critérios de correção, como a exploração digital da cavidade antes de inserir o trocar. Muitos candidatos descrevem apenas \"faz incisão, abre o peritônio e coloca o trocar\", perdendo pontos por não detalhar a exposição da fáscia, a exploração digital e a sutura em bolsa.</p>\n\n<p>A principal armadilha é tratar Hasson e Veress como sinônimos ou misturar elementos das duas técnicas na resposta. Se em algum momento mencionamos <em>\"agulha de Veress\"</em> ou <em>\"punção às cegas\"</em>, perdemos a essência do método aberto. Outro erro frequente é esquecer de explicitar que a visualização é direta e que exploramos digitalmente a cavidade — esses são justamente os pontos que justificam a escolha da técnica em pacientes com aderências ou cirurgias prévias, e a banca valoriza quando conectamos a técnica à sua indicação clínica. Por fim, citar o trocar específico com anel cônico não é obrigatório para acertar, mas demonstra conhecimento técnico mais refinado e pode diferenciar respostas medianas de excelentes.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333064,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 333064,
+        "content": "A realização do pneumoperitônio e as punções acessórias são etapas fundamentais para a cirurgia laparoscópica. Sobre essa etapa: Descreva dois testes para determinar o posicionamento adequado da agulha de Veres.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443124,
+        "actual_explanation": true,
+        "introduction": "<p>Confirmar o posicionamento correto da agulha de Veress antes de iniciar a insuflação do pneumoperitônio é fundamental para evitar complicações potencialmente graves na cirurgia laparoscópica. A questão pede que descrevamos dois testes utilizados para essa verificação, e aqui precisamos ir além de simplesmente citar nomes — devemos descrever como cada teste é realizado e interpretado.</p>\n\n<p>Vamos entender o contexto: a <em>agulha de Veress</em> possui um mecanismo de mola retrátil que permite sua inserção \"às cegas\" através da parede abdominal. Essa característica, embora prática, traz riscos como perfuração de alças intestinais, vasos sanguíneos ou até posicionamento inadequado em espaço pré-peritoneal. Por isso, aplicamos testes de segurança antes de prosseguir com a insuflação completa.</p>\n\n<p>O <strong>teste de recuo da agulha</strong> é um dos mais utilizados e baseia-se no mecanismo próprio da agulha. Durante a inserção, observamos (e até ouvimos) o recuo da mola conforme a agulha atravessa as diferentes camadas da parede abdominal. O número de recuos ou \"cliques\" deve corresponder ao número de camadas que esperamos atravessar no ponto de entrada escolhido — geralmente pele, tecido subcutâneo, fáscia e peritônio. Esse teste é imediato e não requer equipamento adicional.</p>\n\n<p>Outro teste clássico é o <strong>teste de aspiração</strong>. Após a passagem da agulha, acoplamos uma seringa com soro fisiológico e realizamos aspiração. O objetivo aqui é garantir que não perfuramos nenhum vaso sanguíneo (aspiração de sangue), alça intestinal (conteúdo entérico) ou estômago. Podemos também injetar o soro, que deve fluir sem resistência se estivermos na cavidade livre, e em seguida aspirar novamente. Se houver retorno do volume injetado, isso sugere que estamos em posição pré-peritoneal ou em área com aderências, e não na cavidade livre.</p>\n\n<p>O <strong>teste da gota pendente</strong> é igualmente válido e explora o conceito de gradiente de pressão. Colocamos uma pequena quantidade de soro fisiológico na válvula da agulha, que deve estar aberta. Ao elevarmos a parede abdominal, criamos pressão negativa relativa na cavidade peritoneal. A gota será \"aspirada\" dessa área de alta pressão (externa) para a área de baixa pressão (intraperitoneal), confirmando o posicionamento correto.</p>\n\n<p>Por fim, as <strong>medidas seriadas da pressão intra-abdominal</strong> também servem como teste de segurança. Após conectar a mangueira de insuflação e iniciar o pneumoperitônio, a pressão inicial deve ser baixa, tipicamente inferior a 10 mmHg. Pressões iniciais elevadas sugerem que a agulha não está livre na cavidade peritoneal, podendo estar em posição pré-peritoneal, no omento ou contra alguma estrutura.</p>\n\n<p>Um erro frequente nas provas discursivas é apenas citar o nome do teste sem descrevê-lo. A banca espera que demonstremos conhecimento da técnica e da interpretação. Outro ponto de atenção: a questão pede DOIS testes — não precisamos (nem devemos) descrever todos os quatro. Escolhemos dois quaisquer do gabarito oficial e os descrevemos adequadamente. Para pontuar integralmente, precisamos: nomear claramente cada teste, descrever como é realizado e explicar o que indica posicionamento correto ou inadequado.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p><strong>Visão do aprovado</strong></p>\n\n<p>A grande pegadinha dessa questão discursiva não está em conhecer os testes, mas em como respondê-los. Muitos candidatos perdem pontos porque citam apenas os nomes (\"<em>teste da gota pendente</em>\" e \"<em>teste de aspiração</em>\") sem descrever a técnica de execução nem explicar o que caracteriza o posicionamento correto. A banca quer ver que você sabe realizar o procedimento, não apenas que decorou uma lista. Na escolha de quais dois testes descrever, os mais \"descritivos\" (recuo da agulha, gota pendente e aspiração) costumam render melhor pontuação do que simplesmente dizer que a pressão deve estar abaixo de 10 mmHg, porque permitem demonstrar mais conhecimento técnico.</p>\n\n<p>Outra armadilha comum é misturar elementos de diferentes testes na mesma resposta ou descrever o teste de forma vaga demais. Por exemplo, dizer que \"injeta soro e vê se volta\" no teste de aspiração sem mencionar que o objetivo primário é excluir punção de vaso ou víscera pode custar pontos. Em questões procedimentais de cirurgia, temos que mostrar raciocínio de segurança, não apenas mecânica do gesto técnico. O examinador quer confirmar que você entende por que cada teste é feito e o que cada achado significa para a segurança do paciente antes de insuflar.</p>\n\n<p>Questões discursivas de técnica cirúrgica em provas de R1 geralmente exigem esse nível de detalhamento e justificativa clínica. Não basta saber fazer, é preciso saber explicar o racional de cada etapa e demonstrar consciência dos riscos que se está tentando evitar.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Confirmar o posicionamento correto da agulha de Veress antes de iniciar a insuflação do pneumoperitônio é fundamental para evitar complicações potencialmente graves na cirurgia laparoscópica. A questão pede que descrevamos dois testes utilizados para essa verificação, e aqui precisamos ir além de simplesmente citar nomes — devemos descrever como cada teste é realizado e interpretado.</p>\n\n<p>Vamos entender o contexto: a <em>agulha de Veress</em> possui um mecanismo de mola retrátil que permite sua inserção \"às cegas\" através da parede abdominal. Essa característica, embora prática, traz riscos como perfuração de alças intestinais, vasos sanguíneos ou até posicionamento inadequado em espaço pré-peritoneal. Por isso, aplicamos testes de segurança antes de prosseguir com a insuflação completa.</p>\n\n<p>O <strong>teste de recuo da agulha</strong> é um dos mais utilizados e baseia-se no mecanismo próprio da agulha. Durante a inserção, observamos (e até ouvimos) o recuo da mola conforme a agulha atravessa as diferentes camadas da parede abdominal. O número de recuos ou \"cliques\" deve corresponder ao número de camadas que esperamos atravessar no ponto de entrada escolhido — geralmente pele, tecido subcutâneo, fáscia e peritônio. Esse teste é imediato e não requer equipamento adicional.</p>\n\n<p>Outro teste clássico é o <strong>teste de aspiração</strong>. Após a passagem da agulha, acoplamos uma seringa com soro fisiológico e realizamos aspiração. O objetivo aqui é garantir que não perfuramos nenhum vaso sanguíneo (aspiração de sangue), alça intestinal (conteúdo entérico) ou estômago. Podemos também injetar o soro, que deve fluir sem resistência se estivermos na cavidade livre, e em seguida aspirar novamente. Se houver retorno do volume injetado, isso sugere que estamos em posição pré-peritoneal ou em área com aderências, e não na cavidade livre.</p>\n\n<p>O <strong>teste da gota pendente</strong> é igualmente válido e explora o conceito de gradiente de pressão. Colocamos uma pequena quantidade de soro fisiológico na válvula da agulha, que deve estar aberta. Ao elevarmos a parede abdominal, criamos pressão negativa relativa na cavidade peritoneal. A gota será \"aspirada\" dessa área de alta pressão (externa) para a área de baixa pressão (intraperitoneal), confirmando o posicionamento correto.</p>\n\n<p>Por fim, as <strong>medidas seriadas da pressão intra-abdominal</strong> também servem como teste de segurança. Após conectar a mangueira de insuflação e iniciar o pneumoperitônio, a pressão inicial deve ser baixa, tipicamente inferior a 10 mmHg. Pressões iniciais elevadas sugerem que a agulha não está livre na cavidade peritoneal, podendo estar em posição pré-peritoneal, no omento ou contra alguma estrutura.</p>\n\n<p>Um erro frequente nas provas discursivas é apenas citar o nome do teste sem descrevê-lo. A banca espera que demonstremos conhecimento da técnica e da interpretação. Outro ponto de atenção: a questão pede DOIS testes — não precisamos (nem devemos) descrever todos os quatro. Escolhemos dois quaisquer do gabarito oficial e os descrevemos adequadamente. Para pontuar integralmente, precisamos: nomear claramente cada teste, descrever como é realizado e explicar o que indica posicionamento correto ou inadequado.</p><br>Visão do aprovado: <p><strong>Visão do aprovado</strong></p>\n\n<p>A grande pegadinha dessa questão discursiva não está em conhecer os testes, mas em como respondê-los. Muitos candidatos perdem pontos porque citam apenas os nomes (\"<em>teste da gota pendente</em>\" e \"<em>teste de aspiração</em>\") sem descrever a técnica de execução nem explicar o que caracteriza o posicionamento correto. A banca quer ver que você sabe realizar o procedimento, não apenas que decorou uma lista. Na escolha de quais dois testes descrever, os mais \"descritivos\" (recuo da agulha, gota pendente e aspiração) costumam render melhor pontuação do que simplesmente dizer que a pressão deve estar abaixo de 10 mmHg, porque permitem demonstrar mais conhecimento técnico.</p>\n\n<p>Outra armadilha comum é misturar elementos de diferentes testes na mesma resposta ou descrever o teste de forma vaga demais. Por exemplo, dizer que \"injeta soro e vê se volta\" no teste de aspiração sem mencionar que o objetivo primário é excluir punção de vaso ou víscera pode custar pontos. Em questões procedimentais de cirurgia, temos que mostrar raciocínio de segurança, não apenas mecânica do gesto técnico. O examinador quer confirmar que você entende por que cada teste é feito e o que cada achado significa para a segurança do paciente antes de insuflar.</p>\n\n<p>Questões discursivas de técnica cirúrgica em provas de R1 geralmente exigem esse nível de detalhamento e justificativa clínica. Não basta saber fazer, é preciso saber explicar o racional de cada etapa e demonstrar consciência dos riscos que se está tentando evitar.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333065,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 333065,
+        "content": "A realização do pneumoperitônio e as punções acessórias são etapas fundamentais para a cirurgia laparoscópica. Sobre essa etapa: Descreva duas formas de controlar o sangramento em caso de artéria epigástrica inferior lesionada durante a punção acessória.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443122,
+        "actual_explanation": true,
+        "introduction": "<p>Lesões da artéria epigástrica inferior representam uma complicação vascular relativamente comum durante a introdução de trocateres acessórios em cirurgia laparoscópica, e o cirurgião precisa dominar diferentes estratégias para seu controle hemorrágico. A questão quer que descrevamos duas formas de controlar esse sangramento, exigindo conhecimento tanto de técnicas laparoscópicas quanto de abordagens alternativas.</p>\n\n<p>Precisamos entender primeiro o contexto anatômico: a <strong>artéria epigástrica inferior</strong> é um ramo da artéria ilíaca externa que ascende pela face interna da parede abdominal anterior, correndo lateralmente à linha média. Durante a punção dos trocateres acessórios, especialmente os laterais, podemos lesioná-la inadvertidamente, resultando em sangramento que pode ser significativo e contínuo. O reconhecimento geralmente é imediato pela visualização do sangramento na parede através da laparoscopia.</p>\n\n<p>Vamos às técnicas de controle. A primeira opção, e frequentemente a mais elegante, é a <strong>cauterização bipolar através do portal contralateral</strong>. Aqui, mantemos a laparoscopia, introduzimos a pinça bipolar por outro portal (daí \"contralateral\") e cauterizamos o vaso sangrante sob visão direta. É uma técnica minimamente invasiva que resolve o problema sem converter para via aberta.</p>\n\n<p>Uma alternativa muito interessante e prática é usar uma <strong>sonda de Foley</strong>. Retiramos o trocar do orifício onde ocorreu a lesão, passamos a sonda de Foley por esse mesmo orifício, insuflamos o balão dentro da cavidade abdominal e tracionamos a sonda para fora, comprimindo o vaso entre o balão insuflado (por dentro) e a parede abdominal (por fora). Fixamos a sonda com uma pinça para manter essa compressão. É como fazer um tamponamento mecânico por dentro.</p>\n\n<p>Outra técnica que devemos conhecer é a <strong>passagem de fios de sutura</strong> através das paredes acima e abaixo da área da artéria lesionada. Fazemos suturas transcutâneas que, ao serem amarradas, comprimem o vaso contra a parede, controlando o sangramento. É uma técnica simples mas efetiva.</p>\n\n<p>Se preferirmos ou se as técnicas laparoscópicas falharem, podemos optar pela <strong>ampliação da incisão</strong> onde houve a lesão. Isso nos permite visualização direta do vaso e sua ligadura sob visão aberta. É converter parcialmente o procedimento, mas às vezes é a forma mais segura de garantir hemostasia completa.</p>\n\n<p>Por fim, uma técnica mais conservadora é a <strong>compressão temporária</strong>: mantemos o pneumoperitônio (que por si já exerce alguma compressão) e fazemos compressão direta no local por pelo menos cinco minutos. Depois, observamos cuidadosamente para assegurar que o sangramento cessou. Funciona melhor em lesões menores.</p>\n\n<p>Um erro comum que vemos é responder de forma muito genérica, tipo \"cauterizar o vaso\" ou \"fazer compressão\", sem especificar os detalhes técnicos que a banca espera. Outro erro é descrever apenas uma forma quando a questão pede explicitamente duas. Atenção também para não confundir com lesões de outros vasos ou em outras situações cirúrgicas.</p>\n\n<p>Para pontuação completa, precisamos descrever <strong>duas técnicas distintas</strong> dentre as cinco aceitas pelo gabarito, sendo específicos nos detalhes: mencionar que a cauterização é bipolar e por portal contralateral, que a sonda de Foley precisa ter o balão insuflado e ser tracionada e fixada, que a compressão deve ser mantida por pelo menos cinco minutos, e assim por diante. A banca valoriza o conhecimento técnico detalhado, não apenas conceitos vagos.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p><strong>Visão do aprovado</strong></p>\n\n<p>Em questões discursivas de técnica cirúrgica, a escolha estratégica das duas técnicas a descrever faz diferença na pontuação. A cauterização bipolar pelo portal contralateral e o uso da sonda de Foley com balão insuflado são as mais completas para descrever porque têm passos técnicos específicos que demonstram domínio prático. Já a compressão temporária, embora válida, pode parecer vaga demais se não detalharmos \"cinco minutos\" e \"manutenção do pneumoperitônio\". A ampliação da incisão com ligadura é segura para mencionar, mas fica claro que é uma conversão parcial, então vale combinar com uma técnica minimamente invasiva para mostrar que tentamos resolver por laparoscopia primeiro.</p>\n\n<p>A principal armadilha aqui é escrever de forma genérica algo como \"cauterizar o vaso sangrante\" ou \"comprimir o local\". Questões de cirurgia em provas de R1 punem duramente respostas inespecíficas porque o examinador quer ter certeza de que conhecemos a técnica de verdade, não apenas o conceito. Outro erro frequente é descrever só uma técnica com muitos detalhes e esquecer que a questão pede explicitamente duas formas distintas, perdendo metade da pontuação possível.</p>\n\n<p>O contexto dessa complicação importa para o raciocínio completo: reconhecemos a lesão da epigástrica inferior pela visualização laparoscópica do sangramento na parede lateral, e a decisão de qual técnica usar depende da disponibilidade de material, experiência do cirurgião e magnitude do sangramento. Saber que existem desde opções conservadoras (compressão) até conversão parcial (ampliação e ligadura) mostra maturidade cirúrgica, mas na prova o que vale é descrever os passos técnicos com precisão.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Lesões da artéria epigástrica inferior representam uma complicação vascular relativamente comum durante a introdução de trocateres acessórios em cirurgia laparoscópica, e o cirurgião precisa dominar diferentes estratégias para seu controle hemorrágico. A questão quer que descrevamos duas formas de controlar esse sangramento, exigindo conhecimento tanto de técnicas laparoscópicas quanto de abordagens alternativas.</p>\n\n<p>Precisamos entender primeiro o contexto anatômico: a <strong>artéria epigástrica inferior</strong> é um ramo da artéria ilíaca externa que ascende pela face interna da parede abdominal anterior, correndo lateralmente à linha média. Durante a punção dos trocateres acessórios, especialmente os laterais, podemos lesioná-la inadvertidamente, resultando em sangramento que pode ser significativo e contínuo. O reconhecimento geralmente é imediato pela visualização do sangramento na parede através da laparoscopia.</p>\n\n<p>Vamos às técnicas de controle. A primeira opção, e frequentemente a mais elegante, é a <strong>cauterização bipolar através do portal contralateral</strong>. Aqui, mantemos a laparoscopia, introduzimos a pinça bipolar por outro portal (daí \"contralateral\") e cauterizamos o vaso sangrante sob visão direta. É uma técnica minimamente invasiva que resolve o problema sem converter para via aberta.</p>\n\n<p>Uma alternativa muito interessante e prática é usar uma <strong>sonda de Foley</strong>. Retiramos o trocar do orifício onde ocorreu a lesão, passamos a sonda de Foley por esse mesmo orifício, insuflamos o balão dentro da cavidade abdominal e tracionamos a sonda para fora, comprimindo o vaso entre o balão insuflado (por dentro) e a parede abdominal (por fora). Fixamos a sonda com uma pinça para manter essa compressão. É como fazer um tamponamento mecânico por dentro.</p>\n\n<p>Outra técnica que devemos conhecer é a <strong>passagem de fios de sutura</strong> através das paredes acima e abaixo da área da artéria lesionada. Fazemos suturas transcutâneas que, ao serem amarradas, comprimem o vaso contra a parede, controlando o sangramento. É uma técnica simples mas efetiva.</p>\n\n<p>Se preferirmos ou se as técnicas laparoscópicas falharem, podemos optar pela <strong>ampliação da incisão</strong> onde houve a lesão. Isso nos permite visualização direta do vaso e sua ligadura sob visão aberta. É converter parcialmente o procedimento, mas às vezes é a forma mais segura de garantir hemostasia completa.</p>\n\n<p>Por fim, uma técnica mais conservadora é a <strong>compressão temporária</strong>: mantemos o pneumoperitônio (que por si já exerce alguma compressão) e fazemos compressão direta no local por pelo menos cinco minutos. Depois, observamos cuidadosamente para assegurar que o sangramento cessou. Funciona melhor em lesões menores.</p>\n\n<p>Um erro comum que vemos é responder de forma muito genérica, tipo \"cauterizar o vaso\" ou \"fazer compressão\", sem especificar os detalhes técnicos que a banca espera. Outro erro é descrever apenas uma forma quando a questão pede explicitamente duas. Atenção também para não confundir com lesões de outros vasos ou em outras situações cirúrgicas.</p>\n\n<p>Para pontuação completa, precisamos descrever <strong>duas técnicas distintas</strong> dentre as cinco aceitas pelo gabarito, sendo específicos nos detalhes: mencionar que a cauterização é bipolar e por portal contralateral, que a sonda de Foley precisa ter o balão insuflado e ser tracionada e fixada, que a compressão deve ser mantida por pelo menos cinco minutos, e assim por diante. A banca valoriza o conhecimento técnico detalhado, não apenas conceitos vagos.</p><br>Visão do aprovado: <p><strong>Visão do aprovado</strong></p>\n\n<p>Em questões discursivas de técnica cirúrgica, a escolha estratégica das duas técnicas a descrever faz diferença na pontuação. A cauterização bipolar pelo portal contralateral e o uso da sonda de Foley com balão insuflado são as mais completas para descrever porque têm passos técnicos específicos que demonstram domínio prático. Já a compressão temporária, embora válida, pode parecer vaga demais se não detalharmos \"cinco minutos\" e \"manutenção do pneumoperitônio\". A ampliação da incisão com ligadura é segura para mencionar, mas fica claro que é uma conversão parcial, então vale combinar com uma técnica minimamente invasiva para mostrar que tentamos resolver por laparoscopia primeiro.</p>\n\n<p>A principal armadilha aqui é escrever de forma genérica algo como \"cauterizar o vaso sangrante\" ou \"comprimir o local\". Questões de cirurgia em provas de R1 punem duramente respostas inespecíficas porque o examinador quer ter certeza de que conhecemos a técnica de verdade, não apenas o conceito. Outro erro frequente é descrever só uma técnica com muitos detalhes e esquecer que a questão pede explicitamente duas formas distintas, perdendo metade da pontuação possível.</p>\n\n<p>O contexto dessa complicação importa para o raciocínio completo: reconhecemos a lesão da epigástrica inferior pela visualização laparoscópica do sangramento na parede lateral, e a decisão de qual técnica usar depende da disponibilidade de material, experiência do cirurgião e magnitude do sangramento. Saber que existem desde opções conservadoras (compressão) até conversão parcial (ampliação e ligadura) mostra maturidade cirúrgica, mas na prova o que vale é descrever os passos técnicos com precisão.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333066,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Miomatose uterina",
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina"
+        }
+      },
+      "detail": {
+        "id": 333066,
+        "content": "Mulher de 30 anos é encaminhada pela cirurgia vascular a uma avaliação ginecológica, para a realização de embolização de artérias uterinas. A paciente queixa-se de sangramento aumentado durante o período menstrual, refere sentir-se mais cansada aos esforços e ter desejo pelo consumo de pedras de gelo. Relata dois abortos espontâneos com o parceiro atual e desejo de gestar. Apresenta hemograma com hemoglobina = 7,7g/dL, hematócrito = 24,80%, VCM = 72,94fL e HCM = 22,65pg. Foi observada miomatose em ressonância magnética e em histeroscopia, com abaulamento em parede anterior e mioma nível 1. Considerando o caso clínico descrito: Cite duas estratégias pré-operatórias para o manejo da anemia e descreva duas manobras para controle do sangramento no per-operatório.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15986,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Miomatose uterina",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443130,
+        "actual_explanation": true,
+        "introduction": "<p>A <strong>pagofagia</strong> - aquele desejo intenso de consumir pedras de gelo - é um dos sinais mais específicos de anemia ferropriva grave, e aqui encontramos esse sintoma em uma paciente com hemoglobina de 7,7 g/dL, secundária a sangramento menstrual intenso por miomatose uterina. O hemograma confirma a natureza ferropriva da anemia: VCM de 72,94 fL (microcítica) e HCM de 22,65 pg (hipocrômica), valores bem abaixo do normal. A questão nos pede duas estratégias pré-operatórias para manejo da anemia e duas manobras intraoperatórias para controle de sangramento, o que exige que pensemos em duas frentes: preparar a paciente para a cirurgia e garantir hemostasia adequada durante o procedimento.</p>\n\n<p>No <strong>preparo pré-operatório</strong>, precisamos atuar em dois eixos simultaneamente: reduzir as perdas sanguíneas mensais e repor o ferro. Nossa paciente está perdendo sangue todos os meses pela menorragia causada pelo mioma submucoso (que é intracavitário e sabidamente causa muito sangramento), então não adianta apenas repor ferro se ela continuar sangrando intensamente. Por isso, uma estratégia fundamental é o <strong>controle hormonal do ciclo menstrual</strong>, que pode ser feito com contraceptivos orais combinados, progestógenos isolados ou até mesmo análogos de GnRH. Os análogos de GnRH têm a vantagem adicional de reduzir o tamanho dos miomas em até 30-50% após 3 meses de uso, facilitando a cirurgia, mas causam hipoestrogenismo importante. Outra opção excelente é o <strong>ácido tranexâmico</strong>, um antifibrinolítico que reduz o sangramento menstrual em até 50% sem interferir na ovulação, sendo especialmente útil se a paciente não quiser usar hormônios.</p>\n\n<p>Quanto à reposição de ferro, temos duas possibilidades. A <strong>suplementação de ferro oral associada à vitamina C</strong> é a primeira escolha quando temos tempo para o preparo (idealmente 3-6 meses antes da cirurgia), pois a vitamina C aumenta a absorção do ferro ao mantê-lo na forma ferrosa. Porém, em casos de anemia grave como este (Hb 7,7 g/dL), intolerância ao ferro oral, ou quando precisamos de resposta mais rápida, devemos optar pelo <strong>ferro parenteral</strong> (endovenoso), que permite reposição mais rápida dos estoques sem depender da absorção intestinal. Vale lembrar que essa paciente tem desejo de gestar, então o preparo adequado é fundamental para melhorar as condições reprodutivas também.</p>\n\n<p>No <strong>período per-operatório</strong>, durante a miomectomia, o maior desafio é controlar o sangramento do leito miomatoso, já que o útero é um órgão extremamente vascularizado. A manobra mais clássica e efetiva é o <strong>torniquete temporário ao redor das artérias uterinas</strong>, que pode ser feito com sonda de Foley, fio de sutura ou fita cardíaca, aplicado bilateralmente ao nível do istmo uterino. Isso reduz drasticamente o fluxo sanguíneo para o corpo uterino durante a enucleação do mioma. Outra opção são os <strong>clamps vasculares tipo bulldog</strong>, que têm a mesma finalidade mas são mais práticos de aplicar e remover.</p>\n\n<p>Além das manobras mecânicas de oclusão vascular, podemos usar vasoconstritores locais. A <strong>vasopressina intramiometrial</strong> (diluída em solução salina, geralmente 20 UI em 100-200 mL) é injetada ao redor do mioma antes da incisão, promovendo vasoconstrição local intensa e temporária. O <strong>misoprostol por via retal</strong> (geralmente 400-600 mcg) é outra opção, pois promove contração uterina e auxilia na hemostasia, embora seu efeito seja mais sistêmico. O <strong>bisturi ultrassônico</strong> também é uma excelente ferramenta, pois permite cortar e coagular simultaneamente, reduzindo o sangramento durante a dissecção. Por fim, a <strong>ligadura do pedículo vascular na pseudocápsula</strong> do mioma é uma técnica que interrompe especificamente o fluxo para aquele mioma antes de sua enucleação.</p>\n\n<p>A banca aceita como resposta correta no pré-operatório:</p>\n<ul>\n<li>uso de medicações hormonais (contraceptivos orais combinados, progestógenos, danazol, gestrinona)</li>\n<li>análogos do GnRH</li>\n<li>ácido tranexâmico</li>\n<li>suplementação de ferro oral associado à vitamina C</li>\n<li>ferro parenteral</li>\n</ul>\n\n<p>No per-operatório, são aceitos:</p>\n<ul>\n<li>torniquete com sonda de Foley/fio/fita cardíaca</li>\n<li>clamps vasculares tipo bulldog</li>\n<li>misoprostol retal</li>\n<li>vasopressina intramiometrial</li>\n<li>bisturi ultrassônico</li>\n<li>ligadura do pedículo vascular na pseudocápsula</li>\n</ul>\n\n<p>É fundamental citar <strong>DUAS estratégias de cada categoria</strong> para pontuar completamente. Um erro comum é citar apenas reposição de ferro no pré-operatório, esquecendo que controlar o sangramento menstrual é igualmente importante para o preparo adequado dessa paciente.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p><strong>Visão do aprovado</strong></p>\n\n<p>A primeira armadilha dessa questão está no enunciado: a paciente foi encaminhada para embolização, mas relata desejo de gestar. Isso deve acender um alerta imediato, pois embolização compromete fertilidade e não é a conduta adequada aqui. O cenário aponta para miomectomia, e o examinador quer saber se você consegue preparar essa paciente adequadamente para o procedimento. Em questões dissertativas como esta, a pegadinha mais comum é citar apenas uma estratégia em cada categoria ou focar exclusivamente na reposição de ferro, esquecendo que anemia grave com menorragia exige abordagem dupla: estancar a perda mensal e repor os estoques simultaneamente.</p>\n\n<p>No pré-operatório, temos que pensar de forma prática para a prova: sempre cite uma estratégia de controle de sangramento e uma de reposição. As respostas mais diretas e valorizadas pelas bancas são <strong>análogo de GnRH ou ácido tranexâmico</strong> para reduzir menorragia, combinados com <strong>ferro parenteral</strong> em anemias graves (Hb menor que 8 g/dL) ou <strong>ferro oral com vitamina C</strong> quando houver tempo de preparo. Essa combinação mostra raciocínio completo e evita perder pontos por resposta incompleta.</p>\n\n<p>Para o intraoperatório, a lógica é similar: combine manobras mecânicas com farmacológicas. O <strong>torniquete ao redor das artérias uterinas</strong> (com sonda de Foley ou fio) é a técnica mais clássica e sempre bem pontuada, podendo ser associada a <strong>vasopressina intramiometrial</strong> ou <strong>misoprostol retal</strong>. Evite respostas genéricas como \"usar hemostáticos\" sem especificar qual ou \"fazer boa técnica cirúrgica\" - bancas de residência querem medidas objetivas e aplicáveis. Lembre-se que em questões dissertativas, objetividade e completude valem mais que textos longos: duas estratégias claras em cada etapa garantem a pontuação máxima.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>A <strong>pagofagia</strong> - aquele desejo intenso de consumir pedras de gelo - é um dos sinais mais específicos de anemia ferropriva grave, e aqui encontramos esse sintoma em uma paciente com hemoglobina de 7,7 g/dL, secundária a sangramento menstrual intenso por miomatose uterina. O hemograma confirma a natureza ferropriva da anemia: VCM de 72,94 fL (microcítica) e HCM de 22,65 pg (hipocrômica), valores bem abaixo do normal. A questão nos pede duas estratégias pré-operatórias para manejo da anemia e duas manobras intraoperatórias para controle de sangramento, o que exige que pensemos em duas frentes: preparar a paciente para a cirurgia e garantir hemostasia adequada durante o procedimento.</p>\n\n<p>No <strong>preparo pré-operatório</strong>, precisamos atuar em dois eixos simultaneamente: reduzir as perdas sanguíneas mensais e repor o ferro. Nossa paciente está perdendo sangue todos os meses pela menorragia causada pelo mioma submucoso (que é intracavitário e sabidamente causa muito sangramento), então não adianta apenas repor ferro se ela continuar sangrando intensamente. Por isso, uma estratégia fundamental é o <strong>controle hormonal do ciclo menstrual</strong>, que pode ser feito com contraceptivos orais combinados, progestógenos isolados ou até mesmo análogos de GnRH. Os análogos de GnRH têm a vantagem adicional de reduzir o tamanho dos miomas em até 30-50% após 3 meses de uso, facilitando a cirurgia, mas causam hipoestrogenismo importante. Outra opção excelente é o <strong>ácido tranexâmico</strong>, um antifibrinolítico que reduz o sangramento menstrual em até 50% sem interferir na ovulação, sendo especialmente útil se a paciente não quiser usar hormônios.</p>\n\n<p>Quanto à reposição de ferro, temos duas possibilidades. A <strong>suplementação de ferro oral associada à vitamina C</strong> é a primeira escolha quando temos tempo para o preparo (idealmente 3-6 meses antes da cirurgia), pois a vitamina C aumenta a absorção do ferro ao mantê-lo na forma ferrosa. Porém, em casos de anemia grave como este (Hb 7,7 g/dL), intolerância ao ferro oral, ou quando precisamos de resposta mais rápida, devemos optar pelo <strong>ferro parenteral</strong> (endovenoso), que permite reposição mais rápida dos estoques sem depender da absorção intestinal. Vale lembrar que essa paciente tem desejo de gestar, então o preparo adequado é fundamental para melhorar as condições reprodutivas também.</p>\n\n<p>No <strong>período per-operatório</strong>, durante a miomectomia, o maior desafio é controlar o sangramento do leito miomatoso, já que o útero é um órgão extremamente vascularizado. A manobra mais clássica e efetiva é o <strong>torniquete temporário ao redor das artérias uterinas</strong>, que pode ser feito com sonda de Foley, fio de sutura ou fita cardíaca, aplicado bilateralmente ao nível do istmo uterino. Isso reduz drasticamente o fluxo sanguíneo para o corpo uterino durante a enucleação do mioma. Outra opção são os <strong>clamps vasculares tipo bulldog</strong>, que têm a mesma finalidade mas são mais práticos de aplicar e remover.</p>\n\n<p>Além das manobras mecânicas de oclusão vascular, podemos usar vasoconstritores locais. A <strong>vasopressina intramiometrial</strong> (diluída em solução salina, geralmente 20 UI em 100-200 mL) é injetada ao redor do mioma antes da incisão, promovendo vasoconstrição local intensa e temporária. O <strong>misoprostol por via retal</strong> (geralmente 400-600 mcg) é outra opção, pois promove contração uterina e auxilia na hemostasia, embora seu efeito seja mais sistêmico. O <strong>bisturi ultrassônico</strong> também é uma excelente ferramenta, pois permite cortar e coagular simultaneamente, reduzindo o sangramento durante a dissecção. Por fim, a <strong>ligadura do pedículo vascular na pseudocápsula</strong> do mioma é uma técnica que interrompe especificamente o fluxo para aquele mioma antes de sua enucleação.</p>\n\n<p>A banca aceita como resposta correta no pré-operatório:</p>\n<ul>\n<li>uso de medicações hormonais (contraceptivos orais combinados, progestógenos, danazol, gestrinona)</li>\n<li>análogos do GnRH</li>\n<li>ácido tranexâmico</li>\n<li>suplementação de ferro oral associado à vitamina C</li>\n<li>ferro parenteral</li>\n</ul>\n\n<p>No per-operatório, são aceitos:</p>\n<ul>\n<li>torniquete com sonda de Foley/fio/fita cardíaca</li>\n<li>clamps vasculares tipo bulldog</li>\n<li>misoprostol retal</li>\n<li>vasopressina intramiometrial</li>\n<li>bisturi ultrassônico</li>\n<li>ligadura do pedículo vascular na pseudocápsula</li>\n</ul>\n\n<p>É fundamental citar <strong>DUAS estratégias de cada categoria</strong> para pontuar completamente. Um erro comum é citar apenas reposição de ferro no pré-operatório, esquecendo que controlar o sangramento menstrual é igualmente importante para o preparo adequado dessa paciente.</p><br>Visão do aprovado: <p><strong>Visão do aprovado</strong></p>\n\n<p>A primeira armadilha dessa questão está no enunciado: a paciente foi encaminhada para embolização, mas relata desejo de gestar. Isso deve acender um alerta imediato, pois embolização compromete fertilidade e não é a conduta adequada aqui. O cenário aponta para miomectomia, e o examinador quer saber se você consegue preparar essa paciente adequadamente para o procedimento. Em questões dissertativas como esta, a pegadinha mais comum é citar apenas uma estratégia em cada categoria ou focar exclusivamente na reposição de ferro, esquecendo que anemia grave com menorragia exige abordagem dupla: estancar a perda mensal e repor os estoques simultaneamente.</p>\n\n<p>No pré-operatório, temos que pensar de forma prática para a prova: sempre cite uma estratégia de controle de sangramento e uma de reposição. As respostas mais diretas e valorizadas pelas bancas são <strong>análogo de GnRH ou ácido tranexâmico</strong> para reduzir menorragia, combinados com <strong>ferro parenteral</strong> em anemias graves (Hb menor que 8 g/dL) ou <strong>ferro oral com vitamina C</strong> quando houver tempo de preparo. Essa combinação mostra raciocínio completo e evita perder pontos por resposta incompleta.</p>\n\n<p>Para o intraoperatório, a lógica é similar: combine manobras mecânicas com farmacológicas. O <strong>torniquete ao redor das artérias uterinas</strong> (com sonda de Foley ou fio) é a técnica mais clássica e sempre bem pontuada, podendo ser associada a <strong>vasopressina intramiometrial</strong> ou <strong>misoprostol retal</strong>. Evite respostas genéricas como \"usar hemostáticos\" sem especificar qual ou \"fazer boa técnica cirúrgica\" - bancas de residência querem medidas objetivas e aplicáveis. Lembre-se que em questões dissertativas, objetividade e completude valem mais que textos longos: duas estratégias claras em cada etapa garantem a pontuação máxima.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333067,
+        "number": 5,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Miomatose uterina",
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina"
+        }
+      },
+      "detail": {
+        "id": 333067,
+        "content": "Mulher de 30 anos é encaminhada pela cirurgia vascular a uma avaliação ginecológica, para a realização de embolização de artérias uterinas. A paciente queixa-se de sangramento aumentado durante o período menstrual, refere sentir-se mais cansada aos esforços e ter desejo pelo consumo de pedras de gelo. Relata dois abortos espontâneos com o parceiro atual e desejo de gestar. Apresenta hemograma com hemoglobina = 7,7g/dL, hematócrito = 24,80%, VCM = 72,94fL e HCM = 22,65pg. Foi observada miomatose em ressonância magnética e em histeroscopia, com abaulamento em parede anterior e mioma nível 1. Considerando o caso clínico descrito: Aponte três características de cada meio distensor dos ressectoscópios que utilizam energia monopolar e bipolar.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15986,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Miomatose uterina",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443132,
+        "actual_explanation": true,
+        "introduction": "<p>Mioma submucoso nível 1 em paciente jovem com desejo reprodutivo nos remete à possibilidade de miomectomia histeroscópica, e é justamente sobre a técnica deste procedimento que a questão avalia nosso conhecimento: as características dos meios distensores conforme o tipo de energia do ressectoscópio. Embora o caso clínico seja rico em detalhes - temos anemia ferropriva grave (Hb 7,7g/dL com microcitose e hipocromia), picofagia, menorragia e história de abortos - a pergunta é objetiva e técnica, exigindo que listemos <strong>três características de cada meio distensor</strong> usado com energia monopolar e bipolar.</p>\n\n<p>O ponto central para responder corretamente está em compreender a diferença fundamental entre os dois tipos de energia. Na <strong>energia monopolar</strong>, a corrente elétrica flui do eletrodo ativo no ressectoscópio, passa através dos tecidos do corpo da paciente e retorna por uma placa dispersiva colocada na perna ou dorso. Isso significa que o meio distensor não pode conduzir eletricidade, senão a corrente se dispersaria pelo líquido ao invés de concentrar-se no tecido que queremos cortar. Por isso, usamos <strong>meios não eletrolíticos</strong> - soluções que não contêm íons e, portanto, não conduzem elétrons. As opções clássicas são <strong>glicina, sorbitol, manitol e água destilada</strong>.</p>\n\n<p>Agora vem um ponto crítico: esses meios não eletrolíticos, quando absorvidos em excesso durante o procedimento (e isso pode acontecer por absorção venosa ou através de perfurações), causam <strong>hiponatremia dilucional</strong>. A paciente literalmente dilui seu sódio sérico com essa solução hipotônica ou isotônica mas sem eletrólitos. Casos graves podem evoluir com confusão mental, convulsões e até dano neurológico permanente se não identificados e tratados prontamente. Cada solução tem peculiaridades: a glicina (osmolaridade 200mOsm/L) é metabolizada no fígado em amônia, então cuidado em hepatopatas; o sorbitol (178mOsm/L) vira glicose e frutose, podendo causar hiperglicemia pós-operatória em diabéticos; o manitol permanece no espaço extracelular e pode gerar edema pulmonar por expansão volêmica excessiva.</p>\n\n<p>Já na <strong>energia bipolar</strong>, a corrente elétrica flui apenas entre os dois polos do próprio instrumento, sem passar pelo corpo da paciente. Isso muda tudo: podemos usar <strong>meios eletrolíticos</strong>, que conduzem elétrons, porque a corrente não precisa atravessar grandes distâncias. Usamos então <strong>soro fisiológico 0,9% ou Ringer lactato</strong>, que têm osmolaridade próxima do plasma sanguíneo (isotônicos). A grande vantagem aqui é que, mesmo se houver absorção excessiva do meio distensor, o risco de desequilíbrio hidroeletrolítico grave é muito menor - no máximo teríamos uma sobrecarga de volume, mas não aquela hiponatremia dilucional perigosa da energia monopolar.</p>\n\n<p>Para responder completamente à questão, precisamos listar três características de cada. Para a <strong>energia bipolar</strong>, podemos citar: (1) utiliza meio eletrolítico que conduz elétrons, (2) exemplos são soro fisiológico ou Ringer lactato, (3) possui osmolaridade próxima do sangue com menor risco de desequilíbrio hidroeletrolítico grave se houver absorção excessiva. Para a <strong>energia monopolar</strong>, listamos: (1) utiliza meios não eletrolíticos que não conduzem elétrons, (2) opções incluem glicina, sorbitol, manitol ou água destilada, (3) apresentam risco de hiponatremia dilucional grave com possível dano neurológico se houver absorção excessiva e controle inadequado. A banca aceita variações dessas características, desde que o conceito fundamental esteja presente: eletrolítico versus não eletrolítico, os exemplos de soluções e os riscos associados à absorção.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h3>Visão do aprovado</h3>\n\n<p>O maior erro em questões sobre meios distensores é inverter as características: associar soro fisiológico à energia monopolar ou afirmar que glicina/manitol são usados com bipolar. Para fixar, lembramos que a energia bipolar permite usar soluções que já fazemos na veia todos os dias (SF, Ringer), justamente porque são seguras e eletrolíticas. Já a monopolar exige aquelas soluções \"exóticas\" que só vemos em centro cirúrgico para histeroscopia - glicina, sorbitol, manitol - porque não podem conduzir corrente.</p>\n\n<p>Quando a questão pede três características de cada meio, não basta citar apenas o nome da solução ou dizer genericamente \"risco de complicação\". A banca espera que mencionemos: se é eletrolítico ou não, exemplos concretos de soluções e o tipo específico de complicação com absorção excessiva (hiponatremia dilucional grave para monopolar versus sobrecarga volêmica para bipolar). Candidatos que sabem a teoria mas não estruturam a resposta nesses três eixos perdem pontos em questões discursivas.</p>\n\n<p>Uma pegadinha frequente é esquecer que o risco de hiponatremia dilucional grave com dano neurológico é exclusivo dos meios não eletrolíticos da energia monopolar. Muitos associam erroneamente qualquer absorção excessiva com hiponatremia, mas com SF ou Ringer (bipolar) o problema é sobrecarga de volume, não distúrbio eletrolítico grave. Saber essa diferença salva pontos e evita confusão em cenários clínicos de complicação intraoperatória.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Mioma submucoso nível 1 em paciente jovem com desejo reprodutivo nos remete à possibilidade de miomectomia histeroscópica, e é justamente sobre a técnica deste procedimento que a questão avalia nosso conhecimento: as características dos meios distensores conforme o tipo de energia do ressectoscópio. Embora o caso clínico seja rico em detalhes - temos anemia ferropriva grave (Hb 7,7g/dL com microcitose e hipocromia), picofagia, menorragia e história de abortos - a pergunta é objetiva e técnica, exigindo que listemos <strong>três características de cada meio distensor</strong> usado com energia monopolar e bipolar.</p>\n\n<p>O ponto central para responder corretamente está em compreender a diferença fundamental entre os dois tipos de energia. Na <strong>energia monopolar</strong>, a corrente elétrica flui do eletrodo ativo no ressectoscópio, passa através dos tecidos do corpo da paciente e retorna por uma placa dispersiva colocada na perna ou dorso. Isso significa que o meio distensor não pode conduzir eletricidade, senão a corrente se dispersaria pelo líquido ao invés de concentrar-se no tecido que queremos cortar. Por isso, usamos <strong>meios não eletrolíticos</strong> - soluções que não contêm íons e, portanto, não conduzem elétrons. As opções clássicas são <strong>glicina, sorbitol, manitol e água destilada</strong>.</p>\n\n<p>Agora vem um ponto crítico: esses meios não eletrolíticos, quando absorvidos em excesso durante o procedimento (e isso pode acontecer por absorção venosa ou através de perfurações), causam <strong>hiponatremia dilucional</strong>. A paciente literalmente dilui seu sódio sérico com essa solução hipotônica ou isotônica mas sem eletrólitos. Casos graves podem evoluir com confusão mental, convulsões e até dano neurológico permanente se não identificados e tratados prontamente. Cada solução tem peculiaridades: a glicina (osmolaridade 200mOsm/L) é metabolizada no fígado em amônia, então cuidado em hepatopatas; o sorbitol (178mOsm/L) vira glicose e frutose, podendo causar hiperglicemia pós-operatória em diabéticos; o manitol permanece no espaço extracelular e pode gerar edema pulmonar por expansão volêmica excessiva.</p>\n\n<p>Já na <strong>energia bipolar</strong>, a corrente elétrica flui apenas entre os dois polos do próprio instrumento, sem passar pelo corpo da paciente. Isso muda tudo: podemos usar <strong>meios eletrolíticos</strong>, que conduzem elétrons, porque a corrente não precisa atravessar grandes distâncias. Usamos então <strong>soro fisiológico 0,9% ou Ringer lactato</strong>, que têm osmolaridade próxima do plasma sanguíneo (isotônicos). A grande vantagem aqui é que, mesmo se houver absorção excessiva do meio distensor, o risco de desequilíbrio hidroeletrolítico grave é muito menor - no máximo teríamos uma sobrecarga de volume, mas não aquela hiponatremia dilucional perigosa da energia monopolar.</p>\n\n<p>Para responder completamente à questão, precisamos listar três características de cada. Para a <strong>energia bipolar</strong>, podemos citar: (1) utiliza meio eletrolítico que conduz elétrons, (2) exemplos são soro fisiológico ou Ringer lactato, (3) possui osmolaridade próxima do sangue com menor risco de desequilíbrio hidroeletrolítico grave se houver absorção excessiva. Para a <strong>energia monopolar</strong>, listamos: (1) utiliza meios não eletrolíticos que não conduzem elétrons, (2) opções incluem glicina, sorbitol, manitol ou água destilada, (3) apresentam risco de hiponatremia dilucional grave com possível dano neurológico se houver absorção excessiva e controle inadequado. A banca aceita variações dessas características, desde que o conceito fundamental esteja presente: eletrolítico versus não eletrolítico, os exemplos de soluções e os riscos associados à absorção.</p><br>Visão do aprovado: <h3>Visão do aprovado</h3>\n\n<p>O maior erro em questões sobre meios distensores é inverter as características: associar soro fisiológico à energia monopolar ou afirmar que glicina/manitol são usados com bipolar. Para fixar, lembramos que a energia bipolar permite usar soluções que já fazemos na veia todos os dias (SF, Ringer), justamente porque são seguras e eletrolíticas. Já a monopolar exige aquelas soluções \"exóticas\" que só vemos em centro cirúrgico para histeroscopia - glicina, sorbitol, manitol - porque não podem conduzir corrente.</p>\n\n<p>Quando a questão pede três características de cada meio, não basta citar apenas o nome da solução ou dizer genericamente \"risco de complicação\". A banca espera que mencionemos: se é eletrolítico ou não, exemplos concretos de soluções e o tipo específico de complicação com absorção excessiva (hiponatremia dilucional grave para monopolar versus sobrecarga volêmica para bipolar). Candidatos que sabem a teoria mas não estruturam a resposta nesses três eixos perdem pontos em questões discursivas.</p>\n\n<p>Uma pegadinha frequente é esquecer que o risco de hiponatremia dilucional grave com dano neurológico é exclusivo dos meios não eletrolíticos da energia monopolar. Muitos associam erroneamente qualquer absorção excessiva com hiponatremia, mas com SF ou Ringer (bipolar) o problema é sobrecarga de volume, não distúrbio eletrolítico grave. Saber essa diferença salva pontos e evita confusão em cenários clínicos de complicação intraoperatória.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333068,
+        "number": 6,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Miomatose uterina",
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina"
+        }
+      },
+      "detail": {
+        "id": 333068,
+        "content": "Mulher de 30 anos é encaminhada pela cirurgia vascular a uma avaliação ginecológica, para a realização de embolização de artérias uterinas. A paciente queixa-se de sangramento aumentado durante o período menstrual, refere sentir-se mais cansada aos esforços e ter desejo pelo consumo de pedras de gelo. Relata dois abortos espontâneos com o parceiro atual e desejo de gestar. Apresenta hemograma com hemoglobina = 7,7g/dL, hematócrito = 24,80%, VCM = 72,94fL e HCM = 22,65pg. Foi observada miomatose em ressonância magnética e em histeroscopia, com abaulamento em parede anterior e mioma nível 1. Considerando o caso clínico descrito: Elabore com justificativa sucinta o parecer da avaliação ginecológica para a cirurgia vascular.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15986,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Miomatose uterina",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 6,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443133,
+        "actual_explanation": true,
+        "introduction": "<p>A proposta de embolização de artérias uterinas precisa ser criteriosamente reavaliada à luz de um dado fundamental desta paciente de 30 anos: o <strong>desejo de gestar após dois abortos espontâneos</strong>. A questão nos pede um parecer ginecológico sobre essa indicação cirúrgica, e para construí-lo adequadamente, precisamos analisar todo o contexto clínico que vai muito além da presença de miomatose.</p>\n\n<p>Vamos começar identificando os elementos-chave do caso. Além do sangramento menstrual aumentado, a paciente apresenta sinais claros de <strong>anemia ferropriva grave</strong>: hemoglobina de 7,7 g/dL (muito abaixo do normal de 12-16 g/dL), anemia microcítica (VCM 72,94 fL) e hipocrômica (HCM 22,65 pg), fadiga aos esforços e, particularmente revelador, o <strong>desejo de consumir pedras de gelo</strong>. Esse último sintoma, chamado de <em>pagofagia</em> ou <em>picacismo</em>, é um sinal característico de deficiência de ferro grave e nos confirma a natureza ferropriva dessa anemia.</p>\n\n<p>Mas o achado que realmente muda toda a estratégia terapêutica está nos exames de imagem: a histeroscopia identificou um <strong>mioma nível 1 pela classificação FIGO</strong>. Precisamos entender o que isso significa. A Federação Internacional de Ginecologia e Obstetrícia (FIGO) classifica os miomas submucosos em três níveis: nível 0 (totalmente intracavitário), nível 1 (mais de 50% intracavitário, menos de 50% intramural) e nível 2 (mais de 50% intramural). Um mioma nível 1, portanto, tem <strong>menos de 50% de componente intramural</strong>, projetando-se predominantemente para dentro da cavidade uterina, causando significativa distorção cavitária.</p>\n\n<p>Aqui está o ponto crucial do raciocínio: miomas submucosos são uma <strong>causa bem estabelecida de abortos de repetição</strong>. A distorção da cavidade uterina dificulta a implantação embrionária adequada, interfere na vascularização endometrial e pode provocar contrações uterinas anômalas. Nossa paciente teve dois abortos espontâneos, e agora identificamos um fator anatômico corrigível que pode estar diretamente relacionado a essas perdas. Segundo diretrizes da FEBRASGO (Federação Brasileira das Associações de Ginecologia e Obstetrícia) e do ACOG (American College of Obstetricians and Gynecologists), miomas submucosos devem ser removidos em pacientes com desejo reprodutivo e história de infertilidade ou abortos recorrentes.</p>\n\n<p>Agora vamos à questão central: <strong>embolização ou miomectomia?</strong> A embolização de artérias uterinas é sim um procedimento eficaz para tratar miomas sintomáticos, reduzindo sangramento e volume dos miomas. No entanto, quando falamos de pacientes com desejo reprodutivo, precisamos considerar riscos específicos que tornam essa opção menos favorável. A embolização pode causar <strong>amenorreia em 1 a 3% dos casos</strong>, insuficiência ovariana prematura (especialmente em mulheres acima de 40 anos, mas possível em qualquer idade), e há preocupações sobre complicações placentárias em gestações subsequentes. As sociedades de medicina reprodutiva, incluindo a ESHRE (European Society of Human Reproduction and Embryology), recomendam cautela ao indicar embolização para pacientes que ainda desejam engravidar.</p>\n\n<p>Por outro lado, a <strong>miomectomia</strong> — remoção cirúrgica dos miomas preservando o útero — é a conduta de escolha neste cenário. E aqui vem um detalhe técnico importante que devemos especificar no parecer: para um mioma submucoso nível 1, a <strong>via preferencial é a histeroscópica</strong>, não a abdominal. A miomectomia histeroscópica é um procedimento minimamente invasivo, realizado por via transcervical, que permite a ressecção do mioma sob visão direta, com menor morbidade, recuperação mais rápida e excelente preservação da fertilidade. Miomas nível 0 e nível 1 são ideais para essa abordagem justamente porque têm maior componente intracavitário e menor porção intramural.</p>\n\n<p>Estudos mostram que após miomectomia de miomas submucosos, as taxas de gravidez aumentam significativamente (de cerca de 20-30% para 40-60% em pacientes com infertilidade prévia), e as taxas de aborto diminuem. É importante orientar que o <strong>tempo recomendado entre a miomectomia e a tentativa de gestação é geralmente de 3 a 6 meses</strong>, permitindo adequada cicatrização do endométrio e restabelecimento da anatomia cavitária normal.</p>\n\n<p>Há ainda outro aspecto que precisamos abordar no manejo desta paciente, embora não esteja explicitamente no gabarito: a <strong>anemia grave</strong>. Com hemoglobina de 7,7 g/dL, essa paciente está em anemia severa e sintomática. Antes de qualquer procedimento cirúrgico eletivo, precisamos corrigir essa anemia. O manejo pré-operatório deve incluir reposição de ferro (preferencialmente endovenoso pela gravidade e para resposta mais rápida), e podemos considerar o uso de <strong>análogos de GnRH</strong> (agonistas ou antagonistas) por 2 a 3 meses antes da cirurgia. Esses medicamentos induzem hipoestrogenismo temporário, reduzem o volume dos miomas, cessam o sangramento menstrual (permitindo recuperação hematológica) e podem facilitar o procedimento cirúrgico. Em casos de anemia muito sintomática ou instabilidade hemodinâmica, pode ser necessária transfusão sanguínea.</p>\n\n<p>Quanto ao seguimento pós-operatório, após a miomectomia histeroscópica, devemos realizar controle histeroscópico ou ultrassonográfico em 2 a 3 meses para confirmar adequada cicatrização endometrial e ausência de sinéquias (aderências intrauterinas). Só após essa confirmação, a paciente está liberada para tentar engravidar.</p>\n\n<p>Então, como deve ser estruturado nosso parecer? A banca espera que identifiquemos <strong>quatro elementos essenciais</strong>:</p>\n\n<ul>\n<li>A paciente <strong>deseja gestar</strong></li>\n<li>Ela tem <strong>história de perdas gestacionais</strong> (dois abortos espontâneos)</li>\n<li>Há <strong>mioma submucoso</strong> (nível 1) que <strong>distorce a cavidade uterina</strong></li>\n<li>A conduta indicada é <strong>miomectomia</strong> (não embolização)</li>\n</ul>\n\n<p>A resposta esperada, nos termos do gabarito oficial, seria: \"Para pacientes que desejam gestar, com história de perdas gestacionais e miomas submucosos e/ou que distorcem a cavidade, indica-se a realização de miomectomia.\" Sinônimos aceitáveis incluem \"miomectomia histeroscópica\" ou \"ressecção histeroscópica do mioma\". O parecer deve deixar claro que <strong>contraindicamos a embolização</strong> (ou que ela não é a primeira escolha) no contexto de desejo reprodutivo, especialmente com mioma submucoso ressecável por via histeroscópica.</p>\n\n<p>A armadilha desta questão está em simplesmente aceitar a proposta da cirurgia vascular sem questionamento crítico. A embolização é um procedimento válido para miomas, mas devemos sempre individualizar a indicação considerando a idade da paciente, seus planos reprodutivos, o tipo e localização dos miomas, e as alternativas disponíveis. Neste caso específico, todos os elementos apontam para a miomectomia histeroscópica como escolha superior.</p>\n\n<p>Em resumo, nosso parecer ginecológico deve ser fundamentado, respeitoso com a equipe solicitante, mas firme na recomendação: <strong>não indicamos embolização de artérias uterinas neste momento</strong>. A conduta apropriada é a <strong>miomectomia histeroscópica do mioma submucoso nível 1</strong>, após adequada correção da anemia ferropriva, visando restaurar a anatomia cavitária normal, eliminar o fator causal dos abortos de repetição e otimizar as chances de gestação futura bem-sucedida.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h2>Visão do aprovado</h2>\n\n<p>O segredo desta questão está em perceber que não estamos sendo perguntados sobre diagnóstico ou tratamento da anemia, mas sobre <strong>dar um parecer que contrarie a proposta da cirurgia vascular</strong>. A embolização pode até funcionar para miomas sintomáticos, mas aqui temos três elementos que mudam completamente a estratégia: desejo reprodutivo, dois abortos prévios e mioma submucoso nível 1. Esses três pilares juntos praticamente fecham a indicação de miomectomia e contraindicam a embolização. O raciocínio rápido para prova é entender que mioma submucoso distorce cavidade, cavidade distorcida causa aborto, paciente quer gestar, logo precisamos corrigir cirurgicamente preservando fertilidade.</p>\n\n<p>A pegadinha clássica aqui é se distrair com a <em>pagofagia</em> e os detalhes laboratoriais da anemia ferropriva, gastando tempo precioso descrevendo valores de hemoglobina e VCM quando o comando pede especificamente o <strong>parecer sobre a embolização</strong>. Outro erro comum é aceitar passivamente a proposta do colega vascular sem questionamento crítico, esquecendo que pareceres existem justamente para avaliar se a indicação está adequada ao contexto individual da paciente. O candidato que simplesmente concorda com a embolização ou foca apenas no manejo da anemia perde o ponto central da questão.</p>\n\n<p>Em provas discursivas de R1, questões formato \"parecer\" ou \"interconsulta\" costumam testar a capacidade de priorizar informações e posicionar-se com clareza técnica, muitas vezes discordando educadamente da proposta inicial. Aqui, um detalhe que diferencia respostas medianas de excelentes é especificar <strong>miomectomia histeroscópica</strong> em vez de apenas \"miomectomia\", demonstrando conhecimento da classificação FIGO e da via cirúrgica apropriada para mioma nível 1. Respostas que explicitam tanto a contraindicação da embolização quanto a indicação positiva da miomectomia, vinculando-as ao desejo reprodutivo e histórico obstétrico, tendem a pontuar melhor.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>A proposta de embolização de artérias uterinas precisa ser criteriosamente reavaliada à luz de um dado fundamental desta paciente de 30 anos: o <strong>desejo de gestar após dois abortos espontâneos</strong>. A questão nos pede um parecer ginecológico sobre essa indicação cirúrgica, e para construí-lo adequadamente, precisamos analisar todo o contexto clínico que vai muito além da presença de miomatose.</p>\n\n<p>Vamos começar identificando os elementos-chave do caso. Além do sangramento menstrual aumentado, a paciente apresenta sinais claros de <strong>anemia ferropriva grave</strong>: hemoglobina de 7,7 g/dL (muito abaixo do normal de 12-16 g/dL), anemia microcítica (VCM 72,94 fL) e hipocrômica (HCM 22,65 pg), fadiga aos esforços e, particularmente revelador, o <strong>desejo de consumir pedras de gelo</strong>. Esse último sintoma, chamado de <em>pagofagia</em> ou <em>picacismo</em>, é um sinal característico de deficiência de ferro grave e nos confirma a natureza ferropriva dessa anemia.</p>\n\n<p>Mas o achado que realmente muda toda a estratégia terapêutica está nos exames de imagem: a histeroscopia identificou um <strong>mioma nível 1 pela classificação FIGO</strong>. Precisamos entender o que isso significa. A Federação Internacional de Ginecologia e Obstetrícia (FIGO) classifica os miomas submucosos em três níveis: nível 0 (totalmente intracavitário), nível 1 (mais de 50% intracavitário, menos de 50% intramural) e nível 2 (mais de 50% intramural). Um mioma nível 1, portanto, tem <strong>menos de 50% de componente intramural</strong>, projetando-se predominantemente para dentro da cavidade uterina, causando significativa distorção cavitária.</p>\n\n<p>Aqui está o ponto crucial do raciocínio: miomas submucosos são uma <strong>causa bem estabelecida de abortos de repetição</strong>. A distorção da cavidade uterina dificulta a implantação embrionária adequada, interfere na vascularização endometrial e pode provocar contrações uterinas anômalas. Nossa paciente teve dois abortos espontâneos, e agora identificamos um fator anatômico corrigível que pode estar diretamente relacionado a essas perdas. Segundo diretrizes da FEBRASGO (Federação Brasileira das Associações de Ginecologia e Obstetrícia) e do ACOG (American College of Obstetricians and Gynecologists), miomas submucosos devem ser removidos em pacientes com desejo reprodutivo e história de infertilidade ou abortos recorrentes.</p>\n\n<p>Agora vamos à questão central: <strong>embolização ou miomectomia?</strong> A embolização de artérias uterinas é sim um procedimento eficaz para tratar miomas sintomáticos, reduzindo sangramento e volume dos miomas. No entanto, quando falamos de pacientes com desejo reprodutivo, precisamos considerar riscos específicos que tornam essa opção menos favorável. A embolização pode causar <strong>amenorreia em 1 a 3% dos casos</strong>, insuficiência ovariana prematura (especialmente em mulheres acima de 40 anos, mas possível em qualquer idade), e há preocupações sobre complicações placentárias em gestações subsequentes. As sociedades de medicina reprodutiva, incluindo a ESHRE (European Society of Human Reproduction and Embryology), recomendam cautela ao indicar embolização para pacientes que ainda desejam engravidar.</p>\n\n<p>Por outro lado, a <strong>miomectomia</strong> — remoção cirúrgica dos miomas preservando o útero — é a conduta de escolha neste cenário. E aqui vem um detalhe técnico importante que devemos especificar no parecer: para um mioma submucoso nível 1, a <strong>via preferencial é a histeroscópica</strong>, não a abdominal. A miomectomia histeroscópica é um procedimento minimamente invasivo, realizado por via transcervical, que permite a ressecção do mioma sob visão direta, com menor morbidade, recuperação mais rápida e excelente preservação da fertilidade. Miomas nível 0 e nível 1 são ideais para essa abordagem justamente porque têm maior componente intracavitário e menor porção intramural.</p>\n\n<p>Estudos mostram que após miomectomia de miomas submucosos, as taxas de gravidez aumentam significativamente (de cerca de 20-30% para 40-60% em pacientes com infertilidade prévia), e as taxas de aborto diminuem. É importante orientar que o <strong>tempo recomendado entre a miomectomia e a tentativa de gestação é geralmente de 3 a 6 meses</strong>, permitindo adequada cicatrização do endométrio e restabelecimento da anatomia cavitária normal.</p>\n\n<p>Há ainda outro aspecto que precisamos abordar no manejo desta paciente, embora não esteja explicitamente no gabarito: a <strong>anemia grave</strong>. Com hemoglobina de 7,7 g/dL, essa paciente está em anemia severa e sintomática. Antes de qualquer procedimento cirúrgico eletivo, precisamos corrigir essa anemia. O manejo pré-operatório deve incluir reposição de ferro (preferencialmente endovenoso pela gravidade e para resposta mais rápida), e podemos considerar o uso de <strong>análogos de GnRH</strong> (agonistas ou antagonistas) por 2 a 3 meses antes da cirurgia. Esses medicamentos induzem hipoestrogenismo temporário, reduzem o volume dos miomas, cessam o sangramento menstrual (permitindo recuperação hematológica) e podem facilitar o procedimento cirúrgico. Em casos de anemia muito sintomática ou instabilidade hemodinâmica, pode ser necessária transfusão sanguínea.</p>\n\n<p>Quanto ao seguimento pós-operatório, após a miomectomia histeroscópica, devemos realizar controle histeroscópico ou ultrassonográfico em 2 a 3 meses para confirmar adequada cicatrização endometrial e ausência de sinéquias (aderências intrauterinas). Só após essa confirmação, a paciente está liberada para tentar engravidar.</p>\n\n<p>Então, como deve ser estruturado nosso parecer? A banca espera que identifiquemos <strong>quatro elementos essenciais</strong>:</p>\n\n<ul>\n<li>A paciente <strong>deseja gestar</strong></li>\n<li>Ela tem <strong>história de perdas gestacionais</strong> (dois abortos espontâneos)</li>\n<li>Há <strong>mioma submucoso</strong> (nível 1) que <strong>distorce a cavidade uterina</strong></li>\n<li>A conduta indicada é <strong>miomectomia</strong> (não embolização)</li>\n</ul>\n\n<p>A resposta esperada, nos termos do gabarito oficial, seria: \"Para pacientes que desejam gestar, com história de perdas gestacionais e miomas submucosos e/ou que distorcem a cavidade, indica-se a realização de miomectomia.\" Sinônimos aceitáveis incluem \"miomectomia histeroscópica\" ou \"ressecção histeroscópica do mioma\". O parecer deve deixar claro que <strong>contraindicamos a embolização</strong> (ou que ela não é a primeira escolha) no contexto de desejo reprodutivo, especialmente com mioma submucoso ressecável por via histeroscópica.</p>\n\n<p>A armadilha desta questão está em simplesmente aceitar a proposta da cirurgia vascular sem questionamento crítico. A embolização é um procedimento válido para miomas, mas devemos sempre individualizar a indicação considerando a idade da paciente, seus planos reprodutivos, o tipo e localização dos miomas, e as alternativas disponíveis. Neste caso específico, todos os elementos apontam para a miomectomia histeroscópica como escolha superior.</p>\n\n<p>Em resumo, nosso parecer ginecológico deve ser fundamentado, respeitoso com a equipe solicitante, mas firme na recomendação: <strong>não indicamos embolização de artérias uterinas neste momento</strong>. A conduta apropriada é a <strong>miomectomia histeroscópica do mioma submucoso nível 1</strong>, após adequada correção da anemia ferropriva, visando restaurar a anatomia cavitária normal, eliminar o fator causal dos abortos de repetição e otimizar as chances de gestação futura bem-sucedida.</p><br>Visão do aprovado: <h2>Visão do aprovado</h2>\n\n<p>O segredo desta questão está em perceber que não estamos sendo perguntados sobre diagnóstico ou tratamento da anemia, mas sobre <strong>dar um parecer que contrarie a proposta da cirurgia vascular</strong>. A embolização pode até funcionar para miomas sintomáticos, mas aqui temos três elementos que mudam completamente a estratégia: desejo reprodutivo, dois abortos prévios e mioma submucoso nível 1. Esses três pilares juntos praticamente fecham a indicação de miomectomia e contraindicam a embolização. O raciocínio rápido para prova é entender que mioma submucoso distorce cavidade, cavidade distorcida causa aborto, paciente quer gestar, logo precisamos corrigir cirurgicamente preservando fertilidade.</p>\n\n<p>A pegadinha clássica aqui é se distrair com a <em>pagofagia</em> e os detalhes laboratoriais da anemia ferropriva, gastando tempo precioso descrevendo valores de hemoglobina e VCM quando o comando pede especificamente o <strong>parecer sobre a embolização</strong>. Outro erro comum é aceitar passivamente a proposta do colega vascular sem questionamento crítico, esquecendo que pareceres existem justamente para avaliar se a indicação está adequada ao contexto individual da paciente. O candidato que simplesmente concorda com a embolização ou foca apenas no manejo da anemia perde o ponto central da questão.</p>\n\n<p>Em provas discursivas de R1, questões formato \"parecer\" ou \"interconsulta\" costumam testar a capacidade de priorizar informações e posicionar-se com clareza técnica, muitas vezes discordando educadamente da proposta inicial. Aqui, um detalhe que diferencia respostas medianas de excelentes é especificar <strong>miomectomia histeroscópica</strong> em vez de apenas \"miomectomia\", demonstrando conhecimento da classificação FIGO e da via cirúrgica apropriada para mioma nível 1. Respostas que explicitam tanto a contraindicação da embolização quanto a indicação positiva da miomectomia, vinculando-as ao desejo reprodutivo e histórico obstétrico, tendem a pontuar melhor.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333069,
+        "number": 7,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 333069,
+        "content": "Mulher de 42 anos, GIII/PIII/A0 (três partos normais), apresenta queixa de dismenorreia moderada (EVA 6), dispareunia leve (EVA 3) e sangramento uterino anormal. A paciente refere ter realizado colecistectomia laparoscópica aos 40 anos e apendicectomia na infância. Ao exame físico, apresenta útero com boa mobilidade e acesso às laterais, além de anexos impalpáveis; septos livres e volume uterino comparável ao tempo gestacional de 10 semanas. O toque retal é compatível com o exame vaginal. A ressonância magnética mostra volume uterino = 220cm3, sugerindo adenomiose, sem sinais de endometriose. Após orientações sobre diferentes opções terapêuticas, a paciente opta pela realização de histerectomia. Com base no caso clínico descrito: Indique a via de histerectomia para esse caso e justifique.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 7,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443127,
+        "actual_explanation": true,
+        "introduction": "<p>A escolha da via de acesso para histerectomia não é arbitrária — ela se baseia em critérios clínicos objetivos que avaliam a viabilidade técnica e a segurança de cada abordagem. Nessa questão, precisamos indicar qual via utilizar e, principalmente, justificar nossa escolha com base nos achados do caso.</p>\n\n<p>Quando pensamos nas opções de via para histerectomia, temos três possibilidades principais: <strong>vaginal</strong>, <strong>abdominal</strong> (laparotômica) e <strong>laparoscópica</strong>. A via vaginal é considerada a via de escolha sempre que tecnicamente viável, pois oferece diversas vantagens: menor tempo de recuperação, ausência de cicatriz abdominal, menor dor pós-operatória, menor tempo de internação e menor custo. Mas para indicá-la com segurança, precisamos avaliar se a paciente preenche os critérios necessários.</p>\n\n<p>Vamos então analisar sistematicamente os achados do exame físico desta paciente. O primeiro ponto crucial é o <strong>tamanho uterino</strong>: o volume é de 220cm³, comparável a um útero de 10 semanas gestacionais. Aqui temos um critério fundamental — a via vaginal é adequada para úteros com volume <strong>inferior a 280cm³</strong>. Nossa paciente está bem dentro desse limite, o que já favorece a via vaginal.</p>\n\n<p>O segundo critério é a <strong>mobilidade uterina</strong>. O exame descreve que o útero apresenta \"boa mobilidade\" — isso significa que não há aderências fixando o útero à pelve, o que facilitaria a manipulação necessária durante a cirurgia vaginal. Úteros fixos por aderências extensas, como na endometriose profunda, tornariam a via vaginal difícil ou até impossível.</p>\n\n<p>Em seguida, devemos avaliar o <strong>acesso às laterais uterinas e septos livres</strong>. O exame menciona explicitamente que há \"acesso às laterais\" e \"septos livres\". Isso significa que os paramétrios e ligamentos laterais são palpáveis e não há massa ou aderência ocupando os espaços laterais ao útero. Durante a histerectomia vaginal, precisamos identificar, clampar e seccionar os pedículos vasculares laterais — se não conseguimos acessá-los adequadamente ao exame, a via vaginal fica comprometida.</p>\n\n<p>Outro ponto importante é a <strong>ausência de endometriose</strong>. A ressonância magnética não mostra sinais de endometriose, e o toque retal é compatível com o vaginal (ou seja, não há espessamento ou nódulos em fundo de saco posterior). A endometriose pode causar aderências densas e distorção da anatomia pélvica, dificultando a via vaginal. Neste caso, a ausência de doença aderencial é mais um critério favorável.</p>\n\n<p>Não podemos esquecer também que a paciente tem <strong>três partos normais</strong> prévios. Essa paridade vaginal resulta em um canal vaginal mais amplo e complacente, facilitando tecnicamente o acesso e a manipulação durante a cirurgia vaginal. Embora não seja um critério absoluto, é um fator facilitador que não deve ser ignorado.</p>\n\n<p>Um erro frequente nesse tipo de questão é indicar a via laparoscópica por considerá-la \"mais moderna\" ou \"minimamente invasiva\". Embora a laparoscopia seja uma excelente opção em muitos casos, quando a via vaginal é possível, ela deve ser preferida — afinal, não há incisão alguma, a recuperação é ainda mais rápida e o custo é menor. A via abdominal também seria um equívoco aqui, pois reservamos essa abordagem para úteros muito aumentados (>280cm³), com aderências extensas, doença anexial complexa ou quando há indicação de linfadenectomia (como em casos oncológicos).</p>\n\n<p>Portanto, a resposta correta é: <strong>histerectomia pela via vaginal</strong>. A justificativa deve incluir os critérios que encontramos no caso: <strong>volume uterino inferior a 280cm³ (220cm³)</strong>, <strong>boa mobilidade uterina</strong>, <strong>acesso às laterais uterinas</strong>, <strong>septos livres</strong> e <strong>ausência de sinais de endometriose</strong>. Alguns candidatos podem complementar citando a paridade vaginal como fator facilitador, embora isso não esteja explícito no gabarito oficial. O importante é demonstrar que entendemos os critérios clínicos que norteiam a escolha da via de acesso e que sabemos aplicá-los ao caso concreto.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h3>Visão do aprovado</h3>\n\n<p>O segredo para acertar questões de escolha de via de histerectomia está em desenvolver uma checklist mental rápida: primeiro conferimos se o útero está abaixo de 280cm³, depois verificamos mobilidade, acesso lateral e septos. Neste caso, todos os sinais favoráveis estão explicitamente descritos no exame físico — útero de 220cm³, boa mobilidade, acesso às laterais e septos livres. Quando encontramos esse conjunto de achados positivos, a via vaginal não é apenas uma opção, é a via de escolha.</p>\n\n<p>A armadilha mais comum aqui é o candidato indicar via laparoscópica por considerá-la tecnologicamente superior ou menos invasiva, esquecendo que a ausência total de incisões torna a via vaginal ainda mais vantajosa quando viável. Outro erro frequente é assumir que <em>adenomiose</em>, por ser doença infiltrativa, contraindicaria a via vaginal — na verdade, o que importa é se há aderências e fixação pélvica, não o diagnóstico em si. A ressonância mostrando ausência de endometriose é uma informação estratégica que descarta doença aderencial extensa, removendo um dos principais obstáculos à via vaginal.</p>\n\n<p>Na hora de justificar, devemos listar objetivamente os critérios preenchidos, sempre mencionando o valor de <strong>280cm³</strong> como referência de corte. A paridade vaginal prévia pode ser citada como facilitador técnico, mas não é critério essencial para a indicação. O que a banca quer ver é que reconhecemos os parâmetros clínicos objetivos que tornam a via vaginal segura e tecnicamente factível neste cenário específico.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>A escolha da via de acesso para histerectomia não é arbitrária — ela se baseia em critérios clínicos objetivos que avaliam a viabilidade técnica e a segurança de cada abordagem. Nessa questão, precisamos indicar qual via utilizar e, principalmente, justificar nossa escolha com base nos achados do caso.</p>\n\n<p>Quando pensamos nas opções de via para histerectomia, temos três possibilidades principais: <strong>vaginal</strong>, <strong>abdominal</strong> (laparotômica) e <strong>laparoscópica</strong>. A via vaginal é considerada a via de escolha sempre que tecnicamente viável, pois oferece diversas vantagens: menor tempo de recuperação, ausência de cicatriz abdominal, menor dor pós-operatória, menor tempo de internação e menor custo. Mas para indicá-la com segurança, precisamos avaliar se a paciente preenche os critérios necessários.</p>\n\n<p>Vamos então analisar sistematicamente os achados do exame físico desta paciente. O primeiro ponto crucial é o <strong>tamanho uterino</strong>: o volume é de 220cm³, comparável a um útero de 10 semanas gestacionais. Aqui temos um critério fundamental — a via vaginal é adequada para úteros com volume <strong>inferior a 280cm³</strong>. Nossa paciente está bem dentro desse limite, o que já favorece a via vaginal.</p>\n\n<p>O segundo critério é a <strong>mobilidade uterina</strong>. O exame descreve que o útero apresenta \"boa mobilidade\" — isso significa que não há aderências fixando o útero à pelve, o que facilitaria a manipulação necessária durante a cirurgia vaginal. Úteros fixos por aderências extensas, como na endometriose profunda, tornariam a via vaginal difícil ou até impossível.</p>\n\n<p>Em seguida, devemos avaliar o <strong>acesso às laterais uterinas e septos livres</strong>. O exame menciona explicitamente que há \"acesso às laterais\" e \"septos livres\". Isso significa que os paramétrios e ligamentos laterais são palpáveis e não há massa ou aderência ocupando os espaços laterais ao útero. Durante a histerectomia vaginal, precisamos identificar, clampar e seccionar os pedículos vasculares laterais — se não conseguimos acessá-los adequadamente ao exame, a via vaginal fica comprometida.</p>\n\n<p>Outro ponto importante é a <strong>ausência de endometriose</strong>. A ressonância magnética não mostra sinais de endometriose, e o toque retal é compatível com o vaginal (ou seja, não há espessamento ou nódulos em fundo de saco posterior). A endometriose pode causar aderências densas e distorção da anatomia pélvica, dificultando a via vaginal. Neste caso, a ausência de doença aderencial é mais um critério favorável.</p>\n\n<p>Não podemos esquecer também que a paciente tem <strong>três partos normais</strong> prévios. Essa paridade vaginal resulta em um canal vaginal mais amplo e complacente, facilitando tecnicamente o acesso e a manipulação durante a cirurgia vaginal. Embora não seja um critério absoluto, é um fator facilitador que não deve ser ignorado.</p>\n\n<p>Um erro frequente nesse tipo de questão é indicar a via laparoscópica por considerá-la \"mais moderna\" ou \"minimamente invasiva\". Embora a laparoscopia seja uma excelente opção em muitos casos, quando a via vaginal é possível, ela deve ser preferida — afinal, não há incisão alguma, a recuperação é ainda mais rápida e o custo é menor. A via abdominal também seria um equívoco aqui, pois reservamos essa abordagem para úteros muito aumentados (>280cm³), com aderências extensas, doença anexial complexa ou quando há indicação de linfadenectomia (como em casos oncológicos).</p>\n\n<p>Portanto, a resposta correta é: <strong>histerectomia pela via vaginal</strong>. A justificativa deve incluir os critérios que encontramos no caso: <strong>volume uterino inferior a 280cm³ (220cm³)</strong>, <strong>boa mobilidade uterina</strong>, <strong>acesso às laterais uterinas</strong>, <strong>septos livres</strong> e <strong>ausência de sinais de endometriose</strong>. Alguns candidatos podem complementar citando a paridade vaginal como fator facilitador, embora isso não esteja explícito no gabarito oficial. O importante é demonstrar que entendemos os critérios clínicos que norteiam a escolha da via de acesso e que sabemos aplicá-los ao caso concreto.</p><br>Visão do aprovado: <h3>Visão do aprovado</h3>\n\n<p>O segredo para acertar questões de escolha de via de histerectomia está em desenvolver uma checklist mental rápida: primeiro conferimos se o útero está abaixo de 280cm³, depois verificamos mobilidade, acesso lateral e septos. Neste caso, todos os sinais favoráveis estão explicitamente descritos no exame físico — útero de 220cm³, boa mobilidade, acesso às laterais e septos livres. Quando encontramos esse conjunto de achados positivos, a via vaginal não é apenas uma opção, é a via de escolha.</p>\n\n<p>A armadilha mais comum aqui é o candidato indicar via laparoscópica por considerá-la tecnologicamente superior ou menos invasiva, esquecendo que a ausência total de incisões torna a via vaginal ainda mais vantajosa quando viável. Outro erro frequente é assumir que <em>adenomiose</em>, por ser doença infiltrativa, contraindicaria a via vaginal — na verdade, o que importa é se há aderências e fixação pélvica, não o diagnóstico em si. A ressonância mostrando ausência de endometriose é uma informação estratégica que descarta doença aderencial extensa, removendo um dos principais obstáculos à via vaginal.</p>\n\n<p>Na hora de justificar, devemos listar objetivamente os critérios preenchidos, sempre mencionando o valor de <strong>280cm³</strong> como referência de corte. A paridade vaginal prévia pode ser citada como facilitador técnico, mas não é critério essencial para a indicação. O que a banca quer ver é que reconhecemos os parâmetros clínicos objetivos que tornam a via vaginal segura e tecnicamente factível neste cenário específico.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333070,
+        "number": 8,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Prolapsos genitais e fístulas",
+        "focus": {
+          "id": 1644,
+          "name": "Prolapsos genitais e fístulas"
+        }
+      },
+      "detail": {
+        "id": 333070,
+        "content": "Mulher de 42 anos, GIII/PIII/A0 (três partos normais), apresenta queixa de dismenorreia moderada (EVA 6), dispareunia leve (EVA 3) e sangramento uterino anormal. A paciente refere ter realizado colecistectomia laparoscópica aos 40 anos e apendicectomia na infância. Ao exame físico, apresenta útero com boa mobilidade e acesso às laterais, além de anexos impalpáveis; septos livres e volume uterino comparável ao tempo gestacional de 10 semanas. O toque retal é compatível com o exame vaginal. A ressonância magnética mostra volume uterino = 220cm3, sugerindo adenomiose, sem sinais de endometriose. Após orientações sobre diferentes opções terapêuticas, a paciente opta pela realização de histerectomia. Com base no caso clínico descrito: Considerando a realização de histerectomia laparoscópica, descreva três formas de identificar uma lesão inadvertida vesical e como manejar um caso de lesão na cúpula vesical medindo 3cm.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15922,
+            "parent_tag": {
+              "id": 15917,
+              "name": "Uroginecologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Prolapsos genitais e fístulas",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 8,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1644,
+          "name": "Prolapsos genitais e fístulas",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 89,
+            "name": "Uroginecologia",
+            "discipline": 86,
+            "old_tag": 15917,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443129,
+        "actual_explanation": true,
+        "introduction": "<p>Lesão vesical é uma complicação relevante durante histerectomia laparoscópica, com incidência de 1-2% dos casos, e o cirurgião precisa dominar tanto os métodos de identificação intraoperatória quanto o manejo imediato dessa intercorrência. A questão pede especificamente que citemos <strong>três formas de identificar</strong> uma lesão inadvertida e <strong>como conduzir</strong> uma lesão de 3cm na cúpula vesical. Vamos organizar o raciocínio em torno desses dois comandos.</p>\n\n<p>Primeiro, precisamos entender que a bexiga mantém íntima relação anatômica com a face anterior do útero e do colo, sendo dissecada durante a histerectomia. Lesões podem ocorrer durante a divulsão do peritônio vesicouterino, especialmente em casos de cirurgias prévias, endometriose ou grandes volumes uterinos. No nosso caso, embora a paciente tenha cirurgias abdominais prévias (colecistectomia laparoscópica e apendicectomia), o exame mostrou útero com boa mobilidade e septos livres, o que sugere anatomia favorável. Ainda assim, o risco existe e devemos estar preparados.</p>\n\n<p>Para <strong>identificar uma lesão vesical</strong> durante o procedimento, temos vários métodos disponíveis:</p>\n<ul>\n<li>A <strong>visualização direta da lesão</strong> é a forma mais óbvia: podemos ver a abertura da parede vesical ou visualizar a sonda vesical através da lesão. Esse é o método mais imediato quando a lesão ocorre sob visão direta durante a dissecção.</li>\n<li>Observar o <strong>extravasamento de urina</strong> para a cavidade peritoneal – quando identificamos líquido claro saindo de algum ponto durante a manipulação cirúrgica, devemos suspeitar de lesão vesical.</li>\n<li>O <strong>teste com instilação de contraste ou corante</strong>: enchemos a bexiga com soro fisiológico corado com azul de metileno (ou outro contraste) e observamos se há saída do líquido para a cavidade abdominal, o que confirma a lesão.</li>\n<li>Notar <strong>gás no coletor de urina</strong> (pneumatúria), pois durante a laparoscopia o CO2 pode passar pela lesão vesical para dentro da bexiga.</li>\n<li>A <strong>cistoscopia intraoperatória</strong> permite visualização direta da mucosa vesical e identificação de lesões que podem não ser evidentes pela visão externa.</li>\n</ul>\n<p>A questão pede três desses métodos, então devemos citar três quaisquer dentre essas opções.</p>\n\n<p>Agora vamos ao <strong>manejo da lesão</strong>. Uma lesão de 3cm na cúpula vesical é considerada uma lesão de tamanho significativo e requer reparo adequado. O princípio fundamental é realizar <strong>rafia em dois planos</strong> usando <strong>fios absorvíveis</strong>. No primeiro plano, suturamos a camada mucosa de forma contínua ou com pontos separados, com nós para dentro da bexiga. No segundo plano, aproximamos a camada muscular (detrusor), reforçando o fechamento. Usamos fios absorvíveis (como <em>Vicryl</em> 3-0 ou 4-0) para evitar a formação de cálculos, já que fios inabsorvíveis em contato com urina podem servir de núcleo para litíase. Após o reparo, é fundamental manter <strong>cateterização vesical contínua por pelo menos 5 a 7 dias</strong>, para garantir drenagem adequada, evitar distensão vesical e permitir cicatrização apropriada da sutura. Alguns cirurgiões podem optar por teste de enchimento vesical após o reparo para confirmar que não há extravasamento.</p>\n\n<p>Um ponto importante: embora não seja solicitado na questão, devemos considerar avaliação urológica pós-operatória, especialmente em lesões maiores. A banca quer ver que conhecemos os critérios essenciais: três métodos de detecção, sutura em dois planos com fios absorvíveis e cateterização por 5-7 dias. Variações como \"sonda de Foley por 5 dias\" ou \"cateter vesical de demora por 7 dias\" são sinônimos aceitos. O crucial é não esquecer nenhum elemento: se citarmos apenas dois métodos de identificação ou esquecermos o tempo de cateterização, perdemos pontos valiosos em uma questão relativamente direta.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h2>Visão do aprovado</h2>\n\n<p>A grande armadilha dessa questão está na palavra <strong>\"três\"</strong>. Em provas discursivas, devemos responder exatamente o que foi pedido: listar cinco métodos de identificação quando foram solicitados três não garante pontos extras e pode até prejudicar se o corretor considerar que não sabemos selecionar o essencial. O candidato aprovado escolhe os três métodos mais objetivos (<em>visualização direta</em>, <em>extravasamento de urina</em> e <em>teste com contraste</em> são os mais clássicos) e segue em frente. Perder tempo elaborando demais em questões desse tipo rouba minutos preciosos de outras respostas.</p>\n\n<p>Questões discursivas em provas de R1 exigem <strong>organização visual</strong> para o corretor. Ao descrever o manejo, precisamos estruturar a resposta de forma que fique explícito:</p>\n<ul>\n<li>Tipo de fio (absorvível)</li>\n<li>Técnica (dois planos)</li>\n<li>Tempo de cateterização (cinco a sete dias)</li>\n</ul>\n\n<p>Esquecer qualquer um desses três elementos provavelmente significa perda de pontos, mesmo que o restante da resposta esteja correto. A lesão de 3cm sinaliza que não é uma microlesão e reforça a necessidade do reparo completo em dois planos, diferente de lesões puntiformes que alguns serviços manejam de forma mais conservadora.</p>\n\n<p>O formato <strong>\"descreva e maneje\"</strong> é clássico em questões cirúrgicas discursivas e costuma valer muitos pontos na prova. Treinamos identificando que a resposta tem duas partes independentes e que cada parte tem seus critérios de pontuação. Na prática da prova, vale até numerar ou separar claramente: \"Identificação: 1)... 2)... 3)...\" e \"Manejo:...\" para que o corretor não precise procurar os elementos na nossa resposta.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Lesão vesical é uma complicação relevante durante histerectomia laparoscópica, com incidência de 1-2% dos casos, e o cirurgião precisa dominar tanto os métodos de identificação intraoperatória quanto o manejo imediato dessa intercorrência. A questão pede especificamente que citemos <strong>três formas de identificar</strong> uma lesão inadvertida e <strong>como conduzir</strong> uma lesão de 3cm na cúpula vesical. Vamos organizar o raciocínio em torno desses dois comandos.</p>\n\n<p>Primeiro, precisamos entender que a bexiga mantém íntima relação anatômica com a face anterior do útero e do colo, sendo dissecada durante a histerectomia. Lesões podem ocorrer durante a divulsão do peritônio vesicouterino, especialmente em casos de cirurgias prévias, endometriose ou grandes volumes uterinos. No nosso caso, embora a paciente tenha cirurgias abdominais prévias (colecistectomia laparoscópica e apendicectomia), o exame mostrou útero com boa mobilidade e septos livres, o que sugere anatomia favorável. Ainda assim, o risco existe e devemos estar preparados.</p>\n\n<p>Para <strong>identificar uma lesão vesical</strong> durante o procedimento, temos vários métodos disponíveis:</p>\n<ul>\n<li>A <strong>visualização direta da lesão</strong> é a forma mais óbvia: podemos ver a abertura da parede vesical ou visualizar a sonda vesical através da lesão. Esse é o método mais imediato quando a lesão ocorre sob visão direta durante a dissecção.</li>\n<li>Observar o <strong>extravasamento de urina</strong> para a cavidade peritoneal – quando identificamos líquido claro saindo de algum ponto durante a manipulação cirúrgica, devemos suspeitar de lesão vesical.</li>\n<li>O <strong>teste com instilação de contraste ou corante</strong>: enchemos a bexiga com soro fisiológico corado com azul de metileno (ou outro contraste) e observamos se há saída do líquido para a cavidade abdominal, o que confirma a lesão.</li>\n<li>Notar <strong>gás no coletor de urina</strong> (pneumatúria), pois durante a laparoscopia o CO2 pode passar pela lesão vesical para dentro da bexiga.</li>\n<li>A <strong>cistoscopia intraoperatória</strong> permite visualização direta da mucosa vesical e identificação de lesões que podem não ser evidentes pela visão externa.</li>\n</ul>\n<p>A questão pede três desses métodos, então devemos citar três quaisquer dentre essas opções.</p>\n\n<p>Agora vamos ao <strong>manejo da lesão</strong>. Uma lesão de 3cm na cúpula vesical é considerada uma lesão de tamanho significativo e requer reparo adequado. O princípio fundamental é realizar <strong>rafia em dois planos</strong> usando <strong>fios absorvíveis</strong>. No primeiro plano, suturamos a camada mucosa de forma contínua ou com pontos separados, com nós para dentro da bexiga. No segundo plano, aproximamos a camada muscular (detrusor), reforçando o fechamento. Usamos fios absorvíveis (como <em>Vicryl</em> 3-0 ou 4-0) para evitar a formação de cálculos, já que fios inabsorvíveis em contato com urina podem servir de núcleo para litíase. Após o reparo, é fundamental manter <strong>cateterização vesical contínua por pelo menos 5 a 7 dias</strong>, para garantir drenagem adequada, evitar distensão vesical e permitir cicatrização apropriada da sutura. Alguns cirurgiões podem optar por teste de enchimento vesical após o reparo para confirmar que não há extravasamento.</p>\n\n<p>Um ponto importante: embora não seja solicitado na questão, devemos considerar avaliação urológica pós-operatória, especialmente em lesões maiores. A banca quer ver que conhecemos os critérios essenciais: três métodos de detecção, sutura em dois planos com fios absorvíveis e cateterização por 5-7 dias. Variações como \"sonda de Foley por 5 dias\" ou \"cateter vesical de demora por 7 dias\" são sinônimos aceitos. O crucial é não esquecer nenhum elemento: se citarmos apenas dois métodos de identificação ou esquecermos o tempo de cateterização, perdemos pontos valiosos em uma questão relativamente direta.</p><br>Visão do aprovado: <h2>Visão do aprovado</h2>\n\n<p>A grande armadilha dessa questão está na palavra <strong>\"três\"</strong>. Em provas discursivas, devemos responder exatamente o que foi pedido: listar cinco métodos de identificação quando foram solicitados três não garante pontos extras e pode até prejudicar se o corretor considerar que não sabemos selecionar o essencial. O candidato aprovado escolhe os três métodos mais objetivos (<em>visualização direta</em>, <em>extravasamento de urina</em> e <em>teste com contraste</em> são os mais clássicos) e segue em frente. Perder tempo elaborando demais em questões desse tipo rouba minutos preciosos de outras respostas.</p>\n\n<p>Questões discursivas em provas de R1 exigem <strong>organização visual</strong> para o corretor. Ao descrever o manejo, precisamos estruturar a resposta de forma que fique explícito:</p>\n<ul>\n<li>Tipo de fio (absorvível)</li>\n<li>Técnica (dois planos)</li>\n<li>Tempo de cateterização (cinco a sete dias)</li>\n</ul>\n\n<p>Esquecer qualquer um desses três elementos provavelmente significa perda de pontos, mesmo que o restante da resposta esteja correto. A lesão de 3cm sinaliza que não é uma microlesão e reforça a necessidade do reparo completo em dois planos, diferente de lesões puntiformes que alguns serviços manejam de forma mais conservadora.</p>\n\n<p>O formato <strong>\"descreva e maneje\"</strong> é clássico em questões cirúrgicas discursivas e costuma valer muitos pontos na prova. Treinamos identificando que a resposta tem duas partes independentes e que cada parte tem seus critérios de pontuação. Na prática da prova, vale até numerar ou separar claramente: \"Identificação: 1)... 2)... 3)...\" e \"Manejo:...\" para que o corretor não precise procurar os elementos na nossa resposta.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333071,
+        "number": 9,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Embriologia e anatomia da mulher",
+        "focus": {
+          "id": 1600,
+          "name": "Embriologia e anatomia da mulher"
+        }
+      },
+      "detail": {
+        "id": 333071,
+        "content": "Mulher de 42 anos, GIII/PIII/A0 (três partos normais), apresenta queixa de dismenorreia moderada (EVA 6), dispareunia leve (EVA 3) e sangramento uterino anormal. A paciente refere ter realizado colecistectomia laparoscópica aos 40 anos e apendicectomia na infância. Ao exame físico, apresenta útero com boa mobilidade e acesso às laterais, além de anexos impalpáveis; septos livres e volume uterino comparável ao tempo gestacional de 10 semanas. O toque retal é compatível com o exame vaginal. A ressonância magnética mostra volume uterino = 220cm3, sugerindo adenomiose, sem sinais de endometriose. Após orientações sobre diferentes opções terapêuticas, a paciente opta pela realização de histerectomia. Com base no caso clínico descrito: Descreva a vascularização dos ovários através dos infundíbulos pélvicos.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15967,
+            "parent_tag": {
+              "id": 15916,
+              "name": "Fundamentos em Ginecologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Embriologia e anatomia da mulher",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 9,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1600,
+          "name": "Embriologia e anatomia da mulher",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 90,
+            "name": "Fundamentos em Ginecologia",
+            "discipline": 86,
+            "old_tag": 15916,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443125,
+        "actual_explanation": true,
+        "introduction": "<p>A paciente do caso será submetida à histerectomia por adenomiose, e a questão nos pede algo bem específico: descrever a vascularização dos ovários através dos infundíbulos pélvicos, conhecimento anatômico fundamental para o cirurgião. Todo o caso clínico serve como contextualização, mas o que a banca realmente quer avaliar é se conhecemos detalhadamente a anatomia vascular ovariana, essencial para realizar o procedimento com segurança, seja preservando os ovários (histerectomia simples) ou removendo-os (histerectomia com anexectomia).</p>\n\n<p>Primeiro, precisamos entender o que é o <strong>infundíbulo pélvico</strong>. Também chamado de <strong>ligamento suspensor do ovário</strong> ou <strong>ligamento infundibulopélvico</strong>, ele é uma prega peritoneal que vai da parede pélvica lateral até o polo superior do ovário e da tuba uterina. É por dentro dessa estrutura que passam os vasos ovarianos - tanto artérias quanto veias. Durante uma histerectomia, o cirurgião precisa identificar e, dependendo da conduta, seccionar ou preservar essa estrutura.</p>\n\n<p>Vamos agora à vascularização propriamente dita, e aqui temos que pensar separadamente em irrigação arterial e drenagem venosa. A <strong>irrigação arterial</strong> é simétrica nos dois lados: tanto o ovário direito quanto o esquerdo recebem sangue das <strong>artérias ovarianas</strong>, que se originam <strong>diretamente da aorta abdominal</strong>, logo abaixo das artérias renais (aproximadamente ao nível de L2). Essas artérias descem pela parede abdominal posterior, cruzam os ureteres e entram no infundíbulo pélvico para alcançar os ovários. Esse ponto é importante: as artérias ovarianas NÃO são ramos das artérias ilíacas - elas vêm direto da aorta.</p>\n\n<p>Agora vem a parte que muitos estudantes esquecem e que é absolutamente crítica: a <strong>drenagem venosa é assimétrica</strong>. Esse é o detalhe que diferencia lado direito do esquerdo. Do ovário direito, a <strong>veia ovariana direita</strong> drena diretamente para a <strong>veia cava inferior</strong>, em um trajeto mais curto e direto. Já do ovário esquerdo, a <strong>veia ovariana esquerda</strong> drena para a <strong>veia renal esquerda</strong>, que depois desemboca na veia cava inferior. Essa assimetria tem relevância clínica: por exemplo, na síndrome de congestão pélvica ou em varicocele ovariana, o lado esquerdo é mais comumente afetado devido ao ângulo de drenagem na veia renal.</p>\n\n<p>O erro mais frequente nessa questão é esquecer de mencionar a assimetria venosa ou não diferenciar os dois lados. Outro erro comum é confundir a vascularização ovariana com a vascularização uterina (que vem das artérias uterinas, ramos das ilíacas internas). Durante a histerectomia, ambas as vascularizações são importantes, mas a questão pede especificamente sobre os ovários e o infundíbulo pélvico.</p>\n\n<p>Para responder completamente ao espelho da banca, devemos mencionar separadamente cada ovário. <strong>Ovário esquerdo:</strong> irrigação arterial pela artéria ovariana esquerda, ramo direto da aorta, e drenagem venosa pela veia ovariana para a veia renal esquerda. <strong>Ovário direito:</strong> irrigação arterial pela artéria ovariana direita, ramo direto da aorta, e drenagem venosa pela veia ovariana até a veia cava inferior. Esses são os elementos obrigatórios que garantem pontuação completa: origem arterial (aorta), destino venoso específico de cada lado, e a relação com o infundíbulo pélvico.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h1>Visão do aprovado</h1>\n\n<p>Em questões discursivas de anatomia cirúrgica, o espelho de correção costuma exigir menção explícita e separada de cada lado, mesmo quando há simetria. Aqui, essa regra se torna ainda mais crítica porque existe assimetria venosa, e candidatos que respondem de forma genérica (\"as veias ovarianas drenam para o sistema cava\") perdem pontos preciosos por omitir que o lado esquerdo faz escala na veia renal. A diferença entre uma resposta mediana e uma completa está justamente em detalhar direito e esquerdo de forma independente, explicitando origem arterial (aorta) e destino venoso específico de cada lado.</p>\n\n<p>A armadilha clássica dessa questão é a pegadinha cruzada com a vascularização uterina. Em provas que cobram histerectomia, o candidato frequentemente confunde os pedículos: o infundíbulo pélvico carrega os vasos ovarianos (origem aórtica direta), enquanto a artéria uterina vem das ilíacas internas e corre na base do ligamento largo. Fixar que \"ovariano = aorta\" e \"uterino = ilíaca interna\" evita misturar as estruturas no momento da tensão da prova. Outro deslize recorrente é esquecer que a questão pede vascularização \"através dos infundíbulos pélvicos\" — responder genericamente sem vincular ao ligamento suspensor mostra que o candidato não integrou anatomia descritiva com a topografia cirúrgica real.</p>\n\n<p>Para memorizar a assimetria venosa sem esforço, vale a analogia com outras estruturas retroperitoneais esquerdas: assim como a veia testicular esquerda (razão da varicocele ser mais comum à esquerda), a veia ovariana esquerda drena para a renal antes de alcançar a cava. Já à direita, ambas (testicular e ovariana) vão direto para a veia cava inferior. Esse padrão anatômico se repete e facilita a retenção.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>A paciente do caso será submetida à histerectomia por adenomiose, e a questão nos pede algo bem específico: descrever a vascularização dos ovários através dos infundíbulos pélvicos, conhecimento anatômico fundamental para o cirurgião. Todo o caso clínico serve como contextualização, mas o que a banca realmente quer avaliar é se conhecemos detalhadamente a anatomia vascular ovariana, essencial para realizar o procedimento com segurança, seja preservando os ovários (histerectomia simples) ou removendo-os (histerectomia com anexectomia).</p>\n\n<p>Primeiro, precisamos entender o que é o <strong>infundíbulo pélvico</strong>. Também chamado de <strong>ligamento suspensor do ovário</strong> ou <strong>ligamento infundibulopélvico</strong>, ele é uma prega peritoneal que vai da parede pélvica lateral até o polo superior do ovário e da tuba uterina. É por dentro dessa estrutura que passam os vasos ovarianos - tanto artérias quanto veias. Durante uma histerectomia, o cirurgião precisa identificar e, dependendo da conduta, seccionar ou preservar essa estrutura.</p>\n\n<p>Vamos agora à vascularização propriamente dita, e aqui temos que pensar separadamente em irrigação arterial e drenagem venosa. A <strong>irrigação arterial</strong> é simétrica nos dois lados: tanto o ovário direito quanto o esquerdo recebem sangue das <strong>artérias ovarianas</strong>, que se originam <strong>diretamente da aorta abdominal</strong>, logo abaixo das artérias renais (aproximadamente ao nível de L2). Essas artérias descem pela parede abdominal posterior, cruzam os ureteres e entram no infundíbulo pélvico para alcançar os ovários. Esse ponto é importante: as artérias ovarianas NÃO são ramos das artérias ilíacas - elas vêm direto da aorta.</p>\n\n<p>Agora vem a parte que muitos estudantes esquecem e que é absolutamente crítica: a <strong>drenagem venosa é assimétrica</strong>. Esse é o detalhe que diferencia lado direito do esquerdo. Do ovário direito, a <strong>veia ovariana direita</strong> drena diretamente para a <strong>veia cava inferior</strong>, em um trajeto mais curto e direto. Já do ovário esquerdo, a <strong>veia ovariana esquerda</strong> drena para a <strong>veia renal esquerda</strong>, que depois desemboca na veia cava inferior. Essa assimetria tem relevância clínica: por exemplo, na síndrome de congestão pélvica ou em varicocele ovariana, o lado esquerdo é mais comumente afetado devido ao ângulo de drenagem na veia renal.</p>\n\n<p>O erro mais frequente nessa questão é esquecer de mencionar a assimetria venosa ou não diferenciar os dois lados. Outro erro comum é confundir a vascularização ovariana com a vascularização uterina (que vem das artérias uterinas, ramos das ilíacas internas). Durante a histerectomia, ambas as vascularizações são importantes, mas a questão pede especificamente sobre os ovários e o infundíbulo pélvico.</p>\n\n<p>Para responder completamente ao espelho da banca, devemos mencionar separadamente cada ovário. <strong>Ovário esquerdo:</strong> irrigação arterial pela artéria ovariana esquerda, ramo direto da aorta, e drenagem venosa pela veia ovariana para a veia renal esquerda. <strong>Ovário direito:</strong> irrigação arterial pela artéria ovariana direita, ramo direto da aorta, e drenagem venosa pela veia ovariana até a veia cava inferior. Esses são os elementos obrigatórios que garantem pontuação completa: origem arterial (aorta), destino venoso específico de cada lado, e a relação com o infundíbulo pélvico.</p><br>Visão do aprovado: <h1>Visão do aprovado</h1>\n\n<p>Em questões discursivas de anatomia cirúrgica, o espelho de correção costuma exigir menção explícita e separada de cada lado, mesmo quando há simetria. Aqui, essa regra se torna ainda mais crítica porque existe assimetria venosa, e candidatos que respondem de forma genérica (\"as veias ovarianas drenam para o sistema cava\") perdem pontos preciosos por omitir que o lado esquerdo faz escala na veia renal. A diferença entre uma resposta mediana e uma completa está justamente em detalhar direito e esquerdo de forma independente, explicitando origem arterial (aorta) e destino venoso específico de cada lado.</p>\n\n<p>A armadilha clássica dessa questão é a pegadinha cruzada com a vascularização uterina. Em provas que cobram histerectomia, o candidato frequentemente confunde os pedículos: o infundíbulo pélvico carrega os vasos ovarianos (origem aórtica direta), enquanto a artéria uterina vem das ilíacas internas e corre na base do ligamento largo. Fixar que \"ovariano = aorta\" e \"uterino = ilíaca interna\" evita misturar as estruturas no momento da tensão da prova. Outro deslize recorrente é esquecer que a questão pede vascularização \"através dos infundíbulos pélvicos\" — responder genericamente sem vincular ao ligamento suspensor mostra que o candidato não integrou anatomia descritiva com a topografia cirúrgica real.</p>\n\n<p>Para memorizar a assimetria venosa sem esforço, vale a analogia com outras estruturas retroperitoneais esquerdas: assim como a veia testicular esquerda (razão da varicocele ser mais comum à esquerda), a veia ovariana esquerda drena para a renal antes de alcançar a cava. Já à direita, ambas (testicular e ovariana) vão direto para a veia cava inferior. Esse padrão anatômico se repete e facilita a retenção.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333072,
+        "number": 10,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+        "focus": {
+          "id": 1629,
+          "name": "Endometriose parte 1: fisiopatologia e diagnóstico"
+        }
+      },
+      "detail": {
+        "id": 333072,
+        "content": "Em 31/08/23, uma paciente de 26 anos é atendida na emergência queixando-se de dor abdominal há três dias, inicialmente intermitente, passando a ficar constante há oito horas. Refere perda do apetite, náuseas e vômitos. Relata estar em relação homoafetiva há dois anos e data da última menstruação (DUM) em 14/08/23. Uma ultrassonografia realizada em 18/07/23 revela ovário direito com formação heterogênea com ecos focais de alta amplitude e áreas de atenuação posterior com linhas e pontos hiperecogênicos medindo 5,8cm. Ao toque, verifica-se útero desviado à direita e formação de cerca de 8cm dolorosa e palpável em região anexial direita. A tomografia realizada durante o atendimento atual mostra apêndice com espessura de 6mm e conteúdo líquido. A ultrassonografia atual revela moderada quantidade de líquido, útero desviado à direita, formação anexial heterogênea à direita com área de edema estromal e folículos distribuídos na periferia, medindo 8,6cm. Com base no caso clínico descrito: Aponte a principal hipótese diagnóstica.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15937,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 10,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1629,
+          "name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443128,
+        "actual_explanation": true,
+        "introduction": "<p>Uma massa anexial que cresce de 5,8cm para 8,6cm em aproximadamente seis semanas, acompanhada de dor que evolui de intermitente para constante, já nos direciona para uma complicação mecânica-vascular. A questão pede a principal hipótese diagnóstica nesse caso de uma mulher jovem com dor abdominal progressiva e massa anexial direita conhecida.</p>\n\n<p>Vamos começar analisando o padrão da dor, que é extremamente característico. A paciente apresenta dor há três dias que era <strong>intermitente</strong>, mas passou a ser <strong>constante nas últimas oito horas</strong>. Esse padrão específico é clássico de torção de anexo: inicialmente, temos episódios de torção e destorção espontânea (dor intermitente, tipo cólica), mas quando a torção se mantém e o comprometimento vascular progride, a dor se torna constante e mais intensa. É como se o ovário estivesse \"pedindo socorro\" de forma intermitente, até que a situação se torna definitiva.</p>\n\n<p>Agora precisamos correlacionar com os achados de imagem, que são fundamentais aqui. A paciente tinha uma massa ovariana direita de 5,8cm em julho, e no atendimento atual essa massa está com 8,6cm. Massas ovarianas maiores que 5cm são o principal fator de risco para torção, pois criam um pedículo mais pesado e instável. Mas atenção: o crescimento significativo dessa massa em poucas semanas não significa necessariamente que o tumor cresceu — na verdade, esse aumento de tamanho é causado pelo <strong>edema e congestão vascular</strong> decorrentes da própria torção.</p>\n\n<p>Os achados ultrassonográficos atuais são praticamente patognomônicos. A presença de <strong>edema estromal</strong> (aumento de líquido no tecido ovariano) e <strong>folículos distribuídos na periferia</strong> são sinais clássicos de torção. Quando o ovário sofre torção, há comprometimento inicialmente da drenagem venosa e linfática (as veias são mais facilmente comprimidas que as artérias), levando a edema e congestão. Os folículos são \"empurrados\" para a periferia do ovário edemaciado, criando essa imagem característica. A moderada quantidade de líquido livre também é compatível, resultando do extravasamento por congestão vascular.</p>\n\n<p>Um ponto importante que a banca colocou aqui para nos confundir é a localização da dor em fossa ilíaca direita, associada a náuseas e vômitos. Esses sintomas poderiam sugerir apendicite aguda, que é sempre um diferencial em dor abdominal em FID. Porém, a tomografia mostra apêndice com 6mm de espessura, que está dentro da normalidade (consideramos patológico acima de 6-7mm). Isso praticamente exclui apendicite.</p>\n\n<p>Outro ponto que a questão traz de forma sutil é a história de relação homoafetiva há dois anos. Isso é relevante porque diminui drasticamente a probabilidade de gravidez (e, consequentemente, de gravidez ectópica), que seria outro diferencial importante em mulher jovem com dor abdominal, massa anexial e líquido livre. A DUM há apenas 17 dias também torna gravidez ectópica muito improvável.</p>\n\n<p>Portanto, reunindo todos os elementos — massa anexial >5cm (fator de risco), padrão de dor característico (intermitente→constante), crescimento da massa, edema estromal e folículos periféricos na ultrassonografia — chegamos ao diagnóstico de <strong>torção de anexo direito</strong> ou <strong>torção de ovário direito</strong>.</p>\n\n<p>A resposta deve incluir o termo \"torção\", especificar a estrutura acometida (ovário ou anexo, ambos aceitos) e a lateralidade (direito). Respostas como \"torção de ovário direito\", \"torção ovariana direita\", \"torção de anexo direito\" ou \"torção anexial direita\" estariam corretas. É fundamental não esquecer de mencionar o lado direito, pois isso demonstra que fizemos a correlação adequada com os achados de imagem e exame físico.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p><strong>Visão do aprovado</strong></p>\n\n<p>Em prova, o diagnóstico de torção se fecha rapidamente quando identificamos uma massa anexial conhecida que \"aumenta de tamanho\" em poucas semanas associada a mudança no padrão da dor. A grande pegadinha aqui é interpretar esse crescimento como progressão tumoral ou malignização, quando na verdade representa edema e congestão vascular pela própria torção. Essa armadilha pode fazer o candidato menos atento pensar em neoplasia complicada ao invés de complicação vascular de uma massa benigna.</p>\n\n<p>A localização em fossa ilíaca direita com náuseas e vômitos é um chamariz clássico para apendicite, mas a questão entrega a exclusão ao mostrar apêndice com espessura normal na tomografia. Outro diferencial que pode vir à mente é cisto ovariano roto, porém nesse caso esperaríamos dor súbita de início, não progressiva ao longo de dias. Nas questões discursivas de torção, é fundamental especificar a lateralidade na resposta – escrever apenas \"torção ovariana\" sem mencionar o lado direito pode custar pontos, pois demonstra correlação incompleta com os achados do caso.</p>\n\n<p>Vale lembrar que torção de anexo é uma urgência cirúrgica tempo-dependente: quanto mais tempo de evolução, maior o risco de necrose ovariana e perda definitiva da função. Esse conceito de janela terapêutica limitada justifica por que a dor que se torna constante há oito horas é um sinal de alerta para progressão do comprometimento vascular, reforçando a necessidade de abordagem cirúrgica imediata.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Uma massa anexial que cresce de 5,8cm para 8,6cm em aproximadamente seis semanas, acompanhada de dor que evolui de intermitente para constante, já nos direciona para uma complicação mecânica-vascular. A questão pede a principal hipótese diagnóstica nesse caso de uma mulher jovem com dor abdominal progressiva e massa anexial direita conhecida.</p>\n\n<p>Vamos começar analisando o padrão da dor, que é extremamente característico. A paciente apresenta dor há três dias que era <strong>intermitente</strong>, mas passou a ser <strong>constante nas últimas oito horas</strong>. Esse padrão específico é clássico de torção de anexo: inicialmente, temos episódios de torção e destorção espontânea (dor intermitente, tipo cólica), mas quando a torção se mantém e o comprometimento vascular progride, a dor se torna constante e mais intensa. É como se o ovário estivesse \"pedindo socorro\" de forma intermitente, até que a situação se torna definitiva.</p>\n\n<p>Agora precisamos correlacionar com os achados de imagem, que são fundamentais aqui. A paciente tinha uma massa ovariana direita de 5,8cm em julho, e no atendimento atual essa massa está com 8,6cm. Massas ovarianas maiores que 5cm são o principal fator de risco para torção, pois criam um pedículo mais pesado e instável. Mas atenção: o crescimento significativo dessa massa em poucas semanas não significa necessariamente que o tumor cresceu — na verdade, esse aumento de tamanho é causado pelo <strong>edema e congestão vascular</strong> decorrentes da própria torção.</p>\n\n<p>Os achados ultrassonográficos atuais são praticamente patognomônicos. A presença de <strong>edema estromal</strong> (aumento de líquido no tecido ovariano) e <strong>folículos distribuídos na periferia</strong> são sinais clássicos de torção. Quando o ovário sofre torção, há comprometimento inicialmente da drenagem venosa e linfática (as veias são mais facilmente comprimidas que as artérias), levando a edema e congestão. Os folículos são \"empurrados\" para a periferia do ovário edemaciado, criando essa imagem característica. A moderada quantidade de líquido livre também é compatível, resultando do extravasamento por congestão vascular.</p>\n\n<p>Um ponto importante que a banca colocou aqui para nos confundir é a localização da dor em fossa ilíaca direita, associada a náuseas e vômitos. Esses sintomas poderiam sugerir apendicite aguda, que é sempre um diferencial em dor abdominal em FID. Porém, a tomografia mostra apêndice com 6mm de espessura, que está dentro da normalidade (consideramos patológico acima de 6-7mm). Isso praticamente exclui apendicite.</p>\n\n<p>Outro ponto que a questão traz de forma sutil é a história de relação homoafetiva há dois anos. Isso é relevante porque diminui drasticamente a probabilidade de gravidez (e, consequentemente, de gravidez ectópica), que seria outro diferencial importante em mulher jovem com dor abdominal, massa anexial e líquido livre. A DUM há apenas 17 dias também torna gravidez ectópica muito improvável.</p>\n\n<p>Portanto, reunindo todos os elementos — massa anexial >5cm (fator de risco), padrão de dor característico (intermitente→constante), crescimento da massa, edema estromal e folículos periféricos na ultrassonografia — chegamos ao diagnóstico de <strong>torção de anexo direito</strong> ou <strong>torção de ovário direito</strong>.</p>\n\n<p>A resposta deve incluir o termo \"torção\", especificar a estrutura acometida (ovário ou anexo, ambos aceitos) e a lateralidade (direito). Respostas como \"torção de ovário direito\", \"torção ovariana direita\", \"torção de anexo direito\" ou \"torção anexial direita\" estariam corretas. É fundamental não esquecer de mencionar o lado direito, pois isso demonstra que fizemos a correlação adequada com os achados de imagem e exame físico.</p><br>Visão do aprovado: <p><strong>Visão do aprovado</strong></p>\n\n<p>Em prova, o diagnóstico de torção se fecha rapidamente quando identificamos uma massa anexial conhecida que \"aumenta de tamanho\" em poucas semanas associada a mudança no padrão da dor. A grande pegadinha aqui é interpretar esse crescimento como progressão tumoral ou malignização, quando na verdade representa edema e congestão vascular pela própria torção. Essa armadilha pode fazer o candidato menos atento pensar em neoplasia complicada ao invés de complicação vascular de uma massa benigna.</p>\n\n<p>A localização em fossa ilíaca direita com náuseas e vômitos é um chamariz clássico para apendicite, mas a questão entrega a exclusão ao mostrar apêndice com espessura normal na tomografia. Outro diferencial que pode vir à mente é cisto ovariano roto, porém nesse caso esperaríamos dor súbita de início, não progressiva ao longo de dias. Nas questões discursivas de torção, é fundamental especificar a lateralidade na resposta – escrever apenas \"torção ovariana\" sem mencionar o lado direito pode custar pontos, pois demonstra correlação incompleta com os achados do caso.</p>\n\n<p>Vale lembrar que torção de anexo é uma urgência cirúrgica tempo-dependente: quanto mais tempo de evolução, maior o risco de necrose ovariana e perda definitiva da função. Esse conceito de janela terapêutica limitada justifica por que a dor que se torna constante há oito horas é um sinal de alerta para progressão do comprometimento vascular, reforçando a necessidade de abordagem cirúrgica imediata.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333073,
+        "number": 11,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+        "focus": {
+          "id": 1629,
+          "name": "Endometriose parte 1: fisiopatologia e diagnóstico"
+        }
+      },
+      "detail": {
+        "id": 333073,
+        "content": "Em 31/08/23, uma paciente de 26 anos é atendida na emergência queixando-se de dor abdominal há três dias, inicialmente intermitente, passando a ficar constante há oito horas. Refere perda do apetite, náuseas e vômitos. Relata estar em relação homoafetiva há dois anos e data da última menstruação (DUM) em 14/08/23. Uma ultrassonografia realizada em 18/07/23 revela ovário direito com formação heterogênea com ecos focais de alta amplitude e áreas de atenuação posterior com linhas e pontos hiperecogênicos medindo 5,8cm. Ao toque, verifica-se útero desviado à direita e formação de cerca de 8cm dolorosa e palpável em região anexial direita. A tomografia realizada durante o atendimento atual mostra apêndice com espessura de 6mm e conteúdo líquido. A ultrassonografia atual revela moderada quantidade de líquido, útero desviado à direita, formação anexial heterogênea à direita com área de edema estromal e folículos distribuídos na periferia, medindo 8,6cm. Com base no caso clínico descrito: Cite três fatores de risco para a ocorrência desse evento.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15937,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 11,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1629,
+          "name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443126,
+        "actual_explanation": true,
+        "introduction": "<p>Edema estromal com folículos distribuídos na periferia do ovário é o achado ultrassonográfico que sela o diagnóstico de <strong>torção anexial</strong>, especialmente quando acompanha uma massa ovariana conhecida que cresceu de 5,8cm para 8,6cm em pouco mais de um mês. Esse padrão resulta do comprometimento vascular que leva ao edema do estroma central, empurrando os folículos para a periferia - um sinal tão característico que praticamente define o diagnóstico. Associado à dor progressiva que evolui de intermitente para constante, ao útero desviado pela massa e ao líquido livre, temos um quadro completo de torção ovariana. A questão não pede o diagnóstico, mas sim que identifiquemos três fatores de risco para esse evento.</p>\n\n<p>Precisamos pensar no que torna um ovário suscetível a torcer sobre seu próprio pedículo. O principal fator de risco é a presença de uma <strong>massa ovariana</strong> ou <strong>cisto ovariano</strong> - exatamente o que nossa paciente tem. Massas entre 5 e 10cm são as mais propensas à torção, pois são grandes o suficiente para ter peso e mobilidade, mas não tão grandes a ponto de ficarem fixas na pelve. Cistos menores que 5cm raramente torcem, e massas muito grandes acabam aderidas às estruturas adjacentes. A formação heterogênea de quase 9cm desta paciente está na faixa de maior risco.</p>\n\n<p>Outro fator importante é a <strong>gestação</strong>, principalmente no primeiro trimestre. Durante a gravidez, o corpo lúteo aumenta de volume para produzir progesterona, tornando-se uma massa funcional volumosa que pode servir como ponto de torção. Além disso, as alterações anatômicas da gestação modificam a posição dos anexos. É verdade que nossa paciente está em relação homoafetiva e tem DUM recente, tornando gestação improvável neste caso específico, mas a questão pede fatores de risco gerais para torção anexial, não fatores presentes nesta paciente em particular.</p>\n\n<p>A <strong>estimulação ovariana para fertilização</strong> é outro fator de risco clássico. Mulheres submetidas a tratamentos de reprodução assistida desenvolvem múltiplos folículos e cistos funcionais que aumentam consideravelmente o volume ovariano, criando condições ideais para torção. A síndrome de hiperestimulação ovariana é um contexto de risco elevado.</p>\n\n<p><strong>Hidrossalpinge</strong> - dilatação da tuba uterina por acúmulo de líquido - também aumenta o risco de torção. A tuba distendida adiciona peso e volume ao complexo anexial, favorecendo a rotação sobre o pedículo. Da mesma forma, <strong>ligadura tubária</strong> prévia é um fator de risco reconhecido, provavelmente porque altera a anatomia local e pode modificar a mobilidade das estruturas anexiais.</p>\n\n<p>Um erro comum nesse tipo de questão é confundir fatores de risco com diagnósticos diferenciais ou com achados do caso apresentado. A banca quer saber se conhecemos os fatores predisponentes para torção anexial em geral. Outro erro seria citar condições que não têm relação com torção ou inventar fatores sem base científica. O espelho de resposta aceita: cistos ovarianos, hidrossalpinge, gestação, ligadura tubária e estimulação ovariana para fertilização. Devemos citar exatamente três desses fatores. Qualquer combinação de três entre esses cinco é válida para pontuação completa. Provavelmente termos equivalentes como \"massa ovariana\" seriam aceitos no lugar de \"cistos ovarianos\", mas o ideal é usar a terminologia do gabarito quando possível.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p><strong>Visão do aprovado</strong></p>\n\n<p>A grande pegadinha desta questão está na interpretação do que está sendo pedido. Muitos candidatos caem na armadilha de tentar identificar apenas os fatores de risco presentes nesta paciente específica e ficam confusos com a informação sobre relação homoafetiva, pensando que isso excluiria gestação como resposta válida. A questão pede fatores de risco gerais para torção anexial, não fatores presentes neste caso. Gestação continua sendo uma resposta correta porque é um fator de risco populacional bem estabelecido, independentemente de estar presente ou não nesta paciente em particular.</p>\n\n<p>O raciocínio prático para não esquecer os principais fatores gira em torno do que adiciona volume e peso ao anexo, criando um \"pêndulo\" que pode torcer. Massas ovarianas são o fator mais comum e intuitivo, mas temos que lembrar dos fatores iatrogênicos e relacionados à reprodução: estimulação ovariana cria múltiplos cistos funcionais, ligadura tubária altera a anatomia local, e hidrossalpinge adiciona peso pela tuba dilatada. Na gestação, é o corpo lúteo volumoso do primeiro trimestre que funciona como massa funcional.</p>\n\n<p>Como é questão discursiva aberta, devemos listar exatamente três fatores, não cinco. Qualquer combinação de três entre os cinco aceitos no gabarito pontua integralmente, então não há necessidade de tentar adivinhar quais são \"mais importantes\". O erro fatal aqui seria citar menos de três por insegurança ou mais de três esperando pontuar por quantidade, quando a banca especificamente pediu três. Use a terminologia mais próxima possível do gabarito oficial para evitar perder pontos por interpretação do corretor.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Edema estromal com folículos distribuídos na periferia do ovário é o achado ultrassonográfico que sela o diagnóstico de <strong>torção anexial</strong>, especialmente quando acompanha uma massa ovariana conhecida que cresceu de 5,8cm para 8,6cm em pouco mais de um mês. Esse padrão resulta do comprometimento vascular que leva ao edema do estroma central, empurrando os folículos para a periferia - um sinal tão característico que praticamente define o diagnóstico. Associado à dor progressiva que evolui de intermitente para constante, ao útero desviado pela massa e ao líquido livre, temos um quadro completo de torção ovariana. A questão não pede o diagnóstico, mas sim que identifiquemos três fatores de risco para esse evento.</p>\n\n<p>Precisamos pensar no que torna um ovário suscetível a torcer sobre seu próprio pedículo. O principal fator de risco é a presença de uma <strong>massa ovariana</strong> ou <strong>cisto ovariano</strong> - exatamente o que nossa paciente tem. Massas entre 5 e 10cm são as mais propensas à torção, pois são grandes o suficiente para ter peso e mobilidade, mas não tão grandes a ponto de ficarem fixas na pelve. Cistos menores que 5cm raramente torcem, e massas muito grandes acabam aderidas às estruturas adjacentes. A formação heterogênea de quase 9cm desta paciente está na faixa de maior risco.</p>\n\n<p>Outro fator importante é a <strong>gestação</strong>, principalmente no primeiro trimestre. Durante a gravidez, o corpo lúteo aumenta de volume para produzir progesterona, tornando-se uma massa funcional volumosa que pode servir como ponto de torção. Além disso, as alterações anatômicas da gestação modificam a posição dos anexos. É verdade que nossa paciente está em relação homoafetiva e tem DUM recente, tornando gestação improvável neste caso específico, mas a questão pede fatores de risco gerais para torção anexial, não fatores presentes nesta paciente em particular.</p>\n\n<p>A <strong>estimulação ovariana para fertilização</strong> é outro fator de risco clássico. Mulheres submetidas a tratamentos de reprodução assistida desenvolvem múltiplos folículos e cistos funcionais que aumentam consideravelmente o volume ovariano, criando condições ideais para torção. A síndrome de hiperestimulação ovariana é um contexto de risco elevado.</p>\n\n<p><strong>Hidrossalpinge</strong> - dilatação da tuba uterina por acúmulo de líquido - também aumenta o risco de torção. A tuba distendida adiciona peso e volume ao complexo anexial, favorecendo a rotação sobre o pedículo. Da mesma forma, <strong>ligadura tubária</strong> prévia é um fator de risco reconhecido, provavelmente porque altera a anatomia local e pode modificar a mobilidade das estruturas anexiais.</p>\n\n<p>Um erro comum nesse tipo de questão é confundir fatores de risco com diagnósticos diferenciais ou com achados do caso apresentado. A banca quer saber se conhecemos os fatores predisponentes para torção anexial em geral. Outro erro seria citar condições que não têm relação com torção ou inventar fatores sem base científica. O espelho de resposta aceita: cistos ovarianos, hidrossalpinge, gestação, ligadura tubária e estimulação ovariana para fertilização. Devemos citar exatamente três desses fatores. Qualquer combinação de três entre esses cinco é válida para pontuação completa. Provavelmente termos equivalentes como \"massa ovariana\" seriam aceitos no lugar de \"cistos ovarianos\", mas o ideal é usar a terminologia do gabarito quando possível.</p><br>Visão do aprovado: <p><strong>Visão do aprovado</strong></p>\n\n<p>A grande pegadinha desta questão está na interpretação do que está sendo pedido. Muitos candidatos caem na armadilha de tentar identificar apenas os fatores de risco presentes nesta paciente específica e ficam confusos com a informação sobre relação homoafetiva, pensando que isso excluiria gestação como resposta válida. A questão pede fatores de risco gerais para torção anexial, não fatores presentes neste caso. Gestação continua sendo uma resposta correta porque é um fator de risco populacional bem estabelecido, independentemente de estar presente ou não nesta paciente em particular.</p>\n\n<p>O raciocínio prático para não esquecer os principais fatores gira em torno do que adiciona volume e peso ao anexo, criando um \"pêndulo\" que pode torcer. Massas ovarianas são o fator mais comum e intuitivo, mas temos que lembrar dos fatores iatrogênicos e relacionados à reprodução: estimulação ovariana cria múltiplos cistos funcionais, ligadura tubária altera a anatomia local, e hidrossalpinge adiciona peso pela tuba dilatada. Na gestação, é o corpo lúteo volumoso do primeiro trimestre que funciona como massa funcional.</p>\n\n<p>Como é questão discursiva aberta, devemos listar exatamente três fatores, não cinco. Qualquer combinação de três entre os cinco aceitos no gabarito pontua integralmente, então não há necessidade de tentar adivinhar quais são \"mais importantes\". O erro fatal aqui seria citar menos de três por insegurança ou mais de três esperando pontuar por quantidade, quando a banca especificamente pediu três. Use a terminologia mais próxima possível do gabarito oficial para evitar perder pontos por interpretação do corretor.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333074,
+        "number": 12,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 333074,
+        "content": "Em 31/08/23, uma paciente de 26 anos é atendida na emergência queixando-se de dor abdominal há três dias, inicialmente intermitente, passando a ficar constante há oito horas. Refere perda do apetite, náuseas e vômitos. Relata estar em relação homoafetiva há dois anos e data da última menstruação (DUM) em 14/08/23. Uma ultrassonografia realizada em 18/07/23 revela ovário direito com formação heterogênea com ecos focais de alta amplitude e áreas de atenuação posterior com linhas e pontos hiperecogênicos medindo 5,8cm. Ao toque, verifica-se útero desviado à direita e formação de cerca de 8cm dolorosa e palpável em região anexial direita. A tomografia realizada durante o atendimento atual mostra apêndice com espessura de 6mm e conteúdo líquido. A ultrassonografia atual revela moderada quantidade de líquido, útero desviado à direita, formação anexial heterogênea à direita com área de edema estromal e folículos distribuídos na periferia, medindo 8,6cm. Com base no caso clínico descrito: Descreva o manejo adequado para o quadro apresentado.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 12,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443131,
+        "actual_explanation": true,
+        "introduction": "<p>Dor abdominal que evolui de intermitente para constante em paciente com massa ovariana conhecida acende o alerta vermelho para <strong>torção anexial</strong>. Percebam que essa progressão temporal não é casual: a dor intermitente sugere episódios de torção e destorção espontânea, enquanto a dor constante nas últimas oito horas indica provável torção completa e mantida do pedículo vascular. Além disso, temos achados ultrassonográficos praticamente patognomônicos: <strong>edema estromal e folículos distribuídos na periferia</strong>, que refletem o comprometimento vascular com congestão venosa e aumento do volume ovariano. O crescimento da massa de 5,8cm para 8,6cm em pouco mais de um mês reforça essa hipótese - não é crescimento tumoral rápido, mas sim edema por torção.</p>\n\n<p>A questão também traz elementos para afastar diagnósticos diferenciais importantes. A relação homoafetiva há dois anos e a DUM recente tornam <em>gravidez ectópica</em> extremamente improvável. A tomografia mostrando apêndice normal (6mm de espessura) afasta <em>apendicite aguda</em>, que seria nosso principal diagnóstico diferencial em mulher jovem com dor em fossa ilíaca direita. O líquido livre moderado pode estar presente tanto na torção (por congestão e transudação) quanto seria esperado em ruptura de cisto, mas o padrão ultrassonográfico com edema estromal e folículos periféricos é típico de torção e não de ruptura.</p>\n\n<p>Diante da <strong>suspeita de torção anexial, a conduta é cirurgia de emergência</strong> - não há espaço para conduta expectante ou tentativas de manejo clínico. A preferência é pela <strong>abordagem laparoscópica</strong>, que oferece excelente visualização da pelve, é menos invasiva e permite recuperação mais rápida, mantendo-se a possibilidade de conversão para laparotomia se necessário. Durante o procedimento, devemos primeiro <strong>identificar a lesão</strong> e confirmar o diagnóstico de torção anexial.</p>\n\n<p>O próximo passo, e aqui está um ponto que mudou conceitualmente nas últimas décadas, é <strong>destorcer o anexo afetado</strong>. Antigamente, havia receio de que a destorção liberasse êmbolos na circulação, mas estudos mostraram que isso não ocorre e que a preservação ovariana é segura e desejável, especialmente em mulheres jovens. Após destorcer, devemos realizar <strong>irrigação da cavidade</strong> com soro aquecido e <strong>observar a viabilidade do ovário</strong>. Vamos aguardar alguns minutos para ver se há reperfusão, retorno da coloração normal e dos movimentos peristálticos da tuba.</p>\n\n<p>Se houver <strong>sinais de necrose evidente</strong> (ovário negro, sem reperfusão, friável), indicamos <strong>anexectomia</strong>. Mas se o anexo mostrar-se viável após a destorção, devemos preservá-lo. Nesse caso, avaliamos a segurança do manejo do cisto anexial (que pelos achados da USG prévia tinha características de teratoma) e realizamos <strong>ooforoplastia</strong> - ou seja, cistectomia ovariana com reconstrução do ovário. O gabarito menciona que a critério do cirurgião pode-se optar por realizar a plástica do ovário em segundo tempo, especialmente se houver edema importante que dificulte a dissecção segura ou se o quadro clínico da paciente exigir abreviação do procedimento.</p>\n\n<p>A <strong>ooforopexia</strong> - fixação do ovário para prevenir torção recorrente - é uma decisão tomada pelo cirurgião durante o ato operatório. O gabarito especifica as situações em que ela é particularmente sugerida:</p>\n<ul>\n<li><strong>torção de anexo único</strong></li>\n<li><strong>torção de anexo normal</strong> (sem massa predisponente)</li>\n<li><strong>torção recorrente</strong></li>\n<li><strong>torção bilateral</strong></li>\n<li><strong>comprimento excessivo do ligamento útero-ovariano</strong></li>\n<li><strong>fixação do ovário contralateral em casos de anexectomia</strong> por torção do outro lado</li>\n</ul>\n<p>No nosso caso, se houver anexectomia direita, poderíamos considerar ooforopexia do ovário esquerdo para prevenir torção do anexo remanescente único.</p>\n\n<p>Para pontuar integralmente nessa questão, precisamos mencionar: a indicação cirúrgica urgente, a preferência pela via laparoscópica, a sequência de identificação da lesão e destorção, a irrigação e avaliação de viabilidade, a conduta conforme viabilidade (anexectomia se necrose ou ooforoplastia se viável), e a consideração sobre ooforopexia com suas indicações específicas. Um erro comum é não mencionar a destorção ou sugerir anexectomia de rotina, esquecendo que em mulheres jovens a preservação ovariana é prioridade sempre que possível.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h3>Visão do aprovado</h3>\n\n<p>O padrão temporal de dor intermitente evoluindo para constante é praticamente <strong>patognomônico de torção anexial</strong> e precisa ser reconhecido em segundos na prova: episódios de torção-destorção espontânea seguidos de torção mantida. Somado aos achados ultrassonográficos de <strong>edema estromal e folículos periféricos</strong>, o diagnóstico está feito. A pegadinha aqui é interpretar o crescimento da massa de 5,8 para 8,6cm como progressão tumoral agressiva, quando na verdade trata-se de <em>edema secundário à torção</em>. Outro ponto de atenção é não confundir a massa heterogênea com ecos de alta amplitude (padrão típico de teratoma) com outras lesões ovarianas, já que <em>teratomas são especialmente propensos à torção</em> por seu conteúdo denso e heterogêneo.</p>\n\n<p>A grande armadilha conceitual, que costuma derrubar candidatos, é o <strong>manejo do anexo após destorção</strong>. O conceito antigo de que destorcer liberaria êmbolos e causaria complicações tromboembólicas está ultrapassado, mas ainda aparece como distrator em alternativas de múltipla escolha ou leva candidatos a sugerirem anexectomia de rotina em questões discursivas. A conduta atual prioriza <strong>destorcer, observar viabilidade e preservar sempre que possível</strong>, especialmente em mulheres jovens. Só realizamos anexectomia se houver necrose evidente após a destorção e tentativa de reperfusão.</p>\n\n<p>Em questões discursivas como esta, a resposta precisa contemplar toda a sequência operatória para pontuar integralmente:</p>\n<ul>\n<li>indicação cirúrgica de urgência</li>\n<li>preferência laparoscópica</li>\n<li>identificação e destorção</li>\n<li>irrigação e observação de viabilidade</li>\n<li>conduta baseada na viabilidade (ooforoplastia se viável, anexectomia se necrose)</li>\n<li>consideração sobre ooforopexia com suas indicações específicas</li>\n</ul>\n<p>Esquecer qualquer um desses passos, principalmente a destorção ou a possibilidade de preservação ovariana, compromete significativamente a pontuação. A menção às <strong>indicações de ooforopexia</strong> demonstra conhecimento técnico refinado e diferencia respostas completas das superficiais.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Dor abdominal que evolui de intermitente para constante em paciente com massa ovariana conhecida acende o alerta vermelho para <strong>torção anexial</strong>. Percebam que essa progressão temporal não é casual: a dor intermitente sugere episódios de torção e destorção espontânea, enquanto a dor constante nas últimas oito horas indica provável torção completa e mantida do pedículo vascular. Além disso, temos achados ultrassonográficos praticamente patognomônicos: <strong>edema estromal e folículos distribuídos na periferia</strong>, que refletem o comprometimento vascular com congestão venosa e aumento do volume ovariano. O crescimento da massa de 5,8cm para 8,6cm em pouco mais de um mês reforça essa hipótese - não é crescimento tumoral rápido, mas sim edema por torção.</p>\n\n<p>A questão também traz elementos para afastar diagnósticos diferenciais importantes. A relação homoafetiva há dois anos e a DUM recente tornam <em>gravidez ectópica</em> extremamente improvável. A tomografia mostrando apêndice normal (6mm de espessura) afasta <em>apendicite aguda</em>, que seria nosso principal diagnóstico diferencial em mulher jovem com dor em fossa ilíaca direita. O líquido livre moderado pode estar presente tanto na torção (por congestão e transudação) quanto seria esperado em ruptura de cisto, mas o padrão ultrassonográfico com edema estromal e folículos periféricos é típico de torção e não de ruptura.</p>\n\n<p>Diante da <strong>suspeita de torção anexial, a conduta é cirurgia de emergência</strong> - não há espaço para conduta expectante ou tentativas de manejo clínico. A preferência é pela <strong>abordagem laparoscópica</strong>, que oferece excelente visualização da pelve, é menos invasiva e permite recuperação mais rápida, mantendo-se a possibilidade de conversão para laparotomia se necessário. Durante o procedimento, devemos primeiro <strong>identificar a lesão</strong> e confirmar o diagnóstico de torção anexial.</p>\n\n<p>O próximo passo, e aqui está um ponto que mudou conceitualmente nas últimas décadas, é <strong>destorcer o anexo afetado</strong>. Antigamente, havia receio de que a destorção liberasse êmbolos na circulação, mas estudos mostraram que isso não ocorre e que a preservação ovariana é segura e desejável, especialmente em mulheres jovens. Após destorcer, devemos realizar <strong>irrigação da cavidade</strong> com soro aquecido e <strong>observar a viabilidade do ovário</strong>. Vamos aguardar alguns minutos para ver se há reperfusão, retorno da coloração normal e dos movimentos peristálticos da tuba.</p>\n\n<p>Se houver <strong>sinais de necrose evidente</strong> (ovário negro, sem reperfusão, friável), indicamos <strong>anexectomia</strong>. Mas se o anexo mostrar-se viável após a destorção, devemos preservá-lo. Nesse caso, avaliamos a segurança do manejo do cisto anexial (que pelos achados da USG prévia tinha características de teratoma) e realizamos <strong>ooforoplastia</strong> - ou seja, cistectomia ovariana com reconstrução do ovário. O gabarito menciona que a critério do cirurgião pode-se optar por realizar a plástica do ovário em segundo tempo, especialmente se houver edema importante que dificulte a dissecção segura ou se o quadro clínico da paciente exigir abreviação do procedimento.</p>\n\n<p>A <strong>ooforopexia</strong> - fixação do ovário para prevenir torção recorrente - é uma decisão tomada pelo cirurgião durante o ato operatório. O gabarito especifica as situações em que ela é particularmente sugerida:</p>\n<ul>\n<li><strong>torção de anexo único</strong></li>\n<li><strong>torção de anexo normal</strong> (sem massa predisponente)</li>\n<li><strong>torção recorrente</strong></li>\n<li><strong>torção bilateral</strong></li>\n<li><strong>comprimento excessivo do ligamento útero-ovariano</strong></li>\n<li><strong>fixação do ovário contralateral em casos de anexectomia</strong> por torção do outro lado</li>\n</ul>\n<p>No nosso caso, se houver anexectomia direita, poderíamos considerar ooforopexia do ovário esquerdo para prevenir torção do anexo remanescente único.</p>\n\n<p>Para pontuar integralmente nessa questão, precisamos mencionar: a indicação cirúrgica urgente, a preferência pela via laparoscópica, a sequência de identificação da lesão e destorção, a irrigação e avaliação de viabilidade, a conduta conforme viabilidade (anexectomia se necrose ou ooforoplastia se viável), e a consideração sobre ooforopexia com suas indicações específicas. Um erro comum é não mencionar a destorção ou sugerir anexectomia de rotina, esquecendo que em mulheres jovens a preservação ovariana é prioridade sempre que possível.</p><br>Visão do aprovado: <h3>Visão do aprovado</h3>\n\n<p>O padrão temporal de dor intermitente evoluindo para constante é praticamente <strong>patognomônico de torção anexial</strong> e precisa ser reconhecido em segundos na prova: episódios de torção-destorção espontânea seguidos de torção mantida. Somado aos achados ultrassonográficos de <strong>edema estromal e folículos periféricos</strong>, o diagnóstico está feito. A pegadinha aqui é interpretar o crescimento da massa de 5,8 para 8,6cm como progressão tumoral agressiva, quando na verdade trata-se de <em>edema secundário à torção</em>. Outro ponto de atenção é não confundir a massa heterogênea com ecos de alta amplitude (padrão típico de teratoma) com outras lesões ovarianas, já que <em>teratomas são especialmente propensos à torção</em> por seu conteúdo denso e heterogêneo.</p>\n\n<p>A grande armadilha conceitual, que costuma derrubar candidatos, é o <strong>manejo do anexo após destorção</strong>. O conceito antigo de que destorcer liberaria êmbolos e causaria complicações tromboembólicas está ultrapassado, mas ainda aparece como distrator em alternativas de múltipla escolha ou leva candidatos a sugerirem anexectomia de rotina em questões discursivas. A conduta atual prioriza <strong>destorcer, observar viabilidade e preservar sempre que possível</strong>, especialmente em mulheres jovens. Só realizamos anexectomia se houver necrose evidente após a destorção e tentativa de reperfusão.</p>\n\n<p>Em questões discursivas como esta, a resposta precisa contemplar toda a sequência operatória para pontuar integralmente:</p>\n<ul>\n<li>indicação cirúrgica de urgência</li>\n<li>preferência laparoscópica</li>\n<li>identificação e destorção</li>\n<li>irrigação e observação de viabilidade</li>\n<li>conduta baseada na viabilidade (ooforoplastia se viável, anexectomia se necrose)</li>\n<li>consideração sobre ooforopexia com suas indicações específicas</li>\n</ul>\n<p>Esquecer qualquer um desses passos, principalmente a destorção ou a possibilidade de preservação ovariana, compromete significativamente a pontuação. A menção às <strong>indicações de ooforopexia</strong> demonstra conhecimento técnico refinado e diferencia respostas completas das superficiais.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T17:49:21.447570+00:00",
+  "complete": true
+}

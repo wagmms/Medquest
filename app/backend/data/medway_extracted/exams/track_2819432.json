@@ -1,0 +1,1141 @@
+{
+  "track_id": 2819432,
+  "name": "UNICAMP - 2024 [Medicina Fetal]",
+  "year": 2024,
+  "track_fast": {
+    "id": 2819432,
+    "name": "UNICAMP - 2024 [Medicina Fetal]",
+    "track_type": "c",
+    "question_count": 10,
+    "year": 2024,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UNICAMP",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-unicamp_yplZ7NO.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 10,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 10,
+  "questions": [
+    {
+      "meta": {
+        "id": 197330,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Gemelidade e restrição de crescimento fetal seletiva",
+        "focus": {
+          "id": 1593,
+          "name": "Gemelidade e restrição de crescimento fetal seletiva"
+        }
+      },
+      "detail": {
+        "id": 197330,
+        "content": "Paciente primigesta e sem doenças de base, com gestação gemelar monocoriônica e diamniótica de 26 semanas, apresenta ao exame de ultrassom obstétrico: - Feto A: peso estimado 1.010 g (percentil 79); líquido amniótico normal; Dopplervelocimetria: índice de pulsatilidade normal e fluxo diastólico final presente nas artérias umbilicais, índice de pulsatilidade e pico de velocidade sistólica normais nas artérias cerebrais médias; placenta única, de aspecto normal; morfologia fetal não detectou alterações. Feto B: peso estimado 780 g (percentil 14); líquido amniótico normal; Dopplervelocimetria: índice de pulsatilidade acima do percentil 95 e fluxo diastólico final positivo nas artérias umbilicais, índice de pulsatilidade e pico de velocidade sistólica normais nas artérias cerebrais médias; placenta única, de aspecto normal; morfologia fetal não detectou alterações. CONSIDERANDO AS INFORMAÇÕES ACIMA, QUAL SUA HIPÓTESE DIAGNÓSTICA EM RELAÇÃO AO DESENVOLVIMENTO DOS FETOS? EXPLIQUE.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15974,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Gemelidade e restrição de crescimento fetal seletiva",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 36,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1593,
+          "name": "Gemelidade e restrição de crescimento fetal seletiva",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224705,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Em gesta&ccedil;&otilde;es monocori&ocirc;nicas, o diagn&oacute;stico de restri&ccedil;&atilde;o de crescimento fetal seletiva (RCFs) &eacute; mais frequente. Para facilitar o entendimento, pensem na (RCFs) como uma &ldquo;prima&rdquo; da insufici&ecirc;ncia placent&aacute;ria do feto &uacute;nico. O mecanismo &eacute; o compartilhamento desigual da placenta, geralmente associado a inser&ccedil;&otilde;es an&ocirc;malas do cord&atilde;o na placenta (marginal, velamentosa) de um dos fetos. Ou seja, um feto fica com um &ldquo;peda&ccedil;&atilde;o&rdquo; da placenta e o outro fica s&oacute; com um pedacinho. Por isso, a diferen&ccedil;a de peso entre os fetos acaba sendo bem importante, e o feto menor pode ter altera&ccedil;&otilde;es do Doppler.</p>\n<p style=\"text-align: justify;\">Lembre-se que a discord&acirc;ncia de peso entre os fetos &eacute; calculada pela f&oacute;rmula: (peso do maior - peso do menor) / peso do maior x 100. Neste caso, temos aproximadamente 23% de discord&acirc;ncia, o que &eacute; significativo (&gt;20%), e que foi o crit&eacute;rio isolado utilizado para realizar o diagn&oacute;stico de RCF seletiva. <strong>Importante dizer que esse crit&eacute;rio isolado &eacute; controverso na literatura e que a quest&atilde;o foi infeliz ao se contradizer e trazer uma refer&ecirc;ncia no gabarito que n&atilde;o justificasse sua resposta de maneira adequada.</strong></p>\n<p style=\"text-align: justify;\">Ou seja, n&atilde;o &eacute; poss&iacute;vel afirmar com certeza o diagn&oacute;stico de RCF nesse caso, visto que precisar&iacute;amos de uma discord&acirc;ncia maior ou igual a 25% associado a altera&ccedil;&atilde;o no &iacute;ndice de pulsatilidade da art&eacute;ria umbilical para fazer o diagn&oacute;stico de RCF.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> calcular o percentual de diferen&ccedil;a entre os pesos estimados dos fetos: (peso de feto maior - peso do feto menor)/peso do feto maior; - ressaltar que diferen&ccedil;a percentual entre os pesos indica um maior risco de complica&ccedil;&otilde;es perinatais para os fetos; - o aumento do IP da art&eacute;ria umbilical indica que a prov&aacute;vel causa da altera&ccedil;&atilde;o de crescimento fetal &eacute; insufici&ecirc;ncia placent&aacute;ria; - indicar se o caso preenche crit&eacute;rio para restri&ccedil;&atilde;o de crescimento fetal seletiva, tomando como base preferencialmente o consenso Delphi de 2018 (Khalil A, Beune I, Hecher K, Wynia K, Ganzevoort W, Reed K, Lewi L, Oepkes D, Gratacos E, Thilaganathan B, Gordijn SJ. Consensus definition and essential reporting parameters of selective fetal growth restriction in twin pregnancy: a Delphi procedure. Ultrasound Obstet Gynecol 2019; 53: 47&ndash;54) ou citando os crit&eacute;rios de algum outro consenso publicado. - Neste caso, de acordo com o consenso Delphi de 2018, h&aacute; crit&eacute;rio para o diagn&oacute;stico de RCFs.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Aproveita a quest&atilde;o para relembrar dos crit&eacute;rios diagn&oacute;stico de RCF seletiva:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T224600343Z642037.png\"></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Em gesta&ccedil;&otilde;es monocori&ocirc;nicas, o diagn&oacute;stico de restri&ccedil;&atilde;o de crescimento fetal seletiva (RCFs) &eacute; mais frequente. Para facilitar o entendimento, pensem na (RCFs) como uma &ldquo;prima&rdquo; da insufici&ecirc;ncia placent&aacute;ria do feto &uacute;nico. O mecanismo &eacute; o compartilhamento desigual da placenta, geralmente associado a inser&ccedil;&otilde;es an&ocirc;malas do cord&atilde;o na placenta (marginal, velamentosa) de um dos fetos. Ou seja, um feto fica com um &ldquo;peda&ccedil;&atilde;o&rdquo; da placenta e o outro fica s&oacute; com um pedacinho. Por isso, a diferen&ccedil;a de peso entre os fetos acaba sendo bem importante, e o feto menor pode ter altera&ccedil;&otilde;es do Doppler.</p>\n<p style=\"text-align: justify;\">Lembre-se que a discord&acirc;ncia de peso entre os fetos &eacute; calculada pela f&oacute;rmula: (peso do maior - peso do menor) / peso do maior x 100. Neste caso, temos aproximadamente 23% de discord&acirc;ncia, o que &eacute; significativo (&gt;20%), e que foi o crit&eacute;rio isolado utilizado para realizar o diagn&oacute;stico de RCF seletiva. <strong>Importante dizer que esse crit&eacute;rio isolado &eacute; controverso na literatura e que a quest&atilde;o foi infeliz ao se contradizer e trazer uma refer&ecirc;ncia no gabarito que n&atilde;o justificasse sua resposta de maneira adequada.</strong></p>\n<p style=\"text-align: justify;\">Ou seja, n&atilde;o &eacute; poss&iacute;vel afirmar com certeza o diagn&oacute;stico de RCF nesse caso, visto que precisar&iacute;amos de uma discord&acirc;ncia maior ou igual a 25% associado a altera&ccedil;&atilde;o no &iacute;ndice de pulsatilidade da art&eacute;ria umbilical para fazer o diagn&oacute;stico de RCF.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> calcular o percentual de diferen&ccedil;a entre os pesos estimados dos fetos: (peso de feto maior - peso do feto menor)/peso do feto maior; - ressaltar que diferen&ccedil;a percentual entre os pesos indica um maior risco de complica&ccedil;&otilde;es perinatais para os fetos; - o aumento do IP da art&eacute;ria umbilical indica que a prov&aacute;vel causa da altera&ccedil;&atilde;o de crescimento fetal &eacute; insufici&ecirc;ncia placent&aacute;ria; - indicar se o caso preenche crit&eacute;rio para restri&ccedil;&atilde;o de crescimento fetal seletiva, tomando como base preferencialmente o consenso Delphi de 2018 (Khalil A, Beune I, Hecher K, Wynia K, Ganzevoort W, Reed K, Lewi L, Oepkes D, Gratacos E, Thilaganathan B, Gordijn SJ. Consensus definition and essential reporting parameters of selective fetal growth restriction in twin pregnancy: a Delphi procedure. Ultrasound Obstet Gynecol 2019; 53: 47&ndash;54) ou citando os crit&eacute;rios de algum outro consenso publicado. - Neste caso, de acordo com o consenso Delphi de 2018, h&aacute; crit&eacute;rio para o diagn&oacute;stico de RCFs.</p><br>Visão do aprovado: <p>Aproveita a quest&atilde;o para relembrar dos crit&eacute;rios diagn&oacute;stico de RCF seletiva:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T224600343Z642037.png\"></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197331,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Gemelidade e restrição de crescimento fetal seletiva",
+        "focus": {
+          "id": 1593,
+          "name": "Gemelidade e restrição de crescimento fetal seletiva"
+        }
+      },
+      "detail": {
+        "id": 197331,
+        "content": "Paciente primigesta e sem doenças de base, com gestação gemelar monocoriônica e diamniótica de 26 semanas, apresenta ao exame de ultrassom obstétrico: - Feto A: peso estimado 1.010 g (percentil 79); líquido amniótico normal; Dopplervelocimetria: índice de pulsatilidade normal e fluxo diastólico final presente nas artérias umbilicais, índice de pulsatilidade e pico de velocidade sistólica normais nas artérias cerebrais médias; placenta única, de aspecto normal; morfologia fetal não detectou alterações. Feto B: peso estimado 780 g (percentil 14); líquido amniótico normal; Dopplervelocimetria: índice de pulsatilidade acima do percentil 95 e fluxo diastólico final positivo nas artérias umbilicais, índice de pulsatilidade e pico de velocidade sistólica normais nas artérias cerebrais médias; placenta única, de aspecto normal; morfologia fetal não detectou alterações. CONSIDERANDO AS INFORMAÇÕES ACIMA, QUAL SUA RECOMENDAÇÃO DE CONDUTA PARA O SEGUIMENTO FETAL DORAVANTE? EXPLIQUE.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15974,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Gemelidade e restrição de crescimento fetal seletiva",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 40,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1593,
+          "name": "Gemelidade e restrição de crescimento fetal seletiva",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224704,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Em gesta&ccedil;&otilde;es&nbsp;monocori&ocirc;nicas, o diagn&oacute;stico de restri&ccedil;&atilde;o de crescimento fetal seletiva (RCFs) &eacute; mais frequente. Para facilitar o entendimento, pensem na (RCFs) como uma &ldquo;prima&rdquo; da insufici&ecirc;ncia placent&aacute;ria do feto &uacute;nico. O mecanismo &eacute; o compartilhamento desigual da placenta, geralmente associado a inser&ccedil;&otilde;es an&ocirc;malas do cord&atilde;o na placenta (marginal, velamentosa) de um dos fetos. Ou seja, um feto fica com um &ldquo;peda&ccedil;&atilde;o&rdquo; da placenta e o outro fica s&oacute; com um pedacinho. Por isso, a diferen&ccedil;a de peso entre os fetos acaba sendo bem importante, e o feto menor pode ter altera&ccedil;&otilde;es do Doppler.</p>\n<p style=\"text-align: justify;\">Lembre-se que a discord&acirc;ncia de peso entre os fetos &eacute; calculada pela f&oacute;rmula: (peso do maior - peso do menor) / peso do maior x 100. Neste caso, temos aproximadamente 23% de discord&acirc;ncia, o que &eacute; significativo (&gt;20%), e que foi o crit&eacute;rio isolado utilizado para realizar o diagn&oacute;stico de RCF seletiva. <strong>Importante dizer que esse crit&eacute;rio isolado &eacute; controverso na literatura e que a quest&atilde;o foi infeliz ao se contradizer e trazer uma refer&ecirc;ncia no gabarito que n&atilde;o justificasse sua resposta de maneira adequada.</strong></p>\n<p style=\"text-align: justify;\">Ou seja, n&atilde;o &eacute; poss&iacute;vel afirmar com certeza o diagn&oacute;stico de RCF nesse caso, visto que precisar&iacute;amos de uma discord&acirc;ncia maior ou igual a 25% associado a altera&ccedil;&atilde;o no &iacute;ndice de pulsatilidade da art&eacute;ria umbilical para fazer o diagn&oacute;stico de RCF.</p>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> classificar ou estadiar o caso e indicar a conduta preferencialmente de acordo com os crit&eacute;rios de Gratac&oacute;s e colaboradores publicado em 2007 (Gratacos E, Lewi L, Mu ́noz B, Acosta-Rojas R, Hernandez-Andrade E, Martinez ̃ JM, Carreras E, Deprest J. A classification system for selective intrauterine growth restriction in monochorionic pregnancies according to umbilical artery Doppler flow in the smaller twin. Ultrasound Obstet Gynecol 2007; 30: 28&ndash;34) ou citando os crit&eacute;rios de algum outro consenso publicado. - Neste caso, de acordo com os crit&eacute;rios de Gratac&oacute;s e colaboradores, trata-se de uma RCFs tipo I e a conduta &eacute; acompanhamento ecogr&aacute;fico semanal.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Aproveita a quest&atilde;o para relembrar a classifica&ccedil;&atilde;o de RCF seletiva de acordo com as altera&ccedil;&otilde;es dopplervelocim&eacute;tricas:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T224648507Z250930.png\"></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Em gesta&ccedil;&otilde;es&nbsp;monocori&ocirc;nicas, o diagn&oacute;stico de restri&ccedil;&atilde;o de crescimento fetal seletiva (RCFs) &eacute; mais frequente. Para facilitar o entendimento, pensem na (RCFs) como uma &ldquo;prima&rdquo; da insufici&ecirc;ncia placent&aacute;ria do feto &uacute;nico. O mecanismo &eacute; o compartilhamento desigual da placenta, geralmente associado a inser&ccedil;&otilde;es an&ocirc;malas do cord&atilde;o na placenta (marginal, velamentosa) de um dos fetos. Ou seja, um feto fica com um &ldquo;peda&ccedil;&atilde;o&rdquo; da placenta e o outro fica s&oacute; com um pedacinho. Por isso, a diferen&ccedil;a de peso entre os fetos acaba sendo bem importante, e o feto menor pode ter altera&ccedil;&otilde;es do Doppler.</p>\n<p style=\"text-align: justify;\">Lembre-se que a discord&acirc;ncia de peso entre os fetos &eacute; calculada pela f&oacute;rmula: (peso do maior - peso do menor) / peso do maior x 100. Neste caso, temos aproximadamente 23% de discord&acirc;ncia, o que &eacute; significativo (&gt;20%), e que foi o crit&eacute;rio isolado utilizado para realizar o diagn&oacute;stico de RCF seletiva. <strong>Importante dizer que esse crit&eacute;rio isolado &eacute; controverso na literatura e que a quest&atilde;o foi infeliz ao se contradizer e trazer uma refer&ecirc;ncia no gabarito que n&atilde;o justificasse sua resposta de maneira adequada.</strong></p>\n<p style=\"text-align: justify;\">Ou seja, n&atilde;o &eacute; poss&iacute;vel afirmar com certeza o diagn&oacute;stico de RCF nesse caso, visto que precisar&iacute;amos de uma discord&acirc;ncia maior ou igual a 25% associado a altera&ccedil;&atilde;o no &iacute;ndice de pulsatilidade da art&eacute;ria umbilical para fazer o diagn&oacute;stico de RCF.</p>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> classificar ou estadiar o caso e indicar a conduta preferencialmente de acordo com os crit&eacute;rios de Gratac&oacute;s e colaboradores publicado em 2007 (Gratacos E, Lewi L, Mu ́noz B, Acosta-Rojas R, Hernandez-Andrade E, Martinez ̃ JM, Carreras E, Deprest J. A classification system for selective intrauterine growth restriction in monochorionic pregnancies according to umbilical artery Doppler flow in the smaller twin. Ultrasound Obstet Gynecol 2007; 30: 28&ndash;34) ou citando os crit&eacute;rios de algum outro consenso publicado. - Neste caso, de acordo com os crit&eacute;rios de Gratac&oacute;s e colaboradores, trata-se de uma RCFs tipo I e a conduta &eacute; acompanhamento ecogr&aacute;fico semanal.</p><br>Visão do aprovado: <p>Aproveita a quest&atilde;o para relembrar a classifica&ccedil;&atilde;o de RCF seletiva de acordo com as altera&ccedil;&otilde;es dopplervelocim&eacute;tricas:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T224648507Z250930.png\"></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197332,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Complicações de gestação monocoriônica",
+        "focus": {
+          "id": 1627,
+          "name": "Complicações de gestação monocoriônica"
+        }
+      },
+      "detail": {
+        "id": 197332,
+        "content": "Paciente primigesta e sem doenças de base, com gestação gemelar monocoriônica e diamniótica de 20 semanas, apresenta ao exame de ultrassom: - Feto A: peso estimado 370 g (percentil 81); polidrâmnio; Dopplervelocimetria: índice de pulsatilidade normal e fluxo diastólico final presente nas artérias umbilicais, índice de pulsatilidade e pico de velocidade sistólica normais nas artérias cerebrais médias, índice de pulsatilidade acima do percentil 95 e onda \"a\" positiva no ducto venoso; bexiga fetal permanentemente distendida durante todo o exame; placenta única, de aspecto normal; morfologia fetal não detectou alterações. - Feto B: peso estimado 300 g (percentil 24); anidrâmnio; Dopplervelocimetria: índice de pulsatilidade acima do percentil 95 e fluxo diastólico final positivo nas artérias umbilicais, índice de pulsatilidade e pico de velocidade sistólica normais nas artérias cerebrais médias; bexiga fetal vazia durante todo o exame; placenta única, de aspecto normal; morfologia fetal não detectou alterações. - Colo uterino com comprimento normal. CONSIDERANDO AS INFORMAÇÕES ACIMA, QUAL SUA HIPÓTESE DIAGNÓSTICA EM RELAÇÃO AO DESENVOLVIMENTO GESTACIONAL? EXPLIQUE.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15939,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Complicações de gestação monocoriônica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 26,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1627,
+          "name": "Complicações de gestação monocoriônica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224703,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Este caso apresenta uma gestante primigesta com gestação gemelar monocoriônica e diamniótica de 20 semanas, apresentando achados ultrassonográficos altamente sugestivos de <span class=\"article-3395\">Síndrome de Transfusão Feto-Fetal</span> (STFF). A STFF ou TOPS é consequência de desequilíbrio das anastomoses entre os gemelares na placenta. Fisiologicamente, há algumas anastomoses entre gemelares na placenta, que costumam ser em quantidades parecidas (total de anastomoses do feto 1 para o feto 2 parecido com do feto 2 para o feto 1). Porém, se um dos fetos “manda” mais vasos do que “recebe” do outro, ocorre a STFF. Ou seja, a STFF é resultado de um desequilíbrio hemodinâmico. O feto que recebe mais sangue é chamado receptor e o que envia seu sangue para o outro gemelar é chamado doador. </p>\n<p style=\"text-align: justify;\">Se o sangue que chega para cada feto é filtrado e vira urina fetal, consequentemente líquido amniótico, quem recebe mais sangue acaba urinando mais por isso aparece o polidrâmnio. Do outro lado, quem manda sangue fica com pouco e urina menos, assim surge o oligoâmnio. Daí para a frente, as alterações ficam cada vez mais graves, representando que o desequilíbrio hemodinâmico está avançando, e podendo até chegar ao óbito.</p>\n<p style=\"text-align: justify;\">Analisando os achados ultrassonográficos, observamos o quadro clássico: o feto A apresenta-se como receptor, com maior peso (370g, percentil 81), <strong>polidrâmnio </strong>e bexiga permanentemente distendida, enquanto o feto B se comporta como doador, com menor peso (300g, percentil 24), <strong>anidrâmnio </strong>e <strong>bexiga vazia</strong>. A discordância de peso entre os fetos é de aproximadamente 19%. Ou seja, diante da discordância de líquidos associado com a bexiga vazia, já podemos estabelecer nosso diagnóstico com certeza!</p>\n<p style=\"text-align: justify;\">A fisiopatologia envolve a transferência crônica de sangue do feto doador para o receptor através de anastomoses vasculares placentárias desequilibradas. O feto doador desenvolve hipovolemia, oligúria, anidrâmnio e restrição de crescimento. Já o feto receptor sofre com hipervolemia, poliúria, polidrâmnio e sobrecarga cardíaca que pode evoluir para insuficiência cardíaca. </p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> ressaltar que diferença no volume de líquido amniótico nas bolsas indica presença de alguma complicação transfusional por desbalanço das anastomoses entre os fetos; - indicar que o caso preenche critério para transfusão feto-fetal, tomando como base preferencialmente a classificação de Quintero e colaboradores de 1999 (Quintero RA, Morales WJ, Allen MH, Bornick PW, Johnson PK, Kruger M. Staging of twin-twin transfusion syndrome. J Perinatol. 1999 Dec;19(8 Pt 1):550-5. doi: 10.1038/sj.jp.7200292. PMID: 10645517) ou citando os critérios de algum outro consenso publicado.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Aproveita a questão para relembrar das principais alterações hemodinâmicas que acontecem com os fetos com STFF:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T223224764Z310610.png\"/></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Este caso apresenta uma gestante primigesta com gestação gemelar monocoriônica e diamniótica de 20 semanas, apresentando achados ultrassonográficos altamente sugestivos de <span class=\"article-3395\">Síndrome de Transfusão Feto-Fetal</span> (STFF). A STFF ou TOPS é consequência de desequilíbrio das anastomoses entre os gemelares na placenta. Fisiologicamente, há algumas anastomoses entre gemelares na placenta, que costumam ser em quantidades parecidas (total de anastomoses do feto 1 para o feto 2 parecido com do feto 2 para o feto 1). Porém, se um dos fetos “manda” mais vasos do que “recebe” do outro, ocorre a STFF. Ou seja, a STFF é resultado de um desequilíbrio hemodinâmico. O feto que recebe mais sangue é chamado receptor e o que envia seu sangue para o outro gemelar é chamado doador. </p>\n<p style=\"text-align: justify;\">Se o sangue que chega para cada feto é filtrado e vira urina fetal, consequentemente líquido amniótico, quem recebe mais sangue acaba urinando mais por isso aparece o polidrâmnio. Do outro lado, quem manda sangue fica com pouco e urina menos, assim surge o oligoâmnio. Daí para a frente, as alterações ficam cada vez mais graves, representando que o desequilíbrio hemodinâmico está avançando, e podendo até chegar ao óbito.</p>\n<p style=\"text-align: justify;\">Analisando os achados ultrassonográficos, observamos o quadro clássico: o feto A apresenta-se como receptor, com maior peso (370g, percentil 81), <strong>polidrâmnio </strong>e bexiga permanentemente distendida, enquanto o feto B se comporta como doador, com menor peso (300g, percentil 24), <strong>anidrâmnio </strong>e <strong>bexiga vazia</strong>. A discordância de peso entre os fetos é de aproximadamente 19%. Ou seja, diante da discordância de líquidos associado com a bexiga vazia, já podemos estabelecer nosso diagnóstico com certeza!</p>\n<p style=\"text-align: justify;\">A fisiopatologia envolve a transferência crônica de sangue do feto doador para o receptor através de anastomoses vasculares placentárias desequilibradas. O feto doador desenvolve hipovolemia, oligúria, anidrâmnio e restrição de crescimento. Já o feto receptor sofre com hipervolemia, poliúria, polidrâmnio e sobrecarga cardíaca que pode evoluir para insuficiência cardíaca. </p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> ressaltar que diferença no volume de líquido amniótico nas bolsas indica presença de alguma complicação transfusional por desbalanço das anastomoses entre os fetos; - indicar que o caso preenche critério para transfusão feto-fetal, tomando como base preferencialmente a classificação de Quintero e colaboradores de 1999 (Quintero RA, Morales WJ, Allen MH, Bornick PW, Johnson PK, Kruger M. Staging of twin-twin transfusion syndrome. J Perinatol. 1999 Dec;19(8 Pt 1):550-5. doi: 10.1038/sj.jp.7200292. PMID: 10645517) ou citando os critérios de algum outro consenso publicado.</p><br>Visão do aprovado: <p>Aproveita a questão para relembrar das principais alterações hemodinâmicas que acontecem com os fetos com STFF:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T223224764Z310610.png\"/></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197333,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Complicações de gestação monocoriônica",
+        "focus": {
+          "id": 1627,
+          "name": "Complicações de gestação monocoriônica"
+        }
+      },
+      "detail": {
+        "id": 197333,
+        "content": "Paciente primigesta e sem doenças de base, com gestação gemelar monocoriônica e diamniótica de 20 semanas, apresenta ao exame de ultrassom: - Feto A: peso estimado 370 g (percentil 81); polidrâmnio; Dopplervelocimetria: índice de pulsatilidade normal e fluxo diastólico final presente nas artérias umbilicais, índice de pulsatilidade e pico de velocidade sistólica normais nas artérias cerebrais médias, índice de pulsatilidade acima do percentil 95 e onda \"a\" positiva no ducto venoso; bexiga fetal permanentemente distendida durante todo o exame; placenta única, de aspecto normal; morfologia fetal não detectou alterações. - Feto B: peso estimado 300 g (percentil 24); anidrâmnio; Dopplervelocimetria: índice de pulsatilidade acima do percentil 95 e fluxo diastólico final positivo nas artérias umbilicais, índice de pulsatilidade e pico de velocidade sistólica normais nas artérias cerebrais médias; bexiga fetal vazia durante todo o exame; placenta única, de aspecto normal; morfologia fetal não detectou alterações. - Colo uterino com comprimento normal. CONSIDERANDO AS INFORMAÇÕES ACIMA, QUAL SUA RECOMENDAÇÃO DE CONDUTA DORAVANTE? EXPLIQUE.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15939,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Complicações de gestação monocoriônica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 21,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1627,
+          "name": "Complicações de gestação monocoriônica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224702,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Este caso apresenta uma gestante primigesta com gestação gemelar monocoriônica e diamniótica de 20 semanas, apresentando achados ultrassonográficos altamente sugestivos de <span class=\"article-3395\">Síndrome de Transfusão Feto-Fetal</span> (STFF). A STFF ou TOPS é consequência de desequilíbrio das anastomoses entre os gemelares na placenta. Fisiologicamente, há algumas anastomoses entre gemelares na placenta, que costumam ser em quantidades parecidas (total de anastomoses do feto 1 para o feto 2 parecido com do feto 2 para o feto 1). Porém, se um dos fetos “manda” mais vasos do que “recebe” do outro, ocorre a STFF. Ou seja, a STFF é resultado de um desequilíbrio hemodinâmico. O feto que recebe mais sangue é chamado receptor e o que envia seu sangue para o outro gemelar é chamado doador. </p>\n<p style=\"text-align: justify;\">Se o sangue que chega para cada feto é filtrado e vira urina fetal, consequentemente líquido amniótico, quem recebe mais sangue acaba urinando mais por isso aparece o polidrâmnio. Do outro lado, quem manda sangue fica com pouco e urina menos, assim surge o oligoâmnio. Daí para a frente, as alterações ficam cada vez mais graves, representando que o desequilíbrio hemodinâmico está avançando, e podendo até chegar ao óbito.</p>\n<p style=\"text-align: justify;\">Analisando os achados ultrassonográficos, observamos o quadro clássico: o feto A apresenta-se como receptor, com maior peso (370g, percentil 81), <strong>polidrâmnio </strong>e bexiga permanentemente distendida, enquanto o feto B se comporta como doador, com menor peso (300g, percentil 24), <strong>anidrâmnio </strong>e <strong>bexiga vazia</strong>. A discordância de peso entre os fetos é de aproximadamente 19%. Ou seja, diante da discordância de líquidos associado com a bexiga vazia, já podemos estabelecer nosso diagnóstico com certeza!</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> classificar ou estadiar o caso e indicar a conduta preferencialmente de acordo com a classificação de Quintero e colaboradores de 1999 (Quintero RA, Morales WJ, Allen MH, Bornick PW, Johnson PK, Kruger M. Staging of twin-twin transfusion syndrome. J GABARITO Perinatol. 1999 Dec;19(8 Pt 1):550-5. doi: 10.1038/sj.jp.7200292. PMID: 10645517) ou citando os critérios de algum outro consenso publicado. - Neste caso, de acordo com a classificação de Quintero e colaboradores, trata-se de uma STT estágio II e a conduta preconizada é tratamento imediato por meio de ablação das anastomoses placentárias com laser guiada por fetoscopia.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Aproveita a questão para relembrar da síndrome transfusão feto-fetal:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T222821042Z998624.png\"/></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Este caso apresenta uma gestante primigesta com gestação gemelar monocoriônica e diamniótica de 20 semanas, apresentando achados ultrassonográficos altamente sugestivos de <span class=\"article-3395\">Síndrome de Transfusão Feto-Fetal</span> (STFF). A STFF ou TOPS é consequência de desequilíbrio das anastomoses entre os gemelares na placenta. Fisiologicamente, há algumas anastomoses entre gemelares na placenta, que costumam ser em quantidades parecidas (total de anastomoses do feto 1 para o feto 2 parecido com do feto 2 para o feto 1). Porém, se um dos fetos “manda” mais vasos do que “recebe” do outro, ocorre a STFF. Ou seja, a STFF é resultado de um desequilíbrio hemodinâmico. O feto que recebe mais sangue é chamado receptor e o que envia seu sangue para o outro gemelar é chamado doador. </p>\n<p style=\"text-align: justify;\">Se o sangue que chega para cada feto é filtrado e vira urina fetal, consequentemente líquido amniótico, quem recebe mais sangue acaba urinando mais por isso aparece o polidrâmnio. Do outro lado, quem manda sangue fica com pouco e urina menos, assim surge o oligoâmnio. Daí para a frente, as alterações ficam cada vez mais graves, representando que o desequilíbrio hemodinâmico está avançando, e podendo até chegar ao óbito.</p>\n<p style=\"text-align: justify;\">Analisando os achados ultrassonográficos, observamos o quadro clássico: o feto A apresenta-se como receptor, com maior peso (370g, percentil 81), <strong>polidrâmnio </strong>e bexiga permanentemente distendida, enquanto o feto B se comporta como doador, com menor peso (300g, percentil 24), <strong>anidrâmnio </strong>e <strong>bexiga vazia</strong>. A discordância de peso entre os fetos é de aproximadamente 19%. Ou seja, diante da discordância de líquidos associado com a bexiga vazia, já podemos estabelecer nosso diagnóstico com certeza!</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> classificar ou estadiar o caso e indicar a conduta preferencialmente de acordo com a classificação de Quintero e colaboradores de 1999 (Quintero RA, Morales WJ, Allen MH, Bornick PW, Johnson PK, Kruger M. Staging of twin-twin transfusion syndrome. J GABARITO Perinatol. 1999 Dec;19(8 Pt 1):550-5. doi: 10.1038/sj.jp.7200292. PMID: 10645517) ou citando os critérios de algum outro consenso publicado. - Neste caso, de acordo com a classificação de Quintero e colaboradores, trata-se de uma STT estágio II e a conduta preconizada é tratamento imediato por meio de ablação das anastomoses placentárias com laser guiada por fetoscopia.</p><br>Visão do aprovado: <p>Aproveita a questão para relembrar da síndrome transfusão feto-fetal:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T222821042Z998624.png\"/></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197334,
+        "number": 5,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Aloimunização",
+        "focus": {
+          "id": 1589,
+          "name": "Aloimunização"
+        }
+      },
+      "detail": {
+        "id": 197334,
+        "content": "Secundigesta aloimunizada (anticorpos anti-D, titulação 1/256), sem outras doenças ou antecedentes obstétricos relevantes, assintomática, apresenta medida do pico de velocidade sistólica da artéria cerebral média fetal de 63 cm/s, equivalente a 1,88 múltiplos da mediana (MoM), com 26 semanas. Sem sinais de hidropisia fetal ou outras alterações na avaliação ecográfica obstétrica. PERGUNTA-SE: CONSIDERANDO AS INFORMAÇÕES ACIMA, QUAL SUA HIPÓTESE DIAGNÓSTICA EM RELAÇÃO AO FETO? EXPLIQUE.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15978,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Aloimunização",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 23,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1589,
+          "name": "Aloimunização",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224701,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">O ponto de corte da titulação do Coombs indireto significa que em títulos baixos há um risco leve a moderado de acometimento fetal. Já em títulos maiores (isso quer dizer 1:16, 1:32, 1:64…) o risco de anemia fetal grave é maior e, necessita de propedêutica adicional. A avaliação da anemia fetal é feita usualmente por meio da dopplerfluxometria, visto que nos fetos anêmicos ocorre diminuição da viscosidade sanguínea e aumento do débito cardíaco, levando a um estado hiperdinâmico, na tentativa de suprir a demanda por oxigênio dos tecidos. Assim, os fetos anêmicos, devido ao estado hiperdinâmico, apresentam valores de velocidade máxima do pico sistólico acima do limite esperado para a idade gestacional.</p>\n<p style=\"text-align: justify;\">O acompanhamento, por meio da dopplerfluxometria da artéria cerebral média (ACM), deve ser iniciado a partir de 20 – 24 semanas de gestação em gestantes com teste de Coombs indireto &gt; 1:8 (ou ≥ 1:16), sendo o método de maior sensibilidade e especificidade em relação aos exames invasivos, como amniocentese, para a detecção de anemia fetal. Os valores de corte estudados, como preditores de anemia fetal, foram medidos por meio dos múltiplos da mediana do pico da velocidade máxima da ACM, estabelecendo o que chamamos curva de Mari Modificada. </p>\n<p>Sendo assim, temos três grandes zonas para avaliarmos:</p>\n<ul>\n<li>Velocidade máxima acima de 1,5 múltiplos da mediana (MoM) — zona A — está relacionada ao quadro de anemia fetal grave (hematócrito abaixo de 30%), portanto, está indicada a realização de cordocentese para confirmar anemia e realizar possível <span class=\"article-5336\">transfusão intrauterina</span>;</li>\n<li>Velocidade máxima entre 1,29 e 1,5 MoM para a idade gestacional — zona B — é preditor de anemia fetal leve, sem indicação de cordocentese, devendo ocorrer nova reavaliação em 5 a 10 dias;</li>\n<li>Velocidade máxima abaixo de 1,29 MoM da idade gestacional significa não haver anemia, portanto, o exame deve ser repetido em 2 a 3 semanas.</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> Indicar que pelo antecedente de aloimunização materna com anticorpo hemolítico (anti-D), que encontra-se com titulação elevada, associado com o aumento no pico de velocidade sistólica na artéria cerebral média (Mari G, Adrignolo A, Abuhamad AZ, Pirhonen J, Jones DC, Ludomirsky A, Copel JA. Diagnosis of fetal anemia with Doppler ultrasound in the pregnancy complicated by maternal blood group immunization. Ultrasound Obstet Gynecol. 1995 Jun;5(6):400-5. doi: 10.1046/j.1469-0705.1995.05060400.x. PMID: 7552802) o diagnóstico mais provável é que o feto esteja com um quadro de anemia moderada ou grave.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>.Aproveita a questão para relembrar da curva de Mari Modificada:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250405T185358655Z145442.png\"/></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">O ponto de corte da titulação do Coombs indireto significa que em títulos baixos há um risco leve a moderado de acometimento fetal. Já em títulos maiores (isso quer dizer 1:16, 1:32, 1:64…) o risco de anemia fetal grave é maior e, necessita de propedêutica adicional. A avaliação da anemia fetal é feita usualmente por meio da dopplerfluxometria, visto que nos fetos anêmicos ocorre diminuição da viscosidade sanguínea e aumento do débito cardíaco, levando a um estado hiperdinâmico, na tentativa de suprir a demanda por oxigênio dos tecidos. Assim, os fetos anêmicos, devido ao estado hiperdinâmico, apresentam valores de velocidade máxima do pico sistólico acima do limite esperado para a idade gestacional.</p>\n<p style=\"text-align: justify;\">O acompanhamento, por meio da dopplerfluxometria da artéria cerebral média (ACM), deve ser iniciado a partir de 20 – 24 semanas de gestação em gestantes com teste de Coombs indireto &gt; 1:8 (ou ≥ 1:16), sendo o método de maior sensibilidade e especificidade em relação aos exames invasivos, como amniocentese, para a detecção de anemia fetal. Os valores de corte estudados, como preditores de anemia fetal, foram medidos por meio dos múltiplos da mediana do pico da velocidade máxima da ACM, estabelecendo o que chamamos curva de Mari Modificada. </p>\n<p>Sendo assim, temos três grandes zonas para avaliarmos:</p>\n<ul>\n<li>Velocidade máxima acima de 1,5 múltiplos da mediana (MoM) — zona A — está relacionada ao quadro de anemia fetal grave (hematócrito abaixo de 30%), portanto, está indicada a realização de cordocentese para confirmar anemia e realizar possível <span class=\"article-5336\">transfusão intrauterina</span>;</li>\n<li>Velocidade máxima entre 1,29 e 1,5 MoM para a idade gestacional — zona B — é preditor de anemia fetal leve, sem indicação de cordocentese, devendo ocorrer nova reavaliação em 5 a 10 dias;</li>\n<li>Velocidade máxima abaixo de 1,29 MoM da idade gestacional significa não haver anemia, portanto, o exame deve ser repetido em 2 a 3 semanas.</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> Indicar que pelo antecedente de aloimunização materna com anticorpo hemolítico (anti-D), que encontra-se com titulação elevada, associado com o aumento no pico de velocidade sistólica na artéria cerebral média (Mari G, Adrignolo A, Abuhamad AZ, Pirhonen J, Jones DC, Ludomirsky A, Copel JA. Diagnosis of fetal anemia with Doppler ultrasound in the pregnancy complicated by maternal blood group immunization. Ultrasound Obstet Gynecol. 1995 Jun;5(6):400-5. doi: 10.1046/j.1469-0705.1995.05060400.x. PMID: 7552802) o diagnóstico mais provável é que o feto esteja com um quadro de anemia moderada ou grave.</p><br>Visão do aprovado: <p>.Aproveita a questão para relembrar da curva de Mari Modificada:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250405T185358655Z145442.png\"/></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197335,
+        "number": 6,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Aloimunização",
+        "focus": {
+          "id": 1589,
+          "name": "Aloimunização"
+        }
+      },
+      "detail": {
+        "id": 197335,
+        "content": "Secundigesta aloimunizada (anticorpos anti-D, titulação 1/256), sem outras doenças ou antecedentes obstétricos relevantes, assintomática, apresenta medida do pico de velocidade sistólica da artéria cerebral média fetal de 63 cm/s, equivalente a 1,88 múltiplos da mediana (MoM), com 26 semanas. Sem sinais de hidropisia fetal ou outras alterações na avaliação ecográfica obstétrica. PERGUNTA-SE: CONSIDERANDO AS INFORMAÇÕES ACIMA, QUAL SUA RECOMENDAÇÃO DE CONDUTA DORAVANTE? EXPLIQUE.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15978,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Aloimunização",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 6,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 22,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1589,
+          "name": "Aloimunização",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224700,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">O ponto de corte da titulação do Coombs indireto significa que em títulos baixos há um risco leve a moderado de acometimento fetal. Já em títulos maiores (isso quer dizer 1:16, 1:32, 1:64…) o risco de anemia fetal grave é maior e, necessita de propedêutica adicional. A avaliação da anemia fetal é feita usualmente por meio da dopplerfluxometria, visto que nos fetos anêmicos ocorre diminuição da viscosidade sanguínea e aumento do débito cardíaco, levando a um estado hiperdinâmico, na tentativa de suprir a demanda por oxigênio dos tecidos. Assim, os fetos anêmicos, devido ao estado hiperdinâmico, apresentam valores de velocidade máxima do pico sistólico acima do limite esperado para a idade gestacional.</p>\n<p style=\"text-align: justify;\">O acompanhamento, por meio da dopplerfluxometria da artéria cerebral média (ACM), deve ser iniciado a partir de 20 – 24 semanas de gestação em gestantes com teste de Coombs indireto &gt; 1:8 (ou ≥ 1:16), sendo o método de maior sensibilidade e especificidade em relação aos exames invasivos, como amniocentese, para a detecção de anemia fetal. Os valores de corte estudados, como preditores de anemia fetal, foram medidos por meio dos múltiplos da mediana do pico da velocidade máxima da ACM, estabelecendo o que chamamos curva de Mari Modificada. </p>\n<p style=\"text-align: justify;\">Como temos um feto com pico de velocidade sistólica da artéria cerebral média acima de 1,5 múltiplos da mediana, temos um feto com sinal de anemia moderada a grave (hematócrito previsto abaixo de 30%). Como temos uma causa bem estabelecida aqui (coombs positivo por anti-D numa titulação bem alta), não vamos aguardar aparecer outro sinal ultrassonográfico de anemia (como hidropisia, insuficiência cardíaca, etc). Precisamos indicar a cordocentese para confirmar o diagnóstico e já realizar a <span class=\"article-5336\">transfusão intrauterina</span> no mesmo momento!</p>\n<p><strong>Gabarito:</strong> A recomendação preconizada, considerando a idade gestacional precoce, é a realização de cordocentese para dosar a hemoglobina fetal e, se confirmada a anemia, realizar transfusão intravascular de sangue no feto no mesmo momento.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>.Precisamos sempre avaliar algumas informações antes de indicar a transfusão fetal intra-útero:</p>\n<ul>\n<li>Existe algum sinal ultrassonográfico de anemia fetal além do PVS-ACM alterado?</li>\n<li>A paciente possui história obstétrica desfavorável por causa de aloimunização? </li>\n<li>Existe uma causa bem estabelecida que seja compatível com um prognóstico sombrio?</li>\n</ul>\n<p>Se alguma dessas respostas for sim, não vamos aguardar o feto descompensar para indicar a cordocentese!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">O ponto de corte da titulação do Coombs indireto significa que em títulos baixos há um risco leve a moderado de acometimento fetal. Já em títulos maiores (isso quer dizer 1:16, 1:32, 1:64…) o risco de anemia fetal grave é maior e, necessita de propedêutica adicional. A avaliação da anemia fetal é feita usualmente por meio da dopplerfluxometria, visto que nos fetos anêmicos ocorre diminuição da viscosidade sanguínea e aumento do débito cardíaco, levando a um estado hiperdinâmico, na tentativa de suprir a demanda por oxigênio dos tecidos. Assim, os fetos anêmicos, devido ao estado hiperdinâmico, apresentam valores de velocidade máxima do pico sistólico acima do limite esperado para a idade gestacional.</p>\n<p style=\"text-align: justify;\">O acompanhamento, por meio da dopplerfluxometria da artéria cerebral média (ACM), deve ser iniciado a partir de 20 – 24 semanas de gestação em gestantes com teste de Coombs indireto &gt; 1:8 (ou ≥ 1:16), sendo o método de maior sensibilidade e especificidade em relação aos exames invasivos, como amniocentese, para a detecção de anemia fetal. Os valores de corte estudados, como preditores de anemia fetal, foram medidos por meio dos múltiplos da mediana do pico da velocidade máxima da ACM, estabelecendo o que chamamos curva de Mari Modificada. </p>\n<p style=\"text-align: justify;\">Como temos um feto com pico de velocidade sistólica da artéria cerebral média acima de 1,5 múltiplos da mediana, temos um feto com sinal de anemia moderada a grave (hematócrito previsto abaixo de 30%). Como temos uma causa bem estabelecida aqui (coombs positivo por anti-D numa titulação bem alta), não vamos aguardar aparecer outro sinal ultrassonográfico de anemia (como hidropisia, insuficiência cardíaca, etc). Precisamos indicar a cordocentese para confirmar o diagnóstico e já realizar a <span class=\"article-5336\">transfusão intrauterina</span> no mesmo momento!</p>\n<p><strong>Gabarito:</strong> A recomendação preconizada, considerando a idade gestacional precoce, é a realização de cordocentese para dosar a hemoglobina fetal e, se confirmada a anemia, realizar transfusão intravascular de sangue no feto no mesmo momento.</p><br>Visão do aprovado: <p>.Precisamos sempre avaliar algumas informações antes de indicar a transfusão fetal intra-útero:</p>\n<ul>\n<li>Existe algum sinal ultrassonográfico de anemia fetal além do PVS-ACM alterado?</li>\n<li>A paciente possui história obstétrica desfavorável por causa de aloimunização? </li>\n<li>Existe uma causa bem estabelecida que seja compatível com um prognóstico sombrio?</li>\n</ul>\n<p>Se alguma dessas respostas for sim, não vamos aguardar o feto descompensar para indicar a cordocentese!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197336,
+        "number": 7,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sofrimento fetal crônico",
+        "focus": {
+          "id": 1607,
+          "name": "Sofrimento fetal crônico"
+        }
+      },
+      "detail": {
+        "id": 197336,
+        "content": "Primigesta com idade gestacional de 28 semanas. Tabagista (5 cigarros/dia). Sem outras doenças ou antecedentes relevantes. Ao exame clínico: altura uterina: 25 cm; boa movimentação fetal. Ao exame ecográfico obstétrico: peso fetal estimado 950 gramas (percentil 5). Morfologia fetal sem alterações. Líquido amniótico normal. Dopplervelocimetria: alterada (índice de pulsatilidade > percentil 95) nas artérias uterinas; alterada (índice de pulsatilidade > percentil 95, com fluxo diastólico final positivo) nas artérias umbilicais; índice de pulsatilidade normal nas artérias cerebrais médias; relação cérebro-placentária normal. Perfil biofísico fetal: 10/10 (variáves ecográficas e cardiotocografia normais). PERGUNTA-SE: CONSIDERANDO AS INFORMAÇÕES ACIMA, QUAL SUA HIPÓTESE DIAGNÓSTICA EM RELAÇÃO AO DESENVOLVIMENTO FETAL? EXPLIQUE.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15960,
+            "parent_tag": {
+              "id": 15911,
+              "name": "Sofrimento fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sofrimento fetal crônico",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 7,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 81,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1607,
+          "name": "Sofrimento fetal crônico",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 95,
+            "name": "Sofrimento fetal",
+            "discipline": 86,
+            "old_tag": 15911,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224699,
+        "actual_explanation": true,
+        "introduction": "<p>Fala, pessoal!&nbsp;</p>\n<p>Essa quest&atilde;o traz uma paciente de 28 semanas, com um peso fetal estimado abaixo do p10 e com altera&ccedil;&otilde;es dopplervelocim&eacute;tricas das art&eacute;rias uterinas e da art&eacute;ria umbilical.&nbsp;</p>\n<p>A tabela abaixo foi elaborada a partir do Consenso Delphi de 2016, e orienta quais s&atilde;o os par&acirc;metros que devemos considerar no diagn&oacute;stico de restri&ccedil;&atilde;o do crescimento fetal precoce ou tardio.&nbsp;</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250530T172015053Z317401.png\" width=\"443\" height=\"216\"></p>\n<p style=\"text-align: left;\">&nbsp;</p>\n<p style=\"text-align: left;\">A partir dela, temos o diagn&oacute;stico de <strong>RCF precoce</strong> fechado para a nossa paciente.&nbsp;</p>\n<p style=\"text-align: left;\">Nesses casos, a paciente geralmente inicia a altera&ccedil;&atilde;o pelas art&eacute;ria s umbilicais, progredindo para centraliza&ccedil;&atilde;o fetal, altera&ccedil;&atilde;o de ducto venoso e perfil biof&iacute;sico fetal.&nbsp;</p>\n<p style=\"text-align: left;\">Sabemos ainda que ap&oacute;s o diagn&oacute;stico de de restri&ccedil;&atilde;o, precisamos estadiar a paciente a fim de definir a melhor conduta obst&eacute;trica. Como n&atilde;o h&aacute; altera&ccedil;&atilde;o da morfologia da onda da di&aacute;stole da art&eacute;ria umbilical, mantemos a classifica&ccedil;&atilde;o como estadio 2, possibilitando a resolu&ccedil;&atilde;o por via obst&eacute;trica entre 34 e 37 semanas, de acordo com a FIGO.&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>.Na RCF tardia, a ordem das altera&ccedil;&otilde;es encontradas &eacute; um pouco diferente da RCF precoce.&nbsp;</p>\n<p>Aqui, o principal achado &eacute; a dilata&ccedil;&atilde;o da art&eacute;ria cerebral m&eacute;dia, mesmo com doppler de umbilical normal ou apenas pouco resistente. Al&eacute;m disso, o &oacute;bito fetal ocorre de maneira mais r&aacute;pida e inesperada, pois o feto n&atilde;o estava vivendo sob&nbsp;regime de hip&oacute;xia cr&ocirc;nica.&nbsp;</p>\n<p>Esse &eacute; o motivo pelo qual a avalia&ccedil;&atilde;o da vitalidade fetal deve ser instaurado nesses casos, princialmente ap&oacute;s as 34 semanas.&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Fala, pessoal!&nbsp;</p>\n<p>Essa quest&atilde;o traz uma paciente de 28 semanas, com um peso fetal estimado abaixo do p10 e com altera&ccedil;&otilde;es dopplervelocim&eacute;tricas das art&eacute;rias uterinas e da art&eacute;ria umbilical.&nbsp;</p>\n<p>A tabela abaixo foi elaborada a partir do Consenso Delphi de 2016, e orienta quais s&atilde;o os par&acirc;metros que devemos considerar no diagn&oacute;stico de restri&ccedil;&atilde;o do crescimento fetal precoce ou tardio.&nbsp;</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250530T172015053Z317401.png\" width=\"443\" height=\"216\"></p>\n<p style=\"text-align: left;\">&nbsp;</p>\n<p style=\"text-align: left;\">A partir dela, temos o diagn&oacute;stico de <strong>RCF precoce</strong> fechado para a nossa paciente.&nbsp;</p>\n<p style=\"text-align: left;\">Nesses casos, a paciente geralmente inicia a altera&ccedil;&atilde;o pelas art&eacute;ria s umbilicais, progredindo para centraliza&ccedil;&atilde;o fetal, altera&ccedil;&atilde;o de ducto venoso e perfil biof&iacute;sico fetal.&nbsp;</p>\n<p style=\"text-align: left;\">Sabemos ainda que ap&oacute;s o diagn&oacute;stico de de restri&ccedil;&atilde;o, precisamos estadiar a paciente a fim de definir a melhor conduta obst&eacute;trica. Como n&atilde;o h&aacute; altera&ccedil;&atilde;o da morfologia da onda da di&aacute;stole da art&eacute;ria umbilical, mantemos a classifica&ccedil;&atilde;o como estadio 2, possibilitando a resolu&ccedil;&atilde;o por via obst&eacute;trica entre 34 e 37 semanas, de acordo com a FIGO.&nbsp;</p><br>Visão do aprovado: <p>.Na RCF tardia, a ordem das altera&ccedil;&otilde;es encontradas &eacute; um pouco diferente da RCF precoce.&nbsp;</p>\n<p>Aqui, o principal achado &eacute; a dilata&ccedil;&atilde;o da art&eacute;ria cerebral m&eacute;dia, mesmo com doppler de umbilical normal ou apenas pouco resistente. Al&eacute;m disso, o &oacute;bito fetal ocorre de maneira mais r&aacute;pida e inesperada, pois o feto n&atilde;o estava vivendo sob&nbsp;regime de hip&oacute;xia cr&ocirc;nica.&nbsp;</p>\n<p>Esse &eacute; o motivo pelo qual a avalia&ccedil;&atilde;o da vitalidade fetal deve ser instaurado nesses casos, princialmente ap&oacute;s as 34 semanas.&nbsp;</p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197337,
+        "number": 8,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sofrimento fetal crônico",
+        "focus": {
+          "id": 1607,
+          "name": "Sofrimento fetal crônico"
+        }
+      },
+      "detail": {
+        "id": 197337,
+        "content": "Primigesta com idade gestacional de 28 semanas. Tabagista (5 cigarros/dia). Sem outras doenças ou antecedentes relevantes. Ao exame clínico: altura uterina: 25 cm; boa movimentação fetal. Ao exame ecográfico obstétrico: peso fetal estimado 950 gramas (percentil 5). Morfologia fetal sem alterações. Líquido amniótico normal. Dopplervelocimetria: alterada (índice de pulsatilidade > percentil 95) nas artérias uterinas; alterada (índice de pulsatilidade > percentil 95, com fluxo diastólico final positivo) nas artérias umbilicais; índice de pulsatilidade normal nas artérias cerebrais médias; relação cérebro-placentária normal. Perfil biofísico fetal: 10/10 (variáves ecográficas e cardiotocografia normais). PERGUNTA-SE: CONSIDERANDO AS INFORMAÇÕES ACIMA, QUAL SUA RECOMENDAÇÃO DE CONDUTA DORAVANTE? EXPLIQUE.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15960,
+            "parent_tag": {
+              "id": 15911,
+              "name": "Sofrimento fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sofrimento fetal crônico",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 8,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 30,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1607,
+          "name": "Sofrimento fetal crônico",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 95,
+            "name": "Sofrimento fetal",
+            "discipline": 86,
+            "old_tag": 15911,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224698,
+        "actual_explanation": true,
+        "introduction": "<p>Fala, pessoal!&nbsp;</p>\n<p>Aqui estamos frente a uma paciente com diagn&oacute;stico de restri&ccedil;&atilde;o do crescimento fetal devido ao percentil 5 do peso fetal estimado associado a altera&ccedil;&otilde;es do doppler das art&eacute;rias uterinas e da umbilical.&nbsp;</p>\n<p>Sempre que estivermos frente a um caso de RCF, precisamos estadi&aacute;-lo a fim de definir conduta obst&eacute;trica. As grandes sociedades possuem protocolos espec&iacute;ficos para os restritos, mas um mundialmente aceito &eacute; o idealizado pela FIGO.&nbsp;</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250530T171028023Z535789.png\" width=\"600\" height=\"674\"></p>\n<p style=\"text-align: left;\">&nbsp;</p>\n<p style=\"text-align: left;\">Veja, portanto, que a paciente possui uma restri&ccedil;&atilde;o do crescimento fetal est&aacute;gio 2 (pela altera&ccedil;&atilde;o de doppler das uterinas e umbilical &gt;95), mas sem altera&ccedil;&atilde;o da morfologia da onda da di&aacute;stole da art&eacute;ria umbilical.&nbsp;</p>\n<p style=\"text-align: left;\">Com isso, devemos monitorizar a paciente com cardiotocografia e doppler 1 a 2 vezes por semana e programar a resolu&ccedil;&atilde;o da gesta&ccedil;&atilde;o entre 34 e 37 semanas, com possibilidade de realiza&ccedil;&atilde;o de parto por via vaginal.&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>.Para classificarmos a restri&ccedil;&atilde;o do restri&ccedil;&atilde;o fetal em precoce e tardia, usamos o corte de 32 semanas. Veja abaixo quais s&atilde;o os crit&eacute;rios necess&aacute;rios para essa classifica&ccedil;&atilde;o.&nbsp;</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250530T171359484Z706984.png\" width=\"443\" height=\"216\"></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: left;\">A paciente da quest&atilde;o possui uma RCF precoce (antes de 32 semanas), diagnosticada pelo PFE abaixo do p10 associada a IP das uterinas e IP da umbilical &gt;95</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Fala, pessoal!&nbsp;</p>\n<p>Aqui estamos frente a uma paciente com diagn&oacute;stico de restri&ccedil;&atilde;o do crescimento fetal devido ao percentil 5 do peso fetal estimado associado a altera&ccedil;&otilde;es do doppler das art&eacute;rias uterinas e da umbilical.&nbsp;</p>\n<p>Sempre que estivermos frente a um caso de RCF, precisamos estadi&aacute;-lo a fim de definir conduta obst&eacute;trica. As grandes sociedades possuem protocolos espec&iacute;ficos para os restritos, mas um mundialmente aceito &eacute; o idealizado pela FIGO.&nbsp;</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250530T171028023Z535789.png\" width=\"600\" height=\"674\"></p>\n<p style=\"text-align: left;\">&nbsp;</p>\n<p style=\"text-align: left;\">Veja, portanto, que a paciente possui uma restri&ccedil;&atilde;o do crescimento fetal est&aacute;gio 2 (pela altera&ccedil;&atilde;o de doppler das uterinas e umbilical &gt;95), mas sem altera&ccedil;&atilde;o da morfologia da onda da di&aacute;stole da art&eacute;ria umbilical.&nbsp;</p>\n<p style=\"text-align: left;\">Com isso, devemos monitorizar a paciente com cardiotocografia e doppler 1 a 2 vezes por semana e programar a resolu&ccedil;&atilde;o da gesta&ccedil;&atilde;o entre 34 e 37 semanas, com possibilidade de realiza&ccedil;&atilde;o de parto por via vaginal.&nbsp;</p><br>Visão do aprovado: <p>.Para classificarmos a restri&ccedil;&atilde;o do restri&ccedil;&atilde;o fetal em precoce e tardia, usamos o corte de 32 semanas. Veja abaixo quais s&atilde;o os crit&eacute;rios necess&aacute;rios para essa classifica&ccedil;&atilde;o.&nbsp;</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250530T171359484Z706984.png\" width=\"443\" height=\"216\"></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: left;\">A paciente da quest&atilde;o possui uma RCF precoce (antes de 32 semanas), diagnosticada pelo PFE abaixo do p10 associada a IP das uterinas e IP da umbilical &gt;95</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197338,
+        "number": 9,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Aconselhamento genético e síndromes genéticas",
+        "focus": {
+          "id": 1636,
+          "name": "Aconselhamento genético e síndromes genéticas"
+        }
+      },
+      "detail": {
+        "id": 197338,
+        "content": "Uma primigesta de 30 anos, com idade gestacional de 20 semanas, é submetida ao primeiro exame ultrassonográfico obstétrico. Na morfologia fetal foi detectada leve ectasia das pelves renais fetais, com demais marcadores ecográficos de segundo trimestre para aneuploidias negativos e sem outras alterações anatômicas. PERGUNTA-SE: APÓS ESTE EXAME DEVEMOS CONSIDERAR QUE O RISCO DO FETO TER ALGUM TIPO DE ANEUPLOIDIA MODIFICOU-SE? EXPLIQUE.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15930,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Aconselhamento genético e síndromes genéticas",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 9,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 21,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1636,
+          "name": "Aconselhamento genético e síndromes genéticas",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224697,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Neste caso, temos uma primigesta de 30 anos, com 20 semanas de gesta&ccedil;&atilde;o, realizando seu primeiro ultrassom obst&eacute;trico. O exame morfol&oacute;gico fetal revelou uma leve ectasia das pelves renais (tamb&eacute;m conhecida como pielectasia), sem outros marcadores ecogr&aacute;ficos de segundo trimestre para aneuploidias e sem altera&ccedil;&otilde;es anat&ocirc;micas adicionais. A quest&atilde;o central &eacute; se este achado isolado modifica o risco do feto ter algum tipo de aneuploidia.</p>\n<p style=\"text-align: justify;\">A pielectasia renal fetal &eacute; caracterizada pela dilata&ccedil;&atilde;o da pelve renal, sendo considerada leve quando o di&acirc;metro anteroposterior da pelve renal est&aacute; entre 4 e 7 mm no segundo trimestre. Este achado &eacute; considerado um marcador ultrassonogr&aacute;fico menor (\"soft marker\") para aneuploidias, principalmente para a S&iacute;ndrome de Down (trissomia do 21). Entretanto, sua relev&acirc;ncia cl&iacute;nica depende de v&aacute;rios fatores, incluindo principalmente a presen&ccedil;a ou aus&ecirc;ncia de outros marcadores ecogr&aacute;ficos.&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong>&nbsp;Explicar que, embora a presen&ccedil;a de leve ectasia das pelves renais fetais aumente o riso de aneuploidia (principalmente trissomia do cromossomo 21), como os demais marcadores analisados est&atilde;o normais, o risco final do feto apresentar alguma aneuploidia n&atilde;o deve ter se modificado (a presen&ccedil;a do marcador \"leve ectasia das pelves renais\" foi compensada pela aus&ecirc;ncia dos demais marcadores).</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Precisamos lembrar que a pielectasia leve pode estar associada a outras condi&ccedil;&otilde;es n&atilde;o relacionadas a aneuploidias, como refluxo vesicoureteral ou obstru&ccedil;&otilde;es transit&oacute;rias do trato urin&aacute;rio. O seguimento ultrassonogr&aacute;fico &eacute; recomendado para avaliar sua evolu&ccedil;&atilde;o, independentemente da quest&atilde;o das aneuploidias. A pielectasia leve isolada &eacute; um achado relativamente comum (preval&ecirc;ncia de 1-3% das gesta&ccedil;&otilde;es) e, na maioria dos casos, representa uma variante da normalidade ou uma condi&ccedil;&atilde;o transit&oacute;ria que se resolve espontaneamente. <br><br></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Neste caso, temos uma primigesta de 30 anos, com 20 semanas de gesta&ccedil;&atilde;o, realizando seu primeiro ultrassom obst&eacute;trico. O exame morfol&oacute;gico fetal revelou uma leve ectasia das pelves renais (tamb&eacute;m conhecida como pielectasia), sem outros marcadores ecogr&aacute;ficos de segundo trimestre para aneuploidias e sem altera&ccedil;&otilde;es anat&ocirc;micas adicionais. A quest&atilde;o central &eacute; se este achado isolado modifica o risco do feto ter algum tipo de aneuploidia.</p>\n<p style=\"text-align: justify;\">A pielectasia renal fetal &eacute; caracterizada pela dilata&ccedil;&atilde;o da pelve renal, sendo considerada leve quando o di&acirc;metro anteroposterior da pelve renal est&aacute; entre 4 e 7 mm no segundo trimestre. Este achado &eacute; considerado um marcador ultrassonogr&aacute;fico menor (\"soft marker\") para aneuploidias, principalmente para a S&iacute;ndrome de Down (trissomia do 21). Entretanto, sua relev&acirc;ncia cl&iacute;nica depende de v&aacute;rios fatores, incluindo principalmente a presen&ccedil;a ou aus&ecirc;ncia de outros marcadores ecogr&aacute;ficos.&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong>&nbsp;Explicar que, embora a presen&ccedil;a de leve ectasia das pelves renais fetais aumente o riso de aneuploidia (principalmente trissomia do cromossomo 21), como os demais marcadores analisados est&atilde;o normais, o risco final do feto apresentar alguma aneuploidia n&atilde;o deve ter se modificado (a presen&ccedil;a do marcador \"leve ectasia das pelves renais\" foi compensada pela aus&ecirc;ncia dos demais marcadores).</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Precisamos lembrar que a pielectasia leve pode estar associada a outras condi&ccedil;&otilde;es n&atilde;o relacionadas a aneuploidias, como refluxo vesicoureteral ou obstru&ccedil;&otilde;es transit&oacute;rias do trato urin&aacute;rio. O seguimento ultrassonogr&aacute;fico &eacute; recomendado para avaliar sua evolu&ccedil;&atilde;o, independentemente da quest&atilde;o das aneuploidias. A pielectasia leve isolada &eacute; um achado relativamente comum (preval&ecirc;ncia de 1-3% das gesta&ccedil;&otilde;es) e, na maioria dos casos, representa uma variante da normalidade ou uma condi&ccedil;&atilde;o transit&oacute;ria que se resolve espontaneamente. <br><br></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197339,
+        "number": 10,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Aconselhamento genético e síndromes genéticas",
+        "focus": {
+          "id": 1636,
+          "name": "Aconselhamento genético e síndromes genéticas"
+        }
+      },
+      "detail": {
+        "id": 197339,
+        "content": "Uma primigesta de 30 anos, com idade gestacional de 20 semanas, é submetida ao primeiro exame ultrassonográfico obstétrico. Na morfologia fetal foi detectada leve ectasia das pelves renais fetais, com demais marcadores ecográficos de segundo trimestre para aneuploidias negativos e sem outras alterações anatômicas. PERGUNTA-SE: EXISTE ALGUM OUTRO EXAME QUE PODE SER FEITO PARA AVALIAR MAIS PRECISAMENTE O RISCO DO FETO APRESENTAR ALGUMA ANEUPLOIDIA? EXPLIQUE.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15930,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Aconselhamento genético e síndromes genéticas",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 10,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 15,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1636,
+          "name": "Aconselhamento genético e síndromes genéticas",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224696,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Neste caso, temos uma primigesta de 30 anos, com 20 semanas de gestação, que realizou seu primeiro ultrassom obstétrico morfológico. O exame revelou uma leve ectasia das pelves renais fetais (também conhecida como pielectasia renal), sem outros marcadores ecográficos de aneuploidias e sem outras alterações anatômicas fetais.</p>\n<p style=\"text-align: justify;\">A pielectasia renal é caracterizada por uma dilatação leve da pelve renal fetal (geralmente definida como diâmetro anteroposterior da pelve renal ≥ 4mm no segundo trimestre). Este achado é considerado um marcador ultrassonográfico \"soft\" ou secundário para aneuploidias, principalmente para a Síndrome de Down (trissomia do 21). No entanto, quando isolado e leve, seu valor preditivo positivo é baixo, especialmente na ausência de outros marcadores ultrassonográficos de aneuploidias.</p>\n<p style=\"text-align: justify;\">O raciocínio clínico neste caso envolve avaliar se esse achado isolado justifica a realização de exames adicionais para investigar o risco de aneuploidias, considerando que a paciente está com 20 semanas de gestação e que os demais marcadores ecográficos estão negativos. Ou seja, como a paciente está com 20 semanas, não há mais a janela para avaliar os marcadores ultrassonográficos como translucência nucal, ducto venoso, etc. Além disso, a paciente não possui marcadores de alto risco que justifiquem a realização de procedimento invasivo, como a amniocentese ou biópsia de vilo corial. E, por isso, a melhor resposta aqui é a análise de DNA fetal livre na circulação materna.</p>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> O principal exame a ser indicado é a análise de DNA fetal livre na circulação materna. Pode-se realizar também a pesquisa de marcadores bioquímicos no sangue materno (como a alfa-feto proteína). Entretanto o desempenho da pesquisa de DNA fetal livre na circulação materna é muito superior ao dos outros testes na reavaliação do risco de aneuplodias.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>.Aproveita a questão para entender um pouco mais sobre como o <span class=\"article-3386\">NIPT</span> é a melhor resposta nessa questão:</p>\n<p style=\"text-align: justify;\">Teste Pré-Natal Não Invasivo (<span class=\"article-3386\">NIPT</span>): Este teste analisa o DNA fetal livre circulante no sangue materno e tem alta sensibilidade e especificidade para as principais trissomias (21, 18 e 13). É um exame não invasivo, o que elimina o risco de perda gestacional. Pode ser realizado a partir da 10ª semana de gestação, sendo ainda válido neste caso de 20 semanas. O <span class=\"article-3386\">NIPT</span> seria uma opção adequada para esta paciente, considerando que o achado ultrassonográfico é isolado (não justifica a realização de procedimentos invasivos) e a paciente tem 30 anos (não sendo considerada idade materna avançada). </p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Neste caso, temos uma primigesta de 30 anos, com 20 semanas de gestação, que realizou seu primeiro ultrassom obstétrico morfológico. O exame revelou uma leve ectasia das pelves renais fetais (também conhecida como pielectasia renal), sem outros marcadores ecográficos de aneuploidias e sem outras alterações anatômicas fetais.</p>\n<p style=\"text-align: justify;\">A pielectasia renal é caracterizada por uma dilatação leve da pelve renal fetal (geralmente definida como diâmetro anteroposterior da pelve renal ≥ 4mm no segundo trimestre). Este achado é considerado um marcador ultrassonográfico \"soft\" ou secundário para aneuploidias, principalmente para a Síndrome de Down (trissomia do 21). No entanto, quando isolado e leve, seu valor preditivo positivo é baixo, especialmente na ausência de outros marcadores ultrassonográficos de aneuploidias.</p>\n<p style=\"text-align: justify;\">O raciocínio clínico neste caso envolve avaliar se esse achado isolado justifica a realização de exames adicionais para investigar o risco de aneuploidias, considerando que a paciente está com 20 semanas de gestação e que os demais marcadores ecográficos estão negativos. Ou seja, como a paciente está com 20 semanas, não há mais a janela para avaliar os marcadores ultrassonográficos como translucência nucal, ducto venoso, etc. Além disso, a paciente não possui marcadores de alto risco que justifiquem a realização de procedimento invasivo, como a amniocentese ou biópsia de vilo corial. E, por isso, a melhor resposta aqui é a análise de DNA fetal livre na circulação materna.</p>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> O principal exame a ser indicado é a análise de DNA fetal livre na circulação materna. Pode-se realizar também a pesquisa de marcadores bioquímicos no sangue materno (como a alfa-feto proteína). Entretanto o desempenho da pesquisa de DNA fetal livre na circulação materna é muito superior ao dos outros testes na reavaliação do risco de aneuplodias.</p><br>Visão do aprovado: <p>.Aproveita a questão para entender um pouco mais sobre como o <span class=\"article-3386\">NIPT</span> é a melhor resposta nessa questão:</p>\n<p style=\"text-align: justify;\">Teste Pré-Natal Não Invasivo (<span class=\"article-3386\">NIPT</span>): Este teste analisa o DNA fetal livre circulante no sangue materno e tem alta sensibilidade e especificidade para as principais trissomias (21, 18 e 13). É um exame não invasivo, o que elimina o risco de perda gestacional. Pode ser realizado a partir da 10ª semana de gestação, sendo ainda válido neste caso de 20 semanas. O <span class=\"article-3386\">NIPT</span> seria uma opção adequada para esta paciente, considerando que o achado ultrassonográfico é isolado (não justifica a realização de procedimentos invasivos) e a paciente tem 30 anos (não sendo considerada idade materna avançada). </p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T17:49:41.906547+00:00",
+  "complete": true
+}

@@ -1,0 +1,1159 @@
+{
+  "track_id": 4847385,
+  "name": "UNICAMP 2026 - Endoscopia Ginecológica",
+  "year": 2026,
+  "track_fast": {
+    "id": 4847385,
+    "name": "UNICAMP 2026 - Endoscopia Ginecológica",
+    "track_type": "c",
+    "question_count": 10,
+    "year": 2026,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UNICAMP",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-unicamp_yplZ7NO.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 10,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 10,
+  "questions": [
+    {
+      "meta": {
+        "id": 340917,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Infertilidade conjugal parte 2: legislação em reprodução assistida e tratamento",
+        "focus": {
+          "id": 1637,
+          "name": "Infertilidade conjugal parte 2: legislação em reprodução assistida e tratamento"
+        }
+      },
+      "detail": {
+        "id": 340917,
+        "content": "Casal, ambos com 36 anos, que se submete ao processo de fertilização assistida, apresenta embriões de boa qualidade, exames gerais sem alterações, ultrassom transvaginal normal assim como espermograma, não obtém sucesso no processo de fertilização. PERGUNTA-SE:  \n\na. Qual forma de avaliação endometrial pode melhorar a taxa de gravidez? \nb. Qual o principal marcador imuno-histoquimico indicativo de endometrite crônica?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15929,
+            "parent_tag": {
+              "id": 15912,
+              "name": "Ginecologia endócrina",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Infertilidade conjugal parte 2: legislação em reprodução assistida e tratamento",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 13,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1637,
+          "name": "Infertilidade conjugal parte 2: legislação em reprodução assistida e tratamento",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 94,
+            "name": "Ginecologia endócrina",
+            "discipline": 86,
+            "old_tag": 15912,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406505,
+        "actual_explanation": true,
+        "introduction": "<p>O caso apresentado direciona o racioc&iacute;nio para <strong>endometrite cr&ocirc;nica</strong> como causa de <strong>falha de implanta&ccedil;&atilde;o</strong> por causa das pistas cl&iacute;nicas: casal jovem com embri&otilde;es de qualidade, exames normais, mas insucesso persistente na fertiliza&ccedil;&atilde;o assistida.</p>\n<p>Esta situa&ccedil;&atilde;o &eacute; extremamente relevante na pr&aacute;tica da reprodu&ccedil;&atilde;o humana, pois a <strong>endometrite cr&ocirc;nica</strong> &eacute; uma causa frequentemente subdiagnosticada de falha de implanta&ccedil;&atilde;o em ciclos de fertiliza&ccedil;&atilde;o in vitro (FIV). O endom&eacute;trio cronicamente inflamado apresenta <strong>receptividade diminu&iacute;da</strong>, impedindo que embri&otilde;es de boa qualidade se implantem adequadamente.</p>\n<p>A endometrite pode ser classificada em aguda (geralmente causada por doen&ccedil;a inflamat&oacute;ria p&eacute;lvica ou infec&ccedil;&atilde;o p&oacute;s-parto) ou em cr&ocirc;nica. Dentre as principais causas da endometrite cr&ocirc;nica, destacam-se as infecciosas (cerca de 70% das pacientes apresentam testes positivos para bact&eacute;rias comuns e <em>Mycoplasma</em>). Diante disso, pode-se recomendar o tratamento com Doxiciclina 100mg VO 12/12h por 10 a 14 dias para essas pacientes. Na histeroscopia, a endometrite pode se apresentar com hiperemia, edema de mucosa e microp&oacute;lipos</p>\n<p>A <strong>endometrite cr&ocirc;nica</strong> &eacute; caracterizada pela presen&ccedil;a de infiltrado inflamat&oacute;rio persistente no endom&eacute;trio, principalmente composto por <strong>c&eacute;lulas plasm&aacute;ticas</strong>, linf&oacute;citos e macr&oacute;fagos. Diferente da endometrite aguda, que cursa com sintomas evidentes, a forma cr&ocirc;nica &eacute; frequentemente <strong>assintom&aacute;tica</strong> ou oligossintom&aacute;tica, manifestando-se principalmente atrav&eacute;s de falhas reprodutivas.</p>\n<p>O diagn&oacute;stico desta condi&ccedil;&atilde;o requer investiga&ccedil;&atilde;o espec&iacute;fica atrav&eacute;s de <strong>bi&oacute;psia endometrial</strong> com an&aacute;lise histopatol&oacute;gica e imuno-histoqu&iacute;mica <strong>positiva para CD138</strong>, sendo fundamental para otimizar os resultados em reprodu&ccedil;&atilde;o assistida.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Casal jovem com <strong>embri&otilde;es de boa qualidade</strong> e <strong>exames normais</strong>, mas com <strong>falha persistente</strong> na fertiliza&ccedil;&atilde;o assistida sugere <strong>endometrite cr&ocirc;nica</strong> como causa de inadequada receptividade endometrial. A condi&ccedil;&atilde;o &eacute; tipicamente <strong>assintom&aacute;tica</strong> e requer investiga&ccedil;&atilde;o espec&iacute;fica atrav&eacute;s de <strong>bi&oacute;psia endometrial</strong> com an&aacute;lise imuno-histoqu&iacute;mica para detec&ccedil;&atilde;o de <strong>c&eacute;lulas plasm&aacute;ticas</strong> (marcador CD138).</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Falha de implanta&ccedil;&atilde;o apesar de embri&otilde;es de boa qualidade e exames normais</li>\n<li>Casal jovem sem fatores de infertilidade evidentes</li>\n<li>Endometrite cr&ocirc;nica &eacute; frequentemente assintom&aacute;tica</li>\n<li>Bi&oacute;psia endometrial &eacute; o m&eacute;todo diagn&oacute;stico de escolha</li>\n<li>C&eacute;lulas plasm&aacute;ticas (CD138+) s&atilde;o o marcador espec&iacute;fico da endometrite cr&ocirc;nica</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com endometrite aguda (esta &eacute; sintom&aacute;tica e febril)</li>\n<li>Pensar que ultrassom transvaginal normal exclui patologia endometrial</li>\n<li>Associar apenas com sintomas cl&iacute;nicos (endometrite cr&ocirc;nica &eacute; silenciosa)</li>\n<li>Confundir marcadores: CD138 para c&eacute;lulas plasm&aacute;ticas, n&atilde;o CD20 ou outros</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Cen&aacute;rio cl&aacute;ssico: falha de FIV em casal sem fatores &oacute;bvios de infertilidade</li>\n<li>Pergunta direta sobre m&eacute;todo diagn&oacute;stico para avalia&ccedil;&atilde;o endometrial na reprodu&ccedil;&atilde;o</li>\n<li>Quest&atilde;o sobre marcador imuno-histoqu&iacute;mico espec&iacute;fico da endometrite cr&ocirc;nica</li>\n<li>Associa&ccedil;&atilde;o entre receptividade endometrial e sucesso na reprodu&ccedil;&atilde;o assistida</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O caso apresentado direciona o racioc&iacute;nio para <strong>endometrite cr&ocirc;nica</strong> como causa de <strong>falha de implanta&ccedil;&atilde;o</strong> por causa das pistas cl&iacute;nicas: casal jovem com embri&otilde;es de qualidade, exames normais, mas insucesso persistente na fertiliza&ccedil;&atilde;o assistida.</p>\n<p>Esta situa&ccedil;&atilde;o &eacute; extremamente relevante na pr&aacute;tica da reprodu&ccedil;&atilde;o humana, pois a <strong>endometrite cr&ocirc;nica</strong> &eacute; uma causa frequentemente subdiagnosticada de falha de implanta&ccedil;&atilde;o em ciclos de fertiliza&ccedil;&atilde;o in vitro (FIV). O endom&eacute;trio cronicamente inflamado apresenta <strong>receptividade diminu&iacute;da</strong>, impedindo que embri&otilde;es de boa qualidade se implantem adequadamente.</p>\n<p>A endometrite pode ser classificada em aguda (geralmente causada por doen&ccedil;a inflamat&oacute;ria p&eacute;lvica ou infec&ccedil;&atilde;o p&oacute;s-parto) ou em cr&ocirc;nica. Dentre as principais causas da endometrite cr&ocirc;nica, destacam-se as infecciosas (cerca de 70% das pacientes apresentam testes positivos para bact&eacute;rias comuns e <em>Mycoplasma</em>). Diante disso, pode-se recomendar o tratamento com Doxiciclina 100mg VO 12/12h por 10 a 14 dias para essas pacientes. Na histeroscopia, a endometrite pode se apresentar com hiperemia, edema de mucosa e microp&oacute;lipos</p>\n<p>A <strong>endometrite cr&ocirc;nica</strong> &eacute; caracterizada pela presen&ccedil;a de infiltrado inflamat&oacute;rio persistente no endom&eacute;trio, principalmente composto por <strong>c&eacute;lulas plasm&aacute;ticas</strong>, linf&oacute;citos e macr&oacute;fagos. Diferente da endometrite aguda, que cursa com sintomas evidentes, a forma cr&ocirc;nica &eacute; frequentemente <strong>assintom&aacute;tica</strong> ou oligossintom&aacute;tica, manifestando-se principalmente atrav&eacute;s de falhas reprodutivas.</p>\n<p>O diagn&oacute;stico desta condi&ccedil;&atilde;o requer investiga&ccedil;&atilde;o espec&iacute;fica atrav&eacute;s de <strong>bi&oacute;psia endometrial</strong> com an&aacute;lise histopatol&oacute;gica e imuno-histoqu&iacute;mica <strong>positiva para CD138</strong>, sendo fundamental para otimizar os resultados em reprodu&ccedil;&atilde;o assistida.</p><br>Visão do aprovado: <p>Casal jovem com <strong>embri&otilde;es de boa qualidade</strong> e <strong>exames normais</strong>, mas com <strong>falha persistente</strong> na fertiliza&ccedil;&atilde;o assistida sugere <strong>endometrite cr&ocirc;nica</strong> como causa de inadequada receptividade endometrial. A condi&ccedil;&atilde;o &eacute; tipicamente <strong>assintom&aacute;tica</strong> e requer investiga&ccedil;&atilde;o espec&iacute;fica atrav&eacute;s de <strong>bi&oacute;psia endometrial</strong> com an&aacute;lise imuno-histoqu&iacute;mica para detec&ccedil;&atilde;o de <strong>c&eacute;lulas plasm&aacute;ticas</strong> (marcador CD138).</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Falha de implanta&ccedil;&atilde;o apesar de embri&otilde;es de boa qualidade e exames normais</li>\n<li>Casal jovem sem fatores de infertilidade evidentes</li>\n<li>Endometrite cr&ocirc;nica &eacute; frequentemente assintom&aacute;tica</li>\n<li>Bi&oacute;psia endometrial &eacute; o m&eacute;todo diagn&oacute;stico de escolha</li>\n<li>C&eacute;lulas plasm&aacute;ticas (CD138+) s&atilde;o o marcador espec&iacute;fico da endometrite cr&ocirc;nica</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com endometrite aguda (esta &eacute; sintom&aacute;tica e febril)</li>\n<li>Pensar que ultrassom transvaginal normal exclui patologia endometrial</li>\n<li>Associar apenas com sintomas cl&iacute;nicos (endometrite cr&ocirc;nica &eacute; silenciosa)</li>\n<li>Confundir marcadores: CD138 para c&eacute;lulas plasm&aacute;ticas, n&atilde;o CD20 ou outros</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Cen&aacute;rio cl&aacute;ssico: falha de FIV em casal sem fatores &oacute;bvios de infertilidade</li>\n<li>Pergunta direta sobre m&eacute;todo diagn&oacute;stico para avalia&ccedil;&atilde;o endometrial na reprodu&ccedil;&atilde;o</li>\n<li>Quest&atilde;o sobre marcador imuno-histoqu&iacute;mico espec&iacute;fico da endometrite cr&ocirc;nica</li>\n<li>Associa&ccedil;&atilde;o entre receptividade endometrial e sucesso na reprodu&ccedil;&atilde;o assistida</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340918,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 340918,
+        "content": "Durante laparoscopia para endometriose profunda com acometimento de reto baixo, o cirurgião precisa reconhecer corretamente o limite superior da pelve verdadeira para iniciar a dissecção. PERGUNTA-SE:  \n\na. Qual é o marco vascular que define o inicio da pelve? \nb. Em que nível anatômico ocorre geralmente esse marco?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 13,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406510,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Durante laparoscopia para&nbsp;<strong>endometriose profunda</strong> com acometimento de <strong>reto baixo</strong>, o cirurgi&atilde;o deve ter dom&iacute;nio absoluto dos limites anat&ocirc;micos da pelve para realizar dissec&ccedil;&atilde;o segura e eficaz. O reconhecimento correto do <strong>limite superior da pelve verdadeira</strong> &eacute; fundamental, pois delimita o in&iacute;cio da regi&atilde;o onde se concentram as estruturas mais cr&iacute;ticas e onde a endometriose profunda frequentemente se manifesta.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Este conhecimento anat&ocirc;mico &eacute; essencial n&atilde;o apenas para resid&ecirc;ncia em ginecologia, mas tamb&eacute;m para cirurgia geral, coloproctologia e urologia, j&aacute; que essas especialidades frequentemente abordam a regi&atilde;o p&eacute;lvica. A quest&atilde;o testa dois aspectos complementares: o&nbsp;<strong>marco vascular</strong> espec&iacute;fico e sua <strong>localiza&ccedil;&atilde;o anat&ocirc;mica</strong>, ambos fundamentais para orienta&ccedil;&atilde;o cir&uacute;rgica.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Resposta esperada:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>O marco vascular que define o in&iacute;cio da pelve verdadeira &eacute; a <strong>bifurca&ccedil;&atilde;o da art&eacute;ria il&iacute;aca comum</strong> em art&eacute;rias il&iacute;acas interna e externa.</li>\n<li>Este marco ocorre geralmente&nbsp;na altura da <strong>articula&ccedil;&atilde;o sacroil&iacute;aca (L4-L5)</strong></li>\n</ul>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/orgaos-internos-feminino.png\" alt=\"\" width=\"532\" height=\"406\"></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A&nbsp;<strong>bifurca&ccedil;&atilde;o da art&eacute;ria il&iacute;aca comum</strong> &eacute; o principal marco vascular que delimita o in&iacute;cio da pelve verdadeira (pelve menor). Este ponto anat&ocirc;mico &eacute; onde a art&eacute;ria il&iacute;aca comum se divide em seus dois ramos terminais: a <strong>art&eacute;ria il&iacute;aca interna</strong> (hipog&aacute;strica) e a <strong>art&eacute;ria il&iacute;aca externa</strong>.</p>\n<p style=\"text-align: justify;\">Durante procedimentos laparosc&oacute;picos, especialmente para endometriose profunda, o cirurgi&atilde;o utiliza este marco para orientar a dissec&ccedil;&atilde;o e identificar estruturas importantes como o <strong>ureter</strong> (que cruza a bifurca&ccedil;&atilde;o da il&iacute;aca comum), os <strong>vasos uterinos</strong> e os <strong>ligamentos &uacute;tero-sacros</strong> - estruturas frequentemente acometidas pela endometriose profunda.</p>\n<p style=\"text-align: justify;\">O n&iacute;vel anat&ocirc;mico desta bifurca&ccedil;&atilde;o (articula&ccedil;&atilde;o sacroil&iacute;aca) tamb&eacute;m &eacute; clinicamente relevante porque define o limite entre a cavidade abdominal propriamente dita e o compartimento p&eacute;lvico, onde se localizam &oacute;rg&atilde;os como &uacute;tero, ov&aacute;rios, bexiga, reto e estruturas nervosas do plexo hipog&aacute;strico.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">A anatomia vascular p&eacute;lvica durante cirurgia laparosc&oacute;pica exige identifica&ccedil;&atilde;o precisa de marcos que delimitam compartimentos cir&uacute;rgicos. A <strong>bifurca&ccedil;&atilde;o da art&eacute;ria il&iacute;aca comum</strong> &eacute; o principal referencial vascular para in&iacute;cio da pelve verdadeira, situada ao n&iacute;vel do <strong>promont&oacute;rio sacral</strong>. Este conhecimento &eacute; fundamental para orienta&ccedil;&atilde;o espacial e prote&ccedil;&atilde;o de estruturas nobres como o ureter.</p>\n<p style=\"text-align: justify;\"><strong>Pistas-chave:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Marco vascular: <strong>bifurca&ccedil;&atilde;o da art&eacute;ria il&iacute;aca comum</strong> em il&iacute;acas interna e externa</li>\n<li>N&iacute;vel anat&ocirc;mico: <strong>promont&oacute;rio sacral (S1)</strong> ou articula&ccedil;&atilde;o sacroil&iacute;aca</li>\n<li>Rela&ccedil;&atilde;o anat&ocirc;mica: <strong>ureter cruza</strong> a bifurca&ccedil;&atilde;o da il&iacute;aca comum</li>\n<li>Limite estrutural: coincide com a <strong>linha arqueada</strong> (estreito superior da pelve)</li>\n<li>Relev&acirc;ncia cir&uacute;rgica: delimita in&iacute;cio da <strong>pelve menor</strong> onde se concentram &oacute;rg&atilde;os p&eacute;lvicos</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Pegadinhas de prova:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Confundir com <em>bifurca&ccedil;&atilde;o da aorta</em> (mais cranial, n&iacute;vel L4-L5)</li>\n<li>Trocar por <em>art&eacute;ria il&iacute;aca interna</em> ou <em>art&eacute;ria hipog&aacute;strica</em> (s&atilde;o ramos, n&atilde;o o marco)</li>\n<li>Errar o n&iacute;vel anat&ocirc;mico: <em>L5-S1</em> vs <em>S1</em> propriamente dito</li>\n<li>N&atilde;o relacionar com o <strong>cruzamento do ureter</strong> na bifurca&ccedil;&atilde;o il&iacute;aca</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Como cai:</strong></p>\n<ul>\n<li style=\"text-align: justify;\">Quest&otilde;es pr&aacute;ticas durante <strong>cirurgia laparosc&oacute;pica</strong> para endometriose ou outras patologias p&eacute;lvicas</li>\n<li style=\"text-align: justify;\">Associa&ccedil;&atilde;o com <strong>anatomia do ureter</strong> e pontos de estreitamento/cruzamento vascular</li>\n<li style=\"text-align: justify;\">Diferencia&ccedil;&atilde;o entre <strong>pelve maior e menor</strong> atrav&eacute;s de marcos vasculares e &oacute;sseos</li>\n<li style=\"text-align: justify;\">Integra&ccedil;&atilde;o com <strong>anatomia cir&uacute;rgica ginecol&oacute;gica</strong> e identifica&ccedil;&atilde;o de estruturas em risco</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Durante laparoscopia para&nbsp;<strong>endometriose profunda</strong> com acometimento de <strong>reto baixo</strong>, o cirurgi&atilde;o deve ter dom&iacute;nio absoluto dos limites anat&ocirc;micos da pelve para realizar dissec&ccedil;&atilde;o segura e eficaz. O reconhecimento correto do <strong>limite superior da pelve verdadeira</strong> &eacute; fundamental, pois delimita o in&iacute;cio da regi&atilde;o onde se concentram as estruturas mais cr&iacute;ticas e onde a endometriose profunda frequentemente se manifesta.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Este conhecimento anat&ocirc;mico &eacute; essencial n&atilde;o apenas para resid&ecirc;ncia em ginecologia, mas tamb&eacute;m para cirurgia geral, coloproctologia e urologia, j&aacute; que essas especialidades frequentemente abordam a regi&atilde;o p&eacute;lvica. A quest&atilde;o testa dois aspectos complementares: o&nbsp;<strong>marco vascular</strong> espec&iacute;fico e sua <strong>localiza&ccedil;&atilde;o anat&ocirc;mica</strong>, ambos fundamentais para orienta&ccedil;&atilde;o cir&uacute;rgica.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Resposta esperada:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>O marco vascular que define o in&iacute;cio da pelve verdadeira &eacute; a <strong>bifurca&ccedil;&atilde;o da art&eacute;ria il&iacute;aca comum</strong> em art&eacute;rias il&iacute;acas interna e externa.</li>\n<li>Este marco ocorre geralmente&nbsp;na altura da <strong>articula&ccedil;&atilde;o sacroil&iacute;aca (L4-L5)</strong></li>\n</ul>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/orgaos-internos-feminino.png\" alt=\"\" width=\"532\" height=\"406\"></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A&nbsp;<strong>bifurca&ccedil;&atilde;o da art&eacute;ria il&iacute;aca comum</strong> &eacute; o principal marco vascular que delimita o in&iacute;cio da pelve verdadeira (pelve menor). Este ponto anat&ocirc;mico &eacute; onde a art&eacute;ria il&iacute;aca comum se divide em seus dois ramos terminais: a <strong>art&eacute;ria il&iacute;aca interna</strong> (hipog&aacute;strica) e a <strong>art&eacute;ria il&iacute;aca externa</strong>.</p>\n<p style=\"text-align: justify;\">Durante procedimentos laparosc&oacute;picos, especialmente para endometriose profunda, o cirurgi&atilde;o utiliza este marco para orientar a dissec&ccedil;&atilde;o e identificar estruturas importantes como o <strong>ureter</strong> (que cruza a bifurca&ccedil;&atilde;o da il&iacute;aca comum), os <strong>vasos uterinos</strong> e os <strong>ligamentos &uacute;tero-sacros</strong> - estruturas frequentemente acometidas pela endometriose profunda.</p>\n<p style=\"text-align: justify;\">O n&iacute;vel anat&ocirc;mico desta bifurca&ccedil;&atilde;o (articula&ccedil;&atilde;o sacroil&iacute;aca) tamb&eacute;m &eacute; clinicamente relevante porque define o limite entre a cavidade abdominal propriamente dita e o compartimento p&eacute;lvico, onde se localizam &oacute;rg&atilde;os como &uacute;tero, ov&aacute;rios, bexiga, reto e estruturas nervosas do plexo hipog&aacute;strico.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">A anatomia vascular p&eacute;lvica durante cirurgia laparosc&oacute;pica exige identifica&ccedil;&atilde;o precisa de marcos que delimitam compartimentos cir&uacute;rgicos. A <strong>bifurca&ccedil;&atilde;o da art&eacute;ria il&iacute;aca comum</strong> &eacute; o principal referencial vascular para in&iacute;cio da pelve verdadeira, situada ao n&iacute;vel do <strong>promont&oacute;rio sacral</strong>. Este conhecimento &eacute; fundamental para orienta&ccedil;&atilde;o espacial e prote&ccedil;&atilde;o de estruturas nobres como o ureter.</p>\n<p style=\"text-align: justify;\"><strong>Pistas-chave:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Marco vascular: <strong>bifurca&ccedil;&atilde;o da art&eacute;ria il&iacute;aca comum</strong> em il&iacute;acas interna e externa</li>\n<li>N&iacute;vel anat&ocirc;mico: <strong>promont&oacute;rio sacral (S1)</strong> ou articula&ccedil;&atilde;o sacroil&iacute;aca</li>\n<li>Rela&ccedil;&atilde;o anat&ocirc;mica: <strong>ureter cruza</strong> a bifurca&ccedil;&atilde;o da il&iacute;aca comum</li>\n<li>Limite estrutural: coincide com a <strong>linha arqueada</strong> (estreito superior da pelve)</li>\n<li>Relev&acirc;ncia cir&uacute;rgica: delimita in&iacute;cio da <strong>pelve menor</strong> onde se concentram &oacute;rg&atilde;os p&eacute;lvicos</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Pegadinhas de prova:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Confundir com <em>bifurca&ccedil;&atilde;o da aorta</em> (mais cranial, n&iacute;vel L4-L5)</li>\n<li>Trocar por <em>art&eacute;ria il&iacute;aca interna</em> ou <em>art&eacute;ria hipog&aacute;strica</em> (s&atilde;o ramos, n&atilde;o o marco)</li>\n<li>Errar o n&iacute;vel anat&ocirc;mico: <em>L5-S1</em> vs <em>S1</em> propriamente dito</li>\n<li>N&atilde;o relacionar com o <strong>cruzamento do ureter</strong> na bifurca&ccedil;&atilde;o il&iacute;aca</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Como cai:</strong></p>\n<ul>\n<li style=\"text-align: justify;\">Quest&otilde;es pr&aacute;ticas durante <strong>cirurgia laparosc&oacute;pica</strong> para endometriose ou outras patologias p&eacute;lvicas</li>\n<li style=\"text-align: justify;\">Associa&ccedil;&atilde;o com <strong>anatomia do ureter</strong> e pontos de estreitamento/cruzamento vascular</li>\n<li style=\"text-align: justify;\">Diferencia&ccedil;&atilde;o entre <strong>pelve maior e menor</strong> atrav&eacute;s de marcos vasculares e &oacute;sseos</li>\n<li style=\"text-align: justify;\">Integra&ccedil;&atilde;o com <strong>anatomia cir&uacute;rgica ginecol&oacute;gica</strong> e identifica&ccedil;&atilde;o de estruturas em risco</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340919,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Infertilidade conjugal parte 1: diagnóstico",
+        "focus": {
+          "id": 1618,
+          "name": "Infertilidade conjugal parte 1: diagnóstico"
+        }
+      },
+      "detail": {
+        "id": 340919,
+        "content": "Em casos de infertilidade conjugal, PERGUNTA-SE: \n\na. Quando está indicada a realização da histeroscopia diagnóstica? \n\nb. Frente ao achado de septo uterino na histeroscopia diagnóstica, como proceder a investigação e qual o diagnóstico diferencial?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15949,
+            "parent_tag": {
+              "id": 15912,
+              "name": "Ginecologia endócrina",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Infertilidade conjugal parte 1: diagnóstico",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 12,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1618,
+          "name": "Infertilidade conjugal parte 1: diagnóstico",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 94,
+            "name": "Ginecologia endócrina",
+            "discipline": 86,
+            "old_tag": 15912,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406506,
+        "actual_explanation": true,
+        "introduction": "<p>Este enunciado testa conhecimentos fundamentais sobre <strong>histeroscopia diagn&oacute;stica</strong> na investiga&ccedil;&atilde;o da <strong>infertilidade conjugal</strong>, especificamente suas indica&ccedil;&otilde;es e a conduta frente ao achado de <strong>malforma&ccedil;&otilde;es uterinas</strong>. A quest&atilde;o &eacute; dividida em duas partes complementares que exploram tanto os aspectos t&eacute;cnicos do exame quanto o racioc&iacute;nio cl&iacute;nico necess&aacute;rio para investigar anomalias estruturais do &uacute;tero.</p>\n<p>A <strong>histeroscopia diagn&oacute;stica</strong> representa um dos pilares na investiga&ccedil;&atilde;o de fatores uterinos relacionados &agrave; infertilidade, permitindo visualiza&ccedil;&atilde;o direta da cavidade endometrial e identifica&ccedil;&atilde;o de altera&ccedil;&otilde;es estruturais que podem interferir na implanta&ccedil;&atilde;o embrion&aacute;ria. Ela vai estar indicada na suspeita de anormalidades da cavidade uterina, seja por alguma altera&ccedil;&atilde;o previamente visibilizada em ultrassonografia, ou em pacientes que tenham realizado fertiliza&ccedil;&atilde;o in vitro anteriormente sem sucesso.</p>\n<p>O&nbsp;<strong>septo uterino</strong>, por sua vez, &eacute; a malforma&ccedil;&atilde;o m&uuml;lleriana mais comum associada &agrave; infertilidade e perdas gestacionais recorrentes. Pela histeroscopia, n&atilde;o conseguimos diferenci&aacute;-lo do &uacute;tero bicorno, pois a diferencia&ccedil;&atilde;o dos dois depende do contorno externo do &uacute;tero. Para essa diferencia&ccedil;&atilde;o, precisaremos de uma resson&acirc;ncia magn&eacute;tica ou uma ultrassonografia 3D!</p>\n<p>Este t&oacute;pico &eacute; extremamente relevante nas provas de resid&ecirc;ncia, pois integra conhecimentos de ginecologia reprodutiva, embriologia e proped&ecirc;utica ginecol&oacute;gica, sendo frequentemente abordado tanto em quest&otilde;es te&oacute;ricas quanto em casos cl&iacute;nicos pr&aacute;ticos.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A <strong>histeroscopia diagn&oacute;stica</strong> &eacute; fundamental na investiga&ccedil;&atilde;o de <em>fatores uterinos</em> relacionados &agrave; infertilidade, permitindo visualiza&ccedil;&atilde;o direta da cavidade endometrial e identifica&ccedil;&atilde;o de altera&ccedil;&otilde;es estruturais que interferem na implanta&ccedil;&atilde;o embrion&aacute;ria. O <strong>septo uterino</strong> representa a malforma&ccedil;&atilde;o m&uuml;llerian mais comum associada tanto &agrave; infertilidade quanto &agrave;s perdas gestacionais recorrentes.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Investiga&ccedil;&atilde;o de <em>fatores uterinos</em> na infertilidade conjugal</li>\n<li>Visualiza&ccedil;&atilde;o direta da cavidade endometrial e canal cervical</li>\n<li>Identifica&ccedil;&atilde;o de <strong>malforma&ccedil;&otilde;es m&uuml;llerianas</strong>, p&oacute;lipos e sin&eacute;quias</li>\n<li>Septo uterino como principal malforma&ccedil;&atilde;o associada &agrave; infertilidade</li>\n<li>Rela&ccedil;&atilde;o com <em>perdas gestacionais recorrentes</em></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir septo uterino com <em>&uacute;tero bicorno</em> no diagn&oacute;stico diferencial</li>\n<li>N&atilde;o lembrar da necessidade de <strong>resson&acirc;ncia magn&eacute;tica</strong> para diferencia&ccedil;&atilde;o das malforma&ccedil;&otilde;es</li>\n<li>Esquecer que histeroscopia diagn&oacute;stica n&atilde;o avalia fundo uterino externo</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Casos cl&iacute;nicos de <em>infertilidade</em> solicitando investiga&ccedil;&atilde;o complementar</li>\n<li>Quest&otilde;es te&oacute;ricas sobre <strong>indica&ccedil;&otilde;es precisas</strong> da histeroscopia diagn&oacute;stica</li>\n<li>Integra&ccedil;&atilde;o entre ginecologia reprodutiva, embriologia e proped&ecirc;utica ginecol&oacute;gica</li>\n<li>Diagn&oacute;stico diferencial entre <em>malforma&ccedil;&otilde;es m&uuml;llerianas</em> em formato de caso pr&aacute;tico</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Este enunciado testa conhecimentos fundamentais sobre <strong>histeroscopia diagn&oacute;stica</strong> na investiga&ccedil;&atilde;o da <strong>infertilidade conjugal</strong>, especificamente suas indica&ccedil;&otilde;es e a conduta frente ao achado de <strong>malforma&ccedil;&otilde;es uterinas</strong>. A quest&atilde;o &eacute; dividida em duas partes complementares que exploram tanto os aspectos t&eacute;cnicos do exame quanto o racioc&iacute;nio cl&iacute;nico necess&aacute;rio para investigar anomalias estruturais do &uacute;tero.</p>\n<p>A <strong>histeroscopia diagn&oacute;stica</strong> representa um dos pilares na investiga&ccedil;&atilde;o de fatores uterinos relacionados &agrave; infertilidade, permitindo visualiza&ccedil;&atilde;o direta da cavidade endometrial e identifica&ccedil;&atilde;o de altera&ccedil;&otilde;es estruturais que podem interferir na implanta&ccedil;&atilde;o embrion&aacute;ria. Ela vai estar indicada na suspeita de anormalidades da cavidade uterina, seja por alguma altera&ccedil;&atilde;o previamente visibilizada em ultrassonografia, ou em pacientes que tenham realizado fertiliza&ccedil;&atilde;o in vitro anteriormente sem sucesso.</p>\n<p>O&nbsp;<strong>septo uterino</strong>, por sua vez, &eacute; a malforma&ccedil;&atilde;o m&uuml;lleriana mais comum associada &agrave; infertilidade e perdas gestacionais recorrentes. Pela histeroscopia, n&atilde;o conseguimos diferenci&aacute;-lo do &uacute;tero bicorno, pois a diferencia&ccedil;&atilde;o dos dois depende do contorno externo do &uacute;tero. Para essa diferencia&ccedil;&atilde;o, precisaremos de uma resson&acirc;ncia magn&eacute;tica ou uma ultrassonografia 3D!</p>\n<p>Este t&oacute;pico &eacute; extremamente relevante nas provas de resid&ecirc;ncia, pois integra conhecimentos de ginecologia reprodutiva, embriologia e proped&ecirc;utica ginecol&oacute;gica, sendo frequentemente abordado tanto em quest&otilde;es te&oacute;ricas quanto em casos cl&iacute;nicos pr&aacute;ticos.</p><br>Visão do aprovado: <p>A <strong>histeroscopia diagn&oacute;stica</strong> &eacute; fundamental na investiga&ccedil;&atilde;o de <em>fatores uterinos</em> relacionados &agrave; infertilidade, permitindo visualiza&ccedil;&atilde;o direta da cavidade endometrial e identifica&ccedil;&atilde;o de altera&ccedil;&otilde;es estruturais que interferem na implanta&ccedil;&atilde;o embrion&aacute;ria. O <strong>septo uterino</strong> representa a malforma&ccedil;&atilde;o m&uuml;llerian mais comum associada tanto &agrave; infertilidade quanto &agrave;s perdas gestacionais recorrentes.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Investiga&ccedil;&atilde;o de <em>fatores uterinos</em> na infertilidade conjugal</li>\n<li>Visualiza&ccedil;&atilde;o direta da cavidade endometrial e canal cervical</li>\n<li>Identifica&ccedil;&atilde;o de <strong>malforma&ccedil;&otilde;es m&uuml;llerianas</strong>, p&oacute;lipos e sin&eacute;quias</li>\n<li>Septo uterino como principal malforma&ccedil;&atilde;o associada &agrave; infertilidade</li>\n<li>Rela&ccedil;&atilde;o com <em>perdas gestacionais recorrentes</em></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir septo uterino com <em>&uacute;tero bicorno</em> no diagn&oacute;stico diferencial</li>\n<li>N&atilde;o lembrar da necessidade de <strong>resson&acirc;ncia magn&eacute;tica</strong> para diferencia&ccedil;&atilde;o das malforma&ccedil;&otilde;es</li>\n<li>Esquecer que histeroscopia diagn&oacute;stica n&atilde;o avalia fundo uterino externo</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Casos cl&iacute;nicos de <em>infertilidade</em> solicitando investiga&ccedil;&atilde;o complementar</li>\n<li>Quest&otilde;es te&oacute;ricas sobre <strong>indica&ccedil;&otilde;es precisas</strong> da histeroscopia diagn&oacute;stica</li>\n<li>Integra&ccedil;&atilde;o entre ginecologia reprodutiva, embriologia e proped&ecirc;utica ginecol&oacute;gica</li>\n<li>Diagn&oacute;stico diferencial entre <em>malforma&ccedil;&otilde;es m&uuml;llerianas</em> em formato de caso pr&aacute;tico</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340920,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 340920,
+        "content": "Considerando histeroscopia diagnóstica realizada em regime ambulatorial, sem analgesia. PERGUNTA-SE:  \n\na. Qual a técnica mais apropriada para sua execução? \nb. Quais as possíveis complicações da histeroscopia diagnóstica?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 13,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406504,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Este enunciado testa conhecimentos fundamentais sobre <strong>histeroscopia diagn&oacute;stica</strong>, procedimento essencial na proped&ecirc;utica ginecol&oacute;gica moderna. A quest&atilde;o explora aspectos t&eacute;cnicos e de seguran&ccedil;a deste exame endosc&oacute;pico, enfatizando sua realiza&ccedil;&atilde;o em <strong>regime ambulatorial sem analgesia</strong>, cen&aacute;rio cada vez mais comum na pr&aacute;tica cl&iacute;nica atual.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A) A t&eacute;cnica mais apropriada para a histeroscopia diagn&oacute;stica realizada em regime ambulatorial, sem analgesia, &eacute; a t&eacute;cnica vaginosc&oacute;pica. Nessa abordagem, o histerosc&oacute;pio de pequeno calibre &mdash; geralmente entre 2,9 e 3,5 mm &mdash; &eacute; introduzido diretamente pelo introito vaginal, sem o uso de esp&eacute;culo e sem pin&ccedil;a de Pozzi. Isso reduz o desconforto causado pela manipula&ccedil;&atilde;o cervical, diminui a dor e torna o procedimento mais bem tolerado pelas pacientes, dispensando a necessidade de analgesia ou seda&ccedil;&atilde;o na maioria dos casos. Al&eacute;m disso, utiliza-se solu&ccedil;&atilde;o salina para distens&atilde;o uterina, permitindo uma visualiza&ccedil;&atilde;o adequada com menor risco de efeitos adversos. amb&eacute;m pode ser chamada de&nbsp;<strong><span style=\"font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\">T&eacute;cnica de Bettochci.&nbsp;</span></strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">B) As poss&iacute;veis complica&ccedil;&otilde;es da histeroscopia diagn&oacute;stica s&atilde;o, em geral, pouco frequentes e normalmente leves. A dor durante ou ap&oacute;s o procedimento &eacute; a mais comum, podendo ocorrer tamb&eacute;m rea&ccedil;&otilde;es vasovagais, como tontura, sudorese e, raramente, s&iacute;ncope. O sangramento vaginal discreto pode aparecer ap&oacute;s o exame, geralmente sem necessidade de interven&ccedil;&atilde;o. Infec&ccedil;&otilde;es, como cervicite ou endometrite, s&atilde;o poss&iacute;veis, mas raras. Entre as complica&ccedil;&otilde;es mec&acirc;nicas, a perfura&ccedil;&atilde;o uterina &eacute; incomum quando se utiliza histerosc&oacute;pios de pequeno calibre e n&atilde;o se fazem manobras agressivas. Complica&ccedil;&otilde;es relacionadas ao meio de distens&atilde;o s&atilde;o raras em histeroscopias diagn&oacute;sticas com solu&ccedil;&atilde;o salina, j&aacute; que desequil&iacute;brios&nbsp;hidroeletrol&iacute;ticos praticamente n&atilde;o ocorrem nesse contexto. Complica&ccedil;&otilde;es graves, como hemorragia significativa ou embolia, s&atilde;o extremamente raras.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">A <strong>histeroscopia diagn&oacute;stica ambulatorial</strong> &eacute; o padr&atilde;o-ouro para investiga&ccedil;&atilde;o de patologias uterinas, oferecendo visualiza&ccedil;&atilde;o direta da cavidade endometrial e canal cervical. A realiza&ccedil;&atilde;o <em>sem analgesia</em> em regime ambulatorial exige t&eacute;cnica adequada para minimizar desconforto e maximizar a precis&atilde;o diagn&oacute;stica.</p>\n<p style=\"text-align: justify;\"><strong>Pistas-chave:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Procedimento <strong>ambulatorial</strong> dispensa interna&ccedil;&atilde;o e anestesia geral</li>\n<li><strong>Visualiza&ccedil;&atilde;o direta</strong> da cavidade endometrial e canal cervical</li>\n<li>Precis&atilde;o diagn&oacute;stica <strong>superior aos m&eacute;todos indiretos</strong></li>\n<li>Padr&atilde;o-ouro para diagn&oacute;stico de <strong>patologias intrauterinas</strong></li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Pegadinhas de prova:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Confundir indica&ccedil;&otilde;es de histeroscopia <em>diagn&oacute;stica</em> vs <em>cir&uacute;rgica</em></li>\n<li>Assumir necessidade de analgesia/anestesia para procedimento diagn&oacute;stico simples</li>\n<li>Confundir com outros m&eacute;todos de imagem uterina (ultrassom, resson&acirc;ncia)</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Como cai:</strong></p>\n<ul>\n<li style=\"text-align: justify;\">Quest&otilde;es focam na <strong>t&eacute;cnica ambulatorial</strong> e suas vantagens</li>\n<li style=\"text-align: justify;\">Compara&ccedil;&atilde;o entre m&eacute;todos diagn&oacute;sticos para <strong>patologias uterinas</strong></li>\n<li style=\"text-align: justify;\">Abordagem das <strong>complica&ccedil;&otilde;es</strong> e contraindica&ccedil;&otilde;es do procedimento</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Este enunciado testa conhecimentos fundamentais sobre <strong>histeroscopia diagn&oacute;stica</strong>, procedimento essencial na proped&ecirc;utica ginecol&oacute;gica moderna. A quest&atilde;o explora aspectos t&eacute;cnicos e de seguran&ccedil;a deste exame endosc&oacute;pico, enfatizando sua realiza&ccedil;&atilde;o em <strong>regime ambulatorial sem analgesia</strong>, cen&aacute;rio cada vez mais comum na pr&aacute;tica cl&iacute;nica atual.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A) A t&eacute;cnica mais apropriada para a histeroscopia diagn&oacute;stica realizada em regime ambulatorial, sem analgesia, &eacute; a t&eacute;cnica vaginosc&oacute;pica. Nessa abordagem, o histerosc&oacute;pio de pequeno calibre &mdash; geralmente entre 2,9 e 3,5 mm &mdash; &eacute; introduzido diretamente pelo introito vaginal, sem o uso de esp&eacute;culo e sem pin&ccedil;a de Pozzi. Isso reduz o desconforto causado pela manipula&ccedil;&atilde;o cervical, diminui a dor e torna o procedimento mais bem tolerado pelas pacientes, dispensando a necessidade de analgesia ou seda&ccedil;&atilde;o na maioria dos casos. Al&eacute;m disso, utiliza-se solu&ccedil;&atilde;o salina para distens&atilde;o uterina, permitindo uma visualiza&ccedil;&atilde;o adequada com menor risco de efeitos adversos. amb&eacute;m pode ser chamada de&nbsp;<strong><span style=\"font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\">T&eacute;cnica de Bettochci.&nbsp;</span></strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">B) As poss&iacute;veis complica&ccedil;&otilde;es da histeroscopia diagn&oacute;stica s&atilde;o, em geral, pouco frequentes e normalmente leves. A dor durante ou ap&oacute;s o procedimento &eacute; a mais comum, podendo ocorrer tamb&eacute;m rea&ccedil;&otilde;es vasovagais, como tontura, sudorese e, raramente, s&iacute;ncope. O sangramento vaginal discreto pode aparecer ap&oacute;s o exame, geralmente sem necessidade de interven&ccedil;&atilde;o. Infec&ccedil;&otilde;es, como cervicite ou endometrite, s&atilde;o poss&iacute;veis, mas raras. Entre as complica&ccedil;&otilde;es mec&acirc;nicas, a perfura&ccedil;&atilde;o uterina &eacute; incomum quando se utiliza histerosc&oacute;pios de pequeno calibre e n&atilde;o se fazem manobras agressivas. Complica&ccedil;&otilde;es relacionadas ao meio de distens&atilde;o s&atilde;o raras em histeroscopias diagn&oacute;sticas com solu&ccedil;&atilde;o salina, j&aacute; que desequil&iacute;brios&nbsp;hidroeletrol&iacute;ticos praticamente n&atilde;o ocorrem nesse contexto. Complica&ccedil;&otilde;es graves, como hemorragia significativa ou embolia, s&atilde;o extremamente raras.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">A <strong>histeroscopia diagn&oacute;stica ambulatorial</strong> &eacute; o padr&atilde;o-ouro para investiga&ccedil;&atilde;o de patologias uterinas, oferecendo visualiza&ccedil;&atilde;o direta da cavidade endometrial e canal cervical. A realiza&ccedil;&atilde;o <em>sem analgesia</em> em regime ambulatorial exige t&eacute;cnica adequada para minimizar desconforto e maximizar a precis&atilde;o diagn&oacute;stica.</p>\n<p style=\"text-align: justify;\"><strong>Pistas-chave:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Procedimento <strong>ambulatorial</strong> dispensa interna&ccedil;&atilde;o e anestesia geral</li>\n<li><strong>Visualiza&ccedil;&atilde;o direta</strong> da cavidade endometrial e canal cervical</li>\n<li>Precis&atilde;o diagn&oacute;stica <strong>superior aos m&eacute;todos indiretos</strong></li>\n<li>Padr&atilde;o-ouro para diagn&oacute;stico de <strong>patologias intrauterinas</strong></li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Pegadinhas de prova:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Confundir indica&ccedil;&otilde;es de histeroscopia <em>diagn&oacute;stica</em> vs <em>cir&uacute;rgica</em></li>\n<li>Assumir necessidade de analgesia/anestesia para procedimento diagn&oacute;stico simples</li>\n<li>Confundir com outros m&eacute;todos de imagem uterina (ultrassom, resson&acirc;ncia)</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Como cai:</strong></p>\n<ul>\n<li style=\"text-align: justify;\">Quest&otilde;es focam na <strong>t&eacute;cnica ambulatorial</strong> e suas vantagens</li>\n<li style=\"text-align: justify;\">Compara&ccedil;&atilde;o entre m&eacute;todos diagn&oacute;sticos para <strong>patologias uterinas</strong></li>\n<li style=\"text-align: justify;\">Abordagem das <strong>complica&ccedil;&otilde;es</strong> e contraindica&ccedil;&otilde;es do procedimento</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340921,
+        "number": 5,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Endometriose parte 2: tratamento",
+        "focus": {
+          "id": 1647,
+          "name": "Endometriose parte 2: tratamento"
+        }
+      },
+      "detail": {
+        "id": 340921,
+        "content": "Na ressecção segmentar do reto por endometriose profunda, a preservação da função evacuatória depende do reconhecimento das estruturas nervosas da pelve. PERGUNTA-SE:  \n\na. Qual plexo nervoso deve ser preservado lateralmente ao reto? \nb. Qual a consequência funcional de sua lesão?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15919,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Endometriose parte 2: tratamento",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 13,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1647,
+          "name": "Endometriose parte 2: tratamento",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406511,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">O cen&aacute;rio combina <strong>endometriose profunda retovaginal</strong> com <strong>ressec&ccedil;&atilde;o segmentar do reto</strong>, pedindo conhecimento espec&iacute;fico sobre <strong>anatomia nervosa p&eacute;lvica</strong> como pr&oacute;ximo passo.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/eSPA&Ccedil;OS PELVICOS.jpg\" alt=\"\" width=\"1151\" height=\"845\"></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A) Na&nbsp;ressec&ccedil;&atilde;o segmentar do reto por endometriose profunda, a preserva&ccedil;&atilde;o da fun&ccedil;&atilde;o evacuat&oacute;ria depende fundamentalmente do cuidado com as estruturas auton&ocirc;micas da pelve. O plexo que deve ser preservado lateralmente ao reto &eacute; o plexo hipog&aacute;strico inferior. Esse plexo recebe fibras dos nervos espl&acirc;ncnicos p&eacute;lvicos (parassimp&aacute;ticos) e dos nervos hipog&aacute;stricos (simp&aacute;ticos), formando a principal rede respons&aacute;vel pela inerva&ccedil;&atilde;o auton&ocirc;mica do reto, bexiga e &oacute;rg&atilde;os genitais.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">B) A les&atilde;o desse plexo provoca comprometimento da fun&ccedil;&atilde;o auton&ocirc;mica retal. A consequ&ecirc;ncia funcional mais importante &eacute; a disfun&ccedil;&atilde;o evacuat&oacute;ria, manifestada por constipa&ccedil;&atilde;o, dificuldade para iniciar ou manter o esfor&ccedil;o evacuat&oacute;rio, redu&ccedil;&atilde;o da sensibilidade retal e sensa&ccedil;&atilde;o de evacua&ccedil;&atilde;o incompleta. Al&eacute;m disso, podem ocorrer repercuss&otilde;es urin&aacute;rias (como dificuldade de esvaziamento vesical) e sexuais, j&aacute; que o plexo tamb&eacute;m participa da inerva&ccedil;&atilde;o dessas estruturas. Preserv&aacute;-lo &eacute;, portanto, essencial para evitar sequelas funcionais significativas ap&oacute;s a cirurgia.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">A <strong>endometriose profunda retovaginal</strong> com necessidade de ressec&ccedil;&atilde;o segmentar exige preserva&ccedil;&atilde;o do <strong>plexo hipog&aacute;strico inferior</strong> (plexo p&eacute;lvico) localizado lateralmente ao reto. A les&atilde;o dessa estrutura nervosa resulta em <strong>disfun&ccedil;&atilde;o evacuat&oacute;ria</strong> com altera&ccedil;&otilde;es na sensibilidade retal, motilidade intestinal e capacidade de defeca&ccedil;&atilde;o adequada.</p>\n<p style=\"text-align: justify;\"><strong>Pistas-chave:</strong></p>\n<ul style=\"text-align: justify;\">\n<li><strong>Plexo hipog&aacute;strico inferior</strong> (sin&ocirc;nimo: plexo p&eacute;lvico) &eacute; a estrutura lateral ao reto</li>\n<li>Localiza&ccedil;&atilde;o espec&iacute;fica: <em>lateralmente ao reto</em> durante ressec&ccedil;&atilde;o segmentar</li>\n<li>Fun&ccedil;&atilde;o: controla <strong>sensibilidade retal</strong>, motilidade e defeca&ccedil;&atilde;o</li>\n<li>Contexto: <strong>endometriose profunda retovaginal</strong> com acometimento intestinal</li>\n<li>Preserva&ccedil;&atilde;o determina <strong>sucesso funcional</strong> da cirurgia</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Pegadinhas de prova:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Confus&atilde;o entre <strong>plexo hipog&aacute;strico superior</strong> (pr&eacute;-sacral) vs <strong>inferior</strong> (lateral ao reto)</li>\n<li>Nomenclatura: <em>plexo p&eacute;lvico</em> e <em>plexo hipog&aacute;strico inferior</em> s&atilde;o sin&ocirc;nimos</li>\n<li>Localiza&ccedil;&atilde;o: lateralmente ao reto vs outras localiza&ccedil;&otilde;es dos plexos nervosos</li>\n<li>Consequ&ecirc;ncia funcional espec&iacute;fica: <strong>disfun&ccedil;&atilde;o evacuat&oacute;ria</strong> vs outras disfun&ccedil;&otilde;es</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Como cai:</strong></p>\n<ul>\n<li style=\"text-align: justify;\">Quest&otilde;es de <strong>anatomia cir&uacute;rgica</strong> em endometriose profunda com foco em preserva&ccedil;&atilde;o nervosa</li>\n<li style=\"text-align: justify;\">Associa&ccedil;&atilde;o entre <strong>localiza&ccedil;&atilde;o anat&ocirc;mica</strong> e <strong>consequ&ecirc;ncia funcional</strong> espec&iacute;fica</li>\n<li style=\"text-align: justify;\">Diferencia&ccedil;&atilde;o entre os diversos <strong>plexos nervosos p&eacute;lvicos</strong> e suas fun&ccedil;&otilde;es</li>\n<li style=\"text-align: justify;\">Cen&aacute;rios de <strong>complica&ccedil;&otilde;es p&oacute;s-operat&oacute;rias</strong> em cirurgia de endometriose profunda</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">O cen&aacute;rio combina <strong>endometriose profunda retovaginal</strong> com <strong>ressec&ccedil;&atilde;o segmentar do reto</strong>, pedindo conhecimento espec&iacute;fico sobre <strong>anatomia nervosa p&eacute;lvica</strong> como pr&oacute;ximo passo.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/eSPA&Ccedil;OS PELVICOS.jpg\" alt=\"\" width=\"1151\" height=\"845\"></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A) Na&nbsp;ressec&ccedil;&atilde;o segmentar do reto por endometriose profunda, a preserva&ccedil;&atilde;o da fun&ccedil;&atilde;o evacuat&oacute;ria depende fundamentalmente do cuidado com as estruturas auton&ocirc;micas da pelve. O plexo que deve ser preservado lateralmente ao reto &eacute; o plexo hipog&aacute;strico inferior. Esse plexo recebe fibras dos nervos espl&acirc;ncnicos p&eacute;lvicos (parassimp&aacute;ticos) e dos nervos hipog&aacute;stricos (simp&aacute;ticos), formando a principal rede respons&aacute;vel pela inerva&ccedil;&atilde;o auton&ocirc;mica do reto, bexiga e &oacute;rg&atilde;os genitais.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">B) A les&atilde;o desse plexo provoca comprometimento da fun&ccedil;&atilde;o auton&ocirc;mica retal. A consequ&ecirc;ncia funcional mais importante &eacute; a disfun&ccedil;&atilde;o evacuat&oacute;ria, manifestada por constipa&ccedil;&atilde;o, dificuldade para iniciar ou manter o esfor&ccedil;o evacuat&oacute;rio, redu&ccedil;&atilde;o da sensibilidade retal e sensa&ccedil;&atilde;o de evacua&ccedil;&atilde;o incompleta. Al&eacute;m disso, podem ocorrer repercuss&otilde;es urin&aacute;rias (como dificuldade de esvaziamento vesical) e sexuais, j&aacute; que o plexo tamb&eacute;m participa da inerva&ccedil;&atilde;o dessas estruturas. Preserv&aacute;-lo &eacute;, portanto, essencial para evitar sequelas funcionais significativas ap&oacute;s a cirurgia.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">A <strong>endometriose profunda retovaginal</strong> com necessidade de ressec&ccedil;&atilde;o segmentar exige preserva&ccedil;&atilde;o do <strong>plexo hipog&aacute;strico inferior</strong> (plexo p&eacute;lvico) localizado lateralmente ao reto. A les&atilde;o dessa estrutura nervosa resulta em <strong>disfun&ccedil;&atilde;o evacuat&oacute;ria</strong> com altera&ccedil;&otilde;es na sensibilidade retal, motilidade intestinal e capacidade de defeca&ccedil;&atilde;o adequada.</p>\n<p style=\"text-align: justify;\"><strong>Pistas-chave:</strong></p>\n<ul style=\"text-align: justify;\">\n<li><strong>Plexo hipog&aacute;strico inferior</strong> (sin&ocirc;nimo: plexo p&eacute;lvico) &eacute; a estrutura lateral ao reto</li>\n<li>Localiza&ccedil;&atilde;o espec&iacute;fica: <em>lateralmente ao reto</em> durante ressec&ccedil;&atilde;o segmentar</li>\n<li>Fun&ccedil;&atilde;o: controla <strong>sensibilidade retal</strong>, motilidade e defeca&ccedil;&atilde;o</li>\n<li>Contexto: <strong>endometriose profunda retovaginal</strong> com acometimento intestinal</li>\n<li>Preserva&ccedil;&atilde;o determina <strong>sucesso funcional</strong> da cirurgia</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Pegadinhas de prova:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Confus&atilde;o entre <strong>plexo hipog&aacute;strico superior</strong> (pr&eacute;-sacral) vs <strong>inferior</strong> (lateral ao reto)</li>\n<li>Nomenclatura: <em>plexo p&eacute;lvico</em> e <em>plexo hipog&aacute;strico inferior</em> s&atilde;o sin&ocirc;nimos</li>\n<li>Localiza&ccedil;&atilde;o: lateralmente ao reto vs outras localiza&ccedil;&otilde;es dos plexos nervosos</li>\n<li>Consequ&ecirc;ncia funcional espec&iacute;fica: <strong>disfun&ccedil;&atilde;o evacuat&oacute;ria</strong> vs outras disfun&ccedil;&otilde;es</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Como cai:</strong></p>\n<ul>\n<li style=\"text-align: justify;\">Quest&otilde;es de <strong>anatomia cir&uacute;rgica</strong> em endometriose profunda com foco em preserva&ccedil;&atilde;o nervosa</li>\n<li style=\"text-align: justify;\">Associa&ccedil;&atilde;o entre <strong>localiza&ccedil;&atilde;o anat&ocirc;mica</strong> e <strong>consequ&ecirc;ncia funcional</strong> espec&iacute;fica</li>\n<li style=\"text-align: justify;\">Diferencia&ccedil;&atilde;o entre os diversos <strong>plexos nervosos p&eacute;lvicos</strong> e suas fun&ccedil;&otilde;es</li>\n<li style=\"text-align: justify;\">Cen&aacute;rios de <strong>complica&ccedil;&otilde;es p&oacute;s-operat&oacute;rias</strong> em cirurgia de endometriose profunda</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340922,
+        "number": 6,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Infertilidade conjugal parte 2: legislação em reprodução assistida e tratamento",
+        "focus": {
+          "id": 1637,
+          "name": "Infertilidade conjugal parte 2: legislação em reprodução assistida e tratamento"
+        }
+      },
+      "detail": {
+        "id": 340922,
+        "content": "Mulher, 35a, tenta engravidar há dois anos. Histerossalpingografia apresentando obstrução distal à direita e sinal de cottè positivo tardio à esquerda, com dilatação bilateral, mais pronunciada à direita. A ultrassonografia revela hidrossalpinge bilateral. Parceiro apresentando oligoastenospermia. PERGUNTA-SE: \n\na. Em caso de realização de FIV, qual procedimento deve ser considerado para aumentar as chances de sucesso e por qual via deve ser realizado? \n\nb. Justifique a conduta adotada no item (A):",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15929,
+            "parent_tag": {
+              "id": 15912,
+              "name": "Ginecologia endócrina",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Infertilidade conjugal parte 2: legislação em reprodução assistida e tratamento",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 6,
+        "physicians": [
+          {
+            "id": 4298,
+            "avatar": "https://cdn.medway.com.br/media/physician/IMG_Zf0n6zY.jpeg",
+            "about": "Ginecologia e Obstetrícia – HIAE",
+            "name": "Maitê Leite Basile",
+            "speciality": {
+              "id": 6,
+              "abbreviation": "GO",
+              "name": "Ginecologia e Obstetrícia"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 14,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1637,
+          "name": "Infertilidade conjugal parte 2: legislação em reprodução assistida e tratamento",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 94,
+            "name": "Ginecologia endócrina",
+            "discipline": 86,
+            "old_tag": 15912,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406509,
+        "actual_explanation": true,
+        "introduction": "<p>No cerne desta quest&atilde;o est&aacute; o manejo da <strong>hidrossalpinge</strong> em pacientes candidatas &agrave; <strong>fertiliza&ccedil;&atilde;o in vitro (FIV)</strong>. O caso apresenta uma mulher de 35 anos com infertilidade h&aacute; dois anos, cujos exames revelam hidrossalpinge bilateral confirmada tanto pela histerossalpingografia (com sinal de cott&egrave; positivo tardio) quanto pela ultrassonografia. Associado a isso, h&aacute; fator masculino representado pela oligoastenospermia do parceiro, caracterizando um quadro de <strong>infertilidade de causa mista</strong>.</p>\n<p>Vamos relembrar como se faz a investiga&ccedil;&atilde;o do fator tub&aacute;rio na proped&ecirc;utica do casal inf&eacute;rtil:</p>\n<ul>\n<li><strong>Histerossalpingografia</strong> &eacute; o exame de 1&ordf; escolha, deve ser realizado entre 6-11&deg; dia do ciclo e consiste em inje&ccedil;&atilde;o de contraste radiopaco pelo colo do &uacute;tero + radiografias seriadas\n<ul>\n<li>Prova de Cotte positiva: extravasamento do contraste para a cavidade abdominal\n<ul>\n<li><img style=\"display: block; margin-left: auto; margin-right: auto; float: none;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T145710401Z534079.png\" width=\"176\" height=\"226\"></li>\n</ul>\n</li>\n<li>Prova de Cotte negativa: n&atilde;o h&aacute; extravasamento do contraste&nbsp;\n<ul>\n<li><img style=\"display: block; margin-left: auto; margin-right: auto; float: none;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T145814651Z377651.png\" width=\"158\" height=\"126\"></li>\n</ul>\n</li>\n<li><strong>Histerossonossalpingografia:&nbsp;</strong>realizado com US transvaginal e contraste aerado, acur&aacute;cia semelhante &agrave; histerossalpingografia, com menos dor para a paciente</li>\n<li><strong>Laparoscopia + cromotubagem:&nbsp;</strong>padr&atilde;o ouro, permite visualiza&ccedil;&atilde;o direta da anatomia tub&aacute;ria atrav&eacute;s da inje&ccedil;&atilde;o de azul de metileno. Diagn&oacute;stico invasivo reservado para casos selecionados.</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;A hidrossalpinge representa um dos principais fatores que reduzem as taxas de implanta&ccedil;&atilde;o e gesta&ccedil;&atilde;o em ciclos de FIV, sendo fundamental reconhecer a necessidade de tratamento pr&eacute;vio.</p>\n<p>A resposta correta para o item (A) &eacute;:&nbsp;<strong>salpingectomia bilateral por via laparosc&oacute;pica</strong>. Esta conduta baseia-se em evid&ecirc;ncias cient&iacute;ficas s&oacute;lidas que demonstram melhora significativa nas taxas de sucesso da FIV ap&oacute;s a remo&ccedil;&atilde;o das tubas dilatadas. A hidrossalpinge prejudica a implanta&ccedil;&atilde;o embrion&aacute;ria atrav&eacute;s de m&uacute;ltiplos mecanismos:</p>\n<ul>\n<li>O l&iacute;quido tub&aacute;rio possui componentes t&oacute;xicos para embri&otilde;es e endom&eacute;trio</li>\n<li>Causa efeito de \"lavagem\" mec&acirc;nica dos embri&otilde;es transferidos</li>\n<li>Altera a receptividade endometrial</li>\n<li>Pode conter mediadores inflamat&oacute;rios que interferem no processo de implanta&ccedil;&atilde;o</li>\n</ul>\n<p>A via laparosc&oacute;pica &eacute; preferencial por ser minimamente invasiva, permitir recupera&ccedil;&atilde;o mais r&aacute;pida, causar menos ader&ecirc;ncias p&oacute;s-operat&oacute;rias e proporcionar melhor visualiza&ccedil;&atilde;o das estruturas p&eacute;lvicas. Estudos demonstram que a salpingectomia laparosc&oacute;pica antes da FIV aumenta as taxas de implanta&ccedil;&atilde;o e gesta&ccedil;&atilde;o em aproximadamente 50% quando comparada &agrave; aus&ecirc;ncia de tratamento da hidrossalpinge.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A <strong>hidrossalpinge bilateral</strong> associada &agrave; <em>oligoastenospermia</em> define infertilidade de causa mista com indica&ccedil;&atilde;o de FIV. O l&iacute;quido tub&aacute;rio infectado prejudica significativamente as taxas de implanta&ccedil;&atilde;o, tornando fundamental o tratamento cir&uacute;rgico pr&eacute;vio. A <strong>salpingectomia laparosc&oacute;pica bilateral</strong> &eacute; o padr&atilde;o-ouro antes da FIV nestes casos.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Sinal de cott&egrave; positivo tardio indica comunica&ccedil;&atilde;o tuba-perit&ocirc;nio com reten&ccedil;&atilde;o de contraste</li>\n<li>Hidrossalpinge bilateral confirmada por dois m&eacute;todos (HSG + USG) = indica&ccedil;&atilde;o cir&uacute;rgica</li>\n<li>Oligoastenospermia associada = necessidade de FIV independentemente das tubas</li>\n<li>Idade de 35 anos = urg&ecirc;ncia reprodutiva, n&atilde;o perder tempo com tratamentos conservadores</li>\n<li>Dilata&ccedil;&atilde;o tub&aacute;ria pronunciada &agrave; direita sugere processo inflamat&oacute;rio severo</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com salpingostomia (ineficaz em hidrossalpinge severa bilateral)</li>\n<li>Indicar via aberta quando laparoscopia &eacute; padr&atilde;o-ouro</li>\n<li>Sugerir oclus&atilde;o tub&aacute;ria proximal como alternativa equivalente &agrave; salpingectomia (&eacute; uma op&ccedil;&atilde;o terap&ecirc;utica, mas com efic&aacute;cia inferior &agrave; salpingectomia)</li>\n<li>Propor FIV direta sem tratar hidrossalpinge (reduz sucesso em ~50%)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Quest&otilde;es discursivas pedindo justificativa da salpingectomia pr&eacute;-FIV</li>\n<li>Casos com m&uacute;ltiplos fatores de infertilidade para testar prioriza&ccedil;&atilde;o cir&uacute;rgica</li>\n<li>Compara&ccedil;&atilde;o entre m&eacute;todos cir&uacute;rgicos (salpingectomia vs salpingostomia vs oclus&atilde;o)</li>\n<li>Integra&ccedil;&atilde;o com achados de HSG (interpreta&ccedil;&atilde;o do sinal de cott&egrave;)</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>No cerne desta quest&atilde;o est&aacute; o manejo da <strong>hidrossalpinge</strong> em pacientes candidatas &agrave; <strong>fertiliza&ccedil;&atilde;o in vitro (FIV)</strong>. O caso apresenta uma mulher de 35 anos com infertilidade h&aacute; dois anos, cujos exames revelam hidrossalpinge bilateral confirmada tanto pela histerossalpingografia (com sinal de cott&egrave; positivo tardio) quanto pela ultrassonografia. Associado a isso, h&aacute; fator masculino representado pela oligoastenospermia do parceiro, caracterizando um quadro de <strong>infertilidade de causa mista</strong>.</p>\n<p>Vamos relembrar como se faz a investiga&ccedil;&atilde;o do fator tub&aacute;rio na proped&ecirc;utica do casal inf&eacute;rtil:</p>\n<ul>\n<li><strong>Histerossalpingografia</strong> &eacute; o exame de 1&ordf; escolha, deve ser realizado entre 6-11&deg; dia do ciclo e consiste em inje&ccedil;&atilde;o de contraste radiopaco pelo colo do &uacute;tero + radiografias seriadas\n<ul>\n<li>Prova de Cotte positiva: extravasamento do contraste para a cavidade abdominal\n<ul>\n<li><img style=\"display: block; margin-left: auto; margin-right: auto; float: none;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T145710401Z534079.png\" width=\"176\" height=\"226\"></li>\n</ul>\n</li>\n<li>Prova de Cotte negativa: n&atilde;o h&aacute; extravasamento do contraste&nbsp;\n<ul>\n<li><img style=\"display: block; margin-left: auto; margin-right: auto; float: none;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T145814651Z377651.png\" width=\"158\" height=\"126\"></li>\n</ul>\n</li>\n<li><strong>Histerossonossalpingografia:&nbsp;</strong>realizado com US transvaginal e contraste aerado, acur&aacute;cia semelhante &agrave; histerossalpingografia, com menos dor para a paciente</li>\n<li><strong>Laparoscopia + cromotubagem:&nbsp;</strong>padr&atilde;o ouro, permite visualiza&ccedil;&atilde;o direta da anatomia tub&aacute;ria atrav&eacute;s da inje&ccedil;&atilde;o de azul de metileno. Diagn&oacute;stico invasivo reservado para casos selecionados.</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;A hidrossalpinge representa um dos principais fatores que reduzem as taxas de implanta&ccedil;&atilde;o e gesta&ccedil;&atilde;o em ciclos de FIV, sendo fundamental reconhecer a necessidade de tratamento pr&eacute;vio.</p>\n<p>A resposta correta para o item (A) &eacute;:&nbsp;<strong>salpingectomia bilateral por via laparosc&oacute;pica</strong>. Esta conduta baseia-se em evid&ecirc;ncias cient&iacute;ficas s&oacute;lidas que demonstram melhora significativa nas taxas de sucesso da FIV ap&oacute;s a remo&ccedil;&atilde;o das tubas dilatadas. A hidrossalpinge prejudica a implanta&ccedil;&atilde;o embrion&aacute;ria atrav&eacute;s de m&uacute;ltiplos mecanismos:</p>\n<ul>\n<li>O l&iacute;quido tub&aacute;rio possui componentes t&oacute;xicos para embri&otilde;es e endom&eacute;trio</li>\n<li>Causa efeito de \"lavagem\" mec&acirc;nica dos embri&otilde;es transferidos</li>\n<li>Altera a receptividade endometrial</li>\n<li>Pode conter mediadores inflamat&oacute;rios que interferem no processo de implanta&ccedil;&atilde;o</li>\n</ul>\n<p>A via laparosc&oacute;pica &eacute; preferencial por ser minimamente invasiva, permitir recupera&ccedil;&atilde;o mais r&aacute;pida, causar menos ader&ecirc;ncias p&oacute;s-operat&oacute;rias e proporcionar melhor visualiza&ccedil;&atilde;o das estruturas p&eacute;lvicas. Estudos demonstram que a salpingectomia laparosc&oacute;pica antes da FIV aumenta as taxas de implanta&ccedil;&atilde;o e gesta&ccedil;&atilde;o em aproximadamente 50% quando comparada &agrave; aus&ecirc;ncia de tratamento da hidrossalpinge.</p><br>Visão do aprovado: <p>A <strong>hidrossalpinge bilateral</strong> associada &agrave; <em>oligoastenospermia</em> define infertilidade de causa mista com indica&ccedil;&atilde;o de FIV. O l&iacute;quido tub&aacute;rio infectado prejudica significativamente as taxas de implanta&ccedil;&atilde;o, tornando fundamental o tratamento cir&uacute;rgico pr&eacute;vio. A <strong>salpingectomia laparosc&oacute;pica bilateral</strong> &eacute; o padr&atilde;o-ouro antes da FIV nestes casos.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Sinal de cott&egrave; positivo tardio indica comunica&ccedil;&atilde;o tuba-perit&ocirc;nio com reten&ccedil;&atilde;o de contraste</li>\n<li>Hidrossalpinge bilateral confirmada por dois m&eacute;todos (HSG + USG) = indica&ccedil;&atilde;o cir&uacute;rgica</li>\n<li>Oligoastenospermia associada = necessidade de FIV independentemente das tubas</li>\n<li>Idade de 35 anos = urg&ecirc;ncia reprodutiva, n&atilde;o perder tempo com tratamentos conservadores</li>\n<li>Dilata&ccedil;&atilde;o tub&aacute;ria pronunciada &agrave; direita sugere processo inflamat&oacute;rio severo</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com salpingostomia (ineficaz em hidrossalpinge severa bilateral)</li>\n<li>Indicar via aberta quando laparoscopia &eacute; padr&atilde;o-ouro</li>\n<li>Sugerir oclus&atilde;o tub&aacute;ria proximal como alternativa equivalente &agrave; salpingectomia (&eacute; uma op&ccedil;&atilde;o terap&ecirc;utica, mas com efic&aacute;cia inferior &agrave; salpingectomia)</li>\n<li>Propor FIV direta sem tratar hidrossalpinge (reduz sucesso em ~50%)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Quest&otilde;es discursivas pedindo justificativa da salpingectomia pr&eacute;-FIV</li>\n<li>Casos com m&uacute;ltiplos fatores de infertilidade para testar prioriza&ccedil;&atilde;o cir&uacute;rgica</li>\n<li>Compara&ccedil;&atilde;o entre m&eacute;todos cir&uacute;rgicos (salpingectomia vs salpingostomia vs oclus&atilde;o)</li>\n<li>Integra&ccedil;&atilde;o com achados de HSG (interpreta&ccedil;&atilde;o do sinal de cott&egrave;)</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340923,
+        "number": 7,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 340923,
+        "content": "Diversos dispositivos são usados na cirurgia laparoscópica. Observe a foto e responda.  \n\na. Qual o nome do dispositivo mostrado na foto a seguir? \nb. Cite duas funções desse dispositivo.",
+        "options": [],
+        "images": [
+          {
+            "id": 83072,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID340923_2026_institution-object-24_Q7/Captura_de_tela_2025-11-15_151335.png"
+          }
+        ],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 7,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 12,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406503,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">O cen&aacute;rio combina identifica&ccedil;&atilde;o visual de instrumental cir&uacute;rgico com conhecimento t&eacute;cnico sobre laparoscopia, testando compet&ecirc;ncias fundamentais para o cirurgi&atilde;o moderno.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">O dispositivo da foto &eacute; um retrator/afastador/protetor de ferida Alexis. Ele possui dois an&eacute;is flex&iacute;veis unidos por um tubo de material pl&aacute;stico resistente. O anel interno &eacute; introduzido dentro da cavidade abdominal pela incis&atilde;o, e o anel externo &eacute; tracionado, criando evers&atilde;o e afastamento uniforme das bordas da ferida, al&eacute;m de proteg&ecirc;-las de trauma e contamina&ccedil;&atilde;o.</p>\n<p style=\"text-align: justify;\">Fun&ccedil;&otilde;es:</p>\n<ul style=\"text-align: justify;\" data-processed=\"true\">\n<li style=\"list-style-type: disc;\" data-processed=\"true\" data-hveid=\"CAQQAA\"><span data-processed=\"true\" data-sfc-cp=\"\"><strong data-processed=\"true\">Retra&ccedil;&atilde;o atraum&aacute;tica:</strong>&nbsp;Fornece retra&ccedil;&atilde;o circunferencial de 360 graus, que afasta o tecido de forma suave e uniforme, minimizando o trauma e a dor.</span></li>\n<li style=\"list-style-type: disc;\" data-processed=\"true\" data-hveid=\"CAQQAQ\"><span data-processed=\"true\" data-sfc-cp=\"\"><strong data-processed=\"true\">Prote&ccedil;&atilde;o da ferida:</strong>&nbsp;A bainha protege os tecidos moles da contamina&ccedil;&atilde;o e do contato com instrumentos abrasivos e detritos durante a cirurgia.</span></li>\n<li style=\"list-style-type: disc;\" data-processed=\"true\" data-hveid=\"CAQQAg\"><span data-processed=\"true\" data-sfc-cp=\"\"><strong data-processed=\"true\">Exposi&ccedil;&atilde;o melhorada:</strong>&nbsp;A retra&ccedil;&atilde;o circunferencial aumenta a exposi&ccedil;&atilde;o e melhora a visibilidade no campo cir&uacute;rgico.</span></li>\n<li style=\"list-style-type: disc;\" data-processed=\"true\" data-hveid=\"CAQQAw\"><span data-processed=\"true\" data-sfc-cp=\"\"><strong data-processed=\"true\">Menor risco de infec&ccedil;&atilde;o:</strong> A prote&ccedil;&atilde;o do local cir&uacute;rgico ajuda a reduzir o risco de infec&ccedil;&otilde;es superficiais.</span></li>\n<li style=\"list-style-type: disc;\" data-processed=\"true\" data-hveid=\"CAQQAw\"><span id=\"iGAsaaZG4EICh5OUPgrbb4Aw_3\" style=\"font-size: 11pt;\" data-processed=\"true\"><span data-sfc-cp=\"\"><strong>Efici&ecirc;ncia cir&uacute;rgica:</strong> Reduz a necessidade de afastadores manuais adicionais e pode facilitar a montagem e o uso, liberando m&atilde;os para outras tarefas</span></span></li>\n</ul>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Assim, o dispositivo atua tanto como protetor de ferida e afastador, quanto como base para a montagem de um sistema de acesso laparosc&oacute;pico, oferecendo boa veda&ccedil;&atilde;o e mantendo a incis&atilde;o est&aacute;vel durante a cirurgia.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Gabarito esperado:&nbsp;&nbsp;</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A) Afastador/protetor de ferida tipo Alexis.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">B) Fun&ccedil;&otilde;es: proteger e afastar as bordas da incis&atilde;o e permitir montagem de acesso laparosc&oacute;pico ao selar a incis&atilde;o e introduzir um troc&aacute;ter sobre o anel externo.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">O uso de dispositivos em cirurgias minimamente invasivas &eacute; amplo, saber o uso e aplica&ccedil;&atilde;o de cada um deles &eacute; um diferencial para o residente de especialidades cir&uacute;rgicas. Contudo, como na pr&aacute;tica esses dispositivos n&atilde;o aparecem com tanta frequ&ecirc;ncia, talvez pela pouca disponibilidade em servi&ccedil;os do SUS, &eacute; importante se atentar para sua exist&ecirc;ncia e entender as formas que podem ser utilizados.&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Pegadinhas de prova:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Confundir com outros portais/trocateres ou afastadores cir&uacute;rgicos</li>\n<li>Confundir com bags laparosc&oacute;picas</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Como cai:</strong></p>\n<ul>\n<li style=\"text-align: justify;\"><strong>Formato cl&aacute;ssico:</strong> identifica&ccedil;&atilde;o visual +&nbsp; fun&ccedil;&otilde;es principais</li>\n<li style=\"text-align: justify;\"><strong>Quest&otilde;es pr&aacute;ticas:</strong> associa&ccedil;&atilde;o com complica&ccedil;&otilde;es de inser&ccedil;&atilde;o</li>\n<li style=\"text-align: justify;\"><strong>Contexto integrado:</strong> dentro de casos cl&iacute;nicos de procedimentos laparosc&oacute;picos espec&iacute;ficos</li>\n<li style=\"text-align: justify;\"><strong>Tamb&eacute;m pode cair:</strong> outros instrumentais laparosc&oacute;picos (graspers, dissectores, clips) no mesmo formato de identifica&ccedil;&atilde;o</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">O cen&aacute;rio combina identifica&ccedil;&atilde;o visual de instrumental cir&uacute;rgico com conhecimento t&eacute;cnico sobre laparoscopia, testando compet&ecirc;ncias fundamentais para o cirurgi&atilde;o moderno.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">O dispositivo da foto &eacute; um retrator/afastador/protetor de ferida Alexis. Ele possui dois an&eacute;is flex&iacute;veis unidos por um tubo de material pl&aacute;stico resistente. O anel interno &eacute; introduzido dentro da cavidade abdominal pela incis&atilde;o, e o anel externo &eacute; tracionado, criando evers&atilde;o e afastamento uniforme das bordas da ferida, al&eacute;m de proteg&ecirc;-las de trauma e contamina&ccedil;&atilde;o.</p>\n<p style=\"text-align: justify;\">Fun&ccedil;&otilde;es:</p>\n<ul style=\"text-align: justify;\" data-processed=\"true\">\n<li style=\"list-style-type: disc;\" data-processed=\"true\" data-hveid=\"CAQQAA\"><span data-processed=\"true\" data-sfc-cp=\"\"><strong data-processed=\"true\">Retra&ccedil;&atilde;o atraum&aacute;tica:</strong>&nbsp;Fornece retra&ccedil;&atilde;o circunferencial de 360 graus, que afasta o tecido de forma suave e uniforme, minimizando o trauma e a dor.</span></li>\n<li style=\"list-style-type: disc;\" data-processed=\"true\" data-hveid=\"CAQQAQ\"><span data-processed=\"true\" data-sfc-cp=\"\"><strong data-processed=\"true\">Prote&ccedil;&atilde;o da ferida:</strong>&nbsp;A bainha protege os tecidos moles da contamina&ccedil;&atilde;o e do contato com instrumentos abrasivos e detritos durante a cirurgia.</span></li>\n<li style=\"list-style-type: disc;\" data-processed=\"true\" data-hveid=\"CAQQAg\"><span data-processed=\"true\" data-sfc-cp=\"\"><strong data-processed=\"true\">Exposi&ccedil;&atilde;o melhorada:</strong>&nbsp;A retra&ccedil;&atilde;o circunferencial aumenta a exposi&ccedil;&atilde;o e melhora a visibilidade no campo cir&uacute;rgico.</span></li>\n<li style=\"list-style-type: disc;\" data-processed=\"true\" data-hveid=\"CAQQAw\"><span data-processed=\"true\" data-sfc-cp=\"\"><strong data-processed=\"true\">Menor risco de infec&ccedil;&atilde;o:</strong> A prote&ccedil;&atilde;o do local cir&uacute;rgico ajuda a reduzir o risco de infec&ccedil;&otilde;es superficiais.</span></li>\n<li style=\"list-style-type: disc;\" data-processed=\"true\" data-hveid=\"CAQQAw\"><span id=\"iGAsaaZG4EICh5OUPgrbb4Aw_3\" style=\"font-size: 11pt;\" data-processed=\"true\"><span data-sfc-cp=\"\"><strong>Efici&ecirc;ncia cir&uacute;rgica:</strong> Reduz a necessidade de afastadores manuais adicionais e pode facilitar a montagem e o uso, liberando m&atilde;os para outras tarefas</span></span></li>\n</ul>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Assim, o dispositivo atua tanto como protetor de ferida e afastador, quanto como base para a montagem de um sistema de acesso laparosc&oacute;pico, oferecendo boa veda&ccedil;&atilde;o e mantendo a incis&atilde;o est&aacute;vel durante a cirurgia.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Gabarito esperado:&nbsp;&nbsp;</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A) Afastador/protetor de ferida tipo Alexis.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">B) Fun&ccedil;&otilde;es: proteger e afastar as bordas da incis&atilde;o e permitir montagem de acesso laparosc&oacute;pico ao selar a incis&atilde;o e introduzir um troc&aacute;ter sobre o anel externo.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">O uso de dispositivos em cirurgias minimamente invasivas &eacute; amplo, saber o uso e aplica&ccedil;&atilde;o de cada um deles &eacute; um diferencial para o residente de especialidades cir&uacute;rgicas. Contudo, como na pr&aacute;tica esses dispositivos n&atilde;o aparecem com tanta frequ&ecirc;ncia, talvez pela pouca disponibilidade em servi&ccedil;os do SUS, &eacute; importante se atentar para sua exist&ecirc;ncia e entender as formas que podem ser utilizados.&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Pegadinhas de prova:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Confundir com outros portais/trocateres ou afastadores cir&uacute;rgicos</li>\n<li>Confundir com bags laparosc&oacute;picas</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Como cai:</strong></p>\n<ul>\n<li style=\"text-align: justify;\"><strong>Formato cl&aacute;ssico:</strong> identifica&ccedil;&atilde;o visual +&nbsp; fun&ccedil;&otilde;es principais</li>\n<li style=\"text-align: justify;\"><strong>Quest&otilde;es pr&aacute;ticas:</strong> associa&ccedil;&atilde;o com complica&ccedil;&otilde;es de inser&ccedil;&atilde;o</li>\n<li style=\"text-align: justify;\"><strong>Contexto integrado:</strong> dentro de casos cl&iacute;nicos de procedimentos laparosc&oacute;picos espec&iacute;ficos</li>\n<li style=\"text-align: justify;\"><strong>Tamb&eacute;m pode cair:</strong> outros instrumentais laparosc&oacute;picos (graspers, dissectores, clips) no mesmo formato de identifica&ccedil;&atilde;o</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340924,
+        "number": 8,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Radiologia em ginecologia geral",
+        "focus": {
+          "id": 1610,
+          "name": "Radiologia em ginecologia geral"
+        }
+      },
+      "detail": {
+        "id": 340924,
+        "content": "Mulher, 36a, assintomática, apresenta como achado de ultrassom transvaginal cisto anexial em ovário esquerdo de 5cm em seu maior diâmetro, multilocular com paredes lisas e septos finos com índice de cor 1 ao Doppler. PERGUNTA-SE: \n\na. Classifique o achado do exame segundo o padrão IOTA: \nb. Com base nas características e na classificação, dê a conduta mais apropriada para esse caso:",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15957,
+            "parent_tag": {
+              "id": 15904,
+              "name": "Imagens em Ginecologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Radiologia em ginecologia geral",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 8,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 13,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1610,
+          "name": "Radiologia em ginecologia geral",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 102,
+            "name": "Imagens em Ginecologia",
+            "discipline": 86,
+            "old_tag": 15904,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406508,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Os cistos ovarianos s&atilde;o achados comuns em mulheres em idade reprodutiva, muitas vezes detectados de forma incidental em exames de imagem, como o ultrassom transvaginal. A classifica&ccedil;&atilde;o ultrassonogr&aacute;fica &eacute; fundamental para diferenciar les&otilde;es benignas de suspeitas de malignidade, evitando procedimentos cir&uacute;rgicos desnecess&aacute;rios. O padr&atilde;o <strong>IOTA (International Ovarian Tumor Analysis)</strong> &eacute; amplamente utilizado para essa avalia&ccedil;&atilde;o, considerando caracter&iacute;sticas como tamanho, conte&uacute;do (l&iacute;quido ou s&oacute;lido), septos, vegeta&ccedil;&otilde;es papilares, paredes e vasculariza&ccedil;&atilde;o ao Doppler.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Cistos multiloculares, com septos finos, paredes lisas e fluxo sangu&iacute;neo m&iacute;nimo, em mulheres assintom&aacute;ticas, s&atilde;o tipicamente classificados como provavelmente benignos, permitindo conduta conservadora com acompanhamento cl&iacute;nico e ultrassonogr&aacute;fico. A abordagem depende do risco estimado de malignidade, do tamanho do cisto e da presen&ccedil;a de sintomas.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A)&nbsp;De acordo com o padr&atilde;o IOTA (International Ovarian Tumor Analysis), o cisto descrito &mdash; multilocular, paredes lisas, septos finos, sem vegeta&ccedil;&otilde;es papilares e fluxo Doppler m&iacute;nimo &mdash; se enquadra como um cisto benigno. O IOTA classifica essas les&otilde;es como &ldquo;les&atilde;o provavelmente benigna&rdquo;, com baixo risco de malignidade.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">B)&nbsp;Para uma mulher assintom&aacute;tica, no menacme, com cisto ovariano multilocular &lt;10 cm, sem sinais ultrassonogr&aacute;ficos de malignidade, a conduta recomendada &eacute; observa&ccedil;&atilde;o com seguimento ultrassonogr&aacute;fico peri&oacute;dico.</p>\n<ul>\n<li style=\"text-align: justify;\">Geralmente, sugere-se repetir o ultrassom em 6 a 12 semanas para verificar estabilidade ou regress&atilde;o do cisto.</li>\n<li style=\"text-align: justify;\">Interven&ccedil;&atilde;o cir&uacute;rgica s&oacute; seria indicada se o cisto crescer, apresentar sinais de malignidade, causar sintomas ou tor&ccedil;&atilde;o.</li>\n</ul>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">A classifica&ccedil;&atilde;o <strong>IOTA</strong> baseia-se em caracter&iacute;sticas ultrassonogr&aacute;ficas espec&iacute;ficas para estratificar o risco de malignidade em massas anexiais. As caracter&iacute;sticas descritas (multilocular com paredes lisas, septos finos e baixa vasculariza&ccedil;&atilde;o) indicam <strong>baixo risco de malignidade</strong>, orientando conduta conservadora inicial.</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T145311414Z049984.png\"></strong></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Os cistos ovarianos s&atilde;o achados comuns em mulheres em idade reprodutiva, muitas vezes detectados de forma incidental em exames de imagem, como o ultrassom transvaginal. A classifica&ccedil;&atilde;o ultrassonogr&aacute;fica &eacute; fundamental para diferenciar les&otilde;es benignas de suspeitas de malignidade, evitando procedimentos cir&uacute;rgicos desnecess&aacute;rios. O padr&atilde;o <strong>IOTA (International Ovarian Tumor Analysis)</strong> &eacute; amplamente utilizado para essa avalia&ccedil;&atilde;o, considerando caracter&iacute;sticas como tamanho, conte&uacute;do (l&iacute;quido ou s&oacute;lido), septos, vegeta&ccedil;&otilde;es papilares, paredes e vasculariza&ccedil;&atilde;o ao Doppler.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Cistos multiloculares, com septos finos, paredes lisas e fluxo sangu&iacute;neo m&iacute;nimo, em mulheres assintom&aacute;ticas, s&atilde;o tipicamente classificados como provavelmente benignos, permitindo conduta conservadora com acompanhamento cl&iacute;nico e ultrassonogr&aacute;fico. A abordagem depende do risco estimado de malignidade, do tamanho do cisto e da presen&ccedil;a de sintomas.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A)&nbsp;De acordo com o padr&atilde;o IOTA (International Ovarian Tumor Analysis), o cisto descrito &mdash; multilocular, paredes lisas, septos finos, sem vegeta&ccedil;&otilde;es papilares e fluxo Doppler m&iacute;nimo &mdash; se enquadra como um cisto benigno. O IOTA classifica essas les&otilde;es como &ldquo;les&atilde;o provavelmente benigna&rdquo;, com baixo risco de malignidade.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">B)&nbsp;Para uma mulher assintom&aacute;tica, no menacme, com cisto ovariano multilocular &lt;10 cm, sem sinais ultrassonogr&aacute;ficos de malignidade, a conduta recomendada &eacute; observa&ccedil;&atilde;o com seguimento ultrassonogr&aacute;fico peri&oacute;dico.</p>\n<ul>\n<li style=\"text-align: justify;\">Geralmente, sugere-se repetir o ultrassom em 6 a 12 semanas para verificar estabilidade ou regress&atilde;o do cisto.</li>\n<li style=\"text-align: justify;\">Interven&ccedil;&atilde;o cir&uacute;rgica s&oacute; seria indicada se o cisto crescer, apresentar sinais de malignidade, causar sintomas ou tor&ccedil;&atilde;o.</li>\n</ul><br>Visão do aprovado: <p style=\"text-align: justify;\">A classifica&ccedil;&atilde;o <strong>IOTA</strong> baseia-se em caracter&iacute;sticas ultrassonogr&aacute;ficas espec&iacute;ficas para estratificar o risco de malignidade em massas anexiais. As caracter&iacute;sticas descritas (multilocular com paredes lisas, septos finos e baixa vasculariza&ccedil;&atilde;o) indicam <strong>baixo risco de malignidade</strong>, orientando conduta conservadora inicial.</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T145311414Z049984.png\"></strong></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340925,
+        "number": 9,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Endometriose parte 2: tratamento",
+        "focus": {
+          "id": 1647,
+          "name": "Endometriose parte 2: tratamento"
+        }
+      },
+      "detail": {
+        "id": 340925,
+        "content": "Durante uma ooforoplastia (cistectomia ovariana) por laparoscopia em uma paciente com endometrioma e desejo reprodutivo, PERGUNTA-SE:  \n\na. Qual a técnica correta para tratamento do endometrioma? \nb. Descreva em poucas palavras a tática cirúrgica adotada para executar a técnica mencionada em sua resposta na questão 9.A:",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15919,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Endometriose parte 2: tratamento",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 9,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 12,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1647,
+          "name": "Endometriose parte 2: tratamento",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406507,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">O tratamento cir&uacute;rgico do endometrioma em pacientes com desejo reprodutivo deve ser cuidadoso, pois a remo&ccedil;&atilde;o inadequada pode reduzir a reserva ovariana. A t&eacute;cnica recomendada, baseada em evid&ecirc;ncias internacionais, &eacute; a cistectomia laparosc&oacute;pica, ou seja, remo&ccedil;&atilde;o completa da parede do cisto (pseudoc&aacute;psula) do ov&aacute;rio, preservando ao m&aacute;ximo o tecido ovariano saud&aacute;vel. Essa abordagem tem menor recorr&ecirc;ncia do que drenagem ou abla&ccedil;&atilde;o do cisto e melhor preserva&ccedil;&atilde;o da fun&ccedil;&atilde;o ovariana quando comparada a outras t&eacute;cnicas destrutivas.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A t&aacute;tica cir&uacute;rgica durante a cistectomia consiste em: identificar e delimitar o endometrioma; incisar a superf&iacute;cie do cisto; realizar dissec&ccedil;&atilde;o delicada da c&aacute;psula c&iacute;stica do estroma ovariano adjacente; hemostasia cuidadosa com pin&ccedil;amento ou uso m&iacute;nimo de energia t&eacute;rmica; e sutura ou aplica&ccedil;&atilde;o de hemost&aacute;ticos quando necess&aacute;rio. O objetivo &eacute; remover o endometrioma por completo, preservar o m&aacute;ximo de tecido ovariano saud&aacute;vel e evitar danos &agrave; reserva folicular.</p>\n<p style=\"text-align: justify;\"><br><strong>Resposta esperada: &nbsp;</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A) T&eacute;cnica correta: cistectomia laparosc&oacute;pica do endometrioma (remo&ccedil;&atilde;o da pseudoc&aacute;psula), preservando tecido ovariano saud&aacute;vel.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">B) T&aacute;tica cir&uacute;rgica: incis&atilde;o da superf&iacute;cie c&iacute;stica, dissec&ccedil;&atilde;o delicada da c&aacute;psula do estroma ovariano, remo&ccedil;&atilde;o completa do cisto, hemostasia cuidadosa com m&iacute;nimo uso de energia t&eacute;rmica, preservando o ov&aacute;rio.<br>Tra&ccedil;&atilde;o e contra-tra&ccedil;&atilde;o de c&aacute;psula e par&ecirc;nquima ovariano expondo plano de clivagem e uso de dissec&ccedil;&atilde;o romba.&nbsp;</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">O <strong>endometrioma</strong> com desejo reprodutivo demanda t&eacute;cnica que <strong>preserve ao m&aacute;ximo a reserva ovariana</strong>. A cistectomia laparosc&oacute;pica (enuclea&ccedil;&atilde;o da c&aacute;psula) &eacute; o padr&atilde;o-ouro, mas requer cuidado extremo para n&atilde;o comprometer o tecido ovariano sadio adjacente. O instrumental cir&uacute;rgico recomendado para realiza&ccedil;&atilde;o do procedimento &eacute; a pin&ccedil;a de dissec&ccedil;&atilde;o e a tesoura.&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">O tratamento cir&uacute;rgico do endometrioma em pacientes com desejo reprodutivo deve ser cuidadoso, pois a remo&ccedil;&atilde;o inadequada pode reduzir a reserva ovariana. A t&eacute;cnica recomendada, baseada em evid&ecirc;ncias internacionais, &eacute; a cistectomia laparosc&oacute;pica, ou seja, remo&ccedil;&atilde;o completa da parede do cisto (pseudoc&aacute;psula) do ov&aacute;rio, preservando ao m&aacute;ximo o tecido ovariano saud&aacute;vel. Essa abordagem tem menor recorr&ecirc;ncia do que drenagem ou abla&ccedil;&atilde;o do cisto e melhor preserva&ccedil;&atilde;o da fun&ccedil;&atilde;o ovariana quando comparada a outras t&eacute;cnicas destrutivas.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A t&aacute;tica cir&uacute;rgica durante a cistectomia consiste em: identificar e delimitar o endometrioma; incisar a superf&iacute;cie do cisto; realizar dissec&ccedil;&atilde;o delicada da c&aacute;psula c&iacute;stica do estroma ovariano adjacente; hemostasia cuidadosa com pin&ccedil;amento ou uso m&iacute;nimo de energia t&eacute;rmica; e sutura ou aplica&ccedil;&atilde;o de hemost&aacute;ticos quando necess&aacute;rio. O objetivo &eacute; remover o endometrioma por completo, preservar o m&aacute;ximo de tecido ovariano saud&aacute;vel e evitar danos &agrave; reserva folicular.</p>\n<p style=\"text-align: justify;\"><br><strong>Resposta esperada: &nbsp;</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A) T&eacute;cnica correta: cistectomia laparosc&oacute;pica do endometrioma (remo&ccedil;&atilde;o da pseudoc&aacute;psula), preservando tecido ovariano saud&aacute;vel.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">B) T&aacute;tica cir&uacute;rgica: incis&atilde;o da superf&iacute;cie c&iacute;stica, dissec&ccedil;&atilde;o delicada da c&aacute;psula do estroma ovariano, remo&ccedil;&atilde;o completa do cisto, hemostasia cuidadosa com m&iacute;nimo uso de energia t&eacute;rmica, preservando o ov&aacute;rio.<br>Tra&ccedil;&atilde;o e contra-tra&ccedil;&atilde;o de c&aacute;psula e par&ecirc;nquima ovariano expondo plano de clivagem e uso de dissec&ccedil;&atilde;o romba.&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">O <strong>endometrioma</strong> com desejo reprodutivo demanda t&eacute;cnica que <strong>preserve ao m&aacute;ximo a reserva ovariana</strong>. A cistectomia laparosc&oacute;pica (enuclea&ccedil;&atilde;o da c&aacute;psula) &eacute; o padr&atilde;o-ouro, mas requer cuidado extremo para n&atilde;o comprometer o tecido ovariano sadio adjacente. O instrumental cir&uacute;rgico recomendado para realiza&ccedil;&atilde;o do procedimento &eacute; a pin&ccedil;a de dissec&ccedil;&atilde;o e a tesoura.&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340926,
+        "number": 10,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 340926,
+        "content": "Mulher, 17a, apresenta-se ao Pronto-Socorro ginecológico com quadro de abdome agudo de início há cerca de 2 horas. Em exame de imagem foi diagnosticado cisto com característica funcional de 5cm em seu maior diâmetro e sinais de torção de pedículo vascular do anexo. Após uma cistectomia/ooforoplastia, evitamos a sutura no ovário. PERGUNTA-SE: \n\na. Cite duas complicações possíveis da sutura ovariana: \nb. Cite uma medida para evitar recorrência da torção do anexo.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 10,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 12,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406502,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Em casos de tor&ccedil;&atilde;o ovariana, especialmente em adolescentes ou mulheres jovens, a preserva&ccedil;&atilde;o do ov&aacute;rio &eacute; priorit&aacute;ria. Durante a cistectomia ou ooforoplastia, evita-se a sutura do ov&aacute;rio sempre que poss&iacute;vel, pois a sutura pode gerar trauma tecidual e cicatrizes. Duas complica&ccedil;&otilde;es associadas &agrave; sutura ovariana incluem a forma&ccedil;&atilde;o de ader&ecirc;ncias, que pode prejudicar a fertilidade futura, e a redu&ccedil;&atilde;o da reserva ovariana, pois a pin&ccedil;a e os pontos podem lesar fol&iacute;culos superficiais.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Para evitar recorr&ecirc;ncia da tor&ccedil;&atilde;o do anexo, uma medida preventiva &eacute; a plica ou fixa&ccedil;&atilde;o do ov&aacute;rio (ooforopexia), que consiste em suturar o ov&aacute;rio &agrave; parede p&eacute;lvica ou ligamento&nbsp;&uacute;tero-ov&aacute;rico, reduzindo a mobilidade e, consequentemente, o risco de nova tor&ccedil;&atilde;o. Essa conduta &eacute; especialmente indicada em ov&aacute;rios com ped&iacute;culo longo ou em pacientes com hist&oacute;rico pr&eacute;vio de tor&ccedil;&atilde;o.</p>\n<p style=\"text-align: justify;\"><br><strong>Gabarito esperado: &nbsp;</strong></p>\n<p>A) Complica&ccedil;&otilde;es da sutura ovariana:</p>\n<ul>\n<li>Isquemia do par&ecirc;nquima - Redu&ccedil;&atilde;o da reserva ovariana</li>\n<li>Ader&ecirc;ncia iatrog&ecirc;nica</li>\n<li>Sangramento ovariano</li>\n</ul>\n<p>B) Medida para evitar recorr&ecirc;ncia: ooforopexia (fixa&ccedil;&atilde;o do ov&aacute;rio).</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A tor&ccedil;&atilde;o ovariana &eacute; uma emerg&ecirc;ncia ginecol&oacute;gica caracterizada pela rota&ccedil;&atilde;o do ov&aacute;rio, muitas vezes junto com a trompa, ao redor de seu ped&iacute;culo vascular, o que inicialmente compromete o retorno venoso e linf&aacute;tico e, se n&atilde;o tratado rapidamente, pode levar &agrave; obstru&ccedil;&atilde;o arterial e necrose tecidual. &Eacute; mais comum em adolescentes e mulheres jovens, geralmente associada &agrave; presen&ccedil;a de cistos ovarianos funcionais ou massas anexiais.</p>\n<p>&nbsp;</p>\n<p>O quadro cl&iacute;nico t&iacute;pico inclui dor abdominal s&uacute;bita e intensa, frequentemente unilateral, associada a n&aacute;useas e v&ocirc;mitos. Pode haver sensibilidade &agrave; palpa&ccedil;&atilde;o do quadrante inferior, e em alguns casos, febre leve ou massa palp&aacute;vel devido ao aumento ovariano.</p>\n<p>&nbsp;</p>\n<p>No ultrassom transvaginal ou transabdominal, os achados caracter&iacute;sticos s&atilde;o: ov&aacute;rio aumentado e hipoecoico, presen&ccedil;a de cisto dominante, edema&nbsp;estromal, cistos perif&eacute;ricos e, em alguns casos, l&iacute;quido livre p&eacute;lvico. O fluxo Doppler pode mostrar redu&ccedil;&atilde;o ou aus&ecirc;ncia de perfus&atilde;o venosa, mas a presen&ccedil;a de fluxo arterial n&atilde;o exclui o diagn&oacute;stico. Um sinal espec&iacute;fico &eacute; a rota&ccedil;&atilde;o do ped&iacute;culo, conhecido como &ldquo;whirlpool sign&rdquo;.</p>\n<p>&nbsp;</p>\n<p>O tratamento preferencial &eacute; cir&uacute;rgico, via laparoscopia, com &ecirc;nfase na preserva&ccedil;&atilde;o do ov&aacute;rio. A t&eacute;cnica envolve a distor&ccedil;&atilde;o delicada do ov&aacute;rio para restaurar o fluxo, seguida de cistectomia ou&nbsp;ooforoplastia quando h&aacute; cisto associado. Deve-se evitar suturas sempre que poss&iacute;vel, para reduzir trauma tecidual, ader&ecirc;ncias e preserva&ccedil;&atilde;o da reserva ovariana. Em casos de ped&iacute;culo longo ou tor&ccedil;&otilde;es recorrentes, a ooforopexia pode ser realizada para reduzir o risco de nova tor&ccedil;&atilde;o. O manejo precoce &eacute; essencial para preservar a fertilidade futura e evitar necrose do ov&aacute;rio.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Em casos de tor&ccedil;&atilde;o ovariana, especialmente em adolescentes ou mulheres jovens, a preserva&ccedil;&atilde;o do ov&aacute;rio &eacute; priorit&aacute;ria. Durante a cistectomia ou ooforoplastia, evita-se a sutura do ov&aacute;rio sempre que poss&iacute;vel, pois a sutura pode gerar trauma tecidual e cicatrizes. Duas complica&ccedil;&otilde;es associadas &agrave; sutura ovariana incluem a forma&ccedil;&atilde;o de ader&ecirc;ncias, que pode prejudicar a fertilidade futura, e a redu&ccedil;&atilde;o da reserva ovariana, pois a pin&ccedil;a e os pontos podem lesar fol&iacute;culos superficiais.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Para evitar recorr&ecirc;ncia da tor&ccedil;&atilde;o do anexo, uma medida preventiva &eacute; a plica ou fixa&ccedil;&atilde;o do ov&aacute;rio (ooforopexia), que consiste em suturar o ov&aacute;rio &agrave; parede p&eacute;lvica ou ligamento&nbsp;&uacute;tero-ov&aacute;rico, reduzindo a mobilidade e, consequentemente, o risco de nova tor&ccedil;&atilde;o. Essa conduta &eacute; especialmente indicada em ov&aacute;rios com ped&iacute;culo longo ou em pacientes com hist&oacute;rico pr&eacute;vio de tor&ccedil;&atilde;o.</p>\n<p style=\"text-align: justify;\"><br><strong>Gabarito esperado: &nbsp;</strong></p>\n<p>A) Complica&ccedil;&otilde;es da sutura ovariana:</p>\n<ul>\n<li>Isquemia do par&ecirc;nquima - Redu&ccedil;&atilde;o da reserva ovariana</li>\n<li>Ader&ecirc;ncia iatrog&ecirc;nica</li>\n<li>Sangramento ovariano</li>\n</ul>\n<p>B) Medida para evitar recorr&ecirc;ncia: ooforopexia (fixa&ccedil;&atilde;o do ov&aacute;rio).</p><br>Visão do aprovado: <p>A tor&ccedil;&atilde;o ovariana &eacute; uma emerg&ecirc;ncia ginecol&oacute;gica caracterizada pela rota&ccedil;&atilde;o do ov&aacute;rio, muitas vezes junto com a trompa, ao redor de seu ped&iacute;culo vascular, o que inicialmente compromete o retorno venoso e linf&aacute;tico e, se n&atilde;o tratado rapidamente, pode levar &agrave; obstru&ccedil;&atilde;o arterial e necrose tecidual. &Eacute; mais comum em adolescentes e mulheres jovens, geralmente associada &agrave; presen&ccedil;a de cistos ovarianos funcionais ou massas anexiais.</p>\n<p>&nbsp;</p>\n<p>O quadro cl&iacute;nico t&iacute;pico inclui dor abdominal s&uacute;bita e intensa, frequentemente unilateral, associada a n&aacute;useas e v&ocirc;mitos. Pode haver sensibilidade &agrave; palpa&ccedil;&atilde;o do quadrante inferior, e em alguns casos, febre leve ou massa palp&aacute;vel devido ao aumento ovariano.</p>\n<p>&nbsp;</p>\n<p>No ultrassom transvaginal ou transabdominal, os achados caracter&iacute;sticos s&atilde;o: ov&aacute;rio aumentado e hipoecoico, presen&ccedil;a de cisto dominante, edema&nbsp;estromal, cistos perif&eacute;ricos e, em alguns casos, l&iacute;quido livre p&eacute;lvico. O fluxo Doppler pode mostrar redu&ccedil;&atilde;o ou aus&ecirc;ncia de perfus&atilde;o venosa, mas a presen&ccedil;a de fluxo arterial n&atilde;o exclui o diagn&oacute;stico. Um sinal espec&iacute;fico &eacute; a rota&ccedil;&atilde;o do ped&iacute;culo, conhecido como &ldquo;whirlpool sign&rdquo;.</p>\n<p>&nbsp;</p>\n<p>O tratamento preferencial &eacute; cir&uacute;rgico, via laparoscopia, com &ecirc;nfase na preserva&ccedil;&atilde;o do ov&aacute;rio. A t&eacute;cnica envolve a distor&ccedil;&atilde;o delicada do ov&aacute;rio para restaurar o fluxo, seguida de cistectomia ou&nbsp;ooforoplastia quando h&aacute; cisto associado. Deve-se evitar suturas sempre que poss&iacute;vel, para reduzir trauma tecidual, ader&ecirc;ncias e preserva&ccedil;&atilde;o da reserva ovariana. Em casos de ped&iacute;culo longo ou tor&ccedil;&otilde;es recorrentes, a ooforopexia pode ser realizada para reduzir o risco de nova tor&ccedil;&atilde;o. O manejo precoce &eacute; essencial para preservar a fertilidade futura e evitar necrose do ov&aacute;rio.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T15:15:07.754891+00:00",
+  "complete": true
+}

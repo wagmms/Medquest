@@ -1,0 +1,1165 @@
+{
+  "track_id": 4864421,
+  "name": "UNICAMP 2026 - Mastologia",
+  "year": 2026,
+  "track_fast": {
+    "id": 4864421,
+    "name": "UNICAMP 2026 - Mastologia",
+    "track_type": "c",
+    "question_count": 10,
+    "year": 2026,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UNICAMP",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-unicamp_yplZ7NO.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 10,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 10,
+  "questions": [
+    {
+      "meta": {
+        "id": 341874,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Climatério",
+        "focus": {
+          "id": 1599,
+          "name": "Climatério"
+        }
+      },
+      "detail": {
+        "id": 341874,
+        "content": "Mulher, 52a, há 14 meses em amenorreia, comparece à Unidade Básica de Saúde se queixando de fogachos noturnos intensos com prejuízo do sono, além de piora da saúde sexual por diminuição da lubrificação vaginal, dispareunia e queda da libido. Antecedentes pessoais: hipertensão arterial controlada em uso de uma classe de medicação anti-hipertensiva; histerectomia e retossigmoidectomia prévias por endometriose. Realiza atividade física regular (5x/semana) e relata alimentação saudável. Exame físico: IMC=22,7kg/m²; PA=124/82mmHg; mamas sem alterações; exame ginecológico com mucosa vaginal atrófica. PERGUNTA-SE: \n\na. Qual o melhor tratamento medicamentoso para alívio do quadro clínico? \nb. Quais terapias adjuvantes medicamentosas poderiam ser propostas?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15968,
+            "parent_tag": {
+              "id": 15912,
+              "name": "Ginecologia endócrina",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Climatério",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 1,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1599,
+          "name": "Climatério",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 94,
+            "name": "Ginecologia endócrina",
+            "discipline": 86,
+            "old_tag": 15912,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 410071,
+        "actual_explanation": true,
+        "introduction": "<p>Este enunciado testa a competência clínica em prescrever terapia hormonal na menopausa, especialmente em situações complexas envolvendo antecedentes cirúrgicos e patológicos. A paciente apresenta um quadro típico de <strong>menopausa natural</strong> com 14 meses de amenorreia aos 52 anos, acompanhada de <strong>sintomas vasomotores intensos</strong> (fogachos noturnos) e <strong>síndrome genitourinária</strong> (atrofia vaginal, dispareunia, diminuição da libido). O diferencial desta questão está no antecedente de <strong>endometriose</strong> com histerectomia prévia, que modifica a abordagem terapêutica padrão.</p>\n\n<p>A <strong>terapia hormonal da menopausa</strong> (TH) é o tratamento mais eficaz para sintomas vasomotores moderados a intensos, proporcionando alívio significativo dos fogachos e melhora da qualidade de vida. Em mulheres histerectomizadas, tradicionalmente prescreve-se apenas <strong>estrogênio isolado</strong>, uma vez que não há risco de hiperplasia endometrial. Entretanto, este caso apresenta a particularidade do antecedente de <strong>endometriose</strong>, que pode persistir ou recidivar mesmo após histerectomia, especialmente quando há comprometimento extrauterino - como sugerido pela necessidade de retossigmoidectomia.</p>\n\n<p>A <strong>endometriose residual</strong> pode responder ao estímulo estrogênico isolado, resultando em reativação da doença. Por isso, em mulheres histerectomizadas com história de endometriose, recomenda-se o esquema <strong>combinado com progestagênio</strong>, que oferece proteção contra a estimulação dos focos endometrióticos remanescentes. Quanto às terapias adjuvantes, os <strong>inibidores seletivos da recaptação de serotonina</strong> (como paroxetina) e os <strong>anticonvulsivantes</strong> (gabapentina) são opções não-hormonais eficazes para fogachos, enquanto o <strong>estrogênio vaginal</strong> tem ação local específica para os sintomas genitourinários.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Menopausa natural confirmada pelos <strong>14 meses de amenorreia</strong> aos 52 anos, com sintomas típicos vasomotores e genitourinários indicando terapia hormonal. O diferencial clínico está no antecedente de <strong>endometriose</strong>, que modifica a prescrição padrão de TH em histerectomizadas pelo risco de reativação de focos residuais.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>14 meses de amenorreia aos 52 anos = <strong>menopausa natural</strong> confirmada</li>\n<li>Fogachos noturnos intensos com prejuízo do sono = indicação para <strong>terapia hormonal sistêmica</strong></li>\n<li>Mucosa vaginal atrófica + dispareunia = <strong>síndrome genitourinária da menopausa</strong></li>\n<li>Histerectomia + retossigmoidectomia por endometriose = <strong>endometriose extrauterina</strong> com risco de focos residuais</li>\n<li>Antecedente de endometriose = necessidade de <strong>progestagênio mesmo em histerectomizada</strong></li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Pensar que histerectomizada sempre usa <em>estrogênio isolado</em> (ignorar o antecedente de endometriose)</li>\n<li>Confundir com <em>menopausa precoce</em> (52 anos é idade normal para menopausa)</li>\n<li>Não considerar que <strong>endometriose pode persistir</strong> após histerectomia em locais extrauterinos</li>\n<li>Esquecer das <em>alternativas não-hormonais</em> como paroxetina e gabapentina para fogachos</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Casos de mulheres <strong>histerectomizadas</strong> perguntando se usa estrogênio isolado ou combinado</li>\n<li>Questões sobre <strong>contraindicações relativas</strong> vs absolutas para terapia hormonal</li>\n<li>Cobrança de <strong>alternativas não-hormonais</strong> para sintomas vasomotores (ISRS, anticonvulsivantes)</li>\n<li>Diferenciação entre <em>estrogênio sistêmico</em> (fogachos) e <em>estrogênio vaginal</em> (atrofia genital)</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Este enunciado testa a competência clínica em prescrever terapia hormonal na menopausa, especialmente em situações complexas envolvendo antecedentes cirúrgicos e patológicos. A paciente apresenta um quadro típico de <strong>menopausa natural</strong> com 14 meses de amenorreia aos 52 anos, acompanhada de <strong>sintomas vasomotores intensos</strong> (fogachos noturnos) e <strong>síndrome genitourinária</strong> (atrofia vaginal, dispareunia, diminuição da libido). O diferencial desta questão está no antecedente de <strong>endometriose</strong> com histerectomia prévia, que modifica a abordagem terapêutica padrão.</p>\n\n<p>A <strong>terapia hormonal da menopausa</strong> (TH) é o tratamento mais eficaz para sintomas vasomotores moderados a intensos, proporcionando alívio significativo dos fogachos e melhora da qualidade de vida. Em mulheres histerectomizadas, tradicionalmente prescreve-se apenas <strong>estrogênio isolado</strong>, uma vez que não há risco de hiperplasia endometrial. Entretanto, este caso apresenta a particularidade do antecedente de <strong>endometriose</strong>, que pode persistir ou recidivar mesmo após histerectomia, especialmente quando há comprometimento extrauterino - como sugerido pela necessidade de retossigmoidectomia.</p>\n\n<p>A <strong>endometriose residual</strong> pode responder ao estímulo estrogênico isolado, resultando em reativação da doença. Por isso, em mulheres histerectomizadas com história de endometriose, recomenda-se o esquema <strong>combinado com progestagênio</strong>, que oferece proteção contra a estimulação dos focos endometrióticos remanescentes. Quanto às terapias adjuvantes, os <strong>inibidores seletivos da recaptação de serotonina</strong> (como paroxetina) e os <strong>anticonvulsivantes</strong> (gabapentina) são opções não-hormonais eficazes para fogachos, enquanto o <strong>estrogênio vaginal</strong> tem ação local específica para os sintomas genitourinários.</p><br>Visão do aprovado: <p>Menopausa natural confirmada pelos <strong>14 meses de amenorreia</strong> aos 52 anos, com sintomas típicos vasomotores e genitourinários indicando terapia hormonal. O diferencial clínico está no antecedente de <strong>endometriose</strong>, que modifica a prescrição padrão de TH em histerectomizadas pelo risco de reativação de focos residuais.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>14 meses de amenorreia aos 52 anos = <strong>menopausa natural</strong> confirmada</li>\n<li>Fogachos noturnos intensos com prejuízo do sono = indicação para <strong>terapia hormonal sistêmica</strong></li>\n<li>Mucosa vaginal atrófica + dispareunia = <strong>síndrome genitourinária da menopausa</strong></li>\n<li>Histerectomia + retossigmoidectomia por endometriose = <strong>endometriose extrauterina</strong> com risco de focos residuais</li>\n<li>Antecedente de endometriose = necessidade de <strong>progestagênio mesmo em histerectomizada</strong></li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Pensar que histerectomizada sempre usa <em>estrogênio isolado</em> (ignorar o antecedente de endometriose)</li>\n<li>Confundir com <em>menopausa precoce</em> (52 anos é idade normal para menopausa)</li>\n<li>Não considerar que <strong>endometriose pode persistir</strong> após histerectomia em locais extrauterinos</li>\n<li>Esquecer das <em>alternativas não-hormonais</em> como paroxetina e gabapentina para fogachos</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Casos de mulheres <strong>histerectomizadas</strong> perguntando se usa estrogênio isolado ou combinado</li>\n<li>Questões sobre <strong>contraindicações relativas</strong> vs absolutas para terapia hormonal</li>\n<li>Cobrança de <strong>alternativas não-hormonais</strong> para sintomas vasomotores (ISRS, anticonvulsivantes)</li>\n<li>Diferenciação entre <em>estrogênio sistêmico</em> (fogachos) e <em>estrogênio vaginal</em> (atrofia genital)</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 341875,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Trabalho de parto prematuro e seus fatores de risco",
+        "focus": {
+          "id": 1580,
+          "name": "Trabalho de parto prematuro e seus fatores de risco"
+        }
+      },
+      "detail": {
+        "id": 341875,
+        "content": "Gestante, 29a, G3P2A0, IG=33s2d, procura a Unidade de Emergência por contrações uterinas dolorosas e diminuição da movimentação fetal há 4 horas. Nega queixas em outros aparelhos e não apresenta comorbidades. Exame físico: estado geral regular; temperatura axilar=39,2°C; FC=115bpm; FR=20irpm; PA=102/64mmHg. Exame obstétrico: AU=30cm; DU= 3 contrações moderadas/10 min, duração de 20 segundos cada; BCF=170bpm; toque vaginal: colo 60-70% esvaecido, anteriorizado, dilatação de 5cm; bolsa íntegra; feto em apresentação cefálica. Exames laboratoriais: sedimentoscopia urinária sem alterações significativas; e no hemograma leucocitos=22.570/mm³ (com 20% de bastonetes). Foram coletadas: cultura para estreptococo do grupo B, hemocultura e urocultura. PERGUNTA-SE:\na. Quais seriam as primeiras medidas para adequado manejo clínico?\nb. E qual a conduta obstétrica preconizada?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15987,
+            "parent_tag": {
+              "id": 15908,
+              "name": "Prematuridade na Obstetrícia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Trabalho de parto prematuro e seus fatores de risco",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 2,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1580,
+          "name": "Trabalho de parto prematuro e seus fatores de risco",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 98,
+            "name": "Prematuridade na Obstetrícia",
+            "discipline": 86,
+            "old_tag": 15908,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 410069,
+        "actual_explanation": true,
+        "introduction": "<p><strong>No cerne desta questão está o reconhecimento e manejo da corioamnionite</strong> em uma gestante com <span class=\"article-3375\">trabalho de parto prematuro</span>. O cenário combina <strong>febre materna, taquicardia fetal e leucocitose</strong> compatíveis com <strong>infecção intrauterina</strong>, pedindo <strong>antibioticoterapia e decisão sobre via de parto</strong> como próximo passo.</p>\n<p>Este é um tema extremamente relevante nas provas de residência médica, pois a <strong>corioamnionite</strong> representa uma das principais emergências obstétricas que exige <strong>diagnóstico rápido e intervenção imediata</strong>. A condição afeta cerca de 1-5% de todas as gestações e é uma das principais causas de morbidade materna e perinatal.</p>\n<p>A <strong>resposta esperada</strong> é: <strong>a)</strong> Antibioticoterapia de amplo espectro e medidas de suporte; <strong>b)</strong> Parto vaginal.</p>\n<p>A <strong>corioamnionite</strong> é definida como uma infecção das membranas fetais (córion e âmnio) e do líquido amniótico. O diagnóstico baseia-se na <strong>tríade clássica</strong>: febre materna (≥38°C), taquicardia materna (&gt;100bpm) e taquicardia fetal (&gt;160bpm). Achados laboratoriais como <strong>leucocitose com desvio à esquerda</strong> reforçam a suspeita diagnóstica.</p>\n<p>No caso apresentado, temos uma gestante de <strong>33 semanas</strong> com todos os critérios para corioamnionite: temperatura de <strong>39,2°C</strong>, frequência cardíaca materna de <strong>115bpm</strong>, batimentos cardiofetais de <strong>170bpm</strong> e leucócitos de <strong>22.570/mm³ com 20% de bastonetes</strong>. A diminuição da movimentação fetal sugere <strong>comprometimento fetal</strong> secundário à infecção.</p>\n<p>O manejo da corioamnionite envolve <strong>duas condutas simultâneas e urgentes</strong>: início imediato de antibioticoterapia de amplo espectro e <strong>interrupção da gestação</strong>. A escolha da via de parto depende das condições obstétricas, não sendo a infecção, por si só, indicação de cesariana.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O diagnóstico de <strong>corioamnionite</strong> se baseia na <em>tríade clássica</em>: febre materna, taquicardia materna e taquicardia fetal, associada à leucocitose com desvio à esquerda. A diminuição da movimentação fetal sugere <strong>comprometimento fetal</strong> secundário à infecção intrauterina, exigindo manejo urgente.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Febre materna ≥38°C (no caso: 39,2°C)</li>\n<li>Taquicardia materna &gt;100bpm (no caso: 115bpm)</li>\n<li>Taquicardia fetal &gt;160bpm (no caso: 170bpm)</li>\n<li>Leucocitose com desvio à esquerda (&gt;20% bastonetes)</li>\n<li>Diminuição da movimentação fetal em contexto febril</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Corioamnionite <strong>não é indicação absoluta</strong> de cesariana - via de parto depende das condições obstétricas</li>\n<li>Diagnóstico é <em>clínico</em>, não aguarda resultado de culturas para iniciar tratamento</li>\n<li>Pode simular <span class=\"article-3375\">trabalho de parto prematuro</span> isolado - febre é o diferencial crucial</li>\n<li>Antibioticoterapia deve ser <strong>amplo espectro</strong> e iniciada imediatamente</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questões focam no <strong>reconhecimento da tríade clássica</strong> em cenários de trabalho de parto</li>\n<li>Cobrança da <em>conduta dupla</em>: antibioticoterapia + interrupção da gestação</li>\n<li>Pegadinha sobre via de parto: <strong>vaginal é preferível</strong> se condições obstétricas permitirem</li>\n<li>Associação com <em>diminuição da movimentação fetal</em> como sinal de gravidade</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>No cerne desta questão está o reconhecimento e manejo da corioamnionite</strong> em uma gestante com <span class=\"article-3375\">trabalho de parto prematuro</span>. O cenário combina <strong>febre materna, taquicardia fetal e leucocitose</strong> compatíveis com <strong>infecção intrauterina</strong>, pedindo <strong>antibioticoterapia e decisão sobre via de parto</strong> como próximo passo.</p>\n<p>Este é um tema extremamente relevante nas provas de residência médica, pois a <strong>corioamnionite</strong> representa uma das principais emergências obstétricas que exige <strong>diagnóstico rápido e intervenção imediata</strong>. A condição afeta cerca de 1-5% de todas as gestações e é uma das principais causas de morbidade materna e perinatal.</p>\n<p>A <strong>resposta esperada</strong> é: <strong>a)</strong> Antibioticoterapia de amplo espectro e medidas de suporte; <strong>b)</strong> Parto vaginal.</p>\n<p>A <strong>corioamnionite</strong> é definida como uma infecção das membranas fetais (córion e âmnio) e do líquido amniótico. O diagnóstico baseia-se na <strong>tríade clássica</strong>: febre materna (≥38°C), taquicardia materna (&gt;100bpm) e taquicardia fetal (&gt;160bpm). Achados laboratoriais como <strong>leucocitose com desvio à esquerda</strong> reforçam a suspeita diagnóstica.</p>\n<p>No caso apresentado, temos uma gestante de <strong>33 semanas</strong> com todos os critérios para corioamnionite: temperatura de <strong>39,2°C</strong>, frequência cardíaca materna de <strong>115bpm</strong>, batimentos cardiofetais de <strong>170bpm</strong> e leucócitos de <strong>22.570/mm³ com 20% de bastonetes</strong>. A diminuição da movimentação fetal sugere <strong>comprometimento fetal</strong> secundário à infecção.</p>\n<p>O manejo da corioamnionite envolve <strong>duas condutas simultâneas e urgentes</strong>: início imediato de antibioticoterapia de amplo espectro e <strong>interrupção da gestação</strong>. A escolha da via de parto depende das condições obstétricas, não sendo a infecção, por si só, indicação de cesariana.</p><br>Visão do aprovado: <p>O diagnóstico de <strong>corioamnionite</strong> se baseia na <em>tríade clássica</em>: febre materna, taquicardia materna e taquicardia fetal, associada à leucocitose com desvio à esquerda. A diminuição da movimentação fetal sugere <strong>comprometimento fetal</strong> secundário à infecção intrauterina, exigindo manejo urgente.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Febre materna ≥38°C (no caso: 39,2°C)</li>\n<li>Taquicardia materna &gt;100bpm (no caso: 115bpm)</li>\n<li>Taquicardia fetal &gt;160bpm (no caso: 170bpm)</li>\n<li>Leucocitose com desvio à esquerda (&gt;20% bastonetes)</li>\n<li>Diminuição da movimentação fetal em contexto febril</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Corioamnionite <strong>não é indicação absoluta</strong> de cesariana - via de parto depende das condições obstétricas</li>\n<li>Diagnóstico é <em>clínico</em>, não aguarda resultado de culturas para iniciar tratamento</li>\n<li>Pode simular <span class=\"article-3375\">trabalho de parto prematuro</span> isolado - febre é o diferencial crucial</li>\n<li>Antibioticoterapia deve ser <strong>amplo espectro</strong> e iniciada imediatamente</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questões focam no <strong>reconhecimento da tríade clássica</strong> em cenários de trabalho de parto</li>\n<li>Cobrança da <em>conduta dupla</em>: antibioticoterapia + interrupção da gestação</li>\n<li>Pegadinha sobre via de parto: <strong>vaginal é preferível</strong> se condições obstétricas permitirem</li>\n<li>Associação com <em>diminuição da movimentação fetal</em> como sinal de gravidade</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 341876,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Radiologia em ginecologia geral",
+        "focus": {
+          "id": 1610,
+          "name": "Radiologia em ginecologia geral"
+        }
+      },
+      "detail": {
+        "id": 341876,
+        "content": "Em relação a condutas em massas anexias, considerar os seguintes casos clínicos: \n\n•\tMulher, 32a, nuligesta, com desejo reprodutivo preservado, apresenta queixa de dor pélvica leve e foi submetida a ultrassonografia transvaginal. O exame mostrou massa anexial classificada como O-RADS 3. A paciente encontra-se estável clinicamente e sem comorbidades. PERGUNTA-SE: \na. Qual a conduta indicada para investigação diagnóstica e terapêutica inicial? \n\n•\tMulher, 25a, procura o Pronto-Atendimento por dor pélvica de moderada intensidade há dois dias. Nega febre, leucorreia ou disúria. Refere ciclos menstruais regulares, com última menstruação há 14 dias. Exame físico: dor à palpação profunda de hipogastro, sem sinais de irritação peritoneal. Exames complementares: beta-hCG negativo; ultrassonografia pélvica evidenciou cisto ovariano esquerdo de 6 cm, multiloculado, paredes lisas, sem projeções sólidas e sem fluxo ao Doppler (IC=1 segundo critérios IOTA-B). Após analgesia, a paciente apresentou melhora importante do quadro álgico. PERGUNTA-SE: \nb. Qual a conduta em relação a esse cisto ovariano?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15957,
+            "parent_tag": {
+              "id": 15904,
+              "name": "Imagens em Ginecologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Radiologia em ginecologia geral",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [
+          {
+            "id": 542,
+            "avatar": "https://cdn.medway.com.br/media/physician/Medicina_USP-30_-_GABRIEL_DUQUE_PANNAIN.jpeg",
+            "about": "Ginecologia e Obstetricia - IAMSPE \nMedicina Fetal - USP SP",
+            "name": "Gabriel duque pannain",
+            "speciality": {
+              "id": 6,
+              "abbreviation": "GO",
+              "name": "Ginecologia e Obstetrícia"
+            }
+          }
+        ],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 2,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1610,
+          "name": "Radiologia em ginecologia geral",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 102,
+            "name": "Imagens em Ginecologia",
+            "discipline": 86,
+            "old_tag": 15904,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 592248,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-indent: 2em\">A conduta cirúrgica proposta no gabarito oficial para o caso A não encontra respaldo nas diretrizes atuais para manejo de massas anexiais de baixo risco. Esta questão nos permite discutir dois cenários bastante comuns na prática ginecológica: uma massa anexial com classificação O-RADS 3 e um cisto funcional com critérios de benignidade bem estabelecidos. Vamos construir o raciocínio para cada caso, mas com posicionamento crítico em relação ao primeiro.</p>\n\n<p style=\"text-indent: 2em\">Antes de analisar os casos individualmente, precisamos entender o <strong>sistema O-RADS</strong> (Ovarian-Adnexal Reporting and Data System), desenvolvido pelo American College of Radiology (ACR) em 2018 para padronizar a descrição ultrassonográfica de massas anexiais e estratificar o risco de malignidade. O sistema classifica as massas em cinco categorias: O-RADS 1 representa estruturas fisiológicas (sem risco de malignidade, como folículos), O-RADS 2 representa lesões quase certamente benignas com risco de malignidade próximo a zero (cistos simples, endometriomas típicos), O-RADS 3 indica baixo risco de malignidade (1-10%), O-RADS 4 indica risco intermediário (10-50%) e O-RADS 5 indica alto risco de malignidade (acima de 50%). Para cada categoria, as recomendações de conduta variam significativamente: categorias 1 e 2 geralmente não requerem seguimento ou apenas controle eventual, categoria 3 pode ser seguida com ultrassonografia seriada, enquanto categorias 4 e 5 merecem avaliação por especialista e discussão de abordagem cirúrgica com análise histopatológica.</p>\n\n<p style=\"text-indent: 2em\">Voltando ao caso A, temos uma paciente de 32 anos, nuligesta com desejo reprodutivo preservado, estável clinicamente, com dor pélvica leve e uma massa anexial classificada como O-RADS 3. O gabarito oficial propõe laparoscopia ou laparotomia para \"inventário da cavidade abdominal e retirada íntegra da massa para exame histológico\". Aqui está nossa discordância fundamental: uma massa O-RADS 3 tem apenas 1-10% de risco de malignidade, o que significa que 90-99% dessas lesões são benignas. As diretrizes do próprio ACR, da American College of Obstetricians and Gynecologists (ACOG) e da FEBRASGO recomendam que lesões O-RADS 3 sejam manejadas de forma conservadora, com seguimento ultrassonográfico seriado, especialmente em mulheres jovens e com desejo reprodutivo. A <strong>conduta expectante</strong> com reavaliação por USG transvaginal em 8-12 semanas é a abordagem de escolha, reservando-se a cirurgia para casos em que haja crescimento progressivo, mudança nas características ultrassonográficas sugerindo maior risco, desenvolvimento de sintomas importantes ou ansiedade significativa da paciente que não possa ser manejada clinicamente. Submeter esta paciente a uma cirurgia de imediato representa sobretratamento, expõe a mulher a riscos cirúrgicos desnecessários e pode comprometer sua reserva ovariana e fertilidade futura.</p>\n\n<p style=\"text-indent: 2em\">No caso B, temos uma situação completamente diferente e o gabarito oficial está correto. A paciente de 25 anos apresenta dor pélvica há dois dias, com última menstruação há 14 dias — ou seja, está no meio do ciclo menstrual, período que corresponde à ovulação e formação do corpo lúteo. A ultrassonografia mostra um cisto de 6 cm, multiloculado, com paredes lisas, sem projeções sólidas e com IC=1 (ausência de fluxo ao Doppler). Esses achados são clássicos de <strong>cisto funcional</strong>, mais especificamente de corpo lúteo hemorrágico. Precisamos entender a fisiopatologia: após a ovulação (que ocorre em torno do 14º dia em ciclos de 28 dias), o folículo roto se transforma em corpo lúteo, uma estrutura que produz progesterona para preparar o endométrio. Durante essa transformação, pode ocorrer sangramento no interior da cavidade folicular, formando o corpo lúteo hemorrágico. Este sangramento pode causar expansão da estrutura cística e dor pélvica, mas geralmente é autolimitado. O aspecto multiloculado ao ultrassom é resultado de traves de fibrina dentro do sangue coagulado. A ausência de fluxo ao Doppler (IC=1) é característica de cisto funcional e nos afasta de neoplasias, que geralmente apresentam neovascularização. O β-hCG negativo exclui gravidez ectópica, um importante diagnóstico diferencial em mulher jovem com dor pélvica e massa anexial.</p>\n\n<p style=\"text-indent: 2em\">Os <strong>critérios IOTA</strong> (International Ovarian Tumor Analysis) nos ajudam bastante nessa diferenciação. O sistema IOTA estabelece regras simples de benignidade (B-rules) e de malignidade (M-rules). As regras de benignidade incluem: cisto unilocular (B1), presença de componentes sólidos menores que 7mm (B2), presença de sombra acústica (B3), lesão lisa e multilocular menor que 10cm (B4) e ausência de fluxo ao Doppler - IC=1 (B5). Se pelo menos uma regra B está presente e nenhuma regra M está presente, a lesão é classificada como benigna com altíssima acurácia. No nosso caso, temos claramente a B5 (IC=1), e possivelmente a B4 (cisto multiloculado de 6cm com paredes lisas). A melhora clínica após analgesia reforça ainda mais o caráter benigno e funcional da lesão.</p>\n\n<p style=\"text-indent: 2em\">A conduta para o caso B, conforme o gabarito oficial (e com a qual concordamos), é seguimento com ultrassonografia seriada, conduta expectante ou uso de anticoncepcional anovulatório. A maioria dos cistos funcionais resolve espontaneamente em 6-8 semanas, com a próxima menstruação. O controle ultrassonográfico em 6-8 semanas confirma a resolução. O uso de ACO pode ser considerado para suprimir a ovulação e prevenir a formação de novos cistos funcionais, mas não acelera a resolução do cisto já existente — é uma estratégia preventiva, não terapêutica. <strong>Cirurgia estaria indicada</strong> apenas se houvesse complicações agudas (torção, ruptura com hemoperitônio significativo) ou se o cisto persistisse por mais de 12 semanas sem redução de tamanho, o que sugeriria tratar-se de neoplasia benigna verdadeira e não de cisto funcional.</p>\n\n<div style=\"margin: 20px 0; padding: 15px; border: 2px solid #2c5282; border-radius: 8px; background-color: #f7fafc;\">\n<p style=\"margin: 0 0 10px 0; font-weight: bold; color: #2c5282;\">QUANDO OPERAR vs QUANDO ACOMPANHAR MASSAS ANEXIAIS</p>\n\n<p style=\"margin: 5px 0; font-weight: bold;\">Indicações de CIRURGIA:</p>\n<ul style=\"margin: 5px 0;\">\n<li>Massas O-RADS 4 ou 5 (risco intermediário/alto de malignidade)</li>\n<li>Massas O-RADS 3 com crescimento progressivo no seguimento</li>\n<li>Sintomas persistentes ou progressivos não controláveis clinicamente</li>\n<li>Complicações agudas: torção anexial, ruptura com hemoperitônio</li>\n<li>Massas na pós-menopausa (exceto cistos simples pequenos)</li>\n<li>Presença de critérios IOTA de malignidade</li>\n<li>Persistência de \"cisto funcional\" por >12 semanas</li>\n</ul>\n\n<p style=\"margin: 15px 0 5px 0; font-weight: bold;\">Indicações de ACOMPANHAMENTO:</p>\n<ul style=\"margin: 5px 0;\">\n<li>Massas O-RADS 1 ou 2 (sem risco ou risco desprezível)</li>\n<li>Massas O-RADS 3 em pacientes assintomáticas ou oligossintomáticas</li>\n<li>Critérios IOTA de benignidade presentes</li>\n<li>Cistos funcionais (contexto clínico + IC=1 ao Doppler)</li>\n<li>Pacientes jovens com desejo reprodutivo</li>\n<li>Cistos simples em qualquer idade</li>\n</ul>\n</div>\n\n<p style=\"text-indent: 2em\">Portanto, nossa resposta para o caso A seria: <strong>conduta conservadora com seguimento ultrassonográfico</strong> em 8-12 semanas, reavaliando a necessidade de investigação adicional ou intervenção cirúrgica conforme evolução. A cirurgia não é a conduta inicial adequada para O-RADS 3 em paciente jovem, estável e com desejo reprodutivo. Para o caso B, concordamos com o gabarito: seguimento com ultrassonografia seriada (em 6-8 semanas) ou conduta expectante, podendo-se considerar anticoncepcional anovulatório para prevenção de novos cistos. É fundamental que compreendamos que nem toda massa anexial requer bisturi, e que a estratificação de risco adequada, baseada em sistemas validados como O-RADS e IOTA, nos permite individualizar a conduta e evitar cirurgias desnecessárias que podem comprometer a saúde reprodutiva das nossas pacientes.</p>",
+        "option_a": "",
+        "short_option_a": "",
+        "option_b": "",
+        "short_option_b": "",
+        "option_c": "",
+        "short_option_c": "",
+        "option_d": "",
+        "short_option_d": "",
+        "option_e": "",
+        "short_option_e": "",
+        "conclusion": "<p style=\"text-indent: 2em\">O ponto central desta questão está em reconhecer que O-RADS 3 significa baixo risco de malignidade (1-10%), e isso muda completamente a conduta. Quando vemos uma classificação O-RADS 3 em mulher jovem, estável, com desejo reprodutivo, a resposta mais adequada é acompanhamento ultrassonográfico em 8-12 semanas, e não cirurgia imediata. O gabarito oficial propõe laparoscopia para inventário e ressecção, mas isso representa <strong>sobretratamento clássico</strong>: estamos falando de uma lesão que tem 90-99% de chance de ser benigna. A principal pegadinha aqui é a banca tentar nos convencer de que toda massa anexial precisa de \"confirmação histopatológica\", mas a verdade é que sistemas de estratificação de risco como O-RADS e IOTA existem justamente para evitarmos cirurgias desnecessárias e preservarmos a reserva ovariana.</p>\n\n<p style=\"text-indent: 2em\">No caso B, o raciocínio diagnóstico é mais direto: paciente no meio do ciclo (14 dias após a menstruação, ou seja, período ovulatório), cisto multiloculado de 6 cm com IC=1 ao Doppler (ausência de fluxo) e melhora com analgesia simples. Esses elementos praticamente fecham o diagnóstico de cisto funcional, muito provavelmente corpo lúteo hemorrágico. A <strong>ausência de fluxo ao Doppler</strong> é o achado que mais nos afasta de malignidade, e o contexto temporal (fase lútea do ciclo) junto com a apresentação clínica benigna nos dá segurança para conduta expectante. Aqui o gabarito oficial acerta ao propor seguimento ultrassonográfico, conduta expectante ou ACO para prevenção de novos cistos.</p>\n\n<p style=\"text-indent: 2em\">A grande lição desta questão é que devemos questionar gabaritos quando eles contradizem diretrizes atuais. Submeter uma O-RADS 3 jovem e estável a cirurgia de entrada vai contra ACR, ACOG e FEBRASGO. Em provas, fiquem atentos ao contexto completo: idade, desejo reprodutivo, sintomas e estratificação de risco são determinantes para escolher entre bisturi e seguimento. A <strong>preservação da fertilidade</strong> deve sempre pesar na balança quando lidamos com lesões de baixo risco em mulheres jovens.</p><figure data-okr=\"ilustracao\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20230717T154621689Z434425.png\" alt=\"\" style=\"max-width:100%\"></figure>",
+        "update_note": "",
+        "lesson_reference": "",
+        "full_explanation": "<p style=\"text-indent: 2em\">A conduta cirúrgica proposta no gabarito oficial para o caso A não encontra respaldo nas diretrizes atuais para manejo de massas anexiais de baixo risco. Esta questão nos permite discutir dois cenários bastante comuns na prática ginecológica: uma massa anexial com classificação O-RADS 3 e um cisto funcional com critérios de benignidade bem estabelecidos. Vamos construir o raciocínio para cada caso, mas com posicionamento crítico em relação ao primeiro.</p>\n\n<p style=\"text-indent: 2em\">Antes de analisar os casos individualmente, precisamos entender o <strong>sistema O-RADS</strong> (Ovarian-Adnexal Reporting and Data System), desenvolvido pelo American College of Radiology (ACR) em 2018 para padronizar a descrição ultrassonográfica de massas anexiais e estratificar o risco de malignidade. O sistema classifica as massas em cinco categorias: O-RADS 1 representa estruturas fisiológicas (sem risco de malignidade, como folículos), O-RADS 2 representa lesões quase certamente benignas com risco de malignidade próximo a zero (cistos simples, endometriomas típicos), O-RADS 3 indica baixo risco de malignidade (1-10%), O-RADS 4 indica risco intermediário (10-50%) e O-RADS 5 indica alto risco de malignidade (acima de 50%). Para cada categoria, as recomendações de conduta variam significativamente: categorias 1 e 2 geralmente não requerem seguimento ou apenas controle eventual, categoria 3 pode ser seguida com ultrassonografia seriada, enquanto categorias 4 e 5 merecem avaliação por especialista e discussão de abordagem cirúrgica com análise histopatológica.</p>\n\n<p style=\"text-indent: 2em\">Voltando ao caso A, temos uma paciente de 32 anos, nuligesta com desejo reprodutivo preservado, estável clinicamente, com dor pélvica leve e uma massa anexial classificada como O-RADS 3. O gabarito oficial propõe laparoscopia ou laparotomia para \"inventário da cavidade abdominal e retirada íntegra da massa para exame histológico\". Aqui está nossa discordância fundamental: uma massa O-RADS 3 tem apenas 1-10% de risco de malignidade, o que significa que 90-99% dessas lesões são benignas. As diretrizes do próprio ACR, da American College of Obstetricians and Gynecologists (ACOG) e da FEBRASGO recomendam que lesões O-RADS 3 sejam manejadas de forma conservadora, com seguimento ultrassonográfico seriado, especialmente em mulheres jovens e com desejo reprodutivo. A <strong>conduta expectante</strong> com reavaliação por USG transvaginal em 8-12 semanas é a abordagem de escolha, reservando-se a cirurgia para casos em que haja crescimento progressivo, mudança nas características ultrassonográficas sugerindo maior risco, desenvolvimento de sintomas importantes ou ansiedade significativa da paciente que não possa ser manejada clinicamente. Submeter esta paciente a uma cirurgia de imediato representa sobretratamento, expõe a mulher a riscos cirúrgicos desnecessários e pode comprometer sua reserva ovariana e fertilidade futura.</p>\n\n<p style=\"text-indent: 2em\">No caso B, temos uma situação completamente diferente e o gabarito oficial está correto. A paciente de 25 anos apresenta dor pélvica há dois dias, com última menstruação há 14 dias — ou seja, está no meio do ciclo menstrual, período que corresponde à ovulação e formação do corpo lúteo. A ultrassonografia mostra um cisto de 6 cm, multiloculado, com paredes lisas, sem projeções sólidas e com IC=1 (ausência de fluxo ao Doppler). Esses achados são clássicos de <strong>cisto funcional</strong>, mais especificamente de corpo lúteo hemorrágico. Precisamos entender a fisiopatologia: após a ovulação (que ocorre em torno do 14º dia em ciclos de 28 dias), o folículo roto se transforma em corpo lúteo, uma estrutura que produz progesterona para preparar o endométrio. Durante essa transformação, pode ocorrer sangramento no interior da cavidade folicular, formando o corpo lúteo hemorrágico. Este sangramento pode causar expansão da estrutura cística e dor pélvica, mas geralmente é autolimitado. O aspecto multiloculado ao ultrassom é resultado de traves de fibrina dentro do sangue coagulado. A ausência de fluxo ao Doppler (IC=1) é característica de cisto funcional e nos afasta de neoplasias, que geralmente apresentam neovascularização. O β-hCG negativo exclui gravidez ectópica, um importante diagnóstico diferencial em mulher jovem com dor pélvica e massa anexial.</p>\n\n<p style=\"text-indent: 2em\">Os <strong>critérios IOTA</strong> (International Ovarian Tumor Analysis) nos ajudam bastante nessa diferenciação. O sistema IOTA estabelece regras simples de benignidade (B-rules) e de malignidade (M-rules). As regras de benignidade incluem: cisto unilocular (B1), presença de componentes sólidos menores que 7mm (B2), presença de sombra acústica (B3), lesão lisa e multilocular menor que 10cm (B4) e ausência de fluxo ao Doppler - IC=1 (B5). Se pelo menos uma regra B está presente e nenhuma regra M está presente, a lesão é classificada como benigna com altíssima acurácia. No nosso caso, temos claramente a B5 (IC=1), e possivelmente a B4 (cisto multiloculado de 6cm com paredes lisas). A melhora clínica após analgesia reforça ainda mais o caráter benigno e funcional da lesão.</p>\n\n<p style=\"text-indent: 2em\">A conduta para o caso B, conforme o gabarito oficial (e com a qual concordamos), é seguimento com ultrassonografia seriada, conduta expectante ou uso de anticoncepcional anovulatório. A maioria dos cistos funcionais resolve espontaneamente em 6-8 semanas, com a próxima menstruação. O controle ultrassonográfico em 6-8 semanas confirma a resolução. O uso de ACO pode ser considerado para suprimir a ovulação e prevenir a formação de novos cistos funcionais, mas não acelera a resolução do cisto já existente — é uma estratégia preventiva, não terapêutica. <strong>Cirurgia estaria indicada</strong> apenas se houvesse complicações agudas (torção, ruptura com hemoperitônio significativo) ou se o cisto persistisse por mais de 12 semanas sem redução de tamanho, o que sugeriria tratar-se de neoplasia benigna verdadeira e não de cisto funcional.</p>\n\n<div style=\"margin: 20px 0; padding: 15px; border: 2px solid #2c5282; border-radius: 8px; background-color: #f7fafc;\">\n<p style=\"margin: 0 0 10px 0; font-weight: bold; color: #2c5282;\">QUANDO OPERAR vs QUANDO ACOMPANHAR MASSAS ANEXIAIS</p>\n\n<p style=\"margin: 5px 0; font-weight: bold;\">Indicações de CIRURGIA:</p>\n<ul style=\"margin: 5px 0;\">\n<li>Massas O-RADS 4 ou 5 (risco intermediário/alto de malignidade)</li>\n<li>Massas O-RADS 3 com crescimento progressivo no seguimento</li>\n<li>Sintomas persistentes ou progressivos não controláveis clinicamente</li>\n<li>Complicações agudas: torção anexial, ruptura com hemoperitônio</li>\n<li>Massas na pós-menopausa (exceto cistos simples pequenos)</li>\n<li>Presença de critérios IOTA de malignidade</li>\n<li>Persistência de \"cisto funcional\" por >12 semanas</li>\n</ul>\n\n<p style=\"margin: 15px 0 5px 0; font-weight: bold;\">Indicações de ACOMPANHAMENTO:</p>\n<ul style=\"margin: 5px 0;\">\n<li>Massas O-RADS 1 ou 2 (sem risco ou risco desprezível)</li>\n<li>Massas O-RADS 3 em pacientes assintomáticas ou oligossintomáticas</li>\n<li>Critérios IOTA de benignidade presentes</li>\n<li>Cistos funcionais (contexto clínico + IC=1 ao Doppler)</li>\n<li>Pacientes jovens com desejo reprodutivo</li>\n<li>Cistos simples em qualquer idade</li>\n</ul>\n</div>\n\n<p style=\"text-indent: 2em\">Portanto, nossa resposta para o caso A seria: <strong>conduta conservadora com seguimento ultrassonográfico</strong> em 8-12 semanas, reavaliando a necessidade de investigação adicional ou intervenção cirúrgica conforme evolução. A cirurgia não é a conduta inicial adequada para O-RADS 3 em paciente jovem, estável e com desejo reprodutivo. Para o caso B, concordamos com o gabarito: seguimento com ultrassonografia seriada (em 6-8 semanas) ou conduta expectante, podendo-se considerar anticoncepcional anovulatório para prevenção de novos cistos. É fundamental que compreendamos que nem toda massa anexial requer bisturi, e que a estratificação de risco adequada, baseada em sistemas validados como O-RADS e IOTA, nos permite individualizar a conduta e evitar cirurgias desnecessárias que podem comprometer a saúde reprodutiva das nossas pacientes.</p><br>Visão do aprovado: <p style=\"text-indent: 2em\">O ponto central desta questão está em reconhecer que O-RADS 3 significa baixo risco de malignidade (1-10%), e isso muda completamente a conduta. Quando vemos uma classificação O-RADS 3 em mulher jovem, estável, com desejo reprodutivo, a resposta mais adequada é acompanhamento ultrassonográfico em 8-12 semanas, e não cirurgia imediata. O gabarito oficial propõe laparoscopia para inventário e ressecção, mas isso representa <strong>sobretratamento clássico</strong>: estamos falando de uma lesão que tem 90-99% de chance de ser benigna. A principal pegadinha aqui é a banca tentar nos convencer de que toda massa anexial precisa de \"confirmação histopatológica\", mas a verdade é que sistemas de estratificação de risco como O-RADS e IOTA existem justamente para evitarmos cirurgias desnecessárias e preservarmos a reserva ovariana.</p>\n\n<p style=\"text-indent: 2em\">No caso B, o raciocínio diagnóstico é mais direto: paciente no meio do ciclo (14 dias após a menstruação, ou seja, período ovulatório), cisto multiloculado de 6 cm com IC=1 ao Doppler (ausência de fluxo) e melhora com analgesia simples. Esses elementos praticamente fecham o diagnóstico de cisto funcional, muito provavelmente corpo lúteo hemorrágico. A <strong>ausência de fluxo ao Doppler</strong> é o achado que mais nos afasta de malignidade, e o contexto temporal (fase lútea do ciclo) junto com a apresentação clínica benigna nos dá segurança para conduta expectante. Aqui o gabarito oficial acerta ao propor seguimento ultrassonográfico, conduta expectante ou ACO para prevenção de novos cistos.</p>\n\n<p style=\"text-indent: 2em\">A grande lição desta questão é que devemos questionar gabaritos quando eles contradizem diretrizes atuais. Submeter uma O-RADS 3 jovem e estável a cirurgia de entrada vai contra ACR, ACOG e FEBRASGO. Em provas, fiquem atentos ao contexto completo: idade, desejo reprodutivo, sintomas e estratificação de risco são determinantes para escolher entre bisturi e seguimento. A <strong>preservação da fertilidade</strong> deve sempre pesar na balança quando lidamos com lesões de baixo risco em mulheres jovens.</p><figure data-okr=\"ilustracao\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20230717T154621689Z434425.png\" alt=\"\" style=\"max-width:100%\"></figure><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 341877,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Incontinência urinária parte 2: esforço e urgência",
+        "focus": {
+          "id": 1583,
+          "name": "Incontinência urinária parte 2: esforço e urgência"
+        }
+      },
+      "detail": {
+        "id": 341877,
+        "content": "Mulher, 70a, procura atendimento por queixa de perda urinária que ocorre exclusivamente durante o orgasmo nas relações sexuais, com início há cerca de dois anos. Refere que iniciou tratamento medicamentoso para perda urinária, mas suspendeu a medicação após três meses devido a piora dos sintomas de demência leve, previamente diagnosticada e em seguimento clínico. Antecedentes pessoais: G3C3, casada, vida sexual ativa, menopausa aos 50 anos, nunca utilizou terapia hormonal. Exame ginecológico: ausência de prolapsos genitais; manobra de Valsalva negativa; demais achados sem alterações. PERGUNTA-SE: \n\na. Qual o diagnóstico provável e qual a medicação mais provavelmente utilizada no tratamento inicial? \nb. Qual a principal alternativa terapêutica farmacológica indicada atualmente para tratamento da síndrome da bexiga hiperativa em pacientes com comprometimento cognitivo?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15984,
+            "parent_tag": {
+              "id": 15917,
+              "name": "Uroginecologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Incontinência urinária parte 2: esforço e urgência",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 1,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1583,
+          "name": "Incontinência urinária parte 2: esforço e urgência",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 89,
+            "name": "Uroginecologia",
+            "discipline": 86,
+            "old_tag": 15917,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 410066,
+        "actual_explanation": true,
+        "introduction": "<p>O cenário combina <strong>perda urinária exclusiva durante o orgasmo</strong> e <strong>piora cognitiva com medicação anticolinérgica</strong> compatíveis com síndrome da <span class=\"article-3666\">bexiga hiperativa</span>, pedindo conhecimento sobre alternativas terapêuticas seguras como próximo passo. Esta situação é extremamente relevante nas provas de residência, pois integra conhecimentos de uroginecologia com geriatria, especialmente o manejo da incontinência urinária em pacientes idosas com comprometimento cognitivo.</p>\n<p>O caso apresenta uma mulher de 70 anos com <strong>incontinência de urgência</strong> manifestando-se exclusivamente durante o orgasmo - um padrão clássico da síndrome da <span class=\"article-3666\">bexiga hiperativa</span>. O fato de ter suspendido a medicação devido à piora da demência leve aponta claramente para o uso prévio de <strong>anticolinérgicos</strong>, especificamente oxibutinina, que são a primeira linha de tratamento mas possuem efeitos adversos cognitivos significativos em idosos.</p>\n<p>A <strong>síndrome da <span class=\"article-3666\">bexiga hiperativa</span></strong> é uma condição caracterizada por urgência miccional, frequentemente acompanhada por frequência, noctúria e incontinência de urgência. Em mulheres pós-menopáusicas, a deficiência estrogênica contribui para alterações na mucosa vesical e na função do músculo detrusor. O exame físico normal, com manobra de Valsalva negativa e ausência de prolapsos, descarta incontinência aos esforços e defeitos anatômicos.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A <strong>perda urinária exclusiva durante o orgasmo</strong> é patognomônica de <em>síndrome da <span class=\"article-3666\">bexiga hiperativa</span></em>, especialmente quando associada ao <strong>agravamento cognitivo</strong> após uso de medicação anticolinérgica. O exame ginecológico normal descarta incontinência aos esforços e defeitos anatômicos estruturais.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Perda urinária <strong>exclusivamente durante orgasmo</strong> → incontinência de urgência</li>\n<li><strong>Piora da demência</strong> com medicação → uso prévio de anticolinérgico (oxibutinina)</li>\n<li>Manobra de Valsalva <strong>negativa</strong> → descarta incontinência aos esforços</li>\n<li>Ausência de <strong>prolapsos genitais</strong> → descarta causas anatômicas</li>\n<li>Mulher <strong>pós-menopausa</strong> → deficiência estrogênica predispõe <span class=\"article-3666\">bexiga hiperativa</span></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <strong>incontinência aos esforços</strong> → Valsalva negativa descarta</li>\n<li>Prescrever novamente <strong>anticolinérgicos</strong> → contraindicados no comprometimento cognitivo</li>\n<li>Indicar <strong>cirurgia</strong> como primeira opção → reservada para falhas terapêuticas</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questões integram <strong>uroginecologia com geriatria</strong> → foco nos efeitos adversos</li>\n<li>Formato comum: <strong>idosa com medicação suspensa</strong> → pedir alternativa farmacológica</li>\n<li>Padrão recorrente: <strong><span class=\"article-3616\">mirabegrona</span> como primeira escolha</strong> em comprometimento cognitivo</li>\n<li>Enfoque na <strong>segurança terapêutica</strong> → agonistas β3 vs anticolinérgicos</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O cenário combina <strong>perda urinária exclusiva durante o orgasmo</strong> e <strong>piora cognitiva com medicação anticolinérgica</strong> compatíveis com síndrome da <span class=\"article-3666\">bexiga hiperativa</span>, pedindo conhecimento sobre alternativas terapêuticas seguras como próximo passo. Esta situação é extremamente relevante nas provas de residência, pois integra conhecimentos de uroginecologia com geriatria, especialmente o manejo da incontinência urinária em pacientes idosas com comprometimento cognitivo.</p>\n<p>O caso apresenta uma mulher de 70 anos com <strong>incontinência de urgência</strong> manifestando-se exclusivamente durante o orgasmo - um padrão clássico da síndrome da <span class=\"article-3666\">bexiga hiperativa</span>. O fato de ter suspendido a medicação devido à piora da demência leve aponta claramente para o uso prévio de <strong>anticolinérgicos</strong>, especificamente oxibutinina, que são a primeira linha de tratamento mas possuem efeitos adversos cognitivos significativos em idosos.</p>\n<p>A <strong>síndrome da <span class=\"article-3666\">bexiga hiperativa</span></strong> é uma condição caracterizada por urgência miccional, frequentemente acompanhada por frequência, noctúria e incontinência de urgência. Em mulheres pós-menopáusicas, a deficiência estrogênica contribui para alterações na mucosa vesical e na função do músculo detrusor. O exame físico normal, com manobra de Valsalva negativa e ausência de prolapsos, descarta incontinência aos esforços e defeitos anatômicos.</p><br>Visão do aprovado: <p>A <strong>perda urinária exclusiva durante o orgasmo</strong> é patognomônica de <em>síndrome da <span class=\"article-3666\">bexiga hiperativa</span></em>, especialmente quando associada ao <strong>agravamento cognitivo</strong> após uso de medicação anticolinérgica. O exame ginecológico normal descarta incontinência aos esforços e defeitos anatômicos estruturais.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Perda urinária <strong>exclusivamente durante orgasmo</strong> → incontinência de urgência</li>\n<li><strong>Piora da demência</strong> com medicação → uso prévio de anticolinérgico (oxibutinina)</li>\n<li>Manobra de Valsalva <strong>negativa</strong> → descarta incontinência aos esforços</li>\n<li>Ausência de <strong>prolapsos genitais</strong> → descarta causas anatômicas</li>\n<li>Mulher <strong>pós-menopausa</strong> → deficiência estrogênica predispõe <span class=\"article-3666\">bexiga hiperativa</span></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <strong>incontinência aos esforços</strong> → Valsalva negativa descarta</li>\n<li>Prescrever novamente <strong>anticolinérgicos</strong> → contraindicados no comprometimento cognitivo</li>\n<li>Indicar <strong>cirurgia</strong> como primeira opção → reservada para falhas terapêuticas</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questões integram <strong>uroginecologia com geriatria</strong> → foco nos efeitos adversos</li>\n<li>Formato comum: <strong>idosa com medicação suspensa</strong> → pedir alternativa farmacológica</li>\n<li>Padrão recorrente: <strong><span class=\"article-3616\">mirabegrona</span> como primeira escolha</strong> em comprometimento cognitivo</li>\n<li>Enfoque na <strong>segurança terapêutica</strong> → agonistas β3 vs anticolinérgicos</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 341878,
+        "number": 5,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Infertilidade conjugal parte 1: diagnóstico",
+        "focus": {
+          "id": 1618,
+          "name": "Infertilidade conjugal parte 1: diagnóstico"
+        }
+      },
+      "detail": {
+        "id": 341878,
+        "content": "Em relação a infertilidade conjugal, considerar os seguintes casos clínicos:\n\n•\tMulher, 27a, nuligesta, comparece a consulta de rotina. Casou-se há seis meses e desde então não utiliza métodos contraceptivos. Relata ciclos menstruais regulares, com sangramento de volume habitual, e nega outras queixas. Não apresenta antecedentes pessoais relevantes. O companheiro tem 33 anos, nunca teve filhos, nega doenças ou cirurgias prévias, e o casal mantém relações sexuais completas, em média cinco vezes por semana. Os exames físicos geral e ginecológico da paciente foram normais. PERGUNTA-SE:\na. Qual deve ser a próxima conduta na avaliação desse casal?\n\n•\tMulher, 29a, nuligesta, procura a Unidade Básica de Saúde para avaliação de infertilidade. Está casada há dois anos, não utiliza métodos contraceptivos desde então e não conseguiu engravidar. Relata ciclos menstruais irregulares, com longos intervalos entre os episódios de sangramento. Antecedentes pessoais e familiares: sem alterações relevantes. Cônjuge: 43 anos, já teve dois filhos de outro relacionamento, sem comorbidades conhecidas. O casal mantém relações sexuais completas em média duas vezes por semana. Exame físico: geral e ginecológico normais. Exames prévios: sorologias para sífilis, hepatite B e C, HIV 1/2 e HTLV I/II negativas (há 1 mês). PERGUNTA-SE:\nb. Quais exames complementares devem ser solicitados para investigação diagnóstica do casal?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15949,
+            "parent_tag": {
+              "id": 15912,
+              "name": "Ginecologia endócrina",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Infertilidade conjugal parte 1: diagnóstico",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 1,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1618,
+          "name": "Infertilidade conjugal parte 1: diagnóstico",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 94,
+            "name": "Ginecologia endócrina",
+            "discipline": 86,
+            "old_tag": 15912,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 410074,
+        "actual_explanation": true,
+        "introduction": "<p>O ponto-chave para acertar é reconhecer <strong>o tempo mínimo necessário</strong> para caracterizar infertilidade antes de analisar as alternativas. Esta questão explora dois cenários distintos de casais com dificuldade para engravidar, testando o conhecimento sobre quando iniciar investigação e quais exames solicitar.</p>\n<p>A <strong>infertilidade conjugal</strong> é definida como a incapacidade de conseguir gravidez após <strong>12 meses</strong> de relações sexuais regulares sem uso de métodos contraceptivos. Para mulheres com <strong>35 anos ou mais</strong>, este período reduz para <strong>6 meses</strong>, considerando o declínio da reserva ovariana com o avanço da idade.</p>\n<p>O primeiro caso apresenta uma situação onde muitos estudantes cometem erro: solicitar exames prematuramente. Já o segundo caso exemplifica quando a investigação deve ser iniciada, direcionando os exames conforme as pistas clínicas disponíveis. A diferenciação entre <strong>conduta expectante</strong> e <strong>investigação ativa</strong> é fundamental para o manejo adequado desses casais.</p>\n<p>A abordagem da infertilidade deve ser sistemática, avaliando simultaneamente fatores <strong>femininos</strong> (ovulatórios, tubários, uterinos) e <strong>masculinos</strong> (qualidade seminal), sempre respeitando os critérios temporais estabelecidos. Os exames solicitados devem ser direcionados pelos achados clínicos e pela probabilidade de cada causa.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O diagnóstico de <strong>infertilidade</strong> exige <strong>12 meses</strong> de tentativa (6 meses se mulher ≥35 anos), sendo este o divisor de águas entre conduta expectante e investigação ativa. O primeiro caso representa uma <em>pegadinha clássica</em>: casal há apenas 6 meses tentando, portanto ainda não caracteriza infertilidade. O segundo caso com 2 anos + ciclos irregulares já indica necessidade de investigação hormonal e anatômica completa.</p>\n<strong>Pistas-chave:</strong>\n<ul>\n<li>Tempo de tentativa &lt;6 meses em mulher &lt;35 anos = conduta expectante</li>\n<li>Ciclos irregulares sugerem disfunção ovulatória, direcionando exames hormonais</li>\n<li>Investigação sempre bilateral: fatores femininos E masculinos simultaneamente</li>\n<li>Homem com filhos prévios não descarta alterações seminais atuais</li>\n<li>Exames básicos femininos: USG transvaginal, <span class=\"article-4758\">histerossalpingografia</span>, perfil hormonal</li>\n</ul>\n<strong>Pegadinhas de prova:</strong>\n<ul>\n<li>Solicitar exames antes de completar 12 meses de tentativa (erro frequente no primeiro caso)</li>\n<li>Considerar que fertilidade masculina prévia garante normalidade atual</li>\n<li>Investigar apenas a mulher quando há ciclos irregulares, esquecendo o fator masculino</li>\n<li>Confundir os prazos: 6 meses só vale para mulheres ≥35 anos</li>\n</ul>\n<strong>Como cai:</strong>\n<ul>\n<li>Cenários contrastantes no mesmo enunciado: um que não precisa investigar vs outro que precisa</li>\n<li>Questões testando conhecimento sobre critérios temporais para definir infertilidade</li>\n<li>Casos com ciclos irregulares direcionando para investigação de disfunção ovulatória</li>\n<li>Alternativas misturando condutas corretas com solicitação prematura de exames</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O ponto-chave para acertar é reconhecer <strong>o tempo mínimo necessário</strong> para caracterizar infertilidade antes de analisar as alternativas. Esta questão explora dois cenários distintos de casais com dificuldade para engravidar, testando o conhecimento sobre quando iniciar investigação e quais exames solicitar.</p>\n<p>A <strong>infertilidade conjugal</strong> é definida como a incapacidade de conseguir gravidez após <strong>12 meses</strong> de relações sexuais regulares sem uso de métodos contraceptivos. Para mulheres com <strong>35 anos ou mais</strong>, este período reduz para <strong>6 meses</strong>, considerando o declínio da reserva ovariana com o avanço da idade.</p>\n<p>O primeiro caso apresenta uma situação onde muitos estudantes cometem erro: solicitar exames prematuramente. Já o segundo caso exemplifica quando a investigação deve ser iniciada, direcionando os exames conforme as pistas clínicas disponíveis. A diferenciação entre <strong>conduta expectante</strong> e <strong>investigação ativa</strong> é fundamental para o manejo adequado desses casais.</p>\n<p>A abordagem da infertilidade deve ser sistemática, avaliando simultaneamente fatores <strong>femininos</strong> (ovulatórios, tubários, uterinos) e <strong>masculinos</strong> (qualidade seminal), sempre respeitando os critérios temporais estabelecidos. Os exames solicitados devem ser direcionados pelos achados clínicos e pela probabilidade de cada causa.</p><br>Visão do aprovado: <p>O diagnóstico de <strong>infertilidade</strong> exige <strong>12 meses</strong> de tentativa (6 meses se mulher ≥35 anos), sendo este o divisor de águas entre conduta expectante e investigação ativa. O primeiro caso representa uma <em>pegadinha clássica</em>: casal há apenas 6 meses tentando, portanto ainda não caracteriza infertilidade. O segundo caso com 2 anos + ciclos irregulares já indica necessidade de investigação hormonal e anatômica completa.</p>\n<strong>Pistas-chave:</strong>\n<ul>\n<li>Tempo de tentativa &lt;6 meses em mulher &lt;35 anos = conduta expectante</li>\n<li>Ciclos irregulares sugerem disfunção ovulatória, direcionando exames hormonais</li>\n<li>Investigação sempre bilateral: fatores femininos E masculinos simultaneamente</li>\n<li>Homem com filhos prévios não descarta alterações seminais atuais</li>\n<li>Exames básicos femininos: USG transvaginal, <span class=\"article-4758\">histerossalpingografia</span>, perfil hormonal</li>\n</ul>\n<strong>Pegadinhas de prova:</strong>\n<ul>\n<li>Solicitar exames antes de completar 12 meses de tentativa (erro frequente no primeiro caso)</li>\n<li>Considerar que fertilidade masculina prévia garante normalidade atual</li>\n<li>Investigar apenas a mulher quando há ciclos irregulares, esquecendo o fator masculino</li>\n<li>Confundir os prazos: 6 meses só vale para mulheres ≥35 anos</li>\n</ul>\n<strong>Como cai:</strong>\n<ul>\n<li>Cenários contrastantes no mesmo enunciado: um que não precisa investigar vs outro que precisa</li>\n<li>Questões testando conhecimento sobre critérios temporais para definir infertilidade</li>\n<li>Casos com ciclos irregulares direcionando para investigação de disfunção ovulatória</li>\n<li>Alternativas misturando condutas corretas com solicitação prematura de exames</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 341879,
+        "number": 6,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Diabetes na gestação",
+        "focus": {
+          "id": 1572,
+          "name": "Diabetes na gestação"
+        }
+      },
+      "detail": {
+        "id": 341879,
+        "content": "Em relação aos distúrbios de metabolismo de carboidratos na gestação, considerar os seguintes casos clínicos: \n\n• Primigesta, IG=37 semanas e 2 dias, com diagnóstico de diabetes gestacional, retorna ao pré-natal referindo redução da movimentação fetal nos últimos três dias. Mobilograma com quatro movimentos fetais em uma hora. Traz perfil glicêmico (em mg/dL): jejum=68; 1h pós-café=116; 1h pós-almoço=105; 1h pós-jantar=118; 23h=70; 3h=60. Relata manter a mesma dieta, com ganho de 300g em sete dias. Exames complementares do dia: cardiotocografia: ativa; Ultrassonografia obstétrica: feto cefálico, peso estimado=3.600 g (>p90), líquido amniótico=180 mm, Doppler normal. PERGUNTA-SE: \na. Qual a conduta obstétrica indicada neste momento? \n\n• Mulher, 33a, G2P1, IG=13 semanas, comparece à segunda consulta de pré-natal. Refere histórico de diabetes gestacional na gestação anterior. Exame físico: IMC=36 kg/m², sem outras alterações. Exames laboratoriais: glicemia de jejum=90 mg/dL; hemoglobina glicada=6,8%. PERGUNTA-SE: \nb. Qual a conduta mais adequada para esta paciente neste momento?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 17143,
+            "parent_tag": {
+              "id": 15915,
+              "name": "Distúrbios hipertensivos e diabetes na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Diabetes na gestação",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 6,
+        "physicians": [
+          {
+            "id": 542,
+            "avatar": "https://cdn.medway.com.br/media/physician/Medicina_USP-30_-_GABRIEL_DUQUE_PANNAIN.jpeg",
+            "about": "Ginecologia e Obstetricia - IAMSPE \nMedicina Fetal - USP SP",
+            "name": "Gabriel duque pannain",
+            "speciality": {
+              "id": 6,
+              "abbreviation": "GO",
+              "name": "Ginecologia e Obstetrícia"
+            }
+          }
+        ],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 1,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1572,
+          "name": "Diabetes na gestação",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 91,
+            "name": "Distúrbios hipertensivos e diabetes na gestação",
+            "discipline": 86,
+            "old_tag": 15915,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 578383,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-indent: 2em;\">A presença de <strong>hipoglicemias em uma paciente diabética gestacional que mantém a mesma dieta</strong> constitui um sinal de alerta importante e deve nos fazer pensar em insuficiência placentária. No primeiro caso, temos uma primigesta com 37 semanas que apresenta perfil glicêmico mostrando valores de 68, 70 e 60 mg/dL — todas hipoglicemias — mesmo mantendo a mesma dieta que vinha fazendo. Essa mudança no padrão de controle glicêmico é extremamente significativa: se antes ela não fazia hipoglicemia com essa mesma dieta e agora está fazendo, significa que algo mudou no consumo de glicose pelo feto.</p>\n\n<p style=\"text-indent: 2em;\">O que acontece na insuficiência placentária é uma deterioração da função placentária, levando a uma <strong>redução na demanda fetal por glicose</strong>. O feto passa a consumir menos glicose, e como a mãe mantém o mesmo aporte calórico (mesma dieta), ela começa a apresentar hipoglicemias. Associado a isso, vemos outros sinais que confirmam o comprometimento da vitalidade fetal: a paciente relata redução da movimentação fetal nos últimos três dias e o mobilograma mostra apenas 4 movimentos fetais em uma hora (quando o esperado seria pelo menos 6-8 movimentos/hora). Mesmo que a cardiotocografia esteja ativa e o Doppler normal neste momento, o conjunto de achados — hipoglicemias com dieta mantida mais oligocinesia — aponta para insuficiência placentária. A macrossomia fetal (3.600g, >p90) é esperada no contexto de diabetes gestacional, mas não muda nossa conduta diante dos sinais de comprometimento placentário.</p>\n\n<p style=\"text-indent: 2em;\">Com idade gestacional de 37 semanas (gestação a termo) e sinais de insuficiência placentária, a conduta indicada é a <strong>resolução imediata da gestação</strong>. Não há razão para manter a gestação quando já atingimos a termo e há evidências de comprometimento da função placentária. A resposta esperada é: indução do parto com vigilância da vitalidade fetal. A vigilância é fundamental porque precisamos monitorar continuamente o bem-estar fetal durante o trabalho de parto, já que o feto já apresenta sinais de comprometimento. Um erro comum aqui seria valorizar apenas o perfil glicêmico como \"adequado\" ou \"bem controlado\" olhando apenas para os valores pós-prandiais (que estão realmente adequados), ignorando que as hipoglicemias em jejum e madrugada, no contexto de dieta mantida, são na verdade um sinal de alerta, não de bom controle.</p>\n\n<div style=\"background-color: #f0f4f8; border-left: 4px solid #00c2a7; padding: 12px 16px; margin: 10px 0;\">\n<strong>Ponto-chave para reconhecer insuficiência placentária:</strong> Mudança no padrão glicêmico — especialmente hipoglicemias em paciente que antes não fazia com a mesma dieta — associada a redução da movimentação fetal. Essa combinação em gestação a termo indica resolução imediata.\n</div>\n\n<p style=\"text-indent: 2em;\">No segundo caso, a situação é diferente e exige atenção a um detalhe diagnóstico importante. Temos uma paciente com 13 semanas que já teve diabetes gestacional na gestação anterior. Os exames mostram glicemia de jejum de 90 mg/dL, que está dentro da normalidade para a gestação (o ponto de corte para DG no primeiro trimestre é ≥92 mg/dL), mas a <strong>hemoglobina glicada está em 6,8%</strong>. Aqui precisamos lembrar que a HbA1c reflete o controle glicêmico dos últimos 2-3 meses, ou seja, reflete como estava a glicemia da paciente antes mesmo de engravidar. O critério diagnóstico de diabetes mellitus (não gestacional, mas preexistente) é HbA1c ≥6,5%. Com 6,8%, essa paciente já tinha diabetes antes da gestação, não é um diabetes que se desenvolveu durante a gravidez atual.</p>\n\n<p style=\"text-indent: 2em;\">A diferenciação é importante porque muda nossa abordagem. Mesmo tendo uma glicemia de jejum normal neste momento, a alteração da hemoglobina glicada nos mostra que há um distúrbio do metabolismo da glicose que precisa ser tratado. A primeira linha de tratamento em diabetes, seja gestacional ou preexistente, é sempre a <strong>modificação do estilo de vida</strong>. Precisamos orientar dieta específica para diabetes (com controle de carboidratos, fracionamento adequado das refeições) e prática regular de atividade física. Apenas se essa abordagem não farmacológica falhar em controlar adequadamente as glicemias é que partiremos para insulinoterapia. Iniciar insulina de imediato seria pular uma etapa fundamental do tratamento.</p>\n\n<p style=\"text-indent: 2em;\">A resposta esperada para o caso B é: <strong>orientar dieta específica para diabetes e prática regular de atividade física</strong>, caracterizando o início do tratamento não farmacológico. Uma armadilha comum aqui seria olhar apenas para a glicemia de jejum normal e achar que não precisa fazer nada, ou então confundir com diabetes gestacional e subestimar a necessidade de intervenção no primeiro trimestre. A HbA1c elevada no início da gestação é o marcador que define o diagnóstico de diabetes preexistente e indica a necessidade de iniciar as modificações do estilo de vida imediatamente, mesmo com glicemia de jejum ainda dentro da normalidade.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-indent: 2em;\">Nas provas, diabetes gestacional associado a perfil glicêmico costuma aparecer com uma pegadinha clássica: apresentar valores pós-prandiais adequados para induzir o candidato a pensar que está tudo controlado, enquanto o verdadeiro problema está nas hipoglicemias de jejum e madrugada. O erro frequente é valorizar apenas os números pós-prandiais (que estão realmente dentro da meta) e ignorar o padrão de hipoglicemias recorrentes. O reconhecimento rápido na prova passa por identificar que a paciente <strong>mantém a mesma dieta</strong>, pois isso transforma as hipoglicemias de um possível \"excesso de tratamento\" em um sinal de insuficiência placentária. Outro ponto de confusão comum é a cardiotocografia ativa e Doppler normal — as bancas costumam colocar esses achados reassuradores para desviar a atenção, mas o conjunto hipoglicemias + oligocinesia + termo fala mais alto e indica resolução imediata.</p>\n\n<p style=\"text-indent: 2em;\">No segundo caso, o formato de cobrança típico envolve diferenciar diabetes mellitus preexistente de diabetes gestacional através da hemoglobina glicada no primeiro trimestre. A pegadinha recorrente é apresentar uma glicemia de jejum normal (90 mg/dL, abaixo dos 92 mg/dL que diagnosticariam DG) para fazer o candidato pensar que não há problema, enquanto a <strong>HbA1c elevada passa despercebida</strong>. O atalho diagnóstico aqui é simples: HbA1c solicitada no início da gestação sempre está olhando para o período pré-gravídico, então qualquer valor ≥6,5% define diabetes preexistente, independentemente da glicemia de jejum atual. Outra armadilha é já iniciar insulina de imediato por ver HbA1c alterada, pulando a etapa obrigatória de tentativa com modificação do estilo de vida primeiro.</p>\n\n<p style=\"text-indent: 2em;\">Esse tema também pode ser cobrado explorando a diferenciação temporal: diabetes diagnosticado no primeiro trimestre geralmente é preexistente (estava lá antes, só foi descoberto agora), enquanto diagnóstico após 24 semanas caracteriza diabetes gestacional verdadeiro. As bancas adoram misturar histórico de DG prévio com achados laboratoriais atuais para testar se o candidato sabe interpretar quando estamos diante de uma <strong>recorrência versus um diabetes que nunca foi embora</strong> da primeira gestação.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-indent: 2em;\">A presença de <strong>hipoglicemias em uma paciente diabética gestacional que mantém a mesma dieta</strong> constitui um sinal de alerta importante e deve nos fazer pensar em insuficiência placentária. No primeiro caso, temos uma primigesta com 37 semanas que apresenta perfil glicêmico mostrando valores de 68, 70 e 60 mg/dL — todas hipoglicemias — mesmo mantendo a mesma dieta que vinha fazendo. Essa mudança no padrão de controle glicêmico é extremamente significativa: se antes ela não fazia hipoglicemia com essa mesma dieta e agora está fazendo, significa que algo mudou no consumo de glicose pelo feto.</p>\n\n<p style=\"text-indent: 2em;\">O que acontece na insuficiência placentária é uma deterioração da função placentária, levando a uma <strong>redução na demanda fetal por glicose</strong>. O feto passa a consumir menos glicose, e como a mãe mantém o mesmo aporte calórico (mesma dieta), ela começa a apresentar hipoglicemias. Associado a isso, vemos outros sinais que confirmam o comprometimento da vitalidade fetal: a paciente relata redução da movimentação fetal nos últimos três dias e o mobilograma mostra apenas 4 movimentos fetais em uma hora (quando o esperado seria pelo menos 6-8 movimentos/hora). Mesmo que a cardiotocografia esteja ativa e o Doppler normal neste momento, o conjunto de achados — hipoglicemias com dieta mantida mais oligocinesia — aponta para insuficiência placentária. A macrossomia fetal (3.600g, >p90) é esperada no contexto de diabetes gestacional, mas não muda nossa conduta diante dos sinais de comprometimento placentário.</p>\n\n<p style=\"text-indent: 2em;\">Com idade gestacional de 37 semanas (gestação a termo) e sinais de insuficiência placentária, a conduta indicada é a <strong>resolução imediata da gestação</strong>. Não há razão para manter a gestação quando já atingimos a termo e há evidências de comprometimento da função placentária. A resposta esperada é: indução do parto com vigilância da vitalidade fetal. A vigilância é fundamental porque precisamos monitorar continuamente o bem-estar fetal durante o trabalho de parto, já que o feto já apresenta sinais de comprometimento. Um erro comum aqui seria valorizar apenas o perfil glicêmico como \"adequado\" ou \"bem controlado\" olhando apenas para os valores pós-prandiais (que estão realmente adequados), ignorando que as hipoglicemias em jejum e madrugada, no contexto de dieta mantida, são na verdade um sinal de alerta, não de bom controle.</p>\n\n<div style=\"background-color: #f0f4f8; border-left: 4px solid #00c2a7; padding: 12px 16px; margin: 10px 0;\">\n<strong>Ponto-chave para reconhecer insuficiência placentária:</strong> Mudança no padrão glicêmico — especialmente hipoglicemias em paciente que antes não fazia com a mesma dieta — associada a redução da movimentação fetal. Essa combinação em gestação a termo indica resolução imediata.\n</div>\n\n<p style=\"text-indent: 2em;\">No segundo caso, a situação é diferente e exige atenção a um detalhe diagnóstico importante. Temos uma paciente com 13 semanas que já teve diabetes gestacional na gestação anterior. Os exames mostram glicemia de jejum de 90 mg/dL, que está dentro da normalidade para a gestação (o ponto de corte para DG no primeiro trimestre é ≥92 mg/dL), mas a <strong>hemoglobina glicada está em 6,8%</strong>. Aqui precisamos lembrar que a HbA1c reflete o controle glicêmico dos últimos 2-3 meses, ou seja, reflete como estava a glicemia da paciente antes mesmo de engravidar. O critério diagnóstico de diabetes mellitus (não gestacional, mas preexistente) é HbA1c ≥6,5%. Com 6,8%, essa paciente já tinha diabetes antes da gestação, não é um diabetes que se desenvolveu durante a gravidez atual.</p>\n\n<p style=\"text-indent: 2em;\">A diferenciação é importante porque muda nossa abordagem. Mesmo tendo uma glicemia de jejum normal neste momento, a alteração da hemoglobina glicada nos mostra que há um distúrbio do metabolismo da glicose que precisa ser tratado. A primeira linha de tratamento em diabetes, seja gestacional ou preexistente, é sempre a <strong>modificação do estilo de vida</strong>. Precisamos orientar dieta específica para diabetes (com controle de carboidratos, fracionamento adequado das refeições) e prática regular de atividade física. Apenas se essa abordagem não farmacológica falhar em controlar adequadamente as glicemias é que partiremos para insulinoterapia. Iniciar insulina de imediato seria pular uma etapa fundamental do tratamento.</p>\n\n<p style=\"text-indent: 2em;\">A resposta esperada para o caso B é: <strong>orientar dieta específica para diabetes e prática regular de atividade física</strong>, caracterizando o início do tratamento não farmacológico. Uma armadilha comum aqui seria olhar apenas para a glicemia de jejum normal e achar que não precisa fazer nada, ou então confundir com diabetes gestacional e subestimar a necessidade de intervenção no primeiro trimestre. A HbA1c elevada no início da gestação é o marcador que define o diagnóstico de diabetes preexistente e indica a necessidade de iniciar as modificações do estilo de vida imediatamente, mesmo com glicemia de jejum ainda dentro da normalidade.</p><br>Visão do aprovado: <p style=\"text-indent: 2em;\">Nas provas, diabetes gestacional associado a perfil glicêmico costuma aparecer com uma pegadinha clássica: apresentar valores pós-prandiais adequados para induzir o candidato a pensar que está tudo controlado, enquanto o verdadeiro problema está nas hipoglicemias de jejum e madrugada. O erro frequente é valorizar apenas os números pós-prandiais (que estão realmente dentro da meta) e ignorar o padrão de hipoglicemias recorrentes. O reconhecimento rápido na prova passa por identificar que a paciente <strong>mantém a mesma dieta</strong>, pois isso transforma as hipoglicemias de um possível \"excesso de tratamento\" em um sinal de insuficiência placentária. Outro ponto de confusão comum é a cardiotocografia ativa e Doppler normal — as bancas costumam colocar esses achados reassuradores para desviar a atenção, mas o conjunto hipoglicemias + oligocinesia + termo fala mais alto e indica resolução imediata.</p>\n\n<p style=\"text-indent: 2em;\">No segundo caso, o formato de cobrança típico envolve diferenciar diabetes mellitus preexistente de diabetes gestacional através da hemoglobina glicada no primeiro trimestre. A pegadinha recorrente é apresentar uma glicemia de jejum normal (90 mg/dL, abaixo dos 92 mg/dL que diagnosticariam DG) para fazer o candidato pensar que não há problema, enquanto a <strong>HbA1c elevada passa despercebida</strong>. O atalho diagnóstico aqui é simples: HbA1c solicitada no início da gestação sempre está olhando para o período pré-gravídico, então qualquer valor ≥6,5% define diabetes preexistente, independentemente da glicemia de jejum atual. Outra armadilha é já iniciar insulina de imediato por ver HbA1c alterada, pulando a etapa obrigatória de tentativa com modificação do estilo de vida primeiro.</p>\n\n<p style=\"text-indent: 2em;\">Esse tema também pode ser cobrado explorando a diferenciação temporal: diabetes diagnosticado no primeiro trimestre geralmente é preexistente (estava lá antes, só foi descoberto agora), enquanto diagnóstico após 24 semanas caracteriza diabetes gestacional verdadeiro. As bancas adoram misturar histórico de DG prévio com achados laboratoriais atuais para testar se o candidato sabe interpretar quando estamos diante de uma <strong>recorrência versus um diabetes que nunca foi embora</strong> da primeira gestação.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 341880,
+        "number": 7,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite",
+        "focus": {
+          "id": 1588,
+          "name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite"
+        }
+      },
+      "detail": {
+        "id": 341880,
+        "content": "Em relação a patologias mamárias, considerar os seguintes casos clínicos: \n\n• Mulher, 42a, procura atendimento por queixa de saída de secreção pelo mamilo direito há duas semanas. PERGUNTA-SE: \na. Quais são as características clínicas que definem uma descarga papilar como suspeita (patológica)? \n\n• Mulher, 32a, nuligesta, foi diagnosticada com carcinoma ductal invasivo de mama direita, Luminal-HER, medindo 1,6cm, linfonodo axilar clinicamente negativo. Proposta cirurgia conservadora de mama com biópsia de linfonodo sentinela (up-front). Durante a consulta pré-operatória, manifesta preocupação com futura maternidade, pois deseja engravidar após o tratamento. PERGUNTA-SE: \nb. Qual aspecto deve ser avaliado e discutido em relação ao planejamento reprodutivo, e em que momento do planejamento terapêutico oncológico?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15979,
+            "parent_tag": {
+              "id": 15902,
+              "name": "Mastologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 7,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 2,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1588,
+          "name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 104,
+            "name": "Mastologia",
+            "discipline": 86,
+            "old_tag": 15902,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 410067,
+        "actual_explanation": true,
+        "introduction": "<p>Aqui, o examinador explora <strong>patologias mamárias</strong> em cenários típicos de prova, abordando tanto <strong>descarga papilar suspeita</strong> quanto <strong>planejamento reprodutivo em oncologia</strong>. Os dois casos apresentados são fundamentais na prática clínica e frequentemente cobrados em provas de residência, exigindo conhecimento específico sobre <strong>características da secreção mamária patológica</strong> e <strong>preservação da fertilidade</strong> em pacientes oncológicas.</p>\n\n    <p>A questão testa habilidades diagnósticas essenciais: no primeiro caso, a capacidade de distinguir descarga papilar <strong>fisiológica versus patológica</strong>, enquanto no segundo, o conhecimento sobre o <strong>timing adequado para discussão da preservação da fertilidade</strong> em pacientes jovens com câncer de mama. Ambos os cenários representam situações reais que todo médico deve saber manejar adequadamente.</p>\n\n    <p>A <strong>descarga papilar</strong> é uma queixa comum no consultório, mas nem toda secreção mamária é preocupante. É crucial reconhecer os sinais de alarme que indicam necessidade de investigação mais detalhada. Já o segundo caso aborda um aspecto cada vez mais relevante da oncologia moderna: a <strong>oncofertilidade</strong>, área que combina cuidados oncológicos com preservação da função reprodutiva.</p>\n\n    <p>O gabarito oficial indica que as características suspeitas da descarga incluem: <strong>espontânea, unilateral, uni ou pauciductal, serosa ou sanguinolenta, associada a massa/nódulo mamário</strong>. Para o planejamento reprodutivo, destaca-se o <strong>aconselhamento sobre preservação da fertilidade antes da quimioterapia adjuvante</strong>, especificamente mencionando técnicas como <strong>criopreservação de oócitos/embriões</strong>.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A questão testa o <strong>reconhecimento de descarga papilar suspeita</strong> e o <strong>timing adequado para preservação da fertilidade</strong> em oncologia mamária. O diagnóstico diferencial da secreção mamária baseia-se nas características específicas da descarga, enquanto a discussão reprodutiva deve ocorrer <strong>antes do início da quimioterapia</strong>.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Descarga papilar suspeita: <strong>espontânea, unilateral, uni ou pauciductal</strong></li>\n<li>Características da secreção: <strong>serosa ou sanguinolenta</strong> (não apenas sanguinolenta)</li>\n<li>Presença de <strong>massa/nódulo mamário associado</strong> aumenta significativamente a suspeição</li>\n<li>Mulher jovem com câncer = <strong>sempre abordar planejamento reprodutivo</strong></li>\n<li>Timing crucial: discussão de fertilidade <strong>antes da quimioterapia adjuvante</strong></li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir descarga <em>bilateral/multiductal</em> (geralmente fisiológica) com <em>unilateral/pauciductal</em> (suspeita)</li>\n<li>Não valorizar secreção <strong>serosa</strong> como suspeita (não é exclusivamente a sanguinolenta)</li>\n<li>Deixar discussão de fertilidade para <strong>após início da quimioterapia</strong> (timing inadequado)</li>\n<li>Negligenciar abordagem reprodutiva em tumores pequenos (mesmo 1,6cm exige discussão em mulher jovem)</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Casos clínicos pedindo <strong>diferenciação entre secreção fisiológica vs patológica</strong></li>\n<li>Cenários de <strong>oncofertilidade</strong> testando conhecimento do momento adequado para intervenção</li>\n<li>Questões sobre <strong>técnicas de preservação</strong> (criopreservação de oócitos/embriões como padrão-ouro)</li>\n<li>Associação de <strong>características da descarga com necessidade de investigação</strong></li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Aqui, o examinador explora <strong>patologias mamárias</strong> em cenários típicos de prova, abordando tanto <strong>descarga papilar suspeita</strong> quanto <strong>planejamento reprodutivo em oncologia</strong>. Os dois casos apresentados são fundamentais na prática clínica e frequentemente cobrados em provas de residência, exigindo conhecimento específico sobre <strong>características da secreção mamária patológica</strong> e <strong>preservação da fertilidade</strong> em pacientes oncológicas.</p>\n\n    <p>A questão testa habilidades diagnósticas essenciais: no primeiro caso, a capacidade de distinguir descarga papilar <strong>fisiológica versus patológica</strong>, enquanto no segundo, o conhecimento sobre o <strong>timing adequado para discussão da preservação da fertilidade</strong> em pacientes jovens com câncer de mama. Ambos os cenários representam situações reais que todo médico deve saber manejar adequadamente.</p>\n\n    <p>A <strong>descarga papilar</strong> é uma queixa comum no consultório, mas nem toda secreção mamária é preocupante. É crucial reconhecer os sinais de alarme que indicam necessidade de investigação mais detalhada. Já o segundo caso aborda um aspecto cada vez mais relevante da oncologia moderna: a <strong>oncofertilidade</strong>, área que combina cuidados oncológicos com preservação da função reprodutiva.</p>\n\n    <p>O gabarito oficial indica que as características suspeitas da descarga incluem: <strong>espontânea, unilateral, uni ou pauciductal, serosa ou sanguinolenta, associada a massa/nódulo mamário</strong>. Para o planejamento reprodutivo, destaca-se o <strong>aconselhamento sobre preservação da fertilidade antes da quimioterapia adjuvante</strong>, especificamente mencionando técnicas como <strong>criopreservação de oócitos/embriões</strong>.</p><br>Visão do aprovado: <p>A questão testa o <strong>reconhecimento de descarga papilar suspeita</strong> e o <strong>timing adequado para preservação da fertilidade</strong> em oncologia mamária. O diagnóstico diferencial da secreção mamária baseia-se nas características específicas da descarga, enquanto a discussão reprodutiva deve ocorrer <strong>antes do início da quimioterapia</strong>.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Descarga papilar suspeita: <strong>espontânea, unilateral, uni ou pauciductal</strong></li>\n<li>Características da secreção: <strong>serosa ou sanguinolenta</strong> (não apenas sanguinolenta)</li>\n<li>Presença de <strong>massa/nódulo mamário associado</strong> aumenta significativamente a suspeição</li>\n<li>Mulher jovem com câncer = <strong>sempre abordar planejamento reprodutivo</strong></li>\n<li>Timing crucial: discussão de fertilidade <strong>antes da quimioterapia adjuvante</strong></li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir descarga <em>bilateral/multiductal</em> (geralmente fisiológica) com <em>unilateral/pauciductal</em> (suspeita)</li>\n<li>Não valorizar secreção <strong>serosa</strong> como suspeita (não é exclusivamente a sanguinolenta)</li>\n<li>Deixar discussão de fertilidade para <strong>após início da quimioterapia</strong> (timing inadequado)</li>\n<li>Negligenciar abordagem reprodutiva em tumores pequenos (mesmo 1,6cm exige discussão em mulher jovem)</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Casos clínicos pedindo <strong>diferenciação entre secreção fisiológica vs patológica</strong></li>\n<li>Cenários de <strong>oncofertilidade</strong> testando conhecimento do momento adequado para intervenção</li>\n<li>Questões sobre <strong>técnicas de preservação</strong> (criopreservação de oócitos/embriões como padrão-ouro)</li>\n<li>Associação de <strong>características da descarga com necessidade de investigação</strong></li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 341881,
+        "number": 8,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento",
+        "focus": {
+          "id": 1639,
+          "name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento"
+        }
+      },
+      "detail": {
+        "id": 341881,
+        "content": "Em relação a patologias mamárias, considerar os seguintes casos clínicos:    \n\n- Mulher, 48a, apresenta massa endurecida de 6cm em mama esquerda, com retração cutânea e linfonodos axilares palpáveis, móveis, múltiplos. Biópsia: carcinoma ductal  invasivo grau 3, triplo negativo. PERGUNTA-SE:  \na. Qual a conduta terapêutica inicial indicada neste cenário?    \n\n- Mulher, 55a, com câncer de mama metastático com progressão linfonodal e óssea, em tratamento paliativo com quimioterapia e bisfosfonados, apresenta quadro de febre temperatura axilar=38,5°C e fadiga intensa. Hemograma: hemoglobina=8,2g/dL, leucócitos=2.000/mm³, neutrófilos=400/mm³, plaquetas=78.000/mm³. PERGUNTA-SE: \nb. Qual o principal diagnóstico nesta ocasião, e tratamento proposto? Cite também um diagnóstico diferencial, e quais elementos clínico-laboratoriais suportariam a elucidação.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15927,
+            "parent_tag": {
+              "id": 15902,
+              "name": "Mastologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 8,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 1,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1639,
+          "name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 104,
+            "name": "Mastologia",
+            "discipline": 86,
+            "old_tag": 15902,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 410064,
+        "actual_explanation": true,
+        "introduction": "<p>Trata-se, essencialmente, de <strong>oncologia mamária</strong> em dois cenários distintos que testam conhecimentos fundamentais sobre <strong>conduta terapêutica em <span class=\"article-5158\">câncer de mama</span> localmente avançado</strong> e <strong>manejo de complicações hematológicas da quimioterapia</strong>.</p>\n<p>O primeiro caso apresenta uma paciente de 48 anos com <strong>carcinoma ductal invasivo grau 3, triplo negativo</strong>, tumor de 6cm com retração cutânea e linfonodos axilares palpáveis, configurando um <strong>estágio localmente avançado</strong>. O segundo cenário aborda uma paciente com <strong><span class=\"article-5158\">câncer de mama</span> metastático</strong> em tratamento quimioterápico que desenvolve <strong>síndrome febril associada à pancitopenia</strong>.</p>\n<p>Estes casos são extremamente relevantes para provas de residência por testarem conceitos essenciais: o reconhecimento de indicações para <strong>quimioterapia neoadjuvante</strong>, especialmente em tumores triplo negativos localmente avançados, e o diagnóstico e manejo da <strong>neutropenia febril</strong>, uma das complicações mais graves da quimioterapia.</p>\n<p>A resposta correta para o caso A é <strong>quimioterapia neoadjuvante</strong>, justificada pelo estágio localmente avançado e subtipo molecular. Para o caso B, o diagnóstico é <strong>neutropenia febril por quimioterapia</strong>, com tratamento baseado em <strong>antibioticoterapia com cefepime</strong> e avaliação de G-CSF, tendo como principal diagnóstico diferencial a <strong>invasão de medula óssea</strong>, diferenciada pela persistência e progressividade da pancitopenia.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O primeiro caso testa o reconhecimento de <strong><span class=\"article-5158\">câncer de mama</span> localmente avançado</strong> (T3/T4 pela retração cutânea + N1) com subtipo <strong>triplo negativo</strong>, onde a quimioterapia neoadjuvante é mandatória. O segundo caso aborda <strong>neutropenia febril</strong> em paciente oncológica, emergência que exige reconhecimento imediato e antibioticoterapia empírica urgente.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Massa &gt;5cm + retração cutânea + linfonodos axilares = estágio localmente avançado</li>\n<li>Triplo negativo + localmente avançado = indicação absoluta de neoadjuvância</li>\n<li>Febre + neutrófilos &lt;500/mm³ em paciente em QT = neutropenia febril</li>\n<li>Pancitopenia progressiva/persistente sugere invasão medular vs toxicidade de QT</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir indicação de cirurgia imediata vs neoadjuvância em tumores localmente avançados</li>\n<li>Não reconhecer que triplo negativo tem maior benefício com neoadjuvância</li>\n<li>Atrasar antibiótico em neutropenia febril aguardando culturas</li>\n<li>Confundir pancitopenia por invasão medular com toxicidade reversível de QT</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Casos clínicos pedindo conduta inicial em <em><span class=\"article-5158\">câncer de mama</span> T3/T4</em> testam conhecimento sobre neoadjuvância</li>\n<li>Paciente oncológica com febre sempre testa diagnóstico e manejo de <em>neutropenia febril</em></li>\n<li>Questões sobre <em>diagnóstico diferencial de pancitopenia</em> em oncologia aparecem frequentemente</li>\n<li>Escolha de antibiótico empírico em neutropenia febril é ponto recorrente nas provas</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Trata-se, essencialmente, de <strong>oncologia mamária</strong> em dois cenários distintos que testam conhecimentos fundamentais sobre <strong>conduta terapêutica em <span class=\"article-5158\">câncer de mama</span> localmente avançado</strong> e <strong>manejo de complicações hematológicas da quimioterapia</strong>.</p>\n<p>O primeiro caso apresenta uma paciente de 48 anos com <strong>carcinoma ductal invasivo grau 3, triplo negativo</strong>, tumor de 6cm com retração cutânea e linfonodos axilares palpáveis, configurando um <strong>estágio localmente avançado</strong>. O segundo cenário aborda uma paciente com <strong><span class=\"article-5158\">câncer de mama</span> metastático</strong> em tratamento quimioterápico que desenvolve <strong>síndrome febril associada à pancitopenia</strong>.</p>\n<p>Estes casos são extremamente relevantes para provas de residência por testarem conceitos essenciais: o reconhecimento de indicações para <strong>quimioterapia neoadjuvante</strong>, especialmente em tumores triplo negativos localmente avançados, e o diagnóstico e manejo da <strong>neutropenia febril</strong>, uma das complicações mais graves da quimioterapia.</p>\n<p>A resposta correta para o caso A é <strong>quimioterapia neoadjuvante</strong>, justificada pelo estágio localmente avançado e subtipo molecular. Para o caso B, o diagnóstico é <strong>neutropenia febril por quimioterapia</strong>, com tratamento baseado em <strong>antibioticoterapia com cefepime</strong> e avaliação de G-CSF, tendo como principal diagnóstico diferencial a <strong>invasão de medula óssea</strong>, diferenciada pela persistência e progressividade da pancitopenia.</p><br>Visão do aprovado: <p>O primeiro caso testa o reconhecimento de <strong><span class=\"article-5158\">câncer de mama</span> localmente avançado</strong> (T3/T4 pela retração cutânea + N1) com subtipo <strong>triplo negativo</strong>, onde a quimioterapia neoadjuvante é mandatória. O segundo caso aborda <strong>neutropenia febril</strong> em paciente oncológica, emergência que exige reconhecimento imediato e antibioticoterapia empírica urgente.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Massa &gt;5cm + retração cutânea + linfonodos axilares = estágio localmente avançado</li>\n<li>Triplo negativo + localmente avançado = indicação absoluta de neoadjuvância</li>\n<li>Febre + neutrófilos &lt;500/mm³ em paciente em QT = neutropenia febril</li>\n<li>Pancitopenia progressiva/persistente sugere invasão medular vs toxicidade de QT</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir indicação de cirurgia imediata vs neoadjuvância em tumores localmente avançados</li>\n<li>Não reconhecer que triplo negativo tem maior benefício com neoadjuvância</li>\n<li>Atrasar antibiótico em neutropenia febril aguardando culturas</li>\n<li>Confundir pancitopenia por invasão medular com toxicidade reversível de QT</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Casos clínicos pedindo conduta inicial em <em><span class=\"article-5158\">câncer de mama</span> T3/T4</em> testam conhecimento sobre neoadjuvância</li>\n<li>Paciente oncológica com febre sempre testa diagnóstico e manejo de <em>neutropenia febril</em></li>\n<li>Questões sobre <em>diagnóstico diferencial de pancitopenia</em> em oncologia aparecem frequentemente</li>\n<li>Escolha de antibiótico empírico em neutropenia febril é ponto recorrente nas provas</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 341882,
+        "number": 9,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento",
+        "focus": {
+          "id": 1639,
+          "name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento"
+        }
+      },
+      "detail": {
+        "id": 341882,
+        "content": "Primigesta, 35a, 22 semanas, foi diagnosticada com carcinoma ductal invasivo de mama esquerda, estadiamento clínico T2N1M0, subtipo molecular Luminal-HER. A paciente deseja entender quais modalidades de tratamento oncológico poderiam ser utilizadas durante o ciclo gravídico-puerperal, e em que momentos, e quais estariam proscritas. PERGUNTA-SE\na. Em relação às modalidades de tratamento oncológico propostas, quais são as possibilidades terapêuticas durante a gestação?\nb. E durante a lactação?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15927,
+            "parent_tag": {
+              "id": 15902,
+              "name": "Mastologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 9,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 1,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1639,
+          "name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 104,
+            "name": "Mastologia",
+            "discipline": 86,
+            "old_tag": 15902,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 410070,
+        "actual_explanation": true,
+        "introduction": "<p>O cenário combina <strong><span class=\"article-5158\">câncer de mama</span></strong> e <strong>gestação</strong> compatíveis com uma situação complexa que demanda <strong>manejo multidisciplinar</strong>, pedindo conhecimento específico sobre <strong>segurança terapêutica</strong> como próximo passo. Esta é uma das situações mais desafiadoras em oncologia, envolvendo uma <strong>primigesta de 35 anos</strong> no <strong>segundo trimestre gestacional</strong> (22 semanas) com <strong>carcinoma ductal invasivo</strong> de mama.</p>\n<p>O caso apresenta características importantes: <strong>estadiamento T2N1M0</strong> (tumor entre 2-5 cm com linfonodos comprometidos, sem metástases) e <strong>subtipo molecular Luminal-HER</strong> (receptores hormonais positivos e HER2 superexpresso). Este subtipo representa aproximadamente 10-15% dos casos de <span class=\"article-5158\">câncer de mama</span> e tem implicações específicas no tratamento, especialmente pela necessidade de terapia anti-HER2.</p>\n<p>A questão é fundamental para residência médica porque testa o conhecimento sobre <strong>oncologia obstétrica</strong>, área que exige compreensão tanto dos aspectos oncológicos quanto da <strong>segurança fetal</strong>. O timing gestacional é crucial, já que diferentes trimestres apresentam riscos distintos para cada modalidade terapêutica.</p>\n<p>A <strong>resposta correta</strong> estabelece que durante a gestação: cirurgia pode ser realizada em qualquer trimestre (preferencialmente após o primeiro), quimioterapia no 2º e 3º trimestres (suspensa 3 semanas antes do parto), enquanto radioterapia, hormonioterapia e imunoterapia anti-HER2 são contraindicadas. Durante a lactação, todas as modalidades devem ser adiadas para o pós-lactação devido a riscos específicos como fístulas lácteas e excreção no leite materno.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O diagnóstico de <strong><span class=\"article-5158\">câncer de mama</span> na gestação</strong> exige conhecimento específico sobre <strong>timing terapêutico</strong> e <strong>segurança fetal</strong>. O caso apresenta uma <strong>primigesta no 2º trimestre</strong> com <strong>carcinoma invasivo T2N1M0</strong> subtipo <strong>Luminal-HER</strong>, demandando estratégia terapêutica escalonada conforme período gravídico-puerperal.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>22 semanas</strong> = 2º trimestre, permite cirurgia e quimioterapia</li>\n<li><strong>T2N1M0</strong> = tumor 2-5cm com linfonodos, sem metástases (tratamento curativo)</li>\n<li><strong>Subtipo Luminal-HER</strong> = receptores hormonais + e HER2+ (múltiplas terapias-alvo)</li>\n<li><strong>Primigesta 35 anos</strong> = idade materna avançada, maior urgência terapêutica</li>\n<li><strong>Organogênese completa</strong> no 2º trimestre = menor risco teratogênico</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir <em>contraindicações na gestação</em> vs <em>lactação</em> (questões frequentemente testam ambos)</li>\n<li>Esquecer <strong>suspensão da quimioterapia 3 semanas antes do parto</strong> (evita neutropenia neonatal)</li>\n<li>Marcar radioterapia como possível na gestação (sempre contraindicada)</li>\n<li>Não lembrar do <strong>risco de fístulas lácteas</strong> na cirurgia durante lactação</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li><strong>Padrão clássico:</strong> questão comparativa entre gestação e lactação com múltiplas modalidades</li>\n<li><strong>Formato comum:</strong> caso clínico pedindo sequenciamento terapêutico por trimestres</li>\n<li><strong>Pegadinha recorrente:</strong> alternar entre \"contraindicado\" vs \"adiado\" para diferentes fases</li>\n<li><strong>Também pode cair:</strong> manejo de tumores triplo-negativos na gestação (quimioterapia mais precoce)</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O cenário combina <strong><span class=\"article-5158\">câncer de mama</span></strong> e <strong>gestação</strong> compatíveis com uma situação complexa que demanda <strong>manejo multidisciplinar</strong>, pedindo conhecimento específico sobre <strong>segurança terapêutica</strong> como próximo passo. Esta é uma das situações mais desafiadoras em oncologia, envolvendo uma <strong>primigesta de 35 anos</strong> no <strong>segundo trimestre gestacional</strong> (22 semanas) com <strong>carcinoma ductal invasivo</strong> de mama.</p>\n<p>O caso apresenta características importantes: <strong>estadiamento T2N1M0</strong> (tumor entre 2-5 cm com linfonodos comprometidos, sem metástases) e <strong>subtipo molecular Luminal-HER</strong> (receptores hormonais positivos e HER2 superexpresso). Este subtipo representa aproximadamente 10-15% dos casos de <span class=\"article-5158\">câncer de mama</span> e tem implicações específicas no tratamento, especialmente pela necessidade de terapia anti-HER2.</p>\n<p>A questão é fundamental para residência médica porque testa o conhecimento sobre <strong>oncologia obstétrica</strong>, área que exige compreensão tanto dos aspectos oncológicos quanto da <strong>segurança fetal</strong>. O timing gestacional é crucial, já que diferentes trimestres apresentam riscos distintos para cada modalidade terapêutica.</p>\n<p>A <strong>resposta correta</strong> estabelece que durante a gestação: cirurgia pode ser realizada em qualquer trimestre (preferencialmente após o primeiro), quimioterapia no 2º e 3º trimestres (suspensa 3 semanas antes do parto), enquanto radioterapia, hormonioterapia e imunoterapia anti-HER2 são contraindicadas. Durante a lactação, todas as modalidades devem ser adiadas para o pós-lactação devido a riscos específicos como fístulas lácteas e excreção no leite materno.</p><br>Visão do aprovado: <p>O diagnóstico de <strong><span class=\"article-5158\">câncer de mama</span> na gestação</strong> exige conhecimento específico sobre <strong>timing terapêutico</strong> e <strong>segurança fetal</strong>. O caso apresenta uma <strong>primigesta no 2º trimestre</strong> com <strong>carcinoma invasivo T2N1M0</strong> subtipo <strong>Luminal-HER</strong>, demandando estratégia terapêutica escalonada conforme período gravídico-puerperal.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>22 semanas</strong> = 2º trimestre, permite cirurgia e quimioterapia</li>\n<li><strong>T2N1M0</strong> = tumor 2-5cm com linfonodos, sem metástases (tratamento curativo)</li>\n<li><strong>Subtipo Luminal-HER</strong> = receptores hormonais + e HER2+ (múltiplas terapias-alvo)</li>\n<li><strong>Primigesta 35 anos</strong> = idade materna avançada, maior urgência terapêutica</li>\n<li><strong>Organogênese completa</strong> no 2º trimestre = menor risco teratogênico</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir <em>contraindicações na gestação</em> vs <em>lactação</em> (questões frequentemente testam ambos)</li>\n<li>Esquecer <strong>suspensão da quimioterapia 3 semanas antes do parto</strong> (evita neutropenia neonatal)</li>\n<li>Marcar radioterapia como possível na gestação (sempre contraindicada)</li>\n<li>Não lembrar do <strong>risco de fístulas lácteas</strong> na cirurgia durante lactação</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li><strong>Padrão clássico:</strong> questão comparativa entre gestação e lactação com múltiplas modalidades</li>\n<li><strong>Formato comum:</strong> caso clínico pedindo sequenciamento terapêutico por trimestres</li>\n<li><strong>Pegadinha recorrente:</strong> alternar entre \"contraindicado\" vs \"adiado\" para diferentes fases</li>\n<li><strong>Também pode cair:</strong> manejo de tumores triplo-negativos na gestação (quimioterapia mais precoce)</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 341883,
+        "number": 10,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Cuidados com Feridas",
+        "focus": {
+          "id": 1772,
+          "name": "Cuidados com Feridas"
+        }
+      },
+      "detail": {
+        "id": 341883,
+        "content": "Considerando que nas feridas limpas, podemos classificar três grupos principais como fatores associados à infecção (paciente, cirúrgico e meio ambiente), PERGUNTA-SE:\na. Cite dois fatores de risco para infecção relacionados ao paciente.\nb. Cite dois fatores de risco para infecção associados ao procedimento cirúrgico.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 5,
+          "abbreviation": "R+CG"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 2467,
+            "parent_tag": {
+              "id": 1319,
+              "name": "Cirurgia Plástica",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Cuidados com Feridas",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              5
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 10,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 1,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1772,
+          "name": "Cuidados com Feridas",
+          "discipline": {
+            "id": 63,
+            "name": "Cirurgia Geral",
+            "residency_degree": 5,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 155,
+            "name": "Cirurgia Plástica",
+            "discipline": 63,
+            "old_tag": 1319,
+            "residency_degree_abbreviation": "R+CG"
+          }
+        }
+      },
+      "explanation": {
+        "id": 410065,
+        "actual_explanation": true,
+        "introduction": "<p>No cerne desta questão está a <strong>prevenção de infecção de sítio cirúrgico</strong> em feridas limpas, um tema fundamental tanto na prática clínica quanto nas provas de residência. A <strong>infecção de sítio cirúrgico</strong> representa uma das principais complicações pós-operatórias, com impacto significativo na morbidade, mortalidade e custos hospitalares.</p>\n\n<p>A organização sistemática dos fatores de risco em três categorias principais - <strong>paciente, procedimento cirúrgico e meio ambiente</strong> - permite uma abordagem estruturada para a prevenção. Esta classificação é especialmente relevante para as <strong>feridas limpas</strong>, que são definidas como incisões cirúrgicas não infectadas, realizadas em tecidos estéreis ou passíveis de descontaminação, sem sinais de inflamação e sem entrada no trato respiratório, alimentar, genital ou urinário infectado.</p>\n\n<p>A questão solicita especificamente fatores relacionados ao <strong>paciente</strong> e ao <strong>procedimento cirúrgico</strong>, testando o conhecimento sobre os determinantes modificáveis e não-modificáveis do risco infeccioso. Compreender esses fatores é essencial para a <strong>estratificação de risco</strong> pré-operatória e implementação de medidas preventivas adequadas.</p>\n\n<p><strong>Fatores relacionados ao paciente</strong> incluem características intrínsecas como:</p>\n<ul>\n<li><strong>idade avançada</strong>, que compromete a resposta imunológica e a cicatrização</li>\n<li><strong>obesidade</strong>, que dificulta a técnica cirúrgica e reduz a perfusão tecidual</li>\n<li><strong>comorbidades</strong> como diabetes mellitus (hiperglicemia prejudica a função leucocitária), desnutrição (compromete a síntese proteica e resposta imune)</li>\n<li>uso de <strong>medicamentos imunossupressores</strong> como corticosteroides, quimioterápicos ou radioterapia</li>\n<li>condições de <strong>hipoperfusão tecidual</strong></li>\n<li>características da própria ferida como <strong>localização</strong> e <strong>extensão</strong></li>\n</ul>\n\n<p><strong>Fatores relacionados ao procedimento cirúrgico</strong> abrangem aspectos técnicos modificáveis como:</p>\n<ul>\n<li>inadequada <strong>lavagem das mãos</strong> e <strong>antissepsia</strong> da área operatória</li>\n<li><strong>trauma cirúrgico</strong> excessivo que compromete a viabilidade tecidual</li>\n<li>formação de <strong>hematomas</strong> que servem como meio de cultura</li>\n<li><strong>isquemia tecidual</strong> por tensão excessiva ou ligaduras inadequadas</li>\n<li>quebra da <strong>técnica asséptica</strong></li>\n<li>presença de <strong>corpos estranhos</strong> como fios de sutura e drenos que podem servir como foco de contaminação</li>\n</ul>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A <strong>prevenção de infecção de sítio cirúrgico</strong> em feridas limpas exige conhecimento dos fatores de risco organizados em três categorias: paciente, procedimento e ambiente. A estratégia é identificar fatores <strong>modificáveis</strong> para intervenção preventiva e <strong>não-modificáveis</strong> para estratificação de risco. A classificação correta de cada fator em sua categoria específica é fundamental para o raciocínio clínico estruturado.</p>\n\n<strong>Pistas-chave:</strong>\n<ul>\n<li>Fatores do <em>paciente</em>: idade, obesidade, diabetes, imunossupressão, desnutrição</li>\n<li>Fatores do <em>procedimento</em>: antissepsia inadequada, trauma cirúrgico excessivo, hematoma</li>\n<li><strong>Feridas limpas</strong>: incisões estéreis sem contaminação prévia ou inflamação</li>\n<li>Foco na <strong>modificabilidade</strong>: técnica cirúrgica é controlável, idade não é</li>\n</ul>\n\n<strong>Pegadinhas de prova:</strong>\n<ul>\n<li>Confundir <em>localização da ferida</em> (fator do paciente) com <em>técnica cirúrgica</em> (procedimento)</li>\n<li>Classificar <em>drenos e fios</em> como fatores ambientais quando são do procedimento</li>\n<li>Misturar fatores de <strong>feridas limpas</strong> com fatores de feridas contaminadas</li>\n</ul>\n\n<strong>Como cai:</strong>\n<ul>\n<li>Questões discursivas pedindo <strong>classificação específica</strong> dos fatores por categoria</li>\n<li>Formato de <strong>associação</strong>: relacionar fator de risco à categoria correta</li>\n<li>Ênfase em fatores <strong>modificáveis vs não-modificáveis</strong> para estratégias preventivas</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>No cerne desta questão está a <strong>prevenção de infecção de sítio cirúrgico</strong> em feridas limpas, um tema fundamental tanto na prática clínica quanto nas provas de residência. A <strong>infecção de sítio cirúrgico</strong> representa uma das principais complicações pós-operatórias, com impacto significativo na morbidade, mortalidade e custos hospitalares.</p>\n\n<p>A organização sistemática dos fatores de risco em três categorias principais - <strong>paciente, procedimento cirúrgico e meio ambiente</strong> - permite uma abordagem estruturada para a prevenção. Esta classificação é especialmente relevante para as <strong>feridas limpas</strong>, que são definidas como incisões cirúrgicas não infectadas, realizadas em tecidos estéreis ou passíveis de descontaminação, sem sinais de inflamação e sem entrada no trato respiratório, alimentar, genital ou urinário infectado.</p>\n\n<p>A questão solicita especificamente fatores relacionados ao <strong>paciente</strong> e ao <strong>procedimento cirúrgico</strong>, testando o conhecimento sobre os determinantes modificáveis e não-modificáveis do risco infeccioso. Compreender esses fatores é essencial para a <strong>estratificação de risco</strong> pré-operatória e implementação de medidas preventivas adequadas.</p>\n\n<p><strong>Fatores relacionados ao paciente</strong> incluem características intrínsecas como:</p>\n<ul>\n<li><strong>idade avançada</strong>, que compromete a resposta imunológica e a cicatrização</li>\n<li><strong>obesidade</strong>, que dificulta a técnica cirúrgica e reduz a perfusão tecidual</li>\n<li><strong>comorbidades</strong> como diabetes mellitus (hiperglicemia prejudica a função leucocitária), desnutrição (compromete a síntese proteica e resposta imune)</li>\n<li>uso de <strong>medicamentos imunossupressores</strong> como corticosteroides, quimioterápicos ou radioterapia</li>\n<li>condições de <strong>hipoperfusão tecidual</strong></li>\n<li>características da própria ferida como <strong>localização</strong> e <strong>extensão</strong></li>\n</ul>\n\n<p><strong>Fatores relacionados ao procedimento cirúrgico</strong> abrangem aspectos técnicos modificáveis como:</p>\n<ul>\n<li>inadequada <strong>lavagem das mãos</strong> e <strong>antissepsia</strong> da área operatória</li>\n<li><strong>trauma cirúrgico</strong> excessivo que compromete a viabilidade tecidual</li>\n<li>formação de <strong>hematomas</strong> que servem como meio de cultura</li>\n<li><strong>isquemia tecidual</strong> por tensão excessiva ou ligaduras inadequadas</li>\n<li>quebra da <strong>técnica asséptica</strong></li>\n<li>presença de <strong>corpos estranhos</strong> como fios de sutura e drenos que podem servir como foco de contaminação</li>\n</ul><br>Visão do aprovado: <p>A <strong>prevenção de infecção de sítio cirúrgico</strong> em feridas limpas exige conhecimento dos fatores de risco organizados em três categorias: paciente, procedimento e ambiente. A estratégia é identificar fatores <strong>modificáveis</strong> para intervenção preventiva e <strong>não-modificáveis</strong> para estratificação de risco. A classificação correta de cada fator em sua categoria específica é fundamental para o raciocínio clínico estruturado.</p>\n\n<strong>Pistas-chave:</strong>\n<ul>\n<li>Fatores do <em>paciente</em>: idade, obesidade, diabetes, imunossupressão, desnutrição</li>\n<li>Fatores do <em>procedimento</em>: antissepsia inadequada, trauma cirúrgico excessivo, hematoma</li>\n<li><strong>Feridas limpas</strong>: incisões estéreis sem contaminação prévia ou inflamação</li>\n<li>Foco na <strong>modificabilidade</strong>: técnica cirúrgica é controlável, idade não é</li>\n</ul>\n\n<strong>Pegadinhas de prova:</strong>\n<ul>\n<li>Confundir <em>localização da ferida</em> (fator do paciente) com <em>técnica cirúrgica</em> (procedimento)</li>\n<li>Classificar <em>drenos e fios</em> como fatores ambientais quando são do procedimento</li>\n<li>Misturar fatores de <strong>feridas limpas</strong> com fatores de feridas contaminadas</li>\n</ul>\n\n<strong>Como cai:</strong>\n<ul>\n<li>Questões discursivas pedindo <strong>classificação específica</strong> dos fatores por categoria</li>\n<li>Formato de <strong>associação</strong>: relacionar fator de risco à categoria correta</li>\n<li>Ênfase em fatores <strong>modificáveis vs não-modificáveis</strong> para estratégias preventivas</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T15:15:22.470430+00:00",
+  "complete": true
+}

@@ -1,0 +1,475 @@
+{
+  "track_id": 4638079,
+  "name": "UERJ - RJ-2024-Discursiva",
+  "year": 2024,
+  "track_fast": {
+    "id": 4638079,
+    "name": "UERJ - RJ-2024-Discursiva",
+    "track_type": "c",
+    "question_count": 4,
+    "year": 2024,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UERJ",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-uerj_uKE5Nhw.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 4,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 4,
+  "questions": [
+    {
+      "meta": {
+        "id": 333078,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "m",
+        "question_ai_update": null,
+        "focus_name": "Sangramentos de primeira metade",
+        "focus": {
+          "id": 1646,
+          "name": "Sangramentos de primeira metade"
+        }
+      },
+      "detail": {
+        "id": 333078,
+        "content": "O abortamento é a complicação mais frequente da gestação, podendo acometer até 30% das mulheres. A ultrassonografia é o exame padrão ouro para mulheres com complicações na gestação inicial, além de permitir a adequada datação e localização da gravidez, a definição de corionicidade na gemelidade e o rastreio de aneuploidias, no primeiro trimestre da gestação. O uso precoce dessa tecnologia, entretanto, pode levar ao diagnóstico equivocado de um abortamento e à interrupção iatrogênica de uma gestação viável. Por essa razão, o conhecimento sobre os marcos ultrassonográficos que definem uma interrupção da gestação mostra-se imprescindível. Cite dois marcos ultrassonográficos que confirmam a interrupção da gestação no primeiro trimestre.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15920,
+            "parent_tag": {
+              "id": 15913,
+              "name": "Sangramentos na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sangramentos de primeira metade",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1646,
+          "name": "Sangramentos de primeira metade",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 93,
+            "name": "Sangramentos na gestação",
+            "discipline": 86,
+            "old_tag": 15913,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443136,
+        "actual_explanation": true,
+        "introduction": "<p>Uma das situações mais delicadas em obstetrícia é confirmar que uma gestação parou de evoluir, especialmente no primeiro trimestre, quando a diferença entre uma gestação viável precoce e um abortamento pode depender de milímetros ou dias. A questão nos alerta para um problema iatrogênico real: o uso muito precoce da ultrassonografia pode levar ao diagnóstico equivocado de abortamento e à interrupção de uma gestação que ainda é viável. Por isso, precisamos conhecer critérios ultrassonográficos <strong>objetivos e precisos</strong> que confirmam com segurança uma gestação não evolutiva.</p>\n\n<p>Vamos entender o contexto: na gestação inicial, as estruturas aparecem em uma sequência previsível. Primeiro visualizamos o <strong>saco gestacional</strong>, depois surge a <strong>vesícula vitelina</strong> dentro dele, em seguida aparece o <strong>embrião</strong>, e finalmente detectamos o <strong>batimento cardíaco fetal</strong>. Quando fazemos uma ultrassonografia muito cedo, podemos ver apenas o saco gestacional vazio e ficar tentados a diagnosticar um abortamento - mas na verdade a gestação pode estar evoluindo normalmente, apenas está em fase muito inicial. Para evitar esse erro dramático, foram estabelecidos critérios com medidas específicas e tempos de seguimento que permitem o diagnóstico seguro de gestação não evolutiva.</p>\n\n<p>Os principais marcos ultrassonográficos que confirmam abortamento no primeiro trimestre são:</p>\n\n<p>Primeiro, o critério do <strong>saco gestacional grande e vazio</strong>: quando encontramos um saco gestacional com diâmetro médio <strong>≥ 25mm</strong> sem visualização de vesícula vitelina ou embrião dentro dele, podemos confirmar que a gestação não está evoluindo. Esse tamanho já deveria obrigatoriamente mostrar alguma estrutura interna se a gestação fosse viável.</p>\n\n<p>Segundo, o critério do <strong>embrião sem batimentos</strong>: quando identificamos um embrião com comprimento cabeça-nádegas (CCN) <strong>≥ 7mm</strong> sem atividade cardíaca detectável, isso confirma a interrupção da gestação. Nesse tamanho, o batimento cardíaco já deveria estar presente em uma gestação normal.</p>\n\n<p>Terceiro, um critério temporal: a <strong>ausência de embrião com batimento cardíaco 11 a 14 dias após</strong> a visualização de um saco gestacional sem vesícula vitelina. Esse seguimento longitudinal permite confirmar que não houve evolução no período esperado.</p>\n\n<p>Quarto, outro critério de seguimento: ausência de embrião com atividade cardíaca em gestações que foram previamente documentadas com saco gestacional e vesícula vitelina. Aqui temos a certeza de que houve regressão ou parada do desenvolvimento.</p>\n\n<p>Um ponto crítico que devemos destacar: esses valores (25mm para o saco gestacional e 7mm para o embrião) são relativamente conservadores justamente para evitar falsos diagnósticos. Critérios mais antigos usavam medidas menores, mas estudos mostraram que isso levava a interrupções de gestações viáveis. Os valores atuais foram estabelecidos com margem de segurança.</p>\n\n<p>A armadilha mais comum nessa questão é confundir as medidas ou citar valores aproximados. A banca espera <strong>precisão</strong>: é 25mm para o saco gestacional (não 20mm ou 24mm) e 7mm para o embrião (não 5mm ou 6mm). Outro erro frequente é não especificar o que deve estar ausente - não basta dizer \"saco gestacional de 25mm\", precisamos dizer \"saco gestacional ≥ 25mm <strong>sem</strong> vesícula vitelina ou embrião\". A ausência das estruturas é parte fundamental do critério.</p>\n\n<p>Para responder corretamente, precisamos citar <strong>dois</strong> desses marcos com suas medidas ou tempos específicos. Segundo o espelho de resposta, qualquer combinação de dois critérios entre os quatro mencionados garante pontuação completa. Cada marco vale 12,5 pontos, totalizando 25 pontos. O importante é ser específico nas medidas e claro sobre quais estruturas devem estar ausentes para caracterizar a gestação não evolutiva.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p><strong>Visão do aprovado</strong></p>\n\n<p>O grande desafio dessa questão é a precisão absoluta nos valores, especialmente em provas discursivas. Muitos candidatos escorregam ao citar medidas aproximadas ou critérios antigos que ainda circulam em materiais desatualizados (como saco gestacional de 20mm ou embrião de 5mm sem batimentos). As bancas esperam os valores atuais com margem de segurança e a descrição completa do critério, não apenas a medida solta. Dizer \"saco gestacional de 25mm\" sem mencionar a ausência de vesícula vitelina ou embrião compromete a resposta.</p>\n\n<p>Na prática de prova, a lógica ajuda a não confundir: critérios de tamanho isolado (25mm e 7mm) exigem estruturas grandes o suficiente para que a ausência de conteúdo ou batimento seja definitiva; já os critérios temporais (11-14 dias de seguimento) permitem confirmar a não evolução mesmo em estruturas menores. Questões objetivas sobre o tema costumam trazer casos com medidas limítrofes para testar se o candidato conhece os valores exatos ou casos com seguimento incompleto para avaliar se ele entende que critérios temporais exigem reavaliação.</p>\n\n<p>Outro ponto frequentemente explorado é a diferença entre gestação viável precoce e abortamento iminente. Uma gestação de quatro a cinco semanas pode mostrar apenas saco gestacional pequeno sem conteúdo, o que é normal e exige seguimento, não intervenção. A pegadinha está em diferenciar \"achado esperado para a idade gestacional\" de \"critério que confirma perda gestacional\" - daí a importância de conhecer não só os marcos de não viabilidade, mas também a cronologia normal do desenvolvimento embrionário inicial.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Uma das situações mais delicadas em obstetrícia é confirmar que uma gestação parou de evoluir, especialmente no primeiro trimestre, quando a diferença entre uma gestação viável precoce e um abortamento pode depender de milímetros ou dias. A questão nos alerta para um problema iatrogênico real: o uso muito precoce da ultrassonografia pode levar ao diagnóstico equivocado de abortamento e à interrupção de uma gestação que ainda é viável. Por isso, precisamos conhecer critérios ultrassonográficos <strong>objetivos e precisos</strong> que confirmam com segurança uma gestação não evolutiva.</p>\n\n<p>Vamos entender o contexto: na gestação inicial, as estruturas aparecem em uma sequência previsível. Primeiro visualizamos o <strong>saco gestacional</strong>, depois surge a <strong>vesícula vitelina</strong> dentro dele, em seguida aparece o <strong>embrião</strong>, e finalmente detectamos o <strong>batimento cardíaco fetal</strong>. Quando fazemos uma ultrassonografia muito cedo, podemos ver apenas o saco gestacional vazio e ficar tentados a diagnosticar um abortamento - mas na verdade a gestação pode estar evoluindo normalmente, apenas está em fase muito inicial. Para evitar esse erro dramático, foram estabelecidos critérios com medidas específicas e tempos de seguimento que permitem o diagnóstico seguro de gestação não evolutiva.</p>\n\n<p>Os principais marcos ultrassonográficos que confirmam abortamento no primeiro trimestre são:</p>\n\n<p>Primeiro, o critério do <strong>saco gestacional grande e vazio</strong>: quando encontramos um saco gestacional com diâmetro médio <strong>≥ 25mm</strong> sem visualização de vesícula vitelina ou embrião dentro dele, podemos confirmar que a gestação não está evoluindo. Esse tamanho já deveria obrigatoriamente mostrar alguma estrutura interna se a gestação fosse viável.</p>\n\n<p>Segundo, o critério do <strong>embrião sem batimentos</strong>: quando identificamos um embrião com comprimento cabeça-nádegas (CCN) <strong>≥ 7mm</strong> sem atividade cardíaca detectável, isso confirma a interrupção da gestação. Nesse tamanho, o batimento cardíaco já deveria estar presente em uma gestação normal.</p>\n\n<p>Terceiro, um critério temporal: a <strong>ausência de embrião com batimento cardíaco 11 a 14 dias após</strong> a visualização de um saco gestacional sem vesícula vitelina. Esse seguimento longitudinal permite confirmar que não houve evolução no período esperado.</p>\n\n<p>Quarto, outro critério de seguimento: ausência de embrião com atividade cardíaca em gestações que foram previamente documentadas com saco gestacional e vesícula vitelina. Aqui temos a certeza de que houve regressão ou parada do desenvolvimento.</p>\n\n<p>Um ponto crítico que devemos destacar: esses valores (25mm para o saco gestacional e 7mm para o embrião) são relativamente conservadores justamente para evitar falsos diagnósticos. Critérios mais antigos usavam medidas menores, mas estudos mostraram que isso levava a interrupções de gestações viáveis. Os valores atuais foram estabelecidos com margem de segurança.</p>\n\n<p>A armadilha mais comum nessa questão é confundir as medidas ou citar valores aproximados. A banca espera <strong>precisão</strong>: é 25mm para o saco gestacional (não 20mm ou 24mm) e 7mm para o embrião (não 5mm ou 6mm). Outro erro frequente é não especificar o que deve estar ausente - não basta dizer \"saco gestacional de 25mm\", precisamos dizer \"saco gestacional ≥ 25mm <strong>sem</strong> vesícula vitelina ou embrião\". A ausência das estruturas é parte fundamental do critério.</p>\n\n<p>Para responder corretamente, precisamos citar <strong>dois</strong> desses marcos com suas medidas ou tempos específicos. Segundo o espelho de resposta, qualquer combinação de dois critérios entre os quatro mencionados garante pontuação completa. Cada marco vale 12,5 pontos, totalizando 25 pontos. O importante é ser específico nas medidas e claro sobre quais estruturas devem estar ausentes para caracterizar a gestação não evolutiva.</p><br>Visão do aprovado: <p><strong>Visão do aprovado</strong></p>\n\n<p>O grande desafio dessa questão é a precisão absoluta nos valores, especialmente em provas discursivas. Muitos candidatos escorregam ao citar medidas aproximadas ou critérios antigos que ainda circulam em materiais desatualizados (como saco gestacional de 20mm ou embrião de 5mm sem batimentos). As bancas esperam os valores atuais com margem de segurança e a descrição completa do critério, não apenas a medida solta. Dizer \"saco gestacional de 25mm\" sem mencionar a ausência de vesícula vitelina ou embrião compromete a resposta.</p>\n\n<p>Na prática de prova, a lógica ajuda a não confundir: critérios de tamanho isolado (25mm e 7mm) exigem estruturas grandes o suficiente para que a ausência de conteúdo ou batimento seja definitiva; já os critérios temporais (11-14 dias de seguimento) permitem confirmar a não evolução mesmo em estruturas menores. Questões objetivas sobre o tema costumam trazer casos com medidas limítrofes para testar se o candidato conhece os valores exatos ou casos com seguimento incompleto para avaliar se ele entende que critérios temporais exigem reavaliação.</p>\n\n<p>Outro ponto frequentemente explorado é a diferença entre gestação viável precoce e abortamento iminente. Uma gestação de quatro a cinco semanas pode mostrar apenas saco gestacional pequeno sem conteúdo, o que é normal e exige seguimento, não intervenção. A pegadinha está em diferenciar \"achado esperado para a idade gestacional\" de \"critério que confirma perda gestacional\" - daí a importância de conhecer não só os marcos de não viabilidade, mas também a cronologia normal do desenvolvimento embrionário inicial.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333079,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal"
+        }
+      },
+      "detail": {
+        "id": 333079,
+        "content": "O rastreio pré-natal de desordens cromossômicas tem o objetivo de avaliar o risco individual de uma gestante ter um feto com uma desordem cromossomial. Existe uma variedade de testes de rastreio e diagnóstico, cada um com vantagens e desvantagens. O exame morfológico de segundo trimestre é realizado para avaliar a possibilidade de anomalia estrutural, mas também representa uma nova oportunidade para cálculo de risco de cromossomopatias, através da avaliação de alguns marcadores, cada qual com grau de suspeição próprio. Cite cinco marcadores do exame morfológico que requerem avaliação mais detalhada na busca por novos achados.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15948,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443138,
+        "actual_explanation": true,
+        "introduction": "<p>O ultrassom morfológico de segundo trimestre, realizado entre 20 e 24 semanas, representa uma janela importante para recalcular o risco de cromossomopatias fetais através da identificação de marcadores específicos. A questão pede que citemos cinco desses marcadores que, quando encontrados, devem nos levar a uma busca mais detalhada por outros achados associados a alterações cromossômicas.</p>\n\n<p>Precisamos entender que existem dois tipos principais de achados ultrassonográficos relacionados a cromossomopatias: os <strong>soft markers</strong> (marcadores menores ou brandos) e as <strong>anomalias estruturais maiores</strong>. Os soft markers são alterações sutis, muitas vezes variantes da normalidade quando isoladas, mas que estatisticamente aumentam o risco de cromossomopatias. Já as anomalias estruturais maiores são malformações verdadeiras que podem ou não estar associadas a síndromes cromossômicas. O gabarito aceita ambos os tipos, o que reflete a prática clínica real.</p>\n\n<p>Entre os <strong>soft markers</strong> mais importantes e frequentemente cobrados, temos:</p>\n<ul>\n<li>O <strong>foco intracardíaco hiperecogênico</strong> (também chamado de \"golf-ball\"), que aparece como um ponto brilhante no ventrículo cardíaco e está associado principalmente a trissomia do 21</li>\n<li>O <strong>intestino hiperecogênico</strong>, caracterizado por ecogenicidade intestinal semelhante ou maior que a do osso adjacente</li>\n<li>Os <strong>cistos de plexo coroide</strong>, achados muito comuns no segundo trimestre e, embora frequentemente benignos e transitórios quando isolados, fazem parte dos marcadores que devem nos alertar para buscar outros sinais, especialmente de trissomia do 18</li>\n<li>A <strong>pieloectasia</strong> (dilatação da pelve renal)</li>\n<li>O <strong>encurtamento de fêmur</strong> ou <strong>úmero</strong></li>\n</ul>\n\n<p>No grupo das anomalias estruturais maiores, que também servem como marcadores de cromossomopatias, destacamos:</p>\n<ul>\n<li>A <strong>hipoplasia ou ausência de osso nasal</strong>, fortemente associada à síndrome de Down</li>\n<li>As <strong>malformações cardíacas</strong>, extremamente relevantes, pois aparecem em cerca de 40-50% dos fetos com trissomia do 21</li>\n<li>A <strong>onfalocele</strong> (herniação de conteúdo abdominal através do cordão umbilical), associada a múltiplas cromossomopatias</li>\n<li>A <strong>atresia duodenal</strong>, visualizada como imagem de \"dupla bolha\", com forte associação com síndrome de Down</li>\n<li>A <strong>ventriculomegalia</strong> cerebral, que pode estar presente em diversas cromossomopatias</li>\n</ul>\n\n<p>Um ponto importante que a questão traz é o conceito de <em>\"avaliação mais detalhada na busca por novos achados\"</em>. Isso significa que, quando identificamos um marcador, não devemos parar por aí - precisamos fazer uma <strong>varredura sistemática completa</strong> procurando ativamente por outros marcadores ou anomalias. A presença de múltiplos marcadores aumenta significativamente o risco de cromossomopatia em comparação com achados isolados. Além disso, a detecção de qualquer marcador deve levar à discussão sobre testes diagnósticos invasivos (amniocentese) ou não invasivos (NIPT/DNA fetal livre), dependendo do contexto clínico e preferência da gestante.</p>\n\n<p>Uma armadilha comum nessa questão é confundir marcadores do primeiro trimestre (como a <strong>translucência nucal aumentada</strong>) com os do segundo trimestre. Embora a questão mencione \"aumento de prega nucal\" no gabarito, que é um marcador do segundo trimestre, não devemos citar TN, que é específica do primeiro trimestre. Outro erro frequente é não citar exatamente cinco marcadores, como solicitado, ou usar terminologia imprecisa que não seja reconhecida pela banca.</p>\n\n<p>Para responder adequadamente, devemos listar cinco marcadores válidos. Exemplos de respostas completas seriam:</p>\n<ul>\n<li>1) Foco intracardíaco hiperecogênico; 2) Intestino hiperecogênico; 3) Cisto de plexo coroide; 4) Hipoplasia/ausência de osso nasal; 5) Onfalocele</li>\n<li>Ou ainda: 1) Encurtamento de fêmur; 2) Pieloectasia; 3) Atresia duodenal; 4) Ventriculomegalia; 5) Malformação cardíaca</li>\n</ul>\n\n<p>O gabarito é bastante abrangente e aceita inclusive referências genéricas a \"achado anormal\" de estruturas específicas como polo cefálico, coluna, abdômen, trato urinário, tórax, membros, face ou órbitas, o que nos dá flexibilidade na resposta, desde que sejam citados exatamente cinco elementos válidos.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p><strong>Visão do aprovado</strong></p>\n\n<p>Em questões discursivas que pedem \"cite cinco marcadores\", a estratégia mais segura é listar os clássicos de alta frequência, evitando a tentação de demonstrar conhecimento com achados raros que podem não constar no gabarito esperado pela banca. Priorize marcadores com forte evidência de associação a cromossomopatias e que sejam facilmente reconhecíveis na prática: <strong>foco intracardíaco hiperecogênico, intestino hiperecogênico, hipoplasia de osso nasal, encurtamento de fêmur e cisto de plexo coroide</strong> formam um conjunto robusto que dificilmente será contestado. Alternativamente, incluir uma anomalia estrutural maior como onfalocele ou atresia duodenal ao lado de soft markers demonstra compreensão de que ambos os grupos servem como marcadores de risco.</p>\n\n<p>A principal pegadinha técnica aqui é misturar achados de trimestres diferentes, especialmente citar <em>translucência nucal</em> quando a questão pede explicitamente marcadores do morfológico de segundo trimestre. O marcador correspondente nessa fase é o <strong>aumento de prega nucal</strong>, não a TN. Outro erro comum é listar mais ou menos que cinco itens, o que em questões discursivas objetivas pode resultar em perda de pontos por não seguir o comando.</p>\n\n<p>Vale ter em mente que a presença de qualquer desses marcadores não fecha diagnóstico de cromossomopatia, mas sinaliza a necessidade de varredura completa e discussão sobre propedêutica complementar. Em provas, questões sobre esse tema costumam testar tanto o conhecimento dos marcadores isolados quanto a conduta subsequente, integrando rastreio ultrassonográfico com aconselhamento genético e oferta de testes confirmatórios.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O ultrassom morfológico de segundo trimestre, realizado entre 20 e 24 semanas, representa uma janela importante para recalcular o risco de cromossomopatias fetais através da identificação de marcadores específicos. A questão pede que citemos cinco desses marcadores que, quando encontrados, devem nos levar a uma busca mais detalhada por outros achados associados a alterações cromossômicas.</p>\n\n<p>Precisamos entender que existem dois tipos principais de achados ultrassonográficos relacionados a cromossomopatias: os <strong>soft markers</strong> (marcadores menores ou brandos) e as <strong>anomalias estruturais maiores</strong>. Os soft markers são alterações sutis, muitas vezes variantes da normalidade quando isoladas, mas que estatisticamente aumentam o risco de cromossomopatias. Já as anomalias estruturais maiores são malformações verdadeiras que podem ou não estar associadas a síndromes cromossômicas. O gabarito aceita ambos os tipos, o que reflete a prática clínica real.</p>\n\n<p>Entre os <strong>soft markers</strong> mais importantes e frequentemente cobrados, temos:</p>\n<ul>\n<li>O <strong>foco intracardíaco hiperecogênico</strong> (também chamado de \"golf-ball\"), que aparece como um ponto brilhante no ventrículo cardíaco e está associado principalmente a trissomia do 21</li>\n<li>O <strong>intestino hiperecogênico</strong>, caracterizado por ecogenicidade intestinal semelhante ou maior que a do osso adjacente</li>\n<li>Os <strong>cistos de plexo coroide</strong>, achados muito comuns no segundo trimestre e, embora frequentemente benignos e transitórios quando isolados, fazem parte dos marcadores que devem nos alertar para buscar outros sinais, especialmente de trissomia do 18</li>\n<li>A <strong>pieloectasia</strong> (dilatação da pelve renal)</li>\n<li>O <strong>encurtamento de fêmur</strong> ou <strong>úmero</strong></li>\n</ul>\n\n<p>No grupo das anomalias estruturais maiores, que também servem como marcadores de cromossomopatias, destacamos:</p>\n<ul>\n<li>A <strong>hipoplasia ou ausência de osso nasal</strong>, fortemente associada à síndrome de Down</li>\n<li>As <strong>malformações cardíacas</strong>, extremamente relevantes, pois aparecem em cerca de 40-50% dos fetos com trissomia do 21</li>\n<li>A <strong>onfalocele</strong> (herniação de conteúdo abdominal através do cordão umbilical), associada a múltiplas cromossomopatias</li>\n<li>A <strong>atresia duodenal</strong>, visualizada como imagem de \"dupla bolha\", com forte associação com síndrome de Down</li>\n<li>A <strong>ventriculomegalia</strong> cerebral, que pode estar presente em diversas cromossomopatias</li>\n</ul>\n\n<p>Um ponto importante que a questão traz é o conceito de <em>\"avaliação mais detalhada na busca por novos achados\"</em>. Isso significa que, quando identificamos um marcador, não devemos parar por aí - precisamos fazer uma <strong>varredura sistemática completa</strong> procurando ativamente por outros marcadores ou anomalias. A presença de múltiplos marcadores aumenta significativamente o risco de cromossomopatia em comparação com achados isolados. Além disso, a detecção de qualquer marcador deve levar à discussão sobre testes diagnósticos invasivos (amniocentese) ou não invasivos (NIPT/DNA fetal livre), dependendo do contexto clínico e preferência da gestante.</p>\n\n<p>Uma armadilha comum nessa questão é confundir marcadores do primeiro trimestre (como a <strong>translucência nucal aumentada</strong>) com os do segundo trimestre. Embora a questão mencione \"aumento de prega nucal\" no gabarito, que é um marcador do segundo trimestre, não devemos citar TN, que é específica do primeiro trimestre. Outro erro frequente é não citar exatamente cinco marcadores, como solicitado, ou usar terminologia imprecisa que não seja reconhecida pela banca.</p>\n\n<p>Para responder adequadamente, devemos listar cinco marcadores válidos. Exemplos de respostas completas seriam:</p>\n<ul>\n<li>1) Foco intracardíaco hiperecogênico; 2) Intestino hiperecogênico; 3) Cisto de plexo coroide; 4) Hipoplasia/ausência de osso nasal; 5) Onfalocele</li>\n<li>Ou ainda: 1) Encurtamento de fêmur; 2) Pieloectasia; 3) Atresia duodenal; 4) Ventriculomegalia; 5) Malformação cardíaca</li>\n</ul>\n\n<p>O gabarito é bastante abrangente e aceita inclusive referências genéricas a \"achado anormal\" de estruturas específicas como polo cefálico, coluna, abdômen, trato urinário, tórax, membros, face ou órbitas, o que nos dá flexibilidade na resposta, desde que sejam citados exatamente cinco elementos válidos.</p><br>Visão do aprovado: <p><strong>Visão do aprovado</strong></p>\n\n<p>Em questões discursivas que pedem \"cite cinco marcadores\", a estratégia mais segura é listar os clássicos de alta frequência, evitando a tentação de demonstrar conhecimento com achados raros que podem não constar no gabarito esperado pela banca. Priorize marcadores com forte evidência de associação a cromossomopatias e que sejam facilmente reconhecíveis na prática: <strong>foco intracardíaco hiperecogênico, intestino hiperecogênico, hipoplasia de osso nasal, encurtamento de fêmur e cisto de plexo coroide</strong> formam um conjunto robusto que dificilmente será contestado. Alternativamente, incluir uma anomalia estrutural maior como onfalocele ou atresia duodenal ao lado de soft markers demonstra compreensão de que ambos os grupos servem como marcadores de risco.</p>\n\n<p>A principal pegadinha técnica aqui é misturar achados de trimestres diferentes, especialmente citar <em>translucência nucal</em> quando a questão pede explicitamente marcadores do morfológico de segundo trimestre. O marcador correspondente nessa fase é o <strong>aumento de prega nucal</strong>, não a TN. Outro erro comum é listar mais ou menos que cinco itens, o que em questões discursivas objetivas pode resultar em perda de pontos por não seguir o comando.</p>\n\n<p>Vale ter em mente que a presença de qualquer desses marcadores não fecha diagnóstico de cromossomopatia, mas sinaliza a necessidade de varredura completa e discussão sobre propedêutica complementar. Em provas, questões sobre esse tema costumam testar tanto o conhecimento dos marcadores isolados quanto a conduta subsequente, integrando rastreio ultrassonográfico com aconselhamento genético e oferta de testes confirmatórios.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333080,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Complicações de gestação monocoriônica",
+        "focus": {
+          "id": 1627,
+          "name": "Complicações de gestação monocoriônica"
+        }
+      },
+      "detail": {
+        "id": 333080,
+        "content": "A Síndrome de Transfusão Feto-fetal (STFF) ocorre em aproximadamente 15% das gestações gemelares monocoriônicas diamnióticas, em função do desequilíbrio de anastomoses placentárias. O diagnóstico é feito a partir de critérios ultrassonográficos, assim como a classificação de gravidade. Cite os achados correspondentes aos cinco estágios de gravidade de Quintero para classificação da STFF.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15939,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Complicações de gestação monocoriônica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1627,
+          "name": "Complicações de gestação monocoriônica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443137,
+        "actual_explanation": true,
+        "introduction": "<p>A classificação de Quintero estratifica a <strong><span class=\"article-3395\">Síndrome de Transfusão Feto-fetal</span></strong> em cinco estágios progressivos de gravidade, fundamentando-se exclusivamente em achados ultrassonográficos. Essa questão cobra um conhecimento classificatório essencial para quem trabalha com gestações gemelares monocoriônicas, e a banca espera que listemos os critérios específicos de cada um dos cinco estágios.</p>\n<p>Vamos relembrar rapidamente a fisiopatologia para entendermos a lógica da classificação: na <em>STFF</em>, temos anastomoses vasculares placentárias desbalanceadas que resultam em transferência líquida de sangue de um feto (o doador) para o outro (o receptor). O doador fica hipovolêmico e oligúrico, desenvolvendo oligodramnia, enquanto o receptor fica hipervolêmico e poliúrico, desenvolvendo polidramnia. À medida que a síndrome progride, surgem sinais de comprometimento hemodinâmico mais graves, até culminar em óbito fetal.</p>\n<p>O <strong>estágio 1</strong> representa a forma mais leve da STFF. Aqui já identificamos a discordância de líquido amniótico característica: <strong>oligodramnia no saco do doador e polidramnia no saco do receptor</strong>. Mas nesse estágio inicial, a <strong>bexiga ainda está visível em ambos os fetos</strong> (incluindo o doador) e o <strong>Doppler está normal em ambos</strong>. Um erro frequente é esquecer de mencionar esses dois últimos critérios — eles são fundamentais para definir que estamos no estágio 1 e não em um estágio mais avançado.</p>\n<p>No <strong>estágio 2</strong>, a progressão da doença leva à piora da função renal do doador. Aqui o achado-chave é a <strong>bexiga do feto doador não visualizada</strong> ao ultrassom durante todo o período de exame (geralmente 60 minutos). Isso reflete oligúria/anúria importante. Atenção: devemos especificar que é a bexiga do DOADOR — essa especificação é importante na resposta.</p>\n<p>O <strong>estágio 3</strong> marca a entrada em território de comprometimento hemodinâmico significativo. Nesse estágio, encontramos <strong>alterações no Doppler em qualquer um dos fetos</strong>. Podem ser achados no doador (como diástole zero ou reversa na artéria umbilical, refletindo insuficiência placentária) ou no receptor (como onda A reversa no ducto venoso ou pulsatilidade na veia umbilical, indicando sobrecarga cardíaca). A questão aceita a formulação genérica \"Doppler alterado em qualquer feto\".</p>\n<p>No <strong>estágio 4</strong>, chegamos a sinais de descompensação cardíaca franca, com acúmulo de líquido nas cavidades fetais. Os achados são <strong>ascite ou hidropsia fetal</strong>. Vale lembrar que hidropsia representa acúmulo de líquido em duas ou mais cavidades (pleural, pericárdica, peritoneal, ou edema subcutâneo), sendo mais grave que ascite isolada. Geralmente essas alterações ocorrem no receptor, que sofre sobrecarga de volume, mas podem ocorrer no doador em casos de insuficiência cardíaca por anemia e hipoperfusão.</p>\n<p>O <strong>estágio 5</strong> é o desfecho mais grave: <strong>morte de um ou de ambos os fetos</strong>. É importante mencionar as duas possibilidades (\"um ou ambos\"), pois a morte de apenas um feto já caracteriza esse estágio.</p>\n<p>Para responder adequadamente e garantir pontuação completa (5 pontos por estágio), precisamos listar os cinco estágios em ordem e descrever os achados específicos de cada um. A banca aceita algumas variações na redação, mas os elementos-chave devem estar presentes: no estágio 1, os três critérios (oligo/polidrâmnio, bexiga visível, Doppler normal); no estágio 2, a bexiga do doador não visível; no estágio 3, Doppler alterado; no estágio 4, ascite ou hidropsia; no estágio 5, óbito fetal.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h2>Visão do aprovado</h2>\n<p>A classificação de Quintero segue uma lógica de progressão que facilita a memorização: começa com o achado cardinal (discordância de líquido), depois adiciona disfunção renal (bexiga vazia), avança para comprometimento hemodinâmico (Doppler alterado), descompensação cardíaca (hidropsia) e óbito. O grande erro em questões discursivas é ser incompleto no estágio 1, esquecendo de mencionar que bexiga está visível e Doppler normal em ambos — esses critérios negativos são essenciais para diferenciar do estágio 2 e 3, e costumam valer pontos preciosos.</p>\n<p>Outra armadilha frequente é não especificar que no estágio 2 a bexiga não visualizada é do doador, ou esquecer de mencionar \"um ou ambos os fetos\" no estágio 5. Em provas objetivas, esse tema aparece tanto em formato de caso clínico pedindo estadiamento quanto em perguntas diretas sobre critérios, e a banca adora misturar achados de estágios diferentes nas alternativas para confundir. Questões que trazem Doppler alterado junto com bexiga visível no doador, por exemplo, já caracterizam estágio 3, não importa que a hidropsia ainda não esteja presente.</p>\n<p>Vale lembrar que em provas práticas ou discursivas longas, podem pedir não só a classificação mas também correlacionar com indicação de tratamento, já que a <em>fotocoagulação a laser</em> é indicada a partir do estágio 2. Conhecer a classificação de forma completa e precisa é o ponto de partida para toda questão de <strong>STFF</strong>.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>A classificação de Quintero estratifica a <strong><span class=\"article-3395\">Síndrome de Transfusão Feto-fetal</span></strong> em cinco estágios progressivos de gravidade, fundamentando-se exclusivamente em achados ultrassonográficos. Essa questão cobra um conhecimento classificatório essencial para quem trabalha com gestações gemelares monocoriônicas, e a banca espera que listemos os critérios específicos de cada um dos cinco estágios.</p>\n<p>Vamos relembrar rapidamente a fisiopatologia para entendermos a lógica da classificação: na <em>STFF</em>, temos anastomoses vasculares placentárias desbalanceadas que resultam em transferência líquida de sangue de um feto (o doador) para o outro (o receptor). O doador fica hipovolêmico e oligúrico, desenvolvendo oligodramnia, enquanto o receptor fica hipervolêmico e poliúrico, desenvolvendo polidramnia. À medida que a síndrome progride, surgem sinais de comprometimento hemodinâmico mais graves, até culminar em óbito fetal.</p>\n<p>O <strong>estágio 1</strong> representa a forma mais leve da STFF. Aqui já identificamos a discordância de líquido amniótico característica: <strong>oligodramnia no saco do doador e polidramnia no saco do receptor</strong>. Mas nesse estágio inicial, a <strong>bexiga ainda está visível em ambos os fetos</strong> (incluindo o doador) e o <strong>Doppler está normal em ambos</strong>. Um erro frequente é esquecer de mencionar esses dois últimos critérios — eles são fundamentais para definir que estamos no estágio 1 e não em um estágio mais avançado.</p>\n<p>No <strong>estágio 2</strong>, a progressão da doença leva à piora da função renal do doador. Aqui o achado-chave é a <strong>bexiga do feto doador não visualizada</strong> ao ultrassom durante todo o período de exame (geralmente 60 minutos). Isso reflete oligúria/anúria importante. Atenção: devemos especificar que é a bexiga do DOADOR — essa especificação é importante na resposta.</p>\n<p>O <strong>estágio 3</strong> marca a entrada em território de comprometimento hemodinâmico significativo. Nesse estágio, encontramos <strong>alterações no Doppler em qualquer um dos fetos</strong>. Podem ser achados no doador (como diástole zero ou reversa na artéria umbilical, refletindo insuficiência placentária) ou no receptor (como onda A reversa no ducto venoso ou pulsatilidade na veia umbilical, indicando sobrecarga cardíaca). A questão aceita a formulação genérica \"Doppler alterado em qualquer feto\".</p>\n<p>No <strong>estágio 4</strong>, chegamos a sinais de descompensação cardíaca franca, com acúmulo de líquido nas cavidades fetais. Os achados são <strong>ascite ou hidropsia fetal</strong>. Vale lembrar que hidropsia representa acúmulo de líquido em duas ou mais cavidades (pleural, pericárdica, peritoneal, ou edema subcutâneo), sendo mais grave que ascite isolada. Geralmente essas alterações ocorrem no receptor, que sofre sobrecarga de volume, mas podem ocorrer no doador em casos de insuficiência cardíaca por anemia e hipoperfusão.</p>\n<p>O <strong>estágio 5</strong> é o desfecho mais grave: <strong>morte de um ou de ambos os fetos</strong>. É importante mencionar as duas possibilidades (\"um ou ambos\"), pois a morte de apenas um feto já caracteriza esse estágio.</p>\n<p>Para responder adequadamente e garantir pontuação completa (5 pontos por estágio), precisamos listar os cinco estágios em ordem e descrever os achados específicos de cada um. A banca aceita algumas variações na redação, mas os elementos-chave devem estar presentes: no estágio 1, os três critérios (oligo/polidrâmnio, bexiga visível, Doppler normal); no estágio 2, a bexiga do doador não visível; no estágio 3, Doppler alterado; no estágio 4, ascite ou hidropsia; no estágio 5, óbito fetal.</p><br>Visão do aprovado: <h2>Visão do aprovado</h2>\n<p>A classificação de Quintero segue uma lógica de progressão que facilita a memorização: começa com o achado cardinal (discordância de líquido), depois adiciona disfunção renal (bexiga vazia), avança para comprometimento hemodinâmico (Doppler alterado), descompensação cardíaca (hidropsia) e óbito. O grande erro em questões discursivas é ser incompleto no estágio 1, esquecendo de mencionar que bexiga está visível e Doppler normal em ambos — esses critérios negativos são essenciais para diferenciar do estágio 2 e 3, e costumam valer pontos preciosos.</p>\n<p>Outra armadilha frequente é não especificar que no estágio 2 a bexiga não visualizada é do doador, ou esquecer de mencionar \"um ou ambos os fetos\" no estágio 5. Em provas objetivas, esse tema aparece tanto em formato de caso clínico pedindo estadiamento quanto em perguntas diretas sobre critérios, e a banca adora misturar achados de estágios diferentes nas alternativas para confundir. Questões que trazem Doppler alterado junto com bexiga visível no doador, por exemplo, já caracterizam estágio 3, não importa que a hidropsia ainda não esteja presente.</p>\n<p>Vale lembrar que em provas práticas ou discursivas longas, podem pedir não só a classificação mas também correlacionar com indicação de tratamento, já que a <em>fotocoagulação a laser</em> é indicada a partir do estágio 2. Conhecer a classificação de forma completa e precisa é o ponto de partida para toda questão de <strong>STFF</strong>.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333081,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Diabetes na gestação",
+        "focus": {
+          "id": 1572,
+          "name": "Diabetes na gestação"
+        }
+      },
+      "detail": {
+        "id": 333081,
+        "content": "Diabetes gestacional é definida como uma desordem do metabolismo dos carboidratos, de gravidade variável, com aparecimento ou primeiro reconhecimento durante a gestação. O controle da maioria dos casos é atingido com dieta adequada e prática de exercícios físicos regulares, entretanto, algumas gestantes requerem a utilização de insulina. Cite dois parâmetros ultrassonográficos a serem avaliados no acompanhamento dessas pacientes.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 17143,
+            "parent_tag": {
+              "id": 15915,
+              "name": "Distúrbios hipertensivos e diabetes na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Diabetes na gestação",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1572,
+          "name": "Diabetes na gestação",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 91,
+            "name": "Distúrbios hipertensivos e diabetes na gestação",
+            "discipline": 86,
+            "old_tag": 15915,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443135,
+        "actual_explanation": true,
+        "introduction": "<p>O diabetes gestacional causa complicações fetais específicas que justificam um acompanhamento ultrassonográfico direcionado. A questão quer saber quais parâmetros devemos avaliar no ultrassom dessas pacientes, e isso está diretamente ligado ao que o DMG pode provocar no feto.</p>\n\n<p>Precisamos entender a fisiopatologia: a hiperglicemia materna leva à <strong>hiperinsulinemia fetal</strong>, já que a glicose atravessa a placenta mas a insulina materna não. Esse excesso de insulina no feto funciona como um potente fator anabólico, estimulando o crescimento e a deposição de gordura, especialmente no tecido subcutâneo abdominal. O resultado? <strong>Macrossomia fetal</strong>, que é a complicação mais comum do DMG mal controlado. Além disso, a hiperglicemia fetal leva à poliúria (o feto \"urina\" mais líquido amniótico), podendo causar <strong>polidrâmnio</strong>.</p>\n\n<p>Com isso em mente, fica claro que nosso foco ultrassonográfico deve ser monitorar crescimento fetal e líquido amniótico. Os principais parâmetros aceitos são:</p>\n<ul>\n<li><strong>estimativa de peso fetal</strong></li>\n<li><strong>avaliação de líquido amniótico</strong></li>\n<li><strong>avaliação de circunferência abdominal</strong></li>\n</ul>\n\n<p>Este último é particularmente importante porque a circunferência abdominal é o primeiro parâmetro biométrico a se alterar na macrossomia, já que é onde ocorre a maior deposição de gordura. É um marcador precoce e sensível.</p>\n\n<p>Um ponto que costuma gerar dúvida: e a <strong>dopplerfluxometria</strong>? Ela também é citada no gabarito, mas com uma ressalva importante. O doppler não é usado rotineiramente no acompanhamento do DMG, mas sim reservado para situações específicas, como quando diagnosticamos <strong>restrição de crescimento fetal</strong> previamente. Isso pode acontecer em gestantes diabéticas com vasculopatia ou outras comorbidades. Então cuidado: doppler não é para monitorar macrossomia, mas para avaliar insuficiência placentária quando há restrição de crescimento.</p>\n\n<p>Para responder corretamente, devemos citar <strong>dois parâmetros</strong> dentre os listados. As opções mais diretas e frequentemente cobradas são <em>estimativa de peso fetal</em>, <em>avaliação de líquido amniótico</em> e <em>circunferência abdominal</em>. Armadilhas comuns incluem confundir com parâmetros clínicos ou laboratoriais (como glicemia capilar ou hemoglobina glicada) ou usar terminologia vaga e imprecisa. A banca quer termos técnicos corretos: não vale escrever \"tamanho do bebê\" quando o correto é \"estimativa de peso fetal\", ou \"quantidade de líquido\" quando devemos falar em \"avaliação de líquido amniótico\" ou \"índice de líquido amniótico\".</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p><strong>Visão do aprovado</strong></p>\n\n<p>Em questões dissertativas de Obstetrícia, a banca espera terminologia técnica precisa, e essa questão ilustra bem essa exigência. Ao responder sobre acompanhamento ultrassonográfico do DMG, devemos usar exatamente os termos <em>\"estimativa de peso fetal\"</em>, <em>\"avaliação de líquido amniótico\"</em> ou <em>\"circunferência abdominal\"</em>, evitando descrições genéricas como \"ver o tamanho do bebê\" ou \"medir o líquido\". Essa precisão costuma valer pontos na correção.</p>\n\n<p>A principal armadilha aqui é incluir dopplerfluxometria como parâmetro de rotina. Muitos candidatos colocam doppler achando que quanto mais exames citar, melhor, mas ele não é usado para monitorar macrossomia, que é o foco do acompanhamento no DMG. Se você citar doppler sem a ressalva de que é reservado para casos de restrição de crescimento, pode perder pontos por imprecisão conceitual. Na dúvida entre os três primeiros parâmetros, priorize <strong>peso fetal e líquido amniótico</strong>, que são os mais diretos e universalmente aceitos.</p>\n\n<p>Vale também evitar a confusão entre parâmetros ultrassonográficos e clínico-laboratoriais. A questão pede especificamente achados do ultrassom, então não adianta citar glicemia capilar, hemoglobina glicada ou altura uterina, que são métodos de controle metabólico e clínico, não ecográficos. Esse tipo de erro conceitual é comum sob pressão de prova e custam pontos preciosos em questões dissertativas.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O diabetes gestacional causa complicações fetais específicas que justificam um acompanhamento ultrassonográfico direcionado. A questão quer saber quais parâmetros devemos avaliar no ultrassom dessas pacientes, e isso está diretamente ligado ao que o DMG pode provocar no feto.</p>\n\n<p>Precisamos entender a fisiopatologia: a hiperglicemia materna leva à <strong>hiperinsulinemia fetal</strong>, já que a glicose atravessa a placenta mas a insulina materna não. Esse excesso de insulina no feto funciona como um potente fator anabólico, estimulando o crescimento e a deposição de gordura, especialmente no tecido subcutâneo abdominal. O resultado? <strong>Macrossomia fetal</strong>, que é a complicação mais comum do DMG mal controlado. Além disso, a hiperglicemia fetal leva à poliúria (o feto \"urina\" mais líquido amniótico), podendo causar <strong>polidrâmnio</strong>.</p>\n\n<p>Com isso em mente, fica claro que nosso foco ultrassonográfico deve ser monitorar crescimento fetal e líquido amniótico. Os principais parâmetros aceitos são:</p>\n<ul>\n<li><strong>estimativa de peso fetal</strong></li>\n<li><strong>avaliação de líquido amniótico</strong></li>\n<li><strong>avaliação de circunferência abdominal</strong></li>\n</ul>\n\n<p>Este último é particularmente importante porque a circunferência abdominal é o primeiro parâmetro biométrico a se alterar na macrossomia, já que é onde ocorre a maior deposição de gordura. É um marcador precoce e sensível.</p>\n\n<p>Um ponto que costuma gerar dúvida: e a <strong>dopplerfluxometria</strong>? Ela também é citada no gabarito, mas com uma ressalva importante. O doppler não é usado rotineiramente no acompanhamento do DMG, mas sim reservado para situações específicas, como quando diagnosticamos <strong>restrição de crescimento fetal</strong> previamente. Isso pode acontecer em gestantes diabéticas com vasculopatia ou outras comorbidades. Então cuidado: doppler não é para monitorar macrossomia, mas para avaliar insuficiência placentária quando há restrição de crescimento.</p>\n\n<p>Para responder corretamente, devemos citar <strong>dois parâmetros</strong> dentre os listados. As opções mais diretas e frequentemente cobradas são <em>estimativa de peso fetal</em>, <em>avaliação de líquido amniótico</em> e <em>circunferência abdominal</em>. Armadilhas comuns incluem confundir com parâmetros clínicos ou laboratoriais (como glicemia capilar ou hemoglobina glicada) ou usar terminologia vaga e imprecisa. A banca quer termos técnicos corretos: não vale escrever \"tamanho do bebê\" quando o correto é \"estimativa de peso fetal\", ou \"quantidade de líquido\" quando devemos falar em \"avaliação de líquido amniótico\" ou \"índice de líquido amniótico\".</p><br>Visão do aprovado: <p><strong>Visão do aprovado</strong></p>\n\n<p>Em questões dissertativas de Obstetrícia, a banca espera terminologia técnica precisa, e essa questão ilustra bem essa exigência. Ao responder sobre acompanhamento ultrassonográfico do DMG, devemos usar exatamente os termos <em>\"estimativa de peso fetal\"</em>, <em>\"avaliação de líquido amniótico\"</em> ou <em>\"circunferência abdominal\"</em>, evitando descrições genéricas como \"ver o tamanho do bebê\" ou \"medir o líquido\". Essa precisão costuma valer pontos na correção.</p>\n\n<p>A principal armadilha aqui é incluir dopplerfluxometria como parâmetro de rotina. Muitos candidatos colocam doppler achando que quanto mais exames citar, melhor, mas ele não é usado para monitorar macrossomia, que é o foco do acompanhamento no DMG. Se você citar doppler sem a ressalva de que é reservado para casos de restrição de crescimento, pode perder pontos por imprecisão conceitual. Na dúvida entre os três primeiros parâmetros, priorize <strong>peso fetal e líquido amniótico</strong>, que são os mais diretos e universalmente aceitos.</p>\n\n<p>Vale também evitar a confusão entre parâmetros ultrassonográficos e clínico-laboratoriais. A questão pede especificamente achados do ultrassom, então não adianta citar glicemia capilar, hemoglobina glicada ou altura uterina, que são métodos de controle metabólico e clínico, não ecográficos. Esse tipo de erro conceitual é comum sob pressão de prova e custam pontos preciosos em questões dissertativas.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T17:50:28.601602+00:00",
+  "complete": true
+}

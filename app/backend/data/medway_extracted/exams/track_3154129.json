@@ -1,0 +1,590 @@
+{
+  "track_id": 3154129,
+  "name": "INEP - Revalida - 2022.1 - Discursiva",
+  "year": 2022,
+  "track_fast": {
+    "id": 3154129,
+    "name": "INEP - Revalida - 2022.1 - Discursiva",
+    "track_type": "c",
+    "question_count": 5,
+    "year": 2022,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "INEP - Revalida",
+    "track_image": "https://cdn.medway.com.br/media/track/exam/inep-revalida/default_ncF4L4I.jpeg",
+    "residency_degree": {
+      "id": 3,
+      "abbreviation": "R1"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 220984,
+        "number": 1,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Diabetes",
+        "focus": {
+          "id": 2127,
+          "name": "Diabetes"
+        }
+      },
+      "detail": {
+        "id": 220984,
+        "content": "Um homem com 65 anos de idade, diabético, chega com familiares para consulta no serviço de pronto atendimento devido a confusão mental. Os familiares informam que ele é diabético há 20 anos e faz acompanhamento com o endocrinologista, em uso de insulina há 2 meses (não sabem a dose, mas que faz uso 2 vezes ao dia), além de acompanhamento com o nefrologista há 1 mês, por uma alteração renal que não sabem especificar qual é. Relatam que, no dia anterior, o paciente havia começado a realizar caminhadas para tentar melhor controle do diabetes e que ele vem reduzindo sua quantidade de alimentos com essa mesma intenção. Contam que hoje pela manhã, começou a queixar-se de suor frio e tontura e que, em poucos minutos, tornou-se confuso, apresentando dificuldade para articular as palavras. Ao exame físico apresenta-se normal, sem sinais focais, mas confuso, sem conseguir manter uma conversa ou contato visual. Apresenta pressão arterial de 130 x 90 mmHg e frequência cardíaca de 110 batimentos por minuto, com tremores de extremidades.\n\nConsiderando que, na abordagem inicial do paciente, foram realizadas monitorização, suplementação de oxigênio e punção de acesso venoso periférico, faça o que se pede nos itens a seguir.\na) Cite a principal hipótese diagnóstica a ser considerada. Justifique sua resposta.\nb) Indique o exame complementar a ser solicitado imediatamente nesse caso. \nc) Descreva a conduta medicamentosa imediata.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 504,
+            "parent_tag": {
+              "id": 294,
+              "name": "Endocrinologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Diabetes",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 1415,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2127,
+          "name": "Diabetes",
+          "discipline": {
+            "id": 97,
+            "name": "Clínica Médica",
+            "residency_degree": 3,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 268,
+            "name": "Endocrinologia",
+            "discipline": 97,
+            "old_tag": 294,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251825,
+        "actual_explanation": true,
+        "introduction": "<p>Nessa questão temos um paciente idoso, com quadro de confusão mental que comparece para avaliação. <br/>O paciente faz uso de insulina e tem doença renal crônica, o que leva a maior duração da insulina no organismo. <br/>O paciente apresenta então sintomas que sugerem hipoglicemia, como suor frio, tontura, alterações de fala, que são sintomas sugestivos de <span class=\"article-2844\">hipoglicemia</span>. <br/>Em um paciente que possui diabetes, a <span class=\"article-2844\">hipoglicemia</span> é definida com valores de <strong>glicemia abaixo de 70mg/dl</strong>. Se o paciente tiver ainda melhora dos sintomas após ingestão de glicose, estaremos diante da tríade de Whipple. </p>\n<p><br/>Em pacientes que estão com condições de ingestão via oral adequadas, podemos orientar ingestão de 15 gramas de carboidrato. Já em pacientes inconscientes ou sem condições de via oral, vamos fazer a correção intramuscular ou intravenosa, com glicose a 50%. </p>\n<p> </p>\n<p>Após a introdução, vamos conferir o gabarito oficial. </p>\n<p><strong>a)</strong> <span class=\"article-2844\">Hipoglicemia</span>. <span class=\"article-2844\">Hipoglicemia</span> grave é uma opção correta para o diagnóstico.<br/><strong>b)</strong> Glicemia capilar.<br/>Alternativamente, acata-se os seguintes exames:<br/>· Hemoglicoteste, Hemoglucoteste, HGT ou Dextro.<br/>· Glicemia ao azar (termo similar a glicemia ao acaso, traduzindo do espanhol).<br/>· Glicemia (mesmo quando não especifica que é capilar.<br/>Glicemia de urgência.<br/>· Glicemia sérica.<br/><strong>c)</strong> Administração de glicose a 50% - 50 ml, via endovenosa, em bólus. Embora glicose a 50% seja o<br/>recomendável, glicose a 25% - 100 mL, via endovenosa, em bolus, é uma opção aceitável.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Muita atenção com pacientes em uso de insulina e que tenham doença renal crônica, pois aqui vamos ter uma duração maior da insulina e com isso há um risco maior de hipoglicemia. Precisamos saber reconhecer o quadro de <span class=\"article-2844\">hipoglicemia</span> e orientar a correção adequada. </p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Nessa questão temos um paciente idoso, com quadro de confusão mental que comparece para avaliação. <br/>O paciente faz uso de insulina e tem doença renal crônica, o que leva a maior duração da insulina no organismo. <br/>O paciente apresenta então sintomas que sugerem hipoglicemia, como suor frio, tontura, alterações de fala, que são sintomas sugestivos de <span class=\"article-2844\">hipoglicemia</span>. <br/>Em um paciente que possui diabetes, a <span class=\"article-2844\">hipoglicemia</span> é definida com valores de <strong>glicemia abaixo de 70mg/dl</strong>. Se o paciente tiver ainda melhora dos sintomas após ingestão de glicose, estaremos diante da tríade de Whipple. </p>\n<p><br/>Em pacientes que estão com condições de ingestão via oral adequadas, podemos orientar ingestão de 15 gramas de carboidrato. Já em pacientes inconscientes ou sem condições de via oral, vamos fazer a correção intramuscular ou intravenosa, com glicose a 50%. </p>\n<p> </p>\n<p>Após a introdução, vamos conferir o gabarito oficial. </p>\n<p><strong>a)</strong> <span class=\"article-2844\">Hipoglicemia</span>. <span class=\"article-2844\">Hipoglicemia</span> grave é uma opção correta para o diagnóstico.<br/><strong>b)</strong> Glicemia capilar.<br/>Alternativamente, acata-se os seguintes exames:<br/>· Hemoglicoteste, Hemoglucoteste, HGT ou Dextro.<br/>· Glicemia ao azar (termo similar a glicemia ao acaso, traduzindo do espanhol).<br/>· Glicemia (mesmo quando não especifica que é capilar.<br/>Glicemia de urgência.<br/>· Glicemia sérica.<br/><strong>c)</strong> Administração de glicose a 50% - 50 ml, via endovenosa, em bólus. Embora glicose a 50% seja o<br/>recomendável, glicose a 25% - 100 mL, via endovenosa, em bolus, é uma opção aceitável.</p><br>Visão do aprovado: <p>Muita atenção com pacientes em uso de insulina e que tenham doença renal crônica, pois aqui vamos ter uma duração maior da insulina e com isso há um risco maior de hipoglicemia. Precisamos saber reconhecer o quadro de <span class=\"article-2844\">hipoglicemia</span> e orientar a correção adequada. </p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 220985,
+        "number": 2,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Cuidados Pré-operatórios",
+        "focus": {
+          "id": 1924,
+          "name": "Cuidados Pré-operatórios"
+        }
+      },
+      "detail": {
+        "id": 220985,
+        "content": "Uma paciente com 33 anos de idade foi internada para procedimento cirúrgico de ressecção segmentar da mama direita, para retirada de tumor mamário local com margem de ressecção. Na chegada ao hospital fez sua identificação na área de internação, tendo sido colocada pulseira de identificação com anotação de alergia a dipirona. Na chegada do cirurgião ao hospital, o mesmo foi rapidamente ao quarto para o preenchimento de termo de consentimento da paciente. O anestesista já estava lhe aguardando no centro cirúrgico, tendo sido solicitado o0 encaminhamento da paciente para a sala operatória. O maqueiro entrou no quarto, juntamente com a enfermeira do andar, que realizou nova identificação da paciente e colocou-a na maca para transporte. Ao chegar ao centro cirúrgico ocorreu mais uma checagem relativa à identificação da paciente pela enfermeira chefe do centro cirúrgico, tendo encaminhado a paciente para a sua respectiva sala operatória. Após a anestesia geral foi iniciado pelo cirurgião o procedimento operatório, com sinalização ao final da cirurgia da falta de fio de sutura adequado. Foi constatado pela circulante de sala que o fio solicitado encontrava-se em falta no hospital, tendo como solução a utilização de outra alternativa disponível, que levou a resultado estético não satisfatório.  \n\nDiante dessa situação, identifique e descreva, de acordo com as etapas preventivas preconizadas para a segurança do paciente pelo Programa Nacional de Segurança do Paciente, estabelecido pela Portaria n. 529/2013, do Ministério da Saúde, as ações preventivas que foram realizadas e aquelas que deveriam ter sido feitas no caso apresentado.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 1520,
+            "parent_tag": {
+              "id": 353,
+              "name": "Cirurgia Geral",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Cuidados Pré-operatórios",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              5,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 3489,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1924,
+          "name": "Cuidados Pré-operatórios",
+          "discipline": {
+            "id": 64,
+            "name": "Cirurgia Geral",
+            "residency_degree": 3,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 182,
+            "name": "Cirurgia Geral",
+            "discipline": 64,
+            "old_tag": 353,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251339,
+        "actual_explanation": true,
+        "introduction": "<p>Olá! Essa questão aborda um tema bastante frequente nas provas de residência: o <strong>Programa Nacional de Segurança do Paciente (PNSP)</strong> e, mais especificamente, o <strong>Protocolo de <span class=\"article-3704\">Cirurgia Segura</span></strong>.</p>\n<p>O caso apresenta uma paciente de 33 anos que foi submetida a uma ressecção segmentar de mama para retirada de tumor. Durante todo o processo, desde a internação até a conclusão da cirurgia, várias etapas de segurança foram realizadas, mas outras importantes foram omitidas, o que culminou em um problema ao final do procedimento (falta de fio de sutura adequado).</p>\n<p>O Protocolo de <span class=\"article-3704\">Cirurgia Segura</span> estabelecido pelo PNSP (Portaria nº 529/2013) determina que a verificação de segurança deve ocorrer em <strong>três momentos críticos</strong>:</p>\n<ol>\n<li><strong>Sign In</strong> (Antes da indução anestésica)</li>\n<li><strong>Time Out</strong> (Antes da incisão cirúrgica)</li>\n<li><strong>Sign Out</strong> (Antes do paciente sair da sala de operação)</li>\n</ol>\n<p>Vamos analisar o que foi realizado e o que ficou faltando em cada etapa:</p>\n<p>Na <strong>1ª etapa (Sign In)</strong>, foram realizados corretamente:</p>\n<ul>\n<li>Identificação da paciente em múltiplos momentos (na internação, pelo maqueiro e pela enfermeira do andar, e na chegada ao centro cirúrgico)</li>\n<li>Identificação da alergia a dipirona com uso de pulseira específica</li>\n<li>Preenchimento do termo de consentimento livre e esclarecido</li>\n</ul>\n<p>Porém, faltaram elementos cruciais como:</p>\n<ul>\n<li>Confirmação pela própria paciente do sítio cirúrgico e procedimento</li>\n<li>Verificação da segurança anestésica</li>\n<li>Checagem do oxímetro de pulso</li>\n<li>Avaliação de risco de via aérea difícil</li>\n<li>Avaliação do risco de perda sanguínea significativa</li>\n</ul>\n<p>Na <strong>2ª etapa (Time Out)</strong>, o caso não menciona nenhuma das verificações recomendadas, indicando que provavelmente não foram realizadas:</p>\n<ul>\n<li>Apresentação dos membros da equipe</li>\n<li>Confirmação da identificação da paciente, sítio cirúrgico e procedimento</li>\n<li>Revisão de eventos críticos pelos profissionais envolvidos</li>\n<li>Verificação de materiais, equipamentos e medicamentos</li>\n<li>Confirmação da profilaxia antimicrobiana</li>\n<li>Disponibilidade de exames de imagem</li>\n</ul>\n<p>Na <strong>3ª etapa (Sign Out)</strong>, também não há menção de verificações importantes:</p>\n<ul>\n<li>Confirmação verbal do procedimento realizado</li>\n<li>Contagem de materiais (instrumentais, compressas, agulhas)</li>\n<li>Identificação correta de amostras para patologia</li>\n<li>Verificação de problemas com equipamentos</li>\n<li>Planejamento para recuperação da paciente</li>\n</ul>\n<p>O resultado final do caso (falta do fio de sutura adequado) evidencia falhas no processo de verificação prévia de materiais, que deveria ter sido realizado nas etapas anteriores, especialmente no Time Out.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Este tipo de questão sobre protocolos de segurança do paciente aparece com frequência nas provas de residência, e dominar o conteúdo da Portaria nº 529/2013 é fundamental. As bancas adoram explorar esses protocolos porque são aplicáveis a todas as especialidades médicas.</p>\n<p>Para memorizar melhor o Protocolo de <span class=\"article-3704\">Cirurgia Segura</span>, podemos usar a seguinte estratégia:</p>\n<p><strong>Sign In (Entrada)</strong> - Foco na IDENTIDADE do paciente e RISCOS anestésicos</p>\n<ul>\n<li>I - Identificação (paciente, sítio, procedimento)</li>\n<li>D - Documentação (termo de consentimento)</li>\n<li>E - Equipamentos (oxímetro, via aérea)</li>\n<li>A - Alergias documentadas</li>\n<li>R - Riscos (sangramento, anestésicos)</li>\n</ul>\n<p><strong>Time Out (Pausa)</strong> - Foco na COMUNICAÇÃO entre a equipe</p>\n<ul>\n<li>T - Todos se apresentam</li>\n<li>E - Equipe confirma paciente, sítio e procedimento</li>\n<li>A - Antibioticoprofilaxia</li>\n<li>M - Materiais e equipamentos verificados</li>\n<li>S - Situações críticas discutidas por todos</li>\n</ul>\n<p><strong>Sign Out (Saída)</strong> - Foco na CONCLUSÃO segura</p>\n<ul>\n<li>C - Confirmação do procedimento realizado</li>\n<li>O - Contagem de materiais (instrumentais, compressas, agulhas)</li>\n<li>N - Nomeação e identificação de amostras</li>\n<li>T - Transferência (planejamento pós-op)</li>\n<li>A - Avaliação de equipamentos e problemas</li>\n</ul>\n<p>A principal armadilha desta questão é confundir o que foi efetivamente relatado no caso com o que deveria ter sido feito. Preste atenção que, embora tenha ocorrido identificação do paciente, ela não foi completa como exige o protocolo.</p>\n<p>Além disso, lembre-se que o Protocolo de <span class=\"article-3704\">Cirurgia Segura</span> é apenas um dos seis protocolos básicos do PNSP. Os outros são:</p>\n<ul>\n<li>Protocolo de Identificação do Paciente</li>\n<li>Protocolo de Higiene das Mãos</li>\n<li>Protocolo de Segurança na Prescrição, Uso e Administração de Medicamentos</li>\n<li>Protocolo de Prevenção de Quedas</li>\n<li>Protocolo de Prevenção de Úlceras por Pressão</li>\n</ul>\n<p>A falha na verificação prévia da disponibilidade do material (fio de sutura) que resultou em desfecho estético insatisfatório é um exemplo clássico de evento adverso evitável, reforçando a importância da aplicação correta do protocolo.</p>\n<p>Para aprofundamento, recomendo estudar o manual \"Protocolo para <span class=\"article-3704\">Cirurgia Segura</span>\" da ANVISA e também a lista de verificação (checklist) da OMS para <span class=\"article-3704\">cirurgia segura</span>, que serviu como base para o protocolo brasileiro.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Olá! Essa questão aborda um tema bastante frequente nas provas de residência: o <strong>Programa Nacional de Segurança do Paciente (PNSP)</strong> e, mais especificamente, o <strong>Protocolo de <span class=\"article-3704\">Cirurgia Segura</span></strong>.</p>\n<p>O caso apresenta uma paciente de 33 anos que foi submetida a uma ressecção segmentar de mama para retirada de tumor. Durante todo o processo, desde a internação até a conclusão da cirurgia, várias etapas de segurança foram realizadas, mas outras importantes foram omitidas, o que culminou em um problema ao final do procedimento (falta de fio de sutura adequado).</p>\n<p>O Protocolo de <span class=\"article-3704\">Cirurgia Segura</span> estabelecido pelo PNSP (Portaria nº 529/2013) determina que a verificação de segurança deve ocorrer em <strong>três momentos críticos</strong>:</p>\n<ol>\n<li><strong>Sign In</strong> (Antes da indução anestésica)</li>\n<li><strong>Time Out</strong> (Antes da incisão cirúrgica)</li>\n<li><strong>Sign Out</strong> (Antes do paciente sair da sala de operação)</li>\n</ol>\n<p>Vamos analisar o que foi realizado e o que ficou faltando em cada etapa:</p>\n<p>Na <strong>1ª etapa (Sign In)</strong>, foram realizados corretamente:</p>\n<ul>\n<li>Identificação da paciente em múltiplos momentos (na internação, pelo maqueiro e pela enfermeira do andar, e na chegada ao centro cirúrgico)</li>\n<li>Identificação da alergia a dipirona com uso de pulseira específica</li>\n<li>Preenchimento do termo de consentimento livre e esclarecido</li>\n</ul>\n<p>Porém, faltaram elementos cruciais como:</p>\n<ul>\n<li>Confirmação pela própria paciente do sítio cirúrgico e procedimento</li>\n<li>Verificação da segurança anestésica</li>\n<li>Checagem do oxímetro de pulso</li>\n<li>Avaliação de risco de via aérea difícil</li>\n<li>Avaliação do risco de perda sanguínea significativa</li>\n</ul>\n<p>Na <strong>2ª etapa (Time Out)</strong>, o caso não menciona nenhuma das verificações recomendadas, indicando que provavelmente não foram realizadas:</p>\n<ul>\n<li>Apresentação dos membros da equipe</li>\n<li>Confirmação da identificação da paciente, sítio cirúrgico e procedimento</li>\n<li>Revisão de eventos críticos pelos profissionais envolvidos</li>\n<li>Verificação de materiais, equipamentos e medicamentos</li>\n<li>Confirmação da profilaxia antimicrobiana</li>\n<li>Disponibilidade de exames de imagem</li>\n</ul>\n<p>Na <strong>3ª etapa (Sign Out)</strong>, também não há menção de verificações importantes:</p>\n<ul>\n<li>Confirmação verbal do procedimento realizado</li>\n<li>Contagem de materiais (instrumentais, compressas, agulhas)</li>\n<li>Identificação correta de amostras para patologia</li>\n<li>Verificação de problemas com equipamentos</li>\n<li>Planejamento para recuperação da paciente</li>\n</ul>\n<p>O resultado final do caso (falta do fio de sutura adequado) evidencia falhas no processo de verificação prévia de materiais, que deveria ter sido realizado nas etapas anteriores, especialmente no Time Out.</p><br>Visão do aprovado: <p>Este tipo de questão sobre protocolos de segurança do paciente aparece com frequência nas provas de residência, e dominar o conteúdo da Portaria nº 529/2013 é fundamental. As bancas adoram explorar esses protocolos porque são aplicáveis a todas as especialidades médicas.</p>\n<p>Para memorizar melhor o Protocolo de <span class=\"article-3704\">Cirurgia Segura</span>, podemos usar a seguinte estratégia:</p>\n<p><strong>Sign In (Entrada)</strong> - Foco na IDENTIDADE do paciente e RISCOS anestésicos</p>\n<ul>\n<li>I - Identificação (paciente, sítio, procedimento)</li>\n<li>D - Documentação (termo de consentimento)</li>\n<li>E - Equipamentos (oxímetro, via aérea)</li>\n<li>A - Alergias documentadas</li>\n<li>R - Riscos (sangramento, anestésicos)</li>\n</ul>\n<p><strong>Time Out (Pausa)</strong> - Foco na COMUNICAÇÃO entre a equipe</p>\n<ul>\n<li>T - Todos se apresentam</li>\n<li>E - Equipe confirma paciente, sítio e procedimento</li>\n<li>A - Antibioticoprofilaxia</li>\n<li>M - Materiais e equipamentos verificados</li>\n<li>S - Situações críticas discutidas por todos</li>\n</ul>\n<p><strong>Sign Out (Saída)</strong> - Foco na CONCLUSÃO segura</p>\n<ul>\n<li>C - Confirmação do procedimento realizado</li>\n<li>O - Contagem de materiais (instrumentais, compressas, agulhas)</li>\n<li>N - Nomeação e identificação de amostras</li>\n<li>T - Transferência (planejamento pós-op)</li>\n<li>A - Avaliação de equipamentos e problemas</li>\n</ul>\n<p>A principal armadilha desta questão é confundir o que foi efetivamente relatado no caso com o que deveria ter sido feito. Preste atenção que, embora tenha ocorrido identificação do paciente, ela não foi completa como exige o protocolo.</p>\n<p>Além disso, lembre-se que o Protocolo de <span class=\"article-3704\">Cirurgia Segura</span> é apenas um dos seis protocolos básicos do PNSP. Os outros são:</p>\n<ul>\n<li>Protocolo de Identificação do Paciente</li>\n<li>Protocolo de Higiene das Mãos</li>\n<li>Protocolo de Segurança na Prescrição, Uso e Administração de Medicamentos</li>\n<li>Protocolo de Prevenção de Quedas</li>\n<li>Protocolo de Prevenção de Úlceras por Pressão</li>\n</ul>\n<p>A falha na verificação prévia da disponibilidade do material (fio de sutura) que resultou em desfecho estético insatisfatório é um exemplo clássico de evento adverso evitável, reforçando a importância da aplicação correta do protocolo.</p>\n<p>Para aprofundamento, recomendo estudar o manual \"Protocolo para <span class=\"article-3704\">Cirurgia Segura</span>\" da ANVISA e também a lista de verificação (checklist) da OMS para <span class=\"article-3704\">cirurgia segura</span>, que serviu como base para o protocolo brasileiro.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 220986,
+        "number": 3,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Glomerulopatias e Tubulopatias",
+        "focus": {
+          "id": 2084,
+          "name": "Glomerulopatias e Tubulopatias"
+        }
+      },
+      "detail": {
+        "id": 220986,
+        "content": "Uma escolar com 7 anos de idade é atendida em Unidade de Pronto Atendimento. A mãe relata que, há 1 dia, está com inchaço nos olhos e tem urinado pouco, apresentando urina escura. Relata também que, há 15 dias, a menina queixou-se de dor na garganta, dificuldade para engolir os alimentos e apresentou febre alta por 4 dias, manejada com medicação sintomática. No momento, a escolar apresenta cefaleia. Ao exame físico, verificam-se regular estado geral, edema periorbital discreto e hipertensão estágio 1. \n\nConsiderando o caso clínico descrito, responda às questões a seguir.  \na) Qual é a principal hipótese diagnóstica? Justifique sua resposta. \nb) Quais exames laboratoriais podem estar alterados nesse caso? \nc) Quais as orientações a serem feitas e que medicamentos devem ser usados para essa escolar? \nd) Qual é a evolução esperada desse quadro para casos não complicados?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 563,
+            "parent_tag": {
+              "id": 306,
+              "name": "Nefrologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Glomerulopatias e Tubulopatias",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 1171,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2084,
+          "name": "Glomerulopatias e Tubulopatias",
+          "discipline": {
+            "id": 92,
+            "name": "Pediatria",
+            "residency_degree": 3,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 239,
+            "name": "Nefrologia",
+            "discipline": 92,
+            "old_tag": 306,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251733,
+        "actual_explanation": true,
+        "introduction": "<p>O caso apresenta uma escolar de 7 anos com quadro agudo de edema periorbital, oligúria e urina escura, além de hipertensão arterial estágio 1 e cefaleia. Há 15 dias, a paciente teve episódio de faringoamigdalite, sugerindo uma infecção prévia por estreptococo beta-hemolítico do grupo A. Esses achados são típicos de uma <strong data-end=\"473\" data-start=\"427\">glomerulonefrite pós-estreptocócica (GNPE)</strong>, a principal causa de síndrome nefrítica aguda em crianças.</p>\n<p>A GNPE se manifesta classicamente com hematúria, edema (especialmente periorbital), hipertensão arterial e redução do débito urinário, geralmente algumas semanas após a infecção estreptocócica (1-3 semanas para faringoamigdalite e 3-6 semanas para piodermite).</p>\n<p> </p>\n<p><strong data-end=\"1015\" data-start=\"943\">a) Qual é a principal hipótese diagnóstica? Justifique sua resposta. (2 pontos)</strong></p>\n<p data-end=\"1088\" data-start=\"1019\">A principal hipótese diagnóstica é a Glomerulonefrite Pós-Estreptocócica (<strong>GNPE</strong>). Esta hipótese se justifica pela apresentação clínica clássica: criança em idade escolar com história de infecção de vias aéreas superiores (faringoamigdalite) há aproximadamente 15 dias, seguida pelo desenvolvimento de edema periorbital, oligúria, urina escura (hematúria macroscópica), cefaleia e hipertensão. O período de latência entre a infecção estreptocócica e o início dos sintomas renais é característico da GNPE, assim como a tríade clássica de <strong>edema, hematúria e hipertensão.</strong></p>\n<p data-end=\"1088\" data-start=\"1019\"> </p>\n<p data-end=\"1088\" data-start=\"1019\"><strong>b) Quais exames laboratoriais podem estar alterados nesse caso? (3 pontos)</strong></p>\n<p data-end=\"1088\" data-start=\"1019\">Podemos encontrar as seguintes alterações:</p>\n<ul>\n<li data-end=\"1506\" data-start=\"1430\">\n<p data-end=\"1506\" data-start=\"1432\"><strong data-end=\"1455\" data-start=\"1432\">EAS (urina tipo 1):</strong> Hematúria (macro e micro), proteinúria discreta.</p>\n</li>\n<li data-end=\"1617\" data-start=\"1507\">\n<p data-end=\"1617\" data-start=\"1509\"><strong data-end=\"1540\" data-start=\"1509\">Ureia e creatinina séricas:</strong> Podem estar elevadas em casos com redução da taxa de filtração glomerular.</p>\n</li>\n<li data-end=\"1734\" data-start=\"1618\">\n<p data-end=\"1734\" data-start=\"1620\"><strong data-end=\"1641\" data-start=\"1620\">C3 (complemento):</strong> Níveis diminuídos (hipocomplementemia transitória, geralmente recuperação em 6-8 semanas).</p>\n</li>\n<li data-end=\"1835\" data-start=\"1735\">\n<p data-end=\"1835\" data-start=\"1737\"><strong data-end=\"1779\" data-start=\"1737\">ASLO (anticorpo antiestreptolisina O):</strong> Elevado, indicando infecção recente por estreptococo.</p>\n</li>\n<li data-end=\"1835\" data-start=\"1735\">\n<p data-end=\"1835\" data-start=\"1737\"><strong>Anti-DNAse</strong>: pode estar elevado após faringoamigdalite, apesar de ser mais usado nos casos de piuodermite.</p>\n</li>\n<li data-end=\"1878\" data-start=\"1836\"><strong>Hemograma: </strong>possível anemia dilucional pela hipervolemia</li>\n</ul>\n<p> </p>\n<p><strong>c) Quais as orientações a serem feitas e que medicamentos devem ser usados para essa escolar? </strong></p>\n<p>Deve-se orientar:</p>\n<ul>\n<li data-end=\"2188\" data-start=\"2088\">\n<p data-end=\"2188\" data-start=\"2090\">Repouso relativo enquanto houver sinais de atividade (edema importante, hipertensão, hematúria).</p>\n</li>\n<li data-end=\"2268\" data-start=\"2191\">\n<p data-end=\"2268\" data-start=\"2193\">Restrição hídrica (20 mL/kg/dia ou 300-400 mL/m2/dia) e de sal (&lt; 2 g de NaCl/m2/dia),  especialmente em caso de edema e hipertensão.</p>\n</li>\n<li data-end=\"2326\" data-start=\"2271\">\n<p data-end=\"2326\" data-start=\"2273\">Controle rigoroso da pressão arterial e da diurese.</p>\n</li>\n<li data-end=\"2375\" data-start=\"2329\">\n<p data-end=\"2375\" data-start=\"2331\">Monitorização de função renal e eletrólitos.</p>\n</li>\n</ul>\n<p>Em relação aos medicamentos:</p>\n<ul>\n<li><span style=\"font-size: 11pt;\">Diuréticos de alça (<span class=\"article-9068\">furosemida</span>) nos casos de congestão </span>cardiocirculatória<span style=\"font-size: 11pt;\"> importante, </span>oligoanúria<span style=\"font-size: 11pt;\"> e hipertensão sintomática; </span></li>\n<li><span style=\"font-size: 11pt;\">Hipotensores, principalmente das classes inibidores de canal de cálcio (anlopino </span><span style=\"font-size: 11pt;\">e nifedipino) ou hidralazina, utilizados na hipertensão sintomática; alternativamente podem ser considerados inibidores da enzima de conversão da angiotensina (</span>IECA<span style=\"font-size: 11pt;\">), os antagonistas do receptor da angiotensina II (ARA II) e bloqueadores de receptores da angiotensina (BRA), com atenção especial ao monitoramento dos níveis séricos de potássio (</span>captropil<span style=\"font-size: 11pt;\">/enalapril ou losartana); </span></li>\n<li><span style=\"font-size: 11pt;\">Penicilina (oral ou venosa ou intramuscular) ou eritromicina no caso da alergia a penicilinas, para erradicação da infecção.</span></li>\n</ul>\n<p><strong>d) Qual é a evolução esperada desse quadro para casos não complicados? </strong></p>\n<p data-end=\"2928\" data-start=\"2784\">Na maioria dos casos de GNPE em crianças, a evolução é <strong data-end=\"2857\" data-start=\"2844\">favorável</strong>, com recuperação completa da função renal em semanas a poucos meses. A hematúria pode persistir microscopicamente por até 1 a 2 anos, mas sem repercussões clínicas. A hipocomplementemia geralmente normaliza em <strong data-end=\"3093\" data-start=\"3076\">6 a 8 semanas</strong>. As complicações graves (como insuficiência renal crônica) são raras na infância quando bem manejadas.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Questão bem interessante para revisarmos praticamente tudo sobre a síndrome nefrítica! Para finalizar, precisamos ter em mente o curso clínico-laboratorial da GPE:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T170300089Z077760.png\"/></p>\n<p style=\"text-align: center;\">Fonte: Tratado de Pediatria</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O caso apresenta uma escolar de 7 anos com quadro agudo de edema periorbital, oligúria e urina escura, além de hipertensão arterial estágio 1 e cefaleia. Há 15 dias, a paciente teve episódio de faringoamigdalite, sugerindo uma infecção prévia por estreptococo beta-hemolítico do grupo A. Esses achados são típicos de uma <strong data-end=\"473\" data-start=\"427\">glomerulonefrite pós-estreptocócica (GNPE)</strong>, a principal causa de síndrome nefrítica aguda em crianças.</p>\n<p>A GNPE se manifesta classicamente com hematúria, edema (especialmente periorbital), hipertensão arterial e redução do débito urinário, geralmente algumas semanas após a infecção estreptocócica (1-3 semanas para faringoamigdalite e 3-6 semanas para piodermite).</p>\n<p> </p>\n<p><strong data-end=\"1015\" data-start=\"943\">a) Qual é a principal hipótese diagnóstica? Justifique sua resposta. (2 pontos)</strong></p>\n<p data-end=\"1088\" data-start=\"1019\">A principal hipótese diagnóstica é a Glomerulonefrite Pós-Estreptocócica (<strong>GNPE</strong>). Esta hipótese se justifica pela apresentação clínica clássica: criança em idade escolar com história de infecção de vias aéreas superiores (faringoamigdalite) há aproximadamente 15 dias, seguida pelo desenvolvimento de edema periorbital, oligúria, urina escura (hematúria macroscópica), cefaleia e hipertensão. O período de latência entre a infecção estreptocócica e o início dos sintomas renais é característico da GNPE, assim como a tríade clássica de <strong>edema, hematúria e hipertensão.</strong></p>\n<p data-end=\"1088\" data-start=\"1019\"> </p>\n<p data-end=\"1088\" data-start=\"1019\"><strong>b) Quais exames laboratoriais podem estar alterados nesse caso? (3 pontos)</strong></p>\n<p data-end=\"1088\" data-start=\"1019\">Podemos encontrar as seguintes alterações:</p>\n<ul>\n<li data-end=\"1506\" data-start=\"1430\">\n<p data-end=\"1506\" data-start=\"1432\"><strong data-end=\"1455\" data-start=\"1432\">EAS (urina tipo 1):</strong> Hematúria (macro e micro), proteinúria discreta.</p>\n</li>\n<li data-end=\"1617\" data-start=\"1507\">\n<p data-end=\"1617\" data-start=\"1509\"><strong data-end=\"1540\" data-start=\"1509\">Ureia e creatinina séricas:</strong> Podem estar elevadas em casos com redução da taxa de filtração glomerular.</p>\n</li>\n<li data-end=\"1734\" data-start=\"1618\">\n<p data-end=\"1734\" data-start=\"1620\"><strong data-end=\"1641\" data-start=\"1620\">C3 (complemento):</strong> Níveis diminuídos (hipocomplementemia transitória, geralmente recuperação em 6-8 semanas).</p>\n</li>\n<li data-end=\"1835\" data-start=\"1735\">\n<p data-end=\"1835\" data-start=\"1737\"><strong data-end=\"1779\" data-start=\"1737\">ASLO (anticorpo antiestreptolisina O):</strong> Elevado, indicando infecção recente por estreptococo.</p>\n</li>\n<li data-end=\"1835\" data-start=\"1735\">\n<p data-end=\"1835\" data-start=\"1737\"><strong>Anti-DNAse</strong>: pode estar elevado após faringoamigdalite, apesar de ser mais usado nos casos de piuodermite.</p>\n</li>\n<li data-end=\"1878\" data-start=\"1836\"><strong>Hemograma: </strong>possível anemia dilucional pela hipervolemia</li>\n</ul>\n<p> </p>\n<p><strong>c) Quais as orientações a serem feitas e que medicamentos devem ser usados para essa escolar? </strong></p>\n<p>Deve-se orientar:</p>\n<ul>\n<li data-end=\"2188\" data-start=\"2088\">\n<p data-end=\"2188\" data-start=\"2090\">Repouso relativo enquanto houver sinais de atividade (edema importante, hipertensão, hematúria).</p>\n</li>\n<li data-end=\"2268\" data-start=\"2191\">\n<p data-end=\"2268\" data-start=\"2193\">Restrição hídrica (20 mL/kg/dia ou 300-400 mL/m2/dia) e de sal (&lt; 2 g de NaCl/m2/dia),  especialmente em caso de edema e hipertensão.</p>\n</li>\n<li data-end=\"2326\" data-start=\"2271\">\n<p data-end=\"2326\" data-start=\"2273\">Controle rigoroso da pressão arterial e da diurese.</p>\n</li>\n<li data-end=\"2375\" data-start=\"2329\">\n<p data-end=\"2375\" data-start=\"2331\">Monitorização de função renal e eletrólitos.</p>\n</li>\n</ul>\n<p>Em relação aos medicamentos:</p>\n<ul>\n<li><span style=\"font-size: 11pt;\">Diuréticos de alça (<span class=\"article-9068\">furosemida</span>) nos casos de congestão </span>cardiocirculatória<span style=\"font-size: 11pt;\"> importante, </span>oligoanúria<span style=\"font-size: 11pt;\"> e hipertensão sintomática; </span></li>\n<li><span style=\"font-size: 11pt;\">Hipotensores, principalmente das classes inibidores de canal de cálcio (anlopino </span><span style=\"font-size: 11pt;\">e nifedipino) ou hidralazina, utilizados na hipertensão sintomática; alternativamente podem ser considerados inibidores da enzima de conversão da angiotensina (</span>IECA<span style=\"font-size: 11pt;\">), os antagonistas do receptor da angiotensina II (ARA II) e bloqueadores de receptores da angiotensina (BRA), com atenção especial ao monitoramento dos níveis séricos de potássio (</span>captropil<span style=\"font-size: 11pt;\">/enalapril ou losartana); </span></li>\n<li><span style=\"font-size: 11pt;\">Penicilina (oral ou venosa ou intramuscular) ou eritromicina no caso da alergia a penicilinas, para erradicação da infecção.</span></li>\n</ul>\n<p><strong>d) Qual é a evolução esperada desse quadro para casos não complicados? </strong></p>\n<p data-end=\"2928\" data-start=\"2784\">Na maioria dos casos de GNPE em crianças, a evolução é <strong data-end=\"2857\" data-start=\"2844\">favorável</strong>, com recuperação completa da função renal em semanas a poucos meses. A hematúria pode persistir microscopicamente por até 1 a 2 anos, mas sem repercussões clínicas. A hipocomplementemia geralmente normaliza em <strong data-end=\"3093\" data-start=\"3076\">6 a 8 semanas</strong>. As complicações graves (como insuficiência renal crônica) são raras na infância quando bem manejadas.</p><br>Visão do aprovado: <p>Questão bem interessante para revisarmos praticamente tudo sobre a síndrome nefrítica! Para finalizar, precisamos ter em mente o curso clínico-laboratorial da GPE:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T170300089Z077760.png\"/></p>\n<p style=\"text-align: center;\">Fonte: Tratado de Pediatria</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 220987,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Outras Doenças na Gestação",
+        "focus": {
+          "id": 2215,
+          "name": "Outras Doenças na Gestação"
+        }
+      },
+      "detail": {
+        "id": 220987,
+        "content": "Uma paciente de 32 anos de idade está grávida de seu segundo filho e faz pré-natal no centro de saúde. Solicitou um atendimento de urgência no dia de hoje, por queixa de dor lombar e mal-estar. No momento está com 29 semanas de idade gestacional. Tratou uma cistite há 2 semanas com cefalexina e, após isso, não fez nenhum exame de controle. O restante do pré-natal está normal. Refere, durante a consulta, que a dor lombar iniciou há 2 dias, que teve febre (não medida) e queda do estado geral. Nega sintomas gripais e refere boa movimentação fetal. Ao exame, apresenta-se em regular estado geral, corada, hidratada, febril (temperatura = 38 °C), com pulso de 100 batimentos por minuto (bpm) e pressão arterial de 100 x 60 mmHg. Apresenta, ainda, exame cardio-pulmonar sem anormalidade. Abdome sem sinais de irritação peritoneal, com altura uterina de 28 cm. Batimentos cardíacos fetais de 148 bpm, sem dinâmica uterina. Punho percussão de região lombar dolorosa à direita. Toque vaginal com colo grosso, medianizado e impérvio. \n\nConsiderando o quadro clínico apresentado, faça o que se pede nos itens a seguir.  \na) Cite a principal hipótese diagnóstica. Justifique sua resposta. \nb) Descreva qual a conduta adequada.\nc) Cite três possíveis complicações referentes a esse caso clínico.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 347,
+            "parent_tag": {
+              "id": 697,
+              "name": "Doenças clínicas na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Outras Doenças na Gestação",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 1161,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2215,
+          "name": "Outras Doenças na Gestação",
+          "discipline": {
+            "id": 87,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 3,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 170,
+            "name": "Doenças clínicas na gestação",
+            "discipline": 87,
+            "old_tag": 697,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 400154,
+        "actual_explanation": true,
+        "introduction": "<p>De saída, vale notar a <strong>combinação de febre, dor lombar e punho percussão positiva</strong> em uma gestante com história recente de <span class=\"article-5615\">cistite</span> que muda completamente o caminho da resposta. Trata-se, essencialmente, de <strong><span class=\"article-8982\">pielonefrite</span> aguda durante a gestação</strong>, uma condição que exige reconhecimento imediato e manejo agressivo devido ao seu potencial de complicações graves tanto para a mãe quanto para o feto.</p>\n<p>A <strong><span class=\"article-8982\">pielonefrite</span> na gestação</strong> é considerada uma das principais causas de hospitalização durante o período anteparto e representa uma emergência médica que não pode ser subestimada. As alterações fisiológicas da gravidez, como a dilatação do sistema coletor urinário e a estase urinária, tornam as gestantes mais susceptíveis não apenas à infecção, mas também às suas complicações sistêmicas.</p>\n<p>Neste caso, a paciente apresenta a <strong>tríade clássica</strong>: história de infecção urinária prévia (<span class=\"article-5615\">cistite</span> há 2 semanas), sintomas sistêmicos (febre, mal-estar, queda do estado geral) e o sinal patognomônico da <strong>punho percussão lombar positiva à direita</strong>, que confirma o envolvimento renal. A ausência de controle pós-tratamento da <span class=\"article-5615\">cistite</span> anterior é um fator importante que pode ter contribuído para a ascensão da infecção.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A <strong>combinação de febre, dor lombar e punho percussão positiva</strong> em gestante com <em><span class=\"article-5615\">cistite</span> prévia sem controle</em> aponta diretamente para <strong><span class=\"article-8982\">pielonefrite</span> aguda</strong>. O contexto gestacional torna este diagnóstico uma <strong>emergência obstétrica</strong> que exige manejo hospitalar imediato.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>Tríade clássica:</strong> febre + dor lombar + punho percussão lombar positiva</li>\n<li>História de <em><span class=\"article-5615\">cistite</span> há 2 semanas sem exame de controle</em> (fator predisponente)</li>\n<li><strong>Sintomas sistêmicos:</strong> mal-estar, queda do estado geral, febre de 38°C</li>\n<li>Ausência de dinâmica uterina e BCF normais (descarta trabalho de parto)</li>\n<li><strong>Gestação avançada</strong> (29 semanas) aumenta risco de complicações graves</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Não confundir com <em>dor lombar fisiológica da gestação</em> (sem febre nem punho percussão)</li>\n<li><strong><span class=\"article-5615\">Cistite</span> \"curada\" sem controle</strong> é fator de risco clássico para ascensão da infecção</li>\n<li>Diferençar de <em>trabalho de parto prematuro</em> (ausência de dinâmica uterina é fundamental)</li>\n<li><strong>Gestação = sempre internação</strong> (nunca tratamento ambulatorial como em não-gestantes)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questões dissertativas pedindo <strong>diagnóstico + conduta + complicações</strong> (formato clássico)</li>\n<li>Cenários com <em>história de ITU prévia sem seguimento</em> como pista diagnóstica</li>\n<li>Ênfase nas <strong>complicações obstétricas</strong> (TPP, RPM, baixo peso) vs. maternas (sepse, IR)</li>\n<li><strong>Também pode cair:</strong> escolha de antibióticos seguros na gestação (ampicilina, cefalexina, <span class=\"article-5614\">ceftriaxona</span>)</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>De saída, vale notar a <strong>combinação de febre, dor lombar e punho percussão positiva</strong> em uma gestante com história recente de <span class=\"article-5615\">cistite</span> que muda completamente o caminho da resposta. Trata-se, essencialmente, de <strong><span class=\"article-8982\">pielonefrite</span> aguda durante a gestação</strong>, uma condição que exige reconhecimento imediato e manejo agressivo devido ao seu potencial de complicações graves tanto para a mãe quanto para o feto.</p>\n<p>A <strong><span class=\"article-8982\">pielonefrite</span> na gestação</strong> é considerada uma das principais causas de hospitalização durante o período anteparto e representa uma emergência médica que não pode ser subestimada. As alterações fisiológicas da gravidez, como a dilatação do sistema coletor urinário e a estase urinária, tornam as gestantes mais susceptíveis não apenas à infecção, mas também às suas complicações sistêmicas.</p>\n<p>Neste caso, a paciente apresenta a <strong>tríade clássica</strong>: história de infecção urinária prévia (<span class=\"article-5615\">cistite</span> há 2 semanas), sintomas sistêmicos (febre, mal-estar, queda do estado geral) e o sinal patognomônico da <strong>punho percussão lombar positiva à direita</strong>, que confirma o envolvimento renal. A ausência de controle pós-tratamento da <span class=\"article-5615\">cistite</span> anterior é um fator importante que pode ter contribuído para a ascensão da infecção.</p><br>Visão do aprovado: <p>A <strong>combinação de febre, dor lombar e punho percussão positiva</strong> em gestante com <em><span class=\"article-5615\">cistite</span> prévia sem controle</em> aponta diretamente para <strong><span class=\"article-8982\">pielonefrite</span> aguda</strong>. O contexto gestacional torna este diagnóstico uma <strong>emergência obstétrica</strong> que exige manejo hospitalar imediato.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>Tríade clássica:</strong> febre + dor lombar + punho percussão lombar positiva</li>\n<li>História de <em><span class=\"article-5615\">cistite</span> há 2 semanas sem exame de controle</em> (fator predisponente)</li>\n<li><strong>Sintomas sistêmicos:</strong> mal-estar, queda do estado geral, febre de 38°C</li>\n<li>Ausência de dinâmica uterina e BCF normais (descarta trabalho de parto)</li>\n<li><strong>Gestação avançada</strong> (29 semanas) aumenta risco de complicações graves</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Não confundir com <em>dor lombar fisiológica da gestação</em> (sem febre nem punho percussão)</li>\n<li><strong><span class=\"article-5615\">Cistite</span> \"curada\" sem controle</strong> é fator de risco clássico para ascensão da infecção</li>\n<li>Diferençar de <em>trabalho de parto prematuro</em> (ausência de dinâmica uterina é fundamental)</li>\n<li><strong>Gestação = sempre internação</strong> (nunca tratamento ambulatorial como em não-gestantes)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questões dissertativas pedindo <strong>diagnóstico + conduta + complicações</strong> (formato clássico)</li>\n<li>Cenários com <em>história de ITU prévia sem seguimento</em> como pista diagnóstica</li>\n<li>Ênfase nas <strong>complicações obstétricas</strong> (TPP, RPM, baixo peso) vs. maternas (sepse, IR)</li>\n<li><strong>Também pode cair:</strong> escolha de antibióticos seguros na gestação (ampicilina, cefalexina, <span class=\"article-5614\">ceftriaxona</span>)</li>\n</ul><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 220988,
+        "number": 5,
+        "main_speciality_name": "Medicina Preventiva e Social",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Vigilância em saúde do trabalhador",
+        "focus": {
+          "id": 1979,
+          "name": "Vigilância em saúde do trabalhador"
+        }
+      },
+      "detail": {
+        "id": 220988,
+        "content": "Uma mulher, moradora de cidade com 600.000 habitantes, procurou a Unidade Básica de Saúde de referência para se consultar com o médico da Estratégia de Saúde da Família por dor no braço, antebraço e punho direitos. Durante a anamnese, o médico detectou que a paciente apresentava esses sintomas há 6 meses com piora ao longo do tempo, mas que não a impediam de trabalhar com digitação de textos em uma empresa de computação. Ela relatou que, durante a pandemia da COVID-19, muitas digitadoras haviam sido demitidas e que aquelas que tinham permanecido estavam trabalhando sem pausas para descanso, frequentemente trabalhando além do horário regular, sem remuneração adicional, e que muitas também apresentavam queixas similares às dela. Ao exame físico, a única alteração observada foi dor à palpação do antebraço e braço direitos.  \n\nConsiderando essa situação, faça o que se pede nos itens a seguir.  \na) Cite a principal hipótese diagnóstica para o caso apresentado. Justifique sua resposta. \nb) Descreva o plano (propedêutico, terapêutico, educativo e de seguimento) adequado ao caso. \nc) Liste dois problemas biopsicossociais evidenciados no relato da paciente.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 5,
+            "abbreviation": "PREV",
+            "name": "Medicina Preventiva e Social",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 720,
+            "parent_tag": {
+              "id": 318,
+              "name": "Vigilância em Saúde",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Vigilância em saúde do trabalhador",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              5
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 1814,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1979,
+          "name": "Vigilância em saúde do trabalhador",
+          "discipline": {
+            "id": 89,
+            "name": "Medicina Preventiva e Social",
+            "residency_degree": 3,
+            "speciality": 5
+          },
+          "theme": {
+            "id": 201,
+            "name": "Vigilância em Saúde",
+            "discipline": 89,
+            "old_tag": 318,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251296,
+        "actual_explanation": true,
+        "introduction": "<p>Esta questão discursiva aborda um caso clínico muito prevalente na atenção primária: uma paciente apresentando sintomas compatíveis com doença ocupacional. O cenário apresenta uma digitadora com dor em membro superior direito há 6 meses, em um contexto laboral claramente desfavorável (sem pausas, jornada estendida não remunerada e redução do quadro de funcionários durante a pandemia).</p>\n<p>A questão explora não apenas o diagnóstico clínico, mas também a abordagem integral do paciente na Estratégia de Saúde da Família, incluindo aspectos propedêuticos, terapêuticos, preventivos, legais e de acompanhamento. Além disso, valoriza a compreensão dos determinantes sociais de saúde ao solicitar a identificação de problemas biopsicossociais.</p>\n<p>Analisando a resposta esperada, vemos que o gabarito considera como principal hipótese diagnóstica a <b>Lesão por Esforço Repetitivo (LER)</b> e/ou <b>Doenças Osteomusculares Relacionadas ao Trabalho (DORT)</b>. Essa hipótese se justifica pelo quadro clínico compatível (dor em membro superior direito com piora progressiva) associado a fatores ocupacionais característicos: atividades repetitivas de digitação, ausência de pausas para descanso e jornada estendida de trabalho.</p>\n<p>Como diagnósticos diferenciais, são citados: bursite em articulação do ombro direito, <span class=\"article-7882\">síndrome do túnel do carpo</span> e tenossinovite de De Quervain - todas condições que podem se manifestar em trabalhadores expostos a movimentos repetitivos, especialmente digitadores.</p>\n<p>No plano de abordagem, o gabarito valoriza tanto o manejo clínico quanto os aspectos legais e de vigilância em saúde do trabalhador, incluindo:</p>\n<ul>\n<li>Tratamento sintomático</li>\n<li>Orientações preventivas</li>\n<li>Emissão de CAT (Comunicação de Acidente de Trabalho)</li>\n<li>Afastamento do trabalho quando necessário</li>\n<li>Encaminhamento para serviços especializados (CEREST)</li>\n<li>Notificação compulsória no SINAN</li>\n<li>Referenciamento para fisioterapia (NASF)</li>\n<li>Elaboração de plano terapêutico singular e garantia de cuidado longitudinal</li>\n</ul>\n<p>Quanto aos problemas biopsicossociais, são identificados diversos fatores relacionados às condições laborais: ausência de pausas regulares, jornada estendida sem remuneração adequada, demissão de colegas, e ocorrência de problemas similares entre outros trabalhadores - evidenciando um ambiente de trabalho adoecedor.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Para acertar questões como esta, é fundamental ter uma abordagem sistemática. A <strong>saúde do trabalhador</strong> é um tema cada vez mais cobrado nas provas de residência, e o que percebi é que as bancas costumam valorizar não apenas o diagnóstico em si, mas todo o manejo do caso.</p>\n<p>Uma dica importante: ao me deparar com casos envolvendo sintomas possivelmente relacionados ao trabalho, sempre busco estabelecer o <strong>nexo causal</strong> entre a atividade laboral e o quadro clínico apresentado. No caso desta questão, a relação entre a digitação constante sem pausas e as dores em membro superior é bastante evidente.</p>\n<p>Na hora da prova, quando perguntado sobre o plano de manejo, lembro de organizar meu raciocínio em \"dimensões de cuidado\": clínica (tratamento medicamentoso, fisioterapia), preventiva (orientações ergonômicas, ajustes no ambiente de trabalho), legal (emissão de CAT, notificação) e de seguimento (acompanhamento longitudinal). Isso me ajuda a não esquecer nenhum aspecto importante.</p>\n<p>Uma possível armadilha neste tipo de questão seria focar apenas no tratamento sintomático (analgésicos, anti-inflamatórios) e esquecer dos aspectos legais e de vigilância em saúde do trabalhador. Lembro que o médico da <em>Estratégia de Saúde da Família</em> tem obrigação de notificar doenças relacionadas ao trabalho e emitir a CAT!</p>\n<p>Outra pegadinha seria não reconhecer a importância da <strong>abordagem biopsicossocial</strong>. Nos casos de <span class=\"article-8320\">LER/DORT</span>, os fatores sociais (ambiente de trabalho, relações de poder) e psicológicos (pressão, medo de demissão) são tão importantes quanto os fatores biológicos na gênese e manutenção da doença.</p>\n<p>Este tema se conecta com outros assuntos importantes como ergonomia no trabalho, legislação trabalhista e previdenciária, medicina baseada em evidências para tratamento de afecções musculoesqueléticas, e funcionamento da Rede de Atenção à Saúde, especialmente a articulação entre a atenção primária e serviços especializados como o CEREST.</p>\n<p>Para aprofundamento, recomendo a leitura do \"Caderno de Atenção Básica nº 41 - Saúde do Trabalhador e da Trabalhadora\" do Ministério da Saúde, que traz orientações detalhadas sobre a abordagem das doenças relacionadas ao trabalho na atenção básica, incluindo fluxogramas de atendimento e notificação.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Esta questão discursiva aborda um caso clínico muito prevalente na atenção primária: uma paciente apresentando sintomas compatíveis com doença ocupacional. O cenário apresenta uma digitadora com dor em membro superior direito há 6 meses, em um contexto laboral claramente desfavorável (sem pausas, jornada estendida não remunerada e redução do quadro de funcionários durante a pandemia).</p>\n<p>A questão explora não apenas o diagnóstico clínico, mas também a abordagem integral do paciente na Estratégia de Saúde da Família, incluindo aspectos propedêuticos, terapêuticos, preventivos, legais e de acompanhamento. Além disso, valoriza a compreensão dos determinantes sociais de saúde ao solicitar a identificação de problemas biopsicossociais.</p>\n<p>Analisando a resposta esperada, vemos que o gabarito considera como principal hipótese diagnóstica a <b>Lesão por Esforço Repetitivo (LER)</b> e/ou <b>Doenças Osteomusculares Relacionadas ao Trabalho (DORT)</b>. Essa hipótese se justifica pelo quadro clínico compatível (dor em membro superior direito com piora progressiva) associado a fatores ocupacionais característicos: atividades repetitivas de digitação, ausência de pausas para descanso e jornada estendida de trabalho.</p>\n<p>Como diagnósticos diferenciais, são citados: bursite em articulação do ombro direito, <span class=\"article-7882\">síndrome do túnel do carpo</span> e tenossinovite de De Quervain - todas condições que podem se manifestar em trabalhadores expostos a movimentos repetitivos, especialmente digitadores.</p>\n<p>No plano de abordagem, o gabarito valoriza tanto o manejo clínico quanto os aspectos legais e de vigilância em saúde do trabalhador, incluindo:</p>\n<ul>\n<li>Tratamento sintomático</li>\n<li>Orientações preventivas</li>\n<li>Emissão de CAT (Comunicação de Acidente de Trabalho)</li>\n<li>Afastamento do trabalho quando necessário</li>\n<li>Encaminhamento para serviços especializados (CEREST)</li>\n<li>Notificação compulsória no SINAN</li>\n<li>Referenciamento para fisioterapia (NASF)</li>\n<li>Elaboração de plano terapêutico singular e garantia de cuidado longitudinal</li>\n</ul>\n<p>Quanto aos problemas biopsicossociais, são identificados diversos fatores relacionados às condições laborais: ausência de pausas regulares, jornada estendida sem remuneração adequada, demissão de colegas, e ocorrência de problemas similares entre outros trabalhadores - evidenciando um ambiente de trabalho adoecedor.</p><br>Visão do aprovado: <p>Para acertar questões como esta, é fundamental ter uma abordagem sistemática. A <strong>saúde do trabalhador</strong> é um tema cada vez mais cobrado nas provas de residência, e o que percebi é que as bancas costumam valorizar não apenas o diagnóstico em si, mas todo o manejo do caso.</p>\n<p>Uma dica importante: ao me deparar com casos envolvendo sintomas possivelmente relacionados ao trabalho, sempre busco estabelecer o <strong>nexo causal</strong> entre a atividade laboral e o quadro clínico apresentado. No caso desta questão, a relação entre a digitação constante sem pausas e as dores em membro superior é bastante evidente.</p>\n<p>Na hora da prova, quando perguntado sobre o plano de manejo, lembro de organizar meu raciocínio em \"dimensões de cuidado\": clínica (tratamento medicamentoso, fisioterapia), preventiva (orientações ergonômicas, ajustes no ambiente de trabalho), legal (emissão de CAT, notificação) e de seguimento (acompanhamento longitudinal). Isso me ajuda a não esquecer nenhum aspecto importante.</p>\n<p>Uma possível armadilha neste tipo de questão seria focar apenas no tratamento sintomático (analgésicos, anti-inflamatórios) e esquecer dos aspectos legais e de vigilância em saúde do trabalhador. Lembro que o médico da <em>Estratégia de Saúde da Família</em> tem obrigação de notificar doenças relacionadas ao trabalho e emitir a CAT!</p>\n<p>Outra pegadinha seria não reconhecer a importância da <strong>abordagem biopsicossocial</strong>. Nos casos de <span class=\"article-8320\">LER/DORT</span>, os fatores sociais (ambiente de trabalho, relações de poder) e psicológicos (pressão, medo de demissão) são tão importantes quanto os fatores biológicos na gênese e manutenção da doença.</p>\n<p>Este tema se conecta com outros assuntos importantes como ergonomia no trabalho, legislação trabalhista e previdenciária, medicina baseada em evidências para tratamento de afecções musculoesqueléticas, e funcionamento da Rede de Atenção à Saúde, especialmente a articulação entre a atenção primária e serviços especializados como o CEREST.</p>\n<p>Para aprofundamento, recomendo a leitura do \"Caderno de Atenção Básica nº 41 - Saúde do Trabalhador e da Trabalhadora\" do Ministério da Saúde, que traz orientações detalhadas sobre a abordagem das doenças relacionadas ao trabalho na atenção básica, incluindo fluxogramas de atendimento e notificação.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T19:55:31.639473+00:00",
+  "complete": true
+}

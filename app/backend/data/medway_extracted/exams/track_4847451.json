@@ -1,0 +1,1153 @@
+{
+  "track_id": 4847451,
+  "name": "UNICAMP 2026 - Medicina Fetal",
+  "year": 2026,
+  "track_fast": {
+    "id": 4847451,
+    "name": "UNICAMP 2026 - Medicina Fetal",
+    "track_type": "c",
+    "question_count": 10,
+    "year": 2026,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UNICAMP",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-unicamp_yplZ7NO.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 10,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 10,
+  "questions": [
+    {
+      "meta": {
+        "id": 340950,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal"
+        }
+      },
+      "detail": {
+        "id": 340950,
+        "content": "Gestante, 32a, 28 semanas, chega para ultrassonografia obstétrica de rotina. PERGUNTA-SE:\na. Cite dois parâmetros biométricos rotineiramente utilizados na avaliação do crescimento fetal.\nb. Cite um parâmetro ultrassonográfico utilizado na avaliação da vitalidade fetal ás 28 semanas.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15948,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 13,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406521,
+        "actual_explanation": true,
+        "introduction": "<p>O enunciado sugere, logo de in&iacute;cio, uma avalia&ccedil;&atilde;o ultrassonogr&aacute;fica completa no terceiro trimestre gestacional. Esta quest&atilde;o aborda conceitos fundamentais da <strong>ultrassonografia obst&eacute;trica</strong> em um per&iacute;odo crucial da gesta&ccedil;&atilde;o - as <strong>28 semanas</strong> representam um marco importante para avalia&ccedil;&atilde;o tanto do crescimento quanto da vitalidade fetal.</p>\n<p>A ultrassonografia obst&eacute;trica neste per&iacute;odo permite uma avalia&ccedil;&atilde;o detalhada da <strong>biometria fetal</strong> para identificar restri&ccedil;&otilde;es de crescimento, al&eacute;m de par&acirc;metros que avaliam o <strong>bem-estar fetal</strong>. &Eacute; essencial dominar estes conceitos, pois aparecem frequentemente nas provas de resid&ecirc;ncia, especialmente em ginecologia e obstetr&iacute;cia, pediatria e medicina fetal.</p>\n<p>Para responder adequadamente, preciso distinguir claramente entre <strong>par&acirc;metros biom&eacute;tricos</strong> (que avaliam crescimento e desenvolvimento fetal) e <strong>par&acirc;metros de vitalidade</strong> (que avaliam o bem-estar e oxigena&ccedil;&atilde;o fetal). Esta diferencia&ccedil;&atilde;o &eacute; crucial para o manejo cl&iacute;nico adequado das gesta&ccedil;&otilde;es.</p>\n<p>Os par&acirc;metros biom&eacute;tricos s&atilde;o: Di&acirc;metro biparietal<strong> </strong>(DBP), Circunfer&ecirc;ncia cef&aacute;lica (CC), Circunfer&ecirc;ncia abdominal (CA) e Comprimento do&nbsp;f&ecirc;mur (CF). Portanto para responder a <strong>LETRA A da pergunta</strong>, poder&iacute;amos <strong>citar quaisquer dois, desses quatro</strong>.&nbsp;</p>\n<p>Quando estamos falando de par&acirc;metros ultrassonogr&aacute;ficos de vitalidade, <strong>a resposta da LETRA B</strong>, devemos lembrar dos par&acirc;metros do Perfil Biof&iacute;sico Fetal, que incluem: <strong>movimentos fetais, movimentos respirat&oacute;rios, t&ocirc;nus fetal, ILA. Poder&iacute;amos citar quaisquer um, desses quatro, para responder a letra B.</strong></p>\n<p style=\"text-align: center;\"><br><strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T144831260Z034214.png\" width=\"330\" height=\"263\"></strong></p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>N&atilde;o se esque&ccedil;a que a partir de 28 semanas os&nbsp;par&acirc;metros biom&eacute;tricos avaliam o crescimento e desenvolvimento fetal e com eles pode-se calcular o peso fetal estimado e os percetins de crescimento.&nbsp;</p>\n<p>J&aacute; quando nos referimos a par&acirc;metros de vitalidade, estamos avaliando o bem estar fetal e por isso usamos movimentos fetais, movimentos respirat&oacute;rios, t&ocirc;nus fetal, ILA.</p>\n<p><strong>Bons estudos!!</strong></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O enunciado sugere, logo de in&iacute;cio, uma avalia&ccedil;&atilde;o ultrassonogr&aacute;fica completa no terceiro trimestre gestacional. Esta quest&atilde;o aborda conceitos fundamentais da <strong>ultrassonografia obst&eacute;trica</strong> em um per&iacute;odo crucial da gesta&ccedil;&atilde;o - as <strong>28 semanas</strong> representam um marco importante para avalia&ccedil;&atilde;o tanto do crescimento quanto da vitalidade fetal.</p>\n<p>A ultrassonografia obst&eacute;trica neste per&iacute;odo permite uma avalia&ccedil;&atilde;o detalhada da <strong>biometria fetal</strong> para identificar restri&ccedil;&otilde;es de crescimento, al&eacute;m de par&acirc;metros que avaliam o <strong>bem-estar fetal</strong>. &Eacute; essencial dominar estes conceitos, pois aparecem frequentemente nas provas de resid&ecirc;ncia, especialmente em ginecologia e obstetr&iacute;cia, pediatria e medicina fetal.</p>\n<p>Para responder adequadamente, preciso distinguir claramente entre <strong>par&acirc;metros biom&eacute;tricos</strong> (que avaliam crescimento e desenvolvimento fetal) e <strong>par&acirc;metros de vitalidade</strong> (que avaliam o bem-estar e oxigena&ccedil;&atilde;o fetal). Esta diferencia&ccedil;&atilde;o &eacute; crucial para o manejo cl&iacute;nico adequado das gesta&ccedil;&otilde;es.</p>\n<p>Os par&acirc;metros biom&eacute;tricos s&atilde;o: Di&acirc;metro biparietal<strong> </strong>(DBP), Circunfer&ecirc;ncia cef&aacute;lica (CC), Circunfer&ecirc;ncia abdominal (CA) e Comprimento do&nbsp;f&ecirc;mur (CF). Portanto para responder a <strong>LETRA A da pergunta</strong>, poder&iacute;amos <strong>citar quaisquer dois, desses quatro</strong>.&nbsp;</p>\n<p>Quando estamos falando de par&acirc;metros ultrassonogr&aacute;ficos de vitalidade, <strong>a resposta da LETRA B</strong>, devemos lembrar dos par&acirc;metros do Perfil Biof&iacute;sico Fetal, que incluem: <strong>movimentos fetais, movimentos respirat&oacute;rios, t&ocirc;nus fetal, ILA. Poder&iacute;amos citar quaisquer um, desses quatro, para responder a letra B.</strong></p>\n<p style=\"text-align: center;\"><br><strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T144831260Z034214.png\" width=\"330\" height=\"263\"></strong></p><br>Visão do aprovado: <p>N&atilde;o se esque&ccedil;a que a partir de 28 semanas os&nbsp;par&acirc;metros biom&eacute;tricos avaliam o crescimento e desenvolvimento fetal e com eles pode-se calcular o peso fetal estimado e os percetins de crescimento.&nbsp;</p>\n<p>J&aacute; quando nos referimos a par&acirc;metros de vitalidade, estamos avaliando o bem estar fetal e por isso usamos movimentos fetais, movimentos respirat&oacute;rios, t&ocirc;nus fetal, ILA.</p>\n<p><strong>Bons estudos!!</strong></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340951,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal"
+        }
+      },
+      "detail": {
+        "id": 340951,
+        "content": "Em relação ao rastreamento de aneuploidias no primeiro trimestre, PERGUNTA-SE:\na. Qual é o marcador ultrassonográfico com maior sensibilidade para o rastreamento da trissomia do cromossomo 21 entre 11 semanas e 13 semanas e 6 dias?\nb. Cite dois marcadores ultrassonográficos adicionais para trissomia do cromossomo 21 que podem ser avaliados nesse período.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15948,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 10,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406526,
+        "actual_explanation": true,
+        "introduction": "<p>Este &eacute; um cl&aacute;ssico sobre <strong>rastreamento de aneuploidias no primeiro trimestre</strong>, em que a <strong>transluc&ecirc;ncia nucal</strong> diferencia os marcadores quanto &agrave; sensibilidade. O rastreamento ultrassonogr&aacute;fico entre <strong>11 e 13 semanas e 6 dias</strong> representa uma janela fundamental para detectar as trissomias, especialmente a&nbsp;<strong>trissomia do cromossomo 21</strong> (s&iacute;ndrome de Down), do <strong>cromossomo 18</strong> (s&iacute;ndrome de Edwards) e <strong>cromossomo 13</strong> (s&iacute;ndorme de Patau). Este per&iacute;odo gestacional espec&iacute;fico oferece a melhor combina&ccedil;&atilde;o de&nbsp;<strong>sensibilidade e especificidade</strong> para os marcadores ultrassonogr&aacute;ficos dispon&iacute;veis.</p>\n<p>A import&acirc;ncia deste tema nas provas de resid&ecirc;ncia &eacute; evidente, pois integra conhecimentos de <strong>ultrassonografia obst&eacute;trica</strong>, <strong>medicina fetal</strong> e <strong>rastreamento populacional</strong>. O rastreamento combinado do primeiro trimestre revolucionou a abordagem diagn&oacute;stica das aneuploidias, permitindo detec&ccedil;&atilde;o precoce com alta acur&aacute;cia e oferecendo &agrave;s fam&iacute;lias informa&ccedil;&otilde;es importantes para tomada de decis&otilde;es.</p>\n<p>A resposta esperada envolve o reconhecimento da <strong>transluc&ecirc;ncia nucal</strong> como o marcador de maior sensibilidade, seguido da identifica&ccedil;&atilde;o de <strong>marcadores ultrassonogr&aacute;ficos adicionais</strong> como:</p>\n<ul>\n<li>&nbsp;aus&ecirc;ncia ou hipoplasia do osso nasal,</li>\n<li>fluxo anormal no ducto venoso,</li>\n<li>regurgita&ccedil;&atilde;o tric&uacute;spide.</li>\n</ul>\n<p>Estes marcadores, quando combinados, formam a base do <strong>rastreamento n&atilde;o invasivo</strong> de alta qualidade.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A <strong>transluc&ecirc;ncia nucal</strong> &eacute; o marcador ultrassonogr&aacute;fico de maior sensibilidade para trissomia 21 no per&iacute;odo espec&iacute;fico de 11 a 13 semanas e 6 dias. O rastreamento combinado deste per&iacute;odo integra marcadores ultrassonogr&aacute;ficos com bioqu&iacute;micos, oferecendo alta acur&aacute;cia diagn&oacute;stica. A janela temporal &eacute; crucial, pois fora deste intervalo os marcadores perdem sensibilidade e especificidade.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>Transluc&ecirc;ncia nucal</strong> &eacute; o marcador isolado de maior sensibilidade para trissomia 21</li>\n<li>Per&iacute;odo restrito: <strong>11 semanas a 13 semanas e 6 dias</strong> para rastreamento &oacute;timo</li>\n<li>Marcadores adicionais: <em>aus&ecirc;ncia/hipoplasia do osso nasal, fluxo anormal no ducto venoso, regurgita&ccedil;&atilde;o tric&uacute;spide</em></li>\n<li>Combina&ccedil;&atilde;o de m&uacute;ltiplos marcadores aumenta significativamente a <strong>taxa de detec&ccedil;&atilde;o</strong></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com marcadores do <strong>segundo trimestre</strong> (sinal da banana, cisterna magna)</li>\n<li>Errar o per&iacute;odo gestacional - antes de 11s ou ap&oacute;s 13s6d compromete a acur&aacute;cia</li>\n<li>N&atilde;o reconhecer a <em>transluc&ecirc;ncia nucal</em> como marcador de maior sensibilidade isolada</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Quest&atilde;o direta perguntando qual marcador tem <strong>maior sensibilidade</strong> no 1&ordm; trimestre</li>\n<li>Cen&aacute;rio cl&iacute;nico pedindo <strong>lista de marcadores</strong> ultrassonogr&aacute;ficos adicionais</li>\n<li>Compara&ccedil;&atilde;o entre efic&aacute;cia de diferentes <strong>per&iacute;odos gestacionais</strong> para rastreamento</li>\n<li><strong>Tamb&eacute;m pode cair:</strong> valores de corte da transluc&ecirc;ncia nucal ou combina&ccedil;&atilde;o com marcadores bioqu&iacute;micos (PAPP-A, beta-hCG)</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Este &eacute; um cl&aacute;ssico sobre <strong>rastreamento de aneuploidias no primeiro trimestre</strong>, em que a <strong>transluc&ecirc;ncia nucal</strong> diferencia os marcadores quanto &agrave; sensibilidade. O rastreamento ultrassonogr&aacute;fico entre <strong>11 e 13 semanas e 6 dias</strong> representa uma janela fundamental para detectar as trissomias, especialmente a&nbsp;<strong>trissomia do cromossomo 21</strong> (s&iacute;ndrome de Down), do <strong>cromossomo 18</strong> (s&iacute;ndrome de Edwards) e <strong>cromossomo 13</strong> (s&iacute;ndorme de Patau). Este per&iacute;odo gestacional espec&iacute;fico oferece a melhor combina&ccedil;&atilde;o de&nbsp;<strong>sensibilidade e especificidade</strong> para os marcadores ultrassonogr&aacute;ficos dispon&iacute;veis.</p>\n<p>A import&acirc;ncia deste tema nas provas de resid&ecirc;ncia &eacute; evidente, pois integra conhecimentos de <strong>ultrassonografia obst&eacute;trica</strong>, <strong>medicina fetal</strong> e <strong>rastreamento populacional</strong>. O rastreamento combinado do primeiro trimestre revolucionou a abordagem diagn&oacute;stica das aneuploidias, permitindo detec&ccedil;&atilde;o precoce com alta acur&aacute;cia e oferecendo &agrave;s fam&iacute;lias informa&ccedil;&otilde;es importantes para tomada de decis&otilde;es.</p>\n<p>A resposta esperada envolve o reconhecimento da <strong>transluc&ecirc;ncia nucal</strong> como o marcador de maior sensibilidade, seguido da identifica&ccedil;&atilde;o de <strong>marcadores ultrassonogr&aacute;ficos adicionais</strong> como:</p>\n<ul>\n<li>&nbsp;aus&ecirc;ncia ou hipoplasia do osso nasal,</li>\n<li>fluxo anormal no ducto venoso,</li>\n<li>regurgita&ccedil;&atilde;o tric&uacute;spide.</li>\n</ul>\n<p>Estes marcadores, quando combinados, formam a base do <strong>rastreamento n&atilde;o invasivo</strong> de alta qualidade.</p><br>Visão do aprovado: <p>A <strong>transluc&ecirc;ncia nucal</strong> &eacute; o marcador ultrassonogr&aacute;fico de maior sensibilidade para trissomia 21 no per&iacute;odo espec&iacute;fico de 11 a 13 semanas e 6 dias. O rastreamento combinado deste per&iacute;odo integra marcadores ultrassonogr&aacute;ficos com bioqu&iacute;micos, oferecendo alta acur&aacute;cia diagn&oacute;stica. A janela temporal &eacute; crucial, pois fora deste intervalo os marcadores perdem sensibilidade e especificidade.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>Transluc&ecirc;ncia nucal</strong> &eacute; o marcador isolado de maior sensibilidade para trissomia 21</li>\n<li>Per&iacute;odo restrito: <strong>11 semanas a 13 semanas e 6 dias</strong> para rastreamento &oacute;timo</li>\n<li>Marcadores adicionais: <em>aus&ecirc;ncia/hipoplasia do osso nasal, fluxo anormal no ducto venoso, regurgita&ccedil;&atilde;o tric&uacute;spide</em></li>\n<li>Combina&ccedil;&atilde;o de m&uacute;ltiplos marcadores aumenta significativamente a <strong>taxa de detec&ccedil;&atilde;o</strong></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com marcadores do <strong>segundo trimestre</strong> (sinal da banana, cisterna magna)</li>\n<li>Errar o per&iacute;odo gestacional - antes de 11s ou ap&oacute;s 13s6d compromete a acur&aacute;cia</li>\n<li>N&atilde;o reconhecer a <em>transluc&ecirc;ncia nucal</em> como marcador de maior sensibilidade isolada</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Quest&atilde;o direta perguntando qual marcador tem <strong>maior sensibilidade</strong> no 1&ordm; trimestre</li>\n<li>Cen&aacute;rio cl&iacute;nico pedindo <strong>lista de marcadores</strong> ultrassonogr&aacute;ficos adicionais</li>\n<li>Compara&ccedil;&atilde;o entre efic&aacute;cia de diferentes <strong>per&iacute;odos gestacionais</strong> para rastreamento</li>\n<li><strong>Tamb&eacute;m pode cair:</strong> valores de corte da transluc&ecirc;ncia nucal ou combina&ccedil;&atilde;o com marcadores bioqu&iacute;micos (PAPP-A, beta-hCG)</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340952,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+        "focus": {
+          "id": 1629,
+          "name": "Endometriose parte 1: fisiopatologia e diagnóstico"
+        }
+      },
+      "detail": {
+        "id": 340952,
+        "content": "Mulher, 29 anos, apresenta dor pélvica crônica. À ultrassonografia transvaginal observa-se lesão ovariana cística, homogênea, em vidro fosco. PERGUNTA-SE:\na. Qual é o diagnóstico mais provável?\nb. Cite um diagnóstico diferencial para esse achado.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15937,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [
+          {
+            "id": 4298,
+            "avatar": "https://cdn.medway.com.br/media/physician/IMG_Zf0n6zY.jpeg",
+            "about": "Ginecologia e Obstetrícia – HIAE",
+            "name": "Maitê Leite Basile",
+            "speciality": {
+              "id": 6,
+              "abbreviation": "GO",
+              "name": "Ginecologia e Obstetrícia"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 9,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1629,
+          "name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406530,
+        "actual_explanation": true,
+        "introduction": "<p>Galera, paciente com <strong>dor p&eacute;lvica cr&ocirc;nica&nbsp;</strong>e achado de cisto ovariano de aspecto de&nbsp;<strong>\"vidro fosco\"</strong> precisa nos fazer pensar em&nbsp;<strong>ENDOMETRIOMA.&nbsp;</strong></p>\n<p>&nbsp;O endometrioma &eacute; uma manifesta&ccedil;&atilde;o da endometriose ovariana, onde o tecido endometrial ect&oacute;pico se implanta no ov&aacute;rio, formando cistos que cont&ecirc;m sangue menstrual espesso e escuro. O&nbsp;<strong>aspecto em vidro fosco</strong> representa um dos sinais ultrassonogr&aacute;ficos mais caracter&iacute;sticos em ginecologia, resultado da presen&ccedil;a de debris hem&aacute;ticos organizados no interior da les&atilde;o c&iacute;stica.&nbsp;</p>\n<p style=\"text-align: center;\"><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T152525634Z925136.png\" width=\"491\" height=\"185\"></span></span></strong></p>\n<p>Ao associarmos este achado com o quadro de paciente jovem, em idade reprodutiva e hist&oacute;ria de dor p&eacute;lvica cr&ocirc;nica fica f&aacute;cil concluir que estamos frente a um quadro de endometrioma.&nbsp;</p>\n<p>Os principais diagn&oacute;sticos diferenciais incluem:</p>\n<ul>\n<li>CISTO HEMORR&Aacute;GICO: pode apresentar ecos internos, mas geralmente tem aspecto mais heterog&ecirc;neo e tende a resolver espontaneamente\n<ul>\n<li><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155246192Z792654.png\" width=\"214\" height=\"239\"></span></span></strong></li>\n</ul>\n</li>\n<li>CISTOADENOMA MUCINOSO: pode ter conte&uacute;do espesso, mas raramente apresenta o padr&atilde;o vidro fosco t&iacute;pico\n<ul>\n<li><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155558014Z335406.png\"></li>\n<li><em>fonte: radiopedia.org</em></li>\n</ul>\n</li>\n<li>TERATOMA C&Iacute;STICO MADURO (cisto derm&oacute;ide):&nbsp;Massa mista (s&oacute;lido-c&iacute;stica), com &aacute;reas hiperecog&ecirc;nicas e sombreamento posterior (\"tip of the iceberg\")\n<ul>\n<li>&nbsp;<strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155054387Z963737.png\" width=\"197\" height=\"220\"></strong>&nbsp;</li>\n</ul>\n</li>\n<li>CISTO DE CORPO L&Uacute;TEO HEMORR&Aacute;GICO: mais comum na segunda metade do ciclo menstrual e com hist&oacute;ria cl&iacute;nica diferente. Ao doppler visualiza&ccedil;&atilde;o de \"anel de fogo\"\n<ul>\n<li><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T154631272Z554031.png\" width=\"245\" height=\"195\"></span></span></strong></li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O aspecto ultrassonogr&aacute;fico em <strong>\"vidro fosco\"</strong> &eacute; praticamente patognom&ocirc;nico de <em>endometrioma ovariano</em>, especialmente quando associado &agrave; dor p&eacute;lvica cr&ocirc;nica em mulher jovem. Esse padr&atilde;o ecogr&aacute;fico resulta da presen&ccedil;a de debris hem&aacute;ticos organizados no interior do cisto. O contexto cl&iacute;nico de dor p&eacute;lvica cr&ocirc;nica em idade reprodutiva refor&ccedil;a fortemente essa hip&oacute;tese diagn&oacute;stica.</p>\n<p>Poss&iacute;veis diagn&oacute;sticos diferenciais incluem outros tumores ovarianos frequentes como cisto hemorr&aacute;gico, cistoadenoma mucinoso, cisto dermoide, cisto de corpo l&uacute;teo.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Mulher em <strong>idade reprodutiva</strong> (pico entre 25-35 anos)</li>\n<li><strong>Dor p&eacute;lvica cr&ocirc;nica</strong> como sintoma cardinal</li>\n<li>Aspecto <strong>\"vidro fosco\" ou \"ground glass\"</strong> na ultrassonografia transvaginal</li>\n<li>Les&atilde;o c&iacute;stica <strong>homog&ecirc;nea</strong> com ecos de baixa amplitude uniformes</li>\n<li>Tamanho vari&aacute;vel, frequentemente entre <strong>3-6cm</strong></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <strong>cisto hemorr&aacute;gico</strong> (principal diferencial, mas tem evolu&ccedil;&atilde;o mais aguda)</li>\n<li>Descartar <strong>cistoadenoma mucinoso</strong> que pode ter aspecto similar mas sem dor cr&ocirc;nica</li>\n<li>N&atilde;o associar o padr&atilde;o <em>\"vidro fosco\"</em> como sendo espec&iacute;fico do endometrioma</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li><strong>Padr&atilde;o cl&aacute;ssico:</strong> Mulher jovem + dor p&eacute;lvica + descri&ccedil;&atilde;o do aspecto ultrassonogr&aacute;fico t&iacute;pico</li>\n<li><strong>Formato comum:</strong> Quest&atilde;o discursiva pedindo diagn&oacute;stico mais prov&aacute;vel e principal diferencial</li>\n<li><strong>Associa&ccedil;&atilde;o frequente:</strong> Casos vinculados com dismenorreia e dispareunia como sintomas adicionais</li>\n<li><strong>Tamb&eacute;m pode cair:</strong> Classifica&ccedil;&atilde;o da endometriose e crit&eacute;rios para tratamento cir&uacute;rgico vs. cl&iacute;nico</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Galera, paciente com <strong>dor p&eacute;lvica cr&ocirc;nica&nbsp;</strong>e achado de cisto ovariano de aspecto de&nbsp;<strong>\"vidro fosco\"</strong> precisa nos fazer pensar em&nbsp;<strong>ENDOMETRIOMA.&nbsp;</strong></p>\n<p>&nbsp;O endometrioma &eacute; uma manifesta&ccedil;&atilde;o da endometriose ovariana, onde o tecido endometrial ect&oacute;pico se implanta no ov&aacute;rio, formando cistos que cont&ecirc;m sangue menstrual espesso e escuro. O&nbsp;<strong>aspecto em vidro fosco</strong> representa um dos sinais ultrassonogr&aacute;ficos mais caracter&iacute;sticos em ginecologia, resultado da presen&ccedil;a de debris hem&aacute;ticos organizados no interior da les&atilde;o c&iacute;stica.&nbsp;</p>\n<p style=\"text-align: center;\"><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T152525634Z925136.png\" width=\"491\" height=\"185\"></span></span></strong></p>\n<p>Ao associarmos este achado com o quadro de paciente jovem, em idade reprodutiva e hist&oacute;ria de dor p&eacute;lvica cr&ocirc;nica fica f&aacute;cil concluir que estamos frente a um quadro de endometrioma.&nbsp;</p>\n<p>Os principais diagn&oacute;sticos diferenciais incluem:</p>\n<ul>\n<li>CISTO HEMORR&Aacute;GICO: pode apresentar ecos internos, mas geralmente tem aspecto mais heterog&ecirc;neo e tende a resolver espontaneamente\n<ul>\n<li><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155246192Z792654.png\" width=\"214\" height=\"239\"></span></span></strong></li>\n</ul>\n</li>\n<li>CISTOADENOMA MUCINOSO: pode ter conte&uacute;do espesso, mas raramente apresenta o padr&atilde;o vidro fosco t&iacute;pico\n<ul>\n<li><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155558014Z335406.png\"></li>\n<li><em>fonte: radiopedia.org</em></li>\n</ul>\n</li>\n<li>TERATOMA C&Iacute;STICO MADURO (cisto derm&oacute;ide):&nbsp;Massa mista (s&oacute;lido-c&iacute;stica), com &aacute;reas hiperecog&ecirc;nicas e sombreamento posterior (\"tip of the iceberg\")\n<ul>\n<li>&nbsp;<strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155054387Z963737.png\" width=\"197\" height=\"220\"></strong>&nbsp;</li>\n</ul>\n</li>\n<li>CISTO DE CORPO L&Uacute;TEO HEMORR&Aacute;GICO: mais comum na segunda metade do ciclo menstrual e com hist&oacute;ria cl&iacute;nica diferente. Ao doppler visualiza&ccedil;&atilde;o de \"anel de fogo\"\n<ul>\n<li><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T154631272Z554031.png\" width=\"245\" height=\"195\"></span></span></strong></li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p><br>Visão do aprovado: <p>O aspecto ultrassonogr&aacute;fico em <strong>\"vidro fosco\"</strong> &eacute; praticamente patognom&ocirc;nico de <em>endometrioma ovariano</em>, especialmente quando associado &agrave; dor p&eacute;lvica cr&ocirc;nica em mulher jovem. Esse padr&atilde;o ecogr&aacute;fico resulta da presen&ccedil;a de debris hem&aacute;ticos organizados no interior do cisto. O contexto cl&iacute;nico de dor p&eacute;lvica cr&ocirc;nica em idade reprodutiva refor&ccedil;a fortemente essa hip&oacute;tese diagn&oacute;stica.</p>\n<p>Poss&iacute;veis diagn&oacute;sticos diferenciais incluem outros tumores ovarianos frequentes como cisto hemorr&aacute;gico, cistoadenoma mucinoso, cisto dermoide, cisto de corpo l&uacute;teo.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Mulher em <strong>idade reprodutiva</strong> (pico entre 25-35 anos)</li>\n<li><strong>Dor p&eacute;lvica cr&ocirc;nica</strong> como sintoma cardinal</li>\n<li>Aspecto <strong>\"vidro fosco\" ou \"ground glass\"</strong> na ultrassonografia transvaginal</li>\n<li>Les&atilde;o c&iacute;stica <strong>homog&ecirc;nea</strong> com ecos de baixa amplitude uniformes</li>\n<li>Tamanho vari&aacute;vel, frequentemente entre <strong>3-6cm</strong></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <strong>cisto hemorr&aacute;gico</strong> (principal diferencial, mas tem evolu&ccedil;&atilde;o mais aguda)</li>\n<li>Descartar <strong>cistoadenoma mucinoso</strong> que pode ter aspecto similar mas sem dor cr&ocirc;nica</li>\n<li>N&atilde;o associar o padr&atilde;o <em>\"vidro fosco\"</em> como sendo espec&iacute;fico do endometrioma</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li><strong>Padr&atilde;o cl&aacute;ssico:</strong> Mulher jovem + dor p&eacute;lvica + descri&ccedil;&atilde;o do aspecto ultrassonogr&aacute;fico t&iacute;pico</li>\n<li><strong>Formato comum:</strong> Quest&atilde;o discursiva pedindo diagn&oacute;stico mais prov&aacute;vel e principal diferencial</li>\n<li><strong>Associa&ccedil;&atilde;o frequente:</strong> Casos vinculados com dismenorreia e dispareunia como sintomas adicionais</li>\n<li><strong>Tamb&eacute;m pode cair:</strong> Classifica&ccedil;&atilde;o da endometriose e crit&eacute;rios para tratamento cir&uacute;rgico vs. cl&iacute;nico</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340953,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Gemelidade e restrição de crescimento fetal seletiva",
+        "focus": {
+          "id": 1593,
+          "name": "Gemelidade e restrição de crescimento fetal seletiva"
+        }
+      },
+      "detail": {
+        "id": 340953,
+        "content": "Gestante, 10 semanas, realiza ultrassonografia para avaliação de gestação múltipla. PERGUNTA- SE: \n\na. Qual é o período ideal para determinar a corionicidade pela ultrassonografia? \nb. O sinal do lambda é indicativo de qual diagnóstico na gestação múltipla?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15974,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Gemelidade e restrição de crescimento fetal seletiva",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 10,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1593,
+          "name": "Gemelidade e restrição de crescimento fetal seletiva",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406522,
+        "actual_explanation": false,
+        "introduction": "<p>O enunciado sugere, logo de início, a necessidade de avaliação precisa da <strong>corionicidade</strong> em gestação múltipla, um dos aspectos mais cruciais no acompanhamento pré-natal de gestações gemelares. A determinação da corionicidade não é apenas uma curiosidade acadêmica, mas sim um fator prognóstico fundamental que influencia diretamente o seguimento da gravidez, a frequência de consultas e os riscos associados.</p>\n\n<p>Em questões de residência médica, esse tema aparece frequentemente justamente por sua relevância clínica e pelos conceitos técnicos específicos envolvidos. A <strong>corionicidade</strong> refere-se ao número de placentas presentes na gestação múltipla, enquanto a <strong>amnionicidade</strong> diz respeito ao número de bolsas amnióticas. Gestações <strong>monocoriônicas</strong> (uma placenta) apresentam riscos significativamente maiores que gestações <strong>dicoriônicas</strong> (duas placentas), incluindo síndrome de transfusão feto-fetal, crescimento discordante e outras complicações específicas.</p>\n\n<p>A ultrassonografia é o método padrão-ouro para essa determinação, e o reconhecimento dos sinais ultrassonográficos específicos, como o <strong>sinal do lambda</strong> e o <strong>sinal T</strong>, é fundamental para o diagnóstico correto. O timing dessa avaliação também é crítico, pois existe uma janela temporal ideal onde esses sinais são mais facilmente identificáveis.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A determinação da <strong>corionicidade</strong> em gestação múltipla é fundamental para estratificar risco e definir seguimento pré-natal. O período ideal é até <strong>14 semanas</strong>, quando os sinais ultrassonográficos são mais nítidos. O <strong>sinal do lambda</strong> confirma gestação <strong>dicoriônica</strong>, indicando menor risco que gestações monocoriônicas.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>Sinal lambda</strong>: projeção triangular de tecido placentário entre membranas = dicoriônica</li>\n<li><strong>Sinal T</strong>: inserção perpendicular das membranas sem projeção = monocoriônica</li>\n<li><strong>Janela ideal</strong>: 10-14 semanas para melhor visualização dos sinais</li>\n<li><strong>Espessura da membrana</strong>: >2mm sugere dicoriônica, <2mm sugere monocoriônica</li>\n<li><strong>Sexos diferentes</strong>: automaticamente dicoriônica diamniótica</li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir <em>corionicidade</em> (número de placentas) com <em>amnionicidade</em> (número de bolsas)</li>\n<li>Inverter os sinais: lambda é dicoriônica, T é monocoriônica</li>\n<li>Esquecer que gestação <strong>monocoriônica</strong> é de <strong>maior risco</strong> que dicoriônica</li>\n<li>Não saber que após 16 semanas os sinais ficam menos confiáveis</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Pergunta direta sobre <strong>timing ideal</strong> para determinação de corionicidade</li>\n<li>Imagens ultrassonográficas pedindo interpretação dos <strong>sinais lambda e T</strong></li>\n<li>Casos clínicos associando corionicidade com <strong>prognóstico</strong> e frequência de seguimento</li>\n<li>Questões sobre <strong>diferenciação</strong> entre amnionicidade e corionicidade</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O enunciado sugere, logo de início, a necessidade de avaliação precisa da <strong>corionicidade</strong> em gestação múltipla, um dos aspectos mais cruciais no acompanhamento pré-natal de gestações gemelares. A determinação da corionicidade não é apenas uma curiosidade acadêmica, mas sim um fator prognóstico fundamental que influencia diretamente o seguimento da gravidez, a frequência de consultas e os riscos associados.</p>\n\n<p>Em questões de residência médica, esse tema aparece frequentemente justamente por sua relevância clínica e pelos conceitos técnicos específicos envolvidos. A <strong>corionicidade</strong> refere-se ao número de placentas presentes na gestação múltipla, enquanto a <strong>amnionicidade</strong> diz respeito ao número de bolsas amnióticas. Gestações <strong>monocoriônicas</strong> (uma placenta) apresentam riscos significativamente maiores que gestações <strong>dicoriônicas</strong> (duas placentas), incluindo síndrome de transfusão feto-fetal, crescimento discordante e outras complicações específicas.</p>\n\n<p>A ultrassonografia é o método padrão-ouro para essa determinação, e o reconhecimento dos sinais ultrassonográficos específicos, como o <strong>sinal do lambda</strong> e o <strong>sinal T</strong>, é fundamental para o diagnóstico correto. O timing dessa avaliação também é crítico, pois existe uma janela temporal ideal onde esses sinais são mais facilmente identificáveis.</p><br>Visão do aprovado: <p>A determinação da <strong>corionicidade</strong> em gestação múltipla é fundamental para estratificar risco e definir seguimento pré-natal. O período ideal é até <strong>14 semanas</strong>, quando os sinais ultrassonográficos são mais nítidos. O <strong>sinal do lambda</strong> confirma gestação <strong>dicoriônica</strong>, indicando menor risco que gestações monocoriônicas.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>Sinal lambda</strong>: projeção triangular de tecido placentário entre membranas = dicoriônica</li>\n<li><strong>Sinal T</strong>: inserção perpendicular das membranas sem projeção = monocoriônica</li>\n<li><strong>Janela ideal</strong>: 10-14 semanas para melhor visualização dos sinais</li>\n<li><strong>Espessura da membrana</strong>: >2mm sugere dicoriônica, <2mm sugere monocoriônica</li>\n<li><strong>Sexos diferentes</strong>: automaticamente dicoriônica diamniótica</li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir <em>corionicidade</em> (número de placentas) com <em>amnionicidade</em> (número de bolsas)</li>\n<li>Inverter os sinais: lambda é dicoriônica, T é monocoriônica</li>\n<li>Esquecer que gestação <strong>monocoriônica</strong> é de <strong>maior risco</strong> que dicoriônica</li>\n<li>Não saber que após 16 semanas os sinais ficam menos confiáveis</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Pergunta direta sobre <strong>timing ideal</strong> para determinação de corionicidade</li>\n<li>Imagens ultrassonográficas pedindo interpretação dos <strong>sinais lambda e T</strong></li>\n<li>Casos clínicos associando corionicidade com <strong>prognóstico</strong> e frequência de seguimento</li>\n<li>Questões sobre <strong>diferenciação</strong> entre amnionicidade e corionicidade</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340954,
+        "number": 5,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Complicações de gestação monocoriônica",
+        "focus": {
+          "id": 1627,
+          "name": "Complicações de gestação monocoriônica"
+        }
+      },
+      "detail": {
+        "id": 340954,
+        "content": "Gestante, 19 semanas, gemelar monocoriônica/diamniótica: um feto com polidramnio e bexiga distendida, outro em anidrâmnio e com bexiga permanentemente vazia. PERGUNTA-SE:\na. Qual é o diagnóstico?\nb. Qual o tratamento mais indicado?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15939,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Complicações de gestação monocoriônica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 9,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1627,
+          "name": "Complicações de gestação monocoriônica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406529,
+        "actual_explanation": true,
+        "introduction": "<p>O cen&aacute;rio combina achados ultrassonogr&aacute;ficos compat&iacute;veis com <strong>s&iacute;ndrome da transfus&atilde;o feto-fetal (STFF)</strong>, pedindo diagn&oacute;stico e tratamento como pr&oacute;ximo passo. Esta &eacute; uma das complica&ccedil;&otilde;es mais graves das gesta&ccedil;&otilde;es gemelares monocori&ocirc;nicas, ocorrendo em cerca de 10-15% dos casos. O quadro descrito apresenta o padr&atilde;o cl&aacute;ssico da condi&ccedil;&atilde;o: um feto <strong>receptor</strong> com polidr&acirc;mnio e bexiga distendida, e um feto <strong>doador</strong> com anidr&acirc;mnio e bexiga vazia.</p>\n<p>A STFF resulta de <em>anastomoses vasculares</em> desbalanceadas na placenta monocori&ocirc;nica, criando um desequil&iacute;brio hemodin&acirc;mico entre os fetos. O feto doador transfere sangue para o receptor atrav&eacute;s das conex&otilde;es vasculares, resultando em hipovolemia no doador e hipervolemia no receptor. Esse desequil&iacute;brio explica perfeitamente os achados descritos: o feto receptor desenvolve poli&uacute;ria (bexiga distendida) e consequente polidr&acirc;mnio, enquanto o doador apresenta olig&uacute;ria (bexiga vazia) e anidr&acirc;mnio.</p>\n<p>O reconhecimento precoce &eacute; fundamental, pois sem tratamento adequado, a STFF apresenta mortalidade perinatal pr&oacute;xima a 100%. O diagn&oacute;stico baseia-se nos crit&eacute;rios ultrassonogr&aacute;ficos cl&aacute;ssicos, e o tratamento de escolha atual &eacute; a <strong>abla&ccedil;&atilde;o a laser</strong> das anastomoses vasculares por fetoscopia a partir do Est&aacute;gio de Quintero II, conforme a tabela a seguir:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T142440296Z152462.png\" width=\"584\" height=\"373\"></p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A combina&ccedil;&atilde;o de <strong>gemelar monocori&ocirc;nica</strong> com discord&acirc;ncia extrema de l&iacute;quido amni&oacute;tico (polidr&acirc;mnio vs anidr&acirc;mnio) e achados vesicais opostos define claramente a <strong>s&iacute;ndrome da transfus&atilde;o feto-fetal (STFF)</strong>. O padr&atilde;o receptor-doador &eacute; patognom&ocirc;nico: feto receptor com bexiga distendida e poli&uacute;ria gerando polidr&acirc;mnio, versus feto doador com bexiga vazia e olig&uacute;ria causando anidr&acirc;mnio.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Gesta&ccedil;&atilde;o gemelar <em>monocori&ocirc;nica/diamni&oacute;tica</em> (condi&ccedil;&atilde;o necess&aacute;ria)</li>\n<li>Discord&acirc;ncia de l&iacute;quido amni&oacute;tico: polidr&acirc;mnio em um feto, anidr&acirc;mnio no outro</li>\n<li>Bexiga distendida no feto receptor vs bexiga permanentemente vazia no doador</li>\n<li>Segundo trimestre (momento t&iacute;pico de manifesta&ccedil;&atilde;o)</li>\n<li>Aus&ecirc;ncia de malforma&ccedil;&otilde;es estruturais que justifiquem os achados</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <em>crescimento fetal discordante</em> (n&atilde;o tem altera&ccedil;&atilde;o de l&iacute;quido amni&oacute;tico)</li>\n<li>Associar com gesta&ccedil;&otilde;es dicori&ocirc;nicas (STFF s&oacute; ocorre em monocori&ocirc;nicas)</li>\n<li>Indicar amniocentese como tratamento (procedimento paliativo, n&atilde;o curativo)</li>\n<li>N&atilde;o reconhecer urg&ecirc;ncia terap&ecirc;utica (mortalidade 100% sem tratamento)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Quest&otilde;es com imagens de ultrassom mostrando discord&acirc;ncia de l&iacute;quido amni&oacute;tico</li>\n<li>Compara&ccedil;&atilde;o entre tratamentos: abla&ccedil;&atilde;o laser vs amniocentese vs observa&ccedil;&atilde;o</li>\n<li>Diagn&oacute;stico diferencial com outras complica&ccedil;&otilde;es de gesta&ccedil;&otilde;es gemelares</li>\n<li>Reconhecimento dos crit&eacute;rios ultrassonogr&aacute;ficos de Quintero para estadiamento</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O cen&aacute;rio combina achados ultrassonogr&aacute;ficos compat&iacute;veis com <strong>s&iacute;ndrome da transfus&atilde;o feto-fetal (STFF)</strong>, pedindo diagn&oacute;stico e tratamento como pr&oacute;ximo passo. Esta &eacute; uma das complica&ccedil;&otilde;es mais graves das gesta&ccedil;&otilde;es gemelares monocori&ocirc;nicas, ocorrendo em cerca de 10-15% dos casos. O quadro descrito apresenta o padr&atilde;o cl&aacute;ssico da condi&ccedil;&atilde;o: um feto <strong>receptor</strong> com polidr&acirc;mnio e bexiga distendida, e um feto <strong>doador</strong> com anidr&acirc;mnio e bexiga vazia.</p>\n<p>A STFF resulta de <em>anastomoses vasculares</em> desbalanceadas na placenta monocori&ocirc;nica, criando um desequil&iacute;brio hemodin&acirc;mico entre os fetos. O feto doador transfere sangue para o receptor atrav&eacute;s das conex&otilde;es vasculares, resultando em hipovolemia no doador e hipervolemia no receptor. Esse desequil&iacute;brio explica perfeitamente os achados descritos: o feto receptor desenvolve poli&uacute;ria (bexiga distendida) e consequente polidr&acirc;mnio, enquanto o doador apresenta olig&uacute;ria (bexiga vazia) e anidr&acirc;mnio.</p>\n<p>O reconhecimento precoce &eacute; fundamental, pois sem tratamento adequado, a STFF apresenta mortalidade perinatal pr&oacute;xima a 100%. O diagn&oacute;stico baseia-se nos crit&eacute;rios ultrassonogr&aacute;ficos cl&aacute;ssicos, e o tratamento de escolha atual &eacute; a <strong>abla&ccedil;&atilde;o a laser</strong> das anastomoses vasculares por fetoscopia a partir do Est&aacute;gio de Quintero II, conforme a tabela a seguir:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T142440296Z152462.png\" width=\"584\" height=\"373\"></p><br>Visão do aprovado: <p>A combina&ccedil;&atilde;o de <strong>gemelar monocori&ocirc;nica</strong> com discord&acirc;ncia extrema de l&iacute;quido amni&oacute;tico (polidr&acirc;mnio vs anidr&acirc;mnio) e achados vesicais opostos define claramente a <strong>s&iacute;ndrome da transfus&atilde;o feto-fetal (STFF)</strong>. O padr&atilde;o receptor-doador &eacute; patognom&ocirc;nico: feto receptor com bexiga distendida e poli&uacute;ria gerando polidr&acirc;mnio, versus feto doador com bexiga vazia e olig&uacute;ria causando anidr&acirc;mnio.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Gesta&ccedil;&atilde;o gemelar <em>monocori&ocirc;nica/diamni&oacute;tica</em> (condi&ccedil;&atilde;o necess&aacute;ria)</li>\n<li>Discord&acirc;ncia de l&iacute;quido amni&oacute;tico: polidr&acirc;mnio em um feto, anidr&acirc;mnio no outro</li>\n<li>Bexiga distendida no feto receptor vs bexiga permanentemente vazia no doador</li>\n<li>Segundo trimestre (momento t&iacute;pico de manifesta&ccedil;&atilde;o)</li>\n<li>Aus&ecirc;ncia de malforma&ccedil;&otilde;es estruturais que justifiquem os achados</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <em>crescimento fetal discordante</em> (n&atilde;o tem altera&ccedil;&atilde;o de l&iacute;quido amni&oacute;tico)</li>\n<li>Associar com gesta&ccedil;&otilde;es dicori&ocirc;nicas (STFF s&oacute; ocorre em monocori&ocirc;nicas)</li>\n<li>Indicar amniocentese como tratamento (procedimento paliativo, n&atilde;o curativo)</li>\n<li>N&atilde;o reconhecer urg&ecirc;ncia terap&ecirc;utica (mortalidade 100% sem tratamento)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Quest&otilde;es com imagens de ultrassom mostrando discord&acirc;ncia de l&iacute;quido amni&oacute;tico</li>\n<li>Compara&ccedil;&atilde;o entre tratamentos: abla&ccedil;&atilde;o laser vs amniocentese vs observa&ccedil;&atilde;o</li>\n<li>Diagn&oacute;stico diferencial com outras complica&ccedil;&otilde;es de gesta&ccedil;&otilde;es gemelares</li>\n<li>Reconhecimento dos crit&eacute;rios ultrassonogr&aacute;ficos de Quintero para estadiamento</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340955,
+        "number": 6,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Diabetes na gestação",
+        "focus": {
+          "id": 1572,
+          "name": "Diabetes na gestação"
+        }
+      },
+      "detail": {
+        "id": 340955,
+        "content": "Gestante, 34a, 32 semanas, diabetes gestacional em insulina, polidrâmnio, peso fetal estimado no percentil 97 para a idade gestacional. PERGUNTA-SE:\n\na. Qual alteração fetal justifica o polidrâmnio?\nb. Cite uma complicação obstétrica relacionada aos achados fetais acima descritos.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 17143,
+            "parent_tag": {
+              "id": 15915,
+              "name": "Distúrbios hipertensivos e diabetes na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Diabetes na gestação",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 6,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 8,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1572,
+          "name": "Diabetes na gestação",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 91,
+            "name": "Distúrbios hipertensivos e diabetes na gestação",
+            "discipline": 86,
+            "old_tag": 15915,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406528,
+        "actual_explanation": true,
+        "introduction": "<p>O caso apresentado direciona o racioc&iacute;nio para as <strong>consequ&ecirc;ncias fetais do diabetes gestacional</strong> por causa da combina&ccedil;&atilde;o de achados: polidr&acirc;mnio, macrossomia (percentil 97) e necessidade de insuliniza&ccedil;&atilde;o materna. Trata-se de um cen&aacute;rio cl&aacute;ssico que explora a fisiopatologia das complica&ccedil;&otilde;es fetais do diabetes materno mal controlado, tema frequente nas provas de resid&ecirc;ncia.</p>\n<p>O <strong>diabetes gestacional</strong> &eacute; uma condi&ccedil;&atilde;o que afeta 3-25% das gesta&ccedil;&otilde;es e pode levar a v&aacute;rias complica&ccedil;&otilde;es maternas e fetais quando n&atilde;o adequadamente controlado. Neste caso, a paciente j&aacute; est&aacute; em uso de insulina, indicando que o controle glic&ecirc;mico apenas com dieta n&atilde;o foi suficiente, sugerindo um diabetes de maior gravidade.</p>\n<p>A quest&atilde;o testa o conhecimento sobre a <strong>cascata fisiopatol&oacute;gica</strong> que conecta o diabetes materno &agrave;s altera&ccedil;&otilde;es fetais: hiperglicemia materna &rarr; hiperglicemia fetal &rarr; hiperinsulinemia fetal &rarr; macrossomia e poli&uacute;ria fetal (diurese osm&oacute;tica)&rarr; polidr&acirc;mnio. Compreender essa sequ&ecirc;ncia &eacute; fundamental para responder corretamente &agrave;s duas perguntas formuladas.</p>\n<p>Para a primeira pergunta, o examinador busca a identifica&ccedil;&atilde;o da <strong>poli&uacute;ria fetal</strong> como o mecanismo que justifica o polidr&acirc;mnio no contexto diab&eacute;tico. Para a segunda, espera-se o reconhecimento de complica&ccedil;&otilde;es obst&eacute;tricas cl&aacute;ssicas da macrossomia, sendo a <strong>distocia de ombro</strong> a mais importante e frequentemente cobrada, mas tamb&eacute;m outras possibilidades como <strong>trabalho de parto prematuro, descolamento prematuro de placenta, rotura prematura das membranas ovulares pr&eacute;-termo (RPMO)</strong>, todos decorrentes da hiper-distens&atilde;o uterina.&nbsp;</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O diabetes gestacional com necessidade de <strong>insuliniza&ccedil;&atilde;o</strong> gera uma cascata fisiopatol&oacute;gica cl&aacute;ssica: hiperglicemia materna leva &agrave; hiperglicemia fetal, que resulta em hiperinsulinemia fetal, causando <strong>macrossomia e poli&uacute;ria fetal</strong>. A poli&uacute;ria fetal &eacute; o mecanismo direto do polidr&acirc;mnio, enquanto a macrossomia predisp&otilde;e &agrave; <em>distocia de ombro</em> como principal complica&ccedil;&atilde;o obst&eacute;trica.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Diabetes gestacional + insulina = controle inadequado com dieta, maior risco de complica&ccedil;&otilde;es</li>\n<li>Peso fetal percentil 97 = macrossomia (&gt;percentil 90 para idade gestacional)</li>\n<li>Polidr&acirc;mnio + macrossomia = poli&uacute;ria fetal por hiperinsulinemia</li>\n<li>Necessidade de insulina indica diabetes mais grave que o controlado apenas com dieta</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir polidr&acirc;mnio com oligodr&acirc;mnio (diabetes causa polidr&acirc;mnio, n&atilde;o oligo)</li>\n<li>Atribuir polidr&acirc;mnio &agrave; <em>polidipsia fetal</em> em vez de poli&uacute;ria fetal</li>\n<li>Esquecer que percentil 97 j&aacute; configura macrossomia (n&atilde;o precisa ser percentil 100)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Formato cl&aacute;ssico: caso com diabetes + polidr&acirc;mnio + macrossomia pedindo mecanismo fisiopatol&oacute;gico</li>\n<li>Pergunta direta sobre principal complica&ccedil;&atilde;o obst&eacute;trica da macrossomia (distocia de ombro)</li>\n<li>Diferencial entre causas de polidr&acirc;mnio: diabetes vs malforma&ccedil;&otilde;es vs infec&ccedil;&otilde;es</li>\n<li>Correla&ccedil;&atilde;o entre controle glic&ecirc;mico materno e peso fetal estimado</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O caso apresentado direciona o racioc&iacute;nio para as <strong>consequ&ecirc;ncias fetais do diabetes gestacional</strong> por causa da combina&ccedil;&atilde;o de achados: polidr&acirc;mnio, macrossomia (percentil 97) e necessidade de insuliniza&ccedil;&atilde;o materna. Trata-se de um cen&aacute;rio cl&aacute;ssico que explora a fisiopatologia das complica&ccedil;&otilde;es fetais do diabetes materno mal controlado, tema frequente nas provas de resid&ecirc;ncia.</p>\n<p>O <strong>diabetes gestacional</strong> &eacute; uma condi&ccedil;&atilde;o que afeta 3-25% das gesta&ccedil;&otilde;es e pode levar a v&aacute;rias complica&ccedil;&otilde;es maternas e fetais quando n&atilde;o adequadamente controlado. Neste caso, a paciente j&aacute; est&aacute; em uso de insulina, indicando que o controle glic&ecirc;mico apenas com dieta n&atilde;o foi suficiente, sugerindo um diabetes de maior gravidade.</p>\n<p>A quest&atilde;o testa o conhecimento sobre a <strong>cascata fisiopatol&oacute;gica</strong> que conecta o diabetes materno &agrave;s altera&ccedil;&otilde;es fetais: hiperglicemia materna &rarr; hiperglicemia fetal &rarr; hiperinsulinemia fetal &rarr; macrossomia e poli&uacute;ria fetal (diurese osm&oacute;tica)&rarr; polidr&acirc;mnio. Compreender essa sequ&ecirc;ncia &eacute; fundamental para responder corretamente &agrave;s duas perguntas formuladas.</p>\n<p>Para a primeira pergunta, o examinador busca a identifica&ccedil;&atilde;o da <strong>poli&uacute;ria fetal</strong> como o mecanismo que justifica o polidr&acirc;mnio no contexto diab&eacute;tico. Para a segunda, espera-se o reconhecimento de complica&ccedil;&otilde;es obst&eacute;tricas cl&aacute;ssicas da macrossomia, sendo a <strong>distocia de ombro</strong> a mais importante e frequentemente cobrada, mas tamb&eacute;m outras possibilidades como <strong>trabalho de parto prematuro, descolamento prematuro de placenta, rotura prematura das membranas ovulares pr&eacute;-termo (RPMO)</strong>, todos decorrentes da hiper-distens&atilde;o uterina.&nbsp;</p><br>Visão do aprovado: <p>O diabetes gestacional com necessidade de <strong>insuliniza&ccedil;&atilde;o</strong> gera uma cascata fisiopatol&oacute;gica cl&aacute;ssica: hiperglicemia materna leva &agrave; hiperglicemia fetal, que resulta em hiperinsulinemia fetal, causando <strong>macrossomia e poli&uacute;ria fetal</strong>. A poli&uacute;ria fetal &eacute; o mecanismo direto do polidr&acirc;mnio, enquanto a macrossomia predisp&otilde;e &agrave; <em>distocia de ombro</em> como principal complica&ccedil;&atilde;o obst&eacute;trica.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Diabetes gestacional + insulina = controle inadequado com dieta, maior risco de complica&ccedil;&otilde;es</li>\n<li>Peso fetal percentil 97 = macrossomia (&gt;percentil 90 para idade gestacional)</li>\n<li>Polidr&acirc;mnio + macrossomia = poli&uacute;ria fetal por hiperinsulinemia</li>\n<li>Necessidade de insulina indica diabetes mais grave que o controlado apenas com dieta</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir polidr&acirc;mnio com oligodr&acirc;mnio (diabetes causa polidr&acirc;mnio, n&atilde;o oligo)</li>\n<li>Atribuir polidr&acirc;mnio &agrave; <em>polidipsia fetal</em> em vez de poli&uacute;ria fetal</li>\n<li>Esquecer que percentil 97 j&aacute; configura macrossomia (n&atilde;o precisa ser percentil 100)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Formato cl&aacute;ssico: caso com diabetes + polidr&acirc;mnio + macrossomia pedindo mecanismo fisiopatol&oacute;gico</li>\n<li>Pergunta direta sobre principal complica&ccedil;&atilde;o obst&eacute;trica da macrossomia (distocia de ombro)</li>\n<li>Diferencial entre causas de polidr&acirc;mnio: diabetes vs malforma&ccedil;&otilde;es vs infec&ccedil;&otilde;es</li>\n<li>Correla&ccedil;&atilde;o entre controle glic&ecirc;mico materno e peso fetal estimado</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340956,
+        "number": 7,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sofrimento fetal crônico",
+        "focus": {
+          "id": 1607,
+          "name": "Sofrimento fetal crônico"
+        }
+      },
+      "detail": {
+        "id": 340956,
+        "content": "Gestante, 31a, 36 semanas, restrição de crescimento fetal, artéria umbilical com fluxo diastólico final reverso. PERGUNTA-SE:\n\na. Qual é a implicação prognóstica?\nb. Qual conduta imediata?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15960,
+            "parent_tag": {
+              "id": 15911,
+              "name": "Sofrimento fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sofrimento fetal crônico",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 7,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 9,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1607,
+          "name": "Sofrimento fetal crônico",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 95,
+            "name": "Sofrimento fetal",
+            "discipline": 86,
+            "old_tag": 15911,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406523,
+        "actual_explanation": true,
+        "introduction": "<p>O cen&aacute;rio combina <strong>restri&ccedil;&atilde;o de crescimento fetal</strong> e <strong>fluxo diast&oacute;lico final reverso</strong> na art&eacute;ria umbilical, sinais que apontam para uma condi&ccedil;&atilde;o de extrema gravidade obst&eacute;trica. Estamos diante de um caso cl&aacute;ssico de <strong>insufici&ecirc;ncia placent&aacute;ria grave</strong> em gesta&ccedil;&atilde;o pr&oacute;xima ao termo (36 semanas), que exige decis&atilde;o imediata e precisa do obstetra.</p>\n<p>Lembrem que a art&eacute;ria umbilical &eacute; respons&aacute;vel por levar o sangue do feto para a placenta - onde ocorrer&aacute; a troca de nutrientes/gases com o sangue materno. A ideia &eacute; que seja um vaso de pouca resist&ecirc;ncia, de forma que o fluxo sangu&iacute;neo passe sem dificuldades e, assim, ocorram as trocas.</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T175400029Z169553.png\" width=\"374\" height=\"254\">&nbsp;</p>\n<p style=\"text-align: center;\"><em>&nbsp;tra&ccedil;ado com morfologia normal, fonte: radiopaedia.org</em></p>\n<p>Frente a um quadro de disfun&ccedil;&atilde;o placent&aacute;ria, a microcircula&ccedil;&atilde;o placent&aacute;ria estar&aacute; comprometida, levando &agrave; diminui&ccedil;&atilde;o progressiva do fluxo diast&oacute;lico normal.&nbsp;</p>\n<p>As seguintes altera&ccedil;&otilde;es da art&eacute;ria umbilical ao doppler exigem interna&ccedil;&atilde;o para vitalidade di&aacute;ria e resolu&ccedil;&atilde;o precoce de gesta&ccedil;&atilde;o por via alta:</p>\n<ul>\n<li><span style=\"text-decoration-line: underline; font-size: 11pt;\">Di&aacute;stole zero:</span>\n<ul>\n<li>Corresponde a oblitera&ccedil;&atilde;o de 50% da microcircula&ccedil;&atilde;o</li>\n<li>Risco de &oacute;bito fetal em torno de 7%</li>\n<li><strong>Conduta:&nbsp;</strong>parto com 32-34 semanas <em>(a depender da refer&ecirc;ncia)</em></li>\n<li><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T175603847Z499257.png\" width=\"156\" height=\"229\"></span></span></strong></li>\n</ul>\n</li>\n<li><span style=\"text-decoration: underline;\">Di&aacute;stole reversa:</span>&nbsp;representa o est&aacute;gio mais avan&ccedil;ado de comprometimento da circula&ccedil;&atilde;o feto-placent&aacute;ria<span style=\"font-size: 11pt;\">. Durante a di&aacute;stole card&iacute;aca fetal, quando normalmente ainda deveria haver fluxo anter&oacute;grado (mesmo que reduzido) em dire&ccedil;&atilde;o &agrave; placenta, observamos uma </span><strong style=\"font-size: 11pt;\">invers&atilde;o completa do fluxo</strong><span style=\"font-size: 11pt;\">. Isso indica que a resist&ecirc;ncia vascular placent&aacute;ria est&aacute; t&atilde;o elevada que o sangue literalmente \"volta\" em dire&ccedil;&atilde;o ao feto durante o relaxamento card&iacute;aco.</span>\n<ul>\n<li><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T175631034Z338000.png\" width=\"114\" height=\"183\"></span></span></strong> &nbsp;</li>\n<li><span style=\"font-size: 11pt;\">corresponde a oblitera&ccedil;&atilde;o de 90% da microcircula&ccedil;&atilde;o</span></li>\n<li><span style=\"font-size: 11pt;\">risco de &oacute;bito fetal de 19%</span></li>\n<li><strong><span style=\"font-size: 11pt;\">Conduta:</span></strong><span style=\"font-size: 11pt;\"> parto com 26 a 30 semanas <em>(a depender da refer&ecirc;ncia)</em></span></li>\n</ul>\n</li>\n</ul>\n<p><em><span style=\"font-size: 11pt;\">Obs: art&eacute;ria umbilical apenas com aumento de resist&ecirc;ncia, por&eacute;m com di&aacute;stole presente indica parto com 37 semanas por via obst&eacute;trica, sem necessidade de interna&ccedil;&atilde;o</span></em></p>\n<p><span style=\"font-size: 11pt;\">No caso apresentado na quest&atilde;o temos&nbsp;<strong>di&aacute;stole reversa,&nbsp;</strong>o que implica em risco iminente de &oacute;bito fetal. Como a idade gesacional &eacute; maior que 30 semanas, nossa conduta ser&aacute; resolu&ccedil;&atilde;o imediata da gesta&ccedil;&atilde;o.&nbsp;</span></p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O <strong>fluxo diast&oacute;lico final reverso</strong> na art&eacute;ria umbilical representa o marcador mais grave de insufici&ecirc;ncia placent&aacute;ria, indicando <strong>risco iminente de morte fetal intrauterina</strong>. A combina&ccedil;&atilde;o com restri&ccedil;&atilde;o de crescimento fetal em gesta&ccedil;&atilde;o de 36 semanas exige <strong>resolu&ccedil;&atilde;o imediata da gesta&ccedil;&atilde;o</strong>, pois a perman&ecirc;ncia intrauterina se torna mais perigosa que o nascimento.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O cen&aacute;rio combina <strong>restri&ccedil;&atilde;o de crescimento fetal</strong> e <strong>fluxo diast&oacute;lico final reverso</strong> na art&eacute;ria umbilical, sinais que apontam para uma condi&ccedil;&atilde;o de extrema gravidade obst&eacute;trica. Estamos diante de um caso cl&aacute;ssico de <strong>insufici&ecirc;ncia placent&aacute;ria grave</strong> em gesta&ccedil;&atilde;o pr&oacute;xima ao termo (36 semanas), que exige decis&atilde;o imediata e precisa do obstetra.</p>\n<p>Lembrem que a art&eacute;ria umbilical &eacute; respons&aacute;vel por levar o sangue do feto para a placenta - onde ocorrer&aacute; a troca de nutrientes/gases com o sangue materno. A ideia &eacute; que seja um vaso de pouca resist&ecirc;ncia, de forma que o fluxo sangu&iacute;neo passe sem dificuldades e, assim, ocorram as trocas.</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T175400029Z169553.png\" width=\"374\" height=\"254\">&nbsp;</p>\n<p style=\"text-align: center;\"><em>&nbsp;tra&ccedil;ado com morfologia normal, fonte: radiopaedia.org</em></p>\n<p>Frente a um quadro de disfun&ccedil;&atilde;o placent&aacute;ria, a microcircula&ccedil;&atilde;o placent&aacute;ria estar&aacute; comprometida, levando &agrave; diminui&ccedil;&atilde;o progressiva do fluxo diast&oacute;lico normal.&nbsp;</p>\n<p>As seguintes altera&ccedil;&otilde;es da art&eacute;ria umbilical ao doppler exigem interna&ccedil;&atilde;o para vitalidade di&aacute;ria e resolu&ccedil;&atilde;o precoce de gesta&ccedil;&atilde;o por via alta:</p>\n<ul>\n<li><span style=\"text-decoration-line: underline; font-size: 11pt;\">Di&aacute;stole zero:</span>\n<ul>\n<li>Corresponde a oblitera&ccedil;&atilde;o de 50% da microcircula&ccedil;&atilde;o</li>\n<li>Risco de &oacute;bito fetal em torno de 7%</li>\n<li><strong>Conduta:&nbsp;</strong>parto com 32-34 semanas <em>(a depender da refer&ecirc;ncia)</em></li>\n<li><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T175603847Z499257.png\" width=\"156\" height=\"229\"></span></span></strong></li>\n</ul>\n</li>\n<li><span style=\"text-decoration: underline;\">Di&aacute;stole reversa:</span>&nbsp;representa o est&aacute;gio mais avan&ccedil;ado de comprometimento da circula&ccedil;&atilde;o feto-placent&aacute;ria<span style=\"font-size: 11pt;\">. Durante a di&aacute;stole card&iacute;aca fetal, quando normalmente ainda deveria haver fluxo anter&oacute;grado (mesmo que reduzido) em dire&ccedil;&atilde;o &agrave; placenta, observamos uma </span><strong style=\"font-size: 11pt;\">invers&atilde;o completa do fluxo</strong><span style=\"font-size: 11pt;\">. Isso indica que a resist&ecirc;ncia vascular placent&aacute;ria est&aacute; t&atilde;o elevada que o sangue literalmente \"volta\" em dire&ccedil;&atilde;o ao feto durante o relaxamento card&iacute;aco.</span>\n<ul>\n<li><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T175631034Z338000.png\" width=\"114\" height=\"183\"></span></span></strong> &nbsp;</li>\n<li><span style=\"font-size: 11pt;\">corresponde a oblitera&ccedil;&atilde;o de 90% da microcircula&ccedil;&atilde;o</span></li>\n<li><span style=\"font-size: 11pt;\">risco de &oacute;bito fetal de 19%</span></li>\n<li><strong><span style=\"font-size: 11pt;\">Conduta:</span></strong><span style=\"font-size: 11pt;\"> parto com 26 a 30 semanas <em>(a depender da refer&ecirc;ncia)</em></span></li>\n</ul>\n</li>\n</ul>\n<p><em><span style=\"font-size: 11pt;\">Obs: art&eacute;ria umbilical apenas com aumento de resist&ecirc;ncia, por&eacute;m com di&aacute;stole presente indica parto com 37 semanas por via obst&eacute;trica, sem necessidade de interna&ccedil;&atilde;o</span></em></p>\n<p><span style=\"font-size: 11pt;\">No caso apresentado na quest&atilde;o temos&nbsp;<strong>di&aacute;stole reversa,&nbsp;</strong>o que implica em risco iminente de &oacute;bito fetal. Como a idade gesacional &eacute; maior que 30 semanas, nossa conduta ser&aacute; resolu&ccedil;&atilde;o imediata da gesta&ccedil;&atilde;o.&nbsp;</span></p><br>Visão do aprovado: <p>O <strong>fluxo diast&oacute;lico final reverso</strong> na art&eacute;ria umbilical representa o marcador mais grave de insufici&ecirc;ncia placent&aacute;ria, indicando <strong>risco iminente de morte fetal intrauterina</strong>. A combina&ccedil;&atilde;o com restri&ccedil;&atilde;o de crescimento fetal em gesta&ccedil;&atilde;o de 36 semanas exige <strong>resolu&ccedil;&atilde;o imediata da gesta&ccedil;&atilde;o</strong>, pois a perman&ecirc;ncia intrauterina se torna mais perigosa que o nascimento.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340957,
+        "number": 8,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Aconselhamento genético e síndromes genéticas",
+        "focus": {
+          "id": 1636,
+          "name": "Aconselhamento genético e síndromes genéticas"
+        }
+      },
+      "detail": {
+        "id": 340957,
+        "content": "Gestante, 40 anos, 11 semanas, translucência nucal acima do percentil 95 na ecografia de rastreamento. PERGUNTA-SE:\na. Qual exame complementar não invasivo pode ser oferecido para melhor estimativa do risco?\nb. Qual exame invasivo pode confirmar o diagnóstico de aneuploidia?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15930,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Aconselhamento genético e síndromes genéticas",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 8,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 8,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1636,
+          "name": "Aconselhamento genético e síndromes genéticas",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406524,
+        "actual_explanation": true,
+        "introduction": "<p>O exame morfológico de 1° trimestre avalia <span style=\"text-decoration: underline;\">riscos de cromossomopatias</span>. A depender dos achados no exame teremos risco:</p>\n<ul>\n<li>baixo: se menor que 1:1000 (conduta: seguimento habitual)</li>\n<li>intermediário: se entre 1:100 e 1:1000 (conduta: individualizar)</li>\n<li>alto: se maior que 1:100 (conduta: indicar procedimento invasivo)</li>\n</ul>\n<p>A determinação desse risco se baseia em diversos parâmetros, entre eles a <strong>translucência nucal</strong>, tema abordado nesta questão.</p>\n<p>A<span style=\"text-decoration: underline;\"> translucência nucal (TN)</span> é medida idealmente entre <em>11 e 13+6 semanas de gestação</em> (CCN entre 45 e 84mm), e valores acima do percentil 95 para a idade gestacional indicam risco aumentado para aneuploidias, especialmente <em>trissomias do 21, 18 e 13</em>. Os valores de referência variam a depender da idade gestacional, mas geralmente consideramos alterado se maior que<strong> 2,5mm. </strong>Quanto maior a TN, maior o risco de cromossomopatia, malformação e de óbito fetal. <strong>Translucência nucal alterada isoladamente não confirma diagnóstico.</strong></p>\n<p>Frente a um exame morfológico alterado, sugestivo de cromossomopatias, avançamos para a propedêutica complementar.</p>\n<ul>\n<li>Teste não invasivo - preferencialmente em riscos intermediários:\n<ul>\n<li><span class=\"article-3386\">NIPT</span>: pesquisa de DNA fetal livre no sangue materno\n<ul>\n<li>teste de <strong>rastreamento: </strong>não confirma diagnóstico, se positivo prosseguir para testes invasivos</li>\n<li>realizar a partir de 10 semanas</li>\n</ul>\n</li>\n</ul>\n</li>\n<li>Teste invasivo - confirma diagnóstico: indicado para alto risco de cromossomopatias\n<ul>\n<li>amniocentese\n<ul>\n<li>realizada entre 15 e 20 semanas</li>\n</ul>\n</li>\n<li>biópsia de vilo corial\n<ul>\n<li>realizada entre 10 e 13 semanas</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n<p><em>Obs: exames bioquímicos como PAPP-A e beta-HCG livre também são formas de rastreamento, mas principalmente em pacientes <strong>sem </strong>alterações ao ultrassom. No caso em questão, já temos a TN alterada, então o <span class=\"article-3386\">NIPT</span> oferece melhor refinamento de risco</em></p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A combinação de <strong>idade materna avançada</strong> (40 anos) e <strong>translucência nucal aumentada</strong> (acima do percentil 95) indica <strong>risco elevado para aneuploidias</strong>, especialmente trissomias do 21, 18 e 13. O raciocínio diagnóstico segue estratificação progressiva: teste não invasivo para refinar o risco, seguido de confirmação invasiva quando indicado.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>Idade ≥35 anos</strong> = risco basal aumentado para cromossomopatias</li>\n<li><strong>TN acima do percentil 95</strong> = marcador ultrassonográfico alterado (</li>\n<li><em>DNA fetal livre circulante</em> = teste não invasivo de escolha para refinar risco</li>\n<li><strong>Amniocentese ou amostra de vilo coriônico</strong> = confirmação invasiva definitiva</li>\n<li>Associação clássica com <em>trissomias do 21, 18 e 13</em></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir <strong>rastreamento</strong> (DNA fetal livre) com <strong>diagnóstico</strong> (procedimento invasivo)</li>\n<li>Indicar direto a amniocentese/biópsia do vilo coriônico sem estratificação de risco prévia</li>\n<li>Não considerar que TN alterada isolada <strong>não confirma</strong> aneuploidia</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O exame morfológico de 1° trimestre avalia <span style=\"text-decoration: underline;\">riscos de cromossomopatias</span>. A depender dos achados no exame teremos risco:</p>\n<ul>\n<li>baixo: se menor que 1:1000 (conduta: seguimento habitual)</li>\n<li>intermediário: se entre 1:100 e 1:1000 (conduta: individualizar)</li>\n<li>alto: se maior que 1:100 (conduta: indicar procedimento invasivo)</li>\n</ul>\n<p>A determinação desse risco se baseia em diversos parâmetros, entre eles a <strong>translucência nucal</strong>, tema abordado nesta questão.</p>\n<p>A<span style=\"text-decoration: underline;\"> translucência nucal (TN)</span> é medida idealmente entre <em>11 e 13+6 semanas de gestação</em> (CCN entre 45 e 84mm), e valores acima do percentil 95 para a idade gestacional indicam risco aumentado para aneuploidias, especialmente <em>trissomias do 21, 18 e 13</em>. Os valores de referência variam a depender da idade gestacional, mas geralmente consideramos alterado se maior que<strong> 2,5mm. </strong>Quanto maior a TN, maior o risco de cromossomopatia, malformação e de óbito fetal. <strong>Translucência nucal alterada isoladamente não confirma diagnóstico.</strong></p>\n<p>Frente a um exame morfológico alterado, sugestivo de cromossomopatias, avançamos para a propedêutica complementar.</p>\n<ul>\n<li>Teste não invasivo - preferencialmente em riscos intermediários:\n<ul>\n<li><span class=\"article-3386\">NIPT</span>: pesquisa de DNA fetal livre no sangue materno\n<ul>\n<li>teste de <strong>rastreamento: </strong>não confirma diagnóstico, se positivo prosseguir para testes invasivos</li>\n<li>realizar a partir de 10 semanas</li>\n</ul>\n</li>\n</ul>\n</li>\n<li>Teste invasivo - confirma diagnóstico: indicado para alto risco de cromossomopatias\n<ul>\n<li>amniocentese\n<ul>\n<li>realizada entre 15 e 20 semanas</li>\n</ul>\n</li>\n<li>biópsia de vilo corial\n<ul>\n<li>realizada entre 10 e 13 semanas</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n<p><em>Obs: exames bioquímicos como PAPP-A e beta-HCG livre também são formas de rastreamento, mas principalmente em pacientes <strong>sem </strong>alterações ao ultrassom. No caso em questão, já temos a TN alterada, então o <span class=\"article-3386\">NIPT</span> oferece melhor refinamento de risco</em></p><br>Visão do aprovado: <p>A combinação de <strong>idade materna avançada</strong> (40 anos) e <strong>translucência nucal aumentada</strong> (acima do percentil 95) indica <strong>risco elevado para aneuploidias</strong>, especialmente trissomias do 21, 18 e 13. O raciocínio diagnóstico segue estratificação progressiva: teste não invasivo para refinar o risco, seguido de confirmação invasiva quando indicado.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>Idade ≥35 anos</strong> = risco basal aumentado para cromossomopatias</li>\n<li><strong>TN acima do percentil 95</strong> = marcador ultrassonográfico alterado (</li>\n<li><em>DNA fetal livre circulante</em> = teste não invasivo de escolha para refinar risco</li>\n<li><strong>Amniocentese ou amostra de vilo coriônico</strong> = confirmação invasiva definitiva</li>\n<li>Associação clássica com <em>trissomias do 21, 18 e 13</em></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir <strong>rastreamento</strong> (DNA fetal livre) com <strong>diagnóstico</strong> (procedimento invasivo)</li>\n<li>Indicar direto a amniocentese/biópsia do vilo coriônico sem estratificação de risco prévia</li>\n<li>Não considerar que TN alterada isolada <strong>não confirma</strong> aneuploidia</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340958,
+        "number": 9,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sangramentos de segunda metade",
+        "focus": {
+          "id": 1577,
+          "name": "Sangramentos de segunda metade"
+        }
+      },
+      "detail": {
+        "id": 340958,
+        "content": "Gestante, 22a, 19 semanas, inserção velamentosa com vasos sobre orifício interno do colo. PERGUNTA-SE:\na. Qual é o diagnóstico?\nb. Cite uma complicação.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15990,
+            "parent_tag": {
+              "id": 15913,
+              "name": "Sangramentos na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sangramentos de segunda metade",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 9,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 8,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1577,
+          "name": "Sangramentos de segunda metade",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 93,
+            "name": "Sangramentos na gestação",
+            "discipline": 86,
+            "old_tag": 15913,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406512,
+        "actual_explanation": true,
+        "introduction": "<p>O caso apresentado direciona o raciocínio para <strong>vasa previa</strong> por causa da combinação específica de inserção velamentosa com vasos sobre o orifício interno do colo. Esta é uma condição obstétrica rara, mas potencialmente devastadora, que ocorre em aproximadamente 1 em cada 2.500 gestações.</p>\n<p> </p>\n<p>A <strong>vasa previa</strong> caracteriza-se pela presença de vasos fetais desprotegidos que atravessam as membranas sobre o orifício interno do colo uterino, ou muito próximo a ele. Esses vasos não estão protegidos pela <strong>geleia de Wharton</strong> do cordão umbilical nem por tecido placentário, ficando extremamente vulneráveis à ruptura durante o trabalho de parto ou mesmo espontaneamente. Por isso que um dos principais fatores de risco é a inserção velamentosa do cordão umbilical, pois isso facilita que os vasos fetais estejam expostos.</p>\n<p>O diagnóstico precoce é fundamental, pois permite o planejamento adequado do parto e pode prevenir a <strong>mortalidade fetal</strong>, que historicamente chegava a 60% quando não diagnosticada. Com diagnóstico pré-natal e manejo adequado, a sobrevida fetal ultrapassa 95%.</p>\n<p>A inserção velamentosa do cordão umbilical é um fator de risco importante para vasa previa, especialmente quando associada a <strong>placenta bilobada</strong>, <strong>placenta succenturiada</strong> ou <strong>placenta de inserção baixa</strong>.</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T144954619Z406506.png\"/></p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O diagnóstico é <strong>vasa previa</strong>, confirmado pela combinação de inserção velamentosa do cordão com vasos cruzando o orifício interno do colo. A principal complicação é <strong>hemorragia fetal maciça</strong> com risco de morte durante ruptura das membranas ou trabalho de parto.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Inserção velamentosa do cordão umbilical associada a vasos sobre orifício cervical interno</li>\n<li>Vasos fetais <em>desprotegidos</em> (sem geleia de Wharton) atravessando as membranas</li>\n<li>Localização próxima ou sobre o colo uterino na ultrassonografia</li>\n<li>Associação com placenta bilobada, succenturiada ou de inserção baixa</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <em><span class=\"article-3313\">placenta prévia</span></em> - na vasa previa são os <strong>vasos</strong> que estão sobre o colo, não a placenta</li>\n<li>Pensar que qualquer inserção velamentosa é vasa previa - precisa ter vasos sobre o orifício cervical</li>\n<li>Subestimar a gravidade - mortalidade fetal de 60% se não diagnosticada vs &gt;95% sobrevida com diagnóstico</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Cenário clássico: gestante com <em>inserção velamentosa + vasos sobre colo</em> pedindo diagnóstico</li>\n<li>Pergunta sobre principal complicação: <strong>hemorragia fetal</strong> durante ruptura das membranas</li>\n<li>Questões sobre fatores de risco associados: placenta bilobada, succenturiada</li>\n<li>Via de parto indicada: <strong>cesariana eletiva</strong> antes do trabalho de parto</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O caso apresentado direciona o raciocínio para <strong>vasa previa</strong> por causa da combinação específica de inserção velamentosa com vasos sobre o orifício interno do colo. Esta é uma condição obstétrica rara, mas potencialmente devastadora, que ocorre em aproximadamente 1 em cada 2.500 gestações.</p>\n<p> </p>\n<p>A <strong>vasa previa</strong> caracteriza-se pela presença de vasos fetais desprotegidos que atravessam as membranas sobre o orifício interno do colo uterino, ou muito próximo a ele. Esses vasos não estão protegidos pela <strong>geleia de Wharton</strong> do cordão umbilical nem por tecido placentário, ficando extremamente vulneráveis à ruptura durante o trabalho de parto ou mesmo espontaneamente. Por isso que um dos principais fatores de risco é a inserção velamentosa do cordão umbilical, pois isso facilita que os vasos fetais estejam expostos.</p>\n<p>O diagnóstico precoce é fundamental, pois permite o planejamento adequado do parto e pode prevenir a <strong>mortalidade fetal</strong>, que historicamente chegava a 60% quando não diagnosticada. Com diagnóstico pré-natal e manejo adequado, a sobrevida fetal ultrapassa 95%.</p>\n<p>A inserção velamentosa do cordão umbilical é um fator de risco importante para vasa previa, especialmente quando associada a <strong>placenta bilobada</strong>, <strong>placenta succenturiada</strong> ou <strong>placenta de inserção baixa</strong>.</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T144954619Z406506.png\"/></p><br>Visão do aprovado: <p>O diagnóstico é <strong>vasa previa</strong>, confirmado pela combinação de inserção velamentosa do cordão com vasos cruzando o orifício interno do colo. A principal complicação é <strong>hemorragia fetal maciça</strong> com risco de morte durante ruptura das membranas ou trabalho de parto.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Inserção velamentosa do cordão umbilical associada a vasos sobre orifício cervical interno</li>\n<li>Vasos fetais <em>desprotegidos</em> (sem geleia de Wharton) atravessando as membranas</li>\n<li>Localização próxima ou sobre o colo uterino na ultrassonografia</li>\n<li>Associação com placenta bilobada, succenturiada ou de inserção baixa</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <em><span class=\"article-3313\">placenta prévia</span></em> - na vasa previa são os <strong>vasos</strong> que estão sobre o colo, não a placenta</li>\n<li>Pensar que qualquer inserção velamentosa é vasa previa - precisa ter vasos sobre o orifício cervical</li>\n<li>Subestimar a gravidade - mortalidade fetal de 60% se não diagnosticada vs &gt;95% sobrevida com diagnóstico</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Cenário clássico: gestante com <em>inserção velamentosa + vasos sobre colo</em> pedindo diagnóstico</li>\n<li>Pergunta sobre principal complicação: <strong>hemorragia fetal</strong> durante ruptura das membranas</li>\n<li>Questões sobre fatores de risco associados: placenta bilobada, succenturiada</li>\n<li>Via de parto indicada: <strong>cesariana eletiva</strong> antes do trabalho de parto</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340959,
+        "number": 10,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Trabalho de parto prematuro e seus fatores de risco",
+        "focus": {
+          "id": 1580,
+          "name": "Trabalho de parto prematuro e seus fatores de risco"
+        }
+      },
+      "detail": {
+        "id": 340959,
+        "content": "Gestante, 33 anos, 20 semanas, antecedente de prematuridade, colo 18 mm. PERGUNTA-SE:\na. Nessa idade gestacional qual o ponto de corte mais aceito na literatura para considerar o colo como encurtado?\nb. No caso acima qual intervenção pode ser considerada?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15987,
+            "parent_tag": {
+              "id": 15908,
+              "name": "Prematuridade na Obstetrícia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Trabalho de parto prematuro e seus fatores de risco",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 10,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 10,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1580,
+          "name": "Trabalho de parto prematuro e seus fatores de risco",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 98,
+            "name": "Prematuridade na Obstetrícia",
+            "discipline": 86,
+            "old_tag": 15908,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406525,
+        "actual_explanation": true,
+        "introduction": "<p>No cerne desta quest&atilde;o est&aacute; a avalia&ccedil;&atilde;o da incompet&ecirc;ncia istmocervical e suas implica&ccedil;&otilde;es terap&ecirc;uticas. Temos uma&nbsp; gestante de 33 anos, com 20 semanas de gesta&ccedil;&atilde;o, hist&oacute;ria pr&eacute;via de prematuridade e comprimento cervical atual de 18 mm.</p>\n<p>Aqui a avalia&ccedil;&atilde;o cervical por ultrassom transvaginal, geralmente realizada em conjunto do USG Morfol&oacute;gico de 2&ordf; Trimestre, tem papel imporante na preven&ccedil;&atilde;o da prematuridade. O comprimento cervical &eacute; um preditor de parto prematuro, especialmente quando associado a fatores de risco como hist&oacute;ria obst&eacute;trica pr&eacute;via, e a quest&atilde;o testa dois conhecimentos fundamentais: os valores de refer&ecirc;ncia para normalidade cervical conforme a idade gestacional e as op&ccedil;&otilde;es terap&ecirc;uticas dispon&iacute;veis.</p>\n<p>O ponto de corte mais aceito na literatura para considerar o colo como encurtado &agrave;s 20 semanas &eacute; 25 mm.</p>\n<p>A interven&ccedil;&atilde;o que pode ser considerada no caso &eacute; a cerclagem cervical devido a combina&ccedil;&atilde;o de fatores de risco (antecedente obst&eacute;trico + colo encurtado), orientando interven&ccedil;&atilde;o preventiva.</p>\n<p><br><br></p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A incompet&ecirc;ncia istmocervical deve ser suspeitada em gestantes com <em>hist&oacute;ria de prematuridade</em> e <em>encurtamento cervical progressivo</em>. O comprimento de 18 mm &agrave;s 20 semanas est&aacute; significativamente abaixo do ponto de corte de normalidade, indicando alto risco para parto prematuro. A combina&ccedil;&atilde;o de fatores de risco (antecedente obst&eacute;trico + colo encurtado) orienta para interven&ccedil;&atilde;o preventiva.</p>\n<p>&nbsp;</p>\n<p>Bons estudos!</p>\n<p><br><br></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>No cerne desta quest&atilde;o est&aacute; a avalia&ccedil;&atilde;o da incompet&ecirc;ncia istmocervical e suas implica&ccedil;&otilde;es terap&ecirc;uticas. Temos uma&nbsp; gestante de 33 anos, com 20 semanas de gesta&ccedil;&atilde;o, hist&oacute;ria pr&eacute;via de prematuridade e comprimento cervical atual de 18 mm.</p>\n<p>Aqui a avalia&ccedil;&atilde;o cervical por ultrassom transvaginal, geralmente realizada em conjunto do USG Morfol&oacute;gico de 2&ordf; Trimestre, tem papel imporante na preven&ccedil;&atilde;o da prematuridade. O comprimento cervical &eacute; um preditor de parto prematuro, especialmente quando associado a fatores de risco como hist&oacute;ria obst&eacute;trica pr&eacute;via, e a quest&atilde;o testa dois conhecimentos fundamentais: os valores de refer&ecirc;ncia para normalidade cervical conforme a idade gestacional e as op&ccedil;&otilde;es terap&ecirc;uticas dispon&iacute;veis.</p>\n<p>O ponto de corte mais aceito na literatura para considerar o colo como encurtado &agrave;s 20 semanas &eacute; 25 mm.</p>\n<p>A interven&ccedil;&atilde;o que pode ser considerada no caso &eacute; a cerclagem cervical devido a combina&ccedil;&atilde;o de fatores de risco (antecedente obst&eacute;trico + colo encurtado), orientando interven&ccedil;&atilde;o preventiva.</p>\n<p><br><br></p><br>Visão do aprovado: <p>A incompet&ecirc;ncia istmocervical deve ser suspeitada em gestantes com <em>hist&oacute;ria de prematuridade</em> e <em>encurtamento cervical progressivo</em>. O comprimento de 18 mm &agrave;s 20 semanas est&aacute; significativamente abaixo do ponto de corte de normalidade, indicando alto risco para parto prematuro. A combina&ccedil;&atilde;o de fatores de risco (antecedente obst&eacute;trico + colo encurtado) orienta para interven&ccedil;&atilde;o preventiva.</p>\n<p>&nbsp;</p>\n<p>Bons estudos!</p>\n<p><br><br></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T15:15:12.746947+00:00",
+  "complete": true
+}

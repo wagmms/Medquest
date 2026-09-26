@@ -1,0 +1,1141 @@
+{
+  "track_id": 4847806,
+  "name": "UNICAMP 2026 - USG",
+  "year": 2026,
+  "track_fast": {
+    "id": 4847806,
+    "name": "UNICAMP 2026 - USG",
+    "track_type": "c",
+    "question_count": 10,
+    "year": 2026,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UNICAMP",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-unicamp_yplZ7NO.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 10,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 10,
+  "questions": [
+    {
+      "meta": {
+        "id": 340983,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal"
+        }
+      },
+      "detail": {
+        "id": 340983,
+        "content": "Gestante, 32 anos, 28 semanas, chega para ultrassonografia obstétrica de rotina. PERGUNTA-SE:\na. Cite dois parâmetros biométricos rotineiramente utilizados na avaliação do crescimento fetal nessa idade gestacional\nb. Cite um parâmetro ultrassonográfico modo brilho (B) utilizado na avaliação da vitalidade fetal às 28 semanas",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15948,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 6,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406541,
+        "actual_explanation": true,
+        "introduction": "<p>Este &eacute; um cl&aacute;ssico sobre <strong>ultrassonografia obst&eacute;trica de rotina</strong>, em que o conhecimento dos <strong>par&acirc;metros biom&eacute;tricos</strong> e da <strong>avalia&ccedil;&atilde;o da vitalidade fetal</strong> diferencia as respostas adequadas. A ultrassonografia &agrave;s <strong>28 semanas</strong> representa um momento crucial da gesta&ccedil;&atilde;o, quando entramos no terceiro trimestre e a avalia&ccedil;&atilde;o do <strong>crescimento fetal</strong> e da <strong>vitalidade</strong> ganha import&acirc;ncia fundamental para o manejo obst&eacute;trico.</p>\n<p style=\"text-align: justify;\">Para avalia&ccedil;&atilde;o da biometria fetal, vamos avaliar o di&acirc;metro biparietal, a circunfer&ecirc;ncia cef&aacute;lica, a circunfer&ecirc;ncia abdominal e o comprimento do f&ecirc;mur. Para, a partir da avalia&ccedil;&atilde;o desses 4 par&acirc;metros, fazermos a estimativa do peso fetal de maneira mais acurada.&nbsp;</p>\n<p style=\"text-align: center;\"><img style=\"border: 1px solid rgb(0, 207, 180); border-radius: 0.5px;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T145845699Z218771.png\" width=\"442px;\" height=\"364px;\"></p>\n<p style=\"text-align: center;\"><img style=\"border: 1px solid rgb(0, 207, 180); border-radius: 0.5px;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T145856089Z594217.png\" width=\"442px;\" height=\"372px;\"></p>\n<p style=\"text-align: center;\"><img style=\"border: 1px solid rgb(0, 207, 180); border-radius: 0.5px;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T145905849Z584976.png\" width=\"442px;\" height=\"219px;\"></p>\n<p>Nessa idade gestacional, j&aacute; temos par&acirc;metros biom&eacute;tricos bem estabelecidos e a capacidade de avaliar diversos aspectos da vitalidade fetal atrav&eacute;s da ultrassonografia em <strong>modo B</strong>. A quest&atilde;o testa conhecimentos essenciais sobre os protocolos de acompanhamento pr&eacute;-natal e os principais par&acirc;metros ultrassonogr&aacute;ficos utilizados na pr&aacute;tica cl&iacute;nica. Para responder adequadamente, preciso dominar tanto os aspectos t&eacute;cnicos da ultrassonografia quanto sua aplica&ccedil;&atilde;o cl&iacute;nica no terceiro trimestre da gesta&ccedil;&atilde;o.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A <strong>ultrassonografia &agrave;s 28 semanas</strong> marca a entrada no terceiro trimestre, momento crucial para avalia&ccedil;&atilde;o do <strong>crescimento fetal</strong> e <strong>vitalidade</strong>. Nessa fase, os par&acirc;metros biom&eacute;tricos j&aacute; est&atilde;o bem estabelecidos e permitem detectar <em>restri&ccedil;&atilde;o de crescimento intrauterino</em> ou <em>macrossomia fetal</em>. A avalia&ccedil;&atilde;o da vitalidade em <strong>modo B</strong> complementa o arsenal diagn&oacute;stico para identificar comprometimento fetal.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>DBP, CC, CA e FL</strong> s&atilde;o os 4 par&acirc;metros biom&eacute;tricos fundamentais &agrave;s 28 semanas</li>\n<li><strong>Circunfer&ecirc;ncia abdominal (CA)</strong> &eacute; o melhor preditor isolado de peso fetal</li>\n<li><strong>Movimentos fetais</strong> s&atilde;o o par&acirc;metro de vitalidade mais b&aacute;sico e acess&iacute;vel em modo B</li>\n<li><strong>Movimentos respirat&oacute;rios fetais</strong> indicam maturidade neurol&oacute;gica &agrave;s 28 semanas</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir par&acirc;metros biom&eacute;tricos com par&acirc;metros de vitalidade (s&atilde;o categorias distintas)</li>\n<li>Citar <em>perfil biof&iacute;sico completo</em> quando pergunta especificamente sobre modo B</li>\n<li>Esquecer que <strong>ILA</strong> tamb&eacute;m &eacute; par&acirc;metro de vitalidade em modo B</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Formato cl&aacute;ssico: listar par&acirc;metros espec&iacute;ficos para crescimento vs vitalidade</li>\n<li>Diferencia&ccedil;&atilde;o entre <em>modo B</em> e <em>Doppler</em> na avalia&ccedil;&atilde;o de vitalidade</li>\n<li>Contextualiza&ccedil;&atilde;o da idade gestacional (28 semanas = terceiro trimestre)</li>\n<li><strong>Tamb&eacute;m pode cair:</strong> interpreta&ccedil;&atilde;o de percentis dos par&acirc;metros biom&eacute;tricos</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Este &eacute; um cl&aacute;ssico sobre <strong>ultrassonografia obst&eacute;trica de rotina</strong>, em que o conhecimento dos <strong>par&acirc;metros biom&eacute;tricos</strong> e da <strong>avalia&ccedil;&atilde;o da vitalidade fetal</strong> diferencia as respostas adequadas. A ultrassonografia &agrave;s <strong>28 semanas</strong> representa um momento crucial da gesta&ccedil;&atilde;o, quando entramos no terceiro trimestre e a avalia&ccedil;&atilde;o do <strong>crescimento fetal</strong> e da <strong>vitalidade</strong> ganha import&acirc;ncia fundamental para o manejo obst&eacute;trico.</p>\n<p style=\"text-align: justify;\">Para avalia&ccedil;&atilde;o da biometria fetal, vamos avaliar o di&acirc;metro biparietal, a circunfer&ecirc;ncia cef&aacute;lica, a circunfer&ecirc;ncia abdominal e o comprimento do f&ecirc;mur. Para, a partir da avalia&ccedil;&atilde;o desses 4 par&acirc;metros, fazermos a estimativa do peso fetal de maneira mais acurada.&nbsp;</p>\n<p style=\"text-align: center;\"><img style=\"border: 1px solid rgb(0, 207, 180); border-radius: 0.5px;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T145845699Z218771.png\" width=\"442px;\" height=\"364px;\"></p>\n<p style=\"text-align: center;\"><img style=\"border: 1px solid rgb(0, 207, 180); border-radius: 0.5px;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T145856089Z594217.png\" width=\"442px;\" height=\"372px;\"></p>\n<p style=\"text-align: center;\"><img style=\"border: 1px solid rgb(0, 207, 180); border-radius: 0.5px;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T145905849Z584976.png\" width=\"442px;\" height=\"219px;\"></p>\n<p>Nessa idade gestacional, j&aacute; temos par&acirc;metros biom&eacute;tricos bem estabelecidos e a capacidade de avaliar diversos aspectos da vitalidade fetal atrav&eacute;s da ultrassonografia em <strong>modo B</strong>. A quest&atilde;o testa conhecimentos essenciais sobre os protocolos de acompanhamento pr&eacute;-natal e os principais par&acirc;metros ultrassonogr&aacute;ficos utilizados na pr&aacute;tica cl&iacute;nica. Para responder adequadamente, preciso dominar tanto os aspectos t&eacute;cnicos da ultrassonografia quanto sua aplica&ccedil;&atilde;o cl&iacute;nica no terceiro trimestre da gesta&ccedil;&atilde;o.</p><br>Visão do aprovado: <p>A <strong>ultrassonografia &agrave;s 28 semanas</strong> marca a entrada no terceiro trimestre, momento crucial para avalia&ccedil;&atilde;o do <strong>crescimento fetal</strong> e <strong>vitalidade</strong>. Nessa fase, os par&acirc;metros biom&eacute;tricos j&aacute; est&atilde;o bem estabelecidos e permitem detectar <em>restri&ccedil;&atilde;o de crescimento intrauterino</em> ou <em>macrossomia fetal</em>. A avalia&ccedil;&atilde;o da vitalidade em <strong>modo B</strong> complementa o arsenal diagn&oacute;stico para identificar comprometimento fetal.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>DBP, CC, CA e FL</strong> s&atilde;o os 4 par&acirc;metros biom&eacute;tricos fundamentais &agrave;s 28 semanas</li>\n<li><strong>Circunfer&ecirc;ncia abdominal (CA)</strong> &eacute; o melhor preditor isolado de peso fetal</li>\n<li><strong>Movimentos fetais</strong> s&atilde;o o par&acirc;metro de vitalidade mais b&aacute;sico e acess&iacute;vel em modo B</li>\n<li><strong>Movimentos respirat&oacute;rios fetais</strong> indicam maturidade neurol&oacute;gica &agrave;s 28 semanas</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir par&acirc;metros biom&eacute;tricos com par&acirc;metros de vitalidade (s&atilde;o categorias distintas)</li>\n<li>Citar <em>perfil biof&iacute;sico completo</em> quando pergunta especificamente sobre modo B</li>\n<li>Esquecer que <strong>ILA</strong> tamb&eacute;m &eacute; par&acirc;metro de vitalidade em modo B</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Formato cl&aacute;ssico: listar par&acirc;metros espec&iacute;ficos para crescimento vs vitalidade</li>\n<li>Diferencia&ccedil;&atilde;o entre <em>modo B</em> e <em>Doppler</em> na avalia&ccedil;&atilde;o de vitalidade</li>\n<li>Contextualiza&ccedil;&atilde;o da idade gestacional (28 semanas = terceiro trimestre)</li>\n<li><strong>Tamb&eacute;m pode cair:</strong> interpreta&ccedil;&atilde;o de percentis dos par&acirc;metros biom&eacute;tricos</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340984,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Infertilidade conjugal parte 1: diagnóstico",
+        "focus": {
+          "id": 1618,
+          "name": "Infertilidade conjugal parte 1: diagnóstico"
+        }
+      },
+      "detail": {
+        "id": 340984,
+        "content": "Mulher, 25 anos, refere ciclos menstruais regulares e procura avaliação ultrassonográfica para infertilidade. PERGUNTA-SE:\na. Qual é o aspecto ultrassonográfico típico do folículo dominante durante o ciclo menstrual?\nb. Cite um sinal ultrassonográfico de ovulação já ocorrida",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15949,
+            "parent_tag": {
+              "id": 15912,
+              "name": "Ginecologia endócrina",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Infertilidade conjugal parte 1: diagnóstico",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 5,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1618,
+          "name": "Infertilidade conjugal parte 1: diagnóstico",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 94,
+            "name": "Ginecologia endócrina",
+            "discipline": 86,
+            "old_tag": 15912,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406548,
+        "actual_explanation": true,
+        "introduction": "<p>Trata-se, essencialmente, de <strong>avalia&ccedil;&atilde;o ultrassonogr&aacute;fica da fertilidade</strong> em paciente jovem com ciclos regulares. Esta quest&atilde;o dissertativa explora conhecimentos fundamentais sobre <strong>monitoriza&ccedil;&atilde;o ultrassonogr&aacute;fica da ovula&ccedil;&atilde;o</strong>, tema central na investiga&ccedil;&atilde;o de infertilidade e essencial para residentes que atuar&atilde;o em ginecologia e reprodu&ccedil;&atilde;o assistida.</p>\n<p>A <strong>ultrassonografia transvaginal</strong> &eacute; o m&eacute;todo padr&atilde;o-ouro para avaliar a foliculog&ecirc;nese e confirmar a ovula&ccedil;&atilde;o em tempo real. Em pacientes com infertilidade, mesmo na presen&ccedil;a de ciclos regulares, a avalia&ccedil;&atilde;o ultrassonogr&aacute;fica pode identificar <strong>anovula&ccedil;&atilde;o oculta</strong>, <strong>s&iacute;ndrome do fol&iacute;culo n&atilde;o roto</strong> ou outras altera&ccedil;&otilde;es sutis da ovula&ccedil;&atilde;o que n&atilde;o se manifestam clinicamente atrav&eacute;s de irregularidades menstruais.</p>\n<p data-end=\"134\" data-start=\"0\">O <strong data-end=\"24\" data-start=\"2\">fol&iacute;culo dominante</strong> na ultrassonografia transvaginal apresenta um <strong data-end=\"106\" data-start=\"71\">aspecto bastante caracter&iacute;stico</strong>. Os principais achados ultrassonogr&aacute;ficos s&atilde;o uma imagem anecoica de paredes finas e regulares (sem espessamentos ou vegeta&ccedil;&otilde;es), com conte&uacute;do homog&ecirc;neo de <strong>di&acirc;metro entre 18 e 24 mm</strong> no momento ovulat&oacute;rio, podendo haver um halo hiperecog&ecirc;nico discreto que corresponde ao estroma ovariano vascularizado.</p>\n<p style=\"text-align: center;\" data-end=\"134\" data-start=\"0\"><img style=\"display: block; margin-left: auto; margin-right: auto; float: none;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T150555262Z255951.png\" alt=\"Adnexa | Radiology Key\"></p>\n<p data-end=\"134\" data-start=\"0\">Ap&oacute;s a ovula&ccedil;&atilde;o, o fol&iacute;culo adquire um formato colapsado, \"murcho\", e o corpo l&uacute;teo pode aparecer.</p>\n<p style=\"text-align: center;\" data-end=\"134\" data-start=\"0\"><img style=\"display: block; margin-left: auto; margin-right: auto; float: none;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T151130817Z367658.png\" alt=\"Follicular Monitoring &ndash; What is follicular m... | Dr Ranpise's CHAKAN  WOMEN'S HOSPITAL - Pune\"></p>\n<p style=\"text-align: center;\" data-end=\"134\" data-start=\"0\">Fonte: <a href=\"https://www.chakanwomenshospital.com/latest-update/follicular-monitoring-what-is-follicular-moni/40\">https://www.chakanwomenshospital.com/latest-update/follicular-monitoring-what-is-follicular-moni/40</a></p>\n<p data-end=\"134\" data-start=\"0\">O dom&iacute;nio destes conceitos &eacute; crucial n&atilde;o apenas para o diagn&oacute;stico, mas tamb&eacute;m para o <strong>timing adequado das rela&ccedil;&otilde;es sexuais</strong>, <strong>insemina&ccedil;&atilde;o intrauterina</strong> e <strong>controle de estimula&ccedil;&atilde;o ovariana</strong> em t&eacute;cnicas de reprodu&ccedil;&atilde;o assistida. Vou abordar sistematicamente as caracter&iacute;sticas ultrassonogr&aacute;ficas do fol&iacute;culo dominante e os sinais de ovula&ccedil;&atilde;o j&aacute; ocorrida.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A <strong>ultrassonografia transvaginal</strong> &eacute; o padr&atilde;o-ouro para monitoriza&ccedil;&atilde;o da ovula&ccedil;&atilde;o, permitindo identificar a foliculog&ecirc;nese em tempo real. Mesmo em ciclos regulares, pode detectar <strong>anovula&ccedil;&atilde;o oculta</strong> ou <strong>s&iacute;ndrome do fol&iacute;culo n&atilde;o roto</strong>, altera&ccedil;&otilde;es cruciais na investiga&ccedil;&atilde;o de infertilidade que n&atilde;o se manifestam clinicamente.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Fol&iacute;culo dominante: estrutura <em>anec&oacute;ica</em> de 18-25mm no per&iacute;odo pr&eacute;-ovulat&oacute;rio</li>\n<li>Parede folicular fina e regular, sem ecos internos</li>\n<li>Crescimento progressivo de 1-2mm/dia na fase folicular tardia</li>\n<li>Desaparecimento s&uacute;bito ou colapso folicular indica ovula&ccedil;&atilde;o recente</li>\n<li>Corpo l&uacute;teo: estrutura <em>hipoec&oacute;ica</em> com paredes espessas e ecos internos</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir <strong>cisto folicular</strong> (&gt;25mm, persistente) com fol&iacute;culo dominante normal</li>\n<li>S&iacute;ndrome do fol&iacute;culo n&atilde;o roto: fol&iacute;culo cresce mas n&atilde;o ovula, mantendo aspecto c&iacute;stico</li>\n<li>Corpo l&uacute;teo pode simular massa anexial em exames mal interpretados</li>\n<li>Ciclos regulares n&atilde;o excluem anovula&ccedil;&atilde;o - sempre confirmar por ultrassom</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Quest&otilde;es dissertativas pedindo <strong>aspectos ultrassonogr&aacute;ficos espec&iacute;ficos</strong> do fol&iacute;culo e corpo l&uacute;teo</li>\n<li>Casos cl&iacute;nicos de infertilidade em mulheres com ciclos regulares</li>\n<li>Diferencia&ccedil;&atilde;o entre <strong>fol&iacute;culo dominante normal</strong> e <strong>patologias c&iacute;sticas</strong></li>\n<li>Interpreta&ccedil;&atilde;o de achados ultrassonogr&aacute;ficos em <strong>monitoriza&ccedil;&atilde;o da ovula&ccedil;&atilde;o</strong></li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Trata-se, essencialmente, de <strong>avalia&ccedil;&atilde;o ultrassonogr&aacute;fica da fertilidade</strong> em paciente jovem com ciclos regulares. Esta quest&atilde;o dissertativa explora conhecimentos fundamentais sobre <strong>monitoriza&ccedil;&atilde;o ultrassonogr&aacute;fica da ovula&ccedil;&atilde;o</strong>, tema central na investiga&ccedil;&atilde;o de infertilidade e essencial para residentes que atuar&atilde;o em ginecologia e reprodu&ccedil;&atilde;o assistida.</p>\n<p>A <strong>ultrassonografia transvaginal</strong> &eacute; o m&eacute;todo padr&atilde;o-ouro para avaliar a foliculog&ecirc;nese e confirmar a ovula&ccedil;&atilde;o em tempo real. Em pacientes com infertilidade, mesmo na presen&ccedil;a de ciclos regulares, a avalia&ccedil;&atilde;o ultrassonogr&aacute;fica pode identificar <strong>anovula&ccedil;&atilde;o oculta</strong>, <strong>s&iacute;ndrome do fol&iacute;culo n&atilde;o roto</strong> ou outras altera&ccedil;&otilde;es sutis da ovula&ccedil;&atilde;o que n&atilde;o se manifestam clinicamente atrav&eacute;s de irregularidades menstruais.</p>\n<p data-end=\"134\" data-start=\"0\">O <strong data-end=\"24\" data-start=\"2\">fol&iacute;culo dominante</strong> na ultrassonografia transvaginal apresenta um <strong data-end=\"106\" data-start=\"71\">aspecto bastante caracter&iacute;stico</strong>. Os principais achados ultrassonogr&aacute;ficos s&atilde;o uma imagem anecoica de paredes finas e regulares (sem espessamentos ou vegeta&ccedil;&otilde;es), com conte&uacute;do homog&ecirc;neo de <strong>di&acirc;metro entre 18 e 24 mm</strong> no momento ovulat&oacute;rio, podendo haver um halo hiperecog&ecirc;nico discreto que corresponde ao estroma ovariano vascularizado.</p>\n<p style=\"text-align: center;\" data-end=\"134\" data-start=\"0\"><img style=\"display: block; margin-left: auto; margin-right: auto; float: none;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T150555262Z255951.png\" alt=\"Adnexa | Radiology Key\"></p>\n<p data-end=\"134\" data-start=\"0\">Ap&oacute;s a ovula&ccedil;&atilde;o, o fol&iacute;culo adquire um formato colapsado, \"murcho\", e o corpo l&uacute;teo pode aparecer.</p>\n<p style=\"text-align: center;\" data-end=\"134\" data-start=\"0\"><img style=\"display: block; margin-left: auto; margin-right: auto; float: none;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T151130817Z367658.png\" alt=\"Follicular Monitoring &ndash; What is follicular m... | Dr Ranpise's CHAKAN  WOMEN'S HOSPITAL - Pune\"></p>\n<p style=\"text-align: center;\" data-end=\"134\" data-start=\"0\">Fonte: <a href=\"https://www.chakanwomenshospital.com/latest-update/follicular-monitoring-what-is-follicular-moni/40\">https://www.chakanwomenshospital.com/latest-update/follicular-monitoring-what-is-follicular-moni/40</a></p>\n<p data-end=\"134\" data-start=\"0\">O dom&iacute;nio destes conceitos &eacute; crucial n&atilde;o apenas para o diagn&oacute;stico, mas tamb&eacute;m para o <strong>timing adequado das rela&ccedil;&otilde;es sexuais</strong>, <strong>insemina&ccedil;&atilde;o intrauterina</strong> e <strong>controle de estimula&ccedil;&atilde;o ovariana</strong> em t&eacute;cnicas de reprodu&ccedil;&atilde;o assistida. Vou abordar sistematicamente as caracter&iacute;sticas ultrassonogr&aacute;ficas do fol&iacute;culo dominante e os sinais de ovula&ccedil;&atilde;o j&aacute; ocorrida.</p><br>Visão do aprovado: <p>A <strong>ultrassonografia transvaginal</strong> &eacute; o padr&atilde;o-ouro para monitoriza&ccedil;&atilde;o da ovula&ccedil;&atilde;o, permitindo identificar a foliculog&ecirc;nese em tempo real. Mesmo em ciclos regulares, pode detectar <strong>anovula&ccedil;&atilde;o oculta</strong> ou <strong>s&iacute;ndrome do fol&iacute;culo n&atilde;o roto</strong>, altera&ccedil;&otilde;es cruciais na investiga&ccedil;&atilde;o de infertilidade que n&atilde;o se manifestam clinicamente.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Fol&iacute;culo dominante: estrutura <em>anec&oacute;ica</em> de 18-25mm no per&iacute;odo pr&eacute;-ovulat&oacute;rio</li>\n<li>Parede folicular fina e regular, sem ecos internos</li>\n<li>Crescimento progressivo de 1-2mm/dia na fase folicular tardia</li>\n<li>Desaparecimento s&uacute;bito ou colapso folicular indica ovula&ccedil;&atilde;o recente</li>\n<li>Corpo l&uacute;teo: estrutura <em>hipoec&oacute;ica</em> com paredes espessas e ecos internos</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir <strong>cisto folicular</strong> (&gt;25mm, persistente) com fol&iacute;culo dominante normal</li>\n<li>S&iacute;ndrome do fol&iacute;culo n&atilde;o roto: fol&iacute;culo cresce mas n&atilde;o ovula, mantendo aspecto c&iacute;stico</li>\n<li>Corpo l&uacute;teo pode simular massa anexial em exames mal interpretados</li>\n<li>Ciclos regulares n&atilde;o excluem anovula&ccedil;&atilde;o - sempre confirmar por ultrassom</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Quest&otilde;es dissertativas pedindo <strong>aspectos ultrassonogr&aacute;ficos espec&iacute;ficos</strong> do fol&iacute;culo e corpo l&uacute;teo</li>\n<li>Casos cl&iacute;nicos de infertilidade em mulheres com ciclos regulares</li>\n<li>Diferencia&ccedil;&atilde;o entre <strong>fol&iacute;culo dominante normal</strong> e <strong>patologias c&iacute;sticas</strong></li>\n<li>Interpreta&ccedil;&atilde;o de achados ultrassonogr&aacute;ficos em <strong>monitoriza&ccedil;&atilde;o da ovula&ccedil;&atilde;o</strong></li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340985,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal"
+        }
+      },
+      "detail": {
+        "id": 340985,
+        "content": "Em relação ao rastreamento ultrassonográfico de aneuploidias no primeiro trimestre, PERGUNTA-SE:\na. Qual é a medida ultrassonográfica com maior acurácia para esse rastreamento entre 11 e 13+6 semanas?\nb. Cite dois marcadores ultrassonográficos adicionais que podem ser avaliados nesse período",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15948,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 7,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406543,
+        "actual_explanation": true,
+        "introduction": "<p>Este &eacute; um cl&aacute;ssico sobre&nbsp;<strong>rastreamento de aneuploidias no primeiro trimestre</strong>, em que a&nbsp;<strong>transluc&ecirc;ncia nucal</strong>&nbsp;diferencia os marcadores quanto &agrave; sensibilidade. O rastreamento ultrassonogr&aacute;fico entre&nbsp;<strong>11 e 13 semanas e 6 dias</strong>&nbsp;representa uma janela fundamental para detectar as trissomias, especialmente a&nbsp;<strong>trissomia do cromossomo 21</strong>&nbsp;(s&iacute;ndrome de Down), do&nbsp;<strong>cromossomo 18</strong>&nbsp;(s&iacute;ndrome de Edwards) e&nbsp;<strong>cromossomo 13</strong>&nbsp;(s&iacute;ndorme de Patau). Este per&iacute;odo gestacional espec&iacute;fico oferece a melhor combina&ccedil;&atilde;o de&nbsp;<strong>sensibilidade e especificidade</strong>&nbsp;para os marcadores ultrassonogr&aacute;ficos dispon&iacute;veis.</p>\n<p>A import&acirc;ncia deste tema nas provas de resid&ecirc;ncia &eacute; evidente, pois integra conhecimentos de&nbsp;<strong>ultrassonografia obst&eacute;trica</strong>,&nbsp;<strong>medicina fetal</strong>&nbsp;e&nbsp;<strong>rastreamento populacional</strong>. O rastreamento combinado do primeiro trimestre revolucionou a abordagem diagn&oacute;stica das aneuploidias, permitindo detec&ccedil;&atilde;o precoce com alta acur&aacute;cia e oferecendo &agrave;s fam&iacute;lias informa&ccedil;&otilde;es importantes para tomada de decis&otilde;es.</p>\n<p>A resposta esperada envolve o reconhecimento da&nbsp;<strong>transluc&ecirc;ncia nucal</strong>&nbsp;como o marcador de maior sensibilidade, seguido da identifica&ccedil;&atilde;o de&nbsp;<strong>marcadores ultrassonogr&aacute;ficos adicionais</strong>&nbsp;como:</p>\n<ul style=\"list-style-type: none;\">\n<li>&nbsp;aus&ecirc;ncia ou hipoplasia do osso nasal,</li>\n<li>fluxo anormal no ducto venoso,</li>\n<li>regurgita&ccedil;&atilde;o tric&uacute;spide.</li>\n</ul>\n<p>Estes marcadores, quando combinados, formam a base do&nbsp;<strong>rastreamento n&atilde;o invasivo</strong>&nbsp;de alta qualidade.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A&nbsp;<strong>transluc&ecirc;ncia nucal</strong>&nbsp;&eacute; o marcador ultrassonogr&aacute;fico de maior sensibilidade para trissomia 21 no per&iacute;odo espec&iacute;fico de 11 a 13 semanas e 6 dias. O rastreamento combinado deste per&iacute;odo integra marcadores ultrassonogr&aacute;ficos com bioqu&iacute;micos, oferecendo alta acur&aacute;cia diagn&oacute;stica. A janela temporal &eacute; crucial, pois fora deste intervalo os marcadores perdem sensibilidade e especificidade.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul style=\"list-style-type: none;\">\n<li><strong>Transluc&ecirc;ncia nucal</strong>&nbsp;&eacute; o marcador isolado de maior sensibilidade para trissomia 21</li>\n<li>Per&iacute;odo restrito:&nbsp;<strong>11 semanas a 13 semanas e 6 dias</strong>&nbsp;para rastreamento &oacute;timo</li>\n<li>Marcadores adicionais:&nbsp;<em>aus&ecirc;ncia/hipoplasia do osso nasal, fluxo anormal no ducto venoso, regurgita&ccedil;&atilde;o tric&uacute;spide</em></li>\n<li>Combina&ccedil;&atilde;o de m&uacute;ltiplos marcadores aumenta significativamente a&nbsp;<strong>taxa de detec&ccedil;&atilde;o</strong></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul style=\"list-style-type: none;\">\n<li>Confundir com marcadores do&nbsp;<strong>segundo trimestre</strong>&nbsp;(sinal da banana, cisterna magna)</li>\n<li>Errar o per&iacute;odo gestacional - antes de 11s ou ap&oacute;s 13s6d compromete a acur&aacute;cia</li>\n<li>N&atilde;o reconhecer a&nbsp;<em>transluc&ecirc;ncia nucal</em>&nbsp;como marcador de maior sensibilidade isolada</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul style=\"list-style-type: none;\">\n<li>Quest&atilde;o direta perguntando qual marcador tem&nbsp;<strong>maior sensibilidade</strong>&nbsp;no 1&ordm; trimestre</li>\n<li>Cen&aacute;rio cl&iacute;nico pedindo&nbsp;<strong>lista de marcadores</strong>&nbsp;ultrassonogr&aacute;ficos adicionais</li>\n<li>Compara&ccedil;&atilde;o entre efic&aacute;cia de diferentes&nbsp;<strong>per&iacute;odos gestacionais</strong>&nbsp;para rastreamento</li>\n<li><strong>Tamb&eacute;m pode cair:</strong>&nbsp;valores de corte da transluc&ecirc;ncia nucal ou combina&ccedil;&atilde;o com marcadores bioqu&iacute;micos (PAPP-A, beta-hCG)</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Este &eacute; um cl&aacute;ssico sobre&nbsp;<strong>rastreamento de aneuploidias no primeiro trimestre</strong>, em que a&nbsp;<strong>transluc&ecirc;ncia nucal</strong>&nbsp;diferencia os marcadores quanto &agrave; sensibilidade. O rastreamento ultrassonogr&aacute;fico entre&nbsp;<strong>11 e 13 semanas e 6 dias</strong>&nbsp;representa uma janela fundamental para detectar as trissomias, especialmente a&nbsp;<strong>trissomia do cromossomo 21</strong>&nbsp;(s&iacute;ndrome de Down), do&nbsp;<strong>cromossomo 18</strong>&nbsp;(s&iacute;ndrome de Edwards) e&nbsp;<strong>cromossomo 13</strong>&nbsp;(s&iacute;ndorme de Patau). Este per&iacute;odo gestacional espec&iacute;fico oferece a melhor combina&ccedil;&atilde;o de&nbsp;<strong>sensibilidade e especificidade</strong>&nbsp;para os marcadores ultrassonogr&aacute;ficos dispon&iacute;veis.</p>\n<p>A import&acirc;ncia deste tema nas provas de resid&ecirc;ncia &eacute; evidente, pois integra conhecimentos de&nbsp;<strong>ultrassonografia obst&eacute;trica</strong>,&nbsp;<strong>medicina fetal</strong>&nbsp;e&nbsp;<strong>rastreamento populacional</strong>. O rastreamento combinado do primeiro trimestre revolucionou a abordagem diagn&oacute;stica das aneuploidias, permitindo detec&ccedil;&atilde;o precoce com alta acur&aacute;cia e oferecendo &agrave;s fam&iacute;lias informa&ccedil;&otilde;es importantes para tomada de decis&otilde;es.</p>\n<p>A resposta esperada envolve o reconhecimento da&nbsp;<strong>transluc&ecirc;ncia nucal</strong>&nbsp;como o marcador de maior sensibilidade, seguido da identifica&ccedil;&atilde;o de&nbsp;<strong>marcadores ultrassonogr&aacute;ficos adicionais</strong>&nbsp;como:</p>\n<ul style=\"list-style-type: none;\">\n<li>&nbsp;aus&ecirc;ncia ou hipoplasia do osso nasal,</li>\n<li>fluxo anormal no ducto venoso,</li>\n<li>regurgita&ccedil;&atilde;o tric&uacute;spide.</li>\n</ul>\n<p>Estes marcadores, quando combinados, formam a base do&nbsp;<strong>rastreamento n&atilde;o invasivo</strong>&nbsp;de alta qualidade.</p><br>Visão do aprovado: <p>A&nbsp;<strong>transluc&ecirc;ncia nucal</strong>&nbsp;&eacute; o marcador ultrassonogr&aacute;fico de maior sensibilidade para trissomia 21 no per&iacute;odo espec&iacute;fico de 11 a 13 semanas e 6 dias. O rastreamento combinado deste per&iacute;odo integra marcadores ultrassonogr&aacute;ficos com bioqu&iacute;micos, oferecendo alta acur&aacute;cia diagn&oacute;stica. A janela temporal &eacute; crucial, pois fora deste intervalo os marcadores perdem sensibilidade e especificidade.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul style=\"list-style-type: none;\">\n<li><strong>Transluc&ecirc;ncia nucal</strong>&nbsp;&eacute; o marcador isolado de maior sensibilidade para trissomia 21</li>\n<li>Per&iacute;odo restrito:&nbsp;<strong>11 semanas a 13 semanas e 6 dias</strong>&nbsp;para rastreamento &oacute;timo</li>\n<li>Marcadores adicionais:&nbsp;<em>aus&ecirc;ncia/hipoplasia do osso nasal, fluxo anormal no ducto venoso, regurgita&ccedil;&atilde;o tric&uacute;spide</em></li>\n<li>Combina&ccedil;&atilde;o de m&uacute;ltiplos marcadores aumenta significativamente a&nbsp;<strong>taxa de detec&ccedil;&atilde;o</strong></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul style=\"list-style-type: none;\">\n<li>Confundir com marcadores do&nbsp;<strong>segundo trimestre</strong>&nbsp;(sinal da banana, cisterna magna)</li>\n<li>Errar o per&iacute;odo gestacional - antes de 11s ou ap&oacute;s 13s6d compromete a acur&aacute;cia</li>\n<li>N&atilde;o reconhecer a&nbsp;<em>transluc&ecirc;ncia nucal</em>&nbsp;como marcador de maior sensibilidade isolada</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul style=\"list-style-type: none;\">\n<li>Quest&atilde;o direta perguntando qual marcador tem&nbsp;<strong>maior sensibilidade</strong>&nbsp;no 1&ordm; trimestre</li>\n<li>Cen&aacute;rio cl&iacute;nico pedindo&nbsp;<strong>lista de marcadores</strong>&nbsp;ultrassonogr&aacute;ficos adicionais</li>\n<li>Compara&ccedil;&atilde;o entre efic&aacute;cia de diferentes&nbsp;<strong>per&iacute;odos gestacionais</strong>&nbsp;para rastreamento</li>\n<li><strong>Tamb&eacute;m pode cair:</strong>&nbsp;valores de corte da transluc&ecirc;ncia nucal ou combina&ccedil;&atilde;o com marcadores bioqu&iacute;micos (PAPP-A, beta-hCG)</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340986,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Radiologia em ginecologia geral",
+        "focus": {
+          "id": 1610,
+          "name": "Radiologia em ginecologia geral"
+        }
+      },
+      "detail": {
+        "id": 340986,
+        "content": "Em relação ao sistema O-RADS para avaliação de massas anexiais. PERGUNTA-SE:\na. Qual é a conduta recomendada para uma massa classificada como O-RADS 2?\nb. Cite um achado ultrassonográfico que justifique a classificação como O-RADS 5?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15957,
+            "parent_tag": {
+              "id": 15904,
+              "name": "Imagens em Ginecologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Radiologia em ginecologia geral",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 7,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1610,
+          "name": "Radiologia em ginecologia geral",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 102,
+            "name": "Imagens em Ginecologia",
+            "discipline": 86,
+            "old_tag": 15904,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406542,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">A quest&atilde;o cobra entendimento e dom&iacute;nio do sistema O-RADS (Ovarian-Adnexal Reporting and Data System), uma ferramenta fundamental para a avalia&ccedil;&atilde;o padronizada de massas anexiais. Este sistema permitr uma abordagem mais uniforme e baseada em evid&ecirc;ncias para o manejo de les&otilde;es ovarianas e anexiais.</p>\n<p style=\"text-align: justify;\">O <strong>O-RADS</strong> classifica as massas anexiais em <strong>categorias de 0 a 5</strong>, cada uma associada a um risco espec&iacute;fico de malignidade e condutas recomendadas correspondentes. Compreender essas categorias &eacute; essencial, pois influencia diretamente as decis&otilde;es cl&iacute;nicas e o seguimento das pacientes.</p>\n<p style=\"text-align: justify;\"><strong>A quest&atilde;o explora especificamente duas categorias importantes: O-RADS 2, que representa les&otilde;es benignas com condutas conservadoras (resposta da letra A), e O-RADS 5, que indica alta suspei&ccedil;&atilde;o de malignidade com necessidade de abordagem cir&uacute;rgica, devido presen&ccedil;a de algum dos seguintes: <strong data-end=\"1272\" data-start=\"1251\">Componente s&oacute;lido</strong> importante //&nbsp;️<strong data-end=\"1319\" data-start=\"1293\">Papilas numerosas (&ge;4)// Les&atilde;o bi ou multiloculada com componente s&oacute;lido // </strong>️️<strong data-end=\"1403\" data-start=\"1372\">Fluxo Doppler intenso // </strong>️<strong data-end=\"1435\" data-start=\"1413\">Ascite / implantes // Les&atilde;o de s</strong><strong data-end=\"1480\" data-start=\"1445\">uperf&iacute;cie irregular / lobulada.&nbsp;</strong></strong></p>\n<p style=\"text-align: center;\"><br><strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T201551296Z279506.png\" width=\"602\" height=\"577\"></strong></p>\n<p style=\"text-align: center;\"><strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T201603377Z689851.png\" width=\"602\" height=\"176\"></strong></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\"><strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/Screen Shot 2025-11-16 at 20.35.04.png\" alt=\"\" width=\"604\" height=\"561\"></strong></p>\n<p>&nbsp;</p>\n<p><strong>Gabarito esperado:&nbsp;&nbsp;</strong></p>\n<ol>\n<li style=\"list-style-type: upper-alpha;\">\n<p><strong>O-RADS 2 les&atilde;o benigna. Indicado seguimento cl&iacute;nico</strong></p>\n</li>\n<li style=\"list-style-type: upper-alpha;\">\n<p><strong>O-RADS 5 (indica les&atilde;o de alto risco para malignidade): <strong data-end=\"1272\" data-start=\"1251\">Componente s&oacute;lido</strong> importante //&nbsp;️<strong data-end=\"1319\" data-start=\"1293\">Papilas numerosas (&ge;4)// Les&atilde;o bi ou multiloculada com componente s&oacute;lido // </strong>️️<strong data-end=\"1403\" data-start=\"1372\">Fluxo Doppler intenso // </strong>️<strong data-end=\"1435\" data-start=\"1413\">Ascite / implantes // Les&atilde;o de s</strong><strong data-end=\"1480\" data-start=\"1445\">uperf&iacute;cie irregular / lobulada.&nbsp;</strong></strong></p>\n</li>\n</ol>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O sistema O-RADS padroniza a avalia&ccedil;&atilde;o de massas anexiais em categorias de 0 a 5, cada uma com risco espec&iacute;fico de malignidade e condutas bem definidas. O racioc&iacute;nio diagn&oacute;stico baseia-se na combina&ccedil;&atilde;o de achados ultrassonogr&aacute;ficos espec&iacute;ficos que determinam a categoria e, consequentemente, a abordagem cl&iacute;nica adequada.</p>\n<p>&nbsp;</p>\n<p>Refer&ecirc;ncia bibliogr&aacute;fica</p>\n<p>O-RADS US Risk Stratification and Management System: A Consensus Guideline from the ACR Ovarian-Adnexal Reporting and Data System Committee. Rochelle F. Andreotti, Dirk Timmerman, Lori M. Strachowski, Wouter Froyman, Beryl R. Benacerraf, Genevieve L. Bennett, Tom Bourne, Douglas L. Brown, Beverly G. Coleman, Mary C. Frates, Steven R. Goldstein, Ulrike M. Hamper, Mindy M. Horrow, Marta Hernanz-Schulman, Caroline Reinhold, Stephen L. Rose, Brad P. Whitcomb, Wendy L. Wolfman, and Phyllis Glanc. Radiology 2020 294:1, 168-185<br><a href=\"https://www.acr.org/Clinical-Resources/Reporting-and-Data-Systems/O-Rads\"><strong><em>https://www.acr.org/Clinical-Resources/Reporting-and-Data-Systems/O-Rads</em></strong></a></p>\n<p><br><br></p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">A quest&atilde;o cobra entendimento e dom&iacute;nio do sistema O-RADS (Ovarian-Adnexal Reporting and Data System), uma ferramenta fundamental para a avalia&ccedil;&atilde;o padronizada de massas anexiais. Este sistema permitr uma abordagem mais uniforme e baseada em evid&ecirc;ncias para o manejo de les&otilde;es ovarianas e anexiais.</p>\n<p style=\"text-align: justify;\">O <strong>O-RADS</strong> classifica as massas anexiais em <strong>categorias de 0 a 5</strong>, cada uma associada a um risco espec&iacute;fico de malignidade e condutas recomendadas correspondentes. Compreender essas categorias &eacute; essencial, pois influencia diretamente as decis&otilde;es cl&iacute;nicas e o seguimento das pacientes.</p>\n<p style=\"text-align: justify;\"><strong>A quest&atilde;o explora especificamente duas categorias importantes: O-RADS 2, que representa les&otilde;es benignas com condutas conservadoras (resposta da letra A), e O-RADS 5, que indica alta suspei&ccedil;&atilde;o de malignidade com necessidade de abordagem cir&uacute;rgica, devido presen&ccedil;a de algum dos seguintes: <strong data-end=\"1272\" data-start=\"1251\">Componente s&oacute;lido</strong> importante //&nbsp;️<strong data-end=\"1319\" data-start=\"1293\">Papilas numerosas (&ge;4)// Les&atilde;o bi ou multiloculada com componente s&oacute;lido // </strong>️️<strong data-end=\"1403\" data-start=\"1372\">Fluxo Doppler intenso // </strong>️<strong data-end=\"1435\" data-start=\"1413\">Ascite / implantes // Les&atilde;o de s</strong><strong data-end=\"1480\" data-start=\"1445\">uperf&iacute;cie irregular / lobulada.&nbsp;</strong></strong></p>\n<p style=\"text-align: center;\"><br><strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T201551296Z279506.png\" width=\"602\" height=\"577\"></strong></p>\n<p style=\"text-align: center;\"><strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T201603377Z689851.png\" width=\"602\" height=\"176\"></strong></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\"><strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/Screen Shot 2025-11-16 at 20.35.04.png\" alt=\"\" width=\"604\" height=\"561\"></strong></p>\n<p>&nbsp;</p>\n<p><strong>Gabarito esperado:&nbsp;&nbsp;</strong></p>\n<ol>\n<li style=\"list-style-type: upper-alpha;\">\n<p><strong>O-RADS 2 les&atilde;o benigna. Indicado seguimento cl&iacute;nico</strong></p>\n</li>\n<li style=\"list-style-type: upper-alpha;\">\n<p><strong>O-RADS 5 (indica les&atilde;o de alto risco para malignidade): <strong data-end=\"1272\" data-start=\"1251\">Componente s&oacute;lido</strong> importante //&nbsp;️<strong data-end=\"1319\" data-start=\"1293\">Papilas numerosas (&ge;4)// Les&atilde;o bi ou multiloculada com componente s&oacute;lido // </strong>️️<strong data-end=\"1403\" data-start=\"1372\">Fluxo Doppler intenso // </strong>️<strong data-end=\"1435\" data-start=\"1413\">Ascite / implantes // Les&atilde;o de s</strong><strong data-end=\"1480\" data-start=\"1445\">uperf&iacute;cie irregular / lobulada.&nbsp;</strong></strong></p>\n</li>\n</ol><br>Visão do aprovado: <p>O sistema O-RADS padroniza a avalia&ccedil;&atilde;o de massas anexiais em categorias de 0 a 5, cada uma com risco espec&iacute;fico de malignidade e condutas bem definidas. O racioc&iacute;nio diagn&oacute;stico baseia-se na combina&ccedil;&atilde;o de achados ultrassonogr&aacute;ficos espec&iacute;ficos que determinam a categoria e, consequentemente, a abordagem cl&iacute;nica adequada.</p>\n<p>&nbsp;</p>\n<p>Refer&ecirc;ncia bibliogr&aacute;fica</p>\n<p>O-RADS US Risk Stratification and Management System: A Consensus Guideline from the ACR Ovarian-Adnexal Reporting and Data System Committee. Rochelle F. Andreotti, Dirk Timmerman, Lori M. Strachowski, Wouter Froyman, Beryl R. Benacerraf, Genevieve L. Bennett, Tom Bourne, Douglas L. Brown, Beverly G. Coleman, Mary C. Frates, Steven R. Goldstein, Ulrike M. Hamper, Mindy M. Horrow, Marta Hernanz-Schulman, Caroline Reinhold, Stephen L. Rose, Brad P. Whitcomb, Wendy L. Wolfman, and Phyllis Glanc. Radiology 2020 294:1, 168-185<br><a href=\"https://www.acr.org/Clinical-Resources/Reporting-and-Data-Systems/O-Rads\"><strong><em>https://www.acr.org/Clinical-Resources/Reporting-and-Data-Systems/O-Rads</em></strong></a></p>\n<p><br><br></p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340987,
+        "number": 5,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sangramentos de segunda metade",
+        "focus": {
+          "id": 1577,
+          "name": "Sangramentos de segunda metade"
+        }
+      },
+      "detail": {
+        "id": 340987,
+        "content": "Gestante, 36 anos, com suspeita de placenta prévia. PERGUNTA-SE:\na. Qual exame ultrassonográfico é mais indicado para confirmar o diagnóstico: abdominal ou transvaginal?\nb. Cite um diagnóstico diferencial que pode simular placenta prévia na ultrassonografia do segundo trimestre.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15990,
+            "parent_tag": {
+              "id": 15913,
+              "name": "Sangramentos na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sangramentos de segunda metade",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 5,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1577,
+          "name": "Sangramentos de segunda metade",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 93,
+            "name": "Sangramentos na gestação",
+            "discipline": 86,
+            "old_tag": 15913,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406550,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Temos uma paciente gestante de 36 anos com suspeita de <span class=\"article-3313\">placenta prévia</span>, condição obstétrica importante, que ocorre quando a placenta se implanta sobre ou próximo ao orifício interno do colo uterino, podendo causar sangramento materno significativo e complicações no parto. </p>\n<p style=\"text-align: justify;\">A questão aborda dois pontos cruciais: primeiro, a escolha entre ultrassonografia abdominal e transvaginal para confirmação diagnóstica e, segundo, o reconhecimento de que nem toda \"<span class=\"article-3313\">placenta prévia</span>\" vista no segundo trimestre representa verdadeiramente essa condição.</p>\n<p style=\"text-align: justify;\">O diagnóstico de <span class=\"article-3313\">placenta prévia</span> exige precisão na escolha do método ultrassonográfico e reconhecimento de que nem toda suspeita no segundo trimestre confirma a condição. A ultrassonografia transvaginal é superior por visualizar melhor a relação entre placenta e orifício interno do colo, sendo segura mesmo na suspeita de <span class=\"article-3313\">placenta prévia</span>.</p>\n<p style=\"text-align: justify;\">A placenta de inserção baixa é o principal diagnóstico diferencial no segundo trimestre já que ao longo da gestação há o conceito de \"migração placentária\", em que placenta \"sobe\" conforme útero cresce. </p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><img height=\"212\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T202537602Z431281.png\" width=\"417\"/></p>\n<p style=\"text-align: justify;\"><img height=\"340\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T202537606Z344704.png\" width=\"358\"/></p>\n<p style=\"text-align: justify;\"><br/><br/></p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">USG transvaginal é <strong>gold standard </strong>para confirmar <span class=\"article-3313\">placenta prévia</span> (melhor visualização do orifício interno), sendo esse um diagnóstico de 3ª trimestre. A placenta de inserção baixa é o principal diagnóstico diferencial no segundo trimestre, e é importante ter ciência do conceito de migração placentária: placenta \"sobe\" conforme útero cresce, e de que o USG abdominal pode dar falsos positivos por distorção da bexiga cheia.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Bons estudos! </p>\n<p style=\"text-align: justify;\"><br/><strong><br/></strong></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Temos uma paciente gestante de 36 anos com suspeita de <span class=\"article-3313\">placenta prévia</span>, condição obstétrica importante, que ocorre quando a placenta se implanta sobre ou próximo ao orifício interno do colo uterino, podendo causar sangramento materno significativo e complicações no parto. </p>\n<p style=\"text-align: justify;\">A questão aborda dois pontos cruciais: primeiro, a escolha entre ultrassonografia abdominal e transvaginal para confirmação diagnóstica e, segundo, o reconhecimento de que nem toda \"<span class=\"article-3313\">placenta prévia</span>\" vista no segundo trimestre representa verdadeiramente essa condição.</p>\n<p style=\"text-align: justify;\">O diagnóstico de <span class=\"article-3313\">placenta prévia</span> exige precisão na escolha do método ultrassonográfico e reconhecimento de que nem toda suspeita no segundo trimestre confirma a condição. A ultrassonografia transvaginal é superior por visualizar melhor a relação entre placenta e orifício interno do colo, sendo segura mesmo na suspeita de <span class=\"article-3313\">placenta prévia</span>.</p>\n<p style=\"text-align: justify;\">A placenta de inserção baixa é o principal diagnóstico diferencial no segundo trimestre já que ao longo da gestação há o conceito de \"migração placentária\", em que placenta \"sobe\" conforme útero cresce. </p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><img height=\"212\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T202537602Z431281.png\" width=\"417\"/></p>\n<p style=\"text-align: justify;\"><img height=\"340\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T202537606Z344704.png\" width=\"358\"/></p>\n<p style=\"text-align: justify;\"><br/><br/></p><br>Visão do aprovado: <p style=\"text-align: justify;\">USG transvaginal é <strong>gold standard </strong>para confirmar <span class=\"article-3313\">placenta prévia</span> (melhor visualização do orifício interno), sendo esse um diagnóstico de 3ª trimestre. A placenta de inserção baixa é o principal diagnóstico diferencial no segundo trimestre, e é importante ter ciência do conceito de migração placentária: placenta \"sobe\" conforme útero cresce, e de que o USG abdominal pode dar falsos positivos por distorção da bexiga cheia.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Bons estudos! </p>\n<p style=\"text-align: justify;\"><br/><strong><br/></strong></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340988,
+        "number": 6,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+        "focus": {
+          "id": 1629,
+          "name": "Endometriose parte 1: fisiopatologia e diagnóstico"
+        }
+      },
+      "detail": {
+        "id": 340988,
+        "content": "Mulher, 29 anos, apresenta dor pélvica crônica. À ultrassonografia transvaginal observa-se lesão ovariana cística, homogênea, em vidro fosco, medindo 4cm. PERGUNTA-SE: \na. Qual é o diagnóstico mais provável\nb. Cite um diagnóstico diferencial para esse achado",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15937,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 6,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 5,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1629,
+          "name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406545,
+        "actual_explanation": true,
+        "introduction": "<p>Galera, paciente com <strong>dor p&eacute;lvica cr&ocirc;nica&nbsp;</strong>e achado de cisto ovariano de aspecto de&nbsp;<strong>\"vidro fosco\"</strong> precisa nos fazer pensar em&nbsp;<strong>ENDOMETRIOMA.&nbsp;</strong></p>\n<p>&nbsp;O endometrioma &eacute; uma manifesta&ccedil;&atilde;o da endometriose ovariana, onde o tecido endometrial ect&oacute;pico se implanta no ov&aacute;rio, formando cistos que cont&ecirc;m sangue menstrual espesso e escuro. O&nbsp;<strong>aspecto em vidro fosco</strong> representa um dos sinais ultrassonogr&aacute;ficos mais caracter&iacute;sticos em ginecologia, resultado da presen&ccedil;a de debris hem&aacute;ticos organizados no interior da les&atilde;o c&iacute;stica.&nbsp;</p>\n<p style=\"text-align: center;\"><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T152525634Z925136.png\" width=\"491\" height=\"185\"></span></span></strong></p>\n<p>Ao associarmos este achado com o quadro de paciente jovem, em idade reprodutiva e hist&oacute;ria de dor p&eacute;lvica cr&ocirc;nica fica f&aacute;cil concluir que estamos frente a um quadro de endometrioma.&nbsp;</p>\n<p>Os principais diagn&oacute;sticos diferenciais incluem:</p>\n<ul>\n<li>CISTO HEMORR&Aacute;GICO: pode apresentar ecos internos, mas geralmente tem aspecto mais heterog&ecirc;neo e tende a resolver espontaneamente\n<ul>\n<li><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155246192Z792654.png\" width=\"214\" height=\"239\"></span></span></strong></li>\n</ul>\n</li>\n<li>CISTOADENOMA MUCINOSO: pode ter conte&uacute;do espesso, mas raramente apresenta o padr&atilde;o vidro fosco t&iacute;pico\n<ul>\n<li><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155558014Z335406.png\"></li>\n<li><em>fonte: radiopedia.org</em></li>\n</ul>\n</li>\n<li>TERATOMA C&Iacute;STICO MADURO (cisto derm&oacute;ide):&nbsp;Massa mista (s&oacute;lido-c&iacute;stica), com &aacute;reas hiperecog&ecirc;nicas e sombreamento posterior (\"tip of the iceberg\")\n<ul>\n<li>&nbsp;<strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155054387Z963737.png\" width=\"197\" height=\"220\"></strong>&nbsp;</li>\n</ul>\n</li>\n<li>CISTO DE CORPO L&Uacute;TEO HEMORR&Aacute;GICO: mais comum na segunda metade do ciclo menstrual e com hist&oacute;ria cl&iacute;nica diferente. Ao doppler visualiza&ccedil;&atilde;o de \"anel de fogo\"\n<ul>\n<li><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T154631272Z554031.png\" width=\"245\" height=\"195\"></span></span></strong></li>\n</ul>\n</li>\n</ul>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O aspecto ultrassonogr&aacute;fico em <strong>\"vidro fosco\"</strong> &eacute; praticamente patognom&ocirc;nico de <em>endometrioma ovariano</em>, especialmente quando associado &agrave; dor p&eacute;lvica cr&ocirc;nica em mulher jovem. Esse padr&atilde;o ecogr&aacute;fico resulta da presen&ccedil;a de debris hem&aacute;ticos organizados no interior do cisto. O contexto cl&iacute;nico de dor p&eacute;lvica cr&ocirc;nica em idade reprodutiva refor&ccedil;a fortemente essa hip&oacute;tese diagn&oacute;stica.</p>\n<p>Poss&iacute;veis diagn&oacute;sticos diferenciais incluem outros tumores ovarianos frequentes como cisto hemorr&aacute;gico, cistoadenoma mucinoso, cisto dermoide, cisto de corpo l&uacute;teo.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Mulher em <strong>idade reprodutiva</strong> (pico entre 25-35 anos)</li>\n<li><strong>Dor p&eacute;lvica cr&ocirc;nica</strong> como sintoma cardinal</li>\n<li>Aspecto <strong>\"vidro fosco\" ou \"ground glass\"</strong> na ultrassonografia transvaginal</li>\n<li>Les&atilde;o c&iacute;stica <strong>homog&ecirc;nea</strong> com ecos de baixa amplitude uniformes</li>\n<li>Tamanho vari&aacute;vel, frequentemente entre <strong>3-6cm</strong></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <strong>cisto hemorr&aacute;gico</strong> (principal diferencial, mas tem evolu&ccedil;&atilde;o mais aguda)</li>\n<li>Descartar <strong>cistoadenoma mucinoso</strong> que pode ter aspecto similar mas sem dor cr&ocirc;nica</li>\n<li>N&atilde;o associar o padr&atilde;o <em>\"vidro fosco\"</em> como sendo espec&iacute;fico do endometrioma</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li><strong>Padr&atilde;o cl&aacute;ssico:</strong> Mulher jovem + dor p&eacute;lvica + descri&ccedil;&atilde;o do aspecto ultrassonogr&aacute;fico t&iacute;pico</li>\n<li><strong>Formato comum:</strong> Quest&atilde;o discursiva pedindo diagn&oacute;stico mais prov&aacute;vel e principal diferencial</li>\n<li><strong>Associa&ccedil;&atilde;o frequente:</strong> Casos vinculados com dismenorreia e dispareunia como sintomas adicionais</li>\n<li><strong>Tamb&eacute;m pode cair:</strong> Classifica&ccedil;&atilde;o da endometriose e crit&eacute;rios para tratamento cir&uacute;rgico vs. cl&iacute;nico</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Galera, paciente com <strong>dor p&eacute;lvica cr&ocirc;nica&nbsp;</strong>e achado de cisto ovariano de aspecto de&nbsp;<strong>\"vidro fosco\"</strong> precisa nos fazer pensar em&nbsp;<strong>ENDOMETRIOMA.&nbsp;</strong></p>\n<p>&nbsp;O endometrioma &eacute; uma manifesta&ccedil;&atilde;o da endometriose ovariana, onde o tecido endometrial ect&oacute;pico se implanta no ov&aacute;rio, formando cistos que cont&ecirc;m sangue menstrual espesso e escuro. O&nbsp;<strong>aspecto em vidro fosco</strong> representa um dos sinais ultrassonogr&aacute;ficos mais caracter&iacute;sticos em ginecologia, resultado da presen&ccedil;a de debris hem&aacute;ticos organizados no interior da les&atilde;o c&iacute;stica.&nbsp;</p>\n<p style=\"text-align: center;\"><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T152525634Z925136.png\" width=\"491\" height=\"185\"></span></span></strong></p>\n<p>Ao associarmos este achado com o quadro de paciente jovem, em idade reprodutiva e hist&oacute;ria de dor p&eacute;lvica cr&ocirc;nica fica f&aacute;cil concluir que estamos frente a um quadro de endometrioma.&nbsp;</p>\n<p>Os principais diagn&oacute;sticos diferenciais incluem:</p>\n<ul>\n<li>CISTO HEMORR&Aacute;GICO: pode apresentar ecos internos, mas geralmente tem aspecto mais heterog&ecirc;neo e tende a resolver espontaneamente\n<ul>\n<li><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155246192Z792654.png\" width=\"214\" height=\"239\"></span></span></strong></li>\n</ul>\n</li>\n<li>CISTOADENOMA MUCINOSO: pode ter conte&uacute;do espesso, mas raramente apresenta o padr&atilde;o vidro fosco t&iacute;pico\n<ul>\n<li><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155558014Z335406.png\"></li>\n<li><em>fonte: radiopedia.org</em></li>\n</ul>\n</li>\n<li>TERATOMA C&Iacute;STICO MADURO (cisto derm&oacute;ide):&nbsp;Massa mista (s&oacute;lido-c&iacute;stica), com &aacute;reas hiperecog&ecirc;nicas e sombreamento posterior (\"tip of the iceberg\")\n<ul>\n<li>&nbsp;<strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155054387Z963737.png\" width=\"197\" height=\"220\"></strong>&nbsp;</li>\n</ul>\n</li>\n<li>CISTO DE CORPO L&Uacute;TEO HEMORR&Aacute;GICO: mais comum na segunda metade do ciclo menstrual e com hist&oacute;ria cl&iacute;nica diferente. Ao doppler visualiza&ccedil;&atilde;o de \"anel de fogo\"\n<ul>\n<li><strong><span style=\"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T154631272Z554031.png\" width=\"245\" height=\"195\"></span></span></strong></li>\n</ul>\n</li>\n</ul><br>Visão do aprovado: <p>O aspecto ultrassonogr&aacute;fico em <strong>\"vidro fosco\"</strong> &eacute; praticamente patognom&ocirc;nico de <em>endometrioma ovariano</em>, especialmente quando associado &agrave; dor p&eacute;lvica cr&ocirc;nica em mulher jovem. Esse padr&atilde;o ecogr&aacute;fico resulta da presen&ccedil;a de debris hem&aacute;ticos organizados no interior do cisto. O contexto cl&iacute;nico de dor p&eacute;lvica cr&ocirc;nica em idade reprodutiva refor&ccedil;a fortemente essa hip&oacute;tese diagn&oacute;stica.</p>\n<p>Poss&iacute;veis diagn&oacute;sticos diferenciais incluem outros tumores ovarianos frequentes como cisto hemorr&aacute;gico, cistoadenoma mucinoso, cisto dermoide, cisto de corpo l&uacute;teo.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Mulher em <strong>idade reprodutiva</strong> (pico entre 25-35 anos)</li>\n<li><strong>Dor p&eacute;lvica cr&ocirc;nica</strong> como sintoma cardinal</li>\n<li>Aspecto <strong>\"vidro fosco\" ou \"ground glass\"</strong> na ultrassonografia transvaginal</li>\n<li>Les&atilde;o c&iacute;stica <strong>homog&ecirc;nea</strong> com ecos de baixa amplitude uniformes</li>\n<li>Tamanho vari&aacute;vel, frequentemente entre <strong>3-6cm</strong></li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <strong>cisto hemorr&aacute;gico</strong> (principal diferencial, mas tem evolu&ccedil;&atilde;o mais aguda)</li>\n<li>Descartar <strong>cistoadenoma mucinoso</strong> que pode ter aspecto similar mas sem dor cr&ocirc;nica</li>\n<li>N&atilde;o associar o padr&atilde;o <em>\"vidro fosco\"</em> como sendo espec&iacute;fico do endometrioma</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li><strong>Padr&atilde;o cl&aacute;ssico:</strong> Mulher jovem + dor p&eacute;lvica + descri&ccedil;&atilde;o do aspecto ultrassonogr&aacute;fico t&iacute;pico</li>\n<li><strong>Formato comum:</strong> Quest&atilde;o discursiva pedindo diagn&oacute;stico mais prov&aacute;vel e principal diferencial</li>\n<li><strong>Associa&ccedil;&atilde;o frequente:</strong> Casos vinculados com dismenorreia e dispareunia como sintomas adicionais</li>\n<li><strong>Tamb&eacute;m pode cair:</strong> Classifica&ccedil;&atilde;o da endometriose e crit&eacute;rios para tratamento cir&uacute;rgico vs. cl&iacute;nico</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340989,
+        "number": 7,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Doenças benignas da mama parte 2: nódulos e lesões marcadoras de risco",
+        "focus": {
+          "id": 1622,
+          "name": "Doenças benignas da mama parte 2: nódulos e lesões marcadoras de risco"
+        }
+      },
+      "detail": {
+        "id": 340989,
+        "content": "Mulher, 42 anos, realiza ultrassonografia mamária após achado de assimetria na mamografia. PERGUNTA-SE:\na. Qual é o aspecto ultrassonográfico típico de um fibroadenoma?\nb. Cite um achado ultrassonográfico suspeito de malignidade em nódulo mamário.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15944,
+            "parent_tag": {
+              "id": 15902,
+              "name": "Mastologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Doenças benignas da mama parte 2: nódulos e lesões marcadoras de risco",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 7,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 7,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1622,
+          "name": "Doenças benignas da mama parte 2: nódulos e lesões marcadoras de risco",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 104,
+            "name": "Mastologia",
+            "discipline": 86,
+            "old_tag": 15902,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406546,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">A quest&atilde;o trata, essencialmente, de semiologia ultrassonogr&aacute;fica mam&aacute;ria em uma mulher de meia-idade com achado mamogr&aacute;fico que requer investiga&ccedil;&atilde;o complementar. O caso apresenta uma situa&ccedil;&atilde;o muito comum na pr&aacute;tica cl&iacute;nica: a descoberta de uma assimetria na mamografia que demanda caracteriza&ccedil;&atilde;o ultrassonogr&aacute;fica para melhor defini&ccedil;&atilde;o diagn&oacute;stica.</p>\n<p style=\"text-align: justify;\">A quest&atilde;o explora dois pilares da ultrassonografia mam&aacute;ria: primeiro, o reconhecimento das caracter&iacute;sticas t&iacute;picas do fibroadenoma - o tumor benigno s&oacute;lido mais comum da mama - e segundo, a identifica&ccedil;&atilde;o de sinais ultrassonogr&aacute;ficos suspeitos de malignidade que orientam a conduta cl&iacute;nica e a necessidade de investiga&ccedil;&atilde;o histopatol&oacute;gica.</p>\n<p style=\"text-align: justify;\">S&atilde;o caracter&iacute;sticas cl&aacute;ssicas:</p>\n<p style=\"text-align: justify;\">- <strong>Fibroadenoma t&iacute;pico:</strong> n&oacute;dulo s&oacute;lido hipoecog&ecirc;nico, forma oval/redonda, margens circunscritas, orienta&ccedil;&atilde;o paralela a pele</p>\n<p style=\"text-align: justify;\">- <strong>Sinais de malignidade:</strong> forma irregular, margens espiculadas/microlobuladas, orienta&ccedil;&atilde;o n&atilde;o paralela a pele, n&oacute;dulos hipoecog&ecirc;nicos acentuados ou com &aacute;reas anec&oacute;icas internas, hipervasculariza&ccedil;&atilde;o central/perif&eacute;rica&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/Screen Shot 2025-05-30 at 20.22.36.png\" alt=\"\" width=\"897\" height=\"439\"></p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Tema recorrente em provas!! &Eacute; importante saber distinguir caracter&iacute;sticas imaginol&oacute;gicas de benignidade e malignidade,&nbsp;conforme a tabela abaixo resume bem:</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T202919799Z281763.png\" width=\"487\" height=\"259\"></strong></p>\n<p>&nbsp;</p>\n<p><strong>Bons estudos!</strong></p>\n<p><br><br></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">A quest&atilde;o trata, essencialmente, de semiologia ultrassonogr&aacute;fica mam&aacute;ria em uma mulher de meia-idade com achado mamogr&aacute;fico que requer investiga&ccedil;&atilde;o complementar. O caso apresenta uma situa&ccedil;&atilde;o muito comum na pr&aacute;tica cl&iacute;nica: a descoberta de uma assimetria na mamografia que demanda caracteriza&ccedil;&atilde;o ultrassonogr&aacute;fica para melhor defini&ccedil;&atilde;o diagn&oacute;stica.</p>\n<p style=\"text-align: justify;\">A quest&atilde;o explora dois pilares da ultrassonografia mam&aacute;ria: primeiro, o reconhecimento das caracter&iacute;sticas t&iacute;picas do fibroadenoma - o tumor benigno s&oacute;lido mais comum da mama - e segundo, a identifica&ccedil;&atilde;o de sinais ultrassonogr&aacute;ficos suspeitos de malignidade que orientam a conduta cl&iacute;nica e a necessidade de investiga&ccedil;&atilde;o histopatol&oacute;gica.</p>\n<p style=\"text-align: justify;\">S&atilde;o caracter&iacute;sticas cl&aacute;ssicas:</p>\n<p style=\"text-align: justify;\">- <strong>Fibroadenoma t&iacute;pico:</strong> n&oacute;dulo s&oacute;lido hipoecog&ecirc;nico, forma oval/redonda, margens circunscritas, orienta&ccedil;&atilde;o paralela a pele</p>\n<p style=\"text-align: justify;\">- <strong>Sinais de malignidade:</strong> forma irregular, margens espiculadas/microlobuladas, orienta&ccedil;&atilde;o n&atilde;o paralela a pele, n&oacute;dulos hipoecog&ecirc;nicos acentuados ou com &aacute;reas anec&oacute;icas internas, hipervasculariza&ccedil;&atilde;o central/perif&eacute;rica&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/Screen Shot 2025-05-30 at 20.22.36.png\" alt=\"\" width=\"897\" height=\"439\"></p><br>Visão do aprovado: <p>Tema recorrente em provas!! &Eacute; importante saber distinguir caracter&iacute;sticas imaginol&oacute;gicas de benignidade e malignidade,&nbsp;conforme a tabela abaixo resume bem:</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><strong><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T202919799Z281763.png\" width=\"487\" height=\"259\"></strong></p>\n<p>&nbsp;</p>\n<p><strong>Bons estudos!</strong></p>\n<p><br><br></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340990,
+        "number": 8,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sangramentos de primeira metade",
+        "focus": {
+          "id": 1646,
+          "name": "Sangramentos de primeira metade"
+        }
+      },
+      "detail": {
+        "id": 340990,
+        "content": "Mulher, 24 anos, 16 semanas de gestação, com sangramento uterino irregular e ẞ-hCG acima do esperado para a idade gestacional, realiza ultrassonografia abdominal. PERGUNTA-SE:\n\na. Qual é o achado ultrassonográfico típico de mola hidatiforme incompleta? \nb. Cite um diagnóstico diferencial ultrassonográfico para esse achado.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15920,
+            "parent_tag": {
+              "id": 15913,
+              "name": "Sangramentos na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sangramentos de primeira metade",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 8,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 6,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1646,
+          "name": "Sangramentos de primeira metade",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 93,
+            "name": "Sangramentos na gestação",
+            "discipline": 86,
+            "old_tag": 15913,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406547,
+        "actual_explanation": true,
+        "introduction": "<p>O cenário combina <strong>sangramento uterino irregular</strong> e <strong>β-hCG elevado</strong> no segundo trimestre, compatíveis com <strong>doença trofoblástica gestacional (DTG)</strong>, pedindo conhecimento específico sobre achados ultrassonográficos como próximo passo diagnóstico.</p>\n<p>A DTG consiste na proliferação anormal do tecido trofoblástico (citotrofoblasto e sinciciotrofoblasto), com degeneração hidrópica deste<br/>tecido, podendo originar uma doença benigna ou maligna, a depender do estágio histológico que se multiplica. O principal exame da DTG é o beta-hCG, pois é um hormônio produzido pelo sinciciotrofoblasto que se encontra proliferado nessa patologia. Dados epidemiológicos no Brasil estimam um caso de gravidez molar a cada 200–400 gestações.</p>\n<p>A <strong>mola completa </strong>é formada a partir de um espermatozoide normal fecunda um <strong>ÓVULO VAZIO</strong> (sem material genético materno). Portanto, há apenas genes paternos, sem formação de embrião ou anexos, com um cariótipo mais comumente diploide 46 XX ou 46 XY (duplicação do material paterno). Há um risco de 15–20% de malignização. Para ajudar a gravar, podemos pensar que a mola completa é “completamente mola”, ou seja, sem feto, sem anexos, sem nada “normal” formado. E aí na ultrassonografia vamos ter a imagem clássica de \"flocos de neve\": </p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T151621391Z146423.png\"/></p>\n<p style=\"text-align: left;\">Já a mola incompleta, ou mola parcial, é formada quando <strong>DOIS ESPERMATOZOIDES fecundam UM ÓVULO </strong><strong>NORMAL</strong>. Ou seja, <strong>a carga genética é triploide</strong> com a presença de material materno e paterno. Portanto, há formação de tecido fetal (é um tecido mais bem diferenciado), com melhor prognóstico e menor risco de malignização — em torno de 5%. Pensaremos, nesse caso, que é “parte mola, parte normal” (O que é melhor que ser completamente mola, não é mesmo?). O quadro clínico nesses casos é mais brando, se assemelhando a um <span class=\"article-3506\">aborto incompleto</span>, o diagnóstico de mola se dá pelo histopatológico.<strong> Nesses casos, além do conteúdo intrauterino vesicular, teremos a presença de um feto, o</strong><strong> que responde a nossa letra A. </strong></p>\n<p style=\"text-align: left;\"><strong> Já em relação a letra B, um diagnóstico diferencial seria gestação gemelar com feto normal e mola completa coexistente ou até mesmo coriocarcinoma.</strong></p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A combinação de <strong>sangramento irregular</strong> e <strong>β-hCG elevado</strong> no segundo trimestre aponta para doença trofoblástica gestacional, exigindo diferenciação ultrassonográfica precisa. A <strong>mola hidatiforme incompleta</strong> apresenta tecido fetal associado a alterações placentárias císticas, diferenciando-se da mola completa pela presença embrionária.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>β-hCG desproporcional</strong> à idade gestacional (muito elevado)</li>\n<li><strong>Sangramento irregular</strong> persistente no segundo trimestre</li>\n<li><strong>Presença de tecido fetal</strong> ao ultrassom (diferencia da mola completa)</li>\n<li><strong>Alterações císticas placentárias</strong> com áreas de degeneração</li>\n<li><strong>Triploidia cromossômica</strong> (69,XXY ou 69,XXX) como base genética</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li><strong>Confundir mola completa vs incompleta</strong> - incompleta tem tecido fetal, completa não</li>\n<li><strong>Negligenciar seguimento</strong> - β-hCG deve ser monitorado para detectar malignização</li>\n<li><strong>Diagnóstico diferencial</strong> - aborto retido, gemelaridade ou malformações fetais podem simular</li>\n<li><strong>Ultrassom insuficiente</strong> - achados podem ser sutis comparados à mola completa</li>\n</ul>\n<p><strong>Bons estudos!!</strong></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O cenário combina <strong>sangramento uterino irregular</strong> e <strong>β-hCG elevado</strong> no segundo trimestre, compatíveis com <strong>doença trofoblástica gestacional (DTG)</strong>, pedindo conhecimento específico sobre achados ultrassonográficos como próximo passo diagnóstico.</p>\n<p>A DTG consiste na proliferação anormal do tecido trofoblástico (citotrofoblasto e sinciciotrofoblasto), com degeneração hidrópica deste<br/>tecido, podendo originar uma doença benigna ou maligna, a depender do estágio histológico que se multiplica. O principal exame da DTG é o beta-hCG, pois é um hormônio produzido pelo sinciciotrofoblasto que se encontra proliferado nessa patologia. Dados epidemiológicos no Brasil estimam um caso de gravidez molar a cada 200–400 gestações.</p>\n<p>A <strong>mola completa </strong>é formada a partir de um espermatozoide normal fecunda um <strong>ÓVULO VAZIO</strong> (sem material genético materno). Portanto, há apenas genes paternos, sem formação de embrião ou anexos, com um cariótipo mais comumente diploide 46 XX ou 46 XY (duplicação do material paterno). Há um risco de 15–20% de malignização. Para ajudar a gravar, podemos pensar que a mola completa é “completamente mola”, ou seja, sem feto, sem anexos, sem nada “normal” formado. E aí na ultrassonografia vamos ter a imagem clássica de \"flocos de neve\": </p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T151621391Z146423.png\"/></p>\n<p style=\"text-align: left;\">Já a mola incompleta, ou mola parcial, é formada quando <strong>DOIS ESPERMATOZOIDES fecundam UM ÓVULO </strong><strong>NORMAL</strong>. Ou seja, <strong>a carga genética é triploide</strong> com a presença de material materno e paterno. Portanto, há formação de tecido fetal (é um tecido mais bem diferenciado), com melhor prognóstico e menor risco de malignização — em torno de 5%. Pensaremos, nesse caso, que é “parte mola, parte normal” (O que é melhor que ser completamente mola, não é mesmo?). O quadro clínico nesses casos é mais brando, se assemelhando a um <span class=\"article-3506\">aborto incompleto</span>, o diagnóstico de mola se dá pelo histopatológico.<strong> Nesses casos, além do conteúdo intrauterino vesicular, teremos a presença de um feto, o</strong><strong> que responde a nossa letra A. </strong></p>\n<p style=\"text-align: left;\"><strong> Já em relação a letra B, um diagnóstico diferencial seria gestação gemelar com feto normal e mola completa coexistente ou até mesmo coriocarcinoma.</strong></p><br>Visão do aprovado: <p>A combinação de <strong>sangramento irregular</strong> e <strong>β-hCG elevado</strong> no segundo trimestre aponta para doença trofoblástica gestacional, exigindo diferenciação ultrassonográfica precisa. A <strong>mola hidatiforme incompleta</strong> apresenta tecido fetal associado a alterações placentárias císticas, diferenciando-se da mola completa pela presença embrionária.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>β-hCG desproporcional</strong> à idade gestacional (muito elevado)</li>\n<li><strong>Sangramento irregular</strong> persistente no segundo trimestre</li>\n<li><strong>Presença de tecido fetal</strong> ao ultrassom (diferencia da mola completa)</li>\n<li><strong>Alterações císticas placentárias</strong> com áreas de degeneração</li>\n<li><strong>Triploidia cromossômica</strong> (69,XXY ou 69,XXX) como base genética</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li><strong>Confundir mola completa vs incompleta</strong> - incompleta tem tecido fetal, completa não</li>\n<li><strong>Negligenciar seguimento</strong> - β-hCG deve ser monitorado para detectar malignização</li>\n<li><strong>Diagnóstico diferencial</strong> - aborto retido, gemelaridade ou malformações fetais podem simular</li>\n<li><strong>Ultrassom insuficiente</strong> - achados podem ser sutis comparados à mola completa</li>\n</ul>\n<p><strong>Bons estudos!!</strong></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340991,
+        "number": 9,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Gemelidade e restrição de crescimento fetal seletiva",
+        "focus": {
+          "id": 1593,
+          "name": "Gemelidade e restrição de crescimento fetal seletiva"
+        }
+      },
+      "detail": {
+        "id": 340991,
+        "content": "Gestante, 10 semanas, realiza ultrassonografia para avaliação de gestação múltipla. PERGUNTA-SE:\na. Qual é o período ideal para determinar a corionicidade e amnionicidade pela ultrassonografia\nb. O sinal do lambda é indicativo de qual diagnóstico na gestação múltipla?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15974,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Gemelidade e restrição de crescimento fetal seletiva",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 9,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 7,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1593,
+          "name": "Gemelidade e restrição de crescimento fetal seletiva",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406549,
+        "actual_explanation": true,
+        "introduction": "<p>O enunciado sugere, logo de in&iacute;cio, a avalia&ccedil;&atilde;o de <strong>gesta&ccedil;&atilde;o m&uacute;ltipla</strong> em idade gestacional precoce, momento crucial para determina&ccedil;&atilde;o das caracter&iacute;sticas placent&aacute;rias. Esta quest&atilde;o aborda dois aspectos fundamentais da ultrassonografia obst&eacute;trica em gesta&ccedil;&otilde;es gemelares: o <strong>timing ideal para avalia&ccedil;&atilde;o da corionicidade</strong> e a interpreta&ccedil;&atilde;o do <strong>sinal do lambda</strong>.</p>\n<p>A determina&ccedil;&atilde;o precoce da corionicidade &eacute; essencial porque define completamente o progn&oacute;stico e o manejo da gesta&ccedil;&atilde;o gemelar. Gesta&ccedil;&otilde;es <strong>monocori&ocirc;nicas</strong> apresentam riscos significativamente maiores, incluindo s&iacute;ndrome da transfus&atilde;o feto-fetal, crescimento discordante e maior mortalidade perinatal. Por isso, o reconhecimento dos sinais ultrassonogr&aacute;ficos espec&iacute;ficos e o conhecimento do per&iacute;odo ideal para essa avalia&ccedil;&atilde;o s&atilde;o compet&ecirc;ncias indispens&aacute;veis para o obstetra.</p>\n<p>Para responder corretamente esta quest&atilde;o, preciso abordar:</p>\n<ul>\n<li><strong>Pergunta A:</strong> O per&iacute;odo gestacional ideal &eacute; entre <strong>8-14 semanas</strong> (primeiro trimestre tardio), quando a morfologia placent&aacute;ria est&aacute; bem definida, mas antes que mudan&ccedil;as secund&aacute;rias possam mascarar os achados</li>\n</ul>\n<p>Imagens de ultrassonografia de gesta&ccedil;&atilde;o gemelar dicori&ocirc;nica (&agrave; esquerda) e gesta&ccedil;&atilde;o gemelar monocori&ocirc;nica (&agrave; direita) na 6&ordf; semana de gesta&ccedil;&atilde;o:</p>\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T141747436Z468852.png\" width=\"664\" height=\"322\"></p>\n<ul>\n<li><strong>Pergunta B:</strong> O sinal do lambda (ou sinal do \"twin peak\") &eacute; indicativo de <strong>gesta&ccedil;&atilde;o dicori&ocirc;nica diamni&oacute;tica</strong>, representando a inser&ccedil;&atilde;o em forma triangular das membranas amni&oacute;ticas na parede placent&aacute;ria.</li>\n</ul>\n<p>Imagens de ultrassom no primeiro trimestre de: (a) gesta&ccedil;&atilde;o gemelar dicori&ocirc;nica diamni&oacute;tica e (b) gesta&ccedil;&atilde;o gemelar monocori&ocirc;nica e diamni&oacute;tica.</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T141843515Z840264.png\" width=\"661\" height=\"284\"></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\">&nbsp;</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Gesta&ccedil;&atilde;o m&uacute;ltipla aos 10 semanas est&aacute; no <strong>timing ideal</strong> para determina&ccedil;&atilde;o da corionicidade, momento em que a morfologia placent&aacute;ria permite diferencia&ccedil;&atilde;o confi&aacute;vel entre gesta&ccedil;&otilde;es mono e dicori&ocirc;nicas. O <strong>sinal do lambda</strong> &eacute; o marcador ultrassonogr&aacute;fico cl&aacute;ssico que define gesta&ccedil;&atilde;o dicori&ocirc;nica diamni&oacute;tica.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Per&iacute;odo ideal para corionicidade: <strong>8-14 semanas</strong> (primeiro trimestre tardio)</li>\n<li><strong>Sinal do lambda</strong> (twin peak): inser&ccedil;&atilde;o triangular das membranas = <em>dicori&ocirc;nica diamni&oacute;tica</em></li>\n<li>Gesta&ccedil;&otilde;es <strong>monocori&ocirc;nicas</strong> t&ecirc;m riscos maiores (transfus&atilde;o feto-fetal, crescimento discordante)</li>\n<li>Avalia&ccedil;&atilde;o precoce define completamente <strong>progn&oacute;stico e manejo</strong> da gesta&ccedil;&atilde;o gemelar</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir sinal do lambda (dicori&ocirc;nica) com <strong>sinal do T</strong> (monocori&ocirc;nica)</li>\n<li>Indicar per&iacute;odos inadequados para avalia&ccedil;&atilde;o (muito precoce ou tardio demais)</li>\n<li>Associar incorretamente <strong>monocori&ocirc;nica com menor risco</strong> (&eacute; o contr&aacute;rio)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Quest&otilde;es diretas sobre <strong>timing ideal</strong> para determina&ccedil;&atilde;o da corionicidade</li>\n<li>Interpreta&ccedil;&atilde;o de sinais ultrassonogr&aacute;ficos espec&iacute;ficos (<em>lambda vs T</em>)</li>\n<li>Associa&ccedil;&atilde;o entre <strong>tipo de corionicidade e progn&oacute;stico</strong> da gesta&ccedil;&atilde;o m&uacute;ltipla</li>\n</ul>\n<p>Bons estudos!!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O enunciado sugere, logo de in&iacute;cio, a avalia&ccedil;&atilde;o de <strong>gesta&ccedil;&atilde;o m&uacute;ltipla</strong> em idade gestacional precoce, momento crucial para determina&ccedil;&atilde;o das caracter&iacute;sticas placent&aacute;rias. Esta quest&atilde;o aborda dois aspectos fundamentais da ultrassonografia obst&eacute;trica em gesta&ccedil;&otilde;es gemelares: o <strong>timing ideal para avalia&ccedil;&atilde;o da corionicidade</strong> e a interpreta&ccedil;&atilde;o do <strong>sinal do lambda</strong>.</p>\n<p>A determina&ccedil;&atilde;o precoce da corionicidade &eacute; essencial porque define completamente o progn&oacute;stico e o manejo da gesta&ccedil;&atilde;o gemelar. Gesta&ccedil;&otilde;es <strong>monocori&ocirc;nicas</strong> apresentam riscos significativamente maiores, incluindo s&iacute;ndrome da transfus&atilde;o feto-fetal, crescimento discordante e maior mortalidade perinatal. Por isso, o reconhecimento dos sinais ultrassonogr&aacute;ficos espec&iacute;ficos e o conhecimento do per&iacute;odo ideal para essa avalia&ccedil;&atilde;o s&atilde;o compet&ecirc;ncias indispens&aacute;veis para o obstetra.</p>\n<p>Para responder corretamente esta quest&atilde;o, preciso abordar:</p>\n<ul>\n<li><strong>Pergunta A:</strong> O per&iacute;odo gestacional ideal &eacute; entre <strong>8-14 semanas</strong> (primeiro trimestre tardio), quando a morfologia placent&aacute;ria est&aacute; bem definida, mas antes que mudan&ccedil;as secund&aacute;rias possam mascarar os achados</li>\n</ul>\n<p>Imagens de ultrassonografia de gesta&ccedil;&atilde;o gemelar dicori&ocirc;nica (&agrave; esquerda) e gesta&ccedil;&atilde;o gemelar monocori&ocirc;nica (&agrave; direita) na 6&ordf; semana de gesta&ccedil;&atilde;o:</p>\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T141747436Z468852.png\" width=\"664\" height=\"322\"></p>\n<ul>\n<li><strong>Pergunta B:</strong> O sinal do lambda (ou sinal do \"twin peak\") &eacute; indicativo de <strong>gesta&ccedil;&atilde;o dicori&ocirc;nica diamni&oacute;tica</strong>, representando a inser&ccedil;&atilde;o em forma triangular das membranas amni&oacute;ticas na parede placent&aacute;ria.</li>\n</ul>\n<p>Imagens de ultrassom no primeiro trimestre de: (a) gesta&ccedil;&atilde;o gemelar dicori&ocirc;nica diamni&oacute;tica e (b) gesta&ccedil;&atilde;o gemelar monocori&ocirc;nica e diamni&oacute;tica.</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T141843515Z840264.png\" width=\"661\" height=\"284\"></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\">&nbsp;</p><br>Visão do aprovado: <p>Gesta&ccedil;&atilde;o m&uacute;ltipla aos 10 semanas est&aacute; no <strong>timing ideal</strong> para determina&ccedil;&atilde;o da corionicidade, momento em que a morfologia placent&aacute;ria permite diferencia&ccedil;&atilde;o confi&aacute;vel entre gesta&ccedil;&otilde;es mono e dicori&ocirc;nicas. O <strong>sinal do lambda</strong> &eacute; o marcador ultrassonogr&aacute;fico cl&aacute;ssico que define gesta&ccedil;&atilde;o dicori&ocirc;nica diamni&oacute;tica.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Per&iacute;odo ideal para corionicidade: <strong>8-14 semanas</strong> (primeiro trimestre tardio)</li>\n<li><strong>Sinal do lambda</strong> (twin peak): inser&ccedil;&atilde;o triangular das membranas = <em>dicori&ocirc;nica diamni&oacute;tica</em></li>\n<li>Gesta&ccedil;&otilde;es <strong>monocori&ocirc;nicas</strong> t&ecirc;m riscos maiores (transfus&atilde;o feto-fetal, crescimento discordante)</li>\n<li>Avalia&ccedil;&atilde;o precoce define completamente <strong>progn&oacute;stico e manejo</strong> da gesta&ccedil;&atilde;o gemelar</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir sinal do lambda (dicori&ocirc;nica) com <strong>sinal do T</strong> (monocori&ocirc;nica)</li>\n<li>Indicar per&iacute;odos inadequados para avalia&ccedil;&atilde;o (muito precoce ou tardio demais)</li>\n<li>Associar incorretamente <strong>monocori&ocirc;nica com menor risco</strong> (&eacute; o contr&aacute;rio)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Quest&otilde;es diretas sobre <strong>timing ideal</strong> para determina&ccedil;&atilde;o da corionicidade</li>\n<li>Interpreta&ccedil;&atilde;o de sinais ultrassonogr&aacute;ficos espec&iacute;ficos (<em>lambda vs T</em>)</li>\n<li>Associa&ccedil;&atilde;o entre <strong>tipo de corionicidade e progn&oacute;stico</strong> da gesta&ccedil;&atilde;o m&uacute;ltipla</li>\n</ul>\n<p>Bons estudos!!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 340992,
+        "number": 10,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal"
+        }
+      },
+      "detail": {
+        "id": 340992,
+        "content": "Sobre fundamentos da física da ultrassonografia, PERGUNTA-SE:\na. O que acontece com a resolução espacial e com a penetração do feixe à medida que aumentamos a frequência do transdutor?\nb. O que acontece com o fluxo sanguíneo na artéria umbilical quando se identifica diástole zero ao Doppler?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 15948,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 10,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 7,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 406544,
+        "actual_explanation": true,
+        "introduction": "<p>No cerne desta quest&atilde;o est&aacute; a compreens&atilde;o dos <strong>princ&iacute;pios f&iacute;sicos fundamentais</strong> que regem o funcionamento da ultrassonografia, especialmente a rela&ccedil;&atilde;o entre as propriedades do transdutor e a qualidade da imagem obtida, al&eacute;m da interpreta&ccedil;&atilde;o cl&iacute;nica do <strong>Doppler obst&eacute;trico</strong>.</p>\n<p>Esta quest&atilde;o &eacute; extremamente relevante para resid&ecirc;ncia m&eacute;dica, pois combina conhecimento te&oacute;rico essencial sobre f&iacute;sica m&eacute;dica com aplica&ccedil;&atilde;o pr&aacute;tica em obstetr&iacute;cia. Compreender esses conceitos &eacute; fundamental para interpretar adequadamente exames ultrassonogr&aacute;ficos e tomar decis&otilde;es cl&iacute;nicas corretas, especialmente no acompanhamento pr&eacute;-natal.</p>\n<p>Em rela&ccedil;&atilde;o aos princ&iacute;pios f&iacute;sicos do ultrassom:</p>\n<ul>\n<li>Frequ&ecirc;ncia alta = <strong>melhor resolu&ccedil;&atilde;o, menor penetra&ccedil;&atilde;o</strong> (estruturas superficiais)</li>\n<li>Frequ&ecirc;ncia baixa = <strong>pior resolu&ccedil;&atilde;o, maior penetra&ccedil;&atilde;o</strong> (estruturas profundas)</li>\n</ul>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T160557098Z851585.png\" width=\"418\" height=\"278\"></p>\n<p style=\"text-align: center;\">Fonte: IA</p>\n<p>Em rela&ccedil;&atilde;o a di&aacute;stole reversa, temos a imagem a seguir:</p>\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155126678Z075445.png\" width=\"644\" height=\"229\"></p>\n<p style=\"text-align: center;\">Fonte: Dr Pixel</p>\n<p>Note que na imagem doppler temos a forma&ccedil;&atilde;o de um&nbsp;gr&aacute;fico no qual &eacute; montada a curva de fluxo sangu&iacute;neo do vaso estudado. No eixo X temos a vari&aacute;vel TEMPO e no eixo Y do gr&aacute;fico, a vari&aacute;vel VELOCIDADE. Ou seja, se eu tenho valor zero na di&aacute;stole no eixo X, significa interrup&ccedil;&atilde;o do fluxo sangu&iacute;neo (velocidade zero), justamente por aumento da resist&ecirc;ncia placent&aacute;ria.&nbsp;</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A quest&atilde;o explora dois conceitos fundamentais: a <strong>rela&ccedil;&atilde;o inversa</strong> entre frequ&ecirc;ncia ultrassonogr&aacute;fica e penetra&ccedil;&atilde;o versus resolu&ccedil;&atilde;o, e a interpreta&ccedil;&atilde;o da <strong>di&aacute;stole zero</strong> como marcador de resist&ecirc;ncia vascular placent&aacute;ria aumentada. Esses princ&iacute;pios s&atilde;o essenciais para otimizar par&acirc;metros de exame e interpretar achados de vitalidade fetal.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Frequ&ecirc;ncia alta = <strong>melhor resolu&ccedil;&atilde;o, menor penetra&ccedil;&atilde;o</strong> (estruturas superficiais)</li>\n<li>Frequ&ecirc;ncia baixa = <strong>pior resolu&ccedil;&atilde;o, maior penetra&ccedil;&atilde;o</strong> (estruturas profundas)</li>\n<li><strong>Di&aacute;stole zero</strong> = aus&ecirc;ncia de fluxo diast&oacute;lico na art&eacute;ria umbilical (velocidade do fluxo --&gt;&nbsp;Indica <strong>aumento da resist&ecirc;ncia placent&aacute;ria</strong> e comprometimento da circula&ccedil;&atilde;o feto-placent&aacute;ria</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Padr&atilde;o: <strong>Escolha de transdutor</strong> para diferentes profundidades anat&ocirc;micas (superficial vs profundo)</li>\n<li>Formato comum: <strong>Interpreta&ccedil;&atilde;o de Doppler obst&eacute;trico</strong> associado a cen&aacute;rios de CIUR ou sofrimento fetal</li>\n<li>Banca costuma <strong>correlacionar achados f&iacute;sicos</strong> do ultrassom com condutas obst&eacute;tricas pr&aacute;ticas</li>\n<li><strong>Tamb&eacute;m pode cair:</strong> di&aacute;stole reversa (pior progn&oacute;stico que di&aacute;stole zero)</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>No cerne desta quest&atilde;o est&aacute; a compreens&atilde;o dos <strong>princ&iacute;pios f&iacute;sicos fundamentais</strong> que regem o funcionamento da ultrassonografia, especialmente a rela&ccedil;&atilde;o entre as propriedades do transdutor e a qualidade da imagem obtida, al&eacute;m da interpreta&ccedil;&atilde;o cl&iacute;nica do <strong>Doppler obst&eacute;trico</strong>.</p>\n<p>Esta quest&atilde;o &eacute; extremamente relevante para resid&ecirc;ncia m&eacute;dica, pois combina conhecimento te&oacute;rico essencial sobre f&iacute;sica m&eacute;dica com aplica&ccedil;&atilde;o pr&aacute;tica em obstetr&iacute;cia. Compreender esses conceitos &eacute; fundamental para interpretar adequadamente exames ultrassonogr&aacute;ficos e tomar decis&otilde;es cl&iacute;nicas corretas, especialmente no acompanhamento pr&eacute;-natal.</p>\n<p>Em rela&ccedil;&atilde;o aos princ&iacute;pios f&iacute;sicos do ultrassom:</p>\n<ul>\n<li>Frequ&ecirc;ncia alta = <strong>melhor resolu&ccedil;&atilde;o, menor penetra&ccedil;&atilde;o</strong> (estruturas superficiais)</li>\n<li>Frequ&ecirc;ncia baixa = <strong>pior resolu&ccedil;&atilde;o, maior penetra&ccedil;&atilde;o</strong> (estruturas profundas)</li>\n</ul>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T160557098Z851585.png\" width=\"418\" height=\"278\"></p>\n<p style=\"text-align: center;\">Fonte: IA</p>\n<p>Em rela&ccedil;&atilde;o a di&aacute;stole reversa, temos a imagem a seguir:</p>\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20251116T155126678Z075445.png\" width=\"644\" height=\"229\"></p>\n<p style=\"text-align: center;\">Fonte: Dr Pixel</p>\n<p>Note que na imagem doppler temos a forma&ccedil;&atilde;o de um&nbsp;gr&aacute;fico no qual &eacute; montada a curva de fluxo sangu&iacute;neo do vaso estudado. No eixo X temos a vari&aacute;vel TEMPO e no eixo Y do gr&aacute;fico, a vari&aacute;vel VELOCIDADE. Ou seja, se eu tenho valor zero na di&aacute;stole no eixo X, significa interrup&ccedil;&atilde;o do fluxo sangu&iacute;neo (velocidade zero), justamente por aumento da resist&ecirc;ncia placent&aacute;ria.&nbsp;</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p><br>Visão do aprovado: <p>A quest&atilde;o explora dois conceitos fundamentais: a <strong>rela&ccedil;&atilde;o inversa</strong> entre frequ&ecirc;ncia ultrassonogr&aacute;fica e penetra&ccedil;&atilde;o versus resolu&ccedil;&atilde;o, e a interpreta&ccedil;&atilde;o da <strong>di&aacute;stole zero</strong> como marcador de resist&ecirc;ncia vascular placent&aacute;ria aumentada. Esses princ&iacute;pios s&atilde;o essenciais para otimizar par&acirc;metros de exame e interpretar achados de vitalidade fetal.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Frequ&ecirc;ncia alta = <strong>melhor resolu&ccedil;&atilde;o, menor penetra&ccedil;&atilde;o</strong> (estruturas superficiais)</li>\n<li>Frequ&ecirc;ncia baixa = <strong>pior resolu&ccedil;&atilde;o, maior penetra&ccedil;&atilde;o</strong> (estruturas profundas)</li>\n<li><strong>Di&aacute;stole zero</strong> = aus&ecirc;ncia de fluxo diast&oacute;lico na art&eacute;ria umbilical (velocidade do fluxo --&gt;&nbsp;Indica <strong>aumento da resist&ecirc;ncia placent&aacute;ria</strong> e comprometimento da circula&ccedil;&atilde;o feto-placent&aacute;ria</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Padr&atilde;o: <strong>Escolha de transdutor</strong> para diferentes profundidades anat&ocirc;micas (superficial vs profundo)</li>\n<li>Formato comum: <strong>Interpreta&ccedil;&atilde;o de Doppler obst&eacute;trico</strong> associado a cen&aacute;rios de CIUR ou sofrimento fetal</li>\n<li>Banca costuma <strong>correlacionar achados f&iacute;sicos</strong> do ultrassom com condutas obst&eacute;tricas pr&aacute;ticas</li>\n<li><strong>Tamb&eacute;m pode cair:</strong> di&aacute;stole reversa (pior progn&oacute;stico que di&aacute;stole zero)</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T15:15:17.647135+00:00",
+  "complete": true
+}

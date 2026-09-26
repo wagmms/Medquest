@@ -1,0 +1,1363 @@
+{
+  "track_id": 2819090,
+  "name": "UNICAMP - 2025 [Endoscopia Ginecológica]",
+  "year": 2025,
+  "track_fast": {
+    "id": 2819090,
+    "name": "UNICAMP - 2025 [Endoscopia Ginecológica]",
+    "track_type": "c",
+    "question_count": 12,
+    "year": 2025,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UNICAMP",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-unicamp_yplZ7NO.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 12,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 12,
+  "questions": [
+    {
+      "meta": {
+        "id": 197308,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 197308,
+        "content": "Paciente que passou por cirurgia com ressecção intestinal com anastomose término-terminal evolui com constipação e afilamento de bolo fecal. PERGUNTA-SE: Qual a hipótese diagnóstica?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 39,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224672,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\"><strong>Gabarito:</strong> Estenose intestinal.&nbsp;</p>\n<p style=\"text-align: justify;\"><br>Coment&aacute;rio:</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A quest&atilde;o envolve conceitos sobre a t&eacute;cnica de reconstru&ccedil;&atilde;o ap&oacute;s ressec&ccedil;&atilde;o intestinal. Pode ser um procedimento realizado, por exemplo, para tratamento de endometriose profunda na regi&atilde;o do retossigmoide.&nbsp;</p>\n<p style=\"text-align: justify;\">No caso de anastomose t&eacute;rmino-terminal, as extremidades da al&ccedil;a ressecadas s&atilde;o unidas, no mesmo sentido e de forma paralela, por suturas ou linhas de grampo. &nbsp;Aqui, ap&oacute;s o procedimento, a paciente evoluiu com constipa&ccedil;&atilde;o e afilamento das fezes. Pode ter ocorrido uma <strong>estenose</strong> na regi&atilde;o anastomosada, justificando tais achados cl&iacute;nicos.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Al&eacute;m de estenoses, anastomoses intestinais podem estar associadas com outras complica&ccedil;&otilde;es, como f&iacute;stula ou deisc&ecirc;ncia. Em ambos os casos, a detec&ccedil;&atilde;o precoce e o tratamento adequado s&atilde;o cruciais para minimizar as intercorr&ecirc;ncias.&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\"><strong>Gabarito:</strong> Estenose intestinal.&nbsp;</p>\n<p style=\"text-align: justify;\"><br>Coment&aacute;rio:</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A quest&atilde;o envolve conceitos sobre a t&eacute;cnica de reconstru&ccedil;&atilde;o ap&oacute;s ressec&ccedil;&atilde;o intestinal. Pode ser um procedimento realizado, por exemplo, para tratamento de endometriose profunda na regi&atilde;o do retossigmoide.&nbsp;</p>\n<p style=\"text-align: justify;\">No caso de anastomose t&eacute;rmino-terminal, as extremidades da al&ccedil;a ressecadas s&atilde;o unidas, no mesmo sentido e de forma paralela, por suturas ou linhas de grampo. &nbsp;Aqui, ap&oacute;s o procedimento, a paciente evoluiu com constipa&ccedil;&atilde;o e afilamento das fezes. Pode ter ocorrido uma <strong>estenose</strong> na regi&atilde;o anastomosada, justificando tais achados cl&iacute;nicos.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Al&eacute;m de estenoses, anastomoses intestinais podem estar associadas com outras complica&ccedil;&otilde;es, como f&iacute;stula ou deisc&ecirc;ncia. Em ambos os casos, a detec&ccedil;&atilde;o precoce e o tratamento adequado s&atilde;o cruciais para minimizar as intercorr&ecirc;ncias.&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197309,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 197309,
+        "content": "Paciente que passou por cirurgia com ressecção intestinal com anastomose término-terminal evolui com constipação e afilamento de bolo fecal. PERGUNTA-SE: Qual deve ser a conduta subsequente para avaliação?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 38,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224673,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\"><strong>Gabarito:</strong> Colonoscopia.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Coment&aacute;rio:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A quest&atilde;o envolve conceitos sobre a t&eacute;cnica de reconstru&ccedil;&atilde;o ap&oacute;s ressec&ccedil;&atilde;o intestinal. Pode ser um procedimento realizado, por exemplo, para tratamento de endometriose profunda na regi&atilde;o do retossigmoide.&nbsp;</p>\n<p style=\"text-align: justify;\">No caso de anastomose t&eacute;rmino-terminal, as extremidades da al&ccedil;a ressecadas s&atilde;o unidas, no mesmo sentido e de forma paralela, por suturas ou linhas de grampo. &nbsp;</p>\n<p style=\"text-align: justify;\">Neste caso, ap&oacute;s o procedimento, a paciente evoluiu com constipa&ccedil;&atilde;o e afilamento das fezes. Pode ter ocorrido uma <strong>estenose</strong> na regi&atilde;o anastomosada, justificando tais achados cl&iacute;nicos. E como investigar? Com <strong>colonoscopia</strong>. &Agrave;s vezes, &eacute; poss&iacute;vel realizar dilata&ccedil;&atilde;o desse local com estenose. Mais raramente, pode ser necess&aacute;ria&nbsp;reabordagem cir&uacute;rgica.&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">J&aacute; que citamos procedimentos para ressec&ccedil;&atilde;o de endometriose intestinal, vale a pena lembrar tamb&eacute;m do shaving, n&eacute;? Tratada-se de uma t&eacute;cnica utilizada para remo&ccedil;&atilde;o de les&otilde;es de endometriose que n&atilde;o acometem a parede do retossigmoide em grande profundidade, limitadas usualmente &agrave; muscular externa. N&atilde;o h&aacute;, portanto, abertura da mucosa ou comunica&ccedil;&atilde;o com a luz do &oacute;rg&atilde;o.&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\"><strong>Gabarito:</strong> Colonoscopia.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Coment&aacute;rio:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A quest&atilde;o envolve conceitos sobre a t&eacute;cnica de reconstru&ccedil;&atilde;o ap&oacute;s ressec&ccedil;&atilde;o intestinal. Pode ser um procedimento realizado, por exemplo, para tratamento de endometriose profunda na regi&atilde;o do retossigmoide.&nbsp;</p>\n<p style=\"text-align: justify;\">No caso de anastomose t&eacute;rmino-terminal, as extremidades da al&ccedil;a ressecadas s&atilde;o unidas, no mesmo sentido e de forma paralela, por suturas ou linhas de grampo. &nbsp;</p>\n<p style=\"text-align: justify;\">Neste caso, ap&oacute;s o procedimento, a paciente evoluiu com constipa&ccedil;&atilde;o e afilamento das fezes. Pode ter ocorrido uma <strong>estenose</strong> na regi&atilde;o anastomosada, justificando tais achados cl&iacute;nicos. E como investigar? Com <strong>colonoscopia</strong>. &Agrave;s vezes, &eacute; poss&iacute;vel realizar dilata&ccedil;&atilde;o desse local com estenose. Mais raramente, pode ser necess&aacute;ria&nbsp;reabordagem cir&uacute;rgica.&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">J&aacute; que citamos procedimentos para ressec&ccedil;&atilde;o de endometriose intestinal, vale a pena lembrar tamb&eacute;m do shaving, n&eacute;? Tratada-se de uma t&eacute;cnica utilizada para remo&ccedil;&atilde;o de les&otilde;es de endometriose que n&atilde;o acometem a parede do retossigmoide em grande profundidade, limitadas usualmente &agrave; muscular externa. N&atilde;o h&aacute;, portanto, abertura da mucosa ou comunica&ccedil;&atilde;o com a luz do &oacute;rg&atilde;o.&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197310,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 197310,
+        "content": "Para diminuir sangramento no intraoperatório de miomectomia laparoscópica algumas medidas farmacológicas e outras não farmacológicas são realizadas. PERGUNTA-SE: Cite duas medidas farmacológicas realizadas no intraoperatório para diminuir sangramento durante a miomectomia laparoscópica:",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 30,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224674,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Gabarito:</strong> &Aacute;cido tranex&acirc;mico e vasopressina.</p>\n<p>&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Aqui n&atilde;o tem muito o que elocubrar, pessoal. Pergunta direta e clara. Sabemos que as miomectomias s&atilde;o cirurgias com volume estimado de perda elevado, pela vasculariza&ccedil;&atilde;o aumentada dos miomas - pela via laparot&ocirc;mica, a m&eacute;dia de 200-800 mL; laparosc&oacute;pica, 80-250mL.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Quando falamos de medidas intraoperat&oacute;rias, podemos dividi-las em farmacol&oacute;gicas e n&atilde;o farmacol&oacute;gicas. Estas incluem a realiza&ccedil;&atilde;o de torniquete no segmento inferior do &uacute;tero, englobando a art&eacute;ria uterina e ligadura ou emboliza&ccedil;&atilde;o de art&eacute;ria uterina ou il&iacute;aca interna.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">J&aacute; a abordagem farmacol&oacute;gica, comentada nessa quest&atilde;o, recai principalmente sobre duas drogas: vasopressina e &aacute;cido tranex&acirc;mico.</span></p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Vasopressina: diluindo 20 unidades em 100 mL de salina e aplicada no local planejado para a incis&atilde;o uterina de cada mioma, ela atua contraindo o m&uacute;sculo liso nas paredes dos capilares, pequenas arter&iacute;olas e v&ecirc;nulas. Deve-se ter muito cuidado de n&atilde;o injetar no intravascular e provocar rea&ccedil;&otilde;es graves;</span></p>\n</li>\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">&Aacute;cido tranex&acirc;mico: em geral na dose de 10 mg/kg aplicado 20 minutos antes da incis&atilde;o cir&uacute;rgica, ele tende a reduzir a perda sangu&iacute;nea intraoperat&oacute;ria, apesar de que as evid&ecirc;ncias n&atilde;o s&atilde;o inequ&iacute;vocas nesse sentido.</span></p>\n</li>\n</ul>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Outras medica&ccedil;&otilde;es, como a epinefrina em associa&ccedil;&atilde;o com bupivaca&iacute;na e uterot&ocirc;nicos, como o misoprostol, vem sendo usados e testados, mas devido &agrave; experi&ecirc;ncia no uso, vasopressina e &aacute;cido tranex&acirc;mico ainda s&atilde;o as principais escolhas nesse cen&aacute;rio.</span></p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\"><span style=\"font-size: 11pt;\">T&atilde;o importante aqui quanto os cuidados intraoperat&oacute;rios s&atilde;o os cuidados pr&eacute;-operat&oacute;rios a uma miomectomia, como corre&ccedil;&atilde;o de anemia pr&eacute;-existente com ferro oral ou endovenoso a depender da urg&ecirc;ncia, e tamb&eacute;m com o tratamento com os badalados an&aacute;logos de GnRH. Ele pode representar melhora de n&iacute;veis hematim&eacute;tricos e redu&ccedil;&atilde;o de volume dos miomas, possibilitando a mudan&ccedil;a de via cir&uacute;rgica, como de laparot&ocirc;mica para laparosc&oacute;pica. Mas fica a ressalva aqui que o uso de an&aacute;logos de GnRH dificulta o ato cir&uacute;rgico em si: ele torna menos vis&iacute;vel a divis&atilde;o entre mioma e miom&eacute;trio, com a preocupa&ccedil;&atilde;o de que o seu uso possa aumentar o risco de miomas persistentes que n&atilde;o seriam visualizados durante o ato cir&uacute;rgico.</span> .</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Gabarito:</strong> &Aacute;cido tranex&acirc;mico e vasopressina.</p>\n<p>&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Aqui n&atilde;o tem muito o que elocubrar, pessoal. Pergunta direta e clara. Sabemos que as miomectomias s&atilde;o cirurgias com volume estimado de perda elevado, pela vasculariza&ccedil;&atilde;o aumentada dos miomas - pela via laparot&ocirc;mica, a m&eacute;dia de 200-800 mL; laparosc&oacute;pica, 80-250mL.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Quando falamos de medidas intraoperat&oacute;rias, podemos dividi-las em farmacol&oacute;gicas e n&atilde;o farmacol&oacute;gicas. Estas incluem a realiza&ccedil;&atilde;o de torniquete no segmento inferior do &uacute;tero, englobando a art&eacute;ria uterina e ligadura ou emboliza&ccedil;&atilde;o de art&eacute;ria uterina ou il&iacute;aca interna.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">J&aacute; a abordagem farmacol&oacute;gica, comentada nessa quest&atilde;o, recai principalmente sobre duas drogas: vasopressina e &aacute;cido tranex&acirc;mico.</span></p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Vasopressina: diluindo 20 unidades em 100 mL de salina e aplicada no local planejado para a incis&atilde;o uterina de cada mioma, ela atua contraindo o m&uacute;sculo liso nas paredes dos capilares, pequenas arter&iacute;olas e v&ecirc;nulas. Deve-se ter muito cuidado de n&atilde;o injetar no intravascular e provocar rea&ccedil;&otilde;es graves;</span></p>\n</li>\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">&Aacute;cido tranex&acirc;mico: em geral na dose de 10 mg/kg aplicado 20 minutos antes da incis&atilde;o cir&uacute;rgica, ele tende a reduzir a perda sangu&iacute;nea intraoperat&oacute;ria, apesar de que as evid&ecirc;ncias n&atilde;o s&atilde;o inequ&iacute;vocas nesse sentido.</span></p>\n</li>\n</ul>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Outras medica&ccedil;&otilde;es, como a epinefrina em associa&ccedil;&atilde;o com bupivaca&iacute;na e uterot&ocirc;nicos, como o misoprostol, vem sendo usados e testados, mas devido &agrave; experi&ecirc;ncia no uso, vasopressina e &aacute;cido tranex&acirc;mico ainda s&atilde;o as principais escolhas nesse cen&aacute;rio.</span></p><br>Visão do aprovado: <p style=\"text-align: justify;\"><span style=\"font-size: 11pt;\">T&atilde;o importante aqui quanto os cuidados intraoperat&oacute;rios s&atilde;o os cuidados pr&eacute;-operat&oacute;rios a uma miomectomia, como corre&ccedil;&atilde;o de anemia pr&eacute;-existente com ferro oral ou endovenoso a depender da urg&ecirc;ncia, e tamb&eacute;m com o tratamento com os badalados an&aacute;logos de GnRH. Ele pode representar melhora de n&iacute;veis hematim&eacute;tricos e redu&ccedil;&atilde;o de volume dos miomas, possibilitando a mudan&ccedil;a de via cir&uacute;rgica, como de laparot&ocirc;mica para laparosc&oacute;pica. Mas fica a ressalva aqui que o uso de an&aacute;logos de GnRH dificulta o ato cir&uacute;rgico em si: ele torna menos vis&iacute;vel a divis&atilde;o entre mioma e miom&eacute;trio, com a preocupa&ccedil;&atilde;o de que o seu uso possa aumentar o risco de miomas persistentes que n&atilde;o seriam visualizados durante o ato cir&uacute;rgico.</span> .</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197311,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 197311,
+        "content": "Para diminuir sangramento no intraoperatório de miomectomia laparoscópica algumas medidas farmacológicas e outras não farmacológicas são realizadas. PERGUNTA-SE: Cite uma medida não farmacológica realizada no intraoperatório para diminuir sangramento durante a miomectomia laparoscópica:",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 31,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224675,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Gabarito:</strong>&nbsp;Ligadura tempor&aacute;ria de art&eacute;rias uterinas.</p>\n<p>&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Da mesma forma como vimos as medidas farmacol&oacute;gicas, aqui nossa quest&atilde;o pediu uma medida n&atilde;o farmacol&oacute;gica para a redu&ccedil;&atilde;o de sangramento durante a miomectomia. Quando falamos de medidas n&atilde;o farmacol&oacute;gicas, temos duas medidas mais consagradas: a ligadura tempor&aacute;ria de art&eacute;rias uterinas e o uso de torniquete. A primeira delas &eacute; mais conhecida e mais consagrada, mas vamos versar um pouco sobre cada uma delas.</span></p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Ligadura de art&eacute;rias uterinas: o princ&iacute;pio &eacute; realmente reduzir o fluxo sangu&iacute;neo durante o procedimento cir&uacute;rgico, com a restitui&ccedil;&atilde;o do fluxo ap&oacute;s o t&eacute;rmino, de forma a reduzir tanto hemorragias intra quanto p&oacute;s-operat&oacute;rias. Vale o mesmo princ&iacute;pio para a emboliza&ccedil;&atilde;o de art&eacute;rias uterinas de emerg&ecirc;ncia, teoricamente sem implica&ccedil;&atilde;o na fertilidade ap&oacute;s;</span></p>\n</li>\n</ul>\n<p style=\"line-height: 1.56; margin-right: -0.75pt; text-align: center; margin-top: 10pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 11pt; font-family: 'PT Serif', serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T213942015Z828947.png\" width=\"425\" height=\"365\"></span></span></strong></p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Torniquetes: a ideia &eacute; a mesma da ligadura das art&eacute;rias uterinas. Mas aqui &eacute; aplicado um torniquete, com um Penrose por exemplo, sobre o segmento inferior uterino em que h&aacute; compress&atilde;o das uterinas e consequente redu&ccedil;&atilde;o do seu fluxo durante o procedimento cir&uacute;rgico, veja abaixo. A ressalva a ser feita aqui &eacute; que o torniquete pode causar danos &agrave; art&eacute;ria uterina e mascarar pontos de hemostasia inadequada.</span></p>\n</li>\n</ul>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T213942008Z880274.png\" width=\"308\" height=\"367\"></span></span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">O uso de suturas barbadas tamb&eacute;m tem sido associado a menores taxas de sangramento intraoperat&oacute;rias em rela&ccedil;&atilde;o &agrave;s suturas convencionais.</span></p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">.<span style=\"font-size: 11pt;\">Como dissemos, nem mesmo os m&eacute;todos n&atilde;o farmacol&oacute;gicos s&atilde;o cem por cento validados, pessoal. H&aacute; estudos que mostram que mesmo a clipagem laparosc&oacute;pica da art&eacute;ria uterina n&atilde;o demonstrou altera&ccedil;&atilde;o de volume de sangramento, inclusive tendo aumentado tempo cir&uacute;rgico. Assim, vai um pouco da experi&ecirc;ncia de cada cirurgi&atilde;o a escolha da t&eacute;cnica mais utilizada: em geral, as preferidas tendem a ser as farmacol&oacute;gicas com vasopressina e &aacute;cido tranex&acirc;mico.</span>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Gabarito:</strong>&nbsp;Ligadura tempor&aacute;ria de art&eacute;rias uterinas.</p>\n<p>&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Da mesma forma como vimos as medidas farmacol&oacute;gicas, aqui nossa quest&atilde;o pediu uma medida n&atilde;o farmacol&oacute;gica para a redu&ccedil;&atilde;o de sangramento durante a miomectomia. Quando falamos de medidas n&atilde;o farmacol&oacute;gicas, temos duas medidas mais consagradas: a ligadura tempor&aacute;ria de art&eacute;rias uterinas e o uso de torniquete. A primeira delas &eacute; mais conhecida e mais consagrada, mas vamos versar um pouco sobre cada uma delas.</span></p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Ligadura de art&eacute;rias uterinas: o princ&iacute;pio &eacute; realmente reduzir o fluxo sangu&iacute;neo durante o procedimento cir&uacute;rgico, com a restitui&ccedil;&atilde;o do fluxo ap&oacute;s o t&eacute;rmino, de forma a reduzir tanto hemorragias intra quanto p&oacute;s-operat&oacute;rias. Vale o mesmo princ&iacute;pio para a emboliza&ccedil;&atilde;o de art&eacute;rias uterinas de emerg&ecirc;ncia, teoricamente sem implica&ccedil;&atilde;o na fertilidade ap&oacute;s;</span></p>\n</li>\n</ul>\n<p style=\"line-height: 1.56; margin-right: -0.75pt; text-align: center; margin-top: 10pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 11pt; font-family: 'PT Serif', serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T213942015Z828947.png\" width=\"425\" height=\"365\"></span></span></strong></p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Torniquetes: a ideia &eacute; a mesma da ligadura das art&eacute;rias uterinas. Mas aqui &eacute; aplicado um torniquete, com um Penrose por exemplo, sobre o segmento inferior uterino em que h&aacute; compress&atilde;o das uterinas e consequente redu&ccedil;&atilde;o do seu fluxo durante o procedimento cir&uacute;rgico, veja abaixo. A ressalva a ser feita aqui &eacute; que o torniquete pode causar danos &agrave; art&eacute;ria uterina e mascarar pontos de hemostasia inadequada.</span></p>\n</li>\n</ul>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T213942008Z880274.png\" width=\"308\" height=\"367\"></span></span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">O uso de suturas barbadas tamb&eacute;m tem sido associado a menores taxas de sangramento intraoperat&oacute;rias em rela&ccedil;&atilde;o &agrave;s suturas convencionais.</span></p><br>Visão do aprovado: <p style=\"text-align: justify;\">.<span style=\"font-size: 11pt;\">Como dissemos, nem mesmo os m&eacute;todos n&atilde;o farmacol&oacute;gicos s&atilde;o cem por cento validados, pessoal. H&aacute; estudos que mostram que mesmo a clipagem laparosc&oacute;pica da art&eacute;ria uterina n&atilde;o demonstrou altera&ccedil;&atilde;o de volume de sangramento, inclusive tendo aumentado tempo cir&uacute;rgico. Assim, vai um pouco da experi&ecirc;ncia de cada cirurgi&atilde;o a escolha da t&eacute;cnica mais utilizada: em geral, as preferidas tendem a ser as farmacol&oacute;gicas com vasopressina e &aacute;cido tranex&acirc;mico.</span>&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197312,
+        "number": 5,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "h",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Miomatose uterina",
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina"
+        }
+      },
+      "detail": {
+        "id": 197312,
+        "content": "Paciente com sangramento uterino anormal (SUA-L) apresenta a seguinte descrição de leiomioma à ultrassonografia: leiomioma FIGO 2 de 4,5 cm localizado em parede lateral esquerda, em terço médio, com base ocupando 1/3 do comprimento da parede. PERGUNTA-SE: Com base na descrição apresentada, qual o escore e em que grupo da classificação STEP- W esse mioma se enquadra?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15986,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Miomatose uterina",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 32,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224677,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Gabarito:</strong> Escore 6 e grupo II.</p>\n<p>&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Assunto batido na prova da UNICAMP, n&atilde;o temos como ir sem saber, pessoal! A classifica&ccedil;&atilde;o STEP-W, citada pela quest&atilde;o, &eacute; um m&eacute;todo pelo qual podemos avaliar as caracter&iacute;sticas do mioma, como tamanho exato, posi&ccedil;&atilde;o na parede uterina, tamanho da base, invas&atilde;o miometrial, por meio de exames de imagem, seja ultrassom ou resson&acirc;ncia, para programar uma poss&iacute;vel miomectomia minimamente invasiva por histeroscopia. O objetivo dessa classifica&ccedil;&atilde;o &eacute; justamente classificar qual mioma seria mais facilmente retirado por uma t&eacute;cnica ou por outra. </span><span style=\"font-size: 11pt;\">Veja a seguir todos os crit&eacute;rios utilizados na classifica&ccedil;&atilde;o STEP-W/LASMAR para avalia&ccedil;&atilde;o desse mioma e possibilitar a avalia&ccedil;&atilde;o por um escore, detalhado mais abaixo.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T214059633Z291744.png\" width=\"482\" height=\"282\"></span></span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Perceba que, quanto mais dif&iacute;cil a&nbsp;ressec&ccedil;&atilde;o, seja pelo tamanho, pela penetra&ccedil;&atilde;o miometrial ou largura da base, ou ainda por caracter&iacute;sticas que dificultam o procedimento histerosc&oacute;pico, como o ter&ccedil;o de localiza&ccedil;&atilde;o e a parede lateral, maior ser&aacute; a pontua&ccedil;&atilde;o atribu&iacute;da a cada aspecto. No final de tudo isso, iremos somar os valores obtidos, sendo que a melhor abordagem pode ser definida de acordo com esses crit&eacute;rios.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><strong><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T214202605Z376907.png\" width=\"493\" height=\"286\"></span></strong> </span></p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Ent&atilde;o vamos colocar em pr&aacute;tica ent&atilde;o a classifica&ccedil;&atilde;o que vimos acima com as caracter&iacute;sticas que a quest&atilde;o nos fornece.</span></p>\n<ol style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap; margin-left: 36pt;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Penetra&ccedil;&atilde;o: 2 pontos. A classifica&ccedil;&atilde;o da FIGO nos fornece uma ideia de profundidade desse mioma. FIGO 2 significa um mioma submucoso, mas com &gt; 50% sendo intramural.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap; margin-left: 36pt;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Tamanho: 1 ponto. O mioma da quest&atilde;o est&aacute; entre 2 e 5 cm. Consideramos o maior di&acirc;metro encontrado nos exames de imagem.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap; margin-left: 36pt;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Ter&ccedil;o: 1 ponto. A localiza&ccedil;&atilde;o no ter&ccedil;o m&eacute;dio dificulta um pouco a ressec&ccedil;&atilde;o histerosc&oacute;pica e, por isso, agrega mais um ponto aqui.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap; margin-left: 36pt;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Parede lateral: 1 ponto. S&oacute; de estar em uma parede lateral j&aacute; temos a soma de um ponto no escore pela dificuldade t&eacute;cnica associada.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap; margin-left: 36pt;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Base: 1 ponto. Uma base ocupando um ter&ccedil;o da parede em que esse mioma se localiza agrega um ponto de acordo com o escore. Vale a ressalva aqui que a quest&atilde;o colocou um mioma cuja base &eacute; exatamente de ⅓ da parede, e as refer&ecirc;ncias (inclusive o pr&oacute;prio artigo da classifica&ccedil;&atilde;o Lasmar) ficam em cima do muro aqui sobre somar 0 ou 1 ponto aqui: &ldquo;quando o mioma acomete um ter&ccedil;o ou menos da parede recebe o escore 0; quando a base do n&oacute;dulo ocupa de um ter&ccedil;o a dois ter&ccedil;os da parede o escore &eacute; 1 e quando ele acomete mais de 2/3 da parede tem o escore&rdquo;). Nesses casos, a tend&ecirc;ncia &eacute; considerar o pior e agregar 1 ponto ao escore.</span></p>\n</li>\n</ol>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Bom, chegamos ent&atilde;o a uma soma de 6 pontos, concordam? Se formos classificar esse mioma em um grupo, conforme pede a quest&atilde;o, seria classificado no grupo II.</span></p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\"><span style=\"font-size: 11pt;\">A histeroscopia &eacute; um procedimento bastante interessante e cada vez mais presente na pr&aacute;tica cl&iacute;nica. &Eacute; um exame r&aacute;pido e que pode ser feito at&eacute; mesmo ambulatorialmente para diagn&oacute;stico de condi&ccedil;&otilde;es intrauterinas, como p&oacute;lipos e miomas. Quando visa o tratamento cir&uacute;rgico, &eacute; um tratamento de forma minimamente invasiva por meio de um ressectosc&oacute;pio, com baixa morbidade e riscos de complica&ccedil;&otilde;es, preserva&ccedil;&atilde;o de fertilidade, bem como possibilidade de alta no mesmo dia.</span></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Gabarito:</strong> Escore 6 e grupo II.</p>\n<p>&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Assunto batido na prova da UNICAMP, n&atilde;o temos como ir sem saber, pessoal! A classifica&ccedil;&atilde;o STEP-W, citada pela quest&atilde;o, &eacute; um m&eacute;todo pelo qual podemos avaliar as caracter&iacute;sticas do mioma, como tamanho exato, posi&ccedil;&atilde;o na parede uterina, tamanho da base, invas&atilde;o miometrial, por meio de exames de imagem, seja ultrassom ou resson&acirc;ncia, para programar uma poss&iacute;vel miomectomia minimamente invasiva por histeroscopia. O objetivo dessa classifica&ccedil;&atilde;o &eacute; justamente classificar qual mioma seria mais facilmente retirado por uma t&eacute;cnica ou por outra. </span><span style=\"font-size: 11pt;\">Veja a seguir todos os crit&eacute;rios utilizados na classifica&ccedil;&atilde;o STEP-W/LASMAR para avalia&ccedil;&atilde;o desse mioma e possibilitar a avalia&ccedil;&atilde;o por um escore, detalhado mais abaixo.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T214059633Z291744.png\" width=\"482\" height=\"282\"></span></span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Perceba que, quanto mais dif&iacute;cil a&nbsp;ressec&ccedil;&atilde;o, seja pelo tamanho, pela penetra&ccedil;&atilde;o miometrial ou largura da base, ou ainda por caracter&iacute;sticas que dificultam o procedimento histerosc&oacute;pico, como o ter&ccedil;o de localiza&ccedil;&atilde;o e a parede lateral, maior ser&aacute; a pontua&ccedil;&atilde;o atribu&iacute;da a cada aspecto. No final de tudo isso, iremos somar os valores obtidos, sendo que a melhor abordagem pode ser definida de acordo com esses crit&eacute;rios.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><strong><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T214202605Z376907.png\" width=\"493\" height=\"286\"></span></strong> </span></p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Ent&atilde;o vamos colocar em pr&aacute;tica ent&atilde;o a classifica&ccedil;&atilde;o que vimos acima com as caracter&iacute;sticas que a quest&atilde;o nos fornece.</span></p>\n<ol style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap; margin-left: 36pt;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Penetra&ccedil;&atilde;o: 2 pontos. A classifica&ccedil;&atilde;o da FIGO nos fornece uma ideia de profundidade desse mioma. FIGO 2 significa um mioma submucoso, mas com &gt; 50% sendo intramural.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap; margin-left: 36pt;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Tamanho: 1 ponto. O mioma da quest&atilde;o est&aacute; entre 2 e 5 cm. Consideramos o maior di&acirc;metro encontrado nos exames de imagem.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap; margin-left: 36pt;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Ter&ccedil;o: 1 ponto. A localiza&ccedil;&atilde;o no ter&ccedil;o m&eacute;dio dificulta um pouco a ressec&ccedil;&atilde;o histerosc&oacute;pica e, por isso, agrega mais um ponto aqui.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap; margin-left: 36pt;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Parede lateral: 1 ponto. S&oacute; de estar em uma parede lateral j&aacute; temos a soma de um ponto no escore pela dificuldade t&eacute;cnica associada.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap; margin-left: 36pt;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Base: 1 ponto. Uma base ocupando um ter&ccedil;o da parede em que esse mioma se localiza agrega um ponto de acordo com o escore. Vale a ressalva aqui que a quest&atilde;o colocou um mioma cuja base &eacute; exatamente de ⅓ da parede, e as refer&ecirc;ncias (inclusive o pr&oacute;prio artigo da classifica&ccedil;&atilde;o Lasmar) ficam em cima do muro aqui sobre somar 0 ou 1 ponto aqui: &ldquo;quando o mioma acomete um ter&ccedil;o ou menos da parede recebe o escore 0; quando a base do n&oacute;dulo ocupa de um ter&ccedil;o a dois ter&ccedil;os da parede o escore &eacute; 1 e quando ele acomete mais de 2/3 da parede tem o escore&rdquo;). Nesses casos, a tend&ecirc;ncia &eacute; considerar o pior e agregar 1 ponto ao escore.</span></p>\n</li>\n</ol>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Bom, chegamos ent&atilde;o a uma soma de 6 pontos, concordam? Se formos classificar esse mioma em um grupo, conforme pede a quest&atilde;o, seria classificado no grupo II.</span></p><br>Visão do aprovado: <p style=\"text-align: justify;\"><span style=\"font-size: 11pt;\">A histeroscopia &eacute; um procedimento bastante interessante e cada vez mais presente na pr&aacute;tica cl&iacute;nica. &Eacute; um exame r&aacute;pido e que pode ser feito at&eacute; mesmo ambulatorialmente para diagn&oacute;stico de condi&ccedil;&otilde;es intrauterinas, como p&oacute;lipos e miomas. Quando visa o tratamento cir&uacute;rgico, &eacute; um tratamento de forma minimamente invasiva por meio de um ressectosc&oacute;pio, com baixa morbidade e riscos de complica&ccedil;&otilde;es, preserva&ccedil;&atilde;o de fertilidade, bem como possibilidade de alta no mesmo dia.</span></p><br>",
+        "students_difficulty": "h",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197313,
+        "number": 6,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Miomatose uterina",
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina"
+        }
+      },
+      "detail": {
+        "id": 197313,
+        "content": "Paciente com sangramento uterino anormal (SUA-L) apresenta a seguinte descrição de leiomioma à ultrassonografia: leiomioma FIGO 2 de 4,5 cm localizado em parede lateral esquerda, em terço médio, com base ocupando 1/3 do comprimento da parede. PERGUNTA-SE: Com base na classificação de GRUPO STEP-W, qual a tática cirúrgica recomendada?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15986,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Miomatose uterina",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 6,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 27,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224678,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Gabarito:</strong> Histeroscopia em 2 tempos.</p>\n<p>&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Aqui j&aacute; avaliamos o grupo ao qual pertence esse mioma na classifica&ccedil;&atilde;o STEP-W, mas nunca &eacute; demais revisar, pessoal.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T214348194Z207740.png\" width=\"481\" height=\"281\"></span></span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Partindo agora para a soma dos valores:</span></p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Penetra&ccedil;&atilde;o: 2 pontos.</span></p>\n</li>\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Tamanho: 1 ponto. O mioma da quest&atilde;o est&aacute; entre 2 e 5 cm.&nbsp;</span></p>\n</li>\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Ter&ccedil;o: 1 ponto. Ter&ccedil;o m&eacute;dio agrega mais um ponto.</span></p>\n</li>\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Parede lateral: 1 ponto. S&oacute; de estar em uma parede lateral j&aacute; temos a soma de um ponto no escore pela dificuldade t&eacute;cnica associada.</span></p>\n</li>\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Base: 1 ponto.&nbsp;</span></p>\n</li>\n</ul>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Bom, ent&atilde;o temos um mioma com 6 pontos no total, o que o classifica no grupo II. Sabemos que quanto maior a soma, mais complexa &eacute; a ressec&ccedil;&atilde;o histerosc&oacute;pica. Como procedimento histerosc&oacute;pico possui um &iacute;ndice consideravelmente menor de complica&ccedil;&otilde;es e possibilidade de preserva&ccedil;&atilde;o da fertilidade, essa &eacute; a t&eacute;cnica preferida para ressec&ccedil;&atilde;o de miomas submucosos. No entanto, para um mioma com procedimento mais complexo como esse, &eacute; ideal que seja realizada a ressec&ccedil;&atilde;o em dois tempos cir&uacute;rgicos, ou considerando tamb&eacute;m a possibilidade de uso de an&aacute;logos de GnRH para redu&ccedil;&atilde;o dos volumes dos miomas a fim de manter um &uacute;nico tempo cir&uacute;rgico.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T214348471Z048813.png\" width=\"521\" height=\"302\"></span></span></strong></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Dessa forma, como a quest&atilde;o menciona a &ldquo;t&aacute;tica cir&uacute;rgica&rdquo; mais recomendada, e os an&aacute;logos de&nbsp;GnRH seriam uma medida pr&eacute;-cir&uacute;rgica, a t&aacute;tica mais consagrada aqui &eacute; a histeroscopia cir&uacute;rgica em dois tempos.</span></p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\"><span style=\"font-size: 11pt;\">O risco de realiza&ccedil;&atilde;o em um &uacute;nico tempo com preparo inadequado recai principalmente sobre a intoxica&ccedil;&atilde;o h&iacute;drica, uma vez que os meios de distens&atilde;o utilizados na histeroscopia cir&uacute;rgica s&atilde;o hiposmolares e, durante um procedimento prolongado, corremos o risco de ocorrer uma absor&ccedil;&atilde;o aumentada do meio de distens&atilde;o, levando a hiponatremia aguda e, em &uacute;ltima inst&acirc;ncia, ao risco de edema pulmonar, edema cerebral, complica&ccedil;&otilde;es neurol&oacute;gicas, coma e at&eacute; mesmo a morte. Portanto, quando utilizamos meios de baixa viscosidade hipot&ocirc;nicos, como manitol, sorbitol e glicina, o d&eacute;bito de l&iacute;quido n&atilde;o deve exceder os 1000 mL, devendo ser interrompido o procedimento.</span></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Gabarito:</strong> Histeroscopia em 2 tempos.</p>\n<p>&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Aqui j&aacute; avaliamos o grupo ao qual pertence esse mioma na classifica&ccedil;&atilde;o STEP-W, mas nunca &eacute; demais revisar, pessoal.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T214348194Z207740.png\" width=\"481\" height=\"281\"></span></span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Partindo agora para a soma dos valores:</span></p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Penetra&ccedil;&atilde;o: 2 pontos.</span></p>\n</li>\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Tamanho: 1 ponto. O mioma da quest&atilde;o est&aacute; entre 2 e 5 cm.&nbsp;</span></p>\n</li>\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Ter&ccedil;o: 1 ponto. Ter&ccedil;o m&eacute;dio agrega mais um ponto.</span></p>\n</li>\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Parede lateral: 1 ponto. S&oacute; de estar em uma parede lateral j&aacute; temos a soma de um ponto no escore pela dificuldade t&eacute;cnica associada.</span></p>\n</li>\n<li style=\"font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Base: 1 ponto.&nbsp;</span></p>\n</li>\n</ul>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Bom, ent&atilde;o temos um mioma com 6 pontos no total, o que o classifica no grupo II. Sabemos que quanto maior a soma, mais complexa &eacute; a ressec&ccedil;&atilde;o histerosc&oacute;pica. Como procedimento histerosc&oacute;pico possui um &iacute;ndice consideravelmente menor de complica&ccedil;&otilde;es e possibilidade de preserva&ccedil;&atilde;o da fertilidade, essa &eacute; a t&eacute;cnica preferida para ressec&ccedil;&atilde;o de miomas submucosos. No entanto, para um mioma com procedimento mais complexo como esse, &eacute; ideal que seja realizada a ressec&ccedil;&atilde;o em dois tempos cir&uacute;rgicos, ou considerando tamb&eacute;m a possibilidade de uso de an&aacute;logos de GnRH para redu&ccedil;&atilde;o dos volumes dos miomas a fim de manter um &uacute;nico tempo cir&uacute;rgico.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T214348471Z048813.png\" width=\"521\" height=\"302\"></span></span></strong></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Dessa forma, como a quest&atilde;o menciona a &ldquo;t&aacute;tica cir&uacute;rgica&rdquo; mais recomendada, e os an&aacute;logos de&nbsp;GnRH seriam uma medida pr&eacute;-cir&uacute;rgica, a t&aacute;tica mais consagrada aqui &eacute; a histeroscopia cir&uacute;rgica em dois tempos.</span></p><br>Visão do aprovado: <p style=\"text-align: justify;\"><span style=\"font-size: 11pt;\">O risco de realiza&ccedil;&atilde;o em um &uacute;nico tempo com preparo inadequado recai principalmente sobre a intoxica&ccedil;&atilde;o h&iacute;drica, uma vez que os meios de distens&atilde;o utilizados na histeroscopia cir&uacute;rgica s&atilde;o hiposmolares e, durante um procedimento prolongado, corremos o risco de ocorrer uma absor&ccedil;&atilde;o aumentada do meio de distens&atilde;o, levando a hiponatremia aguda e, em &uacute;ltima inst&acirc;ncia, ao risco de edema pulmonar, edema cerebral, complica&ccedil;&otilde;es neurol&oacute;gicas, coma e at&eacute; mesmo a morte. Portanto, quando utilizamos meios de baixa viscosidade hipot&ocirc;nicos, como manitol, sorbitol e glicina, o d&eacute;bito de l&iacute;quido n&atilde;o deve exceder os 1000 mL, devendo ser interrompido o procedimento.</span></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197314,
+        "number": 7,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Miomatose uterina",
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina"
+        }
+      },
+      "detail": {
+        "id": 197314,
+        "content": "Paciente com sangramento uterino anormal (SUA-L) apresenta a seguinte descrição de leiomioma à ultrassonografia: leiomioma FIGO 2 de 4,5 cm localizado em parede lateral esquerda, em terço médio, com base ocupando 1/3 do comprimento da parede. PERGUNTA-SE: Ainda com base na classificação de GRUPO STEP-W, cite uma medida pré-operatória que possa contribuir para uma melhor abordagem cirúrgica:",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15986,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Miomatose uterina",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 7,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 27,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224679,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Gabarito:</strong>&nbsp;An&aacute;logo de GnRH.</p>\n<p>&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Pessoal, mais uma vez falando aqui da classifica&ccedil;&atilde;o STEP-W de miomas submucosos, ent&atilde;o vamos relembr&aacute;-la:</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T214456545Z444736.png\" width=\"486\" height=\"284\"></span></span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Estamos diante, portanto, de um mioma cuja soma &eacute; de 6 pontos, o que o classifica no grupo II. Visando a manuten&ccedil;&atilde;o da via histerosc&oacute;pica e sua baixa taxa de complica&ccedil;&otilde;es, &eacute; ideal que, para um mioma com ressec&ccedil;&atilde;o mais complexa como esse, nosso preparo pr&eacute;-operat&oacute;rio seja bastante cauteloso. A possibilidade mais consagrada nesse caso &eacute; o uso de an&aacute;logos de&nbsp;GnRH, como a gosserrelina, para redu&ccedil;&atilde;o dos volumes dos miomas a fim de manter um &uacute;nico tempo cir&uacute;rgico. O mais usado e mais dispon&iacute;vel &eacute; a gosserrelina, em doses trimestrais de 10,8 mg - em geral programamos a histeroscopia ao final de 3 meses.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">No entanto, vale a pena ressaltar que os an&aacute;logos de GnRH pode tornar um pouco mais dif&iacute;cil a ressec&ccedil;&atilde;o do mioma e a diferencia&ccedil;&atilde;o dele de sua c&aacute;psula - por isso, n&atilde;o h&aacute; evid&ecirc;ncias inequ&iacute;vocas de que o uso dessas medica&ccedil;&otilde;es torne a ressec&ccedil;&atilde;o completa de miomas volumosos mais f&aacute;cil, podendo inclusive, devido &agrave; atrofia causada, resultar em sintomas vasomotores e estenose cervical.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T214456549Z550293.png\" width=\"497\" height=\"288\"></span></span></strong></p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\"><span style=\"font-size: 11pt;\">Outra t&eacute;cnica recomendada por algumas refer&ecirc;ncias &eacute; o uso de vasopressina (10 unidades em 100 mL de salina) injetada no colo uterino para preven&ccedil;&atilde;o de perda sangu&iacute;nea previamente &agrave; miomectomia histerosc&oacute;pica, podendo ser repetida durante o procedimento. Como ela pode apresentar efeitos colaterais graves durante sua aplica&ccedil;&atilde;o (bradicardia, hipertens&atilde;o e at&eacute; mesmo &oacute;bito), seu uso n&atilde;o &eacute; t&atilde;o difundido assim, mas &eacute; uma op&ccedil;&atilde;o. Inclusive, ela pode reduzir a absor&ccedil;&atilde;o dos meios de distens&atilde;o e reduzir as chances de intoxica&ccedil;&atilde;o h&iacute;drica.</span></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Gabarito:</strong>&nbsp;An&aacute;logo de GnRH.</p>\n<p>&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Pessoal, mais uma vez falando aqui da classifica&ccedil;&atilde;o STEP-W de miomas submucosos, ent&atilde;o vamos relembr&aacute;-la:</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T214456545Z444736.png\" width=\"486\" height=\"284\"></span></span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Estamos diante, portanto, de um mioma cuja soma &eacute; de 6 pontos, o que o classifica no grupo II. Visando a manuten&ccedil;&atilde;o da via histerosc&oacute;pica e sua baixa taxa de complica&ccedil;&otilde;es, &eacute; ideal que, para um mioma com ressec&ccedil;&atilde;o mais complexa como esse, nosso preparo pr&eacute;-operat&oacute;rio seja bastante cauteloso. A possibilidade mais consagrada nesse caso &eacute; o uso de an&aacute;logos de&nbsp;GnRH, como a gosserrelina, para redu&ccedil;&atilde;o dos volumes dos miomas a fim de manter um &uacute;nico tempo cir&uacute;rgico. O mais usado e mais dispon&iacute;vel &eacute; a gosserrelina, em doses trimestrais de 10,8 mg - em geral programamos a histeroscopia ao final de 3 meses.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">No entanto, vale a pena ressaltar que os an&aacute;logos de GnRH pode tornar um pouco mais dif&iacute;cil a ressec&ccedil;&atilde;o do mioma e a diferencia&ccedil;&atilde;o dele de sua c&aacute;psula - por isso, n&atilde;o h&aacute; evid&ecirc;ncias inequ&iacute;vocas de que o uso dessas medica&ccedil;&otilde;es torne a ressec&ccedil;&atilde;o completa de miomas volumosos mais f&aacute;cil, podendo inclusive, devido &agrave; atrofia causada, resultar em sintomas vasomotores e estenose cervical.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T214456549Z550293.png\" width=\"497\" height=\"288\"></span></span></strong></p><br>Visão do aprovado: <p style=\"text-align: justify;\"><span style=\"font-size: 11pt;\">Outra t&eacute;cnica recomendada por algumas refer&ecirc;ncias &eacute; o uso de vasopressina (10 unidades em 100 mL de salina) injetada no colo uterino para preven&ccedil;&atilde;o de perda sangu&iacute;nea previamente &agrave; miomectomia histerosc&oacute;pica, podendo ser repetida durante o procedimento. Como ela pode apresentar efeitos colaterais graves durante sua aplica&ccedil;&atilde;o (bradicardia, hipertens&atilde;o e at&eacute; mesmo &oacute;bito), seu uso n&atilde;o &eacute; t&atilde;o difundido assim, mas &eacute; uma op&ccedil;&atilde;o. Inclusive, ela pode reduzir a absor&ccedil;&atilde;o dos meios de distens&atilde;o e reduzir as chances de intoxica&ccedil;&atilde;o h&iacute;drica.</span></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197315,
+        "number": 8,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 197315,
+        "content": "Mulher, 34 anos, interna com diagnóstico de gestação ectópica em tuba uterina esquerda. Ultrassonografia: gestação ectópica em tuba uterina esquerda de 4,5cm, de aspecto íntegro, em terço médio, com BCF presente. beta-HCG=12840mUI/ml. Refere como antecedente cirúrgico ter realizado correção de hérnia umbilical. A cirurgia transcorre sem intercorrências até que, ao final do procedimento, é notado hematoma retroperitoneal em região de promontório aparentemente estável, não expansível. PERGUNTA-SE: Qual a origem/causa do hematoma relatado no intraoperatório?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 8,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 28,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224680,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\"><strong>Gabarito:</strong>&nbsp;Acidente/trauma de primeira pun&ccedil;&atilde;o.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Coment&aacute;rio:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Trata-se de um caso de gesta&ccedil;&atilde;o ect&oacute;pica tub&aacute;ria &agrave; esquerda, em uma paciente de 34 anos. A ultrassonografia mostra uma les&atilde;o de 4,5cm em ter&ccedil;o m&eacute;dio da tuba, ainda &iacute;ntegra, por&eacute;m com batimentos card&iacute;acos fetais presentes e beta-HCG elevado (12840mUl/ml).&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Foi indicada abordagem cir&uacute;rgica laparosc&oacute;pica, mas a paciente tem antecedente de corre&ccedil;&atilde;o de h&eacute;rnia umbilical. Esse &eacute; um dado relevante para o planejamento cir&uacute;rgico, pois aumenta a chance de ader&ecirc;ncias nessa regi&atilde;o e representa um risco adicional para pun&ccedil;&otilde;es na linha m&eacute;dia. Durante o procedimento, identifica-se hematoma retroperitoneal em regi&atilde;o de promont&oacute;rio aparentemente est&aacute;vel, n&atilde;o expans&iacute;vel. Somos questionados sobre a origem de tal quadro hemorr&aacute;gico.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">O promont&oacute;rio sacral &eacute; a proje&ccedil;&atilde;o anterior da primeira v&eacute;rtebra sacral e constitui um importante ponto de refer&ecirc;ncia anat&ocirc;mica na pelve. Nesta regi&atilde;o, encontramos estruturas vasculares importantes, como a bifurca&ccedil;&atilde;o da aorta abdominal em art&eacute;rias il&iacute;acas comuns e a conflu&ecirc;ncia das veias il&iacute;acas comuns formando a veia cava inferior.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Provavelmente, durante a primeira pun&ccedil;&atilde;o na regi&atilde;o mediana e umbilical, houve uma les&atilde;o puntiforme de algum vaso pr&oacute;ximo &agrave; regi&atilde;o de promont&oacute;rio, formando o hematoma. Como ele manteve-se est&aacute;vel durante todo procedimento, n&atilde;o h&aacute; indica&ccedil;&atilde;o de ser explorado.&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Complica&ccedil;&otilde;es com laparoscopia s&atilde;o raras, mas sempre temidas. Ainda em rela&ccedil;&atilde;o &agrave; primeira pun&ccedil;&atilde;o, vale a pena citar algumas dicas para preven&ccedil;&atilde;o de les&otilde;es de grandes vasos.</p>\n<ul>\n<li style=\"text-align: justify;\">Paciente com IMC dentro dos limites da normalidade: Pun&ccedil;&atilde;o em 45&ordm; para evitar acidentes com aorta, veia cava e ramifica&ccedil;&otilde;es.</li>\n<li style=\"text-align: justify;\">Pacientes com IMC de obesidade: Pun&ccedil;&atilde;o de 90&ordm; para garantir boa mobilidade do trocater. H&aacute; dist&acirc;ncia segura at&eacute; os vasos.&nbsp;</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\"><strong>Gabarito:</strong>&nbsp;Acidente/trauma de primeira pun&ccedil;&atilde;o.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Coment&aacute;rio:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Trata-se de um caso de gesta&ccedil;&atilde;o ect&oacute;pica tub&aacute;ria &agrave; esquerda, em uma paciente de 34 anos. A ultrassonografia mostra uma les&atilde;o de 4,5cm em ter&ccedil;o m&eacute;dio da tuba, ainda &iacute;ntegra, por&eacute;m com batimentos card&iacute;acos fetais presentes e beta-HCG elevado (12840mUl/ml).&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Foi indicada abordagem cir&uacute;rgica laparosc&oacute;pica, mas a paciente tem antecedente de corre&ccedil;&atilde;o de h&eacute;rnia umbilical. Esse &eacute; um dado relevante para o planejamento cir&uacute;rgico, pois aumenta a chance de ader&ecirc;ncias nessa regi&atilde;o e representa um risco adicional para pun&ccedil;&otilde;es na linha m&eacute;dia. Durante o procedimento, identifica-se hematoma retroperitoneal em regi&atilde;o de promont&oacute;rio aparentemente est&aacute;vel, n&atilde;o expans&iacute;vel. Somos questionados sobre a origem de tal quadro hemorr&aacute;gico.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">O promont&oacute;rio sacral &eacute; a proje&ccedil;&atilde;o anterior da primeira v&eacute;rtebra sacral e constitui um importante ponto de refer&ecirc;ncia anat&ocirc;mica na pelve. Nesta regi&atilde;o, encontramos estruturas vasculares importantes, como a bifurca&ccedil;&atilde;o da aorta abdominal em art&eacute;rias il&iacute;acas comuns e a conflu&ecirc;ncia das veias il&iacute;acas comuns formando a veia cava inferior.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Provavelmente, durante a primeira pun&ccedil;&atilde;o na regi&atilde;o mediana e umbilical, houve uma les&atilde;o puntiforme de algum vaso pr&oacute;ximo &agrave; regi&atilde;o de promont&oacute;rio, formando o hematoma. Como ele manteve-se est&aacute;vel durante todo procedimento, n&atilde;o h&aacute; indica&ccedil;&atilde;o de ser explorado.&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Complica&ccedil;&otilde;es com laparoscopia s&atilde;o raras, mas sempre temidas. Ainda em rela&ccedil;&atilde;o &agrave; primeira pun&ccedil;&atilde;o, vale a pena citar algumas dicas para preven&ccedil;&atilde;o de les&otilde;es de grandes vasos.</p>\n<ul>\n<li style=\"text-align: justify;\">Paciente com IMC dentro dos limites da normalidade: Pun&ccedil;&atilde;o em 45&ordm; para evitar acidentes com aorta, veia cava e ramifica&ccedil;&otilde;es.</li>\n<li style=\"text-align: justify;\">Pacientes com IMC de obesidade: Pun&ccedil;&atilde;o de 90&ordm; para garantir boa mobilidade do trocater. H&aacute; dist&acirc;ncia segura at&eacute; os vasos.&nbsp;</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197316,
+        "number": 9,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 197316,
+        "content": "Mulher, 34 anos, interna com diagnóstico de gestação ectópica em tuba uterina esquerda. Ultrassonografia: gestação ectópica em tuba uterina esquerda de 4,5cm, de aspecto íntegro, em terço médio, com BCF presente. beta-HCG=12840mUI/ml. Refere como antecedente cirúrgico ter realizado correção de hérnia umbilical. A cirurgia transcorre sem intercorrências até que, ao final do procedimento, é notado hematoma retroperitoneal em região de promontório aparentemente estável, não expansível. PERGUNTA-SE: Considerando que a paciente está estável hemodinamicamente, qual a conduta imediata mais apropriada para esse hematoma retroperitoneal?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 9,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 24,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224681,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\"><strong>GABARITO:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Expectante, n&atilde;o abordar.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>CONSIDERA&Ccedil;&Otilde;ES DA MEDWAY:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Trata-se de um caso de gesta&ccedil;&atilde;o ect&oacute;pica tub&aacute;ria &agrave; esquerda, em uma paciente de 34 anos. A ultrassonografia mostra uma les&atilde;o de 4,5cm em ter&ccedil;o m&eacute;dio da tuba, ainda &iacute;ntegra, por&eacute;m com batimentos card&iacute;acos fetais presentes e beta-HCG elevado (12840mUl/ml).&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Foi indicada abordagem cir&uacute;rgica laparosc&oacute;pica, mas a paciente tem antecedente de corre&ccedil;&atilde;o de h&eacute;rnia umbilical. Esse &eacute; um dado relevante para o planejamento cir&uacute;rgico, pois aumenta a chance de ader&ecirc;ncias nessa regi&atilde;o e representa um risco adicional para pun&ccedil;&otilde;es na linha m&eacute;dia.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Durante o procedimento, identifica-se hematoma retroperitoneal em regi&atilde;o de promont&oacute;rio aparentemente est&aacute;vel, n&atilde;o expans&iacute;vel. Somos questionados sobre a origem de tal quadro hemorr&aacute;gico.&nbsp;</p>\n<p style=\"text-align: justify;\">O promont&oacute;rio sacral &eacute; a proje&ccedil;&atilde;o anterior da primeira v&eacute;rtebra sacral e constitui um importante ponto de refer&ecirc;ncia anat&ocirc;mica na pelve. Nesta regi&atilde;o, encontramos estruturas vasculares importantes, como a bifurca&ccedil;&atilde;o da aorta abdominal em art&eacute;rias il&iacute;acas comuns e a conflu&ecirc;ncia das veias il&iacute;acas comuns formando a veia cava inferior.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Provavelmente, durante a primeira pun&ccedil;&atilde;o na regi&atilde;o mediana e umbilical, houve uma les&atilde;o puntiforme de algum vaso pr&oacute;ximo &agrave; regi&atilde;o de promont&oacute;rio, formando o hematoma. Como ele manteve-se est&aacute;vel durante todo procedimento, <strong>n&atilde;o h&aacute; indica&ccedil;&atilde;o de ser explorado.</strong>&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Complica&ccedil;&otilde;es com laparoscopia s&atilde;o raras, mas sempre temidas. Ainda em rela&ccedil;&atilde;o &agrave; primeira pun&ccedil;&atilde;o, vale a pena citar algumas dicas para preven&ccedil;&atilde;o de les&otilde;es de grandes vasos.</p>\n<ul>\n<li style=\"text-align: justify;\">Paciente com IMC dentro dos limites da normalidade: Pun&ccedil;&atilde;o em 45&ordm; para evitar acidentes com aorta, veia cava e ramifica&ccedil;&otilde;es.</li>\n<li style=\"text-align: justify;\">Pacientes com IMC de obesidade: Pun&ccedil;&atilde;o de 90&ordm; para garantir boa mobilidade do&nbsp;trocater<span style=\"font-size: 11pt;\">. H&aacute; dist&acirc;ncia segura at&eacute; os vasos.</span></li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\"><strong>GABARITO:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Expectante, n&atilde;o abordar.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>CONSIDERA&Ccedil;&Otilde;ES DA MEDWAY:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Trata-se de um caso de gesta&ccedil;&atilde;o ect&oacute;pica tub&aacute;ria &agrave; esquerda, em uma paciente de 34 anos. A ultrassonografia mostra uma les&atilde;o de 4,5cm em ter&ccedil;o m&eacute;dio da tuba, ainda &iacute;ntegra, por&eacute;m com batimentos card&iacute;acos fetais presentes e beta-HCG elevado (12840mUl/ml).&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Foi indicada abordagem cir&uacute;rgica laparosc&oacute;pica, mas a paciente tem antecedente de corre&ccedil;&atilde;o de h&eacute;rnia umbilical. Esse &eacute; um dado relevante para o planejamento cir&uacute;rgico, pois aumenta a chance de ader&ecirc;ncias nessa regi&atilde;o e representa um risco adicional para pun&ccedil;&otilde;es na linha m&eacute;dia.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Durante o procedimento, identifica-se hematoma retroperitoneal em regi&atilde;o de promont&oacute;rio aparentemente est&aacute;vel, n&atilde;o expans&iacute;vel. Somos questionados sobre a origem de tal quadro hemorr&aacute;gico.&nbsp;</p>\n<p style=\"text-align: justify;\">O promont&oacute;rio sacral &eacute; a proje&ccedil;&atilde;o anterior da primeira v&eacute;rtebra sacral e constitui um importante ponto de refer&ecirc;ncia anat&ocirc;mica na pelve. Nesta regi&atilde;o, encontramos estruturas vasculares importantes, como a bifurca&ccedil;&atilde;o da aorta abdominal em art&eacute;rias il&iacute;acas comuns e a conflu&ecirc;ncia das veias il&iacute;acas comuns formando a veia cava inferior.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Provavelmente, durante a primeira pun&ccedil;&atilde;o na regi&atilde;o mediana e umbilical, houve uma les&atilde;o puntiforme de algum vaso pr&oacute;ximo &agrave; regi&atilde;o de promont&oacute;rio, formando o hematoma. Como ele manteve-se est&aacute;vel durante todo procedimento, <strong>n&atilde;o h&aacute; indica&ccedil;&atilde;o de ser explorado.</strong>&nbsp;</p><br>Visão do aprovado: <p>Complica&ccedil;&otilde;es com laparoscopia s&atilde;o raras, mas sempre temidas. Ainda em rela&ccedil;&atilde;o &agrave; primeira pun&ccedil;&atilde;o, vale a pena citar algumas dicas para preven&ccedil;&atilde;o de les&otilde;es de grandes vasos.</p>\n<ul>\n<li style=\"text-align: justify;\">Paciente com IMC dentro dos limites da normalidade: Pun&ccedil;&atilde;o em 45&ordm; para evitar acidentes com aorta, veia cava e ramifica&ccedil;&otilde;es.</li>\n<li style=\"text-align: justify;\">Pacientes com IMC de obesidade: Pun&ccedil;&atilde;o de 90&ordm; para garantir boa mobilidade do&nbsp;trocater<span style=\"font-size: 11pt;\">. H&aacute; dist&acirc;ncia segura at&eacute; os vasos.</span></li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197317,
+        "number": 10,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 197317,
+        "content": "Mulher, 34 anos, interna com diagnóstico de gestação ectópica em tuba uterina esquerda. Ultrassonografia: gestação ectópica em tuba uterina esquerda de 4,5cm, de aspecto íntegro, em terço médio, com BCF presente. beta- HCG=12840mUl/ml. Refere como antecedente cirúrgico ter realizado correção de hérnia umbilical. A cirurgia transcorre sem intercorrências até que, ao final do procedimento, é notado hematoma retroperitoneal em região de promontório aparentemente estável, não expansível. PERGUNTA-SE: Cite uma técnica de primeira punção que seja mais adequada para essa paciente considerando o quadro clínico apresentado.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 10,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 27,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224683,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\"><strong>Gabarito:</strong> T&eacute;cnica aberta, t&eacute;cnica de Hasson</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Coment&aacute;rio:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Trata-se de um caso de gesta&ccedil;&atilde;o ect&oacute;pica tub&aacute;ria &agrave; esquerda, em uma paciente de 34 anos. A ultrassonografia mostra uma les&atilde;o de 4,5cm em ter&ccedil;o m&eacute;dio da tuba, ainda &iacute;ntegra, por&eacute;m com batimentos card&iacute;acos fetais presentes e beta-HCG elevado (12840mUl/ml).&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Foi indicada abordagem cir&uacute;rgica laparosc&oacute;pica, mas a paciente tem antecedente de corre&ccedil;&atilde;o de h&eacute;rnia umbilical. Esse &eacute; um dado relevante para o planejamento cir&uacute;rgico, pois aumenta a chance de ader&ecirc;ncias nessa regi&atilde;o e representa um risco adicional para pun&ccedil;&otilde;es na linha m&eacute;dia.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A quest&atilde;o nos pede para indicar a t&eacute;cnica de primeira pun&ccedil;&atilde;o mais adequada para o acesso nesta paciente, considerando suas particularidades cl&iacute;nicas descritas. A&nbsp;<strong>t&eacute;cnica de Hasson (aberta)</strong>, neste cen&aacute;rio, torna-se uma op&ccedil;&atilde;o segura por permitir visualiza&ccedil;&atilde;o direta das camadas da parede abdominal para inser&ccedil;&atilde;o do&nbsp;trocater central.&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Al&eacute;m da t&eacute;cnica aberta, poderia ser aplicada a t&eacute;cnica de&nbsp;Palmer (pun&ccedil;&atilde;o com agulha de Veress em hipoc&ocirc;ndrio esquerdo). Ela evita a regi&atilde;o umbilical (onde a paciente tem antecedente cir&uacute;rgico) e a linha m&eacute;dia. O hipoc&ocirc;ndrio esquerdo geralmente &eacute; livre de ader&ecirc;ncias, mesmo em pacientes com cirurgias pr&eacute;vias, tornando esta abordagem segura.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\"><strong>Gabarito:</strong> T&eacute;cnica aberta, t&eacute;cnica de Hasson</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Coment&aacute;rio:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Trata-se de um caso de gesta&ccedil;&atilde;o ect&oacute;pica tub&aacute;ria &agrave; esquerda, em uma paciente de 34 anos. A ultrassonografia mostra uma les&atilde;o de 4,5cm em ter&ccedil;o m&eacute;dio da tuba, ainda &iacute;ntegra, por&eacute;m com batimentos card&iacute;acos fetais presentes e beta-HCG elevado (12840mUl/ml).&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Foi indicada abordagem cir&uacute;rgica laparosc&oacute;pica, mas a paciente tem antecedente de corre&ccedil;&atilde;o de h&eacute;rnia umbilical. Esse &eacute; um dado relevante para o planejamento cir&uacute;rgico, pois aumenta a chance de ader&ecirc;ncias nessa regi&atilde;o e representa um risco adicional para pun&ccedil;&otilde;es na linha m&eacute;dia.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">A quest&atilde;o nos pede para indicar a t&eacute;cnica de primeira pun&ccedil;&atilde;o mais adequada para o acesso nesta paciente, considerando suas particularidades cl&iacute;nicas descritas. A&nbsp;<strong>t&eacute;cnica de Hasson (aberta)</strong>, neste cen&aacute;rio, torna-se uma op&ccedil;&atilde;o segura por permitir visualiza&ccedil;&atilde;o direta das camadas da parede abdominal para inser&ccedil;&atilde;o do&nbsp;trocater central.&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Al&eacute;m da t&eacute;cnica aberta, poderia ser aplicada a t&eacute;cnica de&nbsp;Palmer (pun&ccedil;&atilde;o com agulha de Veress em hipoc&ocirc;ndrio esquerdo). Ela evita a regi&atilde;o umbilical (onde a paciente tem antecedente cir&uacute;rgico) e a linha m&eacute;dia. O hipoc&ocirc;ndrio esquerdo geralmente &eacute; livre de ader&ecirc;ncias, mesmo em pacientes com cirurgias pr&eacute;vias, tornando esta abordagem segura.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197318,
+        "number": 11,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Embriologia e anatomia da mulher",
+        "focus": {
+          "id": 1600,
+          "name": "Embriologia e anatomia da mulher"
+        }
+      },
+      "detail": {
+        "id": 197318,
+        "content": "Considerando os seguintes marcos anatômicos: margem medial=bexiga; margem lateral=fáscia obturatória e margem inferior=músculo íleococcígeo, PERGUNTA-SE: Qual espaço pélvico é delimitado por esses marcos anatômicos?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15967,
+            "parent_tag": {
+              "id": 15916,
+              "name": "Fundamentos em Ginecologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Embriologia e anatomia da mulher",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 11,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 42,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1600,
+          "name": "Embriologia e anatomia da mulher",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 90,
+            "name": "Fundamentos em Ginecologia",
+            "discipline": 86,
+            "old_tag": 15916,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224684,
+        "actual_explanation": true,
+        "introduction": "<p><strong>GABARITO:</strong></p>\n<p>&nbsp;</p>\n<p>Espa&ccedil;o paravesical.</p>\n<p>&nbsp;</p>\n<p><strong>CONSIDERA&Ccedil;&Otilde;ES DA MEDWAY:</strong></p>\n<p>&nbsp;</p>\n<p style=\"text-align: justify;\">O espa&ccedil;o p&eacute;lvico delimitado medialmente pela bexiga, lateralmente pela f&aacute;scia obturat&oacute;ria e inferiormente pelo m&uacute;sculo &iacute;leococc&iacute;geo corresponde ao espa&ccedil;o paravesical. Esse compartimento anat&ocirc;mico est&aacute; localizado lateral &agrave; bexiga, sendo importante nas dissec&ccedil;&otilde;es p&eacute;lvicas ginecol&oacute;gicas, especialmente durante cirurgias como histerectomias radicais e linfadenectomias.&nbsp;</p>\n<p style=\"text-align: justify;\">Ele &eacute; delimitado internamente pela art&eacute;ria umbilical obliterada, que o separa em duas por&ccedil;&otilde;es: lateral e medial. A correta identifica&ccedil;&atilde;o desse espa&ccedil;o &eacute; essencial para evitar les&otilde;es vasculares e nervosas, al&eacute;m de possibilitar o acesso seguro aos planos cir&uacute;rgicos profundos da pelve.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250608T121655042Z640383.png\">.&nbsp;</p>\n<p style=\"text-align: center;\">Fonte: Puntambekar, 2018</p>\n<p style=\"text-align: center;\">&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>GABARITO:</strong></p>\n<p>&nbsp;</p>\n<p>Espa&ccedil;o paravesical.</p>\n<p>&nbsp;</p>\n<p><strong>CONSIDERA&Ccedil;&Otilde;ES DA MEDWAY:</strong></p>\n<p>&nbsp;</p>\n<p style=\"text-align: justify;\">O espa&ccedil;o p&eacute;lvico delimitado medialmente pela bexiga, lateralmente pela f&aacute;scia obturat&oacute;ria e inferiormente pelo m&uacute;sculo &iacute;leococc&iacute;geo corresponde ao espa&ccedil;o paravesical. Esse compartimento anat&ocirc;mico est&aacute; localizado lateral &agrave; bexiga, sendo importante nas dissec&ccedil;&otilde;es p&eacute;lvicas ginecol&oacute;gicas, especialmente durante cirurgias como histerectomias radicais e linfadenectomias.&nbsp;</p>\n<p style=\"text-align: justify;\">Ele &eacute; delimitado internamente pela art&eacute;ria umbilical obliterada, que o separa em duas por&ccedil;&otilde;es: lateral e medial. A correta identifica&ccedil;&atilde;o desse espa&ccedil;o &eacute; essencial para evitar les&otilde;es vasculares e nervosas, al&eacute;m de possibilitar o acesso seguro aos planos cir&uacute;rgicos profundos da pelve.</p><br>Visão do aprovado: <p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250608T121655042Z640383.png\">.&nbsp;</p>\n<p style=\"text-align: center;\">Fonte: Puntambekar, 2018</p>\n<p style=\"text-align: center;\">&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197319,
+        "number": 12,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "h",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Embriologia e anatomia da mulher",
+        "focus": {
+          "id": 1600,
+          "name": "Embriologia e anatomia da mulher"
+        }
+      },
+      "detail": {
+        "id": 197319,
+        "content": "Considerando os seguintes marcos anatômicos: margem medial=bexiga; margem lateral=fáscia obturatória e margem inferior=músculo íleococcígeo, PERGUNTA-SE: A importância do conhecimento dos espaços pélvicos é devido às estruturas encontradas dentro dos seus limites. Neste caso, complete as lacunas com as estruturas que estão presentes no espaço pélvico descrito nesse enunciado: Artéria ________________ artéria e veia obturatória e nervo ___________________.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15967,
+            "parent_tag": {
+              "id": 15916,
+              "name": "Fundamentos em Ginecologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Embriologia e anatomia da mulher",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 12,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 37,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1600,
+          "name": "Embriologia e anatomia da mulher",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 90,
+            "name": "Fundamentos em Ginecologia",
+            "discipline": 86,
+            "old_tag": 15916,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224685,
+        "actual_explanation": true,
+        "introduction": "<p><strong>GABARITO:</strong></p>\n<p>&nbsp;</p>\n<p>Umbilical obliterada. Obturat&oacute;rio.</p>\n<p>&nbsp;</p>\n<p><strong>CONSIDERA&Ccedil;&Otilde;ES DA MEDWAY:</strong></p>\n<p>&nbsp;</p>\n<p style=\"text-align: justify;\">O espa&ccedil;o p&eacute;lvico delimitado medialmente pela bexiga, lateralmente pela f&aacute;scia obturat&oacute;ria e inferiormente pelo m&uacute;sculo &iacute;leococc&iacute;geo corresponde ao espa&ccedil;o paravesical.&nbsp;</p>\n<p style=\"text-align: justify;\">Esse compartimento anat&ocirc;mico est&aacute; localizado lateral &agrave; bexiga, sendo importante nas dissec&ccedil;&otilde;es p&eacute;lvicas ginecol&oacute;gicas, especialmente durante cirurgias como histerectomias radicais e linfadenectomias.&nbsp;</p>\n<p style=\"text-align: justify;\">Ele &eacute; delimitado internamente pela art&eacute;ria umbilical obliterada, que o separa em duas por&ccedil;&otilde;es: lateral e medial. A correta identifica&ccedil;&atilde;o desse espa&ccedil;o &eacute; essencial para evitar les&otilde;es vasculares e nervosas, al&eacute;m de possibilitar o acesso seguro aos planos cir&uacute;rgicos profundos da pelve.</p>\n<p style=\"text-align: justify;\">S&atilde;o estruturas p&eacute;lvicas relevantes que ocupam essa regi&atilde;o:</p>\n<ul>\n<li style=\"text-align: justify;\">A art&eacute;ria umbilical obliterada, que separa o espa&ccedil;o paravesical lateral do medial;</li>\n<li style=\"text-align: justify;\">A art&eacute;ria e veia obturadoras, que se dirigem ao forame&nbsp;obturat&oacute;rio;</li>\n<li style=\"text-align: justify;\">E o nervo&nbsp;obturat&oacute;rio, que acompanha esses vasos, cruzando o espa&ccedil;o em dire&ccedil;&atilde;o &agrave; coxa.</li>\n</ul>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: center;\">.<img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250608T121848711Z361825.png\"></p>\n<p style=\"text-align: center;\"><strong><span style=\"font-size: 11pt; color: rgb(67, 67, 67);\">Fonte: </span></strong><span style=\"font-size: 11pt; color: rgb(67, 67, 67);\">Puntambekar, 2018</span></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>GABARITO:</strong></p>\n<p>&nbsp;</p>\n<p>Umbilical obliterada. Obturat&oacute;rio.</p>\n<p>&nbsp;</p>\n<p><strong>CONSIDERA&Ccedil;&Otilde;ES DA MEDWAY:</strong></p>\n<p>&nbsp;</p>\n<p style=\"text-align: justify;\">O espa&ccedil;o p&eacute;lvico delimitado medialmente pela bexiga, lateralmente pela f&aacute;scia obturat&oacute;ria e inferiormente pelo m&uacute;sculo &iacute;leococc&iacute;geo corresponde ao espa&ccedil;o paravesical.&nbsp;</p>\n<p style=\"text-align: justify;\">Esse compartimento anat&ocirc;mico est&aacute; localizado lateral &agrave; bexiga, sendo importante nas dissec&ccedil;&otilde;es p&eacute;lvicas ginecol&oacute;gicas, especialmente durante cirurgias como histerectomias radicais e linfadenectomias.&nbsp;</p>\n<p style=\"text-align: justify;\">Ele &eacute; delimitado internamente pela art&eacute;ria umbilical obliterada, que o separa em duas por&ccedil;&otilde;es: lateral e medial. A correta identifica&ccedil;&atilde;o desse espa&ccedil;o &eacute; essencial para evitar les&otilde;es vasculares e nervosas, al&eacute;m de possibilitar o acesso seguro aos planos cir&uacute;rgicos profundos da pelve.</p>\n<p style=\"text-align: justify;\">S&atilde;o estruturas p&eacute;lvicas relevantes que ocupam essa regi&atilde;o:</p>\n<ul>\n<li style=\"text-align: justify;\">A art&eacute;ria umbilical obliterada, que separa o espa&ccedil;o paravesical lateral do medial;</li>\n<li style=\"text-align: justify;\">A art&eacute;ria e veia obturadoras, que se dirigem ao forame&nbsp;obturat&oacute;rio;</li>\n<li style=\"text-align: justify;\">E o nervo&nbsp;obturat&oacute;rio, que acompanha esses vasos, cruzando o espa&ccedil;o em dire&ccedil;&atilde;o &agrave; coxa.</li>\n</ul><br>Visão do aprovado: <p style=\"text-align: center;\">.<img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250608T121848711Z361825.png\"></p>\n<p style=\"text-align: center;\"><strong><span style=\"font-size: 11pt; color: rgb(67, 67, 67);\">Fonte: </span></strong><span style=\"font-size: 11pt; color: rgb(67, 67, 67);\">Puntambekar, 2018</span></p><br>",
+        "students_difficulty": "h",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T16:35:19.773527+00:00",
+  "complete": true
+}

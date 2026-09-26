@@ -1,0 +1,1030 @@
+{
+  "track_id": 2812120,
+  "name": "UNICAMP - 2025 [Ultrassonografia]",
+  "year": 2025,
+  "track_fast": {
+    "id": 2812120,
+    "name": "UNICAMP - 2025 [Ultrassonografia]",
+    "track_type": "c",
+    "question_count": 9,
+    "year": 2025,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UNICAMP",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-unicamp_yplZ7NO.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 9,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 9,
+  "questions": [
+    {
+      "meta": {
+        "id": 197146,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Radiologia em ginecologia geral",
+        "focus": {
+          "id": 1610,
+          "name": "Radiologia em ginecologia geral"
+        }
+      },
+      "detail": {
+        "id": 197146,
+        "content": "Mulher, 37a, com sangramento uterino anormal (SUA). PERGUNTA-SE: QUAL É A INDICAÇÃO DA ULTRASSONOGRAFIA TRANSVAGINAL?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15957,
+            "parent_tag": {
+              "id": 15904,
+              "name": "Imagens em Ginecologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Radiologia em ginecologia geral",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 49,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1610,
+          "name": "Radiologia em ginecologia geral",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 102,
+            "name": "Imagens em Ginecologia",
+            "discipline": 86,
+            "old_tag": 15904,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224437,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Gabarito:</strong>&nbsp;Diferenciar as causas estruturais das n&atilde;o estruturais do sangramento uterino anormal.</p>\n<p>&nbsp;</p>\n<p>Quest&atilde;o super direta sobre sangramento uterino anormal e a indica&ccedil;&atilde;o de exames complementares. Essa queixa &eacute; extremamente prevalente no consult&oacute;rio mas &eacute; importante conhecer as indica&ccedil;&otilde;es reconhecidas para investiga&ccedil;&atilde;o ultrassonogr&aacute;fica porque muitas vezes a pr&aacute;tica cl&iacute;nica difere do que realmente &eacute; respaldado por literatura.</p>\n<p>O sangramento uterino anormal (SUA) &eacute; um dist&uacute;rbio em que um ou mais dos par&acirc;metros do sangramento uterino normal est&aacute; alterado: <strong>quantidade </strong>(altera&ccedil;&atilde;o no volume entendido pela mulher como adequado)<strong>, dura&ccedil;&atilde;o </strong>(superior 8 dias)<strong> ou frequ&ecirc;ncia</strong> (intervalo menor que 24 ou superior a 38 dias).</p>\n<p>Sempre que pensamos em<strong> diagn&oacute;stico diferencial</strong> de sangramento uterino anormal deve vir em nossa mente a classifica&ccedil;&atilde;o <strong>PALM COEIN </strong>da FIGO, que elenca as etiologias a serem consideradas.</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250513T182558503Z505555.png\" alt=\"A blue and white table with white textAI-generated content may be incorrect.\" width=\"624\" height=\"388\"></p>\n<p>A anamnese por si s&oacute; nos ajuda a pensar nas etiologias prov&aacute;veis. A idade por exemplo pode sugerir mais um fator ovulat&oacute;rio por exemplo se consideramos uma paciente pr&oacute;xima do climat&eacute;rio. J&aacute; o uso de m&eacute;todo contraceptivo pode indicar causas iatrog&ecirc;nicas como dispositivos intrauterinos mal posicionados.</p>\n<p>O primeiro exame a ser solicitado em paciente no menacme &eacute; o beta-HCG a fim de diferenciar um sangramento uterino anormal de um sangramento gestacional de primeiro trimestre!</p>\n<p>Mas o exame que a banca questiona &eacute; o ultrassom transvaginal e a sua indica&ccedil;&atilde;o principal. No caso em quest&atilde;o, a paciente tem <strong>37 anos</strong> e S.U.A, sendo as causas estruturais a etiologia mais prov&aacute;vel estatisticamente. <strong>Por isso o ultrassom &eacute; indicado para diferenciar as causas estruturais de n&atilde;o estruturais.</strong></p>\n<p>As causas estruturais s&atilde;o, em geral, vis&iacute;veis ao ultrassom. Enquanto as causas n&atilde;o estruturais demandam outros exames complementares. Por isso o ultrassom &eacute; o pr&oacute;ximo exame a ser pedido, porque com ele j&aacute; exclu&iacute;mos as causas n&atilde;o estruturais e muitas vezes j&aacute; diagnosticamos a etiologia se for de fato estrutural e vis&iacute;vel.</p>\n<p>&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>.Lembrar da classifica&ccedil;&atilde;o etiol&oacute;gica PALM-COEIN faz parte de qualquer racioc&iacute;nio cl&iacute;nico quanto ao S.U.A. Al&eacute;m de nos ajudar a elencar as poss&iacute;veis etiologias, o pr&oacute;prio termo divide as causas estruturais (PALM) das n&atilde;o-estruturais (COEIN), que podem ser facilmente diferenciadas com um exame de ultrassonografia transvaginal.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Gabarito:</strong>&nbsp;Diferenciar as causas estruturais das n&atilde;o estruturais do sangramento uterino anormal.</p>\n<p>&nbsp;</p>\n<p>Quest&atilde;o super direta sobre sangramento uterino anormal e a indica&ccedil;&atilde;o de exames complementares. Essa queixa &eacute; extremamente prevalente no consult&oacute;rio mas &eacute; importante conhecer as indica&ccedil;&otilde;es reconhecidas para investiga&ccedil;&atilde;o ultrassonogr&aacute;fica porque muitas vezes a pr&aacute;tica cl&iacute;nica difere do que realmente &eacute; respaldado por literatura.</p>\n<p>O sangramento uterino anormal (SUA) &eacute; um dist&uacute;rbio em que um ou mais dos par&acirc;metros do sangramento uterino normal est&aacute; alterado: <strong>quantidade </strong>(altera&ccedil;&atilde;o no volume entendido pela mulher como adequado)<strong>, dura&ccedil;&atilde;o </strong>(superior 8 dias)<strong> ou frequ&ecirc;ncia</strong> (intervalo menor que 24 ou superior a 38 dias).</p>\n<p>Sempre que pensamos em<strong> diagn&oacute;stico diferencial</strong> de sangramento uterino anormal deve vir em nossa mente a classifica&ccedil;&atilde;o <strong>PALM COEIN </strong>da FIGO, que elenca as etiologias a serem consideradas.</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250513T182558503Z505555.png\" alt=\"A blue and white table with white textAI-generated content may be incorrect.\" width=\"624\" height=\"388\"></p>\n<p>A anamnese por si s&oacute; nos ajuda a pensar nas etiologias prov&aacute;veis. A idade por exemplo pode sugerir mais um fator ovulat&oacute;rio por exemplo se consideramos uma paciente pr&oacute;xima do climat&eacute;rio. J&aacute; o uso de m&eacute;todo contraceptivo pode indicar causas iatrog&ecirc;nicas como dispositivos intrauterinos mal posicionados.</p>\n<p>O primeiro exame a ser solicitado em paciente no menacme &eacute; o beta-HCG a fim de diferenciar um sangramento uterino anormal de um sangramento gestacional de primeiro trimestre!</p>\n<p>Mas o exame que a banca questiona &eacute; o ultrassom transvaginal e a sua indica&ccedil;&atilde;o principal. No caso em quest&atilde;o, a paciente tem <strong>37 anos</strong> e S.U.A, sendo as causas estruturais a etiologia mais prov&aacute;vel estatisticamente. <strong>Por isso o ultrassom &eacute; indicado para diferenciar as causas estruturais de n&atilde;o estruturais.</strong></p>\n<p>As causas estruturais s&atilde;o, em geral, vis&iacute;veis ao ultrassom. Enquanto as causas n&atilde;o estruturais demandam outros exames complementares. Por isso o ultrassom &eacute; o pr&oacute;ximo exame a ser pedido, porque com ele j&aacute; exclu&iacute;mos as causas n&atilde;o estruturais e muitas vezes j&aacute; diagnosticamos a etiologia se for de fato estrutural e vis&iacute;vel.</p>\n<p>&nbsp;</p><br>Visão do aprovado: <p>.Lembrar da classifica&ccedil;&atilde;o etiol&oacute;gica PALM-COEIN faz parte de qualquer racioc&iacute;nio cl&iacute;nico quanto ao S.U.A. Al&eacute;m de nos ajudar a elencar as poss&iacute;veis etiologias, o pr&oacute;prio termo divide as causas estruturais (PALM) das n&atilde;o-estruturais (COEIN), que podem ser facilmente diferenciadas com um exame de ultrassonografia transvaginal.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197147,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sangramento uterino anormal",
+        "focus": {
+          "id": 1623,
+          "name": "Sangramento uterino anormal"
+        }
+      },
+      "detail": {
+        "id": 197147,
+        "content": "Mulher, 37a, com sangramento uterino anormal (SUA). PERGUNTA-SE: CITE 3 EXEMPLOS DE DIAGNÓSTICOS ECOGRÁFICOS DO SUA, CUJO TRATAMENTO É CIRÚRGICO.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15943,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sangramento uterino anormal",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 50,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1623,
+          "name": "Sangramento uterino anormal",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224436,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Gabarito:</strong> P&oacute;lipos, adenomiose, leiomiomas, miomas, malignidade</p>\n<p>Essa quest&atilde;o &eacute; complementar a anterior na prova da UNICAMP de 2025, que questionava sobre a indica&ccedil;&atilde;o de ultrassonografia transvaginal no sangramento uterino anormal (S.U.A.).</p>\n<p>J&aacute; relembramos ent&atilde;o a import&acirc;ncia da classifica&ccedil;&atilde;o <strong>PALM-COEIN </strong>da FIGO na diferencia&ccedil;&atilde;o das causas estruturais e n&atilde;o-estruturais de sangramento:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250514T104514619Z799609.png\" alt=\"A blue and white table with white textAI-generated content may be incorrect.\" width=\"624\" height=\"388\"></p>\n<p>E agora seguimos o racioc&iacute;nio para responder os diagn&oacute;sticos ecogr&aacute;ficos cir&uacute;rgicos. Como j&aacute; discutimos, as causas que s&atilde;o vis&iacute;veis no ultrassom, portanto que conseguimos um diagn&oacute;stico ecogr&aacute;fico, s&atilde;o justamente as casuas estruturais. Sabendo disso e relembrando as op&ccedil;&otilde;es do PALM COEIN j&aacute; respond&iacute;amos essa quest&atilde;o.</p>\n<p>A quest&atilde;o pedia apenas para CITAR, mas vamos relembrar um pouco mais de cada causa e seu tratamento:</p>\n<p>1️) P&oacute;lipo endometrial</p>\n<ul>\n<li>Achado ecogr&aacute;fico: imagem focal, hiperecog&ecirc;nica, dentro da cavidade endometrial, frequentemente com ped&iacute;culo vascular no Doppler.</li>\n<li>Tratamento: histeroscopia cir&uacute;rgica para polipectomia.</li>\n</ul>\n<p>2️) Miomatose</p>\n<ul>\n<li>Achado ecogr&aacute;fico: n&oacute;dulo hipoecog&ecirc;nico bem delimitado, classificado de acordo com sua localiza&ccedil;&atilde;o (submucoso, intramural e subseroso).</li>\n<li>Tratamento: miomectomia ou histerectomia.</li>\n</ul>\n<p>No caso dos miomas o tratamento nem sempre &eacute; cir&uacute;rgico. Podemos iniciar com tratamento farmacol&oacute;gico e avaliar a resposta terap&ecirc;utica antes de indicar cirurgia, principalmente em pacientes com desejo gestacional.</p>\n<p>3)Adenomiose</p>\n<ul>\n<li>Achado ecogr&aacute;fico: &uacute;tero globoso, miom&eacute;trio heterog&ecirc;neo com zonas hipoecog&ecirc;nicas, cistos&nbsp;miometriais, estrias radiais na zona juncional.</li>\n<li>Tratamento: tamb&eacute;m em casos refrat&aacute;rios ao tratamento cl&iacute;nico, pode-se indicar histerectomia, especialmente em mulheres que n&atilde;o desejam mais gestar.</li>\n</ul>\n<p>4️) Malignidade</p>\n<ul>\n<li>Achado ecogr&aacute;fico: espessamento endometrial, endom&eacute;trio heterog&ecirc;neo, vasculariza&ccedil;&atilde;o at&iacute;pica no Doppler, ou massa intrauterina suspeita. Os principais tipos nesse caso s&atilde;o neoplasia endometrial ou sarcoma uterino.</li>\n<li>Tratamento: em casos confirmados ou fortemente suspeitos, a conduta &eacute; cir&uacute;rgica, com histerectomia</li>\n</ul>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>.As causas estruturais de sangramento uterino anormal s&atilde;o as causas vis&iacute;veis ao ultrassom. Tamb&eacute;m por isso s&atilde;o causas possivelmente cir&uacute;rgicas! Claro que nem sempre o tratamento inicial j&aacute; &eacute; cir&uacute;rgico, mas o definitivo sim. Principalmente em pacientes na terceira e quarta d&eacute;cada de vida, como no caso em quest&atilde;o, as causas estruturais devem sempre ser lembradas como causas principais de S.U.A.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Gabarito:</strong> P&oacute;lipos, adenomiose, leiomiomas, miomas, malignidade</p>\n<p>Essa quest&atilde;o &eacute; complementar a anterior na prova da UNICAMP de 2025, que questionava sobre a indica&ccedil;&atilde;o de ultrassonografia transvaginal no sangramento uterino anormal (S.U.A.).</p>\n<p>J&aacute; relembramos ent&atilde;o a import&acirc;ncia da classifica&ccedil;&atilde;o <strong>PALM-COEIN </strong>da FIGO na diferencia&ccedil;&atilde;o das causas estruturais e n&atilde;o-estruturais de sangramento:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250514T104514619Z799609.png\" alt=\"A blue and white table with white textAI-generated content may be incorrect.\" width=\"624\" height=\"388\"></p>\n<p>E agora seguimos o racioc&iacute;nio para responder os diagn&oacute;sticos ecogr&aacute;ficos cir&uacute;rgicos. Como j&aacute; discutimos, as causas que s&atilde;o vis&iacute;veis no ultrassom, portanto que conseguimos um diagn&oacute;stico ecogr&aacute;fico, s&atilde;o justamente as casuas estruturais. Sabendo disso e relembrando as op&ccedil;&otilde;es do PALM COEIN j&aacute; respond&iacute;amos essa quest&atilde;o.</p>\n<p>A quest&atilde;o pedia apenas para CITAR, mas vamos relembrar um pouco mais de cada causa e seu tratamento:</p>\n<p>1️) P&oacute;lipo endometrial</p>\n<ul>\n<li>Achado ecogr&aacute;fico: imagem focal, hiperecog&ecirc;nica, dentro da cavidade endometrial, frequentemente com ped&iacute;culo vascular no Doppler.</li>\n<li>Tratamento: histeroscopia cir&uacute;rgica para polipectomia.</li>\n</ul>\n<p>2️) Miomatose</p>\n<ul>\n<li>Achado ecogr&aacute;fico: n&oacute;dulo hipoecog&ecirc;nico bem delimitado, classificado de acordo com sua localiza&ccedil;&atilde;o (submucoso, intramural e subseroso).</li>\n<li>Tratamento: miomectomia ou histerectomia.</li>\n</ul>\n<p>No caso dos miomas o tratamento nem sempre &eacute; cir&uacute;rgico. Podemos iniciar com tratamento farmacol&oacute;gico e avaliar a resposta terap&ecirc;utica antes de indicar cirurgia, principalmente em pacientes com desejo gestacional.</p>\n<p>3)Adenomiose</p>\n<ul>\n<li>Achado ecogr&aacute;fico: &uacute;tero globoso, miom&eacute;trio heterog&ecirc;neo com zonas hipoecog&ecirc;nicas, cistos&nbsp;miometriais, estrias radiais na zona juncional.</li>\n<li>Tratamento: tamb&eacute;m em casos refrat&aacute;rios ao tratamento cl&iacute;nico, pode-se indicar histerectomia, especialmente em mulheres que n&atilde;o desejam mais gestar.</li>\n</ul>\n<p>4️) Malignidade</p>\n<ul>\n<li>Achado ecogr&aacute;fico: espessamento endometrial, endom&eacute;trio heterog&ecirc;neo, vasculariza&ccedil;&atilde;o at&iacute;pica no Doppler, ou massa intrauterina suspeita. Os principais tipos nesse caso s&atilde;o neoplasia endometrial ou sarcoma uterino.</li>\n<li>Tratamento: em casos confirmados ou fortemente suspeitos, a conduta &eacute; cir&uacute;rgica, com histerectomia</li>\n</ul><br>Visão do aprovado: <p>.As causas estruturais de sangramento uterino anormal s&atilde;o as causas vis&iacute;veis ao ultrassom. Tamb&eacute;m por isso s&atilde;o causas possivelmente cir&uacute;rgicas! Claro que nem sempre o tratamento inicial j&aacute; &eacute; cir&uacute;rgico, mas o definitivo sim. Principalmente em pacientes na terceira e quarta d&eacute;cada de vida, como no caso em quest&atilde;o, as causas estruturais devem sempre ser lembradas como causas principais de S.U.A.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197148,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sangramentos de primeira metade",
+        "focus": {
+          "id": 1646,
+          "name": "Sangramentos de primeira metade"
+        }
+      },
+      "detail": {
+        "id": 197148,
+        "content": "Qual é o diagnóstico ecográfico em um exame realizado em uma paciente com sete semanas de atraso menstrual, no qual o saco gestacional é maior que o esperado e o embrião não é identificado?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15920,
+            "parent_tag": {
+              "id": 15913,
+              "name": "Sangramentos na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sangramentos de primeira metade",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 52,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1646,
+          "name": "Sangramentos de primeira metade",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 93,
+            "name": "Sangramentos na gestação",
+            "discipline": 86,
+            "old_tag": 15913,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224435,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Gabarito:</strong> <span class=\"article-3524\">Gestação anembrionada</span> ou ovo cego, gestação não evolutiva</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>O diagnóstico ecográfico correto para este caso é <strong>gestação anembrionada</strong>.</p>\n<p>A gestação anembrionada é caracterizada pela presença de um saco gestacional bem desenvolvido, frequentemente maior que o esperado para a idade gestacional, porém sem a presença de embrião em seu interior. Este diagnóstico deve ser considerado quando o <em><strong>diâmetro médio do saco gestacional é ≥25mm sem embrião visível em uma ultrassonografia transvaginal</strong></em>.</p>\n<p>Outros diagnósticos que poderiam ser considerados, mas não são compatíveis com os achados descritos:</p>\n<ul>\n<li>Aborto retido: neste caso, haveria a visualização do embrião com Comprimento Crânio-Nádegas (CCN) de no mínimo 7 mm, porém sem atividade cardíaca. A questão especifica que o embrião não é identificado, o que exclui este diagnóstico.</li>\n<li>Gestação ectópica: tipicamente apresenta ausência de saco gestacional intrauterino ou presença de saco gestacional vazio de pequenas dimensões (pseudosaco), associado a massa anexial. A questão menciona um saco gestacional maior que o esperado, o que não é característico da gestação ectópica. </li>\n<li>Gestação normal inicial: em uma gestação de 7 semanas de atraso menstrual, o embrião já deveria ser claramente visível, com batimentos cardíacos presentes. </li>\n<li> Mola hidatiforme: geralmente apresenta um padrão ecográfico característico em \"tempestade de neve\" ou \"favo de mel\", com múltiplas vesículas. Não há menção a estas características na questão.</li>\n</ul>\n<p>A conduta frente a uma <span class=\"article-3524\">gestação anembrionada</span> geralmente envolve o acompanhamento da paciente para resolução espontânea ou intervenção (medicamentosa ou cirúrgica), dependendo do contexto clínico. É fundamental oferecer suporte emocional adequado, pois representa uma perda gestacional. </p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Gabarito:</strong> <span class=\"article-3524\">Gestação anembrionada</span> ou ovo cego, gestação não evolutiva</p><br>Visão do aprovado: <p>O diagnóstico ecográfico correto para este caso é <strong>gestação anembrionada</strong>.</p>\n<p>A gestação anembrionada é caracterizada pela presença de um saco gestacional bem desenvolvido, frequentemente maior que o esperado para a idade gestacional, porém sem a presença de embrião em seu interior. Este diagnóstico deve ser considerado quando o <em><strong>diâmetro médio do saco gestacional é ≥25mm sem embrião visível em uma ultrassonografia transvaginal</strong></em>.</p>\n<p>Outros diagnósticos que poderiam ser considerados, mas não são compatíveis com os achados descritos:</p>\n<ul>\n<li>Aborto retido: neste caso, haveria a visualização do embrião com Comprimento Crânio-Nádegas (CCN) de no mínimo 7 mm, porém sem atividade cardíaca. A questão especifica que o embrião não é identificado, o que exclui este diagnóstico.</li>\n<li>Gestação ectópica: tipicamente apresenta ausência de saco gestacional intrauterino ou presença de saco gestacional vazio de pequenas dimensões (pseudosaco), associado a massa anexial. A questão menciona um saco gestacional maior que o esperado, o que não é característico da gestação ectópica. </li>\n<li>Gestação normal inicial: em uma gestação de 7 semanas de atraso menstrual, o embrião já deveria ser claramente visível, com batimentos cardíacos presentes. </li>\n<li> Mola hidatiforme: geralmente apresenta um padrão ecográfico característico em \"tempestade de neve\" ou \"favo de mel\", com múltiplas vesículas. Não há menção a estas características na questão.</li>\n</ul>\n<p>A conduta frente a uma <span class=\"article-3524\">gestação anembrionada</span> geralmente envolve o acompanhamento da paciente para resolução espontânea ou intervenção (medicamentosa ou cirúrgica), dependendo do contexto clínico. É fundamental oferecer suporte emocional adequado, pois representa uma perda gestacional. </p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197149,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sangramentos de primeira metade",
+        "focus": {
+          "id": 1646,
+          "name": "Sangramentos de primeira metade"
+        }
+      },
+      "detail": {
+        "id": 197149,
+        "content": "Ginecologia e Obstetrícia - Sobre a mola hidatiforme completa com 12 semanas de gestação, PERGUNTA-SE: Cite 3 achados ultrassonográficos comuns.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15920,
+            "parent_tag": {
+              "id": 15913,
+              "name": "Sangramentos na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sangramentos de primeira metade",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 53,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1646,
+          "name": "Sangramentos de primeira metade",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 93,
+            "name": "Sangramentos na gestação",
+            "discipline": 86,
+            "old_tag": 15913,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224434,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Gabarito:</strong> Aumento do volume uterino, massa intrauterina heterogênea, múltiplas vesículas intrauterinas, ausência de tecido fetal, cistos tecaluteínicos ovarianos.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Os principais achados ultrassonográficos da <span class=\"article-3511\">mola hidatiforme completa</span> com 12 semanas de gestação são:</p>\n<ul style=\"list-style-type: square;\">\n<li><strong>Imagem uterina característica em \"tempestade de neve\" ou \"favo de mel\": </strong>Este é o achado mais típico e corresponde à presença de múltiplas vesículas hidrópicas (áreas anecóicas) entremeadas com áreas ecogênicas, representando o tecido trofoblástico proliferado. Esta imagem é patognomônica da mola hidatiforme.</li>\n</ul>\n<p style=\"text-align: center;\"><img alt=\"\" height=\"316\" src=\"https://cdn.medway.com.br/media/question_explanation_images/Captura de Tela 2025-05-17 às 15.59.55.png\" width=\"327\"/></p>\n<ul style=\"list-style-type: square;\">\n<li> <strong>Ausência de embrião ou feto e de batimentos cardíacos fetais:</strong> Na mola completa, diferentemente da parcial, não há desenvolvimento embrionário/fetal. A ausência de estruturas embrionárias é um achado consistente, pois todo o material genético é paterno, impossibilitando o desenvolvimento normal do embrião.</li>\n</ul>\n<p> </p>\n<ul style=\"list-style-type: square;\">\n<li> <strong>Útero aumentado para a idade gestacional:</strong> O volume uterino na mola completa geralmente está aumentado em relação à idade gestacional esperada, devido à proliferação exagerada do tecido trofoblástico e ao acúmulo de vesículas. </li>\n</ul>\n<p> </p>\n<ul style=\"list-style-type: square;\">\n<li><strong>Cistos tecaluteínicos ovarianos:</strong> São cistos funcionais que ocorrem em 25-35% dos casos, resultantes da hiperestimulação ovariana pela produção excessiva de hCG. Geralmente são bilaterais e podem atingir grandes dimensões. </li>\n</ul>\n<p style=\"text-align: center;\"><img alt=\"\" height=\"307\" src=\"https://cdn.medway.com.br/media/question_explanation_images/Captura de Tela 2025-05-17 às 16.00.21.png\" width=\"306\"/></p>\n<ul style=\"list-style-type: square;\">\n<li><strong> Padrão vascular aumentado ao Doppler:</strong> Devido à intensa vascularização do tecido trofoblástico proliferado, observa-se hipervascularização ao estudo Doppler.</li>\n</ul>\n<p><img height=\"176\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250517T190520477Z112965.png\" style=\"display: block; margin-left: auto; margin-right: auto;\" width=\"325\"/></p>\n<p> </p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Gabarito:</strong> Aumento do volume uterino, massa intrauterina heterogênea, múltiplas vesículas intrauterinas, ausência de tecido fetal, cistos tecaluteínicos ovarianos.</p><br>Visão do aprovado: <p>Os principais achados ultrassonográficos da <span class=\"article-3511\">mola hidatiforme completa</span> com 12 semanas de gestação são:</p>\n<ul style=\"list-style-type: square;\">\n<li><strong>Imagem uterina característica em \"tempestade de neve\" ou \"favo de mel\": </strong>Este é o achado mais típico e corresponde à presença de múltiplas vesículas hidrópicas (áreas anecóicas) entremeadas com áreas ecogênicas, representando o tecido trofoblástico proliferado. Esta imagem é patognomônica da mola hidatiforme.</li>\n</ul>\n<p style=\"text-align: center;\"><img alt=\"\" height=\"316\" src=\"https://cdn.medway.com.br/media/question_explanation_images/Captura de Tela 2025-05-17 às 15.59.55.png\" width=\"327\"/></p>\n<ul style=\"list-style-type: square;\">\n<li> <strong>Ausência de embrião ou feto e de batimentos cardíacos fetais:</strong> Na mola completa, diferentemente da parcial, não há desenvolvimento embrionário/fetal. A ausência de estruturas embrionárias é um achado consistente, pois todo o material genético é paterno, impossibilitando o desenvolvimento normal do embrião.</li>\n</ul>\n<p> </p>\n<ul style=\"list-style-type: square;\">\n<li> <strong>Útero aumentado para a idade gestacional:</strong> O volume uterino na mola completa geralmente está aumentado em relação à idade gestacional esperada, devido à proliferação exagerada do tecido trofoblástico e ao acúmulo de vesículas. </li>\n</ul>\n<p> </p>\n<ul style=\"list-style-type: square;\">\n<li><strong>Cistos tecaluteínicos ovarianos:</strong> São cistos funcionais que ocorrem em 25-35% dos casos, resultantes da hiperestimulação ovariana pela produção excessiva de hCG. Geralmente são bilaterais e podem atingir grandes dimensões. </li>\n</ul>\n<p style=\"text-align: center;\"><img alt=\"\" height=\"307\" src=\"https://cdn.medway.com.br/media/question_explanation_images/Captura de Tela 2025-05-17 às 16.00.21.png\" width=\"306\"/></p>\n<ul style=\"list-style-type: square;\">\n<li><strong> Padrão vascular aumentado ao Doppler:</strong> Devido à intensa vascularização do tecido trofoblástico proliferado, observa-se hipervascularização ao estudo Doppler.</li>\n</ul>\n<p><img height=\"176\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250517T190520477Z112965.png\" style=\"display: block; margin-left: auto; margin-right: auto;\" width=\"325\"/></p>\n<p> </p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197150,
+        "number": 5,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sangramentos de primeira metade",
+        "focus": {
+          "id": 1646,
+          "name": "Sangramentos de primeira metade"
+        }
+      },
+      "detail": {
+        "id": 197150,
+        "content": "Sobre a mola hidatiforme completa com 12 semanas de gestação, PERGUNTA-SE: COMO É FEITO O DIAGNÓSTICO DEFINITIVO DA MOLA HIDATIFORME COMPLETA?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15920,
+            "parent_tag": {
+              "id": 15913,
+              "name": "Sangramentos na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sangramentos de primeira metade",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 44,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1646,
+          "name": "Sangramentos de primeira metade",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 93,
+            "name": "Sangramentos na gestação",
+            "discipline": 86,
+            "old_tag": 15913,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224433,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Gabarito:</strong> Pelo anatomopatológico ou exame histopatológico do conteúdo uterino obtido por aspiração ou curetagem.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>.A <span class=\"article-3511\">mola hidatiforme completa</span> é uma forma de doença trofoblástica gestacional caracterizada pela degeneração hidrópica generalizada das vilosidades coriônicas, proliferação trofoblástica e ausência de tecido embrionário ou fetal.</p>\n<p>O diagnóstico definitivo da <span class=\"article-3511\">mola hidatiforme completa</span> é realizado através do exame anatomopatológico do material obtido por meio de curetagem uterina (esvaziamento uterino). Este é o padrão-ouro para confirmação diagnóstica.</p>\n<p>Na análise histopatológica da mola completa, observam-se características específicas como:</p>\n<ul>\n<li>Degeneração hidrópica generalizada das vilosidades coriônicas </li>\n<li>Proliferação trofoblástica difusa e acentuada </li>\n<li>Ausência de vascularização nas vilosidades </li>\n<li>Ausência de tecido embrionário ou fetal </li>\n<li>Ausência de hemácias fetais nas vilosidades </li>\n</ul>\n<p>É importante ressaltar que outros métodos diagnósticos como a ultrassonografia e a dosagem de β-hCG, embora extremamente úteis na suspeita diagnóstica, não são suficientes para o diagnóstico definitivo:</p>\n<ul>\n<li>Ultrassonografia: mostra imagem característica \"em tempestade de neve\" ou \"em cacho de uva\", com múltiplas vesículas e ausência de embrião/feto, mas achados semelhantes podem ocorrer em outras condições.</li>\n<li>- β-hCG: níveis extremamente elevados para a idade gestacional são sugestivos, mas não confirmatórios. </li>\n</ul>\n<p>Vale lembrar que a <span class=\"article-3511\">mola hidatiforme completa</span> difere da parcial em diversos aspectos. Na mola parcial, o cariótipo geralmente é triploide (69,XXY) e há presença de tecido embrionário/fetal, mesmo que rudimentar. Isso reforça a importância do exame anatomopatológico para diferenciação.</p>\n<p>Outro ponto importante: após o diagnóstico,<span style=\"text-decoration: underline;\"> é fundamental o seguimento rigoroso com dosagens seriadas de β-hCG </span>para detectar precocemente uma possível neoplasia trofoblástica gestacional. O acompanhamento deve ser mantido por pelo menos 6 meses a 1 ano após a normalização dos níveis de β-hCG.</p>\n<p>Este tema conecta-se com outros importantes da obstetrícia, como abortamento, neoplasia trofoblástica gestacional e tumores de placenta, sendo um conhecimento fundamental para a prática médica, especialmente em ginecologia e obstetrícia.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Gabarito:</strong> Pelo anatomopatológico ou exame histopatológico do conteúdo uterino obtido por aspiração ou curetagem.</p><br>Visão do aprovado: <p>.A <span class=\"article-3511\">mola hidatiforme completa</span> é uma forma de doença trofoblástica gestacional caracterizada pela degeneração hidrópica generalizada das vilosidades coriônicas, proliferação trofoblástica e ausência de tecido embrionário ou fetal.</p>\n<p>O diagnóstico definitivo da <span class=\"article-3511\">mola hidatiforme completa</span> é realizado através do exame anatomopatológico do material obtido por meio de curetagem uterina (esvaziamento uterino). Este é o padrão-ouro para confirmação diagnóstica.</p>\n<p>Na análise histopatológica da mola completa, observam-se características específicas como:</p>\n<ul>\n<li>Degeneração hidrópica generalizada das vilosidades coriônicas </li>\n<li>Proliferação trofoblástica difusa e acentuada </li>\n<li>Ausência de vascularização nas vilosidades </li>\n<li>Ausência de tecido embrionário ou fetal </li>\n<li>Ausência de hemácias fetais nas vilosidades </li>\n</ul>\n<p>É importante ressaltar que outros métodos diagnósticos como a ultrassonografia e a dosagem de β-hCG, embora extremamente úteis na suspeita diagnóstica, não são suficientes para o diagnóstico definitivo:</p>\n<ul>\n<li>Ultrassonografia: mostra imagem característica \"em tempestade de neve\" ou \"em cacho de uva\", com múltiplas vesículas e ausência de embrião/feto, mas achados semelhantes podem ocorrer em outras condições.</li>\n<li>- β-hCG: níveis extremamente elevados para a idade gestacional são sugestivos, mas não confirmatórios. </li>\n</ul>\n<p>Vale lembrar que a <span class=\"article-3511\">mola hidatiforme completa</span> difere da parcial em diversos aspectos. Na mola parcial, o cariótipo geralmente é triploide (69,XXY) e há presença de tecido embrionário/fetal, mesmo que rudimentar. Isso reforça a importância do exame anatomopatológico para diferenciação.</p>\n<p>Outro ponto importante: após o diagnóstico,<span style=\"text-decoration: underline;\"> é fundamental o seguimento rigoroso com dosagens seriadas de β-hCG </span>para detectar precocemente uma possível neoplasia trofoblástica gestacional. O acompanhamento deve ser mantido por pelo menos 6 meses a 1 ano após a normalização dos níveis de β-hCG.</p>\n<p>Este tema conecta-se com outros importantes da obstetrícia, como abortamento, neoplasia trofoblástica gestacional e tumores de placenta, sendo um conhecimento fundamental para a prática médica, especialmente em ginecologia e obstetrícia.</p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197151,
+        "number": 6,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Princípios de Estatística",
+        "focus": {
+          "id": 1025,
+          "name": "Princípios de Estatística"
+        }
+      },
+      "detail": {
+        "id": 197151,
+        "content": "Foi realizado um estudo sobre a capacidade da ultrassonografia diagnosticar câncer em nódulos mamários em 500 pacientes atendidas no ambulatório de mama de um hospital terciário. As impressões das ultrassonografias foram comparadas aos resultados dos exames anátomo-patológicos das biópsias dos nódulos. Dos 100 nódulos com biópsias positivas para carcinoma, 90 foram classificados pela ecografia como sendo malignos. Entre os 400 nódulos com biópsias negativas, a ecografia classificou 25 como malignos. PERGUNTA-SE: QUAL É A ESPECIFICIDADE DA ECOGRAFIA NO DIAGNÓSTICO DÕ CÂNCER DE MAMA NESSE ESTUDO?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 25985,
+            "parent_tag": {
+              "id": 25979,
+              "name": "Medicina Preventiva em Ginecologia e Obstetrícia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Princípios de Estatística",
+            "main_tag": false,
+            "residency_degree": null,
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 6,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 29,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1025,
+          "name": "Princípios de Estatística",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 17,
+            "name": "Medicina Preventiva em Ginecologia e Obstetrícia",
+            "discipline": 86,
+            "old_tag": 25979,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224432,
+        "actual_explanation": true,
+        "introduction": "<p>Fala, pessoal!&nbsp;</p>\n<p>&nbsp;</p>\n<p>Para responder quest&otilde;es de preventiva &eacute; sempre importante revisar os conceitos abordados para n&atilde;o fazer confus&atilde;o! Ent&atilde;o relembrando&hellip;</p>\n<p>Especificidade &eacute; a capacidade do teste (no caso, a ultrassonografia) dentificar corretamente os casos n&atilde;o malignos, ou seja, identificar os n&oacute;dulos benignos. Ela &eacute; calculada pela divis&atilde;o: verdadeiros negativos (VN) / (VN + falsos positivos).&nbsp;</p>\n<ul>\n<li>\n<p><strong>Falsos Positivos (FP)</strong>: S&atilde;o os n&oacute;dulos com bi&oacute;psia negativa (ou seja, benignos), mas classificados como malignos pela ultrassonografia. Pelo enunciado: <strong>FP = 25 n&oacute;dulos</strong></p>\n</li>\n<li>\n<p><strong>Verdadeiros Negativos (VN)</strong>: S&atilde;o os n&oacute;dulos que t&ecirc;m bi&oacute;psia negativa (ou seja, benignos) e foram corretamente classificados como benignos pela ultrassonografia. Pelo enunciado:<strong> VN = 375 (400-25)</strong>&nbsp;</p>\n</li>\n</ul>\n<p>Agora conseguimos aplicar a f&oacute;rmula da especificidade: VN/VN+FP ou seja 375/400</p>\n<p><strong>Portanto, especificidade de 0,9375 (94% frente arredondamento)</strong></p>\n<p>&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Mais uma vez as quest&otilde;es que abordam a preventiva nos mostram a import&acirc;ncia de relembrar os conceitos b&aacute;sicos e de raciocinar com calma para chegar ao resultado final. Lembre-se:&nbsp;</p>\n<ul>\n<li>\n<p><strong>Sensibilidade</strong>: Capacidade de identificar corretamente os doentes&nbsp;</p>\n</li>\n<li>\n<p><strong>Especificidade</strong>: Capacidade de identificar corretamente os saud&aacute;veis&nbsp;</p>\n</li>\n<li>\n<p><strong>VPP</strong>: Probabilidade de que um teste positivo seja verdadeiro.</p>\n</li>\n<li>\n<p><strong>VPN</strong>: Probabilidade de que um teste negativo seja verdadeiro.<br><br></p>\n</li>\n</ul>\n<p>Esses quatro indicadores ajudam a avaliar a qualidade e a confiabilidade de um teste diagn&oacute;stico!</p>\n<p>Por fim, como interpreta&ccedil;&atilde;o da quest&atilde;o temos que neste teste, quando a ultrassonografia classifica um n&oacute;dulo como benigno, existe uma probabilidade de 93,75% de que esse n&oacute;dulo realmente seja benigno.</p>\n<p>&nbsp;</p>\n<p>Bons estudos!</p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Fala, pessoal!&nbsp;</p>\n<p>&nbsp;</p>\n<p>Para responder quest&otilde;es de preventiva &eacute; sempre importante revisar os conceitos abordados para n&atilde;o fazer confus&atilde;o! Ent&atilde;o relembrando&hellip;</p>\n<p>Especificidade &eacute; a capacidade do teste (no caso, a ultrassonografia) dentificar corretamente os casos n&atilde;o malignos, ou seja, identificar os n&oacute;dulos benignos. Ela &eacute; calculada pela divis&atilde;o: verdadeiros negativos (VN) / (VN + falsos positivos).&nbsp;</p>\n<ul>\n<li>\n<p><strong>Falsos Positivos (FP)</strong>: S&atilde;o os n&oacute;dulos com bi&oacute;psia negativa (ou seja, benignos), mas classificados como malignos pela ultrassonografia. Pelo enunciado: <strong>FP = 25 n&oacute;dulos</strong></p>\n</li>\n<li>\n<p><strong>Verdadeiros Negativos (VN)</strong>: S&atilde;o os n&oacute;dulos que t&ecirc;m bi&oacute;psia negativa (ou seja, benignos) e foram corretamente classificados como benignos pela ultrassonografia. Pelo enunciado:<strong> VN = 375 (400-25)</strong>&nbsp;</p>\n</li>\n</ul>\n<p>Agora conseguimos aplicar a f&oacute;rmula da especificidade: VN/VN+FP ou seja 375/400</p>\n<p><strong>Portanto, especificidade de 0,9375 (94% frente arredondamento)</strong></p>\n<p>&nbsp;</p><br>Visão do aprovado: <p>Mais uma vez as quest&otilde;es que abordam a preventiva nos mostram a import&acirc;ncia de relembrar os conceitos b&aacute;sicos e de raciocinar com calma para chegar ao resultado final. Lembre-se:&nbsp;</p>\n<ul>\n<li>\n<p><strong>Sensibilidade</strong>: Capacidade de identificar corretamente os doentes&nbsp;</p>\n</li>\n<li>\n<p><strong>Especificidade</strong>: Capacidade de identificar corretamente os saud&aacute;veis&nbsp;</p>\n</li>\n<li>\n<p><strong>VPP</strong>: Probabilidade de que um teste positivo seja verdadeiro.</p>\n</li>\n<li>\n<p><strong>VPN</strong>: Probabilidade de que um teste negativo seja verdadeiro.<br><br></p>\n</li>\n</ul>\n<p>Esses quatro indicadores ajudam a avaliar a qualidade e a confiabilidade de um teste diagn&oacute;stico!</p>\n<p>Por fim, como interpreta&ccedil;&atilde;o da quest&atilde;o temos que neste teste, quando a ultrassonografia classifica um n&oacute;dulo como benigno, existe uma probabilidade de 93,75% de que esse n&oacute;dulo realmente seja benigno.</p>\n<p>&nbsp;</p>\n<p>Bons estudos!</p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197152,
+        "number": 7,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Princípios de Estatística",
+        "focus": {
+          "id": 1025,
+          "name": "Princípios de Estatística"
+        }
+      },
+      "detail": {
+        "id": 197152,
+        "content": "Foi realizado um estudo sobre a capacidade da ultrassonografia diagnosticar câncer em nódulos mamários em 500 pacientes atendidas no ambulatório de mama de um hospital terciário. As impressões das ultrassonografias foram comparadas aos resultados dos exames anátomo-patológicos das biópsias dos nódulos. Dos 100 nódulos com biopsias positivas para carcinoma, 90 foram classificados pela ecografia como sendo malignos. Entre os 400 nódulos com biópsias negativas, a ecografia classificou 25 como malignos. PERGUNTA-SE: QUAL FOI O VALOR PREDITIVO POSITIVO DA ECOGRAFIA NO DIAGNÓSTICO DO CÂNCER DE MAMA NESSE ESTUDO?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 25985,
+            "parent_tag": {
+              "id": 25979,
+              "name": "Medicina Preventiva em Ginecologia e Obstetrícia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Princípios de Estatística",
+            "main_tag": false,
+            "residency_degree": null,
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 7,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 26,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1025,
+          "name": "Princípios de Estatística",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 17,
+            "name": "Medicina Preventiva em Ginecologia e Obstetrícia",
+            "discipline": 86,
+            "old_tag": 25979,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224431,
+        "actual_explanation": true,
+        "introduction": "<p>Fala, pessoal!</p>\n<p>Mais uma quest&atilde;ozinha de preventiva na mastologia. Vamos aproveit&aacute;-la para relembrar conceitos?&nbsp;</p>\n<p>O <strong>VPP (Valor preditivo positivo) </strong>indica a probabilidade de que um n&oacute;dulo classificado como maligno pela USG realmente seja maligno, ou seja, &eacute; a <strong>taxa de verdadeiros positivos</strong> entre todos aqueles dados como positivos (verdadeiros positivos + falso positivos). Sendo assim temos:</p>\n<ul>\n<li>\n<p><strong>Verdadeiros Positivos (VP) = 90</strong> (90 n&oacute;dulos com bi&oacute;psia positiva foram classificados como malignos pela ultrassonografia)</p>\n</li>\n<li>\n<p><strong>Falsos Positivos (FP) = 25 </strong>(25 n&oacute;dulos com bi&oacute;psia negativa foram classificados como malignos pela ultrassonografia)</p>\n</li>\n</ul>\n<p>Dessa forma temos que VPP &eacute; o resultado da divis&atilde;o 90/115 = 0,7826</p>\n<p>&nbsp;</p>\n<p><strong>Resposta final: 78%&nbsp;</strong></p>\n<p>&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Depois de todos esses c&aacute;lculos interpretamos esse resultado da seguinte maneira: nesta quest&atilde;o, quando a ultrassonografia classifica um n&oacute;dulo como maligno, existe uma probabilidade de 78,26% de que esse n&oacute;dulo seja realmente maligno, com base nos resultados da bi&oacute;psia.</p>\n<p>&nbsp;</p>\n<p>E lembre-se: tanto o VPP como o VPN (Valor preditivo negativo) s&atilde;o influenciados pela preval&ecirc;ncia da doen&ccedil;a na popula&ccedil;&atilde;o estudada, diferentemente da sensibilidade (capacidade de um teste identificar os verdadeiros doentes) e da especificidade (capacidade de um teste identificar os verdadeiros n&atilde;o-doentes), que s&atilde;o fixos!&nbsp;</p>\n<p><br><br></p>\n<p>Bons estudos!&nbsp;</p>\n<p><br><br></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Fala, pessoal!</p>\n<p>Mais uma quest&atilde;ozinha de preventiva na mastologia. Vamos aproveit&aacute;-la para relembrar conceitos?&nbsp;</p>\n<p>O <strong>VPP (Valor preditivo positivo) </strong>indica a probabilidade de que um n&oacute;dulo classificado como maligno pela USG realmente seja maligno, ou seja, &eacute; a <strong>taxa de verdadeiros positivos</strong> entre todos aqueles dados como positivos (verdadeiros positivos + falso positivos). Sendo assim temos:</p>\n<ul>\n<li>\n<p><strong>Verdadeiros Positivos (VP) = 90</strong> (90 n&oacute;dulos com bi&oacute;psia positiva foram classificados como malignos pela ultrassonografia)</p>\n</li>\n<li>\n<p><strong>Falsos Positivos (FP) = 25 </strong>(25 n&oacute;dulos com bi&oacute;psia negativa foram classificados como malignos pela ultrassonografia)</p>\n</li>\n</ul>\n<p>Dessa forma temos que VPP &eacute; o resultado da divis&atilde;o 90/115 = 0,7826</p>\n<p>&nbsp;</p>\n<p><strong>Resposta final: 78%&nbsp;</strong></p>\n<p>&nbsp;</p><br>Visão do aprovado: <p>Depois de todos esses c&aacute;lculos interpretamos esse resultado da seguinte maneira: nesta quest&atilde;o, quando a ultrassonografia classifica um n&oacute;dulo como maligno, existe uma probabilidade de 78,26% de que esse n&oacute;dulo seja realmente maligno, com base nos resultados da bi&oacute;psia.</p>\n<p>&nbsp;</p>\n<p>E lembre-se: tanto o VPP como o VPN (Valor preditivo negativo) s&atilde;o influenciados pela preval&ecirc;ncia da doen&ccedil;a na popula&ccedil;&atilde;o estudada, diferentemente da sensibilidade (capacidade de um teste identificar os verdadeiros doentes) e da especificidade (capacidade de um teste identificar os verdadeiros n&atilde;o-doentes), que s&atilde;o fixos!&nbsp;</p>\n<p><br><br></p>\n<p>Bons estudos!&nbsp;</p>\n<p><br><br></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197153,
+        "number": 8,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sofrimento fetal crônico",
+        "focus": {
+          "id": 1607,
+          "name": "Sofrimento fetal crônico"
+        }
+      },
+      "detail": {
+        "id": 197153,
+        "content": "Tercigesta, idade gestacional de 30 semanas, com diagnóstico de hipertensão arterial crônica controlada com medicação (metildopa 1.500 miligramas/dia). Sem outras doenças ou antecedentes relevantes. Ao exame clínico: altura uterina: 26 cm; boa movimentação fetal. Ao exame ecográfico obstétrico: peso fetal estimado 1270 gramas (percentil 8). Morfologia fetal sem alterações. Líquido amniótico normal. Dopplervelocimetria: índice de pulsatilidade aumentado nas artérias uterinas; normal nas artérias umbilicais; normal nas artérias cerebrais médias; relação cérebro-placentária normal. Perfil biofísico fetal: 10/10 (variáveis ecográficas e cardiotocografia normais). PERGUNTA-SE: CONSIDERANDO AS INFORMAÇÕES DA ULTRASSONOGRAFIA DISPONIBILIZADAS, QUAL A HIPÓTESE DIAGNÓSTICA EM RELAÇÃO AO FETO?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15960,
+            "parent_tag": {
+              "id": 15911,
+              "name": "Sofrimento fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sofrimento fetal crônico",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 8,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 42,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1607,
+          "name": "Sofrimento fetal crônico",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 95,
+            "name": "Sofrimento fetal",
+            "discipline": 86,
+            "old_tag": 15911,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224430,
+        "actual_explanation": true,
+        "introduction": "<p>Para definirmos a restri&ccedil;&atilde;o de crescimento fetal (RCF), utilizamos o percentil de peso e o relacionamos com a idade gestacional. Por&eacute;m, sabemos que essa defini&ccedil;&atilde;o &eacute; um dos maiores pontos de discord&acirc;ncia na obstetr&iacute;cia n&eacute;? Pela OMS, consideramos restrito o feto com peso estimado abaixo do percentil 3, e pela&nbsp;ACOG, o feto abaixo do percentil 10. Atualmente, o principal crit&eacute;rio utilizado s&atilde;o os do consenso Delphi (tabela completa logo abaixo), na qual podemos fazer o diagn&oacute;stico de certeza nesse caso visto que o feto est&aacute; no percentil abaixo do 3 para a idade gestacional.</p>\n<p>A restri&ccedil;&atilde;o de crescimento fetal acomete por volta de 10% das gesta&ccedil;&otilde;es, sendo uma importante causa de mortalidade perinatal, e quanto menor o percentil, maior a morbimortalidade. Vale lembrar a diferen&ccedil;a entre o pequeno constitucional e o restrito \"verdadeiro\" ou patol&oacute;gico, que geralmente est&aacute; relacionado &agrave; insufici&ecirc;ncia placent&aacute;ria. Um dos passos mais importantes &eacute; a avalia&ccedil;&atilde;o rigorosa da anatomia fetal, a fim de excluir malforma&ccedil;&otilde;es, bem como a pesquisa de sorologias maternas. A etiologia da restri&ccedil;&atilde;o de crescimento &eacute; multifatorial, incluindo desde fatores fetais, maternos e placent&aacute;rios.&nbsp;</p>\n<p>A conduta frente &agrave; restri&ccedil;&atilde;o de crescimento fetal basicamente &eacute; uma balan&ccedil;a entre qual ambiente &eacute; melhor para o fetal, fora ou dentro do &uacute;tero. Devemos sempre ponderar o risco de hip&oacute;xia e a acidemia fetal versus os riscos da prematuridade. N&atilde;o existe tratamento para a RCF, portanto devemos realizar o controle de vitalidade e o manejo do momento adequado do parto. Em fetos restritos, sempre devemos realizar o seguimento da vitalidade fetal e observar, ao longo do tempo, as altera&ccedil;&otilde;es de Doppler. A conduta do momento do parto &eacute; baseada na combina&ccedil;&atilde;o da avalia&ccedil;&atilde;o fetal perante o Doppler e perfil biof&iacute;sico fetal com cardiotocografia. Junto, aliamos a avalia&ccedil;&atilde;o da etiologia da restri&ccedil;&atilde;o, idade gestacional e capacidade da unidade de neonatologia em receber o rec&eacute;m-nascido.</p>\n<p>&nbsp;</p>\n<p><strong>Gabarito:</strong>&nbsp;Restri&ccedil;&atilde;o do crescimento fetal</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Aproveita a quest&atilde;o para relembrar dos crit&eacute;rios diagn&oacute;sticos de&nbsp;RCF segundo o consenso Delphi:</p>\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T225939305Z520827.png\"></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Para definirmos a restri&ccedil;&atilde;o de crescimento fetal (RCF), utilizamos o percentil de peso e o relacionamos com a idade gestacional. Por&eacute;m, sabemos que essa defini&ccedil;&atilde;o &eacute; um dos maiores pontos de discord&acirc;ncia na obstetr&iacute;cia n&eacute;? Pela OMS, consideramos restrito o feto com peso estimado abaixo do percentil 3, e pela&nbsp;ACOG, o feto abaixo do percentil 10. Atualmente, o principal crit&eacute;rio utilizado s&atilde;o os do consenso Delphi (tabela completa logo abaixo), na qual podemos fazer o diagn&oacute;stico de certeza nesse caso visto que o feto est&aacute; no percentil abaixo do 3 para a idade gestacional.</p>\n<p>A restri&ccedil;&atilde;o de crescimento fetal acomete por volta de 10% das gesta&ccedil;&otilde;es, sendo uma importante causa de mortalidade perinatal, e quanto menor o percentil, maior a morbimortalidade. Vale lembrar a diferen&ccedil;a entre o pequeno constitucional e o restrito \"verdadeiro\" ou patol&oacute;gico, que geralmente est&aacute; relacionado &agrave; insufici&ecirc;ncia placent&aacute;ria. Um dos passos mais importantes &eacute; a avalia&ccedil;&atilde;o rigorosa da anatomia fetal, a fim de excluir malforma&ccedil;&otilde;es, bem como a pesquisa de sorologias maternas. A etiologia da restri&ccedil;&atilde;o de crescimento &eacute; multifatorial, incluindo desde fatores fetais, maternos e placent&aacute;rios.&nbsp;</p>\n<p>A conduta frente &agrave; restri&ccedil;&atilde;o de crescimento fetal basicamente &eacute; uma balan&ccedil;a entre qual ambiente &eacute; melhor para o fetal, fora ou dentro do &uacute;tero. Devemos sempre ponderar o risco de hip&oacute;xia e a acidemia fetal versus os riscos da prematuridade. N&atilde;o existe tratamento para a RCF, portanto devemos realizar o controle de vitalidade e o manejo do momento adequado do parto. Em fetos restritos, sempre devemos realizar o seguimento da vitalidade fetal e observar, ao longo do tempo, as altera&ccedil;&otilde;es de Doppler. A conduta do momento do parto &eacute; baseada na combina&ccedil;&atilde;o da avalia&ccedil;&atilde;o fetal perante o Doppler e perfil biof&iacute;sico fetal com cardiotocografia. Junto, aliamos a avalia&ccedil;&atilde;o da etiologia da restri&ccedil;&atilde;o, idade gestacional e capacidade da unidade de neonatologia em receber o rec&eacute;m-nascido.</p>\n<p>&nbsp;</p>\n<p><strong>Gabarito:</strong>&nbsp;Restri&ccedil;&atilde;o do crescimento fetal</p><br>Visão do aprovado: <p>Aproveita a quest&atilde;o para relembrar dos crit&eacute;rios diagn&oacute;sticos de&nbsp;RCF segundo o consenso Delphi:</p>\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T225939305Z520827.png\"></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197154,
+        "number": 9,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sofrimento fetal crônico",
+        "focus": {
+          "id": 1607,
+          "name": "Sofrimento fetal crônico"
+        }
+      },
+      "detail": {
+        "id": 197154,
+        "content": "Tercigesta, idade gestacional de 30 semanas, com diagnóstico de hipertensão arterial crônica controlada com medicação (metildopa 1.500 miligramas/dia). Sem outras doenças ou antecedentes relevantes. Ao exame clínico: altura uterina: 26 cm; boa movimentação fetal. Ao exame ecográfico obstétrico: peso fetal estimado 1270 gramas (percentil 8). Morfologia fetal sem alterações. Líquido amniótico normal. Dopplervelocimetria: índice de pulsatilidade aumentado nas artérias uterinas; normal nas artérias umbilicais; normal nas artérias cerebrais médias; relação cérebro-placentária normal. Perfil biofísico fetal: 10/10 (variáveis ecográficas e cardiotocografia normais). PERGUNTA-SE: NA AVALIAÇÃO DA VITALIDADE FETAL, QUANDO AVALIAMOS O ÍNDICE DE PULSATILIDADE DA ARTÉRIA CEREBRAL MÉDIA ESTAMOS BUSCANDO QUAL INFORMAÇÃO SOBRE A FISIOLOGIA FETAL?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 15960,
+            "parent_tag": {
+              "id": 15911,
+              "name": "Sofrimento fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sofrimento fetal crônico",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 9,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 42,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1607,
+          "name": "Sofrimento fetal crônico",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 95,
+            "name": "Sofrimento fetal",
+            "discipline": 86,
+            "old_tag": 15911,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224429,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Gabarito:</strong> Pressão parcial de oxigênio sanguínea fetal ou redistribuição/centralização de fluxo fetal.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>.A questão foca especificamente no papel da avaliação do <strong>índice de pulsatilidade (IP) da artéria cerebral média (ACM)</strong> na avaliação da vitalidade fetal. Este é um ponto fundamental na compreensão da fisiopatologia da RCIU e das adaptações fetais à hipoxemia crônica.</p>\n<p>A <span class=\"article-5533\">dopplervelocimetria</span> da ACM nos fornece informações sobre a redistribuição do fluxo sanguíneo fetal em situações de hipoxemia. Em condições normais, o IP da ACM é alto, refletindo alta resistência vascular cerebral. <span style=\"text-decoration: underline;\">Quando o feto enfrenta situações de hipoxemia, ocorre vasodilatação</span> cerebral para priorizar a perfusão do cérebro, coração e adrenais (órgãos nobres), resultando na <span style=\"text-decoration: underline;\">diminuição do IP da ACM</span>. Este fenômeno é conhecido como \"brain-sparing effect\" ou efeito de <strong>centralização de fluxo.</strong></p>\n<p> É importante correlacionar os achados: neste caso, temos uma gestante hipertensa com feto pequeno (RCIU), mas com vitalidade ainda preservada (perfil biofísico 10/10, cardiotocografia normal, doppler da ACM normal). O IP aumentado nas artérias uterinas sugere que a causa da RCIU é provavelmente placentária, relacionada à hipertensão materna.</p>\n<p>Na prática clínica, a avaliação seriada da <span class=\"article-5533\">dopplervelocimetria</span> é fundamental para o manejo dessas gestações. A detecção de centralização de fluxo (diminuição do IP da ACM) indicaria piora do quadro e poderia mudar a conduta obstétrica, antecipando o parto dependendo da idade gestacional e de outros parâmetros.</p>\n<p>Lembre-se: a <span class=\"article-5533\">dopplervelocimetria</span> da ACM também é utilizada para avaliação de anemia fetal, através da medida do pico de velocidade sistólica, parâmetro diferente do IP que estamos discutindo aqui. Não confunda esses dois usos distintos da avaliação da ACM!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Gabarito:</strong> Pressão parcial de oxigênio sanguínea fetal ou redistribuição/centralização de fluxo fetal.</p><br>Visão do aprovado: <p>.A questão foca especificamente no papel da avaliação do <strong>índice de pulsatilidade (IP) da artéria cerebral média (ACM)</strong> na avaliação da vitalidade fetal. Este é um ponto fundamental na compreensão da fisiopatologia da RCIU e das adaptações fetais à hipoxemia crônica.</p>\n<p>A <span class=\"article-5533\">dopplervelocimetria</span> da ACM nos fornece informações sobre a redistribuição do fluxo sanguíneo fetal em situações de hipoxemia. Em condições normais, o IP da ACM é alto, refletindo alta resistência vascular cerebral. <span style=\"text-decoration: underline;\">Quando o feto enfrenta situações de hipoxemia, ocorre vasodilatação</span> cerebral para priorizar a perfusão do cérebro, coração e adrenais (órgãos nobres), resultando na <span style=\"text-decoration: underline;\">diminuição do IP da ACM</span>. Este fenômeno é conhecido como \"brain-sparing effect\" ou efeito de <strong>centralização de fluxo.</strong></p>\n<p> É importante correlacionar os achados: neste caso, temos uma gestante hipertensa com feto pequeno (RCIU), mas com vitalidade ainda preservada (perfil biofísico 10/10, cardiotocografia normal, doppler da ACM normal). O IP aumentado nas artérias uterinas sugere que a causa da RCIU é provavelmente placentária, relacionada à hipertensão materna.</p>\n<p>Na prática clínica, a avaliação seriada da <span class=\"article-5533\">dopplervelocimetria</span> é fundamental para o manejo dessas gestações. A detecção de centralização de fluxo (diminuição do IP da ACM) indicaria piora do quadro e poderia mudar a conduta obstétrica, antecipando o parto dependendo da idade gestacional e de outros parâmetros.</p>\n<p>Lembre-se: a <span class=\"article-5533\">dopplervelocimetria</span> da ACM também é utilizada para avaliação de anemia fetal, através da medida do pico de velocidade sistólica, parâmetro diferente do IP que estamos discutindo aqui. Não confunda esses dois usos distintos da avaliação da ACM!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T16:35:48.547986+00:00",
+  "complete": true
+}

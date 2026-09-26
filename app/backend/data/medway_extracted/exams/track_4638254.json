@@ -1,0 +1,475 @@
+{
+  "track_id": 4638254,
+  "name": "UERJ - RJ-2022-Discursiva",
+  "year": 2022,
+  "track_fast": {
+    "id": 4638254,
+    "name": "UERJ - RJ-2022-Discursiva",
+    "track_type": "c",
+    "question_count": 4,
+    "year": 2022,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UERJ",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-uerj_uKE5Nhw.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 4,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 4,
+  "questions": [
+    {
+      "meta": {
+        "id": 333106,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "l",
+        "question_ai_update": null,
+        "focus_name": "Doenças benignas do ovário",
+        "focus": {
+          "id": 1624,
+          "name": "Doenças benignas do ovário"
+        }
+      },
+      "detail": {
+        "id": 333106,
+        "content": "Menina de 9 anos foi levada à emergência com quadro de dor abdominal em fossa ilíaca direita, que iniciou há cinco dias, com episódios intermitentes que passaram a constantes há dois dias. Associada a dor, a criança apresentava náuseas, vômitos e febre. A ultrassonografia pélvica evidenciou ovário aumentado de volume com fluxo arterial ausente. O ginecologista indicou abordagem laparoscópica imediata, por ser um quadro de abdômen agudo. No ato operatório, o ovário direito encontrava-se semitorcido, aumentado de volume, edemaciado, sem cistos ou massas em seu interior. Com base nesse caso, descreva o procedimento que pode ser feito, visando prevenir nova torção.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 15942,
+            "parent_tag": {
+              "id": 15903,
+              "name": "Oncologia pélvica",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Doenças benignas do ovário",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1624,
+          "name": "Doenças benignas do ovário",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 103,
+            "name": "Oncologia pélvica",
+            "discipline": 86,
+            "old_tag": 15903,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443151,
+        "actual_explanation": true,
+        "introduction": "<p>Quando o ovário torcido não apresenta cistos ou massas em seu interior, como nesta menina de 9 anos, enfrentamos uma situação particular: a ausência de lesão estrutural subjacente significa que o ovário tem maior mobilidade e, portanto, maior risco de torcer novamente após a destorção. Essa é a grande pista que a questão nos dá e que justifica a necessidade de um procedimento preventivo específico.</p>\n\n<p>Vamos primeiro entender o contexto clínico: temos um quadro típico de torção anexial — dor em fossa ilíaca direita que evolui de intermitente para constante, acompanhada de náuseas, vômitos e febre. A ultrassonografia já nos mostra o comprometimento vascular com ausência de fluxo arterial, o que reforça a urgência cirúrgica. No intraoperatório, confirmamos a torção, mas aqui está o ponto crucial: <strong>não há cisto, não há tumor, não há nenhuma lesão estrutural</strong>. Em crianças, isso é relativamente comum — o ovário pode torcer espontaneamente devido à sua mobilidade aumentada.</p>\n\n<p>A questão pede especificamente o procedimento preventivo para nova torção. Aqui muitos candidatos erram por não conhecerem o nome técnico ou por descreverem de forma vaga. A abordagem correta começa com a <strong>destorção do ovário</strong> e avaliação de sua viabilidade — em crianças, devemos sempre tentar preservar o ovário, mesmo que ele pareça comprometido inicialmente, pois há boa capacidade de recuperação. A ooforectomia só seria considerada se houvesse necrose irreversível completa.</p>\n\n<p>O procedimento preventivo que devemos descrever é a <strong>ooforopexia</strong>, que consiste na fixação cirúrgica do ovário para reduzir sua mobilidade e, consequentemente, o risco de nova torção. Esse é o termo técnico que a banca espera e que deve aparecer na resposta. A fixação é feita utilizando <strong>fio inabsorvível</strong> — esse detalhe é importante porque queremos uma fixação permanente, não temporária.</p>\n\n<p>Quanto à técnica propriamente dita, o espelho de resposta aceita duas opções. A primeira consiste em fixar a <strong>extremidade ovariana próxima ao ligamento útero-ovariano na face posterior do ligamento largo</strong>. Essa técnica ancora o ovário em uma estrutura anatômica próxima e estável. A segunda opção envolve fixar as <strong>extremidades ovarianas dos ligamentos útero-ovariano e infundibular com duas suturas distintas na parede pélvica</strong>. Essa técnica usa dois pontos de fixação para garantir estabilidade. Ambas as abordagens são aceitas e efetivas.</p>\n\n<p>Um erro comum é descrever a técnica de forma muito genérica, como \"fixar o ovário na pelve\" ou \"fazer uma sutura no ovário\". A banca espera especificidade anatômica: quais estruturas estão sendo fixadas e onde. Outro erro é esquecer de mencionar o tipo de fio — o fio inabsorvível é essencial para garantir fixação permanente. Lembrem-se também de que a ooforopexia é indicada justamente porque <strong>não há cisto a ser removido</strong> — se houvesse, a cistectomia poderia por si só reduzir o risco de recorrência ao diminuir o volume ovariano.</p>\n\n<p>Portanto, para responder adequadamente, precisamos mencionar: o nome do procedimento (ooforopexia), o conceito (fixação do ovário), o material utilizado (fio inabsorvível) e descrever pelo menos uma das técnicas de fixação com seus pontos de referência anatômicos. Essa estrutura garante que cobrimos todos os critérios que a banca espera e demonstra compreensão real do procedimento, não apenas conhecimento superficial.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p><strong>Visão do aprovado</strong></p>\n\n<p>O gatilho para pensarmos em ooforopexia nesta questão é justamente o que o enunciado destaca no achado intraoperatório: ovário sem cistos ou massas. Quando não há lesão estrutural a ser removida, o ovário mantém sua mobilidade excessiva após a destorção, e é esse cenário que justifica a fixação preventiva. Em crianças e adolescentes, essa situação é ainda mais relevante porque a torção pode ocorrer espontaneamente em ovários normais e porque devemos priorizar a preservação ovariana sempre que possível, mesmo diante de aspecto comprometido inicial.</p>\n\n<p>A grande armadilha em questões discursivas sobre ooforopexia é o nível de especificidade exigido. Respostas genéricas como \"fixar o ovário\" ou \"suturar na parede pélvica\" não pontuam integralmente porque a banca espera nomenclatura técnica precisa e referências anatômicas claras. Precisamos nomear o procedimento (ooforopexia), especificar o material (fio inabsorvível) e descrever a técnica com as estruturas anatômicas envolvidas: <em>ligamento útero-ovariano</em>, <em>ligamento infundibular</em>, <em>face posterior do ligamento largo</em> ou <em>parede pélvica</em>. Esse detalhamento diferencia quem realmente conhece o procedimento de quem tem apenas noção superficial.</p>\n\n<p>Outro ponto que diferencia a conduta aqui é a faixa etária. Em adultas, especialmente após a prole constituída, podemos considerar ooforectomia mais liberalmente diante de necrose extensa. Já em crianças, a máxima é preservar o ovário sempre que houver qualquer chance de viabilidade, porque a recuperação tecidual pode surpreender e porque estamos lidando com toda a vida reprodutiva futura dessa paciente. A destorção seguida de ooforopexia representa exatamente essa filosofia de máxima preservação associada à prevenção de recorrência.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Quando o ovário torcido não apresenta cistos ou massas em seu interior, como nesta menina de 9 anos, enfrentamos uma situação particular: a ausência de lesão estrutural subjacente significa que o ovário tem maior mobilidade e, portanto, maior risco de torcer novamente após a destorção. Essa é a grande pista que a questão nos dá e que justifica a necessidade de um procedimento preventivo específico.</p>\n\n<p>Vamos primeiro entender o contexto clínico: temos um quadro típico de torção anexial — dor em fossa ilíaca direita que evolui de intermitente para constante, acompanhada de náuseas, vômitos e febre. A ultrassonografia já nos mostra o comprometimento vascular com ausência de fluxo arterial, o que reforça a urgência cirúrgica. No intraoperatório, confirmamos a torção, mas aqui está o ponto crucial: <strong>não há cisto, não há tumor, não há nenhuma lesão estrutural</strong>. Em crianças, isso é relativamente comum — o ovário pode torcer espontaneamente devido à sua mobilidade aumentada.</p>\n\n<p>A questão pede especificamente o procedimento preventivo para nova torção. Aqui muitos candidatos erram por não conhecerem o nome técnico ou por descreverem de forma vaga. A abordagem correta começa com a <strong>destorção do ovário</strong> e avaliação de sua viabilidade — em crianças, devemos sempre tentar preservar o ovário, mesmo que ele pareça comprometido inicialmente, pois há boa capacidade de recuperação. A ooforectomia só seria considerada se houvesse necrose irreversível completa.</p>\n\n<p>O procedimento preventivo que devemos descrever é a <strong>ooforopexia</strong>, que consiste na fixação cirúrgica do ovário para reduzir sua mobilidade e, consequentemente, o risco de nova torção. Esse é o termo técnico que a banca espera e que deve aparecer na resposta. A fixação é feita utilizando <strong>fio inabsorvível</strong> — esse detalhe é importante porque queremos uma fixação permanente, não temporária.</p>\n\n<p>Quanto à técnica propriamente dita, o espelho de resposta aceita duas opções. A primeira consiste em fixar a <strong>extremidade ovariana próxima ao ligamento útero-ovariano na face posterior do ligamento largo</strong>. Essa técnica ancora o ovário em uma estrutura anatômica próxima e estável. A segunda opção envolve fixar as <strong>extremidades ovarianas dos ligamentos útero-ovariano e infundibular com duas suturas distintas na parede pélvica</strong>. Essa técnica usa dois pontos de fixação para garantir estabilidade. Ambas as abordagens são aceitas e efetivas.</p>\n\n<p>Um erro comum é descrever a técnica de forma muito genérica, como \"fixar o ovário na pelve\" ou \"fazer uma sutura no ovário\". A banca espera especificidade anatômica: quais estruturas estão sendo fixadas e onde. Outro erro é esquecer de mencionar o tipo de fio — o fio inabsorvível é essencial para garantir fixação permanente. Lembrem-se também de que a ooforopexia é indicada justamente porque <strong>não há cisto a ser removido</strong> — se houvesse, a cistectomia poderia por si só reduzir o risco de recorrência ao diminuir o volume ovariano.</p>\n\n<p>Portanto, para responder adequadamente, precisamos mencionar: o nome do procedimento (ooforopexia), o conceito (fixação do ovário), o material utilizado (fio inabsorvível) e descrever pelo menos uma das técnicas de fixação com seus pontos de referência anatômicos. Essa estrutura garante que cobrimos todos os critérios que a banca espera e demonstra compreensão real do procedimento, não apenas conhecimento superficial.</p><br>Visão do aprovado: <p><strong>Visão do aprovado</strong></p>\n\n<p>O gatilho para pensarmos em ooforopexia nesta questão é justamente o que o enunciado destaca no achado intraoperatório: ovário sem cistos ou massas. Quando não há lesão estrutural a ser removida, o ovário mantém sua mobilidade excessiva após a destorção, e é esse cenário que justifica a fixação preventiva. Em crianças e adolescentes, essa situação é ainda mais relevante porque a torção pode ocorrer espontaneamente em ovários normais e porque devemos priorizar a preservação ovariana sempre que possível, mesmo diante de aspecto comprometido inicial.</p>\n\n<p>A grande armadilha em questões discursivas sobre ooforopexia é o nível de especificidade exigido. Respostas genéricas como \"fixar o ovário\" ou \"suturar na parede pélvica\" não pontuam integralmente porque a banca espera nomenclatura técnica precisa e referências anatômicas claras. Precisamos nomear o procedimento (ooforopexia), especificar o material (fio inabsorvível) e descrever a técnica com as estruturas anatômicas envolvidas: <em>ligamento útero-ovariano</em>, <em>ligamento infundibular</em>, <em>face posterior do ligamento largo</em> ou <em>parede pélvica</em>. Esse detalhamento diferencia quem realmente conhece o procedimento de quem tem apenas noção superficial.</p>\n\n<p>Outro ponto que diferencia a conduta aqui é a faixa etária. Em adultas, especialmente após a prole constituída, podemos considerar ooforectomia mais liberalmente diante de necrose extensa. Já em crianças, a máxima é preservar o ovário sempre que houver qualquer chance de viabilidade, porque a recuperação tecidual pode surpreender e porque estamos lidando com toda a vida reprodutiva futura dessa paciente. A destorção seguida de ooforopexia representa exatamente essa filosofia de máxima preservação associada à prevenção de recorrência.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333107,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Miomatose uterina",
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina"
+        }
+      },
+      "detail": {
+        "id": 333107,
+        "content": "Mulher de 32 anos, nuligesta, com sangramento uterino anormal há oito meses, queixa-se de tonteira e cansaço. Refere ter miomatose uterina e que já fez inúmeras medicações hormonais para tentar controlar o sangramento, sem sucesso. Apresenta ressonância nuclear magnética da pelve que evidencia útero volumoso de 380cm3 , com múltiplos miomas uterinos, estando o maior localizado em parede posterior de 8cm, que distorce a cavidade uterina. Hemograma evidencia hemoglobina de 7,1g/dL. De acordo com esse caso, elabore um plano de intervenção cirúrgica.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 15986,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Miomatose uterina",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443153,
+        "actual_explanation": true,
+        "introduction": "<p>Miomatose uterina sintomática refratária ao tratamento clínico em uma mulher de 32 anos que nunca engravidou exige um planejamento cirúrgico meticuloso que contemple três pilares fundamentais: preparo pré-operatório adequado, cirurgia conservadora e técnicas específicas para minimizar complicações. Vamos construir esse plano de forma organizada, entendendo o raciocínio por trás de cada decisão.</p>\n\n<p>O primeiro ponto crítico que salta aos olhos é o perfil da paciente: ela é <strong>nuligesta</strong>, ou seja, nunca engravidou. Isso significa que temos uma mulher em plena idade reprodutiva com potencial desejo de gestação futura. Esse dado sozinho já define qual será nossa cirurgia: <strong>miomectomia</strong>, e não histerectomia. A miomectomia é a cirurgia conservadora que remove os miomas preservando o útero, mantendo a possibilidade reprodutiva. Indicar histerectomia neste caso seria um erro grave que muitos candidatos cometem ao focarem apenas na eficácia do tratamento do sangramento sem considerar o contexto da paciente.</p>\n\n<p>Agora vem a segunda questão crucial: essa paciente está com <strong>hemoglobina de 7,1g/dL</strong>, caracterizando anemia moderada a grave. Além disso, temos um útero volumoso de 380cm³ com múltiplos miomas, sendo o maior com 8cm. Isso nos alerta para um risco cirúrgico significativo de sangramento intraoperatório. Não podemos simplesmente levá-la para a sala cirúrgica sem preparo adequado - seria temerário.</p>\n\n<p>O preparo pré-operatório ideal envolve o uso de <strong>análogos agonistas de GnRH por 2 a 3 meses</strong> antes da cirurgia. Mas por quê exatamente? Aqui precisamos explicar o triplo benefício dessa medicação: primeiro, ela suprime a produção hormonal ovariana, levando a um estado hipoestrogênico que reduz o sangramento uterino, permitindo que a paciente melhore seus níveis hematimétricos. Segundo, essa supressão hormonal causa redução do volume uterino e dos próprios miomas (geralmente 30-50% de redução), facilitando o ato cirúrgico. Terceiro, há diminuição da vascularização uterina, o que se traduz em menor sangramento intraoperatório. São três objetivos alcançados com uma única intervenção. Vale mencionar que durante esse período também podemos fazer reposição de ferro para otimizar a recuperação da anemia.</p>\n\n<p>Chegamos agora ao momento cirúrgico propriamente dito. Durante o intraoperatório, nossa maior preocupação é o controle do sangramento, especialmente considerando que temos múltiplos miomas em um útero volumoso. O gabarito espera que conheçamos as principais <strong>técnicas de hemostasia</strong> utilizadas na miomectomia. Podemos usar <strong>vasopressina intramiometrial</strong>, que é um potente vasoconstritor aplicado diretamente no miométrio antes das incisões. O <strong>misoprostol vaginal</strong> pode ser administrado antes ou durante o procedimento para promover contração uterina. Técnicas mecânicas incluem o <strong>garroteamento cervical</strong> (tipo torniquete temporário) e a <strong>oclusão temporária ou permanente das artérias uterinas ou ligamentos útero-ovarianos</strong>, que interrompem o fluxo sanguíneo para o útero durante o procedimento. Hemostáticos locais também podem ser aplicados. A banca espera que citemos pelo menos algumas dessas opções.</p>\n\n<p>Quanto à via de acesso, precisamos mencionar as possibilidades: <strong>miomectomia laparotômica</strong> (cirurgia aberta) ou <strong>laparoscópica roboticamente assistida</strong>. A escolha depende de vários fatores: tamanho e número de miomas, localização, experiência do cirurgião e recursos disponíveis. Neste caso específico, com útero volumoso (380cm³) e múltiplos miomas, muitos serviços optariam pela via aberta, mas a via minimamente invasiva é uma opção válida em mãos experientes.</p>\n\n<p>Aspectos técnicos importantes durante a cirurgia incluem <strong>evitar o uso excessivo de energia</strong> (bisturi elétrico, por exemplo), pois isso pode causar necrose térmica e comprometer a cicatrização uterina, aumentando risco de ruptura em gestação futura. A <strong>sutura deve ser realizada em planos</strong>, reconstruindo adequadamente a parede uterina para garantir resistência adequada. Se optarmos pela via laparoscópica, a retirada dos miomas da cavidade abdominal deve ser feita por <strong>morcelamento protegido em sacos protetores</strong>, nunca morcelamento livre na cavidade, devido ao risco de disseminação de tecido que poderia conter malignidade (leiomiossarcoma, embora raro) ou causar leiomiomatose peritoneal.</p>\n\n<p>Um erro comum é elaborar um plano superficial que menciona apenas \"fazer miomectomia\" sem detalhar o preparo, as técnicas de hemostasia e os cuidados específicos. A banca quer ver que você entende todo o processo: o pré-operatório estratégico para otimizar condições (análogo de GnRH), o arsenal de técnicas para controlar sangramento (vasopressina, misoprostol, garroteamento, oclusão vascular, hemostáticos), a escolha consciente da via de acesso, os cuidados técnicos intraoperatórios (energia controlada, sutura em planos) e, se aplicável, o morcelamento protegido. Outro erro frequente é sugerir histerectomia por ser \"mais definitivo\" - isso ignora completamente o contexto da paciente nuligesta.</p>\n\n<p>Portanto, nossa resposta completa deve estruturar: <strong>1) Preparo pré-operatório</strong> com análogo de GnRH por 2-3 meses visando melhora da anemia, redução do volume tumoral e diminuição do sangramento; <strong>2) Cirurgia de escolha</strong>: miomectomia (laparotômica ou laparoscópica/robótica); <strong>3) Técnicas intraoperatórias de hemostasia</strong>: vasopressina intramiometrial, misoprostol vaginal, garroteamento cervical, oclusão de artérias uterinas/ligamentos útero-ovarianos, hemostáticos; <strong>4) Cuidados técnicos</strong>: evitar energia excessiva, sutura em planos, morcelamento protegido se via laparoscópica. Contemplando esses elementos, demonstramos conhecimento abrangente do manejo cirúrgico da miomatose em paciente com desejo reprodutivo.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h3>Visão do aprovado</h3>\n\n<p>Em questões discursivas de ginecologia, especialmente as que pedem \"plano de intervenção\", a banca não espera apenas que você liste o que fazer, mas que demonstre raciocínio estruturado em fases: preparo, execução e técnica. A armadilha mortal aqui é fixar-se na miomatose volumosa e sintomática refratária e esquecer que temos uma <em>nuligesta</em> de 32 anos - candidatos que propõem histerectomia simplesmente por ser \"mais eficaz\" mostram que não sabem adequar a conduta ao contexto da paciente. Esse é o tipo de erro que zera a questão antes mesmo de você desenvolver o restante.</p>\n\n<p>A estrutura vencedora passa obrigatoriamente pelo preparo pré-operatório com <strong>análogo de GnRH</strong>, e aqui vem uma pegadinha sutil: não basta citar a medicação, é preciso mostrar que você entende o triplo objetivo (recuperação hematimétrica, redução tumoral e diminuição da vascularização) e o timing de dois a três meses, que não é arbitrário. Respostas que pulam direto para \"fazer miomectomia\" ignoram que uma paciente com hemoglobina de 7,1g/dL e útero de 380cm³ representa risco cirúrgico elevado sem otimização prévia. Esse preparo não é opcional, é mandatório.</p>\n\n<p>No momento intraoperatório, a banca espera que você demonstre conhecer um arsenal de técnicas hemostáticas, não apenas uma ou duas:</p>\n<ul>\n<li><strong>Vasopressina intramiometrial</strong></li>\n<li><strong>Misoprostol vaginal</strong></li>\n<li><strong>Garroteamento cervical</strong></li>\n<li><strong>Oclusão vascular</strong></li>\n<li><strong>Hemostáticos locais</strong></li>\n</ul>\n\n<p>Outro ponto crítico que diferencia respostas medianas de excelentes: se você mencionar via laparoscópica, precisa obrigatoriamente falar em <strong>morcelamento protegido em sacos</strong>; mencionar apenas \"morcelamento\" ou, pior, não mencionar nada sobre a retirada dos miomas mostra desatualização quanto aos riscos de disseminação. A <strong>sutura em planos</strong> também não pode ser omitida, pois impacta diretamente a segurança de uma gestação futura, que é o motivo central de estarmos preservando o útero.</p>\n\n<p>Em provas discursivas deste tipo, respostas organizadas em blocos lógicos e que justificam as escolhas costumam pontuar significativamente mais do que respostas tecnicamente corretas mas apresentadas de forma caótica ou lacunar. A completude aqui significa contemplar os três tempos sem deixar lacunas: nada de pular o preparo hormonal, nada de esquecer as técnicas hemostáticas, nada de omitir os cuidados técnicos específicos que tornam a miomectomia segura para preservação da fertilidade.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Miomatose uterina sintomática refratária ao tratamento clínico em uma mulher de 32 anos que nunca engravidou exige um planejamento cirúrgico meticuloso que contemple três pilares fundamentais: preparo pré-operatório adequado, cirurgia conservadora e técnicas específicas para minimizar complicações. Vamos construir esse plano de forma organizada, entendendo o raciocínio por trás de cada decisão.</p>\n\n<p>O primeiro ponto crítico que salta aos olhos é o perfil da paciente: ela é <strong>nuligesta</strong>, ou seja, nunca engravidou. Isso significa que temos uma mulher em plena idade reprodutiva com potencial desejo de gestação futura. Esse dado sozinho já define qual será nossa cirurgia: <strong>miomectomia</strong>, e não histerectomia. A miomectomia é a cirurgia conservadora que remove os miomas preservando o útero, mantendo a possibilidade reprodutiva. Indicar histerectomia neste caso seria um erro grave que muitos candidatos cometem ao focarem apenas na eficácia do tratamento do sangramento sem considerar o contexto da paciente.</p>\n\n<p>Agora vem a segunda questão crucial: essa paciente está com <strong>hemoglobina de 7,1g/dL</strong>, caracterizando anemia moderada a grave. Além disso, temos um útero volumoso de 380cm³ com múltiplos miomas, sendo o maior com 8cm. Isso nos alerta para um risco cirúrgico significativo de sangramento intraoperatório. Não podemos simplesmente levá-la para a sala cirúrgica sem preparo adequado - seria temerário.</p>\n\n<p>O preparo pré-operatório ideal envolve o uso de <strong>análogos agonistas de GnRH por 2 a 3 meses</strong> antes da cirurgia. Mas por quê exatamente? Aqui precisamos explicar o triplo benefício dessa medicação: primeiro, ela suprime a produção hormonal ovariana, levando a um estado hipoestrogênico que reduz o sangramento uterino, permitindo que a paciente melhore seus níveis hematimétricos. Segundo, essa supressão hormonal causa redução do volume uterino e dos próprios miomas (geralmente 30-50% de redução), facilitando o ato cirúrgico. Terceiro, há diminuição da vascularização uterina, o que se traduz em menor sangramento intraoperatório. São três objetivos alcançados com uma única intervenção. Vale mencionar que durante esse período também podemos fazer reposição de ferro para otimizar a recuperação da anemia.</p>\n\n<p>Chegamos agora ao momento cirúrgico propriamente dito. Durante o intraoperatório, nossa maior preocupação é o controle do sangramento, especialmente considerando que temos múltiplos miomas em um útero volumoso. O gabarito espera que conheçamos as principais <strong>técnicas de hemostasia</strong> utilizadas na miomectomia. Podemos usar <strong>vasopressina intramiometrial</strong>, que é um potente vasoconstritor aplicado diretamente no miométrio antes das incisões. O <strong>misoprostol vaginal</strong> pode ser administrado antes ou durante o procedimento para promover contração uterina. Técnicas mecânicas incluem o <strong>garroteamento cervical</strong> (tipo torniquete temporário) e a <strong>oclusão temporária ou permanente das artérias uterinas ou ligamentos útero-ovarianos</strong>, que interrompem o fluxo sanguíneo para o útero durante o procedimento. Hemostáticos locais também podem ser aplicados. A banca espera que citemos pelo menos algumas dessas opções.</p>\n\n<p>Quanto à via de acesso, precisamos mencionar as possibilidades: <strong>miomectomia laparotômica</strong> (cirurgia aberta) ou <strong>laparoscópica roboticamente assistida</strong>. A escolha depende de vários fatores: tamanho e número de miomas, localização, experiência do cirurgião e recursos disponíveis. Neste caso específico, com útero volumoso (380cm³) e múltiplos miomas, muitos serviços optariam pela via aberta, mas a via minimamente invasiva é uma opção válida em mãos experientes.</p>\n\n<p>Aspectos técnicos importantes durante a cirurgia incluem <strong>evitar o uso excessivo de energia</strong> (bisturi elétrico, por exemplo), pois isso pode causar necrose térmica e comprometer a cicatrização uterina, aumentando risco de ruptura em gestação futura. A <strong>sutura deve ser realizada em planos</strong>, reconstruindo adequadamente a parede uterina para garantir resistência adequada. Se optarmos pela via laparoscópica, a retirada dos miomas da cavidade abdominal deve ser feita por <strong>morcelamento protegido em sacos protetores</strong>, nunca morcelamento livre na cavidade, devido ao risco de disseminação de tecido que poderia conter malignidade (leiomiossarcoma, embora raro) ou causar leiomiomatose peritoneal.</p>\n\n<p>Um erro comum é elaborar um plano superficial que menciona apenas \"fazer miomectomia\" sem detalhar o preparo, as técnicas de hemostasia e os cuidados específicos. A banca quer ver que você entende todo o processo: o pré-operatório estratégico para otimizar condições (análogo de GnRH), o arsenal de técnicas para controlar sangramento (vasopressina, misoprostol, garroteamento, oclusão vascular, hemostáticos), a escolha consciente da via de acesso, os cuidados técnicos intraoperatórios (energia controlada, sutura em planos) e, se aplicável, o morcelamento protegido. Outro erro frequente é sugerir histerectomia por ser \"mais definitivo\" - isso ignora completamente o contexto da paciente nuligesta.</p>\n\n<p>Portanto, nossa resposta completa deve estruturar: <strong>1) Preparo pré-operatório</strong> com análogo de GnRH por 2-3 meses visando melhora da anemia, redução do volume tumoral e diminuição do sangramento; <strong>2) Cirurgia de escolha</strong>: miomectomia (laparotômica ou laparoscópica/robótica); <strong>3) Técnicas intraoperatórias de hemostasia</strong>: vasopressina intramiometrial, misoprostol vaginal, garroteamento cervical, oclusão de artérias uterinas/ligamentos útero-ovarianos, hemostáticos; <strong>4) Cuidados técnicos</strong>: evitar energia excessiva, sutura em planos, morcelamento protegido se via laparoscópica. Contemplando esses elementos, demonstramos conhecimento abrangente do manejo cirúrgico da miomatose em paciente com desejo reprodutivo.</p><br>Visão do aprovado: <h3>Visão do aprovado</h3>\n\n<p>Em questões discursivas de ginecologia, especialmente as que pedem \"plano de intervenção\", a banca não espera apenas que você liste o que fazer, mas que demonstre raciocínio estruturado em fases: preparo, execução e técnica. A armadilha mortal aqui é fixar-se na miomatose volumosa e sintomática refratária e esquecer que temos uma <em>nuligesta</em> de 32 anos - candidatos que propõem histerectomia simplesmente por ser \"mais eficaz\" mostram que não sabem adequar a conduta ao contexto da paciente. Esse é o tipo de erro que zera a questão antes mesmo de você desenvolver o restante.</p>\n\n<p>A estrutura vencedora passa obrigatoriamente pelo preparo pré-operatório com <strong>análogo de GnRH</strong>, e aqui vem uma pegadinha sutil: não basta citar a medicação, é preciso mostrar que você entende o triplo objetivo (recuperação hematimétrica, redução tumoral e diminuição da vascularização) e o timing de dois a três meses, que não é arbitrário. Respostas que pulam direto para \"fazer miomectomia\" ignoram que uma paciente com hemoglobina de 7,1g/dL e útero de 380cm³ representa risco cirúrgico elevado sem otimização prévia. Esse preparo não é opcional, é mandatório.</p>\n\n<p>No momento intraoperatório, a banca espera que você demonstre conhecer um arsenal de técnicas hemostáticas, não apenas uma ou duas:</p>\n<ul>\n<li><strong>Vasopressina intramiometrial</strong></li>\n<li><strong>Misoprostol vaginal</strong></li>\n<li><strong>Garroteamento cervical</strong></li>\n<li><strong>Oclusão vascular</strong></li>\n<li><strong>Hemostáticos locais</strong></li>\n</ul>\n\n<p>Outro ponto crítico que diferencia respostas medianas de excelentes: se você mencionar via laparoscópica, precisa obrigatoriamente falar em <strong>morcelamento protegido em sacos</strong>; mencionar apenas \"morcelamento\" ou, pior, não mencionar nada sobre a retirada dos miomas mostra desatualização quanto aos riscos de disseminação. A <strong>sutura em planos</strong> também não pode ser omitida, pois impacta diretamente a segurança de uma gestação futura, que é o motivo central de estarmos preservando o útero.</p>\n\n<p>Em provas discursivas deste tipo, respostas organizadas em blocos lógicos e que justificam as escolhas costumam pontuar significativamente mais do que respostas tecnicamente corretas mas apresentadas de forma caótica ou lacunar. A completude aqui significa contemplar os três tempos sem deixar lacunas: nada de pular o preparo hormonal, nada de esquecer as técnicas hemostáticas, nada de omitir os cuidados técnicos específicos que tornam a miomectomia segura para preservação da fertilidade.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333108,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "m",
+        "question_ai_update": null,
+        "focus_name": "Malformações genitais",
+        "focus": {
+          "id": 1584,
+          "name": "Malformações genitais"
+        }
+      },
+      "detail": {
+        "id": 333108,
+        "content": "Mulher de 31 anos, G3P0A3, realiza investigação para abortamento de repetição. Exames de trombofilia normais; cariótipo dela 46XX, cariótipo do parceiro 46XY; histeroscopia evidencia septo uterino estendendo-se à região ístmica. Ressonância magnética sem sinais de endometriose ou adenomiose. Com base nesse caso, defina a conduta adequada e justifique.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 15983,
+            "parent_tag": {
+              "id": 15912,
+              "name": "Ginecologia endócrina",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Malformações genitais",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1584,
+          "name": "Malformações genitais",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 94,
+            "name": "Ginecologia endócrina",
+            "discipline": 86,
+            "old_tag": 15912,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443150,
+        "actual_explanation": true,
+        "introduction": "<p>Três abortamentos consecutivos numa mulher jovem representam um desafio diagnóstico que exige investigação sistematizada em busca de causas tratáveis. Neste caso, a paciente já realizou uma propedêutica completa para abortamento de repetição, e precisamos analisar esses resultados para definir nossa conduta.</p>\n\n<p>Vamos organizar o que sabemos: temos uma mulher de 31 anos, G3P0A3, ou seja, três gestações que resultaram em três abortamentos, sem nenhum nascido vivo. A investigação foi bastante abrangente e seguiu o protocolo esperado. Os <strong>exames de trombofilia vieram normais</strong>, descartando causas hematológicas como síndrome antifosfolípide e trombofilias hereditárias. Os <strong>cariótipos do casal estão normais</strong> (46XX e 46XY), excluindo translocações cromossômicas balanceadas como causa. A ressonância magnética não mostrou endometriose ou adenomiose. Mas há um achado fundamental: a <strong>histeroscopia evidenciou septo uterino estendendo-se até a região ístmica</strong>.</p>\n\n<p>Esse é o ponto-chave do raciocínio. De todos os exames realizados, apenas a histeroscopia trouxe uma alteração, e essa alteração tem relação direta e bem estabelecida com abortamento de repetição. O septo uterino é a malformação uterina mais comum e está fortemente associado a perdas gestacionais porque o tecido septal tem vascularização deficiente. Quando o embrião se implanta no septo, não recebe aporte sanguíneo adequado e a gestação evolui para abortamento. Além disso, o septo pode dificultar a expansão normal da cavidade uterina durante a gravidez.</p>\n\n<p>Nossa conduta, portanto, fica clara: devemos <strong>indicar a correção cirúrgica desse septo</strong>, procedimento chamado de <strong>septoplastia</strong> ou <strong>metroplastia</strong> (ambos os termos são aceitos e sinônimos). A septoplastia hoje é realizada preferencialmente por via histeroscópica, sendo um procedimento minimamente invasivo, seguro e com bons resultados. A justificativa para essa indicação cirúrgica é direta: o septo uterino é a <strong>única anormalidade identificada</strong> em toda a investigação, e representa uma causa <strong>tratável e corrigível</strong> de abortamento de repetição.</p>\n\n<p>Um ponto importante que a banca espera na resposta é a menção ao prognóstico. Após a septoplastia, o prognóstico reprodutivo dessa paciente melhora significativamente, com estudos mostrando que a <strong>taxa de nascido vivo atinge cerca de 85%</strong> nas gestações subsequentes. Isso é fundamental para o aconselhamento da paciente e demonstra que estamos oferecendo uma solução efetiva para o problema dela.</p>\n\n<p>Para responder adequadamente à questão, precisamos deixar claro: a conduta é <strong>septoplastia (ou metroplastia)</strong>, justificada pelo fato de que a histeroscopia evidenciou septo uterino como único exame alterado na investigação, e essa correção cirúrgica melhora o prognóstico das próximas gestações, elevando a taxa de nascido vivo para aproximadamente 85%. Cuidado com respostas vagas ou que apenas digam \"operar o septo\" sem nomear o procedimento e sem mencionar o prognóstico – a banca espera esses elementos específicos.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h2>Visão do aprovado</h2>\n\n<p>A grande pegadinha em questões discursivas sobre abortamento de repetição está na completude da resposta. Não basta dizer \"operar\" ou \"corrigir o septo\" - precisamos nomear o procedimento (<strong>septoplastia ou metroplastia</strong>) e, quando a questão pede justificativa, incluir o prognóstico numérico (<strong>taxa de nascido vivo de 85%</strong>). Respostas genéricas perdem pontos valiosos mesmo estando \"no caminho certo\". Outro erro comum é propor conduta expectante ou tentar tratamento clínico para uma causa anatômica corrigível, desperdiçando a chance de resolver definitivamente o problema da paciente.</p>\n\n<p>Em provas, devemos ter atenção ao padrão de investigação completa antes de indicar cirurgia. A banca frequentemente testa se o candidato sabe que a septoplastia só deve ser indicada após documentar os abortamentos de repetição e excluir outras causas tratáveis (daí a importância de citar que <strong>\"o septo é a única alteração encontrada\"</strong>). Questões discursivas costumam exigir essa linha de raciocínio explícita, não apenas a conduta isolada. Vale lembrar que o <em>útero septado</em> pode ser confundido com <em>útero bicorno</em> ao ultrassom, mas a ressonância ou histeroscopia definem o diagnóstico - e apenas o septo tem indicação cirúrgica para abortamento de repetição, enquanto o bicorno geralmente é apenas observado.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Três abortamentos consecutivos numa mulher jovem representam um desafio diagnóstico que exige investigação sistematizada em busca de causas tratáveis. Neste caso, a paciente já realizou uma propedêutica completa para abortamento de repetição, e precisamos analisar esses resultados para definir nossa conduta.</p>\n\n<p>Vamos organizar o que sabemos: temos uma mulher de 31 anos, G3P0A3, ou seja, três gestações que resultaram em três abortamentos, sem nenhum nascido vivo. A investigação foi bastante abrangente e seguiu o protocolo esperado. Os <strong>exames de trombofilia vieram normais</strong>, descartando causas hematológicas como síndrome antifosfolípide e trombofilias hereditárias. Os <strong>cariótipos do casal estão normais</strong> (46XX e 46XY), excluindo translocações cromossômicas balanceadas como causa. A ressonância magnética não mostrou endometriose ou adenomiose. Mas há um achado fundamental: a <strong>histeroscopia evidenciou septo uterino estendendo-se até a região ístmica</strong>.</p>\n\n<p>Esse é o ponto-chave do raciocínio. De todos os exames realizados, apenas a histeroscopia trouxe uma alteração, e essa alteração tem relação direta e bem estabelecida com abortamento de repetição. O septo uterino é a malformação uterina mais comum e está fortemente associado a perdas gestacionais porque o tecido septal tem vascularização deficiente. Quando o embrião se implanta no septo, não recebe aporte sanguíneo adequado e a gestação evolui para abortamento. Além disso, o septo pode dificultar a expansão normal da cavidade uterina durante a gravidez.</p>\n\n<p>Nossa conduta, portanto, fica clara: devemos <strong>indicar a correção cirúrgica desse septo</strong>, procedimento chamado de <strong>septoplastia</strong> ou <strong>metroplastia</strong> (ambos os termos são aceitos e sinônimos). A septoplastia hoje é realizada preferencialmente por via histeroscópica, sendo um procedimento minimamente invasivo, seguro e com bons resultados. A justificativa para essa indicação cirúrgica é direta: o septo uterino é a <strong>única anormalidade identificada</strong> em toda a investigação, e representa uma causa <strong>tratável e corrigível</strong> de abortamento de repetição.</p>\n\n<p>Um ponto importante que a banca espera na resposta é a menção ao prognóstico. Após a septoplastia, o prognóstico reprodutivo dessa paciente melhora significativamente, com estudos mostrando que a <strong>taxa de nascido vivo atinge cerca de 85%</strong> nas gestações subsequentes. Isso é fundamental para o aconselhamento da paciente e demonstra que estamos oferecendo uma solução efetiva para o problema dela.</p>\n\n<p>Para responder adequadamente à questão, precisamos deixar claro: a conduta é <strong>septoplastia (ou metroplastia)</strong>, justificada pelo fato de que a histeroscopia evidenciou septo uterino como único exame alterado na investigação, e essa correção cirúrgica melhora o prognóstico das próximas gestações, elevando a taxa de nascido vivo para aproximadamente 85%. Cuidado com respostas vagas ou que apenas digam \"operar o septo\" sem nomear o procedimento e sem mencionar o prognóstico – a banca espera esses elementos específicos.</p><br>Visão do aprovado: <h2>Visão do aprovado</h2>\n\n<p>A grande pegadinha em questões discursivas sobre abortamento de repetição está na completude da resposta. Não basta dizer \"operar\" ou \"corrigir o septo\" - precisamos nomear o procedimento (<strong>septoplastia ou metroplastia</strong>) e, quando a questão pede justificativa, incluir o prognóstico numérico (<strong>taxa de nascido vivo de 85%</strong>). Respostas genéricas perdem pontos valiosos mesmo estando \"no caminho certo\". Outro erro comum é propor conduta expectante ou tentar tratamento clínico para uma causa anatômica corrigível, desperdiçando a chance de resolver definitivamente o problema da paciente.</p>\n\n<p>Em provas, devemos ter atenção ao padrão de investigação completa antes de indicar cirurgia. A banca frequentemente testa se o candidato sabe que a septoplastia só deve ser indicada após documentar os abortamentos de repetição e excluir outras causas tratáveis (daí a importância de citar que <strong>\"o septo é a única alteração encontrada\"</strong>). Questões discursivas costumam exigir essa linha de raciocínio explícita, não apenas a conduta isolada. Vale lembrar que o <em>útero septado</em> pode ser confundido com <em>útero bicorno</em> ao ultrassom, mas a ressonância ou histeroscopia definem o diagnóstico - e apenas o septo tem indicação cirúrgica para abortamento de repetição, enquanto o bicorno geralmente é apenas observado.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333109,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Endometriose parte 2: tratamento",
+        "focus": {
+          "id": 1647,
+          "name": "Endometriose parte 2: tratamento"
+        }
+      },
+      "detail": {
+        "id": 333109,
+        "content": "Mulher de 26 anos, nuligesta, com diagnóstico de endometriose e infertilidade conjugal teve indicação cirúrgica devido à dismenorreia intensa e ao desejo de gravidez. Durante a cirurgia laparoscópica, foi confirmada a presença de um endometrioma de 6cm em ovário direito. O cirurgião definiu abordá-lo com seus residentes. Um residente disse para realizar a drenagem e eletrocoagulação do cisto. O outro indicou a exérese do endometrioma, com retirada da cápsula. Compare os dois tratamentos sugeridos e justifique qual deles será a melhor escolha para esse caso.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 15919,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Endometriose parte 2: tratamento",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1647,
+          "name": "Endometriose parte 2: tratamento",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443152,
+        "actual_explanation": true,
+        "introduction": "<p>Uma paciente de 26 anos com endometrioma ovariano, infertilidade e dismenorreia intensa coloca o cirurgião diante de uma escolha técnica que impactará tanto o controle da doença quanto suas chances futuras de gravidez. A questão pede que comparemos duas abordagens cirúrgicas e justifiquemos qual é mais adequada para este contexto específico. Vamos construir esse raciocínio de forma estruturada.</p>\n\n<p>Primeiro, precisamos entender as diferenças técnicas entre as duas opções. A <strong>drenagem com eletrocoagulação</strong> consiste em aspirar o conteúdo do endometrioma e depois cauterizar o interior do cisto, mas a cápsula permanece no leito ovariano. É uma técnica mais conservadora em relação ao tecido ovariano. Já a <strong>exérese com retirada da cápsula</strong> (ou cistectomia) remove completamente o endometrioma, incluindo sua parede. Essa distinção é fundamental: uma técnica deixa a cápsula, a outra a remove.</p>\n\n<p>Agora vem o ponto crucial que muitos estudantes erram: pensar que, por preservar mais tecido ovariano, a drenagem seria sempre melhor para quem quer engravidar. De fato, ambas as técnicas causam algum grau de redução da reserva ovariana - isso é inevitável ao manipular cirurgicamente o ovário. Mas aqui temos um detalhe importante do caso: <strong>apenas o ovário direito está acometido</strong>, com o esquerdo aparentemente preservado. Isso nos dá uma margem de segurança maior para optar pela técnica mais efetiva.</p>\n\n<p>E qual é a mais efetiva? A literatura mostra que a <strong>exérese com retirada da cápsula</strong> apresenta vantagens significativas em vários desfechos. Primeiro, a <strong>taxa de recidiva</strong> do endometrioma é substancialmente menor quando comparada à drenagem - isso faz sentido, já que estamos removendo completamente o tecido doente, não apenas esvaziando o cisto. Consequentemente, há <strong>menor necessidade de novas cirurgias</strong>, o que é extremamente relevante para preservação da reserva ovariana a longo prazo.</p>\n\n<p>Outro ponto essencial: o controle dos sintomas. Nossa paciente tem <strong>dismenorreia intensa</strong> - um dos motivos da indicação cirúrgica. A exérese está associada a taxas significativamente melhores de controle da dismenorreia, da dispareunia e da dor pélvica acíclica quando comparada à drenagem. Se o objetivo é aliviar os sintomas, a cistectomia é superior.</p>\n\n<p>E quanto à fertilidade, que é central neste caso? Aqui está a informação que define a escolha: estudos demonstram que a <strong>exérese da cápsula está associada ao aumento da taxa de gravidez espontânea</strong> em mulheres com infertilidade. Isso pode parecer contraintuitivo inicialmente (remover mais tecido levaria a mais gravidez?), mas a explicação está na remoção mais completa do processo inflamatório local e na menor recidiva da doença.</p>\n\n<p>Portanto, para uma paciente jovem, com infertilidade, desejo reprodutivo e sintomas intensos, a <strong>exérese do endometrioma com retirada da cápsula</strong> é a escolha mais adequada. Ela oferece menor recidiva, melhor controle sintomático e maiores taxas de gravidez espontânea. A preocupação com reserva ovariana é válida, mas fica mitigada pelo fato de apenas um ovário estar comprometido e pelos benefícios superiores desta técnica.</p>\n\n<p>Na resposta, devemos estruturar a comparação de forma clara: explicar a diferença técnica entre as abordagens, mencionar que ambas afetam a reserva ovariana mas que apenas um ovário está acometido, listar as vantagens da exérese (menor recidiva, menor reoperação, melhor controle de sintomas, maior taxa de gravidez) e concluir que a exérese é a melhor escolha. A banca espera essa argumentação completa, não apenas a resposta final.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h3>Visão do aprovado</h3>\n\n<p>A grande armadilha nessa questão é o raciocínio intuitivo de que \"preservar mais tecido ovariano seria melhor para quem quer engravidar\", levando à escolha errada da drenagem. Na verdade, o que define fertilidade aqui não é quanto tecido preservamos, mas a efetividade em remover a doença e evitar recidiva. A presença de apenas um ovário acometido é um detalhe crucial do enunciado que libera a opção pela técnica mais efetiva, e deixar de mencionar esse ponto na resposta enfraquece a argumentação.</p>\n\n<p>Em questões discursivas comparativas como essa, a banca espera uma estrutura clara: diferença técnica entre os métodos, impacto nos desfechos relevantes (recidiva, sintomas, fertilidade) e justificativa contextualizada ao caso específico. Não basta concluir que a exérese é melhor; é preciso demonstrar por quê ela se aplica a esta paciente em particular. Respostas que apenas listam vantagens sem conectar ao contexto clínico (jovem, infértil, sintomática, desejo reprodutivo) perdem pontos valiosos.</p>\n\n<p>O raciocínio de prova parte do perfil da paciente: ela tem três objetivos (engravidar, aliviar dor, evitar nova cirurgia) e a exérese atende melhor aos três, com o \"custo\" de reserva ovariana mitigado pelo ovário contralateral preservado. Essa análise de custo-benefício individualizada é o que transforma uma resposta genérica em uma resposta que pontua integralmente.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Uma paciente de 26 anos com endometrioma ovariano, infertilidade e dismenorreia intensa coloca o cirurgião diante de uma escolha técnica que impactará tanto o controle da doença quanto suas chances futuras de gravidez. A questão pede que comparemos duas abordagens cirúrgicas e justifiquemos qual é mais adequada para este contexto específico. Vamos construir esse raciocínio de forma estruturada.</p>\n\n<p>Primeiro, precisamos entender as diferenças técnicas entre as duas opções. A <strong>drenagem com eletrocoagulação</strong> consiste em aspirar o conteúdo do endometrioma e depois cauterizar o interior do cisto, mas a cápsula permanece no leito ovariano. É uma técnica mais conservadora em relação ao tecido ovariano. Já a <strong>exérese com retirada da cápsula</strong> (ou cistectomia) remove completamente o endometrioma, incluindo sua parede. Essa distinção é fundamental: uma técnica deixa a cápsula, a outra a remove.</p>\n\n<p>Agora vem o ponto crucial que muitos estudantes erram: pensar que, por preservar mais tecido ovariano, a drenagem seria sempre melhor para quem quer engravidar. De fato, ambas as técnicas causam algum grau de redução da reserva ovariana - isso é inevitável ao manipular cirurgicamente o ovário. Mas aqui temos um detalhe importante do caso: <strong>apenas o ovário direito está acometido</strong>, com o esquerdo aparentemente preservado. Isso nos dá uma margem de segurança maior para optar pela técnica mais efetiva.</p>\n\n<p>E qual é a mais efetiva? A literatura mostra que a <strong>exérese com retirada da cápsula</strong> apresenta vantagens significativas em vários desfechos. Primeiro, a <strong>taxa de recidiva</strong> do endometrioma é substancialmente menor quando comparada à drenagem - isso faz sentido, já que estamos removendo completamente o tecido doente, não apenas esvaziando o cisto. Consequentemente, há <strong>menor necessidade de novas cirurgias</strong>, o que é extremamente relevante para preservação da reserva ovariana a longo prazo.</p>\n\n<p>Outro ponto essencial: o controle dos sintomas. Nossa paciente tem <strong>dismenorreia intensa</strong> - um dos motivos da indicação cirúrgica. A exérese está associada a taxas significativamente melhores de controle da dismenorreia, da dispareunia e da dor pélvica acíclica quando comparada à drenagem. Se o objetivo é aliviar os sintomas, a cistectomia é superior.</p>\n\n<p>E quanto à fertilidade, que é central neste caso? Aqui está a informação que define a escolha: estudos demonstram que a <strong>exérese da cápsula está associada ao aumento da taxa de gravidez espontânea</strong> em mulheres com infertilidade. Isso pode parecer contraintuitivo inicialmente (remover mais tecido levaria a mais gravidez?), mas a explicação está na remoção mais completa do processo inflamatório local e na menor recidiva da doença.</p>\n\n<p>Portanto, para uma paciente jovem, com infertilidade, desejo reprodutivo e sintomas intensos, a <strong>exérese do endometrioma com retirada da cápsula</strong> é a escolha mais adequada. Ela oferece menor recidiva, melhor controle sintomático e maiores taxas de gravidez espontânea. A preocupação com reserva ovariana é válida, mas fica mitigada pelo fato de apenas um ovário estar comprometido e pelos benefícios superiores desta técnica.</p>\n\n<p>Na resposta, devemos estruturar a comparação de forma clara: explicar a diferença técnica entre as abordagens, mencionar que ambas afetam a reserva ovariana mas que apenas um ovário está acometido, listar as vantagens da exérese (menor recidiva, menor reoperação, melhor controle de sintomas, maior taxa de gravidez) e concluir que a exérese é a melhor escolha. A banca espera essa argumentação completa, não apenas a resposta final.</p><br>Visão do aprovado: <h3>Visão do aprovado</h3>\n\n<p>A grande armadilha nessa questão é o raciocínio intuitivo de que \"preservar mais tecido ovariano seria melhor para quem quer engravidar\", levando à escolha errada da drenagem. Na verdade, o que define fertilidade aqui não é quanto tecido preservamos, mas a efetividade em remover a doença e evitar recidiva. A presença de apenas um ovário acometido é um detalhe crucial do enunciado que libera a opção pela técnica mais efetiva, e deixar de mencionar esse ponto na resposta enfraquece a argumentação.</p>\n\n<p>Em questões discursivas comparativas como essa, a banca espera uma estrutura clara: diferença técnica entre os métodos, impacto nos desfechos relevantes (recidiva, sintomas, fertilidade) e justificativa contextualizada ao caso específico. Não basta concluir que a exérese é melhor; é preciso demonstrar por quê ela se aplica a esta paciente em particular. Respostas que apenas listam vantagens sem conectar ao contexto clínico (jovem, infértil, sintomática, desejo reprodutivo) perdem pontos valiosos.</p>\n\n<p>O raciocínio de prova parte do perfil da paciente: ela tem três objetivos (engravidar, aliviar dor, evitar nova cirurgia) e a exérese atende melhor aos três, com o \"custo\" de reserva ovariana mitigado pelo ovário contralateral preservado. Essa análise de custo-benefício individualizada é o que transforma uma resposta genérica em uma resposta que pontua integralmente.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T19:55:41.983582+00:00",
+  "complete": true
+}

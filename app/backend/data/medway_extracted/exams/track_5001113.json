@@ -1,0 +1,822 @@
+{
+  "track_id": 5001113,
+  "name": " Ética médica, Bioética e Documentação",
+  "year": 2026,
+  "track_fast": {
+    "id": 5001113,
+    "name": " Ética médica, Bioética e Documentação",
+    "track_type": "h",
+    "question_count": 5,
+    "year": 2026,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "",
+    "track_image": "https://cdn.medway.com.br/media/track/default_covers/trilha_bO6EPvW.jpeg",
+    "residency_degree": {
+      "id": 3,
+      "abbreviation": "R1"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 345708,
+        "number": 1,
+        "main_speciality_name": "Medicina Preventiva e Social",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Ética Médica, Bioética e Documentação",
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação"
+        }
+      },
+      "detail": {
+        "id": 345708,
+        "content": "Durante a assistência a uma parturiente de 29 anos, G2P1, cardiotocografia categoria I, a equipe obstétrica indica a episiotomia. A paciente recusa o procedimento após ser orientada sobre seus riscos e benefícios. A recusa é registrada no prontuário. No parto ocorre uma laceração perineal de terceiro grau, com extensão até o esfincter anal. Após o parto, familiares questionam a conduta da equipe, alegando que a lesão poderia ter sido evitada com a episiotomia. Com base nos princípios da bioética e na legislação brasileira vigente, assinale a alternativa correta.",
+        "options": [
+          {
+            "id": 1493721,
+            "letter": "A",
+            "content": "A episiotomia, por ser um procedimento de urgência obstétrica, não depende de consentimento da gestante e sua recusa não deve ser acatada.",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 1.7316017316017316
+          },
+          {
+            "id": 1493722,
+            "letter": "B",
+            "content": "A recusa de intervenções padronizadas como a episiotomia deve ser formalizada em plano de parto escrito; na ausência desse documento, prevalece a decisão da equipe.",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 5.315055315055315
+          },
+          {
+            "id": 1493723,
+            "letter": "C",
+            "content": "A conduta da equipe foi ética e legalmente adequada, pois respeitou a autonomia da gestante, prestou esclarecimentos prévios e registrou a recusa.",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 87.19336219336219
+          },
+          {
+            "id": 1493724,
+            "letter": "D",
+            "content": "A equipe médica poderá ser responsabilizada por negligência, já que a recusa do procedimento não isenta o profissional do dever de agir para prevenir lesões maternas.",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 5.747955747955748
+          }
+        ],
+        "images": [],
+        "institution": {
+          "id": 25,
+          "name": "UNIFESP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 5,
+            "abbreviation": "PREV",
+            "name": "Medicina Preventiva e Social",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "o",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 442,
+            "parent_tag": {
+              "id": 314,
+              "name": "Atuação Médica",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Ética Médica, Bioética e Documentação",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              5
+            ],
+            "new_residency_degree": [
+              41,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 73,
+        "physicians": [
+          {
+            "id": 68,
+            "avatar": "https://cdn.medway.com.br/media/physician/Lucas_Cestari_PREV.png",
+            "about": "Medicina Preventiva – USP-RP",
+            "name": "Lucas Francisco Cestari",
+            "speciality": {
+              "id": 5,
+              "abbreviation": "PREV",
+              "name": "Medicina Preventiva e Social"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 8316,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação",
+          "discipline": {
+            "id": 89,
+            "name": "Medicina Preventiva e Social",
+            "residency_degree": 3,
+            "speciality": 5
+          },
+          "theme": {
+            "id": 205,
+            "name": "Atuação Médica",
+            "discipline": 89,
+            "old_tag": 314,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 415662,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">O cerne desta quest&atilde;o est&aacute; na <strong>autonomia do paciente</strong> e nos <strong>princ&iacute;pios bio&eacute;ticos</strong> aplicados &agrave; pr&aacute;tica obst&eacute;trica. O cen&aacute;rio apresenta uma parturiente que, ap&oacute;s orienta&ccedil;&atilde;o adequada sobre riscos e benef&iacute;cios, recusa a episiotomia indicada pela equipe m&eacute;dica. Mesmo com a documenta&ccedil;&atilde;o apropriada da recusa, ocorre uma complica&ccedil;&atilde;o (lacera&ccedil;&atilde;o de terceiro grau) que gera questionamentos familiares posteriores.</p>\n<p style=\"text-align: justify;\">Este tipo de quest&atilde;o &eacute; extremamente relevante nas provas de resid&ecirc;ncia porque aborda a intersec&ccedil;&atilde;o entre <strong>bio&eacute;tica</strong>, <strong>medicina legal</strong> e <strong>obstetr&iacute;cia</strong>, &aacute;reas fundamentais na forma&ccedil;&atilde;o m&eacute;dica. O examinador testa especificamente o conhecimento sobre os <strong>limites da autonomia do paciente</strong>, a <strong>obrigatoriedade do consentimento informado</strong> e a <strong>responsabiliza&ccedil;&atilde;o m&eacute;dica</strong> em situa&ccedil;&otilde;es onde o resultado cl&iacute;nico &eacute; desfavor&aacute;vel apesar da conduta eticamente correta.</p>\n<p style=\"text-align: justify;\">A <em>episiotomia</em> n&atilde;o &eacute; um procedimento obrigat&oacute;rio ou de urg&ecirc;ncia absoluta. Trata-se de uma interven&ccedil;&atilde;o que deve ser <strong>individualizada</strong>, sempre precedida de <strong>esclarecimento adequado</strong> e <strong>consentimento</strong> da paciente. O fato de uma complica&ccedil;&atilde;o (lacera&ccedil;&atilde;o) ter ocorrido posteriormente n&atilde;o invalida a <strong>autonomia</strong> exercida pela paciente nem torna a conduta m&eacute;dica inadequada, desde que os <strong>princ&iacute;pios bio&eacute;ticos</strong> tenham sido respeitados.</p>\n<p style=\"text-align: justify;\">Os <strong>quatro pilares da bio&eacute;tica</strong> - <strong>autonomia</strong>, <strong>benefic&ecirc;ncia</strong>, <strong>n&atilde;o-malefic&ecirc;ncia</strong> e <strong>justi&ccedil;a</strong> - devem nortear toda decis&atilde;o m&eacute;dica. No caso obst&eacute;trico, isso significa <strong>respeitar</strong> as decis&otilde;es informadas da gestante, <strong>orientar adequadamente</strong> sobre os procedimentos propostos e <strong>documentar</strong> todas as etapas do processo decis&oacute;rio.</p>",
+        "option_a": "<p style=\"text-align: justify;\">A episiotomia <strong>n&atilde;o &eacute;</strong> um procedimento de urg&ecirc;ncia obst&eacute;trica que dispense consentimento. Esta alternativa representa um grave equ&iacute;voco conceitual sobre a natureza da episiotomia e os <strong>princ&iacute;pios do consentimento informado</strong>. A episiotomia &eacute; uma interven&ccedil;&atilde;o <strong>eletiva</strong> que deve ser <strong>individualizada</strong> e sempre <strong>precedida de orienta&ccedil;&atilde;o e consentimento</strong>. Mesmo em situa&ccedil;&otilde;es de urg&ecirc;ncia real (como sofrimento fetal agudo), a comunica&ccedil;&atilde;o com a paciente deve ser mantida sempre que poss&iacute;vel. <strong>Nenhum</strong> procedimento m&eacute;dico pode ser realizado contra a vontade expressa de um paciente capaz, salvo em situa&ccedil;&otilde;es excepcional&iacute;ssimas previstas em lei.</p>",
+        "short_option_a": "<p>A <strong>episiotomia</strong> é um procedimento <em>eletivo</em> que sempre requer <strong>consentimento informado</strong>, não sendo considerada urgência obstétrica que dispense autorização da paciente.</p>",
+        "option_b": "<p style=\"text-align: justify;\">N&atilde;o h&aacute; <strong>obrigatoriedade legal</strong> de formaliza&ccedil;&atilde;o da recusa em <strong>plano de parto escrito</strong> espec&iacute;fico para que a decis&atilde;o da paciente prevale&ccedil;a sobre a da equipe m&eacute;dica. Esta alternativa cria uma <strong>barreira burocr&aacute;tica inexistente</strong> que poderia comprometer a autonomia do paciente. A <strong>recusa verbal</strong> adequadamente <strong>documentada no prontu&aacute;rio</strong> tem <strong>validade legal plena</strong>. O <strong>plano de parto</strong>, quando existente, &eacute; um documento auxiliar que facilita a comunica&ccedil;&atilde;o, mas sua aus&ecirc;ncia n&atilde;o anula a capacidade decis&oacute;ria da gestante nem transfere a decis&atilde;o para a equipe m&eacute;dica.</p>",
+        "short_option_b": "<p>Não existe obrigatoriedade legal de <strong>plano de parto escrito</strong> para validar a recusa da paciente. A <em>recusa verbal documentada</em> no prontuário tem <strong>validade legal plena</strong>.</p>",
+        "option_c": "<p style=\"text-align: justify;\">A conduta da equipe foi <strong>exemplar</strong> do ponto de vista &eacute;tico e legal. Foram cumpridas todas as etapas essenciais: <strong>orienta&ccedil;&atilde;o adequada</strong> sobre riscos e benef&iacute;cios, <strong>respeito &agrave; autonomia</strong> da paciente capacitada para decidir, e <strong>documenta&ccedil;&atilde;o apropriada</strong> da recusa no prontu&aacute;rio m&eacute;dico. Esta sequ&ecirc;ncia demonstra <strong>conformidade total</strong> com os <strong>princ&iacute;pios bio&eacute;ticos</strong> e com a <strong>legisla&ccedil;&atilde;o brasileira</strong>. O fato de ter ocorrido uma complica&ccedil;&atilde;o (lacera&ccedil;&atilde;o de terceiro grau) n&atilde;o caracteriza <strong>neglig&ecirc;ncia</strong> ou <strong>m&aacute; pr&aacute;tica</strong>, uma vez que a <strong>autonomia do paciente</strong> foi respeitada dentro dos par&acirc;metros legais e &eacute;ticos adequados.</p>",
+        "short_option_c": "<p>A equipe seguiu corretamente os <strong>princípios bioéticos</strong>: forneceu orientação adequada, respeitou a <em>autonomia da paciente</em> e documentou a recusa. <strong>Resultado adverso</strong> não configura negligência quando a conduta é ética.</p>",
+        "option_d": "<p style=\"text-align: justify;\">Esta alternativa comete o erro conceitual de <strong>confundir resultado adverso com neglig&ecirc;ncia m&eacute;dica</strong>. A <strong>responsabiliza&ccedil;&atilde;o por neglig&ecirc;ncia</strong> requer a comprova&ccedil;&atilde;o de que houve <strong>descumprimento do dever de cuidado</strong>, <strong>imper&iacute;cia</strong>, <strong>imprud&ecirc;ncia</strong> ou <strong>neglig&ecirc;ncia</strong>. No caso apresentado, a equipe cumpriu adequadamente seu <strong>dever de informar</strong>, respeitou a <strong>autonomia da paciente</strong> e <strong>documentou</strong> apropriadamente o processo. A <strong>recusa informada e documentada</strong> de um procedimento por paciente capaz <strong>isenta</strong> o profissional de responsabiliza&ccedil;&atilde;o pelo resultado adverso decorrente dessa decis&atilde;o. O <strong>dever m&eacute;dico</strong> inclui orientar e oferecer o melhor tratamento, mas <strong>n&atilde;o</strong> inclui impor condutas contra a vontade do paciente.</p>",
+        "short_option_d": "<p>Confunde <strong>resultado adverso</strong> com <em>negligência médica</em>. A <strong>recusa informada e documentada</strong> por paciente capaz isenta o profissional de responsabilização pelo desfecho decorrente dessa decisão.</p>",
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">O diagn&oacute;stico &eacute;tico correto surge da <strong>tr&iacute;ade fundamental</strong>: orienta&ccedil;&atilde;o adequada fornecida, <strong>autonomia respeitada</strong> e <strong>recusa documentada</strong>. Complica&ccedil;&otilde;es posteriores n&atilde;o invalidam condutas eticamente corretas quando os princ&iacute;pios bio&eacute;ticos s&atilde;o seguidos.</p>\n<p style=\"text-align: justify;\"><strong>Pistas-chave:</strong></p>\n<ul style=\"text-align: justify;\">\n<li><strong>Orienta&ccedil;&atilde;o pr&eacute;via</strong> sobre riscos e benef&iacute;cios do procedimento</li>\n<li><strong>Recusa documentada</strong> no prontu&aacute;rio m&eacute;dico</li>\n<li>Paciente <strong>capaz de decidir</strong> (sem altera&ccedil;&otilde;es de consci&ecirc;ncia)</li>\n<li><em>Episiotomia</em> &eacute; procedimento <strong>eletivo</strong>, n&atilde;o de urg&ecirc;ncia absoluta</li>\n<li>Resultado adverso <strong>n&atilde;o configura neglig&ecirc;ncia</strong> quando autonomia &eacute; respeitada</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Pegadinhas de prova:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Confundir <strong>episiotomia com procedimento de urg&ecirc;ncia</strong> que dispensa consentimento</li>\n<li>Exigir <strong>plano de parto escrito</strong> como &uacute;nica forma v&aacute;lida de recusa</li>\n<li>Responsabilizar m&eacute;dico por <strong>resultado adverso</strong> quando conduta foi &eacute;tica</li>\n<li>Criar <strong>barreiras burocr&aacute;ticas inexistentes</strong> para validar autonomia do paciente</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Como cai:</strong></p>\n<ul>\n<li style=\"text-align: justify;\">Cen&aacute;rios onde <strong>autonomia entra em conflito</strong> com recomenda&ccedil;&atilde;o m&eacute;dica</li>\n<li style=\"text-align: justify;\">Quest&otilde;es que testam <strong>diferencia&ccedil;&atilde;o entre neglig&ecirc;ncia e resultado adverso</strong></li>\n<li style=\"text-align: justify;\">Situa&ccedil;&otilde;es obst&eacute;tricas com <strong>questionamento familiar posterior</strong> ao procedimento</li>\n<li style=\"text-align: justify;\">Combina&ccedil;&atilde;o de <strong>bio&eacute;tica com medicina legal</strong> em contexto de complica&ccedil;&otilde;es</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">O cerne desta quest&atilde;o est&aacute; na <strong>autonomia do paciente</strong> e nos <strong>princ&iacute;pios bio&eacute;ticos</strong> aplicados &agrave; pr&aacute;tica obst&eacute;trica. O cen&aacute;rio apresenta uma parturiente que, ap&oacute;s orienta&ccedil;&atilde;o adequada sobre riscos e benef&iacute;cios, recusa a episiotomia indicada pela equipe m&eacute;dica. Mesmo com a documenta&ccedil;&atilde;o apropriada da recusa, ocorre uma complica&ccedil;&atilde;o (lacera&ccedil;&atilde;o de terceiro grau) que gera questionamentos familiares posteriores.</p>\n<p style=\"text-align: justify;\">Este tipo de quest&atilde;o &eacute; extremamente relevante nas provas de resid&ecirc;ncia porque aborda a intersec&ccedil;&atilde;o entre <strong>bio&eacute;tica</strong>, <strong>medicina legal</strong> e <strong>obstetr&iacute;cia</strong>, &aacute;reas fundamentais na forma&ccedil;&atilde;o m&eacute;dica. O examinador testa especificamente o conhecimento sobre os <strong>limites da autonomia do paciente</strong>, a <strong>obrigatoriedade do consentimento informado</strong> e a <strong>responsabiliza&ccedil;&atilde;o m&eacute;dica</strong> em situa&ccedil;&otilde;es onde o resultado cl&iacute;nico &eacute; desfavor&aacute;vel apesar da conduta eticamente correta.</p>\n<p style=\"text-align: justify;\">A <em>episiotomia</em> n&atilde;o &eacute; um procedimento obrigat&oacute;rio ou de urg&ecirc;ncia absoluta. Trata-se de uma interven&ccedil;&atilde;o que deve ser <strong>individualizada</strong>, sempre precedida de <strong>esclarecimento adequado</strong> e <strong>consentimento</strong> da paciente. O fato de uma complica&ccedil;&atilde;o (lacera&ccedil;&atilde;o) ter ocorrido posteriormente n&atilde;o invalida a <strong>autonomia</strong> exercida pela paciente nem torna a conduta m&eacute;dica inadequada, desde que os <strong>princ&iacute;pios bio&eacute;ticos</strong> tenham sido respeitados.</p>\n<p style=\"text-align: justify;\">Os <strong>quatro pilares da bio&eacute;tica</strong> - <strong>autonomia</strong>, <strong>benefic&ecirc;ncia</strong>, <strong>n&atilde;o-malefic&ecirc;ncia</strong> e <strong>justi&ccedil;a</strong> - devem nortear toda decis&atilde;o m&eacute;dica. No caso obst&eacute;trico, isso significa <strong>respeitar</strong> as decis&otilde;es informadas da gestante, <strong>orientar adequadamente</strong> sobre os procedimentos propostos e <strong>documentar</strong> todas as etapas do processo decis&oacute;rio.</p><br>A - Incorreta. <p style=\"text-align: justify;\">A episiotomia <strong>n&atilde;o &eacute;</strong> um procedimento de urg&ecirc;ncia obst&eacute;trica que dispense consentimento. Esta alternativa representa um grave equ&iacute;voco conceitual sobre a natureza da episiotomia e os <strong>princ&iacute;pios do consentimento informado</strong>. A episiotomia &eacute; uma interven&ccedil;&atilde;o <strong>eletiva</strong> que deve ser <strong>individualizada</strong> e sempre <strong>precedida de orienta&ccedil;&atilde;o e consentimento</strong>. Mesmo em situa&ccedil;&otilde;es de urg&ecirc;ncia real (como sofrimento fetal agudo), a comunica&ccedil;&atilde;o com a paciente deve ser mantida sempre que poss&iacute;vel. <strong>Nenhum</strong> procedimento m&eacute;dico pode ser realizado contra a vontade expressa de um paciente capaz, salvo em situa&ccedil;&otilde;es excepcional&iacute;ssimas previstas em lei.</p><br>B - Incorreta. <p style=\"text-align: justify;\">N&atilde;o h&aacute; <strong>obrigatoriedade legal</strong> de formaliza&ccedil;&atilde;o da recusa em <strong>plano de parto escrito</strong> espec&iacute;fico para que a decis&atilde;o da paciente prevale&ccedil;a sobre a da equipe m&eacute;dica. Esta alternativa cria uma <strong>barreira burocr&aacute;tica inexistente</strong> que poderia comprometer a autonomia do paciente. A <strong>recusa verbal</strong> adequadamente <strong>documentada no prontu&aacute;rio</strong> tem <strong>validade legal plena</strong>. O <strong>plano de parto</strong>, quando existente, &eacute; um documento auxiliar que facilita a comunica&ccedil;&atilde;o, mas sua aus&ecirc;ncia n&atilde;o anula a capacidade decis&oacute;ria da gestante nem transfere a decis&atilde;o para a equipe m&eacute;dica.</p><br>C - Correta. <p style=\"text-align: justify;\">A conduta da equipe foi <strong>exemplar</strong> do ponto de vista &eacute;tico e legal. Foram cumpridas todas as etapas essenciais: <strong>orienta&ccedil;&atilde;o adequada</strong> sobre riscos e benef&iacute;cios, <strong>respeito &agrave; autonomia</strong> da paciente capacitada para decidir, e <strong>documenta&ccedil;&atilde;o apropriada</strong> da recusa no prontu&aacute;rio m&eacute;dico. Esta sequ&ecirc;ncia demonstra <strong>conformidade total</strong> com os <strong>princ&iacute;pios bio&eacute;ticos</strong> e com a <strong>legisla&ccedil;&atilde;o brasileira</strong>. O fato de ter ocorrido uma complica&ccedil;&atilde;o (lacera&ccedil;&atilde;o de terceiro grau) n&atilde;o caracteriza <strong>neglig&ecirc;ncia</strong> ou <strong>m&aacute; pr&aacute;tica</strong>, uma vez que a <strong>autonomia do paciente</strong> foi respeitada dentro dos par&acirc;metros legais e &eacute;ticos adequados.</p><br>D - Incorreta. <p style=\"text-align: justify;\">Esta alternativa comete o erro conceitual de <strong>confundir resultado adverso com neglig&ecirc;ncia m&eacute;dica</strong>. A <strong>responsabiliza&ccedil;&atilde;o por neglig&ecirc;ncia</strong> requer a comprova&ccedil;&atilde;o de que houve <strong>descumprimento do dever de cuidado</strong>, <strong>imper&iacute;cia</strong>, <strong>imprud&ecirc;ncia</strong> ou <strong>neglig&ecirc;ncia</strong>. No caso apresentado, a equipe cumpriu adequadamente seu <strong>dever de informar</strong>, respeitou a <strong>autonomia da paciente</strong> e <strong>documentou</strong> apropriadamente o processo. A <strong>recusa informada e documentada</strong> de um procedimento por paciente capaz <strong>isenta</strong> o profissional de responsabiliza&ccedil;&atilde;o pelo resultado adverso decorrente dessa decis&atilde;o. O <strong>dever m&eacute;dico</strong> inclui orientar e oferecer o melhor tratamento, mas <strong>n&atilde;o</strong> inclui impor condutas contra a vontade do paciente.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">O diagn&oacute;stico &eacute;tico correto surge da <strong>tr&iacute;ade fundamental</strong>: orienta&ccedil;&atilde;o adequada fornecida, <strong>autonomia respeitada</strong> e <strong>recusa documentada</strong>. Complica&ccedil;&otilde;es posteriores n&atilde;o invalidam condutas eticamente corretas quando os princ&iacute;pios bio&eacute;ticos s&atilde;o seguidos.</p>\n<p style=\"text-align: justify;\"><strong>Pistas-chave:</strong></p>\n<ul style=\"text-align: justify;\">\n<li><strong>Orienta&ccedil;&atilde;o pr&eacute;via</strong> sobre riscos e benef&iacute;cios do procedimento</li>\n<li><strong>Recusa documentada</strong> no prontu&aacute;rio m&eacute;dico</li>\n<li>Paciente <strong>capaz de decidir</strong> (sem altera&ccedil;&otilde;es de consci&ecirc;ncia)</li>\n<li><em>Episiotomia</em> &eacute; procedimento <strong>eletivo</strong>, n&atilde;o de urg&ecirc;ncia absoluta</li>\n<li>Resultado adverso <strong>n&atilde;o configura neglig&ecirc;ncia</strong> quando autonomia &eacute; respeitada</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Pegadinhas de prova:</strong></p>\n<ul style=\"text-align: justify;\">\n<li>Confundir <strong>episiotomia com procedimento de urg&ecirc;ncia</strong> que dispensa consentimento</li>\n<li>Exigir <strong>plano de parto escrito</strong> como &uacute;nica forma v&aacute;lida de recusa</li>\n<li>Responsabilizar m&eacute;dico por <strong>resultado adverso</strong> quando conduta foi &eacute;tica</li>\n<li>Criar <strong>barreiras burocr&aacute;ticas inexistentes</strong> para validar autonomia do paciente</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Como cai:</strong></p>\n<ul>\n<li style=\"text-align: justify;\">Cen&aacute;rios onde <strong>autonomia entra em conflito</strong> com recomenda&ccedil;&atilde;o m&eacute;dica</li>\n<li style=\"text-align: justify;\">Quest&otilde;es que testam <strong>diferencia&ccedil;&atilde;o entre neglig&ecirc;ncia e resultado adverso</strong></li>\n<li style=\"text-align: justify;\">Situa&ccedil;&otilde;es obst&eacute;tricas com <strong>questionamento familiar posterior</strong> ao procedimento</li>\n<li style=\"text-align: justify;\">Combina&ccedil;&atilde;o de <strong>bio&eacute;tica com medicina legal</strong> em contexto de complica&ccedil;&otilde;es</li>\n</ul><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 345438,
+        "number": 2,
+        "main_speciality_name": "Medicina Preventiva e Social",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Ética Médica, Bioética e Documentação",
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação"
+        }
+      },
+      "detail": {
+        "id": 345438,
+        "content": "Paciente, mulher cisgênero, 56 anos, em tratamento de câncer de mama metastático, para ossos, figado e sistema nervoso central. está em acompanhamento na Unidade Básica de Saúde. Tem apresentado dor generalizada persistente, perda de apetite, tristeza frequente e sobrecarga importante para a filha, que é sua principal cuidadora. Durante consulta com a equipe de saúde da família, surge a discussão sobre a abordagem dos cuidados paliativos no âmbito da Atenção Primária a Saúde (APS).\nCom base na Política Nacional de Cuidados Paliativos, qual deve ser a conduta da equipe da APS nesse contexto?",
+        "options": [
+          {
+            "id": 1492806,
+            "letter": "A",
+            "content": "Caso a paciente precise ser visitada semanalmente, a equipe da atenção primária deve encaminhá-la para internação hospitalar para não sobrecarregar a equipe com visitas frequentes",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 0.9395973154362416
+          },
+          {
+            "id": 1492807,
+            "letter": "B",
+            "content": "Promover cuidado integral, considerando aspectos físicos, sociais, psicológicos e espirituais da paciente, sem incluir a família e os cuidadores nesse momento",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 7.2885906040268456
+          },
+          {
+            "id": 1492808,
+            "letter": "C",
+            "content": "Realização de plano de diretivas antecipadas sobre cuidados e tratamentos que devem ou não ser realizados com devido registro no prontuário da paciente",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 90.93959731543623
+          },
+          {
+            "id": 1492809,
+            "letter": "D",
+            "content": "Transferir a responsabilidade do cuidado para serviço especializado de oncologia, pois não há estrutura para assistência paliativa na atenção primária de saúde",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 0.832214765100671
+          }
+        ],
+        "images": [],
+        "institution": {
+          "id": 360,
+          "name": "PSU",
+          "state": "MG"
+        },
+        "speciality": [
+          {
+            "id": 5,
+            "abbreviation": "PREV",
+            "name": "Medicina Preventiva e Social",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "o",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 442,
+            "parent_tag": {
+              "id": 314,
+              "name": "Atuação Médica",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Ética Médica, Bioética e Documentação",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              5
+            ],
+            "new_residency_degree": [
+              41,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 67,
+        "physicians": [
+          {
+            "id": 68,
+            "avatar": "https://cdn.medway.com.br/media/physician/Lucas_Cestari_PREV.png",
+            "about": "Medicina Preventiva – USP-RP",
+            "name": "Lucas Francisco Cestari",
+            "speciality": {
+              "id": 5,
+              "abbreviation": "PREV",
+              "name": "Medicina Preventiva e Social"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 7450,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação",
+          "discipline": {
+            "id": 89,
+            "name": "Medicina Preventiva e Social",
+            "residency_degree": 3,
+            "speciality": 5
+          },
+          "theme": {
+            "id": 205,
+            "name": "Atuação Médica",
+            "discipline": 89,
+            "old_tag": 314,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 414849,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\"><strong>Fala, pessoal!</strong></p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">O cenário combina sintomas físicos e psicossociais compatíveis com necessidade de <span class=\"article-1647\">cuidados paliativos</span>, pedindo a conduta adequada na APS como próximo passo. Esta questão explora um tema fundamental: <strong>o papel da Atenção Primária à Saúde nos <span class=\"article-1647\">cuidados paliativos</span></strong>, especialmente em pacientes oncológicos em fase avançada.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: center;\"> </p>\n<figure><img alt=\"Figura 7. Cuidados paliativos e cuidados curativos. Fonte: Adaptado de Azevedo D, 2015.\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20240105T133709018Z596557.png\" style=\"display: block; margin-left: auto; margin-right: auto; float: none;\"/>\n<figcaption>Figura 7. <span class=\"article-1647\">Cuidados paliativos</span> e cuidados curativos. Fonte: Adaptado de Azevedo D, 2015.</figcaption>\n</figure>\n<p> </p>\n<p> </p>\n<p style=\"text-align: justify;\">O caso apresenta uma paciente com <strong>câncer de mama metastático</strong> em múltiplos sítios (ossos, fígado e sistema nervoso central), configurando uma situação de doença avançada com prognóstico limitado. Os sintomas descritos - dor generalizada persistente, perda de apetite e tristeza frequente - representam o que chamamos de <strong>síndrome de sofrimento total</strong>, envolvendo dimensões física, psicológica e social (evidenciada pela sobrecarga da cuidadora).</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">É fundamental entender que <strong>os <span class=\"article-1647\">cuidados paliativos</span> não são exclusividade de serviços especializados</strong>. A Política Nacional de <span class=\"article-1647\">Cuidados Paliativos</span> estabelece que a APS tem papel central no cuidado longitudinal desses pacientes, devendo oferecer suporte integral desde o diagnóstico de doenças ameaçadoras à vida. O conceito moderno de <span class=\"article-1647\">cuidados paliativos</span> preconiza sua integração com tratamentos modificadores de doença, não sendo uma abordagem exclusiva do final de vida.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Entre os instrumentos fundamentais dos <span class=\"article-1647\">cuidados paliativos</span> estão as <strong>diretivas antecipadas de vontade</strong>, que permitem ao paciente manifestar sua vontade sobre tratamentos e cuidados que deseja ou não receber, respeitando sua autonomia e dignidade. Este documento deve ser registrado no prontuário e discutido de forma sensível com paciente e família, idealmente quando o paciente ainda mantém sua capacidade de decisão preservada.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">A alternativa correta é a <strong>C</strong>, que aborda adequadamente a importância das diretivas antecipadas como ferramenta essencial nos <span class=\"article-1647\">cuidados paliativos</span>, permitindo que a paciente expresse suas vontades sobre cuidados futuros, com o devido registro no prontuário para orientar a equipe.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><strong>Vamos para as alternativas.</strong></p>",
+        "option_a": "<p style=\"text-align: justify;\">Esta alternativa está <strong>incorreta</strong> pois propõe encaminhamento para internação hospitalar baseado apenas na necessidade de visitas frequentes, o que não se justifica. A <strong>internação hospitalar</strong> não é indicação primária para <span class=\"article-1647\">cuidados paliativos</span> domiciliares estáveis. O enunciado não menciona descompensação clínica, instabilidade ou necessidade de procedimentos hospitalares. Além disso, a lógica de \"não sobrecarregar a equipe\" contradiz os princípios da APS, que deve assumir responsabilidade pelo cuidado longitudinal. As visitas domiciliares frequentes são, na verdade, uma <strong>ferramenta fundamental</strong> da APS para pacientes em <span class=\"article-1647\">cuidados paliativos</span>, permitindo manejo adequado de sintomas, apoio psicossocial e suporte à família no domicílio, que é o local preferencial para esses cuidados.</p>",
+        "short_option_a": "<p>Visitas domiciliares frequentes não justificam internação hospitalar, pois não há descompensação clínica ou instabilidade. A <strong>APS deve assumir responsabilidade pelo cuidado longitudinal</strong>, sendo as visitas domiciliares uma ferramenta fundamental para manejo de sintomas e suporte familiar.</p>",
+        "option_b": "<p style=\"text-align: justify;\">Esta alternativa está <strong>incorreta</strong> apesar de mencionar corretamente o conceito de cuidado integral contemplando as dimensões física, social, psicológica e espiritual. O erro fundamental está em <strong>excluir a família e cuidadores</strong> deste processo. Nos <span class=\"article-1647\">cuidados paliativos</span>, a família é considerada <strong>unidade de cuidado</strong>, não apenas a paciente. O enunciado inclusive destaca a \"sobrecarga importante para a filha\", sinalizando claramente a necessidade de suporte familiar. A Política Nacional de <span class=\"article-1647\">Cuidados Paliativos</span> é enfática sobre a importância do <strong>cuidado centrado na família</strong>, reconhecendo que o sofrimento familiar impacta diretamente na qualidade de vida da paciente e que os cuidadores também necessitam de apoio, orientação e acolhimento.</p>",
+        "short_option_b": "<p>Embora mencione corretamente o <strong>cuidado integral multidimensional</strong>, erra ao excluir família e cuidadores. Nos cuidados paliativos, a <em>família é considerada unidade de cuidado</em>, especialmente quando há sobrecarga da cuidadora como descrito no caso.</p>",
+        "option_c": "<p style=\"text-align: justify;\">Esta é a alternativa <strong>correta</strong>. As <strong>diretivas antecipadas de vontade</strong> constituem um instrumento fundamental dos <span class=\"article-1647\">cuidados paliativos</span>, permitindo que o paciente manifeste sua autonomia sobre tratamentos e cuidados que deseja ou não receber. Conforme estabelecido pelo Conselho Federal de Medicina, é direito do paciente expressar sua vontade sobre procedimentos médicos, especialmente em situações de doença grave e incurável. No caso apresentado, a paciente ainda mantém capacidade de decisão preservada, sendo o momento ideal para esta discussão. O <strong>registro no prontuário</strong> é essencial para orientar toda a equipe sobre as vontades da paciente, garantindo que suas preferências sejam respeitadas ao longo do cuidado. Este processo fortalece a relação terapêutica, reduz conflitos futuros e assegura cuidado centrado na pessoa.</p>",
+        "short_option_c": "<p>As <strong>diretivas antecipadas de vontade</strong> são instrumento fundamental dos cuidados paliativos, permitindo que a paciente manifeste sua autonomia sobre tratamentos futuros. O <em>registro no prontuário</em> é obrigatório para orientar toda a equipe sobre as preferências da paciente.</p>",
+        "option_d": "<p style=\"text-align: justify;\">Esta alternativa está <strong>incorreta</strong> pois reflete uma compreensão equivocada sobre o papel da APS nos <span class=\"article-1647\">cuidados paliativos</span>. <strong>Transferir completamente a responsabilidade</strong> para serviços especializados contradiz os princípios da atenção primária e da própria Política Nacional de <span class=\"article-1647\">Cuidados Paliativos</span>. A APS tem papel central no cuidado longitudinal desses pacientes, oferecendo cuidado integral, manejo de sintomas básicos, suporte psicossocial e coordenação de cuidados. O serviço especializado deve atuar como <strong>apoio matricial</strong>, não substituindo a APS. A afirmação de que \"não há estrutura para assistência paliativa na atenção primária\" é incorreta - a APS possui ferramentas como visita domiciliar, equipe multiprofissional, vínculo longitudinal e conhecimento do contexto familiar, elementos essenciais para <span class=\"article-1647\">cuidados paliativos</span> de qualidade.</p>",
+        "short_option_d": "<p>A <strong>APS tem papel central nos cuidados paliativos</strong> conforme a Política Nacional, não devendo transferir completamente a responsabilidade. Possui ferramentas essenciais como visita domiciliar, equipe multiprofissional e vínculo longitudinal, com <em>apoio matricial</em> dos especialistas.</p>",
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p><strong>Pessoal, </strong></p>\n<p> </p>\n<p style=\"text-align: justify;\">O diagnóstico de <strong>necessidade de <span class=\"article-1647\">cuidados paliativos</span></strong> na APS se estabelece pela combinação de doença metastática avançada com síndrome de sofrimento total (dor persistente, anorexia, sintomas psicológicos) e sobrecarga familiar. A conduta adequada envolve instrumentos específicos da política nacional, não transferência de responsabilidade.</p>\n<p style=\"text-align: justify;\"> </p>\n<p><strong>Pistas-chave:</strong></p>\n<p>&gt; Câncer com metástases múltiplas (ossos, fígado, SNC) = prognóstico limitado e indicação clara para <span class=\"article-1647\">cuidados paliativos</span></p>\n<p>&gt; Tríade sintomática: dor generalizada + anorexia + tristeza = síndrome de sofrimento total</p>\n<p>&gt; Sobrecarga da cuidadora principal = dimensão familiar comprometida</p>\n<p>&gt; Paciente consciente e em acompanhamento regular = momento ideal para diretivas antecipadas</p>\n<p> </p>\n<p><strong>Pegadinhas de prova:</strong></p>\n<p>&gt; Visitas domiciliares frequentes <strong>não justificam</strong> internação hospitalar desnecessária</p>\n<p>&gt; Família e cuidadores <em>devem ser incluídos</em> como unidade de cuidado, nunca excluídos</p>\n<p>&gt; APS mantém responsabilidade longitudinal, especialistas atuam como <strong>apoio matricial</strong></p>\n<p>&gt; Diretivas antecipadas são <em>instrumento obrigatório</em> da política nacional, não opcional</p>\n<p> </p>\n<p><strong>Tranquilo?</strong></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\"><strong>Fala, pessoal!</strong></p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">O cenário combina sintomas físicos e psicossociais compatíveis com necessidade de <span class=\"article-1647\">cuidados paliativos</span>, pedindo a conduta adequada na APS como próximo passo. Esta questão explora um tema fundamental: <strong>o papel da Atenção Primária à Saúde nos <span class=\"article-1647\">cuidados paliativos</span></strong>, especialmente em pacientes oncológicos em fase avançada.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: center;\"> </p>\n<figure><img alt=\"Figura 7. Cuidados paliativos e cuidados curativos. Fonte: Adaptado de Azevedo D, 2015.\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20240105T133709018Z596557.png\" style=\"display: block; margin-left: auto; margin-right: auto; float: none;\"/>\n<figcaption>Figura 7. <span class=\"article-1647\">Cuidados paliativos</span> e cuidados curativos. Fonte: Adaptado de Azevedo D, 2015.</figcaption>\n</figure>\n<p> </p>\n<p> </p>\n<p style=\"text-align: justify;\">O caso apresenta uma paciente com <strong>câncer de mama metastático</strong> em múltiplos sítios (ossos, fígado e sistema nervoso central), configurando uma situação de doença avançada com prognóstico limitado. Os sintomas descritos - dor generalizada persistente, perda de apetite e tristeza frequente - representam o que chamamos de <strong>síndrome de sofrimento total</strong>, envolvendo dimensões física, psicológica e social (evidenciada pela sobrecarga da cuidadora).</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">É fundamental entender que <strong>os <span class=\"article-1647\">cuidados paliativos</span> não são exclusividade de serviços especializados</strong>. A Política Nacional de <span class=\"article-1647\">Cuidados Paliativos</span> estabelece que a APS tem papel central no cuidado longitudinal desses pacientes, devendo oferecer suporte integral desde o diagnóstico de doenças ameaçadoras à vida. O conceito moderno de <span class=\"article-1647\">cuidados paliativos</span> preconiza sua integração com tratamentos modificadores de doença, não sendo uma abordagem exclusiva do final de vida.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Entre os instrumentos fundamentais dos <span class=\"article-1647\">cuidados paliativos</span> estão as <strong>diretivas antecipadas de vontade</strong>, que permitem ao paciente manifestar sua vontade sobre tratamentos e cuidados que deseja ou não receber, respeitando sua autonomia e dignidade. Este documento deve ser registrado no prontuário e discutido de forma sensível com paciente e família, idealmente quando o paciente ainda mantém sua capacidade de decisão preservada.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">A alternativa correta é a <strong>C</strong>, que aborda adequadamente a importância das diretivas antecipadas como ferramenta essencial nos <span class=\"article-1647\">cuidados paliativos</span>, permitindo que a paciente expresse suas vontades sobre cuidados futuros, com o devido registro no prontuário para orientar a equipe.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><strong>Vamos para as alternativas.</strong></p><br>A - Incorreta. <p style=\"text-align: justify;\">Esta alternativa está <strong>incorreta</strong> pois propõe encaminhamento para internação hospitalar baseado apenas na necessidade de visitas frequentes, o que não se justifica. A <strong>internação hospitalar</strong> não é indicação primária para <span class=\"article-1647\">cuidados paliativos</span> domiciliares estáveis. O enunciado não menciona descompensação clínica, instabilidade ou necessidade de procedimentos hospitalares. Além disso, a lógica de \"não sobrecarregar a equipe\" contradiz os princípios da APS, que deve assumir responsabilidade pelo cuidado longitudinal. As visitas domiciliares frequentes são, na verdade, uma <strong>ferramenta fundamental</strong> da APS para pacientes em <span class=\"article-1647\">cuidados paliativos</span>, permitindo manejo adequado de sintomas, apoio psicossocial e suporte à família no domicílio, que é o local preferencial para esses cuidados.</p><br>B - Incorreta. <p style=\"text-align: justify;\">Esta alternativa está <strong>incorreta</strong> apesar de mencionar corretamente o conceito de cuidado integral contemplando as dimensões física, social, psicológica e espiritual. O erro fundamental está em <strong>excluir a família e cuidadores</strong> deste processo. Nos <span class=\"article-1647\">cuidados paliativos</span>, a família é considerada <strong>unidade de cuidado</strong>, não apenas a paciente. O enunciado inclusive destaca a \"sobrecarga importante para a filha\", sinalizando claramente a necessidade de suporte familiar. A Política Nacional de <span class=\"article-1647\">Cuidados Paliativos</span> é enfática sobre a importância do <strong>cuidado centrado na família</strong>, reconhecendo que o sofrimento familiar impacta diretamente na qualidade de vida da paciente e que os cuidadores também necessitam de apoio, orientação e acolhimento.</p><br>C - Correta. <p style=\"text-align: justify;\">Esta é a alternativa <strong>correta</strong>. As <strong>diretivas antecipadas de vontade</strong> constituem um instrumento fundamental dos <span class=\"article-1647\">cuidados paliativos</span>, permitindo que o paciente manifeste sua autonomia sobre tratamentos e cuidados que deseja ou não receber. Conforme estabelecido pelo Conselho Federal de Medicina, é direito do paciente expressar sua vontade sobre procedimentos médicos, especialmente em situações de doença grave e incurável. No caso apresentado, a paciente ainda mantém capacidade de decisão preservada, sendo o momento ideal para esta discussão. O <strong>registro no prontuário</strong> é essencial para orientar toda a equipe sobre as vontades da paciente, garantindo que suas preferências sejam respeitadas ao longo do cuidado. Este processo fortalece a relação terapêutica, reduz conflitos futuros e assegura cuidado centrado na pessoa.</p><br>D - Incorreta. <p style=\"text-align: justify;\">Esta alternativa está <strong>incorreta</strong> pois reflete uma compreensão equivocada sobre o papel da APS nos <span class=\"article-1647\">cuidados paliativos</span>. <strong>Transferir completamente a responsabilidade</strong> para serviços especializados contradiz os princípios da atenção primária e da própria Política Nacional de <span class=\"article-1647\">Cuidados Paliativos</span>. A APS tem papel central no cuidado longitudinal desses pacientes, oferecendo cuidado integral, manejo de sintomas básicos, suporte psicossocial e coordenação de cuidados. O serviço especializado deve atuar como <strong>apoio matricial</strong>, não substituindo a APS. A afirmação de que \"não há estrutura para assistência paliativa na atenção primária\" é incorreta - a APS possui ferramentas como visita domiciliar, equipe multiprofissional, vínculo longitudinal e conhecimento do contexto familiar, elementos essenciais para <span class=\"article-1647\">cuidados paliativos</span> de qualidade.</p><br>Visão do aprovado: <p><strong>Pessoal, </strong></p>\n<p> </p>\n<p style=\"text-align: justify;\">O diagnóstico de <strong>necessidade de <span class=\"article-1647\">cuidados paliativos</span></strong> na APS se estabelece pela combinação de doença metastática avançada com síndrome de sofrimento total (dor persistente, anorexia, sintomas psicológicos) e sobrecarga familiar. A conduta adequada envolve instrumentos específicos da política nacional, não transferência de responsabilidade.</p>\n<p style=\"text-align: justify;\"> </p>\n<p><strong>Pistas-chave:</strong></p>\n<p>&gt; Câncer com metástases múltiplas (ossos, fígado, SNC) = prognóstico limitado e indicação clara para <span class=\"article-1647\">cuidados paliativos</span></p>\n<p>&gt; Tríade sintomática: dor generalizada + anorexia + tristeza = síndrome de sofrimento total</p>\n<p>&gt; Sobrecarga da cuidadora principal = dimensão familiar comprometida</p>\n<p>&gt; Paciente consciente e em acompanhamento regular = momento ideal para diretivas antecipadas</p>\n<p> </p>\n<p><strong>Pegadinhas de prova:</strong></p>\n<p>&gt; Visitas domiciliares frequentes <strong>não justificam</strong> internação hospitalar desnecessária</p>\n<p>&gt; Família e cuidadores <em>devem ser incluídos</em> como unidade de cuidado, nunca excluídos</p>\n<p>&gt; APS mantém responsabilidade longitudinal, especialistas atuam como <strong>apoio matricial</strong></p>\n<p>&gt; Diretivas antecipadas são <em>instrumento obrigatório</em> da política nacional, não opcional</p>\n<p> </p>\n<p><strong>Tranquilo?</strong></p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 344692,
+        "number": 3,
+        "main_speciality_name": "Medicina Preventiva e Social",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Ética Médica, Bioética e Documentação",
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação"
+        }
+      },
+      "detail": {
+        "id": 344692,
+        "content": "Homem 57 anos, tabagista, portador de dislipidemia, hipertensão arterial e obesidade. Reside sozinho em área onde a população é atendida pela Estratégia de Saúde da Família (ESF), porém não faz seguimento com a Equipe da ESF. Estava em sua casa quando apresentou intensa dor em região precordial iniciada hà 24 horas, com piora progressiva, procurou o vizinho que chamou o SAMU e fol levado para a UPA. Deu entrada no serviço e evoluiu a óbito poucas horas após, sem resposta a manobras de reanimação. Eletrocardiograma da entrada na unidade evidenciou fibrilação ventricular. Em relação ao preenchimento da Declaração de Óbito deste caso a alternativa correta é:",
+        "options": [
+          {
+            "id": 1490152,
+            "letter": "A",
+            "content": "Parte I:\na) fibrilação ventricular\nb) infarto agudo do miocárdio\nc) hipertensão arterial\nParte II\nDislipidemia, tabagismo, obesidade",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 16.577400391900717
+          },
+          {
+            "id": 1490153,
+            "letter": "B",
+            "content": "Parte I:\na) infarto agudo do miocárdio\nb) aterosclerose coronariana\nc) fibrilação atrial\nParte II\nDislipidemia, hipertensão arterial obesidade",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 13.520574787720443
+          },
+          {
+            "id": 1490154,
+            "letter": "C",
+            "content": "Parte I:\na) fibrilação ventricular\nb) infarto agudo do miocárdio\nc) aterosclerose coronariana\nParte II\nDislipidemia, hipertensão arterial, obesidade",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 67.49836708033965
+          },
+          {
+            "id": 1490155,
+            "letter": "D",
+            "content": "Parte I:\na) aterosclerose coronariana\nb) fibrilação atrial\nc) infarto agudo do miocárdio\nParte II\nDislipidemia, hipertensão arterial obesidade",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 2.40365774003919
+          }
+        ],
+        "images": [
+          {
+            "id": 87336,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID344692_2026_institution-object-4_Q12/WhatsApp_Image_2025-11-25_at_16.jpeg"
+          }
+        ],
+        "institution": {
+          "id": 4,
+          "name": "FAMERP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 5,
+            "abbreviation": "PREV",
+            "name": "Medicina Preventiva e Social",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "o",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 442,
+            "parent_tag": {
+              "id": 314,
+              "name": "Atuação Médica",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Ética Médica, Bioética e Documentação",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              5
+            ],
+            "new_residency_degree": [
+              41,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 12,
+        "physicians": [
+          {
+            "id": 68,
+            "avatar": "https://cdn.medway.com.br/media/physician/Lucas_Cestari_PREV.png",
+            "about": "Medicina Preventiva – USP-RP",
+            "name": "Lucas Francisco Cestari",
+            "speciality": {
+              "id": 5,
+              "abbreviation": "PREV",
+              "name": "Medicina Preventiva e Social"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 7655,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação",
+          "discipline": {
+            "id": 89,
+            "name": "Medicina Preventiva e Social",
+            "residency_degree": 3,
+            "speciality": 5
+          },
+          "theme": {
+            "id": 205,
+            "name": "Atuação Médica",
+            "discipline": 89,
+            "old_tag": 314,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 413728,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\"><strong>Fala, pessoal!</strong></p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Essa questão cobra um tema muito importante e muito traiçoeiro em prova: o preenchimento correto da <span class=\"article-3912\">Declaração de Óbito</span>, especialmente da <strong>Parte I</strong>, que deve trazer a <strong>sequência causal</strong> que levou à morte, e da <strong>Parte II</strong>, que deve registrar outras condições relevantes que contribuíram para o óbito, mas que <strong>não integraram diretamente essa cadeia causal principal</strong>. É exatamente esse tipo de item em que a banca mistura mecanismo terminal, doença de base e fatores de risco para ver se o candidato sabe hierarquizar as informações.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">No preenchimento da <span class=\"article-3912\">Declaração de Óbito</span>, a lógica da Parte I é sempre a mesma. Na linha <strong>a</strong>, colocamos a <strong>causa imediata</strong>, isto é, a condição final que produziu a morte. Nas linhas subsequentes, colocamos os estados mórbidos que deram origem àquela causa, até chegar à <strong>causa básica</strong>, que é a doença ou lesão que iniciou a cadeia de eventos que terminou no óbito. A causa básica é epidemiologicamente a mais importante, porque é ela que organiza a análise de mortalidade e subsidia políticas públicas.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Outro ponto central é diferenciar <strong>mecanismo de morte</strong> de <strong>causa básica</strong>. Arritmias, parada cardiorrespiratória, insuficiência respiratória e choque, por exemplo, costumam aparecer como mecanismos terminais. Eles até podem constar na DO, mas não resolvem sozinhos o raciocínio, porque a declaração precisa explicar <strong>por que</strong> aquele mecanismo ocorreu. No caso apresentado, a fibrilação ventricular não surgiu do nada. Ela aparece como complicação terminal de um evento cardíaco estrutural agudo, no contexto, muito provavelmente, de um infarto agudo do miocárdio.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">A partir do enunciado, o encadeamento plausível é o seguinte: o paciente, com múltiplos fatores de risco cardiovasculares, apresenta dor precordial intensa e progressiva por 24 horas, chega à UPA e o eletrocardiograma mostra fibrilação ventricular, evoluindo a óbito. O quadro é compatível com <strong>infarto agudo do miocárdio</strong> como evento agudo principal, tendo como substrato etiológico mais provável uma <strong>aterosclerose coronariana</strong>. Então, a cadeia causal fica organizada em: <strong>fibrilação ventricular</strong> como causa imediata, <strong>infarto agudo do miocárdio</strong> como condição antecedente, e <strong>aterosclerose coronariana</strong> como causa básica.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Já a <strong>Parte II</strong> deve receber condições que contribuíram para o óbito, mas que não entram diretamente nessa sequência linear. Aqui entram muito bem <strong>dislipidemia, hipertensão arterial e obesidade</strong>, porque são comorbidades e fatores de risco relevantes para doença aterosclerótica e infarto, mas não formam, no preenchimento clássico, a cadeia direta da Parte I. O tabagismo também é fator de risco importante e, do ponto de vista clínico, faria sentido como condição contribuinte; nesta questão, porém, precisamos trabalhar com as alternativas oferecidas.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">A amarração da questão está justamente em reconhecer três armadilhas. A primeira é confundir arritmia terminal com causa básica. A segunda é colocar <strong>fibrilação atrial</strong>, que não foi o achado do caso e não explica adequadamente a cadeia descrita. A terceira é inverter a ordem causal, colocando aterosclerose ou infarto em posição de causa imediata. O raciocínio correto exige respeitar a cronologia patológica: doença aterosclerótica coronariana levando a infarto, que leva a fibrilação ventricular, que culmina no óbito.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">A mensagem central que você precisa guardar é esta: na <span class=\"article-3912\">Declaração de Óbito</span>, a Parte I deve contar uma história causal coerente, da causa imediata até a causa básica. Neste caso, essa história é <strong>fibrilação ventricular ← infarto agudo do miocárdio ← aterosclerose coronariana</strong>. As demais condições relevantes ficam na Parte II.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Com isso em mente, vamos para as alternativas.</p>",
+        "option_a": "<p style=\"text-align: justify;\">Esta alternativa está incorreta porque, embora comece adequadamente com <strong>fibrilação ventricular</strong> como causa imediata e <strong>infarto agudo do miocárdio</strong> como condição antecedente, ela coloca <strong>hipertensão arterial</strong> na sequência causal principal como se fosse a causa básica direta do evento. Isso empobrece e distorce a cadeia patológica mais adequada do caso, já que o substrato causal imediato do IAM aqui é muito melhor representado por <strong>aterosclerose coronariana</strong>. Além disso, o tabagismo, a dislipidemia e a obesidade podem figurar como condições contribuintes, mas a hipertensão não deveria ocupar o lugar de causa básica nessa construção.</p>",
+        "short_option_a": "<p>Coloca <strong>hipertensão arterial</strong> como causa básica na sequência causal principal, quando o substrato mais adequado seria <em>aterosclerose coronariana</em>. Isso distorce a cadeia patológica do <strong>infarto agudo do miocárdio</strong>.</p>",
+        "option_b": "<p style=\"text-align: justify;\">Esta alternativa está incorreta porque a sequência causal está invertida e ainda introduz <strong>fibrilação atrial</strong>, que não foi o achado do caso. O enunciado informa <strong>fibrilação ventricular</strong>, que é compatível com arritmia terminal em contexto de infarto agudo do miocárdio. Além disso, não faz sentido preencher a linha <strong>a</strong> com IAM e colocar uma arritmia incorreta em linha subsequente, rompendo a lógica da Parte I.</p>",
+        "short_option_b": "<p>Apresenta <em>fibrilação atrial</em> em vez de <strong>fibrilação ventricular</strong> (conforme descrito no caso) e inverte a sequência causal colocando <strong>IAM</strong> como causa imediata. A ordem lógica da cadeia está incorreta.</p>",
+        "option_c": "<p style=\"text-align: justify;\">Esta alternativa é a resposta da questão porque organiza corretamente a cadeia causal na <strong>Parte I</strong>: <strong>fibrilação ventricular</strong>como causa imediata, <strong>infarto agudo do miocárdio</strong> como condição antecedente, e <strong>aterosclerose coronariana</strong> como causa básica. Na <strong>Parte II</strong>, coloca adequadamente comorbidades e fatores de risco relevantes, como <strong>dislipidemia, hipertensão arterial e obesidade</strong>, que contribuíram para o desfecho, mas não compõem a sequência causal direta do óbito. Mesmo com a formatação confusa da alternativa, é a única que respeita a lógica correta da <span class=\"article-3912\">Declaração de Óbito</span>.</p>",
+        "short_option_c": "<p>Organiza corretamente a cadeia causal: <strong>fibrilação ventricular</strong> como causa imediata, <strong>IAM</strong> como condição antecedente e <em>aterosclerose coronariana</em> como causa básica. As comorbidades ficam adequadamente na <strong>Parte II</strong> como condições contribuintes.</p>",
+        "option_d": "<p style=\"text-align: justify;\"> Esta alternativa está incorreta porque inverte completamente a ordem causal e ainda introduz novamente <strong>fibrilação atrial</strong>, que não corresponde ao caso. Aterosclerose coronariana não é a causa imediata do óbito nesta narrativa; ela é a causa básica subjacente. Já o infarto não deve aparecer depois de fibrilação atrial, até porque a arritmia descrita no enunciado foi ventricular, não atrial.</p>",
+        "short_option_d": "<p>Inverte completamente a ordem causal colocando <em>aterosclerose coronariana</em> como causa imediata e apresenta <strong>fibrilação atrial</strong> em vez de ventricular. A sequência não respeita a cronologia patológica do caso.</p>",
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Turma, a leitura estratégica dessa questão é perceber que a banca estava cobrando <strong>hierarquia causal</strong> na DO, e não apenas reconhecimento do diagnóstico clínico. O ponto decisivo era não se deixar seduzir pelos fatores de risco nem perder a ordem da cadeia. O caso grita síndrome coronariana aguda com desfecho fatal por arritmia ventricular, então a sequência correta precisava necessariamente passar por <strong>fibrilação ventricular</strong>, <strong>IAM</strong> e <strong>aterosclerose coronariana</strong> nessa ordem.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Para prova, vale guardar um filtro rápido. A <strong>Parte I</strong> conta a cadeia que matou; a <strong>Parte II</strong> traz o pano de fundo que contribuiu. Arritmia terminal costuma entrar em cima, doença aguda logo abaixo, e a lesão ou doença de base fecha como causa básica. E cuidado com duas pegadinhas muito comuns: usar <strong>parada cardiorrespiratória</strong> ou arritmia de forma solta, sem explicar a causa, e trocar <strong>fibrilação ventricular</strong> por <strong>fibrilação atrial</strong>. Fechado?</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\"><strong>Fala, pessoal!</strong></p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Essa questão cobra um tema muito importante e muito traiçoeiro em prova: o preenchimento correto da <span class=\"article-3912\">Declaração de Óbito</span>, especialmente da <strong>Parte I</strong>, que deve trazer a <strong>sequência causal</strong> que levou à morte, e da <strong>Parte II</strong>, que deve registrar outras condições relevantes que contribuíram para o óbito, mas que <strong>não integraram diretamente essa cadeia causal principal</strong>. É exatamente esse tipo de item em que a banca mistura mecanismo terminal, doença de base e fatores de risco para ver se o candidato sabe hierarquizar as informações.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">No preenchimento da <span class=\"article-3912\">Declaração de Óbito</span>, a lógica da Parte I é sempre a mesma. Na linha <strong>a</strong>, colocamos a <strong>causa imediata</strong>, isto é, a condição final que produziu a morte. Nas linhas subsequentes, colocamos os estados mórbidos que deram origem àquela causa, até chegar à <strong>causa básica</strong>, que é a doença ou lesão que iniciou a cadeia de eventos que terminou no óbito. A causa básica é epidemiologicamente a mais importante, porque é ela que organiza a análise de mortalidade e subsidia políticas públicas.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Outro ponto central é diferenciar <strong>mecanismo de morte</strong> de <strong>causa básica</strong>. Arritmias, parada cardiorrespiratória, insuficiência respiratória e choque, por exemplo, costumam aparecer como mecanismos terminais. Eles até podem constar na DO, mas não resolvem sozinhos o raciocínio, porque a declaração precisa explicar <strong>por que</strong> aquele mecanismo ocorreu. No caso apresentado, a fibrilação ventricular não surgiu do nada. Ela aparece como complicação terminal de um evento cardíaco estrutural agudo, no contexto, muito provavelmente, de um infarto agudo do miocárdio.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">A partir do enunciado, o encadeamento plausível é o seguinte: o paciente, com múltiplos fatores de risco cardiovasculares, apresenta dor precordial intensa e progressiva por 24 horas, chega à UPA e o eletrocardiograma mostra fibrilação ventricular, evoluindo a óbito. O quadro é compatível com <strong>infarto agudo do miocárdio</strong> como evento agudo principal, tendo como substrato etiológico mais provável uma <strong>aterosclerose coronariana</strong>. Então, a cadeia causal fica organizada em: <strong>fibrilação ventricular</strong> como causa imediata, <strong>infarto agudo do miocárdio</strong> como condição antecedente, e <strong>aterosclerose coronariana</strong> como causa básica.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Já a <strong>Parte II</strong> deve receber condições que contribuíram para o óbito, mas que não entram diretamente nessa sequência linear. Aqui entram muito bem <strong>dislipidemia, hipertensão arterial e obesidade</strong>, porque são comorbidades e fatores de risco relevantes para doença aterosclerótica e infarto, mas não formam, no preenchimento clássico, a cadeia direta da Parte I. O tabagismo também é fator de risco importante e, do ponto de vista clínico, faria sentido como condição contribuinte; nesta questão, porém, precisamos trabalhar com as alternativas oferecidas.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">A amarração da questão está justamente em reconhecer três armadilhas. A primeira é confundir arritmia terminal com causa básica. A segunda é colocar <strong>fibrilação atrial</strong>, que não foi o achado do caso e não explica adequadamente a cadeia descrita. A terceira é inverter a ordem causal, colocando aterosclerose ou infarto em posição de causa imediata. O raciocínio correto exige respeitar a cronologia patológica: doença aterosclerótica coronariana levando a infarto, que leva a fibrilação ventricular, que culmina no óbito.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">A mensagem central que você precisa guardar é esta: na <span class=\"article-3912\">Declaração de Óbito</span>, a Parte I deve contar uma história causal coerente, da causa imediata até a causa básica. Neste caso, essa história é <strong>fibrilação ventricular ← infarto agudo do miocárdio ← aterosclerose coronariana</strong>. As demais condições relevantes ficam na Parte II.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Com isso em mente, vamos para as alternativas.</p><br>A - Incorreta. <p style=\"text-align: justify;\">Esta alternativa está incorreta porque, embora comece adequadamente com <strong>fibrilação ventricular</strong> como causa imediata e <strong>infarto agudo do miocárdio</strong> como condição antecedente, ela coloca <strong>hipertensão arterial</strong> na sequência causal principal como se fosse a causa básica direta do evento. Isso empobrece e distorce a cadeia patológica mais adequada do caso, já que o substrato causal imediato do IAM aqui é muito melhor representado por <strong>aterosclerose coronariana</strong>. Além disso, o tabagismo, a dislipidemia e a obesidade podem figurar como condições contribuintes, mas a hipertensão não deveria ocupar o lugar de causa básica nessa construção.</p><br>B - Incorreta. <p style=\"text-align: justify;\">Esta alternativa está incorreta porque a sequência causal está invertida e ainda introduz <strong>fibrilação atrial</strong>, que não foi o achado do caso. O enunciado informa <strong>fibrilação ventricular</strong>, que é compatível com arritmia terminal em contexto de infarto agudo do miocárdio. Além disso, não faz sentido preencher a linha <strong>a</strong> com IAM e colocar uma arritmia incorreta em linha subsequente, rompendo a lógica da Parte I.</p><br>C - Correta. <p style=\"text-align: justify;\">Esta alternativa é a resposta da questão porque organiza corretamente a cadeia causal na <strong>Parte I</strong>: <strong>fibrilação ventricular</strong>como causa imediata, <strong>infarto agudo do miocárdio</strong> como condição antecedente, e <strong>aterosclerose coronariana</strong> como causa básica. Na <strong>Parte II</strong>, coloca adequadamente comorbidades e fatores de risco relevantes, como <strong>dislipidemia, hipertensão arterial e obesidade</strong>, que contribuíram para o desfecho, mas não compõem a sequência causal direta do óbito. Mesmo com a formatação confusa da alternativa, é a única que respeita a lógica correta da <span class=\"article-3912\">Declaração de Óbito</span>.</p><br>D - Incorreta. <p style=\"text-align: justify;\"> Esta alternativa está incorreta porque inverte completamente a ordem causal e ainda introduz novamente <strong>fibrilação atrial</strong>, que não corresponde ao caso. Aterosclerose coronariana não é a causa imediata do óbito nesta narrativa; ela é a causa básica subjacente. Já o infarto não deve aparecer depois de fibrilação atrial, até porque a arritmia descrita no enunciado foi ventricular, não atrial.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Turma, a leitura estratégica dessa questão é perceber que a banca estava cobrando <strong>hierarquia causal</strong> na DO, e não apenas reconhecimento do diagnóstico clínico. O ponto decisivo era não se deixar seduzir pelos fatores de risco nem perder a ordem da cadeia. O caso grita síndrome coronariana aguda com desfecho fatal por arritmia ventricular, então a sequência correta precisava necessariamente passar por <strong>fibrilação ventricular</strong>, <strong>IAM</strong> e <strong>aterosclerose coronariana</strong> nessa ordem.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Para prova, vale guardar um filtro rápido. A <strong>Parte I</strong> conta a cadeia que matou; a <strong>Parte II</strong> traz o pano de fundo que contribuiu. Arritmia terminal costuma entrar em cima, doença aguda logo abaixo, e a lesão ou doença de base fecha como causa básica. E cuidado com duas pegadinhas muito comuns: usar <strong>parada cardiorrespiratória</strong> ou arritmia de forma solta, sem explicar a causa, e trocar <strong>fibrilação ventricular</strong> por <strong>fibrilação atrial</strong>. Fechado?</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 343251,
+        "number": 4,
+        "main_speciality_name": "Medicina Preventiva e Social",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Ética Médica, Bioética e Documentação",
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação"
+        }
+      },
+      "detail": {
+        "id": 343251,
+        "content": "Durante a primeira consulta, um cirurgião plástico atende uma paciente interessada em realizar uma abdominoplastia. Após exame físico, ele afirma à paciente: \"Com a técnica que eu uso, garanto que você ficará com o abdome completamente liso, sem nenhuma cicatriz visível\". Com base na afirmação do profissional, a paciente assina o termo de consentimento informado e realiza a cirurgia. Contudo, no resultado final, a paciente apresenta cicatrizes evidentes e discreta flacidez residual. Sentindo-se enganada, a paciente aciona o Conselho Regional de Medicina. Sobre a conduta do médico, assinale a alternativa correta.",
+        "options": [
+          {
+            "id": 1485015,
+            "letter": "A",
+            "content": "O médico cometeu infração ética, pois é vedado prometer resultados, mesmo com boa técnica e assinatura do consentimento.",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 82.99445471349352
+          },
+          {
+            "id": 1485016,
+            "letter": "B",
+            "content": "A assinatura do consentimento informado descaracteriza infração ética, desde que a técnica tenha sido realizada adequadamente.",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 2.744205886534907
+          },
+          {
+            "id": 1485017,
+            "letter": "C",
+            "content": "A infração ética decorre da frustração da paciente com o resultado obtido, e não da promessa verbal feita pelo médico.",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 0.4834352338973411
+          },
+          {
+            "id": 1485018,
+            "letter": "D",
+            "content": "A promessa de resultado pode ser considerada infração apenas se for comprovado que o médico omitiu os riscos e limitações do procedimento.",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 13.77790416607422
+          }
+        ],
+        "images": [],
+        "institution": {
+          "id": 361,
+          "name": "AMRIGS",
+          "state": "RS"
+        },
+        "speciality": [
+          {
+            "id": 5,
+            "abbreviation": "PREV",
+            "name": "Medicina Preventiva e Social",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "o",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 442,
+            "parent_tag": {
+              "id": 314,
+              "name": "Atuação Médica",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Ética Médica, Bioética e Documentação",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              5
+            ],
+            "new_residency_degree": [
+              41,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 91,
+        "physicians": [
+          {
+            "id": 68,
+            "avatar": "https://cdn.medway.com.br/media/physician/Lucas_Cestari_PREV.png",
+            "about": "Medicina Preventiva – USP-RP",
+            "name": "Lucas Francisco Cestari",
+            "speciality": {
+              "id": 5,
+              "abbreviation": "PREV",
+              "name": "Medicina Preventiva e Social"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 7033,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação",
+          "discipline": {
+            "id": 89,
+            "name": "Medicina Preventiva e Social",
+            "residency_degree": 3,
+            "speciality": 5
+          },
+          "theme": {
+            "id": 205,
+            "name": "Atuação Médica",
+            "discipline": 89,
+            "old_tag": 314,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 411952,
+        "actual_explanation": true,
+        "introduction": "<p>O cerne desta questão está na <strong>vedação ética de promessas de resultado</strong> em medicina, especialmente na cirurgia plástica onde expectativas podem ser altas. O enunciado apresenta situação clássica onde um cirurgião plástico <strong>garantiu resultado específico</strong> em abdominoplastia, prometendo abdome \"completamente liso, sem nenhuma cicatriz visível\". Quando o resultado não correspondeu à promessa, a paciente acionou o Conselho Regional de Medicina.</p>\n\n<p>Este tema é fundamental para provas de residência porque testa conhecimento sobre <strong>ética médica</strong> e os limites da relação médico-paciente. O <strong>Código de Ética Médica</strong> é claro quanto à proibição de promessas de resultado, princípio que protege tanto pacientes quanto profissionais de expectativas irreais.</p>\n\n<p>A resposta correta é a <strong>alternativa A</strong>, que reconhece a infração ética independentemente da qualidade técnica ou da assinatura do consentimento informado. A medicina trabalha com <strong>probabilidades e possibilidades</strong>, nunca com garantias absolutas de resultado.</p>\n\n<p>O conceito central é que <strong>nenhum procedimento médico</strong> pode ter resultado garantido, pois fatores individuais, complicações e variações biológicas são imprevisíveis. A assinatura do <strong>termo de consentimento informado</strong> não isenta o médico de responsabilidades éticas quando promessas específicas são feitas.</p>",
+        "option_a": "<p>O&nbsp;<strong>C&oacute;digo de &Eacute;tica M&eacute;dica</strong> veda expressamente a promessa de resultados espec&iacute;ficos, independentemente da t&eacute;cnica utilizada ou da assinatura do consentimento informado. Quando o m&eacute;dico afirmou \"garanto que voc&ecirc; ficar&aacute; com o abdome completamente liso, sem nenhuma cicatriz vis&iacute;vel\", ele fez uma <strong>promessa absoluta</strong> de resultado, que &eacute; considerada <strong>infra&ccedil;&atilde;o &eacute;tica</strong>. A medicina trabalha com probabilidades, n&atilde;o com certezas, e mesmo t&eacute;cnicas excelentes podem ter varia&ccedil;&otilde;es individuais de resultado.</p>",
+        "short_option_a": "<p>O <strong>Código de Ética Médica</strong> veda expressamente promessas de resultados específicos, independentemente da técnica utilizada ou documentação assinada. A medicina trabalha com <em>probabilidades</em>, nunca com <strong>garantias absolutas</strong>.</p>",
+        "option_b": "<p>Embora este documento seja fundamental para esclarecer riscos, benef&iacute;cios e limita&ccedil;&otilde;es do procedimento, ele&nbsp;<strong>n&atilde;o isenta</strong> o m&eacute;dico de infra&ccedil;&otilde;es &eacute;ticas quando promessas espec&iacute;ficas s&atilde;o feitas verbalmente. A assinatura do consentimento n&atilde;o \"blinda\" o profissional de responsabilidades &eacute;ticas, especialmente quando h&aacute; <strong>promessa expl&iacute;cita</strong> de resultado que contradiz os princ&iacute;pios &eacute;ticos da medicina.</p>",
+        "short_option_b": "<p>O <strong>consentimento informado</strong> não isenta o médico de infrações éticas quando promessas específicas são feitas verbalmente. A assinatura não \"blinda\" o profissional de <strong>responsabilidades éticas</strong> por promessas inadequadas.</p>",
+        "option_c": "<p>A infra&ccedil;&atilde;o &eacute;tica&nbsp;<strong>n&atilde;o decorre</strong> da frustra&ccedil;&atilde;o da paciente, mas sim da <strong>promessa inadequada</strong> feita pelo m&eacute;dico. A frustra&ccedil;&atilde;o &eacute; consequ&ecirc;ncia, n&atilde;o causa da infra&ccedil;&atilde;o. O problema &eacute;tico j&aacute; estava estabelecido no momento em que o m&eacute;dico garantiu resultado espec&iacute;fico, independentemente do resultado final obtido ou da satisfa&ccedil;&atilde;o da paciente.</p>",
+        "short_option_c": "<p>A <strong>infração ética</strong> decorre da promessa inadequada feita pelo médico, não da frustração da paciente. O problema ético já estava estabelecido no momento da <em>garantia de resultado específico</em>.</p>",
+        "option_d": "<p>A&nbsp;<strong>promessa de resultado j&aacute; constitui infra&ccedil;&atilde;o &eacute;tica</strong> por si s&oacute;, independentemente de ter havido omiss&atilde;o de riscos e limita&ccedil;&otilde;es. Mesmo que o m&eacute;dico tenha esclarecido todos os riscos, a garantia de resultado espec&iacute;fico continua sendo vedada pelo C&oacute;digo de &Eacute;tica M&eacute;dica. A infra&ccedil;&atilde;o n&atilde;o depende de comprova&ccedil;&atilde;o adicional de omiss&atilde;o de informa&ccedil;&otilde;es.</p>",
+        "short_option_d": "<p>A <strong>promessa de resultado</strong> já constitui infração ética por si só, independentemente de omissão de riscos. Mesmo com esclarecimentos completos, a <em>garantia de resultado específico</em> permanece vedada.</p>",
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>O <strong>racioc&iacute;nio diagn&oacute;stico</strong> desta quest&atilde;o gira em torno da <strong>veda&ccedil;&atilde;o &eacute;tica de promessa de resultado</strong> em medicina. A palavra-chave \"garanto\" seguida de resultado espec&iacute;fico caracteriza imediatamente a <em>infra&ccedil;&atilde;o &eacute;tica</em>, independentemente da qualidade t&eacute;cnica ou documenta&ccedil;&atilde;o assinada. A medicina trabalha com <strong>probabilidades</strong>, nunca com garantias absolutas.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Uso da palavra \"garanto\" pelo m&eacute;dico caracteriza <strong>promessa expl&iacute;cita</strong></li>\n<li>Resultado espec&iacute;fico prometido (\"abdome completamente liso, sem cicatriz vis&iacute;vel\")</li>\n<li>C&oacute;digo de &Eacute;tica M&eacute;dica veda <em>promessas de resultado</em> em qualquer situa&ccedil;&atilde;o</li>\n<li>Medicina trabalha com <strong>probabilidades</strong>, n&atilde;o com certezas absolutas</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Pensar que <em>consentimento informado</em> isenta o m&eacute;dico de infra&ccedil;&otilde;es &eacute;ticas por promessas verbais</li>\n<li>Confundir <strong>frustra&ccedil;&atilde;o da paciente</strong> com causa da infra&ccedil;&atilde;o (&eacute; consequ&ecirc;ncia, n&atilde;o causa)</li>\n<li>Acreditar que <em>boa t&eacute;cnica cir&uacute;rgica</em> justifica promessa de resultado espec&iacute;fico</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Quest&otilde;es de <strong>&eacute;tica m&eacute;dica</strong> frequentemente testam limites da rela&ccedil;&atilde;o m&eacute;dico-paciente</li>\n<li>Cen&aacute;rios envolvendo <em>cirurgia pl&aacute;stica</em> s&atilde;o comuns para abordar promessas inadequadas</li>\n<li>Formato cl&aacute;ssico: m&eacute;dico faz promessa &rarr; resultado diferente &rarr; questionamento &eacute;tico</li>\n<li><strong>Tamb&eacute;m pode cair:</strong> outros tipos de receitu&aacute;rio m&eacute;dico controlado (tema distinto abordado em quest&otilde;es correlatas)</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O cerne desta questão está na <strong>vedação ética de promessas de resultado</strong> em medicina, especialmente na cirurgia plástica onde expectativas podem ser altas. O enunciado apresenta situação clássica onde um cirurgião plástico <strong>garantiu resultado específico</strong> em abdominoplastia, prometendo abdome \"completamente liso, sem nenhuma cicatriz visível\". Quando o resultado não correspondeu à promessa, a paciente acionou o Conselho Regional de Medicina.</p>\n\n<p>Este tema é fundamental para provas de residência porque testa conhecimento sobre <strong>ética médica</strong> e os limites da relação médico-paciente. O <strong>Código de Ética Médica</strong> é claro quanto à proibição de promessas de resultado, princípio que protege tanto pacientes quanto profissionais de expectativas irreais.</p>\n\n<p>A resposta correta é a <strong>alternativa A</strong>, que reconhece a infração ética independentemente da qualidade técnica ou da assinatura do consentimento informado. A medicina trabalha com <strong>probabilidades e possibilidades</strong>, nunca com garantias absolutas de resultado.</p>\n\n<p>O conceito central é que <strong>nenhum procedimento médico</strong> pode ter resultado garantido, pois fatores individuais, complicações e variações biológicas são imprevisíveis. A assinatura do <strong>termo de consentimento informado</strong> não isenta o médico de responsabilidades éticas quando promessas específicas são feitas.</p><br>A - Correta. <p>O&nbsp;<strong>C&oacute;digo de &Eacute;tica M&eacute;dica</strong> veda expressamente a promessa de resultados espec&iacute;ficos, independentemente da t&eacute;cnica utilizada ou da assinatura do consentimento informado. Quando o m&eacute;dico afirmou \"garanto que voc&ecirc; ficar&aacute; com o abdome completamente liso, sem nenhuma cicatriz vis&iacute;vel\", ele fez uma <strong>promessa absoluta</strong> de resultado, que &eacute; considerada <strong>infra&ccedil;&atilde;o &eacute;tica</strong>. A medicina trabalha com probabilidades, n&atilde;o com certezas, e mesmo t&eacute;cnicas excelentes podem ter varia&ccedil;&otilde;es individuais de resultado.</p><br>B - Incorreta. <p>Embora este documento seja fundamental para esclarecer riscos, benef&iacute;cios e limita&ccedil;&otilde;es do procedimento, ele&nbsp;<strong>n&atilde;o isenta</strong> o m&eacute;dico de infra&ccedil;&otilde;es &eacute;ticas quando promessas espec&iacute;ficas s&atilde;o feitas verbalmente. A assinatura do consentimento n&atilde;o \"blinda\" o profissional de responsabilidades &eacute;ticas, especialmente quando h&aacute; <strong>promessa expl&iacute;cita</strong> de resultado que contradiz os princ&iacute;pios &eacute;ticos da medicina.</p><br>C - Incorreta. <p>A infra&ccedil;&atilde;o &eacute;tica&nbsp;<strong>n&atilde;o decorre</strong> da frustra&ccedil;&atilde;o da paciente, mas sim da <strong>promessa inadequada</strong> feita pelo m&eacute;dico. A frustra&ccedil;&atilde;o &eacute; consequ&ecirc;ncia, n&atilde;o causa da infra&ccedil;&atilde;o. O problema &eacute;tico j&aacute; estava estabelecido no momento em que o m&eacute;dico garantiu resultado espec&iacute;fico, independentemente do resultado final obtido ou da satisfa&ccedil;&atilde;o da paciente.</p><br>D - Incorreta. <p>A&nbsp;<strong>promessa de resultado j&aacute; constitui infra&ccedil;&atilde;o &eacute;tica</strong> por si s&oacute;, independentemente de ter havido omiss&atilde;o de riscos e limita&ccedil;&otilde;es. Mesmo que o m&eacute;dico tenha esclarecido todos os riscos, a garantia de resultado espec&iacute;fico continua sendo vedada pelo C&oacute;digo de &Eacute;tica M&eacute;dica. A infra&ccedil;&atilde;o n&atilde;o depende de comprova&ccedil;&atilde;o adicional de omiss&atilde;o de informa&ccedil;&otilde;es.</p><br>Visão do aprovado: <p>O <strong>racioc&iacute;nio diagn&oacute;stico</strong> desta quest&atilde;o gira em torno da <strong>veda&ccedil;&atilde;o &eacute;tica de promessa de resultado</strong> em medicina. A palavra-chave \"garanto\" seguida de resultado espec&iacute;fico caracteriza imediatamente a <em>infra&ccedil;&atilde;o &eacute;tica</em>, independentemente da qualidade t&eacute;cnica ou documenta&ccedil;&atilde;o assinada. A medicina trabalha com <strong>probabilidades</strong>, nunca com garantias absolutas.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Uso da palavra \"garanto\" pelo m&eacute;dico caracteriza <strong>promessa expl&iacute;cita</strong></li>\n<li>Resultado espec&iacute;fico prometido (\"abdome completamente liso, sem cicatriz vis&iacute;vel\")</li>\n<li>C&oacute;digo de &Eacute;tica M&eacute;dica veda <em>promessas de resultado</em> em qualquer situa&ccedil;&atilde;o</li>\n<li>Medicina trabalha com <strong>probabilidades</strong>, n&atilde;o com certezas absolutas</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Pensar que <em>consentimento informado</em> isenta o m&eacute;dico de infra&ccedil;&otilde;es &eacute;ticas por promessas verbais</li>\n<li>Confundir <strong>frustra&ccedil;&atilde;o da paciente</strong> com causa da infra&ccedil;&atilde;o (&eacute; consequ&ecirc;ncia, n&atilde;o causa)</li>\n<li>Acreditar que <em>boa t&eacute;cnica cir&uacute;rgica</em> justifica promessa de resultado espec&iacute;fico</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Quest&otilde;es de <strong>&eacute;tica m&eacute;dica</strong> frequentemente testam limites da rela&ccedil;&atilde;o m&eacute;dico-paciente</li>\n<li>Cen&aacute;rios envolvendo <em>cirurgia pl&aacute;stica</em> s&atilde;o comuns para abordar promessas inadequadas</li>\n<li>Formato cl&aacute;ssico: m&eacute;dico faz promessa &rarr; resultado diferente &rarr; questionamento &eacute;tico</li>\n<li><strong>Tamb&eacute;m pode cair:</strong> outros tipos de receitu&aacute;rio m&eacute;dico controlado (tema distinto abordado em quest&otilde;es correlatas)</li>\n</ul><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 338262,
+        "number": 5,
+        "main_speciality_name": "Medicina Preventiva e Social",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Ética Médica, Bioética e Documentação",
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação"
+        }
+      },
+      "detail": {
+        "id": 338262,
+        "content": "Uma família recebe visita domiciliar do agente comunitário da saúde (ACS) devido à situação de não comparecimento de uma criança de 2 anos para atualização das vacinas, conforme o Plano Nacional de Imunização (PNI), e ao fato de não estar frequentando a creche. A mãe da criança tem 17 anos e informa que não está levando o filho à creche, pois não está aguentando o fardo do cuidado desde o assassinato do pai da criança, ocorrido na comunidade onde residem. Considerando o caso descrito, o diagnóstico de violência e a conduta, respectivamente, devem ser:",
+        "options": [
+          {
+            "id": 1467501,
+            "letter": "A",
+            "content": "estrutural e abuso emocional / intervenção na família",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 7.9077910709075
+          },
+          {
+            "id": 1467502,
+            "letter": "B",
+            "content": "familiar e negligência / ações de monitoramento e de apoio à mãe",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 82.90049606069448
+          },
+          {
+            "id": 1467503,
+            "letter": "C",
+            "content": "interpessoal e abuso psicológico / acionamento do conselho tutelar",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 5.442077618908667
+          },
+          {
+            "id": 1467504,
+            "letter": "D",
+            "content": "doméstica e física / ampliação da rede de apoio para amparo da mãe",
+            "image": null,
+            "image_kind": null,
+            "response_percentage": 3.7496352494893492
+          }
+        ],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 5,
+            "abbreviation": "PREV",
+            "name": "Medicina Preventiva e Social",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "o",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 442,
+            "parent_tag": {
+              "id": 314,
+              "name": "Atuação Médica",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Ética Médica, Bioética e Documentação",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              5
+            ],
+            "new_residency_degree": [
+              41,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 85,
+        "physicians": [
+          {
+            "id": 68,
+            "avatar": "https://cdn.medway.com.br/media/physician/Lucas_Cestari_PREV.png",
+            "about": "Medicina Preventiva – USP-RP",
+            "name": "Lucas Francisco Cestari",
+            "speciality": {
+              "id": 5,
+              "abbreviation": "PREV",
+              "name": "Medicina Preventiva e Social"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 6854,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação",
+          "discipline": {
+            "id": 89,
+            "name": "Medicina Preventiva e Social",
+            "residency_degree": 3,
+            "speciality": 5
+          },
+          "theme": {
+            "id": 205,
+            "name": "Atuação Médica",
+            "discipline": 89,
+            "old_tag": 314,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 397846,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Salve, pessoal!</strong></p>\n<p> </p>\n<p style=\"text-align: justify;\">Essa é uma questão muito boa porque ela exige uma leitura que vai além do reflexo automático de “faltou vacina e não vai à creche = negligência”. A banca quer saber se você consegue interpretar o caso com mais profundidade, considerando <strong>contexto social</strong>, <strong>sofrimento psíquico</strong>, <strong>vulnerabilidade materna</strong> e o modo como a APS deve agir diante de uma suspeita de violência.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Vamos reconstruir a cena com calma. A equipe chega até a família porque há dois sinais de alerta: a criança de 2 anos não está comparecendo para atualização vacinal e também não está frequentando a creche. Esses achados, isoladamente, podem levantar a hipótese de negligência. Só que o enunciado não para aí. A mãe tem <strong>17 anos</strong>, ou seja, também está em condição de vulnerabilidade etária e social, e relata que desde o <strong>assassinato do pai da criança</strong>, ocorrido na própria comunidade, não está suportando o peso do cuidado. Isso muda completamente a leitura clínica e sanitária do caso.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Aqui, o ponto central é perceber que a falha no cuidado da criança não aparece como fruto de desinteresse frio, abandono deliberado ou recusa ativa em protegê-la. O enunciado aponta para uma mãe em sofrimento importante, sobrecarregada, provavelmente abalada por luto traumático, violência comunitária e fragilidade de rede de apoio. Nesse tipo de situação, a leitura mais adequada não é a de culpabilização imediata da mãe, mas a de um quadro de <strong>violência familiar com expressão de negligência</strong>, exigindo <strong>apoio, monitoramento e suporte à cuidadora</strong> para proteger a criança e restaurar a capacidade de cuidado.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Esse é um ponto muito importante em prova e na prática: <strong>negligência</strong> não deve ser reconhecida apenas como “falta de cuidado” em sentido descritivo, mas como situação em que a criança tem necessidades básicas não atendidas. A investigação precisa perguntar: isso decorre de intenção, recusa, incapacidade, adoecimento, sofrimento mental, extrema pobreza, violência estrutural ou colapso de suporte familiar? Na APS, especialmente em casos como este, a primeira resposta mais adequada costuma ser <strong>apoio e acompanhamento</strong>, e não judicialização ou punição imediata.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Por isso, o diagnóstico mais compatível é o de <strong>violência familiar com negligência</strong>, e a conduta mais adequada é <strong>ações de monitoramento e apoio à mãe</strong>. Isso inclui acompanhamento longitudinal pela equipe, fortalecimento de rede de apoio, possível articulação com assistência social, vigilância da situação vacinal e do desenvolvimento infantil, e avaliação contínua do risco. Se o caso evoluir com agravamento, recusa persistente de cuidado ou risco concreto à criança, outras medidas de proteção podem se tornar necessárias. Mas, do jeito que o caso foi montado, a resposta mais adequada e proporcional é essa.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><strong>Vamos agora repassar nossas alternativas.</strong></p>",
+        "option_a": "<p style=\"text-align: justify;\">Ela está errada porque o caso não é melhor classificado como <strong>violência estrutural e abuso emocional</strong>. É verdade que o contexto comunitário violento e as vulnerabilidades sociais pesam bastante, mas a situação descrita gira em torno da relação de cuidado entre mãe e criança, com falha concreta em necessidades básicas da criança. O termo “abuso emocional” também não é o que melhor traduz o caso, já que o enunciado não descreve humilhação, ameaça, rejeição ativa ou agressão psicológica direta à criança.</p>",
+        "short_option_a": "<p>O caso não se caracteriza como <strong>violência estrutural</strong> pois o problema central ocorre na relação de cuidado mãe-criança. <em>Abuso emocional</em> também não se aplica, já que não há descrição de humilhação, ameaças ou agressão psicológica direta à criança.</p>",
+        "option_b": "<p style=\"text-align: justify;\">Essa é a melhor resposta. O caso se encaixa mais adequadamente como <strong>violência familiar com expressão de negligência</strong>, porque há falha em cuidados importantes da criança — vacinação e frequência à creche — dentro de um contexto de sofrimento e sobrecarga materna. A conduta mais adequada, diante do caso apresentado, é <strong>monitoramento e apoio à mãe</strong>, e não uma resposta meramente punitiva. A APS deve funcionar aqui como espaço de proteção, acompanhamento e reconstrução da capacidade de cuidado.</p>",
+        "short_option_b": "<p>A falha nos cuidados básicos (vacinação e creche) por mãe adolescente sobrecarregada após trauma caracteriza <strong>violência familiar por negligência</strong>. O <em>monitoramento e apoio à mãe</em> é a conduta mais adequada para restaurar a capacidade de cuidado, evitando medidas punitivas imediatas.</p>",
+        "option_c": "<p style=\"text-align: justify;\">Ela erra em dois níveis. Primeiro, “<strong>abuso psicológico</strong>” não é a melhor classificação do caso, porque o enunciado não mostra uma prática ativa de humilhação, ameaça ou intimidação dirigida à criança. Segundo, o <strong>acionamento do conselho tutelar</strong> como resposta principal imediata soa desproporcional ao quadro tal como foi apresentado. O caso pede, antes de tudo, suporte e seguimento da família, embora o conselho possa vir a ser acionado se houver risco persistente ou agravamento.</p>",
+        "short_option_c": "<p><em>Abuso psicológico</em> não se aplica pois não há prática ativa de humilhação ou intimidação à criança. O <strong>acionamento imediato do conselho tutelar</strong> é desproporcional - o caso requer primeiro suporte e seguimento familiar.</p>",
+        "option_d": "<p style=\"text-align: justify;\">Ela é plausível na parte da conduta, porque <strong>ampliar rede de apoio para amparo da mãe</strong> realmente conversa com a necessidade do caso. O problema é o diagnóstico: não há descrição de <strong><span class=\"article-1940\">violência doméstica</span> física</strong> contra a criança. O enunciado fala de um homicídio ocorrido na comunidade e de sofrimento materno subsequente, mas não de agressão física intradomiciliar à criança. Então a alternativa erra ao nomear o tipo de violência.</p>",
+        "short_option_d": "<p>Não há evidências de <strong>violência doméstica física</strong> contra a criança no enunciado. Embora ampliar a rede de apoio seja pertinente, o diagnóstico está incorreto ao classificar como <em>violência física</em>.</p>",
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p><strong>Pessoal, </strong></p>\n<p> </p>\n<p>O raciocínio diagnóstico se baseia em <strong>negligência não intencional</strong> no contexto familiar após trauma. A mãe adolescente perdeu a capacidade de prover cuidados básicos (vacinas, educação) após o assassinato do companheiro, caracterizando <strong>violência familiar por negligência</strong>. A conduta prioriza <strong>apoio e monitoramento</strong>, não medidas punitivas.</p>\n<p> </p>\n<p><strong>Pistas-chave:</strong></p>\n<p style=\"text-align: justify;\"><strong>&gt; Esquema vacinal em atraso</strong> - falha nos cuidados básicos de saúde</p>\n<p style=\"text-align: justify;\"><strong>&gt; Ausência escolar</strong> (não frequenta creche) - negligência educacional</p>\n<p style=\"text-align: justify;\"><strong>&gt; Mãe adolescente sobrecarregada</strong> - incapacidade de cuidar após trauma</p>\n<p style=\"text-align: justify;\"><strong>&gt; Histórico de morte violenta do pai</strong> - fator desencadeante da negligência</p>\n<p style=\"text-align: justify;\"><strong>&gt; Relato de \"não aguentar o fardo\"</strong> - evidência de incapacidade, não intencionalidade</p>\n<p> </p>\n<p><strong>Pegadinhas de prova:</strong></p>\n<p style=\"text-align: justify;\"><strong>&gt; Confundir violência estrutural com familiar</strong> - embora a origem seja estrutural, o problema atual é familiar</p>\n<p style=\"text-align: justify;\"><strong>&gt; Interpretar como abuso emocional/psicológico</strong> - negligência não implica em intencionalidade de causar danos</p>\n<p style=\"text-align: justify;\"><strong>&gt; Indicar conselho tutelar imediatamente</strong> - primeiro deve-se tentar apoio familiar antes de medidas mais severas</p>\n<p style=\"text-align: justify;\"><strong>&gt; Classificar como violência física</strong> - ausência de evidências de agressão corporal</p>\n<p> </p>\n<p><strong>Beleza? Bora pra cima!</strong></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Salve, pessoal!</strong></p>\n<p> </p>\n<p style=\"text-align: justify;\">Essa é uma questão muito boa porque ela exige uma leitura que vai além do reflexo automático de “faltou vacina e não vai à creche = negligência”. A banca quer saber se você consegue interpretar o caso com mais profundidade, considerando <strong>contexto social</strong>, <strong>sofrimento psíquico</strong>, <strong>vulnerabilidade materna</strong> e o modo como a APS deve agir diante de uma suspeita de violência.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Vamos reconstruir a cena com calma. A equipe chega até a família porque há dois sinais de alerta: a criança de 2 anos não está comparecendo para atualização vacinal e também não está frequentando a creche. Esses achados, isoladamente, podem levantar a hipótese de negligência. Só que o enunciado não para aí. A mãe tem <strong>17 anos</strong>, ou seja, também está em condição de vulnerabilidade etária e social, e relata que desde o <strong>assassinato do pai da criança</strong>, ocorrido na própria comunidade, não está suportando o peso do cuidado. Isso muda completamente a leitura clínica e sanitária do caso.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Aqui, o ponto central é perceber que a falha no cuidado da criança não aparece como fruto de desinteresse frio, abandono deliberado ou recusa ativa em protegê-la. O enunciado aponta para uma mãe em sofrimento importante, sobrecarregada, provavelmente abalada por luto traumático, violência comunitária e fragilidade de rede de apoio. Nesse tipo de situação, a leitura mais adequada não é a de culpabilização imediata da mãe, mas a de um quadro de <strong>violência familiar com expressão de negligência</strong>, exigindo <strong>apoio, monitoramento e suporte à cuidadora</strong> para proteger a criança e restaurar a capacidade de cuidado.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Esse é um ponto muito importante em prova e na prática: <strong>negligência</strong> não deve ser reconhecida apenas como “falta de cuidado” em sentido descritivo, mas como situação em que a criança tem necessidades básicas não atendidas. A investigação precisa perguntar: isso decorre de intenção, recusa, incapacidade, adoecimento, sofrimento mental, extrema pobreza, violência estrutural ou colapso de suporte familiar? Na APS, especialmente em casos como este, a primeira resposta mais adequada costuma ser <strong>apoio e acompanhamento</strong>, e não judicialização ou punição imediata.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\">Por isso, o diagnóstico mais compatível é o de <strong>violência familiar com negligência</strong>, e a conduta mais adequada é <strong>ações de monitoramento e apoio à mãe</strong>. Isso inclui acompanhamento longitudinal pela equipe, fortalecimento de rede de apoio, possível articulação com assistência social, vigilância da situação vacinal e do desenvolvimento infantil, e avaliação contínua do risco. Se o caso evoluir com agravamento, recusa persistente de cuidado ou risco concreto à criança, outras medidas de proteção podem se tornar necessárias. Mas, do jeito que o caso foi montado, a resposta mais adequada e proporcional é essa.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><strong>Vamos agora repassar nossas alternativas.</strong></p><br>A - Incorreta. <p style=\"text-align: justify;\">Ela está errada porque o caso não é melhor classificado como <strong>violência estrutural e abuso emocional</strong>. É verdade que o contexto comunitário violento e as vulnerabilidades sociais pesam bastante, mas a situação descrita gira em torno da relação de cuidado entre mãe e criança, com falha concreta em necessidades básicas da criança. O termo “abuso emocional” também não é o que melhor traduz o caso, já que o enunciado não descreve humilhação, ameaça, rejeição ativa ou agressão psicológica direta à criança.</p><br>B - Correta. <p style=\"text-align: justify;\">Essa é a melhor resposta. O caso se encaixa mais adequadamente como <strong>violência familiar com expressão de negligência</strong>, porque há falha em cuidados importantes da criança — vacinação e frequência à creche — dentro de um contexto de sofrimento e sobrecarga materna. A conduta mais adequada, diante do caso apresentado, é <strong>monitoramento e apoio à mãe</strong>, e não uma resposta meramente punitiva. A APS deve funcionar aqui como espaço de proteção, acompanhamento e reconstrução da capacidade de cuidado.</p><br>C - Incorreta. <p style=\"text-align: justify;\">Ela erra em dois níveis. Primeiro, “<strong>abuso psicológico</strong>” não é a melhor classificação do caso, porque o enunciado não mostra uma prática ativa de humilhação, ameaça ou intimidação dirigida à criança. Segundo, o <strong>acionamento do conselho tutelar</strong> como resposta principal imediata soa desproporcional ao quadro tal como foi apresentado. O caso pede, antes de tudo, suporte e seguimento da família, embora o conselho possa vir a ser acionado se houver risco persistente ou agravamento.</p><br>D - Incorreta. <p style=\"text-align: justify;\">Ela é plausível na parte da conduta, porque <strong>ampliar rede de apoio para amparo da mãe</strong> realmente conversa com a necessidade do caso. O problema é o diagnóstico: não há descrição de <strong><span class=\"article-1940\">violência doméstica</span> física</strong> contra a criança. O enunciado fala de um homicídio ocorrido na comunidade e de sofrimento materno subsequente, mas não de agressão física intradomiciliar à criança. Então a alternativa erra ao nomear o tipo de violência.</p><br>Visão do aprovado: <p><strong>Pessoal, </strong></p>\n<p> </p>\n<p>O raciocínio diagnóstico se baseia em <strong>negligência não intencional</strong> no contexto familiar após trauma. A mãe adolescente perdeu a capacidade de prover cuidados básicos (vacinas, educação) após o assassinato do companheiro, caracterizando <strong>violência familiar por negligência</strong>. A conduta prioriza <strong>apoio e monitoramento</strong>, não medidas punitivas.</p>\n<p> </p>\n<p><strong>Pistas-chave:</strong></p>\n<p style=\"text-align: justify;\"><strong>&gt; Esquema vacinal em atraso</strong> - falha nos cuidados básicos de saúde</p>\n<p style=\"text-align: justify;\"><strong>&gt; Ausência escolar</strong> (não frequenta creche) - negligência educacional</p>\n<p style=\"text-align: justify;\"><strong>&gt; Mãe adolescente sobrecarregada</strong> - incapacidade de cuidar após trauma</p>\n<p style=\"text-align: justify;\"><strong>&gt; Histórico de morte violenta do pai</strong> - fator desencadeante da negligência</p>\n<p style=\"text-align: justify;\"><strong>&gt; Relato de \"não aguentar o fardo\"</strong> - evidência de incapacidade, não intencionalidade</p>\n<p> </p>\n<p><strong>Pegadinhas de prova:</strong></p>\n<p style=\"text-align: justify;\"><strong>&gt; Confundir violência estrutural com familiar</strong> - embora a origem seja estrutural, o problema atual é familiar</p>\n<p style=\"text-align: justify;\"><strong>&gt; Interpretar como abuso emocional/psicológico</strong> - negligência não implica em intencionalidade de causar danos</p>\n<p style=\"text-align: justify;\"><strong>&gt; Indicar conselho tutelar imediatamente</strong> - primeiro deve-se tentar apoio familiar antes de medidas mais severas</p>\n<p style=\"text-align: justify;\"><strong>&gt; Classificar como violência física</strong> - ausência de evidências de agressão corporal</p>\n<p> </p>\n<p><strong>Beleza? Bora pra cima!</strong></p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T12:52:25.243380+00:00",
+  "complete": true
+}

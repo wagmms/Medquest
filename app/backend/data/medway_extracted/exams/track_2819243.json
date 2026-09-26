@@ -1,0 +1,1141 @@
+{
+  "track_id": 2819243,
+  "name": "UNICAMP - 2024 [Ultrassonografia]",
+  "year": 2024,
+  "track_fast": {
+    "id": 2819243,
+    "name": "UNICAMP - 2024 [Ultrassonografia]",
+    "track_type": "c",
+    "question_count": 10,
+    "year": 2024,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UNICAMP",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-unicamp_yplZ7NO.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 10,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 10,
+  "questions": [
+    {
+      "meta": {
+        "id": 197320,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Radiologia em ginecologia geral",
+        "focus": {
+          "id": 1610,
+          "name": "Radiologia em ginecologia geral"
+        }
+      },
+      "detail": {
+        "id": 197320,
+        "content": "Considerando a classificação das massas anexiais pelo Ovarian-Adnexal Imaging-Reporting-Data System (O-RADS) do Colégio Americano de Radiologia PERGUNTA-SE: Quais são dois exemplos de massas anexiais que devem ser classificadas na categoria O-RADS US 2?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15957,
+            "parent_tag": {
+              "id": 15904,
+              "name": "Imagens em Ginecologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Radiologia em ginecologia geral",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 24,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1610,
+          "name": "Radiologia em ginecologia geral",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 102,
+            "name": "Imagens em Ginecologia",
+            "discipline": 86,
+            "old_tag": 15904,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224686,
+        "actual_explanation": true,
+        "introduction": "<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(106, 168, 79); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 2</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Quase certamente benigno (&lt;1% de risco de malignidade)</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto simples</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&le;3 cm - sem conduta&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&gt;3 cm a 5 cm - sem conduta no menacme / se p&oacute;s menopausa: novo usg em 12 meses</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&nbsp;&gt;5 cm mas &lt;10 cm - novo usg em 12 meses</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular, regular, n&atilde;o simples (com imagem no interior ou septa&ccedil;&otilde;es incompleta) OU cisto bilocular, regular::&nbsp;&nbsp;</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&le;3 cm - sem conduta no menacme / repetir usg em 12 meses na p&oacute;s menopausa</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&gt; 3cm - &lt; 10cm - repetir usg em 6 meses</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es ovarianas tipicamente benignas (cisto hemorr&aacute;gico, teratoma, endometrioma) &lt; 10cm - condutas individualizadas a depender de idade / cl&iacute;nica / tipo de les&atilde;o;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es extra ovarianas de qualquer tamanho (cistos paraovarianos, cistos de inclus&atilde;o, hidrossalpinge) - condutas individualizadas a depender de idade / cl&iacute;nica / tipo de les&atilde;o;</span></p>\n</li>\n</ul>\n</li>\n</ul>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>.</p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">Quest&atilde;o direta e te&oacute;rica sobre a classifica&ccedil;&atilde;o &ldquo;Ovarian-Adnexal Reporting and Data System (O-RADS)&rdquo;.&nbsp;</span></p>\n<p>&nbsp;</p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">Vamos relembrar do que se trata essa classifica&ccedil;&atilde;o: &eacute; um Sistema de estratifica&ccedil;&atilde;o de risco e gerenciamento para auxiliar na interpreta&ccedil;&atilde;o de exames de ultrassonografia p&eacute;lvica, fornecendo uma estrutura para realizar interpreta&ccedil;&otilde;es consistentes que evitem ambiguidade na avalia&ccedil;&atilde;o do risco de malignidade.</span></p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">A partir do O-RADS, uma imagem anexial avaliada por usg, pode ser classificada dentro de 5 categorias de risco de malignidade. Esse sistema possui uma alta sensibilidade na classifica&ccedil;&atilde;o de riscos intermedi&aacute;rio e alto para malignidade.&nbsp;</span></p>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(153, 153, 153); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 0 </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Avalia&ccedil;&atilde;o incompleta / inconclusiva</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Impossibilidade de avalia&ccedil;&atilde;o por quest&otilde;es t&eacute;cnicas</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Reavaliar com USG ou realizar RNM</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(60, 120, 216); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 1</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Ov&aacute;rio normal</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos fisiol&oacute;gicos: fol&iacute;culo ( &le;3 cm) ou corpo l&uacute;teo (&le;3 cm)&nbsp;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(106, 168, 79); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 2</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Quase certamente benigno (&lt;1% de risco de malignidade)</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto simples</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&le;3 cm - sem conduta&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&gt;3 cm a 5 cm - sem conduta no menacme / se p&oacute;s menopausa: novo usg em 12 meses</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&nbsp;&gt;5 cm mas &lt;10 cm - novo usg em 12 meses</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular, regular, n&atilde;o simples (com imagem no interior ou septa&ccedil;&otilde;es incompleta) OU cisto bilocular, regular::&nbsp;&nbsp;</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&le;3 cm - sem conduta no menacme / repetir usg em 12 meses na p&oacute;s menopausa</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&gt; 3cm - &lt; 10cm - repetir usg em 6 meses</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es ovarianas tipicamente benignas (cisto hemorr&aacute;gico, teratoma, endometrioma) &lt; 10cm - condutas individualizadas a depender de idade / cl&iacute;nica / tipo de les&atilde;o;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es extra ovarianas de qualquer tamanho (cistos paraovarianos, cistos de inclus&atilde;o, hidrossalpinge) - condutas individualizadas a depender de idade / cl&iacute;nica / tipo de les&atilde;o;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(241, 194, 50); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 3</span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> Baixo risco de malignidade ( 1 a &lt;10% de risco de malignidade) - condutas para todos: considerar seguimento ecogr&aacute;fico em 6cm se n&atilde;o for poss&iacute;vel excis&atilde;o cir&uacute;rgica / considerar RNM se les&otilde;es s&oacute;lidas.</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es ovarianas tipicamente benignas (cisto hemorr&aacute;gico, teratoma, endometrioma) com tamanho&nbsp; &ge;10 cm&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos uni ou biloculados, regulares &ge;10 cm</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos uniloculares irregulares de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos multiloculares, regulares, &lt; 10cm, IC (&iacute;ndice de cor) &lt; 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es s&oacute;lidas, com ou sem sombreamento, regular, de qualquer tamanho, IC = 1</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es s&oacute;lidas, com sombra ac&uacute;stica, regular, de qualquer tamanho, IC 2-3</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(255, 153, 0); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 4</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Risco intermedi&aacute;rio de malignidade (10 a &lt;50% de risco de malignidade) - seguimento com oncologia p&eacute;lvica</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto bilocular com componente s&oacute;lido, irregular, de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto multilocular sem componente s&oacute;lido&nbsp;</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">regular, &ge;10 cm, IC &lt; 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">regular, qualquer tamanho, IC 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">irregular, qualquer tamanho, qualquer IC</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular com componente s&oacute;lido - &lt; 4 proje&ccedil;&otilde;es papilares ou componentes s&oacute;lidos n&atilde;o considerados proje&ccedil;&otilde;es papilares, de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto bi ou multilocular com componente s&oacute;lido, qualquer tamanho, IC 1-2</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&atilde;o s&oacute;lida, sem sombra ac&uacute;stica, regular, qualquer tamanho, IC 2-3&nbsp;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(255, 0, 0); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 5</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Alto risco de malignidade (&ge;50% de risco de malignidade) - seguimento com oncologia p&eacute;lvica</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular com 4 ou mais proje&ccedil;&otilde;es papilares, de qualquer tamanho, qualquer IC</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto bi ou multilocular com componente s&oacute;lido de qualquer tamanho, IC 3-4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&atilde;o s&oacute;lida, com ou sem sombra ac&uacute;stica, lisa, de qualquer tamanho, IC 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&atilde;o s&oacute;lida, irregular, de qualquer tamanho, qualquer IC</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Presen&ccedil;a de ascite ou n&oacute;dulos peritoneais&nbsp;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">Se quiserem dar uma checada na tabela original do O-RADS pela ACOG, segue o link: </span><a style=\"text-decoration: none;\" href=\"https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/RADS/O-RADS/O-RADS--Ultrasound-v2022-Assessment-Categories.pdf\"><span style=\"font-size: 10.5pt; color: rgb(17, 85, 204); background-color: rgb(255, 255, 255); text-decoration: underline; text-decoration-skip-ink: none;\">https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/RADS/O-RADS/O-RADS--Ultrasound-v2022-Assessment-Categories.pdf</span></a></p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(106, 168, 79); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 2</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Quase certamente benigno (&lt;1% de risco de malignidade)</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto simples</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&le;3 cm - sem conduta&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&gt;3 cm a 5 cm - sem conduta no menacme / se p&oacute;s menopausa: novo usg em 12 meses</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&nbsp;&gt;5 cm mas &lt;10 cm - novo usg em 12 meses</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular, regular, n&atilde;o simples (com imagem no interior ou septa&ccedil;&otilde;es incompleta) OU cisto bilocular, regular::&nbsp;&nbsp;</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&le;3 cm - sem conduta no menacme / repetir usg em 12 meses na p&oacute;s menopausa</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&gt; 3cm - &lt; 10cm - repetir usg em 6 meses</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es ovarianas tipicamente benignas (cisto hemorr&aacute;gico, teratoma, endometrioma) &lt; 10cm - condutas individualizadas a depender de idade / cl&iacute;nica / tipo de les&atilde;o;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es extra ovarianas de qualquer tamanho (cistos paraovarianos, cistos de inclus&atilde;o, hidrossalpinge) - condutas individualizadas a depender de idade / cl&iacute;nica / tipo de les&atilde;o;</span></p>\n</li>\n</ul>\n</li>\n</ul><br>Visão do aprovado: <p>.</p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">Quest&atilde;o direta e te&oacute;rica sobre a classifica&ccedil;&atilde;o &ldquo;Ovarian-Adnexal Reporting and Data System (O-RADS)&rdquo;.&nbsp;</span></p>\n<p>&nbsp;</p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">Vamos relembrar do que se trata essa classifica&ccedil;&atilde;o: &eacute; um Sistema de estratifica&ccedil;&atilde;o de risco e gerenciamento para auxiliar na interpreta&ccedil;&atilde;o de exames de ultrassonografia p&eacute;lvica, fornecendo uma estrutura para realizar interpreta&ccedil;&otilde;es consistentes que evitem ambiguidade na avalia&ccedil;&atilde;o do risco de malignidade.</span></p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">A partir do O-RADS, uma imagem anexial avaliada por usg, pode ser classificada dentro de 5 categorias de risco de malignidade. Esse sistema possui uma alta sensibilidade na classifica&ccedil;&atilde;o de riscos intermedi&aacute;rio e alto para malignidade.&nbsp;</span></p>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(153, 153, 153); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 0 </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Avalia&ccedil;&atilde;o incompleta / inconclusiva</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Impossibilidade de avalia&ccedil;&atilde;o por quest&otilde;es t&eacute;cnicas</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Reavaliar com USG ou realizar RNM</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(60, 120, 216); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 1</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Ov&aacute;rio normal</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos fisiol&oacute;gicos: fol&iacute;culo ( &le;3 cm) ou corpo l&uacute;teo (&le;3 cm)&nbsp;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(106, 168, 79); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 2</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Quase certamente benigno (&lt;1% de risco de malignidade)</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto simples</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&le;3 cm - sem conduta&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&gt;3 cm a 5 cm - sem conduta no menacme / se p&oacute;s menopausa: novo usg em 12 meses</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&nbsp;&gt;5 cm mas &lt;10 cm - novo usg em 12 meses</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular, regular, n&atilde;o simples (com imagem no interior ou septa&ccedil;&otilde;es incompleta) OU cisto bilocular, regular::&nbsp;&nbsp;</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&le;3 cm - sem conduta no menacme / repetir usg em 12 meses na p&oacute;s menopausa</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&gt; 3cm - &lt; 10cm - repetir usg em 6 meses</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es ovarianas tipicamente benignas (cisto hemorr&aacute;gico, teratoma, endometrioma) &lt; 10cm - condutas individualizadas a depender de idade / cl&iacute;nica / tipo de les&atilde;o;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es extra ovarianas de qualquer tamanho (cistos paraovarianos, cistos de inclus&atilde;o, hidrossalpinge) - condutas individualizadas a depender de idade / cl&iacute;nica / tipo de les&atilde;o;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(241, 194, 50); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 3</span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> Baixo risco de malignidade ( 1 a &lt;10% de risco de malignidade) - condutas para todos: considerar seguimento ecogr&aacute;fico em 6cm se n&atilde;o for poss&iacute;vel excis&atilde;o cir&uacute;rgica / considerar RNM se les&otilde;es s&oacute;lidas.</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es ovarianas tipicamente benignas (cisto hemorr&aacute;gico, teratoma, endometrioma) com tamanho&nbsp; &ge;10 cm&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos uni ou biloculados, regulares &ge;10 cm</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos uniloculares irregulares de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos multiloculares, regulares, &lt; 10cm, IC (&iacute;ndice de cor) &lt; 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es s&oacute;lidas, com ou sem sombreamento, regular, de qualquer tamanho, IC = 1</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es s&oacute;lidas, com sombra ac&uacute;stica, regular, de qualquer tamanho, IC 2-3</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(255, 153, 0); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 4</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Risco intermedi&aacute;rio de malignidade (10 a &lt;50% de risco de malignidade) - seguimento com oncologia p&eacute;lvica</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto bilocular com componente s&oacute;lido, irregular, de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto multilocular sem componente s&oacute;lido&nbsp;</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">regular, &ge;10 cm, IC &lt; 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">regular, qualquer tamanho, IC 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">irregular, qualquer tamanho, qualquer IC</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular com componente s&oacute;lido - &lt; 4 proje&ccedil;&otilde;es papilares ou componentes s&oacute;lidos n&atilde;o considerados proje&ccedil;&otilde;es papilares, de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto bi ou multilocular com componente s&oacute;lido, qualquer tamanho, IC 1-2</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&atilde;o s&oacute;lida, sem sombra ac&uacute;stica, regular, qualquer tamanho, IC 2-3&nbsp;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(255, 0, 0); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 5</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Alto risco de malignidade (&ge;50% de risco de malignidade) - seguimento com oncologia p&eacute;lvica</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular com 4 ou mais proje&ccedil;&otilde;es papilares, de qualquer tamanho, qualquer IC</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto bi ou multilocular com componente s&oacute;lido de qualquer tamanho, IC 3-4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&atilde;o s&oacute;lida, com ou sem sombra ac&uacute;stica, lisa, de qualquer tamanho, IC 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&atilde;o s&oacute;lida, irregular, de qualquer tamanho, qualquer IC</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Presen&ccedil;a de ascite ou n&oacute;dulos peritoneais&nbsp;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">Se quiserem dar uma checada na tabela original do O-RADS pela ACOG, segue o link: </span><a style=\"text-decoration: none;\" href=\"https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/RADS/O-RADS/O-RADS--Ultrasound-v2022-Assessment-Categories.pdf\"><span style=\"font-size: 10.5pt; color: rgb(17, 85, 204); background-color: rgb(255, 255, 255); text-decoration: underline; text-decoration-skip-ink: none;\">https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/RADS/O-RADS/O-RADS--Ultrasound-v2022-Assessment-Categories.pdf</span></a></p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197321,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Radiologia em ginecologia geral",
+        "focus": {
+          "id": 1610,
+          "name": "Radiologia em ginecologia geral"
+        }
+      },
+      "detail": {
+        "id": 197321,
+        "content": "Considerando a classificação das massas anexiais pelo Ovarian-Adnexal Imaging-Reporting-Data System (O-RADS) do Colégio Americano de Radiologia PERGUNTA-SE: Quais são dois exemplos de massas anexiais que devem ser classificadas na categoria O-RADS US 3?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15957,
+            "parent_tag": {
+              "id": 15904,
+              "name": "Imagens em Ginecologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Radiologia em ginecologia geral",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 22,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1610,
+          "name": "Radiologia em ginecologia geral",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 102,
+            "name": "Imagens em Ginecologia",
+            "discipline": 86,
+            "old_tag": 15904,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224687,
+        "actual_explanation": true,
+        "introduction": "<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(241, 194, 50); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 3</span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> Baixo risco de malignidade ( 1 a &lt;10% de risco de malignidade) - condutas para todos: considerar seguimento ecogr&aacute;fico em 6cm se n&atilde;o for poss&iacute;vel excis&atilde;o cir&uacute;rgica / considerar RNM se les&otilde;es s&oacute;lidas.</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es ovarianas tipicamente benignas (cisto hemorr&aacute;gico, teratoma, endometrioma) com tamanho&nbsp; &ge;10 cm&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos uni ou biloculados, regulares &ge;10 cm</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos uniloculares irregulares de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos multiloculares, regulares, &lt; 10cm, IC (&iacute;ndice de cor) &lt; 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es s&oacute;lidas, com ou sem sombreamento, regular, de qualquer tamanho, IC = 1</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es s&oacute;lidas, com sombra ac&uacute;stica, regular, de qualquer tamanho, IC 2-3</span></p>\n</li>\n</ul>\n</li>\n</ul>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>.</p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">Quest&atilde;o dif&iacute;cil, direta e te&oacute;rica sobre a classifica&ccedil;&atilde;o &ldquo;Ovarian-Adnexal Reporting and Data System (O-RADS)&rdquo;.&nbsp;</span></p>\n<p>&nbsp;</p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">Vamos relembrar do que se trata essa classifica&ccedil;&atilde;o: &eacute; um Sistema de estratifica&ccedil;&atilde;o de risco e gerenciamento para auxiliar na interpreta&ccedil;&atilde;o de exames de ultrassonografia p&eacute;lvica, fornecendo uma estrutura para realizar interpreta&ccedil;&otilde;es consistentes que evitem ambiguidade na avalia&ccedil;&atilde;o do risco de malignidade.</span></p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">A partir do&nbsp;O-RADS, uma imagem anexial avaliada por usg, pode ser classificada dentro de 5 categorias de risco de malignidade. Esse sistema possui uma alta sensibilidade na classifica&ccedil;&atilde;o de riscos intermedi&aacute;rio e alto para malignidade.&nbsp;</span></p>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(153, 153, 153); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 0 </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Avalia&ccedil;&atilde;o incompleta / inconclusiva</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Impossibilidade de avalia&ccedil;&atilde;o por quest&otilde;es t&eacute;cnicas</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Reavaliar com USG ou realizar RNM</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(60, 120, 216); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 1</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Ov&aacute;rio normal</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos fisiol&oacute;gicos: fol&iacute;culo ( &le;3 cm) ou corpo l&uacute;teo (&le;3 cm)&nbsp;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(106, 168, 79); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 2</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Quase certamente benigno (&lt;1% de risco de malignidade)</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto simples</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&le;3 cm - sem conduta&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&gt;3 cm a 5 cm - sem conduta no menacme / se p&oacute;s menopausa: novo usg em 12 meses</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&nbsp;&gt;5 cm mas &lt;10 cm - novo usg em 12 meses</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular, regular, n&atilde;o simples (com imagem no interior ou septa&ccedil;&otilde;es incompleta) OU cisto bilocular, regular::&nbsp;&nbsp;</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&le;3 cm - sem conduta no menacme / repetir usg em 12 meses na p&oacute;s menopausa</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&gt; 3cm - &lt; 10cm - repetir usg em 6 meses</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es ovarianas tipicamente benignas (cisto hemorr&aacute;gico, teratoma, endometrioma) &lt; 10cm - condutas individualizadas a depender de idade / cl&iacute;nica / tipo de les&atilde;o;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es extra ovarianas de qualquer tamanho (cistos paraovarianos, cistos de inclus&atilde;o, hidrossalpinge) - condutas individualizadas a depender de idade / cl&iacute;nica / tipo de les&atilde;o;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(241, 194, 50); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 3</span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> Baixo risco de malignidade ( 1 a &lt;10% de risco de malignidade) - condutas para todos: considerar seguimento ecogr&aacute;fico em 6cm se n&atilde;o for poss&iacute;vel excis&atilde;o cir&uacute;rgica / considerar RNM se les&otilde;es s&oacute;lidas.</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es ovarianas tipicamente benignas (cisto hemorr&aacute;gico, teratoma, endometrioma) com tamanho&nbsp; &ge;10 cm&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos uni ou biloculados, regulares &ge;10 cm</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos uniloculares irregulares de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos multiloculares, regulares, &lt; 10cm, IC (&iacute;ndice de cor) &lt; 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es s&oacute;lidas, com ou sem sombreamento, regular, de qualquer tamanho, IC = 1</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es s&oacute;lidas, com sombra ac&uacute;stica, regular, de qualquer tamanho, IC 2-3</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(255, 153, 0); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 4</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Risco intermedi&aacute;rio de malignidade (10 a &lt;50% de risco de malignidade) - seguimento com oncologia p&eacute;lvica</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto bilocular com componente s&oacute;lido, irregular, de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto multilocular sem componente s&oacute;lido&nbsp;</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">regular, &ge;10 cm, IC &lt; 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">regular, qualquer tamanho, IC 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">irregular, qualquer tamanho, qualquer IC</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular com componente s&oacute;lido - &lt; 4 proje&ccedil;&otilde;es papilares ou componentes s&oacute;lidos n&atilde;o considerados proje&ccedil;&otilde;es papilares, de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto bi ou multilocular com componente s&oacute;lido, qualquer tamanho, IC 1-2</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&atilde;o s&oacute;lida, sem sombra ac&uacute;stica, regular, qualquer tamanho, IC 2-3&nbsp;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(255, 0, 0); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 5</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Alto risco de malignidade (&ge;50% de risco de malignidade) - seguimento com oncologia p&eacute;lvica</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular com 4 ou mais proje&ccedil;&otilde;es papilares, de qualquer tamanho, qualquer IC</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto bi ou multilocular com componente s&oacute;lido de qualquer tamanho, IC 3-4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&atilde;o s&oacute;lida, com ou sem sombra ac&uacute;stica, lisa, de qualquer tamanho, IC 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&atilde;o s&oacute;lida, irregular, de qualquer tamanho, qualquer IC</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Presen&ccedil;a de ascite ou n&oacute;dulos peritoneais&nbsp;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">Se quiserem dar uma checada na tabela original do O-RADS pela ACOG, segue o link: </span><a style=\"text-decoration: none;\" href=\"https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/RADS/O-RADS/O-RADS--Ultrasound-v2022-Assessment-Categories.pdf\"><span style=\"font-size: 10.5pt; color: rgb(17, 85, 204); background-color: rgb(255, 255, 255); text-decoration: underline; text-decoration-skip-ink: none;\">https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/RADS/O-RADS/O-RADS--Ultrasound-v2022-Assessment-Categories.pdf</span></a></p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(241, 194, 50); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 3</span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> Baixo risco de malignidade ( 1 a &lt;10% de risco de malignidade) - condutas para todos: considerar seguimento ecogr&aacute;fico em 6cm se n&atilde;o for poss&iacute;vel excis&atilde;o cir&uacute;rgica / considerar RNM se les&otilde;es s&oacute;lidas.</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es ovarianas tipicamente benignas (cisto hemorr&aacute;gico, teratoma, endometrioma) com tamanho&nbsp; &ge;10 cm&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos uni ou biloculados, regulares &ge;10 cm</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos uniloculares irregulares de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos multiloculares, regulares, &lt; 10cm, IC (&iacute;ndice de cor) &lt; 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es s&oacute;lidas, com ou sem sombreamento, regular, de qualquer tamanho, IC = 1</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es s&oacute;lidas, com sombra ac&uacute;stica, regular, de qualquer tamanho, IC 2-3</span></p>\n</li>\n</ul>\n</li>\n</ul><br>Visão do aprovado: <p>.</p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">Quest&atilde;o dif&iacute;cil, direta e te&oacute;rica sobre a classifica&ccedil;&atilde;o &ldquo;Ovarian-Adnexal Reporting and Data System (O-RADS)&rdquo;.&nbsp;</span></p>\n<p>&nbsp;</p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">Vamos relembrar do que se trata essa classifica&ccedil;&atilde;o: &eacute; um Sistema de estratifica&ccedil;&atilde;o de risco e gerenciamento para auxiliar na interpreta&ccedil;&atilde;o de exames de ultrassonografia p&eacute;lvica, fornecendo uma estrutura para realizar interpreta&ccedil;&otilde;es consistentes que evitem ambiguidade na avalia&ccedil;&atilde;o do risco de malignidade.</span></p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"text-indent: 36pt; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">A partir do&nbsp;O-RADS, uma imagem anexial avaliada por usg, pode ser classificada dentro de 5 categorias de risco de malignidade. Esse sistema possui uma alta sensibilidade na classifica&ccedil;&atilde;o de riscos intermedi&aacute;rio e alto para malignidade.&nbsp;</span></p>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(153, 153, 153); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 0 </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Avalia&ccedil;&atilde;o incompleta / inconclusiva</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Impossibilidade de avalia&ccedil;&atilde;o por quest&otilde;es t&eacute;cnicas</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Reavaliar com USG ou realizar RNM</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(60, 120, 216); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 1</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Ov&aacute;rio normal</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos fisiol&oacute;gicos: fol&iacute;culo ( &le;3 cm) ou corpo l&uacute;teo (&le;3 cm)&nbsp;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(106, 168, 79); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 2</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Quase certamente benigno (&lt;1% de risco de malignidade)</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto simples</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&le;3 cm - sem conduta&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&gt;3 cm a 5 cm - sem conduta no menacme / se p&oacute;s menopausa: novo usg em 12 meses</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&nbsp;&gt;5 cm mas &lt;10 cm - novo usg em 12 meses</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular, regular, n&atilde;o simples (com imagem no interior ou septa&ccedil;&otilde;es incompleta) OU cisto bilocular, regular::&nbsp;&nbsp;</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&le;3 cm - sem conduta no menacme / repetir usg em 12 meses na p&oacute;s menopausa</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">&gt; 3cm - &lt; 10cm - repetir usg em 6 meses</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es ovarianas tipicamente benignas (cisto hemorr&aacute;gico, teratoma, endometrioma) &lt; 10cm - condutas individualizadas a depender de idade / cl&iacute;nica / tipo de les&atilde;o;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es extra ovarianas de qualquer tamanho (cistos paraovarianos, cistos de inclus&atilde;o, hidrossalpinge) - condutas individualizadas a depender de idade / cl&iacute;nica / tipo de les&atilde;o;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(241, 194, 50); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 3</span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> Baixo risco de malignidade ( 1 a &lt;10% de risco de malignidade) - condutas para todos: considerar seguimento ecogr&aacute;fico em 6cm se n&atilde;o for poss&iacute;vel excis&atilde;o cir&uacute;rgica / considerar RNM se les&otilde;es s&oacute;lidas.</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es ovarianas tipicamente benignas (cisto hemorr&aacute;gico, teratoma, endometrioma) com tamanho&nbsp; &ge;10 cm&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos uni ou biloculados, regulares &ge;10 cm</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos uniloculares irregulares de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cistos multiloculares, regulares, &lt; 10cm, IC (&iacute;ndice de cor) &lt; 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es s&oacute;lidas, com ou sem sombreamento, regular, de qualquer tamanho, IC = 1</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&otilde;es s&oacute;lidas, com sombra ac&uacute;stica, regular, de qualquer tamanho, IC 2-3</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(255, 153, 0); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 4</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Risco intermedi&aacute;rio de malignidade (10 a &lt;50% de risco de malignidade) - seguimento com oncologia p&eacute;lvica</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto bilocular com componente s&oacute;lido, irregular, de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto multilocular sem componente s&oacute;lido&nbsp;</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">regular, &ge;10 cm, IC &lt; 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">regular, qualquer tamanho, IC 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">irregular, qualquer tamanho, qualquer IC</span></p>\n</li>\n</ul>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular com componente s&oacute;lido - &lt; 4 proje&ccedil;&otilde;es papilares ou componentes s&oacute;lidos n&atilde;o considerados proje&ccedil;&otilde;es papilares, de qualquer tamanho&nbsp;</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto bi ou multilocular com componente s&oacute;lido, qualquer tamanho, IC 1-2</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&atilde;o s&oacute;lida, sem sombra ac&uacute;stica, regular, qualquer tamanho, IC 2-3&nbsp;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p>&nbsp;</p>\n<ul style=\"margin-top: 0px; margin-bottom: 0px; padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 10.5pt; color: rgb(255, 0, 0); background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">O-RADS 5</span></strong><strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\"> </span></strong><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Alto risco de malignidade (&ge;50% de risco de malignidade) - seguimento com oncologia p&eacute;lvica</span></p>\n<ul style=\"padding-inline-start: 48px;\">\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto unilocular com 4 ou mais proje&ccedil;&otilde;es papilares, de qualquer tamanho, qualquer IC</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Cisto bi ou multilocular com componente s&oacute;lido de qualquer tamanho, IC 3-4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&atilde;o s&oacute;lida, com ou sem sombra ac&uacute;stica, lisa, de qualquer tamanho, IC 4</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Les&atilde;o s&oacute;lida, irregular, de qualquer tamanho, qualquer IC</span></p>\n</li>\n<li style=\"font-size: 10.5pt; color: rgb(34, 34, 34); text-wrap-mode: nowrap;\">\n<p style=\"text-align: justify; margin-top: 0pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; background-color: rgb(255, 255, 255); text-wrap-mode: wrap;\">Presen&ccedil;a de ascite ou n&oacute;dulos peritoneais&nbsp;</span></p>\n</li>\n</ul>\n</li>\n</ul>\n<p style=\"text-align: justify; margin-top: 12pt; margin-bottom: 12pt;\"><span style=\"font-size: 10.5pt; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);\">Se quiserem dar uma checada na tabela original do O-RADS pela ACOG, segue o link: </span><a style=\"text-decoration: none;\" href=\"https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/RADS/O-RADS/O-RADS--Ultrasound-v2022-Assessment-Categories.pdf\"><span style=\"font-size: 10.5pt; color: rgb(17, 85, 204); background-color: rgb(255, 255, 255); text-decoration: underline; text-decoration-skip-ink: none;\">https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/RADS/O-RADS/O-RADS--Ultrasound-v2022-Assessment-Categories.pdf</span></a></p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197322,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal"
+        }
+      },
+      "detail": {
+        "id": 197322,
+        "content": "O desempenho da ultrassonografia depende da qualidade da imagem obtida pelo ultrassonografista. PERGUNTA-SE: Quais ajustes na configuração do ecógrafo estão disponíveis ao ultrassonografista no modo brilho (B)? Comente sucintamente sobre três.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15948,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 18,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224688,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">A ultrassonografia &eacute; um m&eacute;todo diagn&oacute;stico amplamente utilizado na pr&aacute;tica m&eacute;dica, sendo o modo brilho (modo B) o mais comum. Este modo produz imagens em escala de cinza em tempo real, permitindo a visualiza&ccedil;&atilde;o de estruturas anat&ocirc;micas. A qualidade da imagem obtida depende diretamente dos ajustes realizados pelo operador no aparelho de ultrassom (ec&oacute;grafo). O conhecimento desses ajustes &eacute; fundamental para otimizar a imagem e, consequentemente, aumentar a acur&aacute;cia diagn&oacute;stica do exame. Cada ajuste tem uma fun&ccedil;&atilde;o espec&iacute;fica e pode ser manipulado de acordo com a estrutura a ser avaliada e as caracter&iacute;sticas do paciente. </p>\n<ol>\n<li style=\"text-align: justify;\">Ganho (Gain): &Eacute; o controle da amplifica&ccedil;&atilde;o geral do sinal de ultrassom. Aumentar o ganho torna a imagem mais brilhante, enquanto diminu&iacute;-lo a torna mais escura. O ajuste adequado do ganho &eacute; essencial para obter contraste adequado entre as diferentes estruturas. Um ganho muito alto pode introduzir ru&iacute;do e artefatos, enquanto um ganho muito baixo pode impedir a visualiza&ccedil;&atilde;o de estruturas hipoecog&ecirc;nicas.</li>\n<li style=\"text-align: justify;\">Ganho por segmento (Time Gain Compensation - TGC): Permite ajustar o ganho em diferentes profundidades da imagem. Como o ultrassom &eacute; atenuado &agrave; medida que penetra nos tecidos, estruturas mais profundas naturalmente aparecem mais escuras. O TGC compensa essa atenua&ccedil;&atilde;o, permitindo equalizar o brilho em toda a imagem. Geralmente, &eacute; representado por controles deslizantes verticais no painel do aparelho.</li>\n<li style=\"text-align: justify;\">Profundidade (Depth): Controla a extens&atilde;o vertical da imagem, determinando qu&atilde;o profundo o ultrassom ir&aacute; penetrar. Aumentar a profundidade permite visualizar estruturas mais profundas, mas pode reduzir a taxa de quadros (frame rate) e a resolu&ccedil;&atilde;o. &Eacute; importante ajustar a profundidade para que a estrutura de interesse esteja completamente vis&iacute;vel, mas sem excesso desnecess&aacute;rio.</li>\n<li style=\"text-align: justify;\">Foco (Focus): Define a zona onde a resolu&ccedil;&atilde;o lateral da imagem &eacute; otimizada. A energia do ultrassom pode ser concentrada em uma ou mais profundidades espec&iacute;ficas, melhorando a defini&ccedil;&atilde;o das estruturas naquela regi&atilde;o. Em exames abdominais, por exemplo, podemos posicionar o foco na profundidade onde est&aacute; o &oacute;rg&atilde;o de interesse.</li>\n<li style=\"text-align: justify;\">Frequ&ecirc;ncia (Frequency): Determina a penetra&ccedil;&atilde;o e a resolu&ccedil;&atilde;o da imagem. Frequ&ecirc;ncias mais altas (7-15 MHz) oferecem melhor resolu&ccedil;&atilde;o, mas menor penetra&ccedil;&atilde;o, sendo ideais para estruturas superficiais. Frequ&ecirc;ncias mais baixas (2-5 MHz) t&ecirc;m maior penetra&ccedil;&atilde;o, mas menor resolu&ccedil;&atilde;o, sendo adequadas para estruturas profundas. Muitos transdutores modernos permitem ajustar a frequ&ecirc;ncia dentro de uma faixa.</li>\n<li style=\"text-align: justify;\">Range din&acirc;mico (Dynamic Range): Controla a diferen&ccedil;a entre os tons mais claros e mais escuros da imagem. Um range din&acirc;mico maior proporciona mais nuances de cinza, resultando em imagens mais suaves, enquanto um range menor aumenta o contraste, mas reduz as nuances. &Eacute; particularmente &uacute;til ao examinar &oacute;rg&atilde;os com texturas complexas, como f&iacute;gado e p&acirc;ncreas.</li>\n<li style=\"text-align: justify;\">Zoom (Magnifica&ccedil;&atilde;o): Permite ampliar uma regi&atilde;o espec&iacute;fica de interesse, facilitando a visualiza&ccedil;&atilde;o de detalhes. Pode ser realizado de duas formas: zoom de leitura (que apenas amplia a imagem j&aacute; adquirida) ou zoom de escrita (que realmente aumenta a resolu&ccedil;&atilde;o na &aacute;rea selecionada).</li>\n<li style=\"text-align: justify;\">Densidade de linhas (Line Density): Controla o n&uacute;mero de linhas de varredura utilizadas para formar a imagem. Uma maior densidade de linhas melhora a resolu&ccedil;&atilde;o lateral da imagem, mas pode reduzir a taxa de quadros.</li>\n</ol>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> Ajustar a frequ&ecirc;ncia da onda de ultrassonografia. Frequ&ecirc;ncias maiores t&ecirc;m menor comprimento de onda, maior resolu&ccedil;&atilde;o e menor penetra&ccedil;&atilde;o. Frequ&ecirc;ncias menores t&ecirc;m maior comprimento de onda, menor resolu&ccedil;&atilde;o e maior penetra&ccedil;&atilde;o. Ou Ajustar a posi&ccedil;&atilde;o do foco da ultrassonografia. O posicionamento do foco das ondas de ultrassom na zona de interesse melhora a resolu&ccedil;&atilde;o nesse ponto. Ou Ajuste da profundidade. Imagens com a profundidade adequada concentram a aquisi&ccedil;&atilde;o e o processamento da imagem pelo aparelho na zona de maior interesse. Ou Ajuste do ganho. O ajuste do ganho aplica o contraste necess&aacute;rio para a interpreta&ccedil;&atilde;o das estruturas com diferentes ecotexturas e profundidades. 2 Ou Habilitar ou desabilitar a utiliza&ccedil;&atilde;o de harm&ocirc;nicas. A harm&ocirc;nica pode melhorar a diferencia&ccedil;&atilde;o das les&otilde;es s&oacute;lidas das c&iacute;sticas e identificar pequenas diferen&ccedil;as na ecotextura de estruturas com ecogenicidade semelhante. Ou Ajuste do preset. A sele&ccedil;&atilde;o do preset adequado ao exame a ser realizado costuma otimizar a frequ&ecirc;ncia, a posi&ccedil;&atilde;o focal, a profundidade, o ganho e a harm&ocirc;nica.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Uma armadilha comum nesses casos &eacute; confundir os ajustes espec&iacute;ficos do modo B com aqueles dispon&iacute;veis em outros modos, como o Doppler (onde temos ajustes como PRF, filtro de parede, &acirc;ngulo Doppler) ou o modo M (onde a velocidade de varredura &eacute; um par&acirc;metro importante).&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">A ultrassonografia &eacute; um m&eacute;todo diagn&oacute;stico amplamente utilizado na pr&aacute;tica m&eacute;dica, sendo o modo brilho (modo B) o mais comum. Este modo produz imagens em escala de cinza em tempo real, permitindo a visualiza&ccedil;&atilde;o de estruturas anat&ocirc;micas. A qualidade da imagem obtida depende diretamente dos ajustes realizados pelo operador no aparelho de ultrassom (ec&oacute;grafo). O conhecimento desses ajustes &eacute; fundamental para otimizar a imagem e, consequentemente, aumentar a acur&aacute;cia diagn&oacute;stica do exame. Cada ajuste tem uma fun&ccedil;&atilde;o espec&iacute;fica e pode ser manipulado de acordo com a estrutura a ser avaliada e as caracter&iacute;sticas do paciente. </p>\n<ol>\n<li style=\"text-align: justify;\">Ganho (Gain): &Eacute; o controle da amplifica&ccedil;&atilde;o geral do sinal de ultrassom. Aumentar o ganho torna a imagem mais brilhante, enquanto diminu&iacute;-lo a torna mais escura. O ajuste adequado do ganho &eacute; essencial para obter contraste adequado entre as diferentes estruturas. Um ganho muito alto pode introduzir ru&iacute;do e artefatos, enquanto um ganho muito baixo pode impedir a visualiza&ccedil;&atilde;o de estruturas hipoecog&ecirc;nicas.</li>\n<li style=\"text-align: justify;\">Ganho por segmento (Time Gain Compensation - TGC): Permite ajustar o ganho em diferentes profundidades da imagem. Como o ultrassom &eacute; atenuado &agrave; medida que penetra nos tecidos, estruturas mais profundas naturalmente aparecem mais escuras. O TGC compensa essa atenua&ccedil;&atilde;o, permitindo equalizar o brilho em toda a imagem. Geralmente, &eacute; representado por controles deslizantes verticais no painel do aparelho.</li>\n<li style=\"text-align: justify;\">Profundidade (Depth): Controla a extens&atilde;o vertical da imagem, determinando qu&atilde;o profundo o ultrassom ir&aacute; penetrar. Aumentar a profundidade permite visualizar estruturas mais profundas, mas pode reduzir a taxa de quadros (frame rate) e a resolu&ccedil;&atilde;o. &Eacute; importante ajustar a profundidade para que a estrutura de interesse esteja completamente vis&iacute;vel, mas sem excesso desnecess&aacute;rio.</li>\n<li style=\"text-align: justify;\">Foco (Focus): Define a zona onde a resolu&ccedil;&atilde;o lateral da imagem &eacute; otimizada. A energia do ultrassom pode ser concentrada em uma ou mais profundidades espec&iacute;ficas, melhorando a defini&ccedil;&atilde;o das estruturas naquela regi&atilde;o. Em exames abdominais, por exemplo, podemos posicionar o foco na profundidade onde est&aacute; o &oacute;rg&atilde;o de interesse.</li>\n<li style=\"text-align: justify;\">Frequ&ecirc;ncia (Frequency): Determina a penetra&ccedil;&atilde;o e a resolu&ccedil;&atilde;o da imagem. Frequ&ecirc;ncias mais altas (7-15 MHz) oferecem melhor resolu&ccedil;&atilde;o, mas menor penetra&ccedil;&atilde;o, sendo ideais para estruturas superficiais. Frequ&ecirc;ncias mais baixas (2-5 MHz) t&ecirc;m maior penetra&ccedil;&atilde;o, mas menor resolu&ccedil;&atilde;o, sendo adequadas para estruturas profundas. Muitos transdutores modernos permitem ajustar a frequ&ecirc;ncia dentro de uma faixa.</li>\n<li style=\"text-align: justify;\">Range din&acirc;mico (Dynamic Range): Controla a diferen&ccedil;a entre os tons mais claros e mais escuros da imagem. Um range din&acirc;mico maior proporciona mais nuances de cinza, resultando em imagens mais suaves, enquanto um range menor aumenta o contraste, mas reduz as nuances. &Eacute; particularmente &uacute;til ao examinar &oacute;rg&atilde;os com texturas complexas, como f&iacute;gado e p&acirc;ncreas.</li>\n<li style=\"text-align: justify;\">Zoom (Magnifica&ccedil;&atilde;o): Permite ampliar uma regi&atilde;o espec&iacute;fica de interesse, facilitando a visualiza&ccedil;&atilde;o de detalhes. Pode ser realizado de duas formas: zoom de leitura (que apenas amplia a imagem j&aacute; adquirida) ou zoom de escrita (que realmente aumenta a resolu&ccedil;&atilde;o na &aacute;rea selecionada).</li>\n<li style=\"text-align: justify;\">Densidade de linhas (Line Density): Controla o n&uacute;mero de linhas de varredura utilizadas para formar a imagem. Uma maior densidade de linhas melhora a resolu&ccedil;&atilde;o lateral da imagem, mas pode reduzir a taxa de quadros.</li>\n</ol>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> Ajustar a frequ&ecirc;ncia da onda de ultrassonografia. Frequ&ecirc;ncias maiores t&ecirc;m menor comprimento de onda, maior resolu&ccedil;&atilde;o e menor penetra&ccedil;&atilde;o. Frequ&ecirc;ncias menores t&ecirc;m maior comprimento de onda, menor resolu&ccedil;&atilde;o e maior penetra&ccedil;&atilde;o. Ou Ajustar a posi&ccedil;&atilde;o do foco da ultrassonografia. O posicionamento do foco das ondas de ultrassom na zona de interesse melhora a resolu&ccedil;&atilde;o nesse ponto. Ou Ajuste da profundidade. Imagens com a profundidade adequada concentram a aquisi&ccedil;&atilde;o e o processamento da imagem pelo aparelho na zona de maior interesse. Ou Ajuste do ganho. O ajuste do ganho aplica o contraste necess&aacute;rio para a interpreta&ccedil;&atilde;o das estruturas com diferentes ecotexturas e profundidades. 2 Ou Habilitar ou desabilitar a utiliza&ccedil;&atilde;o de harm&ocirc;nicas. A harm&ocirc;nica pode melhorar a diferencia&ccedil;&atilde;o das les&otilde;es s&oacute;lidas das c&iacute;sticas e identificar pequenas diferen&ccedil;as na ecotextura de estruturas com ecogenicidade semelhante. Ou Ajuste do preset. A sele&ccedil;&atilde;o do preset adequado ao exame a ser realizado costuma otimizar a frequ&ecirc;ncia, a posi&ccedil;&atilde;o focal, a profundidade, o ganho e a harm&ocirc;nica.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Uma armadilha comum nesses casos &eacute; confundir os ajustes espec&iacute;ficos do modo B com aqueles dispon&iacute;veis em outros modos, como o Doppler (onde temos ajustes como PRF, filtro de parede, &acirc;ngulo Doppler) ou o modo M (onde a velocidade de varredura &eacute; um par&acirc;metro importante).&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197323,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal"
+        }
+      },
+      "detail": {
+        "id": 197323,
+        "content": "O desempenho da ultrassonografia depende da qualidade da imagem obtida pelo ultrassonografista. PERGUNTA-SE: Quais ajustes na configuração do ecógrafo estão disponíveis ao ultrassonografista no modo Doppler colorido? Comente sucintamente sobre três.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15948,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 18,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1619,
+          "name": "Noções gerais de ultrassonografia e procedimentos de medicina fetal",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224689,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">A ultrassonografia com Doppler colorido &eacute; uma ferramenta diagn&oacute;stica extremamente valiosa na pr&aacute;tica m&eacute;dica atual, permitindo a avalia&ccedil;&atilde;o do fluxo sangu&iacute;neo em tempo real. Para obter imagens de qualidade diagn&oacute;stica adequada, o ultrassonografista precisa dominar diversos ajustes t&eacute;cnicos dispon&iacute;veis no equipamento. A otimiza&ccedil;&atilde;o desses par&acirc;metros &eacute; fundamental para evitar artefatos, detectar fluxos de baixa velocidade e caracterizar corretamente as altera&ccedil;&otilde;es hemodin&acirc;micas. A quest&atilde;o solicita que comentemos sobre tr&ecirc;s ajustes dispon&iacute;veis no modo Doppler colorido, o que demonstra a import&acirc;ncia do conhecimento t&eacute;cnico para a interpreta&ccedil;&atilde;o adequada dos achados ultrassonogr&aacute;ficos. </p>\n<ol>\n<li style=\"text-align: justify;\">PRF (Pulse Repetition Frequency) ou Frequ&ecirc;ncia de Repeti&ccedil;&atilde;o de Pulso: Este ajuste controla a frequ&ecirc;ncia com que os pulsos de ultrassom s&atilde;o emitidos pelo transdutor. &Eacute; um par&acirc;metro cr&iacute;tico que determina a velocidade m&aacute;xima que pode ser detectada sem aliasing (artefato que ocorre quando velocidades acima do limite Nyquist s&atilde;o incorretamente representadas). Quando avaliamos vasos com fluxo de alta velocidade (como car&oacute;tidas ou art&eacute;rias renais), devemos aumentar o PRF para evitar aliasing. J&aacute; para detectar fluxos lentos (como em pequenos vasos ou em situa&ccedil;&otilde;es de baixo fluxo), devemos diminuir o PRF. O ajuste adequado do PRF &eacute; essencial para evitar falsos diagn&oacute;sticos de estenoses ou oclus&otilde;es vasculares.</li>\n<li style=\"text-align: justify;\">Ganho de cor (Color&nbsp;Gain): Este ajuste controla a amplifica&ccedil;&atilde;o do sinal Doppler, determinando a sensibilidade do equipamento para detectar fluxo. Um ganho muito baixo pode n&atilde;o demonstrar fluxos de baixa velocidade, levando a falsos diagn&oacute;sticos de oclus&atilde;o vascular. Por outro lado, um ganho excessivamente alto pode gerar artefatos de \"sangramento\" da cor para fora dos vasos ou falsos sinais de fluxo. O ajuste ideal do ganho de cor &eacute; aquele que permite visualizar o fluxo dentro dos vasos sem artefatos significativos nas estruturas adjacentes.</li>\n<li style=\"text-align: justify;\">Box/Gate de cor (Color Box/Region of Interest): Este ajuste define a &aacute;rea da imagem onde o processamento Doppler ser&aacute; aplicado. Um box de cor muito grande aumenta o tempo de processamento e pode reduzir a taxa de quadros (frame rate), prejudicando a qualidade temporal da imagem. Idealmente, o box de cor deve ser ajustado para cobrir apenas a regi&atilde;o de interesse, permitindo maior taxa de quadros e melhor resolu&ccedil;&atilde;o temporal. Isso &eacute; particularmente importante em exames card&iacute;acos ou em situa&ccedil;&otilde;es onde a din&acirc;mica do fluxo &eacute; relevante.</li>\n<li style=\"text-align: justify;\">Filtro de parede (Wall Filter): Este ajuste elimina sinais de baixa velocidade, geralmente originados do movimento das paredes vasculares ou tecidos adjacentes. Um filtro muito baixo pode gerar artefatos por movimento de tecidos, enquanto um filtro muito alto pode eliminar fluxos lentos clinicamente significativos. O ajuste adequado do filtro de parede &eacute; crucial em situa&ccedil;&otilde;es como avalia&ccedil;&atilde;o de fluxos venosos, fluxos de baixa velocidade em pequenos vasos ou na detec&ccedil;&atilde;o de neovasculariza&ccedil;&atilde;o em tumores.</li>\n<li style=\"text-align: justify;\">&Acirc;ngulo Doppler: Embora mais cr&iacute;tico no Doppler espectral, o &acirc;ngulo tamb&eacute;m influencia a qualidade da imagem no Doppler colorido. O sinal Doppler &eacute; m&aacute;ximo quando o feixe de ultrassom est&aacute; paralelo ao fluxo sangu&iacute;neo (&acirc;ngulo de 0&deg;) e nulo quando perpendicular (&acirc;ngulo de 90&deg;). Na pr&aacute;tica, busca-se manter &acirc;ngulos inferiores a 60&deg; para obter sinais adequados. Alguns equipamentos permitem corre&ccedil;&atilde;o de &acirc;ngulo no Doppler colorido, o que pode melhorar a representa&ccedil;&atilde;o das velocidades. O ajuste do &acirc;ngulo &eacute; muito importante quando falamos de art&eacute;ria cerebral m&eacute;dia para avaliar o pico de velocidade sist&oacute;lica.</li>\n</ol>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> Ajuste da frequ&ecirc;ncia de repeti&ccedil;&atilde;o do Doppler (PRF). Mais alta em fluxos mais r&aacute;pidos e mais baixa em fluxos mais lentos. ou ajustar o ganho de modo a mostrar o fluxo e n&atilde;o mostrar artefatos. ou ajustar a orienta&ccedil;&atilde;o entre o feixe de ultrassonografia e o(s) vaso(s) (steer) de modo a torn&aacute;-lo o menor poss&iacute;vel. Ou ajustar o tamanho da amostra (box) de forma a incluir de forma adequada toda e apenas a &aacute;rea avaliada.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Para facilitar a memoriza&ccedil;&atilde;o, pense na sigla \"PAGF&Acirc;\": PRF, &Aacute;rea, Ganho, Filtro de parede e &Acirc;ngulo. Esses s&atilde;o os cinco principais ajustes que voc&ecirc; deve dominar para o Doppler colorido.&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">A ultrassonografia com Doppler colorido &eacute; uma ferramenta diagn&oacute;stica extremamente valiosa na pr&aacute;tica m&eacute;dica atual, permitindo a avalia&ccedil;&atilde;o do fluxo sangu&iacute;neo em tempo real. Para obter imagens de qualidade diagn&oacute;stica adequada, o ultrassonografista precisa dominar diversos ajustes t&eacute;cnicos dispon&iacute;veis no equipamento. A otimiza&ccedil;&atilde;o desses par&acirc;metros &eacute; fundamental para evitar artefatos, detectar fluxos de baixa velocidade e caracterizar corretamente as altera&ccedil;&otilde;es hemodin&acirc;micas. A quest&atilde;o solicita que comentemos sobre tr&ecirc;s ajustes dispon&iacute;veis no modo Doppler colorido, o que demonstra a import&acirc;ncia do conhecimento t&eacute;cnico para a interpreta&ccedil;&atilde;o adequada dos achados ultrassonogr&aacute;ficos. </p>\n<ol>\n<li style=\"text-align: justify;\">PRF (Pulse Repetition Frequency) ou Frequ&ecirc;ncia de Repeti&ccedil;&atilde;o de Pulso: Este ajuste controla a frequ&ecirc;ncia com que os pulsos de ultrassom s&atilde;o emitidos pelo transdutor. &Eacute; um par&acirc;metro cr&iacute;tico que determina a velocidade m&aacute;xima que pode ser detectada sem aliasing (artefato que ocorre quando velocidades acima do limite Nyquist s&atilde;o incorretamente representadas). Quando avaliamos vasos com fluxo de alta velocidade (como car&oacute;tidas ou art&eacute;rias renais), devemos aumentar o PRF para evitar aliasing. J&aacute; para detectar fluxos lentos (como em pequenos vasos ou em situa&ccedil;&otilde;es de baixo fluxo), devemos diminuir o PRF. O ajuste adequado do PRF &eacute; essencial para evitar falsos diagn&oacute;sticos de estenoses ou oclus&otilde;es vasculares.</li>\n<li style=\"text-align: justify;\">Ganho de cor (Color&nbsp;Gain): Este ajuste controla a amplifica&ccedil;&atilde;o do sinal Doppler, determinando a sensibilidade do equipamento para detectar fluxo. Um ganho muito baixo pode n&atilde;o demonstrar fluxos de baixa velocidade, levando a falsos diagn&oacute;sticos de oclus&atilde;o vascular. Por outro lado, um ganho excessivamente alto pode gerar artefatos de \"sangramento\" da cor para fora dos vasos ou falsos sinais de fluxo. O ajuste ideal do ganho de cor &eacute; aquele que permite visualizar o fluxo dentro dos vasos sem artefatos significativos nas estruturas adjacentes.</li>\n<li style=\"text-align: justify;\">Box/Gate de cor (Color Box/Region of Interest): Este ajuste define a &aacute;rea da imagem onde o processamento Doppler ser&aacute; aplicado. Um box de cor muito grande aumenta o tempo de processamento e pode reduzir a taxa de quadros (frame rate), prejudicando a qualidade temporal da imagem. Idealmente, o box de cor deve ser ajustado para cobrir apenas a regi&atilde;o de interesse, permitindo maior taxa de quadros e melhor resolu&ccedil;&atilde;o temporal. Isso &eacute; particularmente importante em exames card&iacute;acos ou em situa&ccedil;&otilde;es onde a din&acirc;mica do fluxo &eacute; relevante.</li>\n<li style=\"text-align: justify;\">Filtro de parede (Wall Filter): Este ajuste elimina sinais de baixa velocidade, geralmente originados do movimento das paredes vasculares ou tecidos adjacentes. Um filtro muito baixo pode gerar artefatos por movimento de tecidos, enquanto um filtro muito alto pode eliminar fluxos lentos clinicamente significativos. O ajuste adequado do filtro de parede &eacute; crucial em situa&ccedil;&otilde;es como avalia&ccedil;&atilde;o de fluxos venosos, fluxos de baixa velocidade em pequenos vasos ou na detec&ccedil;&atilde;o de neovasculariza&ccedil;&atilde;o em tumores.</li>\n<li style=\"text-align: justify;\">&Acirc;ngulo Doppler: Embora mais cr&iacute;tico no Doppler espectral, o &acirc;ngulo tamb&eacute;m influencia a qualidade da imagem no Doppler colorido. O sinal Doppler &eacute; m&aacute;ximo quando o feixe de ultrassom est&aacute; paralelo ao fluxo sangu&iacute;neo (&acirc;ngulo de 0&deg;) e nulo quando perpendicular (&acirc;ngulo de 90&deg;). Na pr&aacute;tica, busca-se manter &acirc;ngulos inferiores a 60&deg; para obter sinais adequados. Alguns equipamentos permitem corre&ccedil;&atilde;o de &acirc;ngulo no Doppler colorido, o que pode melhorar a representa&ccedil;&atilde;o das velocidades. O ajuste do &acirc;ngulo &eacute; muito importante quando falamos de art&eacute;ria cerebral m&eacute;dia para avaliar o pico de velocidade sist&oacute;lica.</li>\n</ol>\n<p style=\"text-align: justify;\"><strong>Gabarito:</strong> Ajuste da frequ&ecirc;ncia de repeti&ccedil;&atilde;o do Doppler (PRF). Mais alta em fluxos mais r&aacute;pidos e mais baixa em fluxos mais lentos. ou ajustar o ganho de modo a mostrar o fluxo e n&atilde;o mostrar artefatos. ou ajustar a orienta&ccedil;&atilde;o entre o feixe de ultrassonografia e o(s) vaso(s) (steer) de modo a torn&aacute;-lo o menor poss&iacute;vel. Ou ajustar o tamanho da amostra (box) de forma a incluir de forma adequada toda e apenas a &aacute;rea avaliada.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Para facilitar a memoriza&ccedil;&atilde;o, pense na sigla \"PAGF&Acirc;\": PRF, &Aacute;rea, Ganho, Filtro de parede e &Acirc;ngulo. Esses s&atilde;o os cinco principais ajustes que voc&ecirc; deve dominar para o Doppler colorido.&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197324,
+        "number": 5,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento",
+        "focus": {
+          "id": 1639,
+          "name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento"
+        }
+      },
+      "detail": {
+        "id": 197324,
+        "content": "Mulher, 59 a, inicia acompanhamento ginecológico com médico da Unidade Básica de Saúde, pois não teria mais acesso à saúde suplementar em outra cidade, onde fazia acompanhamento por câncer de mama tratado há sete anos. Menopausa aos 48 anos. Antecedente de trombose venosa superficial em membro inferior direito na última gestação. Refere ter feito cirurgia de “quadrante” na mama esquerda, quando também “tirou apenas um gânglio” da axila ipsilateral. Em regime de adjuvância, relata ter realizado quimioterapia, e tomou um comprimido por via oral ao dia durante cinco anos – do qual não se recorda o nome. Não soube referir com exatidão se fez radioterapia, mas informa que precisou fazer a “vacina”, entendido como um anticorpo monoclonal da classe IgG. PERGUNTA-SE: Como você descreveria no prontuário o resumo do plano terapêutico a que esta paciente provavelmente foi submetida à época, utilizando-se de termos técnicos?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15927,
+            "parent_tag": {
+              "id": 15902,
+              "name": "Mastologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 12,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1639,
+          "name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 104,
+            "name": "Mastologia",
+            "discipline": 86,
+            "old_tag": 15902,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224690,
+        "actual_explanation": true,
+        "introduction": "<p>Fala, galera! Questão bem direta que solicita elaboração de um resumo do tratamento prévio da paciente, em termos técnicos, para prontuário. Mas antes disso, vamos entender o caso: </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p>Temos aqui uma paciente que refere ter realizado como tratamento adjuvante quimioterapia, uma vacina, e uso de comprimido via oral por 5 anos. Pensando nos subtipos moleculares do <span class=\"article-5158\">câncer de mama</span> poderíamos fazer o seguinte raciocínio: </p>\n<p>O fato da paciente ter tomado um comprimido por via oral durante cinco anos sugere que ela fez tratamento de um <span class=\"article-5158\">câncer de mama</span> hormônio dependente (receptor de estrogênio/progesterona positivo), ou seja, Luminal. Mas além disso, ela menciona ter tomado uma “vacina”, forma comum a que as pacientes se referem ao trastuzumab (Herceptin), anticorpo monoclonal utilizado na terapia alvo do <span class=\"article-5158\">câncer de mama</span> HER2 positivo. Ou seja, teríamos aqui o caso de um <span class=\"article-5158\">câncer de mama</span> Luminal híbrido. </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">Ainda, pelo fato da paciente ter realizado cirurgia conservadora da mama, possivelmente tivemos uma boa resposta à quimioterapia, ausência de tumor multicêntrico e boa relação mama/tumor.</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">Agora sim, entendendo o caso como um todo, podemos colocar como resposta:</p>\n<p> </p>\n<p>Quadrantectomia de mama esquerda + Biópsia de linfonodo sentinela a esquerda (BLS) </p>\n<p>Quimioterapia adjuvante </p>\n<p>Radioterapia adjuvante </p>\n<p>Hormonioterapia/Endocrinoterapia adjuvante com inibidor de aromatase (IA) - por exemplo Anastrozol 1mg/dia por 5 anos </p>\n<p>Trastuzumab adjuvante </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><br/><br/></p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(0, 32, 91);\">Apesar de parecer algo mais simples, a elaboração do prontuário é de suma importância, então precisamos caprichar! </span></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(0, 32, 91);\">Lembrando que é sempre importante colocar a lateralidade e, quando houver, as informações sobre a data em que ocorreram os eventos, principalmente em relação ao início e término de cada tratamento adjuvante (exemplo Hormonioterapia de 2010 a 2015).  </span></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(0, 32, 91);\">Bons estudos!</span></p>\n<p> </p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Fala, galera! Questão bem direta que solicita elaboração de um resumo do tratamento prévio da paciente, em termos técnicos, para prontuário. Mas antes disso, vamos entender o caso: </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p>Temos aqui uma paciente que refere ter realizado como tratamento adjuvante quimioterapia, uma vacina, e uso de comprimido via oral por 5 anos. Pensando nos subtipos moleculares do <span class=\"article-5158\">câncer de mama</span> poderíamos fazer o seguinte raciocínio: </p>\n<p>O fato da paciente ter tomado um comprimido por via oral durante cinco anos sugere que ela fez tratamento de um <span class=\"article-5158\">câncer de mama</span> hormônio dependente (receptor de estrogênio/progesterona positivo), ou seja, Luminal. Mas além disso, ela menciona ter tomado uma “vacina”, forma comum a que as pacientes se referem ao trastuzumab (Herceptin), anticorpo monoclonal utilizado na terapia alvo do <span class=\"article-5158\">câncer de mama</span> HER2 positivo. Ou seja, teríamos aqui o caso de um <span class=\"article-5158\">câncer de mama</span> Luminal híbrido. </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">Ainda, pelo fato da paciente ter realizado cirurgia conservadora da mama, possivelmente tivemos uma boa resposta à quimioterapia, ausência de tumor multicêntrico e boa relação mama/tumor.</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">Agora sim, entendendo o caso como um todo, podemos colocar como resposta:</p>\n<p> </p>\n<p>Quadrantectomia de mama esquerda + Biópsia de linfonodo sentinela a esquerda (BLS) </p>\n<p>Quimioterapia adjuvante </p>\n<p>Radioterapia adjuvante </p>\n<p>Hormonioterapia/Endocrinoterapia adjuvante com inibidor de aromatase (IA) - por exemplo Anastrozol 1mg/dia por 5 anos </p>\n<p>Trastuzumab adjuvante </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><br/><br/></p><br>Visão do aprovado: <p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(0, 32, 91);\">Apesar de parecer algo mais simples, a elaboração do prontuário é de suma importância, então precisamos caprichar! </span></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(0, 32, 91);\">Lembrando que é sempre importante colocar a lateralidade e, quando houver, as informações sobre a data em que ocorreram os eventos, principalmente em relação ao início e término de cada tratamento adjuvante (exemplo Hormonioterapia de 2010 a 2015).  </span></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(0, 32, 91);\">Bons estudos!</span></p>\n<p> </p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197325,
+        "number": 6,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Câncer de mama parte 1: rastreamento, aconselhamento genético e classificação molecular",
+        "focus": {
+          "id": 1631,
+          "name": "Câncer de mama parte 1: rastreamento, aconselhamento genético e classificação molecular"
+        }
+      },
+      "detail": {
+        "id": 197325,
+        "content": "Mulher, 59 a, inicia acompanhamento ginecológico com médico da Unidade Básica de Saúde, pois não teria mais acesso à saúde suplementar em outra cidade, onde fazia acompanhamento por câncer de mama tratado há sete anos. Menopausa aos 48 anos. Antecedente de trombose venosa superficial em membro inferior direito na última gestação. Refere ter feito cirurgia de “quadrante” na mama esquerda, quando também “tirou apenas um gânglio” da axila ipsilateral. Em regime de adjuvância, relata ter realizado quimioterapia, e tomou um comprimido por via oral ao dia durante cinco anos – do qual não se recorda o nome. Não soube referir com exatidão se fez radioterapia, mas informa que precisou fazer a “vacina”, entendido como um anticorpo monoclonal da classe IgG. PERGUNTA-SE: Qual o provável subtipo molecular do câncer de mama? Justifique.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15935,
+            "parent_tag": {
+              "id": 15902,
+              "name": "Mastologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Câncer de mama parte 1: rastreamento, aconselhamento genético e classificação molecular",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 6,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 23,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1631,
+          "name": "Câncer de mama parte 1: rastreamento, aconselhamento genético e classificação molecular",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 104,
+            "name": "Mastologia",
+            "discipline": 86,
+            "old_tag": 15902,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224691,
+        "actual_explanation": true,
+        "introduction": "<p>Fala, galera! Quest&atilde;o mais espec&iacute;fica sobre subtipos moleculares do c&acirc;ncer de mama. Bora revisar quais s&atilde;o eles antes de analisar os dados da quest&atilde;o.</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250421T002633179Z540336.png\" width=\"408\" height=\"242\"></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p>De forma sucinta, os subtipos moleculares do c&acirc;ncer de mama s&atilde;o: <strong>luminal A, luminal B, HER2 e triplo negativo</strong>, definidos pela express&atilde;o ou n&atilde;o de receptores hormonais (RE e RP) e de HER2, conforme a tabela acima.&nbsp;Vale ressaltar que a an&aacute;lise do HER2 pode ser 0, 1+, 2+ e 3+ (sendo esse &uacute;ltimo HER2 positivo). Nos casos em que temos&nbsp;<strong>HER2 2+, </strong>&eacute; necess&aacute;rio confirmar a amplifica&ccedil;&atilde;o por <strong>FISH ou SISH</strong>.&nbsp;</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p>Agora sim vamos analisar os dados fornecidos pela quest&atilde;o:&nbsp;</p>\n<p>O fato da paciente ter tomado um comprimido por via oral durante cinco anos sugere que ela fez tratamento de um c&acirc;ncer de mama horm&ocirc;nio dependente (receptor de estrog&ecirc;nio/progesterona positivo). Al&eacute;m disso, ela menciona ter tomado uma &ldquo;vacina&rdquo;, que, com base na descri&ccedil;&atilde;o, &eacute; muito provavelmente um anticorpo monoclonal, como o trastuzumab (Herceptin), que &eacute; utilizado na terapia alvo do c&acirc;ncer de mama HER2 positivo. Dessa forma chegamos a conclus&atilde;o que a paciente da quest&atilde;o teve um c&acirc;ncer de mama Luminal H&iacute;brido.</p>\n<p>&nbsp;</p>\n<p>Resposta: O prov&aacute;vel subtipo molecular do c&acirc;ncer de mama dessa paciente &eacute; Luminal Hibrido (Luminal HER2 positivo), devido &agrave; presen&ccedil;a de receptores hormonais positivos (evidenciado pela medica&ccedil;&atilde;o via oral por 5 anos) e ao tratamento com anticorpo monoclonal anti-HER2 (trastuzumab), a \"vacina\" referida pela paciente.&nbsp;</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><br><br></p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Uma observa&ccedil;&atilde;o v&aacute;lida sobre essa quest&atilde;o &eacute; que, no caso dessa paciente, a endocrinoterapia possivelmente foi realizada com inibidor de aromatase (IA) por ter sido um tratamento na p&oacute;s menopausa somado ao hist&oacute;rico de trombose. De forma did&aacute;tica, podemos ter como avalia&ccedil;&atilde;o geral:&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250421T002910967Z080161.png\" width=\"422\" height=\"312\"></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p>&Eacute; importante relembrar efeitos colaterais e contraindica&ccedil;&otilde;es relativas e absolutas da endocrinoterapia para uma melhor prepara&ccedil;&atilde;o para quest&otilde;es.</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p>&nbsp;</p>\n<p>Bons estudos!</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><br><br></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Fala, galera! Quest&atilde;o mais espec&iacute;fica sobre subtipos moleculares do c&acirc;ncer de mama. Bora revisar quais s&atilde;o eles antes de analisar os dados da quest&atilde;o.</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250421T002633179Z540336.png\" width=\"408\" height=\"242\"></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p>De forma sucinta, os subtipos moleculares do c&acirc;ncer de mama s&atilde;o: <strong>luminal A, luminal B, HER2 e triplo negativo</strong>, definidos pela express&atilde;o ou n&atilde;o de receptores hormonais (RE e RP) e de HER2, conforme a tabela acima.&nbsp;Vale ressaltar que a an&aacute;lise do HER2 pode ser 0, 1+, 2+ e 3+ (sendo esse &uacute;ltimo HER2 positivo). Nos casos em que temos&nbsp;<strong>HER2 2+, </strong>&eacute; necess&aacute;rio confirmar a amplifica&ccedil;&atilde;o por <strong>FISH ou SISH</strong>.&nbsp;</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p>Agora sim vamos analisar os dados fornecidos pela quest&atilde;o:&nbsp;</p>\n<p>O fato da paciente ter tomado um comprimido por via oral durante cinco anos sugere que ela fez tratamento de um c&acirc;ncer de mama horm&ocirc;nio dependente (receptor de estrog&ecirc;nio/progesterona positivo). Al&eacute;m disso, ela menciona ter tomado uma &ldquo;vacina&rdquo;, que, com base na descri&ccedil;&atilde;o, &eacute; muito provavelmente um anticorpo monoclonal, como o trastuzumab (Herceptin), que &eacute; utilizado na terapia alvo do c&acirc;ncer de mama HER2 positivo. Dessa forma chegamos a conclus&atilde;o que a paciente da quest&atilde;o teve um c&acirc;ncer de mama Luminal H&iacute;brido.</p>\n<p>&nbsp;</p>\n<p>Resposta: O prov&aacute;vel subtipo molecular do c&acirc;ncer de mama dessa paciente &eacute; Luminal Hibrido (Luminal HER2 positivo), devido &agrave; presen&ccedil;a de receptores hormonais positivos (evidenciado pela medica&ccedil;&atilde;o via oral por 5 anos) e ao tratamento com anticorpo monoclonal anti-HER2 (trastuzumab), a \"vacina\" referida pela paciente.&nbsp;</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><br><br></p><br>Visão do aprovado: <p>Uma observa&ccedil;&atilde;o v&aacute;lida sobre essa quest&atilde;o &eacute; que, no caso dessa paciente, a endocrinoterapia possivelmente foi realizada com inibidor de aromatase (IA) por ter sido um tratamento na p&oacute;s menopausa somado ao hist&oacute;rico de trombose. De forma did&aacute;tica, podemos ter como avalia&ccedil;&atilde;o geral:&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250421T002910967Z080161.png\" width=\"422\" height=\"312\"></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p>&Eacute; importante relembrar efeitos colaterais e contraindica&ccedil;&otilde;es relativas e absolutas da endocrinoterapia para uma melhor prepara&ccedil;&atilde;o para quest&otilde;es.</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p>&nbsp;</p>\n<p>Bons estudos!</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><br><br></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197326,
+        "number": 7,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Complicações de gestação monocoriônica",
+        "focus": {
+          "id": 1627,
+          "name": "Complicações de gestação monocoriônica"
+        }
+      },
+      "detail": {
+        "id": 197326,
+        "content": "Paciente primigesta e sem doenças de base, com gestação gemelar monocoriônica e diamniótica de 20 semanas, apresenta ao exame de ultrassom: \n\n- Feto A: peso estimado 370 g (percentil 81); polidrâmnio; Dopplervelocimetria: índice de pulsatilidade normal e fluxo diastólico final presente nas artérias umbilicais, índice de pulsatilidade e pico de velocidade sistólica normais nas artérias cerebrais médias, índice de pulsatilidade acima do percentil 95 e onda \"\"a\"\" positiva no ducto venoso; bexiga fetal permanentemente distendida durante todo o exame; placenta única, de aspecto normal; morfologia fetal não detectou alterações. \n\n- Feto B: peso estimado 300 g (percentil 24); anidrâmnio; Dopplervelocimetria: índice de pulsatilidade acima do percentil 95 e fluxo diastólico final positivo nas artérias umbilicais, índice de pulsatilidade e pico de velocidade sistólica normais nas artérias cerebrais médias; bexiga fetal vazia durante todo o exame; placenta única, de aspecto normal; morfologia fetal não detectou alterações. - Colo uterino com comprimento normal. \n\nPERGUNTA-SE: Considerando as informações acima, qual sua hipótese diagnóstica em relação ao desenvolvimento gestacional? Explique.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15939,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Complicações de gestação monocoriônica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 7,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 13,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1627,
+          "name": "Complicações de gestação monocoriônica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224692,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Este caso apresenta uma gestante primigesta com gestação gemelar monocoriônica e diamniótica de 20 semanas, apresentando achados ultrassonográficos altamente sugestivos de <span class=\"article-3395\">Síndrome de Transfusão Feto-Fetal</span> (STFF). A STFF ou TOPS é consequência de desequilíbrio das anastomoses entre os gemelares na placenta. Fisiologicamente, há algumas anastomoses entre gemelares na placenta, que costumam ser em quantidades parecidas (total de anastomoses do feto 1 para o feto 2 parecido com do feto 2 para o feto 1). Porém, se um dos fetos “manda” mais vasos do que “recebe” do outro, ocorre a STFF. Ou seja, a STFF é resultado de um desequilíbrio hemodinâmico. O feto que recebe mais sangue é chamado receptor e o que envia seu sangue para o outro gemelar é chamado doador. </p>\n<p style=\"text-align: justify;\">Se o sangue que chega para cada feto é filtrado e vira urina fetal, consequentemente líquido amniótico, quem recebe mais sangue acaba urinando mais por isso aparece o polidrâmnio. Do outro lado, quem manda sangue fica com pouco e urina menos, assim surge o oligoâmnio. Daí para a frente, as alterações ficam cada vez mais graves, representando que o desequilíbrio hemodinâmico está avançando, e podendo até chegar ao óbito.</p>\n<p style=\"text-align: justify;\">Analisando os achados ultrassonográficos, observamos o quadro clássico: O feto A (receptor) apresenta polidrâmnio, maior peso estimado (percentil 81), bexiga constantemente distendida e alterações no ducto venoso, enquanto o feto B (doador) apresenta anidrâmnio, menor peso estimado (percentil 24), bexiga vazia. Ou seja, diante da discordância de líquidos associado com a bexiga vazia, já podemos estabelecer nosso diagnóstico com certeza!</p>\n<p style=\"text-align: justify;\">A fisiopatologia envolve a transferência crônica de sangue do feto doador para o receptor através de anastomoses vasculares placentárias desequilibradas. O feto doador desenvolve hipovolemia, oligúria, anidrâmnio e restrição de crescimento. Já o feto receptor sofre com hipervolemia, poliúria, polidrâmnio e sobrecarga cardíaca que pode evoluir para insuficiência cardíaca.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><strong>Gabarito: </strong>ressaltar que diferença no volume de líquido amniótico nas bolsas indica presença de alguma complicação transfusional por desbalanço das anastomoses entre os fetos; - indicar que o caso preenche critério para transfusão feto-fetal, tomando como base preferencialmente a classificação de Quintero e colaboradores de 1999 (Quintero RA, Morales WJ, Allen MH, Bornick PW, Johnson PK, Kruger M. Staging of twin-twin transfusion syndrome. J Perinatol. 1999 Dec;19(8 Pt 1):550-5. doi: 10.1038/sj.jp.7200292. PMID: 10645517) ou citando os critérios de algum outro consenso publicado</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Aproveita a questão para relembrar da classificação de Quintero para STFF:</p>\n<p><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T225536287Z701530.png\" style=\"display: block; margin-left: auto; margin-right: auto;\"/></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Este caso apresenta uma gestante primigesta com gestação gemelar monocoriônica e diamniótica de 20 semanas, apresentando achados ultrassonográficos altamente sugestivos de <span class=\"article-3395\">Síndrome de Transfusão Feto-Fetal</span> (STFF). A STFF ou TOPS é consequência de desequilíbrio das anastomoses entre os gemelares na placenta. Fisiologicamente, há algumas anastomoses entre gemelares na placenta, que costumam ser em quantidades parecidas (total de anastomoses do feto 1 para o feto 2 parecido com do feto 2 para o feto 1). Porém, se um dos fetos “manda” mais vasos do que “recebe” do outro, ocorre a STFF. Ou seja, a STFF é resultado de um desequilíbrio hemodinâmico. O feto que recebe mais sangue é chamado receptor e o que envia seu sangue para o outro gemelar é chamado doador. </p>\n<p style=\"text-align: justify;\">Se o sangue que chega para cada feto é filtrado e vira urina fetal, consequentemente líquido amniótico, quem recebe mais sangue acaba urinando mais por isso aparece o polidrâmnio. Do outro lado, quem manda sangue fica com pouco e urina menos, assim surge o oligoâmnio. Daí para a frente, as alterações ficam cada vez mais graves, representando que o desequilíbrio hemodinâmico está avançando, e podendo até chegar ao óbito.</p>\n<p style=\"text-align: justify;\">Analisando os achados ultrassonográficos, observamos o quadro clássico: O feto A (receptor) apresenta polidrâmnio, maior peso estimado (percentil 81), bexiga constantemente distendida e alterações no ducto venoso, enquanto o feto B (doador) apresenta anidrâmnio, menor peso estimado (percentil 24), bexiga vazia. Ou seja, diante da discordância de líquidos associado com a bexiga vazia, já podemos estabelecer nosso diagnóstico com certeza!</p>\n<p style=\"text-align: justify;\">A fisiopatologia envolve a transferência crônica de sangue do feto doador para o receptor através de anastomoses vasculares placentárias desequilibradas. O feto doador desenvolve hipovolemia, oligúria, anidrâmnio e restrição de crescimento. Já o feto receptor sofre com hipervolemia, poliúria, polidrâmnio e sobrecarga cardíaca que pode evoluir para insuficiência cardíaca.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><strong>Gabarito: </strong>ressaltar que diferença no volume de líquido amniótico nas bolsas indica presença de alguma complicação transfusional por desbalanço das anastomoses entre os fetos; - indicar que o caso preenche critério para transfusão feto-fetal, tomando como base preferencialmente a classificação de Quintero e colaboradores de 1999 (Quintero RA, Morales WJ, Allen MH, Bornick PW, Johnson PK, Kruger M. Staging of twin-twin transfusion syndrome. J Perinatol. 1999 Dec;19(8 Pt 1):550-5. doi: 10.1038/sj.jp.7200292. PMID: 10645517) ou citando os critérios de algum outro consenso publicado</p><br>Visão do aprovado: <p>Aproveita a questão para relembrar da classificação de Quintero para STFF:</p>\n<p><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T225536287Z701530.png\" style=\"display: block; margin-left: auto; margin-right: auto;\"/></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197327,
+        "number": 8,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Complicações de gestação monocoriônica",
+        "focus": {
+          "id": 1627,
+          "name": "Complicações de gestação monocoriônica"
+        }
+      },
+      "detail": {
+        "id": 197327,
+        "content": "Paciente primigesta e sem doenças de base, com gestação gemelar monocoriônica e diamniótica de 20 semanas, apresenta ao exame de ultrassom: \n\n- Feto A: peso estimado 370 g (percentil 81); polidrâmnio; Dopplervelocimetria: índice de pulsatilidade normal e fluxo diastólico final presente nas artérias umbilicais, índice de pulsatilidade e pico de velocidade sistólica normais nas artérias cerebrais médias, índice de pulsatilidade acima do percentil 95 e onda \"a\" positiva no ducto venoso; bexiga fetal permanentemente distendida durante todo o exame; placenta única, de aspecto normal; morfologia fetal não detectou alterações. \n\n- Feto B: peso estimado 300 g (percentil 24); anidrâmnio; Dopplervelocimetria: índice de pulsatilidade acima do percentil 95 e fluxo diastólico final positivo nas artérias umbilicais, índice de pulsatilidade e pico de velocidade sistólica normais nas artérias cerebrais médias; bexiga fetal vazia durante todo o exame; placenta única, de aspecto normal; morfologia fetal não detectou alterações. - Colo uterino com comprimento normal.  \n\nPERGUNTA-SE: Considerando as informações acima, qual sua recomendação de conduta doravante? Explique.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15939,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Complicações de gestação monocoriônica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 8,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 15,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1627,
+          "name": "Complicações de gestação monocoriônica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224693,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Este caso apresenta uma gestante primigesta com gestação gemelar monocoriônica e diamniótica de 20 semanas, apresentando achados ultrassonográficos altamente sugestivos de <span class=\"article-3395\">Síndrome de Transfusão Feto-Fetal</span> (STFF). A STFF ou TOPS é consequência de desequilíbrio das anastomoses entre os gemelares na placenta. Fisiologicamente, há algumas anastomoses entre gemelares na placenta, que costumam ser em quantidades parecidas (total de anastomoses do feto 1 para o feto 2 parecido com do feto 2 para o feto 1). Porém, se um dos fetos “manda” mais vasos do que “recebe” do outro, ocorre a STFF. Ou seja, a STFF é resultado de um desequilíbrio hemodinâmico. O feto que recebe mais sangue é chamado receptor e o que envia seu sangue para o outro gemelar é chamado doador. </p>\n<p style=\"text-align: justify;\">Se o sangue que chega para cada feto é filtrado e vira urina fetal, consequentemente líquido amniótico, quem recebe mais sangue acaba urinando mais por isso aparece o polidrâmnio. Do outro lado, quem manda sangue fica com pouco e urina menos, assim surge o oligoâmnio. Daí para a frente, as alterações ficam cada vez mais graves, representando que o desequilíbrio hemodinâmico está avançando, e podendo até chegar ao óbito.</p>\n<p style=\"text-align: justify;\">Analisando os achados ultrassonográficos, observamos o quadro clássico: O feto A (receptor) apresenta polidrâmnio, maior peso estimado (percentil 81), bexiga constantemente distendida e alterações no ducto venoso, enquanto o feto B (doador) apresenta anidrâmnio, menor peso estimado (percentil 24), bexiga vazia. Ou seja, diante da discordância de líquidos associado com a bexiga vazia, já podemos estabelecer nosso diagnóstico com certeza!</p>\n<p style=\"text-align: justify;\">A fisiopatologia envolve a transferência crônica de sangue do feto doador para o receptor através de anastomoses vasculares placentárias desequilibradas. O feto doador desenvolve hipovolemia, oligúria, anidrâmnio e restrição de crescimento. Já o feto receptor sofre com hipervolemia, poliúria, polidrâmnio e sobrecarga cardíaca que pode evoluir para insuficiência cardíaca.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><strong>Gabarito: </strong>classificar ou estadiar o caso e indicar a conduta preferencialmente de acordo com a classificação de Quintero e colaboradores de 1999 (Quintero RA, Morales WJ, Allen MH, Bornick PW, Johnson PK, Kruger M. Staging of twin-twin transfusion syndrome. J Perinatol. 1999 Dec;19(8 Pt 1):550-5. doi: 10.1038/sj.jp.7200292. PMID: 10645517) ou citando os critérios de algum outro consenso publicado. - Neste caso, de acordo com a classificação de Quintero e colaboradores, trata-se de uma STT estágio II e a conduta preconizada é tratamento imediato por meio de ablação das anastomoses placentárias com laser guiada por fetoscopia.- classificar ou estadiar o caso e indicar a conduta preferencialmente de acordo com a classificação de Quintero e colaboradores de 1999 (Quintero RA, Morales WJ, Allen MH, ornick PW, Johnson PK, Kruger M. Staging of twin-twin transfusion syndrome. J Perinatol. 1999 Dec;19(8 Pt 1):550-5. doi: 10.1038/sj.jp.7200292. PMID: 10645517) ou citando os critérios de algum outro consenso publicado. - Neste caso, de acordo com a classificação de Quintero e colaboradores, trata-se de uma STT estágio II e a conduta preconizada é tratamento imediato por meio de ablação das anastomoses placentárias com laser guiada por fetoscopia.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Aproveita a questão para relembrar da classificação de Quintero para STFF:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T225536287Z701530.png\"/></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Este caso apresenta uma gestante primigesta com gestação gemelar monocoriônica e diamniótica de 20 semanas, apresentando achados ultrassonográficos altamente sugestivos de <span class=\"article-3395\">Síndrome de Transfusão Feto-Fetal</span> (STFF). A STFF ou TOPS é consequência de desequilíbrio das anastomoses entre os gemelares na placenta. Fisiologicamente, há algumas anastomoses entre gemelares na placenta, que costumam ser em quantidades parecidas (total de anastomoses do feto 1 para o feto 2 parecido com do feto 2 para o feto 1). Porém, se um dos fetos “manda” mais vasos do que “recebe” do outro, ocorre a STFF. Ou seja, a STFF é resultado de um desequilíbrio hemodinâmico. O feto que recebe mais sangue é chamado receptor e o que envia seu sangue para o outro gemelar é chamado doador. </p>\n<p style=\"text-align: justify;\">Se o sangue que chega para cada feto é filtrado e vira urina fetal, consequentemente líquido amniótico, quem recebe mais sangue acaba urinando mais por isso aparece o polidrâmnio. Do outro lado, quem manda sangue fica com pouco e urina menos, assim surge o oligoâmnio. Daí para a frente, as alterações ficam cada vez mais graves, representando que o desequilíbrio hemodinâmico está avançando, e podendo até chegar ao óbito.</p>\n<p style=\"text-align: justify;\">Analisando os achados ultrassonográficos, observamos o quadro clássico: O feto A (receptor) apresenta polidrâmnio, maior peso estimado (percentil 81), bexiga constantemente distendida e alterações no ducto venoso, enquanto o feto B (doador) apresenta anidrâmnio, menor peso estimado (percentil 24), bexiga vazia. Ou seja, diante da discordância de líquidos associado com a bexiga vazia, já podemos estabelecer nosso diagnóstico com certeza!</p>\n<p style=\"text-align: justify;\">A fisiopatologia envolve a transferência crônica de sangue do feto doador para o receptor através de anastomoses vasculares placentárias desequilibradas. O feto doador desenvolve hipovolemia, oligúria, anidrâmnio e restrição de crescimento. Já o feto receptor sofre com hipervolemia, poliúria, polidrâmnio e sobrecarga cardíaca que pode evoluir para insuficiência cardíaca.</p>\n<p style=\"text-align: justify;\"> </p>\n<p style=\"text-align: justify;\"><strong>Gabarito: </strong>classificar ou estadiar o caso e indicar a conduta preferencialmente de acordo com a classificação de Quintero e colaboradores de 1999 (Quintero RA, Morales WJ, Allen MH, Bornick PW, Johnson PK, Kruger M. Staging of twin-twin transfusion syndrome. J Perinatol. 1999 Dec;19(8 Pt 1):550-5. doi: 10.1038/sj.jp.7200292. PMID: 10645517) ou citando os critérios de algum outro consenso publicado. - Neste caso, de acordo com a classificação de Quintero e colaboradores, trata-se de uma STT estágio II e a conduta preconizada é tratamento imediato por meio de ablação das anastomoses placentárias com laser guiada por fetoscopia.- classificar ou estadiar o caso e indicar a conduta preferencialmente de acordo com a classificação de Quintero e colaboradores de 1999 (Quintero RA, Morales WJ, Allen MH, ornick PW, Johnson PK, Kruger M. Staging of twin-twin transfusion syndrome. J Perinatol. 1999 Dec;19(8 Pt 1):550-5. doi: 10.1038/sj.jp.7200292. PMID: 10645517) ou citando os critérios de algum outro consenso publicado. - Neste caso, de acordo com a classificação de Quintero e colaboradores, trata-se de uma STT estágio II e a conduta preconizada é tratamento imediato por meio de ablação das anastomoses placentárias com laser guiada por fetoscopia.</p><br>Visão do aprovado: <p>Aproveita a questão para relembrar da classificação de Quintero para STFF:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250504T225536287Z701530.png\"/></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197328,
+        "number": 9,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Aloimunização",
+        "focus": {
+          "id": 1589,
+          "name": "Aloimunização"
+        }
+      },
+      "detail": {
+        "id": 197328,
+        "content": "Secundigesta aloimunizada (anticorpos anti-D, titulação 1/256), sem outras doenças ou antecedentes obstétricos relevantes, assintomática, apresenta medida do pico de velocidade sistólica da artéria cerebral média fetal de 63 cm/s, equivalente a 1,88 múltiplos da mediana (MoM), com 26 semanas. Sem sinais de hidropisia fetal ou outras alterações na avaliação ecográfica obstétrica. PERGUNTA-SE: Considerando as informações acima, qual sua hipótese diagnóstica em relação ao feto? Explique.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15978,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Aloimunização",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 9,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 20,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1589,
+          "name": "Aloimunização",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224694,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">O ponto de corte da titulação do Coombs indireto significa que em títulos baixos há um risco leve a moderado de acometimento fetal. Já em títulos maiores (isso quer dizer 1:16, 1:32, 1:64…) o risco de anemia fetal grave é maior e, necessita de propedêutica adicional. A avaliação da anemia fetal é feita usualmente por meio da dopplerfluxometria, visto que nos fetos anêmicos ocorre diminuição da viscosidade sanguínea e aumento do débito cardíaco, levando a um estado hiperdinâmico, na tentativa de suprir a demanda por oxigênio dos tecidos. Assim, os fetos anêmicos, devido ao estado hiperdinâmico, apresentam valores de velocidade máxima do pico sistólico acima do limite esperado para a idade gestacional.</p>\n<p style=\"text-align: justify;\">O acompanhamento, por meio da dopplerfluxometria da artéria cerebral média (ACM), deve ser iniciado a partir de 20 – 24 semanas de gestação em gestantes com teste de Coombs indireto &gt; 1:8 (ou ≥ 1:16), sendo o método de maior sensibilidade e especificidade em relação aos exames invasivos, como amniocentese, para a detecção de anemia fetal. Os valores de corte estudados, como preditores de anemia fetal, foram medidos por meio dos múltiplos da mediana do pico da velocidade máxima da ACM, estabelecendo o que chamamos curva de Mari Modificada. </p>\n<p>Sendo assim, temos três grandes zonas para avaliarmos:</p>\n<ul>\n<li>Velocidade máxima acima de 1,5 múltiplos da mediana (MoM) — zona A — está relacionada ao quadro de anemia fetal grave (hematócrito abaixo de 30%), portanto, está indicada a realização de cordocentese para confirmar anemia e realizar possível <span class=\"article-5336\">transfusão intrauterina</span>;</li>\n<li>Velocidade máxima entre 1,29 e 1,5 MoM para a idade gestacional — zona B — é preditor de anemia fetal leve, sem indicação de cordocentese, devendo ocorrer nova reavaliação em 5 a 10 dias;</li>\n<li>Velocidade máxima abaixo de 1,29 MoM da idade gestacional significa não haver anemia, portanto, o exame deve ser repetido em 2 a 3 semanas.</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Gabarito: </strong>Indicar que pelo antecedente de aloimunização materna com anticorpo hemolítico (anti-D), que encontra-se com titulação elevada, associado com o aumento no pico de velocidade sistólica na artéria cerebral média (Mari G, Adrignolo A, Abuhamad AZ, Pirhonen J, Jones DC, Ludomirsky A, Copel JA. Diagnosis of fetal anemia with Doppler ultrasound in the pregnancy complicated by maternal blood group immunization. Ultrasound Obstet Gynecol. 1995 Jun;5(6):400-5. doi: 10.1046/j.1469-0705.1995.05060400.x. PMID: 7552802) o diagnóstico mais provável é que o feto esteja com um quadro de anemia moderada ou grave.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Aproveita a questão para relembrar da curva de Mari Modificada:</p>\n<p><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250405T185358655Z145442.png\" style=\"display: block; margin-left: auto; margin-right: auto;\"/></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">O ponto de corte da titulação do Coombs indireto significa que em títulos baixos há um risco leve a moderado de acometimento fetal. Já em títulos maiores (isso quer dizer 1:16, 1:32, 1:64…) o risco de anemia fetal grave é maior e, necessita de propedêutica adicional. A avaliação da anemia fetal é feita usualmente por meio da dopplerfluxometria, visto que nos fetos anêmicos ocorre diminuição da viscosidade sanguínea e aumento do débito cardíaco, levando a um estado hiperdinâmico, na tentativa de suprir a demanda por oxigênio dos tecidos. Assim, os fetos anêmicos, devido ao estado hiperdinâmico, apresentam valores de velocidade máxima do pico sistólico acima do limite esperado para a idade gestacional.</p>\n<p style=\"text-align: justify;\">O acompanhamento, por meio da dopplerfluxometria da artéria cerebral média (ACM), deve ser iniciado a partir de 20 – 24 semanas de gestação em gestantes com teste de Coombs indireto &gt; 1:8 (ou ≥ 1:16), sendo o método de maior sensibilidade e especificidade em relação aos exames invasivos, como amniocentese, para a detecção de anemia fetal. Os valores de corte estudados, como preditores de anemia fetal, foram medidos por meio dos múltiplos da mediana do pico da velocidade máxima da ACM, estabelecendo o que chamamos curva de Mari Modificada. </p>\n<p>Sendo assim, temos três grandes zonas para avaliarmos:</p>\n<ul>\n<li>Velocidade máxima acima de 1,5 múltiplos da mediana (MoM) — zona A — está relacionada ao quadro de anemia fetal grave (hematócrito abaixo de 30%), portanto, está indicada a realização de cordocentese para confirmar anemia e realizar possível <span class=\"article-5336\">transfusão intrauterina</span>;</li>\n<li>Velocidade máxima entre 1,29 e 1,5 MoM para a idade gestacional — zona B — é preditor de anemia fetal leve, sem indicação de cordocentese, devendo ocorrer nova reavaliação em 5 a 10 dias;</li>\n<li>Velocidade máxima abaixo de 1,29 MoM da idade gestacional significa não haver anemia, portanto, o exame deve ser repetido em 2 a 3 semanas.</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Gabarito: </strong>Indicar que pelo antecedente de aloimunização materna com anticorpo hemolítico (anti-D), que encontra-se com titulação elevada, associado com o aumento no pico de velocidade sistólica na artéria cerebral média (Mari G, Adrignolo A, Abuhamad AZ, Pirhonen J, Jones DC, Ludomirsky A, Copel JA. Diagnosis of fetal anemia with Doppler ultrasound in the pregnancy complicated by maternal blood group immunization. Ultrasound Obstet Gynecol. 1995 Jun;5(6):400-5. doi: 10.1046/j.1469-0705.1995.05060400.x. PMID: 7552802) o diagnóstico mais provável é que o feto esteja com um quadro de anemia moderada ou grave.</p><br>Visão do aprovado: <p>Aproveita a questão para relembrar da curva de Mari Modificada:</p>\n<p><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250405T185358655Z145442.png\" style=\"display: block; margin-left: auto; margin-right: auto;\"/></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197329,
+        "number": 10,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Aloimunização",
+        "focus": {
+          "id": 1589,
+          "name": "Aloimunização"
+        }
+      },
+      "detail": {
+        "id": 197329,
+        "content": "Secundigesta aloimunizada (anticorpos anti-D, titulação 1/256), sem outras doenças ou antecedentes obstétricos relevantes, assintomática, apresenta medida do pico de velocidade sistólica da artéria cerebral média fetal de 63 cm/s, equivalente a 1,88 múltiplos da mediana (MoM), com 26 semanas. Sem sinais de hidropisia fetal ou outras alterações na avaliação ecográfica obstétrica. PERGUNTA-SE: Considerando as informações acima, qual sua recomendação de conduta doravante? Explique.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15978,
+            "parent_tag": {
+              "id": 15914,
+              "name": "Medicina fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Aloimunização",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 10,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 16,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1589,
+          "name": "Aloimunização",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 92,
+            "name": "Medicina fetal",
+            "discipline": 86,
+            "old_tag": 15914,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224695,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">O ponto de corte da titulação do Coombs indireto significa que em títulos baixos há um risco leve a moderado de acometimento fetal. Já em títulos maiores (isso quer dizer 1:16, 1:32, 1:64…) o risco de anemia fetal grave é maior e, necessita de propedêutica adicional. A avaliação da anemia fetal é feita usualmente por meio da dopplerfluxometria, visto que nos fetos anêmicos ocorre diminuição da viscosidade sanguínea e aumento do débito cardíaco, levando a um estado hiperdinâmico, na tentativa de suprir a demanda por oxigênio dos tecidos. Assim, os fetos anêmicos, devido ao estado hiperdinâmico, apresentam valores de velocidade máxima do pico sistólico acima do limite esperado para a idade gestacional.</p>\n<p style=\"text-align: justify;\">O acompanhamento, por meio da dopplerfluxometria da artéria cerebral média (ACM), deve ser iniciado a partir de 20 – 24 semanas de gestação em gestantes com teste de Coombs indireto &gt; 1:8 (ou ≥ 1:16), sendo o método de maior sensibilidade e especificidade em relação aos exames invasivos, como amniocentese, para a detecção de anemia fetal. Os valores de corte estudados, como preditores de anemia fetal, foram medidos por meio dos múltiplos da mediana do pico da velocidade máxima da ACM, estabelecendo o que chamamos curva de Mari Modificada. </p>\n<p style=\"text-align: justify;\">Como temos um feto com pico de velocidade sistólica da artéria cerebral média acima de 1,5 múltiplos da mediana, temos um feto com sinal de anemia moderada a grave (hematócrito previsto abaixo de 30%). Como temos uma causa bem estabelecida aqui (coombs positivo por anti-D numa titulação bem alta), não vamos aguardar aparecer outro sinal ultrassonográfico de anemia (como hidropisia, insuficiência cardíaca, etc). Precisamos indicar a cordocentese para confirmar o diagnóstico e já realizar a <span class=\"article-5336\">transfusão intrauterina</span> no mesmo momento!</p>\n<p><strong>Gabarito: </strong>A recomendação preconizada, considerando a idade gestacional precoce, é a realização de cordocentese para dosar a hemoglobina fetal e, se confirmada a anemia, realizar transfusão intravascular de sangue no feto no mesmo momento.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Precisamos sempre avaliar algumas informações antes de indicar a transfusão fetal intra-útero:</p>\n<ul>\n<li>Existe algum sinal ultrassonográfico de anemia fetal além do PVS-ACM alterado?</li>\n<li>A paciente possui história obstétrica desfavorável por causa de aloimunização? </li>\n<li>Existe uma causa bem estabelecida que seja compatível com um prognóstico sombrio?</li>\n</ul>\n<p>Se alguma dessas respostas for sim, não vamos aguardar o feto descompensar para indicar a cordocentese!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">O ponto de corte da titulação do Coombs indireto significa que em títulos baixos há um risco leve a moderado de acometimento fetal. Já em títulos maiores (isso quer dizer 1:16, 1:32, 1:64…) o risco de anemia fetal grave é maior e, necessita de propedêutica adicional. A avaliação da anemia fetal é feita usualmente por meio da dopplerfluxometria, visto que nos fetos anêmicos ocorre diminuição da viscosidade sanguínea e aumento do débito cardíaco, levando a um estado hiperdinâmico, na tentativa de suprir a demanda por oxigênio dos tecidos. Assim, os fetos anêmicos, devido ao estado hiperdinâmico, apresentam valores de velocidade máxima do pico sistólico acima do limite esperado para a idade gestacional.</p>\n<p style=\"text-align: justify;\">O acompanhamento, por meio da dopplerfluxometria da artéria cerebral média (ACM), deve ser iniciado a partir de 20 – 24 semanas de gestação em gestantes com teste de Coombs indireto &gt; 1:8 (ou ≥ 1:16), sendo o método de maior sensibilidade e especificidade em relação aos exames invasivos, como amniocentese, para a detecção de anemia fetal. Os valores de corte estudados, como preditores de anemia fetal, foram medidos por meio dos múltiplos da mediana do pico da velocidade máxima da ACM, estabelecendo o que chamamos curva de Mari Modificada. </p>\n<p style=\"text-align: justify;\">Como temos um feto com pico de velocidade sistólica da artéria cerebral média acima de 1,5 múltiplos da mediana, temos um feto com sinal de anemia moderada a grave (hematócrito previsto abaixo de 30%). Como temos uma causa bem estabelecida aqui (coombs positivo por anti-D numa titulação bem alta), não vamos aguardar aparecer outro sinal ultrassonográfico de anemia (como hidropisia, insuficiência cardíaca, etc). Precisamos indicar a cordocentese para confirmar o diagnóstico e já realizar a <span class=\"article-5336\">transfusão intrauterina</span> no mesmo momento!</p>\n<p><strong>Gabarito: </strong>A recomendação preconizada, considerando a idade gestacional precoce, é a realização de cordocentese para dosar a hemoglobina fetal e, se confirmada a anemia, realizar transfusão intravascular de sangue no feto no mesmo momento.</p><br>Visão do aprovado: <p>Precisamos sempre avaliar algumas informações antes de indicar a transfusão fetal intra-útero:</p>\n<ul>\n<li>Existe algum sinal ultrassonográfico de anemia fetal além do PVS-ACM alterado?</li>\n<li>A paciente possui história obstétrica desfavorável por causa de aloimunização? </li>\n<li>Existe uma causa bem estabelecida que seja compatível com um prognóstico sombrio?</li>\n</ul>\n<p>Se alguma dessas respostas for sim, não vamos aguardar o feto descompensar para indicar a cordocentese!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T17:49:31.639280+00:00",
+  "complete": true
+}

@@ -1,0 +1,602 @@
+{
+  "track_id": 3156375,
+  "name": "INEP - Revalida - 2021 - Discursiva",
+  "year": 2021,
+  "track_fast": {
+    "id": 3156375,
+    "name": "INEP - Revalida - 2021 - Discursiva",
+    "track_type": "c",
+    "question_count": 5,
+    "year": 2021,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "INEP - Revalida",
+    "track_image": "https://cdn.medway.com.br/media/track/exam/inep-revalida/default_ZTx40II.jpeg",
+    "residency_degree": {
+      "id": 3,
+      "abbreviation": "R1"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 221583,
+        "number": 1,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Abordagem Inicial (xABCDE)",
+        "focus": {
+          "id": 1954,
+          "name": "Abordagem Inicial (xABCDE)"
+        }
+      },
+      "detail": {
+        "id": 221583,
+        "content": "Lesões traumáticas podem variar de pequenas feridas isoladas a lesões complexas envolvendo múltiplos sistemas/aparelhos. Todos os pacientes, vítimas de trauma, demandam avaliação sistematizada para melhorar os desfechos e reduzir o risco da não identificação de lesões. Para esta questão, vamos considerar o ABCDE do trauma.\n\nA obstrução de vias aéreas é a principal causa de morte imediatamente após o trauma.\n\nCom base no que foi apresentado, faça o que se pede nos itens a seguir.\n\n• Cite três causas de obstrução de vias aéreas em um paciente politraumatizado.\n• Cite as duas letras do A B C D E que estão envolvidas nessa avaliação, explicando o que cada uma significa.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2021,
+        "tag": [
+          {
+            "id": 1273,
+            "parent_tag": {
+              "id": 1303,
+              "name": "Trauma",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Abordagem Inicial (xABCDE)",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              29,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 2143,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1954,
+          "name": "Abordagem Inicial (xABCDE)",
+          "discipline": {
+            "id": 64,
+            "name": "Cirurgia Geral",
+            "residency_degree": 3,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 158,
+            "name": "Trauma",
+            "discipline": 64,
+            "old_tag": 1303,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 295793,
+        "actual_explanation": true,
+        "introduction": "<p>A questão aborda um dos temas mais fundamentais no atendimento ao paciente politraumatizado: a avaliação sistematizada através do <strong>ABCDE do trauma</strong>. Vale destacar que a obstrução de vias aéreas é, de fato, a principal causa de morte imediata após o trauma, justificando sua posição como primeiro item a ser avaliado no protocolo.</p>\n<p>Analisando o gabarito da questão:</p>\n<p>Para a primeira parte, são solicitadas <strong>três causas de obstrução de vias aéreas</strong> em um paciente politraumatizado. Entre as possibilidades aceitas estão: corpo estranho, material aspirado, edema local, hematoma em expansão, trauma cervical, trauma facial, fraturas maxilofaciais (incluindo mandíbula, maxilar e base de crânio), trauma de traqueia/laringe, edema de glote, queda da língua, queimaduras, sangue ou secreções na cavidade oral e rebaixamento do nível de consciência.</p>\n<p>Para a segunda parte, as <strong>duas letras do ABCDE do trauma</strong> envolvidas na avaliação das vias aéreas são:</p>\n<ul>\n<li><strong>A (Airway)</strong>: Avaliação e manutenção das vias aéreas pérvias, com simultânea estabilização/imobilização da coluna cervical.</li>\n<li><strong>B (Breathing)</strong>: Avaliação da respiração e ventilação, incluindo exame físico do tórax e manutenção de oxigenação adequada, com uso de oximetria de pulso.</li>\n</ul>\n<p>O ABCDE do trauma representa um protocolo sequencial e prioritário que organiza o atendimento ao politraumatizado, garantindo que as condições que mais ameaçam a vida sejam identificadas e tratadas primeiro. Esta abordagem sistematizada é essencial para evitar que lesões importantes sejam negligenciadas durante o atendimento inicial.</p>\n<p>A letra A (Airway) prioriza o estabelecimento e manutenção de uma via aérea pérvia, sempre com proteção da coluna cervical - um detalhe fundamental, já que o paciente de trauma é considerado portador de lesão cervical até que se prove o contrário. A avaliação inclui a inspeção da cavidade oral, remoção de corpos estranhos (incluindo dentes, coágulos, vômito), verificação de sinais de obstrução e instituição de manobras para desobstrução quando necessário.</p>\n<p>Já a letra B (Breathing) foca na avaliação da ventilação, incluindo exposição do tórax, verificação da simetria da expansibilidade torácica, ausculta pulmonar, percussão e palpação para identificar possíveis lesões como pneumotórax, hemotórax ou contusão pulmonar. A administração de oxigênio suplementar e o monitoramento da oximetria de pulso são medidas comumente adotadas nesta fase.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Este tipo de questão é extremamente frequente em provas de residência médica, especialmente nas áreas de emergência, cirurgia e medicina intensiva. Para dominá-las, recomendo algumas estratégias:</p>\n<p><strong>Memorize o ABCDE do trauma completo</strong>:</p>\n<ul>\n<li>A (Airway): Via aérea + proteção da coluna cervical</li>\n<li>B (Breathing): Respiração e ventilação</li>\n<li>C (Circulation): Circulação com controle de hemorragias</li>\n<li>D (Disability): Avaliação neurológica</li>\n<li>E (Exposure/Environment): Exposição com controle da temperatura</li>\n</ul>\n<p>Um erro comum é esquecer que a proteção da coluna cervical faz parte do \"A\", não sendo um item separado. Outro ponto frequentemente cobrado é a inclusão do controle de hemorragias no \"C\" e o controle da temperatura no \"E\".</p>\n<p>Para as causas de obstrução de via aérea, crie agrupamentos para facilitar a memorização:</p>\n<ul>\n<li><strong>Trauma direto</strong>: facial, cervical, traqueal, laríngeo</li>\n<li><strong>Fraturas</strong>: mandíbula, maxilar, base de crânio</li>\n<li><strong>Tecidos moles</strong>: edema, hematoma, queda da língua</li>\n<li><strong>Materiais</strong>: corpo estranho, sangue, secreções, vômito</li>\n<li><strong>Neurológico</strong>: rebaixamento do nível de consciência</li>\n<li><strong>Térmico</strong>: queimaduras de face/via aérea</li>\n</ul>\n<p>Nas provas, preste atenção quando pedirem para citar \"medidas\" versus \"causas\" - são perguntas diferentes que exigem respostas distintas. As medidas incluiriam manobras como jaw-thrust, chin-lift, aspiração, uso de cânulas, intubação, entre outras.</p>\n<p>Um conteúdo complementar que vale a pena revisar é o <strong>GCS</strong> (Glasgow Coma Scale), frequentemente cobrado junto com o ABCDE, especialmente no item \"D\" (Disability). Além disso, familiarize-se com as indicações de via aérea definitiva no trauma: GCS ≤ 8, incapacidade de manter via aérea pérvia, hipoxemia refratária e lesões térmicas de via aérea com risco de edema progressivo.</p>\n<p>A sequência ABCDE não é exclusiva do trauma - aparece também no suporte básico e avançado de vida, mas com significados levemente diferentes. Não confunda os protocolos!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>A questão aborda um dos temas mais fundamentais no atendimento ao paciente politraumatizado: a avaliação sistematizada através do <strong>ABCDE do trauma</strong>. Vale destacar que a obstrução de vias aéreas é, de fato, a principal causa de morte imediata após o trauma, justificando sua posição como primeiro item a ser avaliado no protocolo.</p>\n<p>Analisando o gabarito da questão:</p>\n<p>Para a primeira parte, são solicitadas <strong>três causas de obstrução de vias aéreas</strong> em um paciente politraumatizado. Entre as possibilidades aceitas estão: corpo estranho, material aspirado, edema local, hematoma em expansão, trauma cervical, trauma facial, fraturas maxilofaciais (incluindo mandíbula, maxilar e base de crânio), trauma de traqueia/laringe, edema de glote, queda da língua, queimaduras, sangue ou secreções na cavidade oral e rebaixamento do nível de consciência.</p>\n<p>Para a segunda parte, as <strong>duas letras do ABCDE do trauma</strong> envolvidas na avaliação das vias aéreas são:</p>\n<ul>\n<li><strong>A (Airway)</strong>: Avaliação e manutenção das vias aéreas pérvias, com simultânea estabilização/imobilização da coluna cervical.</li>\n<li><strong>B (Breathing)</strong>: Avaliação da respiração e ventilação, incluindo exame físico do tórax e manutenção de oxigenação adequada, com uso de oximetria de pulso.</li>\n</ul>\n<p>O ABCDE do trauma representa um protocolo sequencial e prioritário que organiza o atendimento ao politraumatizado, garantindo que as condições que mais ameaçam a vida sejam identificadas e tratadas primeiro. Esta abordagem sistematizada é essencial para evitar que lesões importantes sejam negligenciadas durante o atendimento inicial.</p>\n<p>A letra A (Airway) prioriza o estabelecimento e manutenção de uma via aérea pérvia, sempre com proteção da coluna cervical - um detalhe fundamental, já que o paciente de trauma é considerado portador de lesão cervical até que se prove o contrário. A avaliação inclui a inspeção da cavidade oral, remoção de corpos estranhos (incluindo dentes, coágulos, vômito), verificação de sinais de obstrução e instituição de manobras para desobstrução quando necessário.</p>\n<p>Já a letra B (Breathing) foca na avaliação da ventilação, incluindo exposição do tórax, verificação da simetria da expansibilidade torácica, ausculta pulmonar, percussão e palpação para identificar possíveis lesões como pneumotórax, hemotórax ou contusão pulmonar. A administração de oxigênio suplementar e o monitoramento da oximetria de pulso são medidas comumente adotadas nesta fase.</p><br>Visão do aprovado: <p>Este tipo de questão é extremamente frequente em provas de residência médica, especialmente nas áreas de emergência, cirurgia e medicina intensiva. Para dominá-las, recomendo algumas estratégias:</p>\n<p><strong>Memorize o ABCDE do trauma completo</strong>:</p>\n<ul>\n<li>A (Airway): Via aérea + proteção da coluna cervical</li>\n<li>B (Breathing): Respiração e ventilação</li>\n<li>C (Circulation): Circulação com controle de hemorragias</li>\n<li>D (Disability): Avaliação neurológica</li>\n<li>E (Exposure/Environment): Exposição com controle da temperatura</li>\n</ul>\n<p>Um erro comum é esquecer que a proteção da coluna cervical faz parte do \"A\", não sendo um item separado. Outro ponto frequentemente cobrado é a inclusão do controle de hemorragias no \"C\" e o controle da temperatura no \"E\".</p>\n<p>Para as causas de obstrução de via aérea, crie agrupamentos para facilitar a memorização:</p>\n<ul>\n<li><strong>Trauma direto</strong>: facial, cervical, traqueal, laríngeo</li>\n<li><strong>Fraturas</strong>: mandíbula, maxilar, base de crânio</li>\n<li><strong>Tecidos moles</strong>: edema, hematoma, queda da língua</li>\n<li><strong>Materiais</strong>: corpo estranho, sangue, secreções, vômito</li>\n<li><strong>Neurológico</strong>: rebaixamento do nível de consciência</li>\n<li><strong>Térmico</strong>: queimaduras de face/via aérea</li>\n</ul>\n<p>Nas provas, preste atenção quando pedirem para citar \"medidas\" versus \"causas\" - são perguntas diferentes que exigem respostas distintas. As medidas incluiriam manobras como jaw-thrust, chin-lift, aspiração, uso de cânulas, intubação, entre outras.</p>\n<p>Um conteúdo complementar que vale a pena revisar é o <strong>GCS</strong> (Glasgow Coma Scale), frequentemente cobrado junto com o ABCDE, especialmente no item \"D\" (Disability). Além disso, familiarize-se com as indicações de via aérea definitiva no trauma: GCS ≤ 8, incapacidade de manter via aérea pérvia, hipoxemia refratária e lesões térmicas de via aérea com risco de edema progressivo.</p>\n<p>A sequência ABCDE não é exclusiva do trauma - aparece também no suporte básico e avançado de vida, mas com significados levemente diferentes. Não confunda os protocolos!</p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221584,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Doença Inflamatória Pélvica e Violência Sexual",
+        "focus": {
+          "id": 2046,
+          "name": "Doença Inflamatória Pélvica e Violência Sexual"
+        }
+      },
+      "detail": {
+        "id": 221584,
+        "content": "Uma mulher de 21 anos de idade chega ao ambulatório alegando ter sido vítima de violência sexual na noite anterior. Encontrava-se abatida, chorosa e com dificuldades de se expressar, mas sem sinais evidentes de agressão física. Disse ter demorado para procurar assistência médica porque não queria registrar queixa policial.\nDiante dessa situação, responda as questões a seguir.\n• Como o médico deve orientar a paciente quanto ao registro da ocorrência?\n• Quais são as etapas do atendimento dessa mulher? \n• Caso a mulher se recuse a ser examinada, como o médico deve proceder?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2021,
+        "tag": [
+          {
+            "id": 611,
+            "parent_tag": {
+              "id": 322,
+              "name": "Infecções do Trato Genital Feminino",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Doença Inflamatória Pélvica e Violência Sexual",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 1039,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2046,
+          "name": "Doença Inflamatória Pélvica e Violência Sexual",
+          "discipline": {
+            "id": 87,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 3,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 197,
+            "name": "Infecções do Trato Genital Feminino",
+            "discipline": 87,
+            "old_tag": 322,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 400164,
+        "actual_explanation": true,
+        "introduction": "<p>Este enunciado testa conhecimentos sobre o protocolo de atendimento à vítima de violência sexual, especialmente em situações de resistência ao processo policial. O caso apresenta uma situação típica de prova que explora tanto aspectos técnicos quanto éticos do atendimento, destacando a importância do acolhimento humanizado e do respeito à autonomia da paciente.</p>\n<p>A violência sexual representa uma das emergências médicas que exige <strong>atendimento prioritário</strong> e <strong>multidisciplinar</strong>, independentemente da presença de lesões físicas evidentes. O momento do primeiro atendimento é crucial não apenas para os cuidados imediatos, mas também para a coleta de vestígios e implementação de medidas profiláticas. A eficácia das intervenções é tempo-dependente, sendo ideal que ocorram nas primeiras <strong>72 horas</strong> após o evento.</p>\n<p>O caso evidencia a necessidade de conhecimento sobre o protocolo completo de atendimento, incluindo aspectos legais como a <strong>notificação compulsória</strong> e a orientação adequada sobre o registro policial, sempre respeitando a autonomia da paciente. A questão também testa a capacidade de manejar situações em que há recusa de procedimentos, exigindo equilíbrio entre a necessidade técnica e o respeito aos direitos da paciente.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A <strong>violência sexual</strong> configura emergência médica que exige <strong>protocolo específico</strong> e <strong>atendimento prioritário</strong>, independentemente da presença de lesões físicas evidentes. O <strong>acolhimento humanizado</strong> e o respeito à <strong>autonomia da paciente</strong> são pilares fundamentais, especialmente quando há resistência ao processo policial. A eficácia das intervenções é <strong>tempo-dependente</strong>, sendo ideal nas primeiras <strong>72 horas</strong>.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>Acolhimento</strong> e <em>anamnese detalhada</em> são os primeiros passos obrigatórios</li>\n<li><strong>Notificação compulsória</strong> em 24h é obrigatória, independente da vontade da paciente</li>\n<li><strong>Profilaxias</strong> para HIV, IST e Hepatite B devem ser oferecidas nas primeiras 72h</li>\n<li><strong>Contracepção de emergência</strong> deve ser oferecida até 120h após o evento</li>\n<li><strong>Coleta de vestígios</strong> é fundamental para possível investigação posterior</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir <strong>estimular</strong> vs <strong>obrigar</strong> o registro do BO - deve estimular, mas não é obrigatório</li>\n<li>Esquecer que o <strong>BO não é pré-requisito</strong> para o atendimento médico</li>\n<li>Não documentar adequadamente a <strong>recusa de exame</strong> em prontuário</li>\n<li>Confundir <em>notificação compulsória</em> (obrigatória) com <em>comunicação policial</em> (recomendada)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li><strong>Formato discursivo:</strong> pergunta as etapas do protocolo de atendimento sequencialmente</li>\n<li><strong>Pegadinha clássica:</strong> questionar se BO é obrigatório para atendimento (não é)</li>\n<li><strong>Aspecto ético:</strong> como proceder diante da recusa de procedimentos (respeitar autonomia)</li>\n<li><strong>Também pode cair:</strong> <em><span class=\"article-8353\">aborto legal</span></em> em gestação decorrente de estupro (uma das três indicações legais no Brasil)</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Este enunciado testa conhecimentos sobre o protocolo de atendimento à vítima de violência sexual, especialmente em situações de resistência ao processo policial. O caso apresenta uma situação típica de prova que explora tanto aspectos técnicos quanto éticos do atendimento, destacando a importância do acolhimento humanizado e do respeito à autonomia da paciente.</p>\n<p>A violência sexual representa uma das emergências médicas que exige <strong>atendimento prioritário</strong> e <strong>multidisciplinar</strong>, independentemente da presença de lesões físicas evidentes. O momento do primeiro atendimento é crucial não apenas para os cuidados imediatos, mas também para a coleta de vestígios e implementação de medidas profiláticas. A eficácia das intervenções é tempo-dependente, sendo ideal que ocorram nas primeiras <strong>72 horas</strong> após o evento.</p>\n<p>O caso evidencia a necessidade de conhecimento sobre o protocolo completo de atendimento, incluindo aspectos legais como a <strong>notificação compulsória</strong> e a orientação adequada sobre o registro policial, sempre respeitando a autonomia da paciente. A questão também testa a capacidade de manejar situações em que há recusa de procedimentos, exigindo equilíbrio entre a necessidade técnica e o respeito aos direitos da paciente.</p><br>Visão do aprovado: <p>A <strong>violência sexual</strong> configura emergência médica que exige <strong>protocolo específico</strong> e <strong>atendimento prioritário</strong>, independentemente da presença de lesões físicas evidentes. O <strong>acolhimento humanizado</strong> e o respeito à <strong>autonomia da paciente</strong> são pilares fundamentais, especialmente quando há resistência ao processo policial. A eficácia das intervenções é <strong>tempo-dependente</strong>, sendo ideal nas primeiras <strong>72 horas</strong>.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>Acolhimento</strong> e <em>anamnese detalhada</em> são os primeiros passos obrigatórios</li>\n<li><strong>Notificação compulsória</strong> em 24h é obrigatória, independente da vontade da paciente</li>\n<li><strong>Profilaxias</strong> para HIV, IST e Hepatite B devem ser oferecidas nas primeiras 72h</li>\n<li><strong>Contracepção de emergência</strong> deve ser oferecida até 120h após o evento</li>\n<li><strong>Coleta de vestígios</strong> é fundamental para possível investigação posterior</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir <strong>estimular</strong> vs <strong>obrigar</strong> o registro do BO - deve estimular, mas não é obrigatório</li>\n<li>Esquecer que o <strong>BO não é pré-requisito</strong> para o atendimento médico</li>\n<li>Não documentar adequadamente a <strong>recusa de exame</strong> em prontuário</li>\n<li>Confundir <em>notificação compulsória</em> (obrigatória) com <em>comunicação policial</em> (recomendada)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li><strong>Formato discursivo:</strong> pergunta as etapas do protocolo de atendimento sequencialmente</li>\n<li><strong>Pegadinha clássica:</strong> questionar se BO é obrigatório para atendimento (não é)</li>\n<li><strong>Aspecto ético:</strong> como proceder diante da recusa de procedimentos (respeitar autonomia)</li>\n<li><strong>Também pode cair:</strong> <em><span class=\"article-8353\">aborto legal</span></em> em gestação decorrente de estupro (uma das três indicações legais no Brasil)</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221585,
+        "number": 3,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Afecções Benignas das Vias Biliares",
+        "focus": {
+          "id": 2833,
+          "name": "Afecções Benignas das Vias Biliares"
+        }
+      },
+      "detail": {
+        "id": 221585,
+        "content": "Uma mulher de 50 anos de idade é trazida ao serviço de pronto atendimento devido à confusão mental às 7 horas da manhã. Os familiares informam que ela gozava de boa saúde até 3 dias atrás, apenas com queixas episódicas de dores abdominais que já lhe incomodavam há alguns meses, contudo, ainda não havia procurado atendimento médico. Os familiares não tinham condições de caracterizar melhor essa queixa, mas informaram que ela fazia uso de escopolamina durante as crises, com alívio dos sintomas. Há 3 dias, as dores abdominais se tornaram mais frequentes, não cedendo com o uso de escopolamina e, então, iniciou, por conta própria, cetoprofeno. Ontem notaram que a paciente estava com a pele amarelada e teve início de febre. De madrugada, a paciente começou a ficar agitada, não conseguindo identificar seus familiares e sua casa. Foi, então, que os parentes decidiram levá-la ao atendimento.\n\nAo exame, a paciente é obesa, com icterícia cutaneomucosa, apresentando nítida confusão mental, sem sinais focais, mas reagindo com movimentos de defesa quando é realizada a tentativa de palpar o abdome. A pressão arterial é de 80 x 60 mmHg, encontra-se febril (39,7 °C) e taquicárdica (106 bpm).\n\nUltrassonografia de abdome superior de 1 ano atrás evidenciava cálculos biliares em vesícula biliar.\n\nEm relação ao caso apresentado, responda às assertivas a seguir.\n\n• Qual sua hipótese diagnóstica para essa paciente (diagnóstico sindrômico, topográfico e etiológico)? \n• Cite ao menos quatro achados clínicos descritos no caso que corroboram com seu diagnóstico \n• Quais exames diagnósticos devem ser solicitados à paciente? \n• Qual sua proposta terapêutica para o caso?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2021,
+        "tag": [
+          {
+            "id": 705,
+            "parent_tag": {
+              "id": 308,
+              "name": "Hepatologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Afecções Benignas das Vias Biliares",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              29,
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 348,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2833,
+          "name": "Afecções Benignas das Vias Biliares",
+          "discipline": {
+            "id": 64,
+            "name": "Cirurgia Geral",
+            "residency_degree": 3,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 603,
+            "name": "Hepatologia",
+            "discipline": 64,
+            "old_tag": 308,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251343,
+        "actual_explanation": true,
+        "introduction": "<p>Estamos diante de um caso clínico muito importante para provas de residência médica, pois aborda uma complicação grave de uma patologia extremamente prevalente - a <span class=\"article-6761\">colangite aguda</span> em paciente com colelitíase prévia.</p>\n<p>O caso apresenta uma mulher de 50 anos, obesa, com histórico de dor abdominal recorrente e cálculos biliares documentados em ultrassonografia prévia. Nas últimas 72 horas, houve piora da dor abdominal, seguida de icterícia, febre e, por fim, confusão mental. Ao exame físico, além desses achados, apresenta hipotensão (PA 80x60 mmHg) e taquicardia (106 bpm).</p>\n<p>O quadro apresentado é típico de <strong><span class=\"article-6761\">colangite aguda</span> supurativa</strong>, caracterizada pela famosa <strong>Pentade de Reynolds</strong>: icterícia, febre, dor abdominal, hipotensão e confusão mental. Esta condição representa uma complicação grave da migração de cálculos biliares para o colédoco, causando obstrução do fluxo biliar e subsequente infecção bacteriana ascendente.</p>\n<p>A questão solicita quatro aspectos fundamentais: o diagnóstico (dividido em sindrômico, topográfico e etiológico), os achados clínicos que corroboram esse diagnóstico, os exames a serem solicitados e a proposta terapêutica. Vamos analisar cada um deles de forma detalhada.</p>\n<p>O <strong>diagnóstico sindrômico</strong> correto é a síndrome colestática ou ictérica, caracterizada pelo acúmulo de bilirrubina e outros componentes da bile no organismo devido à obstrução do fluxo biliar. O <strong>diagnóstico topográfico</strong> aponta para a vesícula biliar e/ou vias biliares como local da patologia. Já o <strong>diagnóstico etiológico</strong> identifica os cálculos biliares como causa primária do problema.</p>\n<p>Os achados clínicos que corroboram o diagnóstico formam a Pentade de Reynolds: icterícia, febre (39,7°C), dor abdominal (com defesa à palpação), hipotensão (80x60 mmHg) e confusão mental. Este conjunto de sinais é altamente específico para <span class=\"article-6761\">colangite aguda</span> supurativa, uma emergência médica que requer intervenção imediata.</p>\n<p>Os exames diagnósticos fundamentais incluem exames laboratoriais (bioquímica hepática, hemograma, gasometria arterial, marcadores inflamatórios, função renal e eletrólitos) e exames de imagem, sendo a ultrassonografia abdominal o mais acessível para avaliação inicial. Os exames laboratoriais mostrarão tipicamente elevação de bilirrubinas (principalmente direta), enzimas canaliculares (fosfatase alcalina e GGT), além de leucocitose com desvio à esquerda e, possivelmente, alterações sugestivas de disfunção renal e acidose metabólica.</p>\n<p>A abordagem terapêutica deve ser agressiva, incluindo internação em unidade crítica, hidratação venosa vigorosa, antibioticoterapia de amplo espectro (cobrindo gram-negativos e anaeróbios) e, principalmente, a descompressão das vias biliares, preferencialmente por <span class=\"article-5454\">CPRE</span> (colangiopancreatografia retrógrada endoscópica). Após estabilização, deve-se programar a <span class=\"article-6749\">colecistectomia</span> para tratamento definitivo.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Pessoal, esse tipo de questão é extremamente comum em provas de residência, pois testa conhecimentos integrados de gastroenterologia, infectologia e medicina de emergência. Algumas dicas importantes para vocês:</p>\n<ul>\n<li><strong>Memorize a Pentade de Reynolds</strong> para <span class=\"article-6761\">colangite aguda</span>: icterícia, febre, dor abdominal, hipotensão e confusão mental. Uma maneira de lembrar é pensar no acrônimo \"FICHA\" (Febre, Icterícia, Confusão, Hipotensão, Abdominalgia). Vale destacar que a tríade de Charcot (icterícia, febre e dor abdominal) é mais comum, enquanto a pentade completa aparece nos casos mais graves.</li>\n<li><strong>Entenda claramente a diferença entre colecistite e colangite</strong>. A colecistite é a inflamação da vesícula biliar, enquanto a colangite é a infecção das vias biliares, geralmente secundária à obstrução por cálculos. O quadro de colangite tende a ser mais grave, com maior risco de sepse.</li>\n<li><strong>Saiba diferenciar os três níveis de diagnóstico</strong> solicitados em provas:\n            <ul>\n<li>Sindrômico: refere-se ao conjunto de sinais e sintomas (colestase/icterícia)</li>\n<li>Topográfico: localiza o problema (vias biliares/vesícula)</li>\n<li>Etiológico: identifica a causa primária (cálculos)</li>\n</ul>\n</li>\n<li><strong>Atenção para a sequência terapêutica correta</strong>: estabilização hemodinâmica → antibioticoterapia → descompressão biliar → <span class=\"article-6749\">colecistectomia</span>. Nunca pule diretamente para a <span class=\"article-6749\">colecistectomia</span> sem antes estabilizar e descomprimir as vias biliares!</li>\n<li><strong>Cuidado com a armadilha de confundir com pancreatite biliar</strong>: ambas podem apresentar dor abdominal e alteração de enzimas hepáticas, mas na pancreatite a amilase e lipase estarão muito elevadas, e a icterícia pode ser menos proeminente.</li>\n<li>Lembrem-se que as <strong>Tokyo Guidelines</strong> são referências importantes para diagnóstico e manejo de infecções biliares. Vale a pena revisá-las, pois aparecem com frequência nas provas de residência.</li>\n<li><strong>Interpretem o caso completo</strong> antes de formular a hipótese diagnóstica. No exemplo, a obesidade, o sexo feminino e a idade são fatores de risco clássicos para colelitíase, que é o ponto de partida para toda a cascata fisiopatológica que levou à colangite.</li>\n</ul>\n<p>Para quem vai fazer prova, recomendo revisar sempre as principais síndromes ictéricas, saber diferenciar icterícias pré, hepática e pós-hepática, e conhecer bem o manejo das complicações da <span class=\"article-6752\">colelitíase</span>. Boa sorte!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Estamos diante de um caso clínico muito importante para provas de residência médica, pois aborda uma complicação grave de uma patologia extremamente prevalente - a <span class=\"article-6761\">colangite aguda</span> em paciente com colelitíase prévia.</p>\n<p>O caso apresenta uma mulher de 50 anos, obesa, com histórico de dor abdominal recorrente e cálculos biliares documentados em ultrassonografia prévia. Nas últimas 72 horas, houve piora da dor abdominal, seguida de icterícia, febre e, por fim, confusão mental. Ao exame físico, além desses achados, apresenta hipotensão (PA 80x60 mmHg) e taquicardia (106 bpm).</p>\n<p>O quadro apresentado é típico de <strong><span class=\"article-6761\">colangite aguda</span> supurativa</strong>, caracterizada pela famosa <strong>Pentade de Reynolds</strong>: icterícia, febre, dor abdominal, hipotensão e confusão mental. Esta condição representa uma complicação grave da migração de cálculos biliares para o colédoco, causando obstrução do fluxo biliar e subsequente infecção bacteriana ascendente.</p>\n<p>A questão solicita quatro aspectos fundamentais: o diagnóstico (dividido em sindrômico, topográfico e etiológico), os achados clínicos que corroboram esse diagnóstico, os exames a serem solicitados e a proposta terapêutica. Vamos analisar cada um deles de forma detalhada.</p>\n<p>O <strong>diagnóstico sindrômico</strong> correto é a síndrome colestática ou ictérica, caracterizada pelo acúmulo de bilirrubina e outros componentes da bile no organismo devido à obstrução do fluxo biliar. O <strong>diagnóstico topográfico</strong> aponta para a vesícula biliar e/ou vias biliares como local da patologia. Já o <strong>diagnóstico etiológico</strong> identifica os cálculos biliares como causa primária do problema.</p>\n<p>Os achados clínicos que corroboram o diagnóstico formam a Pentade de Reynolds: icterícia, febre (39,7°C), dor abdominal (com defesa à palpação), hipotensão (80x60 mmHg) e confusão mental. Este conjunto de sinais é altamente específico para <span class=\"article-6761\">colangite aguda</span> supurativa, uma emergência médica que requer intervenção imediata.</p>\n<p>Os exames diagnósticos fundamentais incluem exames laboratoriais (bioquímica hepática, hemograma, gasometria arterial, marcadores inflamatórios, função renal e eletrólitos) e exames de imagem, sendo a ultrassonografia abdominal o mais acessível para avaliação inicial. Os exames laboratoriais mostrarão tipicamente elevação de bilirrubinas (principalmente direta), enzimas canaliculares (fosfatase alcalina e GGT), além de leucocitose com desvio à esquerda e, possivelmente, alterações sugestivas de disfunção renal e acidose metabólica.</p>\n<p>A abordagem terapêutica deve ser agressiva, incluindo internação em unidade crítica, hidratação venosa vigorosa, antibioticoterapia de amplo espectro (cobrindo gram-negativos e anaeróbios) e, principalmente, a descompressão das vias biliares, preferencialmente por <span class=\"article-5454\">CPRE</span> (colangiopancreatografia retrógrada endoscópica). Após estabilização, deve-se programar a <span class=\"article-6749\">colecistectomia</span> para tratamento definitivo.</p><br>Visão do aprovado: <p>Pessoal, esse tipo de questão é extremamente comum em provas de residência, pois testa conhecimentos integrados de gastroenterologia, infectologia e medicina de emergência. Algumas dicas importantes para vocês:</p>\n<ul>\n<li><strong>Memorize a Pentade de Reynolds</strong> para <span class=\"article-6761\">colangite aguda</span>: icterícia, febre, dor abdominal, hipotensão e confusão mental. Uma maneira de lembrar é pensar no acrônimo \"FICHA\" (Febre, Icterícia, Confusão, Hipotensão, Abdominalgia). Vale destacar que a tríade de Charcot (icterícia, febre e dor abdominal) é mais comum, enquanto a pentade completa aparece nos casos mais graves.</li>\n<li><strong>Entenda claramente a diferença entre colecistite e colangite</strong>. A colecistite é a inflamação da vesícula biliar, enquanto a colangite é a infecção das vias biliares, geralmente secundária à obstrução por cálculos. O quadro de colangite tende a ser mais grave, com maior risco de sepse.</li>\n<li><strong>Saiba diferenciar os três níveis de diagnóstico</strong> solicitados em provas:\n            <ul>\n<li>Sindrômico: refere-se ao conjunto de sinais e sintomas (colestase/icterícia)</li>\n<li>Topográfico: localiza o problema (vias biliares/vesícula)</li>\n<li>Etiológico: identifica a causa primária (cálculos)</li>\n</ul>\n</li>\n<li><strong>Atenção para a sequência terapêutica correta</strong>: estabilização hemodinâmica → antibioticoterapia → descompressão biliar → <span class=\"article-6749\">colecistectomia</span>. Nunca pule diretamente para a <span class=\"article-6749\">colecistectomia</span> sem antes estabilizar e descomprimir as vias biliares!</li>\n<li><strong>Cuidado com a armadilha de confundir com pancreatite biliar</strong>: ambas podem apresentar dor abdominal e alteração de enzimas hepáticas, mas na pancreatite a amilase e lipase estarão muito elevadas, e a icterícia pode ser menos proeminente.</li>\n<li>Lembrem-se que as <strong>Tokyo Guidelines</strong> são referências importantes para diagnóstico e manejo de infecções biliares. Vale a pena revisá-las, pois aparecem com frequência nas provas de residência.</li>\n<li><strong>Interpretem o caso completo</strong> antes de formular a hipótese diagnóstica. No exemplo, a obesidade, o sexo feminino e a idade são fatores de risco clássicos para colelitíase, que é o ponto de partida para toda a cascata fisiopatológica que levou à colangite.</li>\n</ul>\n<p>Para quem vai fazer prova, recomendo revisar sempre as principais síndromes ictéricas, saber diferenciar icterícias pré, hepática e pós-hepática, e conhecer bem o manejo das complicações da <span class=\"article-6752\">colelitíase</span>. Boa sorte!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221586,
+        "number": 4,
+        "main_speciality_name": "Medicina Preventiva e Social",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Atenção Primária à Saúde",
+        "focus": {
+          "id": 2047,
+          "name": "Atenção Primária à Saúde"
+        }
+      },
+      "detail": {
+        "id": 221586,
+        "content": "\"O modelo de Registro Clínico Orientado por Problemas (RCOP) foi o modelo adotado pelo Sistema e-SUS AB para estruturação da funcionalidade de Prontuário Eletrônico do Cidadão. Esse modelo ajuda na sistematização e consolidação dos conceitos de lista de problemas e do próprio conceito de prontuário orientado por problemas, trazendo como uma das principais ferramentas o método SOAP para registro das notas de evolução clínica\" (Ministério da Saúde, 2020). O Sistema de Informação em Saúde para a Atenção Básica (SISAB), instituído por meio da Portaria GM/MS n. 1.412, de 10 de julho de 2013, é operacionalizado através da Estratégia e-SUS AB para sua operacionalização.  \n\nConsiderando o caso clínico que se segue e a Estratégia e-SUS AB, responda aos itens solicitados.  \n\nUm homem de 33 anos de idade, é atendido em consulta de demanda espontânea pelo médico da Unidade de Estratégia de Saúde da Família, com queixa de cefaleia de início há 5 dias, holocraniana, pulsátil. Os sinais vitais são medidos no consultório: pressão arterial = 122 x 78 mmHg; frequência cardíaca = 86 bpm; temperatura axilar = 36,2 °C; frequência respiratória = 16 irpm. João fala que está com problemas em casa, com sua esposa. Quando questionado, João relaciona a dor de cabeça a estresse emocional no trabalho e família. Nega desmaios, convulsões, febre, piora súbita da dor de cabeça ou sintomas respiratórios. Já vacinou contra Sars-Cov-2 há 30 dias, não teve efeitos colaterais, tomou 2 doses com intervalo de 30 dias, mas não lembra qual imunizante. Exame físico sem alterações. Fala que a dor de cabeça alivia quando toma dipirona e que, nesse momento, a dor está bem melhor. O médico avalia como principal hipótese diagnóstica: cefaleia a/e tensional? Secundária? Migrânea? Prescreve ansiolítico e discute o caso com o psicólogo do Núcleo Ampliado de Saúde da Família, que programa psicoterapia breve para o paciente. Antes de sair, João, envergonhado, comenta que sua esposa o cobra de \"não durar mais que 5 minutos na hora H\". O médico marca uma nova consulta em 30 dias para tratar dos problemas sexuais de João.   \n\nA partir da situação apresentada, responda às questões a seguir.  \n\n Indique e descreva 3 objetivos preconizados pela Estratégia e-SUS AB. \n Faça o registro do atendimento realizado, utilizando o método SOAP – Subjetivo, Objetivo, Avaliação e Plano –  transcrevendo ou sintetizando o caso acima e os atribua aos respectivos campos do método, tal qual deverá ser  registrado no prontuário eletrônico do paciente. \n Com relação à Avaliação e Plano desse atendimento, indique 2 outros problemas que estão presentes nesse caso  clínico e cite como o médico poderia abordar esses problemas.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 5,
+            "abbreviation": "PREV",
+            "name": "Medicina Preventiva e Social",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2021,
+        "tag": [
+          {
+            "id": 610,
+            "parent_tag": {
+              "id": 313,
+              "name": "Sistema Único de Saúde",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Atenção Primária à Saúde",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              5
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 449,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2047,
+          "name": "Atenção Primária à Saúde",
+          "discipline": {
+            "id": 89,
+            "name": "Medicina Preventiva e Social",
+            "residency_degree": 3,
+            "speciality": 5
+          },
+          "theme": {
+            "id": 206,
+            "name": "Sistema Único de Saúde",
+            "discipline": 89,
+            "old_tag": 313,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251739,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Fala, turma!</strong></p>\n<p>Bora juntos entender um dos pilares da organização do cuidado na Atenção Primária à Saúde: o Registro Clínico Orientado por Problemas (RCOP) e o método <span class=\"article-5507\">SOAP</span>. Esses conceitos são fundamentais não apenas para o registro no Prontuário Eletrônico do Cidadão (PEC) do e-SUS AB, mas para garantir que o cuidado prestado ao paciente seja sistemático, organizado e de alta qualidade.</p>\n<p>O RCOP foi adotado pelo Ministério da Saúde como modelo para estruturar a informação clínica no sistema e-SUS AB, que integra o Sistema de Informação em Saúde para a Atenção Básica (SISAB), regulamentado pela Portaria GM/MS nº 1.412/2013. Ele tem como base a identificação, descrição e acompanhamento dos problemas de saúde do paciente ao longo do tempo.</p>\n<p>Já o método <span class=\"article-5507\">SOAP</span> organiza o registro clínico em quatro componentes:</p>\n<ul>\n<li><strong>S</strong>ubjetivo: o que o paciente relata sobre seu problema de saúde.</li>\n<li><strong>O</strong>bjetivo: informações obtidas a partir do exame físico e exames complementares.</li>\n<li><strong>A</strong>valiação: diagnóstico ou problemas levantados.</li>\n<li><strong>P</strong>lano: conduta terapêutica ou diagnóstica definida.</li>\n</ul>\n<p>Entender e aplicar bem essa estrutura ajuda não apenas a qualificar a assistência, mas também a construir um prontuário mais inteligível e seguro, capaz de promover a continuidade do cuidado, algo central na Estratégia Saúde da Família.</p>\n<p>Com isso em mente, bora responder item por item da nossa questão.</p>\n<p> </p>\n<p><strong>Letra A.</strong></p>\n<p>1. Qualificar a gestão da informação na Atenção Primária com sistematização do registro e o fluxo de informações clínicas para apoiar o cuidado longitudinal e a avaliação da saúde da população;</p>\n<p>2. Fortalecer a vigilância em saúde com integração de informações clínicas e epidemiológicas, permitindo melhor planejamento e intervenção em nível local;</p>\n<p>3. Subsidiar a formulação de políticas públicas com geração de dados confiáveis e padronizados para orientar o planejamento e a execução de ações de saúde no SUS.</p>\n<p> </p>\n<p><strong>Letra B.</strong></p>\n<p>S - Subjetivo: paciente masculino, 33 anos, refere cefaleia de 5 dias de evolução, holocraniana, pulsátil, associada a estresse no trabalho e problemas conjugais. Nega febre, convulsões, desmaios ou piora súbita da dor. Relata melhora parcial com uso de dipirona. Relata, de forma envergonhada, que sua esposa o cobra de baixa duração no ato sexual.</p>\n<p>O - Objetivo: pressão arterial 122 × 78 mmHg; frequência cardíaca 86 bpm; temperatura axilar 36,2 °C; frequência respiratória 16 irpm. Exame físico sem alterações.</p>\n<p>A - Avaliação: cefaleia possivelmente tensional. Sofrimento emocional relacionado a conflitos familiares e laborais. Disfunção sexual masculina a esclarecer (ejaculação precoce?).</p>\n<p>P - Plano: prescrição de ansiolítico, encaminhamento para psicoterapia breve pelo Núcleo Ampliado de Saúde da Família (NASF), agendamento de nova consulta em 30 dias para avaliação específica da disfunção sexual.</p>\n<p> </p>\n<p><strong>Letra C.</strong></p>\n<p>Sofrimento psíquico/emocional: relacionado ao estresse no trabalho e conflitos conjugais. Abordagem: Encaminhamento para psicoterapia breve no NASF e manejo farmacológico inicial com ansiolíticos, além de apoio psicossocial.</p>\n<p>Disfunção sexual masculina (provável ejaculação precoce). Abordagem: Agendamento de consulta específica para investigação adequada, avaliação urológica se necessário, abordagem psicossocial, educação sexual e possível início de terapias específicas (psicoterapia cognitivo-comportamental, farmacoterapia).</p>\n<p> </p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Pessoal, percebam como o método <span class=\"article-5507\">SOAP</span> e o Registro Clínico Orientado por Problemas não são só “burocracia”, mas ferramentas essenciais para fazer a diferença na nossa prática diária? Quando a gente registra bem, a gente cuida melhor — e ainda garante que outros profissionais consigam acompanhar e complementar esse cuidado ao longo do tempo. No caso do João, observem como cada parte do atendimento — desde a queixa de cefaleia até as questões emocionais e sexuais — precisa ser registrada de forma organizada para que a linha de cuidado seja mantida. Cada detalhe importa: o que ele relata, o que encontramos no exame, o que pensamos sobre o diagnóstico e, principalmente, o que planejamos para ajudá-lo.</p>\n<p> </p>\n<p><strong>Fica a Dica</strong></p>\n<ul>\n<li>O método <span class=\"article-5507\">SOAP</span> organiza de maneira sistemática o registro clínico, fundamental para qualidade assistencial e continuidade do cuidado;</li>\n<li>A Estratégia e-SUS AB busca qualificar o cuidado na Atenção Primária, integrando informações clínicas e epidemiológicas no SISAB;</li>\n<li>Sempre documente no prontuário: queixas subjetivas, sinais objetivos, avaliação diagnóstica e plano terapêutico;</li>\n<li>Identificar e registrar todos os problemas do paciente (não apenas o principal) é central no modelo de Registro Clínico Orientado por Problemas.</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Fala, turma!</strong></p>\n<p>Bora juntos entender um dos pilares da organização do cuidado na Atenção Primária à Saúde: o Registro Clínico Orientado por Problemas (RCOP) e o método <span class=\"article-5507\">SOAP</span>. Esses conceitos são fundamentais não apenas para o registro no Prontuário Eletrônico do Cidadão (PEC) do e-SUS AB, mas para garantir que o cuidado prestado ao paciente seja sistemático, organizado e de alta qualidade.</p>\n<p>O RCOP foi adotado pelo Ministério da Saúde como modelo para estruturar a informação clínica no sistema e-SUS AB, que integra o Sistema de Informação em Saúde para a Atenção Básica (SISAB), regulamentado pela Portaria GM/MS nº 1.412/2013. Ele tem como base a identificação, descrição e acompanhamento dos problemas de saúde do paciente ao longo do tempo.</p>\n<p>Já o método <span class=\"article-5507\">SOAP</span> organiza o registro clínico em quatro componentes:</p>\n<ul>\n<li><strong>S</strong>ubjetivo: o que o paciente relata sobre seu problema de saúde.</li>\n<li><strong>O</strong>bjetivo: informações obtidas a partir do exame físico e exames complementares.</li>\n<li><strong>A</strong>valiação: diagnóstico ou problemas levantados.</li>\n<li><strong>P</strong>lano: conduta terapêutica ou diagnóstica definida.</li>\n</ul>\n<p>Entender e aplicar bem essa estrutura ajuda não apenas a qualificar a assistência, mas também a construir um prontuário mais inteligível e seguro, capaz de promover a continuidade do cuidado, algo central na Estratégia Saúde da Família.</p>\n<p>Com isso em mente, bora responder item por item da nossa questão.</p>\n<p> </p>\n<p><strong>Letra A.</strong></p>\n<p>1. Qualificar a gestão da informação na Atenção Primária com sistematização do registro e o fluxo de informações clínicas para apoiar o cuidado longitudinal e a avaliação da saúde da população;</p>\n<p>2. Fortalecer a vigilância em saúde com integração de informações clínicas e epidemiológicas, permitindo melhor planejamento e intervenção em nível local;</p>\n<p>3. Subsidiar a formulação de políticas públicas com geração de dados confiáveis e padronizados para orientar o planejamento e a execução de ações de saúde no SUS.</p>\n<p> </p>\n<p><strong>Letra B.</strong></p>\n<p>S - Subjetivo: paciente masculino, 33 anos, refere cefaleia de 5 dias de evolução, holocraniana, pulsátil, associada a estresse no trabalho e problemas conjugais. Nega febre, convulsões, desmaios ou piora súbita da dor. Relata melhora parcial com uso de dipirona. Relata, de forma envergonhada, que sua esposa o cobra de baixa duração no ato sexual.</p>\n<p>O - Objetivo: pressão arterial 122 × 78 mmHg; frequência cardíaca 86 bpm; temperatura axilar 36,2 °C; frequência respiratória 16 irpm. Exame físico sem alterações.</p>\n<p>A - Avaliação: cefaleia possivelmente tensional. Sofrimento emocional relacionado a conflitos familiares e laborais. Disfunção sexual masculina a esclarecer (ejaculação precoce?).</p>\n<p>P - Plano: prescrição de ansiolítico, encaminhamento para psicoterapia breve pelo Núcleo Ampliado de Saúde da Família (NASF), agendamento de nova consulta em 30 dias para avaliação específica da disfunção sexual.</p>\n<p> </p>\n<p><strong>Letra C.</strong></p>\n<p>Sofrimento psíquico/emocional: relacionado ao estresse no trabalho e conflitos conjugais. Abordagem: Encaminhamento para psicoterapia breve no NASF e manejo farmacológico inicial com ansiolíticos, além de apoio psicossocial.</p>\n<p>Disfunção sexual masculina (provável ejaculação precoce). Abordagem: Agendamento de consulta específica para investigação adequada, avaliação urológica se necessário, abordagem psicossocial, educação sexual e possível início de terapias específicas (psicoterapia cognitivo-comportamental, farmacoterapia).</p>\n<p> </p><br>Visão do aprovado: <p>Pessoal, percebam como o método <span class=\"article-5507\">SOAP</span> e o Registro Clínico Orientado por Problemas não são só “burocracia”, mas ferramentas essenciais para fazer a diferença na nossa prática diária? Quando a gente registra bem, a gente cuida melhor — e ainda garante que outros profissionais consigam acompanhar e complementar esse cuidado ao longo do tempo. No caso do João, observem como cada parte do atendimento — desde a queixa de cefaleia até as questões emocionais e sexuais — precisa ser registrada de forma organizada para que a linha de cuidado seja mantida. Cada detalhe importa: o que ele relata, o que encontramos no exame, o que pensamos sobre o diagnóstico e, principalmente, o que planejamos para ajudá-lo.</p>\n<p> </p>\n<p><strong>Fica a Dica</strong></p>\n<ul>\n<li>O método <span class=\"article-5507\">SOAP</span> organiza de maneira sistemática o registro clínico, fundamental para qualidade assistencial e continuidade do cuidado;</li>\n<li>A Estratégia e-SUS AB busca qualificar o cuidado na Atenção Primária, integrando informações clínicas e epidemiológicas no SISAB;</li>\n<li>Sempre documente no prontuário: queixas subjetivas, sinais objetivos, avaliação diagnóstica e plano terapêutico;</li>\n<li>Identificar e registrar todos os problemas do paciente (não apenas o principal) é central no modelo de Registro Clínico Orientado por Problemas.</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221587,
+        "number": 5,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Pneumonias e Síndromes Gripais",
+        "focus": {
+          "id": 2131,
+          "name": "Pneumonias e Síndromes Gripais"
+        }
+      },
+      "detail": {
+        "id": 221587,
+        "content": "Um paciente de 5 anos, previamente hígido, é levado ao pronto atendimento devido à febre de até 38,7 °C, coriza e tosse persistente há 3 dias, principalmente à noite. Ao exame físico, apresentava-se com murmúrio vesicular abolido na base esquerda, frequência respiratória = 46 irpm, estertores finos, difusos e homogêneos, principalmente à esquerda e tiragem intercostal e subcostal. Saturimetria = 98%. Sem outras alterações ao exame físico. \n\nConsiderando o caso acima, responda às questões a seguir.\n\n• Elabore a hipótese diagnóstica mais provável, citando o agente etiológico mais comum. \n• Estabeleça o dado do exame físico que apresenta a melhor sensibilidade, especificidade e os melhores valores preditivos positivo e negativo para permitir esse diagnóstico.\n• Proponha a conduta adequada frente à situação apresentada.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2021,
+        "tag": [
+          {
+            "id": 494,
+            "parent_tag": {
+              "id": 297,
+              "name": "Infectologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Pneumonias e Síndromes Gripais",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [
+          {
+            "id": 4335,
+            "avatar": "https://cdn.medway.com.br/media/physician/Facetune.jpeg",
+            "about": "Pediatria – Hospital Infantil Sabará",
+            "name": "Paola Romani Ferreira Suhet",
+            "speciality": {
+              "id": 4,
+              "abbreviation": "PED",
+              "name": "Pediatria"
+            }
+          }
+        ],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 1293,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2131,
+          "name": "Pneumonias e Síndromes Gripais",
+          "discipline": {
+            "id": 92,
+            "name": "Pediatria",
+            "residency_degree": 3,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 259,
+            "name": "Infectologia",
+            "discipline": 92,
+            "old_tag": 297,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 466310,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-indent: 2em\">A presença de <strong>tiragem subcostal</strong> em um pré-escolar com quadro respiratório febril sinaliza esforço respiratório importante e define a necessidade de manejo hospitalar. Essa questão discursiva nos pede três elementos: o diagnóstico com agente etiológico, um dado do exame físico (que foi anulado) e a conduta completa. Vamos construir o raciocínio do início, porque entender a fisiopatologia aqui é fundamental para não errar o diagnóstico nem a conduta.</p>\n<p style=\"text-indent: 2em\">Nosso paciente tem 5 anos, era previamente hígido e começou há 3 dias com febre, coriza e tosse - um quadro clássico de infecção viral de vias aéreas superiores. Mas o que acontece agora é a parte crítica: após essa fase viral inicial, há evolução para um quadro respiratório baixo com sinais de gravidade. Precisamos entender a <strong>fisiopatologia dessa transição</strong>. A infecção viral inicial causa lesão do epitélio ciliar respiratório, diminui o clearance mucociliar e expõe receptores celulares que facilitam a adesão bacteriana. Isso cria um terreno propício para a invasão bacteriana secundária, especialmente pelo Streptococcus pneumoniae, que é comensal da nasofaringe e aproveita essa \"janela de oportunidade\" para invadir o parênquima pulmonar. Por isso vemos com tanta frequência esse padrão: início viral que evolui para <span class=\"article-6825\">pneumonia bacteriana</span> após alguns dias.</p>\n<p style=\"text-indent: 2em\">Agora vamos aos achados do exame físico, que são extremamente ricos. Temos <em>murmúrio vesicular abolido</em> na base esquerda - isso merece uma explicação mais cuidadosa. <strong>MV abolido indica</strong> que o ar não está chegando adequadamente naquela região, o que pode significar duas coisas: consolidação alveolar extensa (alvéolos preenchidos por exsudato inflamatório) OU derrame pleural (líquido no espaço pleural). A radiografia de tórax vai diferenciar essas duas possibilidades, e se houver dúvida ou suspeita de derrame, podemos precisar de ultrassom de tórax para caracterizar melhor. Além disso, temos estertores finos principalmente à esquerda, confirmando acometimento parenquimatoso localizado.</p>\n<p style=\"text-indent: 2em\">Mas o achado que define tudo nesse caso é a <em>tiragem subcostal</em>. Vamos ser diretos: <strong>tiragem subcostal = internação obrigatória</strong>. Esse é um critério absoluto de gravidade segundo a SBP e a OMS. Vamos sistematizar os critérios de gravidade para pneumonia pediátrica:</p>\n<ul>\n<li>tiragem subcostal</li>\n<li>taquipneia para a faixa etária (no caso, FR 46 irpm - normal seria até 30 em criança de 5 anos, então há taquipneia leve)</li>\n<li>saturação &lt;92% em ar ambiente (nosso paciente está com 98%, portanto preservada)</li>\n<li>recusa alimentar ou vômitos persistentes</li>\n<li>gemência</li>\n<li>batimento de asa nasal</li>\n<li>cianose</li>\n</ul>\n<p style=\"text-indent: 2em\">Nosso paciente preenche pelo menos dois desses critérios: tiragem subcostal e taquipneia, sendo que apenas a tiragem já seria suficiente para indicar internação.</p>\n<p style=\"text-indent: 2em\">Antes de fecharmos o diagnóstico, precisamos afastar <strong>diagnósticos diferenciais importantes</strong>. <em>Bronquiolite</em> foi descartada porque acomete principalmente menores de 2 anos, tem como característica principal os sibilos (ausentes aqui) e não costuma apresentar febre tão alta nem consolidação localizada. <em>Asma</em> também sai da lista porque não há história prévia de crises, não há sibilância, e a presença de febre alta com consolidação pulmonar unilateral aponta claramente para processo infeccioso bacteriano. <em>Pneumonia viral</em> pura também é menos provável, pois geralmente cursaria com padrão intersticial bilateral, sem consolidação tão evidente.</p>\n<p style=\"text-indent: 2em\">Portanto, nossa <strong>hipótese diagnóstica é pneumonia comunitária</strong> (ou pneumonia adquirida na comunidade, ou ainda pneumonia grave/com sinais de gravidade - todos aceitos pela banca). O agente etiológico mais comum nessa faixa etária é o <em>Streptococcus pneumoniae</em> (também aceito como pneumococo ou estreptococo). Em pré-escolares e escolares, o pneumococo é responsável por 30-50% das pneumonias bacterianas, sendo de longe o principal agente.</p>\n<p style=\"text-indent: 2em\">Agora vamos à conduta, que precisa ser completa e detalhada para pontuar integralmente. Primeiro e fundamental: <strong>internação hospitalar</strong>. Depois, precisamos coletar exames antes de iniciar antibiótico:</p>\n<ul>\n<li>hemograma completo</li>\n<li>hemocultura (essencial antes do ATB!)</li>\n<li>provas de atividade inflamatória (PCR ou VHS)</li>\n<li>radiografia de tórax em PA e perfil</li>\n</ul>\n<p style=\"text-indent: 2em\">A radiografia vai confirmar a consolidação, definir se há derrame pleural e documentar a extensão do acometimento.</p>\n<p style=\"text-align:center\">\n<img alt=\"Algoritmo de tratamento de pneumonia em crianças entre 2 meses e 5 anos\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20240710T140700385Z765375.png\"/>\n<em>Algoritmo de tratamento de pneumonia em crianças entre 2 meses e 5 anos. Fonte: Tratado de Pediatria (SBP, 4ª edição).</em>\n</p>\n<p style=\"text-indent: 2em\">E aqui vem a parte crucial: a <strong>antibioticoterapia</strong>. Em pneumonia grave com critérios de internação, NUNCA usamos antibiótico oral - sempre venoso. As opções são <em>penicilina cristalina</em> ou <em>ampicilina</em>. A penicilina cristalina é usada na dose de 200.000-400.000 UI/kg/dia EV dividida de 4/4h (ou 6/6h). A ampicilina é prescrita na dose de 200mg/kg/dia EV dividida de 6/6h. Ambas têm excelente cobertura para pneumococo e são as drogas de escolha. A duração do tratamento hospitalar é de 7-10 dias, ou até completar 72 horas afebril, o que for mais longo. Durante a internação, também precisamos de medidas de suporte: manter alimentação (especialmente aleitamento materno se ainda mama), lavagem nasal com soro fisiológico, hidratação venosa se necessário, e oxigenoterapia apenas se saturação cair abaixo de 92%.</p>\n<p style=\"text-indent: 2em\">Um erro frequente que vemos é o aluno esquecer de mencionar a <em>hemocultura</em> ou prescrever <em>amoxicilina oral</em> em um paciente grave. 🚨 Lembrem-se: <strong>tiragem subcostal = paciente grave</strong> = internação + antibiótico venoso, nunca oral. Outro erro comum é não caracterizar a pneumonia como \"comunitária\" ou \"grave\" - isso custa pontos preciosos no espelho de resposta.</p>\n<p style=\"text-indent: 2em\">Seguindo o espelho de resposta da banca, para pontuação completa precisamos: mencionar \"pneumonia\" (1,0 ponto), caracterizar como \"comunitária\" ou \"grave\" ou \"com sinais de gravidade\" (1,0 ponto), citar \"S. pneumoniae\" ou \"estreptococo\" ou \"pneumococo\" (1,0 ponto), indicar \"internação hospitalar\" (1,0 ponto), solicitar \"hemograma\" (1,0 ponto), \"hemocultura\" (1,0 ponto), \"radiografia de tórax\" (1,0 ponto), prescrever \"penicilina cristalina\" ou \"ampicilina\" (1,0 ponto), e mencionar \"coleta de exames\" e \"provas de atividade inflamatória\" valem 0,5 ponto cada. A mensagem final que fica é: <strong>tiragem subcostal = internação obrigatória + antibiótico venoso</strong> (penicilina ou ampicilina), nunca oral em paciente grave.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-indent: 2em\">O <em>murmúrio vesicular abolido</em> na base esquerda merece atenção especial porque não aponta apenas para consolidação parenquimatosa - pode sinalizar <strong>derrame pleural associado</strong>, e por isso a banca aceitou como resposta tanto \"pneumonia grave\" quanto \"pneumonia com derrame pleural\". Na radiografia de tórax, devemos esperar opacidade densa, homogênea e localizada quando há consolidação franca, padrão bem diferente das opacidades que permitem visualização dos vasos (vidro fosco, mais comum em viroses) ou do padrão peribrônquico típico de bronquiolite. Essa diferenciação radiológica costuma cair em questões objetivas que testam se reconhecemos <span class=\"article-6825\">pneumonia bacteriana</span> versus outros padrões.</p>\n<p style=\"text-indent: 2em\">A pegadinha mais perigosa em provas envolve o <strong>esquema antibiótico conforme a faixa etária</strong>. Em neonatos e lactentes jovens (menores de 28-60 dias), a cobertura muda completamente porque os agentes são outros - <em>Streptococcus do grupo B</em>, <em>E. coli</em>, <em>Listeria</em>, <em>S. aureus</em> - exigindo oxacilina associada a aminoglicosídeo ou ampicilina com gentamicina. Já em pré-escolares e escolares, como nosso paciente de 5 anos, o pneumococo domina e justifica penicilina cristalina ou ampicilina em monoterapia. Confundir essas faixas etárias e prescrever oxacilina para uma criança de 5 anos zera a questão. As bancas adoram testar se sabemos ajustar o esquema empírico à idade.</p>\n<p style=\"text-indent: 2em\">Em questões discursivas, é comum pedirem qual achado tem melhor acurácia diagnóstica - aqui vale lembrar que <em>taquipneia</em> apresenta a melhor sensibilidade para pneumonia em qualquer faixa etária, enquanto <strong>tiragem subcostal tem alta especificidade</strong> para definir gravidade e necessidade de internação. Mesmo que esse item tenha sido anulado, o conceito reaparece em outras provas. O recado final é direto: tiragem em qualquer localização (intercostal, subcostal ou subdiafragmática) fecha o diagnóstico de pneumonia grave e obriga internação com antibiótico venoso, nunca oral.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-indent: 2em\">A presença de <strong>tiragem subcostal</strong> em um pré-escolar com quadro respiratório febril sinaliza esforço respiratório importante e define a necessidade de manejo hospitalar. Essa questão discursiva nos pede três elementos: o diagnóstico com agente etiológico, um dado do exame físico (que foi anulado) e a conduta completa. Vamos construir o raciocínio do início, porque entender a fisiopatologia aqui é fundamental para não errar o diagnóstico nem a conduta.</p>\n<p style=\"text-indent: 2em\">Nosso paciente tem 5 anos, era previamente hígido e começou há 3 dias com febre, coriza e tosse - um quadro clássico de infecção viral de vias aéreas superiores. Mas o que acontece agora é a parte crítica: após essa fase viral inicial, há evolução para um quadro respiratório baixo com sinais de gravidade. Precisamos entender a <strong>fisiopatologia dessa transição</strong>. A infecção viral inicial causa lesão do epitélio ciliar respiratório, diminui o clearance mucociliar e expõe receptores celulares que facilitam a adesão bacteriana. Isso cria um terreno propício para a invasão bacteriana secundária, especialmente pelo Streptococcus pneumoniae, que é comensal da nasofaringe e aproveita essa \"janela de oportunidade\" para invadir o parênquima pulmonar. Por isso vemos com tanta frequência esse padrão: início viral que evolui para <span class=\"article-6825\">pneumonia bacteriana</span> após alguns dias.</p>\n<p style=\"text-indent: 2em\">Agora vamos aos achados do exame físico, que são extremamente ricos. Temos <em>murmúrio vesicular abolido</em> na base esquerda - isso merece uma explicação mais cuidadosa. <strong>MV abolido indica</strong> que o ar não está chegando adequadamente naquela região, o que pode significar duas coisas: consolidação alveolar extensa (alvéolos preenchidos por exsudato inflamatório) OU derrame pleural (líquido no espaço pleural). A radiografia de tórax vai diferenciar essas duas possibilidades, e se houver dúvida ou suspeita de derrame, podemos precisar de ultrassom de tórax para caracterizar melhor. Além disso, temos estertores finos principalmente à esquerda, confirmando acometimento parenquimatoso localizado.</p>\n<p style=\"text-indent: 2em\">Mas o achado que define tudo nesse caso é a <em>tiragem subcostal</em>. Vamos ser diretos: <strong>tiragem subcostal = internação obrigatória</strong>. Esse é um critério absoluto de gravidade segundo a SBP e a OMS. Vamos sistematizar os critérios de gravidade para pneumonia pediátrica:</p>\n<ul>\n<li>tiragem subcostal</li>\n<li>taquipneia para a faixa etária (no caso, FR 46 irpm - normal seria até 30 em criança de 5 anos, então há taquipneia leve)</li>\n<li>saturação &lt;92% em ar ambiente (nosso paciente está com 98%, portanto preservada)</li>\n<li>recusa alimentar ou vômitos persistentes</li>\n<li>gemência</li>\n<li>batimento de asa nasal</li>\n<li>cianose</li>\n</ul>\n<p style=\"text-indent: 2em\">Nosso paciente preenche pelo menos dois desses critérios: tiragem subcostal e taquipneia, sendo que apenas a tiragem já seria suficiente para indicar internação.</p>\n<p style=\"text-indent: 2em\">Antes de fecharmos o diagnóstico, precisamos afastar <strong>diagnósticos diferenciais importantes</strong>. <em>Bronquiolite</em> foi descartada porque acomete principalmente menores de 2 anos, tem como característica principal os sibilos (ausentes aqui) e não costuma apresentar febre tão alta nem consolidação localizada. <em>Asma</em> também sai da lista porque não há história prévia de crises, não há sibilância, e a presença de febre alta com consolidação pulmonar unilateral aponta claramente para processo infeccioso bacteriano. <em>Pneumonia viral</em> pura também é menos provável, pois geralmente cursaria com padrão intersticial bilateral, sem consolidação tão evidente.</p>\n<p style=\"text-indent: 2em\">Portanto, nossa <strong>hipótese diagnóstica é pneumonia comunitária</strong> (ou pneumonia adquirida na comunidade, ou ainda pneumonia grave/com sinais de gravidade - todos aceitos pela banca). O agente etiológico mais comum nessa faixa etária é o <em>Streptococcus pneumoniae</em> (também aceito como pneumococo ou estreptococo). Em pré-escolares e escolares, o pneumococo é responsável por 30-50% das pneumonias bacterianas, sendo de longe o principal agente.</p>\n<p style=\"text-indent: 2em\">Agora vamos à conduta, que precisa ser completa e detalhada para pontuar integralmente. Primeiro e fundamental: <strong>internação hospitalar</strong>. Depois, precisamos coletar exames antes de iniciar antibiótico:</p>\n<ul>\n<li>hemograma completo</li>\n<li>hemocultura (essencial antes do ATB!)</li>\n<li>provas de atividade inflamatória (PCR ou VHS)</li>\n<li>radiografia de tórax em PA e perfil</li>\n</ul>\n<p style=\"text-indent: 2em\">A radiografia vai confirmar a consolidação, definir se há derrame pleural e documentar a extensão do acometimento.</p>\n<p style=\"text-align:center\">\n<img alt=\"Algoritmo de tratamento de pneumonia em crianças entre 2 meses e 5 anos\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20240710T140700385Z765375.png\"/>\n<em>Algoritmo de tratamento de pneumonia em crianças entre 2 meses e 5 anos. Fonte: Tratado de Pediatria (SBP, 4ª edição).</em>\n</p>\n<p style=\"text-indent: 2em\">E aqui vem a parte crucial: a <strong>antibioticoterapia</strong>. Em pneumonia grave com critérios de internação, NUNCA usamos antibiótico oral - sempre venoso. As opções são <em>penicilina cristalina</em> ou <em>ampicilina</em>. A penicilina cristalina é usada na dose de 200.000-400.000 UI/kg/dia EV dividida de 4/4h (ou 6/6h). A ampicilina é prescrita na dose de 200mg/kg/dia EV dividida de 6/6h. Ambas têm excelente cobertura para pneumococo e são as drogas de escolha. A duração do tratamento hospitalar é de 7-10 dias, ou até completar 72 horas afebril, o que for mais longo. Durante a internação, também precisamos de medidas de suporte: manter alimentação (especialmente aleitamento materno se ainda mama), lavagem nasal com soro fisiológico, hidratação venosa se necessário, e oxigenoterapia apenas se saturação cair abaixo de 92%.</p>\n<p style=\"text-indent: 2em\">Um erro frequente que vemos é o aluno esquecer de mencionar a <em>hemocultura</em> ou prescrever <em>amoxicilina oral</em> em um paciente grave. 🚨 Lembrem-se: <strong>tiragem subcostal = paciente grave</strong> = internação + antibiótico venoso, nunca oral. Outro erro comum é não caracterizar a pneumonia como \"comunitária\" ou \"grave\" - isso custa pontos preciosos no espelho de resposta.</p>\n<p style=\"text-indent: 2em\">Seguindo o espelho de resposta da banca, para pontuação completa precisamos: mencionar \"pneumonia\" (1,0 ponto), caracterizar como \"comunitária\" ou \"grave\" ou \"com sinais de gravidade\" (1,0 ponto), citar \"S. pneumoniae\" ou \"estreptococo\" ou \"pneumococo\" (1,0 ponto), indicar \"internação hospitalar\" (1,0 ponto), solicitar \"hemograma\" (1,0 ponto), \"hemocultura\" (1,0 ponto), \"radiografia de tórax\" (1,0 ponto), prescrever \"penicilina cristalina\" ou \"ampicilina\" (1,0 ponto), e mencionar \"coleta de exames\" e \"provas de atividade inflamatória\" valem 0,5 ponto cada. A mensagem final que fica é: <strong>tiragem subcostal = internação obrigatória + antibiótico venoso</strong> (penicilina ou ampicilina), nunca oral em paciente grave.</p><br>Visão do aprovado: <p style=\"text-indent: 2em\">O <em>murmúrio vesicular abolido</em> na base esquerda merece atenção especial porque não aponta apenas para consolidação parenquimatosa - pode sinalizar <strong>derrame pleural associado</strong>, e por isso a banca aceitou como resposta tanto \"pneumonia grave\" quanto \"pneumonia com derrame pleural\". Na radiografia de tórax, devemos esperar opacidade densa, homogênea e localizada quando há consolidação franca, padrão bem diferente das opacidades que permitem visualização dos vasos (vidro fosco, mais comum em viroses) ou do padrão peribrônquico típico de bronquiolite. Essa diferenciação radiológica costuma cair em questões objetivas que testam se reconhecemos <span class=\"article-6825\">pneumonia bacteriana</span> versus outros padrões.</p>\n<p style=\"text-indent: 2em\">A pegadinha mais perigosa em provas envolve o <strong>esquema antibiótico conforme a faixa etária</strong>. Em neonatos e lactentes jovens (menores de 28-60 dias), a cobertura muda completamente porque os agentes são outros - <em>Streptococcus do grupo B</em>, <em>E. coli</em>, <em>Listeria</em>, <em>S. aureus</em> - exigindo oxacilina associada a aminoglicosídeo ou ampicilina com gentamicina. Já em pré-escolares e escolares, como nosso paciente de 5 anos, o pneumococo domina e justifica penicilina cristalina ou ampicilina em monoterapia. Confundir essas faixas etárias e prescrever oxacilina para uma criança de 5 anos zera a questão. As bancas adoram testar se sabemos ajustar o esquema empírico à idade.</p>\n<p style=\"text-indent: 2em\">Em questões discursivas, é comum pedirem qual achado tem melhor acurácia diagnóstica - aqui vale lembrar que <em>taquipneia</em> apresenta a melhor sensibilidade para pneumonia em qualquer faixa etária, enquanto <strong>tiragem subcostal tem alta especificidade</strong> para definir gravidade e necessidade de internação. Mesmo que esse item tenha sido anulado, o conceito reaparece em outras provas. O recado final é direto: tiragem em qualquer localização (intercostal, subcostal ou subdiafragmática) fecha o diagnóstico de pneumonia grave e obriga internação com antibiótico venoso, nunca oral.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T20:41:29.179004+00:00",
+  "complete": true
+}

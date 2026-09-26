@@ -1,0 +1,646 @@
+{
+  "track_id": 1330048,
+  "name": "PUC - Sorocaba - SP-2023-Objetiva",
+  "year": 2023,
+  "track_fast": {
+    "id": 1330048,
+    "name": "PUC - Sorocaba - SP-2023-Objetiva",
+    "track_type": "c",
+    "question_count": 5,
+    "year": 2023,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "PUC - Sorocaba",
+    "track_image": null,
+    "residency_degree": {
+      "id": 4,
+      "abbreviation": "R+CM"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 128113,
+        "number": 1,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Anemias e Hemoglobinopatias (R3)",
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)"
+        }
+      },
+      "detail": {
+        "id": 128113,
+        "content": "Neusa Maria, de 28 anos, veio encaminhada à unidade de emergência com dor intensa em flanco e hipocôndrio direito iniciada há três horas, acompanhada de dificuldade respiratória e dois episódios de vômitos. A paciente é acompanhada na hematologia por ser portadora de anemia falciforme e vem usando hidroxiureia há 10 anos, apresentando raros episódios de crises álgicas e mantendo níveis de Hb superiores a 9g/dL. Ao exame físico, ela apresentava-se descorada +++/4+, ictérica +++/4+, Temperatura axilar=38°C, FC=100 bpm, FR 24irpm, PA 100/60 mmHg, Oximetria em ar ambiente=96%. As bulhas cardíacas eram rítmicas, normofonéticas, apresentando sopro sistólico em foco aórtico +/4, O murmúrio vesicular era normal, mas discretamente diminuído em base do hemitórax direito. O abdome apresentava-se flácido com dor à palpação de hipocôndrio direito, descompressão brusca negativa, fígado a 4 cm do RCD, doloroso à palpação, sendo impossível avaliar sua consistência ou forma. Foi encaminhada com os seguintes exames: Hb=6,0g/dL, VCM=78fL, reticulócitos=22%, Leucócitos=6.700/mm3 (10% neutrófilos em bastonetes, 65% neutrófilos segmentados, 20% linfócitos típicos e 5% monócitos), plaquetas=450.000/mm3, TGO=58 U/L, TGP=65U/L, fosfatase alcalina=234 U/L, GGT=148 U/L, Bilirrubina total 10,8mg/dl. Bilirrubina direta= 6,2mg/dL, bilirrubina indireta 4,6 mg/dL. Quais as principais hipóteses diagnósticas iniciais?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 1667,
+            "parent_tag": {
+              "id": 1604,
+              "name": "Hematologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Anemias e Hemoglobinopatias (R3)",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [
+          {
+            "id": 143,
+            "avatar": "https://cdn.medway.com.br/media/physician/6bfad276-256a-4d96-adcb-06ee0a93ed3f_-_Fabio_Specian.jpeg",
+            "about": "Clínica Médica - USP SP",
+            "name": "Fabio Specian",
+            "speciality": {
+              "id": 2,
+              "abbreviation": "CM",
+              "name": "Clínica Médica"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 25,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 145,
+            "name": "Hematologia",
+            "discipline": 96,
+            "old_tag": 1604,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 112986,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Casinho hematológico! Paciente do sexo feminino, sabidamente portadora de <strong><span class=\"article-4011\">anemia falciforme</span></strong>, vinha bem controlada com hidroxiureia, porém iniciou há 3 horas com <strong>dor intensa em flanco e hipocôndrio direito</strong>, associada a dificuldade respiratória e vômitos. Ao exame físico, descorada, ictérica, febril, taquicárdica, taquipneia, discreta diminuição de MV em base direita, abdome com dor á palpação de hipocôndrio direito e hepatomegalia. Nos exames complementares, constatada piora da anemia (prévia Hb 9,0, atual 6,0), sem leucocitose. <strong>Enzimas canaliculares aumentadas e hiperbilirrubinemia mista. </strong>Somos então questionados sobre as hipóteses diagnósticas iniciais. </p>\n<p style=\"text-align: justify;\">Vamos relembrar um pouco da <span class=\"article-4011\">anemia falciforme</span> antes de prosseguirmos para o gabarito? Sabemos que é uma doença genética em que há uma troca de ácido glutâmico por valina na cadeia beta, gerando a hemoglobina S (HbS) - o diagnóstico é dado por uma eletroforese de Hb com &gt; 85-90% de HbS. Essa doença possui manifestações crônicas e também agudas, quando o paciente sofre alguma injúria: redução da oxigenação, desidratação, acidose e aumento da temperatura - tudo isso leva ao afoiçamento da hemácia, gerando os drepanócitos e causando complicações agudas.</p>\n<p style=\"text-align: justify;\">Dentre as complicações agudas da doença temos as crises álgicas (dor importante, principalmente em ossos longos, devido à vaso-oclusão), podendo ter também <span class=\"article-4313\">síndrome torácica aguda</span> e acometimentos do sistema nervoso central, dentre outros. No que tange à dor aguda, nossa paciente possui dor intensa em hipocôndrio direito, com canaliculares aumentadas e também aumento de bilirrubinas diretas - poderíamos estar diante aqui de uma <strong>colecistite aguda</strong>, concordam? Pacientes falciformes têm maior predisposição à formação de cálculos biliares pigmentados. </p>\n<p style=\"text-align: justify;\">Além disso, nossa paciente possui aumento de bilirrubinas diretas e dor em hipocôndrio direito, com icterícia e hepatomegalia associadas - <strong>colestase intra-hepática e sequestro hepático</strong> também seriam boas possibilidades para o caso. Por fim, mais raro, porém não menos importante, a <strong>trombose mesentérica</strong> também poderia cursar com sintomas similares e ser um diferencial para o caso. </p>\n<p style=\"text-align: justify;\"><strong>Portanto, o gabarito é:  1. Colecistite aguda? 2. Colestase intra-hepática? 3. sequestro hepático? 4. Trombose mesentérica?</strong></p>\n<p style=\"text-align: justify;\"> </p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Questão interessante que nos possibilita revisar os principais diferenciais de dor em hipocôndrio direito da <span class=\"article-4011\">anemia falciforme</span>! Lembrem-se que esses pacientes sentem uma dor muito forte e necessitam de uma terapia que controle adequadamente sua dor, mas sempre levando em consideração também a possibilidade de adição aos opioides (frequente nessa população). </p>\n<p> </p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Casinho hematológico! Paciente do sexo feminino, sabidamente portadora de <strong><span class=\"article-4011\">anemia falciforme</span></strong>, vinha bem controlada com hidroxiureia, porém iniciou há 3 horas com <strong>dor intensa em flanco e hipocôndrio direito</strong>, associada a dificuldade respiratória e vômitos. Ao exame físico, descorada, ictérica, febril, taquicárdica, taquipneia, discreta diminuição de MV em base direita, abdome com dor á palpação de hipocôndrio direito e hepatomegalia. Nos exames complementares, constatada piora da anemia (prévia Hb 9,0, atual 6,0), sem leucocitose. <strong>Enzimas canaliculares aumentadas e hiperbilirrubinemia mista. </strong>Somos então questionados sobre as hipóteses diagnósticas iniciais. </p>\n<p style=\"text-align: justify;\">Vamos relembrar um pouco da <span class=\"article-4011\">anemia falciforme</span> antes de prosseguirmos para o gabarito? Sabemos que é uma doença genética em que há uma troca de ácido glutâmico por valina na cadeia beta, gerando a hemoglobina S (HbS) - o diagnóstico é dado por uma eletroforese de Hb com &gt; 85-90% de HbS. Essa doença possui manifestações crônicas e também agudas, quando o paciente sofre alguma injúria: redução da oxigenação, desidratação, acidose e aumento da temperatura - tudo isso leva ao afoiçamento da hemácia, gerando os drepanócitos e causando complicações agudas.</p>\n<p style=\"text-align: justify;\">Dentre as complicações agudas da doença temos as crises álgicas (dor importante, principalmente em ossos longos, devido à vaso-oclusão), podendo ter também <span class=\"article-4313\">síndrome torácica aguda</span> e acometimentos do sistema nervoso central, dentre outros. No que tange à dor aguda, nossa paciente possui dor intensa em hipocôndrio direito, com canaliculares aumentadas e também aumento de bilirrubinas diretas - poderíamos estar diante aqui de uma <strong>colecistite aguda</strong>, concordam? Pacientes falciformes têm maior predisposição à formação de cálculos biliares pigmentados. </p>\n<p style=\"text-align: justify;\">Além disso, nossa paciente possui aumento de bilirrubinas diretas e dor em hipocôndrio direito, com icterícia e hepatomegalia associadas - <strong>colestase intra-hepática e sequestro hepático</strong> também seriam boas possibilidades para o caso. Por fim, mais raro, porém não menos importante, a <strong>trombose mesentérica</strong> também poderia cursar com sintomas similares e ser um diferencial para o caso. </p>\n<p style=\"text-align: justify;\"><strong>Portanto, o gabarito é:  1. Colecistite aguda? 2. Colestase intra-hepática? 3. sequestro hepático? 4. Trombose mesentérica?</strong></p>\n<p style=\"text-align: justify;\"> </p><br>Visão do aprovado: <p style=\"text-align: justify;\">Questão interessante que nos possibilita revisar os principais diferenciais de dor em hipocôndrio direito da <span class=\"article-4011\">anemia falciforme</span>! Lembrem-se que esses pacientes sentem uma dor muito forte e necessitam de uma terapia que controle adequadamente sua dor, mas sempre levando em consideração também a possibilidade de adição aos opioides (frequente nessa população). </p>\n<p> </p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 128114,
+        "number": 2,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Anemias e Hemoglobinopatias (R3)",
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)"
+        }
+      },
+      "detail": {
+        "id": 128114,
+        "content": "Neusa Maria, de 28 anos, veio encaminhada à unidade de emergência com dor intensa em flanco e hipocôndrio direito iniciada há três horas, acompanhada de dificuldade respiratória e dois episódios de vômitos. A paciente é acompanhada na hematologia por ser portadora de anemia falciforme e vem usando hidroxiureia há 10 anos, apresentando raros episódios de crises álgicas e mantendo níveis de Hb superiores a 9g/dL. Ao exame físico, ela apresentava-se descorada +++/4+, ictérica +++/4+, Temperatura axilar=38°C, FC=100 bpm, FR 24irpm, PA 100/60 mmHg, Oximetria em ar ambiente=96%. As bulhas cardíacas eram rítmicas, normofonéticas, apresentando sopro sistólico em foco aórtico +/4, O murmúrio vesicular era normal, mas discretamente diminuído em base do hemitórax direito. O abdome apresentava-se flácido com dor à palpação de hipocôndrio direito, descompressão brusca negativa, fígado a 4 cm do RCD, doloroso à palpação, sendo impossível avaliar sua consistência ou forma. Foi encaminhada com os seguintes exames: Hb=6,0g/dL, VCM=78fL, reticulócitos=22%, Leucócitos=6.700/mm3 (10% neutrófilos em bastonetes, 65% neutrófilos segmentados, 20% linfócitos típicos e 5% monócitos), plaquetas=450.000/mm3, TGO=58 U/L, TGP=65U/L, fosfatase alcalina=234 U/L, GGT=148 U/L, Bilirrubina total 10,8mg/dl. Bilirrubina direta= 6,2mg/dL, bilirrubina indireta 4,6 mg/dL. Como você justifica a queda do nível de Hemoglobina?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 1667,
+            "parent_tag": {
+              "id": 1604,
+              "name": "Hematologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Anemias e Hemoglobinopatias (R3)",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [
+          {
+            "id": 143,
+            "avatar": "https://cdn.medway.com.br/media/physician/6bfad276-256a-4d96-adcb-06ee0a93ed3f_-_Fabio_Specian.jpeg",
+            "about": "Clínica Médica - USP SP",
+            "name": "Fabio Specian",
+            "speciality": {
+              "id": 2,
+              "abbreviation": "CM",
+              "name": "Clínica Médica"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 25,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 145,
+            "name": "Hematologia",
+            "discipline": 96,
+            "old_tag": 1604,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 112987,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Para contextualizar caso você esteja fazendo as questões em modo aleatório, essa questão faz parte de um conjunto de 5 questões sobre uma paciente com <span class=\"article-4011\">anemia falciforme</span> que apresenta dor intensa em hipocôndrio direito.</p>\n<p style=\"text-align: justify;\">Somos questionados agora sobre a justificativa para queda de hemoglobina de 9,0 para 6,0 nessa paciente. Pessoal, como comentamos na outra questão, essa doença possui manifestações crônicas e também agudas, quando o paciente sofre alguma injúria: redução da oxigenação, desidratação, acidose e aumento da temperatura - tudo isso leva ao afoiçamento da hemácia, gerando os drepanócitos e causando complicações agudas. Nesse mecanismo de vaso-oclusão, teremos hemólise importante, cursando com anemia, aumento de reticulócitos e aumento da bilirrubina indireta.</p>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: crise vaso oclusiva desencadeada pelo quadro álgico levou a importante hemólise, desencadeando a anemia, o aumento dos reticulócitos e a hiperbilirrubinemia indireta. Resumo: Crise vaso oclusiva com hemólise aguda.</strong></p>\n<p style=\"text-align: justify;\"> </p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Questão que cobrou o mecanismo da anemia na síndrome falciforme, devemos estar com esse tema na ponta da língua, uma vez que adora ser cobrado nas provas de R+. Além da clínica, é importante sabermos reconhecer o padrões da eletroforese de hemoglobinas das principais hemoglobinopatias, uma vez que o tema pode ser cobrado como imagem, tanto em questões objetivas quanto de multimídia!</p>\n<p> </p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Para contextualizar caso você esteja fazendo as questões em modo aleatório, essa questão faz parte de um conjunto de 5 questões sobre uma paciente com <span class=\"article-4011\">anemia falciforme</span> que apresenta dor intensa em hipocôndrio direito.</p>\n<p style=\"text-align: justify;\">Somos questionados agora sobre a justificativa para queda de hemoglobina de 9,0 para 6,0 nessa paciente. Pessoal, como comentamos na outra questão, essa doença possui manifestações crônicas e também agudas, quando o paciente sofre alguma injúria: redução da oxigenação, desidratação, acidose e aumento da temperatura - tudo isso leva ao afoiçamento da hemácia, gerando os drepanócitos e causando complicações agudas. Nesse mecanismo de vaso-oclusão, teremos hemólise importante, cursando com anemia, aumento de reticulócitos e aumento da bilirrubina indireta.</p>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: crise vaso oclusiva desencadeada pelo quadro álgico levou a importante hemólise, desencadeando a anemia, o aumento dos reticulócitos e a hiperbilirrubinemia indireta. Resumo: Crise vaso oclusiva com hemólise aguda.</strong></p>\n<p style=\"text-align: justify;\"> </p><br>Visão do aprovado: <p style=\"text-align: justify;\">Questão que cobrou o mecanismo da anemia na síndrome falciforme, devemos estar com esse tema na ponta da língua, uma vez que adora ser cobrado nas provas de R+. Além da clínica, é importante sabermos reconhecer o padrões da eletroforese de hemoglobinas das principais hemoglobinopatias, uma vez que o tema pode ser cobrado como imagem, tanto em questões objetivas quanto de multimídia!</p>\n<p> </p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 128115,
+        "number": 3,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Anemias e Hemoglobinopatias (R3)",
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)"
+        }
+      },
+      "detail": {
+        "id": 128115,
+        "content": "Neusa Maria, de 28 anos, veio encaminhada à unidade de emergência com dor intensa em flanco e hipocôndrio direito iniciada há três horas, acompanhada de dificuldade respiratória e dois episódios de vômitos. A paciente é acompanhada na hematologia por ser portadora de anemia falciforme e vem usando hidroxiureia há 10 anos, apresentando raros episódios de crises álgicas e mantendo níveis de Hb superiores a 9g/dL. Ao exame físico, ela apresentava-se descorada +++/4+, ictérica +++/4+, Temperatura axilar=38°C, FC=100 bpm, FR 24irpm, PA 100/60 mmHg, Oximetria em ar ambiente=96%. As bulhas cardíacas eram rítmicas, normofonéticas, apresentando sopro sistólico em foco aórtico +/4, O murmúrio vesicular era normal, mas discretamente diminuído em base do hemitórax direito. O abdome apresentava-se flácido com dor à palpação de hipocôndrio direito, descompressão brusca negativa, fígado a 4 cm do RCD, doloroso à palpação, sendo impossível avaliar sua consistência ou forma. Foi encaminhada com os seguintes exames: Hb=6,0g/dL, VCM=78fL, reticulócitos=22%, Leucócitos=6.700/ mm3 (10% neutrófilos em bastonetes, 65% neutrófilos segmentados, 20% linfócitos típicos e 5% monócitos), plaquetas=450.000/mm3, TGO=58 U/L, TGP=65U/L, fosfatase alcalina=234 U/L, GGT=148 U/L, Bilirrubina total 10,8mg/dl. Bilirrubina direta= 6,2mg/dL, bilirrubina indireta 4,6 mg/dL. Qual seria a sua prescrição inicial, assim que a paciente foi admitida no serviço de emergência?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 1667,
+            "parent_tag": {
+              "id": 1604,
+              "name": "Hematologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Anemias e Hemoglobinopatias (R3)",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [
+          {
+            "id": 143,
+            "avatar": "https://cdn.medway.com.br/media/physician/6bfad276-256a-4d96-adcb-06ee0a93ed3f_-_Fabio_Specian.jpeg",
+            "about": "Clínica Médica - USP SP",
+            "name": "Fabio Specian",
+            "speciality": {
+              "id": 2,
+              "abbreviation": "CM",
+              "name": "Clínica Médica"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 36,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 145,
+            "name": "Hematologia",
+            "discipline": 96,
+            "old_tag": 1604,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 593678,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Para contextualizar caso você esteja fazendo as questões em modo aleatório, essa questão faz parte de um conjunto de 5 questões sobre uma paciente com <span class=\"article-4011\">anemia falciforme</span> que apresenta dor intensa em hipocôndrio direito. Somos questionados agora acerca da conduta frente a esse quadro de crise vaso-oclusiva / dor intensa em paciente falciforme.</p>\n<p style=\"text-align: justify;\">Galera,  para a terapia aguda, devemos buscar a hidratação como soro glico-fisiológico e oxigenação se hipoxemia, bem como adequado controle álgico, com uso de opioides (eles auxiliam a diminuir a afoiçamento)! Se febre, consideramos o uso de antibióticos. </p>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: Hidratação com soro glico/fisiológico, analgesia potente, </strong><strong>oxigênio em cateter nasal.</strong></p>\n<p> </p>",
+        "option_a": "",
+        "short_option_a": "",
+        "option_b": "",
+        "short_option_b": "",
+        "option_c": "",
+        "short_option_c": "",
+        "option_d": "",
+        "short_option_d": "",
+        "option_e": "",
+        "short_option_e": "",
+        "conclusion": "<p style=\"text-align: justify;\">Questão bacana que nos possibilita revisar os principais manejos agudos da <span class=\"article-4011\">anemia falciforme</span>! Lembrem-se que esses pacientes sentem uma dor muito forte e necessitam de uma terapia que controle adequadamente sua dor. Vamos aproveitar a questão para lembrar de uma grave complicação aguda da AF que não foi abordada na questão, que é o priapismo, condição caracterizada por uma eração &gt; 3-4 horas. Nesses casos, realizaremos uma gasometria de corpos cavernosos (evidenciará uma PaO2 &lt; 40 mm Hg com PaCO2 &gt; 70 mm Hg), que caracterizará um priapismo isquêmico, juntamente com hidratação, analgesia, SVD e oxigenioterapia. A conduta específica nesses casos envolve a drenagem dos corpos cavernosos, avaliação quanto a lavagem com adrenalina e quanto à necessidade de cirurgia. </p>\n<p> </p><figure data-okr=\"ilustracao\"><img alt=\"\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20231029T192718598Z519776.png\" style=\"max-width:100%\"/></figure>",
+        "update_note": "",
+        "lesson_reference": "",
+        "full_explanation": "<p style=\"text-align: justify;\">Para contextualizar caso você esteja fazendo as questões em modo aleatório, essa questão faz parte de um conjunto de 5 questões sobre uma paciente com <span class=\"article-4011\">anemia falciforme</span> que apresenta dor intensa em hipocôndrio direito. Somos questionados agora acerca da conduta frente a esse quadro de crise vaso-oclusiva / dor intensa em paciente falciforme.</p>\n<p style=\"text-align: justify;\">Galera,  para a terapia aguda, devemos buscar a hidratação como soro glico-fisiológico e oxigenação se hipoxemia, bem como adequado controle álgico, com uso de opioides (eles auxiliam a diminuir a afoiçamento)! Se febre, consideramos o uso de antibióticos. </p>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: Hidratação com soro glico/fisiológico, analgesia potente, </strong><strong>oxigênio em cateter nasal.</strong></p>\n<p> </p><br>Visão do aprovado: <p style=\"text-align: justify;\">Questão bacana que nos possibilita revisar os principais manejos agudos da <span class=\"article-4011\">anemia falciforme</span>! Lembrem-se que esses pacientes sentem uma dor muito forte e necessitam de uma terapia que controle adequadamente sua dor. Vamos aproveitar a questão para lembrar de uma grave complicação aguda da AF que não foi abordada na questão, que é o priapismo, condição caracterizada por uma eração &gt; 3-4 horas. Nesses casos, realizaremos uma gasometria de corpos cavernosos (evidenciará uma PaO2 &lt; 40 mm Hg com PaCO2 &gt; 70 mm Hg), que caracterizará um priapismo isquêmico, juntamente com hidratação, analgesia, SVD e oxigenioterapia. A conduta específica nesses casos envolve a drenagem dos corpos cavernosos, avaliação quanto a lavagem com adrenalina e quanto à necessidade de cirurgia. </p>\n<p> </p><figure data-okr=\"ilustracao\"><img alt=\"\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20231029T192718598Z519776.png\" style=\"max-width:100%\"/></figure><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 128116,
+        "number": 4,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Anemias e Hemoglobinopatias (R3)",
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)"
+        }
+      },
+      "detail": {
+        "id": 128116,
+        "content": "Neusa Maria, de 28 anos, veio encaminhada à unidade de emergência com dor intensa em flanco e hipocôndrio direito iniciada há três horas, acompanhada de dificuldade respiratória e dois episódios de vômitos. A paciente é acompanhada na hematologia por ser portadora de anemia falciforme e vem usando hidroxiureia há 10 anos, apresentando raros episódios de crises álgicas e mantendo níveis de Hb superiores a 9g/dL. Ao exame físico, ela apresentava-se descorada +++/4+, ictérica +++/4+, Temperatura axilar=38°C, FC=100 bpm, FR 24irpm, PA 100/60 mmHg, Oximetria em ar ambiente=96%. As bulhas cardíacas eram rítmicas, normofonéticas, apresentando sopro sistólico em foco aórtico +/4, O murmúrio vesicular era normal, mas discretamente diminuído em base do hemitórax direito. O abdome apresentava-se flácido com dor à palpação de hipocôndrio direito, descompressão brusca negativa, fígado a 4 cm do RCD, doloroso à palpação, sendo impossível avaliar sua consistência ou forma. Foi encaminhada com os seguintes exames: Hb=6,0g/dL, VCM=78fL, reticulócitos=22%, Leucócitos=6.700/ mm3 (10% neutrófilos em bastonetes, 65% neutrófilos segmentados, 20% linfócitos típicos e 5% monócitos), plaquetas=450.000/mm3, TGO=58 U/L, TGP=65U/L, fosfatase alcalina=234 U/L, GGT=148 U/L, Bilirrubina total 10,8mg/dl. Bilirrubina direta= 6,2mg/dL, bilirrubina indireta 4,6 mg/dL. Para essa paciente, a terapia hemoterápica está indicada? Se sim, qual seria sua prescrição?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 1667,
+            "parent_tag": {
+              "id": 1604,
+              "name": "Hematologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Anemias e Hemoglobinopatias (R3)",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [
+          {
+            "id": 143,
+            "avatar": "https://cdn.medway.com.br/media/physician/6bfad276-256a-4d96-adcb-06ee0a93ed3f_-_Fabio_Specian.jpeg",
+            "about": "Clínica Médica - USP SP",
+            "name": "Fabio Specian",
+            "speciality": {
+              "id": 2,
+              "abbreviation": "CM",
+              "name": "Clínica Médica"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 32,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 145,
+            "name": "Hematologia",
+            "discipline": 96,
+            "old_tag": 1604,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 112989,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Para contextualizar caso você esteja fazendo as questões em modo aleatório, essa questão faz parte de um conjunto de 5 questões sobre uma paciente com <span class=\"article-4011\">anemia falciforme</span> que apresenta dor intensa em hipocôndrio direito. Somos questionados agora se a paciente possui indicação de terapia hemoterápica, visto sua Hb atual de 6,0. </p>\n<p style=\"text-align: justify;\">Pessoal, de modo geral devemos evitar ao máximo as transfusões sanguíneas nesses pacientes, porém podemos considerar quando <strong>ocorrerem crises álgicas intensa ou anêmicas refratárias às outras medidas iniciais ou se houver sd. torácica aguda/priapismo/AVE.</strong> Os mecanismos de melhora nesses pacientes são explicados por uma diluição da HbS, diminuição da Epo que estimularia HbS, diminuição da porcentagem de HbS e aumento da saturação de oxigênio no sangue, todos mecanismos contribuindo para diminuir a crise. </p>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: Sim, está indicada.</strong></p>\n<p> </p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Vamos complementar aqui sobre o tema de <span class=\"article-4011\">anemia falciforme</span>, além da indicação de transfusão, precisamos estar atentos ao manejo de AVC nesses pacientes. Aqui, diferentemente de outros pacientes que chegam em janela de trombólise (&lt; 4,5 h), não realizaremos a trombólise, mas sim uma terapia transfusional. O objetivo dessa terapia, conhecida como eritrocitaférese, é reduzir a HbS para &lt; 30% da hemoglobina total e subir os níveis de Hb para 10 g/dL. Consideramos a administração de trombólise para pacientes com AVCi não sugestivo de relação com a <span class=\"article-4011\">anemia falciforme</span> (como embolia de FA ou alto risco cardiovascular, que não são o caso do nosso paciente).</p>\n<p> </p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Para contextualizar caso você esteja fazendo as questões em modo aleatório, essa questão faz parte de um conjunto de 5 questões sobre uma paciente com <span class=\"article-4011\">anemia falciforme</span> que apresenta dor intensa em hipocôndrio direito. Somos questionados agora se a paciente possui indicação de terapia hemoterápica, visto sua Hb atual de 6,0. </p>\n<p style=\"text-align: justify;\">Pessoal, de modo geral devemos evitar ao máximo as transfusões sanguíneas nesses pacientes, porém podemos considerar quando <strong>ocorrerem crises álgicas intensa ou anêmicas refratárias às outras medidas iniciais ou se houver sd. torácica aguda/priapismo/AVE.</strong> Os mecanismos de melhora nesses pacientes são explicados por uma diluição da HbS, diminuição da Epo que estimularia HbS, diminuição da porcentagem de HbS e aumento da saturação de oxigênio no sangue, todos mecanismos contribuindo para diminuir a crise. </p>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: Sim, está indicada.</strong></p>\n<p> </p><br>Visão do aprovado: <p style=\"text-align: justify;\">Vamos complementar aqui sobre o tema de <span class=\"article-4011\">anemia falciforme</span>, além da indicação de transfusão, precisamos estar atentos ao manejo de AVC nesses pacientes. Aqui, diferentemente de outros pacientes que chegam em janela de trombólise (&lt; 4,5 h), não realizaremos a trombólise, mas sim uma terapia transfusional. O objetivo dessa terapia, conhecida como eritrocitaférese, é reduzir a HbS para &lt; 30% da hemoglobina total e subir os níveis de Hb para 10 g/dL. Consideramos a administração de trombólise para pacientes com AVCi não sugestivo de relação com a <span class=\"article-4011\">anemia falciforme</span> (como embolia de FA ou alto risco cardiovascular, que não são o caso do nosso paciente).</p>\n<p> </p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 128117,
+        "number": 5,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Anemias e Hemoglobinopatias (R3)",
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)"
+        }
+      },
+      "detail": {
+        "id": 128117,
+        "content": "Neusa Maria, de 28 anos, veio encaminhada à unidade de emergência com dor intensa em flanco e hipocôndrio direito iniciada há três horas, acompanhada de dificuldade respiratória e dois episódios de vômitos. A paciente é acompanhada na hematologia por ser portadora de anemia falciforme e vem usando hidroxiureia há 10 anos, apresentando raros episódios de crises álgicas e mantendo níveis de Hb superiores a 9g/dL. Ao exame físico, ela apresentava-se descorada +++/4+, ictérica +++/4+, Temperatura axilar=38°C, FC=100 bpm, FR 24irpm, PA 100/60 mmHg, Oximetria em ar ambiente=96%. As bulhas cardíacas eram rítmicas, normofonéticas, apresentando sopro sistólico em foco aórtico +/4, O murmúrio vesicular era normal, mas discretamente diminuído em base do hemitórax direito. O abdome apresentava-se flácido com dor à palpação de hipocôndrio direito, descompressão brusca negativa, fígado a 4 cm do RCD, doloroso à palpação, sendo impossível avaliar sua consistência ou forma. Foi encaminhada com os seguintes exames: Hb=6,0g/dL, VCM=78fL, reticulócitos=22%, Leucócitos=6.700/ mm3 (10% neutrófilos em bastonetes, 65% neutrófilos segmentados, 20% linfócitos típicos e 5% monócitos), plaquetas=450.000/mm3, TGO=58 U/L, TGP=65U/L, fosfatase alcalina=234 U/L, GGT=148 U/L, Bilirrubina total 10,8mg/dl. Bilirrubina direta= 6,2mg/dL, bilirrubina indireta 4,6 mg/dL. Na anemia falciforme, quais são os principais órgãos alvos e quais são as complicações neles desencadeadas pelas crises vaso oclusivas.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 1667,
+            "parent_tag": {
+              "id": 1604,
+              "name": "Hematologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Anemias e Hemoglobinopatias (R3)",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [
+          {
+            "id": 143,
+            "avatar": "https://cdn.medway.com.br/media/physician/6bfad276-256a-4d96-adcb-06ee0a93ed3f_-_Fabio_Specian.jpeg",
+            "about": "Clínica Médica - USP SP",
+            "name": "Fabio Specian",
+            "speciality": {
+              "id": 2,
+              "abbreviation": "CM",
+              "name": "Clínica Médica"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 29,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 145,
+            "name": "Hematologia",
+            "discipline": 96,
+            "old_tag": 1604,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 112990,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Para contextualizar caso você esteja fazendo as questões em modo aleatório, essa questão faz parte de um conjunto de 5 questões sobre uma paciente com <span class=\"article-4011\">anemia falciforme</span> que apresenta dor intensa em hipocôndrio direito. Nossa última questão do caso solicita uma listagem dos principais orgãos alvos e complicações neles desencadeadas pelas crises vaso-oclusivas.</p>\n<p style=\"text-align: justify;\">De modo mais sucinto, podemos resumir as manifestações da <span class=\"article-4011\">anemia falciforme</span> da seguinte forma:</p>\n<p style=\"text-align: justify;\">Complicações agudas — As principais complicações agudas da DF incluem as seguintes:</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p>Infecções;</p>\n</li>\n<li>\n<p>Anemia grave (devido a sequestro esplênico, crise aplástica ou hiper-hemólise);</p>\n</li>\n<li>\n<p>Fenômenos vaso-oclusivos</p>\n<ul>\n<li>\n<p>Dor vaso-oclusiva aguda;</p>\n</li>\n<li>\n<p>AVC;</p>\n</li>\n<li>\n<p><span class=\"article-4313\">Síndrome torácica aguda</span>;</p>\n</li>\n<li>\n<p>Infarto renal ou toxicidade medicamentosa;</p>\n</li>\n<li>\n<p>Dactilite ou infarto ósseo;</p>\n</li>\n<li>\n<p>Infarto do miocárdio;</p>\n</li>\n<li>\n<p>Complicações relacionadas à gravidez;</p>\n</li>\n<li>\n<p>Priapismo;</p>\n</li>\n<li>\n<p>Tromboembolismo venoso;</p>\n</li>\n</ul>\n</li>\n</ul>\n<p style=\"text-align: justify;\">Complicações crônicas — Muitos sistemas orgânicos podem desenvolver manifestações crônicas:</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p>Dor;</p>\n</li>\n<li>\n<p> Anemia;</p>\n</li>\n<li>\n<p>Déficits neurológicos ou distúrbios convulsivos;</p>\n</li>\n<li>\n<p>Condições pulmonares;</p>\n</li>\n<li>\n<p>Função renal prejudicada e hipertensão;</p>\n</li>\n<li>\n<p>Osteoporose e complicações do infarto ósseo;</p>\n</li>\n<li>\n<p>Cardiomiopatia com disfunção diastólica;</p>\n</li>\n<li>\n<p>Hepatotoxicidade (sobrecarga transfusional de ferro ou medicamentos) e cálculos biliares pigmentados (hemólise crônica);</p>\n</li>\n<li>\n<p>Puberdade atrasada e crescimento reduzido;</p>\n</li>\n<li>\n<p>Úlceras crônicas nas pernas;</p>\n</li>\n<li>\n<p>Retinopatia proliferativa.</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: </strong>Encéfalo - AVC; Pulmões - <span class=\"article-4313\">Síndrome torácica aguda</span>; Aparelho genital – priapismo; Esqueleto - osteomielite, necrose asséptica de cabeça de Úmero e Fêmur; Rins - Glomerulonefrites, necrose de papila; Coração - miocardiopatia hipertrófica e hipertensão pulmonar; Abdome - colelitíase, colangite, tromboses vasculares, síndrome do sequestro esplênico; Outros - retina, úlcera de perna.</p>\n<p style=\"text-align: justify;\"> </p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Sabemos que anemia falciform é um mundo e a prova pode explorar diversos tópicos sobre o assunto! De modo geral, o mais interessante é fixar os seguintes pontos: interpretação de eletroforese de Hb; manejo de crise álgica; manejo de AVC no falciforme; manejo de priapismo; avaliação de complicações crônicas. Com esses tópicos dominados, dificilmente passarão dificuldades na prova!</p>\n<p> </p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Para contextualizar caso você esteja fazendo as questões em modo aleatório, essa questão faz parte de um conjunto de 5 questões sobre uma paciente com <span class=\"article-4011\">anemia falciforme</span> que apresenta dor intensa em hipocôndrio direito. Nossa última questão do caso solicita uma listagem dos principais orgãos alvos e complicações neles desencadeadas pelas crises vaso-oclusivas.</p>\n<p style=\"text-align: justify;\">De modo mais sucinto, podemos resumir as manifestações da <span class=\"article-4011\">anemia falciforme</span> da seguinte forma:</p>\n<p style=\"text-align: justify;\">Complicações agudas — As principais complicações agudas da DF incluem as seguintes:</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p>Infecções;</p>\n</li>\n<li>\n<p>Anemia grave (devido a sequestro esplênico, crise aplástica ou hiper-hemólise);</p>\n</li>\n<li>\n<p>Fenômenos vaso-oclusivos</p>\n<ul>\n<li>\n<p>Dor vaso-oclusiva aguda;</p>\n</li>\n<li>\n<p>AVC;</p>\n</li>\n<li>\n<p><span class=\"article-4313\">Síndrome torácica aguda</span>;</p>\n</li>\n<li>\n<p>Infarto renal ou toxicidade medicamentosa;</p>\n</li>\n<li>\n<p>Dactilite ou infarto ósseo;</p>\n</li>\n<li>\n<p>Infarto do miocárdio;</p>\n</li>\n<li>\n<p>Complicações relacionadas à gravidez;</p>\n</li>\n<li>\n<p>Priapismo;</p>\n</li>\n<li>\n<p>Tromboembolismo venoso;</p>\n</li>\n</ul>\n</li>\n</ul>\n<p style=\"text-align: justify;\">Complicações crônicas — Muitos sistemas orgânicos podem desenvolver manifestações crônicas:</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p>Dor;</p>\n</li>\n<li>\n<p> Anemia;</p>\n</li>\n<li>\n<p>Déficits neurológicos ou distúrbios convulsivos;</p>\n</li>\n<li>\n<p>Condições pulmonares;</p>\n</li>\n<li>\n<p>Função renal prejudicada e hipertensão;</p>\n</li>\n<li>\n<p>Osteoporose e complicações do infarto ósseo;</p>\n</li>\n<li>\n<p>Cardiomiopatia com disfunção diastólica;</p>\n</li>\n<li>\n<p>Hepatotoxicidade (sobrecarga transfusional de ferro ou medicamentos) e cálculos biliares pigmentados (hemólise crônica);</p>\n</li>\n<li>\n<p>Puberdade atrasada e crescimento reduzido;</p>\n</li>\n<li>\n<p>Úlceras crônicas nas pernas;</p>\n</li>\n<li>\n<p>Retinopatia proliferativa.</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: </strong>Encéfalo - AVC; Pulmões - <span class=\"article-4313\">Síndrome torácica aguda</span>; Aparelho genital – priapismo; Esqueleto - osteomielite, necrose asséptica de cabeça de Úmero e Fêmur; Rins - Glomerulonefrites, necrose de papila; Coração - miocardiopatia hipertrófica e hipertensão pulmonar; Abdome - colelitíase, colangite, tromboses vasculares, síndrome do sequestro esplênico; Outros - retina, úlcera de perna.</p>\n<p style=\"text-align: justify;\"> </p><br>Visão do aprovado: <p style=\"text-align: justify;\">Sabemos que anemia falciform é um mundo e a prova pode explorar diversos tópicos sobre o assunto! De modo geral, o mais interessante é fixar os seguintes pontos: interpretação de eletroforese de Hb; manejo de crise álgica; manejo de AVC no falciforme; manejo de priapismo; avaliação de complicações crônicas. Com esses tópicos dominados, dificilmente passarão dificuldades na prova!</p>\n<p> </p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T19:01:26.547523+00:00",
+  "complete": true
+}

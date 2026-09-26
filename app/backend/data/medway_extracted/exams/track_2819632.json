@@ -1,0 +1,592 @@
+{
+  "track_id": 2819632,
+  "name": "UNICAMP - 2024 [Endoscopia Ginecológica]",
+  "year": 2024,
+  "track_fast": {
+    "id": 2819632,
+    "name": "UNICAMP - 2024 [Endoscopia Ginecológica]",
+    "track_type": "c",
+    "question_count": 5,
+    "year": 2024,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UNICAMP",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-unicamp_yplZ7NO.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 197430,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Prolapsos genitais e fístulas",
+        "focus": {
+          "id": 1644,
+          "name": "Prolapsos genitais e fístulas"
+        }
+      },
+      "detail": {
+        "id": 197430,
+        "content": "Mulher, 55a, G3PN3A0, menopausada sem TH, sem comorbidades, negando tabagismo, queixa-se de bola na vagina, com sensação de esvaziamento vesical incompleto, urgência miccional e noctúria; nega incontinência urinária de esforço e incontinência de urgência. No exame apresenta IMC=26Kg/m², sem cicatrizes abdominais e classificação Pelvic Organ Prolapse Quantification (POP-Q): Aa +2, Ba +7, C +7, GH 3, PB 3, TVL 8, Ap 0, Bp +7, D= ausente. PERGUNTA-SE: \na. Qual o diagnóstico e estágio do prolapso pela classificação de POP-Q?  \nb. Cite e descreva resumidamente 2 técnicas cirúrgicas para esse tipo de prolapso.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15922,
+            "parent_tag": {
+              "id": 15917,
+              "name": "Uroginecologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Prolapsos genitais e fístulas",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 40,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1644,
+          "name": "Prolapsos genitais e fístulas",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 89,
+            "name": "Uroginecologia",
+            "discipline": 86,
+            "old_tag": 15917,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224707,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Gabarito:</strong> <br/><strong>a) </strong><span class=\"article-3620\">Prolapso de cúpula vaginal</span> estádio 4.<br/><strong>b) </strong>- Colpopexia sacral: consiste em interposição de tela de polipropileno na parede vaginal anterior, posterior e apical e no promontório sacral, podendo ser realizada por via laparotômica, laparoscópica ou robótica.<br/>- Colpopexia sacroespinhal: fixação da cúpula vaginal no ligamento sacroespinhal unilateral ou bilateralmente, sendo feita por via vaginal.<br/>- Cirurgia de High McCall: encurtamento dos ligamentos úterossacros, podendo ser feita por via vaginal, laparotômica, robótica ou laparoscópica.</p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p>A chave pra responder essa questão era entender o <span class=\"article-3629\">POP-Q</span>, certo? Não tem jeito, precisamos conhecer essa classificação. O <span class=\"article-3629\">POP-Q</span> é uma boa estratégia para padronizar os achados encontrados no exame físico de um prolapso e nesse caso usamos ele para classificar o grau de prolapso (<strong>estadiamento</strong>).</p>\n<p>Por isso, essa era a imagem que você precisava ter em mente pra matar a questão:</p>\n<p style=\"text-align: center;\"><img height=\"485\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250410T111627671Z941909.png\" style=\"float: left;\" width=\"532\"/></p>\n<p style=\"text-align: center;\"> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p>Na questão temos um prolapso anterior ( Ba +7), posterior (Bp +7) e apical (C+7) que estão a 7cm do hímen (lembrando que o sinal de + indica o que está “para fora” do canal vaginal. Se o comprimento vaginal total (TVL) é 8cm, estamos diante de um prolapso TVL -1, certo? Por isso já classificamos como <strong>prolapso estadio IV,</strong> que representa os prolapsos maiores que TVL-2.</p>\n<p>Prolapsos estadio IV sempre tem um comprometimento <strong>apical </strong>(cúpula) porque já são muito graves e já não há nada segurando eles dentro do canal vaginal. A idéia da correção cirúrgica é justamente reestabelecer a anatomia pela fixação dessa cúpula em alguma estrutura rígida, basicamente um <strong>ligamento</strong>!</p>\n<p>Temos então 3 tipos de correção possíveis</p>\n<p>- <strong>Colpexia sacral (colpopromontofixação)</strong>: nesse caso usamos o <strong>ligamento anterior do promontório sacral</strong> como estrutura de fixação. Através de uma tela sintética, ligamos o sacro nas regiões anterior e posterior do canal vaginal. Para isso é necessário dissecção do espaço pré-sacral, que pode ser feito via laparotômica, laparoscópica ou robótica. É uma das técnias com melhor taxa de sucesso!</p>\n<p>- <strong>Colpopexia sacroespinhal (fixação sacroespinhal)</strong>: o ponto de reparo será o próprio <strong>ligamento sacroespinhoso</strong>! Esse ligamento conecta a espinha isquiática ao sacro, por isso o acesso é vaginal. Por meio de um fio inabsorvível, fixamos a cúpula vaginal ao ligamento, 2cm abaixo da espinha isquiática (o risco aqui é a artéria pudenda, que passa logo ao lado). Isso pode ser feito uni ou bilateralmente.</p>\n<p>- <strong>Cirurgia de High McCall: </strong>a estrela da vez é o <strong>ligamento uterossacro</strong>! O ligamento uterossacro compõe o anel pericervical portanto está conectado ao colo. Vamos então encurtá-lo e realizar a fixação da cúpula no ponto mais alto do ligamento, próximo à parede pélvica. Também pode ser feita via vaginal, ou ainda laparotômica, robótica ou laparoscópica.</p>\n<p> </p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Estadiamento dos prolapsos salvam muitas questões de uroginecologia.</p>\n<p>Lembre-se que os prolapsos maiores (estadio III ou IV) sempre tem algum nível de prolapso apical, por isso as técnicas de correção apical são as mais indicadas. Para corrigir um defeito tão grande vamos precisar de uma estrutura “forte”, que sempre será um ligamento (uterossacro, sacroespinhal ou ligamento anterior do promontório).</p>\n<p>Eu sei que você também pensou na <strong>colpocleise</strong>... Mas cuidado, a colpocleise é uma técnica obliterativa, em que unimos a fáscia anterior e posterior do canal vaginal, portanto fechando o canal vaginal. Essa técnica é excelente, com baixa taxa de recidiva, mas por impedir prática sexual penetrativa é reservada para pacientes sem atividade sexual. Se a questão não te falar nada a respeito da vida sexual, essa técnica não será indicada, beleza?</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Gabarito:</strong> <br/><strong>a) </strong><span class=\"article-3620\">Prolapso de cúpula vaginal</span> estádio 4.<br/><strong>b) </strong>- Colpopexia sacral: consiste em interposição de tela de polipropileno na parede vaginal anterior, posterior e apical e no promontório sacral, podendo ser realizada por via laparotômica, laparoscópica ou robótica.<br/>- Colpopexia sacroespinhal: fixação da cúpula vaginal no ligamento sacroespinhal unilateral ou bilateralmente, sendo feita por via vaginal.<br/>- Cirurgia de High McCall: encurtamento dos ligamentos úterossacros, podendo ser feita por via vaginal, laparotômica, robótica ou laparoscópica.</p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p>A chave pra responder essa questão era entender o <span class=\"article-3629\">POP-Q</span>, certo? Não tem jeito, precisamos conhecer essa classificação. O <span class=\"article-3629\">POP-Q</span> é uma boa estratégia para padronizar os achados encontrados no exame físico de um prolapso e nesse caso usamos ele para classificar o grau de prolapso (<strong>estadiamento</strong>).</p>\n<p>Por isso, essa era a imagem que você precisava ter em mente pra matar a questão:</p>\n<p style=\"text-align: center;\"><img height=\"485\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250410T111627671Z941909.png\" style=\"float: left;\" width=\"532\"/></p>\n<p style=\"text-align: center;\"> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p>Na questão temos um prolapso anterior ( Ba +7), posterior (Bp +7) e apical (C+7) que estão a 7cm do hímen (lembrando que o sinal de + indica o que está “para fora” do canal vaginal. Se o comprimento vaginal total (TVL) é 8cm, estamos diante de um prolapso TVL -1, certo? Por isso já classificamos como <strong>prolapso estadio IV,</strong> que representa os prolapsos maiores que TVL-2.</p>\n<p>Prolapsos estadio IV sempre tem um comprometimento <strong>apical </strong>(cúpula) porque já são muito graves e já não há nada segurando eles dentro do canal vaginal. A idéia da correção cirúrgica é justamente reestabelecer a anatomia pela fixação dessa cúpula em alguma estrutura rígida, basicamente um <strong>ligamento</strong>!</p>\n<p>Temos então 3 tipos de correção possíveis</p>\n<p>- <strong>Colpexia sacral (colpopromontofixação)</strong>: nesse caso usamos o <strong>ligamento anterior do promontório sacral</strong> como estrutura de fixação. Através de uma tela sintética, ligamos o sacro nas regiões anterior e posterior do canal vaginal. Para isso é necessário dissecção do espaço pré-sacral, que pode ser feito via laparotômica, laparoscópica ou robótica. É uma das técnias com melhor taxa de sucesso!</p>\n<p>- <strong>Colpopexia sacroespinhal (fixação sacroespinhal)</strong>: o ponto de reparo será o próprio <strong>ligamento sacroespinhoso</strong>! Esse ligamento conecta a espinha isquiática ao sacro, por isso o acesso é vaginal. Por meio de um fio inabsorvível, fixamos a cúpula vaginal ao ligamento, 2cm abaixo da espinha isquiática (o risco aqui é a artéria pudenda, que passa logo ao lado). Isso pode ser feito uni ou bilateralmente.</p>\n<p>- <strong>Cirurgia de High McCall: </strong>a estrela da vez é o <strong>ligamento uterossacro</strong>! O ligamento uterossacro compõe o anel pericervical portanto está conectado ao colo. Vamos então encurtá-lo e realizar a fixação da cúpula no ponto mais alto do ligamento, próximo à parede pélvica. Também pode ser feita via vaginal, ou ainda laparotômica, robótica ou laparoscópica.</p>\n<p> </p><br>Visão do aprovado: <p>Estadiamento dos prolapsos salvam muitas questões de uroginecologia.</p>\n<p>Lembre-se que os prolapsos maiores (estadio III ou IV) sempre tem algum nível de prolapso apical, por isso as técnicas de correção apical são as mais indicadas. Para corrigir um defeito tão grande vamos precisar de uma estrutura “forte”, que sempre será um ligamento (uterossacro, sacroespinhal ou ligamento anterior do promontório).</p>\n<p>Eu sei que você também pensou na <strong>colpocleise</strong>... Mas cuidado, a colpocleise é uma técnica obliterativa, em que unimos a fáscia anterior e posterior do canal vaginal, portanto fechando o canal vaginal. Essa técnica é excelente, com baixa taxa de recidiva, mas por impedir prática sexual penetrativa é reservada para pacientes sem atividade sexual. Se a questão não te falar nada a respeito da vida sexual, essa técnica não será indicada, beleza?</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197431,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "h",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Miomatose uterina",
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina"
+        }
+      },
+      "detail": {
+        "id": 197431,
+        "content": "Paciente de 32 anos, nuligesta com desejo reprodutivo vem com queixa de sangramento uterino anormal. Em ultrassom transvaginal para investigação foi evidenciado o seguinte mioma: Nódulo FIGO 2 de 4 cm, no terço superior da cavidade uterina, em parede lateral direita. PERGUNTA-SE: \na. Classifique esse mioma segundo a classificação STEP-W (Size, Topography, Extension, Penetration, and lateral Wall) \nb. Qual a conduta apropriada para o caso com base em sua classificação?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15986,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Miomatose uterina",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 28,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224708,
+        "actual_explanation": true,
+        "introduction": "<p><strong>Gabarito:</strong> <br><strong>a) </strong>Mioma do grupo II (escore STEP-W de 6 pontos: Penetra&ccedil;&atilde;o: 2 / tamanho: 1 / base: - / ter&ccedil;o: 2 / lateral: 1)<strong><br>b) </strong>Miomectomia histerosc&oacute;pica em 2 tempos ou preparo com an&aacute;logo do GnRH seguido de&nbsp;miomectomia histerosc&oacute;pica</p>\n<p>&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Tema mais espec&iacute;fico aqui quando falamos em tratamentos de miomas. N&atilde;o temos d&uacute;vidas que o sangramento uterino anormal da nossa paciente provavelmente est&aacute; associado ao mioma submucoso visualizado tanto &agrave; ultrassonografia. N&atilde;o &eacute; segredo tamb&eacute;m que, diante de uma paciente com desejo gestacional, vamos partir para t&eacute;cnicas menos invasivas de tratamento cir&uacute;rgico desse mioma, com prefer&ecirc;ncia para t&eacute;cnicas histerosc&oacute;picas em casos de miomas submucosos. Mas agora falando mais precisamente em rela&ccedil;&atilde;o &agrave; prepara&ccedil;&atilde;o cir&uacute;rgica nesses casos, temos uma classifica&ccedil;&atilde;o bastante interessante para o preparo pr&eacute;-operat&oacute;rio desse mioma: o STEP-W. Por meio da ultrassonografia ou da resson&acirc;ncia magn&eacute;tica, podemos avaliar demais caracter&iacute;sticas do mioma, como tamanho exato, posi&ccedil;&atilde;o na parede uterina, tamanho da base, invas&atilde;o miometrial, entre outras. Veja na figura a seguir como temos dois miomas que abaulam a cavidade, mas o primeiro deles (&agrave; esquerda) maior e com menor invas&atilde;o do miom&eacute;trio quando comparado ao segundo.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T213416929Z402853.png\" width=\"377\" height=\"160\"></span></span></p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Essas caracter&iacute;sticas que comentamos acima s&atilde;o importantes n&atilde;o apenas na caracteriza&ccedil;&atilde;o desse mioma, mas tamb&eacute;m no planejamento do tratamento mais adequado para cada caso. Para tal, temos a classifica&ccedil;&atilde;o de Lasmar/STEP-W: justamente para agrupar essas caracter&iacute;sticas e analisar qu&atilde;o plaus&iacute;vel &eacute; a ressec&ccedil;&atilde;o desse mioma via histerosc&oacute;pica e para mapeamento pr&eacute;-operat&oacute;rio da extens&atilde;o do envolvimento miometrial. Veja a seguir todos esses crit&eacute;rios.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T213416915Z149292.png\" width=\"477\" height=\"279\"></span></span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Veja que, quanto mais dif&iacute;cil a&nbsp;ressec&ccedil;&atilde;o, maior a pontua&ccedil;&atilde;o nesse escore: como miomas grandes, com penetra&ccedil;&atilde;o miometrial e base larga em rela&ccedil;&atilde;o &agrave; parede, al&eacute;m de caracter&iacute;sticas que dificultam o procedimento histerosc&oacute;pico, como a parede lateral do &uacute;tero. Assim, a melhor abordagem pode ser definida de acordo com esses crit&eacute;rios.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T213416922Z417928.png\" width=\"464\" height=\"269\"></span></span></strong></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Portanto, quanto menor a soma, mais f&aacute;cil a&nbsp;ressec&ccedil;&atilde;o histerosc&oacute;pica, procedimento consideravelmente de menor &iacute;ndice de complica&ccedil;&otilde;es e com a possibilidade de preserva&ccedil;&atilde;o da fertilidade, sem aumento de riscos na pr&oacute;xima gesta&ccedil;&atilde;o. Com isso, minimiza-se a morbidade do procedimento e a escolha da melhor t&eacute;cnica para a realiza&ccedil;&atilde;o do procedimento. Vamos &agrave;s nossas perguntas ent&atilde;o?</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt; padding-left: 40px;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">A. Vamos colocar em pr&aacute;tica ent&atilde;o a classifica&ccedil;&atilde;o que vimos acima com as caracter&iacute;sticas que a quest&atilde;o nos fornece.</span></p>\n<ol>\n<li style=\"list-style-type: none;\">\n<ol style=\"padding-inline-start: 48px;\">\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Penetra&ccedil;&atilde;o: 2 pontos. A classifica&ccedil;&atilde;o da FIGO nos fornece uma ideia de profundidade desse mioma. FIGO 2 significa um mioma submucoso, mas com &gt; 50% sendo intramural.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Tamanho: 1 ponto. O mioma da quest&atilde;o est&aacute; entre 2 e 5 cm.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Ter&ccedil;o: 2 pontos. A localiza&ccedil;&atilde;o no ter&ccedil;o superior dificulta a ressec&ccedil;&atilde;o histerosc&oacute;pica e, por isso, agrega mais dois pontos aqui.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Parede lateral: 1 ponto. S&oacute; de estar em uma parede lateral j&aacute; temos a soma de um ponto no escore.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Base: n&atilde;o temos dados espec&iacute;ficos para definir a base, ent&atilde;o n&atilde;o iremos pontuar aqui.</span></p>\n</li>\n</ol>\n</li>\n</ol>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt; padding-left: 48px;\"><span style=\"font-size: 11pt;\">Portanto, temos v&aacute;rias caracter&iacute;sticas que, somadas, temos um valor de 6 pontos, isto &eacute;, um mioma do grupo II, com possibilidade de miomectomia histerosc&oacute;pica, mas com maior n&iacute;vel de dificuldade associado.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt; padding-left: 48px;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt; padding-left: 48px;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">B. Reveja acima a tabela que associa o valor da classifica&ccedil;&atilde;o&nbsp;STEP-W &agrave; conduta mais indicada. Nesse caso, a ressec&ccedil;&atilde;o histerosc&oacute;pica &eacute; poss&iacute;vel, mas traz um n&iacute;vel de dificuldade maior por tudo isso que vimos. Dessa forma, &eacute; interessante pensarmos em t&eacute;cnicas para facilitar esse procedimento, como o uso de an&aacute;logos de GnRH para redu&ccedil;&atilde;o do volume do mioma e melhora de n&iacute;veis hematim&eacute;tricos, ou um procedimento dividido em dois tempos.</span></p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">A histeroscopia &eacute; um procedimento bastante interessante e cada vez mais presente na pr&aacute;tica cl&iacute;nica. &Eacute; um exame r&aacute;pido e que pode ser feito at&eacute; mesmo ambulatorialmente para diagn&oacute;stico de condi&ccedil;&otilde;es intrauterinas, como p&oacute;lipos e miomas. Quando visa o tratamento cir&uacute;rgico, &eacute; um tratamento de forma minimamente invasiva por meio de um ressectosc&oacute;pio, com baixa morbidade e riscos de complica&ccedil;&otilde;es, preserva&ccedil;&atilde;o de fertilidade, bem como possibilidade de alta no mesmo dia, como visto a seguir.</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T213558331Z564173.png\" width=\"459\" height=\"374\"></p>\n<p style=\"text-align: justify;\"><br><br></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>Gabarito:</strong> <br><strong>a) </strong>Mioma do grupo II (escore STEP-W de 6 pontos: Penetra&ccedil;&atilde;o: 2 / tamanho: 1 / base: - / ter&ccedil;o: 2 / lateral: 1)<strong><br>b) </strong>Miomectomia histerosc&oacute;pica em 2 tempos ou preparo com an&aacute;logo do GnRH seguido de&nbsp;miomectomia histerosc&oacute;pica</p>\n<p>&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Tema mais espec&iacute;fico aqui quando falamos em tratamentos de miomas. N&atilde;o temos d&uacute;vidas que o sangramento uterino anormal da nossa paciente provavelmente est&aacute; associado ao mioma submucoso visualizado tanto &agrave; ultrassonografia. N&atilde;o &eacute; segredo tamb&eacute;m que, diante de uma paciente com desejo gestacional, vamos partir para t&eacute;cnicas menos invasivas de tratamento cir&uacute;rgico desse mioma, com prefer&ecirc;ncia para t&eacute;cnicas histerosc&oacute;picas em casos de miomas submucosos. Mas agora falando mais precisamente em rela&ccedil;&atilde;o &agrave; prepara&ccedil;&atilde;o cir&uacute;rgica nesses casos, temos uma classifica&ccedil;&atilde;o bastante interessante para o preparo pr&eacute;-operat&oacute;rio desse mioma: o STEP-W. Por meio da ultrassonografia ou da resson&acirc;ncia magn&eacute;tica, podemos avaliar demais caracter&iacute;sticas do mioma, como tamanho exato, posi&ccedil;&atilde;o na parede uterina, tamanho da base, invas&atilde;o miometrial, entre outras. Veja na figura a seguir como temos dois miomas que abaulam a cavidade, mas o primeiro deles (&agrave; esquerda) maior e com menor invas&atilde;o do miom&eacute;trio quando comparado ao segundo.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T213416929Z402853.png\" width=\"377\" height=\"160\"></span></span></p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Essas caracter&iacute;sticas que comentamos acima s&atilde;o importantes n&atilde;o apenas na caracteriza&ccedil;&atilde;o desse mioma, mas tamb&eacute;m no planejamento do tratamento mais adequado para cada caso. Para tal, temos a classifica&ccedil;&atilde;o de Lasmar/STEP-W: justamente para agrupar essas caracter&iacute;sticas e analisar qu&atilde;o plaus&iacute;vel &eacute; a ressec&ccedil;&atilde;o desse mioma via histerosc&oacute;pica e para mapeamento pr&eacute;-operat&oacute;rio da extens&atilde;o do envolvimento miometrial. Veja a seguir todos esses crit&eacute;rios.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T213416915Z149292.png\" width=\"477\" height=\"279\"></span></span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Veja que, quanto mais dif&iacute;cil a&nbsp;ressec&ccedil;&atilde;o, maior a pontua&ccedil;&atilde;o nesse escore: como miomas grandes, com penetra&ccedil;&atilde;o miometrial e base larga em rela&ccedil;&atilde;o &agrave; parede, al&eacute;m de caracter&iacute;sticas que dificultam o procedimento histerosc&oacute;pico, como a parede lateral do &uacute;tero. Assim, a melhor abordagem pode ser definida de acordo com esses crit&eacute;rios.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><strong><span style=\"font-size: 11pt;\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T213416922Z417928.png\" width=\"464\" height=\"269\"></span></span></strong></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt;\">Portanto, quanto menor a soma, mais f&aacute;cil a&nbsp;ressec&ccedil;&atilde;o histerosc&oacute;pica, procedimento consideravelmente de menor &iacute;ndice de complica&ccedil;&otilde;es e com a possibilidade de preserva&ccedil;&atilde;o da fertilidade, sem aumento de riscos na pr&oacute;xima gesta&ccedil;&atilde;o. Com isso, minimiza-se a morbidade do procedimento e a escolha da melhor t&eacute;cnica para a realiza&ccedil;&atilde;o do procedimento. Vamos &agrave;s nossas perguntas ent&atilde;o?</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt; padding-left: 40px;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">A. Vamos colocar em pr&aacute;tica ent&atilde;o a classifica&ccedil;&atilde;o que vimos acima com as caracter&iacute;sticas que a quest&atilde;o nos fornece.</span></p>\n<ol>\n<li style=\"list-style-type: none;\">\n<ol style=\"padding-inline-start: 48px;\">\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Penetra&ccedil;&atilde;o: 2 pontos. A classifica&ccedil;&atilde;o da FIGO nos fornece uma ideia de profundidade desse mioma. FIGO 2 significa um mioma submucoso, mas com &gt; 50% sendo intramural.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Tamanho: 1 ponto. O mioma da quest&atilde;o est&aacute; entre 2 e 5 cm.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Ter&ccedil;o: 2 pontos. A localiza&ccedil;&atilde;o no ter&ccedil;o superior dificulta a ressec&ccedil;&atilde;o histerosc&oacute;pica e, por isso, agrega mais dois pontos aqui.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Parede lateral: 1 ponto. S&oacute; de estar em uma parede lateral j&aacute; temos a soma de um ponto no escore.</span></p>\n</li>\n<li style=\"list-style-type: lower-alpha; font-size: 11pt; text-wrap-mode: nowrap;\">\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">Base: n&atilde;o temos dados espec&iacute;ficos para definir a base, ent&atilde;o n&atilde;o iremos pontuar aqui.</span></p>\n</li>\n</ol>\n</li>\n</ol>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt; padding-left: 48px;\"><span style=\"font-size: 11pt;\">Portanto, temos v&aacute;rias caracter&iacute;sticas que, somadas, temos um valor de 6 pontos, isto &eacute;, um mioma do grupo II, com possibilidade de miomectomia histerosc&oacute;pica, mas com maior n&iacute;vel de dificuldade associado.</span></p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt; padding-left: 48px;\">&nbsp;</p>\n<p style=\"line-height: 1.668; text-align: justify; margin-top: 0pt; margin-bottom: 0pt; padding-left: 48px;\"><span style=\"font-size: 11pt; text-wrap-mode: wrap;\">B. Reveja acima a tabela que associa o valor da classifica&ccedil;&atilde;o&nbsp;STEP-W &agrave; conduta mais indicada. Nesse caso, a ressec&ccedil;&atilde;o histerosc&oacute;pica &eacute; poss&iacute;vel, mas traz um n&iacute;vel de dificuldade maior por tudo isso que vimos. Dessa forma, &eacute; interessante pensarmos em t&eacute;cnicas para facilitar esse procedimento, como o uso de an&aacute;logos de GnRH para redu&ccedil;&atilde;o do volume do mioma e melhora de n&iacute;veis hematim&eacute;tricos, ou um procedimento dividido em dois tempos.</span></p><br>Visão do aprovado: <p style=\"text-align: justify;\">A histeroscopia &eacute; um procedimento bastante interessante e cada vez mais presente na pr&aacute;tica cl&iacute;nica. &Eacute; um exame r&aacute;pido e que pode ser feito at&eacute; mesmo ambulatorialmente para diagn&oacute;stico de condi&ccedil;&otilde;es intrauterinas, como p&oacute;lipos e miomas. Quando visa o tratamento cir&uacute;rgico, &eacute; um tratamento de forma minimamente invasiva por meio de um ressectosc&oacute;pio, com baixa morbidade e riscos de complica&ccedil;&otilde;es, preserva&ccedil;&atilde;o de fertilidade, bem como possibilidade de alta no mesmo dia, como visto a seguir.</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250427T213558331Z564173.png\" width=\"459\" height=\"374\"></p>\n<p style=\"text-align: justify;\"><br><br></p><br>",
+        "students_difficulty": "h",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197432,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 197432,
+        "content": "Durante procedimento de laparoscopia, após realizar uma punção acessória de 5 mm em fossa ilíaca direita, houve um grande sangramento pelo portal do trocarte cursando com hematoma na parede pélvica. O sangramento foi contornado com sutura de planos profundos no local da punção e a cirurgia prosseguiu. Dias depois da cirurgia a paciente retorna com queixa de dor em fossa ilíaca direita com irradiação para região perineal atingindo grande lábio ipsilateral. PERGUNTA-SE: \na. Qual o vaso lesado no momento da punção? \nb. Qual o nervo lesado no momento da punção/sutura hemostática realizada?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 26,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224709,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\"><strong>Gabarito:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">a) Art&eacute;ria epig&aacute;strica inferior<br>b) Nervo ilioinguinal</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Coment&aacute;rio:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Essa &eacute; uma quest&atilde;o (muito legal) de anatomia aplicada &agrave; pr&aacute;tica cl&iacute;nica! Trata-se de uma paciente que foi submetida a uma laparoscopia e evoluiu com algumas intercorr&ecirc;ncias.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Primeiro, na passagem do&nbsp;trocater acess&oacute;rio de 5 mm, houve sangramento importante e forma&ccedil;&atilde;o de hematoma na parede p&eacute;lvica. Somos questionados sobre o nome do vaso lesionado em tal ocasi&atilde;o.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Posteriormente, para controle do sangramento, foram realizados diversos pontos hemost&aacute;ticos na regi&atilde;o, com subsequente les&atilde;o nervosa. A paciente evoluiu com dor em fossa il&iacute;aca direita e irradia&ccedil;&atilde;o para regi&atilde;o perineal e de grandes l&aacute;bios ipsilaterais. &nbsp;Qual foi o nervo lesionado?</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Vamos l&aacute;!</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>A) Qual o vaso lesado no momento da pun&ccedil;&atilde;o?</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">O vaso lesionado no momento da pun&ccedil;&atilde;o foi a art&eacute;ria epig&aacute;strica inferior direita. Ela &eacute; ramo da art&eacute;ria il&iacute;aca externa direita, o que justifica sangramento profuso em casos de les&otilde;es iatrog&ecirc;nicas.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>B) Qual o nervo lesado no momento da pun&ccedil;&atilde;o/sutura hemost&aacute;tica realizada?</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">O nervo lesado foi o nervo ilioinguinal direito. Este nervo, ramo do plexo lombar (L1), percorre a parede abdominal anterolateral, passando entre os m&uacute;sculos obl&iacute;quo interno e transverso do abdome, e emerge pr&oacute;ximo ao anel inguinal superficial direito. Ele fornece inerva&ccedil;&atilde;o sensitiva para a regi&atilde;o inguinal, base do p&ecirc;nis/grandes l&aacute;bios e parte superior e medial da coxa. O padr&atilde;o de dor descrito - dor em fossa il&iacute;aca direita com irradia&ccedil;&atilde;o para regi&atilde;o perineal atingindo o grande l&aacute;bio ipsilateral - &eacute; patognom&ocirc;nico de les&atilde;o do nervo ilioinguinal.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">A art&eacute;ria epig&aacute;strica inferior origina-se da art&eacute;ria il&iacute;aca externa, pr&oacute;ximo ao ligamento inguinal, e ascende pela face posterior do m&uacute;sculo reto abdominal. A pun&ccedil;&atilde;o em fossa il&iacute;aca direita, especialmente se realizada pr&oacute;xima ao ligamento umbilical, coloca este vaso em risco.</p>\n<p style=\"text-align: justify;\">Na laparoscopia, o ideal &eacute; sempre identificar internamente o trajeto desse vaso internamente e programar o local adequado para a pun&ccedil;&atilde;o.&nbsp; A imagem abaixo &eacute; um exemplo pr&aacute;tico para isso. Entende-se como \"X\" o local indicado para passagem do trocater.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250422T235155514Z698114.png\"></p>\n<p style=\"text-align: justify;\">&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\"><strong>Gabarito:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">a) Art&eacute;ria epig&aacute;strica inferior<br>b) Nervo ilioinguinal</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>Coment&aacute;rio:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Essa &eacute; uma quest&atilde;o (muito legal) de anatomia aplicada &agrave; pr&aacute;tica cl&iacute;nica! Trata-se de uma paciente que foi submetida a uma laparoscopia e evoluiu com algumas intercorr&ecirc;ncias.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Primeiro, na passagem do&nbsp;trocater acess&oacute;rio de 5 mm, houve sangramento importante e forma&ccedil;&atilde;o de hematoma na parede p&eacute;lvica. Somos questionados sobre o nome do vaso lesionado em tal ocasi&atilde;o.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Posteriormente, para controle do sangramento, foram realizados diversos pontos hemost&aacute;ticos na regi&atilde;o, com subsequente les&atilde;o nervosa. A paciente evoluiu com dor em fossa il&iacute;aca direita e irradia&ccedil;&atilde;o para regi&atilde;o perineal e de grandes l&aacute;bios ipsilaterais. &nbsp;Qual foi o nervo lesionado?</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Vamos l&aacute;!</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>A) Qual o vaso lesado no momento da pun&ccedil;&atilde;o?</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">O vaso lesionado no momento da pun&ccedil;&atilde;o foi a art&eacute;ria epig&aacute;strica inferior direita. Ela &eacute; ramo da art&eacute;ria il&iacute;aca externa direita, o que justifica sangramento profuso em casos de les&otilde;es iatrog&ecirc;nicas.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>B) Qual o nervo lesado no momento da pun&ccedil;&atilde;o/sutura hemost&aacute;tica realizada?</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">O nervo lesado foi o nervo ilioinguinal direito. Este nervo, ramo do plexo lombar (L1), percorre a parede abdominal anterolateral, passando entre os m&uacute;sculos obl&iacute;quo interno e transverso do abdome, e emerge pr&oacute;ximo ao anel inguinal superficial direito. Ele fornece inerva&ccedil;&atilde;o sensitiva para a regi&atilde;o inguinal, base do p&ecirc;nis/grandes l&aacute;bios e parte superior e medial da coxa. O padr&atilde;o de dor descrito - dor em fossa il&iacute;aca direita com irradia&ccedil;&atilde;o para regi&atilde;o perineal atingindo o grande l&aacute;bio ipsilateral - &eacute; patognom&ocirc;nico de les&atilde;o do nervo ilioinguinal.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">A art&eacute;ria epig&aacute;strica inferior origina-se da art&eacute;ria il&iacute;aca externa, pr&oacute;ximo ao ligamento inguinal, e ascende pela face posterior do m&uacute;sculo reto abdominal. A pun&ccedil;&atilde;o em fossa il&iacute;aca direita, especialmente se realizada pr&oacute;xima ao ligamento umbilical, coloca este vaso em risco.</p>\n<p style=\"text-align: justify;\">Na laparoscopia, o ideal &eacute; sempre identificar internamente o trajeto desse vaso internamente e programar o local adequado para a pun&ccedil;&atilde;o.&nbsp; A imagem abaixo &eacute; um exemplo pr&aacute;tico para isso. Entende-se como \"X\" o local indicado para passagem do trocater.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250422T235155514Z698114.png\"></p>\n<p style=\"text-align: justify;\">&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197433,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Lesões precursoras de câncer de endométrio e câncer de endométrio",
+        "focus": {
+          "id": 1604,
+          "name": "Lesões precursoras de câncer de endométrio e câncer de endométrio"
+        }
+      },
+      "detail": {
+        "id": 197433,
+        "content": "Mulher, 60a, menopausa há dez anos, refere sangramento vaginal em moderada quantidade por 3 meses. Tem índice de massa corpórea de 44kg/m², é hipertensa em uso de losartana. Nega outras patologias. Fez uma histeroscopia diagnostica com biópsia de endométrio conforme imagem abaixo. Retorna ao ambulatório mantendo queixa de sangramento e cujo anatomopatológico não foi possível de ser realizado por material insuficiente. PERGUNTA-SE: \na. Qual o achado da imagem histeroscópica? A paciente apresenta fatores de risco para alguma doença ginecológica maligna? Se sim, quais e para qual patologia em questão? \nb. Qual a conduta a ser realizada?",
+        "options": [],
+        "images": [
+          {
+            "id": 58428,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID197433_2024_institution-object-24_Q4/Captura_de_tela_2025-03-11_095424.png"
+          }
+        ],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15963,
+            "parent_tag": {
+              "id": 15903,
+              "name": "Oncologia pélvica",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Lesões precursoras de câncer de endométrio e câncer de endométrio",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 34,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1604,
+          "name": "Lesões precursoras de câncer de endométrio e câncer de endométrio",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 103,
+            "name": "Oncologia pélvica",
+            "discipline": 86,
+            "old_tag": 15903,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224710,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\"><strong>GABARITO:</strong></p>\n<p style=\"text-align: justify;\"><br><strong>A)&nbsp;</strong>Endom&eacute;trio atr&oacute;fico. Sim. Obesidade e hipertens&atilde;o. C&acirc;ncer de endom&eacute;trio.<br><strong>B)</strong> Repetir a bi&oacute;psia de endom&eacute;trio pois a paciente apresenta fatores de risco importantes para&nbsp;c&acirc;ncer de endom&eacute;trio.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>CONSIDERA&Ccedil;&Otilde;ES DA MEDWAY:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Estamos diante de um caso de sangramento p&oacute;s-menopausa em uma paciente de 60 anos, com menopausa h&aacute; 10 anos. O sangramento persiste por 3 meses em quantidade moderada. A paciente apresenta obesidade m&oacute;rbida (IMC 44 kg/m&sup2;) e hipertens&atilde;o arterial.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Foi realizada uma histeroscopia diagn&oacute;stica com bi&oacute;psia, por&eacute;m o material foi insuficiente para an&aacute;lise histopatol&oacute;gica. A imagem&nbsp;histerosc&oacute;pica mostra um endom&eacute;trio fino, com aspecto atr&oacute;fico, sem les&otilde;es focais evidentes, compat&iacute;vel com atrofia endometrial. No entanto, a persist&ecirc;ncia do sangramento, mesmo ap&oacute;s a histeroscopia, e a presen&ccedil;a de fatores de risco importantes nos faz manter alto grau de suspei&ccedil;&atilde;o para patologia maligna, especialmente o carcinoma endometrial.</p>\n<p style=\"text-align: justify;\"><br><strong>A)</strong> A imagem histerosc&oacute;pica mostra um endom&eacute;trio fino, com aspecto atr&oacute;fico, sem les&otilde;es focais evidentes, compat&iacute;vel com atrofia endometrial p&oacute;s-menopausa. N&atilde;o se observam &aacute;reas de espessamento endometrial, p&oacute;lipos, miomas submucosos ou les&otilde;es suspeitas para malignidade na imagem apresentada.&nbsp;A paciente apresenta fatores de risco importantes para c&acirc;ncer de endom&eacute;trio: Obesidade; Hipertens&atilde;o; Idade.&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>B)</strong> A conduta adequada neste caso seria realizar uma nova histeroscopia cir&uacute;rgica com bi&oacute;psia dirigida e/ou ressec&ccedil;&atilde;o endometrial para obter material adequado para an&aacute;lise histopatol&oacute;gica.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">A obesidade m&oacute;rbida (IMC 44 kg/m&sup2;) &eacute; um dos principais fatores de risco para c&acirc;ncer de endom&eacute;trio. Mulheres com IMC&nbsp;&gt; 40 kg/m&sup2; t&ecirc;m risco aumentado em 6-7 vezes quando comparadas a mulheres com peso normal. Isso ocorre porque o tecido adiposo &eacute; um local de aromatiza&ccedil;&atilde;o de androg&ecirc;nios em estrog&ecirc;nios, levando a um estado de hiperestrogenismo relativo, que estimula a prolifera&ccedil;&atilde;o endometrial.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\"><strong>GABARITO:</strong></p>\n<p style=\"text-align: justify;\"><br><strong>A)&nbsp;</strong>Endom&eacute;trio atr&oacute;fico. Sim. Obesidade e hipertens&atilde;o. C&acirc;ncer de endom&eacute;trio.<br><strong>B)</strong> Repetir a bi&oacute;psia de endom&eacute;trio pois a paciente apresenta fatores de risco importantes para&nbsp;c&acirc;ncer de endom&eacute;trio.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>CONSIDERA&Ccedil;&Otilde;ES DA MEDWAY:</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Estamos diante de um caso de sangramento p&oacute;s-menopausa em uma paciente de 60 anos, com menopausa h&aacute; 10 anos. O sangramento persiste por 3 meses em quantidade moderada. A paciente apresenta obesidade m&oacute;rbida (IMC 44 kg/m&sup2;) e hipertens&atilde;o arterial.&nbsp;</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">Foi realizada uma histeroscopia diagn&oacute;stica com bi&oacute;psia, por&eacute;m o material foi insuficiente para an&aacute;lise histopatol&oacute;gica. A imagem&nbsp;histerosc&oacute;pica mostra um endom&eacute;trio fino, com aspecto atr&oacute;fico, sem les&otilde;es focais evidentes, compat&iacute;vel com atrofia endometrial. No entanto, a persist&ecirc;ncia do sangramento, mesmo ap&oacute;s a histeroscopia, e a presen&ccedil;a de fatores de risco importantes nos faz manter alto grau de suspei&ccedil;&atilde;o para patologia maligna, especialmente o carcinoma endometrial.</p>\n<p style=\"text-align: justify;\"><br><strong>A)</strong> A imagem histerosc&oacute;pica mostra um endom&eacute;trio fino, com aspecto atr&oacute;fico, sem les&otilde;es focais evidentes, compat&iacute;vel com atrofia endometrial p&oacute;s-menopausa. N&atilde;o se observam &aacute;reas de espessamento endometrial, p&oacute;lipos, miomas submucosos ou les&otilde;es suspeitas para malignidade na imagem apresentada.&nbsp;A paciente apresenta fatores de risco importantes para c&acirc;ncer de endom&eacute;trio: Obesidade; Hipertens&atilde;o; Idade.&nbsp;</p>\n<p style=\"text-align: justify;\"><strong>B)</strong> A conduta adequada neste caso seria realizar uma nova histeroscopia cir&uacute;rgica com bi&oacute;psia dirigida e/ou ressec&ccedil;&atilde;o endometrial para obter material adequado para an&aacute;lise histopatol&oacute;gica.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">A obesidade m&oacute;rbida (IMC 44 kg/m&sup2;) &eacute; um dos principais fatores de risco para c&acirc;ncer de endom&eacute;trio. Mulheres com IMC&nbsp;&gt; 40 kg/m&sup2; t&ecirc;m risco aumentado em 6-7 vezes quando comparadas a mulheres com peso normal. Isso ocorre porque o tecido adiposo &eacute; um local de aromatiza&ccedil;&atilde;o de androg&ecirc;nios em estrog&ecirc;nios, levando a um estado de hiperestrogenismo relativo, que estimula a prolifera&ccedil;&atilde;o endometrial.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 197434,
+        "number": 5,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Endometriose parte 2: tratamento",
+        "focus": {
+          "id": 1647,
+          "name": "Endometriose parte 2: tratamento"
+        }
+      },
+      "detail": {
+        "id": 197434,
+        "content": "O tratamento cirúrgico da endometriose intestinal deve ser indicação obrigatória na presença de sinais e sintomas de obstrução e indicação preferencial mediante quadro álgico severo refratário a tratamentos hormonais ou crescimento das lesões, mesmo durante bloqueio hormonal. PERGUNTA-SE: \na. Cite as três opções cirúrgicas mais comumente utilizadas para tratar a mesma \nb. De forma geral, escreva as indicações para a ressecção discoide e segmentar das lesões endometrióticas intestinais",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15919,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Endometriose parte 2: tratamento",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 32,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1647,
+          "name": "Endometriose parte 2: tratamento",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 224711,
+        "actual_explanation": true,
+        "introduction": "<p>A endometriose intestinal representa um desafio terap&ecirc;utico significativo, sendo uma das formas mais graves de endometriose profunda. Ocorre em aproximadamente 5-12% das pacientes com endometriose, afetando principalmente o retossigmoide (cerca de 80% dos casos), seguido pelo &iacute;leo terminal, ap&ecirc;ndice e ceco. O tratamento cir&uacute;rgico torna-se mandat&oacute;rio em casos de obstru&ccedil;&atilde;o intestinal, acometimento de ap&ecirc;ndice ou intestino delgado e, preferencialmente, indicado quando h&aacute; dor severa refrat&aacute;ria ao tratamento hormonal ou crescimento das les&otilde;es mesmo durante o bloqueio hormonal. Estes casos demandam uma abordagem multidisciplinar, envolvendo ginecologistas com experi&ecirc;ncia em endometriose profunda e cirurgi&otilde;es colorretais.</p>\n<p>A escolha da t&eacute;cnica cir&uacute;rgica depende de v&aacute;rios fatores, incluindo o tamanho da les&atilde;o, profundidade de infiltra&ccedil;&atilde;o na parede intestinal, n&uacute;mero de les&otilde;es, localiza&ccedil;&atilde;o e extens&atilde;o circunferencial do comprometimento intestinal.</p>\n<p>Vamos ver quais s&atilde;o as op&ccedil;&otilde;es cir&uacute;rgicas e suas indica&ccedil;&otilde;es?</p>\n<p>&nbsp;</p>\n<ol>\n<li>Shaving (raspagem) retal: Consiste na excis&atilde;o da les&atilde;o endometri&oacute;tica que acomete a serosa e a camada muscular externa do intestino, sem abrir a luz intestinal. &Eacute; a t&eacute;cnica mais conservadora, com menor risco de complica&ccedil;&otilde;es graves, como f&iacute;stulas e estenoses. Geralmente utilizada para les&otilde;es superficiais, com menos de 30% de comprometimento da circunfer&ecirc;ncia intestinal e sem invas&atilde;o significativa da muscular pr&oacute;pria.</li>\n</ol>\n<p>&nbsp;</p>\n<ol start=\"2\">\n<li>Ressec&ccedil;&atilde;o discoide (nodulectomia): Envolve a remo&ccedil;&atilde;o completa da les&atilde;o endometri&oacute;tica com abertura da luz intestinal e posterior fechamento prim&aacute;rio do defeito. Pode ser realizada por via laparosc&oacute;pica ou rob&oacute;tica, utilizando grampeadores circulares ou sutura manual. Esta t&eacute;cnica remove toda a espessura da parede intestinal no local da les&atilde;o.</li>\n</ol>\n<p>Indica&ccedil;&otilde;es:</p>\n<ul>\n<li>Les&otilde;es &uacute;nicas com tamanho entre 1-3 cm</li>\n<li>Comprometimento de at&eacute; 30-40% da circunfer&ecirc;ncia intestinal</li>\n<li>Les&atilde;o que penetra at&eacute; submucosa</li>\n<li>Aus&ecirc;ncia de estenose significativa da luz intestinal</li>\n</ul>\n<p>&nbsp;</p>\n<ol start=\"3\">\n<li>Ressec&ccedil;&atilde;o segmentar: Consiste na remo&ccedil;&atilde;o de um segmento intestinal contendo a les&atilde;o endometri&oacute;tica, seguida de anastomose t&eacute;rmino-terminal. &Eacute; a t&eacute;cnica mais radical, indicada para les&otilde;es maiores ou m&uacute;ltiplas, e pode ser realizada por via laparosc&oacute;pica, rob&oacute;tica ou aberta, dependendo da experi&ecirc;ncia da equipe e disponibilidade de recursos.</li>\n</ol>\n<p>Indica&ccedil;&otilde;es:</p>\n<ul>\n<li>Les&otilde;es maiores que 3 cm</li>\n<li>M&uacute;ltiplas les&otilde;es no mesmo segmento intestinal</li>\n<li>Comprometimento superior a 1/3 da circunfer&ecirc;ncia intestinal</li>\n<li>Les&otilde;es que causam estenose significativa da luz intestinal</li>\n<li>Infiltra&ccedil;&atilde;o transmural extensa</li>\n<li>Les&otilde;es multifocais no mesmo segmento</li>\n<li>Les&otilde;es localizadas no&nbsp;sigm&oacute;ide (onde a ressec&ccedil;&atilde;o discoide &eacute; tecnicamente mais dif&iacute;cil)</li>\n</ul>\n<p>Bora ver o gabarito?</p>\n<p><strong>Gabarito:</strong> <br><strong>a)&nbsp;</strong>Shaving, ressec&ccedil;&atilde;o disc&oacute;ide e ressec&ccedil;&atilde;o segmentar.<br><strong>b)</strong> A ressec&ccedil;&atilde;o intestinal segmentar &eacute; geralmente realizada no caso de les&atilde;o &uacute;nica maior do que 3&nbsp;cm de di&acirc;metro, les&atilde;o &uacute;nica infiltrando mais de 50% da parede intestinal ou na presen&ccedil;a de duas&nbsp;ou mais les&otilde;es infiltrando a camada muscular da al&ccedil;a. A t&eacute;cnica de ressec&ccedil;&atilde;o de disco pode ser utilizada em les&otilde;es do reto baixo, utilizando-se grampeador circular. Essa t&eacute;cnica tem sido proposta para les&otilde;es n&atilde;o maiores que 1/3 da circunfer&ecirc;ncia do reto e menores que 3 cm em extens&atilde;o.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Quest&atilde;o dif&iacute;cil que abordava um tema bem espec&iacute;fico e que, geralmente, n&atilde;o &eacute; abordado pelo ginecologista. Claro que o&nbsp;cirurgi&atilde;o ginecol&oacute;gico de endometriose deve ter bom conhecimento da abordagem intestinal e como deve ser realizada, mas esse conhecimento n&atilde;o &eacute; frequente para o ginecologista geral!</p>\n<p>Na pr&aacute;tica cl&iacute;nica atual, observamos uma tend&ecirc;ncia &agrave; individualiza&ccedil;&atilde;o do tratamento cir&uacute;rgico da endometriose intestinal. Embora as indica&ccedil;&otilde;es que mencionei sejam um bom guia, a decis&atilde;o final sobre a t&eacute;cnica a ser empregada frequentemente ocorre no intraoperat&oacute;rio, baseada nos achados cir&uacute;rgicos. Um ponto importante que voc&ecirc; deve lembrar &eacute; que a t&eacute;cnica do shaving, apesar de mais conservadora, est&aacute; associada a maiores taxas de recidiva da dor. Por outro lado, as ressec&ccedil;&otilde;es discoides e segmentares, embora mais definitivas, apresentam maior risco de complica&ccedil;&otilde;es como f&iacute;stulas, estenoses e disfun&ccedil;&otilde;es intestinais p&oacute;s-operat&oacute;rias (como a s&iacute;ndrome da ressec&ccedil;&atilde;o anterior baixa).</p>\n<p>Fique atento &agrave;s armadilhas!</p>\n<p>Muitas bancas podem confundir as indica&ccedil;&otilde;es espec&iacute;ficas de cada t&eacute;cnica ou sugerir que existe uma t&eacute;cnica \"padr&atilde;o-ouro\" para todos os casos, o que n&atilde;o &eacute; verdade. A abordagem deve ser individualizada e baseada nas caracter&iacute;sticas da les&atilde;o e na experi&ecirc;ncia da equipe cir&uacute;rgica.</p>\n<p>Outro ponto frequentemente cobrado &eacute; a necessidade de preparo intestinal pr&eacute;-operat&oacute;rio e antibioticoprofilaxia, especialmente nos casos em que se planeja ressec&ccedil;&atilde;o discoide ou segmentar, onde esse manejo pr&eacute;-operat&oacute;rio &eacute; mandat&oacute;rio!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>A endometriose intestinal representa um desafio terap&ecirc;utico significativo, sendo uma das formas mais graves de endometriose profunda. Ocorre em aproximadamente 5-12% das pacientes com endometriose, afetando principalmente o retossigmoide (cerca de 80% dos casos), seguido pelo &iacute;leo terminal, ap&ecirc;ndice e ceco. O tratamento cir&uacute;rgico torna-se mandat&oacute;rio em casos de obstru&ccedil;&atilde;o intestinal, acometimento de ap&ecirc;ndice ou intestino delgado e, preferencialmente, indicado quando h&aacute; dor severa refrat&aacute;ria ao tratamento hormonal ou crescimento das les&otilde;es mesmo durante o bloqueio hormonal. Estes casos demandam uma abordagem multidisciplinar, envolvendo ginecologistas com experi&ecirc;ncia em endometriose profunda e cirurgi&otilde;es colorretais.</p>\n<p>A escolha da t&eacute;cnica cir&uacute;rgica depende de v&aacute;rios fatores, incluindo o tamanho da les&atilde;o, profundidade de infiltra&ccedil;&atilde;o na parede intestinal, n&uacute;mero de les&otilde;es, localiza&ccedil;&atilde;o e extens&atilde;o circunferencial do comprometimento intestinal.</p>\n<p>Vamos ver quais s&atilde;o as op&ccedil;&otilde;es cir&uacute;rgicas e suas indica&ccedil;&otilde;es?</p>\n<p>&nbsp;</p>\n<ol>\n<li>Shaving (raspagem) retal: Consiste na excis&atilde;o da les&atilde;o endometri&oacute;tica que acomete a serosa e a camada muscular externa do intestino, sem abrir a luz intestinal. &Eacute; a t&eacute;cnica mais conservadora, com menor risco de complica&ccedil;&otilde;es graves, como f&iacute;stulas e estenoses. Geralmente utilizada para les&otilde;es superficiais, com menos de 30% de comprometimento da circunfer&ecirc;ncia intestinal e sem invas&atilde;o significativa da muscular pr&oacute;pria.</li>\n</ol>\n<p>&nbsp;</p>\n<ol start=\"2\">\n<li>Ressec&ccedil;&atilde;o discoide (nodulectomia): Envolve a remo&ccedil;&atilde;o completa da les&atilde;o endometri&oacute;tica com abertura da luz intestinal e posterior fechamento prim&aacute;rio do defeito. Pode ser realizada por via laparosc&oacute;pica ou rob&oacute;tica, utilizando grampeadores circulares ou sutura manual. Esta t&eacute;cnica remove toda a espessura da parede intestinal no local da les&atilde;o.</li>\n</ol>\n<p>Indica&ccedil;&otilde;es:</p>\n<ul>\n<li>Les&otilde;es &uacute;nicas com tamanho entre 1-3 cm</li>\n<li>Comprometimento de at&eacute; 30-40% da circunfer&ecirc;ncia intestinal</li>\n<li>Les&atilde;o que penetra at&eacute; submucosa</li>\n<li>Aus&ecirc;ncia de estenose significativa da luz intestinal</li>\n</ul>\n<p>&nbsp;</p>\n<ol start=\"3\">\n<li>Ressec&ccedil;&atilde;o segmentar: Consiste na remo&ccedil;&atilde;o de um segmento intestinal contendo a les&atilde;o endometri&oacute;tica, seguida de anastomose t&eacute;rmino-terminal. &Eacute; a t&eacute;cnica mais radical, indicada para les&otilde;es maiores ou m&uacute;ltiplas, e pode ser realizada por via laparosc&oacute;pica, rob&oacute;tica ou aberta, dependendo da experi&ecirc;ncia da equipe e disponibilidade de recursos.</li>\n</ol>\n<p>Indica&ccedil;&otilde;es:</p>\n<ul>\n<li>Les&otilde;es maiores que 3 cm</li>\n<li>M&uacute;ltiplas les&otilde;es no mesmo segmento intestinal</li>\n<li>Comprometimento superior a 1/3 da circunfer&ecirc;ncia intestinal</li>\n<li>Les&otilde;es que causam estenose significativa da luz intestinal</li>\n<li>Infiltra&ccedil;&atilde;o transmural extensa</li>\n<li>Les&otilde;es multifocais no mesmo segmento</li>\n<li>Les&otilde;es localizadas no&nbsp;sigm&oacute;ide (onde a ressec&ccedil;&atilde;o discoide &eacute; tecnicamente mais dif&iacute;cil)</li>\n</ul>\n<p>Bora ver o gabarito?</p>\n<p><strong>Gabarito:</strong> <br><strong>a)&nbsp;</strong>Shaving, ressec&ccedil;&atilde;o disc&oacute;ide e ressec&ccedil;&atilde;o segmentar.<br><strong>b)</strong> A ressec&ccedil;&atilde;o intestinal segmentar &eacute; geralmente realizada no caso de les&atilde;o &uacute;nica maior do que 3&nbsp;cm de di&acirc;metro, les&atilde;o &uacute;nica infiltrando mais de 50% da parede intestinal ou na presen&ccedil;a de duas&nbsp;ou mais les&otilde;es infiltrando a camada muscular da al&ccedil;a. A t&eacute;cnica de ressec&ccedil;&atilde;o de disco pode ser utilizada em les&otilde;es do reto baixo, utilizando-se grampeador circular. Essa t&eacute;cnica tem sido proposta para les&otilde;es n&atilde;o maiores que 1/3 da circunfer&ecirc;ncia do reto e menores que 3 cm em extens&atilde;o.</p><br>Visão do aprovado: <p>Quest&atilde;o dif&iacute;cil que abordava um tema bem espec&iacute;fico e que, geralmente, n&atilde;o &eacute; abordado pelo ginecologista. Claro que o&nbsp;cirurgi&atilde;o ginecol&oacute;gico de endometriose deve ter bom conhecimento da abordagem intestinal e como deve ser realizada, mas esse conhecimento n&atilde;o &eacute; frequente para o ginecologista geral!</p>\n<p>Na pr&aacute;tica cl&iacute;nica atual, observamos uma tend&ecirc;ncia &agrave; individualiza&ccedil;&atilde;o do tratamento cir&uacute;rgico da endometriose intestinal. Embora as indica&ccedil;&otilde;es que mencionei sejam um bom guia, a decis&atilde;o final sobre a t&eacute;cnica a ser empregada frequentemente ocorre no intraoperat&oacute;rio, baseada nos achados cir&uacute;rgicos. Um ponto importante que voc&ecirc; deve lembrar &eacute; que a t&eacute;cnica do shaving, apesar de mais conservadora, est&aacute; associada a maiores taxas de recidiva da dor. Por outro lado, as ressec&ccedil;&otilde;es discoides e segmentares, embora mais definitivas, apresentam maior risco de complica&ccedil;&otilde;es como f&iacute;stulas, estenoses e disfun&ccedil;&otilde;es intestinais p&oacute;s-operat&oacute;rias (como a s&iacute;ndrome da ressec&ccedil;&atilde;o anterior baixa).</p>\n<p>Fique atento &agrave;s armadilhas!</p>\n<p>Muitas bancas podem confundir as indica&ccedil;&otilde;es espec&iacute;ficas de cada t&eacute;cnica ou sugerir que existe uma t&eacute;cnica \"padr&atilde;o-ouro\" para todos os casos, o que n&atilde;o &eacute; verdade. A abordagem deve ser individualizada e baseada nas caracter&iacute;sticas da les&atilde;o e na experi&ecirc;ncia da equipe cir&uacute;rgica.</p>\n<p>Outro ponto frequentemente cobrado &eacute; a necessidade de preparo intestinal pr&eacute;-operat&oacute;rio e antibioticoprofilaxia, especialmente nos casos em que se planeja ressec&ccedil;&atilde;o discoide ou segmentar, onde esse manejo pr&eacute;-operat&oacute;rio &eacute; mandat&oacute;rio!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T17:50:06.893310+00:00",
+  "complete": true
+}

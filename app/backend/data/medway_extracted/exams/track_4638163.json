@@ -1,0 +1,475 @@
+{
+  "track_id": 4638163,
+  "name": "UERJ - RJ-2023-Discursiva",
+  "year": 2023,
+  "track_fast": {
+    "id": 4638163,
+    "name": "UERJ - RJ-2023-Discursiva",
+    "track_type": "c",
+    "question_count": 4,
+    "year": 2023,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UERJ",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-uerj_uKE5Nhw.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 4,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 4,
+  "questions": [
+    {
+      "meta": {
+        "id": 333102,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+        "focus": {
+          "id": 1629,
+          "name": "Endometriose parte 1: fisiopatologia e diagnóstico"
+        }
+      },
+      "detail": {
+        "id": 333102,
+        "content": "Mulher de 39 anos, com queixa de sangramento uterino aumentado e dismenorreia, realiza ultrassonografia transvaginal que evidencia adenomiose. Sobre esse caso, cite dois achados ultrassonográficos característicos dessa doença e duas técnicas que podem ser utilizadas para seu respectivo tratamento.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 15937,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1629,
+          "name": "Endometriose parte 1: fisiopatologia e diagnóstico",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443145,
+        "actual_explanation": true,
+        "introduction": "<p>Sangramento uterino aumentado e dismenorreia em uma mulher de 39 anos formam um quadro clínico altamente sugestivo de adenomiose, e a questão exige que dominemos tanto os achados ultrassonográficos característicos quanto as opções terapêuticas disponíveis. O enunciado já nos fornece o diagnóstico estabelecido pela ultrassonografia transvaginal, então nosso foco aqui é demonstrar conhecimento técnico sobre os achados de imagem específicos e sobre o arsenal terapêutico dessa condição.</p>\n\n<p>Vamos começar pelos <strong>achados ultrassonográficos</strong>. A adenomiose é caracterizada pela invasão do miométrio por glândulas e estroma endometrial, e isso gera alterações específicas que conseguimos identificar na ultrassonografia transvaginal. O gabarito aceita diversos achados, e precisamos citar qualquer dois deles. Os mais clássicos e que devemos ter sempre em mente são:</p>\n\n<ul>\n<li><strong>alterações da zona juncional</strong> (ZJ) com espessamento maior que 5mm</li>\n<li><strong>assimetria de paredes uterinas</strong></li>\n<li><strong>formato globoso do útero</strong></li>\n<li><strong>heterogeneidade difusa ou focal do miométrio</strong></li>\n<li><strong>cistos miometriais</strong> (ou cistos anecoicos no miométrio)</li>\n<li><strong>ilhas de tecido hiperecoico no interior do miométrio</strong></li>\n<li><strong>estrias radiadas partindo do endométrio</strong></li>\n</ul>\n\n<p>Também são aceitos achados como linhas de sombra acústica posterior, brotos de tecido hiperecoico periendometriais, vascularização translacional, aumento do volume uterino sem nódulos miomatosos bem delimitados (o que ajuda a diferenciar de miomas), entre outros.</p>\n\n<p>Um ponto importante aqui: a adenomiose causa alterações <strong>difusas</strong> do miométrio, diferentemente dos miomas que formam nódulos bem circunscritos. Essa é uma armadilha comum nas provas. O útero \"globoso\" (aumentado de forma arredondada) é um achado clássico, assim como a assimetria das paredes, que reflete a distribuição irregular da doença no miométrio. Os cistos miometriais representam áreas de sangramento das glândulas ectópicas.</p>\n\n<p>Quanto ao <strong>tratamento</strong>, precisamos lembrar que existem várias abordagens, desde técnicas conservadoras até a histerectomia definitiva. A escolha depende fundamentalmente do desejo reprodutivo da paciente, da intensidade dos sintomas e da extensão da doença. O gabarito aceita uma ampla gama de técnicas, que podemos dividir em categorias:</p>\n\n<p>As <strong>técnicas conservadoras excisionais</strong> incluem a <strong>adenomiomectomia</strong> (ressecção cirúrgica dos focos de adenomiose), cistectomia e cirurgias citorredutoras. Essas são opções para pacientes que desejam preservar o útero, seja por desejo de gestação futura ou simplesmente por preferência de manter o órgão.</p>\n\n<p>As <strong>técnicas não excisionais</strong> englobam procedimentos como ligadura da artéria uterina, eletrocoagulação do miométrio e ultrassonografia focada de alta intensidade (HIFU). Estas têm a vantagem de serem menos invasivas.</p>\n\n<p>As <strong>técnicas histeroscópicas</strong> são muito utilizadas e incluem ressecção endometrial, ablação endometrial (que pode ser por radiofrequência, micro-ondas ou balão térmico), e cistectomia histeroscópica. Essas técnicas são menos invasivas, mas geralmente não preservam a fertilidade.</p>\n\n<p>Por fim, a <strong>histerectomia</strong> continua sendo o tratamento definitivo para casos graves em pacientes que já completaram prole ou não desejam preservar o útero.</p>\n\n<p>Um erro frequente dos candidatos é citar apenas a histerectomia como opção terapêutica, esquecendo todo o arsenal conservador disponível. Em uma prova discursiva, devemos demonstrar conhecimento amplo das possibilidades. Outro erro é confundir técnicas de tratamento de endometriose com as de adenomiose, embora existam sobreposições.</p>\n\n<p>Para pontuar integralmente nesta questão, precisamos citar <strong>dois achados ultrassonográficos</strong> dentre os listados no gabarito (os mais seguros são: alterações da ZJ >5mm, formato globoso, assimetria de paredes, heterogeneidade do miométrio, ou cistos miometriais) e <strong>duas técnicas de tratamento</strong> (podemos citar adenomiomectomia e histerectomia, ou ablação endometrial e adenomiomectomia, ou qualquer combinação de duas técnicas válidas). A banca aceita uma ampla variedade de respostas, então o importante é demonstrar conhecimento técnico preciso e usar a terminologia correta.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p><strong>Visão do aprovado</strong></p>\n\n<p>Em questões discursivas sobre adenomiose, a banca frequentemente cobra tanto imagem quanto conduta na mesma pergunta, testando se dominamos o diagnóstico ultrassonográfico e o arsenal terapêutico de forma integrada. Na hora H, devemos priorizar os achados mais específicos e menos contestáveis: <em>espessamento da zona juncional acima de 5mm</em> é critério objetivo e dificilmente será anulado, assim como <em>formato globoso</em> e <em>assimetria de paredes</em>. Já os achados mais descritivos como \"heterogeneidade\" podem gerar dúvida do corretor se não forem bem especificados.</p>\n\n<p>A armadilha clássica que derruba muitos candidatos é confundir adenomiose com miomatose uterina na ultrassonografia. Temos que mentalizar que adenomiose causa alterações difusas e infiltrativas do miométrio, enquanto miomas formam massas nodulares circunscritas com bordos definidos. Outro erro recorrente é limitar-se a citar histerectomia como única opção terapêutica, ignorando completamente as técnicas conservadoras. Isso demonstra raciocínio superficial, porque uma mulher de 39 anos pode ainda ter desejo reprodutivo ou simplesmente preferir preservar o útero. Sempre que a questão não especificar prole completa ou desejo de definitivo, devemos incluir pelo menos uma opção conservadora na resposta.</p>\n\n<p>Para maximizar a pontuação em provas discursivas, vale a pena escrever os termos técnicos corretos: <em>\"zona juncional maior que 5mm\"</em> pontua mais que \"espessamento difuso\", e <em>\"adenomiomectomia\"</em> é mais preciso que \"cirurgia conservadora\". Se a questão pede duas técnicas de tratamento, equilibrar uma conservadora com uma definitiva ou histeroscópica demonstra visão ampla do manejo e aumenta as chances de acertar o que a banca considera resposta completa.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Sangramento uterino aumentado e dismenorreia em uma mulher de 39 anos formam um quadro clínico altamente sugestivo de adenomiose, e a questão exige que dominemos tanto os achados ultrassonográficos característicos quanto as opções terapêuticas disponíveis. O enunciado já nos fornece o diagnóstico estabelecido pela ultrassonografia transvaginal, então nosso foco aqui é demonstrar conhecimento técnico sobre os achados de imagem específicos e sobre o arsenal terapêutico dessa condição.</p>\n\n<p>Vamos começar pelos <strong>achados ultrassonográficos</strong>. A adenomiose é caracterizada pela invasão do miométrio por glândulas e estroma endometrial, e isso gera alterações específicas que conseguimos identificar na ultrassonografia transvaginal. O gabarito aceita diversos achados, e precisamos citar qualquer dois deles. Os mais clássicos e que devemos ter sempre em mente são:</p>\n\n<ul>\n<li><strong>alterações da zona juncional</strong> (ZJ) com espessamento maior que 5mm</li>\n<li><strong>assimetria de paredes uterinas</strong></li>\n<li><strong>formato globoso do útero</strong></li>\n<li><strong>heterogeneidade difusa ou focal do miométrio</strong></li>\n<li><strong>cistos miometriais</strong> (ou cistos anecoicos no miométrio)</li>\n<li><strong>ilhas de tecido hiperecoico no interior do miométrio</strong></li>\n<li><strong>estrias radiadas partindo do endométrio</strong></li>\n</ul>\n\n<p>Também são aceitos achados como linhas de sombra acústica posterior, brotos de tecido hiperecoico periendometriais, vascularização translacional, aumento do volume uterino sem nódulos miomatosos bem delimitados (o que ajuda a diferenciar de miomas), entre outros.</p>\n\n<p>Um ponto importante aqui: a adenomiose causa alterações <strong>difusas</strong> do miométrio, diferentemente dos miomas que formam nódulos bem circunscritos. Essa é uma armadilha comum nas provas. O útero \"globoso\" (aumentado de forma arredondada) é um achado clássico, assim como a assimetria das paredes, que reflete a distribuição irregular da doença no miométrio. Os cistos miometriais representam áreas de sangramento das glândulas ectópicas.</p>\n\n<p>Quanto ao <strong>tratamento</strong>, precisamos lembrar que existem várias abordagens, desde técnicas conservadoras até a histerectomia definitiva. A escolha depende fundamentalmente do desejo reprodutivo da paciente, da intensidade dos sintomas e da extensão da doença. O gabarito aceita uma ampla gama de técnicas, que podemos dividir em categorias:</p>\n\n<p>As <strong>técnicas conservadoras excisionais</strong> incluem a <strong>adenomiomectomia</strong> (ressecção cirúrgica dos focos de adenomiose), cistectomia e cirurgias citorredutoras. Essas são opções para pacientes que desejam preservar o útero, seja por desejo de gestação futura ou simplesmente por preferência de manter o órgão.</p>\n\n<p>As <strong>técnicas não excisionais</strong> englobam procedimentos como ligadura da artéria uterina, eletrocoagulação do miométrio e ultrassonografia focada de alta intensidade (HIFU). Estas têm a vantagem de serem menos invasivas.</p>\n\n<p>As <strong>técnicas histeroscópicas</strong> são muito utilizadas e incluem ressecção endometrial, ablação endometrial (que pode ser por radiofrequência, micro-ondas ou balão térmico), e cistectomia histeroscópica. Essas técnicas são menos invasivas, mas geralmente não preservam a fertilidade.</p>\n\n<p>Por fim, a <strong>histerectomia</strong> continua sendo o tratamento definitivo para casos graves em pacientes que já completaram prole ou não desejam preservar o útero.</p>\n\n<p>Um erro frequente dos candidatos é citar apenas a histerectomia como opção terapêutica, esquecendo todo o arsenal conservador disponível. Em uma prova discursiva, devemos demonstrar conhecimento amplo das possibilidades. Outro erro é confundir técnicas de tratamento de endometriose com as de adenomiose, embora existam sobreposições.</p>\n\n<p>Para pontuar integralmente nesta questão, precisamos citar <strong>dois achados ultrassonográficos</strong> dentre os listados no gabarito (os mais seguros são: alterações da ZJ >5mm, formato globoso, assimetria de paredes, heterogeneidade do miométrio, ou cistos miometriais) e <strong>duas técnicas de tratamento</strong> (podemos citar adenomiomectomia e histerectomia, ou ablação endometrial e adenomiomectomia, ou qualquer combinação de duas técnicas válidas). A banca aceita uma ampla variedade de respostas, então o importante é demonstrar conhecimento técnico preciso e usar a terminologia correta.</p><br>Visão do aprovado: <p><strong>Visão do aprovado</strong></p>\n\n<p>Em questões discursivas sobre adenomiose, a banca frequentemente cobra tanto imagem quanto conduta na mesma pergunta, testando se dominamos o diagnóstico ultrassonográfico e o arsenal terapêutico de forma integrada. Na hora H, devemos priorizar os achados mais específicos e menos contestáveis: <em>espessamento da zona juncional acima de 5mm</em> é critério objetivo e dificilmente será anulado, assim como <em>formato globoso</em> e <em>assimetria de paredes</em>. Já os achados mais descritivos como \"heterogeneidade\" podem gerar dúvida do corretor se não forem bem especificados.</p>\n\n<p>A armadilha clássica que derruba muitos candidatos é confundir adenomiose com miomatose uterina na ultrassonografia. Temos que mentalizar que adenomiose causa alterações difusas e infiltrativas do miométrio, enquanto miomas formam massas nodulares circunscritas com bordos definidos. Outro erro recorrente é limitar-se a citar histerectomia como única opção terapêutica, ignorando completamente as técnicas conservadoras. Isso demonstra raciocínio superficial, porque uma mulher de 39 anos pode ainda ter desejo reprodutivo ou simplesmente preferir preservar o útero. Sempre que a questão não especificar prole completa ou desejo de definitivo, devemos incluir pelo menos uma opção conservadora na resposta.</p>\n\n<p>Para maximizar a pontuação em provas discursivas, vale a pena escrever os termos técnicos corretos: <em>\"zona juncional maior que 5mm\"</em> pontua mais que \"espessamento difuso\", e <em>\"adenomiomectomia\"</em> é mais preciso que \"cirurgia conservadora\". Se a questão pede duas técnicas de tratamento, equilibrar uma conservadora com uma definitiva ou histeroscópica demonstra visão ampla do manejo e aumenta as chances de acertar o que a banca considera resposta completa.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333103,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Endometriose parte 2: tratamento",
+        "focus": {
+          "id": 1647,
+          "name": "Endometriose parte 2: tratamento"
+        }
+      },
+      "detail": {
+        "id": 333103,
+        "content": "Paciente com queixa de dismenorreia progressiva e dispareunia, diagnosticada com endometriose profunda, apresenta exame de imagem mostrando comprometimento intestinal. Durante a cirurgia, é indicada a ressecção discoide simples do nódulo endometriótico intestinal. Nesse caso, descreva as características dessa ressecção e cite uma limitação de uso da técnica.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 15919,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Endometriose parte 2: tratamento",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1647,
+          "name": "Endometriose parte 2: tratamento",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443139,
+        "actual_explanation": true,
+        "introduction": "<p>Quando encontramos endometriose infiltrando a parede intestinal durante uma cirurgia, precisamos escolher entre diferentes técnicas de ressecção, e a <strong>ressecção discoide simples</strong> representa uma opção intermediária entre o shaving superficial e a ressecção segmentar. A questão quer que demonstremos conhecimento técnico sobre essa abordagem cirúrgica específica, pedindo dois pontos: as características da técnica e uma limitação para seu uso.</p>\n\n<p>Vamos começar entendendo o que caracteriza a ressecção discoide simples. O ponto fundamental é que essa técnica realiza a <strong>ressecção do nódulo de endometriose incluindo todas as camadas da parede anterior do reto</strong>. Isso significa que não fazemos apenas uma raspagem superficial (como no shaving), mas removemos todo o espessamento da parede — serosa, muscular e mucosa — no local do nódulo, criando uma defeito em formato de disco. Aqui está um diferencial importante: apesar de removermos todas as camadas, <strong>não mobilizamos completamente todo o segmento retossigmoide</strong> e, consequentemente, <strong>mantemos o suprimento sanguíneo da parede retal</strong>. Isso torna a técnica menos invasiva que a ressecção segmentar, na qual removemos um segmento inteiro do intestino com ligadura vascular.</p>\n\n<p>Agora, sobre as limitações, precisamos ser específicos porque a banca espera valores e critérios objetivos. A ressecção discoide não serve para qualquer lesão intestinal. Primeiro, há limitação quanto ao <strong>tamanho da lesão, que deve ser de até 3cm</strong>. Lesões maiores geralmente não são adequadas para essa técnica. Segundo, temos a <strong>extensão circunferencial da lesão, que não deve ultrapassar 40% da circunferência intestinal</strong>. Se a lesão for muito extensa ao redor do intestino, a ressecção discoide criaria um defeito muito grande, aumentando risco de estenose, e nesse caso a ressecção segmentar seria mais apropriada. Terceiro, existe a questão da <strong>distância da lesão à borda anal</strong> — lesões muito baixas podem dificultar a técnica e a sutura.</p>\n\n<p>Um erro comum é descrever a técnica de forma vaga, sem mencionar que todas as camadas são ressecadas ou sem citar a preservação vascular. Outro erro é listar as limitações sem especificar os valores (falar apenas \"lesões pequenas\" em vez de \"até 3cm\", ou \"extensão limitada\" sem mencionar os 40%). A banca quer demonstração de conhecimento técnico preciso, não generalidades.</p>\n\n<p>Para responder adequadamente, portanto, devemos deixar claro na descrição que a ressecção discoide envolve a remoção de todas as camadas da parede intestinal no local do nódulo, sem mobilização completa do retossigmoide e com manutenção do suprimento sanguíneo. Na limitação, basta citar uma das três (tamanho até 3cm, extensão até 40% da circunferência, ou distância da borda anal), mas sempre com os valores específicos quando aplicável. Esse nível de precisão técnica é o que diferencia uma resposta completa de uma resposta superficial nesse tipo de questão cirúrgica.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h2>Visão do aprovado</h2>\n\n<p>Em questões discursivas sobre técnicas cirúrgicas, a banca espera precisão nos detalhes técnicos, não apenas conceitos gerais. Para a ressecção discoide, o ponto-chave é explicitar que removemos todas as camadas da parede intestinal no local do nódulo, mas sem mobilizar completamente o segmento retossigmoide, o que preserva o suprimento sanguíneo. Essa aparente contradição – ressecção transmural local com manutenção da vascularização – é o que define a técnica e exige clareza na resposta.</p>\n\n<p>A principal pegadinha está nas limitações. Responder de forma genérica, como \"lesões pequenas\" ou \"extensão limitada\", não demonstra domínio técnico. Os números são parte integral do conhecimento: tamanho até 3cm e extensão até 40% da circunferência são critérios objetivos que a banca espera ver. A distância da borda anal também é limitação válida, embora sem valor de corte específico. Em provas discursivas, a especificidade dos valores é frequentemente o diferencial entre respostas completas e incompletas.</p>\n\n<p>Entender a hierarquia das técnicas ajuda a fixar o conceito: a discoide está no meio do espectro entre shaving (conservador, sem ressecção transmural) e ressecção segmentar (radical, remove segmento inteiro com ligadura vascular). Saber posicionar a técnica nessa gradação facilita lembrar tanto suas indicações quanto suas limitações naturais.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Quando encontramos endometriose infiltrando a parede intestinal durante uma cirurgia, precisamos escolher entre diferentes técnicas de ressecção, e a <strong>ressecção discoide simples</strong> representa uma opção intermediária entre o shaving superficial e a ressecção segmentar. A questão quer que demonstremos conhecimento técnico sobre essa abordagem cirúrgica específica, pedindo dois pontos: as características da técnica e uma limitação para seu uso.</p>\n\n<p>Vamos começar entendendo o que caracteriza a ressecção discoide simples. O ponto fundamental é que essa técnica realiza a <strong>ressecção do nódulo de endometriose incluindo todas as camadas da parede anterior do reto</strong>. Isso significa que não fazemos apenas uma raspagem superficial (como no shaving), mas removemos todo o espessamento da parede — serosa, muscular e mucosa — no local do nódulo, criando uma defeito em formato de disco. Aqui está um diferencial importante: apesar de removermos todas as camadas, <strong>não mobilizamos completamente todo o segmento retossigmoide</strong> e, consequentemente, <strong>mantemos o suprimento sanguíneo da parede retal</strong>. Isso torna a técnica menos invasiva que a ressecção segmentar, na qual removemos um segmento inteiro do intestino com ligadura vascular.</p>\n\n<p>Agora, sobre as limitações, precisamos ser específicos porque a banca espera valores e critérios objetivos. A ressecção discoide não serve para qualquer lesão intestinal. Primeiro, há limitação quanto ao <strong>tamanho da lesão, que deve ser de até 3cm</strong>. Lesões maiores geralmente não são adequadas para essa técnica. Segundo, temos a <strong>extensão circunferencial da lesão, que não deve ultrapassar 40% da circunferência intestinal</strong>. Se a lesão for muito extensa ao redor do intestino, a ressecção discoide criaria um defeito muito grande, aumentando risco de estenose, e nesse caso a ressecção segmentar seria mais apropriada. Terceiro, existe a questão da <strong>distância da lesão à borda anal</strong> — lesões muito baixas podem dificultar a técnica e a sutura.</p>\n\n<p>Um erro comum é descrever a técnica de forma vaga, sem mencionar que todas as camadas são ressecadas ou sem citar a preservação vascular. Outro erro é listar as limitações sem especificar os valores (falar apenas \"lesões pequenas\" em vez de \"até 3cm\", ou \"extensão limitada\" sem mencionar os 40%). A banca quer demonstração de conhecimento técnico preciso, não generalidades.</p>\n\n<p>Para responder adequadamente, portanto, devemos deixar claro na descrição que a ressecção discoide envolve a remoção de todas as camadas da parede intestinal no local do nódulo, sem mobilização completa do retossigmoide e com manutenção do suprimento sanguíneo. Na limitação, basta citar uma das três (tamanho até 3cm, extensão até 40% da circunferência, ou distância da borda anal), mas sempre com os valores específicos quando aplicável. Esse nível de precisão técnica é o que diferencia uma resposta completa de uma resposta superficial nesse tipo de questão cirúrgica.</p><br>Visão do aprovado: <h2>Visão do aprovado</h2>\n\n<p>Em questões discursivas sobre técnicas cirúrgicas, a banca espera precisão nos detalhes técnicos, não apenas conceitos gerais. Para a ressecção discoide, o ponto-chave é explicitar que removemos todas as camadas da parede intestinal no local do nódulo, mas sem mobilizar completamente o segmento retossigmoide, o que preserva o suprimento sanguíneo. Essa aparente contradição – ressecção transmural local com manutenção da vascularização – é o que define a técnica e exige clareza na resposta.</p>\n\n<p>A principal pegadinha está nas limitações. Responder de forma genérica, como \"lesões pequenas\" ou \"extensão limitada\", não demonstra domínio técnico. Os números são parte integral do conhecimento: tamanho até 3cm e extensão até 40% da circunferência são critérios objetivos que a banca espera ver. A distância da borda anal também é limitação válida, embora sem valor de corte específico. Em provas discursivas, a especificidade dos valores é frequentemente o diferencial entre respostas completas e incompletas.</p>\n\n<p>Entender a hierarquia das técnicas ajuda a fixar o conceito: a discoide está no meio do espectro entre shaving (conservador, sem ressecção transmural) e ressecção segmentar (radical, remove segmento inteiro com ligadura vascular). Saber posicionar a técnica nessa gradação facilita lembrar tanto suas indicações quanto suas limitações naturais.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333104,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Noções de técnica cirúrgica ginecológica",
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica"
+        }
+      },
+      "detail": {
+        "id": 333104,
+        "content": "Mulher de 45 anos, com indicação de histerectomia por mioma, deseja tratamento minimamente invasivo. Nesse caso, indique dois tipos de histerectomia minimamente invasivas e, sabendo que uma das importantes complicações do procedimento é o trauma do ureter, cite três localizações anatômicas com proximidade do ureter com possibilidade de lesão durante a histerectomia.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 15958,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Noções de técnica cirúrgica ginecológica",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1609,
+          "name": "Noções de técnica cirúrgica ginecológica",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443144,
+        "actual_explanation": true,
+        "introduction": "<p>A lesão ureteral representa uma das complicações mais temidas da histerectomia, ocorrendo em cerca de 0,5 a 2% dos casos, e o conhecimento preciso da anatomia pélvica é fundamental para prevenir esse dano. Esta questão avalia dois conhecimentos essenciais: as opções de técnicas minimamente invasivas disponíveis e a anatomia aplicada do trajeto do ureter na pelve feminina.</p>\n\n<p>Vamos começar pela primeira parte: quais são as <strong>histerectomias minimamente invasivas</strong>? Aqui precisamos ter clareza sobre o conceito de \"minimamente invasivo\". Esse termo se refere a técnicas que não envolvem laparotomia (abertura ampla da parede abdominal). Temos três opções principais:</p>\n\n<ul>\n<li>A <strong>histerectomia vaginal</strong>, que é realizada exclusivamente por via vaginal sem incisões abdominais</li>\n<li>A <strong>histerectomia laparoscópica</strong>, que utiliza pequenas incisões para passagem de trocateres e instrumentos videolaparoscópicos</li>\n<li>A <strong>histerectomia laparoscópica robô-assistida</strong>, que emprega tecnologia robótica para auxiliar a cirurgia laparoscópica</li>\n</ul>\n\n<p>Qualquer duas dessas técnicas são aceitas como resposta. O erro comum aqui é citar a histerectomia abdominal total, que não se enquadra como minimamente invasiva por envolver laparotomia mediana ou transversa.</p>\n\n<p>Agora vamos à segunda parte, que exige conhecimento anatômico detalhado. O ureter é uma estrutura retroperitoneal que desce pela parede lateral da pelve e apresenta múltiplos pontos de proximidade com estruturas que manipulamos durante a histerectomia. O ponto mais clássico e memorável é o <strong>cruzamento do ureter com a artéria uterina</strong>, descrito pelo aforismo <em>\"water passes under the bridge\"</em> (a água passa sob a ponte), onde o ureter passa por baixo da artéria uterina. Esse cruzamento ocorre aproximadamente 1,5 a 2 cm lateral ao colo uterino, sendo um ponto crítico durante a ligadura da artéria uterina.</p>\n\n<p>Outros pontos de risco importantes incluem:</p>\n\n<ul>\n<li>A <strong>base do ligamento largo</strong>, onde o ureter cursa próximo à borda inferior dessa estrutura peritônea</li>\n<li>O <strong>infundíbulo pélvico</strong> (ligamento suspensor do ovário), onde o ureter passa medialmente durante a ligadura dos vasos ovarianos</li>\n<li>Os <strong>ligamentos uterossacros</strong>, especialmente durante sua secção próximo ao colo uterino</li>\n<li>A <strong>parte superior dos ligamentos cardinais</strong>, onde o ureter passa lateralmente</li>\n<li>Durante a <strong>dissecção da bexiga</strong>, particularmente na região dos pilares vesicais e da base da bexiga, onde o ureter penetra na parede vesical</li>\n</ul>\n\n<p>Precisamos citar três dessas localizações. A banca aceita: base do ligamento largo, infundíbulo pélvico, cruzamento com a artéria uterina (ou apenas \"artéria uterina\"), ligamento uterossacro, dissecção da bexiga (incluindo base da bexiga ou pilares vesicais), e parte superior dos ligamentos cardinais. O importante é demonstrar que conhecemos múltiplos pontos de risco ao longo do trajeto do ureter na pelve, pois em cada etapa da histerectomia manipulamos estruturas que têm o ureter em sua proximidade imediata.</p>\n\n<p>Uma armadilha comum é citar localizações muito genéricas como \"pelve\" ou \"ligamento largo\" sem especificar o ponto exato. A banca quer precisão anatômica. Outra dificuldade é lembrar que o ureter não tem um único ponto de risco, mas vários ao longo de seu trajeto pélvico, desde o cruzamento dos vasos ilíacos até sua entrada na bexiga. Por isso, durante qualquer histerectomia, a identificação visual ou palpação do ureter é uma etapa de segurança fundamental antes de seccionar ou ligar estruturas, especialmente em casos de miomas volumosos ou anatomia distorcida que podem deslocar o ureter de sua posição habitual.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p><strong>Visão do aprovado</strong></p>\n\n<p>Em questões discursivas sobre histerectomia, a banca costuma testar se você conhece não apenas os conceitos teóricos, mas se consegue aplicá-los com precisão anatômica. Aqui, a primeira parte é direta: basta lembrar que \"minimamente invasivo\" exclui a via abdominal clássica, e qualquer combinação entre vaginal, laparoscópica ou robô-assistida pontua. O erro que tira pontos é ser vago ou incluir a histerectomia abdominal total na resposta.</p>\n\n<p>A segunda parte exige treino específico. Quando a banca pede três localizações de risco para o ureter, não adianta escrever \"pelve\" ou \"ligamento largo\" sem especificar o ponto exato. A estratégia de alto rendimento é priorizar os pontos de manipulação cirúrgica ativa: o cruzamento com a artéria uterina é praticamente obrigatório por ser o mais clássico, seguido do infundíbulo pélvico e dos ligamentos uterossacros, que são pontos de ligadura ou secção durante o procedimento. Respostas genéricas ou localizações fora do trajeto cirúrgico usual costumam não pontuar.</p>\n\n<p>Vale lembrar que em provas objetivas esse tema pode aparecer invertido: a banca mostra uma complicação pós-operatória (hidronefrose, fístula) e você precisa raciocinar retroativamente qual estrutura foi lesada e em que momento. Por isso, não basta decorar a lista de pontos anatômicos; temos que visualizar mentalmente cada etapa da cirurgia e onde o ureter está em risco naquele momento específico.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>A lesão ureteral representa uma das complicações mais temidas da histerectomia, ocorrendo em cerca de 0,5 a 2% dos casos, e o conhecimento preciso da anatomia pélvica é fundamental para prevenir esse dano. Esta questão avalia dois conhecimentos essenciais: as opções de técnicas minimamente invasivas disponíveis e a anatomia aplicada do trajeto do ureter na pelve feminina.</p>\n\n<p>Vamos começar pela primeira parte: quais são as <strong>histerectomias minimamente invasivas</strong>? Aqui precisamos ter clareza sobre o conceito de \"minimamente invasivo\". Esse termo se refere a técnicas que não envolvem laparotomia (abertura ampla da parede abdominal). Temos três opções principais:</p>\n\n<ul>\n<li>A <strong>histerectomia vaginal</strong>, que é realizada exclusivamente por via vaginal sem incisões abdominais</li>\n<li>A <strong>histerectomia laparoscópica</strong>, que utiliza pequenas incisões para passagem de trocateres e instrumentos videolaparoscópicos</li>\n<li>A <strong>histerectomia laparoscópica robô-assistida</strong>, que emprega tecnologia robótica para auxiliar a cirurgia laparoscópica</li>\n</ul>\n\n<p>Qualquer duas dessas técnicas são aceitas como resposta. O erro comum aqui é citar a histerectomia abdominal total, que não se enquadra como minimamente invasiva por envolver laparotomia mediana ou transversa.</p>\n\n<p>Agora vamos à segunda parte, que exige conhecimento anatômico detalhado. O ureter é uma estrutura retroperitoneal que desce pela parede lateral da pelve e apresenta múltiplos pontos de proximidade com estruturas que manipulamos durante a histerectomia. O ponto mais clássico e memorável é o <strong>cruzamento do ureter com a artéria uterina</strong>, descrito pelo aforismo <em>\"water passes under the bridge\"</em> (a água passa sob a ponte), onde o ureter passa por baixo da artéria uterina. Esse cruzamento ocorre aproximadamente 1,5 a 2 cm lateral ao colo uterino, sendo um ponto crítico durante a ligadura da artéria uterina.</p>\n\n<p>Outros pontos de risco importantes incluem:</p>\n\n<ul>\n<li>A <strong>base do ligamento largo</strong>, onde o ureter cursa próximo à borda inferior dessa estrutura peritônea</li>\n<li>O <strong>infundíbulo pélvico</strong> (ligamento suspensor do ovário), onde o ureter passa medialmente durante a ligadura dos vasos ovarianos</li>\n<li>Os <strong>ligamentos uterossacros</strong>, especialmente durante sua secção próximo ao colo uterino</li>\n<li>A <strong>parte superior dos ligamentos cardinais</strong>, onde o ureter passa lateralmente</li>\n<li>Durante a <strong>dissecção da bexiga</strong>, particularmente na região dos pilares vesicais e da base da bexiga, onde o ureter penetra na parede vesical</li>\n</ul>\n\n<p>Precisamos citar três dessas localizações. A banca aceita: base do ligamento largo, infundíbulo pélvico, cruzamento com a artéria uterina (ou apenas \"artéria uterina\"), ligamento uterossacro, dissecção da bexiga (incluindo base da bexiga ou pilares vesicais), e parte superior dos ligamentos cardinais. O importante é demonstrar que conhecemos múltiplos pontos de risco ao longo do trajeto do ureter na pelve, pois em cada etapa da histerectomia manipulamos estruturas que têm o ureter em sua proximidade imediata.</p>\n\n<p>Uma armadilha comum é citar localizações muito genéricas como \"pelve\" ou \"ligamento largo\" sem especificar o ponto exato. A banca quer precisão anatômica. Outra dificuldade é lembrar que o ureter não tem um único ponto de risco, mas vários ao longo de seu trajeto pélvico, desde o cruzamento dos vasos ilíacos até sua entrada na bexiga. Por isso, durante qualquer histerectomia, a identificação visual ou palpação do ureter é uma etapa de segurança fundamental antes de seccionar ou ligar estruturas, especialmente em casos de miomas volumosos ou anatomia distorcida que podem deslocar o ureter de sua posição habitual.</p><br>Visão do aprovado: <p><strong>Visão do aprovado</strong></p>\n\n<p>Em questões discursivas sobre histerectomia, a banca costuma testar se você conhece não apenas os conceitos teóricos, mas se consegue aplicá-los com precisão anatômica. Aqui, a primeira parte é direta: basta lembrar que \"minimamente invasivo\" exclui a via abdominal clássica, e qualquer combinação entre vaginal, laparoscópica ou robô-assistida pontua. O erro que tira pontos é ser vago ou incluir a histerectomia abdominal total na resposta.</p>\n\n<p>A segunda parte exige treino específico. Quando a banca pede três localizações de risco para o ureter, não adianta escrever \"pelve\" ou \"ligamento largo\" sem especificar o ponto exato. A estratégia de alto rendimento é priorizar os pontos de manipulação cirúrgica ativa: o cruzamento com a artéria uterina é praticamente obrigatório por ser o mais clássico, seguido do infundíbulo pélvico e dos ligamentos uterossacros, que são pontos de ligadura ou secção durante o procedimento. Respostas genéricas ou localizações fora do trajeto cirúrgico usual costumam não pontuar.</p>\n\n<p>Vale lembrar que em provas objetivas esse tema pode aparecer invertido: a banca mostra uma complicação pós-operatória (hidronefrose, fístula) e você precisa raciocinar retroativamente qual estrutura foi lesada e em que momento. Por isso, não basta decorar a lista de pontos anatômicos; temos que visualizar mentalmente cada etapa da cirurgia e onde o ureter está em risco naquele momento específico.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 333105,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Miomatose uterina",
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina"
+        }
+      },
+      "detail": {
+        "id": 333105,
+        "content": "Mulher apresenta sangramento excessivo durante histeroscopia por mioma submucoso. Com base nesse caso, cite dois procedimentos locais não invasivos possíveis para conter o sangramento excessivo e duas possíveis complicações da histeroscopia além do sangramento.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 15986,
+            "parent_tag": {
+              "id": 15910,
+              "name": "Dor pélvica e sangramento",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Miomatose uterina",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1581,
+          "name": "Miomatose uterina",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 96,
+            "name": "Dor pélvica e sangramento",
+            "discipline": 86,
+            "old_tag": 15910,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 443143,
+        "actual_explanation": true,
+        "introduction": "<p>Sangramento excessivo durante ressecção histeroscópica de mioma submucoso representa uma urgência intraoperatória que demanda conhecimento imediato das técnicas de hemostasia local disponíveis no arsenal do cirurgião. A questão nos desafia em duas frentes: primeiro, saber manejar essa complicação com recursos locais e não invasivos; segundo, demonstrar conhecimento amplo sobre as demais complicações possíveis deste procedimento.</p>\n\n<p>Quando nos deparamos com sangramento importante durante a histeroscopia, precisamos pensar em medidas que possamos aplicar ali mesmo, sem necessidade de converter para laparotomia ou procedimentos radiológicos invasivos. A primeira opção é a <strong>coagulação histeroscópica do leito cirúrgico</strong> - afinal, já temos o histeroscópio dentro da cavidade e podemos usar a energia elétrica (monopolar ou bipolar) para cauterizar os vasos sangrantes diretamente sob visão. Isso é rápido, efetivo e aproveita o equipamento que já está em uso.</p>\n\n<p>A segunda medida local é o <strong>tamponamento mecânico</strong>. Podemos introduzir uma <strong>gaze impregnada com vasoconstritor</strong> (como adrenalina) na cavidade uterina. O efeito é duplo: a compressão mecânica ajuda a estancar o sangramento e o vasoconstritor promove contração vascular local. Uma alternativa igualmente aceita é o <strong>cateter de Foley inserido na cavidade uterina</strong> - inflamos o balão dentro do útero e ele funciona como tamponamento, comprimindo as paredes e os vasos sangrantes. Essas são técnicas simples, baratas e que podem ser decisivas no controle hemorrágico.</p>\n\n<p>Um erro comum aqui é citar procedimentos invasivos como embolização arterial ou ligadura de vasos - embora sejam opções válidas para hemorragia refratária, não são procedimentos \"locais não invasivos\" no contexto que a banca está pedindo. A questão quer saber o que fazemos ali, naquele momento, com recursos imediatos.</p>\n\n<p>Agora, sobre as complicações da histeroscopia além do sangramento, precisamos lembrar das particularidades deste procedimento. A <strong>sobrecarga hídrica</strong> é uma complicação específica e potencialmente grave - durante a histeroscopia, usamos meios líquidos para distender a cavidade (glicina, manitol, soro fisiológico), e esses fluidos podem ser absorvidos pela circulação sistêmica através dos vasos abertos durante a cirurgia. Isso pode levar a hiponatremia dilucional, edema pulmonar e até convulsões. É fundamental que essa complicação esteja no nosso radar.</p>\n\n<p>A <strong>perfuração uterina</strong> é outra complicação clássica - pode ocorrer pela manipulação dos instrumentos (perfuração mecânica) ou pela energia do ressectoscópio (perfuração térmica). O útero, especialmente quando amolecido ou com anatomia distorcida por miomas, está suscetível a essa lesão. Também podemos ter <strong>laceração ou trauma cervical</strong> durante a passagem dos instrumentos, principalmente se houver dificuldade na dilatação. E a <strong>passagem de corrente elétrica</strong> para estruturas adjacentes é um risco quando usamos energia monopolar - a corrente pode seguir caminhos não intencionais e causar lesões térmicas em órgãos vizinhos.</p>\n\n<p>Segundo o gabarito oficial, devemos citar dois dos seguintes procedimentos: coagulação histeroscópica do leito cirúrgico, gaze impregnada com vasoconstritor, ou cateter de Foley na cavidade. Para as complicações, são aceitas: sobrecarga hídrica, perfuração uterina, passagem de corrente elétrica ou laceração/trauma cervical. A banca aceita sinônimos razoáveis, mas precisamos ser específicos - mencionar apenas \"trauma\" sem especificar cervical pode ser vago demais. O segredo para pontuar bem é ser objetivo, técnico e usar a terminologia apropriada que demonstra conhecimento real do procedimento e suas nuances.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p><strong>Visão do aprovado</strong></p>\n\n<p>Questões discursivas sobre complicações cirúrgicas costumam testar nossa capacidade de pensar em dois níveis distintos: primeiro, o manejo imediato da complicação que está acontecendo; segundo, conhecimento amplo sobre os riscos do procedimento em questão. Aqui, a banca separa claramente esses dois domínios - pede o que fazemos agora para estancar o sangramento e, em seguida, o que mais pode dar errado numa histeroscopia. Essa estrutura de pergunta é clássica em provas discursivas e exige que organizemos mentalmente nosso arsenal terapêutico versus nosso conhecimento de complicações potenciais.</p>\n\n<p>A principal armadilha está em confundir \"procedimentos locais não invasivos\" com manejo geral de hemorragia obstétrica. Respostas como embolização arterial, laparotomia exploradora ou até histerectomia podem até estar corretas do ponto de vista clínico para hemorragia refratária, mas não atendem ao que a questão pede - ela quer saber o que o cirurgião faz ali, com o histeroscópio na mão, antes de partir para medidas maiores. Devemos pensar no arsenal imediato disponível na sala cirúrgica, com os instrumentos já em uso.</p>\n\n<p>Para pontuar nas complicações, a especificidade técnica faz diferença. Responder apenas \"trauma\" ou \"lesão\" sem qualificar onde (cervical) ou como (passagem de corrente, perfuração) pode resultar em pontuação parcial ou nula, dependendo do critério do corretor. Da mesma forma, sobrecarga hídrica precisa ser mencionada com essa terminologia ou sinônimos diretos como intoxicação hídrica ou síndrome de absorção do meio de distensão - respostas vagas como \"problemas hidroeletrolíticos\" provavelmente não pontuariam.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Sangramento excessivo durante ressecção histeroscópica de mioma submucoso representa uma urgência intraoperatória que demanda conhecimento imediato das técnicas de hemostasia local disponíveis no arsenal do cirurgião. A questão nos desafia em duas frentes: primeiro, saber manejar essa complicação com recursos locais e não invasivos; segundo, demonstrar conhecimento amplo sobre as demais complicações possíveis deste procedimento.</p>\n\n<p>Quando nos deparamos com sangramento importante durante a histeroscopia, precisamos pensar em medidas que possamos aplicar ali mesmo, sem necessidade de converter para laparotomia ou procedimentos radiológicos invasivos. A primeira opção é a <strong>coagulação histeroscópica do leito cirúrgico</strong> - afinal, já temos o histeroscópio dentro da cavidade e podemos usar a energia elétrica (monopolar ou bipolar) para cauterizar os vasos sangrantes diretamente sob visão. Isso é rápido, efetivo e aproveita o equipamento que já está em uso.</p>\n\n<p>A segunda medida local é o <strong>tamponamento mecânico</strong>. Podemos introduzir uma <strong>gaze impregnada com vasoconstritor</strong> (como adrenalina) na cavidade uterina. O efeito é duplo: a compressão mecânica ajuda a estancar o sangramento e o vasoconstritor promove contração vascular local. Uma alternativa igualmente aceita é o <strong>cateter de Foley inserido na cavidade uterina</strong> - inflamos o balão dentro do útero e ele funciona como tamponamento, comprimindo as paredes e os vasos sangrantes. Essas são técnicas simples, baratas e que podem ser decisivas no controle hemorrágico.</p>\n\n<p>Um erro comum aqui é citar procedimentos invasivos como embolização arterial ou ligadura de vasos - embora sejam opções válidas para hemorragia refratária, não são procedimentos \"locais não invasivos\" no contexto que a banca está pedindo. A questão quer saber o que fazemos ali, naquele momento, com recursos imediatos.</p>\n\n<p>Agora, sobre as complicações da histeroscopia além do sangramento, precisamos lembrar das particularidades deste procedimento. A <strong>sobrecarga hídrica</strong> é uma complicação específica e potencialmente grave - durante a histeroscopia, usamos meios líquidos para distender a cavidade (glicina, manitol, soro fisiológico), e esses fluidos podem ser absorvidos pela circulação sistêmica através dos vasos abertos durante a cirurgia. Isso pode levar a hiponatremia dilucional, edema pulmonar e até convulsões. É fundamental que essa complicação esteja no nosso radar.</p>\n\n<p>A <strong>perfuração uterina</strong> é outra complicação clássica - pode ocorrer pela manipulação dos instrumentos (perfuração mecânica) ou pela energia do ressectoscópio (perfuração térmica). O útero, especialmente quando amolecido ou com anatomia distorcida por miomas, está suscetível a essa lesão. Também podemos ter <strong>laceração ou trauma cervical</strong> durante a passagem dos instrumentos, principalmente se houver dificuldade na dilatação. E a <strong>passagem de corrente elétrica</strong> para estruturas adjacentes é um risco quando usamos energia monopolar - a corrente pode seguir caminhos não intencionais e causar lesões térmicas em órgãos vizinhos.</p>\n\n<p>Segundo o gabarito oficial, devemos citar dois dos seguintes procedimentos: coagulação histeroscópica do leito cirúrgico, gaze impregnada com vasoconstritor, ou cateter de Foley na cavidade. Para as complicações, são aceitas: sobrecarga hídrica, perfuração uterina, passagem de corrente elétrica ou laceração/trauma cervical. A banca aceita sinônimos razoáveis, mas precisamos ser específicos - mencionar apenas \"trauma\" sem especificar cervical pode ser vago demais. O segredo para pontuar bem é ser objetivo, técnico e usar a terminologia apropriada que demonstra conhecimento real do procedimento e suas nuances.</p><br>Visão do aprovado: <p><strong>Visão do aprovado</strong></p>\n\n<p>Questões discursivas sobre complicações cirúrgicas costumam testar nossa capacidade de pensar em dois níveis distintos: primeiro, o manejo imediato da complicação que está acontecendo; segundo, conhecimento amplo sobre os riscos do procedimento em questão. Aqui, a banca separa claramente esses dois domínios - pede o que fazemos agora para estancar o sangramento e, em seguida, o que mais pode dar errado numa histeroscopia. Essa estrutura de pergunta é clássica em provas discursivas e exige que organizemos mentalmente nosso arsenal terapêutico versus nosso conhecimento de complicações potenciais.</p>\n\n<p>A principal armadilha está em confundir \"procedimentos locais não invasivos\" com manejo geral de hemorragia obstétrica. Respostas como embolização arterial, laparotomia exploradora ou até histerectomia podem até estar corretas do ponto de vista clínico para hemorragia refratária, mas não atendem ao que a questão pede - ela quer saber o que o cirurgião faz ali, com o histeroscópio na mão, antes de partir para medidas maiores. Devemos pensar no arsenal imediato disponível na sala cirúrgica, com os instrumentos já em uso.</p>\n\n<p>Para pontuar nas complicações, a especificidade técnica faz diferença. Responder apenas \"trauma\" ou \"lesão\" sem qualificar onde (cervical) ou como (passagem de corrente, perfuração) pode resultar em pontuação parcial ou nula, dependendo do critério do corretor. Da mesma forma, sobrecarga hídrica precisa ser mencionada com essa terminologia ou sinônimos diretos como intoxicação hídrica ou síndrome de absorção do meio de distensão - respostas vagas como \"problemas hidroeletrolíticos\" provavelmente não pontuariam.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T19:01:48.330761+00:00",
+  "complete": true
+}

@@ -1,0 +1,598 @@
+{
+  "track_id": 1330013,
+  "name": "PUC - Sorocaba - SP-2021-Discursiva",
+  "year": 2021,
+  "track_fast": {
+    "id": 1330013,
+    "name": "PUC - Sorocaba - SP-2021-Discursiva",
+    "track_type": "c",
+    "question_count": 5,
+    "year": 2021,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "PUC - Sorocaba",
+    "track_image": null,
+    "residency_degree": {
+      "id": 4,
+      "abbreviation": "R+CM"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 128103,
+        "number": 1,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Síndrome Coronariana Aguda",
+        "focus": {
+          "id": 1853,
+          "name": "Síndrome Coronariana Aguda"
+        }
+      },
+      "detail": {
+        "id": 128103,
+        "content": "Márcio tem 50 anos, sabe ser hipertenso e “ter colesterol” há 10 anos, e seu pai e irmão mais velho faleceram por infarto. Faz uso regular de losartana 100mg/dia e sinvastatina 20mg ao dia até 10 dias antes da admissão hospitalar, quando suspendeu a losartana porque ouviu dizer que este remédio poderia facilitar a infecção por SARS-CoV-2. Na manhã de hoje apresentou desconforto torácico retroesternal intenso e falta de ar aos pequenos esforços, com melhora ao repouso. Isolou-se em casa com medo de estar com COVID-19, monitorou a temperatura e a saturação de O2 (mandou entregar um oxímetro da farmácia) e usou analgésicos por conta própria. Não teve febre. No dia seguinte, teve novamente dor torácica, com irradiação para ombros, associada à sudorese e dispneia. Telefonou para o número da teleconsulta do município que o orientou procurar o hospital, caso não melhorasse. A tarde cursou com piora da dor, sudorese mais intensa e resolveu procurar emergência. Você era o plantonista do Pronto-Socorro. Ao exame físico: presença de taquicardia, sem sopros audíveis (FC= 108bpm), Pressão arterial 180/106mmHg, saturação de O2 99% e temperatura de 36,5°C. O Eletrocardiograma abaixo revelou as seguintes alterações. Descreva-as:",
+        "options": [],
+        "images": [
+          {
+            "id": 52155,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID128103_2021_institution-object-321_Q1/Captura_de_tela_2025-01-02_084946.png"
+          }
+        ],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2021,
+        "tag": [
+          {
+            "id": 1641,
+            "parent_tag": {
+              "id": 302,
+              "name": "Cardiologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Síndrome Coronariana Aguda",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 94,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1853,
+          "name": "Síndrome Coronariana Aguda",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 250,
+            "name": "Cardiologia",
+            "discipline": 96,
+            "old_tag": 302,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 113034,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Enunciado longo da quest&atilde;o discursiva, mas vamos tentar captar as informa&ccedil;&otilde;es-chave? Paciente de 50 anos, sexo masculino, hipertenso e dislipid&ecirc;mico, com hist&oacute;ria familiar positiva para IAM, vem apresentando h&aacute; cerca de 24 horas epis&oacute;dios de dor tor&aacute;cica retroesternal intensa associada &agrave; dispneia e sudorese, com irradia&ccedil;&atilde;o para ombros, que melhora ao repouso. &Agrave; admiss&atilde;o se encontra hipertenso PA 180x106 e taquic&aacute;rdico FC 108 bpm. &Eacute; realizado um eletrocardiograma inicial e somos questionados sobre as altera&ccedil;&otilde;es encontradas.</p>\n<p style=\"text-align: justify;\">Pessoal, antes de analisarmos o ECG, precisamos ter em mente que nosso paciente &eacute; um paciente de alto risco cardiovascular, concordam? Ent&atilde;o precisamos valorizar muito a sua queixa e realmente procurar por sinais de uma poss&iacute;vel s&iacute;ndrome coronariana aguda no ECG, certo?&nbsp;</p>\n<p style=\"text-align: justify;\">Ao analisar o ECG do paciente em quest&atilde;o, encontramos um ritmo sinusal, taquicardia (FC ~102 bpm), presen&ccedil;a de supradesnivelamento do segmento ST em V5, V6, D1 e avL, com imagem em espelho de infradesnivelamento de ST em DIII e avF. Percebam que o supradesnivelamento de V2 &eacute; isolado e n&atilde;o apresenta &gt; 2 mm, logo, sem signific&acirc;ncia.&nbsp;</p>\n<p style=\"text-align: justify;\">Vamos relembrar a correla&ccedil;&atilde;o das deriva&ccedil;&otilde;es com a regi&atilde;o mioc&aacute;rdica?&nbsp;</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p>Parede septal: V1-V2 (art&eacute;ria descendente anterior);</p>\n</li>\n<li>\n<p>Parede anterior: V3-V4 (art&eacute;ria descendente anterior);</p>\n</li>\n<li>\n<p><strong>Parede lateral &ldquo;baixa&rdquo;: V5-V6 (art&eacute;ria circunflexa)</strong></p>\n</li>\n<li>\n<p><strong>Parede lateral alta: D1-aVL (art&eacute;ria circunflexa);</strong></p>\n</li>\n<li>\n<p>Parede inferior: DII, DIII a aVF (70% art&eacute;ria coron&aacute;ria direita e 30% art&eacute;ria circunflexa);</p>\n</li>\n<li>\n<p>Parede dorsal: V7-V8 (70% art&eacute;ria coron&aacute;ria direita e 30% art&eacute;ria circunflexa);</p>\n</li>\n<li>\n<p>Ventr&iacute;culo direito: V1, V3R e V4R (art&eacute;ria coron&aacute;ria direita);</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: Ritmo: taquicardia sinusal com presen&ccedil;a de supradesn&iacute;vel de segmento ST em V5, V6, D1, AVL.</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Galera, precisamos saber identificar supra de ST no ECG! Lembrando tamb&eacute;m que nem todo supra &eacute; sinal de SCA. Como regra geral, no supra &ldquo;feliz&rdquo; = concavidade para cima, devemos pensar em causas benignas (ou em IAM em fase inicial). J&aacute; no supra &ldquo;triste&rdquo; = concavidade para baixo, esse sim devemos pensar em IAM. Guardem esse macete.&nbsp;</p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Enunciado longo da quest&atilde;o discursiva, mas vamos tentar captar as informa&ccedil;&otilde;es-chave? Paciente de 50 anos, sexo masculino, hipertenso e dislipid&ecirc;mico, com hist&oacute;ria familiar positiva para IAM, vem apresentando h&aacute; cerca de 24 horas epis&oacute;dios de dor tor&aacute;cica retroesternal intensa associada &agrave; dispneia e sudorese, com irradia&ccedil;&atilde;o para ombros, que melhora ao repouso. &Agrave; admiss&atilde;o se encontra hipertenso PA 180x106 e taquic&aacute;rdico FC 108 bpm. &Eacute; realizado um eletrocardiograma inicial e somos questionados sobre as altera&ccedil;&otilde;es encontradas.</p>\n<p style=\"text-align: justify;\">Pessoal, antes de analisarmos o ECG, precisamos ter em mente que nosso paciente &eacute; um paciente de alto risco cardiovascular, concordam? Ent&atilde;o precisamos valorizar muito a sua queixa e realmente procurar por sinais de uma poss&iacute;vel s&iacute;ndrome coronariana aguda no ECG, certo?&nbsp;</p>\n<p style=\"text-align: justify;\">Ao analisar o ECG do paciente em quest&atilde;o, encontramos um ritmo sinusal, taquicardia (FC ~102 bpm), presen&ccedil;a de supradesnivelamento do segmento ST em V5, V6, D1 e avL, com imagem em espelho de infradesnivelamento de ST em DIII e avF. Percebam que o supradesnivelamento de V2 &eacute; isolado e n&atilde;o apresenta &gt; 2 mm, logo, sem signific&acirc;ncia.&nbsp;</p>\n<p style=\"text-align: justify;\">Vamos relembrar a correla&ccedil;&atilde;o das deriva&ccedil;&otilde;es com a regi&atilde;o mioc&aacute;rdica?&nbsp;</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p>Parede septal: V1-V2 (art&eacute;ria descendente anterior);</p>\n</li>\n<li>\n<p>Parede anterior: V3-V4 (art&eacute;ria descendente anterior);</p>\n</li>\n<li>\n<p><strong>Parede lateral &ldquo;baixa&rdquo;: V5-V6 (art&eacute;ria circunflexa)</strong></p>\n</li>\n<li>\n<p><strong>Parede lateral alta: D1-aVL (art&eacute;ria circunflexa);</strong></p>\n</li>\n<li>\n<p>Parede inferior: DII, DIII a aVF (70% art&eacute;ria coron&aacute;ria direita e 30% art&eacute;ria circunflexa);</p>\n</li>\n<li>\n<p>Parede dorsal: V7-V8 (70% art&eacute;ria coron&aacute;ria direita e 30% art&eacute;ria circunflexa);</p>\n</li>\n<li>\n<p>Ventr&iacute;culo direito: V1, V3R e V4R (art&eacute;ria coron&aacute;ria direita);</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: Ritmo: taquicardia sinusal com presen&ccedil;a de supradesn&iacute;vel de segmento ST em V5, V6, D1, AVL.</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Galera, precisamos saber identificar supra de ST no ECG! Lembrando tamb&eacute;m que nem todo supra &eacute; sinal de SCA. Como regra geral, no supra &ldquo;feliz&rdquo; = concavidade para cima, devemos pensar em causas benignas (ou em IAM em fase inicial). J&aacute; no supra &ldquo;triste&rdquo; = concavidade para baixo, esse sim devemos pensar em IAM. Guardem esse macete.&nbsp;</p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 128104,
+        "number": 2,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Síndrome Coronariana Aguda",
+        "focus": {
+          "id": 1853,
+          "name": "Síndrome Coronariana Aguda"
+        }
+      },
+      "detail": {
+        "id": 128104,
+        "content": "Márcio tem 50 anos, sabe ser hipertenso e “ter colesterol” há 10 anos, e seu pai e irmão mais velho faleceram por infarto. Faz uso regular de losartana 100mg/dia e sinvastatina 20mg ao dia até 10 dias antes da admissão hospitalar, quando suspendeu a losartana porque ouviu dizer que este remédio poderia facilitar a infecção por SARS-CoV-2. Na manhã de hoje apresentou desconforto torácico retroesternal intenso e falta de ar aos pequenos esforços, com melhora ao repouso. Isolou-se em casa com medo de estar com COVID-19, monitorou a temperatura e a saturação de O2 (mandou entregar um oxímetro da farmácia) e usou analgésicos por conta própria. Não teve febre. No dia seguinte, teve novamente dor torácica, com irradiação para ombros, associada à sudorese e dispneia. Telefonou para o número da teleconsulta do município que o orientou procurar o hospital, caso não melhorasse. A tarde cursou com piora da dor, sudorese mais intensa e resolveu procurar emergência. Você era o plantonista do Pronto-Socorro. Ao exame físico: presença de taquicardia, sem sopros audíveis (FC= 108bpm), Pressão arterial 180/106mmHg, saturação de O2 99% e temperatura de 36,5°C. Este achado é compatível com:",
+        "options": [],
+        "images": [
+          {
+            "id": 54741,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID128104_2021_institution-object-321_Q2/Captura_de_tela_2025-02-10_144130.png"
+          }
+        ],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2021,
+        "tag": [
+          {
+            "id": 1641,
+            "parent_tag": {
+              "id": 302,
+              "name": "Cardiologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Síndrome Coronariana Aguda",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 88,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1853,
+          "name": "Síndrome Coronariana Aguda",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 250,
+            "name": "Cardiologia",
+            "discipline": 96,
+            "old_tag": 302,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 113035,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Enunciado longo da quest&atilde;o discursiva da PUC-SP que serve para 5 quest&otilde;es, ent&atilde;o vamos relembrar as informa&ccedil;&otilde;es-chave. Paciente de 50 anos, sexo masculino, hipertenso e dislipid&ecirc;mico, com hist&oacute;ria familiar positiva para IAM, vem apresentando h&aacute; cerca de 24 horas epis&oacute;dios de dor tor&aacute;cica retroesternal intensa associada &agrave; dispneia e sudorese, com irradia&ccedil;&atilde;o para ombros, que melhora ao repouso. &Agrave; admiss&atilde;o se encontra hipertenso PA 180x106 e taquic&aacute;rdico FC 108 bpm. &Eacute; realizado um eletrocardiograma inicial e somos questionados sobre as altera&ccedil;&otilde;es encontradas.</p>\n<p style=\"text-align: justify;\">De modo sucinto, o ECG revela taquicardia sinusal com presen&ccedil;a de supradesn&iacute;vel de segmento ST em V5, V6, D1, AVL. Somos ent&atilde;o&nbsp; questionados acerca do que esse achado representa.&nbsp;</p>\n<p style=\"text-align: justify;\">Galera, aqui estamos claramente diante de uma s&iacute;ndrome coronariana aguda com supra de ST (SCA c/ SST ou SCASST), concordam? Temos uma cl&iacute;nica t&iacute;pica em um paciente de alto risco cardiovascular e as altera&ccedil;&otilde;es compat&iacute;veis no ECG. Vamos relembrar a correla&ccedil;&atilde;o das deriva&ccedil;&otilde;es com a regi&atilde;o mioc&aacute;rdica?&nbsp;</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p>Parede septal: V1-V2 (art&eacute;ria descendente anterior);</p>\n</li>\n<li>\n<p>Parede anterior: V3-V4 (art&eacute;ria descendente anterior);</p>\n</li>\n<li>\n<p><strong>Parede lateral &ldquo;baixa&rdquo;: V5-V6 (art&eacute;ria circunflexa)</strong></p>\n</li>\n<li>\n<p><strong>Parede lateral alta: D1-aVL (art&eacute;ria circunflexa);</strong></p>\n<ul>\n<li>\n<p><strong>Quando h&aacute; altera&ccedil;&atilde;o de V5, V6, D1 e aVL, chamamos de &ldquo;&acirc;ntero-lateral&rdquo;.&nbsp;</strong></p>\n</li>\n</ul>\n</li>\n<li>\n<p>Parede inferior: DII, DIII a aVF (70% art&eacute;ria coron&aacute;ria direita e 30% art&eacute;ria circunflexa);</p>\n</li>\n<li>\n<p>Parede dorsal: V7-V8 (70% art&eacute;ria coron&aacute;ria direita e 30% art&eacute;ria circunflexa);</p>\n</li>\n<li>\n<p>Ventr&iacute;culo direito: V1, V3R e V4R (art&eacute;ria coron&aacute;ria direita);</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito:&nbsp; Infarto agudo do mioc&aacute;rdio com supradesn&iacute;vel de ST (IAMcSST), em regi&atilde;o anterior (V5 e V6) e lateral (D1, AVL).</strong></p>\n<p>&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\"><strong>Vis&atilde;o do aprovado: </strong>Galera, precisamos saber identificar supra de ST no ECG! Quando falamos do manejo de SCA, sempre teremos diversos mnem&ocirc;nicos para lembrar as medica&ccedil;&otilde;es a serem usadas. De modo geral, precisamos ao menos lembrar que todo paciente que seja confirmado com SCA com supra merece um &ldquo;CHA&rdquo; = clopidogrel (ou outros inibidores de P2Y12), heparina e AAS - e &eacute; claro que teremos as considera&ccedil;&otilde;es baseadas no tipo de SCA e disponibilidade de hemodin&acirc;mica e para as provas de R3 precisamos saber esses pormenores.&nbsp;</p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Enunciado longo da quest&atilde;o discursiva da PUC-SP que serve para 5 quest&otilde;es, ent&atilde;o vamos relembrar as informa&ccedil;&otilde;es-chave. Paciente de 50 anos, sexo masculino, hipertenso e dislipid&ecirc;mico, com hist&oacute;ria familiar positiva para IAM, vem apresentando h&aacute; cerca de 24 horas epis&oacute;dios de dor tor&aacute;cica retroesternal intensa associada &agrave; dispneia e sudorese, com irradia&ccedil;&atilde;o para ombros, que melhora ao repouso. &Agrave; admiss&atilde;o se encontra hipertenso PA 180x106 e taquic&aacute;rdico FC 108 bpm. &Eacute; realizado um eletrocardiograma inicial e somos questionados sobre as altera&ccedil;&otilde;es encontradas.</p>\n<p style=\"text-align: justify;\">De modo sucinto, o ECG revela taquicardia sinusal com presen&ccedil;a de supradesn&iacute;vel de segmento ST em V5, V6, D1, AVL. Somos ent&atilde;o&nbsp; questionados acerca do que esse achado representa.&nbsp;</p>\n<p style=\"text-align: justify;\">Galera, aqui estamos claramente diante de uma s&iacute;ndrome coronariana aguda com supra de ST (SCA c/ SST ou SCASST), concordam? Temos uma cl&iacute;nica t&iacute;pica em um paciente de alto risco cardiovascular e as altera&ccedil;&otilde;es compat&iacute;veis no ECG. Vamos relembrar a correla&ccedil;&atilde;o das deriva&ccedil;&otilde;es com a regi&atilde;o mioc&aacute;rdica?&nbsp;</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p>Parede septal: V1-V2 (art&eacute;ria descendente anterior);</p>\n</li>\n<li>\n<p>Parede anterior: V3-V4 (art&eacute;ria descendente anterior);</p>\n</li>\n<li>\n<p><strong>Parede lateral &ldquo;baixa&rdquo;: V5-V6 (art&eacute;ria circunflexa)</strong></p>\n</li>\n<li>\n<p><strong>Parede lateral alta: D1-aVL (art&eacute;ria circunflexa);</strong></p>\n<ul>\n<li>\n<p><strong>Quando h&aacute; altera&ccedil;&atilde;o de V5, V6, D1 e aVL, chamamos de &ldquo;&acirc;ntero-lateral&rdquo;.&nbsp;</strong></p>\n</li>\n</ul>\n</li>\n<li>\n<p>Parede inferior: DII, DIII a aVF (70% art&eacute;ria coron&aacute;ria direita e 30% art&eacute;ria circunflexa);</p>\n</li>\n<li>\n<p>Parede dorsal: V7-V8 (70% art&eacute;ria coron&aacute;ria direita e 30% art&eacute;ria circunflexa);</p>\n</li>\n<li>\n<p>Ventr&iacute;culo direito: V1, V3R e V4R (art&eacute;ria coron&aacute;ria direita);</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito:&nbsp; Infarto agudo do mioc&aacute;rdio com supradesn&iacute;vel de ST (IAMcSST), em regi&atilde;o anterior (V5 e V6) e lateral (D1, AVL).</strong></p>\n<p>&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\"><strong>Vis&atilde;o do aprovado: </strong>Galera, precisamos saber identificar supra de ST no ECG! Quando falamos do manejo de SCA, sempre teremos diversos mnem&ocirc;nicos para lembrar as medica&ccedil;&otilde;es a serem usadas. De modo geral, precisamos ao menos lembrar que todo paciente que seja confirmado com SCA com supra merece um &ldquo;CHA&rdquo; = clopidogrel (ou outros inibidores de P2Y12), heparina e AAS - e &eacute; claro que teremos as considera&ccedil;&otilde;es baseadas no tipo de SCA e disponibilidade de hemodin&acirc;mica e para as provas de R3 precisamos saber esses pormenores.&nbsp;</p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 128105,
+        "number": 3,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "l",
+        "question_ai_update": null,
+        "focus_name": "Lesão Renal Aguda",
+        "focus": {
+          "id": 1870,
+          "name": "Lesão Renal Aguda"
+        }
+      },
+      "detail": {
+        "id": 128105,
+        "content": "Márcio tem 50 anos, sabe ser hipertenso e “ter colesterol” há 10 anos, e seu pai e irmão mais velho faleceram por infarto. Faz uso regular de losartana 100mg/dia e sinvastatina 20mg ao dia até 10 dias antes da admissão hospitalar, quando suspendeu a losartana porque ouviu dizer que este remédio poderia facilitar a infecção por SARS-CoV-2. Na manhã de hoje apresentou desconforto torácico retroesternal intenso e falta de ar aos pequenos esforços, com melhora ao repouso. Isolou-se em casa com medo de estar com COVID-19, monitorou a temperatura e a saturação de O2 (mandou entregar um oxímetro da farmácia) e usou analgésicos por conta própria. Não teve febre. No dia seguinte, teve novamente dor torácica, com irradiação para ombros, associada à sudorese e dispneia. Telefonou para o número da teleconsulta do município que o orientou procurar o hospital, caso não melhorasse. A tarde cursou com piora da dor, sudorese mais intensa e resolveu procurar emergência. Você era o plantonista do Pronto-Socorro. Ao exame físico: presença de taquicardia, sem sopros audíveis (FC= 108bpm), Pressão arterial 180/106mmHg, saturação de O2 99% e temperatura de 36,5°C. Durante a internação, Márcio foi tratado adequadamente e apresentou piora da função renal, sendo classificado como lesão renal aguda KDIGO 2 (Kidney Diseases Improving Global Outcomes), caracterizada pela presença de dois critérios de severidade:",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2021,
+        "tag": [
+          {
+            "id": 1613,
+            "parent_tag": {
+              "id": 306,
+              "name": "Nefrologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Lesão Renal Aguda",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 63,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1870,
+          "name": "Lesão Renal Aguda",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 238,
+            "name": "Nefrologia",
+            "discipline": 96,
+            "old_tag": 306,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 113036,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Enunciado longo da quest&atilde;o discursiva da PUC-SP que serve para 5 quest&otilde;es, ent&atilde;o vamos relembrar as informa&ccedil;&otilde;es-chave. Paciente de 50 anos, sexo masculino, hipertenso e dislipid&ecirc;mico, com hist&oacute;ria familiar positiva para IAM, vem apresentando h&aacute; cerca de 24 horas epis&oacute;dios de dor tor&aacute;cica retroesternal intensa associada &agrave; dispneia e sudorese, com irradia&ccedil;&atilde;o para ombros, que melhora ao repouso. &Agrave; admiss&atilde;o se encontra hipertenso PA 180x106 e taquic&aacute;rdico FC 108 bpm. &Eacute; realizado um eletrocardiograma inicial que revela supradesn&iacute;vel de segmento ST em V5, V6, D1, AVL, compat&iacute;vel com S&iacute;ndrome Coronariana Aguda com Supra de ST de parede &acirc;ntero-lateral.</p>\n<p style=\"text-align: justify;\">Agora nosso paciente j&aacute; se encontra internado, foi tratado adequadamente, por&eacute;m apresenta piora da fun&ccedil;&atilde;o renal, sendo classificado como les&atilde;o renal aguda KDIGO 2. Somos questionados sobre quais crit&eacute;rios configuram essa condi&ccedil;&atilde;o!</p>\n<p style=\"text-align: justify;\">Para acertar a quest&atilde;o, precisar&iacute;amos nos lembrar da classifica&ccedil;&atilde;o KDIGO de inj&uacute;ria renal:</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p><strong>KDIGO 1: </strong>aumento de creatinina em 0,3 mg/dl em 48h OU aumento de creatinina em 1,5-1,9x o valor basal em 7 dias OU d&eacute;bito urin&aacute;rio &lt;0,5ml/kg/h por 6-12 horas</p>\n</li>\n<li>\n<p><strong>KDIGO 2: aumento de creatinina em 2-3x o valor basal em 7 dias ou d&eacute;bito urin&aacute;rio &lt;0,5 ml/kg/h por &gt;12 horas</strong></p>\n</li>\n<li>\n<p><strong>KDIGO 3:</strong> aumento de creatinina &gt;3x o valor basal em 7 dias OU creatinina acima de 4 mg/dl OU necessidade de terapia renal substitutiva OU d&eacute;bito urin&aacute;rio &lt;0,3 ml/kg/h por &gt;24h OU an&uacute;ria por 12 horas.</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: a) Aumento de 2,0 a 2,9 vezes o valor da creatinina basal e b) diurese &lt; 0,5 ml/kg/h em 12 ou mais horas.</strong></p>\n<p>&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Quest&atilde;o mais decorebinha da PUC-SP, vamos aproveitar para relembrar que o KDIGO 2 aumenta de 2,0 a 2,9 vezes (&ldquo;2&rdquo; para &ldquo;2&rdquo;), ok? Al&eacute;m disso, pensando em les&atilde;o renal aguda, sempre &eacute; importante relembrar as indica&ccedil;&otilde;es cl&aacute;ssicas de di&aacute;lise de urg&ecirc;ncia, sendo elas: Acidose metab&oacute;lica refrat&aacute;ria; Hipercalemia sintom&aacute;tica e refrat&aacute;ria; Hipervolemia refrat&aacute;ria, em geral causando edema pulmonar; Intoxica&ccedil;&otilde;es por subst&acirc;ncias dialis&aacute;veis como l&iacute;tio, metanol, etilenoglicol, salicilatos etc; Uremia sintom&aacute;tica com encefalopatia, n&aacute;useas/v&ocirc;mitos, pericardite constritiva e sangramentos, em geral com ureia &gt; 200.</p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Enunciado longo da quest&atilde;o discursiva da PUC-SP que serve para 5 quest&otilde;es, ent&atilde;o vamos relembrar as informa&ccedil;&otilde;es-chave. Paciente de 50 anos, sexo masculino, hipertenso e dislipid&ecirc;mico, com hist&oacute;ria familiar positiva para IAM, vem apresentando h&aacute; cerca de 24 horas epis&oacute;dios de dor tor&aacute;cica retroesternal intensa associada &agrave; dispneia e sudorese, com irradia&ccedil;&atilde;o para ombros, que melhora ao repouso. &Agrave; admiss&atilde;o se encontra hipertenso PA 180x106 e taquic&aacute;rdico FC 108 bpm. &Eacute; realizado um eletrocardiograma inicial que revela supradesn&iacute;vel de segmento ST em V5, V6, D1, AVL, compat&iacute;vel com S&iacute;ndrome Coronariana Aguda com Supra de ST de parede &acirc;ntero-lateral.</p>\n<p style=\"text-align: justify;\">Agora nosso paciente j&aacute; se encontra internado, foi tratado adequadamente, por&eacute;m apresenta piora da fun&ccedil;&atilde;o renal, sendo classificado como les&atilde;o renal aguda KDIGO 2. Somos questionados sobre quais crit&eacute;rios configuram essa condi&ccedil;&atilde;o!</p>\n<p style=\"text-align: justify;\">Para acertar a quest&atilde;o, precisar&iacute;amos nos lembrar da classifica&ccedil;&atilde;o KDIGO de inj&uacute;ria renal:</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p><strong>KDIGO 1: </strong>aumento de creatinina em 0,3 mg/dl em 48h OU aumento de creatinina em 1,5-1,9x o valor basal em 7 dias OU d&eacute;bito urin&aacute;rio &lt;0,5ml/kg/h por 6-12 horas</p>\n</li>\n<li>\n<p><strong>KDIGO 2: aumento de creatinina em 2-3x o valor basal em 7 dias ou d&eacute;bito urin&aacute;rio &lt;0,5 ml/kg/h por &gt;12 horas</strong></p>\n</li>\n<li>\n<p><strong>KDIGO 3:</strong> aumento de creatinina &gt;3x o valor basal em 7 dias OU creatinina acima de 4 mg/dl OU necessidade de terapia renal substitutiva OU d&eacute;bito urin&aacute;rio &lt;0,3 ml/kg/h por &gt;24h OU an&uacute;ria por 12 horas.</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: a) Aumento de 2,0 a 2,9 vezes o valor da creatinina basal e b) diurese &lt; 0,5 ml/kg/h em 12 ou mais horas.</strong></p>\n<p>&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Quest&atilde;o mais decorebinha da PUC-SP, vamos aproveitar para relembrar que o KDIGO 2 aumenta de 2,0 a 2,9 vezes (&ldquo;2&rdquo; para &ldquo;2&rdquo;), ok? Al&eacute;m disso, pensando em les&atilde;o renal aguda, sempre &eacute; importante relembrar as indica&ccedil;&otilde;es cl&aacute;ssicas de di&aacute;lise de urg&ecirc;ncia, sendo elas: Acidose metab&oacute;lica refrat&aacute;ria; Hipercalemia sintom&aacute;tica e refrat&aacute;ria; Hipervolemia refrat&aacute;ria, em geral causando edema pulmonar; Intoxica&ccedil;&otilde;es por subst&acirc;ncias dialis&aacute;veis como l&iacute;tio, metanol, etilenoglicol, salicilatos etc; Uremia sintom&aacute;tica com encefalopatia, n&aacute;useas/v&ocirc;mitos, pericardite constritiva e sangramentos, em geral com ureia &gt; 200.</p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 128106,
+        "number": 4,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "l",
+        "question_ai_update": null,
+        "focus_name": "Lesão Renal Aguda",
+        "focus": {
+          "id": 1870,
+          "name": "Lesão Renal Aguda"
+        }
+      },
+      "detail": {
+        "id": 128106,
+        "content": "Márcio tem 50 anos, sabe ser hipertenso e “ter colesterol” há 10 anos, e seu pai e irmão mais velho faleceram por infarto. Faz uso regular de losartana 100mg/dia e sinvastatina 20mg ao dia até 10 dias antes da admissão hospitalar, quando suspendeu a losartana porque ouviu dizer que este remédio poderia facilitar a infecção por SARS-CoV-2. Na manhã de hoje apresentou desconforto torácico retroesternal intenso e falta de ar aos pequenos esforços, com melhora ao repouso. Isolou-se em casa com medo de estar com COVID-19, monitorou a temperatura e a saturação de O2 (mandou entregar um oxímetro da farmácia) e usou analgésicos por conta própria. Não teve febre. No dia seguinte, teve novamente dor torácica, com irradiação para ombros, associada à sudorese e dispneia. Telefonou para o número da teleconsulta do município que o orientou procurar o hospital, caso não melhorasse. A tarde cursou com piora da dor, sudorese mais intensa e resolveu procurar emergência. Você era o plantonista do Pronto-Socorro. Ao exame físico: presença de taquicardia, sem sopros audíveis (FC= 108bpm), Pressão arterial 180/106mmHg, saturação de O2 99% e temperatura de 36,5°C. Você fez diagnóstico de provável lesão renal aguda pré-renal, devido a insuficiência cardíaca com fração de ejeção diminuída (40% ao Ecocardiograma) associada ao uso de substância nefrotóxica. Assim o sódio urinário e a fração de excreção de sódio devem estar, respectivamente: a) Na+ urinário:; b) FE Na+:",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2021,
+        "tag": [
+          {
+            "id": 1613,
+            "parent_tag": {
+              "id": 306,
+              "name": "Nefrologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Lesão Renal Aguda",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 62,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1870,
+          "name": "Lesão Renal Aguda",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 238,
+            "name": "Nefrologia",
+            "discipline": 96,
+            "old_tag": 306,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 113037,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Enunciado longo da questão discursiva da PUC-SP que serve para 5 questões, então vamos relembrar as informações-chave. Paciente de 50 anos, sexo masculino, hipertenso e dislipidêmico, com história familiar positiva para IAM, vem apresentando há cerca de 24 horas episódios de dor torácica retroesternal intensa associada à dispneia e sudorese, com irradiação para ombros, que melhora ao repouso. À admissão se encontra hipertenso PA 180x106 e taquicárdico FC 108 bpm. É realizado um eletrocardiograma inicial que revela supradesnível de segmento ST em V5, V6, D1, AVL, compatível com Síndrome Coronariana Aguda com Supra de ST de parede ântero-lateral.</p>\n<p style=\"text-align: justify;\">Agora nosso paciente já se encontra internado, foi tratado adequadamente, porém apresenta piora da função renal, sendo classificado como lesão renal aguda KDIGO 2 de etiologia pré-renal devido a insuficiência cardíaca de fração de ejeção reduzida (40%) associada ao uso de substñacia nefrotóxica.</p>\n<p style=\"text-align: justify;\">Pensando nesse tipo de lesão renal aguda (pré-renal), somos questionados sobre o que esperar do <strong>Na Urinário e FENa! </strong></p>\n<p style=\"text-align: justify;\">Confira abaixo a tabela-resumo com a comparação entre IRA pré-renal e <span class=\"article-4780\">necrose tubular aguda</span> (IRA “renal”): </p>\n<p style=\"text-align: center;\"><img alt=\"\" height=\"467\" src=\"https://cdn.medway.com.br/media/question_explanation_images/LRA.PNG\" width=\"524\"/></p>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: Na+ urinário: Diminuída, inferior a 20mEq/L e FENa+ &lt;1,0% .</strong></p>\n<p> </p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">A diferenciação laboratorial da IRA renal e pré-renal é um tema muito batido em provas! Vamos sempre tentar lembrar que na IRA pré-renal os mecanismos de reabsorção ainda estão preservados e o corpo está tentando reabsorver sódio e água para regulação fisiológica, enquanto que na NTA, tudo já foi para o espaço, não havendo mais esses mecanismos - isso ajuda a lembrarmos quais valores são aumentados ou diminuídos nos exames séricos e de urina!</p>\n<p> </p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Enunciado longo da questão discursiva da PUC-SP que serve para 5 questões, então vamos relembrar as informações-chave. Paciente de 50 anos, sexo masculino, hipertenso e dislipidêmico, com história familiar positiva para IAM, vem apresentando há cerca de 24 horas episódios de dor torácica retroesternal intensa associada à dispneia e sudorese, com irradiação para ombros, que melhora ao repouso. À admissão se encontra hipertenso PA 180x106 e taquicárdico FC 108 bpm. É realizado um eletrocardiograma inicial que revela supradesnível de segmento ST em V5, V6, D1, AVL, compatível com Síndrome Coronariana Aguda com Supra de ST de parede ântero-lateral.</p>\n<p style=\"text-align: justify;\">Agora nosso paciente já se encontra internado, foi tratado adequadamente, porém apresenta piora da função renal, sendo classificado como lesão renal aguda KDIGO 2 de etiologia pré-renal devido a insuficiência cardíaca de fração de ejeção reduzida (40%) associada ao uso de substñacia nefrotóxica.</p>\n<p style=\"text-align: justify;\">Pensando nesse tipo de lesão renal aguda (pré-renal), somos questionados sobre o que esperar do <strong>Na Urinário e FENa! </strong></p>\n<p style=\"text-align: justify;\">Confira abaixo a tabela-resumo com a comparação entre IRA pré-renal e <span class=\"article-4780\">necrose tubular aguda</span> (IRA “renal”): </p>\n<p style=\"text-align: center;\"><img alt=\"\" height=\"467\" src=\"https://cdn.medway.com.br/media/question_explanation_images/LRA.PNG\" width=\"524\"/></p>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: Na+ urinário: Diminuída, inferior a 20mEq/L e FENa+ &lt;1,0% .</strong></p>\n<p> </p><br>Visão do aprovado: <p style=\"text-align: justify;\">A diferenciação laboratorial da IRA renal e pré-renal é um tema muito batido em provas! Vamos sempre tentar lembrar que na IRA pré-renal os mecanismos de reabsorção ainda estão preservados e o corpo está tentando reabsorver sódio e água para regulação fisiológica, enquanto que na NTA, tudo já foi para o espaço, não havendo mais esses mecanismos - isso ajuda a lembrarmos quais valores são aumentados ou diminuídos nos exames séricos e de urina!</p>\n<p> </p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 128107,
+        "number": 5,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Síndromes Gripais",
+        "focus": {
+          "id": 1863,
+          "name": "Síndromes Gripais"
+        }
+      },
+      "detail": {
+        "id": 128107,
+        "content": "Márcio tem 50 anos, sabe ser hipertenso e “ter colesterol” há 10 anos, e seu pai e irmão mais velho faleceram por infarto. Faz uso regular de losartana 100mg/dia e sinvastatina 20mg ao dia até 10 dias antes da admissão hospitalar, quando suspendeu a losartana porque ouviu dizer que este remédio poderia facilitar a infecção por SARS-CoV-2. Na manhã de hoje apresentou desconforto torácico retroesternal intenso e falta de ar aos pequenos esforços, com melhora ao repouso. Isolou-se em casa com medo de estar com COVID-19, monitorou a temperatura e a saturação de O2 (mandou entregar um oxímetro da farmácia) e usou analgésicos por conta própria. Não teve febre. No dia seguinte, teve novamente dor torácica, com irradiação para ombros, associada à sudorese e dispneia. Telefonou para o número da teleconsulta do município que o orientou procurar o hospital, caso não melhorasse. A tarde cursou com piora da dor, sudorese mais intensa e resolveu procurar emergência. Você era o plantonista do Pronto-Socorro. Ao exame físico: presença de taquicardia, sem sopros audíveis (FC= 108bpm), Pressão arterial 180/106mmHg, saturação de O2 99% e temperatura de 36,5°C. Na dúvida, você pediu PCR para COVID-19 na admissão e deu negativo, mas você sabe que isso não é diagnóstico de certeza porque:",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2021,
+        "tag": [
+          {
+            "id": 1630,
+            "parent_tag": {
+              "id": 297,
+              "name": "Infectologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Síndromes Gripais",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 423,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1863,
+          "name": "Síndromes Gripais",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 258,
+            "name": "Infectologia",
+            "discipline": 96,
+            "old_tag": 297,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 113038,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Enunciado longo da quest&atilde;o discursiva da PUC-SP que serve para 5 quest&otilde;es, ent&atilde;o vamos relembrar as informa&ccedil;&otilde;es-chave. Paciente de 50 anos, sexo masculino, hipertenso e dislipid&ecirc;mico, com hist&oacute;ria familiar positiva para IAM, vem apresentando h&aacute; cerca de 24 horas epis&oacute;dios de dor tor&aacute;cica retroesternal intensa associada &agrave; dispneia e sudorese, com irradia&ccedil;&atilde;o para ombros, que melhora ao repouso. &Agrave; admiss&atilde;o se encontra hipertenso PA 180x106 e taquic&aacute;rdico FC 108 bpm. &Eacute; realizado um eletrocardiograma inicial que revela supradesn&iacute;vel de segmento ST em V5, V6, D1, AVL, compat&iacute;vel com S&iacute;ndrome Coronariana Aguda com Supra de ST de parede &acirc;ntero-lateral. &Agrave; admiss&atilde;o do paciente, foi solicitado PCR para COVID-19, que veio negativo. Somos questionados ent&atilde;o sobre o porque o PCR negativo para COVID-19 n&atilde;o &eacute; um diagn&oacute;stico de certeza&hellip;</p>\n<p style=\"text-align: justify;\">Quest&atilde;o que na &eacute;poca era novidade, mas que atualmente j&aacute; est&aacute; ultrapassada! De qualquer forma, vamos aproveitar para revisar as principais metodologias para detec&ccedil;&atilde;o de COVID-19?&nbsp;</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p><strong>RT-PCR: </strong>&Eacute; um diagn&oacute;stico laboratorial, feito por biologia molecular, que permite identificar a presen&ccedil;a do material gen&eacute;tico (RNA) do v&iacute;rus Sars-Cov-2 em amostras de secre&ccedil;&atilde;o respirat&oacute;ria. A amostra &eacute; colhida por um profissional de sa&uacute;de. A coleta de amostras para a detec&ccedil;&atilde;o do v&iacute;rus em tempo real deve ocorrer o mais precocemente poss&iacute;vel quando o paciente com s&iacute;ndrome gripal (SG) ou s&iacute;ndrome respirat&oacute;ria aguda grave (SRAG) est&aacute; na fase aguda da infec&ccedil;&atilde;o, at&eacute; o 8&ordm; dia ap&oacute;s o in&iacute;cio dos sintomas. Para pacientes graves hospitalizados, a coleta pode ser feita at&eacute; o 14&ordm; dia do in&iacute;cio dos sintomas. O exame de PCR pode dar falso negativo porque, embora espec&iacute;fico, tem baixa sensibilidade (por volta de 70%), principalmente antes de 4 dias de sintomas.</p>\n</li>\n<li>\n<p><strong>Teste r&aacute;pido de ant&iacute;geno (TR-Ag):</strong> Esta metodologia &eacute; capaz de detectar prote&iacute;nas produzidas na fase de replica&ccedil;&atilde;o viral. O TR-Ag positivo determina a presen&ccedil;a do v&iacute;rus na amostra, que &eacute; colhida por meio de swab nasal ou nasofaringe, no laborat&oacute;rio ou unidade de sa&uacute;de. O processamento da amostra, no entanto, pode ser realizado fora do ambiente laboratorial. S&atilde;o mais eficientes na fase aguda da doen&ccedil;a. Do 1&ordm; ao 7&ordm; dia em pessoas com sintomas; e a partir do 5&ordm; dia do contato em pessoas assintom&aacute;ticas que tiveram contato com casos confirmados.</p>\n</li>\n<li>\n<p><strong>Autoteste de ant&iacute;geno (AT-Ag): </strong>&Eacute; um teste que poder&aacute; ser adquirido nas redes de farm&aacute;cias e drogarias, em que a pessoa coleta sua pr&oacute;pria amostra nasal ou oral (saliva) e, em seguida, faz o teste conforme instru&ccedil;&otilde;es do fabricante na bula e interpreta o resultado. A metodologia &eacute; a mesma do TR-Ag. Pode ser utilizado no per&iacute;odo entre o 1&ordm; e 7&ordm; dia do in&iacute;cio dos sintomas; e a partir do 5&ordm; dia do contato com indiv&iacute;duos com a infec&ccedil;&atilde;o.</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: O exame de PCR pode dar falso negativo porque, embora espec&iacute;fico, tem baixa sensibilidade (por volta de 70%), principalmente antes de 4 dias de sintomas.&nbsp;</strong></p>\n<p>&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Quest&atilde;o datada, por&eacute;m pertinente &agrave; &eacute;poca. Fato &eacute; que muitas bancas ainda exploram quest&otilde;es sobre COVID-19 que, apesar de n&atilde;o estarmos mais em pandemia, ainda se mant&eacute;m um t&oacute;pico relevante. Para a atualidade, vale revisar as novas medica&ccedil;&otilde;es para COVID-19, como o nirmatrelvir/ritonavir, baracitinibe, molnupiravir, rendesevir, favipavir e tocilizumabe - podem ser abordados em provas atuais.</p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Enunciado longo da quest&atilde;o discursiva da PUC-SP que serve para 5 quest&otilde;es, ent&atilde;o vamos relembrar as informa&ccedil;&otilde;es-chave. Paciente de 50 anos, sexo masculino, hipertenso e dislipid&ecirc;mico, com hist&oacute;ria familiar positiva para IAM, vem apresentando h&aacute; cerca de 24 horas epis&oacute;dios de dor tor&aacute;cica retroesternal intensa associada &agrave; dispneia e sudorese, com irradia&ccedil;&atilde;o para ombros, que melhora ao repouso. &Agrave; admiss&atilde;o se encontra hipertenso PA 180x106 e taquic&aacute;rdico FC 108 bpm. &Eacute; realizado um eletrocardiograma inicial que revela supradesn&iacute;vel de segmento ST em V5, V6, D1, AVL, compat&iacute;vel com S&iacute;ndrome Coronariana Aguda com Supra de ST de parede &acirc;ntero-lateral. &Agrave; admiss&atilde;o do paciente, foi solicitado PCR para COVID-19, que veio negativo. Somos questionados ent&atilde;o sobre o porque o PCR negativo para COVID-19 n&atilde;o &eacute; um diagn&oacute;stico de certeza&hellip;</p>\n<p style=\"text-align: justify;\">Quest&atilde;o que na &eacute;poca era novidade, mas que atualmente j&aacute; est&aacute; ultrapassada! De qualquer forma, vamos aproveitar para revisar as principais metodologias para detec&ccedil;&atilde;o de COVID-19?&nbsp;</p>\n<ul style=\"text-align: justify;\">\n<li>\n<p><strong>RT-PCR: </strong>&Eacute; um diagn&oacute;stico laboratorial, feito por biologia molecular, que permite identificar a presen&ccedil;a do material gen&eacute;tico (RNA) do v&iacute;rus Sars-Cov-2 em amostras de secre&ccedil;&atilde;o respirat&oacute;ria. A amostra &eacute; colhida por um profissional de sa&uacute;de. A coleta de amostras para a detec&ccedil;&atilde;o do v&iacute;rus em tempo real deve ocorrer o mais precocemente poss&iacute;vel quando o paciente com s&iacute;ndrome gripal (SG) ou s&iacute;ndrome respirat&oacute;ria aguda grave (SRAG) est&aacute; na fase aguda da infec&ccedil;&atilde;o, at&eacute; o 8&ordm; dia ap&oacute;s o in&iacute;cio dos sintomas. Para pacientes graves hospitalizados, a coleta pode ser feita at&eacute; o 14&ordm; dia do in&iacute;cio dos sintomas. O exame de PCR pode dar falso negativo porque, embora espec&iacute;fico, tem baixa sensibilidade (por volta de 70%), principalmente antes de 4 dias de sintomas.</p>\n</li>\n<li>\n<p><strong>Teste r&aacute;pido de ant&iacute;geno (TR-Ag):</strong> Esta metodologia &eacute; capaz de detectar prote&iacute;nas produzidas na fase de replica&ccedil;&atilde;o viral. O TR-Ag positivo determina a presen&ccedil;a do v&iacute;rus na amostra, que &eacute; colhida por meio de swab nasal ou nasofaringe, no laborat&oacute;rio ou unidade de sa&uacute;de. O processamento da amostra, no entanto, pode ser realizado fora do ambiente laboratorial. S&atilde;o mais eficientes na fase aguda da doen&ccedil;a. Do 1&ordm; ao 7&ordm; dia em pessoas com sintomas; e a partir do 5&ordm; dia do contato em pessoas assintom&aacute;ticas que tiveram contato com casos confirmados.</p>\n</li>\n<li>\n<p><strong>Autoteste de ant&iacute;geno (AT-Ag): </strong>&Eacute; um teste que poder&aacute; ser adquirido nas redes de farm&aacute;cias e drogarias, em que a pessoa coleta sua pr&oacute;pria amostra nasal ou oral (saliva) e, em seguida, faz o teste conforme instru&ccedil;&otilde;es do fabricante na bula e interpreta o resultado. A metodologia &eacute; a mesma do TR-Ag. Pode ser utilizado no per&iacute;odo entre o 1&ordm; e 7&ordm; dia do in&iacute;cio dos sintomas; e a partir do 5&ordm; dia do contato com indiv&iacute;duos com a infec&ccedil;&atilde;o.</p>\n</li>\n</ul>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: O exame de PCR pode dar falso negativo porque, embora espec&iacute;fico, tem baixa sensibilidade (por volta de 70%), principalmente antes de 4 dias de sintomas.&nbsp;</strong></p>\n<p>&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Quest&atilde;o datada, por&eacute;m pertinente &agrave; &eacute;poca. Fato &eacute; que muitas bancas ainda exploram quest&otilde;es sobre COVID-19 que, apesar de n&atilde;o estarmos mais em pandemia, ainda se mant&eacute;m um t&oacute;pico relevante. Para a atualidade, vale revisar as novas medica&ccedil;&otilde;es para COVID-19, como o nirmatrelvir/ritonavir, baracitinibe, molnupiravir, rendesevir, favipavir e tocilizumabe - podem ser abordados em provas atuais.</p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T20:41:24.096465+00:00",
+  "complete": true
+}

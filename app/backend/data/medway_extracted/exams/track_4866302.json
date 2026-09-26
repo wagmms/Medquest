@@ -1,0 +1,1141 @@
+{
+  "track_id": 4866302,
+  "name": "UERJ - RJ-2026-Discursiva",
+  "year": 2026,
+  "track_fast": {
+    "id": 4866302,
+    "name": "UERJ - RJ-2026-Discursiva",
+    "track_type": "c",
+    "question_count": 10,
+    "year": 2026,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UERJ",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-uerj_uKE5Nhw.jpeg",
+    "residency_degree": {
+      "id": 8,
+      "abbreviation": "R+PED"
+    },
+    "available_deadline": null,
+    "available_questions_count": 10,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 10,
+  "questions": [
+    {
+      "meta": {
+        "id": 342039,
+        "number": 1,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Glomerulopatias e tubulopatias",
+        "focus": {
+          "id": 1478,
+          "name": "Glomerulopatias e tubulopatias"
+        }
+      },
+      "detail": {
+        "id": 342039,
+        "content": "Paciente com 6 anos de idade encontra-se internado para investigação de síndrome edemigênica.  Apresenta inicialmente edema de membros inferiores há cerca de duas semanas, evoluindo para edema  de face e palpebral, ascite e anasarca. Durante a internação, após investigação, foi firmado o diagnóstico  de síndrome nefrótica.    \n\n\nEscreva cinco manifestações clínicas que podem ser encontradas em paciente com síndrome nefrótica. (10pts)",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 8,
+          "abbreviation": "R+PED"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 17337,
+            "parent_tag": {
+              "id": 17233,
+              "name": "Nefrologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Glomerulopatias e tubulopatias",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              4
+            ],
+            "new_residency_degree": [
+              8
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1478,
+          "name": "Glomerulopatias e tubulopatias",
+          "discipline": {
+            "id": 91,
+            "name": "Pediatria",
+            "residency_degree": 8,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 67,
+            "name": "Nefrologia",
+            "discipline": 91,
+            "old_tag": 17233,
+            "residency_degree_abbreviation": "R+PED"
+          }
+        }
+      },
+      "explanation": {
+        "id": 589995,
+        "actual_explanation": true,
+        "introduction": "<p>Trata-se, essencialmente, de <strong>síndrome nefrótica</strong> em <strong>pediatria</strong>, em que o reconhecimento das manifestações clínicas é fundamental para o diagnóstico e manejo. Esta é uma condição glomerular primária comum na faixa etária pediátrica, especialmente entre 2-8 anos, caracterizada por um complexo sintomático resultante da <strong>proteinúria maciça</strong> e consequente <strong>hipoalbuminemia</strong>.</p>\n\n<p>O caso apresentado mostra a evolução clássica da síndrome nefrótica infantil: início com <strong>edema localizado</strong> em membros inferiores, progredindo para <strong>edema facial e palpebral</strong> (especialmente matinal), e culminando em <strong>ascite e anasarca</strong>. Esta progressão reflete a fisiopatologia subjacente, onde a perda massiva de albumina pela urina leva à diminuição da pressão oncótica plasmática e consequente extravasamento de fluidos para o interstício.</p>\n\n<p>A síndrome nefrótica é um tema frequente em provas de residência, pois engloba conceitos de nefrologia, pediatria e fisiopatologia. O examinador espera que o candidato reconheça não apenas as manifestações clássicas (edema), mas também as <strong>manifestações sistêmicas</strong>, <strong>complicações</strong> e <strong>sintomas associados</strong> que podem acompanhar esta condição.</p>\n\n<p>A questão solicita cinco manifestações clínicas, e a resposta deve contemplar tanto os <strong>sinais cardinais</strong> quanto as <strong>manifestações secundárias</strong> que podem estar presentes. É importante compreender que a síndrome nefrótica não se limita apenas ao edema, mas envolve um espectro amplo de alterações clínicas decorrentes das alterações metabólicas e hydroeletrolíticas.</p>",
+        "option_a": "",
+        "short_option_a": "",
+        "option_b": "",
+        "short_option_b": "",
+        "option_c": "",
+        "short_option_c": "",
+        "option_d": "",
+        "short_option_d": "",
+        "option_e": "",
+        "short_option_e": "",
+        "conclusion": "<p>A <strong>síndrome nefrótica</strong> em crianças se apresenta com padrão evolutivo característico: edema progressivo iniciando em membros inferiores, evoluindo para face/palpebral (especialmente matinal) até <strong>anasarca</strong>. O edema <em>mole, frio e insidioso</em> em criança de 2-8 anos praticamente fecha o diagnóstico. A progressão em semanas associada ao comprometimento sistêmico distingue de outras causas de edema.</p>\n\n<strong>Pistas-chave:</strong>\n<ul>\n<li>Edema progressivo: MMII → facial/palpebral matinal → anasarca</li>\n<li>Edema mole, frio, depressível (diferente do edema \"quente\" da insuficiência cardíaca)</li>\n<li>Faixa etária típica: 2-8 anos</li>\n<li>Manifestações sistêmicas: astenia, adinamia, taquidispneia</li>\n<li>Hepatomegalia pode estar presente</li>\n</ul>\n\n<strong>Pegadinhas de prova:</strong>\n<ul>\n<li>Confundir com insuficiência cardíaca (edema quente vs frio, ausência de sopros)</li>\n<li>Limitar-se ao edema e esquecer manifestações gastrointestinais (dor abdominal, diarreia)</li>\n<li>Pressão arterial: pode estar normal, elevada ou baixa (não é critério diagnóstico)</li>\n<li>Sintomas neurológicos (cefaleia, convulsões) podem aparecer por distúrbios eletrolíticos</li>\n</ul>\n\n<strong>Como cai:</strong>\n<ul>\n<li>Questões descritivas pedindo <strong>5 manifestações clínicas</strong> específicas</li>\n<li>Casos clínicos para diagnóstico diferencial com glomerulonefrite aguda</li>\n<li>Progressão temporal do edema como pista diagnóstica principal</li>\n<li><strong>Também pode cair:</strong> complicações (peritonite bacteriana espontânea, tromboembolismo)</li>\n</ul><figure data-okr=\"ilustracao\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20240229T095106470Z708291.png\" alt=\"\" style=\"max-width:100%\"></figure>",
+        "update_note": "",
+        "lesson_reference": "",
+        "full_explanation": "<p>Trata-se, essencialmente, de <strong>síndrome nefrótica</strong> em <strong>pediatria</strong>, em que o reconhecimento das manifestações clínicas é fundamental para o diagnóstico e manejo. Esta é uma condição glomerular primária comum na faixa etária pediátrica, especialmente entre 2-8 anos, caracterizada por um complexo sintomático resultante da <strong>proteinúria maciça</strong> e consequente <strong>hipoalbuminemia</strong>.</p>\n\n<p>O caso apresentado mostra a evolução clássica da síndrome nefrótica infantil: início com <strong>edema localizado</strong> em membros inferiores, progredindo para <strong>edema facial e palpebral</strong> (especialmente matinal), e culminando em <strong>ascite e anasarca</strong>. Esta progressão reflete a fisiopatologia subjacente, onde a perda massiva de albumina pela urina leva à diminuição da pressão oncótica plasmática e consequente extravasamento de fluidos para o interstício.</p>\n\n<p>A síndrome nefrótica é um tema frequente em provas de residência, pois engloba conceitos de nefrologia, pediatria e fisiopatologia. O examinador espera que o candidato reconheça não apenas as manifestações clássicas (edema), mas também as <strong>manifestações sistêmicas</strong>, <strong>complicações</strong> e <strong>sintomas associados</strong> que podem acompanhar esta condição.</p>\n\n<p>A questão solicita cinco manifestações clínicas, e a resposta deve contemplar tanto os <strong>sinais cardinais</strong> quanto as <strong>manifestações secundárias</strong> que podem estar presentes. É importante compreender que a síndrome nefrótica não se limita apenas ao edema, mas envolve um espectro amplo de alterações clínicas decorrentes das alterações metabólicas e hydroeletrolíticas.</p><br>Visão do aprovado: <p>A <strong>síndrome nefrótica</strong> em crianças se apresenta com padrão evolutivo característico: edema progressivo iniciando em membros inferiores, evoluindo para face/palpebral (especialmente matinal) até <strong>anasarca</strong>. O edema <em>mole, frio e insidioso</em> em criança de 2-8 anos praticamente fecha o diagnóstico. A progressão em semanas associada ao comprometimento sistêmico distingue de outras causas de edema.</p>\n\n<strong>Pistas-chave:</strong>\n<ul>\n<li>Edema progressivo: MMII → facial/palpebral matinal → anasarca</li>\n<li>Edema mole, frio, depressível (diferente do edema \"quente\" da insuficiência cardíaca)</li>\n<li>Faixa etária típica: 2-8 anos</li>\n<li>Manifestações sistêmicas: astenia, adinamia, taquidispneia</li>\n<li>Hepatomegalia pode estar presente</li>\n</ul>\n\n<strong>Pegadinhas de prova:</strong>\n<ul>\n<li>Confundir com insuficiência cardíaca (edema quente vs frio, ausência de sopros)</li>\n<li>Limitar-se ao edema e esquecer manifestações gastrointestinais (dor abdominal, diarreia)</li>\n<li>Pressão arterial: pode estar normal, elevada ou baixa (não é critério diagnóstico)</li>\n<li>Sintomas neurológicos (cefaleia, convulsões) podem aparecer por distúrbios eletrolíticos</li>\n</ul>\n\n<strong>Como cai:</strong>\n<ul>\n<li>Questões descritivas pedindo <strong>5 manifestações clínicas</strong> específicas</li>\n<li>Casos clínicos para diagnóstico diferencial com glomerulonefrite aguda</li>\n<li>Progressão temporal do edema como pista diagnóstica principal</li>\n<li><strong>Também pode cair:</strong> complicações (peritonite bacteriana espontânea, tromboembolismo)</li>\n</ul><figure data-okr=\"ilustracao\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20240229T095106470Z708291.png\" alt=\"\" style=\"max-width:100%\"></figure><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 342040,
+        "number": 2,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Glomerulopatias e tubulopatias",
+        "focus": {
+          "id": 1478,
+          "name": "Glomerulopatias e tubulopatias"
+        }
+      },
+      "detail": {
+        "id": 342040,
+        "content": "Paciente com 6 anos de idade encontra-se internado para investigação de síndrome edemigênica.  Apresenta inicialmente edema de membros inferiores há cerca de duas semanas, evoluindo para edema  de face e palpebral, ascite e anasarca. Durante a internação, após investigação, foi firmado o diagnóstico  de síndrome nefrótica.  \n\n\nRelate quais alterações laboratoriais são esperadas e cite duas indicações para biópsia renal. (10pts)",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 8,
+          "abbreviation": "R+PED"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 17337,
+            "parent_tag": {
+              "id": 17233,
+              "name": "Nefrologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Glomerulopatias e tubulopatias",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              4
+            ],
+            "new_residency_degree": [
+              8
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1478,
+          "name": "Glomerulopatias e tubulopatias",
+          "discipline": {
+            "id": 91,
+            "name": "Pediatria",
+            "residency_degree": 8,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 67,
+            "name": "Nefrologia",
+            "discipline": 91,
+            "old_tag": 17233,
+            "residency_degree_abbreviation": "R+PED"
+          }
+        }
+      },
+      "explanation": {
+        "id": 589539,
+        "actual_explanation": true,
+        "introduction": "<p>O caso apresentado direciona o raciocínio para <strong>síndrome nefrótica pediátrica</strong> por causa da evolução clássica de edema progressivo em uma criança de 6 anos. Esta é uma condição fundamental em nefrologia pediátrica, sendo a <span class=\"article-4607\">doença de lesões mínimas</span> a causa mais comum nessa faixa etária, representando cerca de 85-90% dos casos. A síndrome nefrótica caracteriza-se pela <strong>tétrade clássica</strong>: proteinúria maciça, hipoalbuminemia, edema e hiperlipidemia. O reconhecimento preciso das alterações laboratoriais e dos critérios para biópsia renal é essencial, pois determina tanto o diagnóstico quanto a conduta terapêutica. Em pediatria, a maioria dos casos responde bem aos corticosteroides, mas existem situações específicas que requerem investigação histológica através da biópsia renal para definir o prognóstico e orientar o tratamento mais adequado.</p>",
+        "option_a": "",
+        "short_option_a": "",
+        "option_b": "",
+        "short_option_b": "",
+        "option_c": "",
+        "short_option_c": "",
+        "option_d": "",
+        "short_option_d": "",
+        "option_e": "",
+        "short_option_e": "",
+        "conclusion": "<p>A progressão clássica de <strong>edema ascendente</strong> (membros inferiores → face/palpebral → anasarca) em criança de 6 anos confirma síndrome nefrótica, provavelmente <strong><span class=\"article-4607\">doença de lesões mínimas</span></strong> (causa mais comum nesta idade). O reconhecimento da tétrade clássica e valores específicos de proteinúria são fundamentais para o diagnóstico.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Proteinúria maciça: &gt;50mg/kg/dia ou &gt;3+ no EAS ou &gt;2mg/mg no spot urinário</li>\n<li>Hipoalbuminemia &lt;2,5g/dL associada ao edema progressivo</li>\n<li>Hiperlipidemia (colesterol, triglicerídeos elevados) completando a tétrade</li>\n<li>Hematúria microscópica em 25% dos casos (não afasta o diagnóstico)</li>\n<li>Distúrbios eletrolíticos: hipocalcemia, hipocalemia, hiponatremia</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir valores de proteinúria para diagnóstico (decorar &gt;50mg/kg/dia)</li>\n<li>Achar que hematúria afasta síndrome nefrótica (presente em ¼ dos casos)</li>\n<li>Esquecer alterações secundárias: IgG/IgA baixas, fração alfa-2 elevada</li>\n<li>Indicar biópsia em criança típica de 6 anos (só se corticorresistente ou atípica)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Casos clínicos com evolução temporal do edema pedindo alterações laboratoriais específicas</li>\n<li>Questões sobre <em>quando biopsiar</em>: &lt;1 ano, &gt;10 anos, hipertensão severa, corticorresistência</li>\n<li>Diferenciação entre síndrome nefrótica típica (lesões mínimas) vs atípica que requer biópsia</li>\n<li>Valores numéricos de proteinúria e albumina como critérios diagnósticos</li>\n</ul><figure data-okr=\"ilustracao\"><img alt=\"\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20240228T214843512Z679821.png\" style=\"max-width:100%\"/></figure>",
+        "update_note": "",
+        "lesson_reference": "",
+        "full_explanation": "<p>O caso apresentado direciona o raciocínio para <strong>síndrome nefrótica pediátrica</strong> por causa da evolução clássica de edema progressivo em uma criança de 6 anos. Esta é uma condição fundamental em nefrologia pediátrica, sendo a <span class=\"article-4607\">doença de lesões mínimas</span> a causa mais comum nessa faixa etária, representando cerca de 85-90% dos casos. A síndrome nefrótica caracteriza-se pela <strong>tétrade clássica</strong>: proteinúria maciça, hipoalbuminemia, edema e hiperlipidemia. O reconhecimento preciso das alterações laboratoriais e dos critérios para biópsia renal é essencial, pois determina tanto o diagnóstico quanto a conduta terapêutica. Em pediatria, a maioria dos casos responde bem aos corticosteroides, mas existem situações específicas que requerem investigação histológica através da biópsia renal para definir o prognóstico e orientar o tratamento mais adequado.</p><br>Visão do aprovado: <p>A progressão clássica de <strong>edema ascendente</strong> (membros inferiores → face/palpebral → anasarca) em criança de 6 anos confirma síndrome nefrótica, provavelmente <strong><span class=\"article-4607\">doença de lesões mínimas</span></strong> (causa mais comum nesta idade). O reconhecimento da tétrade clássica e valores específicos de proteinúria são fundamentais para o diagnóstico.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Proteinúria maciça: &gt;50mg/kg/dia ou &gt;3+ no EAS ou &gt;2mg/mg no spot urinário</li>\n<li>Hipoalbuminemia &lt;2,5g/dL associada ao edema progressivo</li>\n<li>Hiperlipidemia (colesterol, triglicerídeos elevados) completando a tétrade</li>\n<li>Hematúria microscópica em 25% dos casos (não afasta o diagnóstico)</li>\n<li>Distúrbios eletrolíticos: hipocalcemia, hipocalemia, hiponatremia</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir valores de proteinúria para diagnóstico (decorar &gt;50mg/kg/dia)</li>\n<li>Achar que hematúria afasta síndrome nefrótica (presente em ¼ dos casos)</li>\n<li>Esquecer alterações secundárias: IgG/IgA baixas, fração alfa-2 elevada</li>\n<li>Indicar biópsia em criança típica de 6 anos (só se corticorresistente ou atípica)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Casos clínicos com evolução temporal do edema pedindo alterações laboratoriais específicas</li>\n<li>Questões sobre <em>quando biopsiar</em>: &lt;1 ano, &gt;10 anos, hipertensão severa, corticorresistência</li>\n<li>Diferenciação entre síndrome nefrótica típica (lesões mínimas) vs atípica que requer biópsia</li>\n<li>Valores numéricos de proteinúria e albumina como critérios diagnósticos</li>\n</ul><figure data-okr=\"ilustracao\"><img alt=\"\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20240228T214843512Z679821.png\" style=\"max-width:100%\"/></figure><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 342041,
+        "number": 3,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Glomerulopatias e tubulopatias",
+        "focus": {
+          "id": 1478,
+          "name": "Glomerulopatias e tubulopatias"
+        }
+      },
+      "detail": {
+        "id": 342041,
+        "content": "Paciente com 6 anos de idade encontra-se internado para investigação de síndrome edemigênica.  Apresenta inicialmente edema de membros inferiores há cerca de duas semanas, evoluindo para edema  de face e palpebral, ascite e anasarca. Durante a internação, após investigação, foi firmado o diagnóstico  de síndrome nefrótica.  \n\nInforme a medicação e a posologia indicada para início do tratamento e outras medicações que também podem ser utilizadas em associação. (10pts)",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 8,
+          "abbreviation": "R+PED"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 17337,
+            "parent_tag": {
+              "id": 17233,
+              "name": "Nefrologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Glomerulopatias e tubulopatias",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              4
+            ],
+            "new_residency_degree": [
+              8
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1478,
+          "name": "Glomerulopatias e tubulopatias",
+          "discipline": {
+            "id": 91,
+            "name": "Pediatria",
+            "residency_degree": 8,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 67,
+            "name": "Nefrologia",
+            "discipline": 91,
+            "old_tag": 17233,
+            "residency_degree_abbreviation": "R+PED"
+          }
+        }
+      },
+      "explanation": {
+        "id": 411749,
+        "actual_explanation": true,
+        "introduction": "<p>Trata-se, essencialmente, de <strong>síndrome nefrótica em pediatria</strong> em que o reconhecimento da terapia de primeira linha diferencia o manejo adequado. O caso apresenta uma criança de 6 anos com quadro clássico de síndrome edemigênica que progrediu para <strong>anasarca</strong>, confirmando o diagnóstico de síndrome nefrótica durante a investigação hospitalar.</p>\n\n<p>Este tema é extremamente relevante nas provas de residência médica, especialmente em pediatria e nefrologia, pois testa o conhecimento específico sobre <strong>posologia de corticosteroides</strong> em crianças e o manejo multidisciplinar da doença. A síndrome nefrótica é uma das principais causas de edema em pediatria, e o protocolo terapêutico tem particularidades importantes que diferem do manejo em adultos.</p>\n\n<p>A resposta correta estabelece que o tratamento de primeira linha consiste em <strong>prednisona na dose de 60mg/m² ou 2mg/kg/dia (máximo de 60mg/dia)</strong>, mantida por 4-6 semanas com redução gradativa posterior, totalizando 8-12 semanas de corticoterapia. Esta é a base fundamental do tratamento para induzir remissão da doença.</p>\n\n<p>A síndrome nefrótica pediátrica caracteriza-se por:</p>\n<ul>\n<li><strong>proteinúria maciça</strong> (≥40mg/m²/hora ou ≥50mg/kg/dia)</li>\n<li><strong>hipoalbuminemia</strong> (<3,0g/dL)</li>\n<li><strong>edema</strong></li>\n<li>frequentemente <strong>hiperlipidemia</strong></li>\n</ul>\n\n<p>O edema típico inicia-se na região periorbital e membros inferiores, podendo progredir para anasarca como descrito no caso. O tratamento visa não apenas controlar os sintomas, mas principalmente induzir a remissão da proteinúria e prevenir complicações a longo prazo.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O diagnóstico de <strong>síndrome nefrótica pediátrica</strong> é confirmado pela progressão característica do edema (palpebral → membros → anasarca) em criança de 6 anos. O tratamento de primeira linha exige <strong>posologia específica de corticosteroides</strong> para induzir remissão, diferindo significativamente do manejo em adultos.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Criança com edema progressivo típico (face/palpebral evoluindo para anasarca)</li>\n<li>Prednisona como primeira linha: <strong>60mg/m² ou 2mg/kg/dia</strong> (máximo 60mg/dia)</li>\n<li>Duração específica: <strong>4-6 semanas</strong> iniciais, redução gradativa, total de <strong>8-12 semanas</strong></li>\n<li>Síndrome nefrótica = proteinúria maciça + hipoalbuminemia + edema</li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Dose máxima de <strong>60mg/dia</strong> de prednisona (mesmo em crianças maiores)</li>\n<li>Duração total do tratamento: <em>8-12 semanas</em> (não apenas as 4-6 semanas iniciais)</li>\n<li>Diuréticos são <strong>evitados</strong> pelo risco de hipovolemia (só usar em anasarca grave)</li>\n<li>Imunossupressores são para <em>corticodependentes</em>, não primeira linha</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questão direta sobre <strong>posologia específica</strong> de prednisona em pediatria</li>\n<li>Diferenciação entre tratamento inicial vs. <em>corticodependentes/corticorresistentes</em></li>\n<li>Indicações precisas de <strong>diuréticos e albumina</strong> (quando usar vs. evitar)</li>\n<li><strong>Também pode cair:</strong> Critérios diagnósticos específicos, complicações da síndrome nefrótica</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Trata-se, essencialmente, de <strong>síndrome nefrótica em pediatria</strong> em que o reconhecimento da terapia de primeira linha diferencia o manejo adequado. O caso apresenta uma criança de 6 anos com quadro clássico de síndrome edemigênica que progrediu para <strong>anasarca</strong>, confirmando o diagnóstico de síndrome nefrótica durante a investigação hospitalar.</p>\n\n<p>Este tema é extremamente relevante nas provas de residência médica, especialmente em pediatria e nefrologia, pois testa o conhecimento específico sobre <strong>posologia de corticosteroides</strong> em crianças e o manejo multidisciplinar da doença. A síndrome nefrótica é uma das principais causas de edema em pediatria, e o protocolo terapêutico tem particularidades importantes que diferem do manejo em adultos.</p>\n\n<p>A resposta correta estabelece que o tratamento de primeira linha consiste em <strong>prednisona na dose de 60mg/m² ou 2mg/kg/dia (máximo de 60mg/dia)</strong>, mantida por 4-6 semanas com redução gradativa posterior, totalizando 8-12 semanas de corticoterapia. Esta é a base fundamental do tratamento para induzir remissão da doença.</p>\n\n<p>A síndrome nefrótica pediátrica caracteriza-se por:</p>\n<ul>\n<li><strong>proteinúria maciça</strong> (≥40mg/m²/hora ou ≥50mg/kg/dia)</li>\n<li><strong>hipoalbuminemia</strong> (<3,0g/dL)</li>\n<li><strong>edema</strong></li>\n<li>frequentemente <strong>hiperlipidemia</strong></li>\n</ul>\n\n<p>O edema típico inicia-se na região periorbital e membros inferiores, podendo progredir para anasarca como descrito no caso. O tratamento visa não apenas controlar os sintomas, mas principalmente induzir a remissão da proteinúria e prevenir complicações a longo prazo.</p><br>Visão do aprovado: <p>O diagnóstico de <strong>síndrome nefrótica pediátrica</strong> é confirmado pela progressão característica do edema (palpebral → membros → anasarca) em criança de 6 anos. O tratamento de primeira linha exige <strong>posologia específica de corticosteroides</strong> para induzir remissão, diferindo significativamente do manejo em adultos.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Criança com edema progressivo típico (face/palpebral evoluindo para anasarca)</li>\n<li>Prednisona como primeira linha: <strong>60mg/m² ou 2mg/kg/dia</strong> (máximo 60mg/dia)</li>\n<li>Duração específica: <strong>4-6 semanas</strong> iniciais, redução gradativa, total de <strong>8-12 semanas</strong></li>\n<li>Síndrome nefrótica = proteinúria maciça + hipoalbuminemia + edema</li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Dose máxima de <strong>60mg/dia</strong> de prednisona (mesmo em crianças maiores)</li>\n<li>Duração total do tratamento: <em>8-12 semanas</em> (não apenas as 4-6 semanas iniciais)</li>\n<li>Diuréticos são <strong>evitados</strong> pelo risco de hipovolemia (só usar em anasarca grave)</li>\n<li>Imunossupressores são para <em>corticodependentes</em>, não primeira linha</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questão direta sobre <strong>posologia específica</strong> de prednisona em pediatria</li>\n<li>Diferenciação entre tratamento inicial vs. <em>corticodependentes/corticorresistentes</em></li>\n<li>Indicações precisas de <strong>diuréticos e albumina</strong> (quando usar vs. evitar)</li>\n<li><strong>Também pode cair:</strong> Critérios diagnósticos específicos, complicações da síndrome nefrótica</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 342042,
+        "number": 4,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "m",
+        "question_ai_update": null,
+        "focus_name": "Transtornos mentais",
+        "focus": {
+          "id": 1561,
+          "name": "Transtornos mentais"
+        }
+      },
+      "detail": {
+        "id": 342042,
+        "content": "Menina de 15 anos de idade é trazida por sua mãe para consulta no ambulatório de adolescentes, devido  à queixa de perda ponderal progressiva ao longo do último ano. A adolescente explicou que precisava  perder algum peso porque “estava muito gorda”, tornando-se alvo de comentários jocosos na escola.  Refere não sentir nada, a não ser um leve desconforto em queimação no estômago, que é aliviado  quando bebe água. No entanto, sua mãe mostra-se  bastante nervosa. Relata que a filha passou a adotar  uma dieta muito restritiva, não aceitando comer nada que não seja preparado por ela mesma. Além disso,  a adolescente faz uma rotina de exercícios na academia que a mãe considera muito pesada, ainda mais  para quem não se alimenta bem. Ao exame físico, apresenta estatura 1,65m, peso = 41kg, índice de  massa corporal (IMC) = 15,1Kg/m2 (ZScore entre -2 e -3), corada, desidratada (+/4+). Pressão arterial  (PA) = 90x60mmHg, frequência cardíaca (FC) = 46bpm quando deitada, e 75bpm ao levantar, Tanner  M3P3. A médica que a atendeu, solicitou internação na enfermaria por provável transtorno alimentar.  \n\n\nCite quais são os tipos de transtorno alimentar que costumam cursar com perda ponderal.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 8,
+          "abbreviation": "R+PED"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 17247,
+            "parent_tag": {
+              "id": 17226,
+              "name": "Psiquiatria",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Transtornos mentais",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              4
+            ],
+            "new_residency_degree": [
+              8
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1561,
+          "name": "Transtornos mentais",
+          "discipline": {
+            "id": 91,
+            "name": "Pediatria",
+            "residency_degree": 8,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 74,
+            "name": "Psiquiatria",
+            "discipline": 91,
+            "old_tag": 17226,
+            "residency_degree_abbreviation": "R+PED"
+          }
+        }
+      },
+      "explanation": {
+        "id": 411753,
+        "actual_explanation": true,
+        "introduction": "<p>Trata-se, essencialmente, de <strong>transtornos alimentares</strong> em adolescente, em que a perda ponderal progressiva e os comportamentos restritivos apontam para diagnósticos específicos que requerem reconhecimento precoce e intervenção adequada.</p>\n\n<p>O caso apresenta uma adolescente de 15 anos com um quadro clássico de <strong>transtorno alimentar grave</strong>, evidenciado pela perda ponderal significativa (IMC = 15,1 kg/m²), comportamentos restritivos alimentares, exercícios excessivos e complicações médicas como desidratação e instabilidade hemodinâmica. A presença de distorção da <strong>imagem corporal</strong> (\"estava muito gorda\") e o controle obsessivo sobre a alimentação são elementos fundamentais para o diagnóstico.</p>\n\n<p>Esta questão é extremamente relevante para as provas de residência médica, pois os <strong>transtornos alimentares</strong> são condições psiquiátricas graves que frequentemente se manifestam na adolescência e requerem abordagem multidisciplinar. O reconhecimento precoce é crucial, já que estas condições apresentam alta <strong>morbimortalidade</strong> quando não tratadas adequadamente.</p>\n\n<p>A resposta correta identifica três tipos específicos de transtornos alimentares que cursam com <strong>perda ponderal</strong>: <strong>Anorexia nervosa subtipo restritivo</strong>, <strong>Anorexia nervosa subtipo purgativo</strong> e <strong>Bulimia nervosa</strong>. É fundamental compreender que, embora a bulimia nervosa seja frequentemente associada a peso normal ou sobrepeso, ela também pode cursar com perda ponderal significativa, especialmente quando os comportamentos purgativos superam a ingestão calórica.</p>\n\n<p>A <strong>anorexia nervosa</strong> é caracterizada pela restrição da ingestão energética levando a peso corporal significativamente baixo, medo intenso de ganhar peso e perturbação na percepção do peso ou forma corporal. O subtipo <strong>restritivo</strong> envolve apenas restrição alimentar e exercícios excessivos, enquanto o subtipo <strong>purgativo</strong> inclui episódios de compulsão alimentar e/ou comportamentos compensatórios como vômitos, uso de laxantes ou diuréticos. A <strong>bulimia nervosa</strong>, por sua vez, caracteriza-se por episódios recorrentes de compulsão alimentar seguidos de comportamentos compensatórios inadequados para prevenir ganho de peso.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O <strong>IMC gravemente baixo</strong> (15,1 kg/m²) associado aos comportamentos restritivos e distorção da imagem corporal estabelece o diagnóstico de transtorno alimentar. A instabilidade hemodinâmica (bradicardia e hipotensão postural) indica <strong>gravidade médica</strong> que justifica internação imediata.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>IMC abaixo do percentil 3 para idade (Z-score entre -2 e -3) em adolescente</li>\n<li>Controle obsessivo sobre alimentação (só aceita comida preparada por ela)</li>\n<li>Distorção da <em>imagem corporal</em> (\"estava muito gorda\") apesar do baixo peso</li>\n<li>Exercícios excessivos como comportamento compensatório</li>\n<li>Sinais de instabilidade cardiovascular (bradicardia, hipotensão postural)</li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li><strong>Bulimia nervosa</strong> também pode cursar com perda ponderal quando comportamentos purgativos superam ingestão calórica</li>\n<li>Confundir subtipos de <em>anorexia</em>: restritivo (só restrição) vs purgativo (inclui vômitos/laxantes)</li>\n<li>Associar erroneamente bulimia apenas a peso normal - pode haver emagrecimento significativo</li>\n<li>Desvalorizar critérios de <strong>internação</strong> por instabilidade hemodinâmica em adolescentes</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questões que pedem diferenciação entre <strong>subtipos de anorexia</strong> (restritivo vs purgativo)</li>\n<li>Casos clínicos pedindo <em>critérios de internação</em> por instabilidade médica</li>\n<li>Alternativas que incluem ou excluem <strong>bulimia nervosa</strong> como causa de perda ponderal</li>\n<li>Reconhecimento de <em>complicações médicas</em> graves em transtornos alimentares</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Trata-se, essencialmente, de <strong>transtornos alimentares</strong> em adolescente, em que a perda ponderal progressiva e os comportamentos restritivos apontam para diagnósticos específicos que requerem reconhecimento precoce e intervenção adequada.</p>\n\n<p>O caso apresenta uma adolescente de 15 anos com um quadro clássico de <strong>transtorno alimentar grave</strong>, evidenciado pela perda ponderal significativa (IMC = 15,1 kg/m²), comportamentos restritivos alimentares, exercícios excessivos e complicações médicas como desidratação e instabilidade hemodinâmica. A presença de distorção da <strong>imagem corporal</strong> (\"estava muito gorda\") e o controle obsessivo sobre a alimentação são elementos fundamentais para o diagnóstico.</p>\n\n<p>Esta questão é extremamente relevante para as provas de residência médica, pois os <strong>transtornos alimentares</strong> são condições psiquiátricas graves que frequentemente se manifestam na adolescência e requerem abordagem multidisciplinar. O reconhecimento precoce é crucial, já que estas condições apresentam alta <strong>morbimortalidade</strong> quando não tratadas adequadamente.</p>\n\n<p>A resposta correta identifica três tipos específicos de transtornos alimentares que cursam com <strong>perda ponderal</strong>: <strong>Anorexia nervosa subtipo restritivo</strong>, <strong>Anorexia nervosa subtipo purgativo</strong> e <strong>Bulimia nervosa</strong>. É fundamental compreender que, embora a bulimia nervosa seja frequentemente associada a peso normal ou sobrepeso, ela também pode cursar com perda ponderal significativa, especialmente quando os comportamentos purgativos superam a ingestão calórica.</p>\n\n<p>A <strong>anorexia nervosa</strong> é caracterizada pela restrição da ingestão energética levando a peso corporal significativamente baixo, medo intenso de ganhar peso e perturbação na percepção do peso ou forma corporal. O subtipo <strong>restritivo</strong> envolve apenas restrição alimentar e exercícios excessivos, enquanto o subtipo <strong>purgativo</strong> inclui episódios de compulsão alimentar e/ou comportamentos compensatórios como vômitos, uso de laxantes ou diuréticos. A <strong>bulimia nervosa</strong>, por sua vez, caracteriza-se por episódios recorrentes de compulsão alimentar seguidos de comportamentos compensatórios inadequados para prevenir ganho de peso.</p><br>Visão do aprovado: <p>O <strong>IMC gravemente baixo</strong> (15,1 kg/m²) associado aos comportamentos restritivos e distorção da imagem corporal estabelece o diagnóstico de transtorno alimentar. A instabilidade hemodinâmica (bradicardia e hipotensão postural) indica <strong>gravidade médica</strong> que justifica internação imediata.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>IMC abaixo do percentil 3 para idade (Z-score entre -2 e -3) em adolescente</li>\n<li>Controle obsessivo sobre alimentação (só aceita comida preparada por ela)</li>\n<li>Distorção da <em>imagem corporal</em> (\"estava muito gorda\") apesar do baixo peso</li>\n<li>Exercícios excessivos como comportamento compensatório</li>\n<li>Sinais de instabilidade cardiovascular (bradicardia, hipotensão postural)</li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li><strong>Bulimia nervosa</strong> também pode cursar com perda ponderal quando comportamentos purgativos superam ingestão calórica</li>\n<li>Confundir subtipos de <em>anorexia</em>: restritivo (só restrição) vs purgativo (inclui vômitos/laxantes)</li>\n<li>Associar erroneamente bulimia apenas a peso normal - pode haver emagrecimento significativo</li>\n<li>Desvalorizar critérios de <strong>internação</strong> por instabilidade hemodinâmica em adolescentes</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questões que pedem diferenciação entre <strong>subtipos de anorexia</strong> (restritivo vs purgativo)</li>\n<li>Casos clínicos pedindo <em>critérios de internação</em> por instabilidade médica</li>\n<li>Alternativas que incluem ou excluem <strong>bulimia nervosa</strong> como causa de perda ponderal</li>\n<li>Reconhecimento de <em>complicações médicas</em> graves em transtornos alimentares</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 342043,
+        "number": 5,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "m",
+        "question_ai_update": null,
+        "focus_name": "Transtornos mentais",
+        "focus": {
+          "id": 1561,
+          "name": "Transtornos mentais"
+        }
+      },
+      "detail": {
+        "id": 342043,
+        "content": "Menina de 15 anos de idade é trazida por sua mãe para consulta no ambulatório de adolescentes, devido  à queixa de perda ponderal progressiva ao longo do último ano. A adolescente explicou que precisava  perder algum peso porque “estava muito gorda”, tornando-se alvo de comentários jocosos na escola.  Refere não sentir nada, a não ser um leve desconforto em queimação no estômago, que é aliviado  quando bebe água. No entanto, sua mãe mostra-se  bastante nervosa. Relata que a filha passou a adotar  uma dieta muito restritiva, não aceitando comer nada que não seja preparado por ela mesma. Além disso,  a adolescente faz uma rotina de exercícios na academia que a mãe considera muito pesada, ainda mais  para quem não se alimenta bem. Ao exame físico, apresenta estatura 1,65m, peso = 41kg, índice de  massa corporal (IMC) = 15,1Kg/m2 (ZScore entre -2 e -3), corada, desidratada (+/4+). Pressão arterial  (PA) = 90x60mmHg, frequência cardíaca (FC) = 46bpm quando deitada, e 75bpm ao levantar, Tanner  M3P3. A médica que a atendeu, solicitou internação na enfermaria por provável transtorno alimentar.  \n\nCite e descreva quatro critérios clínicos que indicam internação hospitalar em pacientes com esse quadro de transtorno alimentar. (10pts)",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 8,
+          "abbreviation": "R+PED"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 17247,
+            "parent_tag": {
+              "id": 17226,
+              "name": "Psiquiatria",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Transtornos mentais",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              4
+            ],
+            "new_residency_degree": [
+              8
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1561,
+          "name": "Transtornos mentais",
+          "discipline": {
+            "id": 91,
+            "name": "Pediatria",
+            "residency_degree": 8,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 74,
+            "name": "Psiquiatria",
+            "discipline": 91,
+            "old_tag": 17226,
+            "residency_degree_abbreviation": "R+PED"
+          }
+        }
+      },
+      "explanation": {
+        "id": 411752,
+        "actual_explanation": true,
+        "introduction": "<p>O cenário combina <strong>perda ponderal severa</strong> e <strong>instabilidade hemodinâmica</strong> compatíveis com <strong>anorexia nervosa</strong>, pedindo <strong>critérios de internação</strong> como próximo passo. Estamos diante de uma adolescente com quadro clássico de transtorno alimentar grave, onde o reconhecimento dos <strong>critérios de hospitalização</strong> é fundamental para o manejo adequado e prevenção de complicações potencialmente fatais.</p>\n\n<p>Os transtornos alimentares, especialmente a <strong>anorexia nervosa</strong>, representam condições psiquiátricas com alta morbidade e mortalidade, sendo a internação hospitalar muitas vezes necessária quando há <strong>comprometimento clínico significativo</strong>. O caso apresentado evidencia múltiplos sinais de alarme: <strong>IMC severamente baixo (15,1 kg/m²)</strong>, <strong>bradicardia (46 bpm)</strong>, <strong>hipotensão (90x60 mmHg)</strong>, <strong>mudanças ortostáticas significativas</strong> e <strong>desidratação</strong>.</p>\n\n<p>A resposta correta abrange os principais <strong>critérios de internação hospitalar</strong> estabelecidos para transtornos alimentares:</p>\n<ul>\n<li><strong>peso corporal inferior a 80% do peso ideal</strong></li>\n<li><strong>instabilidade hemodinâmica</strong> (incluindo hipotensão, bradicardia e alterações ortostáticas)</li>\n<li><strong>hipotermia</strong></li>\n<li><strong>comprometimento do estado mental</strong></li>\n<li><strong>desidratação grave</strong></li>\n<li><strong>distúrbios hidroeletrolíticos</strong></li>\n</ul>\n<p>Esses parâmetros refletem o <strong>comprometimento sistêmico</strong> da desnutrição e indicam risco de complicações graves que requerem <strong>monitorização e intervenção médica intensiva</strong>.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Caso típico de <strong>anorexia nervosa grave</strong> com múltiplos critérios de internação: <strong>IMC severamente baixo</strong>, <strong>instabilidade hemodinâmica</strong> (bradicardia + mudanças ortostáticas) e <strong>desidratação</strong>. O reconhecimento desses parâmetros é essencial para identificar risco de complicações sistêmicas graves.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>Peso < 80% do ideal</strong> (IMC 15,1 kg/m² indica desnutrição severa)</li>\n<li><strong>Bradicardia < 50 bpm</strong> em repouso (46 bpm no caso)</li>\n<li><strong>Mudanças ortostáticas significativas</strong> (FC subiu 29 bpm ao levantar)</li>\n<li><strong>Desidratação clínica evidente</strong> associada à hipotensão</li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li><em>Confundir valores de corte</em>: PA < 80x50mmHg e FC < 50bpm são limites específicos</li>\n<li><em>Subestimar mudanças ortostáticas</em>: aumento > 25bpm na FC indica instabilidade</li>\n<li><em>Focar só no peso</em>: critérios cardiovasculares são mais urgentes que antropométricos</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li><em>Formato clássico</em>: caso de adolescente com perda ponderal pedindo critérios de internação</li>\n<li><em>Pegadinha comum</em>: misturar critérios de internação psiquiátrica com médica</li>\n<li><em>Cobrança específica</em>: valores exatos de PA, FC e temperatura como pontos de corte</li>\n<li><strong>Também pode cair:</strong> <em>síndrome de realimentação</em> (complicação da internação)</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O cenário combina <strong>perda ponderal severa</strong> e <strong>instabilidade hemodinâmica</strong> compatíveis com <strong>anorexia nervosa</strong>, pedindo <strong>critérios de internação</strong> como próximo passo. Estamos diante de uma adolescente com quadro clássico de transtorno alimentar grave, onde o reconhecimento dos <strong>critérios de hospitalização</strong> é fundamental para o manejo adequado e prevenção de complicações potencialmente fatais.</p>\n\n<p>Os transtornos alimentares, especialmente a <strong>anorexia nervosa</strong>, representam condições psiquiátricas com alta morbidade e mortalidade, sendo a internação hospitalar muitas vezes necessária quando há <strong>comprometimento clínico significativo</strong>. O caso apresentado evidencia múltiplos sinais de alarme: <strong>IMC severamente baixo (15,1 kg/m²)</strong>, <strong>bradicardia (46 bpm)</strong>, <strong>hipotensão (90x60 mmHg)</strong>, <strong>mudanças ortostáticas significativas</strong> e <strong>desidratação</strong>.</p>\n\n<p>A resposta correta abrange os principais <strong>critérios de internação hospitalar</strong> estabelecidos para transtornos alimentares:</p>\n<ul>\n<li><strong>peso corporal inferior a 80% do peso ideal</strong></li>\n<li><strong>instabilidade hemodinâmica</strong> (incluindo hipotensão, bradicardia e alterações ortostáticas)</li>\n<li><strong>hipotermia</strong></li>\n<li><strong>comprometimento do estado mental</strong></li>\n<li><strong>desidratação grave</strong></li>\n<li><strong>distúrbios hidroeletrolíticos</strong></li>\n</ul>\n<p>Esses parâmetros refletem o <strong>comprometimento sistêmico</strong> da desnutrição e indicam risco de complicações graves que requerem <strong>monitorização e intervenção médica intensiva</strong>.</p><br>Visão do aprovado: <p>Caso típico de <strong>anorexia nervosa grave</strong> com múltiplos critérios de internação: <strong>IMC severamente baixo</strong>, <strong>instabilidade hemodinâmica</strong> (bradicardia + mudanças ortostáticas) e <strong>desidratação</strong>. O reconhecimento desses parâmetros é essencial para identificar risco de complicações sistêmicas graves.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li><strong>Peso < 80% do ideal</strong> (IMC 15,1 kg/m² indica desnutrição severa)</li>\n<li><strong>Bradicardia < 50 bpm</strong> em repouso (46 bpm no caso)</li>\n<li><strong>Mudanças ortostáticas significativas</strong> (FC subiu 29 bpm ao levantar)</li>\n<li><strong>Desidratação clínica evidente</strong> associada à hipotensão</li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li><em>Confundir valores de corte</em>: PA < 80x50mmHg e FC < 50bpm são limites específicos</li>\n<li><em>Subestimar mudanças ortostáticas</em>: aumento > 25bpm na FC indica instabilidade</li>\n<li><em>Focar só no peso</em>: critérios cardiovasculares são mais urgentes que antropométricos</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li><em>Formato clássico</em>: caso de adolescente com perda ponderal pedindo critérios de internação</li>\n<li><em>Pegadinha comum</em>: misturar critérios de internação psiquiátrica com médica</li>\n<li><em>Cobrança específica</em>: valores exatos de PA, FC e temperatura como pontos de corte</li>\n<li><strong>Também pode cair:</strong> <em>síndrome de realimentação</em> (complicação da internação)</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 342044,
+        "number": 6,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sepse",
+        "focus": {
+          "id": 1495,
+          "name": "Sepse"
+        }
+      },
+      "detail": {
+        "id": 342044,
+        "content": "Menino de 12 anos, previamente hígido, dá entrada no pronto-socorro com queixa de febre alta, dor intensa  em coxa direita, prostração e vômitos há 72 horas. Há cinco dias, sofreu trauma na região do joelho durante  partida de futebol, sem ferimentos abertos, mas com hematoma extenso. Evoluiu com taquicardia,  extremidades frias, enchimento capilar lentificado, PA = 84x48mmHg e febre de 39,5°C. Apresenta sinais  flogísticos importantes em joelho e coxa direita, com dor à palpação profunda e limitação funcional. Exames  laboratoriais mostram: leucograma = 35.500 (0/0/1/2/10/75/8/6), hemoglobina = 8,2mg/dL, hematócrito =  24,5%, PCR = 153 (VR = até 1,0), gasometria arterial = 7,25/20/100/8/-12,1/9, lactato = 3,8mmol.  Hemoculturas foram colhidas.     \n\nCite o diagnóstico fisiopatológico que explica a ocorrência e o agente etiológico mais provável. (10pts)",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 8,
+          "abbreviation": "R+PED"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 17318,
+            "parent_tag": {
+              "id": 17229,
+              "name": "Emergência e UTI",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sepse",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              4
+            ],
+            "new_residency_degree": [
+              8
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 6,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1495,
+          "name": "Sepse",
+          "discipline": {
+            "id": 91,
+            "name": "Pediatria",
+            "residency_degree": 8,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 71,
+            "name": "Emergência e UTI",
+            "discipline": 91,
+            "old_tag": 17229,
+            "residency_degree_abbreviation": "R+PED"
+          }
+        }
+      },
+      "explanation": {
+        "id": 411750,
+        "actual_explanation": true,
+        "introduction": "<p>Aqui, o examinador explora <strong><span class=\"article-3217\">choque séptico</span></strong> em um cenário pediátrico típico de prova, combinando trauma fechado com desenvolvimento posterior de infecção grave. O caso apresenta um menino de 12 anos que evoluiu de um trauma aparentemente simples para um quadro de <strong>instabilidade hemodinâmica</strong> e <strong><span class=\"article-3190\">sepse</span> grave</strong>, situação que exige reconhecimento imediato e manejo adequado.</p>\n<p>O cenário é extremamente relevante para provas de residência, pois testa a capacidade de correlacionar eventos aparentemente desconectados (trauma fechado → infecção → <span class=\"article-3217\">choque séptico</span>) e identificar o agente etiológico mais provável em infecções musculoesqueléticas pós-trauma. A questão avalia conhecimentos sobre <strong>fisiopatologia do choque</strong>, <strong>microbiologia clínica</strong> e <strong>interpretação de exames complementares</strong> em pediatria.</p>\n<p>A resposta esperada é: <strong>Diagnóstico:</strong> <span class=\"article-3217\">choque séptico</span> secundário à infecção musculoesquelética profunda (como artrite séptica ou piomiosite) após trauma fechado. <strong>Agente etiológico:</strong> Staphylococcus aureus (incluindo MRSA).</p>\n<p>O paciente apresenta critérios claros de <strong><span class=\"article-3217\">choque séptico</span></strong>: hipotensão (PA = 84x48mmHg), sinais de má perfusão (extremidades frias, enchimento capilar lentificado), taquicardia e febre. O <strong>leucograma</strong> mostra leucocitose importante (35.500) com desvio à esquerda significativo, a <strong>PCR</strong> está extremamente elevada (153 mg/L), e a <strong>gasometria</strong> revela acidose metabólica (pH = 7,25) com lactato elevado (3,8 mmol/L), confirmando o estado de choque.</p>\n<p>O foco infeccioso está claramente localizado na região do joelho e coxa direita, onde ocorreu o trauma inicial há 5 dias. O desenvolvimento de <strong>sinais flogísticos importantes</strong> (calor, rubor, edema, dor) com <strong>limitação funcional</strong> e dor à palpação profunda sugere infecção musculoesquelética profunda, mais provavelmente <strong>artrite séptica</strong> ou <strong>piomiosite</strong>.</p>\n<p>O <strong>Staphylococcus aureus</strong> é o agente mais provável neste contexto por ser o patógeno predominante em infecções musculoesqueléticas em crianças saudáveis, especialmente após trauma. Sua capacidade de formar biofilmes e sua virulência explicam a progressão rápida para <span class=\"article-3217\">choque séptico</span>. A possibilidade de cepas resistentes à meticilina (MRSA) deve sempre ser considerada, especialmente em quadros graves.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O diagnóstico se baseia na <strong>tríade temporal</strong>: trauma fechado → intervalo assintomático → <span class=\"article-3217\">choque séptico</span> com foco musculoesquelético. A <strong>hipotensão</strong> associada à <strong>acidose metabólica</strong> e <strong>hiperlactatemia</strong> confirma o choque distributivo.</p>\n<strong>Pistas-chave:</strong>\n<ul>\n<li>Trauma fechado há 5 dias com desenvolvimento posterior de <em>sinais flogísticos locais</em></li>\n<li><strong>Hipotensão</strong> (PA 84x48mmHg) + má perfusão (extremidades frias, enchimento capilar lento)</li>\n<li><strong>Acidose metabólica</strong> (pH 7,25) com <em>gap aniônico</em> e lactato elevado (3,8 mmol/L)</li>\n<li>Leucocitose importante (35.500) com <strong>desvio à esquerda acentuado</strong> + PCR muito elevada (153)</li>\n<li><strong>Dor à palpação profunda</strong> e limitação funcional na região do trauma</li>\n</ul>\n<strong>Pegadinhas de prova:</strong>\n<ul>\n<li>Confundir com <em>choque hipovolêmico</em> por trauma (mas o intervalo de dias + foco infeccioso direcionam para séptico)</li>\n<li>Atribuir apenas ao trauma inicial sem considerar a <strong>complicação infecciosa tardia</strong></li>\n<li>Esquecer da possibilidade de <strong>MRSA</strong> em infecções graves por S. aureus</li>\n<li>Não reconhecer a <em>acidose metabólica</em> como marcador de gravidade do choque</li>\n</ul>\n<strong>Como cai:</strong>\n<ul>\n<li>Questões discursivas pedindo <strong>diagnóstico fisiopatológico + agente etiológico</strong> em cenários pediátricos</li>\n<li>Associação de <em>trauma fechado</em> com desenvolvimento posterior de <strong>infecção musculoesquelética</strong></li>\n<li>Interpretação de <strong>gasometria arterial</strong> e marcadores inflamatórios em contexto de <span class=\"article-3217\">choque séptico</span></li>\n<li>S. aureus como agente predominante em <em>infecções osteoarticulares</em> em crianças previamente hígidas</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Aqui, o examinador explora <strong><span class=\"article-3217\">choque séptico</span></strong> em um cenário pediátrico típico de prova, combinando trauma fechado com desenvolvimento posterior de infecção grave. O caso apresenta um menino de 12 anos que evoluiu de um trauma aparentemente simples para um quadro de <strong>instabilidade hemodinâmica</strong> e <strong><span class=\"article-3190\">sepse</span> grave</strong>, situação que exige reconhecimento imediato e manejo adequado.</p>\n<p>O cenário é extremamente relevante para provas de residência, pois testa a capacidade de correlacionar eventos aparentemente desconectados (trauma fechado → infecção → <span class=\"article-3217\">choque séptico</span>) e identificar o agente etiológico mais provável em infecções musculoesqueléticas pós-trauma. A questão avalia conhecimentos sobre <strong>fisiopatologia do choque</strong>, <strong>microbiologia clínica</strong> e <strong>interpretação de exames complementares</strong> em pediatria.</p>\n<p>A resposta esperada é: <strong>Diagnóstico:</strong> <span class=\"article-3217\">choque séptico</span> secundário à infecção musculoesquelética profunda (como artrite séptica ou piomiosite) após trauma fechado. <strong>Agente etiológico:</strong> Staphylococcus aureus (incluindo MRSA).</p>\n<p>O paciente apresenta critérios claros de <strong><span class=\"article-3217\">choque séptico</span></strong>: hipotensão (PA = 84x48mmHg), sinais de má perfusão (extremidades frias, enchimento capilar lentificado), taquicardia e febre. O <strong>leucograma</strong> mostra leucocitose importante (35.500) com desvio à esquerda significativo, a <strong>PCR</strong> está extremamente elevada (153 mg/L), e a <strong>gasometria</strong> revela acidose metabólica (pH = 7,25) com lactato elevado (3,8 mmol/L), confirmando o estado de choque.</p>\n<p>O foco infeccioso está claramente localizado na região do joelho e coxa direita, onde ocorreu o trauma inicial há 5 dias. O desenvolvimento de <strong>sinais flogísticos importantes</strong> (calor, rubor, edema, dor) com <strong>limitação funcional</strong> e dor à palpação profunda sugere infecção musculoesquelética profunda, mais provavelmente <strong>artrite séptica</strong> ou <strong>piomiosite</strong>.</p>\n<p>O <strong>Staphylococcus aureus</strong> é o agente mais provável neste contexto por ser o patógeno predominante em infecções musculoesqueléticas em crianças saudáveis, especialmente após trauma. Sua capacidade de formar biofilmes e sua virulência explicam a progressão rápida para <span class=\"article-3217\">choque séptico</span>. A possibilidade de cepas resistentes à meticilina (MRSA) deve sempre ser considerada, especialmente em quadros graves.</p><br>Visão do aprovado: <p>O diagnóstico se baseia na <strong>tríade temporal</strong>: trauma fechado → intervalo assintomático → <span class=\"article-3217\">choque séptico</span> com foco musculoesquelético. A <strong>hipotensão</strong> associada à <strong>acidose metabólica</strong> e <strong>hiperlactatemia</strong> confirma o choque distributivo.</p>\n<strong>Pistas-chave:</strong>\n<ul>\n<li>Trauma fechado há 5 dias com desenvolvimento posterior de <em>sinais flogísticos locais</em></li>\n<li><strong>Hipotensão</strong> (PA 84x48mmHg) + má perfusão (extremidades frias, enchimento capilar lento)</li>\n<li><strong>Acidose metabólica</strong> (pH 7,25) com <em>gap aniônico</em> e lactato elevado (3,8 mmol/L)</li>\n<li>Leucocitose importante (35.500) com <strong>desvio à esquerda acentuado</strong> + PCR muito elevada (153)</li>\n<li><strong>Dor à palpação profunda</strong> e limitação funcional na região do trauma</li>\n</ul>\n<strong>Pegadinhas de prova:</strong>\n<ul>\n<li>Confundir com <em>choque hipovolêmico</em> por trauma (mas o intervalo de dias + foco infeccioso direcionam para séptico)</li>\n<li>Atribuir apenas ao trauma inicial sem considerar a <strong>complicação infecciosa tardia</strong></li>\n<li>Esquecer da possibilidade de <strong>MRSA</strong> em infecções graves por S. aureus</li>\n<li>Não reconhecer a <em>acidose metabólica</em> como marcador de gravidade do choque</li>\n</ul>\n<strong>Como cai:</strong>\n<ul>\n<li>Questões discursivas pedindo <strong>diagnóstico fisiopatológico + agente etiológico</strong> em cenários pediátricos</li>\n<li>Associação de <em>trauma fechado</em> com desenvolvimento posterior de <strong>infecção musculoesquelética</strong></li>\n<li>Interpretação de <strong>gasometria arterial</strong> e marcadores inflamatórios em contexto de <span class=\"article-3217\">choque séptico</span></li>\n<li>S. aureus como agente predominante em <em>infecções osteoarticulares</em> em crianças previamente hígidas</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 342045,
+        "number": 7,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sepse",
+        "focus": {
+          "id": 1495,
+          "name": "Sepse"
+        }
+      },
+      "detail": {
+        "id": 342045,
+        "content": "Menino de 12 anos, previamente hígido, dá entrada no pronto-socorro com queixa de febre alta, dor intensa  em coxa direita, prostração e vômitos há 72 horas. Há cinco dias, sofreu trauma na região do joelho durante  partida de futebol, sem ferimentos abertos, mas com hematoma extenso. Evoluiu com taquicardia,  extremidades frias, enchimento capilar lentificado, PA = 84x48mmHg e febre de 39,5°C. Apresenta sinais  flogísticos importantes em joelho e coxa direita, com dor à palpação profunda e limitação funcional. Exames  laboratoriais mostram: leucograma = 35.500 (0/0/1/2/10/75/8/6), hemoglobina = 8,2mg/dL, hematócrito =  24,5%, PCR = 153 (VR = até 1,0), gasometria arterial = 7,25/20/100/8/-12,1/9, lactato = 3,8mmol.  Hemoculturas foram colhidas.        \n\nCite os cinco principais sinais clínicos e os cinco laboratoriais que sustentam o diagnóstico.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 8,
+          "abbreviation": "R+PED"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 17318,
+            "parent_tag": {
+              "id": 17229,
+              "name": "Emergência e UTI",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sepse",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              4
+            ],
+            "new_residency_degree": [
+              8
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 7,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1495,
+          "name": "Sepse",
+          "discipline": {
+            "id": 91,
+            "name": "Pediatria",
+            "residency_degree": 8,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 71,
+            "name": "Emergência e UTI",
+            "discipline": 91,
+            "old_tag": 17229,
+            "residency_degree_abbreviation": "R+PED"
+          }
+        }
+      },
+      "explanation": {
+        "id": 411754,
+        "actual_explanation": true,
+        "introduction": "<p>O cenário combina trauma fechado em membro inferior com evolução febril e sinais de choque compatíveis com <strong>osteomielite aguda hematogênica complicada por <span class=\"article-3190\">sepse</span></strong>, pedindo identificação dos principais marcadores clínicos e laboratoriais como próximo passo diagnóstico.</p>\n<p>Esta é uma situação clássica em pediatria onde um <strong>trauma aparentemente simples</strong> pode evoluir para uma <strong>infecção óssea grave</strong> com repercussões sistêmicas. A osteomielite aguda hematogênica representa uma das principais causas de <span class=\"article-3190\">sepse</span> em crianças e adolescentes, especialmente após traumas em ossos longos. O reconhecimento precoce dos sinais de <strong><span class=\"article-3190\">sepse</span> e <span class=\"article-3217\">choque séptico</span></strong> é fundamental para o manejo adequado e prevenção de sequelas.</p>\n<p>O caso apresenta um menino de 12 anos que desenvolveu um quadro infeccioso sistêmico após trauma no joelho, evoluindo com <strong>sinais de <span class=\"article-3217\">choque séptico</span></strong> em 72 horas. A correlação entre os achados clínicos (febre alta, prostração, instabilidade hemodinâmica) e laboratoriais (leucocitose, PCR elevada, acidose metabólica, lactato aumentado) confirma o diagnóstico de <strong><span class=\"article-3190\">sepse</span> com disfunção orgânica</strong>.</p>\n<p>A resposta esperada deve identificar sistematicamente os <strong>cinco principais sinais clínicos</strong> (febre, prostração/vômitos, hipotensão, taquicardia/extremidades frias, enchimento capilar lento) e os <strong>cinco marcadores laboratoriais</strong> (leucocitose com desvio à esquerda, PCR elevada, lactato aumentado, acidose metabólica, hemocultura positiva) que caracterizam este quadro de <span class=\"article-3190\">sepse</span> secundária à osteomielite.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A <strong>osteomielite aguda hematogênica complicada por <span class=\"article-3190\">sepse</span></strong> é reconhecida pela associação entre <em>trauma prévio em osso longo</em>, evolução febril e <strong>sinais de <span class=\"article-3217\">choque séptico</span></strong>. O diagnóstico se baseia na identificação sistemática dos marcadores de <em>resposta inflamatória sistêmica</em> e <strong>disfunção orgânica</strong>.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Trauma fechado em membro + evolução febril em 72-96h (padrão temporal clássico)</li>\n<li>Tríade de <span class=\"article-3217\">choque séptico</span>: hipotensão, taquicardia, enchimento capilar lentificado</li>\n<li>Sinais flogísticos locais + prostração/alteração neurológica</li>\n<li>Leucocitose &gt;20.000 com desvio à esquerda marcante</li>\n<li>PCR &gt;150x valor normal + lactato &gt;2,5 + acidose metabólica</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <em>artrite séptica</em> - osteomielite tem dor óssea profunda, não só articular</li>\n<li>Não valorizar trauma \"simples\" sem ferimento aberto como fator desencadeante</li>\n<li>Esquecer que hemocultura pode ser negativa (até 50% dos casos)</li>\n<li>Não reconhecer prostração/vômitos como sinal de <strong>disfunção neurológica</strong> na <span class=\"article-3190\">sepse</span></li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Padrão: questão descritiva pedindo <strong>identificação sistemática</strong> dos 5+5 sinais (clínicos + laboratoriais)</li>\n<li>Formato comum: criança com trauma + evolução febril + listagem de achados para classificar</li>\n<li>Bancas costumam cobrar <em>critérios de <span class=\"article-3190\">sepse</span> pediátrica</em> mascarados como caso de osteomielite</li>\n<li><strong>Também pode cair:</strong> diagnóstico diferencial com celulite ou escolha de antibioticoterapia empírica</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O cenário combina trauma fechado em membro inferior com evolução febril e sinais de choque compatíveis com <strong>osteomielite aguda hematogênica complicada por <span class=\"article-3190\">sepse</span></strong>, pedindo identificação dos principais marcadores clínicos e laboratoriais como próximo passo diagnóstico.</p>\n<p>Esta é uma situação clássica em pediatria onde um <strong>trauma aparentemente simples</strong> pode evoluir para uma <strong>infecção óssea grave</strong> com repercussões sistêmicas. A osteomielite aguda hematogênica representa uma das principais causas de <span class=\"article-3190\">sepse</span> em crianças e adolescentes, especialmente após traumas em ossos longos. O reconhecimento precoce dos sinais de <strong><span class=\"article-3190\">sepse</span> e <span class=\"article-3217\">choque séptico</span></strong> é fundamental para o manejo adequado e prevenção de sequelas.</p>\n<p>O caso apresenta um menino de 12 anos que desenvolveu um quadro infeccioso sistêmico após trauma no joelho, evoluindo com <strong>sinais de <span class=\"article-3217\">choque séptico</span></strong> em 72 horas. A correlação entre os achados clínicos (febre alta, prostração, instabilidade hemodinâmica) e laboratoriais (leucocitose, PCR elevada, acidose metabólica, lactato aumentado) confirma o diagnóstico de <strong><span class=\"article-3190\">sepse</span> com disfunção orgânica</strong>.</p>\n<p>A resposta esperada deve identificar sistematicamente os <strong>cinco principais sinais clínicos</strong> (febre, prostração/vômitos, hipotensão, taquicardia/extremidades frias, enchimento capilar lento) e os <strong>cinco marcadores laboratoriais</strong> (leucocitose com desvio à esquerda, PCR elevada, lactato aumentado, acidose metabólica, hemocultura positiva) que caracterizam este quadro de <span class=\"article-3190\">sepse</span> secundária à osteomielite.</p><br>Visão do aprovado: <p>A <strong>osteomielite aguda hematogênica complicada por <span class=\"article-3190\">sepse</span></strong> é reconhecida pela associação entre <em>trauma prévio em osso longo</em>, evolução febril e <strong>sinais de <span class=\"article-3217\">choque séptico</span></strong>. O diagnóstico se baseia na identificação sistemática dos marcadores de <em>resposta inflamatória sistêmica</em> e <strong>disfunção orgânica</strong>.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Trauma fechado em membro + evolução febril em 72-96h (padrão temporal clássico)</li>\n<li>Tríade de <span class=\"article-3217\">choque séptico</span>: hipotensão, taquicardia, enchimento capilar lentificado</li>\n<li>Sinais flogísticos locais + prostração/alteração neurológica</li>\n<li>Leucocitose &gt;20.000 com desvio à esquerda marcante</li>\n<li>PCR &gt;150x valor normal + lactato &gt;2,5 + acidose metabólica</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Confundir com <em>artrite séptica</em> - osteomielite tem dor óssea profunda, não só articular</li>\n<li>Não valorizar trauma \"simples\" sem ferimento aberto como fator desencadeante</li>\n<li>Esquecer que hemocultura pode ser negativa (até 50% dos casos)</li>\n<li>Não reconhecer prostração/vômitos como sinal de <strong>disfunção neurológica</strong> na <span class=\"article-3190\">sepse</span></li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Padrão: questão descritiva pedindo <strong>identificação sistemática</strong> dos 5+5 sinais (clínicos + laboratoriais)</li>\n<li>Formato comum: criança com trauma + evolução febril + listagem de achados para classificar</li>\n<li>Bancas costumam cobrar <em>critérios de <span class=\"article-3190\">sepse</span> pediátrica</em> mascarados como caso de osteomielite</li>\n<li><strong>Também pode cair:</strong> diagnóstico diferencial com celulite ou escolha de antibioticoterapia empírica</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 342046,
+        "number": 8,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Sepse",
+        "focus": {
+          "id": 1495,
+          "name": "Sepse"
+        }
+      },
+      "detail": {
+        "id": 342046,
+        "content": "Menino de 12 anos, previamente hígido, dá entrada no pronto-socorro com queixa de febre alta, dor intensa  em coxa direita, prostração e vômitos há 72 horas. Há cinco dias, sofreu trauma na região do joelho durante  partida de futebol, sem ferimentos abertos, mas com hematoma extenso. Evoluiu com taquicardia,  extremidades frias, enchimento capilar lentificado, PA = 84x48mmHg e febre de 39,5°C. Apresenta sinais  flogísticos importantes em joelho e coxa direita, com dor à palpação profunda e limitação funcional. Exames  laboratoriais mostram: leucograma = 35.500 (0/0/1/2/10/75/8/6), hemoglobina = 8,2mg/dL, hematócrito =  24,5%, PCR = 153 (VR = até 1,0), gasometria arterial = 7,25/20/100/8/-12,1/9, lactato = 3,8mmol.  Hemoculturas foram colhidas.     \n\nIndique a conduta inicial recomendada nas primeiras horas, justificando suas escolhas.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 8,
+          "abbreviation": "R+PED"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 17318,
+            "parent_tag": {
+              "id": 17229,
+              "name": "Emergência e UTI",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Sepse",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              4
+            ],
+            "new_residency_degree": [
+              8
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 8,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1495,
+          "name": "Sepse",
+          "discipline": {
+            "id": 91,
+            "name": "Pediatria",
+            "residency_degree": 8,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 71,
+            "name": "Emergência e UTI",
+            "discipline": 91,
+            "old_tag": 17229,
+            "residency_degree_abbreviation": "R+PED"
+          }
+        }
+      },
+      "explanation": {
+        "id": 411756,
+        "actual_explanation": true,
+        "introduction": "<p>O caso apresentado direciona o raciocínio para <strong><span class=\"article-3217\">choque séptico</span> de origem osteoarticular</strong> por causa da combinação entre trauma prévio, sinais inflamatórios locais intensos e instabilidade hemodinâmica grave. Este é um cenário crítico que frequentemente aparece em provas de residência, testando a capacidade do candidato de reconhecer precocemente uma emergência pediátrica e implementar medidas salvadoras.</p>\n<p>O menino de 12 anos desenvolve um quadro típico de <strong>osteomielite/artrite séptica</strong> após trauma fechado no joelho, evoluindo rapidamente para <span class=\"article-3190\">sepse</span> grave com choque. Os dados clínicos são inequívocos: <em>hipotensão (PA = 84x48mmHg)</em>, <em>sinais de má perfusão (extremidades frias, enchimento capilar lentificado)</em>, <em>febre alta (39,5°C)</em> e <em>marcadores laboratoriais alarmantes (leucocitose de 35.500, PCR = 153, acidose metabólica com lactato elevado)</em>.</p>\n<p>A conduta inicial proposta segue rigorosamente as diretrizes de <strong>manejo de <span class=\"article-3190\">sepse</span> em pediatria</strong>, abordando simultaneamente o controle da infecção, a estabilização hemodinâmica e a investigação do foco. É fundamental compreender que cada minuto de atraso no tratamento adequado pode comprometer significativamente o prognóstico, tornando este tipo de questão uma verdadeira prova de conhecimento em medicina de urgência pediátrica.</p>\n<p>A resposta esperada engloba seis componentes essenciais:</p>\n<ul>\n<li><strong>Antibioticoterapia empírica direcionada</strong></li>\n<li><strong>Ressuscitação volêmica agressiva</strong></li>\n<li><strong>Suporte vasoativo quando necessário</strong></li>\n<li><strong>Investigação por imagem</strong></li>\n<li><strong>Controle cirúrgico do foco</strong></li>\n<li><strong>Monitorização intensiva</strong></li>\n</ul>\n<p>Cada elemento tem sua justificativa baseada em evidências sólidas e protocolos bem estabelecidos.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>O trauma fechado no joelho há 5 dias evoluindo com <strong>febre alta, sinais flogísticos locais intensos e choque</strong> configura <strong><span class=\"article-3217\">choque séptico</span> de origem osteoarticular</strong>. A combinação de instabilidade hemodinâmica (PA = 84x48mmHg), má perfusão periférica e acidose metabólica com lactato elevado (3,8mmol) exige intervenção imediata. O leucograma com desvio à esquerda massivo e PCR extremamente elevada (153) confirmam <span class=\"article-3190\">sepse</span> grave.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Trauma fechado prévio + intervalo de 5 dias = janela para inoculação bacteriana</li>\n<li>Tríade: febre alta + sinais flogísticos locais + instabilidade hemodinâmica</li>\n<li>Acidose metabólica (pH 7,25) + lactato elevado (3,8) = hipoperfusão tecidual</li>\n<li>Leucocitose &gt;30.000 com desvio à esquerda em criança = <span class=\"article-3190\">sepse</span> grave</li>\n<li>PCR &gt;100 em contexto infeccioso osteoarticular = processo supurativo ativo</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Não associar trauma fechado à possibilidade de osteomielite hematogênica</li>\n<li>Confundir com celulite superficial e subestimar gravidade sistêmica</li>\n<li>Usar apenas penicilina sem cobertura para <em>Staphylococcus aureus</em> resistente</li>\n<li>Não reconhecer critérios de choque em criança (PA sistólica &lt;5º percentil para idade)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Padrão: caso com trauma + intervalo temporal + deterioração sistêmica pedindo conduta inicial</li>\n<li>Formato comum: questão discursiva sobre manejo de <span class=\"article-3190\">sepse</span> pediátrica em múltiplas etapas</li>\n<li>Banca costuma testar dose de cristaloide em bolus (20mL/kg até 60mL/kg) e escolha de amina</li>\n<li>Frequente cobrança da associação antibiótica empírica para foco osteoarticular pediátrico</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O caso apresentado direciona o raciocínio para <strong><span class=\"article-3217\">choque séptico</span> de origem osteoarticular</strong> por causa da combinação entre trauma prévio, sinais inflamatórios locais intensos e instabilidade hemodinâmica grave. Este é um cenário crítico que frequentemente aparece em provas de residência, testando a capacidade do candidato de reconhecer precocemente uma emergência pediátrica e implementar medidas salvadoras.</p>\n<p>O menino de 12 anos desenvolve um quadro típico de <strong>osteomielite/artrite séptica</strong> após trauma fechado no joelho, evoluindo rapidamente para <span class=\"article-3190\">sepse</span> grave com choque. Os dados clínicos são inequívocos: <em>hipotensão (PA = 84x48mmHg)</em>, <em>sinais de má perfusão (extremidades frias, enchimento capilar lentificado)</em>, <em>febre alta (39,5°C)</em> e <em>marcadores laboratoriais alarmantes (leucocitose de 35.500, PCR = 153, acidose metabólica com lactato elevado)</em>.</p>\n<p>A conduta inicial proposta segue rigorosamente as diretrizes de <strong>manejo de <span class=\"article-3190\">sepse</span> em pediatria</strong>, abordando simultaneamente o controle da infecção, a estabilização hemodinâmica e a investigação do foco. É fundamental compreender que cada minuto de atraso no tratamento adequado pode comprometer significativamente o prognóstico, tornando este tipo de questão uma verdadeira prova de conhecimento em medicina de urgência pediátrica.</p>\n<p>A resposta esperada engloba seis componentes essenciais:</p>\n<ul>\n<li><strong>Antibioticoterapia empírica direcionada</strong></li>\n<li><strong>Ressuscitação volêmica agressiva</strong></li>\n<li><strong>Suporte vasoativo quando necessário</strong></li>\n<li><strong>Investigação por imagem</strong></li>\n<li><strong>Controle cirúrgico do foco</strong></li>\n<li><strong>Monitorização intensiva</strong></li>\n</ul>\n<p>Cada elemento tem sua justificativa baseada em evidências sólidas e protocolos bem estabelecidos.</p><br>Visão do aprovado: <p>O trauma fechado no joelho há 5 dias evoluindo com <strong>febre alta, sinais flogísticos locais intensos e choque</strong> configura <strong><span class=\"article-3217\">choque séptico</span> de origem osteoarticular</strong>. A combinação de instabilidade hemodinâmica (PA = 84x48mmHg), má perfusão periférica e acidose metabólica com lactato elevado (3,8mmol) exige intervenção imediata. O leucograma com desvio à esquerda massivo e PCR extremamente elevada (153) confirmam <span class=\"article-3190\">sepse</span> grave.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Trauma fechado prévio + intervalo de 5 dias = janela para inoculação bacteriana</li>\n<li>Tríade: febre alta + sinais flogísticos locais + instabilidade hemodinâmica</li>\n<li>Acidose metabólica (pH 7,25) + lactato elevado (3,8) = hipoperfusão tecidual</li>\n<li>Leucocitose &gt;30.000 com desvio à esquerda em criança = <span class=\"article-3190\">sepse</span> grave</li>\n<li>PCR &gt;100 em contexto infeccioso osteoarticular = processo supurativo ativo</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Não associar trauma fechado à possibilidade de osteomielite hematogênica</li>\n<li>Confundir com celulite superficial e subestimar gravidade sistêmica</li>\n<li>Usar apenas penicilina sem cobertura para <em>Staphylococcus aureus</em> resistente</li>\n<li>Não reconhecer critérios de choque em criança (PA sistólica &lt;5º percentil para idade)</li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Padrão: caso com trauma + intervalo temporal + deterioração sistêmica pedindo conduta inicial</li>\n<li>Formato comum: questão discursiva sobre manejo de <span class=\"article-3190\">sepse</span> pediátrica em múltiplas etapas</li>\n<li>Banca costuma testar dose de cristaloide em bolus (20mL/kg até 60mL/kg) e escolha de amina</li>\n<li>Frequente cobrança da associação antibiótica empírica para foco osteoarticular pediátrico</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 342047,
+        "number": 9,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Icterícia e doença hemorrágica do RN",
+        "focus": {
+          "id": 1505,
+          "name": "Icterícia e doença hemorrágica do RN"
+        }
+      },
+      "detail": {
+        "id": 342047,
+        "content": "Recém-nascido a termo com 5 dias de vida, nascido de parto vaginal, é levado à unidade básica de  saúde (UBS) para coleta de teste do pezinho e aplicação da vacina BCG. A enfermeira percebe que o  bebê se encontra ictérico até a parte inferior do abdômen e o encaminha para a avaliação médica. A mãe  informa que o recém-nascido se alimenta exclusivamente ao seio materno. A perda de peso é adequada  para o tempo de vida e o exame físico é normal. Há urina e fezes amareladas presentes em fralda. A  tipagem sanguínea do bebê é igual à da mãe. O médico solicita dosagem sérica de bilirrubina total e  frações e eritrograma, e esclarece à mãe que o bebê apresenta uma condição benigna chamada icterícia  fisiológica do recém-nascido.   \n\n\nExplique as características clínico-laboratoriais da icterícia fisiológica do recém-nascido a termo.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 8,
+          "abbreviation": "R+PED"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 17307,
+            "parent_tag": {
+              "id": 17214,
+              "name": "Neonatologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Icterícia e doença hemorrágica do RN",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              4
+            ],
+            "new_residency_degree": [
+              8
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 9,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1505,
+          "name": "Icterícia e doença hemorrágica do RN",
+          "discipline": {
+            "id": 91,
+            "name": "Pediatria",
+            "residency_degree": 8,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 86,
+            "name": "Neonatologia",
+            "discipline": 91,
+            "old_tag": 17214,
+            "residency_degree_abbreviation": "R+PED"
+          }
+        }
+      },
+      "explanation": {
+        "id": 411751,
+        "actual_explanation": true,
+        "introduction": "<p>O cenário combina achados clássicos (icterícia após 24h de vida, progressão crânio-caudal, estado geral preservado) compatíveis com <strong>icterícia fisiológica</strong>, pedindo conhecimento sobre suas características como próximo passo diagnóstico.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A <strong>icterícia fisiológica</strong> é diagnosticada pelo <em>timing</em> de aparecimento (após 24h de vida), progressão crânio-caudal da icterícia e estado geral preservado do recém-nascido. O caso clássico combina início tardio, exame físico normal e parâmetros laboratoriais específicos que a diferenciam de causas patológicas.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Início após <strong>24-36 horas</strong> de vida (nunca nas primeiras 24h)</li>\n<li>Exame físico <strong>completamente normal</strong> exceto pela icterícia</li>\n<li>Bilirrubina total <strong>≤12mg/dL</strong> com predomínio da <em>fração indireta</em></li>\n<li><strong>Pico no 3º dia</strong> de vida, com resolução espontânea até 7-10 dias</li>\n<li>Estado geral preservado com <strong>sucção e eliminações normais</strong></li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Icterícia nas <strong>primeiras 24h sempre é patológica</strong> (nunca fisiológica)</li>\n<li>Bilirrubina direta elevada ou >20% da total <strong>exclui</strong> icterícia fisiológica</li>\n<li><strong>Progressão além do umbigo</strong> pode indicar níveis >12mg/dL (investigar)</li>\n<li>Persistência além de <strong>2 semanas</strong> em RN a termo requer investigação</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questões <strong>diferenciam timing</strong> de icterícia fisiológica vs. patológica</li>\n<li>Cobrança de <strong>valores-limite</strong> (12mg/dL, início >24h, pico 3º dia)</li>\n<li>Cenários pedindo <strong>conduta</strong> em icterícia com características fisiológicas</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O cenário combina achados clássicos (icterícia após 24h de vida, progressão crânio-caudal, estado geral preservado) compatíveis com <strong>icterícia fisiológica</strong>, pedindo conhecimento sobre suas características como próximo passo diagnóstico.</p><br>Visão do aprovado: <p>A <strong>icterícia fisiológica</strong> é diagnosticada pelo <em>timing</em> de aparecimento (após 24h de vida), progressão crânio-caudal da icterícia e estado geral preservado do recém-nascido. O caso clássico combina início tardio, exame físico normal e parâmetros laboratoriais específicos que a diferenciam de causas patológicas.</p>\n\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Início após <strong>24-36 horas</strong> de vida (nunca nas primeiras 24h)</li>\n<li>Exame físico <strong>completamente normal</strong> exceto pela icterícia</li>\n<li>Bilirrubina total <strong>≤12mg/dL</strong> com predomínio da <em>fração indireta</em></li>\n<li><strong>Pico no 3º dia</strong> de vida, com resolução espontânea até 7-10 dias</li>\n<li>Estado geral preservado com <strong>sucção e eliminações normais</strong></li>\n</ul>\n\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Icterícia nas <strong>primeiras 24h sempre é patológica</strong> (nunca fisiológica)</li>\n<li>Bilirrubina direta elevada ou >20% da total <strong>exclui</strong> icterícia fisiológica</li>\n<li><strong>Progressão além do umbigo</strong> pode indicar níveis >12mg/dL (investigar)</li>\n<li>Persistência além de <strong>2 semanas</strong> em RN a termo requer investigação</li>\n</ul>\n\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questões <strong>diferenciam timing</strong> de icterícia fisiológica vs. patológica</li>\n<li>Cobrança de <strong>valores-limite</strong> (12mg/dL, início >24h, pico 3º dia)</li>\n<li>Cenários pedindo <strong>conduta</strong> em icterícia com características fisiológicas</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 342048,
+        "number": 10,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Icterícia e doença hemorrágica do RN",
+        "focus": {
+          "id": 1505,
+          "name": "Icterícia e doença hemorrágica do RN"
+        }
+      },
+      "detail": {
+        "id": 342048,
+        "content": "Recém-nascido a termo com 5 dias de vida, nascido de parto vaginal, é levado à unidade básica de  saúde (UBS) para coleta de teste do pezinho e aplicação da vacina BCG. A enfermeira percebe que o  bebê se encontra ictérico até a parte inferior do abdômen e o encaminha para a avaliação médica. A mãe  informa que o recém-nascido se alimenta exclusivamente ao seio materno. A perda de peso é adequada  para o tempo de vida e o exame físico é normal. Há urina e fezes amareladas presentes em fralda. A  tipagem sanguínea do bebê é igual à da mãe. O médico solicita dosagem sérica de bilirrubina total e  frações e eritrograma, e esclarece à mãe que o bebê apresenta uma condição benigna chamada icterícia  fisiológica do recém-nascido.     \n\n\nCite cinco fatores envolvidos na fisiopatologia da icterícia fisiológica do recém-nascido a termo. (10pts)",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 16,
+          "name": "UERJ",
+          "state": "RJ"
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 8,
+          "abbreviation": "R+PED"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2026,
+        "tag": [
+          {
+            "id": 17307,
+            "parent_tag": {
+              "id": 17214,
+              "name": "Neonatologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Icterícia e doença hemorrágica do RN",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              4
+            ],
+            "new_residency_degree": [
+              8
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 10,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 0,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1505,
+          "name": "Icterícia e doença hemorrágica do RN",
+          "discipline": {
+            "id": 91,
+            "name": "Pediatria",
+            "residency_degree": 8,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 86,
+            "name": "Neonatologia",
+            "discipline": 91,
+            "old_tag": 17214,
+            "residency_degree_abbreviation": "R+PED"
+          }
+        }
+      },
+      "explanation": {
+        "id": 411755,
+        "actual_explanation": true,
+        "introduction": "<p>Trata-se, essencialmente, de <strong>icterícia fisiológica do recém-nascido</strong> em um bebê a termo de 5 dias, onde a progressão da coloração amarelada até o abdome inferior, associada ao bom estado geral e alimentação adequada, caracteriza este quadro benigno e autolimitado.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A <strong>icterícia fisiológica</strong> se caracteriza pelo aparecimento após 24h de vida, progressão cefalocaudal até abdome e resolução espontânea até 14 dias. O raciocínio diagnóstico se baseia na exclusão sistemática de causas patológicas: tipagem igual à mãe afasta incompatibilidade ABO, bom estado geral descarta sepse, e fezes amareladas excluem atresia biliar.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Início após <em>24 horas de vida</em> e progressão até abdome inferior</li>\n<li>Estado geral preservado com ganho ponderal adequado</li>\n<li>Presença de <strong>fezes amareladas</strong> (exclui atresia biliar)</li>\n<li>Tipagem sanguínea igual à mãe (afasta incompatibilidade ABO)</li>\n<li>Resolução espontânea até <em>14 dias</em> em RN a termo</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Questão pode pedir 5 fatores, mas existem <strong>6 mecanismos</strong> na fisiopatologia</li>\n<li>Confundir com icterícia patológica se aparecer nas <em>primeiras 24h</em></li>\n<li>Icterícia que ultrapassa joelhos sugere investigação, mesmo sendo fisiológica</li>\n<li>Não associar automaticamente aleitamento materno exclusivo com <span class=\"article-4835\">icterícia do leite materno</span></li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questões discursivas pedindo <strong>fatores fisiopatológicos</strong> específicos</li>\n<li>Casos clínicos com <em>diagnóstico diferencial</em> entre icterícia fisiológica e patológica</li>\n<li>Associação com <strong>tempo de aparecimento</strong> e progressão cefalocaudal</li>\n<li>Diferenciação baseada em <em>estado geral</em> e presença de fezes coradas</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Trata-se, essencialmente, de <strong>icterícia fisiológica do recém-nascido</strong> em um bebê a termo de 5 dias, onde a progressão da coloração amarelada até o abdome inferior, associada ao bom estado geral e alimentação adequada, caracteriza este quadro benigno e autolimitado.</p><br>Visão do aprovado: <p>A <strong>icterícia fisiológica</strong> se caracteriza pelo aparecimento após 24h de vida, progressão cefalocaudal até abdome e resolução espontânea até 14 dias. O raciocínio diagnóstico se baseia na exclusão sistemática de causas patológicas: tipagem igual à mãe afasta incompatibilidade ABO, bom estado geral descarta sepse, e fezes amareladas excluem atresia biliar.</p>\n<p><strong>Pistas-chave:</strong></p>\n<ul>\n<li>Início após <em>24 horas de vida</em> e progressão até abdome inferior</li>\n<li>Estado geral preservado com ganho ponderal adequado</li>\n<li>Presença de <strong>fezes amareladas</strong> (exclui atresia biliar)</li>\n<li>Tipagem sanguínea igual à mãe (afasta incompatibilidade ABO)</li>\n<li>Resolução espontânea até <em>14 dias</em> em RN a termo</li>\n</ul>\n<p><strong>Pegadinhas de prova:</strong></p>\n<ul>\n<li>Questão pode pedir 5 fatores, mas existem <strong>6 mecanismos</strong> na fisiopatologia</li>\n<li>Confundir com icterícia patológica se aparecer nas <em>primeiras 24h</em></li>\n<li>Icterícia que ultrapassa joelhos sugere investigação, mesmo sendo fisiológica</li>\n<li>Não associar automaticamente aleitamento materno exclusivo com <span class=\"article-4835\">icterícia do leite materno</span></li>\n</ul>\n<p><strong>Como cai:</strong></p>\n<ul>\n<li>Questões discursivas pedindo <strong>fatores fisiopatológicos</strong> específicos</li>\n<li>Casos clínicos com <em>diagnóstico diferencial</em> entre icterícia fisiológica e patológica</li>\n<li>Associação com <strong>tempo de aparecimento</strong> e progressão cefalocaudal</li>\n<li>Diferenciação baseada em <em>estado geral</em> e presença de fezes coradas</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T15:15:27.278797+00:00",
+  "complete": true
+}

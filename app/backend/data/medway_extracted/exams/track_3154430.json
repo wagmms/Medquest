@@ -1,0 +1,603 @@
+{
+  "track_id": 3154430,
+  "name": "INEP - Revalida - 2023.1 - Discursiva",
+  "year": 2023,
+  "track_fast": {
+    "id": 3154430,
+    "name": "INEP - Revalida - 2023.1 - Discursiva",
+    "track_type": "c",
+    "question_count": 5,
+    "year": 2023,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "INEP - Revalida",
+    "track_image": "https://cdn.medway.com.br/media/track/exam/inep-revalida/default_l8me2Gi.jpeg",
+    "residency_degree": {
+      "id": 3,
+      "abbreviation": "R1"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 221194,
+        "number": 1,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Síndrome Disfágica",
+        "focus": {
+          "id": 2825,
+          "name": "Síndrome Disfágica"
+        }
+      },
+      "detail": {
+        "id": 221194,
+        "content": "Um homem com 55 anos, obeso e tabagista, é submetido a endoscopia digestiva alta em razão de pirose, regurgitação de conteúdo gástrico e ocasional dor torácica retroesternal. O exame de endoscopia digestiva alta revela a presença de esofagite erosiva moderada (Grau C Los Angeles) com áreas de mucosa ectópica avermelhada acima da linha Z, ascendentes a partir da junção esofagogástrica. A transição esofagogástrica encontra-se a 4 cm acima do pinçamento diafragmático. Biópsias são obtidas das áreas ectópicas da mucosa esofagiana, que revelam a presença de metaplasia intestinal no epitélio colunar no esôfago distal, não havendo sinais de displasia ou neoplasia local.  \n\n\nA respeito do caso relatado, responda às seguintes questões. \na) Como é denominada a alteração anatômica que justifica a elevação do ponto de transição esofagogástrica para o tórax do paciente nos casos de Doença de Refluxo Gastroesofágico? \nb) Que nome se dá à alteração do epitélio esofagiano descrita no caso?  \nc) Que tipo histológico de neoplasia está associado a essa condição?  \nd) Quais são as 7 medidas comportamentais e a medida medicamentosa  indicadas para o paciente nesse caso?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 1326,
+            "parent_tag": {
+              "id": 307,
+              "name": "Gastroenterologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Síndrome Disfágica",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              29,
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 1231,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2825,
+          "name": "Síndrome Disfágica",
+          "discipline": {
+            "id": 64,
+            "name": "Cirurgia Geral",
+            "residency_degree": 3,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 595,
+            "name": "Gastroenterologia",
+            "discipline": 64,
+            "old_tag": 307,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251338,
+        "actual_explanation": true,
+        "introduction": "<p>A questão nos apresenta um caso clínico muito comum na prática médica: um paciente de 55 anos, obeso e tabagista, com sintomas típicos de refluxo gastroesofágico (pirose, regurgitação e dor retroesternal). Os achados endoscópicos revelam <strong>esofagite erosiva moderada (Grau C Los Angeles)</strong>, <strong>áreas de mucosa ectópica avermelhada acima da linha Z</strong> e <strong>transição esofagogástrica 4 cm acima do pinçamento diafragmático</strong>. A biópsia confirma <strong>metaplasia intestinal no epitélio colunar do esôfago distal</strong>, sem displasia ou neoplasia.</p>\n<p>Este caso é extremamente relevante pois aborda a <span class=\"article-2453\">Doença do Refluxo Gastroesofágico</span> (<span class=\"article-3034\">DRGE</span>) e suas complicações, condições muito prevalentes na população (afeta cerca de 10-20% dos adultos ocidentais) e frequentemente cobradas em provas de residência médica.</p>\n<p>Vamos analisar cada uma das perguntas e suas respostas:</p>\n<p><strong>a) Como é denominada a alteração anatômica que justifica a elevação do ponto de transição esofagogástrica para o tórax do paciente nos casos de Doença de Refluxo Gastroesofágico?</strong></p>\n<p>A resposta correta é <strong>hérnia de hiato por deslizamento</strong> (ou hérnia hiatal ou hérnia de hiato). Esta condição ocorre quando parte do estômago, juntamente com a junção esofagogástrica, desloca-se através do hiato esofágico para dentro da cavidade torácica. Na questão, é mencionado que \"a transição esofagogástrica encontra-se a 4 cm acima do pinçamento diafragmático\", confirmando o diagnóstico de hérnia hiatal. Esta alteração anatômica compromete a barreira antirrefluxo natural, predispondo à <span class=\"article-3034\">DRGE</span>.</p>\n<p><strong>b) Que nome se dá à alteração do epitélio esofagiano descrita no caso?</strong></p>\n<p>A resposta correta é <strong>Esôfago de Barrett</strong> (ou metaplasia de Barrett). Esta condição ocorre quando o epitélio escamoso normal do esôfago distal é substituído por epitélio colunar (metaplasia) contendo células caliciformes (metaplasia intestinal), como resultado da exposição crônica ao refluxo ácido. No caso descrito, a endoscopia evidenciou \"áreas de mucosa ectópica avermelhada acima da linha Z\" e a biópsia confirmou \"metaplasia intestinal no epitélio colunar no esôfago distal\", confirmando o diagnóstico.</p>\n<p><strong>c) Que tipo histológico de neoplasia está associado a essa condição?</strong></p>\n<p>A resposta correta é <strong>Adenocarcinoma</strong>. O <span class=\"article-2696\">Esôfago de Barrett</span> é o principal fator de risco para desenvolvimento de adenocarcinoma esofágico. Pacientes com Barrett têm risco 30-40 vezes maior de desenvolver este tipo de câncer em comparação com a população geral, seguindo a sequência: metaplasia → displasia de baixo grau → displasia de alto grau → adenocarcinoma. Vale ressaltar que mesmo tendo este risco aumentado, a taxa absoluta de progressão para câncer é relativamente baixa (aproximadamente 0,1-0,5% ao ano).</p>\n<p><strong>d) Quais são as 7 medidas comportamentais e a medida medicamentosa indicadas para o paciente nesse caso?</strong></p>\n<p><strong>i. Medidas comportamentais:</strong></p>\n<ul>\n<li>Cessar tabagismo (o tabagismo reduz a pressão do esfíncter esofágico inferior)</li>\n<li>Reduzir consumo de álcool/bebidas alcoólicas (o álcool também relaxa o esfíncter esofágico inferior)</li>\n<li>Adotar medidas dietéticas: evitar café e alimentos ácidos/apimentados/muito temperados (são potenciais irritantes da mucosa)</li>\n<li>Eliminar gordura ou perder peso (a obesidade aumenta a pressão intra-abdominal)</li>\n<li>Evitar bebidas gasosas (aumentam a distensão gástrica)</li>\n<li>Elevar cabeceira da cama (a gravidade ajuda a prevenir o refluxo durante o sono)</li>\n<li>Evitar deitar-se 2h pós-jantar/evitar ingerir alimentos antes de deitar-se (evita refluxo durante o sono)</li>\n</ul>\n<p><strong>ii. Medida medicamentosa:</strong></p>\n<p>Bloqueio de secreção ácida gástrica, principalmente por meio do uso de inibidor de bomba de prótons (<span class=\"article-2777\">IBP</span>). Estes medicamentos são a pedra angular do tratamento da <span class=\"article-3034\">DRGE</span> e do <span class=\"article-2696\">Esôfago de Barrett</span>, pois suprimem eficazmente a produção de ácido gástrico e permitem a cicatrização da esofagite. Exemplos incluem omeprazol, esomeprazol, pantoprazol, entre outros.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Para se sair bem em questões sobre <span class=\"article-3034\">DRGE</span> e Esôfago de Barrett, é essencial dominar alguns conceitos e correlações fundamentais:</p>\n<ol>\n<li><strong>Conheça a classificação de Los Angeles para esofagite</strong>: É a classificação mais utilizada atualmente. Grau C (como no caso) significa erosões que se estendem entre duas ou mais pregas mucosas, mas envolvem menos que 75% da circunferência do esôfago.</li>\n<li><strong>Entenda a diferença entre <span class=\"article-3034\">DRGE</span> erosiva e não-erosiva</strong>: Apenas cerca de 30-40% dos pacientes com <span class=\"article-3034\">DRGE</span> apresentam esofagite erosiva na endoscopia.</li>\n<li><strong>Identifique os fatores de risco para <span class=\"article-2696\">Esôfago de Barrett</span></strong>: Sexo masculino, idade avançada, etnia caucasiana, obesidade, tabagismo, história familiar e <span class=\"article-3034\">DRGE</span> de longa duração.</li>\n<li><strong>Saiba a estratificação de vigilância</strong>: Pacientes com Barrett sem displasia devem realizar endoscopia a cada 3-5 anos; com displasia de baixo grau, a cada 6-12 meses; com displasia de alto grau, considerar <span class=\"article-2760\">ressecção endoscópica</span> ou ablação.</li>\n<li><strong>Conheça a diferença entre hérnia de hiato por deslizamento (tipo I, 95% dos casos) e <span class=\"article-4109\">hérnia paraesofágica</span> (tipos II-IV)</strong>: Este é um ponto que costuma confundir muitos estudantes.</li>\n</ol>\n<p><strong>Armadilhas comuns neste tipo de questão:</strong></p>\n<ul>\n<li>Confundir carcinoma epidermóide (associado ao tabagismo e etilismo) com adenocarcinoma (associado ao <span class=\"article-2696\">Esôfago de Barrett</span>).</li>\n<li>Esquecer de mencionar todas as medidas comportamentais (geralmente são muitas).</li>\n<li>Não diferenciar adequadamente metaplasia intestinal completa e incompleta no Barrett.</li>\n</ul>\n<p><strong>Conexões importantes:</strong></p>\n<p>O Barrett conecta-se não apenas com o tema de <span class=\"article-3034\">DRGE</span>, mas também com câncer gastrointestinal, endoscopia digestiva e, indiretamente, com cirurgia bariátrica (pela relação obesidade-<span class=\"article-3034\">DRGE</span>). Há também importante conexão com histologia e patologia, quando se discute a sequência metaplasia-displasia-adenocarcinoma.</p>\n<p>Em relação a recursos adicionais, recomendo revisar as diretrizes da Sociedade Brasileira de Endoscopia Digestiva (SOBED) e da American College of Gastroenterology (ACG) sobre o manejo do <span class=\"article-2696\">Esôfago de Barrett</span>. O consenso de Lyon (2018) sobre definição e classificação da <span class=\"article-3034\">DRGE</span> também é leitura recomendada para quem deseja aprofundar no tema.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>A questão nos apresenta um caso clínico muito comum na prática médica: um paciente de 55 anos, obeso e tabagista, com sintomas típicos de refluxo gastroesofágico (pirose, regurgitação e dor retroesternal). Os achados endoscópicos revelam <strong>esofagite erosiva moderada (Grau C Los Angeles)</strong>, <strong>áreas de mucosa ectópica avermelhada acima da linha Z</strong> e <strong>transição esofagogástrica 4 cm acima do pinçamento diafragmático</strong>. A biópsia confirma <strong>metaplasia intestinal no epitélio colunar do esôfago distal</strong>, sem displasia ou neoplasia.</p>\n<p>Este caso é extremamente relevante pois aborda a <span class=\"article-2453\">Doença do Refluxo Gastroesofágico</span> (<span class=\"article-3034\">DRGE</span>) e suas complicações, condições muito prevalentes na população (afeta cerca de 10-20% dos adultos ocidentais) e frequentemente cobradas em provas de residência médica.</p>\n<p>Vamos analisar cada uma das perguntas e suas respostas:</p>\n<p><strong>a) Como é denominada a alteração anatômica que justifica a elevação do ponto de transição esofagogástrica para o tórax do paciente nos casos de Doença de Refluxo Gastroesofágico?</strong></p>\n<p>A resposta correta é <strong>hérnia de hiato por deslizamento</strong> (ou hérnia hiatal ou hérnia de hiato). Esta condição ocorre quando parte do estômago, juntamente com a junção esofagogástrica, desloca-se através do hiato esofágico para dentro da cavidade torácica. Na questão, é mencionado que \"a transição esofagogástrica encontra-se a 4 cm acima do pinçamento diafragmático\", confirmando o diagnóstico de hérnia hiatal. Esta alteração anatômica compromete a barreira antirrefluxo natural, predispondo à <span class=\"article-3034\">DRGE</span>.</p>\n<p><strong>b) Que nome se dá à alteração do epitélio esofagiano descrita no caso?</strong></p>\n<p>A resposta correta é <strong>Esôfago de Barrett</strong> (ou metaplasia de Barrett). Esta condição ocorre quando o epitélio escamoso normal do esôfago distal é substituído por epitélio colunar (metaplasia) contendo células caliciformes (metaplasia intestinal), como resultado da exposição crônica ao refluxo ácido. No caso descrito, a endoscopia evidenciou \"áreas de mucosa ectópica avermelhada acima da linha Z\" e a biópsia confirmou \"metaplasia intestinal no epitélio colunar no esôfago distal\", confirmando o diagnóstico.</p>\n<p><strong>c) Que tipo histológico de neoplasia está associado a essa condição?</strong></p>\n<p>A resposta correta é <strong>Adenocarcinoma</strong>. O <span class=\"article-2696\">Esôfago de Barrett</span> é o principal fator de risco para desenvolvimento de adenocarcinoma esofágico. Pacientes com Barrett têm risco 30-40 vezes maior de desenvolver este tipo de câncer em comparação com a população geral, seguindo a sequência: metaplasia → displasia de baixo grau → displasia de alto grau → adenocarcinoma. Vale ressaltar que mesmo tendo este risco aumentado, a taxa absoluta de progressão para câncer é relativamente baixa (aproximadamente 0,1-0,5% ao ano).</p>\n<p><strong>d) Quais são as 7 medidas comportamentais e a medida medicamentosa indicadas para o paciente nesse caso?</strong></p>\n<p><strong>i. Medidas comportamentais:</strong></p>\n<ul>\n<li>Cessar tabagismo (o tabagismo reduz a pressão do esfíncter esofágico inferior)</li>\n<li>Reduzir consumo de álcool/bebidas alcoólicas (o álcool também relaxa o esfíncter esofágico inferior)</li>\n<li>Adotar medidas dietéticas: evitar café e alimentos ácidos/apimentados/muito temperados (são potenciais irritantes da mucosa)</li>\n<li>Eliminar gordura ou perder peso (a obesidade aumenta a pressão intra-abdominal)</li>\n<li>Evitar bebidas gasosas (aumentam a distensão gástrica)</li>\n<li>Elevar cabeceira da cama (a gravidade ajuda a prevenir o refluxo durante o sono)</li>\n<li>Evitar deitar-se 2h pós-jantar/evitar ingerir alimentos antes de deitar-se (evita refluxo durante o sono)</li>\n</ul>\n<p><strong>ii. Medida medicamentosa:</strong></p>\n<p>Bloqueio de secreção ácida gástrica, principalmente por meio do uso de inibidor de bomba de prótons (<span class=\"article-2777\">IBP</span>). Estes medicamentos são a pedra angular do tratamento da <span class=\"article-3034\">DRGE</span> e do <span class=\"article-2696\">Esôfago de Barrett</span>, pois suprimem eficazmente a produção de ácido gástrico e permitem a cicatrização da esofagite. Exemplos incluem omeprazol, esomeprazol, pantoprazol, entre outros.</p><br>Visão do aprovado: <p>Para se sair bem em questões sobre <span class=\"article-3034\">DRGE</span> e Esôfago de Barrett, é essencial dominar alguns conceitos e correlações fundamentais:</p>\n<ol>\n<li><strong>Conheça a classificação de Los Angeles para esofagite</strong>: É a classificação mais utilizada atualmente. Grau C (como no caso) significa erosões que se estendem entre duas ou mais pregas mucosas, mas envolvem menos que 75% da circunferência do esôfago.</li>\n<li><strong>Entenda a diferença entre <span class=\"article-3034\">DRGE</span> erosiva e não-erosiva</strong>: Apenas cerca de 30-40% dos pacientes com <span class=\"article-3034\">DRGE</span> apresentam esofagite erosiva na endoscopia.</li>\n<li><strong>Identifique os fatores de risco para <span class=\"article-2696\">Esôfago de Barrett</span></strong>: Sexo masculino, idade avançada, etnia caucasiana, obesidade, tabagismo, história familiar e <span class=\"article-3034\">DRGE</span> de longa duração.</li>\n<li><strong>Saiba a estratificação de vigilância</strong>: Pacientes com Barrett sem displasia devem realizar endoscopia a cada 3-5 anos; com displasia de baixo grau, a cada 6-12 meses; com displasia de alto grau, considerar <span class=\"article-2760\">ressecção endoscópica</span> ou ablação.</li>\n<li><strong>Conheça a diferença entre hérnia de hiato por deslizamento (tipo I, 95% dos casos) e <span class=\"article-4109\">hérnia paraesofágica</span> (tipos II-IV)</strong>: Este é um ponto que costuma confundir muitos estudantes.</li>\n</ol>\n<p><strong>Armadilhas comuns neste tipo de questão:</strong></p>\n<ul>\n<li>Confundir carcinoma epidermóide (associado ao tabagismo e etilismo) com adenocarcinoma (associado ao <span class=\"article-2696\">Esôfago de Barrett</span>).</li>\n<li>Esquecer de mencionar todas as medidas comportamentais (geralmente são muitas).</li>\n<li>Não diferenciar adequadamente metaplasia intestinal completa e incompleta no Barrett.</li>\n</ul>\n<p><strong>Conexões importantes:</strong></p>\n<p>O Barrett conecta-se não apenas com o tema de <span class=\"article-3034\">DRGE</span>, mas também com câncer gastrointestinal, endoscopia digestiva e, indiretamente, com cirurgia bariátrica (pela relação obesidade-<span class=\"article-3034\">DRGE</span>). Há também importante conexão com histologia e patologia, quando se discute a sequência metaplasia-displasia-adenocarcinoma.</p>\n<p>Em relação a recursos adicionais, recomendo revisar as diretrizes da Sociedade Brasileira de Endoscopia Digestiva (SOBED) e da American College of Gastroenterology (ACG) sobre o manejo do <span class=\"article-2696\">Esôfago de Barrett</span>. O consenso de Lyon (2018) sobre definição e classificação da <span class=\"article-3034\">DRGE</span> também é leitura recomendada para quem deseja aprofundar no tema.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221195,
+        "number": 2,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Tumores do Aparelho Digestivo",
+        "focus": {
+          "id": 2089,
+          "name": "Tumores do Aparelho Digestivo"
+        }
+      },
+      "detail": {
+        "id": 221195,
+        "content": "Um paciente com 59 anos, branco, apresenta disfagia progressiva há 3 meses e emagrecimento de 15 kg nesse período. No momento, queixa-se de dificuldade para ingestão de alimentos líquidos. Possui antecedente de hipertensão arterial sistêmica e doença do refluxo gastroesofágico, usando medicação de forma irregular. Ao exame físico, apresenta-se: descorado (+2/+4), hidratado, eupneico, afebril, anictérico, acianótico, com pressão arterial de 140 × 90 mmHg; os exames dos aparelhos cardiovascular, pulmonar e abdome mostram-se sem anormalidades; adenopatias ausentes. O paciente traz consigo endoscopia digestiva alta (EDA) realizada há 1 mês que demonstrou lesão ulceroinfiltrativa iniciada a 34 cm da arcada dentária superior, que dificultou a passagem do aparelho.  \n\nCom base nas informações e no exame apresentado, faça o que se pede nos itens a seguir. \n\na) Aponte o principal diagnóstico para o caso desse paciente.\nb) Explicite o exame necessário para a confirmação do diagnóstico.  \nc) Cite 4 possíveis condutas terapêuticas para pacientes com essa doença.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 560,
+            "parent_tag": {
+              "id": 352,
+              "name": "Cirurgia do Aparelho Digestivo",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Tumores do Aparelho Digestivo",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 2953,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2089,
+          "name": "Tumores do Aparelho Digestivo",
+          "discipline": {
+            "id": 64,
+            "name": "Cirurgia Geral",
+            "residency_degree": 3,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 184,
+            "name": "Cirurgia do Aparelho Digestivo",
+            "discipline": 64,
+            "old_tag": 352,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251328,
+        "actual_explanation": true,
+        "introduction": "<p>Essa questão apresenta um caso clínico bastante característico de uma patologia comum na prática médica. Temos um homem de 59 anos com <strong>disfagia progressiva</strong> há 3 meses, <strong>emagrecimento importante</strong> (15kg), evoluindo com dificuldade até para ingestão de líquidos. O paciente tem como comorbidades hipertensão arterial sistêmica e doença do refluxo gastroesofágico (DRGE), e traz uma endoscopia que evidencia <strong>lesão ulceroinfiltrativa</strong> a 34 cm da arcada dentária superior.</p>\n<p>Este quadro é muito sugestivo de um <strong>câncer de esôfago</strong>, que ocorre mais frequentemente em homens acima de 50 anos. Os dois principais tipos histológicos são: <strong>carcinoma epidermóide</strong> (mais comum mundialmente e em regiões superiores do esôfago) e <strong>adenocarcinoma</strong> (crescente no ocidente, mais comum no esôfago distal e associado à DRGE e <span class=\"article-5448\">esôfago de Barrett</span>). Na apresentação clínica, a disfagia progressiva (que evolui de sólidos para líquidos) e a perda ponderal significativa são sintomas clássicos.</p>\n<p>A endoscopia digestiva alta (EDA) com visualização direta da lesão suspeita é fundamental no diagnóstico, mas a confirmação definitiva requer <strong>biópsia da lesão</strong> para análise histopatológica. Esse é o exame padrão-ouro para confirmar a malignidade.</p>\n<p>O tratamento do câncer de esôfago é multimodal e depende do estágio da doença. As opções terapêuticas incluem:</p>\n<ol>\n<li><strong><span class=\"article-2044\">Ressecção cirúrgica</span> (<span class=\"article-5450\">esofagectomia</span>)</strong>: pilar do tratamento curativo em estágios iniciais e ressecáveis</li>\n<li><strong>Quimioterapia</strong>: pode ser neoadjuvante (antes da cirurgia), adjuvante (após cirurgia) ou paliativa</li>\n<li><strong>Radioterapia</strong>: geralmente combinada com quimioterapia (quimiorradioterapia)</li>\n<li><strong>Medidas paliativas</strong>: como gastrostomia/jejunostomia para suporte nutricional ou stent esofágico para aliviar a obstrução</li>\n<li><strong>Terapias combinadas</strong>: como quimiorradioterapia neoadjuvante seguida de cirurgia</li>\n<li><strong>Imunoterapia</strong>: opção mais recente para casos específicos</li>\n</ol>\n<p>O prognóstico ainda é reservado, com sobrevida em 5 anos entre 15-25%, principalmente porque muitos pacientes são diagnosticados em estágios avançados.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Para responder a essa questão com precisão, é necessário ter clareza sobre a tríade clássica do câncer de esôfago: <strong>disfagia progressiva + perda de peso + lesão ulceroinfiltrativa na endoscopia</strong>. Esse padrão é muito valorizado nas provas de residência!</p>\n<p>Uma armadilha comum é não perceber a gravidade do quadro. Quando um paciente apresenta disfagia para líquidos, isso indica doença avançada, pois a progressão típica é: disfagia para sólidos → pastosos → líquidos. A perda de 15kg em apenas 3 meses também é um sinal de alerta que sugere fortemente neoplasia.</p>\n<p>É importante lembrar dos fatores de risco específicos para cada tipo histológico:</p>\n<ul>\n<li><strong>Carcinoma epidermóide</strong>: tabagismo, etilismo, ingestão de bebidas quentes, <span class=\"article-2362\">acalasia</span>, tilose</li>\n<li><strong>Adenocarcinoma</strong>: DRGE crônica, <span class=\"article-5448\">esôfago de Barrett</span>, obesidade, tabagismo</li>\n</ul>\n<p>No quesito sobre condutas terapêuticas, as bancas costumam valorizar o conhecimento sobre a abordagem multimodal. Muitos candidatos citam apenas a cirurgia e quimioterapia, esquecendo-se das medidas paliativas como gastrostomia/jejunostomia ou stent esofágico, que são fundamentais no manejo desses pacientes, especialmente em estágios avançados.</p>\n<p>Acho importante destacar que o conceito de tratamento neoadjuvante (quimio/radioterapia antes da cirurgia) tem ganhado espaço nas bancas nos últimos anos, refletindo as mudanças nas diretrizes de tratamento dessa patologia.</p>\n<p>Quando estiver estudando esse tema, faça um esquema mental das principais características clínicas e endoscópicas de cada tipo de câncer esofágico, além de fixar bem os fatores de risco específicos e as diversas modalidades terapêuticas disponíveis. Visualizar mentalmente o paciente típico com essa condição ajuda muito a fixar o conteúdo!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Essa questão apresenta um caso clínico bastante característico de uma patologia comum na prática médica. Temos um homem de 59 anos com <strong>disfagia progressiva</strong> há 3 meses, <strong>emagrecimento importante</strong> (15kg), evoluindo com dificuldade até para ingestão de líquidos. O paciente tem como comorbidades hipertensão arterial sistêmica e doença do refluxo gastroesofágico (DRGE), e traz uma endoscopia que evidencia <strong>lesão ulceroinfiltrativa</strong> a 34 cm da arcada dentária superior.</p>\n<p>Este quadro é muito sugestivo de um <strong>câncer de esôfago</strong>, que ocorre mais frequentemente em homens acima de 50 anos. Os dois principais tipos histológicos são: <strong>carcinoma epidermóide</strong> (mais comum mundialmente e em regiões superiores do esôfago) e <strong>adenocarcinoma</strong> (crescente no ocidente, mais comum no esôfago distal e associado à DRGE e <span class=\"article-5448\">esôfago de Barrett</span>). Na apresentação clínica, a disfagia progressiva (que evolui de sólidos para líquidos) e a perda ponderal significativa são sintomas clássicos.</p>\n<p>A endoscopia digestiva alta (EDA) com visualização direta da lesão suspeita é fundamental no diagnóstico, mas a confirmação definitiva requer <strong>biópsia da lesão</strong> para análise histopatológica. Esse é o exame padrão-ouro para confirmar a malignidade.</p>\n<p>O tratamento do câncer de esôfago é multimodal e depende do estágio da doença. As opções terapêuticas incluem:</p>\n<ol>\n<li><strong><span class=\"article-2044\">Ressecção cirúrgica</span> (<span class=\"article-5450\">esofagectomia</span>)</strong>: pilar do tratamento curativo em estágios iniciais e ressecáveis</li>\n<li><strong>Quimioterapia</strong>: pode ser neoadjuvante (antes da cirurgia), adjuvante (após cirurgia) ou paliativa</li>\n<li><strong>Radioterapia</strong>: geralmente combinada com quimioterapia (quimiorradioterapia)</li>\n<li><strong>Medidas paliativas</strong>: como gastrostomia/jejunostomia para suporte nutricional ou stent esofágico para aliviar a obstrução</li>\n<li><strong>Terapias combinadas</strong>: como quimiorradioterapia neoadjuvante seguida de cirurgia</li>\n<li><strong>Imunoterapia</strong>: opção mais recente para casos específicos</li>\n</ol>\n<p>O prognóstico ainda é reservado, com sobrevida em 5 anos entre 15-25%, principalmente porque muitos pacientes são diagnosticados em estágios avançados.</p><br>Visão do aprovado: <p>Para responder a essa questão com precisão, é necessário ter clareza sobre a tríade clássica do câncer de esôfago: <strong>disfagia progressiva + perda de peso + lesão ulceroinfiltrativa na endoscopia</strong>. Esse padrão é muito valorizado nas provas de residência!</p>\n<p>Uma armadilha comum é não perceber a gravidade do quadro. Quando um paciente apresenta disfagia para líquidos, isso indica doença avançada, pois a progressão típica é: disfagia para sólidos → pastosos → líquidos. A perda de 15kg em apenas 3 meses também é um sinal de alerta que sugere fortemente neoplasia.</p>\n<p>É importante lembrar dos fatores de risco específicos para cada tipo histológico:</p>\n<ul>\n<li><strong>Carcinoma epidermóide</strong>: tabagismo, etilismo, ingestão de bebidas quentes, <span class=\"article-2362\">acalasia</span>, tilose</li>\n<li><strong>Adenocarcinoma</strong>: DRGE crônica, <span class=\"article-5448\">esôfago de Barrett</span>, obesidade, tabagismo</li>\n</ul>\n<p>No quesito sobre condutas terapêuticas, as bancas costumam valorizar o conhecimento sobre a abordagem multimodal. Muitos candidatos citam apenas a cirurgia e quimioterapia, esquecendo-se das medidas paliativas como gastrostomia/jejunostomia ou stent esofágico, que são fundamentais no manejo desses pacientes, especialmente em estágios avançados.</p>\n<p>Acho importante destacar que o conceito de tratamento neoadjuvante (quimio/radioterapia antes da cirurgia) tem ganhado espaço nas bancas nos últimos anos, refletindo as mudanças nas diretrizes de tratamento dessa patologia.</p>\n<p>Quando estiver estudando esse tema, faça um esquema mental das principais características clínicas e endoscópicas de cada tipo de câncer esofágico, além de fixar bem os fatores de risco específicos e as diversas modalidades terapêuticas disponíveis. Visualizar mentalmente o paciente típico com essa condição ajuda muito a fixar o conteúdo!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221196,
+        "number": 3,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Nutrição na Pediatria",
+        "focus": {
+          "id": 2133,
+          "name": "Nutrição na Pediatria"
+        }
+      },
+      "detail": {
+        "id": 221196,
+        "content": "Durante consulta de puericultura de uma criança com 30 dias de vida, a mãe refere que está amamentando de modo exclusivo e que sua produção de leite é muito grande, relatando que \"precisa usar protetores mamários constantemente, pois sempre está 'vazando' leite das mamas\". Conta também que, na última semana, teve dificuldade para amamentar devido a prurido intenso e ardência na região mamilar, além de dores nas mamas, do tipo \"agulhadas\", que persistem após as mamadas. Ao exame das mamas da lactante, observa-se a pele dos mamilos e da aréola avermelhada, brilhante, com fina descamação. O bebê encontra-se em bom estado geral, normal ao exame físico, e com ganho ponderal de 40 gramas por dia.  \n\nConsiderando o quadro descrito, faça o que se pede nos itens a seguir. \n\na) Cite duas hipóteses diagnósticas para o caso. \nb) Explique as duas hipóteses diagnósticas, discorrendo sobre os fatores predisponentes de cada hipótese e o manejo adequado para cada uma.\nc) Descreva pelo menos 4 orientações gerais pertinentes e adequadas para, nesse caso, melhorar a saúde da lactante e a amamentação.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 493,
+            "parent_tag": {
+              "id": 296,
+              "name": "Nutrologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Nutrição na Pediatria",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 1172,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2133,
+          "name": "Nutrição na Pediatria",
+          "discipline": {
+            "id": 92,
+            "name": "Pediatria",
+            "residency_degree": 3,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 261,
+            "name": "Nutrologia",
+            "discipline": 92,
+            "old_tag": 296,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251731,
+        "actual_explanation": true,
+        "introduction": "<p>Neste caso, durante uma consulta de <span class=\"article-2947\">puericultura</span>, a mãe de um recém-nascido de 30 dias relata desconforto importante relacionado à amamentação. Apesar do RN apresentar ganho ponderal adequado (40 g/dia) e exame físico normal, a mãe queixa-se de prurido, ardência e dor do tipo \"agulhadas\" nas mamas, que persistem após as mamadas. Ao exame físico, observa-se pele dos mamilos e aréola com eritema, brilho e descamação fina.</p>\n<p>Esses achados direcionam o raciocínio para causas de dor mamilar na lactação, sendo as principais hipóteses <strong data-end=\"636\" data-start=\"614\">candidíase mamária</strong> (infecção fúngica da região areolomamilar) e <strong data-end=\"729\" data-start=\"682\">trauma mamilar secundário a pega inadequada</strong> ou excesso de umidade local (associado ao uso contínuo de protetores mamilares). </p>\n<p><strong>a) Cite duas hipóteses diagnósticas para o caso </strong></p>\n<p data-end=\"198\" data-start=\"150\">As duas hipóteses diagnósticas principais são:</p>\n<ul data-end=\"373\" data-start=\"199\">\n<li data-end=\"279\" data-start=\"199\">\n<p data-end=\"279\" data-start=\"201\"><strong data-end=\"223\" data-start=\"201\">Candidíase mamária</strong> (infecção por <em data-end=\"247\" data-start=\"238\">Candida</em> da região mamilar e areolar).</p>\n</li>\n<li data-end=\"373\" data-start=\"280\">\n<p data-end=\"373\" data-start=\"282\"><strong data-end=\"364\" data-start=\"282\">Trauma mamilar associado a uso inadequado de protetores mamilares e/ou má pega</strong> do bebê.</p>\n</li>\n</ul>\n<p><strong>b) Explique as duas hipóteses diagnósticas, discorrendo sobre os fatores predisponentes e o manejo adequado para cada uma.</strong></p>\n<p data-end=\"533\" data-start=\"508\"><strong data-end=\"531\" data-start=\"508\">Candidíase mamária:</strong></p>\n<ul data-end=\"1152\" data-start=\"534\">\n<li data-end=\"788\" data-start=\"534\">\n<p data-end=\"788\" data-start=\"536\"><strong data-end=\"563\" data-start=\"536\">Fatores predisponentes:</strong></p>\n<ul data-end=\"1152\" data-start=\"534\">\n<li data-end=\"788\" data-start=\"534\">\n<p data-end=\"788\" data-start=\"536\">o excesso de umidade (0,3 ponto) e lesão/trauma dos mamilos (0,3 ponto);</p>\n</li>\n<li data-end=\"788\" data-start=\"534\">\n<p data-end=\"788\" data-start=\"536\">o uso, pela mulher, de antibióticos (0,3 ponto), contraceptivos orais (0,3 ponto) e esteroides (0,3 ponto). (Valor: 1,5 pontos)  </p>\n</li>\n</ul>\n</li>\n<li data-end=\"1152\" data-start=\"789\">\n<p data-end=\"1152\" data-start=\"791\"><strong data-end=\"802\" data-start=\"791\">Manejo:</strong></p>\n<ul data-end=\"1152\" data-start=\"534\">\n<li data-end=\"1152\" data-start=\"789\">\n<p data-end=\"1152\" data-start=\"791\">Confirmada a suspeita clínica (não é necessário exame laboratorial), o tratamento é feito com antifúngico tópico (clotrimazol ou miconazol em gel na aréola após as mamadas). Deve-se tratar, ainda, a criança com nistatina suspensão oral ou miconazol gel oral.</p>\n</li>\n<li data-end=\"1152\" data-start=\"789\">\n<p data-end=\"1152\" data-start=\"791\">Orientar a mãe sobre medidas preventivas da candidíase mamilar: manter os mamilos ventilados e secos, e expô-los à luz solar por alguns minutos ao dia, quando possível; e evitar o uso de chupetas e bicos de mamadeiras pelas crianças (fontes importantes de contaminação e reinfecção). Quando esses artefatos são utilizados, eles devem ser fervidos pelo menos uma vez/dia por 20 minutos..</p>\n</li>\n</ul>\n</li>\n</ul>\n<p data-end=\"1217\" data-start=\"1154\"><strong data-end=\"1215\" data-start=\"1154\">Trauma mamilar secundário a má pega e excesso de umidade:</strong></p>\n<ul data-end=\"1731\" data-start=\"1218\">\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><strong data-end=\"1247\" data-start=\"1220\">Fatores predisponentes:</strong></p>\n<ul data-end=\"1731\" data-start=\"1218\">\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"> Mamilos curtos / planos / invertidos (0,2);</p>\n</li>\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><span style=\"font-size: 11pt;\">Disfunções orais/ cervicais da criança (freio curto lingual, torcicolo) (0,2);</span></p>\n</li>\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><span style=\"font-size: 11pt;\">Uso impróprio de bombas de extração de leite (0,2);</span></p>\n</li>\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><span style=\"font-size: 11pt;\">Retirada durante sucção com técnica inadequada (0,2); <br/></span></p>\n</li>\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><span style=\"font-size: 11pt;\">Uso de óleos / cremes que causam alergia no mamilo (0,2)</span></p>\n</li>\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><span style=\"font-size: 11pt;\"> Uso de protetores mamilares (0,2);</span></p>\n</li>\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><span style=\"font-size: 11pt;\">Exposição prolongada a forros úmidos (0,2); </span></p>\n</li>\n</ul>\n</li>\n<li data-end=\"1731\" data-start=\"1456\">\n<p data-end=\"1731\" data-start=\"1458\"><strong data-end=\"1469\" data-start=\"1458\">Manejo:</strong></p>\n<ul data-end=\"1731\" data-start=\"1218\">\n<li data-end=\"1731\" data-start=\"1456\">Início da mamada pela mama menos afetada (0,1 ponto);</li>\n<li data-end=\"1731\" data-start=\"1456\">Usar diferentes posições para amamentar, reduzindo a pressão nos pontos dolorosos ou áreas machucadas (0,2 pontos); </li>\n<li data-end=\"1731\" data-start=\"1456\">Utilizar “conchas protetoras” (alternativamente um coador de plástico pequeno) entre as mamadas, eliminando o contato da área machucada com a roupa (0,1 ponto)</li>\n<li data-end=\"1731\" data-start=\"1456\"> Analgésicos sistêmicos por via oral se houver dor importante. (0,1 ponto);</li>\n<li data-end=\"1731\" data-start=\"1456\">Ordenhar um pouco de leite antes da mamada, o suficiente para desencadear o reflexo de ejeção de leite, evitando dessa maneira que a criança tenha que sugar muito forte no início da mamada para desencadear o reflexo (0,1 ponto);</li>\n<li data-end=\"1731\" data-start=\"1456\">Orientação sobre posicionamento e pega adequados:\n<ul data-end=\"1731\" data-start=\"1218\">\n<li data-end=\"1731\" data-start=\"1456\">Posicionamento adequado (0,6)\n<ul data-end=\"1731\" data-start=\"1218\">\n<li data-end=\"1731\" data-start=\"1456\">Rosto do bebê de frente para a mama, com nariz na altura do mamilo (0,15) </li>\n<li data-end=\"1731\" data-start=\"1456\">Corpo do bebê próximo ao da mãe (0,15) </li>\n<li data-end=\"1731\" data-start=\"1456\">Bebê com cabeça e tronco alinhados (pescoço não torcido) (0,15) </li>\n<li data-end=\"1731\" data-start=\"1456\">Bebê bem apoiado (0,15)</li>\n</ul>\n</li>\n<li data-end=\"1731\" data-start=\"1456\">Pega adequada (0,6)\n<ul data-end=\"1731\" data-start=\"1218\">\n<li data-end=\"1731\" data-start=\"1456\">Mais aréola visível acima da boca do bebê (0,15)</li>\n<li data-end=\"1731\" data-start=\"1456\">Boca bem aberta (0,15)</li>\n<li data-end=\"1731\" data-start=\"1456\">Lábio inferior virado para fora (0,15)</li>\n<li data-end=\"1731\" data-start=\"1456\">Queixo tocando a mama (0,15)</li>\n</ul>\n</li>\n</ul>\n</li>\n<li data-end=\"1731\" data-start=\"1456\">Se a lesão mamilar é muito extensa ou a mãe não está conseguindo amamentar por causa da dor, pode ser necessário interromper temporariamente a amamentação na mama afetada; no entanto, a mama deve ser esvaziada por <span class=\"article-8317\">ordenha manual</span> ou com bomba de extração de leite. (0,2 ponto) </li>\n</ul>\n</li>\n</ul>\n<p><strong>c) Descreva pelo menos 4 orientações gerais pertinentes e adequadas para, nesse caso, melhorar a saúde da lactante e a amamentação.</strong></p>\n<p>O participante deve citar pelo menos 4 das seguintes orientações (valor: 0,5 pontos cada):</p>\n<ul>\n<li>Amamentar com técnica adequada (posicionamento e pega adequados), de modo que o bebê abocanhe toda a aréola;<br/>(0,5)</li>\n<li>Cuidar para que os mamilos se mantenham secos, expondo-os ao ar livre ou à luz solar e fazer trocas frequentes dos forros utilizados quando há vazamento de leite; (0,5)</li>\n<li>Não usar produtos que retiram a proteção natural do mamilo, como sabões, álcool ou qualquer produto secante; (0,5)</li>\n<li>Evitar ingurgitamento mamário; fazer <span class=\"article-8317\">ordenha manual</span> da aréola antes da mamada se ela estiver ingurgitada; (0,5)</li>\n<li>Manter o leite ordenhado em congelador por até 15 dias e encaminhar/doar ao banco de leite; (0,5)</li>\n<li>Introduzir o dedo indicador ou mínimo pela comissura labial (canto) da boca do bebê, se for preciso interromper a mamada, de maneira que a sucção seja interrompida antes de a criança ser retirada do seio; (0,5)</li>\n<li>Não usar protetores (intermediários) de mamilo, pois eles, além de não serem eficazes, podem ser a causa do trauma mamilar. (0,5)</li>\n<li>Diante de trauma mamilar como escoriações ou fissuras, recomenda-se que os mamilos sejam enxaguados com água limpa após cada mamada, para evitar infecção. (0,5)</li>\n<li>Se a lesão mamilar é muito extensa ou a mãe não está conseguindo amamentar por causa da dor, pode ser necessário<br/>interromper temporariamente a amamentação na mama afetada (0,5)</li>\n<li>O uso de compressa fria está indicado em casos de ingurgitamento mamário (0,5)</li>\n</ul>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Questão muito ampla, envolvendo vários pontos do aleitamento materno! Revisem o comentário!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Neste caso, durante uma consulta de <span class=\"article-2947\">puericultura</span>, a mãe de um recém-nascido de 30 dias relata desconforto importante relacionado à amamentação. Apesar do RN apresentar ganho ponderal adequado (40 g/dia) e exame físico normal, a mãe queixa-se de prurido, ardência e dor do tipo \"agulhadas\" nas mamas, que persistem após as mamadas. Ao exame físico, observa-se pele dos mamilos e aréola com eritema, brilho e descamação fina.</p>\n<p>Esses achados direcionam o raciocínio para causas de dor mamilar na lactação, sendo as principais hipóteses <strong data-end=\"636\" data-start=\"614\">candidíase mamária</strong> (infecção fúngica da região areolomamilar) e <strong data-end=\"729\" data-start=\"682\">trauma mamilar secundário a pega inadequada</strong> ou excesso de umidade local (associado ao uso contínuo de protetores mamilares). </p>\n<p><strong>a) Cite duas hipóteses diagnósticas para o caso </strong></p>\n<p data-end=\"198\" data-start=\"150\">As duas hipóteses diagnósticas principais são:</p>\n<ul data-end=\"373\" data-start=\"199\">\n<li data-end=\"279\" data-start=\"199\">\n<p data-end=\"279\" data-start=\"201\"><strong data-end=\"223\" data-start=\"201\">Candidíase mamária</strong> (infecção por <em data-end=\"247\" data-start=\"238\">Candida</em> da região mamilar e areolar).</p>\n</li>\n<li data-end=\"373\" data-start=\"280\">\n<p data-end=\"373\" data-start=\"282\"><strong data-end=\"364\" data-start=\"282\">Trauma mamilar associado a uso inadequado de protetores mamilares e/ou má pega</strong> do bebê.</p>\n</li>\n</ul>\n<p><strong>b) Explique as duas hipóteses diagnósticas, discorrendo sobre os fatores predisponentes e o manejo adequado para cada uma.</strong></p>\n<p data-end=\"533\" data-start=\"508\"><strong data-end=\"531\" data-start=\"508\">Candidíase mamária:</strong></p>\n<ul data-end=\"1152\" data-start=\"534\">\n<li data-end=\"788\" data-start=\"534\">\n<p data-end=\"788\" data-start=\"536\"><strong data-end=\"563\" data-start=\"536\">Fatores predisponentes:</strong></p>\n<ul data-end=\"1152\" data-start=\"534\">\n<li data-end=\"788\" data-start=\"534\">\n<p data-end=\"788\" data-start=\"536\">o excesso de umidade (0,3 ponto) e lesão/trauma dos mamilos (0,3 ponto);</p>\n</li>\n<li data-end=\"788\" data-start=\"534\">\n<p data-end=\"788\" data-start=\"536\">o uso, pela mulher, de antibióticos (0,3 ponto), contraceptivos orais (0,3 ponto) e esteroides (0,3 ponto). (Valor: 1,5 pontos)  </p>\n</li>\n</ul>\n</li>\n<li data-end=\"1152\" data-start=\"789\">\n<p data-end=\"1152\" data-start=\"791\"><strong data-end=\"802\" data-start=\"791\">Manejo:</strong></p>\n<ul data-end=\"1152\" data-start=\"534\">\n<li data-end=\"1152\" data-start=\"789\">\n<p data-end=\"1152\" data-start=\"791\">Confirmada a suspeita clínica (não é necessário exame laboratorial), o tratamento é feito com antifúngico tópico (clotrimazol ou miconazol em gel na aréola após as mamadas). Deve-se tratar, ainda, a criança com nistatina suspensão oral ou miconazol gel oral.</p>\n</li>\n<li data-end=\"1152\" data-start=\"789\">\n<p data-end=\"1152\" data-start=\"791\">Orientar a mãe sobre medidas preventivas da candidíase mamilar: manter os mamilos ventilados e secos, e expô-los à luz solar por alguns minutos ao dia, quando possível; e evitar o uso de chupetas e bicos de mamadeiras pelas crianças (fontes importantes de contaminação e reinfecção). Quando esses artefatos são utilizados, eles devem ser fervidos pelo menos uma vez/dia por 20 minutos..</p>\n</li>\n</ul>\n</li>\n</ul>\n<p data-end=\"1217\" data-start=\"1154\"><strong data-end=\"1215\" data-start=\"1154\">Trauma mamilar secundário a má pega e excesso de umidade:</strong></p>\n<ul data-end=\"1731\" data-start=\"1218\">\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><strong data-end=\"1247\" data-start=\"1220\">Fatores predisponentes:</strong></p>\n<ul data-end=\"1731\" data-start=\"1218\">\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"> Mamilos curtos / planos / invertidos (0,2);</p>\n</li>\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><span style=\"font-size: 11pt;\">Disfunções orais/ cervicais da criança (freio curto lingual, torcicolo) (0,2);</span></p>\n</li>\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><span style=\"font-size: 11pt;\">Uso impróprio de bombas de extração de leite (0,2);</span></p>\n</li>\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><span style=\"font-size: 11pt;\">Retirada durante sucção com técnica inadequada (0,2); <br/></span></p>\n</li>\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><span style=\"font-size: 11pt;\">Uso de óleos / cremes que causam alergia no mamilo (0,2)</span></p>\n</li>\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><span style=\"font-size: 11pt;\"> Uso de protetores mamilares (0,2);</span></p>\n</li>\n<li data-end=\"1455\" data-start=\"1218\">\n<p data-end=\"1455\" data-start=\"1220\"><span style=\"font-size: 11pt;\">Exposição prolongada a forros úmidos (0,2); </span></p>\n</li>\n</ul>\n</li>\n<li data-end=\"1731\" data-start=\"1456\">\n<p data-end=\"1731\" data-start=\"1458\"><strong data-end=\"1469\" data-start=\"1458\">Manejo:</strong></p>\n<ul data-end=\"1731\" data-start=\"1218\">\n<li data-end=\"1731\" data-start=\"1456\">Início da mamada pela mama menos afetada (0,1 ponto);</li>\n<li data-end=\"1731\" data-start=\"1456\">Usar diferentes posições para amamentar, reduzindo a pressão nos pontos dolorosos ou áreas machucadas (0,2 pontos); </li>\n<li data-end=\"1731\" data-start=\"1456\">Utilizar “conchas protetoras” (alternativamente um coador de plástico pequeno) entre as mamadas, eliminando o contato da área machucada com a roupa (0,1 ponto)</li>\n<li data-end=\"1731\" data-start=\"1456\"> Analgésicos sistêmicos por via oral se houver dor importante. (0,1 ponto);</li>\n<li data-end=\"1731\" data-start=\"1456\">Ordenhar um pouco de leite antes da mamada, o suficiente para desencadear o reflexo de ejeção de leite, evitando dessa maneira que a criança tenha que sugar muito forte no início da mamada para desencadear o reflexo (0,1 ponto);</li>\n<li data-end=\"1731\" data-start=\"1456\">Orientação sobre posicionamento e pega adequados:\n<ul data-end=\"1731\" data-start=\"1218\">\n<li data-end=\"1731\" data-start=\"1456\">Posicionamento adequado (0,6)\n<ul data-end=\"1731\" data-start=\"1218\">\n<li data-end=\"1731\" data-start=\"1456\">Rosto do bebê de frente para a mama, com nariz na altura do mamilo (0,15) </li>\n<li data-end=\"1731\" data-start=\"1456\">Corpo do bebê próximo ao da mãe (0,15) </li>\n<li data-end=\"1731\" data-start=\"1456\">Bebê com cabeça e tronco alinhados (pescoço não torcido) (0,15) </li>\n<li data-end=\"1731\" data-start=\"1456\">Bebê bem apoiado (0,15)</li>\n</ul>\n</li>\n<li data-end=\"1731\" data-start=\"1456\">Pega adequada (0,6)\n<ul data-end=\"1731\" data-start=\"1218\">\n<li data-end=\"1731\" data-start=\"1456\">Mais aréola visível acima da boca do bebê (0,15)</li>\n<li data-end=\"1731\" data-start=\"1456\">Boca bem aberta (0,15)</li>\n<li data-end=\"1731\" data-start=\"1456\">Lábio inferior virado para fora (0,15)</li>\n<li data-end=\"1731\" data-start=\"1456\">Queixo tocando a mama (0,15)</li>\n</ul>\n</li>\n</ul>\n</li>\n<li data-end=\"1731\" data-start=\"1456\">Se a lesão mamilar é muito extensa ou a mãe não está conseguindo amamentar por causa da dor, pode ser necessário interromper temporariamente a amamentação na mama afetada; no entanto, a mama deve ser esvaziada por <span class=\"article-8317\">ordenha manual</span> ou com bomba de extração de leite. (0,2 ponto) </li>\n</ul>\n</li>\n</ul>\n<p><strong>c) Descreva pelo menos 4 orientações gerais pertinentes e adequadas para, nesse caso, melhorar a saúde da lactante e a amamentação.</strong></p>\n<p>O participante deve citar pelo menos 4 das seguintes orientações (valor: 0,5 pontos cada):</p>\n<ul>\n<li>Amamentar com técnica adequada (posicionamento e pega adequados), de modo que o bebê abocanhe toda a aréola;<br/>(0,5)</li>\n<li>Cuidar para que os mamilos se mantenham secos, expondo-os ao ar livre ou à luz solar e fazer trocas frequentes dos forros utilizados quando há vazamento de leite; (0,5)</li>\n<li>Não usar produtos que retiram a proteção natural do mamilo, como sabões, álcool ou qualquer produto secante; (0,5)</li>\n<li>Evitar ingurgitamento mamário; fazer <span class=\"article-8317\">ordenha manual</span> da aréola antes da mamada se ela estiver ingurgitada; (0,5)</li>\n<li>Manter o leite ordenhado em congelador por até 15 dias e encaminhar/doar ao banco de leite; (0,5)</li>\n<li>Introduzir o dedo indicador ou mínimo pela comissura labial (canto) da boca do bebê, se for preciso interromper a mamada, de maneira que a sucção seja interrompida antes de a criança ser retirada do seio; (0,5)</li>\n<li>Não usar protetores (intermediários) de mamilo, pois eles, além de não serem eficazes, podem ser a causa do trauma mamilar. (0,5)</li>\n<li>Diante de trauma mamilar como escoriações ou fissuras, recomenda-se que os mamilos sejam enxaguados com água limpa após cada mamada, para evitar infecção. (0,5)</li>\n<li>Se a lesão mamilar é muito extensa ou a mãe não está conseguindo amamentar por causa da dor, pode ser necessário<br/>interromper temporariamente a amamentação na mama afetada (0,5)</li>\n<li>O uso de compressa fria está indicado em casos de ingurgitamento mamário (0,5)</li>\n</ul><br>Visão do aprovado: <p>Questão muito ampla, envolvendo vários pontos do aleitamento materno! Revisem o comentário!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221197,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Vulvovaginites",
+        "focus": {
+          "id": 2162,
+          "name": "Vulvovaginites"
+        }
+      },
+      "detail": {
+        "id": 221197,
+        "content": "Uma mulher com 32 anos e histórico de múltiplos parceiros sexuais comparece à unidade básica de saúde com queixa de corrimento amarelado e fétido. Afirma que a última menstruação ocorreu há 10 dias; nega uso de irritantes locais (sabonete de higiene íntima) e de medicamentos. Ao exame físico, apresenta: parede vaginal íntegra, secreção de aspecto branco-acinzentado de aparência bolhosa e com odor forte; colo íntegro e sem colpite ou aspecto de flogose. \n\nCom base nos dados desse caso, faça o que se pede nos itens a seguir. \n\na) Apresente o principal diagnóstico para o caso.\nb) Enumere 3 critérios de diagnóstico para essa doença.\nc) Aponte o agente mais comum dessa enfermidade. \nd) Cite 2 fatores de risco para recidiva da doença.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 446,
+            "parent_tag": {
+              "id": 322,
+              "name": "Infecções do Trato Genital Feminino",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Vulvovaginites",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [
+          {
+            "id": 4279,
+            "avatar": "https://cdn.medway.com.br/media/physician/id_24538_-_Andressa_Aparecida_Luciano_Batista.jpeg",
+            "about": "Ginecologia e Obstetrícia – UNICAMP",
+            "name": "Andressa Batista",
+            "speciality": {
+              "id": 6,
+              "abbreviation": "GO",
+              "name": "Ginecologia e Obstetrícia"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 1100,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2162,
+          "name": "Vulvovaginites",
+          "discipline": {
+            "id": 87,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 3,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 197,
+            "name": "Infecções do Trato Genital Feminino",
+            "discipline": 87,
+            "old_tag": 322,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251138,
+        "actual_explanation": true,
+        "introduction": "<p>Esta questão aborda um caso clínico muito frequente na prática da atenção primária: uma mulher jovem com queixa de corrimento vaginal. O que torna o caso particularmente interessante é a descrição detalhada das características clínicas que permitem chegar ao diagnóstico correto.</p>\n<p>Analisando o quadro apresentado, temos uma mulher de 32 anos com histórico de múltiplos parceiros sexuais, que apresenta corrimento amarelado e fétido. No exame físico, a secreção é descrita como branco-acinzentada, bolhosa e com odor forte, mas sem sinais de inflamação vaginal ou cervical. Essas características são típicas da <strong>vaginose bacteriana</strong>, que é o gabarito para o primeiro item da questão.</p>\n<p>A vaginose bacteriana não é uma infecção propriamente dita, mas sim um desequilíbrio da microbiota vaginal. Normalmente, a flora vaginal é dominada por <strong>Lactobacillus</strong>, que mantêm o pH ácido (3,8-4,5) e inibem o crescimento de outros microrganismos. Na vaginose bacteriana, há uma diminuição dos lactobacilos e proliferação de bactérias anaeróbias, principalmente a <strong>Gardnerella vaginalis</strong>, além de <em>Mobiluncus</em>, <em>Bacteroides</em>, <em>Prevotella</em> e <em>Mycoplasma hominis</em>.</p>\n<p>Para o diagnóstico, são utilizados os <strong>critérios de Amsel</strong>, que incluem:</p>\n<ul>\n<li>Corrimento vaginal homogêneo (branco-acinzentado)</li>\n<li>pH vaginal &gt; 4,5</li>\n<li>Presença de \"clue cells\" (células-guia) no exame a fresco</li>\n<li>Teste de whiff positivo (liberação de odor de aminas quando adicionado KOH 10% à secreção)</li>\n</ul>\n<p>O diagnóstico é confirmado quando pelo menos três desses quatro critérios estão presentes. A principal bactéria envolvida é a <strong>Gardnerella vaginalis</strong>, embora a condição seja polimicrobiana.</p>\n<p>Quanto aos fatores de risco para recidiva, incluem-se: múltiplos parceiros sexuais, sexo anal receptivo antes do vaginal, mulheres que fazem sexo com outras mulheres, prática sexual sem preservativo, uso de duchas vaginais, uso de sabonetes íntimos, uso frequente de antibióticos, uso de roupas íntimas justas ou sintéticas, e resistência bacteriana aos imidazólicos por tratamento anterior inadequado.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A aus&ecirc;ncia de sinais inflamat&oacute;rios &eacute; um ponto crucial que diferencia a vaginose bacteriana das infec&ccedil;&otilde;es como a tricomon&iacute;ase, que tipicamente causa colpite e eritema. J&aacute; a candid&iacute;ase se caracteriza por prurido intenso e corrimento branco grumoso, semelhante a \"leite coalhado\", al&eacute;m de vulvite por tamb&eacute;m provocar inflama&ccedil;&atilde;o. Nesse caso, na avalia&ccedil;&atilde;o de esfrega&ccedil;o notaremos presen&ccedil;a de polimorfonucleares em grande quantidade o que n&atilde;o ocorre nos casos de Vaginose.&nbsp;</p>\n<p>Preste aten&ccedil;&atilde;o &agrave;s armadilhas como a descri&ccedil;&atilde;o inicial de \"corrimento amarelado\", quando na verdade o exame f&iacute;sico revela \"secre&ccedil;&atilde;o branco-acinzentada\" - esse tipo de aparente contradi&ccedil;&atilde;o &eacute; comum nas provas e testa sua capacidade de valorizar os achados objetivos do exame f&iacute;sico sobre a queixa subjetiva.</p>\n<p>Ao estudar as vulvovaginites, estabele&ccedil;a conex&otilde;es com outros t&oacute;picos como DSTs, microbiologia e farmacologia dos antimicrobianos. Para vaginose bacteriana, o tratamento de primeira linha &eacute; metronidazol (oral ou t&oacute;pico) ou clindamicina vaginal. As taxas de recorr&ecirc;ncia s&atilde;o altas (at&eacute; 30% em 3 meses), por isso conhecer os fatores de risco &eacute; fundamental.</p>\n<p>Um diferencial importante para acertar esse tipo de quest&atilde;o &eacute; compreender que, diferentemente da candid&iacute;ase e da tricomon&iacute;ase, a vaginose bacteriana n&atilde;o &eacute; considerada uma DST cl&aacute;ssica, mas um desequil&iacute;brio da flora vaginal - embora a atividade sexual seja um fator de risco. Esse entendimento conceitual evita confus&otilde;es comuns que podem aparecer nas provas.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Esta questão aborda um caso clínico muito frequente na prática da atenção primária: uma mulher jovem com queixa de corrimento vaginal. O que torna o caso particularmente interessante é a descrição detalhada das características clínicas que permitem chegar ao diagnóstico correto.</p>\n<p>Analisando o quadro apresentado, temos uma mulher de 32 anos com histórico de múltiplos parceiros sexuais, que apresenta corrimento amarelado e fétido. No exame físico, a secreção é descrita como branco-acinzentada, bolhosa e com odor forte, mas sem sinais de inflamação vaginal ou cervical. Essas características são típicas da <strong>vaginose bacteriana</strong>, que é o gabarito para o primeiro item da questão.</p>\n<p>A vaginose bacteriana não é uma infecção propriamente dita, mas sim um desequilíbrio da microbiota vaginal. Normalmente, a flora vaginal é dominada por <strong>Lactobacillus</strong>, que mantêm o pH ácido (3,8-4,5) e inibem o crescimento de outros microrganismos. Na vaginose bacteriana, há uma diminuição dos lactobacilos e proliferação de bactérias anaeróbias, principalmente a <strong>Gardnerella vaginalis</strong>, além de <em>Mobiluncus</em>, <em>Bacteroides</em>, <em>Prevotella</em> e <em>Mycoplasma hominis</em>.</p>\n<p>Para o diagnóstico, são utilizados os <strong>critérios de Amsel</strong>, que incluem:</p>\n<ul>\n<li>Corrimento vaginal homogêneo (branco-acinzentado)</li>\n<li>pH vaginal &gt; 4,5</li>\n<li>Presença de \"clue cells\" (células-guia) no exame a fresco</li>\n<li>Teste de whiff positivo (liberação de odor de aminas quando adicionado KOH 10% à secreção)</li>\n</ul>\n<p>O diagnóstico é confirmado quando pelo menos três desses quatro critérios estão presentes. A principal bactéria envolvida é a <strong>Gardnerella vaginalis</strong>, embora a condição seja polimicrobiana.</p>\n<p>Quanto aos fatores de risco para recidiva, incluem-se: múltiplos parceiros sexuais, sexo anal receptivo antes do vaginal, mulheres que fazem sexo com outras mulheres, prática sexual sem preservativo, uso de duchas vaginais, uso de sabonetes íntimos, uso frequente de antibióticos, uso de roupas íntimas justas ou sintéticas, e resistência bacteriana aos imidazólicos por tratamento anterior inadequado.</p><br>Visão do aprovado: <p>A aus&ecirc;ncia de sinais inflamat&oacute;rios &eacute; um ponto crucial que diferencia a vaginose bacteriana das infec&ccedil;&otilde;es como a tricomon&iacute;ase, que tipicamente causa colpite e eritema. J&aacute; a candid&iacute;ase se caracteriza por prurido intenso e corrimento branco grumoso, semelhante a \"leite coalhado\", al&eacute;m de vulvite por tamb&eacute;m provocar inflama&ccedil;&atilde;o. Nesse caso, na avalia&ccedil;&atilde;o de esfrega&ccedil;o notaremos presen&ccedil;a de polimorfonucleares em grande quantidade o que n&atilde;o ocorre nos casos de Vaginose.&nbsp;</p>\n<p>Preste aten&ccedil;&atilde;o &agrave;s armadilhas como a descri&ccedil;&atilde;o inicial de \"corrimento amarelado\", quando na verdade o exame f&iacute;sico revela \"secre&ccedil;&atilde;o branco-acinzentada\" - esse tipo de aparente contradi&ccedil;&atilde;o &eacute; comum nas provas e testa sua capacidade de valorizar os achados objetivos do exame f&iacute;sico sobre a queixa subjetiva.</p>\n<p>Ao estudar as vulvovaginites, estabele&ccedil;a conex&otilde;es com outros t&oacute;picos como DSTs, microbiologia e farmacologia dos antimicrobianos. Para vaginose bacteriana, o tratamento de primeira linha &eacute; metronidazol (oral ou t&oacute;pico) ou clindamicina vaginal. As taxas de recorr&ecirc;ncia s&atilde;o altas (at&eacute; 30% em 3 meses), por isso conhecer os fatores de risco &eacute; fundamental.</p>\n<p>Um diferencial importante para acertar esse tipo de quest&atilde;o &eacute; compreender que, diferentemente da candid&iacute;ase e da tricomon&iacute;ase, a vaginose bacteriana n&atilde;o &eacute; considerada uma DST cl&aacute;ssica, mas um desequil&iacute;brio da flora vaginal - embora a atividade sexual seja um fator de risco. Esse entendimento conceitual evita confus&otilde;es comuns que podem aparecer nas provas.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221198,
+        "number": 5,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Doenças Sexualmente transmissíveis",
+        "focus": {
+          "id": 2143,
+          "name": "Doenças Sexualmente transmissíveis"
+        }
+      },
+      "detail": {
+        "id": 221198,
+        "content": "Um paciente com 22 anos comparece à unidade básica de saúde, sem apoio de exames laboratoriais, referindo corrimento uretral discreto, amarelado e com odor forte, acompanhado de prurido uretral e disúria há 3 dias.   \n\nConsiderando o caso apresentado, acerca do manejo clínico de corrimento uretral, faça o que se pede nos itens a seguir. \na) Aponte 5 itens da história clínica do paciente que devem ser coletados durante a entrevista.  \nb) Indique os 2 agentes etiológicos mais prováveis nessa situação. \nc) Na indisponibilidade para a realização de exames laboratoriais, cite qual é a primeira opção de tratamento inicial de corrimento uretral. \nd) Se os sintomas persistirem após 7 dias do tratamento, mesmo com uso regular da medicação prescrita, cite qual agente etiológico deve ser tratado. \ne) Cite as 3 vacinas que devem ser averiguadas no cartão de vacinação e as 4 testagens a serem oferecidas, que são pertinentes ao caso.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 479,
+            "parent_tag": {
+              "id": 297,
+              "name": "Infectologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Doenças Sexualmente transmissíveis",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 302,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2143,
+          "name": "Doenças Sexualmente transmissíveis",
+          "discipline": {
+            "id": 97,
+            "name": "Clínica Médica",
+            "residency_degree": 3,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 260,
+            "name": "Infectologia",
+            "discipline": 97,
+            "old_tag": 297,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251830,
+        "actual_explanation": true,
+        "introduction": "<p>Temos aqui um quadro de um paciente jovem com corrimento uretral, amarelado e com dis&uacute;ria. Os principais agentes respons&aacute;veis s&atilde;o a Clamydia trchomatis e o Neisseira gonorrhoeae.&nbsp;</p>\n<p>O diagn&oacute;stico pode ser feito com teste molecular por PCR ou ent&atilde;o tentar identificar na microscopia &oacute;ptica.&nbsp;</p>\n<p>Na pr&aacute;tica, o tratamento &eacute; feito de maneira emp&iacute;rica, com ceftriaxona IM 500mg + azitromicina 1g VO em dose &uacute;nica.&nbsp;</p>\n<p>O paciente deve ser rastreado para outras ists, avalia&ccedil;&atilde;o de PREP e tratar parceirias, se poss&iacute;vel.&nbsp;</p>\n<p>Ap&oacute;s essa revis&atilde;o, vamos analisar o gabarito oficial.&nbsp;</p>\n<p>a) O participante deve apontar os seguintes itens da hist&oacute;ria cl&iacute;nica:&nbsp;<br>1. Preocupa&ccedil;&otilde;es em rela&ccedil;&atilde;o &agrave; sa&uacute;de sexual?<br>2. Orienta&ccedil;&atilde;o sexual, identidade de g&ecirc;nero, sexo designado ao nascimento?<br>3. J&aacute; iniciou as atividades sexuais (sexarca)?<br>4. Quantidade de parcerias no &uacute;ltimo ano (m&uacute;ltiplas parcerias)?<br>5. Rela&ccedil;&atilde;o com homens, mulheres ou ambos?<br>6. Rela&ccedil;&atilde;o com algu&eacute;m n&atilde;o conhecido ou que acabou de conhecer nos &uacute;ltimos 3 meses?<br>7. J&aacute; foi pressionado a ter rela&ccedil;&otilde;es sexuais?<br>8. Tipo de sexo nos &uacute;ltimos 3 meses (anal, vaginal, oral), receptivo (passivo), insertivo (ativo) ou ambos?<br>9. Uso de produtos e/ou objetos na pr&aacute;tica sexual?<br>10. Uso de &aacute;lcool ou drogas na rela&ccedil;&atilde;o sexual?<br>11. IST pr&eacute;via (caso afirmativo: qual, onde foi a infec&ccedil;&atilde;o, quando, foi tratado, parceria tratada?)<br>12. Fez testagem para HIV, s&iacute;filis, hepatite B e C (quando, qual resultado)?<br>13. Como se protege de IST incluindo HIV (quando usa, com quais parcerias)?<br>14. Vacinado contra hepatite B, hepatite A e HPV?<br>15. Desejo de ter filhos? (caso afirmativo: quantos, quando, uso de m&eacute;todo contraceptivo atual; caso negativo: uso de m&eacute;todo contraceptivo atual)<br>16. Aspecto do corrimento?<br>17. Presen&ccedil;a de sintomas urin&aacute;rios (dor uretral (independentemente da mic&ccedil;&atilde;o), dis&uacute;ria, estranguria (mic&ccedil;&atilde;o lenta e dolorosa), prurido uretral)?<br>18. Presen&ccedil;a de les&atilde;o genital?<br>19. Presen&ccedil;a de linfonodomegalia?<br>20. Parceria com manifesta&ccedil;&atilde;o cl&iacute;nica/sintoma?<br>21. Sintomas sist&ecirc;micos (febre, calafrio)?<br>22. Uso de medicamento para a condi&ccedil;&atilde;o atual?<br>23. Comorbidades?<br>24. Uso de imunossupressor?</p>\n<p><br>b) Clam&iacute;dia (Chlamydia trachomatis) e Gonorreia ou Gonococo (Neisseria gonorrhoeae)</p>\n<p><br>c) Ceftriaxona 500 mg, IM, dose &uacute;nica MAIS Azitromicina 500 mg, 2 comprimidos, VO, dose &uacute;nica&nbsp;</p>\n<p><br>d) Mycoplasma genitalium, Trichomonas vaginalis (T. vaginalis) e Ureaplasma urealyticum</p>\n<p><br>e) Vacinas: contra hepatite A, contra hepatite B; contra HPV, testagem para HIV, para s&iacute;filis, para hepatite B, e para hepatite C.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>O corrimento uretral &eacute; muito frequente na pr&aacute;tica cl&iacute;nica, e na maioria das vezes vamos j&aacute; iniciar tratamento mesmo sem identifica&ccedil;&atilde;o do pat&oacute;geno. Apesar disso, precisamos conhecer os principais agentes para indicar o tratamento adequado.&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Temos aqui um quadro de um paciente jovem com corrimento uretral, amarelado e com dis&uacute;ria. Os principais agentes respons&aacute;veis s&atilde;o a Clamydia trchomatis e o Neisseira gonorrhoeae.&nbsp;</p>\n<p>O diagn&oacute;stico pode ser feito com teste molecular por PCR ou ent&atilde;o tentar identificar na microscopia &oacute;ptica.&nbsp;</p>\n<p>Na pr&aacute;tica, o tratamento &eacute; feito de maneira emp&iacute;rica, com ceftriaxona IM 500mg + azitromicina 1g VO em dose &uacute;nica.&nbsp;</p>\n<p>O paciente deve ser rastreado para outras ists, avalia&ccedil;&atilde;o de PREP e tratar parceirias, se poss&iacute;vel.&nbsp;</p>\n<p>Ap&oacute;s essa revis&atilde;o, vamos analisar o gabarito oficial.&nbsp;</p>\n<p>a) O participante deve apontar os seguintes itens da hist&oacute;ria cl&iacute;nica:&nbsp;<br>1. Preocupa&ccedil;&otilde;es em rela&ccedil;&atilde;o &agrave; sa&uacute;de sexual?<br>2. Orienta&ccedil;&atilde;o sexual, identidade de g&ecirc;nero, sexo designado ao nascimento?<br>3. J&aacute; iniciou as atividades sexuais (sexarca)?<br>4. Quantidade de parcerias no &uacute;ltimo ano (m&uacute;ltiplas parcerias)?<br>5. Rela&ccedil;&atilde;o com homens, mulheres ou ambos?<br>6. Rela&ccedil;&atilde;o com algu&eacute;m n&atilde;o conhecido ou que acabou de conhecer nos &uacute;ltimos 3 meses?<br>7. J&aacute; foi pressionado a ter rela&ccedil;&otilde;es sexuais?<br>8. Tipo de sexo nos &uacute;ltimos 3 meses (anal, vaginal, oral), receptivo (passivo), insertivo (ativo) ou ambos?<br>9. Uso de produtos e/ou objetos na pr&aacute;tica sexual?<br>10. Uso de &aacute;lcool ou drogas na rela&ccedil;&atilde;o sexual?<br>11. IST pr&eacute;via (caso afirmativo: qual, onde foi a infec&ccedil;&atilde;o, quando, foi tratado, parceria tratada?)<br>12. Fez testagem para HIV, s&iacute;filis, hepatite B e C (quando, qual resultado)?<br>13. Como se protege de IST incluindo HIV (quando usa, com quais parcerias)?<br>14. Vacinado contra hepatite B, hepatite A e HPV?<br>15. Desejo de ter filhos? (caso afirmativo: quantos, quando, uso de m&eacute;todo contraceptivo atual; caso negativo: uso de m&eacute;todo contraceptivo atual)<br>16. Aspecto do corrimento?<br>17. Presen&ccedil;a de sintomas urin&aacute;rios (dor uretral (independentemente da mic&ccedil;&atilde;o), dis&uacute;ria, estranguria (mic&ccedil;&atilde;o lenta e dolorosa), prurido uretral)?<br>18. Presen&ccedil;a de les&atilde;o genital?<br>19. Presen&ccedil;a de linfonodomegalia?<br>20. Parceria com manifesta&ccedil;&atilde;o cl&iacute;nica/sintoma?<br>21. Sintomas sist&ecirc;micos (febre, calafrio)?<br>22. Uso de medicamento para a condi&ccedil;&atilde;o atual?<br>23. Comorbidades?<br>24. Uso de imunossupressor?</p>\n<p><br>b) Clam&iacute;dia (Chlamydia trachomatis) e Gonorreia ou Gonococo (Neisseria gonorrhoeae)</p>\n<p><br>c) Ceftriaxona 500 mg, IM, dose &uacute;nica MAIS Azitromicina 500 mg, 2 comprimidos, VO, dose &uacute;nica&nbsp;</p>\n<p><br>d) Mycoplasma genitalium, Trichomonas vaginalis (T. vaginalis) e Ureaplasma urealyticum</p>\n<p><br>e) Vacinas: contra hepatite A, contra hepatite B; contra HPV, testagem para HIV, para s&iacute;filis, para hepatite B, e para hepatite C.</p><br>Visão do aprovado: <p>O corrimento uretral &eacute; muito frequente na pr&aacute;tica cl&iacute;nica, e na maioria das vezes vamos j&aacute; iniciar tratamento mesmo sem identifica&ccedil;&atilde;o do pat&oacute;geno. Apesar disso, precisamos conhecer os principais agentes para indicar o tratamento adequado.&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T19:01:41.469163+00:00",
+  "complete": true
+}

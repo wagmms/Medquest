@@ -1,0 +1,592 @@
+{
+  "track_id": 3153753,
+  "name": "INEP - Revalida - 2025.1 - Discursiva",
+  "year": 2025,
+  "track_fast": {
+    "id": 3153753,
+    "name": "INEP - Revalida - 2025.1 - Discursiva",
+    "track_type": "c",
+    "question_count": 5,
+    "year": 2025,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "INEP - Revalida",
+    "track_image": "https://cdn.medway.com.br/media/track/exam/inep-revalida/default_QFEeMgE.jpeg",
+    "residency_degree": {
+      "id": 3,
+      "abbreviation": "R1"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 220869,
+        "number": 1,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Hepatites e Doenças do Metabolismo da Bilirrubina",
+        "focus": {
+          "id": 2010,
+          "name": "Hepatites e Doenças do Metabolismo da Bilirrubina"
+        }
+      },
+      "detail": {
+        "id": 220869,
+        "content": "Homem de 58 anos, procedente de zona rural, procura atendimento na unidade básica de saúde com queixa de fadiga crônica há 6 meses e de episódios esporádicos de desconforto abdominal. Relata histórico de transfusão de sangue na infância. Ao exame físico, não apresenta alterações significativas. Testes rápidos para triagem de hepatites virais crônicas apresentam resultados reagentes para hepatite B e hepatite C.  \n\nEm relação aos resultados dos testes rápidos para triagem das hepatites virais B e C e considerando os dados apresentados nesse caso clínico, responda os itens a seguir.  \n\na) É necessária a realização de exames confirmatórios após o teste rápido para hepatite B? Justifique.  \nb) É necessária a realização de exames confirmatórios após o teste rápido para hepatite C? Justifique.  \nc) Quais exames complementares adicionais são essenciais para avaliação da gravidade e impacto clínico e funcional da doença hepática? Justifique. \nd) Elabore 2 orientações iniciais para o paciente, considerando o manejo das hepatites virais crônicas e possíveis medidas de prevenção direcionadas a contatos domiciliares.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 649,
+            "parent_tag": {
+              "id": 308,
+              "name": "Hepatologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Hepatites e Doenças do Metabolismo da Bilirrubina",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              29,
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 871,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2010,
+          "name": "Hepatites e Doenças do Metabolismo da Bilirrubina",
+          "discipline": {
+            "id": 97,
+            "name": "Clínica Médica",
+            "residency_degree": 3,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 234,
+            "name": "Hepatologia",
+            "discipline": 97,
+            "old_tag": 308,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 591121,
+        "actual_explanation": true,
+        "introduction": "<p>Vamos analisar esta questão sobre um caso muito relevante para a prática médica, especialmente na Atenção Primária: paciente com suspeita de hepatites virais crônicas. O caso trata de um homem de 58 anos, de zona rural, com fadiga crônica de 6 meses e desconforto abdominal esporádico, histórico de transfusão sanguínea na infância (fator de risco importante!) e testes rápidos reagentes para hepatites B e C.</p>\n<p>O gabarito oficial já indica o caminho correto sobre a necessidade de exames confirmatórios. Esta questão explora conceitos fundamentais sobre o diagnóstico das hepatites virais, especialmente a diferença entre os valores preditivos dos testes rápidos para cada tipo de hepatite.</p>\n<p>Vamos analisar cada item da resposta:</p>\n<p><strong>a) Necessidade de exames confirmatórios após teste rápido para <span class=\"article-2034\">hepatite B</span></strong></p>\n<p>O gabarito corretamente indica que <strong>não é necessário outro exame confirmatório</strong> para <span class=\"article-2034\">hepatite B</span> após teste rápido reagente. Isso porque o teste rápido para <span class=\"article-2034\">hepatite B</span> detecta o <span class=\"article-2031\">HBsAg</span> (antígeno de superfície do vírus B), que é um marcador direto da presença do vírus no organismo. O <span class=\"article-2031\">HBsAg</span> é o primeiro marcador a surgir no sangue após a infecção e permanece detectável na fase crônica da doença.</p>\n<p><strong>b) Necessidade de exames confirmatórios após teste rápido para <span class=\"article-2676\">hepatite C</span></strong></p>\n<p>Já para <span class=\"article-2676\">hepatite C</span>, <strong>é necessário realizar exame confirmatório</strong>. O teste rápido para <span class=\"article-2676\">hepatite C</span> detecta anticorpos <span class=\"article-2657\">anti-HCV</span>, que indicam apenas exposição prévia ao vírus, mas não necessariamente infecção ativa. Cerca de 15-45% das pessoas infectadas pelo HCV eliminam o vírus espontaneamente sem tratamento, mas mantêm anticorpos detectáveis por anos ou por toda a vida. Portanto, o exame confirmatório necessário é o HCV-RNA (carga viral), que detecta o material genético viral, confirmando infecção ativa.</p>\n<p><strong>c) Exames complementares essenciais para avaliação da gravidade e impacto clínico</strong></p>\n<p>Os exames complementares recomendados incluem:</p>\n<ul>\n<li><strong>Transaminases (AST/TGO e ALT/TGP):</strong> Marcadores de lesão hepatocelular. A ALT é mais específica do fígado, enquanto a AST/ALT &gt;1 (Razão de Ritis) pode sugerir fibrose avançada ou <span class=\"article-2761\">cirrose</span>.</li>\n<li><strong>Bilirrubina total e frações:</strong> Elevação da bilirrubina direta sugere colestase intra-hepática, enquanto elevação importante da bilirrubina total pode indicar falência funcional.</li>\n<li><strong>Hemograma completo:</strong> Plaquetopenia pode indicar <span class=\"article-3225\">hipertensão portal</span> e fibrose/<span class=\"article-2761\">cirrose</span> avançada. Anemia pode sugerir perdas sanguíneas ou hiperesplenismo.</li>\n<li><strong>Albumina:</strong> Proteína produzida pelo fígado cuja diminuição indica comprometimento da função hepatocelular.</li>\n<li><strong>TP/INR:</strong> Relacionados à síntese hepática de fatores de coagulação, refletem a função de síntese do fígado.</li>\n<li><strong>Ultrassonografia abdominal:</strong> Avalia alterações estruturais no fígado, sinais de <span class=\"article-3225\">hipertensão portal</span> e permite rastreamento de hepatocarcinoma.</li>\n<li><strong>Sorologias para HIV e <span class=\"article-6380\">hepatite A</span>:</strong> Essenciais devido ao compartilhamento de fatores de risco e impacto das coinfecções na evolução da doença hepática.</li>\n</ul>\n<p><strong>d) Orientações iniciais para o paciente</strong></p>\n<p>As orientações fundamentais incluem:</p>\n<ul>\n<li><strong>Rastreamento de contatos domiciliares:</strong> Essencial para identificar possíveis infecções na família e iniciar tratamento ou vacinação preventiva quando indicado.</li>\n<li><strong>Não compartilhar objetos de uso pessoal:</strong> Principalmente objetos cortantes, perfurantes e escovas de dentes, para evitar transmissão do vírus para contatos.</li>\n</ul>",
+        "option_a": "",
+        "short_option_a": "",
+        "option_b": "",
+        "short_option_b": "",
+        "option_c": "",
+        "short_option_c": "",
+        "option_d": "",
+        "short_option_d": "",
+        "option_e": "",
+        "short_option_e": "",
+        "conclusion": "<p>Esta questão aborda um tema extremamente recorrente em provas de residência: as hepatites virais. Vejo alguns pontos chave que você deve sempre lembrar:</p>\n<p><strong>Dica 1:</strong> Memorize a diferença fundamental entre os testes rápidos de <span class=\"article-2034\">hepatite B</span> (<span class=\"article-2031\">HBsAg</span>) e C (<span class=\"article-2657\">anti-HCV</span>). O primeiro detecta antígeno viral (presença do vírus) e o segundo detecta anticorpo (reação imunológica ao vírus). Esta diferença explica por que o teste rápido de <span class=\"article-2034\">hepatite B</span> não precisa de confirmação, enquanto o de <span class=\"article-2676\">hepatite C</span> precisa.</p>\n<p><strong>Dica 2:</strong> <span class=\"article-2767\">Hepatite C</span> é uma causa silenciosa de <span class=\"article-2761\">cirrose</span>. Aproximadamente 80% dos infectados são assintomáticos, diagnosticados apenas incidentalmente. Por isso, valorize fatores de risco como transfusão antes de 1993 (quando não havia triagem para HCV nos bancos de sangue).</p>\n<p><strong>Dica 3:</strong> Quando pedirem exames para avaliação de doença hepática, pense em três categorias:</p>\n<ul>\n<li>Enzimas de lesão: transaminases (ALT/TGP e AST/TGO)</li>\n<li>Marcadores de função: albumina, INR/TP, bilirrubinas</li>\n<li>Estudos de imagem: ultrassonografia de abdome</li>\n</ul>\n<p><strong>Armadilhas comuns:</strong></p>\n<ul>\n<li>Confundir <span class=\"article-2031\">HBsAg</span> com <span class=\"article-3493\">anti-HBs</span> (o primeiro indica infecção, o segundo, imunidade)</li>\n<li>Esquecer da coinfecção HIV nas hepatites virais (compartilham vias de transmissão)</li>\n<li>Não lembrar da necessidade de vacinação para <span class=\"article-6380\">hepatite A</span> em portadores de hepatites B/C crônicas</li>\n</ul>\n<p><strong>Conexões importantes:</strong> Este tema se conecta com o manejo dos pacientes na Atenção Primária e vigilância epidemiológica. As hepatites virais são agravos de notificação compulsória, e o médico que detecta um caso deve notificar às autoridades sanitárias.</p>\n<p>Um recurso adicional que recomendo é o Protocolo Clínico e Diretrizes Terapêuticas para Hepatites Virais do Ministério da Saúde, material essencial para entender o manejo destes pacientes.</p>\n<p>Na próxima vez que uma questão abordar hepatites virais, lembre-se: o sucesso no diagnóstico começa pela interpretação correta dos marcadores sorológicos, e o sucesso no tratamento depende da avaliação adequada da função hepática.</p><figure data-okr=\"ilustracao\"><img alt=\"\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20231219T193424418Z553520.png\" style=\"max-width:100%\"/></figure>",
+        "update_note": "",
+        "lesson_reference": "",
+        "full_explanation": "<p>Vamos analisar esta questão sobre um caso muito relevante para a prática médica, especialmente na Atenção Primária: paciente com suspeita de hepatites virais crônicas. O caso trata de um homem de 58 anos, de zona rural, com fadiga crônica de 6 meses e desconforto abdominal esporádico, histórico de transfusão sanguínea na infância (fator de risco importante!) e testes rápidos reagentes para hepatites B e C.</p>\n<p>O gabarito oficial já indica o caminho correto sobre a necessidade de exames confirmatórios. Esta questão explora conceitos fundamentais sobre o diagnóstico das hepatites virais, especialmente a diferença entre os valores preditivos dos testes rápidos para cada tipo de hepatite.</p>\n<p>Vamos analisar cada item da resposta:</p>\n<p><strong>a) Necessidade de exames confirmatórios após teste rápido para <span class=\"article-2034\">hepatite B</span></strong></p>\n<p>O gabarito corretamente indica que <strong>não é necessário outro exame confirmatório</strong> para <span class=\"article-2034\">hepatite B</span> após teste rápido reagente. Isso porque o teste rápido para <span class=\"article-2034\">hepatite B</span> detecta o <span class=\"article-2031\">HBsAg</span> (antígeno de superfície do vírus B), que é um marcador direto da presença do vírus no organismo. O <span class=\"article-2031\">HBsAg</span> é o primeiro marcador a surgir no sangue após a infecção e permanece detectável na fase crônica da doença.</p>\n<p><strong>b) Necessidade de exames confirmatórios após teste rápido para <span class=\"article-2676\">hepatite C</span></strong></p>\n<p>Já para <span class=\"article-2676\">hepatite C</span>, <strong>é necessário realizar exame confirmatório</strong>. O teste rápido para <span class=\"article-2676\">hepatite C</span> detecta anticorpos <span class=\"article-2657\">anti-HCV</span>, que indicam apenas exposição prévia ao vírus, mas não necessariamente infecção ativa. Cerca de 15-45% das pessoas infectadas pelo HCV eliminam o vírus espontaneamente sem tratamento, mas mantêm anticorpos detectáveis por anos ou por toda a vida. Portanto, o exame confirmatório necessário é o HCV-RNA (carga viral), que detecta o material genético viral, confirmando infecção ativa.</p>\n<p><strong>c) Exames complementares essenciais para avaliação da gravidade e impacto clínico</strong></p>\n<p>Os exames complementares recomendados incluem:</p>\n<ul>\n<li><strong>Transaminases (AST/TGO e ALT/TGP):</strong> Marcadores de lesão hepatocelular. A ALT é mais específica do fígado, enquanto a AST/ALT &gt;1 (Razão de Ritis) pode sugerir fibrose avançada ou <span class=\"article-2761\">cirrose</span>.</li>\n<li><strong>Bilirrubina total e frações:</strong> Elevação da bilirrubina direta sugere colestase intra-hepática, enquanto elevação importante da bilirrubina total pode indicar falência funcional.</li>\n<li><strong>Hemograma completo:</strong> Plaquetopenia pode indicar <span class=\"article-3225\">hipertensão portal</span> e fibrose/<span class=\"article-2761\">cirrose</span> avançada. Anemia pode sugerir perdas sanguíneas ou hiperesplenismo.</li>\n<li><strong>Albumina:</strong> Proteína produzida pelo fígado cuja diminuição indica comprometimento da função hepatocelular.</li>\n<li><strong>TP/INR:</strong> Relacionados à síntese hepática de fatores de coagulação, refletem a função de síntese do fígado.</li>\n<li><strong>Ultrassonografia abdominal:</strong> Avalia alterações estruturais no fígado, sinais de <span class=\"article-3225\">hipertensão portal</span> e permite rastreamento de hepatocarcinoma.</li>\n<li><strong>Sorologias para HIV e <span class=\"article-6380\">hepatite A</span>:</strong> Essenciais devido ao compartilhamento de fatores de risco e impacto das coinfecções na evolução da doença hepática.</li>\n</ul>\n<p><strong>d) Orientações iniciais para o paciente</strong></p>\n<p>As orientações fundamentais incluem:</p>\n<ul>\n<li><strong>Rastreamento de contatos domiciliares:</strong> Essencial para identificar possíveis infecções na família e iniciar tratamento ou vacinação preventiva quando indicado.</li>\n<li><strong>Não compartilhar objetos de uso pessoal:</strong> Principalmente objetos cortantes, perfurantes e escovas de dentes, para evitar transmissão do vírus para contatos.</li>\n</ul><br>Visão do aprovado: <p>Esta questão aborda um tema extremamente recorrente em provas de residência: as hepatites virais. Vejo alguns pontos chave que você deve sempre lembrar:</p>\n<p><strong>Dica 1:</strong> Memorize a diferença fundamental entre os testes rápidos de <span class=\"article-2034\">hepatite B</span> (<span class=\"article-2031\">HBsAg</span>) e C (<span class=\"article-2657\">anti-HCV</span>). O primeiro detecta antígeno viral (presença do vírus) e o segundo detecta anticorpo (reação imunológica ao vírus). Esta diferença explica por que o teste rápido de <span class=\"article-2034\">hepatite B</span> não precisa de confirmação, enquanto o de <span class=\"article-2676\">hepatite C</span> precisa.</p>\n<p><strong>Dica 2:</strong> <span class=\"article-2767\">Hepatite C</span> é uma causa silenciosa de <span class=\"article-2761\">cirrose</span>. Aproximadamente 80% dos infectados são assintomáticos, diagnosticados apenas incidentalmente. Por isso, valorize fatores de risco como transfusão antes de 1993 (quando não havia triagem para HCV nos bancos de sangue).</p>\n<p><strong>Dica 3:</strong> Quando pedirem exames para avaliação de doença hepática, pense em três categorias:</p>\n<ul>\n<li>Enzimas de lesão: transaminases (ALT/TGP e AST/TGO)</li>\n<li>Marcadores de função: albumina, INR/TP, bilirrubinas</li>\n<li>Estudos de imagem: ultrassonografia de abdome</li>\n</ul>\n<p><strong>Armadilhas comuns:</strong></p>\n<ul>\n<li>Confundir <span class=\"article-2031\">HBsAg</span> com <span class=\"article-3493\">anti-HBs</span> (o primeiro indica infecção, o segundo, imunidade)</li>\n<li>Esquecer da coinfecção HIV nas hepatites virais (compartilham vias de transmissão)</li>\n<li>Não lembrar da necessidade de vacinação para <span class=\"article-6380\">hepatite A</span> em portadores de hepatites B/C crônicas</li>\n</ul>\n<p><strong>Conexões importantes:</strong> Este tema se conecta com o manejo dos pacientes na Atenção Primária e vigilância epidemiológica. As hepatites virais são agravos de notificação compulsória, e o médico que detecta um caso deve notificar às autoridades sanitárias.</p>\n<p>Um recurso adicional que recomendo é o Protocolo Clínico e Diretrizes Terapêuticas para Hepatites Virais do Ministério da Saúde, material essencial para entender o manejo destes pacientes.</p>\n<p>Na próxima vez que uma questão abordar hepatites virais, lembre-se: o sucesso no diagnóstico começa pela interpretação correta dos marcadores sorológicos, e o sucesso no tratamento depende da avaliação adequada da função hepática.</p><figure data-okr=\"ilustracao\"><img alt=\"\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20231219T193424418Z553520.png\" style=\"max-width:100%\"/></figure><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 220870,
+        "number": 2,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Cólon e Reto na cirurgia",
+        "focus": {
+          "id": 2083,
+          "name": "Cólon e Reto na cirurgia"
+        }
+      },
+      "detail": {
+        "id": 220870,
+        "content": "Homem de 41 anos comparece a unidade básica de saúde com queixa de episódios de hematoquezia de 3 a 4 vezes por mês, durante os últimos 8 meses. O paciente relata que, durante as evacuações, observa nodulação na região anal, que costuma reintroduzir manualmente no ânus. Nega outras alterações associadas.  \n\nO paciente nega tabagismo, perda de peso significativa, alterações no trânsito intestinal ou comorbidades. Ao exame físico, o paciente apresenta bom estado geral, sem alterações abdominais. Ao exame da região perianal, observa-se prolapso de tecido que se exterioriza à manobra de Valsalva, sendo possível sua redução manual. A inspeção local não revela fissuras ou abscessos. Não há sinais de inflamação intensa ou trombose. Sensibilidade e tônus esfincteriano preservados ao toque retal, sem massas ou lesões palpáveis na ampola retal.  \n\nConsiderando esse caso clínico, responda os itens a seguir. \na) Qual é o diagnóstico mais provável?  \nb) Quais as classificações do quadro desse paciente, a partir do diagnóstico mais provável?  \nc) Cite apenas 3 condutas clínicas a serem adotadas nessa situação.  \nd) Qual a conduta cirúrgica indicada?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 567,
+            "parent_tag": {
+              "id": 352,
+              "name": "Cirurgia do Aparelho Digestivo",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Cólon e Reto na cirurgia",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 2078,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2083,
+          "name": "Cólon e Reto na cirurgia",
+          "discipline": {
+            "id": 64,
+            "name": "Cirurgia Geral",
+            "residency_degree": 3,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 184,
+            "name": "Cirurgia do Aparelho Digestivo",
+            "discipline": 64,
+            "old_tag": 352,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251750,
+        "actual_explanation": true,
+        "introduction": "<div title=\"Page 4\">\n<p>Turma, questão que exige um raciocínio frequente nos pronto atendimentos cirúrgicos: <strong>doença orificial</strong> como causa de sangramento digestivo baixo.</p>\n<p>Essa questão apresenta um homem de 41 anos com queixa de <strong>hematoquezia</strong> recorrente (sangramento vermelho vivo nas fezes) há 8 meses, associada a <strong>nodulação anal</strong> que necessita de <strong>redução manual.</strong> O exame físico revela prolapso de tecido à manobra de Valsalva, sem sinais de complicações como inflamação, trombose ou fissuras. O quadro clínico é altamente sugestivo de <strong>doença hemorroidária interna.</strong></p>\n<p>As hemorroidas são <strong>dilatações varicosas dos plexos venosos da região anorretal</strong>, podendo ser <strong>internas</strong> (quando <strong>acima da linha pectínea</strong>, recobertas por mucosa) ou <strong>externas</strong> (<strong>abaixo da linha pectínea</strong>, recobertas por pele). No caso em questão, o paciente apresenta hemorroidas internas com prolapso, evidenciadas pela hematoquezia e pela necessidade de redução manual.</p>\n<p>O raciocínio diagnóstico deve considerar a ausência de sinais de alarme (como perda de peso ou alteração do hábito intestinal), o que torna menos provável diagnósticos como neoplasia colorretal.</p>\n<p>Nesse contexto, o<strong> item (a)</strong> solicita o <strong>diagnóstico</strong> mais provável: <strong>doença hemorroidária.</strong></p>\n<p>A classificação das hemorroidas internas, por sua vez, dá-se da seguinte forma:</p>\n<p style=\"text-align: center;\"><img height=\"234\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T181959997Z034796.png\" width=\"643\"/></p>\n<p>Portanto, a resposta do<strong> item (b) </strong>deve ser: <strong>hemorroida interna grau 3.</strong></p>\n<p>Já o<strong> item (c)</strong> solicita as <strong>condutas clínicas </strong>adequadas, as quais incluem:</p>\n<ul style=\"list-style-type: disc;\">\n<li>\n<p>adotar medidas de higiene local;</p>\n</li>\n<li>\n<p>fazer uso de laxativos;</p>\n</li>\n<li>\n<p>aumentar a ingestão de fibras na dieta;</p>\n</li>\n<li>\n<p>otimizar a hidratação oral;</p>\n</li>\n<li>\n<p>evitar esforços evacuatórios</p>\n</li>\n</ul>\n<p>Por fim, o<strong> item (d)</strong> aborda a <strong>conduta cirúrgica</strong>. De forma reduzida, temos:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T182417142Z765339.png\"/></p>\n<p>Portanto, neste caso cabem a <strong><span class=\"article-5467\">hemorroidectomia</span> cirúrgica (eletiva) ou ligadura elástica. </strong></p>\n<p>A banca não aceitou como respostas trombectomia, coagulação infravermelha e escleroterapia, tendo em vista o grau da afecção.<br/><br/></p>\n</div>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Galera, uma das técnicas cirúrgicas de hemorroidectomia é a de <strong>Milligan-Morgan</strong>, que se baseia na excisão do mamilo hemorroidário, a partir da pele, em direção a mucosa, com ligadura do seu pedículo vascular, mantendo-se o leito cruento da dissecção aberto para <strong>cicatrização por segunda intenção</strong>. Veja só:</p>\n<p style=\"text-align: center;\"><img height=\"412\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T183000129Z547715.png\" width=\"414\"/></p>\n<p style=\"text-align: left;\">Pra cima!</p>\n<p> </p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<div title=\"Page 4\">\n<p>Turma, questão que exige um raciocínio frequente nos pronto atendimentos cirúrgicos: <strong>doença orificial</strong> como causa de sangramento digestivo baixo.</p>\n<p>Essa questão apresenta um homem de 41 anos com queixa de <strong>hematoquezia</strong> recorrente (sangramento vermelho vivo nas fezes) há 8 meses, associada a <strong>nodulação anal</strong> que necessita de <strong>redução manual.</strong> O exame físico revela prolapso de tecido à manobra de Valsalva, sem sinais de complicações como inflamação, trombose ou fissuras. O quadro clínico é altamente sugestivo de <strong>doença hemorroidária interna.</strong></p>\n<p>As hemorroidas são <strong>dilatações varicosas dos plexos venosos da região anorretal</strong>, podendo ser <strong>internas</strong> (quando <strong>acima da linha pectínea</strong>, recobertas por mucosa) ou <strong>externas</strong> (<strong>abaixo da linha pectínea</strong>, recobertas por pele). No caso em questão, o paciente apresenta hemorroidas internas com prolapso, evidenciadas pela hematoquezia e pela necessidade de redução manual.</p>\n<p>O raciocínio diagnóstico deve considerar a ausência de sinais de alarme (como perda de peso ou alteração do hábito intestinal), o que torna menos provável diagnósticos como neoplasia colorretal.</p>\n<p>Nesse contexto, o<strong> item (a)</strong> solicita o <strong>diagnóstico</strong> mais provável: <strong>doença hemorroidária.</strong></p>\n<p>A classificação das hemorroidas internas, por sua vez, dá-se da seguinte forma:</p>\n<p style=\"text-align: center;\"><img height=\"234\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T181959997Z034796.png\" width=\"643\"/></p>\n<p>Portanto, a resposta do<strong> item (b) </strong>deve ser: <strong>hemorroida interna grau 3.</strong></p>\n<p>Já o<strong> item (c)</strong> solicita as <strong>condutas clínicas </strong>adequadas, as quais incluem:</p>\n<ul style=\"list-style-type: disc;\">\n<li>\n<p>adotar medidas de higiene local;</p>\n</li>\n<li>\n<p>fazer uso de laxativos;</p>\n</li>\n<li>\n<p>aumentar a ingestão de fibras na dieta;</p>\n</li>\n<li>\n<p>otimizar a hidratação oral;</p>\n</li>\n<li>\n<p>evitar esforços evacuatórios</p>\n</li>\n</ul>\n<p>Por fim, o<strong> item (d)</strong> aborda a <strong>conduta cirúrgica</strong>. De forma reduzida, temos:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T182417142Z765339.png\"/></p>\n<p>Portanto, neste caso cabem a <strong><span class=\"article-5467\">hemorroidectomia</span> cirúrgica (eletiva) ou ligadura elástica. </strong></p>\n<p>A banca não aceitou como respostas trombectomia, coagulação infravermelha e escleroterapia, tendo em vista o grau da afecção.<br/><br/></p>\n</div><br>Visão do aprovado: <p>Galera, uma das técnicas cirúrgicas de hemorroidectomia é a de <strong>Milligan-Morgan</strong>, que se baseia na excisão do mamilo hemorroidário, a partir da pele, em direção a mucosa, com ligadura do seu pedículo vascular, mantendo-se o leito cruento da dissecção aberto para <strong>cicatrização por segunda intenção</strong>. Veja só:</p>\n<p style=\"text-align: center;\"><img height=\"412\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T183000129Z547715.png\" width=\"414\"/></p>\n<p style=\"text-align: left;\">Pra cima!</p>\n<p> </p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 220871,
+        "number": 3,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Distúrbios Obstrutivos",
+        "focus": {
+          "id": 2213,
+          "name": "Distúrbios Obstrutivos"
+        }
+      },
+      "detail": {
+        "id": 220871,
+        "content": "Menino de 6 anos é levado à emergência com quadro de dispneia. Sua mãe, que o acompanha, refere que o paciente tem asma, com uso irregular de corticosteroide inalatório, e apresenta crises frequentes. Relata também que o último episódio se iniciou há 2 dias, com quadro de tosse, febre e \"chiado no peito\". Hoje a criança está pior, com dificuldade para respirar.  \n\nAo exame físico, o paciente está agitado, sem conseguir completar frases, taquidispneico; frequência respiratória (FR) de 40 incursões respiratórias por minuto (irpm); sibilos difusos à ausculta pulmonar; tiragem intercostal; tempo expiratório prolongado; e saturação de oxigênio (O2) de 90% em ar ambiente. O paciente pesa 24 kg.  \n\nDe imediato, o paciente recebe, por via inalatória, três ciclos de 6 jatos de salbutamol de 100 mcg por 1 jato, utilizando-se espaçador, com intervalo de 20 minutos entre cada ciclo. Após a conduta inicial, a criança é reavaliada, apresentando discreta melhora. O paciente continua com agitação e sem conseguir completar frases, com FR de 36 irpm, saturação de O2 de 91% em ar ambiente, taquidispneia, tiragem intercostal e sibilância difusa.  \n\nColeta-se, então, a gasometria arterial em ar ambiente, que mostra pH de 7,37, pO2 de 80 mmHg (80-100 mmHg), pCO2 de 33 mmHg (32-48 mmHg), bicarbonato de 22 mEq/L (20-28 mEq/L) e saturação de O2 de 91%.  \n\nConsiderando esse caso clínico, faça o que se pede nos itens a seguir. \na) Interprete os achados da gasometria, relacionando-os com o quadro clínico do paciente. \nb) Cite 3 medidas terapêuticas que devem ser realizadas nesse momento no paciente em questão. \nc) Há indicação de intubação orotraqueal nesse caso? Cite 2 argumentos que justifiquem sua resposta.\nd) Cite 3 critérios necessários para que se indique a internação hospitalar nesse caso.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 363,
+            "parent_tag": {
+              "id": 304,
+              "name": "Pneumologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Distúrbios Obstrutivos",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 2239,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2213,
+          "name": "Distúrbios Obstrutivos",
+          "discipline": {
+            "id": 92,
+            "name": "Pediatria",
+            "residency_degree": 3,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 245,
+            "name": "Pneumologia",
+            "discipline": 92,
+            "old_tag": 304,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251333,
+        "actual_explanation": true,
+        "introduction": "<p>A questão nos traz um cenário clássico de prova: criança com crise de <em>asma</em>. Vamos lembrar que a <span class=\"article-2490\">asma</span> é uma das doenças crônicas mais prevalentes na infância e suas exacerbações representam um motivo frequente de procura aos serviços de emergência.</p>\n<p>No caso apresentado, temos um menino de 6 anos, previamente diagnosticado com <span class=\"article-2490\">asma</span>, em uso irregular de corticoide inalatório (o que já nos indica um controle inadequado da doença), que apresenta uma exacerbação iniciada há dois dias com quadro de provável infecção respiratória (tosse, febre e sibilância), com piora evolutiva.</p>\n<p>O exame físico inicial é fundamental para classificarmos a gravidade da crise:</p>\n<ul>\n<li>Incapacidade de completar frases</li>\n<li>Agitação</li>\n<li>Taquidispneia (FR 40 irpm)</li>\n<li>Sibilos difusos</li>\n<li>Tiragem intercostal</li>\n<li>Tempo expiratório prolongado</li>\n<li>Saturação de O2 de 90% em ar ambiente</li>\n</ul>\n<p>Estes achados caracterizam uma crise moderada a grave, o que justifica a abordagem inicial com três ciclos de <span class=\"article-5691\">salbutamol</span> inalatório. Após o tratamento, observa-se uma melhora discreta, mas o paciente ainda mantém sinais de desconforto respiratório.</p>\n<p>Vamos analisar cada item da questão:</p>\n<p><strong>a) Interpretação da gasometria:</strong><br/>\n    Os valores mostram:</p>\n<ul>\n<li>pH: 7,37 (normal: 7,35-7,45)</li>\n<li>pO2: 80 mmHg (normal: 80-100 mmHg)</li>\n<li>pCO2: 33 mmHg (normal: 32-48 mmHg)</li>\n<li>Bicarbonato: 22 mEq/L (normal: 20-28 mEq/L)</li>\n</ul>\n<p>Este é um quadro típico de alcalose respiratória compensada. A taquidispneia leva à hiperventilação, com consequente eliminação excessiva de CO2 (daí o pCO2 baixo). Para manter o pH em níveis normais, há uma compensação renal com redução do bicarbonato. A fórmula mencionada no gabarito (HCO3 esperado = 24 – 2x {[40 – pCO2 atual] / 10}) confirma que o grau de compensação está adequado.</p>\n<p><strong>b) Medidas terapêuticas necessárias:</strong><br/>\n    De acordo com as principais diretrizes de manejo da <span class=\"article-2490\">asma</span>, as medidas indicadas neste momento são:</p>\n<ol>\n<li>Suplementação de oxigênio para manter saturação ≥94% (via cateter nasal ou máscara)</li>\n<li>Corticosteroide sistêmico (via oral ou endovenosa, que são equivalentes em eficácia)</li>\n<li>Continuação do beta-agonista (<span class=\"article-5691\">salbutamol</span>) inalatório</li>\n</ol>\n<p>Outras opções válidas incluem o uso de brometo de ipratrópio associado ao <span class=\"article-5691\">salbutamol</span>, administração de <span class=\"article-5783\">sulfato de magnésio</span> endovenoso (especialmente indicado em crises graves com resposta parcial ao tratamento inicial), ou ainda adrenalina subcutânea, aminofilina EV ou <span class=\"article-5691\">salbutamol</span> EV como alternativas.</p>\n<p><strong>c) Indicação de intubação orotraqueal:</strong><br/>\n    Não há indicação de intubação neste caso. As justificativas são:</p>\n<ul>\n<li>O paciente apresentou melhora, ainda que discreta, com o tratamento inicial</li>\n<li>Não há sinais de fadiga respiratória (que se manifestaria com redução da FR para menos de 20 irpm)</li>\n<li>Os parâmetros gasométricos não indicam insuficiência respiratória grave (não há hipercapnia com pCO2 &gt;60 mmHg nem hipoxemia grave com pO2 &lt;60 mmHg)</li>\n<li>O paciente mantém nível de consciência preservado (está agitado, mas não há relato de sonolência ou confusão)</li>\n</ul>\n<p><strong>d) Critérios para internação hospitalar:</strong><br/>\n    Diversos critérios justificam a internação neste caso:</p>\n<ul>\n<li>Crise grave que não apresenta melhora significativa com o tratamento inicial</li>\n<li>Necessidade de suplementação de oxigênio (saturação &lt;92%)</li>\n<li>Presença de desconforto respiratório persistente</li>\n<li>Uso irregular de medicação de controle, sugerindo baixa adesão ao tratamento</li>\n<li>Presença de comorbidades (possível infecção respiratória como gatilho)</li>\n</ul>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Quando me deparo com questões envolvendo exacerbações de asma, costumo seguir uma abordagem sistemática que facilita muito a resolução:</p>\n<p>1. <strong>Classificação da gravidade da crise</strong>: Lembro-me de verificar os sinais de gravidade como incapacidade de completar frases, agitação/sonolência, uso de musculatura acessória, saturação &lt;92%, cianose e alterações na ausculta pulmonar. Isso direciona todo o manejo posterior.</p>\n<p>2. <strong>Interpretação da gasometria</strong>: É um dos pontos mais traiçoeiros nestas questões! Na <span class=\"article-2490\">asma</span>, o padrão gasométrico evolui de forma característica:</p>\n<ul>\n<li>Fase inicial: alcalose respiratória (↓pCO2, ↑pH) devido à hiperventilação</li>\n<li>Fase compensada: alcalose respiratória compensada (↓pCO2, pH normal) com ↓HCO3-</li>\n<li>Fase de exaustão/gravidade: acidose respiratória (↑pCO2, ↓pH) – sinal de alerta!</li>\n</ul>\n<p>Quando vejo um paciente com pCO2 normal ou elevado durante uma crise asmática, fico imediatamente atento para a possível necessidade de ventilação artificial.</p>\n<p>3. <strong>Tratamento escalonado</strong>: Memorizo o esquema como uma escada:</p>\n<ul>\n<li>Primeiro degrau: beta-agonista (<span class=\"article-5691\">salbutamol</span>) + oxigênio se saturação &lt;94%</li>\n<li>Segundo degrau: adicionar ipratrópio e corticoide sistêmico</li>\n<li>Terceiro degrau: considerar <span class=\"article-5783\">sulfato de magnésio</span> IV</li>\n<li>Quarto degrau: considerar broncodilatadores IV (terbutalina, <span class=\"article-5691\">salbutamol</span>) ou adrenalina SC</li>\n<li>Quinto degrau: suporte ventilatório (último recurso)</li>\n</ul>\n<p>4. <strong>Critérios de internação</strong>: Lembro que nem toda crise de <span class=\"article-2490\">asma</span> precisa de internação, mas algumas características me alertam para essa necessidade:</p>\n<ul>\n<li>Resposta incompleta à terapia inicial na emergência</li>\n<li>Saturação persistentemente baixa necessitando de oxigênio</li>\n<li>História prévia de crises graves ou internações recentes</li>\n<li>Fatores de risco sociais (baixa adesão, dificuldades de acesso)</li>\n</ul>\n<p>Uma armadilha comum nas questões de <span class=\"article-2490\">asma</span> é confundir a agitação da criança com melhora clínica. Lembro sempre que a agitação pode ser sinal de hipoxemia e gravidade, enquanto a sonolência pode indicar fadiga respiratória ou retenção de CO2.</p>\n<p>Conexão importante: questões sobre <span class=\"article-2490\">asma</span> frequentemente se conectam com outros tópicos como infecções respiratórias (principal gatilho), distúrbios ácido-base (interpretação da gasometria) e uso de dispositivos inalatórios (técnica correta). Estudar esses temas de forma integrada facilita muito!</p>\n<p>Por fim, um lembrete que me ajuda muito: nas crises de <span class=\"article-2490\">asma</span>, \"quanto mais sibila, menos preocupa\". O silêncio na ausculta é mais alarmante que a sibilância intensa, pois pode indicar fadiga muscular e redução crítica do fluxo aéreo.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>A questão nos traz um cenário clássico de prova: criança com crise de <em>asma</em>. Vamos lembrar que a <span class=\"article-2490\">asma</span> é uma das doenças crônicas mais prevalentes na infância e suas exacerbações representam um motivo frequente de procura aos serviços de emergência.</p>\n<p>No caso apresentado, temos um menino de 6 anos, previamente diagnosticado com <span class=\"article-2490\">asma</span>, em uso irregular de corticoide inalatório (o que já nos indica um controle inadequado da doença), que apresenta uma exacerbação iniciada há dois dias com quadro de provável infecção respiratória (tosse, febre e sibilância), com piora evolutiva.</p>\n<p>O exame físico inicial é fundamental para classificarmos a gravidade da crise:</p>\n<ul>\n<li>Incapacidade de completar frases</li>\n<li>Agitação</li>\n<li>Taquidispneia (FR 40 irpm)</li>\n<li>Sibilos difusos</li>\n<li>Tiragem intercostal</li>\n<li>Tempo expiratório prolongado</li>\n<li>Saturação de O2 de 90% em ar ambiente</li>\n</ul>\n<p>Estes achados caracterizam uma crise moderada a grave, o que justifica a abordagem inicial com três ciclos de <span class=\"article-5691\">salbutamol</span> inalatório. Após o tratamento, observa-se uma melhora discreta, mas o paciente ainda mantém sinais de desconforto respiratório.</p>\n<p>Vamos analisar cada item da questão:</p>\n<p><strong>a) Interpretação da gasometria:</strong><br/>\n    Os valores mostram:</p>\n<ul>\n<li>pH: 7,37 (normal: 7,35-7,45)</li>\n<li>pO2: 80 mmHg (normal: 80-100 mmHg)</li>\n<li>pCO2: 33 mmHg (normal: 32-48 mmHg)</li>\n<li>Bicarbonato: 22 mEq/L (normal: 20-28 mEq/L)</li>\n</ul>\n<p>Este é um quadro típico de alcalose respiratória compensada. A taquidispneia leva à hiperventilação, com consequente eliminação excessiva de CO2 (daí o pCO2 baixo). Para manter o pH em níveis normais, há uma compensação renal com redução do bicarbonato. A fórmula mencionada no gabarito (HCO3 esperado = 24 – 2x {[40 – pCO2 atual] / 10}) confirma que o grau de compensação está adequado.</p>\n<p><strong>b) Medidas terapêuticas necessárias:</strong><br/>\n    De acordo com as principais diretrizes de manejo da <span class=\"article-2490\">asma</span>, as medidas indicadas neste momento são:</p>\n<ol>\n<li>Suplementação de oxigênio para manter saturação ≥94% (via cateter nasal ou máscara)</li>\n<li>Corticosteroide sistêmico (via oral ou endovenosa, que são equivalentes em eficácia)</li>\n<li>Continuação do beta-agonista (<span class=\"article-5691\">salbutamol</span>) inalatório</li>\n</ol>\n<p>Outras opções válidas incluem o uso de brometo de ipratrópio associado ao <span class=\"article-5691\">salbutamol</span>, administração de <span class=\"article-5783\">sulfato de magnésio</span> endovenoso (especialmente indicado em crises graves com resposta parcial ao tratamento inicial), ou ainda adrenalina subcutânea, aminofilina EV ou <span class=\"article-5691\">salbutamol</span> EV como alternativas.</p>\n<p><strong>c) Indicação de intubação orotraqueal:</strong><br/>\n    Não há indicação de intubação neste caso. As justificativas são:</p>\n<ul>\n<li>O paciente apresentou melhora, ainda que discreta, com o tratamento inicial</li>\n<li>Não há sinais de fadiga respiratória (que se manifestaria com redução da FR para menos de 20 irpm)</li>\n<li>Os parâmetros gasométricos não indicam insuficiência respiratória grave (não há hipercapnia com pCO2 &gt;60 mmHg nem hipoxemia grave com pO2 &lt;60 mmHg)</li>\n<li>O paciente mantém nível de consciência preservado (está agitado, mas não há relato de sonolência ou confusão)</li>\n</ul>\n<p><strong>d) Critérios para internação hospitalar:</strong><br/>\n    Diversos critérios justificam a internação neste caso:</p>\n<ul>\n<li>Crise grave que não apresenta melhora significativa com o tratamento inicial</li>\n<li>Necessidade de suplementação de oxigênio (saturação &lt;92%)</li>\n<li>Presença de desconforto respiratório persistente</li>\n<li>Uso irregular de medicação de controle, sugerindo baixa adesão ao tratamento</li>\n<li>Presença de comorbidades (possível infecção respiratória como gatilho)</li>\n</ul><br>Visão do aprovado: <p>Quando me deparo com questões envolvendo exacerbações de asma, costumo seguir uma abordagem sistemática que facilita muito a resolução:</p>\n<p>1. <strong>Classificação da gravidade da crise</strong>: Lembro-me de verificar os sinais de gravidade como incapacidade de completar frases, agitação/sonolência, uso de musculatura acessória, saturação &lt;92%, cianose e alterações na ausculta pulmonar. Isso direciona todo o manejo posterior.</p>\n<p>2. <strong>Interpretação da gasometria</strong>: É um dos pontos mais traiçoeiros nestas questões! Na <span class=\"article-2490\">asma</span>, o padrão gasométrico evolui de forma característica:</p>\n<ul>\n<li>Fase inicial: alcalose respiratória (↓pCO2, ↑pH) devido à hiperventilação</li>\n<li>Fase compensada: alcalose respiratória compensada (↓pCO2, pH normal) com ↓HCO3-</li>\n<li>Fase de exaustão/gravidade: acidose respiratória (↑pCO2, ↓pH) – sinal de alerta!</li>\n</ul>\n<p>Quando vejo um paciente com pCO2 normal ou elevado durante uma crise asmática, fico imediatamente atento para a possível necessidade de ventilação artificial.</p>\n<p>3. <strong>Tratamento escalonado</strong>: Memorizo o esquema como uma escada:</p>\n<ul>\n<li>Primeiro degrau: beta-agonista (<span class=\"article-5691\">salbutamol</span>) + oxigênio se saturação &lt;94%</li>\n<li>Segundo degrau: adicionar ipratrópio e corticoide sistêmico</li>\n<li>Terceiro degrau: considerar <span class=\"article-5783\">sulfato de magnésio</span> IV</li>\n<li>Quarto degrau: considerar broncodilatadores IV (terbutalina, <span class=\"article-5691\">salbutamol</span>) ou adrenalina SC</li>\n<li>Quinto degrau: suporte ventilatório (último recurso)</li>\n</ul>\n<p>4. <strong>Critérios de internação</strong>: Lembro que nem toda crise de <span class=\"article-2490\">asma</span> precisa de internação, mas algumas características me alertam para essa necessidade:</p>\n<ul>\n<li>Resposta incompleta à terapia inicial na emergência</li>\n<li>Saturação persistentemente baixa necessitando de oxigênio</li>\n<li>História prévia de crises graves ou internações recentes</li>\n<li>Fatores de risco sociais (baixa adesão, dificuldades de acesso)</li>\n</ul>\n<p>Uma armadilha comum nas questões de <span class=\"article-2490\">asma</span> é confundir a agitação da criança com melhora clínica. Lembro sempre que a agitação pode ser sinal de hipoxemia e gravidade, enquanto a sonolência pode indicar fadiga respiratória ou retenção de CO2.</p>\n<p>Conexão importante: questões sobre <span class=\"article-2490\">asma</span> frequentemente se conectam com outros tópicos como infecções respiratórias (principal gatilho), distúrbios ácido-base (interpretação da gasometria) e uso de dispositivos inalatórios (técnica correta). Estudar esses temas de forma integrada facilita muito!</p>\n<p>Por fim, um lembrete que me ajuda muito: nas crises de <span class=\"article-2490\">asma</span>, \"quanto mais sibila, menos preocupa\". O silêncio na ausculta é mais alarmante que a sibilância intensa, pois pode indicar fadiga muscular e redução crítica do fluxo aéreo.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 220872,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Contracepção",
+        "focus": {
+          "id": 2124,
+          "name": "Contracepção"
+        }
+      },
+      "detail": {
+        "id": 220872,
+        "content": "Mulher de 38 anos, G2P1A1, comparece à unidade básica de saúde (UBS) para solicitar orientação anticoncepcional. É sedentária, cardiopata em uso de anticoagulante oral devido a trombose venosa que sofreu no último aborto, há 6 meses, e apresenta índice de massa corporal (IMC) de 35 kg/m². Além disso, fuma em média 20 cigarros por dia. \n\nA partir desse caso clínico, elabore um plano terapêutico abordando os itens a seguir. \na) Métodos anticoncepcionais. \nb) Outras questões de saúde.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 506,
+            "parent_tag": {
+              "id": 319,
+              "name": "Ginecologia Endócrina",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Contracepção",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 3362,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2124,
+          "name": "Contracepção",
+          "discipline": {
+            "id": 87,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 3,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 200,
+            "name": "Ginecologia Endócrina",
+            "discipline": 87,
+            "old_tag": 319,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251129,
+        "actual_explanation": true,
+        "introduction": "<p>Opa, que caso interessante de planejamento reprodutivo! Essa questão aborda um cenário que encontramos com frequência na prática médica: uma paciente que busca anticoncepção mas apresenta diversos fatores de risco que limitam as opções disponíveis.</p>\n<p>Temos uma mulher de 38 anos com histórico de uma gravidez com parto e um aborto (G2P1A1), que nos apresenta um verdadeiro \"combo\" de fatores de risco cardiovascular e tromboembólico:</p>\n<ul>\n<li>Cardiopatia (não especificada)</li>\n<li>Uso atual de anticoagulante oral</li>\n<li>Trombose venosa prévia (há 6 meses, relacionada ao aborto)</li>\n<li>Obesidade grau 2 (IMC 35 kg/m²)</li>\n<li>Tabagismo importante (20 cigarros/dia)</li>\n<li>Sedentarismo</li>\n</ul>\n<p>A questão pede um plano terapêutico detalhado, contemplando tanto a escolha do método anticoncepcional quanto outras questões de saúde relevantes.</p>\n<p>Na primeira parte da resposta esperada, o foco é na <strong>escolha adequada do método anticoncepcional</strong>. O gabarito enfatiza corretamente que devemos <strong>contraindicar absolutamente</strong> qualquer anticoncepcional contendo estrógeno. Isso ocorre porque a paciente possui múltiplos fatores de risco para eventos tromboembólicos:</p>\n<ul>\n<li>Histórico recente de trombose venosa (principal contraindicação)</li>\n<li>Idade acima de 35 anos associada a tabagismo intenso</li>\n<li>Obesidade</li>\n<li>Uso atual de anticoagulante oral (o que já indica alto risco basal)</li>\n</ul>\n<p>Os anticoncepcionais contendo estrógeno aumentam significativamente o risco de eventos tromboembólicos, sendo o risco potencialmente fatal nesta paciente que já apresenta alto risco basal. As opções seguras para ela seriam:</p>\n<ol>\n<li><strong>Métodos apenas com progesterona</strong>: minipílula, injetável trimestral, implante subdérmico - estes têm pouco ou nenhum efeito no sistema de coagulação</li>\n<li><strong>DIU de cobre</strong>: método não hormonal altamente eficaz (eficácia superior a 99%)</li>\n<li><strong>SIU-LNG (Sistema Intrauterino Liberador de <span class=\"article-8043\">Levonorgestrel</span>)</strong>: libera progesterona localmente, com mínima absorção sistêmica</li>\n<li><strong>Métodos de barreira</strong>: preservativos masculinos ou femininos como opção complementar</li>\n</ol>\n<p>Na segunda parte, o gabarito destaca a importância de abordar <strong>outras questões de saúde</strong>, especificamente:</p>\n<ul>\n<li>Incentivo à atividade física regular (combate ao sedentarismo)</li>\n<li>Orientações nutricionais para redução do peso</li>\n<li>Aconselhamento para cessação do tabagismo</li>\n</ul>\n<p>Estas intervenções são fundamentais para reduzir o risco cardiovascular e tromboembólico global da paciente, independentemente do método contraceptivo escolhido.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Esta questão testa um conceito fundamental para qualquer médico: a capacidade de individualizar condutas baseando-se no perfil de risco do paciente. Nas provas de residência, questões sobre contracepção frequentemente exploram as contraindicações e indicações específicas para cada perfil de paciente.</p>\n<p>Quando me deparo com casos envolvendo anticoncepção, sempre sigo um roteiro mental:</p>\n<ol>\n<li><strong>Identificar fatores de risco específicos da paciente</strong>: idade, tabagismo, histórico de eventos tromboembólicos, comorbidades cardiovasculares, etc.</li>\n<li><strong>Classificar o método quanto ao risco</strong>:\n      <ul>\n<li>Alto risco: anticoncepcionais combinados (com estrógeno)</li>\n<li>Risco intermediário: métodos apenas com progesterona (com absorção sistêmica)</li>\n<li>Baixo risco: DIU de cobre, SIU-LNG, métodos de barreira</li>\n</ul>\n</li>\n<li><strong>Associar fatores de risco às contraindicações absolutas</strong>:\n      <ul>\n<li>Histórico de trombose + anticoncepcionais com estrógeno = NUNCA</li>\n<li>Tabagismo &gt;15 cigarros/dia em mulher &gt;35 anos + anticoncepcionais com estrógeno = NUNCA</li>\n<li><span class=\"article-1993\">Câncer de mama</span> + qualquer método hormonal = NUNCA</li>\n</ul>\n</li>\n</ol>\n<p>Uma armadilha comum nesse tipo de questão é focar apenas na contracepção, esquecendo da abordagem integral da paciente. A banca claramente valorizou a capacidade de propor intervenções para outros fatores de risco modificáveis (sedentarismo, tabagismo, obesidade).</p>\n<p>Vale ressaltar que os métodos contraceptivos de longa duração (DIU e implantes) ganham cada vez mais espaço nas provas de residência por sua alta eficácia e baixa taxa de descontinuação. Memorize que a taxa de falha do DIU de cobre é &lt;1% (em uso perfeito) e do SIU-LNG é &lt;0,5%.</p>\n<p>Quando vir uma questão sobre anticoncepção e fatores de risco, lembre-se dos \"Critérios de Elegibilidade da OMS para Uso de Métodos Contraceptivos\", que classifica os métodos em categorias:</p>\n<ul>\n<li>Categoria 1: Uso sem restrições</li>\n<li>Categoria 2: Vantagens superam riscos</li>\n<li>Categoria 3: Riscos geralmente superam benefícios</li>\n<li>Categoria 4: Risco inaceitável (contraindicação absoluta)</li>\n</ul>\n<p>Neste caso específico, anticoncepcionais com estrógeno seriam Categoria 4 (contraindicados), enquanto métodos com progesterona isolada seriam Categoria 2, e DIU de cobre seria Categoria 1.</p>\n<p>Por fim, lembre-se de que a orientação para cessar o tabagismo deve ser repetida em todas as consultas. O tabagismo é um fator de risco modificável que aumenta em 20-30 vezes o risco de eventos cardiovasculares quando combinado com anticoncepcionais hormonais em mulheres acima de 35 anos.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Opa, que caso interessante de planejamento reprodutivo! Essa questão aborda um cenário que encontramos com frequência na prática médica: uma paciente que busca anticoncepção mas apresenta diversos fatores de risco que limitam as opções disponíveis.</p>\n<p>Temos uma mulher de 38 anos com histórico de uma gravidez com parto e um aborto (G2P1A1), que nos apresenta um verdadeiro \"combo\" de fatores de risco cardiovascular e tromboembólico:</p>\n<ul>\n<li>Cardiopatia (não especificada)</li>\n<li>Uso atual de anticoagulante oral</li>\n<li>Trombose venosa prévia (há 6 meses, relacionada ao aborto)</li>\n<li>Obesidade grau 2 (IMC 35 kg/m²)</li>\n<li>Tabagismo importante (20 cigarros/dia)</li>\n<li>Sedentarismo</li>\n</ul>\n<p>A questão pede um plano terapêutico detalhado, contemplando tanto a escolha do método anticoncepcional quanto outras questões de saúde relevantes.</p>\n<p>Na primeira parte da resposta esperada, o foco é na <strong>escolha adequada do método anticoncepcional</strong>. O gabarito enfatiza corretamente que devemos <strong>contraindicar absolutamente</strong> qualquer anticoncepcional contendo estrógeno. Isso ocorre porque a paciente possui múltiplos fatores de risco para eventos tromboembólicos:</p>\n<ul>\n<li>Histórico recente de trombose venosa (principal contraindicação)</li>\n<li>Idade acima de 35 anos associada a tabagismo intenso</li>\n<li>Obesidade</li>\n<li>Uso atual de anticoagulante oral (o que já indica alto risco basal)</li>\n</ul>\n<p>Os anticoncepcionais contendo estrógeno aumentam significativamente o risco de eventos tromboembólicos, sendo o risco potencialmente fatal nesta paciente que já apresenta alto risco basal. As opções seguras para ela seriam:</p>\n<ol>\n<li><strong>Métodos apenas com progesterona</strong>: minipílula, injetável trimestral, implante subdérmico - estes têm pouco ou nenhum efeito no sistema de coagulação</li>\n<li><strong>DIU de cobre</strong>: método não hormonal altamente eficaz (eficácia superior a 99%)</li>\n<li><strong>SIU-LNG (Sistema Intrauterino Liberador de <span class=\"article-8043\">Levonorgestrel</span>)</strong>: libera progesterona localmente, com mínima absorção sistêmica</li>\n<li><strong>Métodos de barreira</strong>: preservativos masculinos ou femininos como opção complementar</li>\n</ol>\n<p>Na segunda parte, o gabarito destaca a importância de abordar <strong>outras questões de saúde</strong>, especificamente:</p>\n<ul>\n<li>Incentivo à atividade física regular (combate ao sedentarismo)</li>\n<li>Orientações nutricionais para redução do peso</li>\n<li>Aconselhamento para cessação do tabagismo</li>\n</ul>\n<p>Estas intervenções são fundamentais para reduzir o risco cardiovascular e tromboembólico global da paciente, independentemente do método contraceptivo escolhido.</p><br>Visão do aprovado: <p>Esta questão testa um conceito fundamental para qualquer médico: a capacidade de individualizar condutas baseando-se no perfil de risco do paciente. Nas provas de residência, questões sobre contracepção frequentemente exploram as contraindicações e indicações específicas para cada perfil de paciente.</p>\n<p>Quando me deparo com casos envolvendo anticoncepção, sempre sigo um roteiro mental:</p>\n<ol>\n<li><strong>Identificar fatores de risco específicos da paciente</strong>: idade, tabagismo, histórico de eventos tromboembólicos, comorbidades cardiovasculares, etc.</li>\n<li><strong>Classificar o método quanto ao risco</strong>:\n      <ul>\n<li>Alto risco: anticoncepcionais combinados (com estrógeno)</li>\n<li>Risco intermediário: métodos apenas com progesterona (com absorção sistêmica)</li>\n<li>Baixo risco: DIU de cobre, SIU-LNG, métodos de barreira</li>\n</ul>\n</li>\n<li><strong>Associar fatores de risco às contraindicações absolutas</strong>:\n      <ul>\n<li>Histórico de trombose + anticoncepcionais com estrógeno = NUNCA</li>\n<li>Tabagismo &gt;15 cigarros/dia em mulher &gt;35 anos + anticoncepcionais com estrógeno = NUNCA</li>\n<li><span class=\"article-1993\">Câncer de mama</span> + qualquer método hormonal = NUNCA</li>\n</ul>\n</li>\n</ol>\n<p>Uma armadilha comum nesse tipo de questão é focar apenas na contracepção, esquecendo da abordagem integral da paciente. A banca claramente valorizou a capacidade de propor intervenções para outros fatores de risco modificáveis (sedentarismo, tabagismo, obesidade).</p>\n<p>Vale ressaltar que os métodos contraceptivos de longa duração (DIU e implantes) ganham cada vez mais espaço nas provas de residência por sua alta eficácia e baixa taxa de descontinuação. Memorize que a taxa de falha do DIU de cobre é &lt;1% (em uso perfeito) e do SIU-LNG é &lt;0,5%.</p>\n<p>Quando vir uma questão sobre anticoncepção e fatores de risco, lembre-se dos \"Critérios de Elegibilidade da OMS para Uso de Métodos Contraceptivos\", que classifica os métodos em categorias:</p>\n<ul>\n<li>Categoria 1: Uso sem restrições</li>\n<li>Categoria 2: Vantagens superam riscos</li>\n<li>Categoria 3: Riscos geralmente superam benefícios</li>\n<li>Categoria 4: Risco inaceitável (contraindicação absoluta)</li>\n</ul>\n<p>Neste caso específico, anticoncepcionais com estrógeno seriam Categoria 4 (contraindicados), enquanto métodos com progesterona isolada seriam Categoria 2, e DIU de cobre seria Categoria 1.</p>\n<p>Por fim, lembre-se de que a orientação para cessar o tabagismo deve ser repetida em todas as consultas. O tabagismo é um fator de risco modificável que aumenta em 20-30 vezes o risco de eventos cardiovasculares quando combinado com anticoncepcionais hormonais em mulheres acima de 35 anos.</p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 220873,
+        "number": 5,
+        "main_speciality_name": "Medicina Preventiva e Social",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "HIV e AIDS no adulto não-gestante",
+        "focus": {
+          "id": 2883,
+          "name": "HIV e AIDS no adulto não-gestante"
+        }
+      },
+      "detail": {
+        "id": 220873,
+        "content": "Uma mulher de 28 anos procura uma médica de família e comunidade para ser orientada quanto à prevenção de infecções sexualmente transmissíveis (IST) e de gestação indesejada. A paciente relata consumo de álcool durante as festas de carnaval e manifesta desejo de fazer uso de dispositivo intrauterino (DIU). Apesar de não ter tido relações sexuais nos últimos 30 dias, a paciente refere atividade sexual com múltiplos parceiros com status sorológico desconhecido nos últimos 6 meses, além de uso inconsistente de preservativo. Afirma ter feito uso de profilaxia pós-exposição (PEP) duas vezes nesse período. Nega uso de outras substâncias psicoativas. Refere data da última menstruação há 7 dias. Realizou coleta de citologia oncótica há 6 meses, sem alterações. \n\nA respeito do caso apresentado, responda os itens a seguir. a) Que medidas de prevenção de IST podem ser oferecidas à paciente pela médica de família?\nb) Caso a paciente deseje fazer uso de profilaxia pré-exposição (PrEP), qual deve ser a conduta antes de se iniciar a PrEP? \nc) Considerando-se as práticas sexuais da paciente nos 6 meses anteriores à consulta, que condições a médica deve investigar antes da inserção do DIU?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 5,
+            "abbreviation": "PREV",
+            "name": "Medicina Preventiva e Social",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2025,
+        "tag": [
+          {
+            "id": 554,
+            "parent_tag": {
+              "id": 297,
+              "name": "Infectologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "HIV e AIDS no adulto não-gestante",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              5,
+              4
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 1890,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2883,
+          "name": "HIV e AIDS no adulto não-gestante",
+          "discipline": {
+            "id": 89,
+            "name": "Medicina Preventiva e Social",
+            "residency_degree": 3,
+            "speciality": 5
+          },
+          "theme": {
+            "id": 628,
+            "name": "Infectologia",
+            "discipline": 89,
+            "old_tag": 297,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251307,
+        "actual_explanation": true,
+        "introduction": "<h2>Comentário da Questão</h2>\n<p>Esta questão aborda um tema extremamente relevante para a prática médica e frequente em provas de residência: a prevenção combinada de <em>Infecções Sexualmente Transmissíveis (IST)</em> e a contracepção em pacientes com comportamento sexual de risco.</p>\n<p>O caso apresenta uma mulher jovem, de 28 anos, com comportamento sexual de alto risco (múltiplos parceiros com status sorológico desconhecido, uso inconsistente de preservativo e uso prévio de <span class=\"article-4988\">PEP</span> duas vezes em 6 meses), que busca aconselhamento sobre prevenção de IST e gravidez indesejada, manifestando desejo pelo DIU.</p>\n<p>A questão foi dividida em três partes, abordando diferentes aspectos do atendimento a esta paciente. Vamos analisar cada uma delas:</p>\n<h3><strong>Item A: Medidas de prevenção de IST</strong></h3>\n<p>O gabarito não apresentou a resposta completa para este item, mas podemos discutir as principais medidas que deveriam ser abordadas:</p>\n<ul>\n<li><strong>Aconselhamento sobre práticas sexuais seguras</strong>: orientação sobre uso consistente de preservativos (masculino ou feminino) em todas as relações sexuais</li>\n<li><strong>Testagem regular para ISTs</strong>: considerando o comportamento de risco, recomenda-se testagem periódica para <span class=\"article-7885\">HIV</span>, sífilis, hepatites B e C, gonorreia e clamídia</li>\n<li><strong>Vacinação</strong>: verificar e completar esquema vacinal para HPV e hepatite B</li>\n<li><strong>Profilaxia Pré-Exposição (<span class=\"article-4987\">PrEP</span>)</strong> para <span class=\"article-7885\">HIV</span>: considerando o histórico de múltiplos parceiros, uso inconsistente de preservativo e uso prévio de <span class=\"article-4988\">PEP</span></li>\n<li><strong>Orientação sobre Profilaxia Pós-Exposição (<span class=\"article-4988\">PEP</span>)</strong>: reforçar conhecimento sobre quando buscar <span class=\"article-4988\">PEP</span> (em até 72h após exposição de risco)</li>\n<li><strong>Redução de danos relacionada ao uso de álcool</strong>: orientação sobre como o consumo de álcool pode influenciar na tomada de decisões relacionadas a práticas sexuais seguras</li>\n</ul>\n<h3><strong>Item B: Conduta antes de iniciar a <span class=\"article-4987\">PrEP</span></strong></h3>\n<p>A resposta correta inclui:</p>\n<ul>\n<li>Avaliar a motivação da paciente para adesão ao uso correto da <span class=\"article-4987\">PrEP</span></li>\n<li>Reforçar o uso combinado do preservativo para evitar outras IST</li>\n<li>Realizar teste rápido para <span class=\"article-7885\">HIV</span> para descartar infecção prévia</li>\n<li>Realizar testagem para outras IST (sífilis, hepatites, clamídia e gonococo)</li>\n<li>Avaliar função renal (creatinina) e fatores de risco para doença renal</li>\n<li>Avaliar histórico de fraturas patológicas</li>\n</ul>\n<p>Esta avaliação é fundamental porque a <span class=\"article-4987\">PrEP</span> só é eficaz na prevenção do <span class=\"article-7885\">HIV</span> (não protege contra outras ISTs), exige alta adesão e pode ter efeitos adversos renais e ósseos. Além disso, é contraindicada em pessoas já infectadas pelo <span class=\"article-7885\">HIV</span>.</p>\n<h3><strong>Item C: Condições a investigar antes da inserção do DIU</strong></h3>\n<p>Conforme o gabarito, a médica deve investigar a presença de IST, pois:</p>\n<ul>\n<li>Clamídia, gonorreia e sífilis não tratadas contraindicam o método</li>\n<li>AIDS em estágios clínicos 3 e 4 contraindica o método</li>\n<li>Doença inflamatória pélvica nos últimos 3 meses contraindica a inserção</li>\n<li>Cervicite mucopurulenta atual também contraindica o uso do DIU</li>\n</ul>\n<p>A investigação destas condições é essencial porque a inserção do DIU em pacientes com infecções do trato genital ativas aumenta significativamente o risco de doença inflamatória pélvica (DIP), podendo comprometer a fertilidade futura e causar complicações graves.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h2>Visão do Aprovado</h2>\n<p>Esta questão exige conhecimento sobre prevenção combinada de ISTs e manejo de métodos contraceptivos, temas frequentes em provas de Saúde da Família, Ginecologia e Saúde Coletiva. Vou compartilhar algumas estratégias que me ajudaram a dominar este tipo de questão:</p>\n<p>Nas questões sobre <strong><span class=\"article-4987\">PrEP</span></strong>, lembrem-se do acrônimo <strong>TREVO</strong>:</p>\n<ul>\n<li><strong>T</strong>este para <span class=\"article-7885\">HIV</span> (negativo obrigatório)</li>\n<li><strong>R</strong>enal (avaliação da função renal)</li>\n<li><strong>E</strong>xame para outras ISTs</li>\n<li><strong>V</strong>erificar adesão e motivação</li>\n<li><strong>O</strong>sso (avaliar riscos para osteoporose/fraturas)</li>\n</ul>\n<p>Para as <strong>contraindicações do DIU</strong>, criei um acrônimo que chamo de <strong>ACESSO</strong>:</p>\n<ul>\n<li><strong>A</strong>IDS avançada (estágios 3 e 4)</li>\n<li><strong>C</strong>ervicite atual</li>\n<li><strong>E</strong>xpulsão prévia (precaução)</li>\n<li><strong>S</strong>ífilis e outras IST não tratadas</li>\n<li><strong>S</strong>angramento inexplicado</li>\n<li><strong>O</strong>perações recentes no útero/DIP nos últimos 3 meses</li>\n</ul>\n<p>Um detalhe que muitos perdem: na questão, a paciente já havia realizado citologia oncótica há 6 meses sem alterações, o que é um dado positivo, mas <strong>isso não exclui a necessidade de investigar ISTs antes da inserção do DIU</strong>. O Papanicolau não é um exame específico para diagnosticar todas as ISTs.</p>\n<p>Uma armadilha comum nas provas é confundir <span class=\"article-4988\">PEP</span> com <span class=\"article-4987\">PrEP</span>. Lembre-se:</p>\n<ul>\n<li><strong><span class=\"article-4988\">PEP</span></strong>: após exposição (72h) - \"<span class=\"article-4988\">PEP</span> é depois\"</li>\n<li><strong><span class=\"article-4987\">PrEP</span></strong>: uso contínuo preventivo - \"<span class=\"article-4987\">PrEP</span> é antes\"</li>\n</ul>\n<p>O uso prévio de <span class=\"article-4988\">PEP</span> por duas vezes em 6 meses indica comportamento de alto risco continuado, sendo forte indicação para considerar <span class=\"article-4987\">PrEP</span> - isso é um \"gatilho\" que deve ser reconhecido rapidamente.</p>\n<p>Note que na paciente com comportamento sexual de risco, mesmo assintomática, devemos sempre investigar ISTs. Estudos mostram que cerca de 70-80% das infecções por clamídia em mulheres são assintomáticas, assim como muitos casos de gonorreia.</p>\n<p>Um recurso valioso para estudar este tema é o \"Protocolo Clínico e Diretrizes Terapêuticas para Profilaxia Pré-Exposição ao <span class=\"article-7885\">HIV</span>\" do Ministério da Saúde e o \"Manual Técnico para Profissionais de Saúde - DIU com Cobre\". Ambos são atualizados periodicamente e frequentemente usados como referência em questões de concurso.</p>\n<p>Ao ler casos semelhantes, sempre busque identificar os comportamentos de risco e pense em uma abordagem que integre tanto a contracepção quanto a prevenção de ISTs - essa visão integral é essencial para acertar questões como esta.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<h2>Comentário da Questão</h2>\n<p>Esta questão aborda um tema extremamente relevante para a prática médica e frequente em provas de residência: a prevenção combinada de <em>Infecções Sexualmente Transmissíveis (IST)</em> e a contracepção em pacientes com comportamento sexual de risco.</p>\n<p>O caso apresenta uma mulher jovem, de 28 anos, com comportamento sexual de alto risco (múltiplos parceiros com status sorológico desconhecido, uso inconsistente de preservativo e uso prévio de <span class=\"article-4988\">PEP</span> duas vezes em 6 meses), que busca aconselhamento sobre prevenção de IST e gravidez indesejada, manifestando desejo pelo DIU.</p>\n<p>A questão foi dividida em três partes, abordando diferentes aspectos do atendimento a esta paciente. Vamos analisar cada uma delas:</p>\n<h3><strong>Item A: Medidas de prevenção de IST</strong></h3>\n<p>O gabarito não apresentou a resposta completa para este item, mas podemos discutir as principais medidas que deveriam ser abordadas:</p>\n<ul>\n<li><strong>Aconselhamento sobre práticas sexuais seguras</strong>: orientação sobre uso consistente de preservativos (masculino ou feminino) em todas as relações sexuais</li>\n<li><strong>Testagem regular para ISTs</strong>: considerando o comportamento de risco, recomenda-se testagem periódica para <span class=\"article-7885\">HIV</span>, sífilis, hepatites B e C, gonorreia e clamídia</li>\n<li><strong>Vacinação</strong>: verificar e completar esquema vacinal para HPV e hepatite B</li>\n<li><strong>Profilaxia Pré-Exposição (<span class=\"article-4987\">PrEP</span>)</strong> para <span class=\"article-7885\">HIV</span>: considerando o histórico de múltiplos parceiros, uso inconsistente de preservativo e uso prévio de <span class=\"article-4988\">PEP</span></li>\n<li><strong>Orientação sobre Profilaxia Pós-Exposição (<span class=\"article-4988\">PEP</span>)</strong>: reforçar conhecimento sobre quando buscar <span class=\"article-4988\">PEP</span> (em até 72h após exposição de risco)</li>\n<li><strong>Redução de danos relacionada ao uso de álcool</strong>: orientação sobre como o consumo de álcool pode influenciar na tomada de decisões relacionadas a práticas sexuais seguras</li>\n</ul>\n<h3><strong>Item B: Conduta antes de iniciar a <span class=\"article-4987\">PrEP</span></strong></h3>\n<p>A resposta correta inclui:</p>\n<ul>\n<li>Avaliar a motivação da paciente para adesão ao uso correto da <span class=\"article-4987\">PrEP</span></li>\n<li>Reforçar o uso combinado do preservativo para evitar outras IST</li>\n<li>Realizar teste rápido para <span class=\"article-7885\">HIV</span> para descartar infecção prévia</li>\n<li>Realizar testagem para outras IST (sífilis, hepatites, clamídia e gonococo)</li>\n<li>Avaliar função renal (creatinina) e fatores de risco para doença renal</li>\n<li>Avaliar histórico de fraturas patológicas</li>\n</ul>\n<p>Esta avaliação é fundamental porque a <span class=\"article-4987\">PrEP</span> só é eficaz na prevenção do <span class=\"article-7885\">HIV</span> (não protege contra outras ISTs), exige alta adesão e pode ter efeitos adversos renais e ósseos. Além disso, é contraindicada em pessoas já infectadas pelo <span class=\"article-7885\">HIV</span>.</p>\n<h3><strong>Item C: Condições a investigar antes da inserção do DIU</strong></h3>\n<p>Conforme o gabarito, a médica deve investigar a presença de IST, pois:</p>\n<ul>\n<li>Clamídia, gonorreia e sífilis não tratadas contraindicam o método</li>\n<li>AIDS em estágios clínicos 3 e 4 contraindica o método</li>\n<li>Doença inflamatória pélvica nos últimos 3 meses contraindica a inserção</li>\n<li>Cervicite mucopurulenta atual também contraindica o uso do DIU</li>\n</ul>\n<p>A investigação destas condições é essencial porque a inserção do DIU em pacientes com infecções do trato genital ativas aumenta significativamente o risco de doença inflamatória pélvica (DIP), podendo comprometer a fertilidade futura e causar complicações graves.</p><br>Visão do aprovado: <h2>Visão do Aprovado</h2>\n<p>Esta questão exige conhecimento sobre prevenção combinada de ISTs e manejo de métodos contraceptivos, temas frequentes em provas de Saúde da Família, Ginecologia e Saúde Coletiva. Vou compartilhar algumas estratégias que me ajudaram a dominar este tipo de questão:</p>\n<p>Nas questões sobre <strong><span class=\"article-4987\">PrEP</span></strong>, lembrem-se do acrônimo <strong>TREVO</strong>:</p>\n<ul>\n<li><strong>T</strong>este para <span class=\"article-7885\">HIV</span> (negativo obrigatório)</li>\n<li><strong>R</strong>enal (avaliação da função renal)</li>\n<li><strong>E</strong>xame para outras ISTs</li>\n<li><strong>V</strong>erificar adesão e motivação</li>\n<li><strong>O</strong>sso (avaliar riscos para osteoporose/fraturas)</li>\n</ul>\n<p>Para as <strong>contraindicações do DIU</strong>, criei um acrônimo que chamo de <strong>ACESSO</strong>:</p>\n<ul>\n<li><strong>A</strong>IDS avançada (estágios 3 e 4)</li>\n<li><strong>C</strong>ervicite atual</li>\n<li><strong>E</strong>xpulsão prévia (precaução)</li>\n<li><strong>S</strong>ífilis e outras IST não tratadas</li>\n<li><strong>S</strong>angramento inexplicado</li>\n<li><strong>O</strong>perações recentes no útero/DIP nos últimos 3 meses</li>\n</ul>\n<p>Um detalhe que muitos perdem: na questão, a paciente já havia realizado citologia oncótica há 6 meses sem alterações, o que é um dado positivo, mas <strong>isso não exclui a necessidade de investigar ISTs antes da inserção do DIU</strong>. O Papanicolau não é um exame específico para diagnosticar todas as ISTs.</p>\n<p>Uma armadilha comum nas provas é confundir <span class=\"article-4988\">PEP</span> com <span class=\"article-4987\">PrEP</span>. Lembre-se:</p>\n<ul>\n<li><strong><span class=\"article-4988\">PEP</span></strong>: após exposição (72h) - \"<span class=\"article-4988\">PEP</span> é depois\"</li>\n<li><strong><span class=\"article-4987\">PrEP</span></strong>: uso contínuo preventivo - \"<span class=\"article-4987\">PrEP</span> é antes\"</li>\n</ul>\n<p>O uso prévio de <span class=\"article-4988\">PEP</span> por duas vezes em 6 meses indica comportamento de alto risco continuado, sendo forte indicação para considerar <span class=\"article-4987\">PrEP</span> - isso é um \"gatilho\" que deve ser reconhecido rapidamente.</p>\n<p>Note que na paciente com comportamento sexual de risco, mesmo assintomática, devemos sempre investigar ISTs. Estudos mostram que cerca de 70-80% das infecções por clamídia em mulheres são assintomáticas, assim como muitos casos de gonorreia.</p>\n<p>Um recurso valioso para estudar este tema é o \"Protocolo Clínico e Diretrizes Terapêuticas para Profilaxia Pré-Exposição ao <span class=\"article-7885\">HIV</span>\" do Ministério da Saúde e o \"Manual Técnico para Profissionais de Saúde - DIU com Cobre\". Ambos são atualizados periodicamente e frequentemente usados como referência em questões de concurso.</p>\n<p>Ao ler casos semelhantes, sempre busque identificar os comportamentos de risco e pense em uma abordagem que integre tanto a contracepção quanto a prevenção de ISTs - essa visão integral é essencial para acertar questões como esta.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T16:35:55.470840+00:00",
+  "complete": true
+}

@@ -1,0 +1,1141 @@
+{
+  "track_id": 2901582,
+  "name": "IAMSPE - SP-2023-Discursiva - Mastologia",
+  "year": 2023,
+  "track_fast": {
+    "id": 2901582,
+    "name": "IAMSPE - SP-2023-Discursiva - Mastologia",
+    "track_type": "c",
+    "question_count": 10,
+    "year": 2023,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "IAMSPE",
+    "track_image": "https://cdn.medway.com.br/media/track/exam/iamspe/intensivo-2020-aplicativo-768x573px-iamspe_lnmB6gh.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 10,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 10,
+  "questions": [
+    {
+      "meta": {
+        "id": 207470,
+        "number": 1,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Tumores de Pâncreas e Periampulares",
+        "focus": {
+          "id": 1811,
+          "name": "Tumores de Pâncreas e Periampulares"
+        }
+      },
+      "detail": {
+        "id": 207470,
+        "content": "Caso Clínico 1  \n\nUma paciente de 68 anos de idade, diabética, com  obesidade grau II, compareceu ao hospital com história de  náuseas e vômitos há um mês. Relata melhora dos sintomas  após o uso de medicações, mas, há uma semana,  apresentou icterícia, acolia fecal e prurido. Relata que,  nos últimos seis meses, apresentava empachamento  pós-prandial, hiporexia e perda de 10% do peso. Nega dor  abdominal, febre, alteração do hábito intestinal, endoscopia  ou colonoscopia prévia. Ao exame, constatou-se o seguinte: bom estado geral;  paciente orientada, ictérica 2+/4+, hipocorada +/4+;  abdome globoso, flácido e indolor à palpação, sem massas  palpáveis. Exames laboratoriais e de imagem evidenciaram  o seguinte: HB = 11,4 g/dL; leucócitos = 12.600/mm3;  plaquetas = 250 mil/mm3; bilirrubina total = 8,2 mg/dL;  bilirrubina indireta = 2,2 mg/dL; bilirrubina direta = 6,0 mg/dL;  fosfatase alcalina = 554 mg/dL; gama-GT = 1.126 mg/dL;  AST = 162 mg/dL; ALT = 250 mg/dL; CR = 4,0;  PCR =4,0 mg/dL(VR =0,5 mg/dL); INR = 2,5. USG de abdome superior revelou fígado com dimensões  normais, contornos regulares, bordas finas e ecotextura  homogênea. Vesícula biliar apresenta-se com forma e  dimensões normais, paredes finas e regulares, sem imagens  calculosas no seu interior. Observou-se moderada dilatação  de vias biliares intra e extra-hepáticas. Constatou-se  também o seguinte: colédoco ectasiado, com calibre de  1,2 cm; formação expansiva periampular, mal definida  ultrassonograficamente, devido a sobreposição gasosa.                       \n\nQual é a conduta inicial para o caso, após as medidas clínicas?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 7,
+          "name": "IAMSPE",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 5,
+          "abbreviation": "R+CG"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 2421,
+            "parent_tag": {
+              "id": 352,
+              "name": "Cirurgia do Aparelho Digestivo",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Tumores de Pâncreas e Periampulares",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              5
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 19,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1811,
+          "name": "Tumores de Pâncreas e Periampulares",
+          "discipline": {
+            "id": 63,
+            "name": "Cirurgia Geral",
+            "residency_degree": 5,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 183,
+            "name": "Cirurgia do Aparelho Digestivo",
+            "discipline": 63,
+            "old_tag": 352,
+            "residency_degree_abbreviation": "R+CG"
+          }
+        }
+      },
+      "explanation": {
+        "id": 229693,
+        "actual_explanation": true,
+        "introduction": "<p>Pessoal, nessa quest&atilde;o temos uma paciente idosa, obesa, com os seguintes achados:</p>\n<ul>\n<li>Icter&iacute;cia + acolia fecal + prurido</li>\n<li>Perda 10% do peso</li>\n<li>Leuc&oacute;citos aumentados</li>\n<li>Bilirrubina 8,2, as custas de bilirrubina direta</li>\n<li>AUmento de canaliculares</li>\n<li>Disfun&ccedil;&atilde;o renal e sangu&iacute;nea (creatinina aumentada e INR alargado)</li>\n</ul>\n<p>Nos exames de imagem, temos ves&iacute;cula normal, com dilata&ccedil;&atilde;o de vias biliares intra e extra hep&aacute;ticas, com imagem expansiva em col&eacute;doco.</p>\n<p>Dessa forma, nossa principal suspeita cl&iacute;nica pra essa paciente deve ser&nbsp;<strong>colangite aguda,&nbsp;</strong>j&aacute; que temos icter&iacute;cia + dilata&ccedil;&atilde;o de vias biliares + imagem expansiva em col&eacute;doco.</p>\n<p>Como a nossa paciente tem uma colangite aguda&nbsp;<strong>grave</strong>, pelas disfun&ccedil;&otilde;es renais e hematol&oacute;gicas, precisamos desobstruir a via biliar com urg&ecirc;ncia, realizando uma&nbsp;<strong>CPRE.</strong></p>\n<p>Gabarito:&nbsp;<strong>CPRE.</strong></p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Pessoal, nessa quest&atilde;o temos uma paciente idosa, obesa, com os seguintes achados:</p>\n<ul>\n<li>Icter&iacute;cia + acolia fecal + prurido</li>\n<li>Perda 10% do peso</li>\n<li>Leuc&oacute;citos aumentados</li>\n<li>Bilirrubina 8,2, as custas de bilirrubina direta</li>\n<li>AUmento de canaliculares</li>\n<li>Disfun&ccedil;&atilde;o renal e sangu&iacute;nea (creatinina aumentada e INR alargado)</li>\n</ul>\n<p>Nos exames de imagem, temos ves&iacute;cula normal, com dilata&ccedil;&atilde;o de vias biliares intra e extra hep&aacute;ticas, com imagem expansiva em col&eacute;doco.</p>\n<p>Dessa forma, nossa principal suspeita cl&iacute;nica pra essa paciente deve ser&nbsp;<strong>colangite aguda,&nbsp;</strong>j&aacute; que temos icter&iacute;cia + dilata&ccedil;&atilde;o de vias biliares + imagem expansiva em col&eacute;doco.</p>\n<p>Como a nossa paciente tem uma colangite aguda&nbsp;<strong>grave</strong>, pelas disfun&ccedil;&otilde;es renais e hematol&oacute;gicas, precisamos desobstruir a via biliar com urg&ecirc;ncia, realizando uma&nbsp;<strong>CPRE.</strong></p>\n<p>Gabarito:&nbsp;<strong>CPRE.</strong></p><br>Visão do aprovado: <p>.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 207471,
+        "number": 2,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Afecções Benignas das Vias Biliares",
+        "focus": {
+          "id": 1828,
+          "name": "Afecções Benignas das Vias Biliares"
+        }
+      },
+      "detail": {
+        "id": 207471,
+        "content": "Caso Clínico 1    \n\nUma paciente de 68 anos de idade, diabética, com  obesidade grau II, compareceu ao hospital com história de  náuseas e vômitos há um mês. Relata melhora dos sintomas  após o uso de medicações, mas, há uma semana,  apresentou icterícia, acolia fecal e prurido. Relata que,  nos últimos seis meses, apresentava empachamento  pós-prandial, hiporexia e perda de 10% do peso. Nega dor  abdominal, febre, alteração do hábito intestinal, endoscopia  ou colonoscopia prévia. Ao exame, constatou-se o seguinte: bom estado geral;  paciente orientada, ictérica 2+/4+, hipocorada +/4+;  abdome globoso, flácido e indolor à palpação, sem massas  palpáveis. Exames laboratoriais e de imagem evidenciaram  o seguinte: HB = 11,4 g/dL; leucócitos = 12.600/mm3;  plaquetas = 250 mil/mm3; bilirrubina total = 8,2 mg/dL;  bilirrubina indireta = 2,2 mg/dL; bilirrubina direta = 6,0 mg/dL;  fosfatase alcalina = 554 mg/dL; gama-GT = 1.126 mg/dL;  AST = 162 mg/dL; ALT = 250 mg/dL; CR = 4,0;  PCR =4,0 mg/dL(VR =0,5 mg/dL); INR = 2,5. USG de abdome superior revelou fígado com dimensões  normais, contornos regulares, bordas finas e ecotextura  homogênea. Vesícula biliar apresenta-se com forma e  dimensões normais, paredes finas e regulares, sem imagens  calculosas no seu interior. Observou-se moderada dilatação  de vias biliares intra e extra-hepáticas. Constatou-se  também o seguinte: colédoco ectasiado, com calibre de  1,2 cm; formação expansiva periampular, mal definida  ultrassonograficamente, devido a sobreposição gasosa. \n\nSegundo o Tokyo Guidelines 2018, qual é o diagnóstico?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 7,
+          "name": "IAMSPE",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 5,
+          "abbreviation": "R+CG"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 2401,
+            "parent_tag": {
+              "id": 353,
+              "name": "Cirurgia Geral",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Afecções Benignas das Vias Biliares",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              5
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 18,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1828,
+          "name": "Afecções Benignas das Vias Biliares",
+          "discipline": {
+            "id": 63,
+            "name": "Cirurgia Geral",
+            "residency_degree": 5,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 181,
+            "name": "Cirurgia Geral",
+            "discipline": 63,
+            "old_tag": 353,
+            "residency_degree_abbreviation": "R+CG"
+          }
+        }
+      },
+      "explanation": {
+        "id": 229694,
+        "actual_explanation": true,
+        "introduction": "<p>Pessoal, pra responder essa quest&atilde;o precisamos entender que a principal suspeita cl&iacute;nica da paciente &eacute;&nbsp;<strong>colangite aguda</strong>, como discutimos da parte 1 da quest&atilde;o.</p>\n<p>Avaliando os crit&eacute;rios de tokyo para diagn&oacute;stico de colangite, temos que ela fecha os tr&ecirc;s crit&eacute;rios, confirmando a suspeita:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T135213100Z955317.png\" alt=\"Saiba mais sobre as complica&ccedil;&otilde;es da colelit&iacute;ase | Medway\"></p>\n<ul>\n<li style=\"text-align: left;\">Tem leuco &gt; 12000 -&gt; fecha o crit&eacute;rio A</li>\n<li style=\"text-align: left;\">Est&aacute; ict&eacute;rica com BT &gt; 2 -&gt; fecha o crit&eacute;rio B</li>\n<li style=\"text-align: left;\">Tem imagem com obstru&ccedil;&atilde;o de col&eacute;doco e dilata&ccedil;&atilde;o de vias biliares -&gt; fecha o crit&eacute;rio C</li>\n</ul>\n<p style=\"text-align: left;\">Gabarito:&nbsp;<strong>colangite aguda.</strong></p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Cuidado pra n&atilde;o confundir: temos crit&eacute;rios de Tokyo para:</p>\n<ul>\n<li>Diagn&oacute;stico e gravidade da colecistite</li>\n<li>Diagn&oacute;stico e gravidade da colangite</li>\n</ul>\n<p>E todos despecam nas provas!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Pessoal, pra responder essa quest&atilde;o precisamos entender que a principal suspeita cl&iacute;nica da paciente &eacute;&nbsp;<strong>colangite aguda</strong>, como discutimos da parte 1 da quest&atilde;o.</p>\n<p>Avaliando os crit&eacute;rios de tokyo para diagn&oacute;stico de colangite, temos que ela fecha os tr&ecirc;s crit&eacute;rios, confirmando a suspeita:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T135213100Z955317.png\" alt=\"Saiba mais sobre as complica&ccedil;&otilde;es da colelit&iacute;ase | Medway\"></p>\n<ul>\n<li style=\"text-align: left;\">Tem leuco &gt; 12000 -&gt; fecha o crit&eacute;rio A</li>\n<li style=\"text-align: left;\">Est&aacute; ict&eacute;rica com BT &gt; 2 -&gt; fecha o crit&eacute;rio B</li>\n<li style=\"text-align: left;\">Tem imagem com obstru&ccedil;&atilde;o de col&eacute;doco e dilata&ccedil;&atilde;o de vias biliares -&gt; fecha o crit&eacute;rio C</li>\n</ul>\n<p style=\"text-align: left;\">Gabarito:&nbsp;<strong>colangite aguda.</strong></p><br>Visão do aprovado: <p>Cuidado pra n&atilde;o confundir: temos crit&eacute;rios de Tokyo para:</p>\n<ul>\n<li>Diagn&oacute;stico e gravidade da colecistite</li>\n<li>Diagn&oacute;stico e gravidade da colangite</li>\n</ul>\n<p>E todos despecam nas provas!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 207472,
+        "number": 3,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Afecções Benignas das Vias Biliares",
+        "focus": {
+          "id": 1828,
+          "name": "Afecções Benignas das Vias Biliares"
+        }
+      },
+      "detail": {
+        "id": 207472,
+        "content": "Caso Clínico 1   \n\n Uma paciente de 68 anos de idade, diabética, com  obesidade grau II, compareceu ao hospital com história de  náuseas e vômitos há um mês. Relata melhora dos sintomas  após o uso de medicações, mas, há uma semana,  apresentou icterícia, acolia fecal e prurido. Relata que,  nos últimos seis meses, apresentava empachamento  pós-prandial, hiporexia e perda de 10% do peso. Nega dor  abdominal, febre, alteração do hábito intestinal, endoscopia  ou colonoscopia prévia. Ao exame, constatou-se o seguinte: bom estado geral;  paciente orientada, ictérica 2+/4+, hipocorada +/4+;  abdome globoso, flácido e indolor à palpação, sem massas  palpáveis. Exames laboratoriais e de imagem evidenciaram  o seguinte: HB = 11,4 g/dL; leucócitos = 12.600/mm3;  plaquetas = 250 mil/mm3; bilirrubina total = 8,2 mg/dL;  bilirrubina indireta = 2,2 mg/dL; bilirrubina direta = 6,0 mg/dL;  fosfatase alcalina = 554 mg/dL; gama-GT = 1.126 mg/dL;  AST = 162 mg/dL; ALT = 250 mg/dL; CR = 4,0;  PCR =4,0 mg/dL(VR =0,5 mg/dL); INR = 2,5. USG de abdome superior revelou fígado com dimensões  normais, contornos regulares, bordas finas e ecotextura  homogênea. Vesícula biliar apresenta-se com forma e  dimensões normais, paredes finas e regulares, sem imagens  calculosas no seu interior. Observou-se moderada dilatação  de vias biliares intra e extra-hepáticas. Constatou-se  também o seguinte: colédoco ectasiado, com calibre de  1,2 cm; formação expansiva periampular, mal definida  ultrassonograficamente, devido a sobreposição gasosa.      \n\n\n\n Segundo o Tokyo Guidelines 2018, quais são os critérios diagnósticos utilizados?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 7,
+          "name": "IAMSPE",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 5,
+          "abbreviation": "R+CG"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 2401,
+            "parent_tag": {
+              "id": 353,
+              "name": "Cirurgia Geral",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Afecções Benignas das Vias Biliares",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              5
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 11,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1828,
+          "name": "Afecções Benignas das Vias Biliares",
+          "discipline": {
+            "id": 63,
+            "name": "Cirurgia Geral",
+            "residency_degree": 5,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 181,
+            "name": "Cirurgia Geral",
+            "discipline": 63,
+            "old_tag": 353,
+            "residency_degree_abbreviation": "R+CG"
+          }
+        }
+      },
+      "explanation": {
+        "id": 229695,
+        "actual_explanation": true,
+        "introduction": "<p>Pessoal, quest&atilde;o que traz um enunciado enorme, mas que queria cobrar de voc&ecirc; os <strong>crit&eacute;rios diagn&oacute;sticos de tokyo para colangite aguda.</strong></p>\n<p>Aqui, voc&ecirc; precisava ter em mente essa tabelinha:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T134624897Z214323.png\" alt=\"Saiba mais sobre as complica&ccedil;&otilde;es da colelit&iacute;ase | Medway\"></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: left;\">Portanto, o gabarito da quest&atilde;o era: <strong>inflama&ccedil;&atilde;o sist&ecirc;mica</strong> (ou leucocitose, eleva&ccedil;&atilde;o do PCR);&nbsp; <strong>colestase </strong>(eleva&ccedil;&atilde;o de bilirrubina, eleva&ccedil;&atilde;o de canaliculares, icter&iacute;cia cl&iacute;nica); <strong>imagem </strong>(ou dilata&ccedil;&atilde;o de vias biliares pelo&nbsp;USG).</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Pessoal, sempre leiam o comando da quest&atilde;o em enunciados muito longos. Muitas vezes, n&atilde;o precisamos dele todo pra responder a quest&atilde;o, e ganhamos tempo!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Pessoal, quest&atilde;o que traz um enunciado enorme, mas que queria cobrar de voc&ecirc; os <strong>crit&eacute;rios diagn&oacute;sticos de tokyo para colangite aguda.</strong></p>\n<p>Aqui, voc&ecirc; precisava ter em mente essa tabelinha:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T134624897Z214323.png\" alt=\"Saiba mais sobre as complica&ccedil;&otilde;es da colelit&iacute;ase | Medway\"></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: left;\">Portanto, o gabarito da quest&atilde;o era: <strong>inflama&ccedil;&atilde;o sist&ecirc;mica</strong> (ou leucocitose, eleva&ccedil;&atilde;o do PCR);&nbsp; <strong>colestase </strong>(eleva&ccedil;&atilde;o de bilirrubina, eleva&ccedil;&atilde;o de canaliculares, icter&iacute;cia cl&iacute;nica); <strong>imagem </strong>(ou dilata&ccedil;&atilde;o de vias biliares pelo&nbsp;USG).</p><br>Visão do aprovado: <p>Pessoal, sempre leiam o comando da quest&atilde;o em enunciados muito longos. Muitas vezes, n&atilde;o precisamos dele todo pra responder a quest&atilde;o, e ganhamos tempo!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 207473,
+        "number": 4,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Tumores de Pâncreas e Periampulares",
+        "focus": {
+          "id": 1811,
+          "name": "Tumores de Pâncreas e Periampulares"
+        }
+      },
+      "detail": {
+        "id": 207473,
+        "content": "Caso Clínico 1    \n\n\nUma paciente de 68 anos de idade, diabética, com  obesidade grau II, compareceu ao hospital com história de  náuseas e vômitos há um mês. Relata melhora dos sintomas  após o uso de medicações, mas, há uma semana,  apresentou icterícia, acolia fecal e prurido. Relata que,  nos últimos seis meses, apresentava empachamento  pós-prandial, hiporexia e perda de 10% do peso. Nega dor  abdominal, febre, alteração do hábito intestinal, endoscopia  ou colonoscopia prévia. Ao exame, constatou-se o seguinte: bom estado geral;  paciente orientada, ictérica 2+/4+, hipocorada +/4+;  abdome globoso, flácido e indolor à palpação, sem massas  palpáveis. Exames laboratoriais e de imagem evidenciaram  o seguinte: HB = 11,4 g/dL; leucócitos = 12.600/mm3;  plaquetas = 250 mil/mm3; bilirrubina total = 8,2 mg/dL;  bilirrubina indireta = 2,2 mg/dL; bilirrubina direta = 6,0 mg/dL;  fosfatase alcalina = 554 mg/dL; gama-GT = 1.126 mg/dL;  AST = 162 mg/dL; ALT = 250 mg/dL; CR = 4,0;  PCR =4,0 mg/dL(VR =0,5 mg/dL); INR = 2,5. USG de abdome superior revelou fígado com dimensões  normais, contornos regulares, bordas finas e ecotextura  homogênea. Vesícula biliar apresenta-se com forma e  dimensões normais, paredes finas e regulares, sem imagens  calculosas no seu interior. Observou-se moderada dilatação  de vias biliares intra e extra-hepáticas. Constatou-se  também o seguinte: colédoco ectasiado, com calibre de  1,2 cm; formação expansiva periampular, mal definida  ultrassonograficamente, devido a sobreposição gasosa.        \n\n\nSegundo o Tokyo Guidelines 2018, qual é o grau de gravidade do caso?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 7,
+          "name": "IAMSPE",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 5,
+          "abbreviation": "R+CG"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 2421,
+            "parent_tag": {
+              "id": 352,
+              "name": "Cirurgia do Aparelho Digestivo",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Tumores de Pâncreas e Periampulares",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              5
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 17,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1811,
+          "name": "Tumores de Pâncreas e Periampulares",
+          "discipline": {
+            "id": 63,
+            "name": "Cirurgia Geral",
+            "residency_degree": 5,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 183,
+            "name": "Cirurgia do Aparelho Digestivo",
+            "discipline": 63,
+            "old_tag": 352,
+            "residency_degree_abbreviation": "R+CG"
+          }
+        }
+      },
+      "explanation": {
+        "id": 229696,
+        "actual_explanation": true,
+        "introduction": "<p>Bom, agora j&aacute; sabemos que a nossa paciente tem colangite aguda pelos crit&eacute;rios diagn&oacute;sticos de Tokyo. Precisamos classific&aacute;-la conforme os crit&eacute;rios de tokyo&nbsp;<strong>para gravidade</strong> da doen&ccedil;a:</p>\n<p style=\"text-align: center;\"><span style=\"font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T144905386Z975443.png\" width=\"624\" height=\"623\"></span></span></p>\n<p style=\"text-align: left;\">Como o nosso caso apresenta:</p>\n<ul>\n<li style=\"text-align: left;\">Cr &gt;2</li>\n<li style=\"text-align: left;\">INR &gt; 1,5</li>\n</ul>\n<p style=\"text-align: left;\">Ela &eacute; classificada como&nbsp;<strong>tokyo III</strong>, o grau de maior gravidade da colangite, por apresentar disfun&ccedil;&otilde;es org&acirc;nicas.</p>\n<p style=\"text-align: left;\">Gabarito: Tokyo III.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Pessoal, cuidado pra n&atilde;o confundir. Temos crit&eacute;rios de t&oacute;kyo tamb&eacute;m para gravidade de colecistite, e s&atilde;o diferentes:</p>\n<p style=\"text-align: center;\"><span style=\"font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T145104440Z454630.png\" width=\"624\" height=\"643\"></span></span></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Bom, agora j&aacute; sabemos que a nossa paciente tem colangite aguda pelos crit&eacute;rios diagn&oacute;sticos de Tokyo. Precisamos classific&aacute;-la conforme os crit&eacute;rios de tokyo&nbsp;<strong>para gravidade</strong> da doen&ccedil;a:</p>\n<p style=\"text-align: center;\"><span style=\"font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T144905386Z975443.png\" width=\"624\" height=\"623\"></span></span></p>\n<p style=\"text-align: left;\">Como o nosso caso apresenta:</p>\n<ul>\n<li style=\"text-align: left;\">Cr &gt;2</li>\n<li style=\"text-align: left;\">INR &gt; 1,5</li>\n</ul>\n<p style=\"text-align: left;\">Ela &eacute; classificada como&nbsp;<strong>tokyo III</strong>, o grau de maior gravidade da colangite, por apresentar disfun&ccedil;&otilde;es org&acirc;nicas.</p>\n<p style=\"text-align: left;\">Gabarito: Tokyo III.</p><br>Visão do aprovado: <p>Pessoal, cuidado pra n&atilde;o confundir. Temos crit&eacute;rios de t&oacute;kyo tamb&eacute;m para gravidade de colecistite, e s&atilde;o diferentes:</p>\n<p style=\"text-align: center;\"><span style=\"font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T145104440Z454630.png\" width=\"624\" height=\"643\"></span></span></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 207474,
+        "number": 5,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Tumores de Pâncreas e Periampulares",
+        "focus": {
+          "id": 1811,
+          "name": "Tumores de Pâncreas e Periampulares"
+        }
+      },
+      "detail": {
+        "id": 207474,
+        "content": "Caso Clínico 1    \n\nUma paciente de 68 anos de idade, diabética, com  obesidade grau II, compareceu ao hospital com história de  náuseas e vômitos há um mês. Relata melhora dos sintomas  após o uso de medicações, mas, há uma semana,  apresentou icterícia, acolia fecal e prurido. Relata que,  nos últimos seis meses, apresentava empachamento  pós-prandial, hiporexia e perda de 10% do peso. Nega dor  abdominal, febre, alteração do hábito intestinal, endoscopia  ou colonoscopia prévia. Ao exame, constatou-se o seguinte: bom estado geral;  paciente orientada, ictérica 2+/4+, hipocorada +/4+;  abdome globoso, flácido e indolor à palpação, sem massas  palpáveis. Exames laboratoriais e de imagem evidenciaram  o seguinte: HB = 11,4 g/dL; leucócitos = 12.600/mm3;  plaquetas = 250 mil/mm3; bilirrubina total = 8,2 mg/dL;  bilirrubina indireta = 2,2 mg/dL; bilirrubina direta = 6,0 mg/dL;  fosfatase alcalina = 554 mg/dL; gama-GT = 1.126 mg/dL;  AST = 162 mg/dL; ALT = 250 mg/dL; CR = 4,0;  PCR =4,0 mg/dL(VR =0,5 mg/dL); INR = 2,5. USG de abdome superior revelou fígado com dimensões  normais, contornos regulares, bordas finas e ecotextura  homogênea. Vesícula biliar apresenta-se com forma e  dimensões normais, paredes finas e regulares, sem imagens  calculosas no seu interior. Observou-se moderada dilatação  de vias biliares intra e extra-hepáticas. Constatou-se  também o seguinte: colédoco ectasiado, com calibre de  1,2 cm; formação expansiva periampular, mal definida  ultrassonograficamente, devido a sobreposição gasosa.    \n\nConsiderando-se que, após a resolução do quadro inicial, tenham sido realizados exames tomográficos e ecoendoscopia confirmando adenocarcinoma de cabeça pancreática localmente avançado sem lesões a distância, qual seria a conduta adequada?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 7,
+          "name": "IAMSPE",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 5,
+          "abbreviation": "R+CG"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 2421,
+            "parent_tag": {
+              "id": 352,
+              "name": "Cirurgia do Aparelho Digestivo",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Tumores de Pâncreas e Periampulares",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              5
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 14,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1811,
+          "name": "Tumores de Pâncreas e Periampulares",
+          "discipline": {
+            "id": 63,
+            "name": "Cirurgia Geral",
+            "residency_degree": 5,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 183,
+            "name": "Cirurgia do Aparelho Digestivo",
+            "discipline": 63,
+            "old_tag": 352,
+            "residency_degree_abbreviation": "R+CG"
+          }
+        }
+      },
+      "explanation": {
+        "id": 229697,
+        "actual_explanation": true,
+        "introduction": "<p>Por fim, j&aacute; sabemos que a nossa paciente tem colangite tokyo III, precisa urgente de uma CPRE descompressiva, e descobrimos que a causa dessa colangite &eacute; um&nbsp;<strong>tumor de cabe&ccedil;a de p&acirc;ncreas localmente avan&ccedil;ado</strong> pela imagem da TC.</p>\n<p>E quando encontramos um tumor, qual a primeira coisa que devemos fazer?</p>\n<p><strong>Terminar de estadiar o paciente</strong>, pra determinar se o tumor &eacute; ressec&aacute;vel ou n&atilde;o.</p>\n<p>A quest&atilde;o deu como gabarito VLP estadiadora, mas em neoplasias de bace&ccedil;a de p&acirc;ncreas podemos pensar mais em exames de imagem, para avaliar tanto a doen&ccedil;a local (principalmente invas&atilde;o de vasos) quando &agrave; dist&acirc;ncia.</p>\n<p>Caso a doen&ccedil;a fosse ressec&aacute;vel, sem dissemina&ccedil;&atilde;o, poder&iacute;amos partir para cirurgia sem demais exames.</p>\n<p>Gabarito : Videolaparoscopia estadiadora.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Aqui temos uma classifica&ccedil;&atilde;o de tumor de cabe&ccedil;a de p&acirc;ncreas pra determinar se ele seria ressec&aacute;vel ou n&atilde;o:</p>\n<p style=\"text-align: center;\"><span style=\"font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T145524347Z006086.png\" width=\"624\" height=\"497\"></span></span></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Por fim, j&aacute; sabemos que a nossa paciente tem colangite tokyo III, precisa urgente de uma CPRE descompressiva, e descobrimos que a causa dessa colangite &eacute; um&nbsp;<strong>tumor de cabe&ccedil;a de p&acirc;ncreas localmente avan&ccedil;ado</strong> pela imagem da TC.</p>\n<p>E quando encontramos um tumor, qual a primeira coisa que devemos fazer?</p>\n<p><strong>Terminar de estadiar o paciente</strong>, pra determinar se o tumor &eacute; ressec&aacute;vel ou n&atilde;o.</p>\n<p>A quest&atilde;o deu como gabarito VLP estadiadora, mas em neoplasias de bace&ccedil;a de p&acirc;ncreas podemos pensar mais em exames de imagem, para avaliar tanto a doen&ccedil;a local (principalmente invas&atilde;o de vasos) quando &agrave; dist&acirc;ncia.</p>\n<p>Caso a doen&ccedil;a fosse ressec&aacute;vel, sem dissemina&ccedil;&atilde;o, poder&iacute;amos partir para cirurgia sem demais exames.</p>\n<p>Gabarito : Videolaparoscopia estadiadora.</p><br>Visão do aprovado: <p>Aqui temos uma classifica&ccedil;&atilde;o de tumor de cabe&ccedil;a de p&acirc;ncreas pra determinar se ele seria ressec&aacute;vel ou n&atilde;o:</p>\n<p style=\"text-align: center;\"><span style=\"font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);\"><span style=\"border: none;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T145524347Z006086.png\" width=\"624\" height=\"497\"></span></span></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 207475,
+        "number": 6,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "m",
+        "question_ai_update": null,
+        "focus_name": "Dermatoses e doenças infectoparasitárias na gestação",
+        "focus": {
+          "id": 1602,
+          "name": "Dermatoses e doenças infectoparasitárias na gestação"
+        }
+      },
+      "detail": {
+        "id": 207475,
+        "content": "Caso Clínico 2   \n\nUma mulher de 41 anos de idade, G3P0C1A1, IG = 36 + 4,  apresentando prurido intenso, insônia e mal-estar, compareceu  ao hospital. Seus dados eram os seguintes: pressão  arterial = 140 mmHg × 80 mmHg;TGO=70 U/L;TGP=110U/L;  bilirrubinas: bilirrubina total (BT) = 1,70 mg/dL; bilirrubina  direta (BD) = 1,10 mg/dL; e bilirrubina indireta (BI) = 0,60 mg/dL.  Ultrassonografia de abdome com pólipo de vesícula biliar,  ausência de dilatação de vias biliares. Perfil biofísico fetal 10/10  e ultrassonografia com Doppler normal.   \n\nQual é a hipótese diagnóstica?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 7,
+          "name": "IAMSPE",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 15965,
+            "parent_tag": {
+              "id": 15909,
+              "name": "Doenças clínicas na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Dermatoses e doenças infectoparasitárias na gestação",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 6,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 8,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1602,
+          "name": "Dermatoses e doenças infectoparasitárias na gestação",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 97,
+            "name": "Doenças clínicas na gestação",
+            "discipline": 86,
+            "old_tag": 15909,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 229698,
+        "actual_explanation": true,
+        "introduction": "<p>&nbsp;</p>\n<p style=\"text-align: justify;\">O caso apresenta uma gestante de 41 anos, com 36 semanas e 4 dias de gesta&ccedil;&atilde;o, que apresenta quadro cl&iacute;nico caracter&iacute;stico de Colestase Intra-Hep&aacute;tica da Gesta&ccedil;&atilde;o (CIHG). Os sintomas cardinais s&atilde;o o prurido intenso (principal sintoma da CIHG), ins&ocirc;nia (frequentemente secund&aacute;ria ao prurido) e mal-estar associados a aus&ecirc;ncia de les&otilde;es t&iacute;picas.</p>\n<p style=\"text-align: justify;\">Os exames laboratoriais mostram eleva&ccedil;&atilde;o discreta das transaminases (TGO=70 U/L e TGP=110 U/L) e das bilirrubinas, principalmente da fra&ccedil;&atilde;o direta (BD=1,10 mg/dL), o que &eacute; compat&iacute;vel com o padr&atilde;o&nbsp;colest&aacute;tico. A ultrassonografia abdominal n&atilde;o mostra dilata&ccedil;&atilde;o de vias biliares, o que ajuda a descartar causas obstrutivas extra-hep&aacute;ticas, sendo o p&oacute;lipo de ves&iacute;cula biliar um achado incidental n&atilde;o relacionado ao quadro atual. O perfil biof&iacute;sico fetal e o Doppler est&atilde;o normais, indicando bem-estar fetal no momento da avalia&ccedil;&atilde;o, mas isso n&atilde;o exclui o risco aumentado de complica&ccedil;&otilde;es fetais associadas &agrave; CIHG.</p>\n<p style=\"text-align: justify;\">A colestase grav&iacute;dica, tamb&eacute;m conhecida como colestase intra-hep&aacute;tica da gravidez, &eacute; caracterizada por um quadro de prurido generalizado, associado a uma hepatopatia espec&iacute;fica da gravidez, com eleva&ccedil;&atilde;o nas concentra&ccedil;&otilde;es s&eacute;ricas de &aacute;cidos biliares e de enzimas canaliculares. Em geral, se desenvolve durante o terceiro trimestre ou, em alguns casos, no final do segundo&nbsp;trimestre, e costuma apresentar r&aacute;pida remiss&atilde;o ap&oacute;s o parto.</p>\n<p style=\"text-align: justify;\">O diagn&oacute;stico &eacute; realizado a partir do quadro cl&iacute;nico de prurido&nbsp;generalizado, principalmente em palmas de m&atilde;os e plantas de p&eacute;s, com maior intensidade &agrave; noite, que apresenta piora progressiva no terceiro trimestre, sem les&atilde;o cut&acirc;nea compat&iacute;vel. O padr&atilde;o-ouro do diagn&oacute;stico &eacute; a dosagem dos &aacute;cidos biliares, que se encontram elevados.&nbsp;Na aus&ecirc;ncia desta dosagem, que nem sempre est&aacute; dispon&iacute;vel, ajudam os demais marcadores, como as transaminases, as bilirrubinas total e direta, a fosfatase alcalina.&nbsp;</p>\n<p><strong>Gabarito</strong>: Colestase intra-hep&aacute;tica gestacional.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Grava essa informa&ccedil;&atilde;o: gestante que come&ccedil;a com prurido no terceiro trimestre da gesta&ccedil;&atilde;o, sem les&atilde;o t&iacute;pica e com altera&ccedil;&otilde;es hep&aacute;ticas precisamos pensar em colestase grav&iacute;dica!! A conduta nesses casos &eacute; iniciar o &aacute;cido ursodesoxic&oacute;lico e parto por volta das 37 semanas se a paciente estiver est&aacute;vel e com exames est&aacute;veis!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>&nbsp;</p>\n<p style=\"text-align: justify;\">O caso apresenta uma gestante de 41 anos, com 36 semanas e 4 dias de gesta&ccedil;&atilde;o, que apresenta quadro cl&iacute;nico caracter&iacute;stico de Colestase Intra-Hep&aacute;tica da Gesta&ccedil;&atilde;o (CIHG). Os sintomas cardinais s&atilde;o o prurido intenso (principal sintoma da CIHG), ins&ocirc;nia (frequentemente secund&aacute;ria ao prurido) e mal-estar associados a aus&ecirc;ncia de les&otilde;es t&iacute;picas.</p>\n<p style=\"text-align: justify;\">Os exames laboratoriais mostram eleva&ccedil;&atilde;o discreta das transaminases (TGO=70 U/L e TGP=110 U/L) e das bilirrubinas, principalmente da fra&ccedil;&atilde;o direta (BD=1,10 mg/dL), o que &eacute; compat&iacute;vel com o padr&atilde;o&nbsp;colest&aacute;tico. A ultrassonografia abdominal n&atilde;o mostra dilata&ccedil;&atilde;o de vias biliares, o que ajuda a descartar causas obstrutivas extra-hep&aacute;ticas, sendo o p&oacute;lipo de ves&iacute;cula biliar um achado incidental n&atilde;o relacionado ao quadro atual. O perfil biof&iacute;sico fetal e o Doppler est&atilde;o normais, indicando bem-estar fetal no momento da avalia&ccedil;&atilde;o, mas isso n&atilde;o exclui o risco aumentado de complica&ccedil;&otilde;es fetais associadas &agrave; CIHG.</p>\n<p style=\"text-align: justify;\">A colestase grav&iacute;dica, tamb&eacute;m conhecida como colestase intra-hep&aacute;tica da gravidez, &eacute; caracterizada por um quadro de prurido generalizado, associado a uma hepatopatia espec&iacute;fica da gravidez, com eleva&ccedil;&atilde;o nas concentra&ccedil;&otilde;es s&eacute;ricas de &aacute;cidos biliares e de enzimas canaliculares. Em geral, se desenvolve durante o terceiro trimestre ou, em alguns casos, no final do segundo&nbsp;trimestre, e costuma apresentar r&aacute;pida remiss&atilde;o ap&oacute;s o parto.</p>\n<p style=\"text-align: justify;\">O diagn&oacute;stico &eacute; realizado a partir do quadro cl&iacute;nico de prurido&nbsp;generalizado, principalmente em palmas de m&atilde;os e plantas de p&eacute;s, com maior intensidade &agrave; noite, que apresenta piora progressiva no terceiro trimestre, sem les&atilde;o cut&acirc;nea compat&iacute;vel. O padr&atilde;o-ouro do diagn&oacute;stico &eacute; a dosagem dos &aacute;cidos biliares, que se encontram elevados.&nbsp;Na aus&ecirc;ncia desta dosagem, que nem sempre est&aacute; dispon&iacute;vel, ajudam os demais marcadores, como as transaminases, as bilirrubinas total e direta, a fosfatase alcalina.&nbsp;</p>\n<p><strong>Gabarito</strong>: Colestase intra-hep&aacute;tica gestacional.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Grava essa informa&ccedil;&atilde;o: gestante que come&ccedil;a com prurido no terceiro trimestre da gesta&ccedil;&atilde;o, sem les&atilde;o t&iacute;pica e com altera&ccedil;&otilde;es hep&aacute;ticas precisamos pensar em colestase grav&iacute;dica!! A conduta nesses casos &eacute; iniciar o &aacute;cido ursodesoxic&oacute;lico e parto por volta das 37 semanas se a paciente estiver est&aacute;vel e com exames est&aacute;veis!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 207476,
+        "number": 7,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "m",
+        "question_ai_update": null,
+        "focus_name": "Dermatoses e doenças infectoparasitárias na gestação",
+        "focus": {
+          "id": 1602,
+          "name": "Dermatoses e doenças infectoparasitárias na gestação"
+        }
+      },
+      "detail": {
+        "id": 207476,
+        "content": "Caso Clínico 2     \n\nUma mulher de 41 anos de idade, G3P0C1A1, IG = 36 + 4,  apresentando prurido intenso, insônia e mal-estar, compareceu  ao hospital. Seus dados eram os seguintes: pressão  arterial = 140 mmHg × 80 mmHg;TGO=70 U/L;TGP=110U/L;  bilirrubinas: bilirrubina total (BT) = 1,70 mg/dL; bilirrubina  direta (BD) = 1,10 mg/dL; e bilirrubina indireta (BI) = 0,60 mg/dL.  Ultrassonografia de abdome com pólipo de vesícula biliar,  ausência de dilatação de vias biliares. Perfil biofísico fetal 10/10  e ultrassonografia com Doppler normal.    \n\nIndique o tratamento clínico e responda se a paciente tem critérios de interrupção da gestação.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 7,
+          "name": "IAMSPE",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 15965,
+            "parent_tag": {
+              "id": 15909,
+              "name": "Doenças clínicas na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Dermatoses e doenças infectoparasitárias na gestação",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 7,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 8,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1602,
+          "name": "Dermatoses e doenças infectoparasitárias na gestação",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 97,
+            "name": "Doenças clínicas na gestação",
+            "discipline": 86,
+            "old_tag": 15909,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 229699,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">O caso apresenta uma gestante de 41 anos, com 36 semanas e 4 dias de gesta&ccedil;&atilde;o, que apresenta quadro cl&iacute;nico caracter&iacute;stico de Colestase Intra-Hep&aacute;tica da Gesta&ccedil;&atilde;o (CIHG). Os sintomas cardinais s&atilde;o o prurido intenso (principal sintoma da CIHG), ins&ocirc;nia (frequentemente secund&aacute;ria ao prurido) e mal-estar associados a aus&ecirc;ncia de les&otilde;es t&iacute;picas.</p>\n<p style=\"text-align: justify;\">Os exames laboratoriais mostram eleva&ccedil;&atilde;o discreta das transaminases (TGO=70 U/L e TGP=110 U/L) e das bilirrubinas, principalmente da fra&ccedil;&atilde;o direta (BD=1,10 mg/dL), o que &eacute; compat&iacute;vel com o padr&atilde;o&nbsp;colest&aacute;tico. A ultrassonografia abdominal n&atilde;o mostra dilata&ccedil;&atilde;o de vias biliares, o que ajuda a descartar causas obstrutivas extra-hep&aacute;ticas, sendo o p&oacute;lipo de ves&iacute;cula biliar um achado incidental n&atilde;o relacionado ao quadro atual. O perfil biof&iacute;sico fetal e o Doppler est&atilde;o normais, indicando bem-estar fetal no momento da avalia&ccedil;&atilde;o, mas isso n&atilde;o exclui o risco aumentado de complica&ccedil;&otilde;es fetais associadas &agrave; CIHG.</p>\n<p style=\"text-align: justify;\">A colestase grav&iacute;dica, tamb&eacute;m conhecida como colestase intra-hep&aacute;tica da gravidez, &eacute; caracterizada por um quadro de prurido generalizado, associado a uma hepatopatia espec&iacute;fica da gravidez, com eleva&ccedil;&atilde;o nas concentra&ccedil;&otilde;es s&eacute;ricas de &aacute;cidos biliares e de enzimas canaliculares. Em geral, se desenvolve durante o terceiro trimestre ou, em alguns casos, no final do segundo&nbsp;trimestre, e costuma apresentar r&aacute;pida remiss&atilde;o ap&oacute;s o parto.</p>\n<p style=\"text-align: justify;\">O agente preferencial para o tratamento &eacute; o &aacute;cido ursodesoxic&oacute;lico, que &eacute; um &aacute;cido biliar fisiologicamente presente na bile humana, mas em pequena quantidade, e atua inibindo a s&iacute;ntese hep&aacute;tica do colesterol e estimulando a s&iacute;ntese dos &aacute;cidos biliares, restabelecendo assim o equil&iacute;brio entre eles, por aumentar os hidrof&iacute;licos em detrimento dos hidrof&oacute;bicos. Com essa a&ccedil;&atilde;o, aumenta-se a solubiliza&ccedil;&atilde;o do colesterol e facilita-se a drenagem dos &aacute;cidos biliares, com melhoria da colestase. Trata-se, ent&atilde;o, de um agente desintoxicador do processo colest&aacute;tico.&nbsp;</p>\n<p style=\"text-align: justify;\">Indica-se a resolu&ccedil;&atilde;o da gravidez quando houver sofrimento fetal ou no insucesso terap&ecirc;utico, quando se observa a manuten&ccedil;&atilde;o do quadro&nbsp;laboratorial alterado na vig&ecirc;ncia das medica&ccedil;&otilde;es usuais em dose m&aacute;xima. De qualquer forma, nos casos adequadamente controlados, com par&acirc;metros laboratoriais normais, n&atilde;o se deve ultrapassar a 37a semana e se indica a interrup&ccedil;&atilde;o terap&ecirc;utica da gravidez ao se alcan&ccedil;ar o termo, conduta concordante com a maioria das diretrizes inter nacionais, como do Royal College of Obstetricians and Gynecologists (RCOG) e o do American College of Obstetricians and Gynecologists (ACOG).</p>\n<p><strong>Gabarito</strong>: &nbsp;&Aacute;cido ursodesoxic&oacute;lico (UDCA). N&atilde;o h&aacute; crit&eacute;rios de interrup&ccedil;&atilde;o da gesta&ccedil;&atilde;o.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Grava essa informa&ccedil;&atilde;o: gestante que come&ccedil;a com prurido no terceiro trimestre da gesta&ccedil;&atilde;o, sem les&atilde;o t&iacute;pica e com altera&ccedil;&otilde;es hep&aacute;ticas precisamos pensar em colestase grav&iacute;dica!! A conduta nesses casos &eacute; iniciar o &aacute;cido ursodesoxic&oacute;lico e parto por volta das 37 semanas se a paciente estiver est&aacute;vel e com exames est&aacute;veis!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">O caso apresenta uma gestante de 41 anos, com 36 semanas e 4 dias de gesta&ccedil;&atilde;o, que apresenta quadro cl&iacute;nico caracter&iacute;stico de Colestase Intra-Hep&aacute;tica da Gesta&ccedil;&atilde;o (CIHG). Os sintomas cardinais s&atilde;o o prurido intenso (principal sintoma da CIHG), ins&ocirc;nia (frequentemente secund&aacute;ria ao prurido) e mal-estar associados a aus&ecirc;ncia de les&otilde;es t&iacute;picas.</p>\n<p style=\"text-align: justify;\">Os exames laboratoriais mostram eleva&ccedil;&atilde;o discreta das transaminases (TGO=70 U/L e TGP=110 U/L) e das bilirrubinas, principalmente da fra&ccedil;&atilde;o direta (BD=1,10 mg/dL), o que &eacute; compat&iacute;vel com o padr&atilde;o&nbsp;colest&aacute;tico. A ultrassonografia abdominal n&atilde;o mostra dilata&ccedil;&atilde;o de vias biliares, o que ajuda a descartar causas obstrutivas extra-hep&aacute;ticas, sendo o p&oacute;lipo de ves&iacute;cula biliar um achado incidental n&atilde;o relacionado ao quadro atual. O perfil biof&iacute;sico fetal e o Doppler est&atilde;o normais, indicando bem-estar fetal no momento da avalia&ccedil;&atilde;o, mas isso n&atilde;o exclui o risco aumentado de complica&ccedil;&otilde;es fetais associadas &agrave; CIHG.</p>\n<p style=\"text-align: justify;\">A colestase grav&iacute;dica, tamb&eacute;m conhecida como colestase intra-hep&aacute;tica da gravidez, &eacute; caracterizada por um quadro de prurido generalizado, associado a uma hepatopatia espec&iacute;fica da gravidez, com eleva&ccedil;&atilde;o nas concentra&ccedil;&otilde;es s&eacute;ricas de &aacute;cidos biliares e de enzimas canaliculares. Em geral, se desenvolve durante o terceiro trimestre ou, em alguns casos, no final do segundo&nbsp;trimestre, e costuma apresentar r&aacute;pida remiss&atilde;o ap&oacute;s o parto.</p>\n<p style=\"text-align: justify;\">O agente preferencial para o tratamento &eacute; o &aacute;cido ursodesoxic&oacute;lico, que &eacute; um &aacute;cido biliar fisiologicamente presente na bile humana, mas em pequena quantidade, e atua inibindo a s&iacute;ntese hep&aacute;tica do colesterol e estimulando a s&iacute;ntese dos &aacute;cidos biliares, restabelecendo assim o equil&iacute;brio entre eles, por aumentar os hidrof&iacute;licos em detrimento dos hidrof&oacute;bicos. Com essa a&ccedil;&atilde;o, aumenta-se a solubiliza&ccedil;&atilde;o do colesterol e facilita-se a drenagem dos &aacute;cidos biliares, com melhoria da colestase. Trata-se, ent&atilde;o, de um agente desintoxicador do processo colest&aacute;tico.&nbsp;</p>\n<p style=\"text-align: justify;\">Indica-se a resolu&ccedil;&atilde;o da gravidez quando houver sofrimento fetal ou no insucesso terap&ecirc;utico, quando se observa a manuten&ccedil;&atilde;o do quadro&nbsp;laboratorial alterado na vig&ecirc;ncia das medica&ccedil;&otilde;es usuais em dose m&aacute;xima. De qualquer forma, nos casos adequadamente controlados, com par&acirc;metros laboratoriais normais, n&atilde;o se deve ultrapassar a 37a semana e se indica a interrup&ccedil;&atilde;o terap&ecirc;utica da gravidez ao se alcan&ccedil;ar o termo, conduta concordante com a maioria das diretrizes inter nacionais, como do Royal College of Obstetricians and Gynecologists (RCOG) e o do American College of Obstetricians and Gynecologists (ACOG).</p>\n<p><strong>Gabarito</strong>: &nbsp;&Aacute;cido ursodesoxic&oacute;lico (UDCA). N&atilde;o h&aacute; crit&eacute;rios de interrup&ccedil;&atilde;o da gesta&ccedil;&atilde;o.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Grava essa informa&ccedil;&atilde;o: gestante que come&ccedil;a com prurido no terceiro trimestre da gesta&ccedil;&atilde;o, sem les&atilde;o t&iacute;pica e com altera&ccedil;&otilde;es hep&aacute;ticas precisamos pensar em colestase grav&iacute;dica!! A conduta nesses casos &eacute; iniciar o &aacute;cido ursodesoxic&oacute;lico e parto por volta das 37 semanas se a paciente estiver est&aacute;vel e com exames est&aacute;veis!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 207477,
+        "number": 8,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite",
+        "focus": {
+          "id": 1588,
+          "name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite"
+        }
+      },
+      "detail": {
+        "id": 207477,
+        "content": "Caso Clínico 3\n\nUma paciente de 61 anos de idade, com descarga papilar  uniductal, unilateral, em mama direita, com sangue há dois  meses, compareceu a uma consulta. Não tinha antecedentes  pessoais ou patológicos. O exame físico revelou o seguinte:  semnódulos; fluxo papilar hemático sem ponto de gatilho.     \n\n\nQual é a conduta propedêutica inicial?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 7,
+          "name": "IAMSPE",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 15979,
+            "parent_tag": {
+              "id": 15902,
+              "name": "Mastologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 8,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 8,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1588,
+          "name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 104,
+            "name": "Mastologia",
+            "discipline": 86,
+            "old_tag": 15902,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 229700,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Este caso apresenta uma paciente de 61 anos com descarga papilar hemática, uniductal e unilateral em mama direita há dois meses, sem antecedentes pessoais ou patológicos relevantes, e sem nódulos palpáveis ao exame físico. Essa apresentação clínica merece atenção especial, pois a descarga papilar com sangue, quando uniductal e unilateral, é considerada patológica e possui maior associação com lesões malignas, especialmente em mulheres na pós-menopausa.</p>\n<p style=\"text-align: justify;\">O raciocínio clínico neste caso deve considerar que, apesar da ausência de nódulos palpáveis, a descarga papilar hemática pode ser manifestação de lesões intraductais como papilomas, carcinoma ductal in situ ou carcinoma invasivo. A idade da paciente (61 anos) também é um fator que aumenta a preocupação com malignidade. Portanto, uma investigação diagnóstica adequada com mamografia e ultrassonografia das mamas é fundamental para excluir neoplasia maligna. </p>\n<p style=\"text-align: justify;\">A investigação com exames complementares é necessária com o uso da mamografia de rotina para a exclusão de outras lesões associadas. A ultrassonografia pode ser associada de modo a identificar lesões intraductais ou diferenciar lesões sólidas de císticas. A ressonância magnética pode ser associada à propedêutica complementar quando os demais exames não mostram alterações, mas a suspeita persiste. A <span class=\"article-3576\">ductografia</span> e a ductoscopia são exames abandonados atualmente. A citologia oncótica do fluxo papilar não tem valor diagnóstico.</p>\n<p><strong>Gabarito</strong>:  Solicitar mamografia e ultrassonografia mamária.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Não tem muito pra onde correr, a mamografia e a ultrassonografia das mamas costumam ser os primeiros exames a serem solicitados no manejo da paciente com lesão mamária a esclarecer. A ressonância vamos reservar para situações nas quais tais exames foram inconclusivos. </p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Este caso apresenta uma paciente de 61 anos com descarga papilar hemática, uniductal e unilateral em mama direita há dois meses, sem antecedentes pessoais ou patológicos relevantes, e sem nódulos palpáveis ao exame físico. Essa apresentação clínica merece atenção especial, pois a descarga papilar com sangue, quando uniductal e unilateral, é considerada patológica e possui maior associação com lesões malignas, especialmente em mulheres na pós-menopausa.</p>\n<p style=\"text-align: justify;\">O raciocínio clínico neste caso deve considerar que, apesar da ausência de nódulos palpáveis, a descarga papilar hemática pode ser manifestação de lesões intraductais como papilomas, carcinoma ductal in situ ou carcinoma invasivo. A idade da paciente (61 anos) também é um fator que aumenta a preocupação com malignidade. Portanto, uma investigação diagnóstica adequada com mamografia e ultrassonografia das mamas é fundamental para excluir neoplasia maligna. </p>\n<p style=\"text-align: justify;\">A investigação com exames complementares é necessária com o uso da mamografia de rotina para a exclusão de outras lesões associadas. A ultrassonografia pode ser associada de modo a identificar lesões intraductais ou diferenciar lesões sólidas de císticas. A ressonância magnética pode ser associada à propedêutica complementar quando os demais exames não mostram alterações, mas a suspeita persiste. A <span class=\"article-3576\">ductografia</span> e a ductoscopia são exames abandonados atualmente. A citologia oncótica do fluxo papilar não tem valor diagnóstico.</p>\n<p><strong>Gabarito</strong>:  Solicitar mamografia e ultrassonografia mamária.</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Não tem muito pra onde correr, a mamografia e a ultrassonografia das mamas costumam ser os primeiros exames a serem solicitados no manejo da paciente com lesão mamária a esclarecer. A ressonância vamos reservar para situações nas quais tais exames foram inconclusivos. </p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 207478,
+        "number": 9,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite",
+        "focus": {
+          "id": 1588,
+          "name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite"
+        }
+      },
+      "detail": {
+        "id": 207478,
+        "content": "Caso Clínico 3  \n\nUma paciente de 61 anos de idade, com descarga papilar  uniductal, unilateral, em mama direita, com sangue há dois  meses, compareceu a uma consulta. Não tinha antecedentes  pessoais ou patológicos. O exame físico revelou o seguinte:  semnódulos; fluxo papilar hemático sem ponto de gatilho.     \n\nNa ausência de achados após a propedêutica inicial, qual é o próximo passo?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 7,
+          "name": "IAMSPE",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 15979,
+            "parent_tag": {
+              "id": 15902,
+              "name": "Mastologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 9,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 13,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1588,
+          "name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 104,
+            "name": "Mastologia",
+            "discipline": 86,
+            "old_tag": 15902,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 229701,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Estamos diante de um caso clínico de uma paciente de 61 anos com descarga papilar uniductal, unilateral e hemática (com sangue) na mama direita há dois meses, sem outros achados no exame físico. Este quadro merece atenção especial, pois a descarga papilar hemática é considerada patológica e requer investigação adequada, independentemente da ausência de outros sinais clínicos.</p>\n<p style=\"text-align: justify;\">O raciocínio clínico aqui deve considerar que estamos diante de uma paciente na pós-menopausa com um sinal de alerta importante para patologias intraductais. A descarga papilar com sangue, quando uniductal e unilateral, está associada a um risco maior de patologias como <span class=\"article-3575\">papiloma intraductal</span>, carcinoma ductal in situ e, menos frequentemente, carcinoma invasivo.</p>\n<p style=\"text-align: justify;\">A ausência de nódulos palpáveis ou ponto de gatilho específico não exclui a necessidade de investigação aprofundada. Neste contexto, após a propedêutica inicial (anamnese e exame físico), precisamos definir qual seria o próximo passo diagnóstico mais adequado para elucidar a causa dessa descarga papilar hemática, considerando o algoritmo de investigação de alterações mamárias. </p>\n<p style=\"text-align: justify;\">A investigação com exames complementares é necessária com o uso da mamografia de rotina para a exclusão de outras lesões associadas. A ultrassonografia pode ser associada de modo a identificar lesões intraductais ou diferenciar lesões sólidas de císticas. A ressonância magnética pode ser associada à propedêutica complementar quando os demais exames não mostram alterações, mas a suspeita persiste. A <span class=\"article-3576\">ductografia</span> e a ductoscopia são exames abandonados atualmente. A citologia oncótica do fluxo papilar não tem valor diagnóstico. </p>\n<p style=\"text-align: justify;\">Como a questão quer saber qual o próximo passo após a propedêutica inicial (mamografia e ultrassonografia), a nossa resposta é ressonância de mamas.</p>\n<p><strong>Gabarito</strong>:  Ressonância magnética de mama com contraste.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>.Vamos relembrar um pouco sobre as principais etiologias de fluxo papilar e sua classificação de acordo com a localização?</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T175758103Z126442.png\"/></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Estamos diante de um caso clínico de uma paciente de 61 anos com descarga papilar uniductal, unilateral e hemática (com sangue) na mama direita há dois meses, sem outros achados no exame físico. Este quadro merece atenção especial, pois a descarga papilar hemática é considerada patológica e requer investigação adequada, independentemente da ausência de outros sinais clínicos.</p>\n<p style=\"text-align: justify;\">O raciocínio clínico aqui deve considerar que estamos diante de uma paciente na pós-menopausa com um sinal de alerta importante para patologias intraductais. A descarga papilar com sangue, quando uniductal e unilateral, está associada a um risco maior de patologias como <span class=\"article-3575\">papiloma intraductal</span>, carcinoma ductal in situ e, menos frequentemente, carcinoma invasivo.</p>\n<p style=\"text-align: justify;\">A ausência de nódulos palpáveis ou ponto de gatilho específico não exclui a necessidade de investigação aprofundada. Neste contexto, após a propedêutica inicial (anamnese e exame físico), precisamos definir qual seria o próximo passo diagnóstico mais adequado para elucidar a causa dessa descarga papilar hemática, considerando o algoritmo de investigação de alterações mamárias. </p>\n<p style=\"text-align: justify;\">A investigação com exames complementares é necessária com o uso da mamografia de rotina para a exclusão de outras lesões associadas. A ultrassonografia pode ser associada de modo a identificar lesões intraductais ou diferenciar lesões sólidas de císticas. A ressonância magnética pode ser associada à propedêutica complementar quando os demais exames não mostram alterações, mas a suspeita persiste. A <span class=\"article-3576\">ductografia</span> e a ductoscopia são exames abandonados atualmente. A citologia oncótica do fluxo papilar não tem valor diagnóstico. </p>\n<p style=\"text-align: justify;\">Como a questão quer saber qual o próximo passo após a propedêutica inicial (mamografia e ultrassonografia), a nossa resposta é ressonância de mamas.</p>\n<p><strong>Gabarito</strong>:  Ressonância magnética de mama com contraste.</p><br>Visão do aprovado: <p>.Vamos relembrar um pouco sobre as principais etiologias de fluxo papilar e sua classificação de acordo com a localização?</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T175758103Z126442.png\"/></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 207479,
+        "number": 10,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite",
+        "focus": {
+          "id": 1588,
+          "name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite"
+        }
+      },
+      "detail": {
+        "id": 207479,
+        "content": "Caso Clínico 3  \n\nUma paciente de 61 anos de idade, com descarga papilar  uniductal, unilateral, em mama direita, com sangue há dois  meses, compareceu a uma consulta. Não tinha antecedentes  pessoais ou patológicos. O exame físico revelou o seguinte:  semnódulos; fluxo papilar hemático sem ponto de gatilho.\n\nQuais são os quatro possíveis diagnósticos diferenciais?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 7,
+          "name": "IAMSPE",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2023,
+        "tag": [
+          {
+            "id": 15979,
+            "parent_tag": {
+              "id": 15902,
+              "name": "Mastologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 10,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 8,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1588,
+          "name": "Doenças benignas da mama parte 1: fluxo papilar, AFBM e mastite",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 104,
+            "name": "Mastologia",
+            "discipline": 86,
+            "old_tag": 15902,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 229702,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Fluxo papilar, descarga papilar ou derrame papilar. Todos esses nomes representam a mesma condição de exteriorização de material fluido pela papila mamária fora do ciclo gravídico-puerperal. Trata-se de um quadro de origem benigna em 90 a 95% das vezes e pode acometer mulheres em diferentes faixas etárias.</p>\n<p style=\"text-align: justify;\">Estamos diante de um caso de descarga papilar hemática em uma paciente de 61 anos, um achado que sempre merece atenção especial. A descarga papilar é classificada como patológica quando apresenta características como ser unilateral, uniductal, espontânea e/ou hemática - todas presentes neste caso. A idade da paciente (61 anos) também é um fator que aumenta a preocupação com possíveis causas malignas. </p>\n<p style=\"text-align: justify;\">O raciocínio clínico nesse caso deve partir do reconhecimento de que descargas papilares hemáticas, mesmo sem nódulos palpáveis, podem estar associadas a lesões intraductais que não são detectáveis ao exame físico. A ausência de \"ponto de gatilho\" (área específica que, quando pressionada, provoca a descarga) sugere que o processo pode estar mais profundo no sistema ductal. </p>\n<p style=\"text-align: justify;\">Os quatro principais diagnósticos diferenciais para este caso são:</p>\n<ol>\n<li style=\"text-align: justify;\">Papiloma intraductal: É a causa mais comum de descarga papilar hemática, responsável por aproximadamente 35-48% dos casos. São lesões benignas que se desenvolvem dentro dos ductos mamários, geralmente solitárias e próximas à região subareolar. Embora benignas, alguns papilomas podem estar associados a atipia celular, aumentando o risco de malignidade.</li>\n<li style=\"text-align: justify;\">Carcinoma ductal in situ (CDIS): É uma lesão maligna não invasiva que pode se manifestar com descarga papilar sanguinolenta. Representa cerca de 5-15% dos casos de descarga papilar hemática. A ausência de nódulo palpável é compatível com CDIS, já que esta lesão está confinada aos ductos.</li>\n<li style=\"text-align: justify;\">Carcinoma ductal invasivo: Embora menos comum como causa isolada de descarga papilar (cerca de 5-8% dos casos), deve sempre ser considerado, especialmente em mulheres acima de 60 anos. A descarga hemática pode ser o primeiro sinal, mesmo antes de um nódulo ser palpável.</li>\n<li style=\"text-align: justify;\"><span class=\"article-3600\">Ectasia ductal</span>: Condição benigna caracterizada pela dilatação dos ductos mamários, frequentemente associada a inflamação. Representa aproximadamente 15-20% das causas de descarga papilar. Tipicamente afeta mulheres na peri ou pós-menopausa e pode causar descarga espessa ou hemática.</li>\n<li style=\"text-align: justify;\">Outros diagnósticos que poderiam ser considerados incluem: Papilomatose (múltiplos papilomas); Adenoma do mamilo; Traumatismo local; Doenças inflamatórias da mama.</li>\n</ol>\n<p><strong>Gabarito</strong>:  <span class=\"article-3575\">Papiloma intraductal</span>, carcinoma papilífero, carcinoma ductal in situ, carcinoma mamário invasivo.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Aproveita a questão para relembrar as características de malignidade de um fluxo papilar:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T175327344Z199160.png\"/></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Fluxo papilar, descarga papilar ou derrame papilar. Todos esses nomes representam a mesma condição de exteriorização de material fluido pela papila mamária fora do ciclo gravídico-puerperal. Trata-se de um quadro de origem benigna em 90 a 95% das vezes e pode acometer mulheres em diferentes faixas etárias.</p>\n<p style=\"text-align: justify;\">Estamos diante de um caso de descarga papilar hemática em uma paciente de 61 anos, um achado que sempre merece atenção especial. A descarga papilar é classificada como patológica quando apresenta características como ser unilateral, uniductal, espontânea e/ou hemática - todas presentes neste caso. A idade da paciente (61 anos) também é um fator que aumenta a preocupação com possíveis causas malignas. </p>\n<p style=\"text-align: justify;\">O raciocínio clínico nesse caso deve partir do reconhecimento de que descargas papilares hemáticas, mesmo sem nódulos palpáveis, podem estar associadas a lesões intraductais que não são detectáveis ao exame físico. A ausência de \"ponto de gatilho\" (área específica que, quando pressionada, provoca a descarga) sugere que o processo pode estar mais profundo no sistema ductal. </p>\n<p style=\"text-align: justify;\">Os quatro principais diagnósticos diferenciais para este caso são:</p>\n<ol>\n<li style=\"text-align: justify;\">Papiloma intraductal: É a causa mais comum de descarga papilar hemática, responsável por aproximadamente 35-48% dos casos. São lesões benignas que se desenvolvem dentro dos ductos mamários, geralmente solitárias e próximas à região subareolar. Embora benignas, alguns papilomas podem estar associados a atipia celular, aumentando o risco de malignidade.</li>\n<li style=\"text-align: justify;\">Carcinoma ductal in situ (CDIS): É uma lesão maligna não invasiva que pode se manifestar com descarga papilar sanguinolenta. Representa cerca de 5-15% dos casos de descarga papilar hemática. A ausência de nódulo palpável é compatível com CDIS, já que esta lesão está confinada aos ductos.</li>\n<li style=\"text-align: justify;\">Carcinoma ductal invasivo: Embora menos comum como causa isolada de descarga papilar (cerca de 5-8% dos casos), deve sempre ser considerado, especialmente em mulheres acima de 60 anos. A descarga hemática pode ser o primeiro sinal, mesmo antes de um nódulo ser palpável.</li>\n<li style=\"text-align: justify;\"><span class=\"article-3600\">Ectasia ductal</span>: Condição benigna caracterizada pela dilatação dos ductos mamários, frequentemente associada a inflamação. Representa aproximadamente 15-20% das causas de descarga papilar. Tipicamente afeta mulheres na peri ou pós-menopausa e pode causar descarga espessa ou hemática.</li>\n<li style=\"text-align: justify;\">Outros diagnósticos que poderiam ser considerados incluem: Papilomatose (múltiplos papilomas); Adenoma do mamilo; Traumatismo local; Doenças inflamatórias da mama.</li>\n</ol>\n<p><strong>Gabarito</strong>:  <span class=\"article-3575\">Papiloma intraductal</span>, carcinoma papilífero, carcinoma ductal in situ, carcinoma mamário invasivo.</p><br>Visão do aprovado: <p>Aproveita a questão para relembrar as características de malignidade de um fluxo papilar:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250614T175327344Z199160.png\"/></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T19:01:18.969757+00:00",
+  "complete": true
+}

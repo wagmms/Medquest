@@ -1,0 +1,626 @@
+{
+  "track_id": 1274405,
+  "name": "PUC - Sorocaba - SP-2024-Discursiva",
+  "year": 2024,
+  "track_fast": {
+    "id": 1274405,
+    "name": "PUC - Sorocaba - SP-2024-Discursiva",
+    "track_type": "c",
+    "question_count": 5,
+    "year": 2024,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "PUC - Sorocaba",
+    "track_image": null,
+    "residency_degree": {
+      "id": 4,
+      "abbreviation": "R+CM"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 126905,
+        "number": 1,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Anemias e Hemoglobinopatias (R3)",
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)"
+        }
+      },
+      "detail": {
+        "id": 126905,
+        "content": "Paciente do sexo feminino, 27 anos, caucasiana, foi admitida na emergência referindo febre vespertina eventual há 1 semana, cansaço progressivo e um aumento muito significativo do fluxo menstrual há 1 dia. Queixava-se também de parestesia em extremidades, com início há um dia, dispneia e tosse seca. De antecedentes, referiu que aos 18 anos teve diagnóstico de purpura trombocitopênica, fez uso de corticoíde e azatioprina por longo período e estava sem medicação há 5 anos. Ao exame físico, foi evidenciada palidez cutâneo mucosa, normotensão arterial, taquicardia (134 bpm). A paciente estava afebril, com saturação de oxigênio de 95% em máscara de oxigênio, taquipneica, descorada (3+/4+), desidratada (2+/4+), acianótica e sub-ictérica. Apresentava algumas equimoses em tronco e linfonodomegalia inguinal bilateralmente. O rítmo cardíaco era regular e havia presença de sopro mitral e aórtico. Fígado e baço não palpáveis e sinal de Giordano era negativo. Os exames complementares iniciais apresentaram os seguintes resultados: Hemácias 950.000/mm3; Hb 3.7 g/dL; Ht 10,8 %; VCM 113,7 fl; HCM 38,9 pg; RDW 11,4%; Leucócitos 12.400/mm3; Bastões 1%; Segmentados 86%; Eosinófilos 1%; Linfócitos 6%; Plaquetas 10.000/mm3; Reticulócitos - 5,2% (VR 0,5%- 1,5%); PCR 1,62 mg/dL Bilirrubinas totais 2,73; bilirrubinas indiretas 1,95 (VR 1,65/0,9 mg/dL); Haptoglobina 30 (VR 44-125 mg/dL); Eletroforese de Hemoglobina normal; DHL 1069 (VR 125-220); Coombs direto Positivo Qual(is) seria(m) sua(s) hipótese(s) diagnóstica inicial?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 1667,
+            "parent_tag": {
+              "id": 1604,
+              "name": "Hematologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Anemias e Hemoglobinopatias (R3)",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 74,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 145,
+            "name": "Hematologia",
+            "discipline": 96,
+            "old_tag": 1604,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 112980,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Enunciado extenso, mas vamos tentar simplificar! Temos uma<strong> paciente jovem do sexo feminino</strong>, con<strong> hist&oacute;rico de p&uacute;pura trombocitop&ecirc;nica imune (PTI) </strong>pr&eacute;via tratada por 5 anos com imunossupress&atilde;o, atualmente sem medica&ccedil;&otilde;es, que evolui h&aacute; 1 semana com sintomas an&ecirc;micos e aumento do fluxo menstrual, sendo evidenciado no exame f&iacute;sico sinais de anemia grave (taquicardia, sopro, palidez, dessatura&ccedil;&atilde;o), equimoses, linfonodomegalia e ict&eacute;ricia. Em exames complementares, de fato apresentava<strong> anemia grave (Hb 3.7) hiperproliferativa (reticulocitose) macroc&iacute;tica, com sinais de hem&oacute;lise </strong>(aumento de bilirrubinas indiretas, aumento de DHL e consumo de haptoglobina)<strong> e teste de Coombs direto positivo (falando &agrave; favor de anemia hemol&iacute;tica auto-imune)</strong>. Al&eacute;m disso, leucograma dentro da normalidade e plaquetas evidenciando <strong>plaquetopenia importante (10.000). </strong>Somos ent&atilde;o questionados sobre qual seria nossa hip&oacute;tese inicial!</p>\n<p style=\"text-align: justify;\">Pessoal, conhecem alguma condi&ccedil;&atilde;o que justificaria uma p&uacute;rpura&nbsp;<strong>trombocitop&ecirc;nica imune (PTI) associada a uma anemia hemol&iacute;tica auto-imune (AHAI)</strong>? Sim, estamos falando da <strong>S&iacute;ndrome de Evans! </strong>Vamos recordar o tema?</p>\n<p style=\"text-align: justify;\">A s&iacute;ndrome de Evans (SE) &eacute; uma doen&ccedil;a autoimune definida pela primeira vez por Robert Evans em 1951. Apresenta-se como anemia hemol&iacute;tica autoimune (AHAI) de anticorpos quentes associada &agrave; p&uacute;rpura trombocitop&ecirc;nica imune (PTI). A SE &eacute; rara, com incid&ecirc;ncia anual estimada de 1 a 3 casos por 100.000 habitantes. &Eacute; sempre importante hist&oacute;ria cl&iacute;nica e exame f&iacute;sico detalhados para determinar os fatores de risco para seu desenvolvimento como infec&ccedil;&otilde;es, doen&ccedil;as malignas, doen&ccedil;as autoimunes, vacinas recentes, medicamentos ou hist&oacute;rico familiar de dist&uacute;rbios imunol&oacute;gicos. Essa s&iacute;ndrome pode ser classificada como prim&aacute;ria ou idiop&aacute;tica quando n&atilde;o h&aacute; doen&ccedil;a associada e secund&aacute;ria quando &eacute; associada. O manejo da patologia &eacute; um desafio. Quando se refere &agrave; doen&ccedil;a secund&aacute;ria, o tratamento deve ser direcionado &agrave; doen&ccedil;a de base, pode ocorrer associa&ccedil;&atilde;o com LES, por exemplo. Quando idiop&aacute;tica, a primeira linha de conduta s&atilde;o corticosteroides com ou sem imunoglobulina intravenosa. Tratamento de segunda linha incluem agentes imunossupressores, o anticorpo monoclonal rituximab, quimioterapia ou uma combina&ccedil;&atilde;o desses agentes. Para pacientes com doen&ccedil;a recidivante grave, outras op&ccedil;&otilde;es precisam ser consideradas, como a ciclofosfamida ou at&eacute; o transplante de medula &oacute;ssea.&nbsp;&nbsp;</p>\n<p style=\"text-align: justify;\">Sabendo disso, o gabarito &eacute;: <strong>p&uacute;rpura trombocitopenia/anemia hemol&iacute;tica autoimune ou s&iacute;ndrome de Evans.</strong></p>\n<p>&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">AHAI e PTI s&atilde;o temas quent&iacute;ssimos para as provas de R3CM! Vamos relembrar alguns detalhes sobre a AHAI que podem cair na sua prova? Na AHAI por anticorpos quentes (IgG) teremos uma hem&oacute;lise extravascular e os anticorpos se ligar&atilde;o de forma &oacute;tima a &gt; 37&ordm;C. J&aacute; na AHAI de anticorpos frios (IgM), eles causam uma hem&oacute;lia intravascular e se expressam no TAD (Coombs) como C3d positivo! Guardem essas dicas.</p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Enunciado extenso, mas vamos tentar simplificar! Temos uma<strong> paciente jovem do sexo feminino</strong>, con<strong> hist&oacute;rico de p&uacute;pura trombocitop&ecirc;nica imune (PTI) </strong>pr&eacute;via tratada por 5 anos com imunossupress&atilde;o, atualmente sem medica&ccedil;&otilde;es, que evolui h&aacute; 1 semana com sintomas an&ecirc;micos e aumento do fluxo menstrual, sendo evidenciado no exame f&iacute;sico sinais de anemia grave (taquicardia, sopro, palidez, dessatura&ccedil;&atilde;o), equimoses, linfonodomegalia e ict&eacute;ricia. Em exames complementares, de fato apresentava<strong> anemia grave (Hb 3.7) hiperproliferativa (reticulocitose) macroc&iacute;tica, com sinais de hem&oacute;lise </strong>(aumento de bilirrubinas indiretas, aumento de DHL e consumo de haptoglobina)<strong> e teste de Coombs direto positivo (falando &agrave; favor de anemia hemol&iacute;tica auto-imune)</strong>. Al&eacute;m disso, leucograma dentro da normalidade e plaquetas evidenciando <strong>plaquetopenia importante (10.000). </strong>Somos ent&atilde;o questionados sobre qual seria nossa hip&oacute;tese inicial!</p>\n<p style=\"text-align: justify;\">Pessoal, conhecem alguma condi&ccedil;&atilde;o que justificaria uma p&uacute;rpura&nbsp;<strong>trombocitop&ecirc;nica imune (PTI) associada a uma anemia hemol&iacute;tica auto-imune (AHAI)</strong>? Sim, estamos falando da <strong>S&iacute;ndrome de Evans! </strong>Vamos recordar o tema?</p>\n<p style=\"text-align: justify;\">A s&iacute;ndrome de Evans (SE) &eacute; uma doen&ccedil;a autoimune definida pela primeira vez por Robert Evans em 1951. Apresenta-se como anemia hemol&iacute;tica autoimune (AHAI) de anticorpos quentes associada &agrave; p&uacute;rpura trombocitop&ecirc;nica imune (PTI). A SE &eacute; rara, com incid&ecirc;ncia anual estimada de 1 a 3 casos por 100.000 habitantes. &Eacute; sempre importante hist&oacute;ria cl&iacute;nica e exame f&iacute;sico detalhados para determinar os fatores de risco para seu desenvolvimento como infec&ccedil;&otilde;es, doen&ccedil;as malignas, doen&ccedil;as autoimunes, vacinas recentes, medicamentos ou hist&oacute;rico familiar de dist&uacute;rbios imunol&oacute;gicos. Essa s&iacute;ndrome pode ser classificada como prim&aacute;ria ou idiop&aacute;tica quando n&atilde;o h&aacute; doen&ccedil;a associada e secund&aacute;ria quando &eacute; associada. O manejo da patologia &eacute; um desafio. Quando se refere &agrave; doen&ccedil;a secund&aacute;ria, o tratamento deve ser direcionado &agrave; doen&ccedil;a de base, pode ocorrer associa&ccedil;&atilde;o com LES, por exemplo. Quando idiop&aacute;tica, a primeira linha de conduta s&atilde;o corticosteroides com ou sem imunoglobulina intravenosa. Tratamento de segunda linha incluem agentes imunossupressores, o anticorpo monoclonal rituximab, quimioterapia ou uma combina&ccedil;&atilde;o desses agentes. Para pacientes com doen&ccedil;a recidivante grave, outras op&ccedil;&otilde;es precisam ser consideradas, como a ciclofosfamida ou at&eacute; o transplante de medula &oacute;ssea.&nbsp;&nbsp;</p>\n<p style=\"text-align: justify;\">Sabendo disso, o gabarito &eacute;: <strong>p&uacute;rpura trombocitopenia/anemia hemol&iacute;tica autoimune ou s&iacute;ndrome de Evans.</strong></p>\n<p>&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">AHAI e PTI s&atilde;o temas quent&iacute;ssimos para as provas de R3CM! Vamos relembrar alguns detalhes sobre a AHAI que podem cair na sua prova? Na AHAI por anticorpos quentes (IgG) teremos uma hem&oacute;lise extravascular e os anticorpos se ligar&atilde;o de forma &oacute;tima a &gt; 37&ordm;C. J&aacute; na AHAI de anticorpos frios (IgM), eles causam uma hem&oacute;lia intravascular e se expressam no TAD (Coombs) como C3d positivo! Guardem essas dicas.</p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 126906,
+        "number": 2,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Anemias e Hemoglobinopatias (R3)",
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)"
+        }
+      },
+      "detail": {
+        "id": 126906,
+        "content": "Paciente do sexo feminino, 27 anos, caucasiana, foi admitida na emergência referindo febre vespertina eventual há 1 semana, cansaço progressivo e um aumento muito significativo do fluxo menstrual há 1 dia. Queixava-se também de parestesia em extremidades, com início há um dia, dispneia e tosse seca. De antecedentes, referiu que aos 18 anos teve diagnóstico de purpura trombocitopênica, fez uso de corticoíde e azatioprina por longo período e estava sem medicação há 5 anos. Ao exame físico, foi evidenciada palidez cutâneo mucosa, normotensão arterial, taquicardia (134 bpm). A paciente estava afebril, com saturação de oxigênio de 95% em máscara de oxigênio, taquipneica, descorada (3+/4+), desidratada (2+/4+), acianótica e sub-ictérica. Apresentava algumas equimoses em tronco e linfonodomegalia inguinal bilateralmente. O rítmo cardíaco era regular e havia presença de sopro mitral e aórtico. Fígado e baço não palpáveis e sinal de Giordano era negativo. Os exames complementares iniciais apresentaram os seguintes resultados: Hemácias 950.000/mm3; Hb 3.7 g/dL; Ht 10,8 %; VCM 113,7 fl; HCM 38,9 pg; RDW 11,4%; Leucócitos 12.400/mm3; Bastões 1%; Segmentados 86%; Eosinófilos 1%; Linfócitos 6%; Plaquetas 10.000/mm3; Reticulócitos - 5,2% (VR 0,5%- 1,5%); PCR 1,62 mg/dL Bilirrubinas totais 2,73; bilirrubinas indiretas 1,95 (VR 1,65/0,9 mg/dL); Haptoglobina 30 (VR 44-125 mg/dL); Eletroforese de Hemoglobina normal; DHL 1069 (VR 125-220); Coombs direto Positivo Qual seria sua conduta hemoterápica inicial?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 1667,
+            "parent_tag": {
+              "id": 1604,
+              "name": "Hematologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Anemias e Hemoglobinopatias (R3)",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 72,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 145,
+            "name": "Hematologia",
+            "discipline": 96,
+            "old_tag": 1604,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 112981,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Vamos relembrar o caso da quest&atilde;o anterior? Temos uma<strong> paciente jovem do sexo feminino</strong>, con<strong> hist&oacute;rico de p&uacute;pura trombocitop&ecirc;nica imune (PTI) </strong>pr&eacute;via tratada por 5 anos com imunossupress&atilde;o, atualmente sem medica&ccedil;&otilde;es, que evolui h&aacute; 1 semana com sintomas an&ecirc;micos e aumento do fluxo menstrual, sendo evidenciado no exame f&iacute;sico sinais de anemia grave (taquicardia, sopro, palidez, dessatura&ccedil;&atilde;o), equimoses, linfonodomegalia e ict&eacute;ricia. Em exames complementares, de fato apresentava<strong> anemia grave (Hb 3.7) hiperproliferativa (reticulocitose) macroc&iacute;tica, com sinais de hem&oacute;lise </strong>(aumento de bilirrubinas indiretas, aumento de DHL e consumo de haptoglobina)<strong> e teste de Coombs direto positivo (falando &agrave; favor de anemia hemol&iacute;tica auto-imune)</strong>. Al&eacute;m disso, leucograma dentro da normalidade e plaquetas evidenciando <strong>plaquetopenia importante (10.000). </strong>Nesse acaso a associa&ccedil;&atilde;o da <strong>p&uacute;rpura trombocitop&ecirc;nica imune (PTI) associada a uma anemia hemol&iacute;tica auto-imune (AHAI)</strong> configura a <strong>S&iacute;ndrome de Evans!</strong></p>\n<p style=\"text-align: justify;\">Somos questionados ent&atilde;o acerca da conduta hemoter&aacute;pica inicial! Galera, prestem aten&ccedil;&atilde;o: conduta &ldquo;hemoter&aacute;pica&rdquo;! N&atilde;o est&atilde;o nos perguntando o tratamento da causa base, mas sim os suportes que essa paciente precisa.&nbsp;</p>\n<p style=\"text-align: justify;\">Para a anemia grave, vamos necessitar da transfus&atilde;o de ao menos 3-4 <strong>concentrados de hem&aacute;cias</strong> fenotipadas em al&iacute;quotas (lembrem-se que cada concentrado aumento 1 ponto de Hb, noss paciente apresenta Hb atual de 3.7 e gostar&iacute;amos de chegar pr&oacute;ximo &agrave; 7.0). Em rela&ccedil;&atilde;o &agrave; plaquetopenia grave com manifesta&ccedil;&otilde;es hemorr&aacute;gicas, podemos lan&ccedil;ar m&atilde;o de uma<strong> 1 af&eacute;rese de plaquetas </strong>(equivalente a cerca de 7 concentrados de plaquetas) ou 1 concentrado de plaquetas para cada 10 kg de peso, buscando um valor pr&oacute;ximo de 50.000.&nbsp;</p>\n<p style=\"text-align: justify;\">Sendo assim, nosso gabarito &eacute;: <strong>concentrado de plaquetas 1 unidade para cada 10kg peso; concentrado de hem&aacute;cias fenotipadas (em al&iacute;quotas).</strong></p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Prova sim e prova tamb&eacute;m somos questionados acerca das indica&ccedil;&otilde;es de hemocomponentes e quando utilizaremos eles modificados. Vamos tentar resumir de forma a n&atilde;o esquecermos mais as indica&ccedil;&otilde;es de cada tipo: lavadas - para rea&ccedil;&otilde;es al&eacute;rgicas graves; irradia&ccedil;&atilde;o - usada para prevenir doen&ccedil;a do enxerto x hospedeiro em pacientes de alto risco; congelamento - para subtipos sangu&iacute;neos raros, visando preserva&ccedil;&atilde;o; redu&ccedil;&atilde;o volum&eacute;trica - quando h&aacute; risco de sobrecarga vol&ecirc;mica.</p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Vamos relembrar o caso da quest&atilde;o anterior? Temos uma<strong> paciente jovem do sexo feminino</strong>, con<strong> hist&oacute;rico de p&uacute;pura trombocitop&ecirc;nica imune (PTI) </strong>pr&eacute;via tratada por 5 anos com imunossupress&atilde;o, atualmente sem medica&ccedil;&otilde;es, que evolui h&aacute; 1 semana com sintomas an&ecirc;micos e aumento do fluxo menstrual, sendo evidenciado no exame f&iacute;sico sinais de anemia grave (taquicardia, sopro, palidez, dessatura&ccedil;&atilde;o), equimoses, linfonodomegalia e ict&eacute;ricia. Em exames complementares, de fato apresentava<strong> anemia grave (Hb 3.7) hiperproliferativa (reticulocitose) macroc&iacute;tica, com sinais de hem&oacute;lise </strong>(aumento de bilirrubinas indiretas, aumento de DHL e consumo de haptoglobina)<strong> e teste de Coombs direto positivo (falando &agrave; favor de anemia hemol&iacute;tica auto-imune)</strong>. Al&eacute;m disso, leucograma dentro da normalidade e plaquetas evidenciando <strong>plaquetopenia importante (10.000). </strong>Nesse acaso a associa&ccedil;&atilde;o da <strong>p&uacute;rpura trombocitop&ecirc;nica imune (PTI) associada a uma anemia hemol&iacute;tica auto-imune (AHAI)</strong> configura a <strong>S&iacute;ndrome de Evans!</strong></p>\n<p style=\"text-align: justify;\">Somos questionados ent&atilde;o acerca da conduta hemoter&aacute;pica inicial! Galera, prestem aten&ccedil;&atilde;o: conduta &ldquo;hemoter&aacute;pica&rdquo;! N&atilde;o est&atilde;o nos perguntando o tratamento da causa base, mas sim os suportes que essa paciente precisa.&nbsp;</p>\n<p style=\"text-align: justify;\">Para a anemia grave, vamos necessitar da transfus&atilde;o de ao menos 3-4 <strong>concentrados de hem&aacute;cias</strong> fenotipadas em al&iacute;quotas (lembrem-se que cada concentrado aumento 1 ponto de Hb, noss paciente apresenta Hb atual de 3.7 e gostar&iacute;amos de chegar pr&oacute;ximo &agrave; 7.0). Em rela&ccedil;&atilde;o &agrave; plaquetopenia grave com manifesta&ccedil;&otilde;es hemorr&aacute;gicas, podemos lan&ccedil;ar m&atilde;o de uma<strong> 1 af&eacute;rese de plaquetas </strong>(equivalente a cerca de 7 concentrados de plaquetas) ou 1 concentrado de plaquetas para cada 10 kg de peso, buscando um valor pr&oacute;ximo de 50.000.&nbsp;</p>\n<p style=\"text-align: justify;\">Sendo assim, nosso gabarito &eacute;: <strong>concentrado de plaquetas 1 unidade para cada 10kg peso; concentrado de hem&aacute;cias fenotipadas (em al&iacute;quotas).</strong></p><br>Visão do aprovado: <p style=\"text-align: justify;\">Prova sim e prova tamb&eacute;m somos questionados acerca das indica&ccedil;&otilde;es de hemocomponentes e quando utilizaremos eles modificados. Vamos tentar resumir de forma a n&atilde;o esquecermos mais as indica&ccedil;&otilde;es de cada tipo: lavadas - para rea&ccedil;&otilde;es al&eacute;rgicas graves; irradia&ccedil;&atilde;o - usada para prevenir doen&ccedil;a do enxerto x hospedeiro em pacientes de alto risco; congelamento - para subtipos sangu&iacute;neos raros, visando preserva&ccedil;&atilde;o; redu&ccedil;&atilde;o volum&eacute;trica - quando h&aacute; risco de sobrecarga vol&ecirc;mica.</p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 126907,
+        "number": 3,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "h",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Anemias e Hemoglobinopatias (R3)",
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)"
+        }
+      },
+      "detail": {
+        "id": 126907,
+        "content": "Paciente do sexo feminino, 27 anos, caucasiana, foi admitida na emergência referindo febre vespertina eventual há 1 semana, cansaço progressivo e um aumento muito significativo do fluxo menstrual há 1 dia. Queixava-se também de parestesia em extremidades, com início há um dia, dispneia e tosse seca. De antecedentes, referiu que aos 18 anos teve diagnóstico de purpura trombocitopênica, fez uso de corticoíde e azatioprina por longo período e estava sem medicação há 5 anos. Ao exame físico, foi evidenciada palidez cutâneo mucosa, normotensão arterial, taquicardia (134 bpm). A paciente estava afebril, com saturação de oxigênio de 95% em máscara de oxigênio, taquipneica, descorada (3+/4+), desidratada (2+/4+), acianótica e sub-ictérica. Apresentava algumas equimoses em tronco e linfonodomegalia inguinal bilateralmente. O rítmo cardíaco era regular e havia presença de sopro mitral e aórtico. Fígado e baço não palpáveis e sinal de Giordano era negativo. Os exames complementares iniciais apresentaram os seguintes resultados: Hemácias 950.000/mm3; Hb 3.7 g/dL; Ht 10,8 %; VCM 113,7 fl; HCM 38,9 pg; RDW 11,4%; Leucócitos 12.400/mm3; Bastões 1%; Segmentados 86%; Eosinófilos 1%; Linfócitos 6%; Plaquetas 10.000/mm3; Reticulócitos - 5,2% (VR 0,5%- 1,5%); PCR 1,62 mg/dL Bilirrubinas totais 2,73; bilirrubinas indiretas 1,95 (VR 1,65/0,9 mg/dL); Haptoglobina 30 (VR 44-125 mg/dL); Eletroforese de Hemoglobina normal; DHL 1069 (VR 125-220); Coombs direto Positivo Qual a terapêutica inicial indicada?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 1667,
+            "parent_tag": {
+              "id": 1604,
+              "name": "Hematologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Anemias e Hemoglobinopatias (R3)",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 70,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1836,
+          "name": "Anemias e Hemoglobinopatias (R3)",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 145,
+            "name": "Hematologia",
+            "discipline": 96,
+            "old_tag": 1604,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 112982,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Vamos relembrar o caso da quest&atilde;o anterior? Temos uma<strong> paciente jovem do sexo feminino</strong>, con<strong> hist&oacute;rico de p&uacute;pura trombocitop&ecirc;nica imune (PTI) </strong>pr&eacute;via tratada por 5 anos com imunossupress&atilde;o, atualmente sem medica&ccedil;&otilde;es, que evolui h&aacute; 1 semana com sintomas an&ecirc;micos e aumento do fluxo menstrual, sendo evidenciado no exame f&iacute;sico sinais de anemia grave (taquicardia, sopro, palidez, dessatura&ccedil;&atilde;o), equimoses, linfonodomegalia e ict&eacute;ricia. Em exames complementares, de fato apresentava<strong> anemia grave (Hb 3.7) hiperproliferativa (reticulocitose) macroc&iacute;tica, com sinais de hem&oacute;lise </strong>(aumento de bilirrubinas indiretas, aumento de DHL e consumo de haptoglobina)<strong> e teste de Coombs direto positivo (falando &agrave; favor de anemia hemol&iacute;tica auto-imune)</strong>. Al&eacute;m disso, leucograma dentro da normalidade e plaquetas evidenciando <strong>plaquetopenia importante (10.000). </strong>Nesse acaso a associa&ccedil;&atilde;o da <strong>p&uacute;rpura trombocitop&ecirc;nica imune (PTI) associada a uma anemia hemol&iacute;tica auto-imune (AHAI)</strong> configura a <strong>S&iacute;ndrome de Evans!</strong></p>\n<p style=\"text-align: justify;\">Somos questionados ent&atilde;o acerca da conduta terap&ecirc;utica inicial! Agora sim, estamos sendo questionados sobre o que fazer para &ldquo;frear&rdquo; a doen&ccedil;a e parar os estragos.&nbsp;</p>\n<p style=\"text-align: justify;\">De modo geral, uma vez abordado o estado hemodin&acirc;mico do paciente e realizado o suporte transfusional, a maioria dos especialistas utiliza <strong>glicocorticoides mais rituximabe</strong> como tratamento inicial para&nbsp; AHAI, especialmente para pacientes sintom&aacute;ticos. A maioria dos especialistas utiliza uma dose inicial de <strong>1 a 2 mg/kg de prednisona por via oral por dia ou uma dose de 60 a 100 mg por dia</strong>. Se for preferida a administra&ccedil;&atilde;o parenteral, uma dose equivalente de <strong>metilprednisolona (0,8 a 1,6 mg/kg por via intravenosa por dia) </strong>pode ser usada.</p>\n<p style=\"text-align: justify;\">A imunoglobulina intravenosa (IVIG) tem efic&aacute;cia limitada como agente &uacute;nico na AHAI, mas muitas vezes &eacute; &uacute;til como complemento de outras terapias. Em pacientes que est&atilde;o melhorando, mas ainda dependentes de transfus&atilde;o, duas semanas ap&oacute;s o in&iacute;cio da prednisona e do rituximabe, &agrave;s vezes usamos IGIV (500 mg/kg por dia durante quatro dias) para melhorar a sobrevida de hem&aacute;cias e diminuir a necessidade de transfus&otilde;es de sangue.</p>\n<p style=\"text-align: justify;\">O gabarito liberado pela banca foi: <strong>pulsoterapia com metilprednisolona 1g/dia por 3 dias (ou prednisona 1mg/kg/dia, ou imunoglobulina hiper imune 400mg/kg/dia por 3 dias)</strong></p>\n<p>&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Quest&atilde;o um pouco mais puxada, mas o que poderia nos ajudar a respond&ecirc;-la &eacute; que estamos diante de uma caso auto-imune e, salvo raras exce&ccedil;&otilde;es, avaliando o paciente e vendo sua gravidade, precisamos de medica&ccedil;&otilde;es que tenham a&ccedil;&atilde;o r&aacute;pida! Logo, aqui faz todo sentido que apliquemos um pulso de corticoterapia e/ou IGIV, j&aacute; que nossa paciente se encontra grave e precisa de interven&ccedil;&atilde;o urgente.&nbsp;</p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Vamos relembrar o caso da quest&atilde;o anterior? Temos uma<strong> paciente jovem do sexo feminino</strong>, con<strong> hist&oacute;rico de p&uacute;pura trombocitop&ecirc;nica imune (PTI) </strong>pr&eacute;via tratada por 5 anos com imunossupress&atilde;o, atualmente sem medica&ccedil;&otilde;es, que evolui h&aacute; 1 semana com sintomas an&ecirc;micos e aumento do fluxo menstrual, sendo evidenciado no exame f&iacute;sico sinais de anemia grave (taquicardia, sopro, palidez, dessatura&ccedil;&atilde;o), equimoses, linfonodomegalia e ict&eacute;ricia. Em exames complementares, de fato apresentava<strong> anemia grave (Hb 3.7) hiperproliferativa (reticulocitose) macroc&iacute;tica, com sinais de hem&oacute;lise </strong>(aumento de bilirrubinas indiretas, aumento de DHL e consumo de haptoglobina)<strong> e teste de Coombs direto positivo (falando &agrave; favor de anemia hemol&iacute;tica auto-imune)</strong>. Al&eacute;m disso, leucograma dentro da normalidade e plaquetas evidenciando <strong>plaquetopenia importante (10.000). </strong>Nesse acaso a associa&ccedil;&atilde;o da <strong>p&uacute;rpura trombocitop&ecirc;nica imune (PTI) associada a uma anemia hemol&iacute;tica auto-imune (AHAI)</strong> configura a <strong>S&iacute;ndrome de Evans!</strong></p>\n<p style=\"text-align: justify;\">Somos questionados ent&atilde;o acerca da conduta terap&ecirc;utica inicial! Agora sim, estamos sendo questionados sobre o que fazer para &ldquo;frear&rdquo; a doen&ccedil;a e parar os estragos.&nbsp;</p>\n<p style=\"text-align: justify;\">De modo geral, uma vez abordado o estado hemodin&acirc;mico do paciente e realizado o suporte transfusional, a maioria dos especialistas utiliza <strong>glicocorticoides mais rituximabe</strong> como tratamento inicial para&nbsp; AHAI, especialmente para pacientes sintom&aacute;ticos. A maioria dos especialistas utiliza uma dose inicial de <strong>1 a 2 mg/kg de prednisona por via oral por dia ou uma dose de 60 a 100 mg por dia</strong>. Se for preferida a administra&ccedil;&atilde;o parenteral, uma dose equivalente de <strong>metilprednisolona (0,8 a 1,6 mg/kg por via intravenosa por dia) </strong>pode ser usada.</p>\n<p style=\"text-align: justify;\">A imunoglobulina intravenosa (IVIG) tem efic&aacute;cia limitada como agente &uacute;nico na AHAI, mas muitas vezes &eacute; &uacute;til como complemento de outras terapias. Em pacientes que est&atilde;o melhorando, mas ainda dependentes de transfus&atilde;o, duas semanas ap&oacute;s o in&iacute;cio da prednisona e do rituximabe, &agrave;s vezes usamos IGIV (500 mg/kg por dia durante quatro dias) para melhorar a sobrevida de hem&aacute;cias e diminuir a necessidade de transfus&otilde;es de sangue.</p>\n<p style=\"text-align: justify;\">O gabarito liberado pela banca foi: <strong>pulsoterapia com metilprednisolona 1g/dia por 3 dias (ou prednisona 1mg/kg/dia, ou imunoglobulina hiper imune 400mg/kg/dia por 3 dias)</strong></p>\n<p>&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Quest&atilde;o um pouco mais puxada, mas o que poderia nos ajudar a respond&ecirc;-la &eacute; que estamos diante de uma caso auto-imune e, salvo raras exce&ccedil;&otilde;es, avaliando o paciente e vendo sua gravidade, precisamos de medica&ccedil;&otilde;es que tenham a&ccedil;&atilde;o r&aacute;pida! Logo, aqui faz todo sentido que apliquemos um pulso de corticoterapia e/ou IGIV, j&aacute; que nossa paciente se encontra grave e precisa de interven&ccedil;&atilde;o urgente.&nbsp;</p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "h",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 126908,
+        "number": 4,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Colagenoses e Miopatias",
+        "focus": {
+          "id": 1909,
+          "name": "Colagenoses e Miopatias"
+        }
+      },
+      "detail": {
+        "id": 126908,
+        "content": "A paciente evoluiu com resposta à terapêutica instituída (após 3 dias de tratamento ainda apresentava Hb = 5,8g/dL e Plaquetas = 14.0003), evoluindo com rash malar, piora da parestesia e sensação de frio em extremidades (foto ao lado) principalmente em mãos e houve aparecimento de úlceras orais. Os exames complementares sequênciais mostraram que as sorologias virais e três amostras de culturas de sangue e urina foram negativas, descartando infecção vigente. Ao Ecocardiograma transtorácico, observou-se derrame pericárdico difuso de grau discreto. RX de tórax com discreto aumento de área cardíaca. Fator Reumatóide 51,6 (VR<30UI/mL); Anti-RNP (anticorpos antirribonucleoproteínas); 240 (VR Rea gente: >10) VHS 153 (VR Até 10 mm/h) Fator Antinuclear positivo, padrão nuclear pontilhado 1/640; C3 68 (VR 82-185 mg/dL) C4 11 (VR 15-56 mg/dL). Esses novos dados e essa evolução, associados aos resultados dos exames, sugerem qual diagnóstico? Qual(is) imunomodulador(es) poderia(m) ser utilizado(s) para acelerar a resposta clínica?",
+        "options": [],
+        "images": [
+          {
+            "id": 24234,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID126908_2024_institution-object-321_Q4/question.png"
+          }
+        ],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 1534,
+            "parent_tag": {
+              "id": 305,
+              "name": "Reumatologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Colagenoses e Miopatias",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [
+          {
+            "id": 3717,
+            "avatar": null,
+            "about": "",
+            "name": "Letícia Lima Santos",
+            "speciality": {
+              "id": 41,
+              "abbreviation": null,
+              "name": "Reumatologia"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 114,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1909,
+          "name": "Colagenoses e Miopatias",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 241,
+            "name": "Reumatologia",
+            "discipline": 96,
+            "old_tag": 305,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 592891,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Pessoal, para contextualizar caso estejam lendo fora de contexto&hellip; essa quest&atilde;o faz parte de um caso cl&iacute;nico de 5 quest&otilde;es baseadas numa hist&oacute;ria inicial de uma paciente jovem com sinais, sintomas e exames compat&iacute;veis com <strong>S&iacute;ndrome de Evans (AHAI + PTI)</strong> que foi inicialmente tratada com pulsoterapia de corticoide. Agora, o enunciado nos diz que ap&oacute;s o tratamento inicial houve alguma resposta com leve aumento de Hb e plaquetas, por&eacute;m paciente come&ccedil;ou a desenvolver <strong>rash malar, fen&ocirc;meno de Raynaud nas m&atilde;os e &uacute;lceras orais. </strong>Nos novos exames complementares foi afastado quadro infeccioso, sendo evidenciado leve <strong>derrame peric&aacute;rdico</strong>, fator reumatoide fracamente positivo, anti-RNP positivo em baixos t&iacute;tulos, <strong>FAN 1:640 (altos t&iacute;tulos), provas inflamat&oacute;rias elevadas e consumo de complemento</strong>. Somos ent&atilde;o questionados sobre, &agrave; luz dessas novas informa&ccedil;&otilde;es, qual seria o diagn&oacute;stico e quais imunomoduladores poderiam ser utilizados.</p>\n<p style=\"text-align: justify;\">Pessoal, paciente jovem, sexo feminino, inicialmente com AHAI + PTI (s&iacute;ndrome de Evans) que come&ccedil;a a desenvolver outras manifesta&ccedil;&otilde;es sist&ecirc;micas cl&aacute;ssicas&hellip; Estamos diante de um caso muito suspeito para<strong> L&uacute;pus Eritematoso Sist&ecirc;mico (LES)!</strong> Sabemos que LES &eacute; uma doen&ccedil;a autoimune cr&ocirc;nica que pode afetar qualquer org&atilde;o do corpo. Os pacientes podem apresentar desde acometimento leve de articula&ccedil;&otilde;es e pele, at&eacute; envolvimento fatal de rins, sistema nervoso central e sistema hematol&oacute;gico. Os sintomas constitucionais mais comuns s&atilde;o fadiga, febre, mialgia e perda de peso. No que tange &agrave;s manifesta&ccedil;&otilde;es articulares, as pacientes com LES podem ter artrites e artralgias em &gt; 90% dos casos, sendo sim&eacute;tricas, poliartriculares e migrat&oacute;rias - geralmente n&atilde;o s&atilde;o deformantes, o que as difere da artrite reumatoide.</p>\n<p style=\"text-align: justify;\">Como nossa paciente j&aacute; estava em uso de corticoterapia e teve uma resposta leve em rela&ccedil;&atilde;o ao aumento de&nbsp;Hb e plaquetas, somos questionados sobre um imunossupressor para auxiliar na resposta cl&iacute;nica. Como j&aacute; comentado na quest&atilde;o anterior, a escolha aqui seria o <strong>Rituximab (anti-CD20). </strong>Ele pode ser usado como terapia inicial em combina&ccedil;&atilde;o com glicocortic&oacute;ides (nossa pr&aacute;tica habitual); adicionado aos glicocortic&oacute;ides se a hemoglobina n&atilde;o melhorar apenas com glicocortic&oacute;ides; como agente &uacute;nico para terapia inicial; como agente &uacute;nico para doen&ccedil;as refrat&aacute;rias.</p>\n<p style=\"text-align: justify;\">O gabarito liberado pela banca foi:<strong> LES e s&iacute;ndrome de Evans ( ou PTI/AHAI 2aria a LES) &ndash; Anticorpos monoclonais Rituximab ou Alentuzumab.</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": "",
+        "option_b": "",
+        "short_option_b": "",
+        "option_c": "",
+        "short_option_c": "",
+        "option_d": "",
+        "short_option_d": "",
+        "option_e": "",
+        "short_option_e": "",
+        "conclusion": "<p style=\"text-align: justify;\">As quest&otilde;es de reumatologia adoram brincar com os diagn&oacute;sticos diferenciais das diversas condi&ccedil;&otilde;es reumatol&oacute;gicas. Aqui, o que matava a quest&atilde;o era o reconhecimento dos acometimentos cut&acirc;neos cl&aacute;ssicos (rash, raynaud) e serosites (derrame pleural), n&atilde;o devendo nos confundir os baixos t&iacute;tulos de anti-RNP e FR, visto que possu&iacute;mos um FAN em altos t&iacute;tulos e outros crit&eacute;rios cl&aacute;ssicos para LES. Quando falamos de doen&ccedil;as auto-imunes, muitas vezes iniciaremos um corticoide para a&ccedil;&atilde;o r&aacute;pida e um imunossupressor &ldquo;poupador de corticoide&rdquo;/de manuten&ccedil;&atilde;o, ent&atilde;o faz sentido entrarmos com Rituximabe nesse caso, nesse momento.</p>\n<p>&nbsp;</p><figure data-okr=\"ilustracao\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20230907T151304589Z147633.png\" alt=\"\" style=\"max-width:100%\"></figure>",
+        "update_note": "",
+        "lesson_reference": "",
+        "full_explanation": "<p style=\"text-align: justify;\">Pessoal, para contextualizar caso estejam lendo fora de contexto&hellip; essa quest&atilde;o faz parte de um caso cl&iacute;nico de 5 quest&otilde;es baseadas numa hist&oacute;ria inicial de uma paciente jovem com sinais, sintomas e exames compat&iacute;veis com <strong>S&iacute;ndrome de Evans (AHAI + PTI)</strong> que foi inicialmente tratada com pulsoterapia de corticoide. Agora, o enunciado nos diz que ap&oacute;s o tratamento inicial houve alguma resposta com leve aumento de Hb e plaquetas, por&eacute;m paciente come&ccedil;ou a desenvolver <strong>rash malar, fen&ocirc;meno de Raynaud nas m&atilde;os e &uacute;lceras orais. </strong>Nos novos exames complementares foi afastado quadro infeccioso, sendo evidenciado leve <strong>derrame peric&aacute;rdico</strong>, fator reumatoide fracamente positivo, anti-RNP positivo em baixos t&iacute;tulos, <strong>FAN 1:640 (altos t&iacute;tulos), provas inflamat&oacute;rias elevadas e consumo de complemento</strong>. Somos ent&atilde;o questionados sobre, &agrave; luz dessas novas informa&ccedil;&otilde;es, qual seria o diagn&oacute;stico e quais imunomoduladores poderiam ser utilizados.</p>\n<p style=\"text-align: justify;\">Pessoal, paciente jovem, sexo feminino, inicialmente com AHAI + PTI (s&iacute;ndrome de Evans) que come&ccedil;a a desenvolver outras manifesta&ccedil;&otilde;es sist&ecirc;micas cl&aacute;ssicas&hellip; Estamos diante de um caso muito suspeito para<strong> L&uacute;pus Eritematoso Sist&ecirc;mico (LES)!</strong> Sabemos que LES &eacute; uma doen&ccedil;a autoimune cr&ocirc;nica que pode afetar qualquer org&atilde;o do corpo. Os pacientes podem apresentar desde acometimento leve de articula&ccedil;&otilde;es e pele, at&eacute; envolvimento fatal de rins, sistema nervoso central e sistema hematol&oacute;gico. Os sintomas constitucionais mais comuns s&atilde;o fadiga, febre, mialgia e perda de peso. No que tange &agrave;s manifesta&ccedil;&otilde;es articulares, as pacientes com LES podem ter artrites e artralgias em &gt; 90% dos casos, sendo sim&eacute;tricas, poliartriculares e migrat&oacute;rias - geralmente n&atilde;o s&atilde;o deformantes, o que as difere da artrite reumatoide.</p>\n<p style=\"text-align: justify;\">Como nossa paciente j&aacute; estava em uso de corticoterapia e teve uma resposta leve em rela&ccedil;&atilde;o ao aumento de&nbsp;Hb e plaquetas, somos questionados sobre um imunossupressor para auxiliar na resposta cl&iacute;nica. Como j&aacute; comentado na quest&atilde;o anterior, a escolha aqui seria o <strong>Rituximab (anti-CD20). </strong>Ele pode ser usado como terapia inicial em combina&ccedil;&atilde;o com glicocortic&oacute;ides (nossa pr&aacute;tica habitual); adicionado aos glicocortic&oacute;ides se a hemoglobina n&atilde;o melhorar apenas com glicocortic&oacute;ides; como agente &uacute;nico para terapia inicial; como agente &uacute;nico para doen&ccedil;as refrat&aacute;rias.</p>\n<p style=\"text-align: justify;\">O gabarito liberado pela banca foi:<strong> LES e s&iacute;ndrome de Evans ( ou PTI/AHAI 2aria a LES) &ndash; Anticorpos monoclonais Rituximab ou Alentuzumab.</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">As quest&otilde;es de reumatologia adoram brincar com os diagn&oacute;sticos diferenciais das diversas condi&ccedil;&otilde;es reumatol&oacute;gicas. Aqui, o que matava a quest&atilde;o era o reconhecimento dos acometimentos cut&acirc;neos cl&aacute;ssicos (rash, raynaud) e serosites (derrame pleural), n&atilde;o devendo nos confundir os baixos t&iacute;tulos de anti-RNP e FR, visto que possu&iacute;mos um FAN em altos t&iacute;tulos e outros crit&eacute;rios cl&aacute;ssicos para LES. Quando falamos de doen&ccedil;as auto-imunes, muitas vezes iniciaremos um corticoide para a&ccedil;&atilde;o r&aacute;pida e um imunossupressor &ldquo;poupador de corticoide&rdquo;/de manuten&ccedil;&atilde;o, ent&atilde;o faz sentido entrarmos com Rituximabe nesse caso, nesse momento.</p>\n<p>&nbsp;</p><figure data-okr=\"ilustracao\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20230907T151304589Z147633.png\" alt=\"\" style=\"max-width:100%\"></figure><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 126909,
+        "number": 5,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Colagenoses e Miopatias",
+        "focus": {
+          "id": 1909,
+          "name": "Colagenoses e Miopatias"
+        }
+      },
+      "detail": {
+        "id": 126909,
+        "content": "A paciente evoluiu com resposta à terapêutica instituída (após 3 dias de tratamento ainda apresentava Hb = 5,8g/dL e Plaquetas = 14.0003), evoluindo com rash malar, piora da parestesia e sensação de frio em extremidades (foto ao lado) principalmente em mãos e houve aparecimento de úlceras orais. Os exames complementares sequênciais mostraram que as sorologias virais e três amostras de culturas de sangue e urina foram negativas, descartando infecção vigente. Ao Ecocardiograma transtorácico, observou-se derrame pericárdico difuso de grau discreto. RX de tórax com discreto aumento de área cardíaca. Fator Reumatóide 51,6 (VR<30UI/mL); Anti-RNP (anticorpos antirribonucleoproteínas); 240 (VR Rea gente: >10) VHS 153 (VR Até 10 mm/h) Fator Antinuclear positivo, padrão nuclear pontilhado 1/640; C3 68 (VR 82-185 mg/dL) C4 11 (VR 15-56 mg/dL). Cite ao menos 5 critérios clínicos e/ou laboratoriais que corroboram para sua hipótese diagnóstica.",
+        "options": [],
+        "images": [
+          {
+            "id": 24235,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID126909_2024_institution-object-321_Q5/question.png"
+          }
+        ],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 1534,
+            "parent_tag": {
+              "id": 305,
+              "name": "Reumatologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Colagenoses e Miopatias",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [
+          {
+            "id": 3717,
+            "avatar": null,
+            "about": "",
+            "name": "Letícia Lima Santos",
+            "speciality": {
+              "id": 41,
+              "abbreviation": null,
+              "name": "Reumatologia"
+            }
+          }
+        ],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 104,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1909,
+          "name": "Colagenoses e Miopatias",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 241,
+            "name": "Reumatologia",
+            "discipline": 96,
+            "old_tag": 305,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 112984,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Relembrando o caso&hellip; Essa quest&atilde;o faz parte de um caso cl&iacute;nico de 5 quest&otilde;es baseadas numa hist&oacute;ria inicial de uma paciente jovem com sinais, sintomas e exames compat&iacute;veis com <strong>S&iacute;ndrome de Evans (AHAI + PTI)</strong> que foi inicialmente tratada com pulsoterapia de corticoide, sendo ap&oacute;s esse tratamento evidenciados sinais, sintomas e exames compat&iacute;veis com<strong> LES! </strong>Nessa &uacute;ltima quest&atilde;o somos perguntados sobre 5 crit&eacute;rios cl&iacute;nicos e/ou laboratoriais que corroborem para a hip&oacute;tese de LES.</p>\n<p style=\"text-align: justify;\">Abaixo, disponibilizamos um quadro-resumo dos crit&eacute;rios cl&iacute;nico-laboratoriais do LES:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/LES.PNG\" alt=\"\" width=\"605\" height=\"458\"></p>\n<p style=\"text-align: justify;\">Fonte: <a href=\"https://www.medicinanet.com.br/conteudos/revisoes/5815/lupus_eritematoso_sistemico.htm\">https://www.medicinanet.com.br/conteudos/revisoes/5815/lupus_eritematoso_sistemico.htm</a></p>\n<p style=\"text-align: justify;\">Levando em considera&ccedil;&atilde;o nossa paciente, podemos destacar que a mesma possu&iacute;a a presen&ccedil;a de: <strong>rash malar, &uacute;lceras orais, serosite (derrame pleural), altera&ccedil;&atilde;o hematol&oacute;gica (anemia hemol&iacute;tica, trombocitopenia), altera&ccedil;&atilde;o imunol&oacute;gica (consumo de complemento, aumento de VHS) e presen&ccedil;a de FAN elevado.</strong></p>\n<p style=\"text-align: justify;\">Gabarito liberado pela banca: <strong>Trombocitopenia ou PTI, Anemia hemol&iacute;tica, Febre, Linfadenopatia, Rash malar, Fen&ocirc;meno de Raynaud, Anti-RNP, FAN .C3/ C4. VHS.</strong></p>\n<p style=\"text-align: center;\">&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">As quest&otilde;es de reumatologia adoram brincar com os diagn&oacute;sticos diferenciais das diversas condi&ccedil;&otilde;es reumatol&oacute;gicas. Aqui, o que matava a quest&atilde;o era o reconhecimento dos acometimentos cut&acirc;neos cl&aacute;ssicos (rash, raynaud) e serosites (derrame pleural), n&atilde;o devendo nos confundir os baixos t&iacute;tulos de anti-RNP e FR, visto que possu&iacute;mos um FAN em altos t&iacute;tulos e outros crit&eacute;rios cl&aacute;ssicos para LES. Lembrando que esses crit&eacute;rios s&atilde;o desenvolvidos para fins de estudos, n&atilde;o sendo necessariamente tudo &ldquo;preto no branco&rdquo; na pr&aacute;tica m&eacute;dica.</p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Relembrando o caso&hellip; Essa quest&atilde;o faz parte de um caso cl&iacute;nico de 5 quest&otilde;es baseadas numa hist&oacute;ria inicial de uma paciente jovem com sinais, sintomas e exames compat&iacute;veis com <strong>S&iacute;ndrome de Evans (AHAI + PTI)</strong> que foi inicialmente tratada com pulsoterapia de corticoide, sendo ap&oacute;s esse tratamento evidenciados sinais, sintomas e exames compat&iacute;veis com<strong> LES! </strong>Nessa &uacute;ltima quest&atilde;o somos perguntados sobre 5 crit&eacute;rios cl&iacute;nicos e/ou laboratoriais que corroborem para a hip&oacute;tese de LES.</p>\n<p style=\"text-align: justify;\">Abaixo, disponibilizamos um quadro-resumo dos crit&eacute;rios cl&iacute;nico-laboratoriais do LES:</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/LES.PNG\" alt=\"\" width=\"605\" height=\"458\"></p>\n<p style=\"text-align: justify;\">Fonte: <a href=\"https://www.medicinanet.com.br/conteudos/revisoes/5815/lupus_eritematoso_sistemico.htm\">https://www.medicinanet.com.br/conteudos/revisoes/5815/lupus_eritematoso_sistemico.htm</a></p>\n<p style=\"text-align: justify;\">Levando em considera&ccedil;&atilde;o nossa paciente, podemos destacar que a mesma possu&iacute;a a presen&ccedil;a de: <strong>rash malar, &uacute;lceras orais, serosite (derrame pleural), altera&ccedil;&atilde;o hematol&oacute;gica (anemia hemol&iacute;tica, trombocitopenia), altera&ccedil;&atilde;o imunol&oacute;gica (consumo de complemento, aumento de VHS) e presen&ccedil;a de FAN elevado.</strong></p>\n<p style=\"text-align: justify;\">Gabarito liberado pela banca: <strong>Trombocitopenia ou PTI, Anemia hemol&iacute;tica, Febre, Linfadenopatia, Rash malar, Fen&ocirc;meno de Raynaud, Anti-RNP, FAN .C3/ C4. VHS.</strong></p>\n<p style=\"text-align: center;\">&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">As quest&otilde;es de reumatologia adoram brincar com os diagn&oacute;sticos diferenciais das diversas condi&ccedil;&otilde;es reumatol&oacute;gicas. Aqui, o que matava a quest&atilde;o era o reconhecimento dos acometimentos cut&acirc;neos cl&aacute;ssicos (rash, raynaud) e serosites (derrame pleural), n&atilde;o devendo nos confundir os baixos t&iacute;tulos de anti-RNP e FR, visto que possu&iacute;mos um FAN em altos t&iacute;tulos e outros crit&eacute;rios cl&aacute;ssicos para LES. Lembrando que esses crit&eacute;rios s&atilde;o desenvolvidos para fins de estudos, n&atilde;o sendo necessariamente tudo &ldquo;preto no branco&rdquo; na pr&aacute;tica m&eacute;dica.</p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T17:49:59.447827+00:00",
+  "complete": true
+}

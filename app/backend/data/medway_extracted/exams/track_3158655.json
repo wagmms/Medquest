@@ -1,0 +1,598 @@
+{
+  "track_id": 3158655,
+  "name": "INEP - Revalida - 2024.1 - Discursiva",
+  "year": 2024,
+  "track_fast": {
+    "id": 3158655,
+    "name": "INEP - Revalida - 2024.1 - Discursiva",
+    "track_type": "c",
+    "question_count": 5,
+    "year": 2024,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "INEP - Revalida",
+    "track_image": "https://cdn.medway.com.br/media/track/exam/inep-revalida/default_SckVIuD.jpeg",
+    "residency_degree": {
+      "id": 3,
+      "abbreviation": "R1"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 222079,
+        "number": 1,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Geriatria e Demências",
+        "focus": {
+          "id": 1952,
+          "name": "Geriatria e Demências"
+        }
+      },
+      "detail": {
+        "id": 222079,
+        "content": "Uma mulher com 77 anos é referenciada pela unidade básica de saúde para ambulatório de psiquiatria da Atenção Secundária, em razão da suspeita clínica de depressão. Ao ser atendida na unidade de psiquiatria, o especialista levanta a hipótese de um quadro de pseudodepressão devido às proeminentes queixas de transtornos de memória, de orientação temporal e visoespacial apresentadas pela paciente, que tem histórico de hipertensão arterial sistêmica, diabetes mellitus e doença renal crônica em tratamento conservador. Ela relata também que vem experimentando um declínio progressivo de suas habilidades mentais nos últimos 2 anos, que, no início, tinha dificuldade de se lembrar de certas palavras e que, posteriormente, começou a não mais se recordar de rostos conhecidos, contudo, lembrava-se melhor de fatos antigos. O médico solicita, então, uma ressonância magnética de encéfalo que revela padrão compatível com atrofia hipocampal e de regiões corticais predominantemente posteriores. Realizado exame de PET scan, os resultados revelam sinais compatíveis com depósitos beta-amiloides cerebrais.   \n\nConsiderando o caso clínico dessa paciente, faça o que se pede nos itens a seguir. \na) Apresente a causa mais provável da síndrome demencial da paciente. \nb) Indique o nome da doença crônica não transmissível que acomete a paciente e que a predispõe à condição descrita. \nc) Considerando que a paciente apresenta quadro demencial, liste outras 3 causas possíveis do transtorno neuropsiquiátrico descrito. \nd) Cite os nomes de 2 fármacos aprovados para o tratamento dos transtornos cognitivos e funcionais apresentados por pacientes acometidos pela doença em questão.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 1288,
+            "parent_tag": {
+              "id": 1554,
+              "name": "Geriatria",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Geriatria e Demências",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              2
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 2769,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1952,
+          "name": "Geriatria e Demências",
+          "discipline": {
+            "id": 97,
+            "name": "Clínica Médica",
+            "residency_degree": 3,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 154,
+            "name": "Geriatria",
+            "discipline": 97,
+            "old_tag": 1554,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251829,
+        "actual_explanation": true,
+        "introduction": "<p>Temos uma paciente de 77 anos, idosa, encaminhada para avaliação de quadro de alteração de humor, e transtornos de memória, que atrapalham as atividades de vida diária. </p>\n<p>O déficit predominante é de MEMÓRIA e temos um resultado de exame de PET scan cujo resultado mostra deósitos beta-amiloides cerebrais, o que é compatível com a Doença de Alzheimer. </p>\n<p>A doença de Alzheimer é a causa mais comum de demências, principalmente nos idosos mais robustos, cuja fisiopatologia envolve a deposição dos corpos beta-amiloides no hipocampo. Isso ocorre de maneira semelhante ao que ocorre no diabetes tipo 2, no pâncreas, por isso temos o diabetes como fator de risco. O tratamento envolve inibidores da acetilcolinesterase (<span class=\"article-7207\">donepezila</span>, galantamina, rivastigmina) e antagonistas do receptor NMDA (<span class=\"article-7211\">memantina</span>).  </p>\n<p> </p>\n<p>Agora, vamos conferir o gabarito oficial. </p>\n<p>a) Doença de Alzheimer.</p>\n<p>b) Diabetes mellitus.</p>\n<p>c) <br/>- demência vascular (ou multivascular);<br/>- demência dos corpúsculos de Lewy;<br/>- demência frontotemporal;<br/>- hidrocefalia oculta (ou normobárica);<br/>- demência de Creutzfeldt-Jakob;<br/>- coreia de Huntington;<br/>- degeneração ganglionar corticobasal;<br/>- hipotireoidismo;<br/>- deficiência de vitamina B12;<br/>- deficiência de vitamina B1 ou psicose/síndrome de Korsakoff;<br/>- alcoolismo;<br/>- pelagra (deficiência de niacina);<br/>- sífilis (neurossífilis);<br/>- neuroHIV/AIDS;<br/>- intoxicação crônica por metais (alumínio, chumbo ou arsênico);<br/>- demência pugilística;<br/>- hematoma subdural crônico;<br/>- angeíte granulomatosa do SNC (vasculite isolada do SNC); ou<br/>- encefalite paraneoplásica associada a anticorpos contra receptor de NMDA.</p>\n<p><br/>d) <br/>- <span class=\"article-7207\">donepezila</span>;<br/>- rivastigmina;<br/>- galantamina; ou<br/>- <span class=\"article-7211\">memantina</span>.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>A Doença de Alzheimer é a demência mais comum, tanto na prova quanto na vida prática. Vamos aproveitar para revisar os principais tópicos a respeito desse tema. </p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250429T005936225Z073247.png\"/></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Temos uma paciente de 77 anos, idosa, encaminhada para avaliação de quadro de alteração de humor, e transtornos de memória, que atrapalham as atividades de vida diária. </p>\n<p>O déficit predominante é de MEMÓRIA e temos um resultado de exame de PET scan cujo resultado mostra deósitos beta-amiloides cerebrais, o que é compatível com a Doença de Alzheimer. </p>\n<p>A doença de Alzheimer é a causa mais comum de demências, principalmente nos idosos mais robustos, cuja fisiopatologia envolve a deposição dos corpos beta-amiloides no hipocampo. Isso ocorre de maneira semelhante ao que ocorre no diabetes tipo 2, no pâncreas, por isso temos o diabetes como fator de risco. O tratamento envolve inibidores da acetilcolinesterase (<span class=\"article-7207\">donepezila</span>, galantamina, rivastigmina) e antagonistas do receptor NMDA (<span class=\"article-7211\">memantina</span>).  </p>\n<p> </p>\n<p>Agora, vamos conferir o gabarito oficial. </p>\n<p>a) Doença de Alzheimer.</p>\n<p>b) Diabetes mellitus.</p>\n<p>c) <br/>- demência vascular (ou multivascular);<br/>- demência dos corpúsculos de Lewy;<br/>- demência frontotemporal;<br/>- hidrocefalia oculta (ou normobárica);<br/>- demência de Creutzfeldt-Jakob;<br/>- coreia de Huntington;<br/>- degeneração ganglionar corticobasal;<br/>- hipotireoidismo;<br/>- deficiência de vitamina B12;<br/>- deficiência de vitamina B1 ou psicose/síndrome de Korsakoff;<br/>- alcoolismo;<br/>- pelagra (deficiência de niacina);<br/>- sífilis (neurossífilis);<br/>- neuroHIV/AIDS;<br/>- intoxicação crônica por metais (alumínio, chumbo ou arsênico);<br/>- demência pugilística;<br/>- hematoma subdural crônico;<br/>- angeíte granulomatosa do SNC (vasculite isolada do SNC); ou<br/>- encefalite paraneoplásica associada a anticorpos contra receptor de NMDA.</p>\n<p><br/>d) <br/>- <span class=\"article-7207\">donepezila</span>;<br/>- rivastigmina;<br/>- galantamina; ou<br/>- <span class=\"article-7211\">memantina</span>.</p><br>Visão do aprovado: <p>A Doença de Alzheimer é a demência mais comum, tanto na prova quanto na vida prática. Vamos aproveitar para revisar os principais tópicos a respeito desse tema. </p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250429T005936225Z073247.png\"/></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 222080,
+        "number": 2,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Tireoide",
+        "focus": {
+          "id": 2819,
+          "name": "Tireoide"
+        }
+      },
+      "detail": {
+        "id": 222080,
+        "content": "Uma paciente com 37 anos foi submetida à tireoidectomia total, e em seguimento clínico, após 45 dias do procedimento, apresenta formigamentos, câimbras, parestesia perioral, queda de cabelos, pele seca, cansaço fácil e ganho de peso, além de rouquidão desde o pós-operatório imediato. \n\nOs exames laboratoriais apresentaram: \n\nCom base nas informações do caso descrito, faça o que se pede nos itens a seguir. \na) Qual é a causa da alteração vocal apresentada pela paciente? \nb) Qual a causa da câimbra apresentada pela paciente? Cite duas manobras semiológicas que podem auxiliar no diagnóstico. \nc) De acordo com o quadro clínico atual e os exames laboratoriais da paciente, além da alteração vocal, qual(is) é(são) o(s) diagnóstico(s) e o(s) tratamento(s) indicado(s)?",
+        "options": [],
+        "images": [
+          {
+            "id": 63611,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID222080_2024_institution-object-1468_Q2/question.png"
+          }
+        ],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 449,
+            "parent_tag": {
+              "id": 294,
+              "name": "Endocrinologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Tireoide",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 1025,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2819,
+          "name": "Tireoide",
+          "discipline": {
+            "id": 64,
+            "name": "Cirurgia Geral",
+            "residency_degree": 3,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 605,
+            "name": "Endocrinologia",
+            "discipline": 64,
+            "old_tag": 294,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 464004,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-indent: 2em\">As complicações da <span class=\"article-7934\">tireoidectomia total</span> se manifestam em momentos distintos, e isso é uma pista diagnóstica fundamental. A rouquidão que surge no pós-operatório imediato aponta para uma lesão cirúrgica direta, enquanto os sintomas que aparecem semanas depois revelam as consequências da remoção de estruturas glandulares. Nossa paciente apresenta exatamente esse padrão, e a questão nos desafia a identificar cada uma dessas complicações e propor o manejo adequado.</p>\n<p style=\"text-indent: 2em\">Vamos começar pela alteração vocal. Quando a rouquidão surge logo após a cirurgia de tireoide, devemos pensar imediatamente nos nervos que controlam as cordas vocais. Durante a tireoidectomia, esses nervos correm em trajeto muito próximo à glândula e podem ser lesionados acidentalmente. O principal é o <strong>nervo laríngeo recorrente</strong> (também chamado de nervo laríngeo inferior), responsável pela inervação da maioria dos músculos intrínsecos da laringe. Sua lesão causa paralisia de corda vocal e disfonia. O nervo laríngeo superior também pode estar envolvido, causando alterações mais sutis da voz, como perda de tons agudos e fadiga vocal. A banca aceita qualquer um desses nervos como resposta, desde que mencionemos o termo \"lesão\" ou seus sinônimos.</p>\n<p style=\"text-indent: 2em\">Agora precisamos entender as câimbras e parestesias. Olhando os exames laboratoriais, encontramos algo marcante: o cálcio total está em 5,2 mg/dL (normal: 8,5-10,5) e o cálcio iônico em 3,1 mg/dL (normal: 4,5-8,5). Mais importante ainda: o PTH está absurdamente baixo, apenas 0,5 pg/mL quando deveria estar entre 12-68. Isso nos confirma <strong><span class=\"article-7932\">hipoparatireoidismo</span> pós-cirúrgico</strong>. Durante a tireoidectomia, as glândulas paratireoides podem ser inadvertidamente removidas, lesionadas ou ter seu suprimento sanguíneo comprometido. Como as paratireoides produzem o PTH, que mobiliza cálcio dos estoques ósseos para manter a calcemia, sua disfunção resulta em hipocalcemia. E a hipocalcemia aumenta a excitabilidade neuromuscular, causando formigamentos, câimbras e parestesia perioral.</p>\n<p style=\"text-indent: 2em\">Para confirmar clinicamente a hipocalcemia, temos duas manobras clássicas. O <strong>sinal de Trousseau</strong> é pesquisado ao insuflarmos o manguito do esfigmomanômetro acima da pressão arterial sistólica por cerca de 3 minutos; se positivo, observamos espasmo carpal com flexão do punho e dos dedos, formando uma \"mão de parteiro\". Já o sinal de Chvostek consiste em percutir o trajeto do nervo facial, cerca de 2 cm anterior ao lóbulo da orelha; se positivo, ocorre contração dos músculos faciais ipsilaterais, com desvio da rima labial para o lado percutido. Atenção: a banca exige que descrevamos como realizar a manobra e qual o sinal esperado, não basta apenas nomear os sinais.</p>\n<p style=\"text-indent: 2em\">Para o último item, precisamos analisar todo o quadro clínico e laboratorial. Nossa paciente tem queda de cabelos, pele seca, cansaço fácil e ganho de peso - sintomas clássicos de hipotireoidismo. Os exames confirmam: TSH em 80 mU/l (absurdamente elevado) e T4 livre em 0,2 ng/dL (muito baixo). Isso caracteriza <strong>hipotireoidismo primário</strong>, esperado após <span class=\"article-7934\">tireoidectomia total</span>, já que não há mais glândula para produzir hormônios tireoidianos. Já discutimos o <span class=\"article-7932\">hipoparatireoidismo</span>. Mas há um terceiro diagnóstico que não podemos esquecer: a hipofosfatemia. O fósforo está em 0,6 mg/dL quando deveria estar entre 2,5-4,3. Esse achado merece atenção porque no <span class=\"article-7932\">hipoparatireoidismo</span> típico esperaríamos fósforo elevado, mas aqui está baixo, provavelmente pela fase aguda ou associação com deficiência nutricional.</p>\n<p style=\"text-indent: 2em\">Quanto aos tratamentos, precisamos abordar cada problema. Para o hipotireoidismo, a resposta é direta: <em>levotiroxina</em> (T4 sintético), que é a terapia de reposição padrão. Para o <span class=\"article-7932\">hipoparatireoidismo</span> sintomático, como é o caso (paciente com câimbras e parestesias), devemos iniciar reposição de cálcio. Em casos sintomáticos e agudos, usamos <em>gluconato de cálcio</em> a 10% por via endovenosa. Para manutenção, prescrevemos <em>carbonato de cálcio</em> ou <em>citrato de cálcio</em> por via oral. Mas não basta repor só o cálcio - precisamos também de <strong>vitamina D</strong> (<em><span class=\"article-3459\">calcitriol</span></em>), pois na ausência de PTH, há prejuízo na ativação da vitamina D, o que compromete a absorção intestinal de cálcio. A combinação de cálcio e vitamina D é fundamental para o controle adequado.</p>\n<p style=\"text-indent: 2em\">🚨 Alguns erros comuns: esquecer de mencionar a hipofosfatemia como diagnóstico separado, não descrever as manobras semiológicas (apenas citá-las), esquecer a vitamina D no tratamento da hipocalcemia, ou repetir a lesão do nervo laríngeo no item c (que já foi pontuada no item a). A banca aceita diversos sinônimos - por exemplo, \"reposição\" pode ser substituído por \"suplementação\", e há vários nomes comerciais de <strong>levotiroxina</strong> válidos. O importante é garantir que mencionamos os três diagnósticos (hipotireoidismo, <span class=\"article-7932\">hipoparatireoidismo</span>/hipocalcemia e hipofosfatemia) e os três pilares do tratamento (levotiroxina, cálcio e vitamina D).</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-indent: 2em\">Em questões discursivas sobre complicações de tireoidectomia, devemos organizar a resposta pela linha do tempo: o que aparece no pós-operatório imediato tem origem mecânica ou vascular direta, enquanto sintomas após semanas refletem insuficiências glandulares. Essa <strong>divisão temporal</strong> já direciona nosso raciocínio e evita confundir causas. Aqui, a rouquidão desde o início nos entrega lesão nervosa, enquanto câimbras e parestesias após 45 dias apontam para hipocalcemia por disfunção de paratireoides.</p>\n<p style=\"text-indent: 2em\">Uma armadilha importante nesta questão é o fósforo. No <span class=\"article-7932\">hipoparatireoidismo</span> clássico esperaríamos hiperfosfatemia, mas aqui temos <strong>hipofosfatemia</strong>. Isso pode confundir quem raciocina apenas pelo padrão esperado, mas a banca considera a hipofosfatemia como diagnóstico separado que deve ser citado. Outro erro frequente é mencionar novamente a lesão de nervo laríngeo no item c, quando ela já foi pontuada no item a e a questão pede explicitamente os outros diagnósticos além da alteração vocal.</p>\n<p style=\"text-indent: 2em\">Para os sinais de <em>Trousseau</em> e <em>Chvostek</em>, não basta escrever apenas os nomes. A banca exige que descrevamos como realizar a manobra e qual o resultado esperado, então precisamos <strong>detalhar o procedimento</strong> completo para garantir a pontuação. Da mesma forma, no tratamento da hipocalcemia, esquecer a vitamina D é erro comum, pois sem PTH a ativação da vitamina D fica comprometida e a reposição isolada de cálcio não resolve adequadamente.</p>\n<p style=\"text-indent: 2em\">Na estratégia de resposta, vale separar mentalmente:</p>\n<ul>\n<li>Item a pede apenas a lesão nervosa</li>\n<li>Item b pede causa da câimbra mais duas manobras</li>\n<li>Item c pede todos os diagnósticos restantes mais todos os tratamentos</li>\n</ul>\n<p style=\"text-indent: 2em\">Organizar assim evita omissões e garante que não deixemos <strong>pontos para trás</strong> em uma questão que vale múltiplos quesitos.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-indent: 2em\">As complicações da <span class=\"article-7934\">tireoidectomia total</span> se manifestam em momentos distintos, e isso é uma pista diagnóstica fundamental. A rouquidão que surge no pós-operatório imediato aponta para uma lesão cirúrgica direta, enquanto os sintomas que aparecem semanas depois revelam as consequências da remoção de estruturas glandulares. Nossa paciente apresenta exatamente esse padrão, e a questão nos desafia a identificar cada uma dessas complicações e propor o manejo adequado.</p>\n<p style=\"text-indent: 2em\">Vamos começar pela alteração vocal. Quando a rouquidão surge logo após a cirurgia de tireoide, devemos pensar imediatamente nos nervos que controlam as cordas vocais. Durante a tireoidectomia, esses nervos correm em trajeto muito próximo à glândula e podem ser lesionados acidentalmente. O principal é o <strong>nervo laríngeo recorrente</strong> (também chamado de nervo laríngeo inferior), responsável pela inervação da maioria dos músculos intrínsecos da laringe. Sua lesão causa paralisia de corda vocal e disfonia. O nervo laríngeo superior também pode estar envolvido, causando alterações mais sutis da voz, como perda de tons agudos e fadiga vocal. A banca aceita qualquer um desses nervos como resposta, desde que mencionemos o termo \"lesão\" ou seus sinônimos.</p>\n<p style=\"text-indent: 2em\">Agora precisamos entender as câimbras e parestesias. Olhando os exames laboratoriais, encontramos algo marcante: o cálcio total está em 5,2 mg/dL (normal: 8,5-10,5) e o cálcio iônico em 3,1 mg/dL (normal: 4,5-8,5). Mais importante ainda: o PTH está absurdamente baixo, apenas 0,5 pg/mL quando deveria estar entre 12-68. Isso nos confirma <strong><span class=\"article-7932\">hipoparatireoidismo</span> pós-cirúrgico</strong>. Durante a tireoidectomia, as glândulas paratireoides podem ser inadvertidamente removidas, lesionadas ou ter seu suprimento sanguíneo comprometido. Como as paratireoides produzem o PTH, que mobiliza cálcio dos estoques ósseos para manter a calcemia, sua disfunção resulta em hipocalcemia. E a hipocalcemia aumenta a excitabilidade neuromuscular, causando formigamentos, câimbras e parestesia perioral.</p>\n<p style=\"text-indent: 2em\">Para confirmar clinicamente a hipocalcemia, temos duas manobras clássicas. O <strong>sinal de Trousseau</strong> é pesquisado ao insuflarmos o manguito do esfigmomanômetro acima da pressão arterial sistólica por cerca de 3 minutos; se positivo, observamos espasmo carpal com flexão do punho e dos dedos, formando uma \"mão de parteiro\". Já o sinal de Chvostek consiste em percutir o trajeto do nervo facial, cerca de 2 cm anterior ao lóbulo da orelha; se positivo, ocorre contração dos músculos faciais ipsilaterais, com desvio da rima labial para o lado percutido. Atenção: a banca exige que descrevamos como realizar a manobra e qual o sinal esperado, não basta apenas nomear os sinais.</p>\n<p style=\"text-indent: 2em\">Para o último item, precisamos analisar todo o quadro clínico e laboratorial. Nossa paciente tem queda de cabelos, pele seca, cansaço fácil e ganho de peso - sintomas clássicos de hipotireoidismo. Os exames confirmam: TSH em 80 mU/l (absurdamente elevado) e T4 livre em 0,2 ng/dL (muito baixo). Isso caracteriza <strong>hipotireoidismo primário</strong>, esperado após <span class=\"article-7934\">tireoidectomia total</span>, já que não há mais glândula para produzir hormônios tireoidianos. Já discutimos o <span class=\"article-7932\">hipoparatireoidismo</span>. Mas há um terceiro diagnóstico que não podemos esquecer: a hipofosfatemia. O fósforo está em 0,6 mg/dL quando deveria estar entre 2,5-4,3. Esse achado merece atenção porque no <span class=\"article-7932\">hipoparatireoidismo</span> típico esperaríamos fósforo elevado, mas aqui está baixo, provavelmente pela fase aguda ou associação com deficiência nutricional.</p>\n<p style=\"text-indent: 2em\">Quanto aos tratamentos, precisamos abordar cada problema. Para o hipotireoidismo, a resposta é direta: <em>levotiroxina</em> (T4 sintético), que é a terapia de reposição padrão. Para o <span class=\"article-7932\">hipoparatireoidismo</span> sintomático, como é o caso (paciente com câimbras e parestesias), devemos iniciar reposição de cálcio. Em casos sintomáticos e agudos, usamos <em>gluconato de cálcio</em> a 10% por via endovenosa. Para manutenção, prescrevemos <em>carbonato de cálcio</em> ou <em>citrato de cálcio</em> por via oral. Mas não basta repor só o cálcio - precisamos também de <strong>vitamina D</strong> (<em><span class=\"article-3459\">calcitriol</span></em>), pois na ausência de PTH, há prejuízo na ativação da vitamina D, o que compromete a absorção intestinal de cálcio. A combinação de cálcio e vitamina D é fundamental para o controle adequado.</p>\n<p style=\"text-indent: 2em\">🚨 Alguns erros comuns: esquecer de mencionar a hipofosfatemia como diagnóstico separado, não descrever as manobras semiológicas (apenas citá-las), esquecer a vitamina D no tratamento da hipocalcemia, ou repetir a lesão do nervo laríngeo no item c (que já foi pontuada no item a). A banca aceita diversos sinônimos - por exemplo, \"reposição\" pode ser substituído por \"suplementação\", e há vários nomes comerciais de <strong>levotiroxina</strong> válidos. O importante é garantir que mencionamos os três diagnósticos (hipotireoidismo, <span class=\"article-7932\">hipoparatireoidismo</span>/hipocalcemia e hipofosfatemia) e os três pilares do tratamento (levotiroxina, cálcio e vitamina D).</p><br>Visão do aprovado: <p style=\"text-indent: 2em\">Em questões discursivas sobre complicações de tireoidectomia, devemos organizar a resposta pela linha do tempo: o que aparece no pós-operatório imediato tem origem mecânica ou vascular direta, enquanto sintomas após semanas refletem insuficiências glandulares. Essa <strong>divisão temporal</strong> já direciona nosso raciocínio e evita confundir causas. Aqui, a rouquidão desde o início nos entrega lesão nervosa, enquanto câimbras e parestesias após 45 dias apontam para hipocalcemia por disfunção de paratireoides.</p>\n<p style=\"text-indent: 2em\">Uma armadilha importante nesta questão é o fósforo. No <span class=\"article-7932\">hipoparatireoidismo</span> clássico esperaríamos hiperfosfatemia, mas aqui temos <strong>hipofosfatemia</strong>. Isso pode confundir quem raciocina apenas pelo padrão esperado, mas a banca considera a hipofosfatemia como diagnóstico separado que deve ser citado. Outro erro frequente é mencionar novamente a lesão de nervo laríngeo no item c, quando ela já foi pontuada no item a e a questão pede explicitamente os outros diagnósticos além da alteração vocal.</p>\n<p style=\"text-indent: 2em\">Para os sinais de <em>Trousseau</em> e <em>Chvostek</em>, não basta escrever apenas os nomes. A banca exige que descrevamos como realizar a manobra e qual o resultado esperado, então precisamos <strong>detalhar o procedimento</strong> completo para garantir a pontuação. Da mesma forma, no tratamento da hipocalcemia, esquecer a vitamina D é erro comum, pois sem PTH a ativação da vitamina D fica comprometida e a reposição isolada de cálcio não resolve adequadamente.</p>\n<p style=\"text-indent: 2em\">Na estratégia de resposta, vale separar mentalmente:</p>\n<ul>\n<li>Item a pede apenas a lesão nervosa</li>\n<li>Item b pede causa da câimbra mais duas manobras</li>\n<li>Item c pede todos os diagnósticos restantes mais todos os tratamentos</li>\n</ul>\n<p style=\"text-indent: 2em\">Organizar assim evita omissões e garante que não deixemos <strong>pontos para trás</strong> em uma questão que vale múltiplos quesitos.</p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 222081,
+        "number": 3,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Distúrbios Obstrutivos",
+        "focus": {
+          "id": 2213,
+          "name": "Distúrbios Obstrutivos"
+        }
+      },
+      "detail": {
+        "id": 222081,
+        "content": "Uma criança com 6 anos é atendida em uma emergência pediátrica devido a sibilância e desconforto respiratório que, segundo relato da mãe, começou há 3 dias, sem febre e sem história de anafilaxia. Registra-se que, há 2 dias, passou a usar prednisona via oral (40 mg/dia), salbutamol via máscara e espaçador (4 jatos de 6 em 6 horas).  \n\nAo exame clínico inicial, nota-se que a criança está ativa e reativa, respondendo verbalmente e de forma adequada às solicitações, com frequência respiratória de 40 irpm, com tiragem intercostal e de fúrcula e com presença de sibilos difusos na ausculta pulmonar. À ausculta cardíaca, ela apresenta taquicardia, com frequência cardíaca de 130 bpm e com pressão arterial de 130 x 60 mmHg. Verifica-se, também, saturação de O₂ de 92% em ar ambiente, PaO2 de 60 mmHg e PaCO2 < 40 mmHg.  \n\nDurante o registro da história clínica e a realização do exame físico e da monitorização, foi administrado salbutamol (3 doses, sendo 4 jatos de 20 em 20 minutos), brometo de ipatrópio (20 gotas por nebulização, dose única) e metilprednisolona IV (2 mg/Kg). Na reavaliação, após uma hora, constatou-se que a criança mantinha o desconforto respiratório (tiragem intercostal e de fúrcula), sibilos difusos, saturação de O₂ de 89% em ar ambiente, PaO2 de 55 mmHg e PaCO2 de 40 mmHg.  \n\nConsiderando o caso apresentado, faça o que se pede nos itens a seguir. \na) Classifique a gravidade da exacerbação e cite quatro achados que justifiquem sua resposta. \nb) Considerando a classificação da gravidade da exacerbação e a resposta ao tratamento já realizado, cite cinco condutas a serem aplicadas nesse momento. \nc) Cite cinco fatores de risco que podem contribuir para exacerbação da asma.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 363,
+            "parent_tag": {
+              "id": 304,
+              "name": "Pneumologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Distúrbios Obstrutivos",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 2035,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2213,
+          "name": "Distúrbios Obstrutivos",
+          "discipline": {
+            "id": 92,
+            "name": "Pediatria",
+            "residency_degree": 3,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 245,
+            "name": "Pneumologia",
+            "discipline": 92,
+            "old_tag": 304,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251726,
+        "actual_explanation": true,
+        "introduction": "<p data-end=\"1157\" data-start=\"98\">A questão aborda uma situação clínica frequente nos PS pediátricos: uma <span class=\"article-7914\">exacerbação aguda de asma</span>.</p>\n<p data-end=\"1157\" data-start=\"98\">A criança de 6 anos apresenta quadro de desconforto respiratório e sibilância há três dias, com necessidade de uso de beta-2 agonista inalatório e corticoterapia oral em domicílio, há 2 dias, sem resolução adequada dos sintomas.</p>\n<p data-end=\"1157\" data-start=\"98\">No exame físico, chama atenção a presença de taquipneia (normal até 30 irpm), uso de musculatura acessória (tiragem intercostal e de fúrcula), taquicardia e sibilância difusa, saturando 92% em ar ambiente. Foi realizado uma sequência de <span class=\"article-5691\">salbutamol</span> 3/3h (3 inalações a cada 20 min), com ipratrópio em apenas uma delas, além de corticoide EV. Após as medidas iniciais, paciente mantinha desconforto respiratório, porém - agora - com saturação de 89%, o que nos diz ocorreu uma piora clínica.</p>\n<p data-end=\"1157\" data-start=\"98\"><strong>a) Classifique a gravidade da exacerbação e cite quatro achados que justifiquem sua resposta. </strong></p>\n<p data-end=\"1157\" data-start=\"98\">Vamos revisar a classificação da crise asmática, segundo o Tratado de Pediatria da SBP:</p>\n<p data-end=\"1157\" data-start=\"98\" style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T154226186Z073201.png\"/></p>\n<p data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Considerando o momento atual do paciente, podemos classificá-lo como uma crise <strong>grave </strong>uma vez que apresenta:</p>\n<ul>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Saturação de O2 89% em ar ambiente</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Uso de musculatura acessória</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Frequência respiratória 40 irpm (&gt;30)</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Frequência cardíaca 130 bpm (&gt;120bpm)</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">PaO2 55 mmHg</li>\n</ul>\n<p style=\"text-align: left;\"><strong>b) Considerando a classificação da gravidade da exacerbação e a resposta ao tratamento já realizado, cite cinco condutas a serem aplicadas nesse momento.</strong></p>\n<ol>\n<li style=\"text-align: left;\">Internação em UTI</li>\n<li style=\"text-align: left;\">Oxigênio para manter saturação entre 94-98% (cateter nasal ou máscara não reinalante ou máscara de venturi)</li>\n<li style=\"text-align: left;\"><span class=\"article-5691\">Salbutamol</span> 4-10 jatos a cada 20 min + brometo de ipratrópio (por ser uma crise grave)</li>\n<li style=\"text-align: left;\">Manter corticoide sistêmico - próxima dose no dia seguinte (considerando que já foi feito metilprednisolona)</li>\n<li style=\"text-align: left;\">Sulfato de magnésio EV.</li>\n</ol>\n<p style=\"text-align: left;\"><strong>c) Cite cinco fatores de risco que podem contribuir para exacerbação da <span class=\"article-2490\">asma</span>. </strong></p>\n<p style=\"text-align: left;\">Podemos colocar:</p>\n<ol>\n<li style=\"text-align: left;\">Infecções virais</li>\n<li style=\"text-align: left;\">Exposição a alérgenos;</li>\n<li style=\"text-align: left;\">Exposição a agentes externos (fumaça, poluentes, alérgenos inalatórios, poluição atmosférica, poluição</li>\n<li style=\"text-align: left;\">Mudanças sazonais (ou de temperatura)</li>\n<li style=\"text-align: left;\"> Má adesão ao tratamento OU baixa adesão aos medicamentos;</li>\n<li style=\"text-align: left;\">Técnicas inadequadas de administração dos medicamentos OU uso incorreto da medicação;</li>\n<li style=\"text-align: left;\">VEF1 baixo, especialmente se &lt;60% do previsto;</li>\n<li style=\"text-align: left;\">Utilizar frequentemente um beta agonista de ação rápida (SABA) (≥3 x 200 doses por ano);</li>\n<li style=\"text-align: left;\">Uma ou mais exacerbação grave nos últimos 12 meses. </li>\n</ol>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Questão clássica sobre um cenário muito comum nos PS pediátricos, ainda mais no outono! É importante termos a tabela de classificação da crise de asma na ponta da língua!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p data-end=\"1157\" data-start=\"98\">A questão aborda uma situação clínica frequente nos PS pediátricos: uma <span class=\"article-7914\">exacerbação aguda de asma</span>.</p>\n<p data-end=\"1157\" data-start=\"98\">A criança de 6 anos apresenta quadro de desconforto respiratório e sibilância há três dias, com necessidade de uso de beta-2 agonista inalatório e corticoterapia oral em domicílio, há 2 dias, sem resolução adequada dos sintomas.</p>\n<p data-end=\"1157\" data-start=\"98\">No exame físico, chama atenção a presença de taquipneia (normal até 30 irpm), uso de musculatura acessória (tiragem intercostal e de fúrcula), taquicardia e sibilância difusa, saturando 92% em ar ambiente. Foi realizado uma sequência de <span class=\"article-5691\">salbutamol</span> 3/3h (3 inalações a cada 20 min), com ipratrópio em apenas uma delas, além de corticoide EV. Após as medidas iniciais, paciente mantinha desconforto respiratório, porém - agora - com saturação de 89%, o que nos diz ocorreu uma piora clínica.</p>\n<p data-end=\"1157\" data-start=\"98\"><strong>a) Classifique a gravidade da exacerbação e cite quatro achados que justifiquem sua resposta. </strong></p>\n<p data-end=\"1157\" data-start=\"98\">Vamos revisar a classificação da crise asmática, segundo o Tratado de Pediatria da SBP:</p>\n<p data-end=\"1157\" data-start=\"98\" style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T154226186Z073201.png\"/></p>\n<p data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Considerando o momento atual do paciente, podemos classificá-lo como uma crise <strong>grave </strong>uma vez que apresenta:</p>\n<ul>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Saturação de O2 89% em ar ambiente</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Uso de musculatura acessória</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Frequência respiratória 40 irpm (&gt;30)</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">Frequência cardíaca 130 bpm (&gt;120bpm)</li>\n<li data-end=\"1157\" data-start=\"98\" style=\"text-align: left;\">PaO2 55 mmHg</li>\n</ul>\n<p style=\"text-align: left;\"><strong>b) Considerando a classificação da gravidade da exacerbação e a resposta ao tratamento já realizado, cite cinco condutas a serem aplicadas nesse momento.</strong></p>\n<ol>\n<li style=\"text-align: left;\">Internação em UTI</li>\n<li style=\"text-align: left;\">Oxigênio para manter saturação entre 94-98% (cateter nasal ou máscara não reinalante ou máscara de venturi)</li>\n<li style=\"text-align: left;\"><span class=\"article-5691\">Salbutamol</span> 4-10 jatos a cada 20 min + brometo de ipratrópio (por ser uma crise grave)</li>\n<li style=\"text-align: left;\">Manter corticoide sistêmico - próxima dose no dia seguinte (considerando que já foi feito metilprednisolona)</li>\n<li style=\"text-align: left;\">Sulfato de magnésio EV.</li>\n</ol>\n<p style=\"text-align: left;\"><strong>c) Cite cinco fatores de risco que podem contribuir para exacerbação da <span class=\"article-2490\">asma</span>. </strong></p>\n<p style=\"text-align: left;\">Podemos colocar:</p>\n<ol>\n<li style=\"text-align: left;\">Infecções virais</li>\n<li style=\"text-align: left;\">Exposição a alérgenos;</li>\n<li style=\"text-align: left;\">Exposição a agentes externos (fumaça, poluentes, alérgenos inalatórios, poluição atmosférica, poluição</li>\n<li style=\"text-align: left;\">Mudanças sazonais (ou de temperatura)</li>\n<li style=\"text-align: left;\"> Má adesão ao tratamento OU baixa adesão aos medicamentos;</li>\n<li style=\"text-align: left;\">Técnicas inadequadas de administração dos medicamentos OU uso incorreto da medicação;</li>\n<li style=\"text-align: left;\">VEF1 baixo, especialmente se &lt;60% do previsto;</li>\n<li style=\"text-align: left;\">Utilizar frequentemente um beta agonista de ação rápida (SABA) (≥3 x 200 doses por ano);</li>\n<li style=\"text-align: left;\">Uma ou mais exacerbação grave nos últimos 12 meses. </li>\n</ol><br>Visão do aprovado: <p>Questão clássica sobre um cenário muito comum nos PS pediátricos, ainda mais no outono! É importante termos a tabela de classificação da crise de asma na ponta da língua!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 222082,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Assistência ao Parto",
+        "focus": {
+          "id": 1999,
+          "name": "Assistência ao Parto"
+        }
+      },
+      "detail": {
+        "id": 222082,
+        "content": "Uma mulher com 26 anos, primigesta, na 40ª semana procura o pronto atendimento do hospital com queixa de contrações. Não tem comorbidades e o acompanhamento pré-natal ocorreu sem particularidades. Ao ser examinada, encontra-se em bom estado geral, contactuante, corada, hidratada e afebril. O exame físico geral não apresenta anormalidades.  \n\nAo exame obstétrico, verificam-se: altura uterina: 34 centímetros; dinâmica uterina: 2 contrações de 25 segundos, com dor moderada em 10 minutos; batimentos cardíacos fetais: 124/140/128 bpm (antes/durante e após a contração, respectivamente); toque vaginal: colo médio, 2 centímetros de dilatação, cefálico, plano - 3 (menos 3) de DeLee, bolsa Íntegra.  \n\nA gestante refere estar tranquila e confiante, mora perto do hospital e tem meio de transporte próprio. Diz que, se for possível e seguro, gostaria de ir para casa, mas pede informações de métodos e formas de lidar com a dor. \n\nCom base no quadro clínico descrito, faça o que se pede nos itens a seguir. \na) Essa parturiente está na fase ativa do trabalho de parto? Justifique sua resposta. \nb) É indicada a internação para essa paciente? Justifique sua resposta. \nc) Cite três métodos não farmacológicos de alívio da dor que a paciente pode utilizar. Só serão considerados os três primeiros métodos citados. \nd) Cite dois sinais de alerta a que a parturiente deve estar atenta e que podem indicar a necessidade de nova avaliação. Só serão considerados os dois primeiros sinais de alerta.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 677,
+            "parent_tag": {
+              "id": 337,
+              "name": "Parto",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Assistência ao Parto",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 1168,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1999,
+          "name": "Assistência ao Parto",
+          "discipline": {
+            "id": 87,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 3,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 189,
+            "name": "Parto",
+            "discipline": 87,
+            "old_tag": 337,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 402445,
+        "actual_explanation": true,
+        "introduction": "<p>No cerne desta questão está a <strong>diferenciação entre as fases do trabalho de parto</strong>, especialmente distinguir a fase latente da fase ativa. Temos uma primigesta de 26 anos, a termo, com contrações esparsas e dilatação cervical de apenas 2 centímetros, questionando sobre a possibilidade de alta hospitalar.</p>\n\n<p style=\"text-align:center\">\n<figure>\n<img src=\"https://cdn.medway.com.br/media/question_explanation_images/2023-03-02_08-45-23/image1.png\" alt=\"Figura 18. Esquematização das fases clínicas ou períodos do trabalho de parto.\">\n<figcaption>Figura 18. Esquematização das fases clínicas ou períodos do trabalho de parto.</figcaption>\n</figure>\n</p>\n\n<p>Este tipo de cenário é extremamente comum nas provas de residência, pois testa conhecimentos fundamentais sobre o <strong>início do trabalho de parto</strong> e a capacidade de distinguir quando uma gestante realmente precisa ser internada. A questão explora quatro aspectos essenciais:</p>\n\n<ul>\n<li>Identificação da fase do trabalho de parto</li>\n<li>Critérios de internação</li>\n<li>Métodos não farmacológicos de alívio da dor</li>\n<li>Sinais de alerta que indicam necessidade de reavaliação</li>\n</ul>\n\n<p>O <strong>trabalho de parto</strong> é definido pela presença de contrações uterinas efetivas que causam dilatação cervical progressiva e descida da apresentação fetal. Classicamente, dividimos o primeiro período (dilatação) em <strong>fase latente</strong> e <strong>fase ativa</strong>. A <em>fase latente</em>, também conhecida como pródromos, caracteriza-se por contrações irregulares, de baixa intensidade e frequência, com dilatação cervical lenta (geralmente até 4-6 cm). Já a <em>fase ativa</em> inicia-se tipicamente com dilatação ≥4 cm, associada a contrações regulares (pelo menos 3 contrações em 10 minutos), mais intensas e efetivas na promoção da dilatação cervical.</p>\n\n<p>No caso apresentado, identificamos claramente os sinais de <strong>fase latente</strong>:</p>\n\n<ul>\n<li>Contrações esparsas (apenas 2 em 10 minutos)</li>\n<li>Duração curta (25 segundos)</li>\n<li>Dilatação cervical de apenas 2 centímetros</li>\n<li>Apresentação ainda alta (plano -3 de DeLee)</li>\n</ul>\n\n<p>Estes achados, associados ao desejo da paciente de retornar para casa e sua proximidade ao hospital, tornam a <strong>alta hospitalar</strong> uma opção segura e apropriada.</p>\n\n<p>A questão também aborda a importância dos <strong>métodos não farmacológicos</strong> para alívio da dor durante o trabalho de parto, estratégias que devem ser sempre oferecidas às parturientes, especialmente na fase latente, quando podem postergar ou até mesmo evitar a necessidade de métodos farmacológicos. Por fim, a educação sobre <strong>sinais de alerta</strong> é fundamental para garantir que a gestante saiba quando procurar nova avaliação médica.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>A diferenciação entre <strong>fase latente</strong> e <strong>fase ativa</strong> do trabalho de parto é o cerne diagnóstico desta questão. Contrações esparsas (2 em 10 minutos), curtas (25 segundos) e dilatação de apenas 2 cm caracterizam fase latente, não justificando internação hospitalar. O raciocínio gira em torno dos critérios que definem trabalho de parto ativo: dilatação ≥4 cm + contrações regulares (≥3 em 10 minutos).</p>\n<strong>Pistas-chave:</strong>\n<ul>\n<li>Fase latente: contrações <em>esparsas</em> (&lt;3 em 10 min), <em>curtas</em> (&lt;30 seg), dilatação &lt;4 cm</li>\n<li>Fase ativa: dilatação ≥4 cm + contrações ≥3 em 10 minutos, regulares e efetivas</li>\n<li>Critério de internação: estar em <strong>trabalho de parto ativo</strong> ou presença de complicações</li>\n<li>Apresentação alta (plano -3) e colo médio reforçam fase latente</li>\n</ul>\n<strong>Pegadinhas de prova:</strong>\n<ul>\n<li>Confundir <em>presença de contrações</em> com <em>trabalho de parto ativo</em> - nem toda contração significa internação</li>\n<li>Usar apenas dilatação como critério - precisa associar com padrão contrátil adequado</li>\n<li>Esquecer que primigesta a termo com contrações pode estar em pródromos por horas/dias</li>\n</ul>\n<strong>Como cai:</strong>\n<ul>\n<li>Padrão: questões de <strong>partograma</strong> testando conhecimento das fases do trabalho de parto e distócias</li>\n<li>Formato comum: cenário de gestante a termo questionando <strong>critérios de internação</strong> x alta hospitalar</li>\n<li>Bancas cobram <strong>métodos não farmacológicos</strong> de alívio da dor e <strong>sinais de alerta</strong> para reavaliação</li>\n<li><strong>Também pode cair:</strong> distócias do trabalho de parto (fase ativa prolongada, parada secundária) relacionadas ao manejo inadequado da fase latente</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>No cerne desta questão está a <strong>diferenciação entre as fases do trabalho de parto</strong>, especialmente distinguir a fase latente da fase ativa. Temos uma primigesta de 26 anos, a termo, com contrações esparsas e dilatação cervical de apenas 2 centímetros, questionando sobre a possibilidade de alta hospitalar.</p>\n\n<p style=\"text-align:center\">\n<figure>\n<img src=\"https://cdn.medway.com.br/media/question_explanation_images/2023-03-02_08-45-23/image1.png\" alt=\"Figura 18. Esquematização das fases clínicas ou períodos do trabalho de parto.\">\n<figcaption>Figura 18. Esquematização das fases clínicas ou períodos do trabalho de parto.</figcaption>\n</figure>\n</p>\n\n<p>Este tipo de cenário é extremamente comum nas provas de residência, pois testa conhecimentos fundamentais sobre o <strong>início do trabalho de parto</strong> e a capacidade de distinguir quando uma gestante realmente precisa ser internada. A questão explora quatro aspectos essenciais:</p>\n\n<ul>\n<li>Identificação da fase do trabalho de parto</li>\n<li>Critérios de internação</li>\n<li>Métodos não farmacológicos de alívio da dor</li>\n<li>Sinais de alerta que indicam necessidade de reavaliação</li>\n</ul>\n\n<p>O <strong>trabalho de parto</strong> é definido pela presença de contrações uterinas efetivas que causam dilatação cervical progressiva e descida da apresentação fetal. Classicamente, dividimos o primeiro período (dilatação) em <strong>fase latente</strong> e <strong>fase ativa</strong>. A <em>fase latente</em>, também conhecida como pródromos, caracteriza-se por contrações irregulares, de baixa intensidade e frequência, com dilatação cervical lenta (geralmente até 4-6 cm). Já a <em>fase ativa</em> inicia-se tipicamente com dilatação ≥4 cm, associada a contrações regulares (pelo menos 3 contrações em 10 minutos), mais intensas e efetivas na promoção da dilatação cervical.</p>\n\n<p>No caso apresentado, identificamos claramente os sinais de <strong>fase latente</strong>:</p>\n\n<ul>\n<li>Contrações esparsas (apenas 2 em 10 minutos)</li>\n<li>Duração curta (25 segundos)</li>\n<li>Dilatação cervical de apenas 2 centímetros</li>\n<li>Apresentação ainda alta (plano -3 de DeLee)</li>\n</ul>\n\n<p>Estes achados, associados ao desejo da paciente de retornar para casa e sua proximidade ao hospital, tornam a <strong>alta hospitalar</strong> uma opção segura e apropriada.</p>\n\n<p>A questão também aborda a importância dos <strong>métodos não farmacológicos</strong> para alívio da dor durante o trabalho de parto, estratégias que devem ser sempre oferecidas às parturientes, especialmente na fase latente, quando podem postergar ou até mesmo evitar a necessidade de métodos farmacológicos. Por fim, a educação sobre <strong>sinais de alerta</strong> é fundamental para garantir que a gestante saiba quando procurar nova avaliação médica.</p><br>Visão do aprovado: <p>A diferenciação entre <strong>fase latente</strong> e <strong>fase ativa</strong> do trabalho de parto é o cerne diagnóstico desta questão. Contrações esparsas (2 em 10 minutos), curtas (25 segundos) e dilatação de apenas 2 cm caracterizam fase latente, não justificando internação hospitalar. O raciocínio gira em torno dos critérios que definem trabalho de parto ativo: dilatação ≥4 cm + contrações regulares (≥3 em 10 minutos).</p>\n<strong>Pistas-chave:</strong>\n<ul>\n<li>Fase latente: contrações <em>esparsas</em> (&lt;3 em 10 min), <em>curtas</em> (&lt;30 seg), dilatação &lt;4 cm</li>\n<li>Fase ativa: dilatação ≥4 cm + contrações ≥3 em 10 minutos, regulares e efetivas</li>\n<li>Critério de internação: estar em <strong>trabalho de parto ativo</strong> ou presença de complicações</li>\n<li>Apresentação alta (plano -3) e colo médio reforçam fase latente</li>\n</ul>\n<strong>Pegadinhas de prova:</strong>\n<ul>\n<li>Confundir <em>presença de contrações</em> com <em>trabalho de parto ativo</em> - nem toda contração significa internação</li>\n<li>Usar apenas dilatação como critério - precisa associar com padrão contrátil adequado</li>\n<li>Esquecer que primigesta a termo com contrações pode estar em pródromos por horas/dias</li>\n</ul>\n<strong>Como cai:</strong>\n<ul>\n<li>Padrão: questões de <strong>partograma</strong> testando conhecimento das fases do trabalho de parto e distócias</li>\n<li>Formato comum: cenário de gestante a termo questionando <strong>critérios de internação</strong> x alta hospitalar</li>\n<li>Bancas cobram <strong>métodos não farmacológicos</strong> de alívio da dor e <strong>sinais de alerta</strong> para reavaliação</li>\n<li><strong>Também pode cair:</strong> distócias do trabalho de parto (fase ativa prolongada, parada secundária) relacionadas ao manejo inadequado da fase latente</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 222083,
+        "number": 5,
+        "main_speciality_name": "Medicina Preventiva e Social",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Síndromes Febris",
+        "focus": {
+          "id": 2874,
+          "name": "Síndromes Febris"
+        }
+      },
+      "detail": {
+        "id": 222083,
+        "content": "Uma mulher com 28 anos, trabalhadora rural, procura a unidade básica de saúde (UBS) apresentando febre de 39,1 °C, prurido difuso, cefaleia, astenia, náuseas, manchas vermelhas em membros superiores, tórax e membros inferiores há 3 dias, e muito preocupada com as dores articulares que são intensas e limitantes. \n\nA partir das informações apresentadas, faça o que se pede nos itens a seguir. \na) Cite dois achados relevantes no exame físico que devem ser investigados para realizar uma avaliação adequada da paciente. \nb) Cite a principal hipótese diagnóstica para o caso. \nc) Cite dois diagnósticos diferenciais. \nd) Cite cinco condutas a serem adotadas em relação ao tratamento e ao seguimento adequado. \ne) Cite duas ações de vigilância em saúde.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 5,
+            "abbreviation": "PREV",
+            "name": "Medicina Preventiva e Social",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 561,
+            "parent_tag": {
+              "id": 297,
+              "name": "Infectologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Síndromes Febris",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 1819,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2874,
+          "name": "Síndromes Febris",
+          "discipline": {
+            "id": 89,
+            "name": "Medicina Preventiva e Social",
+            "residency_degree": 3,
+            "speciality": 5
+          },
+          "theme": {
+            "id": 628,
+            "name": "Infectologia",
+            "discipline": 89,
+            "old_tag": 297,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 591743,
+        "actual_explanation": true,
+        "introduction": "<p>Fala, turma!</p>\n<p>Bora nessa questão analisar um clássico na Atenção Primária, especialmente em regiões endêmicas: paciente com febre alta, exantema, poliartralgia e sintomas sistêmicos. Esses sinais e sintomas em conjunto apontam para a suspeita de doenças infecciosas febris exantemáticas, muitas delas de notificação obrigatória e com impacto em saúde pública. Nessa situação, é fundamental que o raciocínio clínico considere: </p>\n<p>Esses sinais e sintomas em conjunto apontam para a suspeita de doenças infecciosas febris exantemáticas, muitas delas de notificação obrigatória e com impacto em saúde pública. Nessa situação, é fundamental que nosso raciocínio clínico considere:</p>\n<ul>\n<li>Diagnósticos diferenciais relevantes (doenças virais exantemáticas como dengue, <span class=\"article-6707\">chikungunya</span>, zika).</li>\n<li>Achados físicos que podem direcionar o diagnóstico (como sinais de alarme).</li>\n<li>A necessidade de instituir condutas rápidas e vigilância em saúde para evitar complicações e conter a disseminação de agentes infecciosos.</li>\n</ul>\n<p>Além disso, no contexto de uma mulher trabalhadora rural, devemos sempre integrar no raciocínio fatores epidemiológicos e o risco aumentado para arboviroses e outras doenças vetoriais.</p>\n<p> </p>\n<p><strong>Letra A.</strong></p>\n<ol>\n<li>Sinais de alarme para arboviroses, como hipotensão, sangramentos, dor abdominal intensa, hepatomegalia.</li>\n<li>Edema articular ou sinovite, caracterizando a gravidade da poliartralgia e possível artrite associada, comuns e <span class=\"article-6707\">chikungunya</span>.</li>\n</ol>\n<p> </p>\n<p><strong>Letra B.</strong></p>\n<p>A principal hipótese diagnóstica para o caso é <span class=\"article-6707\">chikungunya</span>, justificada por febre alta súbita, exantema, dor articular intensa e limitante, prurido e astenia são manifestações típicas da infecção pelo vírus <span class=\"article-6707\">chikungunya</span>, especialmente em áreas tropicais.</p>\n<p> </p>\n<p><strong>Letra C.</strong></p>\n<ol>\n<li>Dengue – febre alta, exantema, dores musculares e articulares (mas, em geral, a artralgia não é tão intensa e incapacitante).</li>\n<li>Zika vírus – febre baixa ou ausente, exantema pruriginoso, conjuntivite e artralgia, mas com sintomas geralmente mais brandos.</li>\n</ol>\n<p> </p>\n<p><strong>Letra D.</strong></p>\n<ul>\n<li>Tratamento sintomático da dor: analgésicos como dipirona ou paracetamol (evitar AINEs na fase aguda pelo risco de confusão com Dengue);</li>\n<li>Hidratação adequada: orientar ingestão de líquidos e, se necessário, hidratação parenteral - Repouso articular: orientar repouso das articulações acometidas para evitar agravamento;</li>\n<li>Preencher ficha de notificação para arboviroses;</li>\n<li>Coleta de exames para confirmação diagnóstica: sorologia (IgM/IgG), RT-PCR ou isolamento viral (dependendo do tempo de evolução);</li>\n<li>Acompanhamento ambulatorial: retorno em 7-10 dias para avaliar evolução;</li>\n<li>Fisioterapia: encaminhamento precoce para fisioterapia caso evolua com artralgia persistente;</li>\n<li>Afastamento laboral: emissão de atestado médico devido à limitação funcional;</li>\n<li>Orientações sobre possível evolução crônica: informar sobre a possibilidade de cronificação dos sintomas articulares.</li>\n</ul>\n<p> </p>\n<p><strong>Letra E.</strong></p>\n<ol>\n<li>Notificação compulsória imediata do caso suspeito às autoridades de saúde locais, conforme prevê o Ministério da Saúde para arboviroses.</li>\n<li>Investigação e controle de foco vetorial, com visita domiciliar para busca e eliminação de criadouros do mosquito Aedes aegypti.</li>\n</ol>\n<p> </p>",
+        "option_a": "",
+        "short_option_a": "",
+        "option_b": "",
+        "short_option_b": "",
+        "option_c": "",
+        "short_option_c": "",
+        "option_d": "",
+        "short_option_d": "",
+        "option_e": "",
+        "short_option_e": "",
+        "conclusion": "<p>Turma, notem aqui como a abordagem de febre exantemática vai muito além de receitar sintomáticos. Cada detalhe no exame físico e na história clínica pode mudar completamente nossa linha de raciocínio. Em casos como esse, a rapidez no raciocínio, a organização do atendimento e o entendimento da importância da vigilância epidemiológica fazem toda a diferença.</p>\n<p>Sempre que lidarem com pacientes com febre, exantema e dor articular intensa, especialmente em contextos de alta transmissão de arboviroses, lembrem-se: investigar sinais de gravidade, hidratar, aliviar os sintomas e proteger a saúde pública com o preenchimento das fichas de notificação correspondentes, que irão desencadear uma série de medidas por parte da vigilância epidemiológica. </p>\n<p> </p>\n<p><strong>Fica a Dica</strong></p>\n<ul>\n<li><span class=\"article-6707\">Chikungunya</span> se destaca por dor articular intensa e limitante, que pode evoluir para formas crônicas em até 30%-40% dos casos;</li>\n<li>A notificação de suspeita de dengue, <span class=\"article-6707\">chikungunya</span> e zika é obrigatória e imediata no SUS, mesmo sem confirmação laboratorial inicial;</li>\n<li>Exame físico detalhado (inclusive avaliação articular) é indispensável para diferenciar arboviroses entre si;</li>\n<li>Foco nas ações de vigilância: notificar casos suspeitos e atuar no controle vetorial é papel essencial do médico na APS.</li>\n</ul><figure data-okr=\"ilustracao\"><img alt=\"\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20230713T154500935Z806296.png\" style=\"max-width:100%\"/></figure>",
+        "update_note": "",
+        "lesson_reference": "",
+        "full_explanation": "<p>Fala, turma!</p>\n<p>Bora nessa questão analisar um clássico na Atenção Primária, especialmente em regiões endêmicas: paciente com febre alta, exantema, poliartralgia e sintomas sistêmicos. Esses sinais e sintomas em conjunto apontam para a suspeita de doenças infecciosas febris exantemáticas, muitas delas de notificação obrigatória e com impacto em saúde pública. Nessa situação, é fundamental que o raciocínio clínico considere: </p>\n<p>Esses sinais e sintomas em conjunto apontam para a suspeita de doenças infecciosas febris exantemáticas, muitas delas de notificação obrigatória e com impacto em saúde pública. Nessa situação, é fundamental que nosso raciocínio clínico considere:</p>\n<ul>\n<li>Diagnósticos diferenciais relevantes (doenças virais exantemáticas como dengue, <span class=\"article-6707\">chikungunya</span>, zika).</li>\n<li>Achados físicos que podem direcionar o diagnóstico (como sinais de alarme).</li>\n<li>A necessidade de instituir condutas rápidas e vigilância em saúde para evitar complicações e conter a disseminação de agentes infecciosos.</li>\n</ul>\n<p>Além disso, no contexto de uma mulher trabalhadora rural, devemos sempre integrar no raciocínio fatores epidemiológicos e o risco aumentado para arboviroses e outras doenças vetoriais.</p>\n<p> </p>\n<p><strong>Letra A.</strong></p>\n<ol>\n<li>Sinais de alarme para arboviroses, como hipotensão, sangramentos, dor abdominal intensa, hepatomegalia.</li>\n<li>Edema articular ou sinovite, caracterizando a gravidade da poliartralgia e possível artrite associada, comuns e <span class=\"article-6707\">chikungunya</span>.</li>\n</ol>\n<p> </p>\n<p><strong>Letra B.</strong></p>\n<p>A principal hipótese diagnóstica para o caso é <span class=\"article-6707\">chikungunya</span>, justificada por febre alta súbita, exantema, dor articular intensa e limitante, prurido e astenia são manifestações típicas da infecção pelo vírus <span class=\"article-6707\">chikungunya</span>, especialmente em áreas tropicais.</p>\n<p> </p>\n<p><strong>Letra C.</strong></p>\n<ol>\n<li>Dengue – febre alta, exantema, dores musculares e articulares (mas, em geral, a artralgia não é tão intensa e incapacitante).</li>\n<li>Zika vírus – febre baixa ou ausente, exantema pruriginoso, conjuntivite e artralgia, mas com sintomas geralmente mais brandos.</li>\n</ol>\n<p> </p>\n<p><strong>Letra D.</strong></p>\n<ul>\n<li>Tratamento sintomático da dor: analgésicos como dipirona ou paracetamol (evitar AINEs na fase aguda pelo risco de confusão com Dengue);</li>\n<li>Hidratação adequada: orientar ingestão de líquidos e, se necessário, hidratação parenteral - Repouso articular: orientar repouso das articulações acometidas para evitar agravamento;</li>\n<li>Preencher ficha de notificação para arboviroses;</li>\n<li>Coleta de exames para confirmação diagnóstica: sorologia (IgM/IgG), RT-PCR ou isolamento viral (dependendo do tempo de evolução);</li>\n<li>Acompanhamento ambulatorial: retorno em 7-10 dias para avaliar evolução;</li>\n<li>Fisioterapia: encaminhamento precoce para fisioterapia caso evolua com artralgia persistente;</li>\n<li>Afastamento laboral: emissão de atestado médico devido à limitação funcional;</li>\n<li>Orientações sobre possível evolução crônica: informar sobre a possibilidade de cronificação dos sintomas articulares.</li>\n</ul>\n<p> </p>\n<p><strong>Letra E.</strong></p>\n<ol>\n<li>Notificação compulsória imediata do caso suspeito às autoridades de saúde locais, conforme prevê o Ministério da Saúde para arboviroses.</li>\n<li>Investigação e controle de foco vetorial, com visita domiciliar para busca e eliminação de criadouros do mosquito Aedes aegypti.</li>\n</ol>\n<p> </p><br>Visão do aprovado: <p>Turma, notem aqui como a abordagem de febre exantemática vai muito além de receitar sintomáticos. Cada detalhe no exame físico e na história clínica pode mudar completamente nossa linha de raciocínio. Em casos como esse, a rapidez no raciocínio, a organização do atendimento e o entendimento da importância da vigilância epidemiológica fazem toda a diferença.</p>\n<p>Sempre que lidarem com pacientes com febre, exantema e dor articular intensa, especialmente em contextos de alta transmissão de arboviroses, lembrem-se: investigar sinais de gravidade, hidratar, aliviar os sintomas e proteger a saúde pública com o preenchimento das fichas de notificação correspondentes, que irão desencadear uma série de medidas por parte da vigilância epidemiológica. </p>\n<p> </p>\n<p><strong>Fica a Dica</strong></p>\n<ul>\n<li><span class=\"article-6707\">Chikungunya</span> se destaca por dor articular intensa e limitante, que pode evoluir para formas crônicas em até 30%-40% dos casos;</li>\n<li>A notificação de suspeita de dengue, <span class=\"article-6707\">chikungunya</span> e zika é obrigatória e imediata no SUS, mesmo sem confirmação laboratorial inicial;</li>\n<li>Exame físico detalhado (inclusive avaliação articular) é indispensável para diferenciar arboviroses entre si;</li>\n<li>Foco nas ações de vigilância: notificar casos suspeitos e atuar no controle vetorial é papel essencial do médico na APS.</li>\n</ul><figure data-okr=\"ilustracao\"><img alt=\"\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20230713T154500935Z806296.png\" style=\"max-width:100%\"/></figure><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T17:50:21.741588+00:00",
+  "complete": true
+}

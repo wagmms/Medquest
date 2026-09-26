@@ -1,0 +1,651 @@
+{
+  "track_id": 1330035,
+  "name": "PUC - Sorocaba - SP-2022-Discursiva",
+  "year": 2022,
+  "track_fast": {
+    "id": 1330035,
+    "name": "PUC - Sorocaba - SP-2022-Discursiva",
+    "track_type": "c",
+    "question_count": 5,
+    "year": 2022,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "PUC - Sorocaba",
+    "track_image": null,
+    "residency_degree": {
+      "id": 4,
+      "abbreviation": "R+CM"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 128108,
+        "number": 1,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Insuficiência Cardíaca",
+        "focus": {
+          "id": 2204,
+          "name": "Insuficiência Cardíaca"
+        }
+      },
+      "detail": {
+        "id": 128108,
+        "content": "Barbeiro traiçoeiro; Laurindo, 44 anos, morador de zona rural, procedente da Bahia.\r\nDeu entrada no pronto-socorro com queixa de dispneia progressiva com piora aos pequenos esforços, tonturas e dor torácica de forte intensidade há 2 dias. Tem antecedentes de doença de Chagas e hipotireoidismo. Está em uso regular de furosemida 40 mg/dia, Carvedilol 12,5 mg cada 12h, Puran T4 150 mcg/dia. Parou de beber há 3 anos e de fumar há 6 anos. Sua mãe é diabética e seu pai hipertenso.\r\nApresentava ao exame físico, edema de MMII 3+/4+, estase jugular, refluxo hepato-jugular presente. FC= 86 bpm, FR 20 ipm, PA= 112/84 mmHg, T= 36,1° C, estertoração crepitante bilateral nas bases pulmonares, bulhas arrítmicas. Abaixo segue radiografia de tórax e Eletrocardiograma, realizados na admissão. Descreva os achados do Eletrocardiograma.",
+        "options": [],
+        "images": [
+          {
+            "id": 37169,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID128108_2022_puc-sorocaba-sp_Q1/Captura_de_tela_2024-08-07_131857.png"
+          },
+          {
+            "id": 37170,
+            "order": 2,
+            "image": "https://cdn.medway.com.br/media/question_images/ID128108_2022_puc-sorocaba-sp_Q1/Captura_de_tela_2024-08-07_131849.png"
+          }
+        ],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 383,
+            "parent_tag": {
+              "id": 302,
+              "name": "Cardiologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Insuficiência Cardíaca",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 122,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2204,
+          "name": "Insuficiência Cardíaca",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 250,
+            "name": "Cardiologia",
+            "discipline": 96,
+            "old_tag": 302,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 113029,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Vamos entender o caso? Temos um paciente do sexo masculino, 44 anos, procedente da Bahia, com antededente de doen&ccedil;a de Chagas e hipotireoidismo, que vem se apresentando com cl&iacute;nica de insufici&ecirc;ncia card&iacute;aca descompensada, evoluindo com dor tor&aacute;cica intensa h&aacute; 2 dias. Ao exame f&iacute;sico se encontra com sinais de congest&atilde;o sist&ecirc;mica e pulmonar, bem como bulhas arr&iacute;tmicas. Nossa primeira pergunta &eacute; acerca do eletrocardiograma do paciente. Vamos analisar juntos!</p>\r\n<p style=\"text-align: justify;\">O ritmo &eacute; sinusal, por&eacute;m com extrass&iacute;stoles ventriculares isoladas. A frequ&ecirc;ncia card&iacute;aca &eacute; de 85 bpm. Al&eacute;m disso, podemos ver a presen&ccedil;a de <strong>bloqueio de ramo direito completo associado a bloqueio divisional anterossuperior esquerdo (BDASE)</strong>. <strong>Esse achado &eacute; t&iacute;pico da doen&ccedil;a de Chagas, pessoal.&nbsp;</strong></p>\r\n<p style=\"text-align: justify;\">O BRD pode ser de primeiro, segundo ou terceiro grau, que &eacute; o bloqueio completo. Para definir um bloqueio completo, devemos encontrar todos os crit&eacute;rios: QRS com dura&ccedil;&atilde;o maior que 120 ms (3 quadradinhos) pela lentifica&ccedil;&atilde;o da condu&ccedil;&atilde;o; V1 e V2 com padr&atilde;o rsR' com R' espessada (forma de orelha de coelho).</p>\r\n<p style=\"text-align: justify;\">J&aacute; para diagnosticarmos um BDASE, temos os seguintes padr&otilde;es:</p>\r\n<ul style=\"text-align: justify;\">\r\n<li>\r\n<p>eixo el&eacute;trico de QRS &ge; entre -45&deg; e -90&ordm; (desvio de eixo para esquerda);</p>\r\n</li>\r\n<li>\r\n<p><strong>rS em D2, D3 e aVF com S3 maior que S2</strong>; QRS com dura&ccedil;&atilde;o &lt; 120 ms (desvio de eixo para esquerda, sem bloqueio de ramo associado);</p>\r\n</li>\r\n<li>\r\n<p><strong>onda S de D3 com amplitude maior que 15 mm ou &aacute;rea equivalente (desvio de eixo para esquerda);</strong></p>\r\n</li>\r\n<li>\r\n<p>qR em D1 e aVL com tempo da deflex&atilde;o intrinsecoide maior que 50 ms ou qRs com S m&iacute;nima em D1 (QRS um pouco mais gordinho na primeira metade);</p>\r\n</li>\r\n<li>\r\n<p>qR em aVL com R empastado (desvio de eixo para esquerda);&nbsp;</p>\r\n</li>\r\n<li>\r\n<p>progress&atilde;o lenta da onda R de V1 a V3 (aus&ecirc;ncia de sobrecarga de ventr&iacute;culo esquerdo);</p>\r\n</li>\r\n<li>\r\n<p>presen&ccedil;a de S de V4 a V6 (aus&ecirc;ncia de sobrecarga de ventr&iacute;culo esquerdo).</p>\r\n</li>\r\n</ul>\r\n<p style=\"text-align: justify;\">Confira o ECG abaixo apontando as altera&ccedil;&otilde;es:</p>\r\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/ECG.PNG\" alt=\"\" width=\"508\" height=\"331\" /></p>\r\n<p style=\"text-align: justify;\">Os c&iacute;rculos vermelhos correspondem &agrave; extrass&iacute;stole. O quadrado turquesa ao BRD e os tri&acirc;ngulos rosas demonstram sinais de BDASE.</p>\r\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: Ritmo sinusal. Frequ&ecirc;ncia card&iacute;aca de 85 bpm. Extrass&iacute;stoles ventriculares isoladas. QRS alargado (dura&ccedil;&atilde;o = 140 ms) com morfologia de bloqueio completo de ramo direito. Bloqueio divisional anterossuperior do ramo esquerdo.</strong></p>\r\n<p style=\"text-align: center;\">&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Pessoal, n&atilde;o podemos comer bola! Quest&atilde;o falou de Chagas e trouxe um ECG? Precisamos procurar ativamente por sinais de BRD + BDAS, pois esse &eacute; um achado muito t&iacute;pico da doen&ccedil;a no ECG, portanto, guardem essa associa&ccedil;&atilde;o.&nbsp;</p>\r\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Vamos entender o caso? Temos um paciente do sexo masculino, 44 anos, procedente da Bahia, com antededente de doen&ccedil;a de Chagas e hipotireoidismo, que vem se apresentando com cl&iacute;nica de insufici&ecirc;ncia card&iacute;aca descompensada, evoluindo com dor tor&aacute;cica intensa h&aacute; 2 dias. Ao exame f&iacute;sico se encontra com sinais de congest&atilde;o sist&ecirc;mica e pulmonar, bem como bulhas arr&iacute;tmicas. Nossa primeira pergunta &eacute; acerca do eletrocardiograma do paciente. Vamos analisar juntos!</p>\r\n<p style=\"text-align: justify;\">O ritmo &eacute; sinusal, por&eacute;m com extrass&iacute;stoles ventriculares isoladas. A frequ&ecirc;ncia card&iacute;aca &eacute; de 85 bpm. Al&eacute;m disso, podemos ver a presen&ccedil;a de <strong>bloqueio de ramo direito completo associado a bloqueio divisional anterossuperior esquerdo (BDASE)</strong>. <strong>Esse achado &eacute; t&iacute;pico da doen&ccedil;a de Chagas, pessoal.&nbsp;</strong></p>\r\n<p style=\"text-align: justify;\">O BRD pode ser de primeiro, segundo ou terceiro grau, que &eacute; o bloqueio completo. Para definir um bloqueio completo, devemos encontrar todos os crit&eacute;rios: QRS com dura&ccedil;&atilde;o maior que 120 ms (3 quadradinhos) pela lentifica&ccedil;&atilde;o da condu&ccedil;&atilde;o; V1 e V2 com padr&atilde;o rsR' com R' espessada (forma de orelha de coelho).</p>\r\n<p style=\"text-align: justify;\">J&aacute; para diagnosticarmos um BDASE, temos os seguintes padr&otilde;es:</p>\r\n<ul style=\"text-align: justify;\">\r\n<li>\r\n<p>eixo el&eacute;trico de QRS &ge; entre -45&deg; e -90&ordm; (desvio de eixo para esquerda);</p>\r\n</li>\r\n<li>\r\n<p><strong>rS em D2, D3 e aVF com S3 maior que S2</strong>; QRS com dura&ccedil;&atilde;o &lt; 120 ms (desvio de eixo para esquerda, sem bloqueio de ramo associado);</p>\r\n</li>\r\n<li>\r\n<p><strong>onda S de D3 com amplitude maior que 15 mm ou &aacute;rea equivalente (desvio de eixo para esquerda);</strong></p>\r\n</li>\r\n<li>\r\n<p>qR em D1 e aVL com tempo da deflex&atilde;o intrinsecoide maior que 50 ms ou qRs com S m&iacute;nima em D1 (QRS um pouco mais gordinho na primeira metade);</p>\r\n</li>\r\n<li>\r\n<p>qR em aVL com R empastado (desvio de eixo para esquerda);&nbsp;</p>\r\n</li>\r\n<li>\r\n<p>progress&atilde;o lenta da onda R de V1 a V3 (aus&ecirc;ncia de sobrecarga de ventr&iacute;culo esquerdo);</p>\r\n</li>\r\n<li>\r\n<p>presen&ccedil;a de S de V4 a V6 (aus&ecirc;ncia de sobrecarga de ventr&iacute;culo esquerdo).</p>\r\n</li>\r\n</ul>\r\n<p style=\"text-align: justify;\">Confira o ECG abaixo apontando as altera&ccedil;&otilde;es:</p>\r\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/ECG.PNG\" alt=\"\" width=\"508\" height=\"331\" /></p>\r\n<p style=\"text-align: justify;\">Os c&iacute;rculos vermelhos correspondem &agrave; extrass&iacute;stole. O quadrado turquesa ao BRD e os tri&acirc;ngulos rosas demonstram sinais de BDASE.</p>\r\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: Ritmo sinusal. Frequ&ecirc;ncia card&iacute;aca de 85 bpm. Extrass&iacute;stoles ventriculares isoladas. QRS alargado (dura&ccedil;&atilde;o = 140 ms) com morfologia de bloqueio completo de ramo direito. Bloqueio divisional anterossuperior do ramo esquerdo.</strong></p>\r\n<p style=\"text-align: center;\">&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Pessoal, n&atilde;o podemos comer bola! Quest&atilde;o falou de Chagas e trouxe um ECG? Precisamos procurar ativamente por sinais de BRD + BDAS, pois esse &eacute; um achado muito t&iacute;pico da doen&ccedil;a no ECG, portanto, guardem essa associa&ccedil;&atilde;o.&nbsp;</p>\r\n<p>&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 128109,
+        "number": 2,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Insuficiência Cardíaca",
+        "focus": {
+          "id": 2204,
+          "name": "Insuficiência Cardíaca"
+        }
+      },
+      "detail": {
+        "id": 128109,
+        "content": "Barbeiro traiçoeiro; Laurindo, 44 anos, morador de zona rural, procedente da Bahia.\r\nDeu entrada no pronto-socorro com queixa de dispneia progressiva com piora aos pequenos esforços, tonturas e dor torácica de forte intensidade há 2 dias. Tem antecedentes de doença de Chagas e hipotireoidismo. Está em uso regular de furosemida 40 mg/dia, Carvedilol 12,5 mg cada 12h, Puran T4 150 mcg/dia. Parou de beber há 3 anos e de fumar há 6 anos. Sua mãe é diabética e seu pai hipertenso.\r\nApresentava ao exame físico, edema de MMII 3+/4+, estase jugular, refluxo hepato-jugular presente. FC= 86 bpm, FR 20 ipm, PA= 112/84 mmHg, T= 36,1° C, estertoração crepitante bilateral nas bases pulmonares, bulhas arrítmicas. Abaixo segue radiografia de tórax e Eletrocardiograma, realizados na admissão. Os dois principais achados na radiografia de tórax são:",
+        "options": [],
+        "images": [
+          {
+            "id": 33310,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID128109_2022_puc-sorocaba-sp_Q2/Captura_de_tela_2024-07-16_110940.png"
+          },
+          {
+            "id": 33311,
+            "order": 2,
+            "image": "https://cdn.medway.com.br/media/question_images/ID128109_2022_puc-sorocaba-sp_Q2/Captura_de_tela_2024-07-16_111003.png"
+          }
+        ],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 383,
+            "parent_tag": {
+              "id": 302,
+              "name": "Cardiologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Insuficiência Cardíaca",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 101,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2204,
+          "name": "Insuficiência Cardíaca",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 250,
+            "name": "Cardiologia",
+            "discipline": 96,
+            "old_tag": 302,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 113030,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Essa quest&atilde;o faz parte de um conjunto de 5 quest&otilde;es discursivas da prova da PUC-SP para R+ de CM de 2022. Vamos relembrar o caso? Temos um paciente do sexo masculino, 44 anos, procedente da Bahia, com antededente de doen&ccedil;a de Chagas e hipotireoidismo, que vem se apresentando com cl&iacute;nica de insufici&ecirc;ncia card&iacute;aca descompensada, evoluindo com dor tor&aacute;cica intensa h&aacute; 2 dias. Ao exame f&iacute;sico se encontra com sinais de congest&atilde;o sist&ecirc;mica e pulmonar, bem como bulhas arr&iacute;tmicas. Agora somos questionados sobre os 2 principais achados da radiografia de t&oacute;rax&hellip; Vamos l&aacute;!</p>\r\n<p style=\"text-align: justify;\">O primeiro achado que nos salta aos olhos &eacute; a presen&ccedil;a de sinais de congest&atilde;o pulmonar, concordam? H&aacute; aumento da trama vasobr&ocirc;nquica! J&aacute; o segundo achado importante da imagem &eacute; uma cardiomegalia importante, representada por um &iacute;ndice cardiotor&aacute;cica &gt; 0,5. Confiram abaixo os achados:&nbsp;</p>\r\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/RX.PNG\" alt=\"\" width=\"390\" height=\"356\" /></p>\r\n<p style=\"text-align: justify;\">Em rosa o &iacute;ndice card&iacute;aco, em turquesa o &iacute;ndice tor&aacute;cico e em vermelho os sinais de aumento da trama vasobr&ocirc;nquica.&nbsp;</p>\r\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito:&nbsp; Cardiomegalia (aumento do &iacute;ndice cardio-tor&aacute;cico) e congest&atilde;o pulmonar (aumento da trama vasobr&ocirc;nquica).</strong></p>\r\n<p style=\"text-align: center;\">&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Pessoal, nunca podemos menosprezar as imagens na prova, inclusive, somos cada vez mais cobrados sobre a interpreta&ccedil;&atilde;o delas! Vamos lembrar que est&aacute;gios de IC avan&ccedil;ada cursam com cardiomegalia e a congest&atilde;o pulmonar tem v&aacute;rias maneiras de ser vista na imagem, uma delas pelo aumento da trama, como vimos, mas tamb&eacute;m n&atilde;o podemos esquecer das linhas B de Kerley, que s&atilde;o linhas horizontais na periferia do pulm&atilde;o que se estendem at&eacute; a superf&iacute;cie pleural. Denotam septos interlobulares espessados e edematosos, muitas vezes decorrentes de edema pulmonar.</p>\r\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Essa quest&atilde;o faz parte de um conjunto de 5 quest&otilde;es discursivas da prova da PUC-SP para R+ de CM de 2022. Vamos relembrar o caso? Temos um paciente do sexo masculino, 44 anos, procedente da Bahia, com antededente de doen&ccedil;a de Chagas e hipotireoidismo, que vem se apresentando com cl&iacute;nica de insufici&ecirc;ncia card&iacute;aca descompensada, evoluindo com dor tor&aacute;cica intensa h&aacute; 2 dias. Ao exame f&iacute;sico se encontra com sinais de congest&atilde;o sist&ecirc;mica e pulmonar, bem como bulhas arr&iacute;tmicas. Agora somos questionados sobre os 2 principais achados da radiografia de t&oacute;rax&hellip; Vamos l&aacute;!</p>\r\n<p style=\"text-align: justify;\">O primeiro achado que nos salta aos olhos &eacute; a presen&ccedil;a de sinais de congest&atilde;o pulmonar, concordam? H&aacute; aumento da trama vasobr&ocirc;nquica! J&aacute; o segundo achado importante da imagem &eacute; uma cardiomegalia importante, representada por um &iacute;ndice cardiotor&aacute;cica &gt; 0,5. Confiram abaixo os achados:&nbsp;</p>\r\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/RX.PNG\" alt=\"\" width=\"390\" height=\"356\" /></p>\r\n<p style=\"text-align: justify;\">Em rosa o &iacute;ndice card&iacute;aco, em turquesa o &iacute;ndice tor&aacute;cico e em vermelho os sinais de aumento da trama vasobr&ocirc;nquica.&nbsp;</p>\r\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito:&nbsp; Cardiomegalia (aumento do &iacute;ndice cardio-tor&aacute;cico) e congest&atilde;o pulmonar (aumento da trama vasobr&ocirc;nquica).</strong></p>\r\n<p style=\"text-align: center;\">&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Pessoal, nunca podemos menosprezar as imagens na prova, inclusive, somos cada vez mais cobrados sobre a interpreta&ccedil;&atilde;o delas! Vamos lembrar que est&aacute;gios de IC avan&ccedil;ada cursam com cardiomegalia e a congest&atilde;o pulmonar tem v&aacute;rias maneiras de ser vista na imagem, uma delas pelo aumento da trama, como vimos, mas tamb&eacute;m n&atilde;o podemos esquecer das linhas B de Kerley, que s&atilde;o linhas horizontais na periferia do pulm&atilde;o que se estendem at&eacute; a superf&iacute;cie pleural. Denotam septos interlobulares espessados e edematosos, muitas vezes decorrentes de edema pulmonar.</p>\r\n<p>&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 128110,
+        "number": 3,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Insuficiência Cardíaca",
+        "focus": {
+          "id": 2204,
+          "name": "Insuficiência Cardíaca"
+        }
+      },
+      "detail": {
+        "id": 128110,
+        "content": "Barbeiro traiçoeiro; Laurindo, 44 anos, morador de zona rural, procedente da Bahia. Deu entrada no pronto-socorro com queixa de dispneia progressiva com piora aos pequenos esforços, tonturas e dor torácica de forte intensidade há 2 dias. Tem antecedentes de doença de Chagas e hipotireoidismo. Está em uso regular de de furosemida 40 mg/dia, Carvedilol 12,5 mg cada 12h, Puran T4 150 mcg/dia. Parou de beber há 3 anos e de fumar há 6 anos. Sua mãe é diabética e seu pai hipertenso. Apresentava ao exame físico, edema de MMII 3+/4+, estase jugular, refluxo hepato-jugular presente. FC= 86 bpm, FR 20 ipm, PA= 112/84 mmHg, T= 36,1° C, estertoração crepitante bilateral nas bases pulmonares, bulhas arrítmicas. Abaixo segue radiografia de tórax e Eletrocardiograma, realizados na admissão. O Ecocardiograma do Laurindo apresentou uma fração de ejeção de 32%, assim, com esse quadro clínico, segundo o American College of Cardiology, bem como de acordo com a Atualização de Tópicos Emergentes da Diretriz Brasileira de Insuficiência Cardíaca – 2021 da Sociedade Brasileira de Cardiologia, trata-se de insuficiência cardíaca com fração de ejeção reduzida (ICFEr). Responda qual é o sub-tipo da ICFEr do Laurindo e a respectiva classe terapêutica recomendada como primeira linha para seu tratamento, após otimização de diuréticos, incluindo antagonista dos receptores mineralocorticoides, e manutenção do carvedilol.",
+        "options": [],
+        "images": [
+          {
+            "id": 58554,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID128110_2022_institution-object-321_Q3/bl1.png"
+          },
+          {
+            "id": 58555,
+            "order": 2,
+            "image": "https://cdn.medway.com.br/media/question_images/ID128110_2022_institution-object-321_Q3/bl2.png"
+          }
+        ],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 383,
+            "parent_tag": {
+              "id": 302,
+              "name": "Cardiologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Insuficiência Cardíaca",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 105,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2204,
+          "name": "Insuficiência Cardíaca",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 250,
+            "name": "Cardiologia",
+            "discipline": 96,
+            "old_tag": 302,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 113031,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Essa quest&atilde;o faz parte de um conjunto de 5 quest&otilde;es discursivas da prova da PUC-SP para R+ de CM de 2022. Vamos relembrar o caso? Temos um paciente do sexo masculino, 44 anos, procedente da Bahia, com antededente de doen&ccedil;a de Chagas e hipotireoidismo, que vem se apresentando com cl&iacute;nica de insufici&ecirc;ncia card&iacute;aca descompensada, evoluindo com dor tor&aacute;cica intensa h&aacute; 2 dias. Ao exame f&iacute;sico se encontra com sinais de congest&atilde;o sist&ecirc;mica e pulmonar, bem como bulhas arr&iacute;tmicas.&nbsp;</p>\n<p style=\"text-align: justify;\">O paciente realizou um ecocardiograma, que evidenciou fra&ccedil;&atilde;o de eje&ccedil;&atilde;o de 32% (reduzida, &lt; 40%). Somos questionados ent&atilde;o sobre qual subtipo da ICFEr do paciente levando em considera&ccedil;&atilde;o seu quadro cl&iacute;nico atual (descompensa&ccedil;&atilde;o) e a classe terap&ecirc;utica recomendada de primeira linha para o tratamento, ap&oacute;s otimiza&ccedil;&atilde;o de diur&eacute;ticos, antagonista de mineralocorticoides e carvedilol.</p>\n<p style=\"text-align: justify;\">Vamos por partes! Frente a uma IC descompensada, precisamos seguir etapas&hellip;</p>\n<p style=\"text-align: justify;\"><strong>1) Detectar fatores desencadeantes:</strong></p>\n<p style=\"text-align: justify;\">- Fatores relacionados ao paciente: m&aacute;-ades&atilde;o; ingest&atilde;o excessiva de sal; estresses f&iacute;sicos e emocionais; uso de toxinas card&iacute;acas;</p>\n<p style=\"text-align: justify;\">- Eventos card&iacute;acos agudos: arritmias; SCA ou IAM; HAS n&atilde;o controlada; doen&ccedil;a valvar progressiva;</p>\n<p style=\"text-align: justify;\">- Eventos n&atilde;o-card&iacute;acos agudos: embolia pulmonar; anemia e sangramentos; infec&ccedil;&atilde;o sist&ecirc;mica; dist&uacute;rbios tireoidianos; progress&atilde;o da disfun&ccedil;&atilde;o renal; AVC;</p>\n<p style=\"text-align: justify;\">- Efeitos adversos de medica&ccedil;&otilde;es: medica&ccedil;&otilde;es depressoras card&iacute;acas ou retentoras de sal.</p>\n<p style=\"text-align: justify;\"><strong>2) Defini&ccedil;&atilde;o do Perfil Cl&iacute;nico/Hemodin&acirc;mico:</strong></p>\n<p style=\"text-align: justify;\">&gt; Sinais de Congest&atilde;o Pulmonar ou Sist&ecirc;mica: ortopn&eacute;ia, press&atilde;o venosa jugular elevada, edema de membros ou sacral, estertores pulmonares, ascite, refluxo hepatojugular, hepatomegalia, redistribui&ccedil;&atilde;o da trama vascular na radiografia de t&oacute;rax.&nbsp;</p>\n<p style=\"text-align: justify;\">&gt; Sinais de Hipoperfus&atilde;o: extremidades frias, TEC &gt; 3 segundos, hipotens&atilde;o, olig&uacute;ria, aumento das escorias nitrogenadas, diminui&ccedil;&atilde;o progressiva dos n&iacute;veis de s&oacute;dio, Press&atilde;o de Pulso Proporcional &lt; 25% (PAS-PAD/PAS).</p>\n<p style=\"text-align: justify;\">OBS: Os estertores pulmonares est&atilde;o ausentes em 80% dos pacientes devido &agrave; compensa&ccedil;&atilde;o proporcionada pelos linf&aacute;ticos pulmonares. A press&atilde;o arterial (PA) &eacute; um dos principais marcadores de hipoperfus&atilde;o, mas pode ocorrer hipoperfus&atilde;o perif&eacute;rica com n&iacute;veis press&oacute;ricos acima de 100 mm de Hg.</p>\n<p style=\"text-align: justify;\"><strong>3) Abordagem terap&ecirc;utica Guiada por Perfil Cl&iacute;nico/Hemodin&acirc;mico:</strong></p>\n<p style=\"text-align: justify;\"><strong>- PERFIL A (quente e seco):</strong></p>\n<p style=\"text-align: justify;\">N&atilde;o apresenta dados objetivos da descompensa&ccedil;&atilde;o. Deve-se pesquisar outras causas que justifiquem seus sintomas como tromboembolismo pulmonar, exacerba&ccedil;&atilde;o aguda de DPOC, pneumonia, etc.</p>\n<p style=\"text-align: justify;\"><strong>- PERFIL B (quente e &uacute;mido):</strong></p>\n<p style=\"text-align: justify;\">Os<strong> diur&eacute;ticos de al&ccedil;a </strong>(furosemida) s&atilde;o a base do tratamento deste paciente. A dose recomendada &eacute; bolus 20-40 mg IV na admiss&atilde;o. A dose dever&aacute; ser titulada de acordo com o d&eacute;bito urin&aacute;rio. Para melhor monitoriza&ccedil;&atilde;o do d&eacute;bito urin&aacute;rio o paciente poder&aacute; ser submetido a sondagem vesical de demora. Pacientes usu&aacute;rios cr&ocirc;nicos de diur&eacute;ticos e com IRC podem necessitar de doses mais elevadas para compensa&ccedil;&atilde;o. Combina&ccedil;&atilde;o de diur&eacute;ticos (hidroclorotiazida, espironolactona) pode ser &uacute;til em pacientes com resist&ecirc;ncia a a&ccedil;&atilde;o dos diur&eacute;ticos. O uso de ventila&ccedil;&atilde;o mec&acirc;nica n&atilde;o invasiva nestes pacientes diminui necessidade de intuba&ccedil;&atilde;o orotraqueal e reduz mortalidade em curto prazo. Deve ser estimulada em pacientes cooperativos com desconforto respirat&oacute;rio sem necessidade iminente de intuba&ccedil;&atilde;o orotraqueal. Os <strong>vasodilatadores endovenosos</strong> possibilitam a melhora r&aacute;pida dos sintomas, muitas vezes evitando a necessidade de intuba&ccedil;&atilde;o orotraqueal. A dose &eacute; deve ser titulada de acordo&nbsp;com os n&iacute;veis press&oacute;ricos e melhora da congest&atilde;o.</p>\n<p style=\"text-align: justify;\"><strong>- PERFIL C (frio e &uacute;mido):</strong></p>\n<p style=\"text-align: justify;\">Este grupo apresenta um grande desafio ao m&eacute;dico na sala de urg&ecirc;ncia. Pode ser necess&aacute;ria a redu&ccedil;&atilde;o da dose ou at&eacute; mesmo a interrup&ccedil;&atilde;o tempor&aacute;ria de inibidores da ECA e betabloqueadores se hipotens&atilde;o importante (choque cardiog&ecirc;nico). Abordagem sugerida de acordo com os n&iacute;veis de press&atilde;o arterial sist&oacute;lica (PAS):</p>\n<p style=\"text-align: justify;\">- PAS &gt; 100mmHg ==&gt; Vasodilatadores (nitroglicerina e nitroprussiato);</p>\n<p style=\"text-align: justify;\">- PAS entre 85 &ndash; 100 mmHg ==&gt; Inicio cauteloso de vasodilatadores ou inotr&oacute;picos;</p>\n<p style=\"text-align: justify;\">- PAS &lt; 85 mmHg ==&gt; Inotr&oacute;picos (dopamina / noradrenalina); dobutamina ap&oacute;s PAS &gt; 90 mmHg.</p>\n<p style=\"text-align: justify;\">A medica&ccedil;&atilde;o inicial dever&aacute; ser individualizada para cada paciente levando em conta n&atilde;o somente os n&iacute;veis press&oacute;ricos como tamb&eacute;m a presen&ccedil;a de arritmias como fibrila&ccedil;&atilde;o atrial, taquicardia ventricular, concomit&acirc;ncia de s&iacute;ndrome coronariana aguda, sepse ou suspeita de&nbsp;infe&ccedil;&atilde;o, valores de ur&eacute;ia e creatinina, etc.</p>\n<p style=\"text-align: justify;\"><strong>- PERFIL L (frio e seco):</strong></p>\n<p style=\"text-align: justify;\">&Eacute; o subgrupo menos frequente na sala de urg&ecirc;ncia. Avaliar se paciente n&atilde;o est&aacute; usando dose excessiva de diur&eacute;tico ou vasodilatadores. Pode ser necess&aacute;rio prova de volume cuidadosa (250 ml SF0,9% em 1 hora) com avalia&ccedil;&atilde;o cl&iacute;nica rigorosa. Ap&oacute;s prova de volume pode migrar para perfil A ou perfil C. Alta suspei&ccedil;&atilde;o de infe&ccedil;&atilde;o associada</p>\n<p style=\"text-align: justify;\">Dessa forma, podemos dizer que nosso paciente est&aacute; congesto, por&eacute;m bem perfundido, concordam? <strong>Logo, perfil B (quente e &uacute;mido)</strong>! EM rela&ccedil;&atilde;o &agrave; medica&ccedil;&atilde;o de primeira linha, de modo geral, o tratamento da ICFER inclui tr&ecirc;s grupos principais de drogas: aquelas que agem <strong>inibindo os sistema renina-angiotensina (iECA ou BRA)</strong>, os betabloqueadores e os antagonistas dos receptores de aldosterona (como a espironolactona). Isso porque essas s&atilde;o as classes de drogas capazes de reduzir sintomas, al&eacute;m de hospitaliza&ccedil;&otilde;es e mortes. Assim, precisamos iniciar para ele um inibidor da ECA ou um BRA.</p>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: Congesto (perfil B, quente e &uacute;mido) e o tratamento &eacute;, al&eacute;m da otimiza&ccedil;&atilde;o de diur&eacute;ticos, o uso de inibidores da enzima de convers&atilde;o da angiotensina (IECA) ou bloqueadores dos receptores AT1 da angiotensina II (BRA), evitando suspender o beta-bloqueador.</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Sempre caem quest&otilde;es sobre manejo de ICFEr em rela&ccedil;&atilde;o &agrave; mortalidade e controle sintom&aacute;tico, pessoal. Ao longo da d&eacute;cada de 90 em diante, foram surgindo v&aacute;rios estudos que evidenciaram benef&iacute;cio em mortalidade para algumas medica&ccedil;&otilde;es na IC - vale a pena sabermos para a prova de R+. S&atilde;o eles:</p>\n<ul>\n<li style=\"text-align: justify;\">\n<p>Estudo SOLVD: benef&iacute;cio do iECA em reduzir mortalidade na IC.</p>\n</li>\n<li style=\"text-align: justify;\">\n<p>Estudo MERIT-HF e CIBIS-II: benef&iacute;cio do <strong>succinato de metoprolol,&nbsp; bisoprolol e carvedilol</strong> em reduzir mortalidade na IC. Tamb&eacute;m a espironolactona demonstrou esse benef&iacute;cio.</p>\n</li>\n<li style=\"text-align: justify;\">\n<p>Estudos de 1986: benef&iacute;cio da hidralazina + nitrato em reduzir mortalidade na IC, especialmente em engros.</p>\n</li>\n<li style=\"text-align: justify;\">\n<p>Estudo PARADIGM-HF: benef&iacute;cio do Sacubitril-Valsartana em reduzir mortalidade na IC. Aqui vale mencionar que a maioria das diretrizes recomenda o uso dessa droga em pacientes que continuam hipertensos em uso de iECA em dose otimizada (substituiria-se o iECA pelo Sacubitril-Valsartana) - no entanto, a diretriz americana refere que podemos come&ccedil;ar logo de cara!</p>\n</li>\n<li style=\"text-align: justify;\">\n<p>Estudo SHIFT: benef&iacute;cio da ivabradina em reduzir mortalidade na IC.</p>\n</li>\n<li>\n<p style=\"text-align: justify;\">Estudo DAPA-HF: benef&iacute;cio dos iSGLT2 (especificamente da dapaglifozina) em reduzir mortalidade na IC.</p>\n</li>\n</ul>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Essa quest&atilde;o faz parte de um conjunto de 5 quest&otilde;es discursivas da prova da PUC-SP para R+ de CM de 2022. Vamos relembrar o caso? Temos um paciente do sexo masculino, 44 anos, procedente da Bahia, com antededente de doen&ccedil;a de Chagas e hipotireoidismo, que vem se apresentando com cl&iacute;nica de insufici&ecirc;ncia card&iacute;aca descompensada, evoluindo com dor tor&aacute;cica intensa h&aacute; 2 dias. Ao exame f&iacute;sico se encontra com sinais de congest&atilde;o sist&ecirc;mica e pulmonar, bem como bulhas arr&iacute;tmicas.&nbsp;</p>\n<p style=\"text-align: justify;\">O paciente realizou um ecocardiograma, que evidenciou fra&ccedil;&atilde;o de eje&ccedil;&atilde;o de 32% (reduzida, &lt; 40%). Somos questionados ent&atilde;o sobre qual subtipo da ICFEr do paciente levando em considera&ccedil;&atilde;o seu quadro cl&iacute;nico atual (descompensa&ccedil;&atilde;o) e a classe terap&ecirc;utica recomendada de primeira linha para o tratamento, ap&oacute;s otimiza&ccedil;&atilde;o de diur&eacute;ticos, antagonista de mineralocorticoides e carvedilol.</p>\n<p style=\"text-align: justify;\">Vamos por partes! Frente a uma IC descompensada, precisamos seguir etapas&hellip;</p>\n<p style=\"text-align: justify;\"><strong>1) Detectar fatores desencadeantes:</strong></p>\n<p style=\"text-align: justify;\">- Fatores relacionados ao paciente: m&aacute;-ades&atilde;o; ingest&atilde;o excessiva de sal; estresses f&iacute;sicos e emocionais; uso de toxinas card&iacute;acas;</p>\n<p style=\"text-align: justify;\">- Eventos card&iacute;acos agudos: arritmias; SCA ou IAM; HAS n&atilde;o controlada; doen&ccedil;a valvar progressiva;</p>\n<p style=\"text-align: justify;\">- Eventos n&atilde;o-card&iacute;acos agudos: embolia pulmonar; anemia e sangramentos; infec&ccedil;&atilde;o sist&ecirc;mica; dist&uacute;rbios tireoidianos; progress&atilde;o da disfun&ccedil;&atilde;o renal; AVC;</p>\n<p style=\"text-align: justify;\">- Efeitos adversos de medica&ccedil;&otilde;es: medica&ccedil;&otilde;es depressoras card&iacute;acas ou retentoras de sal.</p>\n<p style=\"text-align: justify;\"><strong>2) Defini&ccedil;&atilde;o do Perfil Cl&iacute;nico/Hemodin&acirc;mico:</strong></p>\n<p style=\"text-align: justify;\">&gt; Sinais de Congest&atilde;o Pulmonar ou Sist&ecirc;mica: ortopn&eacute;ia, press&atilde;o venosa jugular elevada, edema de membros ou sacral, estertores pulmonares, ascite, refluxo hepatojugular, hepatomegalia, redistribui&ccedil;&atilde;o da trama vascular na radiografia de t&oacute;rax.&nbsp;</p>\n<p style=\"text-align: justify;\">&gt; Sinais de Hipoperfus&atilde;o: extremidades frias, TEC &gt; 3 segundos, hipotens&atilde;o, olig&uacute;ria, aumento das escorias nitrogenadas, diminui&ccedil;&atilde;o progressiva dos n&iacute;veis de s&oacute;dio, Press&atilde;o de Pulso Proporcional &lt; 25% (PAS-PAD/PAS).</p>\n<p style=\"text-align: justify;\">OBS: Os estertores pulmonares est&atilde;o ausentes em 80% dos pacientes devido &agrave; compensa&ccedil;&atilde;o proporcionada pelos linf&aacute;ticos pulmonares. A press&atilde;o arterial (PA) &eacute; um dos principais marcadores de hipoperfus&atilde;o, mas pode ocorrer hipoperfus&atilde;o perif&eacute;rica com n&iacute;veis press&oacute;ricos acima de 100 mm de Hg.</p>\n<p style=\"text-align: justify;\"><strong>3) Abordagem terap&ecirc;utica Guiada por Perfil Cl&iacute;nico/Hemodin&acirc;mico:</strong></p>\n<p style=\"text-align: justify;\"><strong>- PERFIL A (quente e seco):</strong></p>\n<p style=\"text-align: justify;\">N&atilde;o apresenta dados objetivos da descompensa&ccedil;&atilde;o. Deve-se pesquisar outras causas que justifiquem seus sintomas como tromboembolismo pulmonar, exacerba&ccedil;&atilde;o aguda de DPOC, pneumonia, etc.</p>\n<p style=\"text-align: justify;\"><strong>- PERFIL B (quente e &uacute;mido):</strong></p>\n<p style=\"text-align: justify;\">Os<strong> diur&eacute;ticos de al&ccedil;a </strong>(furosemida) s&atilde;o a base do tratamento deste paciente. A dose recomendada &eacute; bolus 20-40 mg IV na admiss&atilde;o. A dose dever&aacute; ser titulada de acordo com o d&eacute;bito urin&aacute;rio. Para melhor monitoriza&ccedil;&atilde;o do d&eacute;bito urin&aacute;rio o paciente poder&aacute; ser submetido a sondagem vesical de demora. Pacientes usu&aacute;rios cr&ocirc;nicos de diur&eacute;ticos e com IRC podem necessitar de doses mais elevadas para compensa&ccedil;&atilde;o. Combina&ccedil;&atilde;o de diur&eacute;ticos (hidroclorotiazida, espironolactona) pode ser &uacute;til em pacientes com resist&ecirc;ncia a a&ccedil;&atilde;o dos diur&eacute;ticos. O uso de ventila&ccedil;&atilde;o mec&acirc;nica n&atilde;o invasiva nestes pacientes diminui necessidade de intuba&ccedil;&atilde;o orotraqueal e reduz mortalidade em curto prazo. Deve ser estimulada em pacientes cooperativos com desconforto respirat&oacute;rio sem necessidade iminente de intuba&ccedil;&atilde;o orotraqueal. Os <strong>vasodilatadores endovenosos</strong> possibilitam a melhora r&aacute;pida dos sintomas, muitas vezes evitando a necessidade de intuba&ccedil;&atilde;o orotraqueal. A dose &eacute; deve ser titulada de acordo&nbsp;com os n&iacute;veis press&oacute;ricos e melhora da congest&atilde;o.</p>\n<p style=\"text-align: justify;\"><strong>- PERFIL C (frio e &uacute;mido):</strong></p>\n<p style=\"text-align: justify;\">Este grupo apresenta um grande desafio ao m&eacute;dico na sala de urg&ecirc;ncia. Pode ser necess&aacute;ria a redu&ccedil;&atilde;o da dose ou at&eacute; mesmo a interrup&ccedil;&atilde;o tempor&aacute;ria de inibidores da ECA e betabloqueadores se hipotens&atilde;o importante (choque cardiog&ecirc;nico). Abordagem sugerida de acordo com os n&iacute;veis de press&atilde;o arterial sist&oacute;lica (PAS):</p>\n<p style=\"text-align: justify;\">- PAS &gt; 100mmHg ==&gt; Vasodilatadores (nitroglicerina e nitroprussiato);</p>\n<p style=\"text-align: justify;\">- PAS entre 85 &ndash; 100 mmHg ==&gt; Inicio cauteloso de vasodilatadores ou inotr&oacute;picos;</p>\n<p style=\"text-align: justify;\">- PAS &lt; 85 mmHg ==&gt; Inotr&oacute;picos (dopamina / noradrenalina); dobutamina ap&oacute;s PAS &gt; 90 mmHg.</p>\n<p style=\"text-align: justify;\">A medica&ccedil;&atilde;o inicial dever&aacute; ser individualizada para cada paciente levando em conta n&atilde;o somente os n&iacute;veis press&oacute;ricos como tamb&eacute;m a presen&ccedil;a de arritmias como fibrila&ccedil;&atilde;o atrial, taquicardia ventricular, concomit&acirc;ncia de s&iacute;ndrome coronariana aguda, sepse ou suspeita de&nbsp;infe&ccedil;&atilde;o, valores de ur&eacute;ia e creatinina, etc.</p>\n<p style=\"text-align: justify;\"><strong>- PERFIL L (frio e seco):</strong></p>\n<p style=\"text-align: justify;\">&Eacute; o subgrupo menos frequente na sala de urg&ecirc;ncia. Avaliar se paciente n&atilde;o est&aacute; usando dose excessiva de diur&eacute;tico ou vasodilatadores. Pode ser necess&aacute;rio prova de volume cuidadosa (250 ml SF0,9% em 1 hora) com avalia&ccedil;&atilde;o cl&iacute;nica rigorosa. Ap&oacute;s prova de volume pode migrar para perfil A ou perfil C. Alta suspei&ccedil;&atilde;o de infe&ccedil;&atilde;o associada</p>\n<p style=\"text-align: justify;\">Dessa forma, podemos dizer que nosso paciente est&aacute; congesto, por&eacute;m bem perfundido, concordam? <strong>Logo, perfil B (quente e &uacute;mido)</strong>! EM rela&ccedil;&atilde;o &agrave; medica&ccedil;&atilde;o de primeira linha, de modo geral, o tratamento da ICFER inclui tr&ecirc;s grupos principais de drogas: aquelas que agem <strong>inibindo os sistema renina-angiotensina (iECA ou BRA)</strong>, os betabloqueadores e os antagonistas dos receptores de aldosterona (como a espironolactona). Isso porque essas s&atilde;o as classes de drogas capazes de reduzir sintomas, al&eacute;m de hospitaliza&ccedil;&otilde;es e mortes. Assim, precisamos iniciar para ele um inibidor da ECA ou um BRA.</p>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: Congesto (perfil B, quente e &uacute;mido) e o tratamento &eacute;, al&eacute;m da otimiza&ccedil;&atilde;o de diur&eacute;ticos, o uso de inibidores da enzima de convers&atilde;o da angiotensina (IECA) ou bloqueadores dos receptores AT1 da angiotensina II (BRA), evitando suspender o beta-bloqueador.</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Sempre caem quest&otilde;es sobre manejo de ICFEr em rela&ccedil;&atilde;o &agrave; mortalidade e controle sintom&aacute;tico, pessoal. Ao longo da d&eacute;cada de 90 em diante, foram surgindo v&aacute;rios estudos que evidenciaram benef&iacute;cio em mortalidade para algumas medica&ccedil;&otilde;es na IC - vale a pena sabermos para a prova de R+. S&atilde;o eles:</p>\n<ul>\n<li style=\"text-align: justify;\">\n<p>Estudo SOLVD: benef&iacute;cio do iECA em reduzir mortalidade na IC.</p>\n</li>\n<li style=\"text-align: justify;\">\n<p>Estudo MERIT-HF e CIBIS-II: benef&iacute;cio do <strong>succinato de metoprolol,&nbsp; bisoprolol e carvedilol</strong> em reduzir mortalidade na IC. Tamb&eacute;m a espironolactona demonstrou esse benef&iacute;cio.</p>\n</li>\n<li style=\"text-align: justify;\">\n<p>Estudos de 1986: benef&iacute;cio da hidralazina + nitrato em reduzir mortalidade na IC, especialmente em engros.</p>\n</li>\n<li style=\"text-align: justify;\">\n<p>Estudo PARADIGM-HF: benef&iacute;cio do Sacubitril-Valsartana em reduzir mortalidade na IC. Aqui vale mencionar que a maioria das diretrizes recomenda o uso dessa droga em pacientes que continuam hipertensos em uso de iECA em dose otimizada (substituiria-se o iECA pelo Sacubitril-Valsartana) - no entanto, a diretriz americana refere que podemos come&ccedil;ar logo de cara!</p>\n</li>\n<li style=\"text-align: justify;\">\n<p>Estudo SHIFT: benef&iacute;cio da ivabradina em reduzir mortalidade na IC.</p>\n</li>\n<li>\n<p style=\"text-align: justify;\">Estudo DAPA-HF: benef&iacute;cio dos iSGLT2 (especificamente da dapaglifozina) em reduzir mortalidade na IC.</p>\n</li>\n</ul><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 128111,
+        "number": 4,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Insuficiência Cardíaca",
+        "focus": {
+          "id": 2204,
+          "name": "Insuficiência Cardíaca"
+        }
+      },
+      "detail": {
+        "id": 128111,
+        "content": "Barbeiro traiçoeiro; Laurindo, 44 anos, morador de zona rural, procedente da Bahia. Deu entrada no pronto-socorro com queixa de dispneia progressiva com piora aos pequenos esforços, tonturas e dor torácica de forte intensidade há 2 dias. Tem antecedentes de doença de Chagas e hipotireoidismo. Está em uso regular de de furosemida 40 mg/dia, Carvedilol 12,5 mg cada 12h, Puran T4 150 mcg/dia. Parou de beber há 3 anos e de fumar há 6 anos. Sua mãe é diabética e seu pai hipertenso. Apresentava ao exame físico, edema de MMII 3+/4+, estase jugular, refluxo hepato-jugular presente. FC= 86 bpm, FR 20 ipm, PA= 112/84 mmHg, T= 36,1° C, estertoração crepitante bilateral nas bases pulmonares, bulhas arrítmicas. Abaixo segue radiografia de tórax e Eletrocardiograma, realizados na admissão. Na evolução, com o aumento da furosemida e demais ajustes terapêuticos a creatinina do Laurindo subiu, mas não alcançou o percentual de aumento que se preconiza evitar que é de superior a:",
+        "options": [],
+        "images": [
+          {
+            "id": 58556,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID128111_2022_institution-object-321_Q4/bl1.png"
+          },
+          {
+            "id": 58557,
+            "order": 2,
+            "image": "https://cdn.medway.com.br/media/question_images/ID128111_2022_institution-object-321_Q4/bl2.png"
+          }
+        ],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 383,
+            "parent_tag": {
+              "id": 302,
+              "name": "Cardiologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Insuficiência Cardíaca",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 93,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2204,
+          "name": "Insuficiência Cardíaca",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 250,
+            "name": "Cardiologia",
+            "discipline": 96,
+            "old_tag": 302,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 113032,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Essa quest&atilde;o faz parte de um conjunto de 5 quest&otilde;es discursivas da prova da PUC-SP para R+ de CM de 2022. Vamos relembrar o caso? Temos um paciente do sexo masculino, 44 anos, procedente da Bahia, com antecedente de doen&ccedil;a de Chagas e hipotireoidismo, que vem se apresentando com cl&iacute;nica de insufici&ecirc;ncia card&iacute;aca descompensada, evoluindo com dor tor&aacute;cica intensa h&aacute; 2 dias. Ao exame f&iacute;sico se encontra com sinais de congest&atilde;o sist&ecirc;mica e pulmonar, bem como bulhas arr&iacute;tmicas.&nbsp;</p>\n<p style=\"text-align: justify;\">Somos questionados sobre o manejo desse paciente. Nas quest&otilde;es anteriores, o mesmo j&aacute; havia iniciado betabloqueadores, espironolactona, doses otimizadas de furosemida e hav&iacute;amos introduzido iECA/BRA para ele. Ap&oacute;s os ajustes medicamentosos, somos informados que a creatinina do paciente subiu, mas n&atilde;o ultrapassou o <strong>limite percentual recomendado, que deve evitar ser superior &agrave; 30%, pessoal</strong>.&nbsp;</p>\n<p style=\"text-align: justify;\">Os estudos mais atualizados mostram que aumentos de creatinina de at&eacute; 30% em rela&ccedil;&atilde;o ao basal, ap&oacute;s introdu&ccedil;&atilde;o de IECA, parecem ser seguros. Em pacientes com IC cr&ocirc;nica, os IECA devem ser prescritos e mantidos apesar do moderado aumento da creatinina, desde que n&atilde;o haja hipercalemia ou insufici&ecirc;ncia renal aguda.</p>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: 30%.</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Quest&atilde;o um pouco decoreba sobre o manejo de IC, mas n&atilde;o podemos comar bola aqui. Seja na IC ou na HAS, quando introduzimos um iECA ou BRA, sabemos que a creatinina ir&aacute; aumentar, desde que n&atilde;o ultrapasse 30%. S&atilde;o contraindica&ccedil;&otilde;es para o uso de IECA: pot&aacute;ssio s&eacute;rico &gt; 5,5 mEq/L, estenose de art&eacute;ria renal bilateral, hist&oacute;ria de angioedema documentado com uso pr&eacute;vio de IECA, hipotens&atilde;o arterial sintom&aacute;tica e insufici&ecirc;ncia renal.</p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Essa quest&atilde;o faz parte de um conjunto de 5 quest&otilde;es discursivas da prova da PUC-SP para R+ de CM de 2022. Vamos relembrar o caso? Temos um paciente do sexo masculino, 44 anos, procedente da Bahia, com antecedente de doen&ccedil;a de Chagas e hipotireoidismo, que vem se apresentando com cl&iacute;nica de insufici&ecirc;ncia card&iacute;aca descompensada, evoluindo com dor tor&aacute;cica intensa h&aacute; 2 dias. Ao exame f&iacute;sico se encontra com sinais de congest&atilde;o sist&ecirc;mica e pulmonar, bem como bulhas arr&iacute;tmicas.&nbsp;</p>\n<p style=\"text-align: justify;\">Somos questionados sobre o manejo desse paciente. Nas quest&otilde;es anteriores, o mesmo j&aacute; havia iniciado betabloqueadores, espironolactona, doses otimizadas de furosemida e hav&iacute;amos introduzido iECA/BRA para ele. Ap&oacute;s os ajustes medicamentosos, somos informados que a creatinina do paciente subiu, mas n&atilde;o ultrapassou o <strong>limite percentual recomendado, que deve evitar ser superior &agrave; 30%, pessoal</strong>.&nbsp;</p>\n<p style=\"text-align: justify;\">Os estudos mais atualizados mostram que aumentos de creatinina de at&eacute; 30% em rela&ccedil;&atilde;o ao basal, ap&oacute;s introdu&ccedil;&atilde;o de IECA, parecem ser seguros. Em pacientes com IC cr&ocirc;nica, os IECA devem ser prescritos e mantidos apesar do moderado aumento da creatinina, desde que n&atilde;o haja hipercalemia ou insufici&ecirc;ncia renal aguda.</p>\n<p style=\"text-align: justify;\"><strong>Portanto, gabarito: 30%.</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Quest&atilde;o um pouco decoreba sobre o manejo de IC, mas n&atilde;o podemos comar bola aqui. Seja na IC ou na HAS, quando introduzimos um iECA ou BRA, sabemos que a creatinina ir&aacute; aumentar, desde que n&atilde;o ultrapasse 30%. S&atilde;o contraindica&ccedil;&otilde;es para o uso de IECA: pot&aacute;ssio s&eacute;rico &gt; 5,5 mEq/L, estenose de art&eacute;ria renal bilateral, hist&oacute;ria de angioedema documentado com uso pr&eacute;vio de IECA, hipotens&atilde;o arterial sintom&aacute;tica e insufici&ecirc;ncia renal.</p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 128112,
+        "number": 5,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Insuficiência Cardíaca",
+        "focus": {
+          "id": 2204,
+          "name": "Insuficiência Cardíaca"
+        }
+      },
+      "detail": {
+        "id": 128112,
+        "content": "Barbeiro traiçoeiro; Laurindo, 44 anos, morador de zona rural, procedente da Bahia. Deu entrada no pronto-socorro com queixa de dispneia progressiva com piora aos pequenos esforços, tonturas e dor torácica de forte intensidade há 2 dias. Tem antecedentes de doença de Chagas e hipotireoidismo. Está em uso regular de furosemida 40 mg/dia, Carvedilol 12,5 mg cada 12h, Puran T4 150 mcg/dia. Parou de beber há 3 anos e de fumar há 6 anos. Sua mãe é diabética e seu pai hipertenso. Apresentava ao exame físico, edema de MMII 3+/4+, estase jugular, refluxo hepato-jugular presente. FC= 86 bpm, FR 20 ipm, PA= 112/84 mmHg, T= 36,1° C, estertoração crepitante bilateral nas bases pulmonares, bulhas arrítmicas. Abaixo segue radiografia de tórax e Eletrocardiograma, realizados na admissão. Com o tratamento, Laurindo melhorou e teve alta e fará seguimento ambulatorial. O próximo Ecocardiograma, se o paciente permanecer estável, deve ser realizado no período de:",
+        "options": [],
+        "images": [
+          {
+            "id": 58558,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID128112_2022_institution-object-321_Q5/bl1.png"
+          },
+          {
+            "id": 58559,
+            "order": 2,
+            "image": "https://cdn.medway.com.br/media/question_images/ID128112_2022_institution-object-321_Q5/bl2.png"
+          }
+        ],
+        "institution": {
+          "id": 321,
+          "name": "PUC - Sorocaba",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 4,
+          "abbreviation": "R+CM"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 383,
+            "parent_tag": {
+              "id": 302,
+              "name": "Cardiologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Insuficiência Cardíaca",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 87,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2204,
+          "name": "Insuficiência Cardíaca",
+          "discipline": {
+            "id": 96,
+            "name": "Clínica Médica",
+            "residency_degree": 4,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 250,
+            "name": "Cardiologia",
+            "discipline": 96,
+            "old_tag": 302,
+            "residency_degree_abbreviation": "R+CM"
+          }
+        }
+      },
+      "explanation": {
+        "id": 113033,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-align: justify;\">Essa quest&atilde;o faz parte de um conjunto de 5 quest&otilde;es discursivas da prova da PUC-SP para R+ de CM de 2022. Vamos relembrar o caso? Temos um paciente do sexo masculino, 44 anos, procedente da Bahia, com antededente de doen&ccedil;a de Chagas e hipotireoidismo, que vem se apresentando com cl&iacute;nica de insufici&ecirc;ncia card&iacute;aca descompensada, evoluindo com dor tor&aacute;cica intensa h&aacute; 2 dias. Ao exame f&iacute;sico se encontra com sinais de congest&atilde;o sist&ecirc;mica e pulmonar, bem como bulhas arr&iacute;tmicas.&nbsp;</p>\n<p style=\"text-align: justify;\">Aqui, ap&oacute;s o tratamento da IC perfil B e compensa&ccedil;&atilde;o cl&iacute;nica, nosso paciente foi encaminhado para acompanhamento ambulatorial. Somos questionados ent&atilde;o sobre quando ele deve realizar novo ecocardiograma&hellip;&nbsp;</p>\n<p style=\"text-align: justify;\">De modo geral, n&atilde;o se recomenda a realiza&ccedil;&atilde;o de ecocardiograma de forma rotineira nos pacientes com IC, mas sugere-se sua repeti&ccedil;&atilde;o naqueles pacientes que exibem mudan&ccedil;a significativa de seu estado cl&iacute;nico, com descompensa&ccedil;&atilde;o da IC ou perante progress&atilde;o de sintomas. <strong>Tamb&eacute;m deve ser considerada a realiza&ccedil;&atilde;o de novo ecocardiograma 3 a 6 meses ap&oacute;s o tratamento com medica&ccedil;&otilde;es que modificam o progn&oacute;stico, para avalia&ccedil;&atilde;o do remodelamento reverso e estratifica&ccedil;&atilde;o do progn&oacute;stico. </strong>Esta reavalia&ccedil;&atilde;o tem potencial impacto na implementa&ccedil;&atilde;o de estrat&eacute;gias de tratamento adicionais, como TRC e implante de cardiodesfibriladores naqueles pacientes com FEVE &le; 35%.</p>\n<p style=\"text-align: justify;\">Portanto, gabarito: 3-6 meses.</p>\n<p>&nbsp;</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: justify;\">Quest&atilde;o mais dif&iacute;cil que demanda conhecimento mais espec&iacute;fico sobre o tema, mas vamos guardar essa necessidade de reavaliar o eco em 3-6 meses ap&oacute;s modifica&ccedil;&atilde;o da terapia! Vamos lembrar que tamb&eacute;m podemos classificar a IC em 4 est&aacute;gios principais conforme sua evolu&ccedil;&atilde;o: A - Pacientes com risco para IC, mas sem altera&ccedil;&otilde;es estruturais e assintom&aacute;ticos (hipertensos, diab&eacute;ticos, dislipidemia, obesos, usu&aacute;rios de drogas cardiot&oacute;xicas); B - Pacientes com altera&ccedil;&atilde;o estrutural card&iacute;aca, por&eacute;m, assintom&aacute;ticos (hipertrofia de VE, IAM, doen&ccedil;as orovalvares); C - Pacientes com doen&ccedil;a card&iacute;aca estrutural associada a sinais/sintomas de IC (atuais ou pr&eacute;vios); D - Pacientes com IC refrat&aacute;ria ao tratamento.&nbsp;</p>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-align: justify;\">Essa quest&atilde;o faz parte de um conjunto de 5 quest&otilde;es discursivas da prova da PUC-SP para R+ de CM de 2022. Vamos relembrar o caso? Temos um paciente do sexo masculino, 44 anos, procedente da Bahia, com antededente de doen&ccedil;a de Chagas e hipotireoidismo, que vem se apresentando com cl&iacute;nica de insufici&ecirc;ncia card&iacute;aca descompensada, evoluindo com dor tor&aacute;cica intensa h&aacute; 2 dias. Ao exame f&iacute;sico se encontra com sinais de congest&atilde;o sist&ecirc;mica e pulmonar, bem como bulhas arr&iacute;tmicas.&nbsp;</p>\n<p style=\"text-align: justify;\">Aqui, ap&oacute;s o tratamento da IC perfil B e compensa&ccedil;&atilde;o cl&iacute;nica, nosso paciente foi encaminhado para acompanhamento ambulatorial. Somos questionados ent&atilde;o sobre quando ele deve realizar novo ecocardiograma&hellip;&nbsp;</p>\n<p style=\"text-align: justify;\">De modo geral, n&atilde;o se recomenda a realiza&ccedil;&atilde;o de ecocardiograma de forma rotineira nos pacientes com IC, mas sugere-se sua repeti&ccedil;&atilde;o naqueles pacientes que exibem mudan&ccedil;a significativa de seu estado cl&iacute;nico, com descompensa&ccedil;&atilde;o da IC ou perante progress&atilde;o de sintomas. <strong>Tamb&eacute;m deve ser considerada a realiza&ccedil;&atilde;o de novo ecocardiograma 3 a 6 meses ap&oacute;s o tratamento com medica&ccedil;&otilde;es que modificam o progn&oacute;stico, para avalia&ccedil;&atilde;o do remodelamento reverso e estratifica&ccedil;&atilde;o do progn&oacute;stico. </strong>Esta reavalia&ccedil;&atilde;o tem potencial impacto na implementa&ccedil;&atilde;o de estrat&eacute;gias de tratamento adicionais, como TRC e implante de cardiodesfibriladores naqueles pacientes com FEVE &le; 35%.</p>\n<p style=\"text-align: justify;\">Portanto, gabarito: 3-6 meses.</p>\n<p>&nbsp;</p><br>Visão do aprovado: <p style=\"text-align: justify;\">Quest&atilde;o mais dif&iacute;cil que demanda conhecimento mais espec&iacute;fico sobre o tema, mas vamos guardar essa necessidade de reavaliar o eco em 3-6 meses ap&oacute;s modifica&ccedil;&atilde;o da terapia! Vamos lembrar que tamb&eacute;m podemos classificar a IC em 4 est&aacute;gios principais conforme sua evolu&ccedil;&atilde;o: A - Pacientes com risco para IC, mas sem altera&ccedil;&otilde;es estruturais e assintom&aacute;ticos (hipertensos, diab&eacute;ticos, dislipidemia, obesos, usu&aacute;rios de drogas cardiot&oacute;xicas); B - Pacientes com altera&ccedil;&atilde;o estrutural card&iacute;aca, por&eacute;m, assintom&aacute;ticos (hipertrofia de VE, IAM, doen&ccedil;as orovalvares); C - Pacientes com doen&ccedil;a card&iacute;aca estrutural associada a sinais/sintomas de IC (atuais ou pr&eacute;vios); D - Pacientes com IC refrat&aacute;ria ao tratamento.&nbsp;</p>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T19:55:26.007231+00:00",
+  "complete": true
+}

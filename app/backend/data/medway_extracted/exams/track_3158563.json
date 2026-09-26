@@ -1,0 +1,637 @@
+{
+  "track_id": 3158563,
+  "name": "INEP - Revalida - 2024.2 - Discursiva",
+  "year": 2024,
+  "track_fast": {
+    "id": 3158563,
+    "name": "INEP - Revalida - 2024.2 - Discursiva",
+    "track_type": "c",
+    "question_count": 5,
+    "year": 2024,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "INEP - Revalida",
+    "track_image": "https://cdn.medway.com.br/media/track/exam/inep-revalida/default_tt3Bxw6.jpeg",
+    "residency_degree": {
+      "id": 3,
+      "abbreviation": "R1"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 221742,
+        "number": 1,
+        "main_speciality_name": "Clínica Médica",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Embolia Pulmonar e Hipertensão Pulmonar",
+        "focus": {
+          "id": 1902,
+          "name": "Embolia Pulmonar e Hipertensão Pulmonar"
+        }
+      },
+      "detail": {
+        "id": 221742,
+        "content": "Uma mulher de 38 anos é atendida em hospital de pronto-socorro com dispneia acentuada. Ela queixa-se de falta de ar muito intensa, iniciada, subitamente, há 2 horas. A acompanhante relata que, há 3 dias, a paciente procurou a emergência por dispneia, tosse, hemoptise e dor torácica ventilatório-dependente à esquerda. Nessa ocasião, foi iniciado tratamento para pneumonia. Atualmente, a paciente se encontra pálida, com cianose labial. Em exame físico, constatam-se os seguintes resultados:  \n\nO médico solicita administração de oxigênio a 100% por máscara não reinalante, com reservatório. A saturação de O2 eleva-se para 93%. À ausculta pulmonar, nota-se sons pulmonares presentes e simétricos. Como antecedentes patológicos, a paciente apresenta lúpus eritematoso sistêmico e síndrome do anticorpo antifosfolípide. O médico solicita uma radiografia de tórax, cujo resultado é apresentado na imagem seguinte.  \n\nAcerca desse caso, faça o que se pede nos itens a seguir. \na) Qual é o diagnóstico atual mais provável para explicar o agravamento do quadro respiratório? \nb) Cite três sinais clínicos que, se presentes no seguimento do exame físico da paciente, corroborariam o diagnóstico mais provável. \nc) Descreva a alteração radiológica presente que corrobora o diagnóstico mais provável.",
+        "options": [],
+        "images": [
+          {
+            "id": 63526,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID221742_2024_institution-object-1468_Q1/question_2xsmdqy.png"
+          },
+          {
+            "id": 63672,
+            "order": 2,
+            "image": "https://cdn.medway.com.br/media/question_images/ID221742_2024_institution-object-1468_Q1/Captura_de_tela_2025-04-25_121719.png"
+          }
+        ],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 2,
+            "abbreviation": "CM",
+            "name": "Clínica Médica",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 1545,
+            "parent_tag": {
+              "id": 304,
+              "name": "Pneumologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Embolia Pulmonar e Hipertensão Pulmonar",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 1409,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1902,
+          "name": "Embolia Pulmonar e Hipertensão Pulmonar",
+          "discipline": {
+            "id": 97,
+            "name": "Clínica Médica",
+            "residency_degree": 3,
+            "speciality": 2
+          },
+          "theme": {
+            "id": 246,
+            "name": "Pneumologia",
+            "discipline": 97,
+            "old_tag": 304,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251133,
+        "actual_explanation": true,
+        "introduction": "<h2>Introdução</h2>\n<p>Estamos diante de um caso clínico extremamente importante para a prática médica e frequentemente cobrado nas provas de residência: o <strong>tromboembolismo pulmonar (<span class=\"article-1662\">TEP</span>)</strong>.</p>\n<p>Neste caso, temos uma mulher de 38 anos com <strong>dispneia súbita</strong> há 2 horas, que apresentou há 3 dias <strong>dispneia, tosse, hemoptise e dor torácica ventilatório-dependente</strong>. Ao exame, observamos <strong>taquicardia (132 bpm)</strong>, <strong>taquipneia (34 irpm)</strong>, <strong>hipoxemia (88% em ar ambiente)</strong>, <strong>palidez e cianose labial</strong>.</p>\n<p>O que chama muito a atenção neste caso são os antecedentes da paciente: <strong>lúpus eritematoso sistêmico e síndrome do anticorpo antifosfolípide</strong> - esta última é um potente estado pró-trombótico.</p>\n<p>Analisando a primeira questão, o diagnóstico mais provável para o agravamento do quadro respiratório é <strong>tromboembolismo pulmonar (<span class=\"article-1662\">TEP</span>)</strong>. Esse diagnóstico é sustentado por:</p>\n<ul>\n<li>Apresentação clínica clássica: dispneia súbita, hipoxemia, taquicardia e taquipneia</li>\n<li>Sintomas prévios compatíveis com <span class=\"article-1662\">TEP</span> inicial: hemoptise, dor pleurítica</li>\n<li>Fator de risco importante: síndrome do anticorpo antifosfolípide (estado pró-trombótico)</li>\n<li>Piora súbita do quadro respiratório, sugerindo novo episódio embólico</li>\n</ul>\n<p>Para a segunda questão, os sinais clínicos que corroborariam o diagnóstico incluem manifestações de trombose venosa profunda (<span class=\"article-1675\">TVP</span>), que é a fonte mais comum dos êmbolos pulmonares:</p>\n<ul>\n<li><strong>Edema na coxa/perna com dor à palpação da panturrilha</strong> (sinal de Bancroft)</li>\n<li><strong>Dor na panturrilha com a dorsiflexão passiva do tornozelo</strong> (sinal de Homans)</li>\n<li><strong>Veias varicosas superficiais visíveis mesmo na posição supina</strong> (sinal de Prats)</li>\n<li><strong>Empastamento da panturrilha</strong> (sinal da bandeira)</li>\n<li><strong>Turgência jugular</strong> - por aumento da pressão venosa jugular (PVJ)</li>\n<li><strong>Hiperfonese de segunda bulha cardíaca</strong></li>\n<li><strong>Impulsão paraesternal de ventrículo direito</strong></li>\n</ul>\n<p>Para a terceira questão, observando a radiografia, a alteração radiológica que corrobora o diagnóstico é a <strong>opacidade em forma de cunha/triângulo no hemitórax esquerdo</strong>, também conhecida como <strong>sinal de Hampton</strong>. Essa imagem representa um infarto pulmonar, consequência do <span class=\"article-1662\">TEP</span>, e é caracterizada por uma densidade periférica de base voltada para a pleura, em formato triangular.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<h2>Visão do Aprovado</h2>\n<p>Para acertar questões como essa, é fundamental ter em mente o seguinte:</p>\n<ol>\n<li><strong>TEP deve estar sempre no topo do seu diagnóstico diferencial</strong> em pacientes com dispneia súbita, especialmente se houver fatores de risco associados. Neste caso, a síndrome do anticorpo antifosfolípide é um fator de risco clássico e importante.</li>\n<li>Uma armadilha comum seria interpretar o quadro como simples evolução da pneumonia mencionada. O início súbito dos sintomas, a magnitude da hipoxemia e a presença de fatores de risco trombóticos devem fazer você suspeitar imediatamente de <span class=\"article-1662\">TEP</span>.</li>\n<li>Memorize os sinais clássicos de <span class=\"article-1675\">TVP</span> (Homans, Bancroft, Prats) - eles aparecem com frequência nas provas e são fáceis de confundir. Uma dica: associe <strong>H</strong>omans com <strong>H</strong>iper<strong>d</strong>orsiflexão (dor na dorsiflexão do pé).</li>\n<li>Quanto às alterações radiológicas, lembre-se que cerca de 80% das radiografias podem ser normais no <span class=\"article-1662\">TEP</span>. Quando alteradas, as imagens clássicas são:\n      <ul>\n<li>Sinal de Hampton: opacidade triangular/cunha (como visto neste caso)</li>\n<li>Sinal de Westermark: oligoemia focal</li>\n<li>Sinal de Fleischner: dilatação da artéria pulmonar</li>\n</ul>\n</li>\n<li>Integre sempre o contexto clínico: nesta paciente, temos uma tríade quase perfeita:\n      <ul>\n<li>Quadro clínico compatível</li>\n<li>Fator de risco importante (síndrome antifosfolípide)</li>\n<li>Alteração radiológica característica</li>\n</ul>\n</li>\n</ol>\n<p>Este tipo de questão é frequente e costuma valorizar mais o raciocínio clínico do que a simples memorização. Esteja atento a casos semelhantes, pois as bancas adoram explorar quadros de <span class=\"article-1662\">TEP</span> em pacientes com estados pró-trombóticos, como câncer, puerpério, cirurgias recentes, imobilização prolongada e, como neste caso, doenças autoimunes com componente trombótico.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<h2>Introdução</h2>\n<p>Estamos diante de um caso clínico extremamente importante para a prática médica e frequentemente cobrado nas provas de residência: o <strong>tromboembolismo pulmonar (<span class=\"article-1662\">TEP</span>)</strong>.</p>\n<p>Neste caso, temos uma mulher de 38 anos com <strong>dispneia súbita</strong> há 2 horas, que apresentou há 3 dias <strong>dispneia, tosse, hemoptise e dor torácica ventilatório-dependente</strong>. Ao exame, observamos <strong>taquicardia (132 bpm)</strong>, <strong>taquipneia (34 irpm)</strong>, <strong>hipoxemia (88% em ar ambiente)</strong>, <strong>palidez e cianose labial</strong>.</p>\n<p>O que chama muito a atenção neste caso são os antecedentes da paciente: <strong>lúpus eritematoso sistêmico e síndrome do anticorpo antifosfolípide</strong> - esta última é um potente estado pró-trombótico.</p>\n<p>Analisando a primeira questão, o diagnóstico mais provável para o agravamento do quadro respiratório é <strong>tromboembolismo pulmonar (<span class=\"article-1662\">TEP</span>)</strong>. Esse diagnóstico é sustentado por:</p>\n<ul>\n<li>Apresentação clínica clássica: dispneia súbita, hipoxemia, taquicardia e taquipneia</li>\n<li>Sintomas prévios compatíveis com <span class=\"article-1662\">TEP</span> inicial: hemoptise, dor pleurítica</li>\n<li>Fator de risco importante: síndrome do anticorpo antifosfolípide (estado pró-trombótico)</li>\n<li>Piora súbita do quadro respiratório, sugerindo novo episódio embólico</li>\n</ul>\n<p>Para a segunda questão, os sinais clínicos que corroborariam o diagnóstico incluem manifestações de trombose venosa profunda (<span class=\"article-1675\">TVP</span>), que é a fonte mais comum dos êmbolos pulmonares:</p>\n<ul>\n<li><strong>Edema na coxa/perna com dor à palpação da panturrilha</strong> (sinal de Bancroft)</li>\n<li><strong>Dor na panturrilha com a dorsiflexão passiva do tornozelo</strong> (sinal de Homans)</li>\n<li><strong>Veias varicosas superficiais visíveis mesmo na posição supina</strong> (sinal de Prats)</li>\n<li><strong>Empastamento da panturrilha</strong> (sinal da bandeira)</li>\n<li><strong>Turgência jugular</strong> - por aumento da pressão venosa jugular (PVJ)</li>\n<li><strong>Hiperfonese de segunda bulha cardíaca</strong></li>\n<li><strong>Impulsão paraesternal de ventrículo direito</strong></li>\n</ul>\n<p>Para a terceira questão, observando a radiografia, a alteração radiológica que corrobora o diagnóstico é a <strong>opacidade em forma de cunha/triângulo no hemitórax esquerdo</strong>, também conhecida como <strong>sinal de Hampton</strong>. Essa imagem representa um infarto pulmonar, consequência do <span class=\"article-1662\">TEP</span>, e é caracterizada por uma densidade periférica de base voltada para a pleura, em formato triangular.</p><br>Visão do aprovado: <h2>Visão do Aprovado</h2>\n<p>Para acertar questões como essa, é fundamental ter em mente o seguinte:</p>\n<ol>\n<li><strong>TEP deve estar sempre no topo do seu diagnóstico diferencial</strong> em pacientes com dispneia súbita, especialmente se houver fatores de risco associados. Neste caso, a síndrome do anticorpo antifosfolípide é um fator de risco clássico e importante.</li>\n<li>Uma armadilha comum seria interpretar o quadro como simples evolução da pneumonia mencionada. O início súbito dos sintomas, a magnitude da hipoxemia e a presença de fatores de risco trombóticos devem fazer você suspeitar imediatamente de <span class=\"article-1662\">TEP</span>.</li>\n<li>Memorize os sinais clássicos de <span class=\"article-1675\">TVP</span> (Homans, Bancroft, Prats) - eles aparecem com frequência nas provas e são fáceis de confundir. Uma dica: associe <strong>H</strong>omans com <strong>H</strong>iper<strong>d</strong>orsiflexão (dor na dorsiflexão do pé).</li>\n<li>Quanto às alterações radiológicas, lembre-se que cerca de 80% das radiografias podem ser normais no <span class=\"article-1662\">TEP</span>. Quando alteradas, as imagens clássicas são:\n      <ul>\n<li>Sinal de Hampton: opacidade triangular/cunha (como visto neste caso)</li>\n<li>Sinal de Westermark: oligoemia focal</li>\n<li>Sinal de Fleischner: dilatação da artéria pulmonar</li>\n</ul>\n</li>\n<li>Integre sempre o contexto clínico: nesta paciente, temos uma tríade quase perfeita:\n      <ul>\n<li>Quadro clínico compatível</li>\n<li>Fator de risco importante (síndrome antifosfolípide)</li>\n<li>Alteração radiológica característica</li>\n</ul>\n</li>\n</ol>\n<p>Este tipo de questão é frequente e costuma valorizar mais o raciocínio clínico do que a simples memorização. Esteja atento a casos semelhantes, pois as bancas adoram explorar quadros de <span class=\"article-1662\">TEP</span> em pacientes com estados pró-trombóticos, como câncer, puerpério, cirurgias recentes, imobilização prolongada e, como neste caso, doenças autoimunes com componente trombótico.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221743,
+        "number": 2,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Trauma Torácico",
+        "focus": {
+          "id": 1956,
+          "name": "Trauma Torácico"
+        }
+      },
+      "detail": {
+        "id": 221743,
+        "content": "Um paciente de 20 anos, envolvido em acidente de trânsito, é encaminhado a uma unidade hospitalar de pequeno porte, em prancha rígida, coberto com manta térmica e utilizando colar cervical. Ele foi vítima de colisão lateral esquerda do seu automóvel contra a lateral direita de outro veículo, não usava cinto de segurança. Ao exame físico, são observadas escoriações superficiais na região tóraco-abdominal anterior esquerda. O paciente apresenta-se consciente, Glasgow 13, consegue verbalizar o próprio nome e nega sentir dores na região cervical, suas pupilas estão isocóricas e fotorreagentes. Apresenta os seguintes sinais vitais:\n\nNo aparelho respiratório, percebe-se murmúrio vesicular fisiológico, sem ruídos adventícios. No aparelho cardiovascular, nota-se turgência jugular, bulhas cardíacas hipofonéticas em todos os focos.\n\nCom relação ao caso clínico apresentado, faça o que se pede nos itens a seguir.\n\na) Correlacione os achados da anamnese e do exame físico desse paciente com cada um dos elementos que constituem a avaliação primária (ABCDE) segundo o ATLS (Advanced Trauma Life Support). \nb) Cite as condutas a serem tomadas em cada item da avaliação primária (ABCDE) desse paciente, segundo o ATLS. \nc) Cite o diagnóstico principal desse paciente e dois diagnósticos diferenciais.",
+        "options": [],
+        "images": [
+          {
+            "id": 63527,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID221743_2024_institution-object-1468_Q2/question.png"
+          }
+        ],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 1171,
+            "parent_tag": {
+              "id": 1303,
+              "name": "Trauma",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Trauma Torácico",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 3896,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1956,
+          "name": "Trauma Torácico",
+          "discipline": {
+            "id": 64,
+            "name": "Cirurgia Geral",
+            "residency_degree": 3,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 158,
+            "name": "Trauma",
+            "discipline": 64,
+            "old_tag": 1303,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251721,
+        "actual_explanation": true,
+        "introduction": "<div title=\"Page 5\">\n<div>\n<p>Pessoal, questão um tanto quanto aberta sobre trauma contuso que exigia basicamente o passo a passo do <strong>atendimento inicial ao traumatizado</strong> e o raciocínio sobre<strong> <span class=\"article-3148\">tamponamento cardíaco</span></strong>. Veja:</p>\n<p>Nosso paciente é um jovem que foi vítima de acidente de trânsito sem uso de cinto de segurança, com colisão lateral. O quadro clínico mostra um paciente com alteração leve do nível de consciência (<strong>Glasgow 13</strong>), sinais vitais alterados (<strong>taquicardia, taquipneia e hipotensão</strong>) e, principalmente, achados sugestivos de <strong><span class=\"article-3148\">tamponamento cardíaco</span> (turgência jugular, bulhas hipofonéticas e hipotensão - representando a tríade de Beck)</strong>.</p>\n<p>O<strong> item (a)</strong> solicita a correlação dos achados principais do enunciado com os tópicos do atendimento inicial do ATLS (ABCDE). Dessa forma, temos:</p>\n<p><strong>A —</strong> Paciente capaz de verbalizar seu nome (via aérea pérvea), ausência de dores na região cervical, presença de prancha rígida e colar cervical.</p>\n<p><strong>B —</strong> Saturação de O2 de 92% em ar ambiente, frequência respiratória de 38 irpm (taquipneia), aparelho respiratório sem anormalidades.</p>\n<p><strong>C —</strong> Frequência cardíaca de 136 bpm, pressão arterial de 80 × 60 mmHg, presença de turgência jugular, hipofonese de bulhas.</p>\n<p><strong>D —</strong> Paciente consciente, com Glasgow 13, pupilas isocóricas e fotorreagentes.</p>\n<p><strong>E —</strong> Coberta com manta térmica ou prevenção a hipotermia e escoriações na região tóraco-abdominal anterior esquerda.</p>\n<p> </p>\n<p>Já o <strong>item (b)</strong> exige as <strong>condutas</strong> a serem tomadas em cada etapas do ABCDE:</p>\n<p><br/><strong>A — </strong>Manutenção da prancha rígida e de colar cervical, uso de oxigênio sob máscara.</p>\n<p><strong>B —</strong> Uso de oxigênio sob máscara, eFAST. </p>\n<p><strong>C —</strong> Utilização de dois acessos venosos de grosso calibre, reposição volêmica, realização de FAST/POCUS, pericardiocentese / punção de Marfan ou toracotomia de emergência, se disponibilidade.</p>\n<p><strong>D —</strong> Exame neurológico: sem condutas no momento. </p>\n<p><strong>E —</strong> Exposição: prevenir hipotermia OU cobrir o paciente OU uso de manta térmica OU sala com temperatura entre 24 a 26 °C OU desligar o ar-condicionado OU uso de soro fisiológico aquecido, limpeza e curativo em escoriações. </p>\n<p> </p>\n<p>Por fim, o<strong> item (c)</strong> solicita o <strong>diagnóstico principal e os diferenciais:</strong></p>\n</div>\n<ul>\n<li><strong>Diagnóstico principal:</strong> <span class=\"article-3148\">tamponamento cardíaco</span>.</li>\n</ul>\n<div>\n<ul>\n<li><strong>Diagnósticos diferenciais:</strong>\n<ul>\n<li>Hemotórax / Hemotórax maciço</li>\n<li>Pneumotórax / Pneumotórax Hipertensivo;</li>\n<li>Contusão pulmonar;</li>\n<li>Contusão cardíaca</li>\n<li>Lesão valvular por trauma;</li>\n<li>Fratura de arcos costais</li>\n<li>Tórax instável;</li>\n<li>Lesão traqueobrônquicas;</li>\n<li>Lesão da aorta/vasos da base.</li>\n</ul>\n</li>\n</ul>\n</div>\n</div>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-align: left;\">Galera, é importante saber o diagnóstico ultrassonográfico do <span class=\"article-3148\">tamponamento cardíaco</span>. Veja abaixo uma imagem normal (à esquerda) e a lâmina anecoica destacada pelas setas azuis no tamponamento (à direita).</p>\n<p style=\"text-align: center;\"><img height=\"208\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T162443701Z693062.png\" width=\"570\"/></p>\n<p style=\"text-align: left;\">Pra cima!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<div title=\"Page 5\">\n<div>\n<p>Pessoal, questão um tanto quanto aberta sobre trauma contuso que exigia basicamente o passo a passo do <strong>atendimento inicial ao traumatizado</strong> e o raciocínio sobre<strong> <span class=\"article-3148\">tamponamento cardíaco</span></strong>. Veja:</p>\n<p>Nosso paciente é um jovem que foi vítima de acidente de trânsito sem uso de cinto de segurança, com colisão lateral. O quadro clínico mostra um paciente com alteração leve do nível de consciência (<strong>Glasgow 13</strong>), sinais vitais alterados (<strong>taquicardia, taquipneia e hipotensão</strong>) e, principalmente, achados sugestivos de <strong><span class=\"article-3148\">tamponamento cardíaco</span> (turgência jugular, bulhas hipofonéticas e hipotensão - representando a tríade de Beck)</strong>.</p>\n<p>O<strong> item (a)</strong> solicita a correlação dos achados principais do enunciado com os tópicos do atendimento inicial do ATLS (ABCDE). Dessa forma, temos:</p>\n<p><strong>A —</strong> Paciente capaz de verbalizar seu nome (via aérea pérvea), ausência de dores na região cervical, presença de prancha rígida e colar cervical.</p>\n<p><strong>B —</strong> Saturação de O2 de 92% em ar ambiente, frequência respiratória de 38 irpm (taquipneia), aparelho respiratório sem anormalidades.</p>\n<p><strong>C —</strong> Frequência cardíaca de 136 bpm, pressão arterial de 80 × 60 mmHg, presença de turgência jugular, hipofonese de bulhas.</p>\n<p><strong>D —</strong> Paciente consciente, com Glasgow 13, pupilas isocóricas e fotorreagentes.</p>\n<p><strong>E —</strong> Coberta com manta térmica ou prevenção a hipotermia e escoriações na região tóraco-abdominal anterior esquerda.</p>\n<p> </p>\n<p>Já o <strong>item (b)</strong> exige as <strong>condutas</strong> a serem tomadas em cada etapas do ABCDE:</p>\n<p><br/><strong>A — </strong>Manutenção da prancha rígida e de colar cervical, uso de oxigênio sob máscara.</p>\n<p><strong>B —</strong> Uso de oxigênio sob máscara, eFAST. </p>\n<p><strong>C —</strong> Utilização de dois acessos venosos de grosso calibre, reposição volêmica, realização de FAST/POCUS, pericardiocentese / punção de Marfan ou toracotomia de emergência, se disponibilidade.</p>\n<p><strong>D —</strong> Exame neurológico: sem condutas no momento. </p>\n<p><strong>E —</strong> Exposição: prevenir hipotermia OU cobrir o paciente OU uso de manta térmica OU sala com temperatura entre 24 a 26 °C OU desligar o ar-condicionado OU uso de soro fisiológico aquecido, limpeza e curativo em escoriações. </p>\n<p> </p>\n<p>Por fim, o<strong> item (c)</strong> solicita o <strong>diagnóstico principal e os diferenciais:</strong></p>\n</div>\n<ul>\n<li><strong>Diagnóstico principal:</strong> <span class=\"article-3148\">tamponamento cardíaco</span>.</li>\n</ul>\n<div>\n<ul>\n<li><strong>Diagnósticos diferenciais:</strong>\n<ul>\n<li>Hemotórax / Hemotórax maciço</li>\n<li>Pneumotórax / Pneumotórax Hipertensivo;</li>\n<li>Contusão pulmonar;</li>\n<li>Contusão cardíaca</li>\n<li>Lesão valvular por trauma;</li>\n<li>Fratura de arcos costais</li>\n<li>Tórax instável;</li>\n<li>Lesão traqueobrônquicas;</li>\n<li>Lesão da aorta/vasos da base.</li>\n</ul>\n</li>\n</ul>\n</div>\n</div><br>Visão do aprovado: <p style=\"text-align: left;\">Galera, é importante saber o diagnóstico ultrassonográfico do <span class=\"article-3148\">tamponamento cardíaco</span>. Veja abaixo uma imagem normal (à esquerda) e a lâmina anecoica destacada pelas setas azuis no tamponamento (à direita).</p>\n<p style=\"text-align: center;\"><img height=\"208\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250428T162443701Z693062.png\" width=\"570\"/></p>\n<p style=\"text-align: left;\">Pra cima!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221744,
+        "number": 3,
+        "main_speciality_name": "Medicina Preventiva e Social",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "e",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Ética Médica, Bioética e Documentação",
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação"
+        }
+      },
+      "detail": {
+        "id": 221744,
+        "content": "Uma adolescente de 16 anos vai desacompanhada a uma consulta em unidade de atenção primária. Ela revela ter iniciado vida sexual com seu namorado de mesma idade e afirma que gostaria de realizar um exame para saber se está grávida, visto que teve relações desprotegidas. Ela também deseja, caso não esteja grávida, uma prescrição de contraceptivo oral. \n\nA partir dessas informações, com base nos preceitos do Código de Ética Médica, faça o que se pede nos itens a seguir. \na) Explique se a paciente poderá ser atendida sem a presença de um responsável maior de idade, considerando suas demandas quanto ao teste de gravidez e quanto à prescrição de contraceptivo, e se há necessidade de quebra de sigilo com um responsável legal nesse caso. \nb) Caso seja confirmada a gravidez da paciente, qual deverá ser a conduta do médico quanto ao atendimento da adolescente nas consultas de pré-natal e quanto à quebra de sigilo com um responsável legal? \nc) Considere que a unidade onde ocorreu a consulta promova grupos de discussão em saúde e que já estão agendadas reuniões com temas de gestação na adolescência e prevenção de infecções sexualmente transmissíveis. Nesse caso, essa paciente poderia frequentar essas reuniões? Se sim, seria necessária a autorização de um responsável? Explique.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 5,
+            "abbreviation": "PREV",
+            "name": "Medicina Preventiva e Social",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 442,
+            "parent_tag": {
+              "id": 314,
+              "name": "Atuação Médica",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Ética Médica, Bioética e Documentação",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              5
+            ],
+            "new_residency_degree": [
+              41,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 1806,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação",
+          "discipline": {
+            "id": 89,
+            "name": "Medicina Preventiva e Social",
+            "residency_degree": 3,
+            "speciality": 5
+          },
+          "theme": {
+            "id": 205,
+            "name": "Atuação Médica",
+            "discipline": 89,
+            "old_tag": 314,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251737,
+        "actual_explanation": true,
+        "introduction": "<p>Salve, pessoal!</p>\n<p>O atendimento m&eacute;dico a adolescentes no Brasil &eacute; regido por princ&iacute;pios &eacute;ticos e legais espec&iacute;ficos que visam conciliar a prote&ccedil;&atilde;o integral do menor, o direito &agrave; confidencialidade e a promo&ccedil;&atilde;o do acesso &agrave; sa&uacute;de. A legisla&ccedil;&atilde;o fundamental sobre o tema inclui o&nbsp;Estatuto da Crian&ccedil;a e do Adolescente (ECA)&nbsp;&ndash; Lei n&ordm; 8.069/1990 &ndash; e o&nbsp;C&oacute;digo de &Eacute;tica M&eacute;dica(Resolu&ccedil;&atilde;o CFM n&ordm; 2.217/2018).&nbsp;O ECA, no&nbsp;Art. 7&ordm;, assegura &agrave; crian&ccedil;a e ao adolescente o direito &agrave; prote&ccedil;&atilde;o &agrave; vida e &agrave; sa&uacute;de, mediante pol&iacute;ticas p&uacute;blicas que permitam o nascimento e o desenvolvimento sadio e harmonioso. J&aacute; o Art. 11 refor&ccedil;a que o acesso &agrave; sa&uacute;de deve ocorrer com prioridade absoluta, sem imposi&ccedil;&atilde;o de barreiras administrativas indevidas.&nbsp;O C&oacute;digo de &Eacute;tica M&eacute;dica prev&ecirc;, em seu Cap&iacute;tulo IX (Sigilo Profissional), que o m&eacute;dico deve preservar o sigilo das informa&ccedil;&otilde;es obtidas no exerc&iacute;cio da profiss&atilde;o, inclusive em rela&ccedil;&atilde;o a menores de idade, salvo em situa&ccedil;&otilde;es de risco iminente &agrave; vida, risco coletivo ou obriga&ccedil;&atilde;o legal.</p>\n<p>No atendimento de adolescentes, &eacute; consagrado o conceito de capacidade progressiva, pelo qual o adolescente &eacute; reconhecido como sujeito em desenvolvimento capaz de compreender e decidir sobre sua pr&oacute;pria sa&uacute;de em certos contextos, principalmente em rela&ccedil;&atilde;o &agrave; sexualidade, contracep&ccedil;&atilde;o e gesta&ccedil;&atilde;o.&nbsp;Assim, o m&eacute;dico deve avaliar a capacidade de entendimento do adolescente, garantir o atendimento adequado &agrave;s suas demandas de sa&uacute;de reprodutiva e respeitar seu direito ao sigilo, sempre ponderando o melhor interesse do paciente.</p>\n<p>&nbsp;</p>\n<p><strong>Letra A.</strong></p>\n<p>Sim, a paciente pode ser atendida desacompanhada, tanto para realizar o teste de gravidez quanto para receber prescri&ccedil;&atilde;o de contraceptivo oral. O ECA e o C&oacute;digo de &Eacute;tica M&eacute;dica permitem que adolescentes sejam atendidos sozinhos em situa&ccedil;&otilde;es relacionadas &agrave; sa&uacute;de sexual e reprodutiva, respeitando sua autonomia progressiva.&nbsp;O sigilo m&eacute;dico dever&aacute; ser mantido, n&atilde;o havendo necessidade de comunica&ccedil;&atilde;o pr&eacute;via com um respons&aacute;vel legal, salvo se houver risco grave &agrave; sa&uacute;de da paciente, o que n&atilde;o se configura no contexto apresentado.</p>\n<p>&nbsp;</p>\n<p><strong>Letra B.</strong></p>\n<p>Caso a gravidez seja confirmada, o m&eacute;dico dever&aacute; iniciar o atendimento pr&eacute;-natal normalmente, assegurando o direito da adolescente &agrave; sa&uacute;de, sem necessidade imediata de comunica&ccedil;&atilde;o ao respons&aacute;vel legal.&nbsp;O sigilo profissional deve ser mantido, exceto se houver risco &agrave; vida da paciente ou do feto, situa&ccedil;&atilde;o em que o respons&aacute;vel poder&aacute; ser comunicado, sempre visando o melhor interesse da adolescente.</p>\n<p>&nbsp;</p>\n<p><strong>Letra C.</strong></p>\n<p>Sim, a paciente pode frequentar reuni&otilde;es e grupos de discuss&atilde;o em sa&uacute;de promovidos pela unidade, incluindo temas de gesta&ccedil;&atilde;o na adolesc&ecirc;ncia e preven&ccedil;&atilde;o de infec&ccedil;&otilde;es sexualmente transmiss&iacute;veis. &nbsp;N&atilde;o h&aacute; necessidade de autoriza&ccedil;&atilde;o pr&eacute;via de um respons&aacute;vel para participa&ccedil;&atilde;o, pois essas atividades visam a promo&ccedil;&atilde;o da sa&uacute;de e est&atilde;o inseridas nas pol&iacute;ticas p&uacute;blicas de aten&ccedil;&atilde;o integral ao adolescente, conforme prev&ecirc; o ECA.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Pessoal, no atendimento de adolescentes, especialmente em demandas de sa&uacute;de sexual e reprodutiva, n&oacute;s devemos garantir o acesso ao servi&ccedil;o, respeitar o sigilo profissional e valorizar a capacidade progressiva do adolescente de tomar decis&otilde;es sobre sua sa&uacute;de. O atendimento &eacute; permitido sem a presen&ccedil;a de respons&aacute;vel e o sigilo s&oacute; poder&aacute; ser quebrado em situa&ccedil;&otilde;es de risco iminente ou obriga&ccedil;&atilde;o legal expressa, sempre priorizando o melhor interesse do paciente.</p>\n<p>&nbsp;</p>\n<p><strong>Fica a Dica</strong></p>\n<ul>\n<li>O adolescente, a partir de 12 anos, &eacute; reconhecido como capaz de tomar decis&otilde;es sobre sua sa&uacute;de sexual e reprodutiva em muitas situa&ccedil;&otilde;es pr&aacute;ticas.</li>\n<li>O sigilo m&eacute;dico &eacute; regra no atendimento a adolescentes; quebra-se apenas diante de risco grave ou obriga&ccedil;&atilde;o legal clara.</li>\n<li>N&atilde;o exigir acompanhante ou autoriza&ccedil;&atilde;o para consultas de contracep&ccedil;&atilde;o ou pr&eacute;-natal de adolescentes &eacute; correto e &eacute;tico.</li>\n<li>Risco iminente &agrave; sa&uacute;de ou incapacidade de entendimento real do adolescente pode justificar a comunica&ccedil;&atilde;o ao respons&aacute;vel, sempre com cautela e priorizando o melhor interesse do paciente.</li>\n</ul>\n<p>&nbsp;</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Salve, pessoal!</p>\n<p>O atendimento m&eacute;dico a adolescentes no Brasil &eacute; regido por princ&iacute;pios &eacute;ticos e legais espec&iacute;ficos que visam conciliar a prote&ccedil;&atilde;o integral do menor, o direito &agrave; confidencialidade e a promo&ccedil;&atilde;o do acesso &agrave; sa&uacute;de. A legisla&ccedil;&atilde;o fundamental sobre o tema inclui o&nbsp;Estatuto da Crian&ccedil;a e do Adolescente (ECA)&nbsp;&ndash; Lei n&ordm; 8.069/1990 &ndash; e o&nbsp;C&oacute;digo de &Eacute;tica M&eacute;dica(Resolu&ccedil;&atilde;o CFM n&ordm; 2.217/2018).&nbsp;O ECA, no&nbsp;Art. 7&ordm;, assegura &agrave; crian&ccedil;a e ao adolescente o direito &agrave; prote&ccedil;&atilde;o &agrave; vida e &agrave; sa&uacute;de, mediante pol&iacute;ticas p&uacute;blicas que permitam o nascimento e o desenvolvimento sadio e harmonioso. J&aacute; o Art. 11 refor&ccedil;a que o acesso &agrave; sa&uacute;de deve ocorrer com prioridade absoluta, sem imposi&ccedil;&atilde;o de barreiras administrativas indevidas.&nbsp;O C&oacute;digo de &Eacute;tica M&eacute;dica prev&ecirc;, em seu Cap&iacute;tulo IX (Sigilo Profissional), que o m&eacute;dico deve preservar o sigilo das informa&ccedil;&otilde;es obtidas no exerc&iacute;cio da profiss&atilde;o, inclusive em rela&ccedil;&atilde;o a menores de idade, salvo em situa&ccedil;&otilde;es de risco iminente &agrave; vida, risco coletivo ou obriga&ccedil;&atilde;o legal.</p>\n<p>No atendimento de adolescentes, &eacute; consagrado o conceito de capacidade progressiva, pelo qual o adolescente &eacute; reconhecido como sujeito em desenvolvimento capaz de compreender e decidir sobre sua pr&oacute;pria sa&uacute;de em certos contextos, principalmente em rela&ccedil;&atilde;o &agrave; sexualidade, contracep&ccedil;&atilde;o e gesta&ccedil;&atilde;o.&nbsp;Assim, o m&eacute;dico deve avaliar a capacidade de entendimento do adolescente, garantir o atendimento adequado &agrave;s suas demandas de sa&uacute;de reprodutiva e respeitar seu direito ao sigilo, sempre ponderando o melhor interesse do paciente.</p>\n<p>&nbsp;</p>\n<p><strong>Letra A.</strong></p>\n<p>Sim, a paciente pode ser atendida desacompanhada, tanto para realizar o teste de gravidez quanto para receber prescri&ccedil;&atilde;o de contraceptivo oral. O ECA e o C&oacute;digo de &Eacute;tica M&eacute;dica permitem que adolescentes sejam atendidos sozinhos em situa&ccedil;&otilde;es relacionadas &agrave; sa&uacute;de sexual e reprodutiva, respeitando sua autonomia progressiva.&nbsp;O sigilo m&eacute;dico dever&aacute; ser mantido, n&atilde;o havendo necessidade de comunica&ccedil;&atilde;o pr&eacute;via com um respons&aacute;vel legal, salvo se houver risco grave &agrave; sa&uacute;de da paciente, o que n&atilde;o se configura no contexto apresentado.</p>\n<p>&nbsp;</p>\n<p><strong>Letra B.</strong></p>\n<p>Caso a gravidez seja confirmada, o m&eacute;dico dever&aacute; iniciar o atendimento pr&eacute;-natal normalmente, assegurando o direito da adolescente &agrave; sa&uacute;de, sem necessidade imediata de comunica&ccedil;&atilde;o ao respons&aacute;vel legal.&nbsp;O sigilo profissional deve ser mantido, exceto se houver risco &agrave; vida da paciente ou do feto, situa&ccedil;&atilde;o em que o respons&aacute;vel poder&aacute; ser comunicado, sempre visando o melhor interesse da adolescente.</p>\n<p>&nbsp;</p>\n<p><strong>Letra C.</strong></p>\n<p>Sim, a paciente pode frequentar reuni&otilde;es e grupos de discuss&atilde;o em sa&uacute;de promovidos pela unidade, incluindo temas de gesta&ccedil;&atilde;o na adolesc&ecirc;ncia e preven&ccedil;&atilde;o de infec&ccedil;&otilde;es sexualmente transmiss&iacute;veis. &nbsp;N&atilde;o h&aacute; necessidade de autoriza&ccedil;&atilde;o pr&eacute;via de um respons&aacute;vel para participa&ccedil;&atilde;o, pois essas atividades visam a promo&ccedil;&atilde;o da sa&uacute;de e est&atilde;o inseridas nas pol&iacute;ticas p&uacute;blicas de aten&ccedil;&atilde;o integral ao adolescente, conforme prev&ecirc; o ECA.</p><br>Visão do aprovado: <p>Pessoal, no atendimento de adolescentes, especialmente em demandas de sa&uacute;de sexual e reprodutiva, n&oacute;s devemos garantir o acesso ao servi&ccedil;o, respeitar o sigilo profissional e valorizar a capacidade progressiva do adolescente de tomar decis&otilde;es sobre sua sa&uacute;de. O atendimento &eacute; permitido sem a presen&ccedil;a de respons&aacute;vel e o sigilo s&oacute; poder&aacute; ser quebrado em situa&ccedil;&otilde;es de risco iminente ou obriga&ccedil;&atilde;o legal expressa, sempre priorizando o melhor interesse do paciente.</p>\n<p>&nbsp;</p>\n<p><strong>Fica a Dica</strong></p>\n<ul>\n<li>O adolescente, a partir de 12 anos, &eacute; reconhecido como capaz de tomar decis&otilde;es sobre sua sa&uacute;de sexual e reprodutiva em muitas situa&ccedil;&otilde;es pr&aacute;ticas.</li>\n<li>O sigilo m&eacute;dico &eacute; regra no atendimento a adolescentes; quebra-se apenas diante de risco grave ou obriga&ccedil;&atilde;o legal clara.</li>\n<li>N&atilde;o exigir acompanhante ou autoriza&ccedil;&atilde;o para consultas de contracep&ccedil;&atilde;o ou pr&eacute;-natal de adolescentes &eacute; correto e &eacute;tico.</li>\n<li>Risco iminente &agrave; sa&uacute;de ou incapacidade de entendimento real do adolescente pode justificar a comunica&ccedil;&atilde;o ao respons&aacute;vel, sempre com cautela e priorizando o melhor interesse do paciente.</li>\n</ul>\n<p>&nbsp;</p><br>",
+        "students_difficulty": "e",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221745,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Assistência ao Parto",
+        "focus": {
+          "id": 1999,
+          "name": "Assistência ao Parto"
+        }
+      },
+      "detail": {
+        "id": 221745,
+        "content": "Uma paciente de 30 anos, primigesta, com 40 semanas de idade gestacional, sem cirurgias prévias nem antecedentes mórbidos relevantes, é internada em trabalho de parto espontâneo às 5h da manhã com contrações. Os movimentos fetais estão presentes e ativos, não ocorreu perda de líquido ou sangue na internação. A paciente está lidando bem com a dor, com movimentação, massagem e banhos de aspersão. Seu acompanhante é participativo e acolhedor. \n\nOs batimentos cardíacos fetais estão sendo auscultados a cada 15 minutos e mantêm um padrão tranquilizador. Às 9h, a parturiente está mais cansada e queixosa e apresenta discreto sangramento vaginal. Diante disso, é feita nova avaliação por toque vaginal. A evolução do trabalho de parto pode ser vista no partograma a seguir. \n\nFundamentado nas recomendações da Organização Mundial da Saúde (2018) e considerando o caso clínico e o partograma apresentados, faça o que se pede nos itens a seguir.  \na) Qual é o diagnóstico correto do caso clínico? \nb) É possível constatar sinais de progressão, ou de não progressão, do trabalho de parto? Forneça duas justificativas completas para a sua resposta. \nc) Qual conduta deve ser seguida?",
+        "options": [],
+        "images": [
+          {
+            "id": 63560,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID221745_2024_institution-object-1468_Q4/question.png"
+          }
+        ],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 677,
+            "parent_tag": {
+              "id": 337,
+              "name": "Parto",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Assistência ao Parto",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [
+          {
+            "id": 1798,
+            "avatar": "https://cdn.medway.com.br/media/physician/Victoria_Fickel_parceira.jpeg",
+            "about": "Ginecologia e Obstetrícia – HIAE",
+            "name": "Victoria Haffele Bandeira Fickel",
+            "speciality": {
+              "id": 6,
+              "abbreviation": "GO",
+              "name": "Ginecologia e Obstetrícia"
+            }
+          }
+        ],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 1389,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1999,
+          "name": "Assistência ao Parto",
+          "discipline": {
+            "id": 87,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 3,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 189,
+            "name": "Parto",
+            "discipline": 87,
+            "old_tag": 337,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 466723,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-indent: 2em\">Primigesta a termo com trabalho de parto espontâneo evolui de 4 para 6cm de dilatação em 4 horas — essa progressão é adequada? A questão pede três coisas: diagnóstico, identificação de progressão com duas justificativas completas, e conduta. O ponto central aqui é interpretar o <span class=\"article-8045\">partograma</span> usando os critérios da <strong>OMS 2018</strong>, não os antigos critérios de Friedman.</p>\n<p style=\"text-indent: 2em\">Vamos direto aos achados objetivos do <span class=\"article-8045\">partograma</span>. Às 5h da manhã, o primeiro toque mostrou dilatação de 4cm (triângulo), apresentação no plano 0 de De Lee (círculo) e variedade de posição posterior. Às 9h, portanto 4 horas depois, o segundo toque encontrou dilatação de 6cm, apresentação em plano +1 e variedade anterior. As contrações estão com boa intensidade (3-4 em 10 minutos, moderadas a fortes) e os batimentos fetais mantêm padrão tranquilizador. Resumindo a progressão: dilatou 2cm, desceu 1 plano de De Lee e ainda rotacionou de posterior para anterior.</p>\n<p style=\"text-indent: 2em\">Aqui mora a pegadinha clássica: muita gente ainda raciocina com os critérios de Friedman, que exigiam velocidade de dilatação fixa de 1cm/hora para nulíparas. Por essa lógica antiga, nossa paciente estaria \"atrasada\" (0,5cm/h). Mas a <strong>OMS 2018</strong> mudou esse paradigma. O quadro abaixo mostra a diferença:</p>\n<div style=\"margin: 20px 0; padding: 15px; border: 2px solid #2c5282; background-color: #ebf4ff; border-radius: 8px;\">\n<p style=\"margin: 0; padding: 0;\"><strong>Friedman (antigo):</strong> Exigia 1cm/h obrigatório na fase ativa</p>\n<p style=\"margin: 10px 0 0 0; padding: 0;\"><strong>OMS 2018:</strong> Progressão em ≥1 parâmetro (dilatação, descida ou rotação) com contrações adequadas caracteriza evolução normal</p>\n</div>\n<p style=\"text-indent: 2em\">Nossa paciente não só progrediu em um, mas em TRÊS parâmetros simultaneamente. Isso afasta completamente qualquer ideia de distocia, que seria definida como ausência de progressão por 4 horas na presença de contrações adequadas — claramente não é nosso caso aqui.</p>\n<p style=\"text-indent: 2em\">Agora vamos estruturar as respostas conforme o espelho de resposta espera. Para o item (a), o diagnóstico correto é <strong>\"evolução normal do trabalho de parto\"</strong> ou \"parto eutócico\" — ambos os termos são aceitos. Para o item (b), precisamos afirmar que há progressão e fornecer DUAS justificativas completas. O espelho aceita: (1) a apresentação fetal desceu e rotacionou (ou desceu, ou rotacionou separadamente); (2) a dilatação do colo progrediu dentro do esperado para a dinâmica uterina apresentada. É fundamental mencionar dois desses elementos objetivos para pontuar completamente. Para o item (c), a conduta é prosseguir com acompanhamento regular do trabalho de parto, podendo incluir verificação da dinâmica uterina e BCF, incentivo aos métodos de alívio da dor e à livre movimentação.</p>\n<p style=\"text-indent: 2em\">Um checklist objetivo para esse tipo de questão fica assim:</p>\n<ul>\n<li>✓ Dilatação progrediu? SIM (4→6cm)</li>\n<li>✓ Descida progrediu? SIM (0→+1)</li>\n<li>✓ Rotação ocorreu? SIM (posterior→anterior)</li>\n<li>✓ BCF normal? SIM</li>\n<li>✓ Contrações adequadas? SIM</li>\n</ul>\n<p style=\"text-indent: 2em\">→ Diagnóstico: <strong>evolução normal do trabalho de parto</strong>.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-indent: 2em\">O ponto-chave para não cair na armadilha é reconhecer que progressão do trabalho de parto não se mede mais apenas pela velocidade de dilatação. Muitos candidatos ainda carregam mentalmente a regra antiga de 1cm/hora e, ao ver 2cm em 4 horas, já pensam em distocia e querem partir para ocitocina ou até cesárea. A <strong>progressão simultânea</strong> de descida e rotação, junto com a dilatação, afasta completamente qualquer ideia de parada. Outro detalhe que pode gerar insegurança é o sangramento discreto às 9h, mas ele é fisiológico (<em>sinal de Schroeder</em>, pelo descolamento das membranas com a dilatação) e não muda a conduta.</p>\n<p style=\"text-indent: 2em\">Em provas de R1, partogramas costumam aparecer contrastando cenários: evolução normal versus distoccias específicas. As questões anteriores mostram esse padrão — ora cobram parada de descida por desproporção céfalo-pélvica (dilatação progride, apresentação não desce), ora trabalho de parto normal em diferentes contextos (primigesta, secundigesta, cesárea anterior). A banca quer ver se você identifica os <strong>sinais objetivos de progressão</strong> e se consegue diferenciar do que realmente é distocia. Atenção especial para casos discursivos: é preciso citar explicitamente dois elementos de progressão para pontuar completo no item, não basta dizer \"está evoluindo bem\".</p>\n<p style=\"text-indent: 2em\">Vale lembrar que a ausculta de <em>BCF</em> a cada 15 minutos na fase ativa também está correta segundo os protocolos de assistência ao parto, e a conduta de manter métodos não farmacológicos de alívio (movimentação, banho, massagem) é parte do manejo fisiológico que a questão valoriza. Não há qualquer <strong>indicação de intervenção ativa</strong> aqui.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-indent: 2em\">Primigesta a termo com trabalho de parto espontâneo evolui de 4 para 6cm de dilatação em 4 horas — essa progressão é adequada? A questão pede três coisas: diagnóstico, identificação de progressão com duas justificativas completas, e conduta. O ponto central aqui é interpretar o <span class=\"article-8045\">partograma</span> usando os critérios da <strong>OMS 2018</strong>, não os antigos critérios de Friedman.</p>\n<p style=\"text-indent: 2em\">Vamos direto aos achados objetivos do <span class=\"article-8045\">partograma</span>. Às 5h da manhã, o primeiro toque mostrou dilatação de 4cm (triângulo), apresentação no plano 0 de De Lee (círculo) e variedade de posição posterior. Às 9h, portanto 4 horas depois, o segundo toque encontrou dilatação de 6cm, apresentação em plano +1 e variedade anterior. As contrações estão com boa intensidade (3-4 em 10 minutos, moderadas a fortes) e os batimentos fetais mantêm padrão tranquilizador. Resumindo a progressão: dilatou 2cm, desceu 1 plano de De Lee e ainda rotacionou de posterior para anterior.</p>\n<p style=\"text-indent: 2em\">Aqui mora a pegadinha clássica: muita gente ainda raciocina com os critérios de Friedman, que exigiam velocidade de dilatação fixa de 1cm/hora para nulíparas. Por essa lógica antiga, nossa paciente estaria \"atrasada\" (0,5cm/h). Mas a <strong>OMS 2018</strong> mudou esse paradigma. O quadro abaixo mostra a diferença:</p>\n<div style=\"margin: 20px 0; padding: 15px; border: 2px solid #2c5282; background-color: #ebf4ff; border-radius: 8px;\">\n<p style=\"margin: 0; padding: 0;\"><strong>Friedman (antigo):</strong> Exigia 1cm/h obrigatório na fase ativa</p>\n<p style=\"margin: 10px 0 0 0; padding: 0;\"><strong>OMS 2018:</strong> Progressão em ≥1 parâmetro (dilatação, descida ou rotação) com contrações adequadas caracteriza evolução normal</p>\n</div>\n<p style=\"text-indent: 2em\">Nossa paciente não só progrediu em um, mas em TRÊS parâmetros simultaneamente. Isso afasta completamente qualquer ideia de distocia, que seria definida como ausência de progressão por 4 horas na presença de contrações adequadas — claramente não é nosso caso aqui.</p>\n<p style=\"text-indent: 2em\">Agora vamos estruturar as respostas conforme o espelho de resposta espera. Para o item (a), o diagnóstico correto é <strong>\"evolução normal do trabalho de parto\"</strong> ou \"parto eutócico\" — ambos os termos são aceitos. Para o item (b), precisamos afirmar que há progressão e fornecer DUAS justificativas completas. O espelho aceita: (1) a apresentação fetal desceu e rotacionou (ou desceu, ou rotacionou separadamente); (2) a dilatação do colo progrediu dentro do esperado para a dinâmica uterina apresentada. É fundamental mencionar dois desses elementos objetivos para pontuar completamente. Para o item (c), a conduta é prosseguir com acompanhamento regular do trabalho de parto, podendo incluir verificação da dinâmica uterina e BCF, incentivo aos métodos de alívio da dor e à livre movimentação.</p>\n<p style=\"text-indent: 2em\">Um checklist objetivo para esse tipo de questão fica assim:</p>\n<ul>\n<li>✓ Dilatação progrediu? SIM (4→6cm)</li>\n<li>✓ Descida progrediu? SIM (0→+1)</li>\n<li>✓ Rotação ocorreu? SIM (posterior→anterior)</li>\n<li>✓ BCF normal? SIM</li>\n<li>✓ Contrações adequadas? SIM</li>\n</ul>\n<p style=\"text-indent: 2em\">→ Diagnóstico: <strong>evolução normal do trabalho de parto</strong>.</p><br>Visão do aprovado: <p style=\"text-indent: 2em\">O ponto-chave para não cair na armadilha é reconhecer que progressão do trabalho de parto não se mede mais apenas pela velocidade de dilatação. Muitos candidatos ainda carregam mentalmente a regra antiga de 1cm/hora e, ao ver 2cm em 4 horas, já pensam em distocia e querem partir para ocitocina ou até cesárea. A <strong>progressão simultânea</strong> de descida e rotação, junto com a dilatação, afasta completamente qualquer ideia de parada. Outro detalhe que pode gerar insegurança é o sangramento discreto às 9h, mas ele é fisiológico (<em>sinal de Schroeder</em>, pelo descolamento das membranas com a dilatação) e não muda a conduta.</p>\n<p style=\"text-indent: 2em\">Em provas de R1, partogramas costumam aparecer contrastando cenários: evolução normal versus distoccias específicas. As questões anteriores mostram esse padrão — ora cobram parada de descida por desproporção céfalo-pélvica (dilatação progride, apresentação não desce), ora trabalho de parto normal em diferentes contextos (primigesta, secundigesta, cesárea anterior). A banca quer ver se você identifica os <strong>sinais objetivos de progressão</strong> e se consegue diferenciar do que realmente é distocia. Atenção especial para casos discursivos: é preciso citar explicitamente dois elementos de progressão para pontuar completo no item, não basta dizer \"está evoluindo bem\".</p>\n<p style=\"text-indent: 2em\">Vale lembrar que a ausculta de <em>BCF</em> a cada 15 minutos na fase ativa também está correta segundo os protocolos de assistência ao parto, e a conduta de manter métodos não farmacológicos de alívio (movimentação, banho, massagem) é parte do manejo fisiológico que a questão valoriza. Não há qualquer <strong>indicação de intervenção ativa</strong> aqui.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221746,
+        "number": 5,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Infecções do Sistema Nervoso Central",
+        "focus": {
+          "id": 2096,
+          "name": "Infecções do Sistema Nervoso Central"
+        }
+      },
+      "detail": {
+        "id": 221746,
+        "content": "Um pré-escolar de 3 anos, previamente hígido, é trazido pela mãe à unidade básica de saúde (UBS), com febre, cefaleia e vômitos em jato há 1 dia. A mãe nega que ele tenha apresentado diarreia, sintomas respiratórios, problemas no ouvido ou na garganta. Ao exame físico, apresenta-se em regular estado geral, desidratado (2+/4+), sonolento e irritado, com fácies de dor e choroso. A otoscopia e a oroscopia apresentam-se sem alterações, assim como a ausculta cardíaca e a respiratória. Abdome indolor à palpação. Nota-se presença de petéquias em tronco e em extremidades. A frequência respiratória da criança é de 38 incursões respiratórias por minuto, a frequência cardíaca de 130 batimentos por minuto e a temperatura axilar de 38,5 °C.  \n\nA mãe relata que possui outros dois filhos, um de 6 meses e outro de 5 anos, e que os três frequentam a creche local. Atualmente, a família reside em um lugar onde o clima está seco e frio, distante 3 horas do serviço de urgência e considerado sem risco para contração de malária.  \n\nA partir desse caso clínico, faça o que se pede nos itens a seguir. \na) Cite o achado adicional do exame físico que precisa ser investigado na definição diagnóstica. \nb) Considerando os critérios clínico-epidemiológicos, qual é a principal hipótese diagnóstica? \nc) Cite seis condutas a serem instituídas imediatamente na UBS para tratar esse paciente. Serão consideradas para fins de correção apenas as seis primeiras condutas indicadas. \nd) Cite cinco medidas de vigilância em saúde recomendadas para esse caso. Serão consideradas para fins de correção apenas as cinco primeiras medidas indicadas.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 550,
+            "parent_tag": {
+              "id": 297,
+              "name": "Infectologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Infecções do Sistema Nervoso Central",
+            "main_tag": false,
+            "residency_degree": "rs",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              4,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [
+          {
+            "id": 2818,
+            "avatar": "https://cdn.medway.com.br/media/physician/IMG_xmFRSUv.jpeg",
+            "about": "Clínica Médica – HIAE",
+            "name": "Beatriz Sthephan",
+            "speciality": {
+              "id": 2,
+              "abbreviation": "CM",
+              "name": "Clínica Médica"
+            }
+          }
+        ],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 645,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2096,
+          "name": "Infecções do Sistema Nervoso Central",
+          "discipline": {
+            "id": 92,
+            "name": "Pediatria",
+            "residency_degree": 3,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 259,
+            "name": "Infectologia",
+            "discipline": 92,
+            "old_tag": 297,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 463403,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-indent: 2em\">A presença de petéquias em uma criança de 3 anos com febre, cefaleia e vômitos é um sinal de alarme que aponta diretamente para doença meningocócica. Essa questão testa nossa capacidade de reconhecer um caso clássico de meningite bacteriana com meningococcemia e, mais importante, de agir rapidamente mesmo em uma unidade básica de saúde distante do hospital de referência.</p>\n<p style=\"text-indent: 2em\">Vamos construir o raciocínio clínico começando pelo que já sabemos. Nosso paciente apresenta a tríade clássica de meningite: febre, cefaleia e vômitos (em jato, ainda!). Além disso, há sintomas neurológicos importantes como sonolência e irritabilidade. Mas o que fecha praticamente o diagnóstico são as <strong>petéquias em tronco e extremidades</strong> - esse achado cutâneo é altamente específico de meningococcemia, a forma invasiva da infecção por <em>Neisseria meningitidis</em>. O contexto epidemiológico reforça nossa suspeita: criança que frequenta creche, onde há aglomeração e transmissão fácil por gotículas respiratórias.</p>\n<p style=\"text-indent: 2em\">Agora, sobre o item a, que pede o achado adicional do exame físico necessário para a definição diagnóstica. Percebam que o examinador nos deu vários dados, mas não mencionou se foram pesquisados os sinais meníngeos. E são justamente esses sinais que precisamos investigar: <strong>rigidez de nuca</strong>, sinal de Kernig e sinal de Brudzinski. A rigidez de nuca é a resistência à flexão passiva do pescoço. O sinal de Kernig é positivo quando há dor ou resistência à extensão do joelho com a coxa fletida a 90 graus. O sinal de Brudzinski é positivo quando a flexão passiva do pescoço provoca flexão involuntária dos joelhos e quadris. O gabarito aceita a resposta se mencionarmos \"rigidez de nuca\", \"sinais meníngeos\" ou \"irritação meníngea\", ou se citarmos Kernig e Brudzinski conjuntamente.</p>\n<p style=\"text-indent: 2em\">Para o item b, considerando os critérios clínico-epidemiológicos, nossa principal hipótese diagnóstica é <strong>doença meningocócica</strong>. Esse termo engloba tanto a meningite quanto a meningococcemia (sepse) causadas pelo meningococo. O gabarito aceita diversas formas de resposta: \"doença meningocócica\", \"meningite meningocócica\", \"meningite bacteriana\", \"meningoencefalite meningocócica\", \"meningite com meningococcemia\", \"meningite por meningococo\" ou \"meningococcemia aguda\". 🚨 Atenção: se você responder apenas \"meningite\" ou \"meningite aguda\" sem especificar a etiologia bacteriana ou meningocócica, ganha apenas pontuação parcial. E cuidado para não responder \"<span class=\"article-9061\">meningite viral</span>\" - isso seria considerado incorreto!</p>\n<p style=\"text-indent: 2em\">O item c é crucial e testa se sabemos manejar uma emergência em condições limitadas. Estamos em uma UBS distante 3 horas do hospital de referência. Não podemos simplesmente \"encaminhar\" - precisamos estabilizar e iniciar o tratamento antes da transferência. As seis condutas imediatas são:</p>\n<ul>\n<li>Realizar medidas de suporte, como reposição hídrica (a criança está desidratada 2+/4+), observação clínica e uso de antiemético e/ou analgésico</li>\n<li>Solicitar transferência imediata e segura para serviço hospitalar de referência</li>\n<li>Iniciar a primeira dose de antibiótico (geralmente <em>ceftriaxona</em> 100 mg/kg)</li>\n<li>Prescrever antitérmico ou realizar controle da febre</li>\n<li>Prescrever corticoide sistêmico (<em>dexametasona</em>, que reduz sequelas neurológicas)</li>\n<li>Tratar a criança para evitar hipoglicemia</li>\n</ul>\n<p style=\"text-indent: 2em\">Percebam que o <strong>antibiótico deve ser iniciado</strong> mesmo antes da transferência - não podemos perder tempo!</p>\n<p style=\"text-align:center\">\n<img alt=\"Definição de contato próximo para doença meningocócica\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20231219T193424349Z454213.png\"/>\n</p>\n<p style=\"text-indent: 2em\">Por fim, o item d aborda as medidas de vigilância em saúde, que são fundamentais para prevenir casos secundários. As cinco medidas são:</p>\n<ul>\n<li>Imunização para meningite - o gabarito aceita \"meningo C\", \"ACWY\" ou \"meningococo\"</li>\n<li>Indicação de quimioprofilaxia para contatos próximos e comunicantes</li>\n</ul>\n<p style=\"text-indent: 2em\">A <strong>quimioprofilaxia</strong> está indicada para todos os contatos próximos do caso suspeito ou confirmado de doença meningocócica. Isso inclui: pessoas do mesmo domicílio, pessoas com exposição direta às secreções (beijo, compartilhamento de objetos com saliva), pessoas com exposição próxima e contínua de pelo menos 4 horas a até 1 metro de distância em ambiente fechado (como colegas de creche), e profissionais de saúde que tiveram exposição direta sem EPI adequado. No nosso caso, os dois irmãos (6 meses e 5 anos) e os colegas de creche são contactantes que precisam receber quimioprofilaxia, idealmente com <em><span class=\"article-8980\">rifampicina</span></em>.</p>\n<p style=\"text-indent: 2em\">A questão é uma prova de que o médico da atenção básica precisa estar preparado para emergências e conhecer não apenas o diagnóstico, mas também o manejo inicial e as medidas de saúde pública. <strong>Doença meningocócica</strong> é uma emergência infectocontagiosa que exige ação rápida em múltiplas frentes: tratamento do paciente, proteção dos contactantes e vigilância epidemiológica.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-indent: 2em\">O achado que entrega o diagnóstico aqui são as <strong>petéquias em tronco e extremidades</strong> numa criança febril - esse sinal praticamente fecha doença meningocócica mesmo antes de pesquisar sinais meníngeos. Nas provas, é comum a banca tentar confundir com convulsão febril simples quando a criança está na faixa etária típica (6 meses a 5 anos), mas a presença de exantema petequial e sinais neurológicos como sonolência e irritabilidade afasta completamente essa hipótese e torna a investigação obrigatória.</p>\n<p style=\"text-indent: 2em\">A armadilha mais perigosa está em postergar o tratamento. Questões recorrentes testam se o candidato sabe que o <strong>antibiótico deve ser iniciado</strong> na própria UBS, antes da transferência, e que jamais se espera exame de imagem para começar a antibioticoterapia. Outro erro frequente é esquecer o corticoide sistêmico nas condutas imediatas - a <em>dexametasona</em> reduz sequelas neurológicas e auditivas, sendo parte fundamental do manejo inicial. Nas provas de residência, costuma-se cobrar também a prevenção de hipoglicemia, conduta que muitos candidatos deixam passar.</p>\n<p style=\"text-indent: 2em\">A <strong>quimioprofilaxia para contactantes</strong> é tema recorrente nas bancas, aparecendo tanto em questões diretas quanto em itens de vigilância epidemiológica. Vale memorizar que todos os contatos próximos até 10 dias antes do início dos sintomas têm indicação, e o prazo para iniciar é de até 30 dias do contato, idealmente com <em><span class=\"article-8980\">rifampicina</span></em>. Outro padrão de cobrança clássico é a diferenciação dos achados liquóricos - meningite bacteriana apresenta celularidade elevada com predomínio de neutrófilos e glicose consumida, enquanto viral tem predomínio linfocitário e glicose preservada. Essa distinção aparece repetidamente em provas, muitas vezes pedindo para identificar o agente etiológico apenas pelo líquor.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-indent: 2em\">A presença de petéquias em uma criança de 3 anos com febre, cefaleia e vômitos é um sinal de alarme que aponta diretamente para doença meningocócica. Essa questão testa nossa capacidade de reconhecer um caso clássico de meningite bacteriana com meningococcemia e, mais importante, de agir rapidamente mesmo em uma unidade básica de saúde distante do hospital de referência.</p>\n<p style=\"text-indent: 2em\">Vamos construir o raciocínio clínico começando pelo que já sabemos. Nosso paciente apresenta a tríade clássica de meningite: febre, cefaleia e vômitos (em jato, ainda!). Além disso, há sintomas neurológicos importantes como sonolência e irritabilidade. Mas o que fecha praticamente o diagnóstico são as <strong>petéquias em tronco e extremidades</strong> - esse achado cutâneo é altamente específico de meningococcemia, a forma invasiva da infecção por <em>Neisseria meningitidis</em>. O contexto epidemiológico reforça nossa suspeita: criança que frequenta creche, onde há aglomeração e transmissão fácil por gotículas respiratórias.</p>\n<p style=\"text-indent: 2em\">Agora, sobre o item a, que pede o achado adicional do exame físico necessário para a definição diagnóstica. Percebam que o examinador nos deu vários dados, mas não mencionou se foram pesquisados os sinais meníngeos. E são justamente esses sinais que precisamos investigar: <strong>rigidez de nuca</strong>, sinal de Kernig e sinal de Brudzinski. A rigidez de nuca é a resistência à flexão passiva do pescoço. O sinal de Kernig é positivo quando há dor ou resistência à extensão do joelho com a coxa fletida a 90 graus. O sinal de Brudzinski é positivo quando a flexão passiva do pescoço provoca flexão involuntária dos joelhos e quadris. O gabarito aceita a resposta se mencionarmos \"rigidez de nuca\", \"sinais meníngeos\" ou \"irritação meníngea\", ou se citarmos Kernig e Brudzinski conjuntamente.</p>\n<p style=\"text-indent: 2em\">Para o item b, considerando os critérios clínico-epidemiológicos, nossa principal hipótese diagnóstica é <strong>doença meningocócica</strong>. Esse termo engloba tanto a meningite quanto a meningococcemia (sepse) causadas pelo meningococo. O gabarito aceita diversas formas de resposta: \"doença meningocócica\", \"meningite meningocócica\", \"meningite bacteriana\", \"meningoencefalite meningocócica\", \"meningite com meningococcemia\", \"meningite por meningococo\" ou \"meningococcemia aguda\". 🚨 Atenção: se você responder apenas \"meningite\" ou \"meningite aguda\" sem especificar a etiologia bacteriana ou meningocócica, ganha apenas pontuação parcial. E cuidado para não responder \"<span class=\"article-9061\">meningite viral</span>\" - isso seria considerado incorreto!</p>\n<p style=\"text-indent: 2em\">O item c é crucial e testa se sabemos manejar uma emergência em condições limitadas. Estamos em uma UBS distante 3 horas do hospital de referência. Não podemos simplesmente \"encaminhar\" - precisamos estabilizar e iniciar o tratamento antes da transferência. As seis condutas imediatas são:</p>\n<ul>\n<li>Realizar medidas de suporte, como reposição hídrica (a criança está desidratada 2+/4+), observação clínica e uso de antiemético e/ou analgésico</li>\n<li>Solicitar transferência imediata e segura para serviço hospitalar de referência</li>\n<li>Iniciar a primeira dose de antibiótico (geralmente <em>ceftriaxona</em> 100 mg/kg)</li>\n<li>Prescrever antitérmico ou realizar controle da febre</li>\n<li>Prescrever corticoide sistêmico (<em>dexametasona</em>, que reduz sequelas neurológicas)</li>\n<li>Tratar a criança para evitar hipoglicemia</li>\n</ul>\n<p style=\"text-indent: 2em\">Percebam que o <strong>antibiótico deve ser iniciado</strong> mesmo antes da transferência - não podemos perder tempo!</p>\n<p style=\"text-align:center\">\n<img alt=\"Definição de contato próximo para doença meningocócica\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20231219T193424349Z454213.png\"/>\n</p>\n<p style=\"text-indent: 2em\">Por fim, o item d aborda as medidas de vigilância em saúde, que são fundamentais para prevenir casos secundários. As cinco medidas são:</p>\n<ul>\n<li>Imunização para meningite - o gabarito aceita \"meningo C\", \"ACWY\" ou \"meningococo\"</li>\n<li>Indicação de quimioprofilaxia para contatos próximos e comunicantes</li>\n</ul>\n<p style=\"text-indent: 2em\">A <strong>quimioprofilaxia</strong> está indicada para todos os contatos próximos do caso suspeito ou confirmado de doença meningocócica. Isso inclui: pessoas do mesmo domicílio, pessoas com exposição direta às secreções (beijo, compartilhamento de objetos com saliva), pessoas com exposição próxima e contínua de pelo menos 4 horas a até 1 metro de distância em ambiente fechado (como colegas de creche), e profissionais de saúde que tiveram exposição direta sem EPI adequado. No nosso caso, os dois irmãos (6 meses e 5 anos) e os colegas de creche são contactantes que precisam receber quimioprofilaxia, idealmente com <em><span class=\"article-8980\">rifampicina</span></em>.</p>\n<p style=\"text-indent: 2em\">A questão é uma prova de que o médico da atenção básica precisa estar preparado para emergências e conhecer não apenas o diagnóstico, mas também o manejo inicial e as medidas de saúde pública. <strong>Doença meningocócica</strong> é uma emergência infectocontagiosa que exige ação rápida em múltiplas frentes: tratamento do paciente, proteção dos contactantes e vigilância epidemiológica.</p><br>Visão do aprovado: <p style=\"text-indent: 2em\">O achado que entrega o diagnóstico aqui são as <strong>petéquias em tronco e extremidades</strong> numa criança febril - esse sinal praticamente fecha doença meningocócica mesmo antes de pesquisar sinais meníngeos. Nas provas, é comum a banca tentar confundir com convulsão febril simples quando a criança está na faixa etária típica (6 meses a 5 anos), mas a presença de exantema petequial e sinais neurológicos como sonolência e irritabilidade afasta completamente essa hipótese e torna a investigação obrigatória.</p>\n<p style=\"text-indent: 2em\">A armadilha mais perigosa está em postergar o tratamento. Questões recorrentes testam se o candidato sabe que o <strong>antibiótico deve ser iniciado</strong> na própria UBS, antes da transferência, e que jamais se espera exame de imagem para começar a antibioticoterapia. Outro erro frequente é esquecer o corticoide sistêmico nas condutas imediatas - a <em>dexametasona</em> reduz sequelas neurológicas e auditivas, sendo parte fundamental do manejo inicial. Nas provas de residência, costuma-se cobrar também a prevenção de hipoglicemia, conduta que muitos candidatos deixam passar.</p>\n<p style=\"text-indent: 2em\">A <strong>quimioprofilaxia para contactantes</strong> é tema recorrente nas bancas, aparecendo tanto em questões diretas quanto em itens de vigilância epidemiológica. Vale memorizar que todos os contatos próximos até 10 dias antes do início dos sintomas têm indicação, e o prazo para iniciar é de até 30 dias do contato, idealmente com <em><span class=\"article-8980\">rifampicina</span></em>. Outro padrão de cobrança clássico é a diferenciação dos achados liquóricos - meningite bacteriana apresenta celularidade elevada com predomínio de neutrófilos e glicose consumida, enquanto viral tem predomínio linfocitário e glicose preservada. Essa distinção aparece repetidamente em provas, muitas vezes pedindo para identificar o agente etiológico apenas pelo líquor.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T17:50:14.162617+00:00",
+  "complete": true
+}

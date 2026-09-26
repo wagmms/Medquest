@@ -1,0 +1,595 @@
+{
+  "track_id": 3155379,
+  "name": "INEP - Revalida - 2022.2 - Discursiva",
+  "year": 2022,
+  "track_fast": {
+    "id": 3155379,
+    "name": "INEP - Revalida - 2022.2 - Discursiva",
+    "track_type": "c",
+    "question_count": 5,
+    "year": 2022,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "INEP - Revalida",
+    "track_image": "https://cdn.medway.com.br/media/track/exam/inep-revalida/default_D9duIcu.jpeg",
+    "residency_degree": {
+      "id": 3,
+      "abbreviation": "R1"
+    },
+    "available_deadline": null,
+    "available_questions_count": 5,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 5,
+  "questions": [
+    {
+      "meta": {
+        "id": 221309,
+        "number": 1,
+        "main_speciality_name": "Medicina Preventiva e Social",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Ética Médica, Bioética e Documentação",
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação"
+        }
+      },
+      "detail": {
+        "id": 221309,
+        "content": "Mulher de 34 anos apresentou movimentos convulsivos e permaneceu irresponsiva  seguidamente a um intercurso sexual à 1:00 h da manhã. Seu esposo chamou o serviço de  atendimento móvel de urgência e, na ambulância, foi constatado: coma, Glasgow 4/15 (extensão  no nível dos cotovelos), anisocoria à direita maior que à esquerda, sinal de Babinski à direita e  ausência de lesão traumática. Pressão Arterial de 90 × 57 mmHg, frequência cardíaca de  50 batimentos por minuto, frequência respiratória de 10 incursões respiratórias por minuto,  temperatura 36 °C, saturação de O2 de 94% em ar ambiente. Aparelho respiratório sem  anormalidades. Ritmo cardíaco regular. Glicemia capilar de 90 mg/dL. ECG mostrou bradicardia  sinusal. Foi realizada entubação orotraqueal e a paciente foi transferida para o hospital, onde  foram realizados procedimentos para estabilização circulatória e ventilação mecânica.    Exames laboratoriais: ausência de alterações eletrolíticas. Hematócrito = 36,5%,  hemoglobina = 13g/dL, plaquetas = 200.000/mm3.   Radiografia de tórax normal. Tomografia de crânio: hemorragia meníngea difusa, hemorragia  intraventricular. Ruptura de aneurisma da artéria comunicante anterior. Hidrocefalia.  A paciente foi levada ao centro cirúrgico para inserção de cateter para monitoramento da  pressão intracraniana (PIC), que se manteve alta e com pouca resposta ao manitol. Foram  realizadas arteriografia cerebral e embolização incompleta do aneurisma. Nas 24 horas  seguintes, a paciente evoluiu com midríase bilateral e PIC alta, chegando ao nível 3 na Escala de  Coma Glasgow. Os familiares foram informados sobre o quadro clínico. O marido solicitou que  todo o suporte de vida fosse interrompido, em respeito ao desejo da esposa. A mãe da paciente  solicitou o oposto: “enquanto há vida, há esperança”, disse ela.   \n\nCom base no quadro apresentado e no Código de Ética Médica brasileiro, atenda ao que se pede nos itens a  seguir.    \na) Apresente a resposta que deve ser dada pelo médico à solicitação do marido da paciente. \nb) Responda como se denomina a prática correspondente ao que foi solicitado pela mãe da paciente.  \nc) Descreva os próximos procedimentos que deverão ser realizados e sua finalidade. \nd) Cite os quatro exames complementares utilizados em casos como esse.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 5,
+            "abbreviation": "PREV",
+            "name": "Medicina Preventiva e Social",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 442,
+            "parent_tag": {
+              "id": 314,
+              "name": "Atuação Médica",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Ética Médica, Bioética e Documentação",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              5
+            ],
+            "new_residency_degree": [
+              41,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 667,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2168,
+          "name": "Ética Médica, Bioética e Documentação",
+          "discipline": {
+            "id": 89,
+            "name": "Medicina Preventiva e Social",
+            "residency_degree": 3,
+            "speciality": 5
+          },
+          "theme": {
+            "id": 205,
+            "name": "Atuação Médica",
+            "discipline": 89,
+            "old_tag": 314,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251736,
+        "actual_explanation": true,
+        "introduction": "<p>Fala, turma!</p>\n<p>Bora mergulhar num dos temas mais delicados da medicina: decisões em fim de vida. A abordagem de pacientes em estado crítico ou com suspeita de <span class=\"article-4070\">morte encefálica</span> exige profundo embasamento ético, técnico e legal por parte do médico. Aqui no Brasil, o Código de Ética Médica (Resolução CFM nº 2.217/2018) estabelece que é direito do paciente, ou de seu representante legal, decidir sobre tratamentos médicos, especialmente em contextos de terminalidade. No entanto, o médico tem o dever de atuar segundo a melhor prática clínica e os princípios da beneficência e da não maleficência, o que significa equilibrar o respeito às vontades do paciente e familiares com a responsabilidade de não realizar procedimentos fúteis ou prejudiciais.</p>\n<p>Considerando desse cenário, conceitos como ortotanásia e eutanásia precisam ser bem diferenciados. A ortotanásia — a não adoção de meios desproporcionais para prolongar artificialmente a vida — é reconhecida e permitida no Brasil, desde que em consonância com a legislação e as diretrizes éticas. A eutanásia, por outro lado, continua proibida, pois consiste em ato deliberado para apressar a morte. Além delas, a obstinação terapêutica é eticamente reprovável: consiste na manutenção de tratamentos inúteis que apenas prolongam o sofrimento ou retardam um processo de morte inevitável, contrariando o princípio da dignidade do paciente.</p>\n<p>No caso clínico apresentado, uma mulher jovem apresenta coma profundo (Glasgow 3), sinais neurológicos gravíssimos (anisocoria, Babinski unilateral, midríase bilateral subsequente) e hipertensão intracraniana refratária, em contexto de hemorragia subaracnoide e hidrocefalia, evoluindo para quadro compatível com <span class=\"article-4070\">morte encefálica</span>. Assim, o manejo clínico e ético deve ser norteado pelo diagnóstico preciso da <span class=\"article-4070\">morte encefálica</span>, que no Brasil é legalmente equiparada ao óbito, autorizando a suspensão dos suportes de vida. O pedido do marido para interrupção do suporte vital e a solicitação oposta da mãe da paciente ilustram claramente os conflitos éticos frequentes nesses cenários. Contudo, a decisão médica não pode ser baseada unicamente em vontades familiares, mas deve seguir rigorosamente a legislação brasileira e os protocolos normativos. Considerando o que discutimos acima, bora agora responder item a item da nossa questão, beleza?</p>\n<p> </p>\n<p><strong>Letra A.</strong></p>\n<p>O médico deve informar ao marido que, embora compreenda sua solicitação, a interrupção do suporte de vida só é permitida após a confirmação formal de <span class=\"article-4070\">morte encefálica</span>, conforme os critérios estabelecidos pela Resolução CFM nº 2.173/2017, alterada pela Resolução CFM nº 2.256/2019. Até a conclusão do protocolo de <span class=\"article-4070\">morte encefálica</span>, é obrigatória a manutenção do suporte vital para garantir a integridade ética e legal da assistência.</p>\n<p> </p>\n<p><strong>Letra B.</strong></p>\n<p>A prática solicitada pela mãe — ou seja, a exigência de manter todos os suportes de vida enquanto houver qualquer sinal de batimento cardíaco ou atividade fisiológica mínima — corresponde à chamada obstinação terapêutica. <span style=\"font-size: 11pt;\">Trata-se da persistência em tratamentos fúteis ou desproporcionais, que não trazem benefício real para o paciente, apenas prolongando artificialmente o processo de morte. Do ponto de vista ético, a obstinação terapêutica é desaconselhada, pois vai contra os princípios de beneficência e respeito à dignidade do paciente.</span></p>\n<p> </p>\n<p><strong><span style=\"font-size: 11pt;\">Letra C.</span></strong></p>\n<p>O próximo passo é iniciar o protocolo de diagnóstico de <span class=\"article-4070\">morte encefálica</span>, cuja finalidade é determinar formalmente, com segurança e rigor técnico, se a paciente apresenta critérios legais de <span class=\"article-4070\">morte encefálica</span>. O protocolo envolve:</p>\n<ul>\n<li>Confirmação de pré-requisitos: causa conhecida e irreversível do coma, exclusão de fatores confundidores (hipotermia, distúrbios metabólicos, sedação).</li>\n<li>Dois exames clínicos neurológicos realizados por médicos diferentes, com intervalo mínimo de 1 hora, comprovando ausência de reflexos de tronco encefálico.</li>\n<li>Teste de apneia: para verificar ausência de respiração espontânea associada à elevação da PaCO₂.</li>\n</ul>\n<p>A finalidade é confirmar o diagnóstico de <span class=\"article-4070\">morte encefálica</span> de forma segura e legal, permitindo a interrupção ética dos suportes de vida.</p>\n<p> </p>\n<p><strong>Letra D.</strong></p>\n<p>Os exames complementares aceitos para a confirmação da <span class=\"article-4070\">morte encefálica</span> são:</p>\n<ul>\n<li>Eletroencefalograma (EEG): demonstra ausência de atividade elétrica cerebral.</li>\n<li>Doppler transcraniano: evidencia ausência de fluxo sanguíneo cerebral.</li>\n<li>Angiografia cerebral (arteriografia): mostra interrupção da circulação intracerebral.</li>\n<li>Cintilografia cerebral: demonstra ausência de perfusão cerebral.</li>\n</ul>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Turma, em situações de coma grave com sinais neurológicos de gravidade extrema, a conduta médica deve ser fundamentada nos protocolos técnicos e na legislação vigente. A solicitação para interrupção do suporte vital só é atendida após diagnóstico formal de <span class=\"article-4070\">morte encefálica</span>, e a obstinação terapêutica é eticamente desaconselhada. Cabe ao médico conduzir a situação com equilíbrio técnico, sensibilidade humana e rigor ético, respeitando tanto os direitos do paciente quanto o marco legal brasileiro.</p>\n<p> </p>\n<p><strong>Fica a Dica</strong></p>\n<ul>\n<li>Sempre siga o protocolo oficial de <span class=\"article-4070\">morte encefálica</span>: causa conhecida, exclusão de fatores confundidores, dois exames clínicos, teste de apneia, e exame complementar se necessário.</li>\n<li><span style=\"font-size: 11pt;\">A obstinação terapêutica deve ser evitada</span><span style=\"font-size: 11pt;\">: tratamentos fúteis e desproporcionais, que apenas prolongam sofrimento sem benefício real, violam o princípio da beneficência.</span></li>\n<li><span style=\"font-size: 11pt;\">A eutanásia é proibida</span><span style=\"font-size: 11pt;\">: provocar a morte ativa de um paciente é vedado pelo Código de Ética Médica e pela legislação brasileira;</span></li>\n</ul>\n<p> </p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Fala, turma!</p>\n<p>Bora mergulhar num dos temas mais delicados da medicina: decisões em fim de vida. A abordagem de pacientes em estado crítico ou com suspeita de <span class=\"article-4070\">morte encefálica</span> exige profundo embasamento ético, técnico e legal por parte do médico. Aqui no Brasil, o Código de Ética Médica (Resolução CFM nº 2.217/2018) estabelece que é direito do paciente, ou de seu representante legal, decidir sobre tratamentos médicos, especialmente em contextos de terminalidade. No entanto, o médico tem o dever de atuar segundo a melhor prática clínica e os princípios da beneficência e da não maleficência, o que significa equilibrar o respeito às vontades do paciente e familiares com a responsabilidade de não realizar procedimentos fúteis ou prejudiciais.</p>\n<p>Considerando desse cenário, conceitos como ortotanásia e eutanásia precisam ser bem diferenciados. A ortotanásia — a não adoção de meios desproporcionais para prolongar artificialmente a vida — é reconhecida e permitida no Brasil, desde que em consonância com a legislação e as diretrizes éticas. A eutanásia, por outro lado, continua proibida, pois consiste em ato deliberado para apressar a morte. Além delas, a obstinação terapêutica é eticamente reprovável: consiste na manutenção de tratamentos inúteis que apenas prolongam o sofrimento ou retardam um processo de morte inevitável, contrariando o princípio da dignidade do paciente.</p>\n<p>No caso clínico apresentado, uma mulher jovem apresenta coma profundo (Glasgow 3), sinais neurológicos gravíssimos (anisocoria, Babinski unilateral, midríase bilateral subsequente) e hipertensão intracraniana refratária, em contexto de hemorragia subaracnoide e hidrocefalia, evoluindo para quadro compatível com <span class=\"article-4070\">morte encefálica</span>. Assim, o manejo clínico e ético deve ser norteado pelo diagnóstico preciso da <span class=\"article-4070\">morte encefálica</span>, que no Brasil é legalmente equiparada ao óbito, autorizando a suspensão dos suportes de vida. O pedido do marido para interrupção do suporte vital e a solicitação oposta da mãe da paciente ilustram claramente os conflitos éticos frequentes nesses cenários. Contudo, a decisão médica não pode ser baseada unicamente em vontades familiares, mas deve seguir rigorosamente a legislação brasileira e os protocolos normativos. Considerando o que discutimos acima, bora agora responder item a item da nossa questão, beleza?</p>\n<p> </p>\n<p><strong>Letra A.</strong></p>\n<p>O médico deve informar ao marido que, embora compreenda sua solicitação, a interrupção do suporte de vida só é permitida após a confirmação formal de <span class=\"article-4070\">morte encefálica</span>, conforme os critérios estabelecidos pela Resolução CFM nº 2.173/2017, alterada pela Resolução CFM nº 2.256/2019. Até a conclusão do protocolo de <span class=\"article-4070\">morte encefálica</span>, é obrigatória a manutenção do suporte vital para garantir a integridade ética e legal da assistência.</p>\n<p> </p>\n<p><strong>Letra B.</strong></p>\n<p>A prática solicitada pela mãe — ou seja, a exigência de manter todos os suportes de vida enquanto houver qualquer sinal de batimento cardíaco ou atividade fisiológica mínima — corresponde à chamada obstinação terapêutica. <span style=\"font-size: 11pt;\">Trata-se da persistência em tratamentos fúteis ou desproporcionais, que não trazem benefício real para o paciente, apenas prolongando artificialmente o processo de morte. Do ponto de vista ético, a obstinação terapêutica é desaconselhada, pois vai contra os princípios de beneficência e respeito à dignidade do paciente.</span></p>\n<p> </p>\n<p><strong><span style=\"font-size: 11pt;\">Letra C.</span></strong></p>\n<p>O próximo passo é iniciar o protocolo de diagnóstico de <span class=\"article-4070\">morte encefálica</span>, cuja finalidade é determinar formalmente, com segurança e rigor técnico, se a paciente apresenta critérios legais de <span class=\"article-4070\">morte encefálica</span>. O protocolo envolve:</p>\n<ul>\n<li>Confirmação de pré-requisitos: causa conhecida e irreversível do coma, exclusão de fatores confundidores (hipotermia, distúrbios metabólicos, sedação).</li>\n<li>Dois exames clínicos neurológicos realizados por médicos diferentes, com intervalo mínimo de 1 hora, comprovando ausência de reflexos de tronco encefálico.</li>\n<li>Teste de apneia: para verificar ausência de respiração espontânea associada à elevação da PaCO₂.</li>\n</ul>\n<p>A finalidade é confirmar o diagnóstico de <span class=\"article-4070\">morte encefálica</span> de forma segura e legal, permitindo a interrupção ética dos suportes de vida.</p>\n<p> </p>\n<p><strong>Letra D.</strong></p>\n<p>Os exames complementares aceitos para a confirmação da <span class=\"article-4070\">morte encefálica</span> são:</p>\n<ul>\n<li>Eletroencefalograma (EEG): demonstra ausência de atividade elétrica cerebral.</li>\n<li>Doppler transcraniano: evidencia ausência de fluxo sanguíneo cerebral.</li>\n<li>Angiografia cerebral (arteriografia): mostra interrupção da circulação intracerebral.</li>\n<li>Cintilografia cerebral: demonstra ausência de perfusão cerebral.</li>\n</ul><br>Visão do aprovado: <p>Turma, em situações de coma grave com sinais neurológicos de gravidade extrema, a conduta médica deve ser fundamentada nos protocolos técnicos e na legislação vigente. A solicitação para interrupção do suporte vital só é atendida após diagnóstico formal de <span class=\"article-4070\">morte encefálica</span>, e a obstinação terapêutica é eticamente desaconselhada. Cabe ao médico conduzir a situação com equilíbrio técnico, sensibilidade humana e rigor ético, respeitando tanto os direitos do paciente quanto o marco legal brasileiro.</p>\n<p> </p>\n<p><strong>Fica a Dica</strong></p>\n<ul>\n<li>Sempre siga o protocolo oficial de <span class=\"article-4070\">morte encefálica</span>: causa conhecida, exclusão de fatores confundidores, dois exames clínicos, teste de apneia, e exame complementar se necessário.</li>\n<li><span style=\"font-size: 11pt;\">A obstinação terapêutica deve ser evitada</span><span style=\"font-size: 11pt;\">: tratamentos fúteis e desproporcionais, que apenas prolongam sofrimento sem benefício real, violam o princípio da beneficência.</span></li>\n<li><span style=\"font-size: 11pt;\">A eutanásia é proibida</span><span style=\"font-size: 11pt;\">: provocar a morte ativa de um paciente é vedado pelo Código de Ética Médica e pela legislação brasileira;</span></li>\n</ul>\n<p> </p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221310,
+        "number": 2,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Tumores do Aparelho Digestivo",
+        "focus": {
+          "id": 2089,
+          "name": "Tumores do Aparelho Digestivo"
+        }
+      },
+      "detail": {
+        "id": 221310,
+        "content": "Dona Aurora, de 50 anos, branca, foi submetida à laparotomia exploradora em caráter de  urgência, por obstrução intestinal. No intraoperatório, foi encontrada lesão estenosante  localizada no cólon descendente, acarretando dilatação do cólon a montante, sem sofrimento  intestinal, e ausência de dilatação das alças de delgado. O cirurgião suspeitou de neoplasia  maligna de cólon, e o diagnóstico foi confirmado posteriormente. Conversando com as duas  filhas dessa paciente, uma de 25 anos e a outra de 23 anos, o cirurgião explicou que, assumindo se que ela seja o primeiro familiar portador de carcinoma de cólon, ambas as filhas deveriam  fazer o rastreio para neoplasia.  \n\nTendo como referência esse caso, faça o que se pede nos itens a seguir.  \na) Cite quatro fatores de risco para desenvolvimento de câncer colorretal.  \nb) Indique o rastreamento mais adequado para as filhas de Dona Aurora.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 560,
+            "parent_tag": {
+              "id": 352,
+              "name": "Cirurgia do Aparelho Digestivo",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Tumores do Aparelho Digestivo",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 2917,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2089,
+          "name": "Tumores do Aparelho Digestivo",
+          "discipline": {
+            "id": 64,
+            "name": "Cirurgia Geral",
+            "residency_degree": 3,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 184,
+            "name": "Cirurgia do Aparelho Digestivo",
+            "discipline": 64,
+            "old_tag": 352,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251334,
+        "actual_explanation": true,
+        "introduction": "<p>A questão traz um caso de <em>câncer colorretal</em> diagnosticado durante uma <em>laparotomia exploradora</em> em uma paciente de 50 anos, que apresentou quadro de <em>obstrução intestinal</em>. O câncer colorretal (CCR) é uma das neoplasias mais prevalentes no mundo, com alta morbimortalidade quando diagnosticado em estágios avançados. A obstrução intestinal é uma das formas de apresentação clínica do CCR, particularmente em tumores do cólon esquerdo (como o cólon descendente deste caso), devido ao menor calibre do lúmen intestinal e às fezes mais formadas nessa porção.</p>\n<p>Este tema é extremamente relevante para as provas de residência médica, pois envolve conhecimentos sobre fatores de risco, manejo e rastreamento de uma doença altamente prevalente. Além disso, é um tópico que frequentemente aborda condutas preventivas e detecção precoce, áreas sempre valorizadas em concursos médicos.</p>\n<p>A resposta esperada solicita quatro fatores de risco para CCR e a conduta de rastreamento para familiares de primeiro grau. Vamos analisar o gabarito cuidadosamente:</p>\n<p>Para a primeira parte, temos diversos fatores de risco válidos:</p>\n<ul>\n<li><strong>Fatores nutricionais/alimentares</strong>: sobrepeso, obesidade, alto consumo de carnes processadas e vermelhas, baixa ingestão de frutas, legumes e verduras</li>\n<li><strong>Fatores comportamentais</strong>: consumo excessivo de álcool (&gt;30g de etanol/dia), tabagismo</li>\n<li><strong>Fatores pessoais</strong>: idade acima de 50 anos, <span class=\"article-2910\">diabetes</span> mellitus tipo 2</li>\n<li><strong>Fatores patológicos prévios</strong>: pólipos intestinais, doenças inflamatórias intestinais (DII), radioterapia abdominopélvica prévia</li>\n<li><strong>Fatores hereditários</strong>: história familiar de CCR, síndromes genéticas (Lynch, Peutz-Jeghers)</li>\n</ul>\n<p>Para a segunda parte, o rastreamento adequado para as filhas da paciente deve ser <span class=\"article-5451\">colonoscopia</span> a cada 5 anos, começando aos 40 anos de idade ou 10 anos antes da idade do familiar no momento do diagnóstico (neste caso, 40 anos, pois a mãe tem 50).</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Essa questão aborda um tema clássico que frequentemente aparece em provas - o câncer colorretal. Quando me deparo com este tipo de questão, costumo organizar os fatores de risco em categorias para facilitar a memorização:</p>\n<ol>\n<li><strong>Fatores modificáveis</strong>: relacionados ao estilo de vida - dieta, peso, álcool, tabagismo</li>\n<li><strong>Fatores não modificáveis</strong>: idade, histórico familiar, síndromes genéticas</li>\n<li><strong>Doenças associadas</strong>: DII, pólipos, <span class=\"article-2910\">diabetes</span></li>\n</ol>\n<p>Um ponto crucial para as provas é saber diferenciar as recomendações de rastreamento para diferentes grupos de risco. A população geral começa o rastreamento aos 45-50 anos, mas familiares de primeiro grau devem iniciar mais cedo! Esse é um detalhe que as bancas adoram cobrar.</p>\n<p>Vale memorizar a regra: <strong><span class=\"article-5451\">colonoscopia</span> a cada 5 anos, iniciando aos 40 anos ou 10 anos antes da idade do familiar no diagnóstico</strong> (o que for mais jovem). Se houvesse dois ou mais familiares com CCR ou diagnóstico antes dos 60 anos, o rastreamento seria ainda mais precoce e frequente.</p>\n<p>Fiquem atentos às novas diretrizes! Algumas sociedades já recomendam iniciar o rastreamento da população geral aos 45 anos, não apenas aos 50. Além disso, as bancas podem explorar outros métodos de rastreamento, como pesquisa de sangue oculto nas fezes, colonografia por TC e sigmoidoscopia flexível.</p>\n<p>Por fim, não se esqueçam de que existem estratégias diferentes para síndromes hereditárias específicas como Lynch e PAF (Polipose Adenomatosa Familiar), que requerem um rastreamento muito mais intensivo e precoce. Vale a pena revisar esses protocolos específicos!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>A questão traz um caso de <em>câncer colorretal</em> diagnosticado durante uma <em>laparotomia exploradora</em> em uma paciente de 50 anos, que apresentou quadro de <em>obstrução intestinal</em>. O câncer colorretal (CCR) é uma das neoplasias mais prevalentes no mundo, com alta morbimortalidade quando diagnosticado em estágios avançados. A obstrução intestinal é uma das formas de apresentação clínica do CCR, particularmente em tumores do cólon esquerdo (como o cólon descendente deste caso), devido ao menor calibre do lúmen intestinal e às fezes mais formadas nessa porção.</p>\n<p>Este tema é extremamente relevante para as provas de residência médica, pois envolve conhecimentos sobre fatores de risco, manejo e rastreamento de uma doença altamente prevalente. Além disso, é um tópico que frequentemente aborda condutas preventivas e detecção precoce, áreas sempre valorizadas em concursos médicos.</p>\n<p>A resposta esperada solicita quatro fatores de risco para CCR e a conduta de rastreamento para familiares de primeiro grau. Vamos analisar o gabarito cuidadosamente:</p>\n<p>Para a primeira parte, temos diversos fatores de risco válidos:</p>\n<ul>\n<li><strong>Fatores nutricionais/alimentares</strong>: sobrepeso, obesidade, alto consumo de carnes processadas e vermelhas, baixa ingestão de frutas, legumes e verduras</li>\n<li><strong>Fatores comportamentais</strong>: consumo excessivo de álcool (&gt;30g de etanol/dia), tabagismo</li>\n<li><strong>Fatores pessoais</strong>: idade acima de 50 anos, <span class=\"article-2910\">diabetes</span> mellitus tipo 2</li>\n<li><strong>Fatores patológicos prévios</strong>: pólipos intestinais, doenças inflamatórias intestinais (DII), radioterapia abdominopélvica prévia</li>\n<li><strong>Fatores hereditários</strong>: história familiar de CCR, síndromes genéticas (Lynch, Peutz-Jeghers)</li>\n</ul>\n<p>Para a segunda parte, o rastreamento adequado para as filhas da paciente deve ser <span class=\"article-5451\">colonoscopia</span> a cada 5 anos, começando aos 40 anos de idade ou 10 anos antes da idade do familiar no momento do diagnóstico (neste caso, 40 anos, pois a mãe tem 50).</p><br>Visão do aprovado: <p>Essa questão aborda um tema clássico que frequentemente aparece em provas - o câncer colorretal. Quando me deparo com este tipo de questão, costumo organizar os fatores de risco em categorias para facilitar a memorização:</p>\n<ol>\n<li><strong>Fatores modificáveis</strong>: relacionados ao estilo de vida - dieta, peso, álcool, tabagismo</li>\n<li><strong>Fatores não modificáveis</strong>: idade, histórico familiar, síndromes genéticas</li>\n<li><strong>Doenças associadas</strong>: DII, pólipos, <span class=\"article-2910\">diabetes</span></li>\n</ol>\n<p>Um ponto crucial para as provas é saber diferenciar as recomendações de rastreamento para diferentes grupos de risco. A população geral começa o rastreamento aos 45-50 anos, mas familiares de primeiro grau devem iniciar mais cedo! Esse é um detalhe que as bancas adoram cobrar.</p>\n<p>Vale memorizar a regra: <strong><span class=\"article-5451\">colonoscopia</span> a cada 5 anos, iniciando aos 40 anos ou 10 anos antes da idade do familiar no diagnóstico</strong> (o que for mais jovem). Se houvesse dois ou mais familiares com CCR ou diagnóstico antes dos 60 anos, o rastreamento seria ainda mais precoce e frequente.</p>\n<p>Fiquem atentos às novas diretrizes! Algumas sociedades já recomendam iniciar o rastreamento da população geral aos 45 anos, não apenas aos 50. Além disso, as bancas podem explorar outros métodos de rastreamento, como pesquisa de sangue oculto nas fezes, colonografia por TC e sigmoidoscopia flexível.</p>\n<p>Por fim, não se esqueçam de que existem estratégias diferentes para síndromes hereditárias específicas como Lynch e PAF (Polipose Adenomatosa Familiar), que requerem um rastreamento muito mais intensivo e precoce. Vale a pena revisar esses protocolos específicos!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221311,
+        "number": 3,
+        "main_speciality_name": "Pediatria",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Anemias e Hemoglobinopatias",
+        "focus": {
+          "id": 2021,
+          "name": "Anemias e Hemoglobinopatias"
+        }
+      },
+      "detail": {
+        "id": 221311,
+        "content": "Uma criança com 3 anos de idade, sexo feminino, foi atendida no ambulatório de pediatria, por apresentar astenia, cansaço para brincar, sono excessivo, perda de peso e desejo de comer gelo há 8 meses. Trata-se de criança nascida pré-termo, com idade gestacional de 34 semanas, com boa vitalidade, sem intercorrências no período pós-natal. Teve aleitamento materno até os 3 meses. A família é numerosa e tem dificuldade de comprar e diversificar alimentos. O exame físico revelou os seguintes resultados: peso de 11.800 g (escore Z entre -2 e -3); estatura de 85 cm (escore Z entre -2 e -3); frequência respiratória de 50 incursões respiratórias por minuto; frequência cardíaca de 160 batimentos por minuto; temperatura axilar de 36,1 °C. A criança está em regular estado geral, acianótica, anictérica, com mucosas hipocoradas (3+/4+), pele com turgor e elasticidade preservados. Sua ausculta cardíaca e respiratória estão normais; abdome globoso, discretamente distendido, indolor à palpação; fígado e baço não palpados; ausência de adenomegalias em qualquer cadeia. \n\nCom base no caso apresentado, faça o que se pede nos itens a seguir.  \na) Indique a principal hipótese diagnóstica.  \nb) Cite as alterações esperadas na série vermelha do hemograma. \nc) Descreva a evolução da depleção de ferro no organismo e seus marcadores sanguíneos.   \nd) Cite 3 causas que podem estar relacionadas ao quadro clínico.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 4,
+            "abbreviation": "PED",
+            "name": "Pediatria",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 633,
+            "parent_tag": {
+              "id": 293,
+              "name": "Oncologia e Hematologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Anemias e Hemoglobinopatias",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              2,
+              4
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 1044,
+        "question_ai_update": null,
+        "focus": {
+          "id": 2021,
+          "name": "Anemias e Hemoglobinopatias",
+          "discipline": {
+            "id": 92,
+            "name": "Pediatria",
+            "residency_degree": 3,
+            "speciality": 4
+          },
+          "theme": {
+            "id": 269,
+            "name": "Oncologia e Hematologia",
+            "discipline": 92,
+            "old_tag": 293,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251332,
+        "actual_explanation": true,
+        "introduction": "<p>Esta questão aborda um caso clínico extremamente comum na prática pediátrica: uma criança com quadro sugestivo de <strong>anemia ferropriva</strong>. A questão é riquíssima em detalhes clínicos que direcionam para este diagnóstico.</p>\n<p>O caso apresenta uma menina de 3 anos com um quadro arrastado (8 meses) de astenia, cansaço, sonolência, perda de peso e <strong>pagofagia</strong> (desejo de comer gelo). Além disso, temos importantes fatores de risco: prematuridade, desmame precoce (apenas 3 meses de aleitamento materno) e dificuldade socioeconômica para acesso a alimentos variados.</p>\n<p>No exame físico, observamos desnutrição (<strong>escore Z entre -2 e -3</strong> para peso e estatura), <strong>taquicardia</strong> (FC 160 bpm), <strong>taquipneia</strong> (FR 50 irpm) e, principalmente, <strong>mucosas hipocoradas (3+/4+)</strong>, um sinal clássico de anemia.</p>\n<p>O gabarito oficial confirma que a principal hipótese diagnóstica é <strong>anemia ferropriva</strong>, também chamada de anemia por deficiência de ferro ou anemia carencial por deficiência de ferro.</p>\n<p>Quanto às alterações no hemograma, espera-se encontrar:</p>\n<ul>\n<li>Diminuição do hematócrito e hemoglobina</li>\n<li>Microcitose (diminuição do VCM) e hipocromia (diminuição do HCM)</li>\n<li><strong>Aumento do RDW</strong> (Red Cell Distribution Width) ou índice de anisocitose</li>\n</ul>\n<p>A evolução da depleção de ferro segue uma sequência fisiopatológica bem definida:</p>\n<ol>\n<li>Inicialmente, diminuição da <strong><span class=\"article-8973\">ferritina sérica</span></strong> (marcador das reservas de ferro)</li>\n<li>Em seguida, queda da <strong>concentração plasmática do ferro</strong> e <strong>saturação da transferrina</strong></li>\n<li>Depois, diminuição da <strong>contagem de reticulócitos</strong> e aumento da <strong>capacidade de ligação da transferrina</strong></li>\n<li>Por fim, queda da <strong>concentração de hemoglobina</strong>, resultando nos sintomas clínicos</li>\n</ol>\n<p>Como causas relacionadas ao quadro, temos:</p>\n<ul>\n<li><strong>Prematuridade</strong>: bebês prematuros nascem com menos reservas de ferro</li>\n<li><strong>Desmame precoce</strong>: o leite materno, apesar de conter pouco ferro, apresenta alta biodisponibilidade</li>\n<li><strong>Má alimentação</strong>: dieta pobre em ferro, especialmente ferro heme (presente em carnes)</li>\n</ul>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Quando me deparo com casos de anemia na pediatria, costumo seguir uma abordagem sistemática. Primeiro, procuro sinais e sintomas clássicos como palidez, irritabilidade ou apatia, taquicardia e taquipneia. Depois, busco pistas específicas que diferenciam os tipos de anemia.</p>\n<p>Para a anemia ferropriva, alguns sinais são praticamente patognomônicos, como a <strong>pagofagia</strong> (desejo de comer gelo) mencionada no caso. Este é um tipo de \"pica\" fortemente associado à deficiência de ferro, e quando vejo isso na prova, já fico alerta. Outros sinais de pica incluem geofagia (comer terra) e amilofagia (comer amido).</p>\n<p>Um ponto crucial nessa questão é conhecer a <strong>cronologia da depleção de ferro</strong>, que segue uma sequência lógica. Costumo memorizar como \"FACT\": Ferritina diminui → Absorção e saturação da transferrina caem → Capacidade de ligação da transferrina aumenta → Teor de hemoglobina cai. Esta progressão reflete o esgotamento gradual das reservas de ferro, antes mesmo das manifestações clínicas aparecerem.</p>\n<p>Nas provas de residência, fique atento às \"armadilhas\": muitas vezes confundem-se as anemias microcíticas (ferropriva, talassemia) com as macrocíticas (deficiência de B12 ou folato). Um detalhe diferencial é o RDW, que estará aumentado na ferropriva (anisocitose) e normal na talassemia.</p>\n<p>Quanto ao tratamento, que não foi abordado na questão, mas vale comentar: a reposição de ferro elementar na dose de 3-5 mg/kg/dia é a base do tratamento. A resposta ao tratamento inclui melhora dos sintomas em dias, reticulocitose em 7-10 dias e normalização da hemoglobina em 1-2 meses. As reservas, porém, levam cerca de 6 meses para se normalizar, por isso devemos manter o tratamento por esse período.</p>\n<p>Para suas próximas provas, conecte este tópico com outros importantes da pediatria: aleitamento materno, alimentação complementar adequada, uso racional do leite de vaca e prevenção de anemia em grupos de risco. Essa visão integrativa certamente diferenciará você na prova!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Esta questão aborda um caso clínico extremamente comum na prática pediátrica: uma criança com quadro sugestivo de <strong>anemia ferropriva</strong>. A questão é riquíssima em detalhes clínicos que direcionam para este diagnóstico.</p>\n<p>O caso apresenta uma menina de 3 anos com um quadro arrastado (8 meses) de astenia, cansaço, sonolência, perda de peso e <strong>pagofagia</strong> (desejo de comer gelo). Além disso, temos importantes fatores de risco: prematuridade, desmame precoce (apenas 3 meses de aleitamento materno) e dificuldade socioeconômica para acesso a alimentos variados.</p>\n<p>No exame físico, observamos desnutrição (<strong>escore Z entre -2 e -3</strong> para peso e estatura), <strong>taquicardia</strong> (FC 160 bpm), <strong>taquipneia</strong> (FR 50 irpm) e, principalmente, <strong>mucosas hipocoradas (3+/4+)</strong>, um sinal clássico de anemia.</p>\n<p>O gabarito oficial confirma que a principal hipótese diagnóstica é <strong>anemia ferropriva</strong>, também chamada de anemia por deficiência de ferro ou anemia carencial por deficiência de ferro.</p>\n<p>Quanto às alterações no hemograma, espera-se encontrar:</p>\n<ul>\n<li>Diminuição do hematócrito e hemoglobina</li>\n<li>Microcitose (diminuição do VCM) e hipocromia (diminuição do HCM)</li>\n<li><strong>Aumento do RDW</strong> (Red Cell Distribution Width) ou índice de anisocitose</li>\n</ul>\n<p>A evolução da depleção de ferro segue uma sequência fisiopatológica bem definida:</p>\n<ol>\n<li>Inicialmente, diminuição da <strong><span class=\"article-8973\">ferritina sérica</span></strong> (marcador das reservas de ferro)</li>\n<li>Em seguida, queda da <strong>concentração plasmática do ferro</strong> e <strong>saturação da transferrina</strong></li>\n<li>Depois, diminuição da <strong>contagem de reticulócitos</strong> e aumento da <strong>capacidade de ligação da transferrina</strong></li>\n<li>Por fim, queda da <strong>concentração de hemoglobina</strong>, resultando nos sintomas clínicos</li>\n</ol>\n<p>Como causas relacionadas ao quadro, temos:</p>\n<ul>\n<li><strong>Prematuridade</strong>: bebês prematuros nascem com menos reservas de ferro</li>\n<li><strong>Desmame precoce</strong>: o leite materno, apesar de conter pouco ferro, apresenta alta biodisponibilidade</li>\n<li><strong>Má alimentação</strong>: dieta pobre em ferro, especialmente ferro heme (presente em carnes)</li>\n</ul><br>Visão do aprovado: <p>Quando me deparo com casos de anemia na pediatria, costumo seguir uma abordagem sistemática. Primeiro, procuro sinais e sintomas clássicos como palidez, irritabilidade ou apatia, taquicardia e taquipneia. Depois, busco pistas específicas que diferenciam os tipos de anemia.</p>\n<p>Para a anemia ferropriva, alguns sinais são praticamente patognomônicos, como a <strong>pagofagia</strong> (desejo de comer gelo) mencionada no caso. Este é um tipo de \"pica\" fortemente associado à deficiência de ferro, e quando vejo isso na prova, já fico alerta. Outros sinais de pica incluem geofagia (comer terra) e amilofagia (comer amido).</p>\n<p>Um ponto crucial nessa questão é conhecer a <strong>cronologia da depleção de ferro</strong>, que segue uma sequência lógica. Costumo memorizar como \"FACT\": Ferritina diminui → Absorção e saturação da transferrina caem → Capacidade de ligação da transferrina aumenta → Teor de hemoglobina cai. Esta progressão reflete o esgotamento gradual das reservas de ferro, antes mesmo das manifestações clínicas aparecerem.</p>\n<p>Nas provas de residência, fique atento às \"armadilhas\": muitas vezes confundem-se as anemias microcíticas (ferropriva, talassemia) com as macrocíticas (deficiência de B12 ou folato). Um detalhe diferencial é o RDW, que estará aumentado na ferropriva (anisocitose) e normal na talassemia.</p>\n<p>Quanto ao tratamento, que não foi abordado na questão, mas vale comentar: a reposição de ferro elementar na dose de 3-5 mg/kg/dia é a base do tratamento. A resposta ao tratamento inclui melhora dos sintomas em dias, reticulocitose em 7-10 dias e normalização da hemoglobina em 1-2 meses. As reservas, porém, levam cerca de 6 meses para se normalizar, por isso devemos manter o tratamento por esse período.</p>\n<p>Para suas próximas provas, conecte este tópico com outros importantes da pediatria: aleitamento materno, alimentação complementar adequada, uso racional do leite de vaca e prevenção de anemia em grupos de risco. Essa visão integrativa certamente diferenciará você na prova!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221312,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Assistência ao Parto",
+        "focus": {
+          "id": 1999,
+          "name": "Assistência ao Parto"
+        }
+      },
+      "detail": {
+        "id": 221312,
+        "content": "Secundigesta, com parto normal anterior há 2 anos, sem comorbidades e com 38 semanas de  gestação, encontra-se em trabalho de parto há 5 horas, conforme registrado no partograma a  seguir.    \n\nAnalisando a evolução clínica desse parto, faça o que se pede nos itens a seguir.  \n\na) Responda qual é o diagnóstico da discinesia registrada no partograma.   \nb) Descreva 4 medidas terapêuticas adequadas que podem ser oferecidas à paciente nesse cenário.",
+        "options": [],
+        "images": [
+          {
+            "id": 63446,
+            "order": 1,
+            "image": "https://cdn.medway.com.br/media/question_images/ID221312_2022_institution-object-1468_Q4/question_9h5ufnq.png"
+          }
+        ],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 677,
+            "parent_tag": {
+              "id": 337,
+              "name": "Parto",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Assistência ao Parto",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": true,
+        "answer_count": 1244,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1999,
+          "name": "Assistência ao Parto",
+          "discipline": {
+            "id": 87,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 3,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 189,
+            "name": "Parto",
+            "discipline": 87,
+            "old_tag": 337,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 463300,
+        "actual_explanation": true,
+        "introduction": "<p style=\"text-indent: 2em\">Quando a dilatação cervical progride de 4 para 6 centímetros nas primeiras três horas e então permanece estagnada por mais três horas, esse padrão específico no <span class=\"article-8045\">partograma</span> nos revela uma distocia bem definida. Vamos analisar esse <span class=\"article-8045\">partograma</span> com calma para entender exatamente o que está acontecendo e como devemos conduzir essa paciente.</p>\n<p style=\"text-indent: 2em\">Primeiro, precisamos interpretar corretamente os símbolos do <span class=\"article-8045\">partograma</span>. Os círculos representam a dilatação cervical, os triângulos mostram a altura da apresentação fetal no plano de DeLee, e o gráfico inferior registra as contrações uterinas. Observamos que nossa paciente multípara iniciou o trabalho de parto com cerca de 4 cm de dilatação, apresentação em -1, e contrações adequadas. Nas primeiras três horas, houve uma progressão satisfatória: a dilatação avançou até 6 cm e a apresentação desceu para o plano 0 de DeLee. Até aqui, tudo dentro do esperado para uma <strong>multípara</strong>, que costuma dilatar cerca de 1 a 1,5 cm por hora na fase ativa.</p>\n<p style=\"text-indent: 2em\">O problema surge claramente a partir da terceira hora: a dilatação não progride mais, mantendo-se estacionada em 6 cm por três horas consecutivas (da hora 3 até a hora 6). A altura da apresentação também não evolui, permanecendo no plano 0. Além disso, observamos que as contrações uterinas, que inicialmente eram adequadas, parecem ter diminuído em frequência ou intensidade, conforme sugerido pelo gráfico inferior. Esse conjunto de achados caracteriza <strong><span class=\"article-7260\">parada secundária da dilatação</span></strong>, que é o diagnóstico que a banca espera no item a. O gabarito também aceita os termos \"distocia funcional\" ou \"discinesia uterina\" como sinônimos, já que a causa mais provável dessa parada é justamente uma alteração na contratilidade uterina.</p>\n<p style=\"text-align:center\">\n<figure>\n<img alt=\"Parada secundária da dilatação\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20230327T190153020Z405317.png\"/>\n<figcaption>Figura 28. <span class=\"article-7260\">Parada secundária da dilatação</span>. Fonte: Tratado de Obstetría da Febrasgo 2018</figcaption>\n</figure>\n</p>\n<p style=\"text-indent: 2em\">É importante diferenciar a <span class=\"article-7260\">parada secundária da dilatação</span> de outras distocias. Na fase ativa prolongada, veríamos uma evolução lenta mas contínua da dilatação, ultrapassando a linha de alerta do <span class=\"article-8045\">partograma</span>. Já na parada secundária, como nosso caso, a dilatação simplesmente estaciona após ter progredido inicialmente de forma normal. Não devemos confundir com <strong>desproporção cefalopélvica</strong> neste momento, pois a apresentação ainda está relativamente alta (plano 0) e não houve tempo suficiente nem medidas terapêuticas implementadas para confirmar esse diagnóstico. A <span class=\"article-7260\">parada secundária da dilatação</span> é diagnosticada quando não há progressão da dilatação em dois toques vaginais consecutivos com intervalo superior a 2 horas, mesmo em vigência de contrações adequadas – ou, como no protocolo mais atual, ausência de progressão após 4 horas de contrações de boa qualidade.</p>\n<p style=\"text-indent: 2em\">Passando para o item b, precisamos descrever quatro medidas terapêuticas adequadas. A abordagem dessa distocia deve ser progressiva e individualizada. Primeiro, devemos oferecer <strong>medidas de conforto e estímulo à progressão natural do parto</strong>:</p>\n<ul>\n<li>Encorajar a <em>deambulação</em> e mudanças de posição (sentada, ajoelhada, posição de cócoras, quatro apoios, deitada de lado)</li>\n<li><em>Banho de imersão</em> para promover relaxamento e alívio da dor</li>\n</ul>\n<p style=\"text-indent: 2em\">Quanto às medidas farmacológicas, a <strong><span class=\"article-8695\">analgesia de parto</span></strong> desempenha papel importante, pois muitas vezes a ansiedade e a dor excessiva levam à liberação de catecolaminas que podem prejudicar a contratilidade uterina. Podemos oferecer tanto analgesia farmacológica (peridural) quanto métodos não farmacológicos como bola, cavalinho de madeira, compressas frias ou quentes nas costas ou pelve, e massagens relaxantes. A <em><span class=\"article-7262\">amniotomia</span></em> (ruptura artificial das membranas) é uma medida ocitócica que pode acelerar o trabalho de parto ao aumentar a liberação endógena de ocitocina e permitir melhor encaixe da apresentação. Por fim, a <em>infusão de ocitocina sintética</em> está indicada quando as contrações estão inadequadas em frequência ou intensidade, como parece ser o caso aqui, visando atingir uma velocidade de dilatação de cerca de 1 cm/hora.</p>\n<p style=\"text-indent: 2em\">🚨 Atenção para o que NÃO devemos fazer neste cenário: não há indicação de cesariana neste momento, pois ainda temos medidas terapêuticas a implementar e a vitalidade fetal está preservada. <strong>Fórcipe ou vácuo-extrator</strong> estão totalmente contraindicados, pois não há dilatação total. A manobra de Kristeller é proscrita em qualquer situação. <span class=\"article-6767\">Misoprostol</span>, balão intracervical e <span class=\"article-7164\">método de Krause</span> são utilizados para indução de parto em colo não favorável, não para correção de distocia funcional durante o trabalho de parto. Puxos induzidos antes da dilatação total não têm indicação e podem causar exaustão materna e edema cervical.</p>\n<p style=\"text-indent: 2em\">Segundo os critérios da banca, para obter pontuação completa no item a, devemos nomear corretamente a distocia como <strong>\"<span class=\"article-7260\">parada secundária da dilatação</span>\"</strong>, sendo aceitos também \"distocia funcional\" ou \"discinesia uterina\". No item b, precisamos citar quatro medidas entre as seguintes opções: deambulação/mudança de posição, banho de imersão, <span class=\"article-8695\">analgesia de parto</span> (farmacológica ou não farmacológica), <span class=\"article-7262\">amniotomia</span> e infusão de ocitocina sintética. Qualquer combinação de quatro dessas medidas garante a pontuação completa.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"text-indent: 2em\">Nas provas de R1, a <span class=\"article-7260\">parada secundária da dilatação</span> costuma aparecer em formatos variados, mas o padrão é sempre similar: <span class=\"article-8045\">partograma</span> mostrando progressão inicial adequada seguida de estagnação. O diagnóstico se fecha quando dois toques consecutivos com intervalo de duas horas revelam a mesma dilatação, desde que em fase ativa. A pegadinha clássica aqui é confundir com <strong>parada secundária da descida</strong>, que só existe em dilatação total com feto que não desce. Outro erro frequente é indicar cesárea de imediato: essa distocia ainda permite medidas conservadoras, ao contrário da desproporção cefalopélvica franca, na qual o feto permanece alto mesmo com contrações vigorosas e dilatação completa.</p>\n<p style=\"text-indent: 2em\">O raciocínio diferencial repousa na análise das contrações. Quando vemos contrações adequadas em frequência e intensidade mas ausência de progressão, pensamos primeiro em obstáculo mecânico, seja desproporcional ou apresentação defletida. Porém, se as contrações estão fracas ou irregulares e a apresentação não está excessivamente alta, a causa provável é <strong>distocia funcional</strong>, justificando ocitocina e analgesia. Nas questões anteriores observamos que bancas adoram testar se o candidato sabe diferenciar esses cenários e, principalmente, se reconhece o que está contraindicado:</p>\n<ul>\n<li><em><span class=\"article-6767\">Misoprostol</span></em> em cicatriz uterina</li>\n<li><em>Fórcipe</em> sem dilatação total ou com apresentação alta</li>\n<li><em>Manobra de Kristeller</em> em qualquer situação</li>\n</ul>\n<p style=\"text-indent: 2em\">Atenção especial ao formato discursivo da questão, que exige conhecimento ativo e não apenas reconhecimento de alternativas. Bancas penalizam respostas que incluem condutas inadequadas ou que repetem intervenções já realizadas no caso. Vale também notar que o tema <strong>\"distocia funcional\"</strong> pode ser cobrado pelo nome técnico ou pelos sinônimos aceitos, e que as medidas não farmacológicas têm ganhado destaque crescente nas provas recentes, refletindo as diretrizes de humanização do parto.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p style=\"text-indent: 2em\">Quando a dilatação cervical progride de 4 para 6 centímetros nas primeiras três horas e então permanece estagnada por mais três horas, esse padrão específico no <span class=\"article-8045\">partograma</span> nos revela uma distocia bem definida. Vamos analisar esse <span class=\"article-8045\">partograma</span> com calma para entender exatamente o que está acontecendo e como devemos conduzir essa paciente.</p>\n<p style=\"text-indent: 2em\">Primeiro, precisamos interpretar corretamente os símbolos do <span class=\"article-8045\">partograma</span>. Os círculos representam a dilatação cervical, os triângulos mostram a altura da apresentação fetal no plano de DeLee, e o gráfico inferior registra as contrações uterinas. Observamos que nossa paciente multípara iniciou o trabalho de parto com cerca de 4 cm de dilatação, apresentação em -1, e contrações adequadas. Nas primeiras três horas, houve uma progressão satisfatória: a dilatação avançou até 6 cm e a apresentação desceu para o plano 0 de DeLee. Até aqui, tudo dentro do esperado para uma <strong>multípara</strong>, que costuma dilatar cerca de 1 a 1,5 cm por hora na fase ativa.</p>\n<p style=\"text-indent: 2em\">O problema surge claramente a partir da terceira hora: a dilatação não progride mais, mantendo-se estacionada em 6 cm por três horas consecutivas (da hora 3 até a hora 6). A altura da apresentação também não evolui, permanecendo no plano 0. Além disso, observamos que as contrações uterinas, que inicialmente eram adequadas, parecem ter diminuído em frequência ou intensidade, conforme sugerido pelo gráfico inferior. Esse conjunto de achados caracteriza <strong><span class=\"article-7260\">parada secundária da dilatação</span></strong>, que é o diagnóstico que a banca espera no item a. O gabarito também aceita os termos \"distocia funcional\" ou \"discinesia uterina\" como sinônimos, já que a causa mais provável dessa parada é justamente uma alteração na contratilidade uterina.</p>\n<p style=\"text-align:center\">\n<figure>\n<img alt=\"Parada secundária da dilatação\" src=\"https://cdn.medway.com.br/media/question_explanation_images/image20230327T190153020Z405317.png\"/>\n<figcaption>Figura 28. <span class=\"article-7260\">Parada secundária da dilatação</span>. Fonte: Tratado de Obstetría da Febrasgo 2018</figcaption>\n</figure>\n</p>\n<p style=\"text-indent: 2em\">É importante diferenciar a <span class=\"article-7260\">parada secundária da dilatação</span> de outras distocias. Na fase ativa prolongada, veríamos uma evolução lenta mas contínua da dilatação, ultrapassando a linha de alerta do <span class=\"article-8045\">partograma</span>. Já na parada secundária, como nosso caso, a dilatação simplesmente estaciona após ter progredido inicialmente de forma normal. Não devemos confundir com <strong>desproporção cefalopélvica</strong> neste momento, pois a apresentação ainda está relativamente alta (plano 0) e não houve tempo suficiente nem medidas terapêuticas implementadas para confirmar esse diagnóstico. A <span class=\"article-7260\">parada secundária da dilatação</span> é diagnosticada quando não há progressão da dilatação em dois toques vaginais consecutivos com intervalo superior a 2 horas, mesmo em vigência de contrações adequadas – ou, como no protocolo mais atual, ausência de progressão após 4 horas de contrações de boa qualidade.</p>\n<p style=\"text-indent: 2em\">Passando para o item b, precisamos descrever quatro medidas terapêuticas adequadas. A abordagem dessa distocia deve ser progressiva e individualizada. Primeiro, devemos oferecer <strong>medidas de conforto e estímulo à progressão natural do parto</strong>:</p>\n<ul>\n<li>Encorajar a <em>deambulação</em> e mudanças de posição (sentada, ajoelhada, posição de cócoras, quatro apoios, deitada de lado)</li>\n<li><em>Banho de imersão</em> para promover relaxamento e alívio da dor</li>\n</ul>\n<p style=\"text-indent: 2em\">Quanto às medidas farmacológicas, a <strong><span class=\"article-8695\">analgesia de parto</span></strong> desempenha papel importante, pois muitas vezes a ansiedade e a dor excessiva levam à liberação de catecolaminas que podem prejudicar a contratilidade uterina. Podemos oferecer tanto analgesia farmacológica (peridural) quanto métodos não farmacológicos como bola, cavalinho de madeira, compressas frias ou quentes nas costas ou pelve, e massagens relaxantes. A <em><span class=\"article-7262\">amniotomia</span></em> (ruptura artificial das membranas) é uma medida ocitócica que pode acelerar o trabalho de parto ao aumentar a liberação endógena de ocitocina e permitir melhor encaixe da apresentação. Por fim, a <em>infusão de ocitocina sintética</em> está indicada quando as contrações estão inadequadas em frequência ou intensidade, como parece ser o caso aqui, visando atingir uma velocidade de dilatação de cerca de 1 cm/hora.</p>\n<p style=\"text-indent: 2em\">🚨 Atenção para o que NÃO devemos fazer neste cenário: não há indicação de cesariana neste momento, pois ainda temos medidas terapêuticas a implementar e a vitalidade fetal está preservada. <strong>Fórcipe ou vácuo-extrator</strong> estão totalmente contraindicados, pois não há dilatação total. A manobra de Kristeller é proscrita em qualquer situação. <span class=\"article-6767\">Misoprostol</span>, balão intracervical e <span class=\"article-7164\">método de Krause</span> são utilizados para indução de parto em colo não favorável, não para correção de distocia funcional durante o trabalho de parto. Puxos induzidos antes da dilatação total não têm indicação e podem causar exaustão materna e edema cervical.</p>\n<p style=\"text-indent: 2em\">Segundo os critérios da banca, para obter pontuação completa no item a, devemos nomear corretamente a distocia como <strong>\"<span class=\"article-7260\">parada secundária da dilatação</span>\"</strong>, sendo aceitos também \"distocia funcional\" ou \"discinesia uterina\". No item b, precisamos citar quatro medidas entre as seguintes opções: deambulação/mudança de posição, banho de imersão, <span class=\"article-8695\">analgesia de parto</span> (farmacológica ou não farmacológica), <span class=\"article-7262\">amniotomia</span> e infusão de ocitocina sintética. Qualquer combinação de quatro dessas medidas garante a pontuação completa.</p><br>Visão do aprovado: <p style=\"text-indent: 2em\">Nas provas de R1, a <span class=\"article-7260\">parada secundária da dilatação</span> costuma aparecer em formatos variados, mas o padrão é sempre similar: <span class=\"article-8045\">partograma</span> mostrando progressão inicial adequada seguida de estagnação. O diagnóstico se fecha quando dois toques consecutivos com intervalo de duas horas revelam a mesma dilatação, desde que em fase ativa. A pegadinha clássica aqui é confundir com <strong>parada secundária da descida</strong>, que só existe em dilatação total com feto que não desce. Outro erro frequente é indicar cesárea de imediato: essa distocia ainda permite medidas conservadoras, ao contrário da desproporção cefalopélvica franca, na qual o feto permanece alto mesmo com contrações vigorosas e dilatação completa.</p>\n<p style=\"text-indent: 2em\">O raciocínio diferencial repousa na análise das contrações. Quando vemos contrações adequadas em frequência e intensidade mas ausência de progressão, pensamos primeiro em obstáculo mecânico, seja desproporcional ou apresentação defletida. Porém, se as contrações estão fracas ou irregulares e a apresentação não está excessivamente alta, a causa provável é <strong>distocia funcional</strong>, justificando ocitocina e analgesia. Nas questões anteriores observamos que bancas adoram testar se o candidato sabe diferenciar esses cenários e, principalmente, se reconhece o que está contraindicado:</p>\n<ul>\n<li><em><span class=\"article-6767\">Misoprostol</span></em> em cicatriz uterina</li>\n<li><em>Fórcipe</em> sem dilatação total ou com apresentação alta</li>\n<li><em>Manobra de Kristeller</em> em qualquer situação</li>\n</ul>\n<p style=\"text-indent: 2em\">Atenção especial ao formato discursivo da questão, que exige conhecimento ativo e não apenas reconhecimento de alternativas. Bancas penalizam respostas que incluem condutas inadequadas ou que repetem intervenções já realizadas no caso. Vale também notar que o tema <strong>\"distocia funcional\"</strong> pode ser cobrado pelo nome técnico ou pelos sinônimos aceitos, e que as medidas não farmacológicas têm ganhado destaque crescente nas provas recentes, refletindo as diretrizes de humanização do parto.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 221313,
+        "number": 5,
+        "main_speciality_name": "Medicina Preventiva e Social",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Níveis de Prevenção",
+        "focus": {
+          "id": 1943,
+          "name": "Níveis de Prevenção"
+        }
+      },
+      "detail": {
+        "id": 221313,
+        "content": "Mulher de 45 anos, negra, do lar, casada, procurou atendimento na unidade básica de saúde,  explicando que há muito tempo não faz um check-up e gostaria de saber se está tudo bem.  No momento, está assintomática e nega patologias, cirurgias e internações pregressas. Tem  histórico de dois partos vaginais sem complicações. Desconhece a história familiar, pois é  adotada. Nega tabagismo e etilismo. Realiza caminhada diária de 30 minutos. Refere boas  relações familiares e comunitárias. O exame físico evidenciou bom estado geral, índice de massa  corporal de 21 kg/m², pressão arterial de 125 × 85 mmHg e frequência cardíaca de 64 batimentos  por minuto.  \n\nEm relação à situação clínica apresentada, responda os questionamentos a seguir.  \n\na)  Quais exames de rastreamento baseados em evidência científica devem ser solicitados à paciente? )  \nb) Caso a paciente solicite algum exame adicional ao(s) indicado(s) na resposta ao item anterior, como o médico  deverá orientá-la quanto à indicação ou contraindicação desse(s) exame(s)?   \nc)  Em qual tipo de prevenção em saúde está baseada a orientação médica abordada na resposta ao item anterior?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 1468,
+          "name": "INEP - Revalida",
+          "state": null
+        },
+        "speciality": [
+          {
+            "id": 5,
+            "abbreviation": "PREV",
+            "name": "Medicina Preventiva e Social",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 3,
+          "abbreviation": "R1"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2022,
+        "tag": [
+          {
+            "id": 1498,
+            "parent_tag": {
+              "id": 701,
+              "name": "Promoção e Prevenção da Saúde",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Níveis de Prevenção",
+            "main_tag": false,
+            "residency_degree": "r1",
+            "tag_type": "f",
+            "specialities": [
+              5
+            ],
+            "new_residency_degree": [
+              41,
+              3
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": true,
+        "answer_count": 122,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1943,
+          "name": "Níveis de Prevenção",
+          "discipline": {
+            "id": 89,
+            "name": "Medicina Preventiva e Social",
+            "residency_degree": 3,
+            "speciality": 5
+          },
+          "theme": {
+            "id": 168,
+            "name": "Promoção e Prevenção da Saúde",
+            "discipline": 89,
+            "old_tag": 701,
+            "residency_degree_abbreviation": "R1"
+          }
+        }
+      },
+      "explanation": {
+        "id": 251833,
+        "actual_explanation": true,
+        "introduction": "<p>Nessa questão temos um quadro muito comum na prática clínica: pacientes que desejam realizar check-up de rotina. Nesse caso, a paciente tem 45 anos, sem patologias, sem uso de drogas ou outros vícios, sem uso de medicamentos contínuos, sem excesso de peso ou hipertensão arterial. <br/>Considerando isso, quais seriam os exames a serem solicitados? </p>\n<p><br/>De acordo com as diretrizes atuais do Ministério da Saúde, para uma mulher de 45 anos, assintomática e sem fatores de risco específicos, os seguintes exames de <span class=\"article-3264\">rastreamento</span> são recomendados:</p>\n<p style=\"padding-left: 40px;\">1. <span class=\"article-3264\">Rastreamento</span> de <span class=\"article-2586\">câncer de mama</span>: <span class=\"article-2559\">mamografia</span> a cada 2 anos de 50 a 74 anos.</p>\n<p style=\"padding-left: 40px;\">2. <span class=\"article-3264\">Rastreamento</span> de <span class=\"article-2564\">câncer de colo uterino</span>: exame DNA-<span class=\"article-2957\">HPV</span> a cada 5 anos para mulheres de 25 a 60 anos (se já tiverem iniciado a vida sexual). Isso foi uma atualização de 2025. Antes, o <span class=\"article-3264\">rastreamento</span> era feito com colpocitologia oncótica, 2 exames anuais consecutivos. Se ambos normais, de 3 em 3 anos para mulheres de 25 a 65 anos se já tiver iniciado vida sexual</p>\n<p style=\"padding-left: 40px;\">3. <span class=\"article-3264\">Rastreamento</span> de hipertensão arterial: aferição da pressão arterial a cada 2 anos (se &lt;120x80) ou anual (se PAS entre 120-139 ou PAD entre 80-90) para todos os adultos</p>\n<p style=\"padding-left: 40px;\">4.Diabetes tipo 2: glicemia de jejum a cada 3 anos para &gt; 45 anos OU Qualquer idade se sobrepeso ou obesidade (IMC ≥ 25) e pelo menos um fator de risco ou outras condições associadas à resistência insulínica, como obesidade grave e acantose nígricans.</p>\n<p style=\"padding-left: 40px;\">5. <span class=\"article-3264\">Rastreamento</span> de dislipidemia: perfil lipídico (colesterol total, HDL, LDL e triglicerídeos) a cada 5 anos para Homens ≥ 35 anos, homens de 20 a 35 anos com alto risco cardiovascular e Mulheres de 20 a 45 anos com alto risco.</p>\n<p style=\"padding-left: 40px;\">6. <span class=\"article-3264\">Rastreamento</span> de <span class=\"article-2587\">câncer colorretal</span>: Pesquisa de sangue oculto nas fezes anual para pessoas dos 50 aos 75 anos.</p>\n<p>Devemos explicar à paciente que não solicitamos exames sem suspeita clínica ou sem alterações prévias, visto que podem ocorrer desdobramentos de novos exames que levam à iatrogenia. </p>\n<p>Agora, vamos revisar o gabarito oficial. </p>\n<p style=\"padding-left: 40px;\">a) Para <span class=\"article-3264\">rastreamento</span> imediato: Teste rápido para HIV, Sífilis, Hepatite B, Hepatite C e coleta do exame preventivo do colo do útero (<span class=\"article-2962\">Papanicolaou</span>, <span class=\"article-3444\">Papanicolau</span>, citopatológico do colo do útero, esfregaço cervicovaginal ou colpocitologia oncótica cervical).</p>\n<p style=\"padding-left: 40px;\">b) De acordo com os princípios científicos atuais, em sua faixa etária e dentro da história clínica e do exame físico que foi realizado, não existe evidências que outros exames possam trazer benefícios.</p>\n<p style=\"padding-left: 40px;\">c) Prevenção quaternária.</p>",
+        "option_a": "",
+        "short_option_a": null,
+        "option_b": "",
+        "short_option_b": null,
+        "option_c": "",
+        "short_option_c": null,
+        "option_d": "",
+        "short_option_d": null,
+        "option_e": "",
+        "short_option_e": null,
+        "conclusion": "<p>Um detalhe que a questão não traz, é que a paciente teria indicação de iniciar rastreio para diabetes tipo 2, considerando a idade da paciente (segundo a SBD, deve ser feito a partir de 35 anos) e dislipidemia (a partir de 45 anos).</p>\n<p>Vale ressaltar que a definição de prevenção quaternária é um conceito relativamente recente e cada vez mais valorizado nas provas de residência e concursos, que basicamente se resume em evitar iatrogenia. É importante diferenciá-la dos outros níveis de prevenção:<br/>- Prevenção primária: evita a ocorrência da doença (ex: <span class=\"article-2582\">vacinação</span>)<br/>- Prevenção secundária: detecta a doença em estágio inicial (<span class=\"article-3264\">rastreamento</span>)<br/>- Prevenção terciária: reduz complicações de doenças já estabelecidas<br/>- Prevenção quaternária: protege contra a medicalização excessiva</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Nessa questão temos um quadro muito comum na prática clínica: pacientes que desejam realizar check-up de rotina. Nesse caso, a paciente tem 45 anos, sem patologias, sem uso de drogas ou outros vícios, sem uso de medicamentos contínuos, sem excesso de peso ou hipertensão arterial. <br/>Considerando isso, quais seriam os exames a serem solicitados? </p>\n<p><br/>De acordo com as diretrizes atuais do Ministério da Saúde, para uma mulher de 45 anos, assintomática e sem fatores de risco específicos, os seguintes exames de <span class=\"article-3264\">rastreamento</span> são recomendados:</p>\n<p style=\"padding-left: 40px;\">1. <span class=\"article-3264\">Rastreamento</span> de <span class=\"article-2586\">câncer de mama</span>: <span class=\"article-2559\">mamografia</span> a cada 2 anos de 50 a 74 anos.</p>\n<p style=\"padding-left: 40px;\">2. <span class=\"article-3264\">Rastreamento</span> de <span class=\"article-2564\">câncer de colo uterino</span>: exame DNA-<span class=\"article-2957\">HPV</span> a cada 5 anos para mulheres de 25 a 60 anos (se já tiverem iniciado a vida sexual). Isso foi uma atualização de 2025. Antes, o <span class=\"article-3264\">rastreamento</span> era feito com colpocitologia oncótica, 2 exames anuais consecutivos. Se ambos normais, de 3 em 3 anos para mulheres de 25 a 65 anos se já tiver iniciado vida sexual</p>\n<p style=\"padding-left: 40px;\">3. <span class=\"article-3264\">Rastreamento</span> de hipertensão arterial: aferição da pressão arterial a cada 2 anos (se &lt;120x80) ou anual (se PAS entre 120-139 ou PAD entre 80-90) para todos os adultos</p>\n<p style=\"padding-left: 40px;\">4.Diabetes tipo 2: glicemia de jejum a cada 3 anos para &gt; 45 anos OU Qualquer idade se sobrepeso ou obesidade (IMC ≥ 25) e pelo menos um fator de risco ou outras condições associadas à resistência insulínica, como obesidade grave e acantose nígricans.</p>\n<p style=\"padding-left: 40px;\">5. <span class=\"article-3264\">Rastreamento</span> de dislipidemia: perfil lipídico (colesterol total, HDL, LDL e triglicerídeos) a cada 5 anos para Homens ≥ 35 anos, homens de 20 a 35 anos com alto risco cardiovascular e Mulheres de 20 a 45 anos com alto risco.</p>\n<p style=\"padding-left: 40px;\">6. <span class=\"article-3264\">Rastreamento</span> de <span class=\"article-2587\">câncer colorretal</span>: Pesquisa de sangue oculto nas fezes anual para pessoas dos 50 aos 75 anos.</p>\n<p>Devemos explicar à paciente que não solicitamos exames sem suspeita clínica ou sem alterações prévias, visto que podem ocorrer desdobramentos de novos exames que levam à iatrogenia. </p>\n<p>Agora, vamos revisar o gabarito oficial. </p>\n<p style=\"padding-left: 40px;\">a) Para <span class=\"article-3264\">rastreamento</span> imediato: Teste rápido para HIV, Sífilis, Hepatite B, Hepatite C e coleta do exame preventivo do colo do útero (<span class=\"article-2962\">Papanicolaou</span>, <span class=\"article-3444\">Papanicolau</span>, citopatológico do colo do útero, esfregaço cervicovaginal ou colpocitologia oncótica cervical).</p>\n<p style=\"padding-left: 40px;\">b) De acordo com os princípios científicos atuais, em sua faixa etária e dentro da história clínica e do exame físico que foi realizado, não existe evidências que outros exames possam trazer benefícios.</p>\n<p style=\"padding-left: 40px;\">c) Prevenção quaternária.</p><br>Visão do aprovado: <p>Um detalhe que a questão não traz, é que a paciente teria indicação de iniciar rastreio para diabetes tipo 2, considerando a idade da paciente (segundo a SBD, deve ser feito a partir de 35 anos) e dislipidemia (a partir de 45 anos).</p>\n<p>Vale ressaltar que a definição de prevenção quaternária é um conceito relativamente recente e cada vez mais valorizado nas provas de residência e concursos, que basicamente se resume em evitar iatrogenia. É importante diferenciá-la dos outros níveis de prevenção:<br/>- Prevenção primária: evita a ocorrência da doença (ex: <span class=\"article-2582\">vacinação</span>)<br/>- Prevenção secundária: detecta a doença em estágio inicial (<span class=\"article-3264\">rastreamento</span>)<br/>- Prevenção terciária: reduz complicações de doenças já estabelecidas<br/>- Prevenção quaternária: protege contra a medicalização excessiva</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T19:55:37.375318+00:00",
+  "complete": true
+}

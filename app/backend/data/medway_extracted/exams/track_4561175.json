@@ -1,0 +1,1141 @@
+{
+  "track_id": 4561175,
+  "name": "UNICAMP - SP-2024-Discursiva -Mastologia",
+  "year": 2024,
+  "track_fast": {
+    "id": 4561175,
+    "name": "UNICAMP - SP-2024-Discursiva -Mastologia",
+    "track_type": "c",
+    "question_count": 10,
+    "year": 2024,
+    "is_challenge": false,
+    "has_shuffle": false,
+    "ranking_available_at": null,
+    "institution_name": "UNICAMP",
+    "track_image": "https://cdn.medway.com.br/media/institution/intensivo-2020-aplicativo-768x573px-unicamp_yplZ7NO.jpeg",
+    "residency_degree": {
+      "id": 7,
+      "abbreviation": "R+GO"
+    },
+    "available_deadline": null,
+    "available_questions_count": 10,
+    "start_in_study_mode": true,
+    "answer_sheet_submit_deadline": null,
+    "has_ai_updated_questions": false
+  },
+  "total_questions": 10,
+  "questions": [
+    {
+      "meta": {
+        "id": 321134,
+        "number": 1,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Lesões precursoras de câncer de endométrio e câncer de endométrio",
+        "focus": {
+          "id": 1604,
+          "name": "Lesões precursoras de câncer de endométrio e câncer de endométrio"
+        }
+      },
+      "detail": {
+        "id": 321134,
+        "content": "Sobre os fatores de risco e os fatores protetores das neoplasias ginecológicas e mamária, estabeleça relações sobre o que seria comum e o que difere em cada cenário abaixo: CÂNCER DE MAMA ESPORÁDICO E CÂNCER DE ENDOMÉTRIO ENDOMETRIOIDE",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15963,
+            "parent_tag": {
+              "id": 15903,
+              "name": "Oncologia pélvica",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Lesões precursoras de câncer de endométrio e câncer de endométrio",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 1,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 24,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1604,
+          "name": "Lesões precursoras de câncer de endométrio e câncer de endométrio",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 103,
+            "name": "Oncologia pélvica",
+            "discipline": 86,
+            "old_tag": 15903,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 390922,
+        "actual_explanation": true,
+        "introduction": "<p>No cerne desta questão está a <strong>epidemiologia comparativa</strong> entre duas importantes neoplasias hormônio-dependentes: câncer de mama esporádico e câncer de endométrio endometrioide. Este é um tema fundamental para residência médica, pois ambas as patologias compartilham diversos fatores de risco relacionados à <strong>exposição estrogênica cumulativa</strong>, mas também apresentam particularidades específicas que refletem suas diferentes vias de carcinogênese.</p>\n\n<p>A resposta oficial apresenta uma organização didática que divide os fatores em <strong>comuns</strong> (aplicáveis a ambas as neoplasias), <strong>protetores comuns</strong> e <strong>específicos</strong> para cada tipo de câncer. Esta abordagem é essencial porque tanto o tecido mamário quanto o endométrio são alvos dos hormônios esteroides, especialmente estrogênio e progesterona, mas respondem de forma distinta a diferentes estímulos.</p>\n\n<p>Os <strong>fatores de risco comuns</strong> incluem menarca precoce, menopausa tardia, nuliparidade, primeira gestação a termo após 30 anos, não ter lactado por pelo menos seis meses, sedentarismo, alto IMC e etilismo. Todos esses fatores aumentam a exposição estrogênica total ou reduzem a exposição à progesterona. Os <strong>fatores protetores comuns</strong> abrangem salpingo-ooforectomia, uso racional de medicações hormonais, controle do peso, atividade física, evitar consumo de bebidas alcoólicas e menopausa precoce, que reduzem a exposição estrogênica ou aumentam a proteção progesterônica.</p>\n\n<p>Para o <strong>câncer de mama esporádico</strong>, fatores específicos incluem sexo feminino, idade/envelhecimento, radiação torácica prévia e uso de hormônios sexuais femininos exógenos. Para o <strong>câncer de endométrio endometrioide</strong>, destacam-se hiperplasia endometrial, anovulação crônica, radiação anterior para tratamento de tumores pélvicos, uso de estrogênio isolado e síndrome do ovário policístico.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Para dominar este tipo de questão, é fundamental compreender que ambas as neoplasias são <strong>estrogênio-dependentes</strong>, mas o endométrio é mais sensível ao estímulo estrogênico não-oposto. Estude sempre os mecanismos fisiopatológicos por trás dos fatores de risco, não apenas memorize listas.</p>\n\n<p>Uma estratégia eficaz é dividir os fatores em categorias: <strong>reprodutivos/hormonais</strong> (menarca, menopausa, paridade, lactação), <strong>ambientais/comportamentais</strong> (peso, atividade física, álcool) e <strong>específicos</strong> (radiação, medicamentos, condições predisponentes).</p>\n\n<p>A principal armadilha nestas questões é confundir fatores de risco específicos. Lembre-se: <strong>radiação torácica</strong> é específica para mama, enquanto <strong>anovulação crônica e SOP</strong> são específicos para endométrio. O uso de <strong>estrogênio isolado</strong> aumenta risco de câncer endometrial, mas quando combinado com progestina pode até proteger.</p>\n\n<p>Este tema conecta-se diretamente com <strong>anticoncepção hormonal, terapia de reposição hormonal e síndrome metabólica</strong>. É importante também revisar os conceitos de <strong>hiperplasia endometrial</strong> e suas classificações.</p>\n\n<p>Para aprofundamento, estude as diretrizes da Federação Brasileira das Associações de Ginecologia e Obstetrícia (FEBRASGO) sobre câncer ginecológico e as recomendações da Sociedade Brasileira de Mastologia. Revisar os estudos epidemiológicos clássicos como o Women's Health Initiative também é valioso para compreender os riscos da terapia hormonal.</p>\n\n<p>Pratique questões que abordem cenários clínicos específicos, como mulheres na pós-menopausa com diferentes perfis de risco, para consolidar a aplicação prática destes conceitos epidemiológicos.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>No cerne desta questão está a <strong>epidemiologia comparativa</strong> entre duas importantes neoplasias hormônio-dependentes: câncer de mama esporádico e câncer de endométrio endometrioide. Este é um tema fundamental para residência médica, pois ambas as patologias compartilham diversos fatores de risco relacionados à <strong>exposição estrogênica cumulativa</strong>, mas também apresentam particularidades específicas que refletem suas diferentes vias de carcinogênese.</p>\n\n<p>A resposta oficial apresenta uma organização didática que divide os fatores em <strong>comuns</strong> (aplicáveis a ambas as neoplasias), <strong>protetores comuns</strong> e <strong>específicos</strong> para cada tipo de câncer. Esta abordagem é essencial porque tanto o tecido mamário quanto o endométrio são alvos dos hormônios esteroides, especialmente estrogênio e progesterona, mas respondem de forma distinta a diferentes estímulos.</p>\n\n<p>Os <strong>fatores de risco comuns</strong> incluem menarca precoce, menopausa tardia, nuliparidade, primeira gestação a termo após 30 anos, não ter lactado por pelo menos seis meses, sedentarismo, alto IMC e etilismo. Todos esses fatores aumentam a exposição estrogênica total ou reduzem a exposição à progesterona. Os <strong>fatores protetores comuns</strong> abrangem salpingo-ooforectomia, uso racional de medicações hormonais, controle do peso, atividade física, evitar consumo de bebidas alcoólicas e menopausa precoce, que reduzem a exposição estrogênica ou aumentam a proteção progesterônica.</p>\n\n<p>Para o <strong>câncer de mama esporádico</strong>, fatores específicos incluem sexo feminino, idade/envelhecimento, radiação torácica prévia e uso de hormônios sexuais femininos exógenos. Para o <strong>câncer de endométrio endometrioide</strong>, destacam-se hiperplasia endometrial, anovulação crônica, radiação anterior para tratamento de tumores pélvicos, uso de estrogênio isolado e síndrome do ovário policístico.</p><br>Visão do aprovado: <p>Para dominar este tipo de questão, é fundamental compreender que ambas as neoplasias são <strong>estrogênio-dependentes</strong>, mas o endométrio é mais sensível ao estímulo estrogênico não-oposto. Estude sempre os mecanismos fisiopatológicos por trás dos fatores de risco, não apenas memorize listas.</p>\n\n<p>Uma estratégia eficaz é dividir os fatores em categorias: <strong>reprodutivos/hormonais</strong> (menarca, menopausa, paridade, lactação), <strong>ambientais/comportamentais</strong> (peso, atividade física, álcool) e <strong>específicos</strong> (radiação, medicamentos, condições predisponentes).</p>\n\n<p>A principal armadilha nestas questões é confundir fatores de risco específicos. Lembre-se: <strong>radiação torácica</strong> é específica para mama, enquanto <strong>anovulação crônica e SOP</strong> são específicos para endométrio. O uso de <strong>estrogênio isolado</strong> aumenta risco de câncer endometrial, mas quando combinado com progestina pode até proteger.</p>\n\n<p>Este tema conecta-se diretamente com <strong>anticoncepção hormonal, terapia de reposição hormonal e síndrome metabólica</strong>. É importante também revisar os conceitos de <strong>hiperplasia endometrial</strong> e suas classificações.</p>\n\n<p>Para aprofundamento, estude as diretrizes da Federação Brasileira das Associações de Ginecologia e Obstetrícia (FEBRASGO) sobre câncer ginecológico e as recomendações da Sociedade Brasileira de Mastologia. Revisar os estudos epidemiológicos clássicos como o Women's Health Initiative também é valioso para compreender os riscos da terapia hormonal.</p>\n\n<p>Pratique questões que abordem cenários clínicos específicos, como mulheres na pós-menopausa com diferentes perfis de risco, para consolidar a aplicação prática destes conceitos epidemiológicos.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 321135,
+        "number": 2,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Doenças malignas do ovário",
+        "focus": {
+          "id": 1634,
+          "name": "Doenças malignas do ovário"
+        }
+      },
+      "detail": {
+        "id": 321135,
+        "content": "Sobre os fatores de risco e os fatores protetores das neoplasias ginecológicas e mamária, estabeleça relações sobre o que seria comum e o que difere em cada cenário abaixo: CÂNCER DE MAMA FAMILIAR E ADENOCARCINOMA OVARIANO",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15932,
+            "parent_tag": {
+              "id": 15903,
+              "name": "Oncologia pélvica",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Doenças malignas do ovário",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 2,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 22,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1634,
+          "name": "Doenças malignas do ovário",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 103,
+            "name": "Oncologia pélvica",
+            "discipline": 86,
+            "old_tag": 15903,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 591269,
+        "actual_explanation": true,
+        "introduction": "<p>Trata-se, essencialmente, de <strong>oncologia ginecológica hereditária</strong> em um contexto de síndrome do câncer hereditário de mama e ovário. Esta questão explora os fundamentos da predisposição genética compartilhada entre essas duas neoplasias, principalmente relacionada às <strong>mutações BRCA1 e BRCA2</strong>, que conferem risco aumentado para ambos os cânceres.</p>\n\n<p>O tema é extremamente relevante nas provas de residência, pois integra conhecimentos de <strong>oncologia, ginecologia e genética médica</strong>. A síndrome do câncer hereditário de mama e ovário representa cerca de 5-10% de todos os casos de câncer de mama e 10-15% dos casos de câncer de ovário, sendo fundamental conhecer os critérios que sugerem predisposição hereditária.</p>\n\n<p>A resposta correta destaca que existem <strong>fatores de risco comuns</strong> relacionados ao padrão familiar (história familiar de câncer de mama precoce, múltiplos casos no heredograma, câncer de mama masculino e triplo-negativo pré-menopausa) e <strong>fatores protetores comuns</strong> (cirurgias redutoras de risco). Especificamente para o câncer de ovário, há fatores protetores adicionais como contraceptivos anovulatórios e procedimentos cirúrgicos específicos.</p>\n\n<p>O conceito-chave é compreender que essas neoplasias compartilham uma <strong>base genética comum</strong>, principalmente as mutações BRCA, mas cada uma possui características específicas de prevenção e fatores protetores distintos.</p>",
+        "option_a": "",
+        "short_option_a": "",
+        "option_b": "",
+        "short_option_b": "",
+        "option_c": "",
+        "short_option_c": "",
+        "option_d": "",
+        "short_option_d": "",
+        "option_e": "",
+        "short_option_e": "",
+        "conclusion": "<p>Para dominar este tópico, foque no estudo da <strong>síndrome do câncer hereditário de mama e ovário</strong>, principalmente os critérios para suspeita clínica de mutações BRCA. Memorize os principais indicadores: idade precoce (≤50 anos), câncer de mama masculino, triplo-negativo pré-menopausa e múltiplos casos familiares.</p>\n\n<p>Uma estratégia eficaz é criar uma <strong>tabela comparativa</strong> entre fatores de risco comuns (genéticos/familiares) e fatores protetores específicos para cada órgão. Para o ovário, lembre-se do conceito de \"ovulação incessante\" - quanto menos a mulher ovula (gravidez, amamentação, contraceptivos), menor o risco.</p>\n\n<p><strong>Armadilha comum:</strong> confundir fatores de risco esporádicos com hereditários. A questão especifica \"câncer de mama familiar\", indicando componente genético. Outro erro é não reconhecer que a salpingectomia bilateral é protetora mesmo sem ooforectomia, baseando-se na origem tubária de muitos cânceres ovarianos.</p>\n\n<p><strong>Conexões importantes:</strong> este tema se relaciona com aconselhamento genético, critérios NCCN para testagem BRCA, e estratégias de vigilância em pacientes de alto risco. Estude também os tipos histológicos (seroso de alto grau) e a teoria da origem tubária do câncer ovariano.</p>\n\n<p>Para aprofundamento, consulte as diretrizes do <strong>NCCN (National Comprehensive Cancer Network)</strong> sobre câncer hereditário de mama e ovário, que são referência mundial para manejo desses pacientes.</p><figure data-okr=\"ilustracao\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20230807T202227945Z724352.png\" alt=\"\" style=\"max-width:100%\"></figure>",
+        "update_note": "",
+        "lesson_reference": "",
+        "full_explanation": "<p>Trata-se, essencialmente, de <strong>oncologia ginecológica hereditária</strong> em um contexto de síndrome do câncer hereditário de mama e ovário. Esta questão explora os fundamentos da predisposição genética compartilhada entre essas duas neoplasias, principalmente relacionada às <strong>mutações BRCA1 e BRCA2</strong>, que conferem risco aumentado para ambos os cânceres.</p>\n\n<p>O tema é extremamente relevante nas provas de residência, pois integra conhecimentos de <strong>oncologia, ginecologia e genética médica</strong>. A síndrome do câncer hereditário de mama e ovário representa cerca de 5-10% de todos os casos de câncer de mama e 10-15% dos casos de câncer de ovário, sendo fundamental conhecer os critérios que sugerem predisposição hereditária.</p>\n\n<p>A resposta correta destaca que existem <strong>fatores de risco comuns</strong> relacionados ao padrão familiar (história familiar de câncer de mama precoce, múltiplos casos no heredograma, câncer de mama masculino e triplo-negativo pré-menopausa) e <strong>fatores protetores comuns</strong> (cirurgias redutoras de risco). Especificamente para o câncer de ovário, há fatores protetores adicionais como contraceptivos anovulatórios e procedimentos cirúrgicos específicos.</p>\n\n<p>O conceito-chave é compreender que essas neoplasias compartilham uma <strong>base genética comum</strong>, principalmente as mutações BRCA, mas cada uma possui características específicas de prevenção e fatores protetores distintos.</p><br>Visão do aprovado: <p>Para dominar este tópico, foque no estudo da <strong>síndrome do câncer hereditário de mama e ovário</strong>, principalmente os critérios para suspeita clínica de mutações BRCA. Memorize os principais indicadores: idade precoce (≤50 anos), câncer de mama masculino, triplo-negativo pré-menopausa e múltiplos casos familiares.</p>\n\n<p>Uma estratégia eficaz é criar uma <strong>tabela comparativa</strong> entre fatores de risco comuns (genéticos/familiares) e fatores protetores específicos para cada órgão. Para o ovário, lembre-se do conceito de \"ovulação incessante\" - quanto menos a mulher ovula (gravidez, amamentação, contraceptivos), menor o risco.</p>\n\n<p><strong>Armadilha comum:</strong> confundir fatores de risco esporádicos com hereditários. A questão especifica \"câncer de mama familiar\", indicando componente genético. Outro erro é não reconhecer que a salpingectomia bilateral é protetora mesmo sem ooforectomia, baseando-se na origem tubária de muitos cânceres ovarianos.</p>\n\n<p><strong>Conexões importantes:</strong> este tema se relaciona com aconselhamento genético, critérios NCCN para testagem BRCA, e estratégias de vigilância em pacientes de alto risco. Estude também os tipos histológicos (seroso de alto grau) e a teoria da origem tubária do câncer ovariano.</p>\n\n<p>Para aprofundamento, consulte as diretrizes do <strong>NCCN (National Comprehensive Cancer Network)</strong> sobre câncer hereditário de mama e ovário, que são referência mundial para manejo desses pacientes.</p><figure data-okr=\"ilustracao\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20230807T202227945Z724352.png\" alt=\"\" style=\"max-width:100%\"></figure><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 321136,
+        "number": 3,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Síndrome dos ovários policísticos e síndromes hiperandrogênicas",
+        "focus": {
+          "id": 1616,
+          "name": "Síndrome dos ovários policísticos e síndromes hiperandrogênicas"
+        }
+      },
+      "detail": {
+        "id": 321136,
+        "content": "Mulher, 23a, nuligesta, é avaliada com queixa de hirsutismo e irregularidade menstrual. Ela descreve menstruações irregulares e infrequentes (quatro ou cinco fluxos por ano) desde a menarca, ocorrida aos 12 anos. A partir dos 14 anos vem apresentando pelos faciais espessos e escuros. Os sintomas pioraram à medida que vem ganhando peso. Ao exame físico: IMC=30, PA 140x86mmHg, e hirsutismo moderado sem virilização. Traz exames laboratoriais: Testosterona total = 67ng/dL (VR=14–53ng/dL), Testosterona livre calculada = 16,2pg/mL (VR=0,6–6,8pg/mL), Hemoglobina glicada = 5,8% (VR<5,6%). COMO DEVE SER A AVALIAÇÃO DESTE CASO?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15951,
+            "parent_tag": {
+              "id": 15912,
+              "name": "Ginecologia endócrina",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Síndrome dos ovários policísticos e síndromes hiperandrogênicas",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 3,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 19,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1616,
+          "name": "Síndrome dos ovários policísticos e síndromes hiperandrogênicas",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 94,
+            "name": "Ginecologia endócrina",
+            "discipline": 86,
+            "old_tag": 15912,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 390925,
+        "actual_explanation": true,
+        "introduction": "<p>O cenário combina <strong>hiperandrogenismo</strong> (hirsutismo e testosterona elevada) e <strong>oligomenorréia</strong> compatíveis com <strong>Síndrome dos Ovários Policísticos (SOP)</strong>, pedindo a avaliação adequada como próximo passo. Esta é uma condição endócrina comum em mulheres em idade reprodutiva, sendo uma das principais causas de infertilidade anovulatória. A questão testa o conhecimento sobre os critérios diagnósticos da SOP e, principalmente, sobre a abordagem sistemática necessária antes de confirmar o diagnóstico.</p>\n\n<p>A paciente apresenta o quadro clássico: <strong>oligomenorréia</strong> desde a menarca (4-5 ciclos/ano), <strong>hirsutismo progressivo</strong> desde os 14 anos, <strong>obesidade</strong> (IMC 30) e evidências laboratoriais de <strong>hiperandrogenismo</strong> (testosterona total 67ng/dL - normal até 53ng/dL; testosterona livre 16,2pg/mL - normal até 6,8pg/mL). O fato de não haver <strong>virilização</strong> afasta tumores androgênicos mais agressivos, mas não dispensa a investigação de outras causas de hiperandrogenismo.</p>\n\n<p>O diagnóstico de SOP é essencialmente de <strong>exclusão</strong>, seguindo os critérios de Rotterdam (2003), que exigem pelo menos 2 de 3: oligoanovulação, hiperandrogenismo clínico/laboratorial e morfologia ovariana policística. Contudo, antes de firmar este diagnóstico, é fundamental excluir outras causas de hiperandrogenismo, especialmente <strong>hiperplasia adrenal congênita forma não-clássica</strong>, <strong>hiperprolactinemia</strong> e <strong>hipotireoidismo</strong>.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Para dominar questões sobre SOP, é essencial entender que o diagnóstico segue uma <strong>hierarquia de exclusões</strong>. Mesmo com quadro típico, sempre investigate as causas mais raras mas tratáveis antes de confirmar SOP.</p>\n\n<p><strong>Estratégia de estudo:</strong> Memorize os critérios de Rotterdam, mas foque principalmente nos diagnósticos diferenciais obrigatórios. Questões frequentemente testam se o candidato lembra de investigar hiperplasia adrenal não-clássica (17-OHP), hiperprolactinemia (prolactina) e hipotireoidismo (TSH).</p>\n\n<p><strong>Armadilha comum:</strong> Não se deixe enganar pelo quadro \"óbvio\" de SOP. Examinadores adoram casos em que o candidato pula etapas da investigação. Sempre que uma questão perguntar sobre \"próxima conduta\" ou \"avaliação\", pense em exclusão de diferenciais primeiro.</p>\n\n<p><strong>Conexão importante:</strong> SOP não é apenas ginecológica - é uma síndrome metabólica. Lembre-se sempre da avaliação cardiovascular (perfil lipídico, glicemia), investigação de apneia do sono (especialmente em obesas) e aspectos psicológicos (depressão é muito comum).</p>\n\n<p><strong>Dica para provas:</strong> Questões sobre SOP frequentemente integram endocrinologia, ginecologia e clínica médica. Se a questão mencionar obesidade + hirsutismo + oligomenorréia, pense automaticamente em: 1) Confirmar hiperandrogenismo, 2) Excluir outras causas, 3) Avaliar metabolismo, 4) Investigar comorbidades.</p>\n\n<p><strong>Recursos para aprofundamento:</strong> Estude as diretrizes da Sociedade de Endocrinologia Androgênica e Síndrome dos Ovários Policísticos (AE-PCOS Society) e da Sociedade Européia de Endocrinologia, que fornecem algoritmos claros para diagnóstico e manejo.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O cenário combina <strong>hiperandrogenismo</strong> (hirsutismo e testosterona elevada) e <strong>oligomenorréia</strong> compatíveis com <strong>Síndrome dos Ovários Policísticos (SOP)</strong>, pedindo a avaliação adequada como próximo passo. Esta é uma condição endócrina comum em mulheres em idade reprodutiva, sendo uma das principais causas de infertilidade anovulatória. A questão testa o conhecimento sobre os critérios diagnósticos da SOP e, principalmente, sobre a abordagem sistemática necessária antes de confirmar o diagnóstico.</p>\n\n<p>A paciente apresenta o quadro clássico: <strong>oligomenorréia</strong> desde a menarca (4-5 ciclos/ano), <strong>hirsutismo progressivo</strong> desde os 14 anos, <strong>obesidade</strong> (IMC 30) e evidências laboratoriais de <strong>hiperandrogenismo</strong> (testosterona total 67ng/dL - normal até 53ng/dL; testosterona livre 16,2pg/mL - normal até 6,8pg/mL). O fato de não haver <strong>virilização</strong> afasta tumores androgênicos mais agressivos, mas não dispensa a investigação de outras causas de hiperandrogenismo.</p>\n\n<p>O diagnóstico de SOP é essencialmente de <strong>exclusão</strong>, seguindo os critérios de Rotterdam (2003), que exigem pelo menos 2 de 3: oligoanovulação, hiperandrogenismo clínico/laboratorial e morfologia ovariana policística. Contudo, antes de firmar este diagnóstico, é fundamental excluir outras causas de hiperandrogenismo, especialmente <strong>hiperplasia adrenal congênita forma não-clássica</strong>, <strong>hiperprolactinemia</strong> e <strong>hipotireoidismo</strong>.</p><br>Visão do aprovado: <p>Para dominar questões sobre SOP, é essencial entender que o diagnóstico segue uma <strong>hierarquia de exclusões</strong>. Mesmo com quadro típico, sempre investigate as causas mais raras mas tratáveis antes de confirmar SOP.</p>\n\n<p><strong>Estratégia de estudo:</strong> Memorize os critérios de Rotterdam, mas foque principalmente nos diagnósticos diferenciais obrigatórios. Questões frequentemente testam se o candidato lembra de investigar hiperplasia adrenal não-clássica (17-OHP), hiperprolactinemia (prolactina) e hipotireoidismo (TSH).</p>\n\n<p><strong>Armadilha comum:</strong> Não se deixe enganar pelo quadro \"óbvio\" de SOP. Examinadores adoram casos em que o candidato pula etapas da investigação. Sempre que uma questão perguntar sobre \"próxima conduta\" ou \"avaliação\", pense em exclusão de diferenciais primeiro.</p>\n\n<p><strong>Conexão importante:</strong> SOP não é apenas ginecológica - é uma síndrome metabólica. Lembre-se sempre da avaliação cardiovascular (perfil lipídico, glicemia), investigação de apneia do sono (especialmente em obesas) e aspectos psicológicos (depressão é muito comum).</p>\n\n<p><strong>Dica para provas:</strong> Questões sobre SOP frequentemente integram endocrinologia, ginecologia e clínica médica. Se a questão mencionar obesidade + hirsutismo + oligomenorréia, pense automaticamente em: 1) Confirmar hiperandrogenismo, 2) Excluir outras causas, 3) Avaliar metabolismo, 4) Investigar comorbidades.</p>\n\n<p><strong>Recursos para aprofundamento:</strong> Estude as diretrizes da Sociedade de Endocrinologia Androgênica e Síndrome dos Ovários Policísticos (AE-PCOS Society) e da Sociedade Européia de Endocrinologia, que fornecem algoritmos claros para diagnóstico e manejo.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 321137,
+        "number": 4,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Síndrome dos ovários policísticos e síndromes hiperandrogênicas",
+        "focus": {
+          "id": 1616,
+          "name": "Síndrome dos ovários policísticos e síndromes hiperandrogênicas"
+        }
+      },
+      "detail": {
+        "id": 321137,
+        "content": "Mulher, 23a, nuligesta, é avaliada com queixa de hirsutismo e irregularidade menstrual. Ela descreve menstruações irregulares e infrequentes (quatro ou cinco fluxos por ano) desde a menarca, ocorrida aos 12 anos. A partir dos 14 anos vem apresentando pelos faciais espessos e escuros. Os sintomas pioraram à medida que vem ganhando peso. Ao exame físico: IMC=30, PA 140x86mmHg, e hirsutismo moderado sem virilização. Traz exames laboratoriais: Testosterona total = 67ng/dL (VR=14–53ng/dL), Testosterona livre calculada = 16,2pg/mL (VR=0,6–6,8pg/mL), Hemoglobina glicada = 5,8% (VR<5,6%). COMO DEVE SER A CONDUÇÃO DESTE CASO A CURTO E MÉDIO PRAZO? E QUAIS AS ORIENTAÇÕES RELACIONADAS À GESTAÇÃO FUTURA?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15951,
+            "parent_tag": {
+              "id": 15912,
+              "name": "Ginecologia endócrina",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Síndrome dos ovários policísticos e síndromes hiperandrogênicas",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 4,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 12,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1616,
+          "name": "Síndrome dos ovários policísticos e síndromes hiperandrogênicas",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 94,
+            "name": "Ginecologia endócrina",
+            "discipline": 86,
+            "old_tag": 15912,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 390928,
+        "actual_explanation": true,
+        "introduction": "<p><strong>O cenário combina oligomenorreia e hiperandrogenismo compatíveis com síndrome dos ovários policísticos, pedindo condução terapêutica como próximo passo.</strong> Aqui temos uma apresentação clássica de SOP em mulher jovem, com início dos sintomas na adolescência e progressão associada ao ganho de peso. A paciente apresenta a tríade característica: <strong>irregularidade menstrual</strong> (oligomenorreia com apenas 4-5 ciclos/ano), <strong>hiperandrogenismo clínico</strong> (hirsutismo moderado sem virilização) e <strong>hiperandrogenismo laboratorial</strong> (testosterona total e livre elevadas).</p>\n\n<p>O caso é extremamente relevante para provas de residência porque a SOP é a <strong>endocrinopatia mais comum em mulheres em idade reprodutiva</strong>, afetando 5-10% dessa população. A questão testa não apenas o diagnóstico, mas principalmente a <strong>condução terapêutica integral</strong>, incluindo tratamento sintomático, prevenção de complicações metabólicas e orientações reprodutivas futuras.</p>\n\n<p>A resposta esperada demonstra uma abordagem <strong>multidisciplinar e sequencial</strong> para SOP, começando com medidas não farmacológicas (perda de peso), seguindo com tratamento hormonal (anticoncepcional oral combinado), prevendo acompanhamento para efeitos colaterais, escalando para antiandrogênicos se necessário, adicionando metformina para resistência insulínica e, crucialmente, tranquilizando sobre fertilidade futura.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Para dominar questões sobre SOP, foque nos <strong>critérios diagnósticos de Rotterdam</strong>: presença de 2 dos 3 critérios (oligo/anovulação, hiperandrogenismo clínico/laboratorial, ovários policísticos ao ultrassom), após exclusão de outras causas.</p>\n\n<p><strong>Estratégia para questões similares:</strong> Sempre identifique se a paciente deseja engravidar no momento, pois isso muda completamente a abordagem terapêutica. Para pacientes que não desejam gestação (como neste caso), o foco é tratamento sintomático e prevenção de complicações. Para quem deseja engravidar, o objetivo é indução de ovulação.</p>\n\n<p><strong>Armadilhas comuns:</strong> Não confunda SOP com outras causas de hiperandrogenismo. Valores de testosterona muito elevados (>200 ng/dL) sugerem tumor. Início súbito de virilização em adulta jovem também é suspeito para neoplasia. A ausência de virilização (como neste caso) tranquiliza quanto a causas tumorais.</p>\n\n<p><strong>Conexões importantes:</strong> SOP está intimamente ligada à <strong>síndrome metabólica</strong>. Pacientes têm maior risco de diabetes tipo 2, dislipidemia, hipertensão e doença cardiovascular. Por isso, o acompanhamento metabólico é tão importante quanto o tratamento dos sintomas reprodutivos.</p>\n\n<p><strong>Dica valiosa:</strong> Em provas, questões sobre SOP frequentemente testam o conhecimento sobre <strong>contraindicações ao anticoncepcional oral</strong>. Se a paciente tiver contraindicação (trombofilia, tabagismo intenso, enxaqueca com aura), o tratamento de primeira linha seria metformina + antiandrogênico isolado.</p>\n\n<p><strong>Para aprofundamento:</strong> Estude as diretrizes da Sociedade Brasileira de Endocrinologia sobre SOP e os consensos internacionais mais recentes, que enfatizam a abordagem centrada na paciente e o tratamento das comorbidades metabólicas como parte integral do manejo.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p><strong>O cenário combina oligomenorreia e hiperandrogenismo compatíveis com síndrome dos ovários policísticos, pedindo condução terapêutica como próximo passo.</strong> Aqui temos uma apresentação clássica de SOP em mulher jovem, com início dos sintomas na adolescência e progressão associada ao ganho de peso. A paciente apresenta a tríade característica: <strong>irregularidade menstrual</strong> (oligomenorreia com apenas 4-5 ciclos/ano), <strong>hiperandrogenismo clínico</strong> (hirsutismo moderado sem virilização) e <strong>hiperandrogenismo laboratorial</strong> (testosterona total e livre elevadas).</p>\n\n<p>O caso é extremamente relevante para provas de residência porque a SOP é a <strong>endocrinopatia mais comum em mulheres em idade reprodutiva</strong>, afetando 5-10% dessa população. A questão testa não apenas o diagnóstico, mas principalmente a <strong>condução terapêutica integral</strong>, incluindo tratamento sintomático, prevenção de complicações metabólicas e orientações reprodutivas futuras.</p>\n\n<p>A resposta esperada demonstra uma abordagem <strong>multidisciplinar e sequencial</strong> para SOP, começando com medidas não farmacológicas (perda de peso), seguindo com tratamento hormonal (anticoncepcional oral combinado), prevendo acompanhamento para efeitos colaterais, escalando para antiandrogênicos se necessário, adicionando metformina para resistência insulínica e, crucialmente, tranquilizando sobre fertilidade futura.</p><br>Visão do aprovado: <p>Para dominar questões sobre SOP, foque nos <strong>critérios diagnósticos de Rotterdam</strong>: presença de 2 dos 3 critérios (oligo/anovulação, hiperandrogenismo clínico/laboratorial, ovários policísticos ao ultrassom), após exclusão de outras causas.</p>\n\n<p><strong>Estratégia para questões similares:</strong> Sempre identifique se a paciente deseja engravidar no momento, pois isso muda completamente a abordagem terapêutica. Para pacientes que não desejam gestação (como neste caso), o foco é tratamento sintomático e prevenção de complicações. Para quem deseja engravidar, o objetivo é indução de ovulação.</p>\n\n<p><strong>Armadilhas comuns:</strong> Não confunda SOP com outras causas de hiperandrogenismo. Valores de testosterona muito elevados (>200 ng/dL) sugerem tumor. Início súbito de virilização em adulta jovem também é suspeito para neoplasia. A ausência de virilização (como neste caso) tranquiliza quanto a causas tumorais.</p>\n\n<p><strong>Conexões importantes:</strong> SOP está intimamente ligada à <strong>síndrome metabólica</strong>. Pacientes têm maior risco de diabetes tipo 2, dislipidemia, hipertensão e doença cardiovascular. Por isso, o acompanhamento metabólico é tão importante quanto o tratamento dos sintomas reprodutivos.</p>\n\n<p><strong>Dica valiosa:</strong> Em provas, questões sobre SOP frequentemente testam o conhecimento sobre <strong>contraindicações ao anticoncepcional oral</strong>. Se a paciente tiver contraindicação (trombofilia, tabagismo intenso, enxaqueca com aura), o tratamento de primeira linha seria metformina + antiandrogênico isolado.</p>\n\n<p><strong>Para aprofundamento:</strong> Estude as diretrizes da Sociedade Brasileira de Endocrinologia sobre SOP e os consensos internacionais mais recentes, que enfatizam a abordagem centrada na paciente e o tratamento das comorbidades metabólicas como parte integral do manejo.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 321138,
+        "number": 5,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento",
+        "focus": {
+          "id": 1639,
+          "name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento"
+        }
+      },
+      "detail": {
+        "id": 321138,
+        "content": "Mulher, 59 a, inicia acompanhamento ginecológico com médico do posto de saúde, pois não teria mais acesso à saúde suplementar em outra cidade, onde fazia acompanhamento por câncer de mama tratado há sete anos. Menopausa aos 48 anos. Antecedente de trombose venosa superficial em membro inferior direito na última gestação. Refere ter feito cirurgia de \"quadrante” na mama esquerda, quando também “tirou apenas um gânglio” da axila ipsilateral. Em regime de adjuvância, relata ter realizado quimioterapia, e tomou um comprimido por via oral ao dia durante cinco anos – do qual não se recorda o nome. Não soube referir com exatidão se fez radioterapia, mas informa que precisou fazer a “vacina”, entendido como um anticorpo monoclonal da classe IgG. Como você descreveria no prontuário o resumo do plano terapêutico a que esta paciente provavelmente foi submetida à época, utilizando-se de termos técnicos?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15927,
+            "parent_tag": {
+              "id": 15902,
+              "name": "Mastologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 5,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 13,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1639,
+          "name": "Câncer de mama parte 2: estadiamento, prognóstico e tratamento",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 104,
+            "name": "Mastologia",
+            "discipline": 86,
+            "old_tag": 15902,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 390924,
+        "actual_explanation": true,
+        "introduction": "<p>Fala, galera! Questão bem direta que solicita elaboração de um resumo do tratamento prévio da paciente, em termos técnicos, para prontuário. Mas antes disso, vamos entender o caso: </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p>Temos aqui uma paciente que refere ter realizado como tratamento adjuvante quimioterapia, uma vacina, e uso de comprimido via oral por 5 anos. Pensando nos subtipos moleculares do <span class=\"article-5158\">câncer de mama</span> poderíamos fazer o seguinte raciocínio: </p>\n<p>O fato da paciente ter tomado um comprimido por via oral durante cinco anos sugere que ela fez tratamento de um <span class=\"article-5158\">câncer de mama</span> hormônio dependente (receptor de estrogênio/progesterona positivo), ou seja, Luminal. Mas além disso, ela menciona ter tomado uma “vacina”, forma comum a que as pacientes se referem ao trastuzumab (Herceptin), anticorpo monoclonal utilizado na terapia alvo do <span class=\"article-5158\">câncer de mama</span> HER2 positivo. Ou seja, teríamos aqui o caso de um <span class=\"article-5158\">câncer de mama</span> Luminal híbrido. </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">Ainda, pelo fato da paciente ter realizado cirurgia conservadora da mama, possivelmente tivemos uma boa resposta à quimioterapia, ausência de tumor multicêntrico e boa relação mama/tumor.</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">Agora sim, entendendo o caso como um todo, podemos colocar como resposta:</p>\n<p> </p>\n<p>Quadrantectomia de mama esquerda + Biópsia de linfonodo sentinela a esquerda (BLS) </p>\n<p>Quimioterapia adjuvante </p>\n<p>Radioterapia adjuvante </p>\n<p>Hormonioterapia/Endocrinoterapia adjuvante com inibidor de aromatase (IA) - por exemplo Anastrozol 1mg/dia por 5 anos </p>\n<p>Trastuzumab adjuvante </p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(0, 32, 91);\">Apesar de parecer algo mais simples, a elaboração do prontuário é de suma importância, então precisamos caprichar! </span></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(0, 32, 91);\">Lembrando que é sempre importante colocar a lateralidade e, quando houver, as informações sobre a data em que ocorreram os eventos, principalmente em relação ao início e término de cada tratamento adjuvante (exemplo Hormonioterapia de 2010 a 2015).  </span></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(0, 32, 91);\">Bons estudos!</span></p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Fala, galera! Questão bem direta que solicita elaboração de um resumo do tratamento prévio da paciente, em termos técnicos, para prontuário. Mas antes disso, vamos entender o caso: </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p>Temos aqui uma paciente que refere ter realizado como tratamento adjuvante quimioterapia, uma vacina, e uso de comprimido via oral por 5 anos. Pensando nos subtipos moleculares do <span class=\"article-5158\">câncer de mama</span> poderíamos fazer o seguinte raciocínio: </p>\n<p>O fato da paciente ter tomado um comprimido por via oral durante cinco anos sugere que ela fez tratamento de um <span class=\"article-5158\">câncer de mama</span> hormônio dependente (receptor de estrogênio/progesterona positivo), ou seja, Luminal. Mas além disso, ela menciona ter tomado uma “vacina”, forma comum a que as pacientes se referem ao trastuzumab (Herceptin), anticorpo monoclonal utilizado na terapia alvo do <span class=\"article-5158\">câncer de mama</span> HER2 positivo. Ou seja, teríamos aqui o caso de um <span class=\"article-5158\">câncer de mama</span> Luminal híbrido. </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">Ainda, pelo fato da paciente ter realizado cirurgia conservadora da mama, possivelmente tivemos uma boa resposta à quimioterapia, ausência de tumor multicêntrico e boa relação mama/tumor.</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">Agora sim, entendendo o caso como um todo, podemos colocar como resposta:</p>\n<p> </p>\n<p>Quadrantectomia de mama esquerda + Biópsia de linfonodo sentinela a esquerda (BLS) </p>\n<p>Quimioterapia adjuvante </p>\n<p>Radioterapia adjuvante </p>\n<p>Hormonioterapia/Endocrinoterapia adjuvante com inibidor de aromatase (IA) - por exemplo Anastrozol 1mg/dia por 5 anos </p>\n<p>Trastuzumab adjuvante </p><br>Visão do aprovado: <p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(0, 32, 91);\">Apesar de parecer algo mais simples, a elaboração do prontuário é de suma importância, então precisamos caprichar! </span></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(0, 32, 91);\">Lembrando que é sempre importante colocar a lateralidade e, quando houver, as informações sobre a data em que ocorreram os eventos, principalmente em relação ao início e término de cada tratamento adjuvante (exemplo Hormonioterapia de 2010 a 2015).  </span></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"> </p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 10.5pt; color: rgb(0, 32, 91);\">Bons estudos!</span></p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 321139,
+        "number": 6,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Câncer de mama parte 1: rastreamento, aconselhamento genético e classificação molecular",
+        "focus": {
+          "id": 1631,
+          "name": "Câncer de mama parte 1: rastreamento, aconselhamento genético e classificação molecular"
+        }
+      },
+      "detail": {
+        "id": 321139,
+        "content": "Mulher, 59 a, inicia acompanhamento ginecológico com médico do posto de saúde, pois não teria mais acesso à saúde suplementar em outra cidade, onde fazia acompanhamento por câncer de mama tratado há sete anos. Menopausa aos 48 anos. Antecedente de trombose venosa superficial em membro inferior direito na última gestação. Refere ter feito cirurgia de \"quadrante\" na mama esquerda, quando também “tirou apenas um gânglio” da axila ipsilateral. Em regime de adjuvância, relata ter realizado quimioterapia, e tomou um comprimido por via oral ao dia durante cinco anos – do qual não se recorda o nome. Não soube referir com exatidão se fez radioterapia, mas informa que precisou fazer a “vacina”, entendido como um anticorpo monoclonal da classe IgG. Qual o provável subtipo molecular do câncer de mama? Justifique.",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15935,
+            "parent_tag": {
+              "id": 15902,
+              "name": "Mastologia",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Câncer de mama parte 1: rastreamento, aconselhamento genético e classificação molecular",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 6,
+        "physicians": [],
+        "is_comment_from_ia": false,
+        "has_cfa": false,
+        "answer_count": 16,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1631,
+          "name": "Câncer de mama parte 1: rastreamento, aconselhamento genético e classificação molecular",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 104,
+            "name": "Mastologia",
+            "discipline": 86,
+            "old_tag": 15902,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 390919,
+        "actual_explanation": true,
+        "introduction": "<p>Fala, galera! Quest&atilde;o mais espec&iacute;fica sobre subtipos moleculares do c&acirc;ncer de mama. Bora revisar quais s&atilde;o eles antes de analisar os dados da quest&atilde;o.</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250421T002633179Z540336.png\" width=\"408\" height=\"242\"></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p>De forma sucinta, os subtipos moleculares do c&acirc;ncer de mama s&atilde;o: <strong>luminal A, luminal B, HER2 e triplo negativo</strong>, definidos pela express&atilde;o ou n&atilde;o de receptores hormonais (RE e RP) e de HER2, conforme a tabela acima.&nbsp;Vale ressaltar que a an&aacute;lise do HER2 pode ser 0, 1+, 2+ e 3+ (sendo esse &uacute;ltimo HER2 positivo). Nos casos em que temos&nbsp;<strong>HER2 2+, </strong>&eacute; necess&aacute;rio confirmar a amplifica&ccedil;&atilde;o por <strong>FISH ou SISH</strong>.&nbsp;</p>\n<p>Agora sim vamos analisar os dados fornecidos pela quest&atilde;o:&nbsp;</p>\n<p>O fato da paciente ter tomado um comprimido por via oral durante cinco anos sugere que ela fez tratamento de um c&acirc;ncer de mama horm&ocirc;nio dependente (receptor de estrog&ecirc;nio/progesterona positivo). Al&eacute;m disso, ela menciona ter tomado uma &ldquo;vacina&rdquo;, que, com base na descri&ccedil;&atilde;o, &eacute; muito provavelmente um anticorpo monoclonal, como o trastuzumab (Herceptin), que &eacute; utilizado na terapia alvo do c&acirc;ncer de mama HER2 positivo. Dessa forma chegamos a conclus&atilde;o que a paciente da quest&atilde;o teve um c&acirc;ncer de mama Luminal H&iacute;brido.</p>\n<p>Resposta: O prov&aacute;vel subtipo molecular do c&acirc;ncer de mama dessa paciente &eacute; Luminal Hibrido (Luminal HER2 positivo), devido &agrave; presen&ccedil;a de receptores hormonais positivos (evidenciado pela medica&ccedil;&atilde;o via oral por 5 anos) e ao tratamento com anticorpo monoclonal anti-HER2 (trastuzumab), a \"vacina\" referida pela paciente.&nbsp;</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Uma observa&ccedil;&atilde;o v&aacute;lida sobre essa quest&atilde;o &eacute; que, no caso dessa paciente, a endocrinoterapia possivelmente foi realizada com inibidor de aromatase (IA) por ter sido um tratamento na p&oacute;s menopausa somado ao hist&oacute;rico de trombose. De forma did&aacute;tica, podemos ter como avalia&ccedil;&atilde;o geral:&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250421T002910967Z080161.png\" width=\"422\" height=\"312\"></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p>&Eacute; importante relembrar efeitos colaterais e contraindica&ccedil;&otilde;es relativas e absolutas da endocrinoterapia para uma melhor prepara&ccedil;&atilde;o para quest&otilde;es.</p>\n<p>Bons estudos!</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>Fala, galera! Quest&atilde;o mais espec&iacute;fica sobre subtipos moleculares do c&acirc;ncer de mama. Bora revisar quais s&atilde;o eles antes de analisar os dados da quest&atilde;o.</p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250421T002633179Z540336.png\" width=\"408\" height=\"242\"></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p>De forma sucinta, os subtipos moleculares do c&acirc;ncer de mama s&atilde;o: <strong>luminal A, luminal B, HER2 e triplo negativo</strong>, definidos pela express&atilde;o ou n&atilde;o de receptores hormonais (RE e RP) e de HER2, conforme a tabela acima.&nbsp;Vale ressaltar que a an&aacute;lise do HER2 pode ser 0, 1+, 2+ e 3+ (sendo esse &uacute;ltimo HER2 positivo). Nos casos em que temos&nbsp;<strong>HER2 2+, </strong>&eacute; necess&aacute;rio confirmar a amplifica&ccedil;&atilde;o por <strong>FISH ou SISH</strong>.&nbsp;</p>\n<p>Agora sim vamos analisar os dados fornecidos pela quest&atilde;o:&nbsp;</p>\n<p>O fato da paciente ter tomado um comprimido por via oral durante cinco anos sugere que ela fez tratamento de um c&acirc;ncer de mama horm&ocirc;nio dependente (receptor de estrog&ecirc;nio/progesterona positivo). Al&eacute;m disso, ela menciona ter tomado uma &ldquo;vacina&rdquo;, que, com base na descri&ccedil;&atilde;o, &eacute; muito provavelmente um anticorpo monoclonal, como o trastuzumab (Herceptin), que &eacute; utilizado na terapia alvo do c&acirc;ncer de mama HER2 positivo. Dessa forma chegamos a conclus&atilde;o que a paciente da quest&atilde;o teve um c&acirc;ncer de mama Luminal H&iacute;brido.</p>\n<p>Resposta: O prov&aacute;vel subtipo molecular do c&acirc;ncer de mama dessa paciente &eacute; Luminal Hibrido (Luminal HER2 positivo), devido &agrave; presen&ccedil;a de receptores hormonais positivos (evidenciado pela medica&ccedil;&atilde;o via oral por 5 anos) e ao tratamento com anticorpo monoclonal anti-HER2 (trastuzumab), a \"vacina\" referida pela paciente.&nbsp;</p><br>Visão do aprovado: <p>Uma observa&ccedil;&atilde;o v&aacute;lida sobre essa quest&atilde;o &eacute; que, no caso dessa paciente, a endocrinoterapia possivelmente foi realizada com inibidor de aromatase (IA) por ter sido um tratamento na p&oacute;s menopausa somado ao hist&oacute;rico de trombose. De forma did&aacute;tica, podemos ter como avalia&ccedil;&atilde;o geral:&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250421T002910967Z080161.png\" width=\"422\" height=\"312\"></p>\n<p style=\"margin-top: 0pt; margin-bottom: 0pt;\">&nbsp;</p>\n<p>&Eacute; importante relembrar efeitos colaterais e contraindica&ccedil;&otilde;es relativas e absolutas da endocrinoterapia para uma melhor prepara&ccedil;&atilde;o para quest&otilde;es.</p>\n<p>Bons estudos!</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 321140,
+        "number": 7,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Síndromes hipertensivas na gestação",
+        "focus": {
+          "id": 1575,
+          "name": "Síndromes hipertensivas na gestação"
+        }
+      },
+      "detail": {
+        "id": 321140,
+        "content": "Gestante de 28 semanas e antecedente de hipertensão arterial. Altura uterina: 25 cm. Boa movimentação fetal. Peso fetal estimado no percentil 5. Morfologia fetal sem alterações. Líquido amniótico normal. Dopplervelocimetria: alterada (IP > p95) nas artérias uterinas; alterada (IP > p95, com fluxo diastólico final positivo) nas artérias umbilicais; normal nas artérias cerebrais médias; relação cérebro-placentária normal. Qual sua interpretação sobre o caso? Justifique com base nos achados do exame clínico e dos parâmetros ecográficos listados",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15992,
+            "parent_tag": {
+              "id": 15915,
+              "name": "Distúrbios hipertensivos e diabetes na gestação",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Síndromes hipertensivas na gestação",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 7,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 21,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1575,
+          "name": "Síndromes hipertensivas na gestação",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 91,
+            "name": "Distúrbios hipertensivos e diabetes na gestação",
+            "discipline": 86,
+            "old_tag": 15915,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 390926,
+        "actual_explanation": true,
+        "introduction": "<p>O enunciado sugere, logo de início, <strong>restrição de crescimento fetal por insuficiência placentária</strong> através da combinação de fatores de risco maternos e alterações características na dopplervelocimetria. Este caso representa um cenário clássico em obstetrícia onde a <strong>hipertensão arterial materna</strong> compromete a perfusão útero-placentária, resultando em crescimento fetal inadequado.</p>\n\n<p>A questão explora conceitos fundamentais sobre <strong>avaliação do bem-estar fetal</strong> e interpretação da dopplervelocimetria obstétrica, temas essenciais nas provas de residência. O caso apresenta uma gestante de 28 semanas com <strong>altura uterina de 25 cm</strong> (abaixo do esperado para a idade gestacional) e <strong>peso fetal no percentil 5</strong>, configurando critérios para restrição de crescimento fetal.</p>\n\n<p>A análise dos parâmetros dopplervelocimétricos revela um padrão característico de <strong>insuficiência placentária</strong>: resistência aumentada nas artérias uterinas (compartimento materno) e umbilicais (compartimento feto-placentário), porém com <strong>circulação cerebral fetal preservada</strong>. Este achado indica que, apesar da insuficiência placentária estabelecida, o feto ainda mantém mecanismos compensatórios adequados, sem sinais de <strong>centralização fetal</strong> ou comprometimento agudo.</p>\n\n<p>A interpretação correta deste caso envolve compreender que a <strong>restrição de crescimento fetal</strong> está presente, mas não há indicação de interrupção imediata da gestação, pois os parâmetros de vitalidade fetal (movimentação, líquido amniótico normal, ausência de centralização) permanecem adequados.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Para dominar questões sobre <strong>restrição de crescimento fetal</strong>, é fundamental memorizar os critérios diagnósticos: peso fetal estimado abaixo do percentil 10 (alguns serviços usam percentil 5) para a idade gestacional, associado ou não à discrepância da altura uterina. A <strong>diferenciação entre RCF constitucional e patológica</strong> é crucial - a patológica geralmente está associada a fatores de risco maternos (hipertensão, diabetes, trombofilias) e alterações na dopplervelocimetria.</p>\n\n<p>A interpretação da <strong>dopplervelocimetria obstétrica</strong> deve ser sistemática, avaliando os três compartimentos: materno (artérias uterinas), feto-placentário (artérias umbilicais) e fetal (artérias cerebrais médias e ducto venoso). Memorize que a <strong>progressão da insuficiência placentária</strong> segue uma sequência: primeiro alteram as uterinas, depois as umbilicais, seguidas pela centralização fetal (cerebrais médias anormais) e, finalmente, alterações no ducto venoso.</p>\n\n<p>Uma armadilha comum é <strong>supervalorizar alterações isoladas</strong> sem considerar o contexto clínico completo. Lembre-se que a decisão sobre o momento da interrupção da gestação na RCF depende da <strong>avaliação conjunta</strong> da dopplervelocimetria, provas de vitalidade fetal (movimentação, cardiotocografia, perfil biofísico) e idade gestacional.</p>\n\n<p>Para questões similares, sempre <strong>correlacione os achados do Doppler com os sinais clínicos</strong> de vitalidade fetal. A ausência de centralização fetal (cerebrais médias normais) em casos de RCF sugere que ainda há reserva funcional, permitindo conduta expectante com vigilância rigorosa.</p>\n\n<p>Estude as <strong>indicações de interrupção da gestação</strong> na RCF: fluxo diastólico ausente ou reverso nas umbilicais (após 26 semanas), centralização fetal grave, alterações no ducto venoso, oligoâmnio severo ou alterações nas provas de vitalidade fetal. O manejo da RCF é um dos temas mais cobrados em obstetrícia, pois envolve decisões críticas sobre o momento ideal para o nascimento, equilibrando os riscos da prematuridade com os da hipoxemia fetal.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>O enunciado sugere, logo de início, <strong>restrição de crescimento fetal por insuficiência placentária</strong> através da combinação de fatores de risco maternos e alterações características na dopplervelocimetria. Este caso representa um cenário clássico em obstetrícia onde a <strong>hipertensão arterial materna</strong> compromete a perfusão útero-placentária, resultando em crescimento fetal inadequado.</p>\n\n<p>A questão explora conceitos fundamentais sobre <strong>avaliação do bem-estar fetal</strong> e interpretação da dopplervelocimetria obstétrica, temas essenciais nas provas de residência. O caso apresenta uma gestante de 28 semanas com <strong>altura uterina de 25 cm</strong> (abaixo do esperado para a idade gestacional) e <strong>peso fetal no percentil 5</strong>, configurando critérios para restrição de crescimento fetal.</p>\n\n<p>A análise dos parâmetros dopplervelocimétricos revela um padrão característico de <strong>insuficiência placentária</strong>: resistência aumentada nas artérias uterinas (compartimento materno) e umbilicais (compartimento feto-placentário), porém com <strong>circulação cerebral fetal preservada</strong>. Este achado indica que, apesar da insuficiência placentária estabelecida, o feto ainda mantém mecanismos compensatórios adequados, sem sinais de <strong>centralização fetal</strong> ou comprometimento agudo.</p>\n\n<p>A interpretação correta deste caso envolve compreender que a <strong>restrição de crescimento fetal</strong> está presente, mas não há indicação de interrupção imediata da gestação, pois os parâmetros de vitalidade fetal (movimentação, líquido amniótico normal, ausência de centralização) permanecem adequados.</p><br>Visão do aprovado: <p>Para dominar questões sobre <strong>restrição de crescimento fetal</strong>, é fundamental memorizar os critérios diagnósticos: peso fetal estimado abaixo do percentil 10 (alguns serviços usam percentil 5) para a idade gestacional, associado ou não à discrepância da altura uterina. A <strong>diferenciação entre RCF constitucional e patológica</strong> é crucial - a patológica geralmente está associada a fatores de risco maternos (hipertensão, diabetes, trombofilias) e alterações na dopplervelocimetria.</p>\n\n<p>A interpretação da <strong>dopplervelocimetria obstétrica</strong> deve ser sistemática, avaliando os três compartimentos: materno (artérias uterinas), feto-placentário (artérias umbilicais) e fetal (artérias cerebrais médias e ducto venoso). Memorize que a <strong>progressão da insuficiência placentária</strong> segue uma sequência: primeiro alteram as uterinas, depois as umbilicais, seguidas pela centralização fetal (cerebrais médias anormais) e, finalmente, alterações no ducto venoso.</p>\n\n<p>Uma armadilha comum é <strong>supervalorizar alterações isoladas</strong> sem considerar o contexto clínico completo. Lembre-se que a decisão sobre o momento da interrupção da gestação na RCF depende da <strong>avaliação conjunta</strong> da dopplervelocimetria, provas de vitalidade fetal (movimentação, cardiotocografia, perfil biofísico) e idade gestacional.</p>\n\n<p>Para questões similares, sempre <strong>correlacione os achados do Doppler com os sinais clínicos</strong> de vitalidade fetal. A ausência de centralização fetal (cerebrais médias normais) em casos de RCF sugere que ainda há reserva funcional, permitindo conduta expectante com vigilância rigorosa.</p>\n\n<p>Estude as <strong>indicações de interrupção da gestação</strong> na RCF: fluxo diastólico ausente ou reverso nas umbilicais (após 26 semanas), centralização fetal grave, alterações no ducto venoso, oligoâmnio severo ou alterações nas provas de vitalidade fetal. O manejo da RCF é um dos temas mais cobrados em obstetrícia, pois envolve decisões críticas sobre o momento ideal para o nascimento, equilibrando os riscos da prematuridade com os da hipoxemia fetal.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 321141,
+        "number": 8,
+        "main_speciality_name": "Ginecologia e Obstetrícia",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Vitalidade fetal e sofrimento fetal agudo",
+        "focus": {
+          "id": 1611,
+          "name": "Vitalidade fetal e sofrimento fetal agudo"
+        }
+      },
+      "detail": {
+        "id": 321141,
+        "content": "Gestante de 28 semanas e antecedente de hipertensão arterial. Altura uterina: 25 cm. Boa movimentação fetal. Peso fetal estimado no percentil 5. Morfologia fetal sem alterações. Líquido amniótico normal. Dopplervelocimetria: alterada (IP > p95) nas artérias uterinas; alterada (IP > p95, com fluxo diastólico final positivo) nas artérias umbilicais; normal nas artérias cerebrais médias; relação cérebro-placentária normal. Qual o papel da Dopplervelocimetria do ducto venoso na avaliação da vitalidade fetal? Como interpretar as informações obtidas por meio desse método? Você indicaria essa avaliação no presente caso?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 6,
+            "abbreviation": "GO",
+            "name": "Ginecologia e Obstetrícia",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 7,
+          "abbreviation": "R+GO"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 15956,
+            "parent_tag": {
+              "id": 15911,
+              "name": "Sofrimento fetal",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Vitalidade fetal e sofrimento fetal agudo",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              6
+            ],
+            "new_residency_degree": [
+              7
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 8,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 13,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1611,
+          "name": "Vitalidade fetal e sofrimento fetal agudo",
+          "discipline": {
+            "id": 86,
+            "name": "Ginecologia e Obstetrícia",
+            "residency_degree": 7,
+            "speciality": 6
+          },
+          "theme": {
+            "id": 95,
+            "name": "Sofrimento fetal",
+            "discipline": 86,
+            "old_tag": 15911,
+            "residency_degree_abbreviation": "R+GO"
+          }
+        }
+      },
+      "explanation": {
+        "id": 591480,
+        "actual_explanation": true,
+        "introduction": "<p>A decisão correta depende de reconhecer a <strong>sequência temporal da deterioração hemodinâmica fetal</strong> na restrição de crescimento. Este caso ilustra perfeitamente um cenário de <strong>restrição de crescimento fetal (RCF)</strong> em gestante com fatores de risco, onde temos evidências claras de comprometimento placentário mas ainda sem sinais de hipóxia fetal significativa.</p>\n\n<p>A <strong>dopplervelocimetria do ducto venoso</strong> representa um dos exames mais sofisticados na avaliação da vitalidade fetal, sendo considerado um marcador tardio na cascata de deterioração fetal. No cenário apresentado, observamos uma gestante de 28 semanas com hipertensão arterial prévia, peso fetal no percentil 5 (caracterizando RCF), alterações no doppler das artérias uterinas e umbilicais (indicando comprometimento placentário), mas com doppler das artérias cerebrais médias normal e relação cérebro-placentária preservada.</p>\n\n<p>A compreensão do papel do ducto venoso é fundamental para o manejo adequado da RCF, pois sua alteração indica estágios mais avançados de comprometimento fetal, quando mecanismos compensatórios já não são suficientes para manter a adequada perfusão tecidual. O exame torna-se especialmente relevante quando há evidências de <strong>centralização fetal</strong> ou outros sinais de hipóxia, situações não presentes no caso em questão.</p>",
+        "option_a": "",
+        "short_option_a": "",
+        "option_b": "",
+        "short_option_b": "",
+        "option_c": "",
+        "short_option_c": "",
+        "option_d": "",
+        "short_option_d": "",
+        "option_e": "",
+        "short_option_e": "",
+        "conclusion": "<p>Para dominar esse tipo de questão, é essencial compreender a <strong>sequência temporal da deterioração hemodinâmica fetal</strong> na restrição de crescimento. A cascata se inicia com alterações nas artérias uterinas (comprometimento materno), progride para alterações nas artérias umbilicais (comprometimento placentário), seguida pela centralização fetal (alterações nas cerebrais médias e relação cérebro-placentária) e, finalmente, alterações no ducto venoso (comprometimento cardíaco fetal).</p>\n\n<p>Uma estratégia eficaz é sempre <strong>mapear onde o feto se encontra nesta sequência</strong> antes de decidir sobre condutas. No caso apresentado, temos alterações nas etapas iniciais (uterinas e umbilicais) mas preservação das etapas tardias (cerebrais e ducto venoso), indicando que ainda não há necessidade de avaliação do ducto venoso.</p>\n\n<p>Cuidado com a armadilha comum de pensar que <strong>toda RCF requer avaliação do ducto venoso</strong>. Na verdade, este exame é reservado para casos com sinais de hipóxia fetal, especialmente quando há centralização (IP das cerebrais médias reduzido e/ou relação cérebro-placentária alterada). Outros indicadores incluem oligoâmnio severo ou perfil biofísico fetal alterado.</p>\n\n<p>Conecte este conhecimento com outros tópicos importantes: <strong>conduta expectante versus resolução da gestação</strong> na RCF, uso de corticosteroides para maturação pulmonar, e protocolos de vigilância fetal. A dopplervelocimetria do ducto venoso frequentemente determina o timing da resolução da gestação em casos de RCF precoce.</p>\n\n<p>Para aprofundamento, estude as diretrizes da Federação Brasileira de Ginecologia e Obstetrícia (FEBRASGO) sobre vigilância fetal e restrição de crescimento, além dos consensos internacionais sobre dopplervelocimetria obstétrica. Pratique a interpretação de traçados de doppler e correlacione com desfechos perinatais.</p><figure data-okr=\"ilustracao\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250120T113900300Z868878.png\" alt=\"\" style=\"max-width:100%\"></figure>",
+        "update_note": "",
+        "lesson_reference": "",
+        "full_explanation": "<p>A decisão correta depende de reconhecer a <strong>sequência temporal da deterioração hemodinâmica fetal</strong> na restrição de crescimento. Este caso ilustra perfeitamente um cenário de <strong>restrição de crescimento fetal (RCF)</strong> em gestante com fatores de risco, onde temos evidências claras de comprometimento placentário mas ainda sem sinais de hipóxia fetal significativa.</p>\n\n<p>A <strong>dopplervelocimetria do ducto venoso</strong> representa um dos exames mais sofisticados na avaliação da vitalidade fetal, sendo considerado um marcador tardio na cascata de deterioração fetal. No cenário apresentado, observamos uma gestante de 28 semanas com hipertensão arterial prévia, peso fetal no percentil 5 (caracterizando RCF), alterações no doppler das artérias uterinas e umbilicais (indicando comprometimento placentário), mas com doppler das artérias cerebrais médias normal e relação cérebro-placentária preservada.</p>\n\n<p>A compreensão do papel do ducto venoso é fundamental para o manejo adequado da RCF, pois sua alteração indica estágios mais avançados de comprometimento fetal, quando mecanismos compensatórios já não são suficientes para manter a adequada perfusão tecidual. O exame torna-se especialmente relevante quando há evidências de <strong>centralização fetal</strong> ou outros sinais de hipóxia, situações não presentes no caso em questão.</p><br>Visão do aprovado: <p>Para dominar esse tipo de questão, é essencial compreender a <strong>sequência temporal da deterioração hemodinâmica fetal</strong> na restrição de crescimento. A cascata se inicia com alterações nas artérias uterinas (comprometimento materno), progride para alterações nas artérias umbilicais (comprometimento placentário), seguida pela centralização fetal (alterações nas cerebrais médias e relação cérebro-placentária) e, finalmente, alterações no ducto venoso (comprometimento cardíaco fetal).</p>\n\n<p>Uma estratégia eficaz é sempre <strong>mapear onde o feto se encontra nesta sequência</strong> antes de decidir sobre condutas. No caso apresentado, temos alterações nas etapas iniciais (uterinas e umbilicais) mas preservação das etapas tardias (cerebrais e ducto venoso), indicando que ainda não há necessidade de avaliação do ducto venoso.</p>\n\n<p>Cuidado com a armadilha comum de pensar que <strong>toda RCF requer avaliação do ducto venoso</strong>. Na verdade, este exame é reservado para casos com sinais de hipóxia fetal, especialmente quando há centralização (IP das cerebrais médias reduzido e/ou relação cérebro-placentária alterada). Outros indicadores incluem oligoâmnio severo ou perfil biofísico fetal alterado.</p>\n\n<p>Conecte este conhecimento com outros tópicos importantes: <strong>conduta expectante versus resolução da gestação</strong> na RCF, uso de corticosteroides para maturação pulmonar, e protocolos de vigilância fetal. A dopplervelocimetria do ducto venoso frequentemente determina o timing da resolução da gestação em casos de RCF precoce.</p>\n\n<p>Para aprofundamento, estude as diretrizes da Federação Brasileira de Ginecologia e Obstetrícia (FEBRASGO) sobre vigilância fetal e restrição de crescimento, além dos consensos internacionais sobre dopplervelocimetria obstétrica. Pratique a interpretação de traçados de doppler e correlacione com desfechos perinatais.</p><figure data-okr=\"ilustracao\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/image20250120T113900300Z868878.png\" alt=\"\" style=\"max-width:100%\"></figure><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 321142,
+        "number": 9,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "p",
+        "question_ai_update": null,
+        "focus_name": "Abordagem Inicial ao Politraumatizado",
+        "focus": {
+          "id": 1825,
+          "name": "Abordagem Inicial ao Politraumatizado"
+        }
+      },
+      "detail": {
+        "id": 321142,
+        "content": "Na reanimação de um traumatizado admitido 40 minutos após o evento, em choque hipovolêmico grau IV. O QUE É TRANSFUSÃO MACIÇA?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 5,
+          "abbreviation": "R+CG"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 2406,
+            "parent_tag": {
+              "id": 2328,
+              "name": "Cirurgia do Trauma",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Abordagem Inicial ao Politraumatizado",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              5
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 9,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 7,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1825,
+          "name": "Abordagem Inicial ao Politraumatizado",
+          "discipline": {
+            "id": 63,
+            "name": "Cirurgia Geral",
+            "residency_degree": 5,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 140,
+            "name": "Cirurgia do Trauma",
+            "discipline": 63,
+            "old_tag": 2328,
+            "residency_degree_abbreviation": "R+CG"
+          }
+        }
+      },
+      "explanation": {
+        "id": 593648,
+        "actual_explanation": true,
+        "introduction": "<p>No cerne desta questão está a <strong>definição precisa de transfusão maciça</strong> em um cenário crítico de trauma. O caso apresenta um paciente traumatizado em <strong>choque hipovolêmico grau IV</strong>, que representa a classificação mais grave de perda volêmica (superior a 40% do volume sanguíneo circulante), exigindo reanimação agressiva e possivelmente transfusão maciça.</p>\n\n<p>Este é um conceito fundamental em medicina de emergência e cirurgia do trauma, frequentemente cobrado em provas de residência. A <strong>transfusão maciça</strong> é um protocolo específico utilizado em situações de hemorragia grave, quando a perda sanguínea é tão significativa que requer reposição volumosa de concentrado de hemácias em curto período.</p>\n\n<p>A resposta correta estabelece que <strong>transfusão maciça é definida como a transfusão de mais de 10 unidades de concentrado de hemácias nas primeiras 24 horas após a admissão</strong>. Esta definição é padronizada e amplamente aceita na literatura médica, sendo essencial para o manejo adequado de pacientes politraumatizados com hemorragia significativa.</p>\n\n<p>O entendimento deste conceito é crucial porque determina não apenas o volume de hemácias a ser transfundido, mas também ativa protocolos específicos que incluem a administração proporcional de plasma fresco congelado, concentrado de plaquetas e crioprecipitado, seguindo a estratégia de <strong>razão fixa 1:1:1</strong> para prevenir a coagulopatia dilucional e melhorar os desfechos do paciente.</p>",
+        "option_a": "",
+        "short_option_a": "",
+        "option_b": "",
+        "short_option_b": "",
+        "option_c": "",
+        "short_option_c": "",
+        "option_d": "",
+        "short_option_d": "",
+        "option_e": "",
+        "short_option_e": "",
+        "conclusion": "<p>Para dominar este tipo de questão, foque em <strong>memorizar números e critérios específicos</strong> relacionados aos protocolos de trauma. A definição de transfusão maciça (>10 unidades de CH em 24h) é um conceito que aparece frequentemente em provas e deve ser decorado exatamente como apresentado.</p>\n\n<p><strong>Estratégia para questões similares:</strong> Quando se deparar com cenários de trauma grave e choque hipovolêmico, sempre considere os protocolos padronizados. A pergunta pode variar entre definições conceituais (como nesta questão) ou situações práticas onde você precisa decidir quando iniciar transfusão maciça.</p>\n\n<p><strong>Principais armadilhas a evitar:</strong> Não confunda transfusão maciça com outros protocolos relacionados. Algumas fontes antigas mencionavam critérios diferentes (como >1 volemia em 24h ou >50% da volemia em 3h), mas o critério atual padronizado é sempre >10 unidades em 24h. Também não confunda com os protocolos de razão fixa (1:1:1), que são consequência da transfusão maciça, não sua definição.</p>\n\n<p><strong>Conexões importantes:</strong> Este conceito conecta-se diretamente com coagulopatia traumática, protocolos de damage control surgery, classificação do choque hipovolêmico e manejo de politraumatizado. Estude estes temas em conjunto para uma compreensão completa.</p>\n\n<p><strong>Dica prática:</strong> Em provas, quando vir \"choque hipovolêmico grau IV\" ou \"perda sanguínea maciça\", imediatamente pense nos critérios de transfusão maciça e seus protocolos associados. É um tema que conecta emergency medicine, cirurgia e hematologia.</p><figure data-okr=\"ilustracao\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/2023-01-20_13-28-59/image13.png\" alt=\"\" style=\"max-width:100%\"></figure>",
+        "update_note": "",
+        "lesson_reference": "",
+        "full_explanation": "<p>No cerne desta questão está a <strong>definição precisa de transfusão maciça</strong> em um cenário crítico de trauma. O caso apresenta um paciente traumatizado em <strong>choque hipovolêmico grau IV</strong>, que representa a classificação mais grave de perda volêmica (superior a 40% do volume sanguíneo circulante), exigindo reanimação agressiva e possivelmente transfusão maciça.</p>\n\n<p>Este é um conceito fundamental em medicina de emergência e cirurgia do trauma, frequentemente cobrado em provas de residência. A <strong>transfusão maciça</strong> é um protocolo específico utilizado em situações de hemorragia grave, quando a perda sanguínea é tão significativa que requer reposição volumosa de concentrado de hemácias em curto período.</p>\n\n<p>A resposta correta estabelece que <strong>transfusão maciça é definida como a transfusão de mais de 10 unidades de concentrado de hemácias nas primeiras 24 horas após a admissão</strong>. Esta definição é padronizada e amplamente aceita na literatura médica, sendo essencial para o manejo adequado de pacientes politraumatizados com hemorragia significativa.</p>\n\n<p>O entendimento deste conceito é crucial porque determina não apenas o volume de hemácias a ser transfundido, mas também ativa protocolos específicos que incluem a administração proporcional de plasma fresco congelado, concentrado de plaquetas e crioprecipitado, seguindo a estratégia de <strong>razão fixa 1:1:1</strong> para prevenir a coagulopatia dilucional e melhorar os desfechos do paciente.</p><br>Visão do aprovado: <p>Para dominar este tipo de questão, foque em <strong>memorizar números e critérios específicos</strong> relacionados aos protocolos de trauma. A definição de transfusão maciça (>10 unidades de CH em 24h) é um conceito que aparece frequentemente em provas e deve ser decorado exatamente como apresentado.</p>\n\n<p><strong>Estratégia para questões similares:</strong> Quando se deparar com cenários de trauma grave e choque hipovolêmico, sempre considere os protocolos padronizados. A pergunta pode variar entre definições conceituais (como nesta questão) ou situações práticas onde você precisa decidir quando iniciar transfusão maciça.</p>\n\n<p><strong>Principais armadilhas a evitar:</strong> Não confunda transfusão maciça com outros protocolos relacionados. Algumas fontes antigas mencionavam critérios diferentes (como >1 volemia em 24h ou >50% da volemia em 3h), mas o critério atual padronizado é sempre >10 unidades em 24h. Também não confunda com os protocolos de razão fixa (1:1:1), que são consequência da transfusão maciça, não sua definição.</p>\n\n<p><strong>Conexões importantes:</strong> Este conceito conecta-se diretamente com coagulopatia traumática, protocolos de damage control surgery, classificação do choque hipovolêmico e manejo de politraumatizado. Estude estes temas em conjunto para uma compreensão completa.</p>\n\n<p><strong>Dica prática:</strong> Em provas, quando vir \"choque hipovolêmico grau IV\" ou \"perda sanguínea maciça\", imediatamente pense nos critérios de transfusão maciça e seus protocolos associados. É um tema que conecta emergency medicine, cirurgia e hematologia.</p><figure data-okr=\"ilustracao\"><img src=\"https://cdn.medway.com.br/media/question_explanation_images/2023-01-20_13-28-59/image13.png\" alt=\"\" style=\"max-width:100%\"></figure><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    },
+    {
+      "meta": {
+        "id": 321143,
+        "number": 10,
+        "main_speciality_name": "Cirurgia Geral",
+        "canceled": false,
+        "is_outdated": false,
+        "difficulty": "m",
+        "max_priority": "h",
+        "question_ai_update": null,
+        "focus_name": "Damage Control e Protocolo de Transfusão Maciça",
+        "focus": {
+          "id": 1815,
+          "name": "Damage Control e Protocolo de Transfusão Maciça"
+        }
+      },
+      "detail": {
+        "id": 321143,
+        "content": "Na reanimação de um traumatizado admitido 40 minutos após o evento, em choque hipovolêmico grau IV. COMO DEVE SER REALIZADA?",
+        "options": [],
+        "images": [],
+        "institution": {
+          "id": 24,
+          "name": "UNICAMP",
+          "state": "SP"
+        },
+        "speciality": [
+          {
+            "id": 29,
+            "abbreviation": "CIR",
+            "name": "Cirurgia Geral",
+            "main_speciality": true
+          }
+        ],
+        "new_residency_degree": {
+          "id": 5,
+          "abbreviation": "R+CG"
+        },
+        "canceled": false,
+        "is_outdated": false,
+        "question_type": "d",
+        "year": 2024,
+        "tag": [
+          {
+            "id": 2416,
+            "parent_tag": {
+              "id": 2328,
+              "name": "Cirurgia do Trauma",
+              "parent_tag": null,
+              "tag_type": "t"
+            },
+            "name": "Damage Control e Protocolo de Transfusão Maciça",
+            "main_tag": false,
+            "residency_degree": "r3",
+            "tag_type": "f",
+            "specialities": [
+              29
+            ],
+            "new_residency_degree": [
+              5
+            ]
+          }
+        ],
+        "correct_letters": [],
+        "original_question_number": 10,
+        "physicians": [],
+        "is_comment_from_ia": true,
+        "has_cfa": false,
+        "answer_count": 10,
+        "question_ai_update": null,
+        "focus": {
+          "id": 1815,
+          "name": "Damage Control e Protocolo de Transfusão Maciça",
+          "discipline": {
+            "id": 63,
+            "name": "Cirurgia Geral",
+            "residency_degree": 5,
+            "speciality": 29
+          },
+          "theme": {
+            "id": 140,
+            "name": "Cirurgia do Trauma",
+            "discipline": 63,
+            "old_tag": 2328,
+            "residency_degree_abbreviation": "R+CG"
+          }
+        }
+      },
+      "explanation": {
+        "id": 390921,
+        "actual_explanation": true,
+        "introduction": "<p>No cerne desta questão está a <strong>reanimação hemostática</strong> em trauma grave, um dos temas mais importantes da medicina de emergência moderna. O cenário apresenta um paciente traumatizado há 40 minutos em <strong>choque hipovolêmico grau IV</strong>, que representa a forma mais severa de choque hemorrágico, com perda sanguínea superior a 40% do volume circulante (&gt;2000ml em adulto de 70kg).</p>\n<p>Esta é uma situação crítica que exige aplicação imediata dos conceitos de <strong>damage control resuscitation</strong>, abandonando paradigmas antigos de reanimação com grandes volumes de cristaloides. O choque grau IV caracteriza-se por alterações hemodinâmicas graves: taquicardia extrema (&gt;140 bpm), hipotensão severa (PAS &lt;70 mmHg), oligúria/anúria, alteração do nível de consciência e sinais de hipoperfusão tecidual.</p>\n<p>A resposta correta enfatiza a <strong>reanimação hemostática precoce</strong>, que consiste na administração simultânea de concentrado de hemácias, plasma fresco congelado, plaquetas e <span class=\"article-3086\">ácido tranexâmico</span>, limitando deliberadamente o uso de cristaloides. Este protocolo visa corrigir simultaneamente a anemia, coagulopatia e plaquetopenia que compõem a tríade letal do trauma, além de controlar a fibrinólise excessiva.</p>",
+        "option_a": null,
+        "short_option_a": null,
+        "option_b": null,
+        "short_option_b": null,
+        "option_c": null,
+        "short_option_c": null,
+        "option_d": null,
+        "short_option_d": null,
+        "option_e": null,
+        "short_option_e": null,
+        "conclusion": "<p>Para dominar esse tipo de questão, é fundamental compreender que a medicina do trauma evoluiu significativamente nos últimos 15 anos. O conceito clássico de reanimação com grandes volumes de cristaloides foi substituído pela <strong>reanimação hemostática</strong>, baseada em evidências de estudos militares e civis.</p>\n<p>A <strong>estratégia de estudo</strong> deve focar na memorização da proporção ideal: 1:1:1 (concentrado de hemácias : plasma fresco : plaquetas), lembrando que alguns protocolos usam 2:1:1. O <span class=\"article-3086\">ácido tranexâmico</span> tornou-se padrão após o estudo CRASH-2, que demonstrou redução de 15% na mortalidade quando administrado nas primeiras 3 horas.</p>\n<p><strong>Armadilha comum:</strong> confundir com protocolos antigos que priorizavam cristaloides. Lembre-se: em choque grau IV por trauma, hemoderivados são prioritários! Outra armadilha é esquecer do <span class=\"article-3086\">ácido tranexâmico</span> - hoje é considerado parte essencial da reanimação hemostática.</p>\n<p><strong>Conexões importantes:</strong> este tema conecta-se com fisiologia da coagulação, classificação do choque, damage control surgery, medicina transfusional e farmacologia dos antifibrinolíticos. É comum aparecer integrado com questões de ATLS (Advanced Trauma Life Support).</p>\n<p><strong>Dica prática:</strong> sempre que vir \"choque hipovolêmico grau III ou IV por trauma\", pense imediatamente em reanimação hemostática, não em cristaloides. O tempo é crítico - quanto mais precoce a intervenção, melhor o prognóstico.</p>\n<p>Para aprofundamento, recomendo estudar as diretrizes do Colégio Americano de Cirurgiões, protocolos de massive transfusion protocol (MTP) e os estudos CRASH-2 e PROPPR, que fundamentaram as condutas atuais na reanimação do trauma grave.</p>",
+        "update_note": null,
+        "lesson_reference": null,
+        "full_explanation": "<p>No cerne desta questão está a <strong>reanimação hemostática</strong> em trauma grave, um dos temas mais importantes da medicina de emergência moderna. O cenário apresenta um paciente traumatizado há 40 minutos em <strong>choque hipovolêmico grau IV</strong>, que representa a forma mais severa de choque hemorrágico, com perda sanguínea superior a 40% do volume circulante (&gt;2000ml em adulto de 70kg).</p>\n<p>Esta é uma situação crítica que exige aplicação imediata dos conceitos de <strong>damage control resuscitation</strong>, abandonando paradigmas antigos de reanimação com grandes volumes de cristaloides. O choque grau IV caracteriza-se por alterações hemodinâmicas graves: taquicardia extrema (&gt;140 bpm), hipotensão severa (PAS &lt;70 mmHg), oligúria/anúria, alteração do nível de consciência e sinais de hipoperfusão tecidual.</p>\n<p>A resposta correta enfatiza a <strong>reanimação hemostática precoce</strong>, que consiste na administração simultânea de concentrado de hemácias, plasma fresco congelado, plaquetas e <span class=\"article-3086\">ácido tranexâmico</span>, limitando deliberadamente o uso de cristaloides. Este protocolo visa corrigir simultaneamente a anemia, coagulopatia e plaquetopenia que compõem a tríade letal do trauma, além de controlar a fibrinólise excessiva.</p><br>Visão do aprovado: <p>Para dominar esse tipo de questão, é fundamental compreender que a medicina do trauma evoluiu significativamente nos últimos 15 anos. O conceito clássico de reanimação com grandes volumes de cristaloides foi substituído pela <strong>reanimação hemostática</strong>, baseada em evidências de estudos militares e civis.</p>\n<p>A <strong>estratégia de estudo</strong> deve focar na memorização da proporção ideal: 1:1:1 (concentrado de hemácias : plasma fresco : plaquetas), lembrando que alguns protocolos usam 2:1:1. O <span class=\"article-3086\">ácido tranexâmico</span> tornou-se padrão após o estudo CRASH-2, que demonstrou redução de 15% na mortalidade quando administrado nas primeiras 3 horas.</p>\n<p><strong>Armadilha comum:</strong> confundir com protocolos antigos que priorizavam cristaloides. Lembre-se: em choque grau IV por trauma, hemoderivados são prioritários! Outra armadilha é esquecer do <span class=\"article-3086\">ácido tranexâmico</span> - hoje é considerado parte essencial da reanimação hemostática.</p>\n<p><strong>Conexões importantes:</strong> este tema conecta-se com fisiologia da coagulação, classificação do choque, damage control surgery, medicina transfusional e farmacologia dos antifibrinolíticos. É comum aparecer integrado com questões de ATLS (Advanced Trauma Life Support).</p>\n<p><strong>Dica prática:</strong> sempre que vir \"choque hipovolêmico grau III ou IV por trauma\", pense imediatamente em reanimação hemostática, não em cristaloides. O tempo é crítico - quanto mais precoce a intervenção, melhor o prognóstico.</p>\n<p>Para aprofundamento, recomendo estudar as diretrizes do Colégio Americano de Cirurgiões, protocolos de massive transfusion protocol (MTP) e os estudos CRASH-2 e PROPPR, que fundamentaram as condutas atuais na reanimação do trauma grave.</p><br>",
+        "students_difficulty": "m",
+        "bibliography": null,
+        "image_explanation": null
+      }
+    }
+  ],
+  "extracted_at": "2026-09-26T17:49:52.044399+00:00",
+  "complete": true
+}
