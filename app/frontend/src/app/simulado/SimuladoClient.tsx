@@ -150,6 +150,33 @@ export function SimuladoClient({
   const [downloadProgress, setDownloadProgress] = useState(0);
   const [downloadStatus, setDownloadStatus] = useState("");
 
+  const groupedInstitutions = useMemo(() => {
+    const map = new Map<string, { codes: string[], n: number }>();
+    const defaultInsts = ['SCMSP', 'USP-SP', 'SUS-SP', 'USP-RP', 'UNIFESP', 'HSL', 'EINSTEIN', 'UNICAMP', 'HRAC-USP'];
+    
+    if (meta?.institutions) {
+        for (const i of meta.institutions) {
+            let base = i.institution_code.replace(/\s+\d{4}$/, '').replace(/\s+\d$/, '').trim();
+            if (base === 'FAMEMA SP') base = 'FAMEMA';
+            if (base === 'SCMRP') base = 'SCM-RP';
+            if (base === 'SCM') base = 'SCM-SP';
+            
+            const existing = map.get(base);
+            if (existing) {
+                existing.codes.push(i.institution_code);
+                existing.n += i.n;
+            } else {
+                map.set(base, { codes: [i.institution_code], n: i.n });
+            }
+        }
+        return Array.from(map.entries())
+            .map(([base, data]) => ({ base, codes: data.codes, n: data.n }))
+            .sort((a, b) => b.n - a.n);
+    } else {
+        return defaultInsts.map(code => ({ base: code, codes: [code], n: 0 }));
+    }
+  }, [meta?.institutions]);
+
   const refreshOfflinePackage = useCallback(async () => {
     if (typeof window === "undefined" || !localDb) return;
     try {
@@ -941,22 +968,26 @@ export function SimuladoClient({
             <div>
               <label className="block text-sm font-bold text-foreground mb-2">Bancas Incluídas (deixe vazio para todas)</label>
               <div className="flex flex-wrap gap-2">
-                {(meta?.institutions.map(i => i.institution_code) || ['SCMSP', 'USP-SP', 'SUS-SP', 'USP-RP', 'UNIFESP', 'HSL', 'EINSTEIN', 'UNICAMP', 'HRAC-USP']).map(inst => (
-                  <label key={inst} className="flex items-center gap-1.5 bg-background border border-border px-3 py-1.5 rounded-lg text-sm cursor-pointer hover:bg-muted transition-colors">
+                {groupedInstitutions.map(instGroup => (
+                  <label key={instGroup.base} className="flex items-center gap-1.5 bg-background border border-border px-3 py-1.5 rounded-lg text-sm cursor-pointer hover:bg-muted transition-colors">
                     <input
                       type="checkbox"
-                      checked={customConfig.institutions.includes(inst)}
+                      checked={customConfig.institutions.some(c => instGroup.codes.includes(c))}
                       onChange={(e) => {
-                        setCustomConfig(prev => ({
-                          ...prev,
-                          institutions: e.target.checked
-                            ? [...prev.institutions, inst]
-                            : prev.institutions.filter(i => i !== inst)
-                        }))
+                        setCustomConfig(prev => {
+                          let newInsts = [...prev.institutions];
+                          if (e.target.checked) {
+                            newInsts.push(...instGroup.codes);
+                            newInsts = Array.from(new Set(newInsts));
+                          } else {
+                            newInsts = newInsts.filter(c => !instGroup.codes.includes(c));
+                          }
+                          return { ...prev, institutions: newInsts };
+                        });
                       }}
                       className="rounded text-primary focus:ring-primary w-4 h-4"
                     />
-                    {inst}
+                    {instGroup.base} {instGroup.n > 0 ? `(${instGroup.n})` : ''}
                   </label>
                 ))}
               </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import clsx from "clsx";
 import { Filter, RotateCcw, Play, RefreshCw, Brain, SlidersHorizontal, BookOpenCheck, FileSignature, X, Search } from "lucide-react";
 import { QuestionMeta } from "@/types/api";
@@ -50,6 +50,41 @@ export function QuizFilters({
   showTopicTree,
   setShowTopicTree
 }: QuizFiltersProps) {
+  const groupedInstitutions = useMemo(() => {
+    const map = new Map<string, { codes: string[], n: number }>();
+    for (const i of dynamicMeta?.institutions || []) {
+        let base = i.institution_code.replace(/\s+\d{4}$/, '').replace(/\s+\d$/, '').trim();
+        if (base === 'FAMEMA SP') base = 'FAMEMA';
+        if (base === 'SCMRP') base = 'SCM-RP';
+        if (base === 'SCM') base = 'SCM-SP';
+        
+        const existing = map.get(base);
+        if (existing) {
+            existing.codes.push(i.institution_code);
+            existing.n += i.n;
+        } else {
+            map.set(base, { codes: [i.institution_code], n: i.n });
+        }
+    }
+    return Array.from(map.entries())
+        .map(([base, data]) => ({ base, codes: data.codes, n: data.n }))
+        .sort((a, b) => b.n - a.n);
+  }, [dynamicMeta?.institutions]);
+
+  const selectedInstValue = useMemo(() => {
+    if (!filters.institution) return "";
+    const currentArr = Array.isArray(filters.institution) ? filters.institution : [filters.institution];
+    for (const g of groupedInstitutions) {
+       if (g.codes.length === currentArr.length && g.codes.every(c => currentArr.includes(c))) {
+           return g.base;
+       }
+    }
+    const single = currentArr[0];
+    const group = groupedInstitutions.find(g => g.codes.includes(single));
+    if (group && currentArr.length === 1) return group.base; 
+    return "";
+  }, [filters.institution, groupedInstitutions]);
+
 return (
   <div className="bg-card border border-border shadow-1 rounded-xl p-8 max-w-2xl mx-auto w-full">
     <div className="flex items-center gap-4 mb-6">
@@ -241,13 +276,27 @@ return (
 
         <select 
           className="w-full bg-input border border-border rounded-md py-2.5 px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-          value={filters.institution || ""}
-          onChange={(e) => setFilters({ ...filters, institution: e.target.value })}
+          value={selectedInstValue}
+          onChange={(e) => {
+             const val = e.target.value;
+             if (val === "") {
+                 const newFilters = { ...filters };
+                 delete newFilters.institution;
+                 setFilters(newFilters);
+             } else {
+                 const group = groupedInstitutions.find(g => g.base === val);
+                 if (group) {
+                     setFilters({ ...filters, institution: group.codes });
+                 } else {
+                     setFilters({ ...filters, institution: val });
+                 }
+             }
+          }}
         >
           <option className="bg-background text-foreground" value="">Todas as Instituições ({dynamicMeta?.total_questions ?? 0})</option>
-          {(dynamicMeta.institutions || []).map(i => (
-            <option className="bg-background text-foreground" key={i.institution_code} value={i.institution_code}>
-              {i.institution_code} • {i.institution_label || i.institution_code} ({i.n})
+          {groupedInstitutions.map(g => (
+            <option className="bg-background text-foreground" key={g.base} value={g.base}>
+              {g.base} ({g.n})
             </option>
           ))}
         </select>
