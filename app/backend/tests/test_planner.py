@@ -32,8 +32,8 @@ def test_plan_uses_curriculum_theory_duration_and_two_hour_practice_block():
     result = generate_annual_plan(
         rows,
         start.isoformat(),
-        (start + timedelta(weeks=8)).isoformat(),
-        hours_per_week=10,
+        (start + timedelta(weeks=26)).isoformat(),
+        hours_per_week=24,
     )
 
     topics = [topic for week in result["plan"] for topic in week["topics"]]
@@ -91,7 +91,7 @@ def test_go_focos_usp_are_high_yield():
 
 def test_proportional_distribution_avoids_end_concentration():
     rows = []
-    start = date.today()
+    start = date(2028, 1, 1)
     result = generate_annual_plan(
         rows,
         start.isoformat(),

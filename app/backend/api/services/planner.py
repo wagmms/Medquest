@@ -295,10 +295,43 @@ def _build_weekly_plan(all_topics, start_date, total_weeks, hours_per_week):
                 candidates.sort(key=lambda a: len(topics_by_area[a]), reverse=True)
                 selected_area = candidates[0]
 
-            topic = topics_by_area[selected_area].pop(0)
-            week_topics.append(topic)
-            current_week_hours += topic["estimated_hours"]
-            allocated_hours = topic["estimated_hours"]
+            def fits(t):
+                # Se a semana está vazia, aceita qualquer tópico para não travar
+                if current_week_hours == 0:
+                    return True
+                # Tolera até ~1h de ultrapassagem do limite
+                return (current_week_hours + t["estimated_hours"]) <= (hours_per_week + 1.0)
+                
+            candidate_area = None
+            candidate_idx = -1
+            
+            # 1. Procura um tópico que caiba na área selecionada
+            for idx, t in enumerate(topics_by_area[selected_area]):
+                if fits(t):
+                    candidate_area = selected_area
+                    candidate_idx = idx
+                    break
+                    
+            # 2. Se não couber, busca nas outras áreas ativas (para aproveitar o tempo ocioso da semana)
+            if candidate_area is None:
+                for a in active_areas:
+                    if a == selected_area:
+                        continue
+                    for idx, t in enumerate(topics_by_area[a]):
+                        if fits(t):
+                            candidate_area = a
+                            candidate_idx = idx
+                            break
+                    if candidate_area is not None:
+                        break
+                        
+            if candidate_area is not None:
+                topic = topics_by_area[candidate_area].pop(candidate_idx)
+                week_topics.append(topic)
+                current_week_hours += topic["estimated_hours"]
+            else:
+                # Nenhum tópico de nenhuma área cabe no tempo restante da semana
+                break
 
         plan.append({
             "week": week,
