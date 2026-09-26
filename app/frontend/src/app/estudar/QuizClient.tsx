@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { QuestionMeta, QuestionListItem, QuestionDetail, AttemptResult, FlashcardGenerateResponse } from "@/types/api";
 import { api, OfflineQueuedError } from "@/lib/api";
-import { Clock, CheckCircle2, XCircle, BookOpen, Heart, ArrowRight, Sparkles, ArrowLeft, ImageOff, Maximize, Minimize, AlertTriangle, X, CloudOff, RotateCcw, Brain, Pencil, Stethoscope } from "lucide-react";
+import { Clock, CheckCircle2, XCircle, BookOpen, Heart, ArrowRight, Sparkles, ArrowLeft, ImageOff, Maximize, Minimize, AlertTriangle, X, CloudOff, RotateCcw, Brain, Pencil, Stethoscope, Eye, EyeOff } from "lucide-react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -143,6 +143,23 @@ export function QuizClient({
   const [savedSessionData, setSavedSessionData] = useState<SavedQuizState | null>(null);
 
   const [studyMode, setStudyMode] = useState<"TUTOR" | "SIMULADO">("TUTOR");
+  const [showTopic, setShowTopic] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("medquest_show_topic");
+      if (saved !== null) {
+        return saved === "true";
+      }
+    }
+    return true;
+  });
+
+  const toggleTopic = () => {
+    setShowTopic(prev => {
+      const next = !prev;
+      localStorage.setItem("medquest_show_topic", String(next));
+      return next;
+    });
+  };
   const [dynamicMeta, setDynamicMeta] = useState<QuestionMeta>(meta || DEFAULT_META);
   const [isUpdatingMeta, setIsUpdatingMeta] = useState(false);
   
@@ -1301,8 +1318,30 @@ export function QuizClient({
                   </span>
                 )}
                 <span className="bg-muted px-2 py-1 rounded">{q.institution_code}{q.is_autoral ? " (A)" : ""} {q.year}</span>
-                <span className="bg-muted px-2 py-1 rounded">{q.area}</span>
-                <span className="bg-muted px-2 py-1 rounded">{q.subtema}</span>
+                {(q.area || q.subtema) && (
+                  <button
+                    type="button"
+                    onClick={toggleTopic}
+                    className="bg-muted px-2 py-1 rounded flex items-center gap-1.5 transition-colors hover:bg-muted/80 cursor-pointer text-left"
+                    title={showTopic ? "Ocultar Tema" : "Mostrar Tema"}
+                  >
+                    {showTopic ? (
+                      <>
+                        <span className="flex items-center gap-1.5">
+                          {q.area && <span>{q.area}</span>}
+                          {q.area && q.subtema && <span>&bull;</span>}
+                          {q.subtema && <span>{q.subtema}</span>}
+                        </span>
+                        <EyeOff size={13} className="text-muted-foreground ml-0.5" />
+                      </>
+                    ) : (
+                      <>
+                        <span>Tema Oculto</span>
+                        <Eye size={13} className="text-muted-foreground ml-0.5" />
+                      </>
+                    )}
+                  </button>
+                )}
                 {isCurator && (
                   <button
                     type="button"

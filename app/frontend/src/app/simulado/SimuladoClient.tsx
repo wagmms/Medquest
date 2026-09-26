@@ -5,7 +5,7 @@ import { QuestionMeta, QuestionListItem, QuestionDetail, BatchAttemptItem, Batch
 import { api, OfflineQueuedError } from "@/lib/api";
 import { localDb, getLocalOwnerId, SimuladoPackage, isPackageValid } from "@/lib/db";
 import { getReadySimuladoPackage, downloadSimuladoPackage } from "@/lib/simuladoPackage";
-import { Play, Clock, ChevronLeft, ChevronRight, FileSignature, AlertTriangle, BookOpen, AlertCircle, RotateCcw, Flag, CloudOff, Sparkles, CheckCircle2, Pencil, Download, RefreshCw, Database } from "lucide-react";
+import { Play, Clock, ChevronLeft, ChevronRight, FileSignature, AlertTriangle, BookOpen, AlertCircle, RotateCcw, Flag, CloudOff, Sparkles, CheckCircle2, Pencil, Download, RefreshCw, Database, Eye, EyeOff } from "lucide-react";
 
 import clsx from "clsx";
 import toast from "react-hot-toast";
@@ -78,6 +78,23 @@ export function SimuladoClient({
   const [detailError, setDetailError] = useState(false);
   const [showAreaSummary, setShowAreaSummary] = useState(false);
   const [showResultsSummary, setShowResultsSummary] = useState(false);
+  const [showTopic, setShowTopic] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("medquest_show_topic");
+      if (saved !== null) {
+        return saved === "true";
+      }
+    }
+    return true;
+  });
+
+  const toggleTopic = () => {
+    setShowTopic(prev => {
+      const next = !prev;
+      localStorage.setItem("medquest_show_topic", String(next));
+      return next;
+    });
+  };
   const [enlargedImage, setEnlargedImage] = useState<string | null>(null);
 
   // Answers: question_id -> letter
@@ -1548,8 +1565,30 @@ export function SimuladoClient({
                   </span>
                 )}
                 <span className="bg-muted px-2 py-1 rounded">{qDetail.institution_code}{qDetail.is_autoral ? " (A)" : ""} {qDetail.year}</span>
-                <span className="bg-muted px-2 py-1 rounded">{qDetail.area}</span>
-                <span className="bg-muted px-2 py-1 rounded">{qDetail.subtema}</span>
+                {(qDetail.area || qDetail.subtema) && (
+                  <button
+                    type="button"
+                    onClick={toggleTopic}
+                    className="bg-muted px-2 py-1 rounded flex items-center gap-1.5 transition-colors hover:bg-muted/80 cursor-pointer text-left"
+                    title={showTopic ? "Ocultar Tema" : "Mostrar Tema"}
+                  >
+                    {showTopic ? (
+                      <>
+                        <span className="flex items-center gap-1.5">
+                          {qDetail.area && <span>{qDetail.area}</span>}
+                          {qDetail.area && qDetail.subtema && <span>&bull;</span>}
+                          {qDetail.subtema && <span>{qDetail.subtema}</span>}
+                        </span>
+                        <EyeOff size={13} className="text-muted-foreground ml-0.5" />
+                      </>
+                    ) : (
+                      <>
+                        <span>Tema Oculto</span>
+                        <Eye size={13} className="text-muted-foreground ml-0.5" />
+                      </>
+                    )}
+                  </button>
+                )}
                 {isCurator && (
                   <button
                     type="button"
