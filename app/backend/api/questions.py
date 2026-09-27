@@ -1459,6 +1459,20 @@ def delete_question(qid):
                 pass
         db.execute("DELETE FROM questions WHERE id = ?", (qid,))
 
+        # Registra tombstone para sincronização bidirecional segura (SQLite <-> Turso)
+        db.execute("""
+            CREATE TABLE IF NOT EXISTS deleted_questions (
+                question_id INTEGER PRIMARY KEY,
+                deleted_at TEXT,
+                deleted_by TEXT
+            )
+        """)
+        now_iso = datetime.now(timezone.utc).isoformat()
+        db.execute(
+            "INSERT OR REPLACE INTO deleted_questions (question_id, deleted_at, deleted_by) VALUES (?, ?, ?)",
+            (qid, now_iso, user_email),
+        )
+
     meta_cache.cache.clear()
     invalidate_user_caches(g.user_id)
 

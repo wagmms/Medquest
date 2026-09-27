@@ -82,8 +82,10 @@ def sync_database(verbose: bool = True) -> bool:
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
-    # 1. Obter contagens e IDs remotos
+    # 1. Obter contagens, IDs remotos e sincronizar tabela de exclusões (tombstones)
     check_reqs = [
+        {"type": "execute", "stmt": {"sql": "CREATE TABLE IF NOT EXISTS deleted_questions (question_id INTEGER PRIMARY KEY, deleted_at TEXT, deleted_by TEXT)"}},
+        {"type": "execute", "stmt": {"sql": "SELECT question_id FROM deleted_questions"}},
         {"type": "execute", "stmt": {"sql": "SELECT id FROM questions"}},
         {"type": "execute", "stmt": {"sql": "SELECT id FROM alternatives"}},
         {"type": "execute", "stmt": {"sql": "SELECT question_id, length(explanation_text) FROM explanations WHERE explanation_text IS NOT NULL"}},
@@ -92,11 +94,13 @@ def sync_database(verbose: bool = True) -> bool:
 
     try:
         remote_data = execute_turso_pipeline(url, token, check_reqs, timeout=60)
-        res_q = remote_data["results"][0]["response"]["result"]["rows"]
-        res_a = remote_data["results"][1]["response"]["result"]["rows"]
-        res_e = remote_data["results"][2]["response"]["result"]["rows"]
-        res_i = remote_data["results"][3]["response"]["result"]["rows"]
+        res_del = remote_data["results"][1]["response"]["result"]["rows"]
+        res_q = remote_data["results"][2]["response"]["result"]["rows"]
+        res_a = remote_data["results"][3]["response"]["result"]["rows"]
+        res_e = remote_data["results"][4]["response"]["result"]["rows"]
+        res_i = remote_data["results"][5]["response"]["result"]["rows"]
 
+        remote_deleted_ids = {int(r[0]["value"]) for r in res_del if r}
         remote_q_ids = {int(r[0]["value"]) for r in res_q if r}
         remote_a_ids = {int(r[0]["value"]) for r in res_a if r}
         remote_e_map = {int(r[0]["value"]): int(r[1]["value"]) for r in res_e if r and r[1]["value"] is not None}
@@ -105,11 +109,81 @@ def sync_database(verbose: bool = True) -> bool:
         print(f"  [ERRO] Falha ao consultar estado do banco remoto Turso: {e}")
         return False
 
-    # 2. Sincronizar Questions faltantes
+    # 1b. Sincronizar exclusões bidirecionais (evita reenvio de questões deletadas online)
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS deleted_questions (
+            question_id INTEGER PRIMARY KEY,
+            deleted_at TEXT,
+            deleted_by TEXT
+        )
+    """)
+    local_deleted_ids = {r[0] for r in cur.execute("SELECT question_id FROM deleted_questions").fetchall()}
+
+    # Aplicar exclusões remotas no banco local
+    to_delete_locally = [
+        qid for qid in remote_deleted_ids
+        if qid not in local_deleted_ids or cur.execute("SELECT 1 FROM questions WHERE id = ?", (qid,)).fetchone()
+    ]
+    if to_delete_locally:
+        if verbose:
+            print(f"  [-] Sincronizando {len(to_delete_locally)} exclusões realizadas online para o banco local SQLite...")
+        for qid in to_delete_locally:
+            cur.execute("DELETE FROM alternatives WHERE question_id = ?", (qid,))
+            cur.execute("DELETE FROM explanations WHERE question_id = ?", (qid,))
+            cur.execute("DELETE FROM question_images WHERE question_id = ?", (qid,))
+            cur.execute("DELETE FROM attempts WHERE question_id = ?", (qid,))
+            cur.execute("DELETE FROM favorites WHERE question_id = ?", (qid,))
+            cur.execute("DELETE FROM spaced_repetition WHERE question_id = ?", (qid,))
+            cur.execute("UPDATE flashcards SET question_id = NULL WHERE question_id = ?", (qid,))
+            cur.execute("DELETE FROM questions WHERE id = ?", (qid,))
+            cur.execute(
+                "INSERT OR REPLACE INTO deleted_questions (question_id, deleted_at, deleted_by) VALUES (?, datetime('now'), 'turso_sync')",
+                (qid,)
+            )
+        conn.commit()
+        local_deleted_ids.update(to_delete_locally)
+
+    # Propagar exclusões locais para o Turso Cloud se houver
+    to_delete_remotely = [qid for qid in local_deleted_ids if qid in remote_q_ids or qid not in remote_deleted_ids]
+    if to_delete_remotely:
+        if verbose:
+            print(f"  [-] Propagando {len(to_delete_remotely)} exclusões locais para o Turso Cloud...")
+        del_batch_size = 100
+        for i in range(0, len(to_delete_remotely), del_batch_size):
+            chunk = to_delete_remotely[i:i + del_batch_size]
+            ph = ",".join("?" * len(chunk))
+            del_args = [{"type": "integer", "value": str(qid)} for qid in chunk]
+            del_reqs = [
+                {"type": "execute", "stmt": {"sql": "BEGIN"}},
+                {"type": "execute", "stmt": {"sql": f"DELETE FROM alternatives WHERE question_id IN ({ph})", "args": del_args}},
+                {"type": "execute", "stmt": {"sql": f"DELETE FROM explanations WHERE question_id IN ({ph})", "args": del_args}},
+                {"type": "execute", "stmt": {"sql": f"DELETE FROM question_images WHERE question_id IN ({ph})", "args": del_args}},
+                {"type": "execute", "stmt": {"sql": f"DELETE FROM attempts WHERE question_id IN ({ph})", "args": del_args}},
+                {"type": "execute", "stmt": {"sql": f"DELETE FROM favorites WHERE question_id IN ({ph})", "args": del_args}},
+                {"type": "execute", "stmt": {"sql": f"DELETE FROM spaced_repetition WHERE question_id IN ({ph})", "args": del_args}},
+                {"type": "execute", "stmt": {"sql": f"UPDATE flashcards SET question_id = NULL WHERE question_id IN ({ph})", "args": del_args}},
+                {"type": "execute", "stmt": {"sql": f"DELETE FROM questions WHERE id IN ({ph})", "args": del_args}},
+            ]
+            for qid in chunk:
+                del_reqs.append({
+                    "type": "execute",
+                    "stmt": {
+                        "sql": "INSERT OR REPLACE INTO deleted_questions (question_id, deleted_at, deleted_by) VALUES (?, datetime('now'), 'local_sync')",
+                        "args": [{"type": "integer", "value": str(qid)}]
+                    }
+                })
+            del_reqs.append({"type": "execute", "stmt": {"sql": "COMMIT"}})
+            execute_turso_pipeline(url, token, del_reqs)
+        remote_deleted_ids.update(to_delete_remotely)
+        remote_q_ids.difference_update(to_delete_remotely)
+
+    all_deleted_ids = local_deleted_ids | remote_deleted_ids
+
+    # 2. Sincronizar Questions faltantes (ignorando questões que foram excluídas)
     cur.execute("SELECT * FROM questions")
     local_questions = cur.fetchall()
     q_cols = [c[1] for c in cur.execute("PRAGMA table_info(questions)").fetchall()]
-    missing_q = [q for q in local_questions if q["id"] not in remote_q_ids]
+    missing_q = [q for q in local_questions if q["id"] not in remote_q_ids and q["id"] not in all_deleted_ids]
 
     if missing_q:
         if verbose:
