@@ -60,21 +60,18 @@ export function scheduleStudyBlocks(plan: PlannerWeek[], config: PlannerConfig,
     for (const topic of week.topics) {
       const key = topicKey(week.week, topic.subtema, topic.area);
       if (completed[`${week.week}:${topic.subtema}`] || completed[topic.subtema]) continue;
-      let remaining = Math.max(30, Math.round(topic.estimated_hours * 4) * 15);
-      if (!Number.isFinite(remaining)) throw new Error("Carga horária inválida no cronograma.");
-      let part = 0;
-      while (remaining > 0) {
-        if (used >= capacity) advance();
-        ensureDay();
-        const duration = Math.min(remaining, capacity - used);
-        const start = new Date(cursor.getTime() + used * 60000);
-        blocks.push({ key: `${key}:${part++}`, topicKey: key,
-          title: topicTitle(topic.subtema, topic.area),
-          description: `Semana ${week.week} • ${topic.area} • ${topic.estimated_hours}h no total`,
-          start, end: new Date(start.getTime() + duration * 60000) });
-        used += duration;
-        remaining -= duration;
-      }
+      const duration = Math.max(30, Math.round(topic.estimated_hours * 4) * 15);
+      if (!Number.isFinite(duration)) throw new Error("Carga horária inválida no cronograma.");
+      
+      if (used >= capacity) advance();
+      ensureDay();
+      
+      const start = new Date(cursor.getTime() + used * 60000);
+      blocks.push({ key: `${key}:0`, topicKey: key,
+        title: topicTitle(topic.subtema, topic.area),
+        description: `Semana ${week.week} • ${topic.area} • ${topic.estimated_hours}h no total`,
+        start, end: new Date(start.getTime() + duration * 60000) });
+      used += duration;
     }
   }
   return blocks;
@@ -172,6 +169,14 @@ export async function syncPlanToGoogleCalendar(plan: PlannerWeek[], options: Syn
     }
   }
   const blocks = scheduleStudyBlocks(plan, options.config, completed);
+  
+  // Clean up orphaned chunks from older fragmented schedule logic
+  for (const [key, event] of byKey.entries()) {
+    if (event.colorId !== "8" && !key.endsWith(":0")) {
+      try { await request(`${base}/${encodeURIComponent(event.id)}`, { method: "DELETE" }); } catch (e) {}
+    }
+  }
+
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   for (const [index, block] of blocks.entries()) {
     options.onProgress?.({ current: index, total: blocks.length, status: `Sincronizando ${block.title}` });
