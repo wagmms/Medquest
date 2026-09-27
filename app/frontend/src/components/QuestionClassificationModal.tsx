@@ -2,7 +2,9 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Check, Loader2, Tag, Search, AlertCircle, RefreshCw } from "lucide-react";
+import { X, Check, Loader2, Tag, Search, AlertCircle, RefreshCw, Trash2 } from "lucide-react";
+import { useUser } from "@clerk/nextjs";
+import { localDb } from "@/lib/db";
 import { api } from "@/lib/api";
 
 const CANONICAL_AREAS = [
@@ -21,6 +23,7 @@ interface QuestionClassificationModalProps {
   currentSubtema: string;
   currentTopic?: string;
   onSuccess: (updated: { area: string; subtema: string; topic: string }) => void;
+  onDelete?: (questionId: number) => void;
 }
 
 export function QuestionClassificationModal({
@@ -31,7 +34,11 @@ export function QuestionClassificationModal({
   currentSubtema,
   currentTopic,
   onSuccess,
+  onDelete,
 }: QuestionClassificationModalProps) {
+  const { user } = useUser();
+  const isCuratorAdmin = user?.primaryEmailAddress?.emailAddress?.toLowerCase() === "moraes.wagg@gmail.com";
+
   const [area, setArea] = useState(currentArea || CANONICAL_AREAS[1]);
   const [subtema, setSubtema] = useState(currentSubtema || "");
   const [topic, setTopic] = useState(currentTopic || currentSubtema || "");
@@ -39,6 +46,8 @@ export function QuestionClassificationModal({
   const [searchFilter, setSearchFilter] = useState("");
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [prevOpen, setPrevOpen] = useState(isOpen);
 
@@ -51,6 +60,8 @@ export function QuestionClassificationModal({
       setTopic(currentTopic || currentSubtema || "");
       setError(null);
       setSearchFilter("");
+      setShowDeleteConfirm(false);
+      setIsDeleting(false);
     }
   }
 
@@ -138,6 +149,34 @@ export function QuestionClassificationModal({
       setError(msg);
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    setError(null);
+
+    try {
+      const res = await api.questions.deleteQuestion(questionId);
+      if (res.success) {
+        if (typeof window !== "undefined" && localDb) {
+          try {
+            await localDb.questions.where("id").equals(questionId).delete();
+          } catch {
+            // best-effort cleanup
+          }
+        }
+        onDelete?.(questionId);
+        onClose();
+      } else {
+        setError(res.message || "Não foi possível excluir a questão.");
+      }
+    } catch (err: unknown) {
+      console.error(err);
+      const msg = err instanceof Error ? err.message : "Erro ao excluir questão. Verifique suas permissões.";
+      setError(msg);
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -276,6 +315,51 @@ export function QuestionClassificationModal({
                 </div>
               )}
 
+              {/* Delete Confirmation Box */}
+              {showDeleteConfirm && (
+                <div className="p-4 bg-destructive/10 border border-destructive/30 rounded-2xl flex flex-col gap-3 animate-in fade-in zoom-in-95 duration-200">
+                  <div className="flex items-start gap-2.5">
+                    <AlertCircle size={18} className="text-destructive shrink-0 mt-0.5" />
+                    <div className="text-xs">
+                      <p className="font-bold text-destructive">
+                        Tem certeza que deseja excluir a Questão #{questionId} permanentemente?
+                      </p>
+                      <p className="text-muted-foreground mt-0.5 leading-relaxed">
+                        Esta operação apagará definitivamente a questão, alternativas, explicações e estatísticas vinculadas. Esta ação não poderá ser desfeita.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-end gap-2 pt-1">
+                    <button
+                      type="button"
+                      onClick={() => setShowDeleteConfirm(false)}
+                      disabled={isDeleting}
+                      className="px-3 py-1.5 rounded-xl text-xs font-semibold border border-border text-foreground hover:bg-muted transition-colors cursor-pointer disabled:opacity-50"
+                    >
+                      Cancelar
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleDelete}
+                      disabled={isDeleting}
+                      className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-all flex items-center gap-1.5 cursor-pointer shadow-xs disabled:opacity-50"
+                    >
+                      {isDeleting ? (
+                        <>
+                          <Loader2 size={13} className="animate-spin" />
+                          Excluindo...
+                        </>
+                      ) : (
+                        <>
+                          <Trash2 size={13} />
+                          Confirmar Exclusão
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              )}
+
               {/* Error Message */}
               {error && (
                 <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-xl text-destructive text-xs font-bold flex items-center gap-2">
@@ -286,33 +370,50 @@ export function QuestionClassificationModal({
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-border bg-muted/20">
-              <button
-                type="button"
-                onClick={onClose}
-                disabled={saving}
-                className="px-4 py-2 rounded-xl text-xs font-bold border border-border text-foreground hover:bg-muted transition-colors cursor-pointer disabled:opacity-50"
-              >
-                Cancelar
-              </button>
-              <button
-                type="button"
-                onClick={handleSave}
-                disabled={saving || !subtema}
-                className="px-5 py-2 rounded-xl text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
-              >
-                {saving ? (
-                  <>
-                    <Loader2 size={14} className="animate-spin" />
-                    Salvando...
-                  </>
-                ) : (
-                  <>
-                    <Check size={14} />
-                    Salvar Alteração
-                  </>
+            <div className="flex items-center justify-between gap-3 px-6 py-4 border-t border-border bg-muted/20">
+              <div>
+                {isCuratorAdmin && !showDeleteConfirm && (
+                  <button
+                    type="button"
+                    onClick={() => setShowDeleteConfirm(true)}
+                    disabled={saving || isDeleting}
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-destructive hover:bg-destructive/10 border border-destructive/25 transition-colors cursor-pointer disabled:opacity-50"
+                    title="Excluir questão do banco de dados (Administrador)"
+                  >
+                    <Trash2 size={14} />
+                    Excluir Questão
+                  </button>
                 )}
-              </button>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  disabled={saving || isDeleting}
+                  className="px-4 py-2 rounded-xl text-xs font-bold border border-border text-foreground hover:bg-muted transition-colors cursor-pointer disabled:opacity-50"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="button"
+                  onClick={handleSave}
+                  disabled={saving || isDeleting || !subtema || showDeleteConfirm}
+                  className="px-5 py-2 rounded-xl text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                >
+                  {saving ? (
+                    <>
+                      <Loader2 size={14} className="animate-spin" />
+                      Salvando...
+                    </>
+                  ) : (
+                    <>
+                      <Check size={14} />
+                      Salvar Alteração
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
           </motion.div>
         </div>

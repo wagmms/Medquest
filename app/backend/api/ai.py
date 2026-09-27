@@ -213,30 +213,27 @@ def _extract_medical_cloze_fallback(
     pearl = _extract_clinical_pearl(explanation)
     cloze_hint = _CLOZE_HINT_MAP.get(q_type, "")
     
-    tag_subject = subtema or topic or area or "Caso Clínico"
-    header = f"[{tag_subject}]"
-
     # Build cloze with hint for better context retention
     if cloze_hint:
         cloze_str = f"{{{{c1::{target_cloze}::{cloze_hint}}}}}"
     else:
         cloze_str = f"{{{{c1::{target_cloze}}}}}"
     
-    # Build front: header + scenario + key clinical data + question
-    front_parts = [header]
+    # Build front: scenario + key clinical data + question (no [Tema] tag — shown via UI badge)
+    front_parts = []
     if scenario and len(scenario) > 20:
         front_parts.append(scenario)
     if clinical_data:
         front_parts.append(f"📊 {clinical_data}")
     
-    if len(front_parts) > 1:
-        front = " ".join(front_parts[:2])  # header + scenario on same line
-        extra = front_parts[2:]  # clinical data on next line if present
+    if front_parts:
+        front = front_parts[0]
+        extra = front_parts[1:]
         if extra:
             front = front + "\n" + "\n".join(extra)
         front = front + f"\n\n👉 {q_type}: {cloze_str}"
     else:
-        front = f"{header}\n\n👉 {q_type}: {cloze_str}"
+        front = f"👉 {q_type}: {cloze_str}"
         
     back_sections = []
     if pulo:
@@ -326,8 +323,8 @@ COMENTÁRIO/EXPLICAÇÃO DO PROFESSOR:
 {explanation or 'Nenhuma explicação fornecida.'}
 
 DIRETRIZES OBRIGATÓRIAS PARA O CAMPO "front":
-1. Inicie com a tag do tema: "[{subtema or area or 'Caso Clínico'}]"
-2. Resuma o cenário clínico em 2-4 frases, preservando TODOS os achados-chave:
+1. NÃO inclua tags de tema como "[Tema]" ou "[Subtema]" no início — o tema já é exibido na interface.
+2. Comece diretamente com o cenário clínico em 2-4 frases, preservando TODOS os achados-chave:
    - Dados demográficos relevantes (idade, sexo, comorbidades)
    - Sinais e sintomas cardinais (tempo de evolução, localização, caráter)
    - Achados do exame físico (sinais positivos e negativos relevantes)
@@ -343,7 +340,7 @@ CAMPO "context": "{area} > {subtema or topic}"
 
 Responda EXCLUSIVAMENTE em JSON válido:
 {{
-  "front": "[Tema] Cenário clínico detalhado com achados-chave...\\n📊 Dados laboratoriais/vitais relevantes\\n\\n👉 Pergunta: {{{{c1::resposta::{cloze_hint}}}}}",
+  "front": "Cenário clínico detalhado com achados-chave...\\n📊 Dados laboratoriais/vitais relevantes\\n\\n👉 Pergunta: {{{{c1::resposta::{cloze_hint}}}}}",
   "back": "💡 Pulo do Gato:\\n...\\n\\n⚠️ Por que não 'distrator'?\\n...\\n\\n🎯 Pérola Clínica:\\n...",
   "context": "{area} > {subtema or topic}"
 }}

@@ -22,10 +22,12 @@ import {
   Zap,
   Tag,
   BookOpen,
+  Trash2,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 
 import { useWakeLock } from "@/hooks/useWakeLock";
 
@@ -45,6 +47,11 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
   const [loadError, setLoadError] = useState<string | null>(null);
   const [lastScheduled, setLastScheduled] = useState<string | null>(null);
   const [showUpcoming, setShowUpcoming] = useState(false);
+
+  const { user } = useUser();
+  const isCurator = user?.primaryEmailAddress?.emailAddress?.toLowerCase() === "moraes.wagg@gmail.com";
+  const [isDeletingCard, setIsDeletingCard] = useState(false);
+  const [showDeleteCardConfirm, setShowDeleteCardConfirm] = useState(false);
 
   // Deck State
   const [decks, setDecks] = useState<FlashcardDeck[]>([]);
@@ -168,7 +175,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (queue.length === 0 || loading || submitting || isAnkiModalOpen) return;
+      if (queue.length === 0 || loading || submitting || isAnkiModalOpen || showDeleteCardConfirm) return;
       if (e.defaultPrevented || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
       const target = e.target;
       if (target instanceof HTMLElement && (target.isContentEditable || target.closest('button, a, input, textarea, select, [role="button"], [role="dialog"]'))) return;
@@ -195,7 +202,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [queue, loading, submitting, flipped, isAnkiModalOpen, handleReview]);
+  }, [queue, loading, submitting, flipped, isAnkiModalOpen, showDeleteCardConfirm, handleReview]);
 
   const handleReport = async () => {
     if (queue.length === 0 || submitting) return;
@@ -212,6 +219,31 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
       toast.error("Erro ao reportar flashcard.");
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const handleDeleteFlashcard = async () => {
+    if (queue.length === 0 || isDeletingCard) return;
+    const currentCard = queue[0];
+    setIsDeletingCard(true);
+    try {
+      await api.flashcards.delete(currentCard.id);
+      if (typeof window !== "undefined" && localDb) {
+        try {
+          const uid = getLocalOwnerId();
+          await localDb.flashcards.delete([currentCard.id, uid]);
+        } catch {}
+      }
+      setQueue(prev => prev.slice(1));
+      setFlipped(false);
+      setShowDeleteCardConfirm(false);
+      toast.success("Flashcard excluído com sucesso!");
+    } catch (err: unknown) {
+      console.error("Erro ao excluir flashcard:", err);
+      const msg = err instanceof Error ? err.message : "Erro ao excluir flashcard.";
+      toast.error(msg);
+    } finally {
+      setIsDeletingCard(false);
     }
   };
 
@@ -475,19 +507,36 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
                   </div>
                 )}
 
-                {flipped && (
-                  <button
-                    className="absolute top-3 right-3 min-h-[44px] min-w-[44px] p-2 text-xs font-semibold text-muted-foreground hover:text-destructive flex items-center justify-center gap-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive rounded-lg"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleReport();
-                    }}
-                    title="Reportar Erro no Flashcard"
-                    aria-label="Reportar Erro no Flashcard"
-                  >
-                    <XCircle size={15} /> <span>Reportar</span>
-                  </button>
-                )}
+                <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+                  {isCurator && (
+                    <button
+                      type="button"
+                      className="min-h-[36px] px-2.5 py-1 text-xs font-bold text-destructive/80 hover:text-destructive hover:bg-destructive/10 rounded-lg flex items-center gap-1 transition-colors cursor-pointer border border-transparent hover:border-destructive/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowDeleteCardConfirm(true);
+                      }}
+                      title="Excluir Flashcard (Curadoria)"
+                      aria-label="Excluir Flashcard"
+                    >
+                      <Trash2 size={14} /> <span>Excluir</span>
+                    </button>
+                  )}
+                  {flipped && (
+                    <button
+                      type="button"
+                      className="min-h-[36px] p-2 text-xs font-semibold text-muted-foreground hover:text-destructive flex items-center justify-center gap-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive rounded-lg cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleReport();
+                      }}
+                      title="Reportar Erro no Flashcard"
+                      aria-label="Reportar Erro no Flashcard"
+                    >
+                      <XCircle size={15} /> <span>Reportar</span>
+                    </button>
+                  )}
+                </div>
               </div>
             );
           })()}
@@ -570,6 +619,60 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
         }}
         decks={decks}
       />
+
+      {/* Modal de Confirmação de Exclusão de Flashcard */}
+      {showDeleteCardConfirm && queue[0] && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
+          <div
+            className="bg-card border border-destructive/30 rounded-2xl p-6 max-w-md w-full shadow-2xl flex flex-col gap-4 animate-in zoom-in-95 duration-200"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="delete-card-title"
+          >
+            <div className="flex items-start gap-3">
+              <div className="p-2.5 rounded-full bg-destructive/10 text-destructive shrink-0">
+                <Trash2 size={22} />
+              </div>
+              <div>
+                <h3 id="delete-card-title" className="text-base font-bold text-foreground">
+                  Excluir Flashcard #{queue[0].id}?
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                  Tem certeza de que deseja excluir este flashcard permanentemente? Esta ação removerá o cartão do banco de dados e da sua fila de revisão.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-border">
+              <button
+                type="button"
+                onClick={() => setShowDeleteCardConfirm(false)}
+                disabled={isDeletingCard}
+                className="px-4 py-2 rounded-xl text-xs font-semibold border border-border text-foreground hover:bg-muted transition-colors cursor-pointer disabled:opacity-50"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                onClick={handleDeleteFlashcard}
+                disabled={isDeletingCard}
+                className="px-4 py-2 rounded-xl text-xs font-bold bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-all flex items-center gap-1.5 cursor-pointer shadow-sm disabled:opacity-50"
+              >
+                {isDeletingCard ? (
+                  <>
+                    <span className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                    Excluindo...
+                  </>
+                ) : (
+                  <>
+                    <Trash2 size={14} />
+                    Confirmar Exclusão
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

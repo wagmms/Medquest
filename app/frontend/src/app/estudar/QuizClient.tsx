@@ -2173,6 +2173,28 @@ export function QuizClient({
             );
             toast.success("Tema da questão atualizado com sucesso!");
           }}
+          onDelete={(deletedId) => {
+            setIsClassificationModalOpen(false);
+            delete detailsCacheRef.current[deletedId];
+            setSessionAnswers((prev) => {
+              const copy = { ...prev };
+              delete copy[deletedId];
+              return copy;
+            });
+            setQueue((prevQueue) => {
+              const newQueue = prevQueue.filter((item) => item.id !== deletedId);
+              if (newQueue.length === 0) {
+                setState("FINISHED");
+                setCurrentDetail(null);
+                return [];
+              }
+              const nextIndex = currentIndex >= newQueue.length ? newQueue.length - 1 : currentIndex;
+              setCurrentIndex(nextIndex);
+              loadQuestionDetail(newQueue[nextIndex].id);
+              return newQueue;
+            });
+            toast.success(`Questão #${deletedId} excluída com sucesso!`);
+          }}
         />
       )}
 

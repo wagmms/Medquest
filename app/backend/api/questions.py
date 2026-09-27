@@ -1416,6 +1416,59 @@ def update_question_classification(qid):
     })
 
 
+@bp.route("/questions/<int:qid>", methods=["DELETE"])
+@require_curator
+def delete_question(qid):
+    """Exclui permanentemente uma questão e todas as suas referências associadas.
+    Acesso restrito exclusivamente ao curador / administrador moraes.wagg@gmail.com.
+    """
+    user_email = (getattr(g, "user_email", None) or "").strip().lower()
+    if user_email != "moraes.wagg@gmail.com":
+        return jsonify({"error": "Forbidden: Operação restrita ao administrador moraes.wagg@gmail.com"}), 403
+
+    db = get_db()
+    q = db.execute("SELECT id FROM questions WHERE id = ?", (qid,)).fetchone()
+    if not q:
+        return jsonify({"error": "Questão não encontrada"}), 404
+
+    tables = {r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()}
+
+    with db_transaction(db, immediate=True):
+        if "alternatives" in tables:
+            db.execute("DELETE FROM alternatives WHERE question_id = ?", (qid,))
+        if "explanations" in tables:
+            db.execute("DELETE FROM explanations WHERE question_id = ?", (qid,))
+        if "question_images" in tables:
+            db.execute("DELETE FROM question_images WHERE question_id = ?", (qid,))
+        if "attempts" in tables:
+            db.execute("DELETE FROM attempts WHERE question_id = ?", (qid,))
+        if "favorites" in tables:
+            db.execute("DELETE FROM favorites WHERE question_id = ?", (qid,))
+        if "spaced_repetition" in tables:
+            db.execute("DELETE FROM spaced_repetition WHERE question_id = ?", (qid,))
+        if "classification_proposals" in tables:
+            db.execute("DELETE FROM classification_proposals WHERE question_id = ?", (qid,))
+        if "reclassification_audit" in tables:
+            db.execute("DELETE FROM reclassification_audit WHERE question_id = ?", (qid,))
+        if "flashcards" in tables:
+            db.execute("UPDATE flashcards SET question_id = NULL WHERE question_id = ?", (qid,))
+        if "questions_fts" in tables:
+            try:
+                db.execute("DELETE FROM questions_fts WHERE rowid = ?", (qid,))
+            except Exception:
+                pass
+        db.execute("DELETE FROM questions WHERE id = ?", (qid,))
+
+    meta_cache.cache.clear()
+    invalidate_user_caches(g.user_id)
+
+    return jsonify({
+        "success": True,
+        "message": f"Questão #{qid} excluída com sucesso.",
+        "id": qid
+    })
+
+
 @bp.route("/images/<path:filename>")
 def serve_image(filename):
     import os

@@ -2051,6 +2051,36 @@ export function SimuladoClient({
             );
             toast.success("Tema da questão atualizado com sucesso!");
           }}
+          onDelete={(deletedId) => {
+            setIsClassificationModalOpen(false);
+            setDetailsCache((prev) => {
+              const copy = { ...prev };
+              delete copy[deletedId];
+              return copy;
+            });
+            setAnswers((prev) => {
+              const copy = { ...prev };
+              delete copy[deletedId];
+              return copy;
+            });
+            setFlagged((prev) => {
+              const copy = { ...prev };
+              delete copy[deletedId];
+              return copy;
+            });
+            setQueue((prevQueue) => {
+              const newQueue = prevQueue.filter((item) => item.id !== deletedId);
+              if (newQueue.length === 0) {
+                toast("Todas as questões do simulado foram concluídas ou removidas.");
+                return [];
+              }
+              if (currentIndex >= newQueue.length) {
+                setCurrentIndex(newQueue.length - 1);
+              }
+              return newQueue;
+            });
+            toast.success(`Questão #${deletedId} excluída com sucesso!`);
+          }}
         />
       )}
     </div>

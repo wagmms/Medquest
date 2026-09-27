@@ -9,6 +9,7 @@ from flask import Blueprint, Response, g, jsonify, request
 from . import srs
 from .ai import generate_cloze_flashcard, _extract_medical_cloze_fallback
 from .anki import parse_apkg_bytes, parse_anki_text
+from .auth import require_curator
 from .db import db_transaction, get_db
 from .observability import record_domain_event
 from .idempotency import reserve_idempotency, complete_idempotency, fail_idempotency
@@ -656,6 +657,32 @@ def delete_deck():
     })
 
 
+@bp.route("/flashcards/<int:fid>", methods=["DELETE"])
+@require_curator
+def delete_flashcard(fid):
+    """Exclui permanentemente um flashcard.
+    Restrito exclusivamente ao administrador / curador moraes.wagg@gmail.com.
+    """
+    user_email = (getattr(g, "user_email", None) or "").strip().lower()
+    if user_email != "moraes.wagg@gmail.com":
+        return jsonify({"error": "Forbidden: Operação restrita ao administrador moraes.wagg@gmail.com"}), 403
+
+    db = get_db()
+    card = db.execute("SELECT id FROM flashcards WHERE id = ?", (fid,)).fetchone()
+    if not card:
+        return jsonify({"error": "Flashcard não encontrado"}), 404
+
+    with db_transaction(db, immediate=True):
+        db.execute("DELETE FROM flashcards WHERE id = ?", (fid,))
+
+    invalidate_user_caches(g.user_id)
+    return jsonify({
+        "success": True,
+        "message": f"Flashcard #{fid} excluído com sucesso.",
+        "id": fid
+    })
+
+
 def _format_flashcard(item: dict) -> dict:
     front = item.get("front", "")
     back = item.get("back", "")
@@ -698,11 +725,10 @@ def _format_flashcard(item: dict) -> dict:
             if scenario and not scenario.endswith('.'):
                 scenario += '.'
 
-        tag = "[Caso Clínico / Conduta]"
         item["front"] = (
-            f"{tag} {scenario}\n\n👉 Diagnóstico / Conduta indicada: {{{{c1::{term}}}}}"
+            f"{scenario}\n\n👉 Diagnóstico / Conduta indicada: {{{{c1::{term}}}}}"
             if scenario and len(scenario) > 20
-            else f"{tag}\n\n👉 Diagnóstico / Conduta indicada: {{{{c1::{term}}}}}"
+            else f"👉 Diagnóstico / Conduta indicada: {{{{c1::{term}}}}}"
         )
         if back.startswith(("Você marcou", "Alternativa correta:")):
             item["back"] = (

@@ -321,6 +321,13 @@ export const api = {
           body: JSON.stringify(data),
         }
       ),
+    deleteQuestion: (qid: number) =>
+      apiFetch<{ success: boolean; message: string; id: number }>(
+        `/api/questions/${qid}`,
+        {
+          method: "DELETE",
+        }
+      ),
     getSubtemas: (area?: string, q?: string) => {
       const params = new URLSearchParams();
       if (area) params.append("area", area);
@@ -563,6 +570,13 @@ export const api = {
     },
   },
   flashcards: {
+    delete: (fid: number) =>
+      apiFetch<{ success: boolean; message: string; id: number }>(
+        `/api/flashcards/${fid}`,
+        {
+          method: "DELETE",
+        }
+      ),
     preview: (question_id: number, wrong_letter?: string) =>
       apiFetch<{ front: string; back: string; context: string }>("/api/flashcards/preview", {
         method: "POST", body: JSON.stringify({ question_id, wrong_letter: wrong_letter || "" }),

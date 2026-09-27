@@ -73,7 +73,10 @@ def require_auth(f):
                 g.user_id = request.headers["X-Guest-ID"]
             else:
                 g.user_id = getattr(g, "user_id", "1")
-            g.user_email = getattr(g, "user_email", "moraes.wagg@gmail.com")
+            if "X-User-Email" in request.headers:
+                g.user_email = request.headers["X-User-Email"].strip().lower()
+            else:
+                g.user_email = getattr(g, "user_email", "moraes.wagg@gmail.com")
             return f(*args, **kwargs)
 
 
