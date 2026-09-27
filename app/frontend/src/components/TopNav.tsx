@@ -10,6 +10,8 @@ import { ThemeToggle } from "./ThemeToggle";
 import { useZenMode } from "@/hooks/useZenMode";
 import Image from "next/image";
 import clsx from "clsx";
+import { isDeviceOffline, isForcedOffline } from "@/lib/db";
+import { usePwaInstall } from "@/hooks/usePwaInstall";
 
 const NAV_ITEMS = [
   { href: "/", label: "Dashboard", icon: "dashboard" },
@@ -88,19 +90,22 @@ export default function TopNav() {
   }, [isMobileMenuOpen]);
 
   const [isOffline, setIsOffline] = useState(false);
+  const [forcedOffline, setForcedOffline] = useState(false);
+  const { isInstallable, installApp } = usePwaInstall();
 
   useEffect(() => {
     const updateOnlineStatus = () => {
-      if (typeof navigator !== "undefined") {
-        setIsOffline(!navigator.onLine);
-      }
+      setIsOffline(isDeviceOffline());
+      setForcedOffline(isForcedOffline());
     };
     updateOnlineStatus();
     window.addEventListener("online", updateOnlineStatus);
     window.addEventListener("offline", updateOnlineStatus);
+    window.addEventListener("forced-offline-changed", updateOnlineStatus);
     return () => {
       window.removeEventListener("online", updateOnlineStatus);
       window.removeEventListener("offline", updateOnlineStatus);
+      window.removeEventListener("forced-offline-changed", updateOnlineStatus);
     };
   }, []);
 
@@ -114,6 +119,16 @@ export default function TopNav() {
           <span className="truncate">MedQuest</span>
         </h1>
         <div className="flex items-center gap-1.5 sm:gap-2">
+          {isInstallable && (
+            <button
+              onClick={() => void installApp()}
+              className="flex items-center justify-center p-2 rounded-lg text-primary hover:bg-primary/10 transition-colors cursor-pointer"
+              title="Instalar MedQuest no Android"
+              aria-label="Instalar MedQuest no dispositivo"
+            >
+              <span className="material-symbols-outlined text-[20px]" data-icon="install_mobile">install_mobile</span>
+            </button>
+          )}
           <button
             onClick={() => setIsOfflineOpen(true)}
             className={clsx(
@@ -122,13 +137,13 @@ export default function TopNav() {
                 ? "bg-warning/20 text-warning border border-warning/30 animate-pulse"
                 : "text-muted-foreground hover:bg-surface-variant/50 hover:text-foreground"
             )}
-            title={isOffline ? "Você está no Modo Plantão (Offline)" : "Abrir Modo Plantão (Offline)"}
-            aria-label={isOffline ? "Modo Plantão Offline Ativo" : "Abrir Modo Plantão"}
+            title={forcedOffline ? "Modo Plantão Forçado Ativo" : isOffline ? "Você está no Modo Plantão (Offline)" : "Abrir Modo Plantão (Offline)"}
+            aria-label={forcedOffline ? "Modo Plantão Forçado Ativo" : isOffline ? "Modo Plantão Offline Ativo" : "Abrir Modo Plantão"}
           >
             <span className="material-symbols-outlined text-[18px]" data-icon={isOffline ? "cloud_off" : "cloud_download"}>
               {isOffline ? "cloud_off" : "cloud_download"}
             </span>
-            <span className="text-[11px] font-bold">{isOffline ? "Offline" : "Plantão"}</span>
+            <span className="text-[11px] font-bold">{forcedOffline ? "Plantão" : isOffline ? "Offline" : "Plantão"}</span>
           </button>
           <button 
             ref={menuButtonRef}

@@ -17,7 +17,7 @@ const API_BASE = process.env.NEXT_PUBLIC_APP_URL ||
 
 import { cacheCreatedFlashcards } from "./flashcardCache";
 import { syncManager } from "./sync";
-import { localDb, getLocalOwnerId } from "./db";
+import { localDb, getLocalOwnerId, isDeviceOffline } from "./db";
 
 export class OfflineQueuedError extends Error {
   public localId: string;
@@ -67,14 +67,14 @@ async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise
     headers.set("X-Idempotency-Key", idempotencyKey);
   }
 
-  // Falha rápida se o navegador já estiver sabidamente offline
-  if (typeof window !== "undefined" && typeof navigator !== "undefined" && !navigator.onLine) {
+  // Falha rápida se o navegador já estiver sabidamente offline ou em Modo Plantão Forçado
+  if (isDeviceOffline()) {
     if (isIdempotentEndpoint) {
-      console.warn("[API] Offline imediato detectado, enfileirando:", endpoint);
+      console.warn("[API] Offline imediato detectado (Modo Plantão), enfileirando:", endpoint);
       const localId = await syncManager.enqueue(url, { ...options, headers }, idempotencyKey!);
       throw new OfflineQueuedError(localId);
     }
-    throw new TypeError("Falha de rede: navegador está offline");
+    throw new TypeError("Falha de rede: Modo Plantão offline ativo");
   }
 
   const timeoutMs = options?.timeoutMs ?? (
@@ -382,7 +382,7 @@ export const api = {
         return null;
       };
 
-      if (typeof window !== "undefined" && !navigator.onLine) {
+      if (isDeviceOffline()) {
         const local = await getLocalFallback();
         if (local) return local;
       }
@@ -414,7 +414,7 @@ export const api = {
         return null;
       };
 
-      if (typeof window !== "undefined" && !navigator.onLine) {
+      if (isDeviceOffline()) {
         const local = await getLocalFallback();
         if (local) return local;
       }
@@ -517,7 +517,7 @@ export const api = {
         return null;
       };
 
-      if (typeof window !== "undefined" && !navigator.onLine) {
+      if (isDeviceOffline()) {
         const local = await getLocalFallback();
         if (local) return local;
       }
@@ -633,7 +633,7 @@ export const api = {
         return null;
       };
 
-      if (typeof window !== "undefined" && !navigator.onLine) {
+      if (isDeviceOffline()) {
         const local = await getLocalFallback();
         if (local) return local;
       }

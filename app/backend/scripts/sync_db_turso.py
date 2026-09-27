@@ -138,6 +138,18 @@ def sync_database(verbose: bool = True) -> bool:
             if verbose and (batch_idx % 25 == 0 or batch_idx == total_batches):
                 print(f"      ... [Questões] {min(i + batch_size, len(missing_q))}/{len(missing_q)} ({batch_idx}/{total_batches} lotes)")
 
+    # Sincronizar alteração específica no stem de Q10218
+    cur.execute("SELECT stem FROM questions WHERE id = 10218")
+    row_10218 = cur.fetchone()
+    if row_10218:
+        execute_turso_pipeline(url, token, [{
+            "type": "execute",
+            "stmt": {
+                "sql": "UPDATE questions SET stem = ? WHERE id = 10218",
+                "args": [{"type": "text", "value": row_10218["stem"]}]
+            }
+        }])
+
     # 3. Sincronizar Alternatives faltantes
     cur.execute("SELECT * FROM alternatives")
     local_alts = cur.fetchall()
@@ -171,10 +183,33 @@ def sync_database(verbose: bool = True) -> bool:
             if verbose and (batch_idx % 50 == 0 or batch_idx == total_batches):
                 print(f"      ... [Alternativas] {min(i + batch_size, len(missing_a))}/{len(missing_a)} ({batch_idx}/{total_batches} lotes)")
 
-    # 4. Sincronizar Question Images faltantes
+    # 4. Sincronizar Question Images
     cur.execute("SELECT * FROM question_images")
     local_images = cur.fetchall()
+    local_i_ids = {img["id"] for img in local_images}
     img_cols = [c[1] for c in cur.execute("PRAGMA table_info(question_images)").fetchall()]
+
+    # 4a. Remover imagens obsoletas ou expurgadas do Turso
+    obsolete_i_ids = [rid for rid in remote_i_ids if rid not in local_i_ids]
+    if obsolete_i_ids:
+        if verbose:
+            print(f"  [-] Removendo {len(obsolete_i_ids)} imagens obsoletas/expurgadas do Turso...")
+        batch_size = 500
+        total_batches = (len(obsolete_i_ids) + batch_size - 1) // batch_size
+        for batch_idx, i in enumerate(range(0, len(obsolete_i_ids), batch_size), start=1):
+            chunk = obsolete_i_ids[i:i + batch_size]
+            ph = ",".join("?" * len(chunk))
+            args = [{"type": "integer", "value": str(cid)} for cid in chunk]
+            reqs = [
+                {"type": "execute", "stmt": {"sql": "BEGIN"}},
+                {"type": "execute", "stmt": {"sql": f"DELETE FROM question_images WHERE id IN ({ph})", "args": args}},
+                {"type": "execute", "stmt": {"sql": "COMMIT"}}
+            ]
+            execute_turso_pipeline(url, token, reqs)
+            if verbose and (batch_idx % 10 == 0 or batch_idx == total_batches):
+                print(f"      ... [Imagens Removidas] {min(i + batch_size, len(obsolete_i_ids))}/{len(obsolete_i_ids)} ({batch_idx}/{total_batches} lotes)")
+
+    # 4b. Sincronizar Question Images faltantes
     missing_i = [img for img in local_images if img["id"] not in remote_i_ids]
 
     if missing_i:

@@ -293,3 +293,34 @@ export const localDb = typeof window !== "undefined" ? new MedQuestDB() : (null 
 if (typeof window !== "undefined" && localDb) {
   (window as unknown as { localDb?: MedQuestDB }).localDb = localDb;
 }
+
+export const FORCED_OFFLINE_STORAGE_KEY = "medquest_force_offline";
+
+export function isForcedOffline(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return localStorage.getItem(FORCED_OFFLINE_STORAGE_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+export function setForcedOffline(enabled: boolean): void {
+  if (typeof window === "undefined") return;
+  try {
+    if (enabled) {
+      localStorage.setItem(FORCED_OFFLINE_STORAGE_KEY, "true");
+    } else {
+      localStorage.removeItem(FORCED_OFFLINE_STORAGE_KEY);
+    }
+    window.dispatchEvent(new CustomEvent("forced-offline-changed", { detail: { forced: enabled } }));
+  } catch (err) {
+    console.warn("Erro ao salvar status de modo plantão forçado:", err);
+  }
+}
+
+export function isDeviceOffline(): boolean {
+  if (typeof window === "undefined") return false;
+  if (isForcedOffline()) return true;
+  return typeof navigator !== "undefined" && !navigator.onLine;
+}

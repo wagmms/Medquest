@@ -1,71 +1,94 @@
-import { deflateSync } from "node:zlib";
-import { writeFileSync } from "node:fs";
+import { chromium } from "playwright";
+import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-const crcTable = new Uint32Array(256).map((_, index) => {
-  let value = index;
-  for (let bit = 0; bit < 8; bit++) value = (value >>> 1) ^ (value & 1 ? 0xedb88320 : 0);
-  return value >>> 0;
-});
+const publicDir = join(process.cwd(), "public");
+const iconSvgContent = readFileSync(join(publicDir, "icon.svg"), "utf-8");
 
-function crc32(buffer) {
-  let value = 0xffffffff;
-  for (const byte of buffer) value = crcTable[(value ^ byte) & 0xff] ^ (value >>> 8);
-  return (value ^ 0xffffffff) >>> 0;
-}
+// Maskable version: full-bleed background without rounded corners (Android trims to its own adaptive shape)
+const maskableSvgContent = iconSvgContent.replace('rx="112"', 'rx="0"');
 
-function chunk(type, data) {
-  const typeBuffer = Buffer.from(type, "ascii");
-  const result = Buffer.alloc(12 + data.length);
-  result.writeUInt32BE(data.length, 0);
-  typeBuffer.copy(result, 4);
-  data.copy(result, 8);
-  result.writeUInt32BE(crc32(Buffer.concat([typeBuffer, data])), 8 + data.length);
-  return result;
-}
+// Android notification badge: 96x96 monochrome white silhouette with transparent background
+const badgeSvgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+  <!-- Medical Cross silhouette -->
+  <rect x="41" y="20" width="14" height="56" rx="5" fill="#ffffff"/>
+  <rect x="20" y="41" width="56" height="14" rx="5" fill="#ffffff"/>
+  <!-- ECG Pulse line -->
+  <path
+    d="M 16 48 L 32 48 L 36 43 L 40 48 L 44 52 L 48 30 L 52 66 L 56 48 L 60 44 L 64 48 L 80 48"
+    fill="none"
+    stroke="#090e17"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M 16 48 L 32 48 L 36 43 L 40 48 L 44 52 L 48 30 L 52 66 L 56 48 L 60 44 L 64 48 L 80 48"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>`;
 
-function writeIcon(size) {
-  const pixels = Buffer.alloc(size * size * 4);
-  const triangleTop = Math.round(size * 0.234);
-  const triangleBottom = Math.round(size * 0.488);
-  const circleCenter = Math.round(size * 0.645);
-  const circleRadius = Math.round(size * 0.078);
-  const radius = Math.round(size * 0.195);
+async function generateIcons() {
+  console.log("Launching headless browser for icon rendering...");
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
 
-  for (let y = 0; y < size; y++) {
-    for (let x = 0; x < size; x++) {
-      const index = (y * size + x) * 4;
-      const dx = Math.max(Math.abs(x - size / 2) - (size / 2 - radius), 0);
-      const dy = Math.max(Math.abs(y - size / 2) - (size / 2 - radius), 0);
-      const insideRoundedSquare = dx * dx + dy * dy <= radius * radius;
-      const triangleHalfWidth = Math.round((y - triangleTop) * 0.72);
-      const inTriangle = y >= triangleTop && y <= triangleBottom && Math.abs(x - size / 2) <= triangleHalfWidth;
-      const inCircle = (x - size / 2) ** 2 + (y - circleCenter) ** 2 <= circleRadius ** 2;
-      const color = inTriangle || inCircle ? [255, 255, 255, 255] : insideRoundedSquare ? [14, 165, 233, 255] : [0, 0, 0, 0];
-      pixels.set(color, index);
+  async function renderSvgToPng(svgString, size, outputPath) {
+    const html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: ${size}px;
+      height: ${size}px;
+      background: transparent;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    svg {
+      width: ${size}px;
+      height: ${size}px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  ${svgString}
+</body>
+</html>`;
+
+    await page.setViewportSize({ width: size, height: size });
+    await page.setContent(html, { waitUntil: "networkidle" });
+    const buffer = await page.screenshot({ omitBackground: true, type: "png" });
+    writeFileSync(outputPath, buffer);
+    console.log(`✓ Generated ${outputPath} (${size}x${size})`);
   }
 
-  const scanlines = Buffer.alloc((size * 4 + 1) * size);
-  for (let y = 0; y < size; y++) {
-    const offset = y * (size * 4 + 1);
-    scanlines[offset] = 0;
-    pixels.copy(scanlines, offset + 1, y * size * 4, (y + 1) * size * 4);
-  }
+  // 1. Standard 512x512
+  await renderSvgToPng(iconSvgContent, 512, join(publicDir, "icon-512x512.png"));
 
-  const header = Buffer.alloc(13);
-  header.writeUInt32BE(size, 0);
-  header.writeUInt32BE(size, 4);
-  header[8] = 8;
-  header[9] = 6;
-  const png = Buffer.concat([
-    Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
-    chunk("IHDR", header),
-    chunk("IDAT", deflateSync(scanlines)),
-    chunk("IEND", Buffer.alloc(0)),
-  ]);
-  writeFileSync(join(process.cwd(), "public", `icon-${size}x${size}.png`), png);
+  // 2. Standard 192x192
+  await renderSvgToPng(iconSvgContent, 192, join(publicDir, "icon-192x192.png"));
+
+  // 3. Android Maskable 512x512
+  await renderSvgToPng(maskableSvgContent, 512, join(publicDir, "icon-maskable-512x512.png"));
+
+  // 4. Android Status Bar Notification Badge (96x96)
+  await renderSvgToPng(badgeSvgContent, 96, join(publicDir, "badge-96x96.png"));
+
+  await browser.close();
+  console.log("All PWA icons generated successfully!");
 }
 
-writeIcon(192);
-writeIcon(512);
+generateIcons().catch((err) => {
+  console.error("Error generating icons:", err);
+  process.exit(1);
+});

@@ -19,12 +19,24 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  interactiveWidget: "resizes-visual",
 };
 
 export const metadata: Metadata = {
   title: "MedQuest",
   description: "A melhor plataforma de estudos para a Residência Médica da USP, com planejamento anual inteligente.",
   manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+    ],
+    shortcut: ["/icon-192x192.png"],
+  },
   openGraph: {
     title: "MedQuest",
     description: "A melhor plataforma de estudos para a Residência Médica da USP, com planejamento anual inteligente.",

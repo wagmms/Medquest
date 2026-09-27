@@ -19,4 +19,10 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-python3 deploy.py "$@"
+if [ -f "app/backend/.venv/bin/python" ]; then
+    PYTHON_BIN="app/backend/.venv/bin/python"
+else
+    PYTHON_BIN="python3"
+fi
+
+"$PYTHON_BIN" deploy.py "$@"

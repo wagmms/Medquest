@@ -3,8 +3,9 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { QuestionMeta, QuestionListItem, QuestionDetail, BatchAttemptItem, BatchAttemptResultItem, FlashcardGenerateResponse } from "@/types/api";
 import { api, OfflineQueuedError } from "@/lib/api";
-import { localDb, getLocalOwnerId, isLocalIdentityReady, SimuladoPackage, isPackageValid } from "@/lib/db";
+import { localDb, getLocalOwnerId, isLocalIdentityReady, SimuladoPackage, isPackageValid, isDeviceOffline } from "@/lib/db";
 import { getReadySimuladoPackage, downloadSimuladoPackage } from "@/lib/simuladoPackage";
+import { useWakeLock } from "@/hooks/useWakeLock";
 import { Play, Clock, ChevronLeft, ChevronRight, FileSignature, AlertTriangle, BookOpen, AlertCircle, RotateCcw, Flag, CloudOff, Sparkles, CheckCircle2, Pencil, Download, RefreshCw, Database, Eye, EyeOff, ShieldCheck, Info, Trophy } from "lucide-react";
 
 import clsx from "clsx";
@@ -144,6 +145,7 @@ export function SimuladoClient({
   const syncResolutionRef = useRef<"idle" | "pending" | "confirmed_results" | "removed_no_results" | "terminal_failed">("idle");
 
   const [isOffline, setIsOffline] = useState(false);
+  useWakeLock(state === "PLAYING");
 
   const [offlinePackage, setOfflinePackage] = useState<SimuladoPackage | null>(null);
   const [isDownloadingPackage, setIsDownloadingPackage] = useState(false);
@@ -189,24 +191,25 @@ export function SimuladoClient({
   }, []);
 
   useEffect(() => {
-    const handleOnline = () => setIsOffline(false);
-    const handleOffline = () => setIsOffline(true);
+    const updateOnline = () => {
+      setIsOffline(isDeviceOffline());
+      void refreshOfflinePackage();
+    };
 
     const initialTimer = setTimeout(() => {
-      if (typeof navigator !== "undefined") {
-        setIsOffline(!navigator.onLine);
-      }
-      void refreshOfflinePackage();
+      updateOnline();
     }, 0);
 
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
+    window.addEventListener("online", updateOnline);
+    window.addEventListener("offline", updateOnline);
+    window.addEventListener("forced-offline-changed", updateOnline);
     window.addEventListener("simulado-package-updated", refreshOfflinePackage);
 
     return () => {
       clearTimeout(initialTimer);
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline);
+      window.removeEventListener("online", updateOnline);
+      window.removeEventListener("offline", updateOnline);
+      window.removeEventListener("forced-offline-changed", updateOnline);
       window.removeEventListener("simulado-package-updated", refreshOfflinePackage);
     };
   }, [refreshOfflinePackage]);
@@ -356,8 +359,8 @@ export function SimuladoClient({
     }
     setState("LOADING");
     try {
-      // Se offline ou desconectado, iniciar estritamente a partir do pacote pronto
-      if (typeof navigator !== "undefined" && !navigator.onLine) {
+      // Se offline ou em Modo Plantão, iniciar estritamente a partir do pacote pronto
+      if (isDeviceOffline()) {
         const uid = getLocalOwnerId();
         const readyPkg = await getReadySimuladoPackage(uid);
         const validity = isPackageValid(readyPkg);

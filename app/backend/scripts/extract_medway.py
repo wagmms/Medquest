@@ -687,10 +687,9 @@ class MedwayExtractor:
                 (new_q_id, golden_exp, now_iso, now_iso),
             )
 
-            # Images from stem, question detail, options, and golden explanation markdown
+            # Images strictly from stem and question attachments (NEVER from explanations)
             img_urls = re.findall(r"!\[.*?\]\((https?://[^\)]+)\)", stem)
             img_tags = re.findall(r'<img[^>]+src=["\'](https?://[^"\']+)["\']', raw_stem)
-            exp_imgs = re.findall(r"!\[.*?\]\((https?://[^\)]+)\)", golden_exp)
 
             obj_imgs = []
             for item in q_detail.get("images", []):
@@ -708,7 +707,7 @@ class MedwayExtractor:
                     if u:
                         opt_imgs.append(u)
 
-            all_imgs = list(dict.fromkeys(img_urls + img_tags + exp_imgs + obj_imgs + opt_imgs))
+            all_imgs = list(dict.fromkeys(img_urls + img_tags + obj_imgs + opt_imgs))
 
             for order_idx, img_url in enumerate(all_imgs):
                 cursor.execute(

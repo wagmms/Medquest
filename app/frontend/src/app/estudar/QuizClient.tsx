@@ -23,6 +23,7 @@ const QuestionClassificationModal = dynamic(
   { ssr: false }
 );
 import { useZenMode } from "@/hooks/useZenMode";
+import { useWakeLock } from "@/hooks/useWakeLock";
 import { QuizTimer, QuizTimerHandle } from "@/components/QuizTimer";
 import Image from "next/image";
 import { QuizFilters } from "./components/QuizFilters";
@@ -180,6 +181,7 @@ export function QuizClient({
   const [detailError, setDetailError] = useState<string | null>(null);
   
   const [sessionAnswers, setSessionAnswers] = useState<Record<number, SessionAnswer>>({});
+  useWakeLock(!!currentDetail && !loadingDetail);
   
   // Quiz State
   const [selectedLetter, setSelectedLetter] = useState<string | null>(null);

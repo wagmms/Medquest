@@ -55,10 +55,12 @@ export function extractImageUrlsFromMarkdown(text: string | null | undefined): S
  */
 export function filterExtraImages(images: string[] | null | undefined, text: string | null | undefined): string[] {
   if (!images || !Array.isArray(images) || images.length === 0) return [];
+  // Explanation images must never be rendered as extra question stem attachments
+  const nonExplanationImages = images.filter(img => img && !img.includes("question_explanation_images"));
   const textImages = extractImageUrlsFromMarkdown(text);
-  if (textImages.size === 0) return images;
+  if (textImages.size === 0) return nonExplanationImages;
 
-  return images.filter(img => {
+  return nonExplanationImages.filter(img => {
     if (!img) return false;
     const trimmed = img.trim();
     const normalized = normalizeImageSrc(trimmed);
@@ -193,7 +195,21 @@ export function preprocessMarkdown(content: string): string {
   raw = raw.replace(/\*\*(<img\b[^>]*>)\*\*/g, "\n\n$1\n\n");
   raw = raw.replace(/\/api\/images\/images\//g, "/api/images/").trim();
 
-  // 1. Convert HTML tables if any exist
+  // 1. Remove raw scripts, styles, XML, and HTML comments (e.g. Word comments)
+  raw = raw.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "");
+  raw = raw.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+  raw = raw.replace(/<xml\b[^>]*>[\s\S]*?<\/xml>/gi, "");
+  raw = raw.replace(/<!--[\s\S]*?-->/g, "");
+  raw = raw.replace(/<\/?(?:o|w|m|v):[a-z0-9_-]+[^>]*>/gi, "");
+
+  // 2. Sanitize leaked Microsoft Word CSS definitions and Word document properties
+  raw = raw.replace(/\/\*\s*Style Definitions\s*\*\/[\s\S]*?(?:mso-fareast-language:[^}]+;\}|\})/gi, "");
+  raw = raw.replace(/table\.MsoNormalTable\s*\{[\s\S]*?\}/gi, "");
+  raw = raw.replace(/\b(?:mso-style-[^;]+;|mso-tstyle-[^;]+;|mso-[a-z-]+:[^;]+;)/gi, "");
+  raw = raw.replace(/Normal\s*\n+\s*0\s*\n+(?:false\s*\n+)?(?:\d+\s*\n+)?(?:false\s*\n+)+[A-Z]{2}-[A-Z]{2}\s*\n+X-NONE\s*\n+X-NONE/gi, "");
+  raw = raw.replace(/\b(?:PT-BR|EN-US)\s*\n+X-NONE\s*\n+X-NONE\b/gi, "");
+
+  // 3. Convert HTML tables if any exist
   raw = raw.replace(/<table\b[^>]*>[\s\S]*?<\/table>/gi, (tableHtml) => {
     const t = tableHtml.replace(/<\/?(?:table|tbody|thead)[^>]*>/gi, "");
     const trMatches = Array.from(t.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi));
@@ -224,7 +240,7 @@ export function preprocessMarkdown(content: string): string {
     return tableHtml;
   });
 
-  // 2. Convert HTML headings
+  // 4. Convert HTML headings
   raw = raw.replace(/<h1\b[^>]*>(.*?)<\/h1>/gi, "\n# $1\n");
   raw = raw.replace(/<h2\b[^>]*>(.*?)<\/h2>/gi, "\n## $1\n");
   raw = raw.replace(/<h3\b[^>]*>(.*?)<\/h3>/gi, "\n### $1\n");
@@ -232,7 +248,7 @@ export function preprocessMarkdown(content: string): string {
   raw = raw.replace(/<h5\b[^>]*>(.*?)<\/h5>/gi, "\n##### $1\n");
   raw = raw.replace(/<h6\b[^>]*>(.*?)<\/h6>/gi, "\n###### $1\n");
 
-  // 3. Convert HTML formatting to Markdown
+  // 5. Convert HTML formatting to Markdown
   raw = raw.replace(/<(?:strong|b)\b[^>]*>([\s\S]*?)<\/(?:strong|b)>/gi, "**$1**");
   raw = raw.replace(/<(?:em|i)\b[^>]*>([\s\S]*?)<\/(?:em|i)>/gi, "*$1*");
   raw = raw.replace(/<p\b[^>]*>([\s\S]*?)<\/p>/gi, "\n\n$1\n\n");
@@ -241,7 +257,7 @@ export function preprocessMarkdown(content: string): string {
   raw = raw.replace(/<\/?(?:ul|ol)\b[^>]*>/gi, "\n");
   raw = raw.replace(/<\/?(?:span|div|section|article|font|center)\b[^>]*>/gi, "");
 
-  // 4. HTML Entities
+  // 6. HTML Entities
   raw = raw
     .replace(/&nbsp;/gi, " ")
     .replace(/&gt;/gi, ">")
@@ -250,8 +266,14 @@ export function preprocessMarkdown(content: string): string {
     .replace(/&#39;/gi, "'")
     .replace(/&amp;/gi, "&");
 
-  // 5. Clean up boilerplate greetings
+  // 7. Clean up boilerplate greetings
   raw = raw.replace(/Bons estudos!Com carinho,\s*equipe pedag[oó]gica/gi, "");
+
+  // 8. Normalize distractor letter header spacing if preceding content was stripped
+  raw = raw.replace(/(- \*\*Letra [A-E]\*\*):?\s*\n+/gi, "$1: ");
+
+  // 9. Collapse excessive blank lines
+  raw = raw.replace(/\n{3,}/g, "\n\n").trim();
 
   return raw;
 }

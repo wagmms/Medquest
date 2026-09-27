@@ -27,6 +27,8 @@ import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+import { useWakeLock } from "@/hooks/useWakeLock";
+
 const AnkiIntegrationModal = dynamic(
   () => import("./components/AnkiIntegrationModal").then((mod) => mod.AnkiIntegrationModal),
   { ssr: false }
@@ -35,6 +37,7 @@ const AnkiIntegrationModal = dynamic(
 export function FlashcardClient({ subtema }: { subtema?: string }) {
   const [queue, setQueue] = useState<Flashcard[]>([]);
   const [loading, setLoading] = useState(true);
+  useWakeLock(queue.length > 0 && !loading);
   const [flipped, setFlipped] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [initialDueCount, setInitialDueCount] = useState(0);

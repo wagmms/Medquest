@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
@@ -9,6 +9,7 @@ import { AccountModal } from "./AccountModal";
 import { OfflineModal } from "./OfflineModal";
 import { ThemeToggle } from "./ThemeToggle";
 import { useZenMode } from "@/hooks/useZenMode";
+import { isDeviceOffline, isForcedOffline } from "@/lib/db";
 import Image from "next/image";
 
 const NAV_ITEMS = [
@@ -26,7 +27,25 @@ export function Sidebar() {
   const { user, isLoaded } = useUser();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOfflineOpen, setIsOfflineOpen] = useState(false);
+  const [isOffline, setIsOffline] = useState(false);
+  const [forcedOffline, setForcedOffline] = useState(false);
   const { isZenMode, toggleZenMode } = useZenMode();
+
+  useEffect(() => {
+    const updateOnline = () => {
+      setIsOffline(isDeviceOffline());
+      setForcedOffline(isForcedOffline());
+    };
+    updateOnline();
+    window.addEventListener("online", updateOnline);
+    window.addEventListener("offline", updateOnline);
+    window.addEventListener("forced-offline-changed", updateOnline);
+    return () => {
+      window.removeEventListener("online", updateOnline);
+      window.removeEventListener("offline", updateOnline);
+      window.removeEventListener("forced-offline-changed", updateOnline);
+    };
+  }, []);
 
   return (
     <>
@@ -64,12 +83,19 @@ export function Sidebar() {
           <div className="flex items-center justify-between gap-1 px-1">
             <button
               onClick={() => setIsOfflineOpen(true)}
-              className="flex items-center gap-2 px-2.5 py-2 rounded-md text-muted-foreground hover:bg-surface-variant/50 hover:text-foreground transition-colors text-left flex-1 cursor-pointer"
-              title="Modo Plantão (Offline)"
-              aria-label="Abrir Modo Plantão"
+              className={clsx(
+                "flex items-center gap-2 px-2.5 py-2 rounded-md transition-colors text-left flex-1 cursor-pointer",
+                isOffline
+                  ? "bg-warning/15 text-warning font-semibold"
+                  : "text-muted-foreground hover:bg-surface-variant/50 hover:text-foreground"
+              )}
+              title={forcedOffline ? "Modo Plantão Forçado Ativo" : isOffline ? "Modo Plantão (Offline Ativo)" : "Abrir Modo Plantão (Offline)"}
+              aria-label={forcedOffline ? "Modo Plantão Forçado Ativo" : isOffline ? "Modo Plantão Offline Ativo" : "Abrir Modo Plantão"}
             >
-              <span className="material-symbols-outlined text-[18px]" data-icon="cloud_download">cloud_download</span>
-              <span className="text-xs font-medium">Modo Plantão</span>
+              <span className="material-symbols-outlined text-[18px]" data-icon={isOffline ? "cloud_off" : "cloud_download"}>
+                {isOffline ? "cloud_off" : "cloud_download"}
+              </span>
+              <span className="text-xs font-medium">{forcedOffline ? "Plantão (F)" : isOffline ? "Offline" : "Modo Plantão"}</span>
             </button>
             <button
               onClick={toggleZenMode}

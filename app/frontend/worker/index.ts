@@ -87,14 +87,22 @@ function getOfflineFallbackHtml(): Response {
   });
 }
 
-async function getOfflineStudyShell(): Promise<Response> {
+async function getOfflineStudyShell(pathname: string = OFFLINE_STUDY_SHELL_PATH): Promise<Response> {
   try {
     const cache = await caches.open(OFFLINE_STUDY_SHELL_CACHE);
-    const shell = await cache.match(OFFLINE_STUDY_SHELL_PATH, {
+    // 1. Tenta recuperar a casca específica da rota solicitada
+    const targetShell = await cache.match(pathname, {
       ignoreSearch: true,
       ignoreVary: true,
     });
-    if (shell) return shell;
+    if (targetShell) return targetShell;
+
+    // 2. Fallback para a casca padrão /estudar
+    const defaultShell = await cache.match(OFFLINE_STUDY_SHELL_PATH, {
+      ignoreSearch: true,
+      ignoreVary: true,
+    });
+    if (defaultShell) return defaultShell;
   } catch {
     // Cache indisponível
   }
@@ -112,7 +120,7 @@ async function fetchNavigationWithTimeout(request: Request, timeoutMs: number = 
   }
 }
 
-// Intercepta navegações com timeout de 3s para impedir que o celular trave
+// Intercepta navegações com timeout de 2.8s para impedir que o celular trave
 // quando a conexão cai ou oscila.
 self.addEventListener("fetch", (rawEvent: Event) => {
   const event = rawEvent as FetchEvent;
@@ -127,12 +135,8 @@ self.addEventListener("fetch", (rawEvent: Event) => {
       return await fetchNavigationWithTimeout(event.request, 2800);
     } catch {
       // Se a conexão falhar ou expirar o tempo limite:
-      if (url.pathname === "/estudar" || url.pathname === "/") {
-        const shell = await getOfflineStudyShell();
-        return shell;
-      }
-      // Para outras rotas em modo offline, retorna a casca ou fallback amigável
-      return getOfflineStudyShell();
+      const targetPath = url.pathname === "/" ? "/estudar" : url.pathname;
+      return await getOfflineStudyShell(targetPath);
     }
   })());
 });
@@ -157,16 +161,23 @@ self.addEventListener("fetch", (rawEvent: Event) => {
 async function primeOfflineShellOnActivate(): Promise<void> {
   try {
     const cache = await caches.open(OFFLINE_STUDY_SHELL_CACHE);
-    const existing = await cache.match(OFFLINE_STUDY_SHELL_PATH, { ignoreSearch: true, ignoreVary: true });
-    if (!existing) {
-      const response = await fetch(OFFLINE_STUDY_SHELL_PATH);
-      if (response && response.ok) {
-        await cache.put(OFFLINE_STUDY_SHELL_PATH, response);
-        console.log("[ServiceWorker] Casca offline /estudar pré-aquecida com sucesso.");
+    const routesToWarm = ["/estudar", "/simulado", "/revisao-ativa"];
+    for (const route of routesToWarm) {
+      try {
+        const existing = await cache.match(route, { ignoreSearch: true, ignoreVary: true });
+        if (!existing) {
+          const response = await fetch(route);
+          if (response && response.ok) {
+            await cache.put(route, response);
+            console.log(`[ServiceWorker] Casca offline ${route} pré-aquecida com sucesso.`);
+          }
+        }
+      } catch {
+        // Ignora rota se falhar pontualmente
       }
     }
   } catch (err) {
-    console.warn("[ServiceWorker] Não foi possível pré-aquecer a casca no activate:", err);
+    console.warn("[ServiceWorker] Não foi possível pré-aquecer as cascas no activate:", err);
   }
 }
 
@@ -247,8 +258,8 @@ self.addEventListener("push", (rawEvent: Event) => {
 
   const options: NotificationOptions = {
     body,
-    icon: "/icon.svg",
-    badge: "/icon.svg",
+    icon: "/icon-192x192.png",
+    badge: "/badge-96x96.png",
     tag,
     data: { url },
   };

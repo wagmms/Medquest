@@ -2,16 +2,52 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
-import { CloudOff, Download, RefreshCw, Database, AlertCircle, Trash2, CheckCircle2, Play, BookOpen, Layers } from "lucide-react";
+import {
+  CloudOff,
+  Download,
+  RefreshCw,
+  Database,
+  AlertCircle,
+  Trash2,
+  CheckCircle2,
+  Play,
+  BookOpen,
+  Layers,
+  Smartphone,
+  Sun,
+  ShieldCheck,
+  Zap,
+} from "lucide-react";
 
-import { localDb, getLocalOwnerId, SyncItem, SimuladoPackage, isPackageValid } from "@/lib/db";
+import {
+  localDb,
+  getLocalOwnerId,
+  SyncItem,
+  SimuladoPackage,
+  isPackageValid,
+  isForcedOffline,
+  setForcedOffline,
+  isDeviceOffline,
+} from "@/lib/db";
 import { api } from "@/lib/api";
 import { syncManager } from "@/lib/sync";
-import { downloadSimuladoPackage, getReadySimuladoPackage, listSimuladoPackages, deleteSimuladoPackage } from "@/lib/simuladoPackage";
+import {
+  downloadSimuladoPackage,
+  getReadySimuladoPackage,
+  listSimuladoPackages,
+  deleteSimuladoPackage,
+} from "@/lib/simuladoPackage";
+import { useWakeLock } from "@/hooks/useWakeLock";
+import { usePwaInstall } from "@/hooks/usePwaInstall";
 import toast from "react-hot-toast";
 
 export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
   const [isOffline, setIsOffline] = useState(false);
+  const [forcedOffline, setForcedOfflineState] = useState(false);
+  const [storageInfo, setStorageInfo] = useState<{ usedMb: number; quotaMb: number; persisted: boolean } | null>(null);
+  const { isSupported: isWakeLockSupported, isActive: isWakeLockActive, toggleWakeLock } = useWakeLock();
+  const { isInstallable, installApp } = usePwaInstall();
+
   const [stats, setStats] = useState({ questions: 0, flashcards: 0, queue: 0 });
   const [packages, setPackages] = useState<SimuladoPackage[]>([]);
   const [activePackage, setActivePackage] = useState<SimuladoPackage | null>(null);
@@ -39,7 +75,6 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
       const pkgList = await listSimuladoPackages(uid);
       const readyPkg = await getReadySimuladoPackage(uid);
 
-
       setStats({ questions, flashcards, queue });
       setFailedItems(failed);
       setPackages(pkgList);
@@ -49,19 +84,37 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
       if (savedDate) {
         setLastDownloadDate(savedDate);
       }
+
+      if (typeof navigator !== "undefined" && navigator.storage) {
+        try {
+          const persisted = (await navigator.storage.persisted?.()) || false;
+          const estimate = await navigator.storage.estimate?.();
+          if (estimate && estimate.quota && estimate.usage !== undefined) {
+            setStorageInfo({
+              usedMb: Math.round(estimate.usage / (1024 * 1024)),
+              quotaMb: Math.round(estimate.quota / (1024 * 1024)),
+              persisted,
+            });
+          }
+        } catch {
+          // ignore storage estimate error
+        }
+      }
     } catch (error) {
       console.error("Failed to read local stats", error);
     }
   }, []);
 
   useEffect(() => {
-    // Determine online status
-    const handleOnline = () => setIsOffline(false);
-    const handleOffline = () => setIsOffline(true);
-    
-    const initialStatusTimer = setTimeout(() => setIsOffline(!navigator.onLine), 0);
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
+    const updateOnline = () => {
+      setIsOffline(isDeviceOffline());
+      setForcedOfflineState(isForcedOffline());
+    };
+
+    updateOnline();
+    window.addEventListener("online", updateOnline);
+    window.addEventListener("offline", updateOnline);
+    window.addEventListener("forced-offline-changed", updateOnline);
 
     // Initial stats
     const initialStatsTimer = setTimeout(() => void updateStats(), 0);
@@ -73,11 +126,11 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
     window.addEventListener("simulado-package-updated", handlePackageUpdate);
 
     return () => {
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline);
+      window.removeEventListener("online", updateOnline);
+      window.removeEventListener("offline", updateOnline);
+      window.removeEventListener("forced-offline-changed", updateOnline);
       window.removeEventListener("sync-queue-updated", handleQueueUpdate);
       window.removeEventListener("simulado-package-updated", handlePackageUpdate);
-      clearTimeout(initialStatusTimer);
       clearTimeout(initialStatsTimer);
     };
   }, [updateStats]);
@@ -195,6 +248,25 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
     await updateStats();
   };
 
+  const handleToggleForcedOffline = () => {
+    const next = !forcedOffline;
+    setForcedOffline(next);
+    setForcedOfflineState(next);
+    setIsOffline(isDeviceOffline());
+    if (next) {
+      toast.success("Modo Plantão forçado ativado (0ms latência local).");
+    } else {
+      toast("Modo Plantão forçado desativado.");
+    }
+  };
+
+  const handleInstallClick = async () => {
+    const installed = await installApp();
+    if (installed) {
+      toast.success("MedQuest instalado com sucesso!");
+    }
+  };
+
   const formattedLastDate = lastDownloadDate ? new Date(lastDownloadDate).toLocaleString("pt-BR", {
     day: "2-digit",
     month: "short",
@@ -233,6 +305,116 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
             Última atualização local: <strong className="text-foreground">{formattedLastDate}</strong>
           </p>
         )}
+
+        {/* Controles de Plantão & Android */}
+        <div className="mb-6 p-4 rounded-xl bg-muted/30 border border-border/80 flex flex-col gap-3.5">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+              <Zap size={14} className="text-amber-500" />
+              Otimizações para Plantão & Android
+            </span>
+            {isOffline && (
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-warning/20 text-warning">
+                {forcedOffline ? "Plantão Forçado" : "Sem Conexão"}
+              </span>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {/* Switch Forçar Modo Plantão */}
+            <div className="flex items-center justify-between p-3 rounded-lg bg-card border border-border">
+              <div className="flex flex-col pr-2">
+                <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                  <CloudOff size={14} className={forcedOffline ? "text-warning" : "text-muted-foreground"} />
+                  Forçar Modo Plantão
+                </span>
+                <span className="text-[11px] text-muted-foreground">
+                  Ignora Wi-Fi instável e responde instantaneamente local
+                </span>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={forcedOffline}
+                onClick={handleToggleForcedOffline}
+                className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                  forcedOffline ? "bg-warning" : "bg-muted"
+                }`}
+              >
+                <span
+                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out ${
+                    forcedOffline ? "translate-x-5" : "translate-x-0"
+                  }`}
+                />
+              </button>
+            </div>
+
+            {/* Switch Tela Acesa (Wake Lock) */}
+            <div className="flex items-center justify-between p-3 rounded-lg bg-card border border-border">
+              <div className="flex flex-col pr-2">
+                <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                  <Sun size={14} className={isWakeLockActive ? "text-amber-400" : "text-muted-foreground"} />
+                  Manter Tela Acesa
+                </span>
+                <span className="text-[11px] text-muted-foreground">
+                  {isWakeLockSupported
+                    ? "Impede o celular de bloquear durante o plantão"
+                    : "Não suportado neste navegador"}
+                </span>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                disabled={!isWakeLockSupported}
+                aria-checked={isWakeLockActive}
+                onClick={() => void toggleWakeLock()}
+                className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed ${
+                  isWakeLockActive ? "bg-amber-500" : "bg-muted"
+                }`}
+              >
+                <span
+                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out ${
+                    isWakeLockActive ? "translate-x-5" : "translate-x-0"
+                  }`}
+                />
+              </button>
+            </div>
+          </div>
+
+          {/* Banner de Instalação PWA no Android */}
+          {isInstallable && (
+            <div className="flex items-center justify-between p-3 rounded-lg bg-primary/10 border border-primary/20 text-xs">
+              <div className="flex items-center gap-2.5">
+                <Smartphone className="text-primary" size={20} />
+                <div>
+                  <p className="font-bold text-foreground">Instalar MedQuest no Android</p>
+                  <p className="text-muted-foreground text-[11px]">
+                    Acesse tela cheia e atalhos rápidos diretamente da tela inicial
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={handleInstallClick}
+                className="px-3 py-1.5 rounded-lg bg-primary text-primary-foreground font-semibold text-xs hover:bg-primary/90 transition-colors shrink-0"
+              >
+                Instalar
+              </button>
+            </div>
+          )}
+
+          {/* Quota e Proteção de Armazenamento */}
+          {storageInfo && (
+            <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-1 border-t border-border/50">
+              <span className="flex items-center gap-1">
+                <ShieldCheck size={13} className={storageInfo.persisted ? "text-success" : "text-muted-foreground"} />
+                {storageInfo.persisted ? "Armazenamento protegido contra limpeza" : "Armazenamento padrão"}
+              </span>
+              <span>
+                {storageInfo.usedMb} MB em uso / {storageInfo.quotaMb > 1024 ? `${(storageInfo.quotaMb / 1024).toFixed(1)} GB` : `${storageInfo.quotaMb} MB`}
+              </span>
+            </div>
+          )}
+        </div>
 
         {/* Card do Pacote de Simulado Ativo */}
         {activePackage && (

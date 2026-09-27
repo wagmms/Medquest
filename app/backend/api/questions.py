@@ -513,7 +513,7 @@ def question_detail(qid):
     queries = [
         ("SELECT * FROM questions WHERE id = ?", (qid,)),
         ("SELECT letter, text FROM alternatives WHERE question_id = ? ORDER BY letter", (qid,)),
-        ("SELECT file_path FROM question_images WHERE question_id = ? ORDER BY order_index", (qid,)),
+        ("SELECT file_path FROM question_images WHERE question_id = ? AND file_path NOT LIKE '%question_explanation_images%' ORDER BY order_index", (qid,)),
         ("SELECT selected_letter, is_correct FROM attempts WHERE question_id = ? AND user_id = ? ORDER BY id DESC LIMIT 1", (qid, g.user_id)),
         ("SELECT COUNT(*) as n FROM attempts WHERE question_id = ? AND is_correct = 0 AND user_id = ?", (qid, g.user_id)),
         ("SELECT 1 FROM favorites WHERE question_id = ? AND user_id = ?", (qid, g.user_id))
@@ -1008,7 +1008,7 @@ def _fetch_batch_data(db, ids, user_id):
         queries.extend([
             (f"SELECT * FROM questions WHERE id IN ({ph})", chunk),
             (f"SELECT question_id, letter, text FROM alternatives WHERE question_id IN ({ph}) ORDER BY letter", chunk),
-            (f"SELECT question_id, file_path FROM question_images WHERE question_id IN ({ph}) ORDER BY order_index", chunk),
+            (f"SELECT question_id, file_path FROM question_images WHERE question_id IN ({ph}) AND file_path NOT LIKE '%question_explanation_images%' ORDER BY order_index", chunk),
             (f"""SELECT a.question_id, a.selected_letter, a.is_correct
                  FROM questions q JOIN attempts a ON a.id = (
                      SELECT latest.id FROM attempts latest

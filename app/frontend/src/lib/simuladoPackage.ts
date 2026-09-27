@@ -106,17 +106,24 @@ async function requestPersistentStorage(): Promise<void> {
  * offline navigation to /estudar cannot render those questions.
  */
 async function primeOfflineStudyShell(): Promise<void> {
+  if (typeof caches === "undefined") {
+    throw new Error("Cache Storage não está disponível neste navegador.");
+  }
+
+  const routesToPrime = ["/estudar", "/simulado", "/revisao-ativa"];
   try {
-    const response = await fetch("/estudar", { cache: "reload" });
-    if (!response.ok) {
-      throw new Error(`A tela de estudo retornou ${response.status}.`);
-    }
-    if (typeof caches === "undefined") {
-      throw new Error("Cache Storage não está disponível neste navegador.");
+    const studyCache = await caches.open(OFFLINE_STUDY_SHELL_CACHE);
+    for (const route of routesToPrime) {
+      try {
+        const response = await fetch(route, { cache: "reload" });
+        if (response && response.ok) {
+          await studyCache.put(route, response.clone());
+        }
+      } catch (e) {
+        console.warn(`[OfflinePackage] Aviso ao pré-carregar casca para ${route}:`, e);
+      }
     }
 
-    const studyCache = await caches.open(OFFLINE_STUDY_SHELL_CACHE);
-    await studyCache.put("/estudar", response.clone());
     const cachedShell = await studyCache.match("/estudar", {
       ignoreSearch: true,
       ignoreVary: true,

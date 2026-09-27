@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useMemo, useState, useEffect, useRef, useSyncExternalStore } from "react";
 import { TimelineStat, WeakTopic, BreakdownStat, DistractorStat, PredictiveScore, AtRiskTopic, LearningProfile, ExamReadiness, InstitutionRadarResponse } from "@/types/api";
 import Link from "next/link";
 import clsx from "clsx";
@@ -64,13 +64,13 @@ export function AnalysisClient({
   const [localReadiness, setLocalReadiness] = useState(examReadiness);
   const [loadingReadiness, setLoadingReadiness] = useState(false);
   const [readinessError, setReadinessError] = useState<string | null>(null);
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
   const isFirstMount = useRef(true);
   const isFirstReadinessMount = useRef(true);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
     if (isFirstMount.current) {

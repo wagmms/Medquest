@@ -28,7 +28,7 @@ const withPWA = withPWAInit({
     runtimeCaching: [
       {
         urlPattern: ({ sameOrigin, url: { pathname } }: { sameOrigin: boolean; url: { pathname: string } }) =>
-          sameOrigin && pathname === "/estudar",
+          sameOrigin && (pathname === "/estudar" || pathname === "/simulado" || pathname === "/revisao-ativa"),
         handler: "NetworkFirst",
         options: {
           cacheName: "medquest-study-shell",
@@ -43,7 +43,7 @@ const withPWA = withPWAInit({
           },
           networkTimeoutSeconds: 3,
           expiration: {
-            maxEntries: 1,
+            maxEntries: 5,
             maxAgeSeconds: 60 * 60 * 24 * 30, // 30 dias
           },
         },

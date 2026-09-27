@@ -140,10 +140,9 @@ def backfill_explanations(
                 )
                 updated_explanations += 1
 
-                # Extract and associate any images from this explanation / question
+                # Extract and associate images strictly from question stem or question attachments (NEVER from explanation)
                 img_urls = re.findall(r"!\[.*?\]\((https?://[^\)]+)\)", stem)
                 img_tags = re.findall(r'<img[^>]+src=["\'](https?://[^"\']+)["\']', raw_stem)
-                exp_imgs = re.findall(r"!\[.*?\]\((https?://[^\)]+)\)", golden_exp)
 
                 obj_imgs = []
                 for it in q_detail.get("images", []):
@@ -154,7 +153,7 @@ def backfill_explanations(
                     elif isinstance(it, str) and it.startswith("http"):
                         obj_imgs.append(it)
 
-                all_imgs = list(dict.fromkeys(img_urls + img_tags + exp_imgs + obj_imgs))
+                all_imgs = list(dict.fromkeys(img_urls + img_tags + obj_imgs))
 
                 for order_idx, img_url in enumerate(all_imgs):
                     if (target_qid, img_url) not in existing_images:
