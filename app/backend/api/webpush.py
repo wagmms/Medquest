@@ -159,7 +159,6 @@ def send_web_push(
             "error": "Endpoint inseguro ou não permitido pela allowlist de Web Push.",
         }
 
-    global _mock_sender
     if _mock_sender is not None:
         return _mock_sender(subscription, payload)
 

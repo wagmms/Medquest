@@ -74,10 +74,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
         const uid = getLocalOwnerId();
         for (const card of normalizedCards) {
           localDb.flashcards
-            .where('_owner_id')
-            .equals(uid)
-            .filter(f => f.id === card.id)
-            .modify({
+            .update([card.id, uid], {
               front: card.front,
               back: card.back,
             })
@@ -124,7 +121,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
       if (localDb) {
         try {
           const uid = getLocalOwnerId();
-          await localDb.flashcards.where('_owner_id').equals(uid).filter(f => f.id === currentCard.id).delete();
+          await localDb.flashcards.delete([currentCard.id, uid]);
         } catch {
           // ignore local cleanup error
         }
@@ -135,7 +132,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
         if (localDb) {
           try {
             const uid = getLocalOwnerId();
-            await localDb.flashcards.where('_owner_id').equals(uid).filter(f => f.id === currentCard.id).delete();
+            await localDb.flashcards.delete([currentCard.id, uid]);
           } catch {
             // ignore local cleanup error
           }

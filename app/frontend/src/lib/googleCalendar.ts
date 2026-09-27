@@ -1,382 +1,192 @@
-import { PlannerWeek } from "@/types/api";
+import type { PlannerConfig, PlannerTopicProgressMap, PlannerWeek } from "@/types/api";
 
+type TokenResponse = { access_token?: string; error?: string };
 declare global {
   interface Window {
-    google?: {
-      accounts: {
-        oauth2: {
-          initTokenClient: (config: {
-            client_id: string;
-            scope: string;
-            callback: (response: { access_token?: string; error?: string }) => void;
-          }) => {
-            requestAccessToken: () => void;
-          };
-        };
-      };
-    };
+    google?: { accounts: { oauth2: { initTokenClient: (config: {
+      client_id: string;
+      scope: string;
+      callback: (response: TokenResponse) => void;
+      error_callback?: (error: { type: string }) => void;
+    }) => { requestAccessToken: () => void } } } };
   }
 }
-
-export interface SyncProgress {
-  current: number;
-  total: number;
-  status: string;
+export interface SyncProgress { current: number; total: number; status: string }
+interface CalendarEvent {
+  id: string;
+  summary?: string;
+  colorId?: string;
+  extendedProperties?: { private?: Record<string, string> };
 }
+interface SyncOptions {
+  config: PlannerConfig;
+  ownerId: string;
+  completed: PlannerTopicProgressMap;
+  onComplete: (week: number, subtema: string) => Promise<void>;
+  onProgress?: (progress: SyncProgress) => void;
+}
+export interface StudyBlock {
+  key: string;
+  topicKey: string;
+  title: string;
+  description: string;
+  start: Date;
+  end: Date;
+}
+const topicKey = (week: number, subtema: string, area: string) => JSON.stringify([week, subtema, area]);
+const topicTitle = (subtema: string, area: string) => `[MedQuest] 📖 ${subtema} (${area})`;
 
-export async function syncPlanToGoogleCalendarDirectly(
-  plan: PlannerWeek[],
-  daysPerWeek: number = 6,
-  onProgress?: (progress: SyncProgress) => void
-): Promise<{ success: boolean; calendarId?: string; error?: string }> {
-  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-  if (!clientId) {
-    throw new Error("GOOGLE_CLIENT_ID_MISSING");
-  }
-
-  // Carrega o script Google Identity Services se ainda não estiver presente
-  if (!window.google?.accounts?.oauth2) {
-    await new Promise<void>((resolve, reject) => {
-      const existing = document.querySelector('script[src="https://accounts.google.com/gsi/client"]');
-      if (existing) {
-        resolve();
-        return;
-      }
-      const script = document.createElement("script");
-      script.src = "https://accounts.google.com/gsi/client";
-      script.async = true;
-      script.defer = true;
-      script.onload = () => resolve();
-      script.onerror = () => reject(new Error("Falha ao carregar o serviço Google Identity Services"));
-      document.body.appendChild(script);
-    });
-  }
-
-  return new Promise((resolve, reject) => {
-    try {
-      const tokenClient = window.google!.accounts.oauth2.initTokenClient({
-        client_id: clientId,
-        scope: "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar",
-        callback: async (tokenResponse) => {
-          if (tokenResponse.error || !tokenResponse.access_token) {
-            return reject(new Error(tokenResponse.error || "Acesso não autorizado pelo usuário"));
-          }
-
-          try {
-            const accessToken = tokenResponse.access_token;
-            onProgress?.({ current: 0, total: 100, status: "Conectando e criando agenda MedQuest..." });
-
-            // 1. Verifica ou cria uma agenda própria editável no Google Calendar
-            const calListRes = await fetch("https://www.googleapis.com/calendar/v3/users/me/calendarList", {
-              headers: { Authorization: `Bearer ${accessToken}` },
-            });
-            const calListData = await calListRes.json();
-            let targetCalId = "primary";
-
-            const existingCal = calListData.items?.find((c: { summary: string; id: string }) => 
-              c.summary === "MedQuest - Cronograma de Residência"
-            );
-
-            if (existingCal) {
-              targetCalId = existingCal.id;
-            } else {
-              const createCalRes = await fetch("https://www.googleapis.com/calendar/v3/calendars", {
-                method: "POST",
-                headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  summary: "MedQuest - Cronograma de Residência",
-                  description: "Cronograma de estudos e revisões ativas do MedQuest (100% Editável).",
-                  timeZone: "America/Sao_Paulo",
-                }),
-              });
-              const newCal = await createCalRes.json();
-              if (newCal.id) {
-                targetCalId = newCal.id;
-              }
-            }
-
-            // 2. Prepara todos os eventos de aulas e revisões
-            const eventsToInsert: Array<{
-              summary: string;
-              description: string;
-              start: { dateTime: string; timeZone: string };
-              end: { dateTime: string; timeZone: string };
-            }> = [];
-
-            const origin = typeof window !== "undefined" ? window.location.origin : "";
-            const studyDaysCount = Math.max(1, Math.min(7, daysPerWeek));
-
-            for (const week of plan) {
-              const weekDate = new Date(week.date);
-              for (let tIdx = 0; tIdx < week.topics.length; tIdx++) {
-                const topic = week.topics[tIdx];
-                const dayOffset = tIdx % studyDaysCount;
-                const topicDate = new Date(weekDate.getTime() + dayOffset * 86400000);
-
-                const dtStart = new Date(topicDate);
-                dtStart.setHours(8, 0, 0, 0);
-                const durationMinutes = Math.max(30, Math.round(topic.estimated_hours * 60));
-                const dtEnd = new Date(dtStart.getTime() + durationMinutes * 60000);
-
-                // Evento de Aula
-                eventsToInsert.push({
-                  summary: `[MedQuest] 📖 ${topic.subtema} (${topic.area})`,
-                  description: `📚 Carga: ${topic.estimated_hours}h (Teoria: ${topic.estimated_theory_hours}h + Questões: ${topic.estimated_practice_hours}h)\nSemana ${week.week} • ${topic.area}${origin ? `\n\n🔗 Questões: ${origin}/estudar?subtema=${encodeURIComponent(topic.subtema)}&limit=25` : ""}`,
-                  start: { dateTime: dtStart.toISOString(), timeZone: "America/Sao_Paulo" },
-                  end: { dateTime: dtEnd.toISOString(), timeZone: "America/Sao_Paulo" },
-                });
-              }
-            }
-
-            // 3. Atualização ou inserção inteligente dos eventos na conta do Google
-            let existingEventsMap = new Map<string, string>();
-            try {
-              const existingEventsRes = await fetch(
-                `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(targetCalId)}/events?maxResults=2500`,
-                { headers: { Authorization: `Bearer ${accessToken}` } }
-              );
-              const existingEventsData = await existingEventsRes.json();
-              if (Array.isArray(existingEventsData.items)) {
-                for (const item of existingEventsData.items) {
-                  if (item.summary && item.id) {
-                    existingEventsMap.set(item.summary, item.id);
-                  }
-                }
-              }
-            } catch {
-              existingEventsMap = new Map<string, string>();
-            }
-
-            const total = eventsToInsert.length;
-            for (let i = 0; i < total; i++) {
-              const ev = eventsToInsert[i];
-              const existingEventId = existingEventsMap.get(ev.summary);
-
-              onProgress?.({
-                current: i + 1,
-                total,
-                status: existingEventId
-                  ? `Atualizando evento ${i + 1} de ${total}: ${ev.summary}...`
-                  : `Criando evento ${i + 1} de ${total}: ${ev.summary}...`,
-              });
-
-              if (existingEventId) {
-                await fetch(
-                  `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(targetCalId)}/events/${encodeURIComponent(existingEventId)}`,
-                  {
-                    method: "PATCH",
-                    headers: {
-                      Authorization: `Bearer ${accessToken}`,
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                      description: ev.description,
-                    }),
-                  }
-                );
-              } else {
-                await fetch(
-                  `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(targetCalId)}/events`,
-                  {
-                    method: "POST",
-                    headers: {
-                      Authorization: `Bearer ${accessToken}`,
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(ev),
-                  }
-                );
-              }
-            }
-
-            resolve({ success: true, calendarId: targetCalId });
-          } catch (err) {
-            reject(err);
-          }
-        },
-      });
-
-      tokenClient.requestAccessToken();
-    } catch (err) {
-      reject(err);
+/** Schedule in the browser's local timezone, Monday through the configured day count. */
+export function scheduleStudyBlocks(plan: PlannerWeek[], config: PlannerConfig,
+  completed: PlannerTopicProgressMap = {}, now = new Date()): StudyBlock[] {
+  const days = Math.max(1, Math.min(7, Math.floor(config.days_per_week || 6)));
+  const capacity = Math.max(30, Math.min(16 * 60, Math.round((config.hours_per_day || 4) * 60)));
+  const cursor = new Date(now);
+  cursor.setHours(8, 0, 0, 0);
+  if (cursor < now) cursor.setDate(cursor.getDate() + 1);
+  let used = 0;
+  const blocks: StudyBlock[] = [];
+  const advance = () => { cursor.setDate(cursor.getDate() + 1); used = 0; };
+  const ensureDay = () => {
+    while ((cursor.getDay() + 6) % 7 >= days) advance();
+    if (config.exam_date && cursor >= new Date(`${config.exam_date}T00:00:00`)) {
+      throw new Error("O cronograma não cabe antes da prova. Ajuste a carga diária ou os temas pendentes.");
     }
-  });
+  };
+  for (const week of plan) {
+    const earliest = new Date(`${week.date.slice(0, 10)}T08:00:00`);
+    if (Number.isNaN(earliest.getTime())) throw new Error("Data inválida no cronograma.");
+    if (cursor < earliest) { cursor.setTime(earliest.getTime()); used = 0; }
+    for (const topic of week.topics) {
+      const key = topicKey(week.week, topic.subtema, topic.area);
+      if (completed[`${week.week}:${topic.subtema}`] || completed[topic.subtema]) continue;
+      let remaining = Math.max(30, Math.round(topic.estimated_hours * 60));
+      if (!Number.isFinite(remaining)) throw new Error("Carga horária inválida no cronograma.");
+      let part = 0;
+      while (remaining > 0) {
+        if (used >= capacity) advance();
+        ensureDay();
+        const duration = Math.min(remaining, capacity - used);
+        const start = new Date(cursor.getTime() + used * 60000);
+        blocks.push({ key: `${key}:${part++}`, topicKey: key,
+          title: topicTitle(topic.subtema, topic.area),
+          description: `Semana ${week.week} • ${topic.area} • ${topic.estimated_hours}h no total`,
+          start, end: new Date(start.getTime() + duration * 60000) });
+        used += duration;
+        remaining -= duration;
+      }
+    }
+  }
+  return blocks;
 }
 
-// -----------------------------------------------------------------------------------
-// ADVANCED TWO-WAY SYNC (Regra de União & Efeito Cascata - Internato Turma J)
-// -----------------------------------------------------------------------------------
-export async function advancedTwoWaySync(
-  plan: PlannerWeek[],
-  daysPerWeek: number = 6,
-  onProgress?: (progress: SyncProgress) => void
-): Promise<{ success: boolean; calendarId?: string; error?: string }> {
+let identityScript: Promise<void> | undefined;
+async function getAccessToken(): Promise<string> {
   const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
   if (!clientId) throw new Error("GOOGLE_CLIENT_ID_MISSING");
-
   if (!window.google?.accounts?.oauth2) {
-    await new Promise<void>((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = "https://accounts.google.com/gsi/client";
-      script.async = true;
-      script.defer = true;
-      script.onload = () => resolve();
-      script.onerror = () => reject(new Error("Falha Identity Services"));
-      document.body.appendChild(script);
+    identityScript ??= new Promise<void>((resolve, reject) => {
+      const existing = document.querySelector<HTMLScriptElement>('script[src="https://accounts.google.com/gsi/client"]');
+      const script = existing || document.createElement("script");
+      const finish = (error?: Error) => {
+        clearTimeout(timer);
+        script.removeEventListener("load", loaded);
+        script.removeEventListener("error", failed);
+        if (error) { script.remove(); reject(error); } else resolve();
+      };
+      const loaded = () => finish();
+      const failed = () => finish(new Error("Falha ao carregar Google Identity Services"));
+      const timer = setTimeout(failed, 20000);
+      script.addEventListener("load", loaded, { once: true });
+      script.addEventListener("error", failed, { once: true });
+      if (!existing) {
+        script.src = "https://accounts.google.com/gsi/client";
+        script.async = true;
+        document.body.appendChild(script);
+      }
+    }).catch(error => { identityScript = undefined; throw error; });
+    await identityScript;
+  }
+  return new Promise((resolve, reject) => {
+    window.google!.accounts.oauth2.initTokenClient({
+      client_id: clientId,
+      scope: "https://www.googleapis.com/auth/calendar.events",
+      callback: response => response.access_token && !response.error
+        ? resolve(response.access_token) : reject(new Error(response.error || "Autorização não recebida")),
+      error_callback: error => reject(new Error(`Autorização interrompida: ${error.type}`)),
+    }).requestAccessToken();
+  });
+}
+
+async function digest(value: string): Promise<string> {
+  const bytes = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+  return Array.from(new Uint8Array(bytes), byte => byte.toString(16).padStart(2, "0")).join("");
+}
+
+/** Checked, paginated, repeatable upserts. Existing events are never mass-deleted. */
+export async function syncPlanToGoogleCalendar(plan: PlannerWeek[], options: SyncOptions) {
+  const token = await getAccessToken();
+  const base = "https://www.googleapis.com/calendar/v3/calendars/primary/events";
+  const request = async <T>(url: string, init?: RequestInit): Promise<T> => {
+    const response = await fetch(url, { ...init, signal: AbortSignal.timeout(20000),
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", ...init?.headers } });
+    if (!response.ok) throw new Error(`Google Agenda: HTTP ${response.status}. A sincronização não foi concluída; tente novamente.`);
+    if (response.status === 204) return undefined as T;
+    return await response.json() as T;
+  };
+  const events: CalendarEvent[] = [];
+  let pageToken: string | undefined;
+  do {
+    const params = new URLSearchParams({ maxResults: "2500", showDeleted: "false" });
+    if (pageToken) params.set("pageToken", pageToken);
+    const page = await request<{ items?: CalendarEvent[]; nextPageToken?: string }>(`${base}?${params}`);
+    events.push(...page.items || []);
+    pageToken = page.nextPageToken;
+  } while (pageToken);
+
+  const namespace = await digest(JSON.stringify([options.ownerId, options.config.start_date, options.config.exam_date]));
+  const completed = { ...options.completed };
+  const byKey = new Map<string, CalendarEvent>();
+  const legacyByTitle = new Map<string, CalendarEvent>();
+  for (const event of events) {
+    const props = event.extendedProperties?.private;
+    if (props?.medquestPlan === namespace && props.medquestBlock) byKey.set(props.medquestBlock, event);
+    else if (!props?.medquestPlan && event.summary?.startsWith("[MedQuest] 📖 ")) legacyByTitle.set(event.summary, event);
+  }
+  for (const week of plan) {
+    for (const topic of week.topics) {
+      const key = topicKey(week.week, topic.subtema, topic.area);
+      const managed = events.filter(e => e.extendedProperties?.private?.medquestPlan === namespace && e.extendedProperties.private.medquestTopic === key);
+      const legacy = legacyByTitle.get(topicTitle(topic.subtema, topic.area));
+      const expectedParts = Number(managed[0]?.extendedProperties?.private?.medquestParts || managed.length);
+      const done = managed.length ? managed.length === expectedParts && managed.every(e => e.colorId === "8") : legacy?.colorId === "8";
+      if (done && !completed[`${week.week}:${topic.subtema}`] && !completed[topic.subtema]) {
+        await options.onComplete(week.week, topic.subtema);
+        completed[`${week.week}:${topic.subtema}`] = true;
+      }
+      if (completed[`${week.week}:${topic.subtema}`] || completed[topic.subtema]) {
+        for (const event of managed.length ? managed : legacy ? [legacy] : []) {
+          if (event.colorId !== "8") await request(`${base}/${encodeURIComponent(event.id)}`, { method: "PATCH", body: JSON.stringify({ colorId: "8" }) });
+        }
+      }
+    }
+  }
+  const blocks = scheduleStudyBlocks(plan, options.config, completed);
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  for (const [index, block] of blocks.entries()) {
+    options.onProgress?.({ current: index, total: blocks.length, status: `Sincronizando ${block.title}` });
+    const existing = byKey.get(block.key) || (block.key.endsWith(":0") ? legacyByTitle.get(block.title) : undefined);
+    if (existing?.colorId === "8") continue;
+    const id = existing?.id || await digest(`${namespace}:${block.key}`);
+    const body = {
+      summary: block.title, description: block.description, colorId: "9",
+      start: { dateTime: block.start.toISOString(), timeZone }, end: { dateTime: block.end.toISOString(), timeZone },
+      extendedProperties: { private: { medquestPlan: namespace, medquestBlock: block.key, medquestTopic: block.topicKey, medquestParts: String(blocks.filter(b => b.topicKey === block.topicKey).length) } },
+    };
+    await request(existing ? `${base}/${encodeURIComponent(id)}` : base, {
+      method: existing ? "PATCH" : "POST", body: JSON.stringify(existing ? body : { ...body, id }),
     });
   }
-
-  return new Promise((resolve, reject) => {
-    try {
-      const tokenClient = window.google!.accounts.oauth2.initTokenClient({
-        client_id: clientId,
-        scope: "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar",
-        callback: async (response: any) => {
-          if (response.error) return reject(new Error(response.error));
-          const accessToken = response.access_token;
-
-          try {
-            const targetCalId = "primary";
-            onProgress?.({ current: 0, total: 100, status: "Analisando estado atual da agenda..." });
-
-            // 1. Fetch Todos os eventos da Agenda
-            const res = await fetch(
-              `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(targetCalId)}/events?maxResults=2500`,
-              { headers: { Authorization: `Bearer ${accessToken}` } }
-            );
-            const data = await res.json();
-            const existingItems = data.items || [];
-
-            const concluidos = new Set<string>();
-            const paraDeletar = new Set<string>();
-
-            const now = new Date();
-
-            for (const item of existingItems) {
-               if (!item.summary || !item.summary.includes("[MedQuest]")) continue;
-               
-               const syncId = item.summary.replace("[MedQuest] 📖 ", "").replace("[MedQuest] ✍️ ", "").trim();
-               const isDone = item.colorId === "8"; // 8 = Grafite/Cinza
-               const endDt = item.end?.dateTime ? new Date(item.end.dateTime) : null;
-
-               if (isDone) {
-                 concluidos.add(syncId);
-                 // Opcional: Se quiséssemos a 'Regra de União' perfeitamente integrada ao backend,
-                 // faríamos um POST /api/planner/mark-done aqui para atualizar o Banco de Dados (App).
-               } else if (endDt) {
-                 paraDeletar.add(item.id);
-               }
-            }
-
-            // 2. Monta a lista linear de todas as matérias que AINDA NÃO FORAM FEITAS
-            const aulasPendentes: { title: string, description: string, duration: number, area: string }[] = [];
-            const origin = typeof window !== "undefined" ? window.location.origin : "";
-            
-            for (const week of plan) {
-               for (const topic of week.topics) {
-                  const syncId = `${topic.subtema} (${topic.area})`;
-                  if (concluidos.has(syncId)) continue; // Já fez, pula!
-
-                  const durationMinutes = Math.max(30, Math.round(topic.estimated_hours * 60));
-                  const desc = `📚 Carga: ${topic.estimated_hours}h (Teoria: ${topic.estimated_theory_hours}h + Questões: ${topic.estimated_practice_hours}h)
-Semana ${week.week} • ${topic.area}${origin ? `
-
-🔗 Questões: ${origin}/estudar?subtema=${encodeURIComponent(topic.subtema)}&limit=25` : ""}`;
-                  
-                  aulasPendentes.push({
-                     title: `[MedQuest] 📖 ${syncId}`,
-                     description: desc,
-                     duration: durationMinutes,
-                     area: topic.area
-                  });
-               }
-            }
-
-            // 3. Aplica a Ordem de Prioridade (O Efeito Cascata)
-            // Identifica qual o rodízio atual (Hardcoded Turma J para exemplo rápido)
-            const rodizios = [
-              { start: new Date("2026-09-01"), end: new Date("2026-11-26"), area: "Ginecologia e Obstetrícia" },
-              { start: new Date("2026-11-27"), end: new Date("2027-01-25"), area: "Preventiva" },
-              { start: new Date("2027-01-26"), end: new Date("2027-02-22"), area: "Cirurgia" },
-            ];
-            
-            let areaAtual = "";
-            for (const r of rodizios) {
-               if (now >= r.start && now <= r.end) areaAtual = r.area;
-            }
-
-            if (areaAtual) {
-               aulasPendentes.sort((a, b) => {
-                  if (a.area === areaAtual && b.area !== areaAtual) return -1;
-                  if (b.area === areaAtual && a.area !== areaAtual) return 1;
-                  return 0; // Mantém a ordem sequencial original do currículo
-               });
-            }
-
-            // 4. Deleta todos os azuis (para dar lugar ao reagendamento limpo)
-            let delCount = 0;
-            for (const evId of Array.from(paraDeletar)) {
-               delCount++;
-               onProgress?.({ current: delCount, total: paraDeletar.size, status: `Limpando blocos atrasados/futuros...` });
-               await fetch(
-                  `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(targetCalId)}/events/${encodeURIComponent(evId)}`,
-                  { method: "DELETE", headers: { Authorization: `Bearer ${accessToken}` } }
-               ).catch(e => console.log(e));
-            }
-
-            // 5. Aloca os novos horários (O Efeito Cascata em si)
-            const studyDaysCount = Math.max(1, Math.min(7, daysPerWeek));
-            let currentPointerDate = new Date();
-            currentPointerDate.setHours(8, 0, 0, 0);
-            
-            const totalToInsert = aulasPendentes.length;
-            for (let i = 0; i < totalToInsert; i++) {
-               const aula = aulasPendentes[i];
-               
-               // Lógica simplificada de alocação de dias de estudo (Pula fins de semana se daysPerWeek=5 etc)
-               const endPointerDate = new Date(currentPointerDate.getTime() + aula.duration * 60000);
-
-               onProgress?.({
-                 current: i + 1,
-                 total: totalToInsert,
-                 status: `Criando evento da Cascata: ${aula.title}...`
-               });
-
-               await fetch(
-                  `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(targetCalId)}/events`,
-                  {
-                     method: "POST",
-                     headers: {
-                       Authorization: `Bearer ${accessToken}`,
-                       "Content-Type": "application/json",
-                     },
-                     body: JSON.stringify({
-                       summary: aula.title,
-                       description: aula.description,
-                       colorId: "9", // Azul
-                       start: { dateTime: currentPointerDate.toISOString(), timeZone: "America/Sao_Paulo" },
-                       end: { dateTime: endPointerDate.toISOString(), timeZone: "America/Sao_Paulo" }
-                     }),
-                  }
-               );
-               
-               // Avança o dia para o próximo slot (Exemplo simplificado de 1 aula por dia)
-               currentPointerDate.setDate(currentPointerDate.getDate() + 1);
-            }
-
-            resolve({ success: true, calendarId: targetCalId });
-          } catch (err) {
-            reject(err);
-          }
-        },
-      });
-
-      tokenClient.requestAccessToken();
-    } catch (err) {
-      reject(err);
-    }
-  });
+  options.onProgress?.({ current: blocks.length, total: blocks.length, status: "Sincronização concluída" });
+  return { success: true, calendarId: "primary" };
 }

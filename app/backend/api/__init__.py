@@ -3,6 +3,8 @@ import logging
 import os
 import platform
 
+import click
+
 from dotenv import load_dotenv
 from flask import Flask, g, jsonify, request
 from flask_cors import CORS
@@ -93,6 +95,15 @@ def create_app(testing=False, initialize_db=None):
     for bp in (questions_bp, stats_bp, plan_bp, flashcards_bp, logs_bp, sessions_bp, notifications_bp, themes_bp):
         app.register_blueprint(bp, url_prefix="/api")
         app.register_blueprint(bp, url_prefix="/api/v1", name=f"{bp.name}_v1")
+
+    @app.cli.command("cleanup-idempotency")
+    @click.option("--max-age-days", default=7, type=click.IntRange(min=1), show_default=True)
+    def cleanup_idempotency(max_age_days):
+        """Remove expired completed/failed request records; preserve in-flight work."""
+        from .db import get_db
+        from .idempotency import cleanup_idempotency_keys
+        cleanup_idempotency_keys(get_db(), max_age_days=max_age_days)
+        click.echo("Expired idempotency records removed.")
 
     app.teardown_appcontext(close_db)
     if initialize_db:

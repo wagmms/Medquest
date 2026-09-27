@@ -266,8 +266,8 @@ export function AnkiIntegrationModal({
       const res = await api.flashcards.deleteDeck(deckName);
       toast.success(`Baralho "${deckName}" excluído (${res.deleted_count} cartões removidos).`);
       onSuccess();
-    } catch {
-      toast.error("Erro ao excluir baralho.");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Erro ao excluir baralho.");
     } finally {
       setDeletingDeck(null);
     }

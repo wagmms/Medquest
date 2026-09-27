@@ -50,3 +50,11 @@ Esses arquivos permanecem no repositório apenas para rastreabilidade histórica
 ## Política para reativação
 
 Para promover um script de deprecated a suportado, é obrigatório: CLI com `--dry-run`, caminhos explícitos, timeout de rede, transação com rollback, backup para mutações, nenhum efeito colateral no import, teste hermético e documentação nesta lista.
+
+## Manutenção de idempotência
+
+O comando `flask --app api:create_app cleanup-idempotency --max-age-days 7`
+remove registros concluídos antigos e falhas expiradas, preservando operações
+em processamento. Pode ser agendado pelo operador no ambiente do backend;
+a instalação não cria nem executa um agendamento automaticamente. Use retenção
+compatível com o período de reenvio offline suportado pela implantação.

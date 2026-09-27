@@ -83,7 +83,7 @@ def reserve_idempotency(db, user_id: str, path: str, method: str, raw_payload: b
     cursor.close()
 
     if not existing:
-        return None, (jsonify({"error": "Idempotency state changed concurrently; retry the request"}), 409), None
+        return None, (jsonify({"error": "Idempotency state changed concurrently; retry the request", "code": "idempotency_processing"}), 409, {"Retry-After": "2"}), None
 
     # Verificar divergência de rota, método ou payload
     if (existing["payload_hash"] != payload_hash or 
@@ -129,7 +129,7 @@ def reserve_idempotency(db, user_id: str, path: str, method: str, raw_payload: b
             if row and row["status"] == "completed" and row["response_body"] is not None:
                 return Response(row["response_body"], status=row["status_code"] or 200, mimetype="application/json"), None, None
 
-        return None, (jsonify({"error": "Conflict: Operation with this idempotency key is currently processing"}), 409), None
+        return None, (jsonify({"error": "Conflict: Operation with this idempotency key is currently processing", "code": "idempotency_processing"}), 409, {"Retry-After": "2"}), None
 
     return None, (jsonify({"error": "Invalid idempotency state"}), 409), None
 

@@ -4,6 +4,7 @@
  */
 
 import { localDb, SyncItem, getLocalOwnerId } from "./db";
+import { cacheCreatedFlashcards } from "./flashcardCache";
 
 let isInitialized = false;
 let onlineHandler: (() => void) | null = null;
@@ -223,7 +224,8 @@ export const syncManager = {
         };
 
         const syncAbortController = new AbortController();
-        const syncTimeoutTimer = setTimeout(() => syncAbortController.abort(), 6000);
+        const syncTimeoutTimer = setTimeout(() => syncAbortController.abort(),
+          /\/flashcards\/generate/.test(item.endpoint) ? 125000 : 15000);
 
         let response: Response;
         try {
@@ -247,8 +249,11 @@ export const syncManager = {
           } catch {
             // ignore parse error if response is not JSON
           }
+          if (/\/flashcards\/(save|generate|generate-batch)$/.test(item.endpoint)) {
+            await cacheCreatedFlashcards(responseData, uid);
+          }
           await localDb.syncQueue.delete(item.id);
-          window.dispatchEvent(new CustomEvent("sync-item-success", {
+          if (getLocalOwnerId() === uid) window.dispatchEvent(new CustomEvent("sync-item-success", {
             detail: {
               id: item.id,
               endpoint: item.endpoint,
@@ -275,7 +280,13 @@ export const syncManager = {
         }
 
         // Erros retentáveis: 408 (Request Timeout), 429 (Too Many Requests), >= 500 (Server Error)
-        const isRetriable = response.status === 408 || response.status === 429 || response.status >= 500;
+        let processingConflict = false;
+        if (response.status === 409) {
+          try {
+            processingConflict = (await response.json()).code === "idempotency_processing";
+          } catch { /* An unknown conflict remains terminal. */ }
+        }
+        const isRetriable = processingConflict || response.status === 408 || response.status === 429 || response.status >= 500;
 
         if (isRetriable) {
           const newRetryCount = item.retry_count + 1;

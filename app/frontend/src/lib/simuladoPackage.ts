@@ -437,13 +437,3 @@ export async function deleteSimuladoPackage(packageId: string, ownerId?: string)
   await localDb.simuladoPackages.delete(packageId);
   window.dispatchEvent(new CustomEvent("simulado-package-updated", { detail: { deletedId: packageId } }));
 }
-
-/**
- * Limpa todos os pacotes e questões do usuário atual.
- */
-export async function clearAllSimuladoPackages(ownerId?: string): Promise<void> {
-  if (typeof window === "undefined" || !localDb) return;
-  const uid = ownerId || getLocalOwnerId();
-  await localDb.simuladoPackages.where('owner_id').equals(uid).delete();
-  window.dispatchEvent(new CustomEvent("simulado-package-updated", { detail: { cleared: true } }));
-}

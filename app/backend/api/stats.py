@@ -859,7 +859,7 @@ def predictive_score():
         "target_score": target_score,
         "areas": sorted(areas_acc, key=lambda x: x["accuracy"], reverse=True),
         "is_reliable": is_reliable,
-        "total_attempts": total_attempts,
+        "total_attempts": sum(area_attempts.values()),
         "minimum_attempts_per_area": 20,
     })
 

@@ -15,6 +15,7 @@ const API_BASE = process.env.NEXT_PUBLIC_APP_URL ||
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` :
   (typeof window !== "undefined" ? "" : "http://localhost:3000")));
 
+import { cacheCreatedFlashcards } from "./flashcardCache";
 import { syncManager } from "./sync";
 import { localDb, getLocalOwnerId } from "./db";
 
@@ -27,6 +28,12 @@ export class OfflineQueuedError extends Error {
   }
 }
 
+export class ApiHttpError extends Error {
+  constructor(message: string, public status: number, public code?: string) {
+    super(message);
+  }
+}
+
 interface ApiFetchOptions extends RequestInit {
   timeoutMs?: number;
 }
@@ -36,6 +43,7 @@ interface ApiFetchOptions extends RequestInit {
  */
 async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise<T> {
   options?.signal?.throwIfAborted();
+  const requestOwner = typeof window !== "undefined" ? getLocalOwnerId() : undefined;
   const url = `${API_BASE}${endpoint}`;
 
   const isMutation = options?.method && ["POST", "PUT", "PATCH", "DELETE"].includes(options.method.toUpperCase());
@@ -43,7 +51,8 @@ async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise
     endpoint.includes("/attempt") ||
     endpoint.includes("/review") ||
     endpoint.includes("/favorite") ||
-    endpoint.includes("/planner/")
+    endpoint.includes("/planner/") ||
+    /^\/api\/flashcards\/(save|generate|generate-batch)$/.test(endpoint)
   );
 
   let idempotencyKey: string | undefined;
@@ -102,16 +111,22 @@ async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise
 
     if (!response.ok) {
       let errMsg = `${response.status} ${response.statusText}`;
+      let code: string | undefined;
       try {
         const errorJson = await response.json();
         if (errorJson?.error) errMsg = errorJson.error;
+        if (typeof errorJson?.code === "string") code = errorJson.code;
       } catch {
         // use status text
       }
-      throw new Error(errMsg);
+      throw new ApiHttpError(errMsg, response.status, code);
     }
 
-    return await response.json();
+    const data = await response.json();
+    if (requestOwner && /^\/api\/flashcards\/(save|generate|generate-batch)$/.test(endpoint)) {
+      await cacheCreatedFlashcards(data, requestOwner);
+    }
+    return data;
   } catch (error) {
     // Aborto intencional iniciado pelo chamador
     if (options?.signal?.aborted) {
@@ -120,9 +135,10 @@ async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise
 
     const isNetworkOrTimeout = isInternalTimeout ||
       error instanceof TypeError ||
+      (error instanceof ApiHttpError && error.status === 409 && error.code === "idempotency_processing") ||
       (typeof navigator !== "undefined" && !navigator.onLine);
 
-    if (typeof window !== "undefined" && isIdempotentEndpoint && isNetworkOrTimeout) {
+    if (typeof window !== "undefined" && isIdempotentEndpoint && isNetworkOrTimeout && getLocalOwnerId() === requestOwner) {
       console.warn("[API] Erro de rede ou timeout detectado, adicionando à fila offline:", endpoint);
       const localId = await syncManager.enqueue(url, { ...options, headers }, idempotencyKey!);
       throw new OfflineQueuedError(localId);
@@ -391,7 +407,7 @@ export const api = {
       const getLocalFallback = async () => {
         if (typeof window !== "undefined" && localDb) {
           const uid = getLocalOwnerId();
-          const cached = await localDb.questions.where('_owner_id').equals(uid).filter(q => q.id === id).first();
+          const cached = await localDb.questions.get([id, uid]);
 
           if (cached) return cached;
         }
@@ -562,290 +578,32 @@ export const api = {
     },
   },
   flashcards: {
-    preview: async (question_id: number, wrong_letter?: string) => {
-      const getLocalFallback = async (): Promise<{ front: string; back: string; context: string } | null> => {
-        // Simple local fallback just to avoid breaking offline mode,
-        // ideally we would format it similarly to backend.
-        if (typeof window !== "undefined" && localDb) {
-           // We can mock a simple preview
-           return { front: "[Draft] Pergunta...", back: "Gabarito...", context: "Local" };
-        }
-        return null;
-      };
-
-      if (typeof window !== "undefined" && !navigator.onLine) {
-        const local = await getLocalFallback();
-        if (local) return local;
-      }
-
-      try {
-        const res = await apiFetch<{ front: string; back: string; context: string }>(`/api/flashcards/preview`, {
-          method: "POST",
-          body: JSON.stringify({ question_id, wrong_letter: wrong_letter || "" })
-        });
-        return res;
-      } catch (err) {
-        const local = await getLocalFallback();
-        if (local) return local;
-        throw err;
-      }
-    },
-    save: async (question_id: number, front: string, back: string, context: string) => {
-      const getLocalFallback = async (): Promise<FlashcardGenerateResponse | null> => {
-        if (typeof window !== "undefined" && localDb) {
-          try {
-            const uid = getLocalOwnerId();
-            const q = await localDb.questions.where('_owner_id').equals(uid).filter(item => item.id === question_id).first();
-            if (q) {
-              const mockCard: Flashcard & { _owner_id: string } = {
-                id: Date.now(),
-                question_id,
-                front,
-                back,
-                next_review_date: new Date().toISOString(),
-                stem: q.stem,
-                is_ai_generated: true,
-                source_context: context,
-                _owner_id: uid,
-              };
-              await localDb.flashcards.put(mockCard);
-              return {
-                id: mockCard.id,
-                question_id,
-                front: mockCard.front,
-                back: mockCard.back,
-                context: mockCard.source_context
-              };
-            }
-          } catch (e) {
-            console.error("Dexie error saving local flashcard", e);
-          }
-        }
-        return null;
-      };
-
-      if (typeof window !== "undefined" && !navigator.onLine) {
-        const local = await getLocalFallback();
-        if (local) return local;
-      }
-
-      try {
-        const res = await apiFetch<FlashcardGenerateResponse>(`/api/flashcards/save`, {
-          method: "POST",
-          body: JSON.stringify({ question_id, front, back, context })
-        });
-        if (typeof window !== "undefined" && localDb && res) {
-          const uid = getLocalOwnerId();
-          const cardToPut: Flashcard & { _owner_id: string } = {
-            id: res.id,
-            question_id: res.question_id,
-            front: res.front,
-            back: res.back,
-            next_review_date: new Date().toISOString(),
-            is_ai_generated: true,
-            source_context: res.context,
-            _owner_id: uid,
-          };
-          await localDb.flashcards.put(cardToPut);
-        }
-        return res;
-      } catch (err) {
-        const local = await getLocalFallback();
-        if (local) return local;
-        throw err;
-      }
-    },
-    generate: async (question_id: number, wrong_letter: string) => {
-      const formatLocalCard = (q: QuestionDetail, wrongLetter: string) => {
-        const correctAlt = q.alternatives?.find(a => "letter" in a && (a as { letter: string; is_correct?: boolean }).is_correct);
-        const wrongAlt = q.alternatives?.find(a => a.letter === wrongLetter);
-        const correctClean = (correctAlt?.text || "").replace(/^[A-Ea-e][\)\.\:\-]\s*/, "").trim();
-        const wrongClean = (wrongAlt?.text || "").replace(/^[A-Ea-e][\)\.\:\-]\s*/, "").trim();
-        const tag = `[${q.subtema || q.topic || q.area || "Caso Clínico"}]`;
-
-        let scenario = (q.stem || "").trim();
-        const endMatch = scenario.match(/(?:Diante disso|Diante do exposto|Diante desse quadro|Nesse momento|Nesse caso|Considerando o caso|Em relação ao caso|Sobre o caso descrito|Qual a conduta|Qual o diagnóstico|A melhor conduta|A conduta mais adequada).*$/i);
-        if (endMatch && endMatch.index && endMatch.index > 30) {
-          scenario = scenario.substring(0, endMatch.index).trim();
-        }
-        if (scenario && !scenario.endsWith(".")) scenario += ".";
-
-        const front = scenario && scenario.length > 20
-          ? `${tag} ${scenario}\n\n👉 Decisão / Conduta indicada: {{c1::${correctClean}}}`
-          : `${tag}\n\n👉 Decisão / Conduta indicada: {{c1::${correctClean}}}`;
-
-        const back = wrongClean && wrongClean.toLowerCase() !== correctClean.toLowerCase()
-          ? `💡 Gabarito Oficial:\n${correctClean}\n\n⚠️ Atenção ao distrator:\nA opção '${wrongClean}' é incorreta para este quadro clínico.`
-          : `💡 Gabarito Oficial:\n${correctClean}`;
-
-        return { front, back, context: `${q.area || ""} > ${q.subtema || ""}`.trim() };
-      };
-
-      const getLocalFallback = async (): Promise<FlashcardGenerateResponse | null> => {
-        if (typeof window !== "undefined" && localDb) {
-          try {
-            const uid = getLocalOwnerId();
-            const q = await localDb.questions.where('_owner_id').equals(uid).filter(item => item.id === question_id).first();
-            if (q) {
-              const { front, back, context } = formatLocalCard(q, wrong_letter);
-              const mockCard: Flashcard & { _owner_id: string } = {
-                id: Date.now(),
-                question_id,
-                front,
-                back,
-                next_review_date: new Date().toISOString(),
-                stem: q.stem,
-                is_ai_generated: true,
-                source_context: context,
-                _owner_id: uid,
-              };
-              await localDb.flashcards.put(mockCard);
-              return {
-                id: mockCard.id,
-                question_id,
-                front: mockCard.front,
-                back: mockCard.back,
-                context: mockCard.source_context
-              };
-            }
-          } catch (e) {
-            console.error("Dexie error creating local flashcard", e);
-          }
-        }
-        return null;
-      };
-
-      if (typeof window !== "undefined" && !navigator.onLine) {
-        const local = await getLocalFallback();
-        if (local) return local;
-      }
-
-      try {
-        const res = await apiFetch<FlashcardGenerateResponse>(`/api/flashcards/generate`, {
-          method: "POST",
-          body: JSON.stringify({ question_id, wrong_letter })
-        });
-        if (typeof window !== "undefined" && localDb && res) {
-          const uid = getLocalOwnerId();
-          const cardToPut: Flashcard & { _owner_id: string } = {
-            id: res.id,
-            question_id: res.question_id,
-            front: res.front,
-            back: res.back,
-            next_review_date: new Date().toISOString(),
-            is_ai_generated: true,
-            source_context: res.context,
-            _owner_id: uid,
-          };
-          await localDb.flashcards.put(cardToPut);
-        }
-        return res;
-      } catch (err) {
-        const local = await getLocalFallback();
-        if (local) return local;
-        throw err;
-      }
-    },
-    generateBatch: async (items: Array<{ question_id: number; wrong_letter: string }>) => {
-      const formatLocalCard = (q: QuestionDetail, wrongLetter: string) => {
-        const correctAlt = q.alternatives?.find(a => "letter" in a && (a as { letter: string; is_correct?: boolean }).is_correct);
-        const wrongAlt = q.alternatives?.find(a => a.letter === wrongLetter);
-        const correctClean = (correctAlt?.text || "").replace(/^[A-Ea-e][\)\.\:\-]\s*/, "").trim();
-        const wrongClean = (wrongAlt?.text || "").replace(/^[A-Ea-e][\)\.\:\-]\s*/, "").trim();
-        const tag = `[${q.subtema || q.topic || q.area || "Caso Clínico"}]`;
-
-        let scenario = (q.stem || "").trim();
-        const endMatch = scenario.match(/(?:Diante disso|Diante do exposto|Diante desse quadro|Nesse momento|Nesse caso|Considerando o caso|Em relação ao caso|Sobre o caso descrito|Qual a conduta|Qual o diagnóstico|A melhor conduta|A conduta mais adequada).*$/i);
-        if (endMatch && endMatch.index && endMatch.index > 30) {
-          scenario = scenario.substring(0, endMatch.index).trim();
-        }
-        if (scenario && !scenario.endsWith(".")) scenario += ".";
-
-        const front = scenario && scenario.length > 20
-          ? `${tag} ${scenario}\n\n👉 Decisão / Conduta indicada: {{c1::${correctClean}}}`
-          : `${tag}\n\n👉 Decisão / Conduta indicada: {{c1::${correctClean}}}`;
-
-        const back = wrongClean && wrongClean.toLowerCase() !== correctClean.toLowerCase()
-          ? `💡 Gabarito Oficial:\n${correctClean}\n\n⚠️ Atenção ao distrator:\nA opção '${wrongClean}' é incorreta para este quadro clínico.`
-          : `💡 Gabarito Oficial:\n${correctClean}`;
-
-        return { front, back, context: `${q.area || ""} > ${q.subtema || ""}`.trim() };
-      };
-
-      const getLocalFallback = async (): Promise<BatchFlashcardGenerateResponse | null> => {
-        if (typeof window !== "undefined" && localDb) {
-          try {
-            const uid = getLocalOwnerId();
-            const created: FlashcardGenerateResponse[] = [];
-            for (const item of items) {
-              const q = await localDb.questions.where('_owner_id').equals(uid).filter(qItem => qItem.id === item.question_id).first();
-              if (q) {
-                const { front, back, context } = formatLocalCard(q, item.wrong_letter);
-                const cardId = Date.now() + Math.floor(Math.random() * 1000);
-                const mockCard: Flashcard & { _owner_id: string } = {
-                  id: cardId,
-                  question_id: item.question_id,
-                  front,
-                  back,
-                  next_review_date: new Date().toISOString(),
-                  stem: q.stem,
-                  is_ai_generated: true,
-                  source_context: context,
-                  _owner_id: uid,
-                };
-                await localDb.flashcards.put(mockCard);
-                created.push({
-                  id: mockCard.id,
-                  question_id: item.question_id,
-                  front: mockCard.front,
-                  back: mockCard.back,
-                  context: mockCard.source_context
-                });
-              }
-            }
-            if (created.length > 0) {
-              return { success: true, count: created.length, flashcards: created };
-            }
-          } catch (e) {
-            console.error("Dexie error creating batch local flashcards", e);
-          }
-        }
-        return null;
-      };
-
-      if (typeof window !== "undefined" && !navigator.onLine) {
-        const local = await getLocalFallback();
-        if (local) return local;
-      }
-
-      try {
-        const res = await apiFetch<BatchFlashcardGenerateResponse>(`/api/flashcards/generate-batch`, {
-          method: "POST",
-          body: JSON.stringify({ items }),
-          timeoutMs: 90000,
-        });
-        if (typeof window !== "undefined" && localDb && res.flashcards && res.flashcards.length > 0) {
-          try {
-            const uid = getLocalOwnerId();
-            const cardsToPut: Array<Flashcard & { _owner_id: string }> = res.flashcards.map(f => ({
-              id: f.id || (Date.now() + Math.floor(Math.random() * 100000)),
-              question_id: f.question_id,
-              front: f.front,
-              back: f.back,
-              next_review_date: new Date().toISOString(),
-              is_ai_generated: true,
-              _owner_id: uid,
-            }));
-            await localDb.flashcards.bulkPut(cardsToPut);
-          } catch (dexieErr) {
-            console.warn("[API] Aviso ao sincronizar flashcards em lote no Dexie local:", dexieErr);
-          }
-        }
-        return res;
-      } catch (err) {
-        const local = await getLocalFallback();
-        if (local) return local;
-        throw err;
+    preview: (question_id: number, wrong_letter?: string) =>
+      apiFetch<{ front: string; back: string; context: string }>("/api/flashcards/preview", {
+        method: "POST", body: JSON.stringify({ question_id, wrong_letter: wrong_letter || "" }),
+      }),
+    save: (question_id: number, front: string, back: string, context: string) =>
+      apiFetch<FlashcardGenerateResponse>("/api/flashcards/save", {
+        method: "POST", body: JSON.stringify({ question_id, front, back, context }),
+      }),
+    generate: (question_id: number, wrong_letter: string) =>
+      apiFetch<FlashcardGenerateResponse>("/api/flashcards/generate", {
+        method: "POST", body: JSON.stringify({ question_id, wrong_letter }), timeoutMs: 125000,
+      }),
+    generateBatch: (items: Array<{ question_id: number; wrong_letter: string }>) =>
+      apiFetch<BatchFlashcardGenerateResponse>("/api/flashcards/generate-batch", {
+        method: "POST", body: JSON.stringify({ items }), timeoutMs: 125000,
+      }),
+    downloadAll: async (): Promise<Flashcard[]> => {
+      const cards: Flashcard[] = [];
+      let afterId = 0;
+      while (true) {
+        const page = await apiFetch<Flashcard[]>(`/api/flashcards/review?all=true&limit=100&after_id=${afterId}`, { cache: "no-store" });
+        cards.push(...page);
+        if (page.length < 100) return cards;
+        const nextId = page[page.length - 1].id;
+        if (nextId <= afterId) throw new Error("Paginação de flashcards não avançou");
+        afterId = nextId;
       }
     },
     getDecks: () => apiFetch<FlashcardDecksResponse>("/api/flashcards/decks", { cache: "no-store" }),
@@ -884,7 +642,7 @@ export const api = {
         const qs = params.toString();
         return await apiFetch<Flashcard[]>(`/api/flashcards/review${qs ? `?${qs}` : ""}`, { cache: 'no-store', signal });
       } catch (err) {
-        if (signal?.aborted) throw err;
+        if (signal?.aborted || err instanceof ApiHttpError) throw err;
         const local = await getLocalFallback();
         if (local) return local;
         throw err;
@@ -899,7 +657,7 @@ export const api = {
         const qs = params.toString();
         return await apiFetch<Flashcard[]>(`/api/flashcards/review?${qs}`, { cache: 'no-store', signal });
       } catch (err) {
-        if (signal?.aborted) throw err;
+        if (signal?.aborted || err instanceof ApiHttpError) throw err;
         if (typeof window !== "undefined" && localDb) {
           try {
             const uid = getLocalOwnerId();
@@ -967,10 +725,22 @@ export const api = {
     },
 
     deleteDeck: async (deckName: string): Promise<{ success: boolean; deck_name: string; deleted_count: number }> => {
-      return apiFetch<{ success: boolean; deck_name: string; deleted_count: number }>("/api/flashcards/deck", {
-        method: "DELETE",
-        body: JSON.stringify({ deck_name: deckName }),
+      const owner = getLocalOwnerId();
+      // Pending reviews must settle before deletion, otherwise they target removed cards.
+      await syncManager.sync(true);
+      const queued = [...await syncManager.getQueue(), ...await syncManager.getFailedItems()];
+      if (queued.some(item => /\/flashcards\//.test(item.endpoint))) {
+        throw new Error("Sincronize ou descarte as operações de flashcards pendentes antes de excluir o baralho.");
+      }
+      if (getLocalOwnerId() !== owner) throw new Error("A conta ativa mudou. Tente novamente.");
+      const result = await apiFetch<{ success: boolean; deck_name: string; deleted_count: number }>("/api/flashcards/deck", {
+        method: "DELETE", body: JSON.stringify({ deck_name: deckName }),
       });
+      if (localDb) {
+        await localDb.flashcards.where('_owner_id').equals(owner)
+          .filter(card => (card.deck_name?.trim() || "Geral") === result.deck_name).delete();
+      }
+      return result;
     },
 
     review: (id: number, confidence: string) => apiFetch<{id: number, next_review_date: string}>(`/api/flashcards/${id}/review`, {

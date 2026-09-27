@@ -92,10 +92,14 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
       // Baixar flashcards devidos
       setDownloadStatus("Buscando flashcards para revisão...");
       setDownloadProgress(10);
-      const flashcards = await api.flashcards.getDue(true);
-      if (flashcards && flashcards.length > 0 && localDb) {
-        const uid = getLocalOwnerId();
-        await localDb.flashcards.bulkPut(flashcards.map(f => ({ ...f, _owner_id: uid })));
+      const uid = getLocalOwnerId();
+      const flashcards = await api.flashcards.downloadAll();
+      if (getLocalOwnerId() !== uid) throw new Error("A conta ativa mudou durante o download.");
+      if (localDb) {
+        await localDb.transaction("rw", localDb.flashcards, async () => {
+          await localDb.flashcards.where('_owner_id').equals(uid).delete();
+          await localDb.flashcards.bulkPut(flashcards.map(f => ({ ...f, _owner_id: uid })));
+        });
       }
 
       // Baixar pacote de simulado

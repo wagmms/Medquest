@@ -6,6 +6,7 @@ import ts from 'typescript';
 
 // Load the actual TypeScript modules with deterministic browser/storage doubles.
 function loadModule(name, dependencies, globals = {}) {
+  dependencies = { './flashcardCache': { cacheCreatedFlashcards: async () => {} }, ...dependencies };
   const source = readFileSync(new URL(`../../src/lib/${name}.ts`, import.meta.url), 'utf8');
   const { outputText } = ts.transpileModule(source, {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
@@ -33,7 +34,7 @@ test('completed requests release their caller abort listener on success and fail
       addEventListener: (_, listener) => listeners.add(listener),
       removeEventListener: (_, listener) => listeners.delete(listener),
     };
-    const { api } = loadModule('api', { './sync': {}, './db': {} }, {
+    const { api } = loadModule('api', { './sync': {}, './db': { getLocalOwnerId: () => 'alice' } }, {
       fetch: async () => ({ ok, status: 500, json: async () => [] }),
     });
     const request = api.stats.getTimeline(14, signal);
@@ -46,7 +47,7 @@ test('completed requests release their caller abort listener on success and fail
 test('an already cancelled offline request preserves its abort error', async () => {
   let enqueued = 0;
   const { api } = loadModule('api', {
-    './sync': { syncManager: { enqueue: async () => { enqueued++; } } }, './db': {},
+    './sync': { syncManager: { enqueue: async () => { enqueued++; } } }, './db': { getLocalOwnerId: () => 'alice' },
   }, { window: {}, navigator: { onLine: false } });
   const controller = new AbortController();
   controller.abort();

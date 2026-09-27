@@ -4,7 +4,7 @@ import { getGuestSession } from "@/lib/session";
 
 const BACKEND_URL = process.env.FLASK_API_URL || process.env.NEXT_PUBLIC_FLASK_API_URL ||
   (process.env.NODE_ENV === "development" ? "http://127.0.0.1:5050" : "");
-const UPSTREAM_TIMEOUT_MS = 45_000;
+const UPSTREAM_TIMEOUT_MS = 120_000;
 
 // These headers describe the browser → Next.js connection, not the new
 // Next.js → Flask request.  Forwarding them can make Undici reject streamed

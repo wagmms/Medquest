@@ -25,19 +25,8 @@ const DEFAULT_STATS: OverviewStats = {
 };
 
 export default async function Dashboard() {
-  let stats: OverviewStats = DEFAULT_STATS;
-  try {
-    stats = await serverApi.stats.getOverview();
-  } catch (err) {
-    console.warn("[Dashboard SSR] Fallback ativo para dados estatísticos:", err);
-  }
-
-  let user = null;
-  try {
-    user = await currentUser();
-  } catch {
-    // Modo offline ou sem autenticação
-  }
+  const statsPromise = serverApi.stats.getOverview().catch(() => DEFAULT_STATS);
+  const userPromise = currentUser().catch(() => null);
 
   let currentPlannerWeek: PlannerWeek | null = null;
   let suggestedPlannerTopic: PlannerTopic | null = null;
@@ -101,6 +90,7 @@ export default async function Dashboard() {
     console.error("Failed to fetch dashboard metrics", e);
   }
 
+  const [stats, user] = await Promise.all([statsPromise, userPromise]);
   const firstName = user?.firstName || "Doutor(a)";
 
   return (

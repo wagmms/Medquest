@@ -19,6 +19,11 @@ const AnalysisClient = dynamic(
 
 export default async function AnalisePage() {
   // Fazemos fetch paralelo de todos os dados do dashboard analítico
+  const overviewPromise = serverApi.stats.getOverview().catch(() => null);
+  const readinessPromise = overviewPromise.then(overview =>
+    serverApi.stats.getExamReadiness(overview?.target_institution || undefined));
+  const radarPromise = overviewPromise.then(overview =>
+    serverApi.stats.getInstitutionRadar(overview?.target_institution || "USP-SP")).catch(() => null);
   const results = await Promise.allSettled([
     serverApi.stats.getTimeline(14),
     serverApi.stats.getWeakTopics(),
@@ -27,7 +32,7 @@ export default async function AnalisePage() {
     serverApi.stats.getPredictiveScore(),
     serverApi.stats.getAtRiskTopics(),
     serverApi.stats.getLearningProfile(),
-    serverApi.stats.getExamReadiness(),
+    readinessPromise,
     serverApi.stats.getTimeline(180),
   ]);
 
@@ -48,12 +53,8 @@ export default async function AnalisePage() {
     disclaimer: 'Ainda não há dados suficientes para este relatório.',
   };
   const timeline180 = results[8].status === 'fulfilled' ? results[8].value : [];
-  const overview = await serverApi.stats.getOverview().catch(() => null);
-  const examReadiness = overview?.target_institution
-    ? await serverApi.stats.getExamReadiness(overview.target_institution).catch(() => fallbackReadiness)
-    : fallbackReadiness;
-  const targetInstitution = overview?.target_institution || (examReadiness.institution || "USP-SP");
-  const institutionRadar = await serverApi.stats.getInstitutionRadar(targetInstitution).catch(() => null);
+  const examReadiness = fallbackReadiness;
+  const institutionRadar = await radarPromise;
   const institutionOptions = [
 
     ...breakdown.map(item => ({ key: item.key, label: item.label })),

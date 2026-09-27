@@ -35,57 +35,21 @@ export function readLearningSession<T>(
     localStorage.removeItem(key);
   }
 
-  // Fallback: search any other key starting with `medquest_${kind}_state_v2:`
-  // (e.g., if saved with Clerk user ID but currently reading with guest ID during early hydration, or vice-versa)
-  try {
-    const prefix = `medquest_${kind}_state_v2:`;
-    for (let i = 0; i < localStorage.length; i++) {
-      const storageKey = localStorage.key(i);
-      if (storageKey && storageKey.startsWith(prefix) && storageKey !== key) {
-        const fallbackRaw = localStorage.getItem(storageKey);
-        if (fallbackRaw) {
-          try {
-            const parsed: unknown = JSON.parse(fallbackRaw);
-            if (isValid(parsed)) {
-              // Migrate data to current active key
-              localStorage.setItem(key, fallbackRaw);
-              localStorage.removeItem(storageKey);
-              return parsed;
-            }
-          } catch {
-            localStorage.removeItem(storageKey);
-          }
-        }
-      }
-    }
-  } catch {
-    // Storage access issue
-  }
-
   return null;
 }
 
 export function removeLearningSession(kind: LearningSessionKind): void {
   removeLegacyState(kind);
   localStorage.removeItem(getLearningSessionKey(kind));
-  try {
-    const prefix = `medquest_${kind}_state_v2:`;
-    const toRemove: string[] = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const k = localStorage.key(i);
-      if (k && k.startsWith(prefix)) toRemove.push(k);
-    }
-    toRemove.forEach(k => localStorage.removeItem(k));
-  } catch {
-    // Storage error
-  }
 
   if (cloudSaveTimeouts[kind]) {
     clearTimeout(cloudSaveTimeouts[kind]);
     delete cloudSaveTimeouts[kind];
   }
   // Fire and forget cloud delete
+  const owner = getLocalOwnerId();
   import("./api").then(({ api }) => {
+    if (getLocalOwnerId() !== owner) return;
     api.sessions.delete(kind).catch(() => {});
   });
 }
@@ -109,13 +73,15 @@ const cloudSaveTimeouts: Record<string, ReturnType<typeof setTimeout>> = {};
 
 export function writeLearningSession(kind: LearningSessionKind, value: Record<string, unknown>): boolean {
   try {
-    const data = { ...value, savedAt: value.savedAt || Date.now() };
+    const owner = getLocalOwnerId();
+    const data = { ...value, savedAt: Date.now() };
     localStorage.setItem(getLearningSessionKey(kind), JSON.stringify(data));
     
     // Debounce cloud save
     if (cloudSaveTimeouts[kind]) clearTimeout(cloudSaveTimeouts[kind]);
     cloudSaveTimeouts[kind] = setTimeout(() => {
       import("./api").then(({ api }) => {
+        if (getLocalOwnerId() !== owner) return;
         api.sessions.save(kind, data).catch((e: unknown) => console.error("Cloud save failed", e));
       });
     }, 2000);
@@ -134,9 +100,11 @@ export async function syncSessionFromCloud<T>(
   isValid: (value: unknown) => value is T
 ): Promise<T | null> {
   try {
+    const owner = getLocalOwnerId();
     const { api } = await import("./api");
+    if (getLocalOwnerId() !== owner) return null;
     const res = await api.sessions.get(kind);
-    if (!res || !res.data) return null;
+    if (getLocalOwnerId() !== owner || !res || !res.data) return null;
     
     if (isValid(res.data)) {
       const local = readLearningSession(kind, isValid) as Record<string, unknown> | null;

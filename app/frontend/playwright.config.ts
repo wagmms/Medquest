@@ -15,6 +15,12 @@ export default defineConfig({
   timeout: 30000,
   use: {
     baseURL,
+    // Every browser flow in this suite uses the demo account with mocked APIs.
+    // Match the configured host instead of relying on localhost-only cookies.
+    storageState: { cookies: ['medquest_demo', '__clerk_db_jwt'].map(name => ({
+      name, value: name === 'medquest_demo' ? '1' : 'test',
+      domain: new URL(baseURL).hostname, path: '/', expires: -1,
+      httpOnly: false, secure: false, sameSite: 'Lax' as const })), origins: [] },
     trace: 'off',
   },
   projects: [

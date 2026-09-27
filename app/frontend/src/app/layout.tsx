@@ -111,7 +111,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <OnboardingTour />
             </div>
           )}
-          <SyncProvider />
+          <SyncProvider guestMode={!userId} />
           <Toaster position="top-right" />
         </body>
       </html>

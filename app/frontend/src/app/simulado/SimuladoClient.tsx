@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { QuestionMeta, QuestionListItem, QuestionDetail, BatchAttemptItem, BatchAttemptResultItem, FlashcardGenerateResponse } from "@/types/api";
 import { api, OfflineQueuedError } from "@/lib/api";
-import { localDb, getLocalOwnerId, SimuladoPackage, isPackageValid } from "@/lib/db";
+import { localDb, getLocalOwnerId, isLocalIdentityReady, SimuladoPackage, isPackageValid } from "@/lib/db";
 import { getReadySimuladoPackage, downloadSimuladoPackage } from "@/lib/simuladoPackage";
 import { Play, Clock, ChevronLeft, ChevronRight, FileSignature, AlertTriangle, BookOpen, AlertCircle, RotateCcw, Flag, CloudOff, Sparkles, CheckCircle2, Pencil, Download, RefreshCw, Database, Eye, EyeOff } from "lucide-react";
 
@@ -65,7 +65,7 @@ export function SimuladoClient({
   initialFilters?: Record<string, string | string[]>;
   meta?: QuestionMeta;
 }) {
-  const { user } = useUser();
+  const { user, isLoaded: authLoaded } = useUser();
   const isCurator = user?.primaryEmailAddress?.emailAddress?.toLowerCase() === "moraes.wagg@gmail.com";
   const [isClassificationModalOpen, setIsClassificationModalOpen] = useState(false);
   const [state, setState] = useState<SimuladoState>("START");
@@ -175,7 +175,7 @@ export function SimuladoClient({
     } else {
         return defaultInsts.map(code => ({ base: code, codes: [code], n: 0 }));
     }
-  }, [meta?.institutions]);
+  }, [meta]);
 
   const refreshOfflinePackage = useCallback(async () => {
     if (typeof window === "undefined" || !localDb) return;
@@ -248,13 +248,14 @@ export function SimuladoClient({
   }, [showAreaSummary]);
 
   useEffect(() => {
+    if (!isLocalIdentityReady(authLoaded)) return;
     const timer = setTimeout(() => {
       setHasSavedState(readLearningSession("simulado", isSavedSimuladoState) !== null);
       setStorageReady(true);
       setClientReady(true);
     }, 0);
     return () => clearTimeout(timer);
-  }, []);
+  }, [authLoaded]);
 
   const resumeSimulado = () => {
     const saved = readLearningSession("simulado", isSavedSimuladoState);
@@ -609,8 +610,12 @@ export function SimuladoClient({
         return next;
       });
       toast.success("Flashcard criado e inserido na sua Revisão Ativa!");
-    } catch {
-      toast.error("Erro ao salvar flashcard.");
+    } catch (error) {
+      if (error instanceof OfflineQueuedError) {
+        toast("Flashcard aguardando sincronização. Ficará disponível para revisão após o envio.", { icon: "💾" });
+      } else {
+        toast.error("Erro ao salvar flashcard.");
+      }
     } finally {
       setSavingSingleFlashcard(null);
     }
@@ -644,7 +649,11 @@ export function SimuladoClient({
       }
     } catch (e) {
       console.error("Erro ao gerar flashcards em lote no simulado:", e);
-      toast.error("Erro ao gerar flashcards em lote.");
+      if (e instanceof OfflineQueuedError) {
+        toast("Criação de flashcards aguardando sincronização.", { icon: "💾" });
+      } else {
+        toast.error("Erro ao gerar flashcards em lote.");
+      }
     } finally {
       setGeneratingBatchFlashcards(false);
     }

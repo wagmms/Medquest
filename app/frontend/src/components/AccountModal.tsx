@@ -471,7 +471,10 @@ export function AccountModal({ isOpen, onClose }: AccountModalProps) {
                       </button>
 
                       <button
-                        onClick={() => signOut({ redirectUrl: "/" })}
+                        onClick={() => {
+                          localStorage.removeItem("medquest_last_user_id");
+                          void signOut({ redirectUrl: "/" });
+                        }}
                         className="flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-card text-foreground hover:bg-muted/50 border border-border hover:border-border/80 transition-all duration-200 text-left w-full cursor-pointer group shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       >
                         <LogOut className="text-muted-foreground shrink-0" size={20} />

@@ -1,7 +1,6 @@
 import json
 import logging
 import re
-import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 
@@ -12,6 +11,7 @@ from .ai import generate_cloze_flashcard, _extract_medical_cloze_fallback
 from .anki import parse_apkg_bytes, parse_anki_text
 from .db import db_transaction, get_db
 from .observability import record_domain_event
+from .idempotency import reserve_idempotency, complete_idempotency, fail_idempotency
 from .questions import invalidate_user_caches
 from .schemas import (
     AnkiDeleteDeckIn,
@@ -40,11 +40,11 @@ def generate():
     wrong_letter = data.wrong_letter.upper()
 
     db = get_db()
-    
+
     q = db.execute("SELECT stem, correct_letter, area, subtema, topic FROM questions WHERE id = ?", (question_id,)).fetchone()
     if not q:
         return jsonify({"error": "Questao nao encontrada."}), 404
-        
+
     corr_letters = [c.strip().upper() for c in (q["correct_letter"] or "").split(",") if c.strip()]
     first_letter = corr_letters[0] if corr_letters else ""
     correct_alt = db.execute(
@@ -55,14 +55,14 @@ def generate():
     if wrong_letter:
         wrong_alt = db.execute("SELECT text FROM alternatives WHERE question_id = ? AND letter = ?", (question_id, wrong_letter)).fetchone()
     exp = db.execute("SELECT explanation_text FROM explanations WHERE question_id = ?", (question_id,)).fetchone()
-    
+
     if not correct_alt:
         return jsonify({"error": "Alternativa correta nao encontrada."}), 404
 
     card_data = generate_cloze_flashcard(
-        stem=q["stem"], 
-        correct_text=correct_alt["text"], 
-        wrong_text=wrong_alt["text"] if wrong_alt else "", 
+        stem=q["stem"],
+        correct_text=correct_alt["text"],
+        wrong_text=wrong_alt["text"] if wrong_alt else "",
         explanation=exp["explanation_text"] if exp else "",
         area=q["area"] or "",
         subtema=q["subtema"] or "",
@@ -71,32 +71,8 @@ def generate():
         wrong_letter=wrong_letter
     )
 
-    now = datetime.now(timezone.utc).isoformat()
-    with db_transaction(db, immediate=True):
-        existing = db.execute("SELECT id FROM flashcards WHERE question_id = ? AND user_id = ?", (question_id, g.user_id)).fetchone()
-        if existing:
-            db.execute("""
-                UPDATE flashcards
-                SET front = ?, back = ?, source_context = ?, next_review_date = ?
-                WHERE id = ? AND user_id = ?
-            """, (card_data.get("front", ""), card_data.get("back", ""), card_data.get("context", ""), now, existing["id"], g.user_id))
-            card_id = existing["id"]
-        else:
-            cursor = db.execute("""
-                INSERT INTO flashcards (question_id, front, back, created_at, next_review_date, fsrs_card, user_id, source_context, is_ai_generated)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)
-            """, (question_id, card_data.get("front", ""), card_data.get("back", ""), now, now, None, g.user_id, card_data.get("context", "")))
-            card_id = cursor.lastrowid
-        
-    invalidate_user_caches(g.user_id)
+    return _persist_cards(db, [question_id], [(question_id, card_data)], single=True)
 
-    return jsonify({
-        "id": card_id,
-        "question_id": question_id,
-        "front": card_data.get("front", ""),
-        "back": card_data.get("back", ""),
-        "context": card_data.get("context", "")
-    })
 
 @bp.route("/flashcards/preview", methods=["POST"])
 def preview():
@@ -108,31 +84,31 @@ def preview():
     wrong_letter = data.wrong_letter.upper()
 
     db = get_db()
-    
+
     q = db.execute("SELECT stem, correct_letter, area, subtema, topic FROM questions WHERE id = ?", (question_id,)).fetchone()
     if not q:
         return jsonify({"error": "Questao nao encontrada."}), 404
-        
+
     corr_letters = [c.strip().upper() for c in (q["correct_letter"] or "").split(",") if c.strip()]
     first_letter = corr_letters[0] if corr_letters else ""
     correct_alt = db.execute(
         "SELECT text, letter FROM alternatives WHERE question_id = ? AND (is_correct = 1 OR letter = ? OR letter = ?) ORDER BY is_correct DESC, letter ASC LIMIT 1",
         (question_id, q["correct_letter"], first_letter)
     ).fetchone()
-    
+
     wrong_alt = None
     if wrong_letter:
         wrong_alt = db.execute("SELECT text FROM alternatives WHERE question_id = ? AND letter = ?", (question_id, wrong_letter)).fetchone()
-        
+
     exp = db.execute("SELECT explanation_text FROM explanations WHERE question_id = ?", (question_id,)).fetchone()
-    
+
     if not correct_alt:
         return jsonify({"error": "Alternativa correta nao encontrada."}), 404
 
     card_data = generate_cloze_flashcard(
-        stem=q["stem"], 
-        correct_text=correct_alt["text"], 
-        wrong_text=wrong_alt["text"] if wrong_alt else "", 
+        stem=q["stem"],
+        correct_text=correct_alt["text"],
+        wrong_text=wrong_alt["text"] if wrong_alt else "",
         explanation=exp["explanation_text"] if exp else "",
         area=q["area"] or "",
         subtema=q["subtema"] or "",
@@ -155,44 +131,12 @@ def save():
         data = FlashcardSaveIn.model_validate(request.get_json(force=True) or {})
     except ValidationError as e:
         return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
-    question_id = data.question_id
-    front = data.front
-    back = data.back
-    context = data.context
-
     db = get_db()
-    now = datetime.now(timezone.utc).isoformat()
-    
-    with db_transaction(db, immediate=True):
-        existing = db.execute("SELECT id FROM flashcards WHERE question_id = ? AND user_id = ?", (question_id, g.user_id)).fetchone()
-        if existing:
-            db.execute("""
-                UPDATE flashcards
-                SET front = ?, back = ?, source_context = ?, next_review_date = ?
-                WHERE id = ? AND user_id = ?
-            """, (front, back, context, now, existing["id"], g.user_id))
-            card_id = existing["id"]
-        else:
-            cursor = db.execute("""
-                INSERT INTO flashcards (question_id, front, back, created_at, next_review_date, fsrs_card, user_id, source_context, is_ai_generated)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)
-            """, (question_id, front, back, now, now, None, g.user_id, context))
-            card_id = cursor.lastrowid
-        
-    invalidate_user_caches(g.user_id)
-    record_domain_event(
-        "flashcard_created",
-        user_id=g.user_id,
-        question_id=question_id,
-        flashcard_id=card_id,
-    )
-    return jsonify({
-        "id": card_id,
-        "question_id": question_id,
-        "front": front,
-        "back": back,
-        "context": context
-    })
+    if not db.execute("SELECT id FROM questions WHERE id = ?", (data.question_id,)).fetchone():
+        return jsonify({"error": "Questao nao encontrada."}), 404
+    return _persist_cards(db, [data.question_id], [(data.question_id, {
+        "front": data.front, "back": data.back, "context": data.context,
+    })], single=True)
 
 
 def _fetch_batch_data(db, question_ids):
@@ -323,7 +267,7 @@ def _prepare_flashcards(payload_items, question_map, alternative_map, correct_al
     return prepared
 
 
-def _save_flashcards(db, user_id, question_ids, prepared, now):
+def _save_flashcards(db, user_id, question_ids, prepared, now, lease_token=None, single=False):
     created_or_updated = []
     placeholders = ",".join("?" * len(question_ids))
 
@@ -358,15 +302,48 @@ def _save_flashcards(db, user_id, question_ids, prepared, now):
                 if not new_id:
                     row = db.execute("SELECT id FROM flashcards WHERE question_id = ? AND user_id = ? ORDER BY id DESC LIMIT 1", (qid, user_id)).fetchone()
                     new_id = row["id"] if row else None
+                if not new_id:
+                    raise RuntimeError("Unable to retrieve saved flashcard ID")
                 created_or_updated.append({
-                    "id": new_id or int(time.time() * 1000),
+                    "id": new_id,
                     "question_id": qid,
                     "front": card_data.get("front", ""),
                     "back": card_data.get("back", ""),
                     "context": card_data.get("context", "")
                 })
 
+        response = created_or_updated[0] if single else {
+            "success": True, "count": len(created_or_updated), "flashcards": created_or_updated,
+        }
+        if lease_token:
+            complete_idempotency(db, user_id, 200, response, lease_token)
+
     return created_or_updated
+
+
+def _persist_cards(db, question_ids, prepared, single=False):
+    # AI preparation is finished before reserving a short lease or taking a write lock.
+    cached, error, lease = reserve_idempotency(
+        db, g.user_id, request.path, request.method, request.get_data(),
+    )
+    if cached is not None:
+        return cached
+    if error is not None:
+        return error
+    try:
+        cards = _save_flashcards(db, g.user_id, question_ids, prepared,
+                                datetime.now(timezone.utc).isoformat(), lease, single)
+    except Exception:
+        if lease:
+            fail_idempotency(db, g.user_id, lease)
+        raise
+    invalidate_user_caches(g.user_id)
+    for card in cards:
+        record_domain_event("flashcard_created", user_id=g.user_id,
+                            question_id=card["question_id"], flashcard_id=card["id"])
+    return jsonify(cards[0] if single else {
+        "success": True, "count": len(cards), "flashcards": cards,
+    })
 
 
 @bp.route("/flashcards/generate-batch", methods=["POST"])
@@ -381,29 +358,12 @@ def generate_batch():
         return jsonify({"success": True, "count": 0, "flashcards": []})
 
     db = get_db()
-    now = datetime.now(timezone.utc).isoformat()
-
     question_map, alternative_map, correct_alt_by_qid = _fetch_batch_data(db, question_ids)
 
     # Do not hold a write transaction while waiting for an AI provider.
     prepared = _prepare_flashcards(payload.items, question_map, alternative_map, correct_alt_by_qid)
 
-    created_or_updated = _save_flashcards(db, g.user_id, question_ids, prepared, now)
-
-    invalidate_user_caches(g.user_id)
-    for c in created_or_updated:
-        record_domain_event(
-            "flashcard_created",
-            user_id=g.user_id,
-            question_id=c["question_id"],
-            flashcard_id=c["id"],
-        )
-
-    return jsonify({
-        "success": True,
-        "count": len(created_or_updated),
-        "flashcards": created_or_updated
-    })
+    return _persist_cards(db, question_ids, prepared)
 
 
 def _bounded_int(value, default, minimum, maximum):
@@ -683,7 +643,7 @@ def delete_deck():
     db = get_db()
     with db_transaction(db, immediate=True):
         cursor = db.execute(
-            "DELETE FROM flashcards WHERE user_id = ? AND deck_name = ?",
+            "DELETE FROM flashcards WHERE user_id = ? AND COALESCE(NULLIF(TRIM(deck_name), ''), 'Geral') = ?",
             (g.user_id, data.deck_name),
         )
         deleted_count = cursor.rowcount
@@ -795,7 +755,11 @@ def get_due_flashcards():
         theme_clause = " AND q.subtema = ?"
         params.append(subtema)
 
-    order_limit_clause = " ORDER BY f.next_review_date ASC LIMIT ?"
+    if include_all:
+        after_id = _bounded_int(request.args.get("after_id"), 0, 0, 2**63 - 1)
+        theme_clause += " AND f.id > ?"
+        params.append(after_id)
+    order_limit_clause = " ORDER BY f.id ASC LIMIT ?" if include_all else " ORDER BY f.next_review_date ASC, f.id ASC LIMIT ?"
     params.append(limit)
 
     sql = base_sql + where_clause + deck_clause + theme_clause + order_limit_clause
@@ -816,20 +780,37 @@ def review_flashcard(fid):
     except ValidationError as e:
         return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
     confidence = data.confidence
-        
+
     is_correct = 0 if confidence == "errei" else 1
 
     db = get_db()
-    with db_transaction(db, immediate=True):
-        card = db.execute("SELECT fsrs_card, anki_cid FROM flashcards WHERE id = ? AND user_id = ?", (fid, g.user_id)).fetchone()
-        if not card:
-            return jsonify({"error": "Flashcard nao encontrado."}), 404
-        card_json, next_review = srs.review(card["fsrs_card"], is_correct, confidence if is_correct else "chutei", is_flashcard=True)
-        db.execute("""
-            UPDATE flashcards 
-            SET next_review_date = ?, fsrs_card = ? 
-            WHERE id = ? AND user_id = ?
-        """, (next_review, card_json, fid, g.user_id))
+    cached, error, lease = reserve_idempotency(db, g.user_id, request.path, request.method, request.get_data())
+    if cached is not None:
+        return cached
+    if error is not None:
+        return error
+    try:
+        with db_transaction(db, immediate=True):
+            card = db.execute("SELECT fsrs_card, anki_cid FROM flashcards WHERE id = ? AND user_id = ?", (fid, g.user_id)).fetchone()
+            if not card:
+                response = {"error": "Flashcard nao encontrado."}
+                if lease:
+                    complete_idempotency(db, g.user_id, 404, response, lease)
+                return jsonify(response), 404
+            card_json, next_review = srs.review(card["fsrs_card"], is_correct, confidence if is_correct else "chutei", is_flashcard=True)
+            db.execute("""
+                UPDATE flashcards
+                SET next_review_date = ?, fsrs_card = ?
+                WHERE id = ? AND user_id = ?
+            """, (next_review, card_json, fid, g.user_id))
+
+            response = {"id": fid, "next_review_date": next_review, "anki_cid": card["anki_cid"]}
+            if lease:
+                complete_idempotency(db, g.user_id, 200, response, lease)
+    except Exception:
+        if lease:
+            fail_idempotency(db, g.user_id, lease)
+        raise
 
     invalidate_user_caches(g.user_id)
     record_domain_event(
@@ -865,8 +846,8 @@ def report_flashcard(fid):
     try:
         with db_transaction(db, immediate=True):
             db.execute("""
-                UPDATE flashcards 
-                SET report_status = ? 
+                UPDATE flashcards
+                SET report_status = ?
                 WHERE id = ? AND user_id = ?
             """, (reason, fid, g.user_id))
         invalidate_user_caches(g.user_id)
@@ -912,7 +893,7 @@ def export_anki():
     for r in rows:
         front = (r["front"] or "").replace("\t", " ").replace("\r\n", "<br>").replace("\n", "<br>")
         back = (r["back"] or "").replace("\t", " ").replace("\r\n", "<br>").replace("\n", "<br>")
-        
+
         tags = ["MedQuest"]
         if r["area"]:
             area_tag = re.sub(r"[^\w]+", "_", r["area"]).strip("_")

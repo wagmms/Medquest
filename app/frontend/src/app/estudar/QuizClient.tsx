@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { isLocalIdentityReady } from "@/lib/db";
 import { useUser } from "@clerk/nextjs";
 import { normalizeFlashcard } from "@/lib/normalizeFlashcard";
 
@@ -126,7 +127,7 @@ export function QuizClient({
   initialFilters?: Record<string, string | string[]>;
 }) {
   const router = useRouter();
-  const { user } = useUser();
+  const { user, isLoaded: authLoaded } = useUser();
   const isCurator = user?.primaryEmailAddress?.emailAddress?.toLowerCase() === "moraes.wagg@gmail.com";
   const [isClassificationModalOpen, setIsClassificationModalOpen] = useState(false);
   const hasExplicitFilters = Object.keys(initialFilters).filter(k => k !== "resume").length > 0;
@@ -366,12 +367,11 @@ export function QuizClient({
   const [storageReady, setStorageReady] = useState(false);
 
   useEffect(() => {
-    if (hasRestored.current) return;
+    if (!isLocalIdentityReady(authLoaded) || hasRestored.current) return;
     hasRestored.current = true;
 
     const saved = readLearningSession("quiz", isSavedQuizState);
     const isExplicitResume = initialFilters.resume === "true" || initialFilters.resume === "1";
-    const isActiveInSession = typeof window !== "undefined" && sessionStorage.getItem("medquest_active_quiz") === "1";
     const filterKeys = Object.keys(initialFilters).filter(k => k !== "resume");
     const isSameFilters = saved ? areFiltersEquivalent(initialFilters, saved.filters) : false;
 
@@ -379,8 +379,7 @@ export function QuizClient({
     const shouldAutoResume = Boolean(
       saved &&
       (isExplicitResume ||
-        (saved.state === "PLAYING" && isSameFilters) ||
-        (saved.state === "PLAYING" && isActiveInSession))
+        (filterKeys.length > 0 && saved.state === "PLAYING" && isSameFilters))
     );
 
     if (saved && shouldAutoResume) {
@@ -427,7 +426,7 @@ export function QuizClient({
         setStorageReady(true);
       }, 0);
     }
-  }, [initialFilters, loadQueue, loadQuestionDetail]);
+  }, [authLoaded, initialFilters, loadQueue, loadQuestionDetail]);
 
   const resumeSavedQuiz = useCallback(() => {
     const saved = savedSessionData || readLearningSession("quiz", isSavedQuizState);
@@ -828,8 +827,12 @@ export function QuizClient({
       setFlashcardResult(normalized);
       setDraftFlashcard(null);
       toast.success("Flashcard adicionado à Revisão Ativa de amanhã!");
-    } catch {
-      toast.error("Erro ao criar flashcard instantâneo.");
+    } catch (error) {
+      if (error instanceof OfflineQueuedError) {
+        toast("Flashcard aguardando sincronização. Ficará disponível para revisão após o envio.", { icon: "💾" });
+      } else {
+        toast.error("Erro ao criar flashcard instantâneo.");
+      }
     } finally {
       setSavingFlashcard(false);
     }
@@ -867,8 +870,12 @@ export function QuizClient({
       setFlashcardResult(normalized);
       setDraftFlashcard(null);
       toast.success("Flashcard criado e inserido na sua Revisão Ativa!");
-    } catch {
-      toast.error("Erro ao salvar flashcard.");
+    } catch (error) {
+      if (error instanceof OfflineQueuedError) {
+        toast("Flashcard aguardando sincronização. Ficará disponível para revisão após o envio.", { icon: "💾" });
+      } else {
+        toast.error("Erro ao salvar flashcard.");
+      }
     } finally {
       setSavingFlashcard(false);
     }
@@ -903,7 +910,11 @@ export function QuizClient({
       }
     } catch (e) {
       console.error("Erro ao gerar flashcards em lote:", e);
-      toast.error("Erro ao gerar flashcards em lote.");
+      if (e instanceof OfflineQueuedError) {
+        toast("Criação de flashcards aguardando sincronização.", { icon: "💾" });
+      } else {
+        toast.error("Erro ao gerar flashcards em lote.");
+      }
     } finally {
       setGeneratingBatchFlashcards(false);
     }

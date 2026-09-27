@@ -4,12 +4,15 @@ import { useEffect, useState } from "react";
 import { syncManager } from "@/lib/sync";
 import { localDb } from "@/lib/db";
 import { downloadSimuladoPackage, getReadySimuladoPackage, listSimuladoPackages, deleteSimuladoPackage } from "@/lib/simuladoPackage";
+import { useAuth } from "@clerk/nextjs";
 import { CloudOff } from "lucide-react";
 
-export function SyncProvider() {
+export function SyncProvider({ guestMode = false }: { guestMode?: boolean }) {
+  const { isLoaded, userId } = useAuth();
   const [queueCount, setQueueCount] = useState(0);
 
   useEffect(() => {
+    if (!isLoaded && !guestMode) return;
     let isActive = true;
     (window as unknown as { syncManager: typeof syncManager }).syncManager = syncManager;
     (window as unknown as { localDb: typeof localDb }).localDb = localDb;
@@ -39,7 +42,7 @@ export function SyncProvider() {
       window.removeEventListener('sync-queue-updated', handleUpdate);
       syncManager.cleanup();
     };
-  }, []);
+  }, [isLoaded, userId, guestMode]);
 
   const [isManualSyncing, setIsManualSyncing] = useState(false);
 

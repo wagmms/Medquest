@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
+import { isLocalIdentityReady } from "@/lib/db";
 import { 
   OverviewStats, PlannerWeek, PlannerTopic,
   BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary 
@@ -38,6 +40,7 @@ export function DashboardClient({
   domainSummary,
   errorNotebook,
 }: DashboardClientProps) {
+  const { isLoaded: authLoaded } = useUser();
   const hasAnimated = useRef(false);
   const [activeSession, setActiveSession] = useState<{ kind: "quiz" | "simulado"; url: string } | null>(null);
   const [isOfflineModalOpen, setIsOfflineModalOpen] = useState(false);
@@ -51,6 +54,8 @@ export function DashboardClient({
   }, [stats]);
 
   useEffect(() => {
+    if (!isLocalIdentityReady(authLoaded)) return;
+    let active = true;
     // Check for active sessions
     const checkSessions = async () => {
       // Sincroniza da nuvem de forma assíncrona para não travar o carregamento
@@ -59,6 +64,7 @@ export function DashboardClient({
         syncSessionFromCloud<{ state?: string }>("quiz", (val): val is { state?: string } => typeof val === "object" && val !== null)
       ]);
 
+      if (!active) return;
       const hasSimulado = readLearningSession<{ state?: string }>(
         "simulado",
         (val): val is { state?: string } => typeof val === "object" && val !== null
@@ -75,8 +81,9 @@ export function DashboardClient({
         }
       }
     };
-    checkSessions();
-  }, []);
+    void checkSessions();
+    return () => { active = false; };
+  }, [authLoaded]);
 
   // Listen to open-offline-modal custom event
   useEffect(() => {

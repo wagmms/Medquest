@@ -5,11 +5,12 @@ import { useState, useEffect, memo } from "react";
 import Link from "next/link";
 import { PlannerWeek, PlannerProgressMap, PlannerTopic, PlannerConfig, PlannerTopicProgressMap } from "@/types/api";
 import { api } from "@/lib/api";
+import { getLocalOwnerId } from "@/lib/db";
 import { Check, CalendarDays, Clock, Activity, Loader2, RotateCcw, AlertTriangle, Zap, X, Play, Settings2, ExternalLink, Download, Gem, TrendingUp, AlertCircle } from "lucide-react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import { PlannerWizard } from "./PlannerWizard";
-import { syncPlanToGoogleCalendarDirectly, advancedTwoWaySync, SyncProgress } from "@/lib/googleCalendar";
+import { syncPlanToGoogleCalendar, SyncProgress } from "@/lib/googleCalendar";
 
 const getAreaColorClass = (areaName: string) => {
   const name = areaName.toLowerCase();
@@ -189,46 +190,23 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
 
   const handleAdvancedSync = async () => {
     setGoogleSyncing(true);
-    setGoogleSyncProgress({ current: 0, total: 100, status: "Iniciando Two-Way Sync (Efeito Cascata)..." });
+    setGoogleSyncProgress({ current: 0, total: 100, status: "Conectando ao Google Agenda..." });
     try {
-      const res = await advancedTwoWaySync(
-        plan,
-        config?.days_per_week || 6,
-        (p) => setGoogleSyncProgress(p)
-      );
+      const owner = getLocalOwnerId();
+      const res = await syncPlanToGoogleCalendar(plan, {
+        config: config || {}, ownerId: owner, completed: topicProgress,
+        onProgress: setGoogleSyncProgress,
+        onComplete: async (week, subtema) => {
+          if (getLocalOwnerId() !== owner) throw new Error("A conta ativa mudou.");
+          await api.planner.markTopic(week, subtema, true);
+          setTopicProgress(previous => ({ ...previous, [`${week}:${subtema}`]: true }));
+        },
+      });
       if (res.success) {
-        toast.success("Sincronização Avançada com Efeito Cascata concluída!");
+        toast.success("Sincronização com o Google Agenda concluída!");
       }
     } catch (err: unknown) {
       toast.error("Erro na sincronização avançada: " + String(err));
-    } finally {
-      setGoogleSyncing(false);
-      setGoogleSyncProgress(null);
-    }
-  };
-
-  const handleDirectGoogleSync = async () => {
-    setGoogleSyncing(true);
-    setGoogleSyncProgress({ current: 0, total: 100, status: "Iniciando conexão com sua conta Google..." });
-    try {
-      const res = await syncPlanToGoogleCalendarDirectly(
-        plan,
-        config?.days_per_week || 6,
-        (p) => setGoogleSyncProgress(p)
-      );
-      if (res.success) {
-        toast.success("Agenda MedQuest criada e eventos exportados com sucesso no seu Google Agenda!");
-      }
-    } catch (err: unknown) {
-      const errMsg = err instanceof Error ? err.message : String(err);
-      if (errMsg === "GOOGLE_CLIENT_ID_MISSING") {
-        // Fallback rápido: baixa o .ics e abre o Google Calendar Import em 1 clique
-        toast("Baixando arquivo e abrindo o importador do Google Agenda...", { icon: "📅" });
-        await handleExportIcs();
-        window.open("https://calendar.google.com/calendar/r/settings/export", "_blank");
-      } else {
-        toast.error("Erro na sincronização: " + errMsg);
-      }
     } finally {
       setGoogleSyncing(false);
       setGoogleSyncProgress(null);
@@ -632,7 +610,7 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
                     className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5 text-xs shadow-sm disabled:opacity-50"
                   >
                     {googleSyncing ? <Loader2 size={14} className="animate-spin" /> : <ExternalLink size={14} />}
-                    {googleSyncing ? "Exportando para o Google..." : googleSyncing ? "Sincronizando..." : "Sincronizar Planner (Cascata)"}
+                    {googleSyncing ? "Sincronizando..." : "Sincronizar Planner"}
                   </button>
                   <button
                     onClick={handleQuickImportFlow}
