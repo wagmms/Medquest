@@ -223,9 +223,17 @@ def extract_gabarito(
     if q_detail and q_detail.get("correct_letters"):
         return q_detail["correct_letters"][0].upper()
 
+    # Tier 1b: Check if any option explicitly has is_correct == True / 1
+    for opt in options_list:
+        if opt.get("is_correct") in (True, 1, "true", "1"):
+            let = opt.get("letter")
+            if let:
+                return str(let).upper()
+
     if not options_list:
         return "A"
 
+    # Tier 2: Check for explicit markers in option commentary
     scores: Dict[str, int] = {}
     for opt in options_list:
         let = opt.get("letter", "").lower()
@@ -235,45 +243,64 @@ def extract_gabarito(
         txt_clean = re.sub(r"<[^>]+>", " ", txt).strip().lower()
 
         score = 0
-        first_60 = txt_clean[:60]
+        first_80 = txt_clean[:80]
 
-        # Explicit markers in first 60 chars
-        if any(w in first_60 for w in ["incorret", "errad", "distrator"]):
+        # Explicit distractor markers at the start
+        if any(w in first_80 for w in ["incorret", "errad", "distrator", "falsa", "não é a conduta", "não seria a conduta"]):
             score -= 100
-        elif any(w in first_60 for w in ["corret", "certa", "gabarito", "resposta certa", "resposta correta", "alternativa correta"]):
+        # Explicit affirmative markers at the start
+        elif any(w in first_80 for w in ["gabarito", "resposta certa", "resposta correta", "alternativa correta", "está correta", "é a correta"]):
+            score += 100
+        elif re.search(r"^\*{0,2}corret[oa]\b", first_80):
             score += 100
 
         # Contextual distractor indicators anywhere in the explanation
         if any(w in txt_clean for w in [
             "não é um", "não é uma", "esta alternativa comete", "esta alternativa cria",
-            "esta alternativa representa", "confunde ", "não decorre", "não há obrigatoriedade"
+            "esta alternativa representa", "confunde ", "não decorre", "não há obrigatoriedade",
+            "não seria a conduta", "não condiz com", "está contraindicad", "é contraindicad",
+            "não tem indicação", "não é recomendad"
         ]):
             score -= 50
 
-        # Contextual affirmative indicators anywhere in the explanation
+        # High-confidence affirmative indicators anywhere in the explanation
         if any(w in txt_clean for w in [
-            "foi exemplar", "conduta correta", "diagnóstico correto", "conformidade total",
-            "está perfeitamente", "corretamente", "esta é a resposta correta", "esta é a conduta"
+            "esta é a resposta correta", "esta é a alternativa correta", "portanto, alternativa correta",
+            "portanto, a alternativa correta", "logo, a alternativa correta", "gabarito: letra",
+            "gabarito oficial"
         ]):
             score += 50
 
         scores[let.upper()] = score
 
-    if scores:
-        best_let, best_score = max(scores.items(), key=lambda x: x[1])
-        if best_score > 0:
-            return best_let
+    # Check for strong explicit winner (score >= 100 and no other option has >= 100)
+    top_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    if top_scores and top_scores[0][1] >= 100:
+        if len(top_scores) == 1 or top_scores[0][1] > top_scores[1][1]:
+            return top_scores[0][0]
 
-    # Tier 3: Wisdom of the crowd via response_percentage fallback if no clear textual clue
-    max_pct = -1.0
-    pct_let = None
-    for opt in options_list:
-        pct = float(opt.get("response_percentage") or 0.0)
-        if pct > max_pct:
-            max_pct = pct
-            pct_let = opt.get("letter")
-    if pct_let and max_pct >= 40.0:
-        return pct_let.upper()
+    # Tier 3: Wisdom of the crowd via response_percentage
+    # If students overwhelmingly selected an option and its explanation is not marked incorrect
+    sorted_by_pct = sorted(options_list, key=lambda o: float(o.get("response_percentage") or 0.0), reverse=True)
+    if sorted_by_pct:
+        top_pct_opt = sorted_by_pct[0]
+        top_pct = float(top_pct_opt.get("response_percentage") or 0.0)
+        top_let = (top_pct_opt.get("letter") or "").upper()
+        sec_pct = float(sorted_by_pct[1].get("response_percentage") or 0.0) if len(sorted_by_pct) > 1 else 0.0
+
+        if top_pct >= 45.0 and scores.get(top_let, 0) >= 0 and (top_pct - sec_pct >= 10.0 or top_pct >= 60.0):
+            return top_let
+
+    # Tier 4: Fallback to best non-negative text score
+    if top_scores and top_scores[0][1] > 0:
+        return top_scores[0][0]
+
+    # Tier 5: Best percentage fallback
+    if sorted_by_pct:
+        top_pct_opt = sorted_by_pct[0]
+        top_pct = float(top_pct_opt.get("response_percentage") or 0.0)
+        if top_pct >= 35.0:
+            return (top_pct_opt.get("letter") or "A").upper()
 
     return "A"
 

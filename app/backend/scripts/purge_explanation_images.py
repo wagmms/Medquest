@@ -48,7 +48,21 @@ def purge_explanation_images(db_path=DB_PATH):
     other_exp_deleted = cur.rowcount
     print(f"Deleted other external explanation images: {other_exp_deleted}")
 
-    # 4. Question 10218 cleanup (USP-RP 2025 #8):
+    # 4. Remove redundant cross-source duplicate images for questions whose stem already embeds the image
+    cur.execute("""
+        DELETE FROM question_images
+        WHERE id IN (
+            SELECT qi.id
+            FROM question_images qi
+            JOIN questions q ON q.id = qi.question_id
+            WHERE (q.stem LIKE '%![]%' OR q.stem LIKE '%![%](http%' OR q.stem LIKE '%<img%')
+              AND q.stem NOT LIKE '%' || qi.file_path || '%'
+        )
+    """)
+    redundant_deleted = cur.rowcount
+    print(f"Deleted redundant cross-source duplicate images: {redundant_deleted}")
+
+    # 5. Question 10218 cleanup (USP-RP 2025 #8):
     # Ensure stem uses the official Medway CDN question image instead of temporary Google doc URL,
     # and remove duplicate Q63 attachment
     cdn_q8_url = "https://cdn.medway.com.br/media/question_images/ID162522_2025_institution-object-26_Q8/question.png"

@@ -56,16 +56,16 @@ def backfill_explanations(
     conn = get_db_connection(db_path)
     cursor = conn.cursor()
 
-    # 1. Build fast lookup index of existing questions: norm_stem[:180] -> (qid, source_file)
+    # 1. Build fast lookup index of existing questions: norm_stem[:180] -> (qid, source_file, correct_letter)
     logger.info("Indexing existing questions in %s...", db_path.name)
-    cursor.execute("SELECT id, stem, source_file FROM questions WHERE stem IS NOT NULL")
-    stem_to_qmeta: Dict[str, Tuple[int, str]] = {}
+    cursor.execute("SELECT id, stem, source_file, correct_letter FROM questions WHERE stem IS NOT NULL")
+    stem_to_qmeta: Dict[str, Tuple[int, str, str]] = {}
     for r in cursor.fetchall():
         st = r["stem"]
         if st and st.strip():
             n = normalize_text(st)[:180]
             if n:
-                stem_to_qmeta[n] = (r["id"], r["source_file"] or "")
+                stem_to_qmeta[n] = (r["id"], r["source_file"] or "", (r["correct_letter"] or "").strip().upper())
 
     logger.info("Loaded %d distinct normalized question stems from DB.", len(stem_to_qmeta))
 
@@ -104,7 +104,7 @@ def backfill_explanations(
             if not norm or norm not in stem_to_qmeta:
                 continue
 
-            target_qid, target_source = stem_to_qmeta[norm]
+            target_qid, target_source, target_correct = stem_to_qmeta[norm]
 
             # If this question was inserted directly by this exact track, skip backfill
             if target_source == source_file_label:
@@ -117,7 +117,10 @@ def backfill_explanations(
 
             opts = q_detail.get("options", [])
             is_discursive = bool(q_detail.get("question_type") == "d" or len(opts) == 0)
-            correct_letter = extract_gabarito(exp_detail, opts, q_detail=q_detail) if not is_discursive else "A"
+            if not is_discursive and target_correct and target_correct in "ABCDE":
+                correct_letter = target_correct
+            else:
+                correct_letter = extract_gabarito(exp_detail, opts, q_detail=q_detail) if not is_discursive else "A"
             golden_exp = format_medway_golden_explanation(
                 exp_detail, opts, correct_letter, is_discursive=is_discursive
             )

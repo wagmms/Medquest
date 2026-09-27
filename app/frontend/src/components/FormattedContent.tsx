@@ -58,23 +58,25 @@ export function filterExtraImages(images: string[] | null | undefined, text: str
   // Explanation images must never be rendered as extra question stem attachments
   const nonExplanationImages = images.filter(img => img && !img.includes("question_explanation_images"));
   const textImages = extractImageUrlsFromMarkdown(text);
-  if (textImages.size === 0) return nonExplanationImages;
 
-  return nonExplanationImages.filter(img => {
-    if (!img) return false;
-    const trimmed = img.trim();
-    const normalized = normalizeImageSrc(trimmed);
-    const fn = trimmed.split("/").pop() || "";
-    if (textImages.has(trimmed) || textImages.has(normalized) || (fn && textImages.has(fn))) {
-      return false;
+  // If the markdown/HTML text already contains embedded images, those images are rendered
+  // directly inline inside FormattedContent. Returning extra images here causes duplicates
+  // whenever the question text and question_images contain different CDN URLs for the same asset
+  // (e.g. MedCof S3 vs Medway CDN).
+  if (textImages.size > 0) return [];
+
+  // Deduplicate remaining images by normalized path
+  const seen = new Set<string>();
+  const result: string[] = [];
+  for (const img of nonExplanationImages) {
+    if (!img) continue;
+    const norm = normalizeImageSrc(img.trim());
+    if (!seen.has(norm)) {
+      seen.add(norm);
+      result.push(img.trim());
     }
-    for (const tImg of Array.from(textImages)) {
-      if (tImg.includes(trimmed) || trimmed.includes(tImg) || (fn && tImg.includes(fn))) {
-        return false;
-      }
-    }
-    return true;
-  });
+  }
+  return result;
 }
 
 /**
