@@ -17,6 +17,7 @@ interface UseQuizKeyboardProps {
   prevQuestion: () => void;
   navigateQuestion: (direction: "next" | "previous") => void;
   selectAlternative: (letter: string) => void;
+  toggleEliminate?: (letter: string) => void;
   disabled?: boolean;
 }
 
@@ -36,6 +37,7 @@ export function useQuizKeyboard({
   prevQuestion,
   navigateQuestion,
   selectAlternative,
+  toggleEliminate,
   disabled = false,
 }: UseQuizKeyboardProps) {
   useEffect(() => {
@@ -68,7 +70,13 @@ export function useQuizKeyboard({
           if (key in altIndexMap) {
             const idx = altIndexMap[key];
             if (idx < (currentDetail.alternatives || []).length) {
-              selectAlternative(currentDetail.alternatives[idx].letter);
+              const letter = currentDetail.alternatives[idx].letter;
+              if ((e.shiftKey || e.altKey) && toggleEliminate) {
+                e.preventDefault();
+                toggleEliminate(letter);
+              } else if (!e.shiftKey && !e.altKey) {
+                selectAlternative(letter);
+              }
             }
           } else if (key === "ENTER" || key === " ") {
             if (selectedLetter && !submitting) {
@@ -114,5 +122,5 @@ export function useQuizKeyboard({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [state, currentDetail, loadingDetail, attemptResult, currentIndex, queue, selectedLetter, submitting, handleAttempt, handleDiscursiveReveal, handleReviewFSRS, nextQuestion, prevQuestion, navigateQuestion, selectAlternative, disabled]);
+  }, [state, currentDetail, loadingDetail, attemptResult, currentIndex, queue, selectedLetter, submitting, handleAttempt, handleDiscursiveReveal, handleReviewFSRS, nextQuestion, prevQuestion, navigateQuestion, selectAlternative, toggleEliminate, disabled]);
 }

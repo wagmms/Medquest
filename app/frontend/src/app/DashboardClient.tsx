@@ -190,21 +190,21 @@ export function DashboardClient({
     // 1. Retomar sessão ativa
     if (activeSession) {
       return (
-        <div className="bg-primary text-primary-foreground rounded-2xl p-5 sm:p-6 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden group">
-          <div className="flex items-center gap-4 relative z-10">
-            <div className="w-12 h-12 rounded-xl bg-primary-foreground/20 flex items-center justify-center text-primary-foreground shrink-0">
-              <span className="material-symbols-outlined text-[28px]" data-icon={activeSession.kind === "simulado" ? "history_edu" : "play_lesson"}>
+        <div className="bg-primary text-primary-foreground rounded-2xl p-4 sm:p-6 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden group min-w-0">
+          <div className="flex items-center gap-3 sm:gap-4 relative z-10 min-w-0 flex-1">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-primary-foreground/20 flex items-center justify-center text-primary-foreground shrink-0">
+              <span className="material-symbols-outlined text-[24px] sm:text-[28px]" data-icon={activeSession.kind === "simulado" ? "history_edu" : "play_lesson"}>
                 {activeSession.kind === "simulado" ? "history_edu" : "play_lesson"}
               </span>
             </div>
-            <div>
+            <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 mb-0.5">
                 <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary-foreground/25">
                   Sessão em Andamento
                 </span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold">Retomar {activeSession.kind === "simulado" ? "Simulado" : "Sessão de Estudos"}</h3>
-              <p className="text-xs sm:text-sm text-primary-foreground/80 font-medium">Continue de onde você parou para não perder o ritmo.</p>
+              <h3 className="text-base sm:text-xl font-bold break-words">Retomar {activeSession.kind === "simulado" ? "Simulado" : "Sessão de Estudos"}</h3>
+              <p className="text-xs sm:text-sm text-primary-foreground/80 font-medium break-words">Continue de onde você parou para não perder o ritmo.</p>
             </div>
           </div>
           <Link 
@@ -224,22 +224,22 @@ export function DashboardClient({
       const flashcardsCount = stats.flashcards_due_count || 0;
 
       return (
-        <div className="bg-card border-2 border-purple-500/30 dark:border-purple-500/20 bg-gradient-to-r from-purple-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden">
-          <div className="flex items-center gap-3 sm:gap-4">
+        <div className="bg-card border-2 border-purple-500/30 dark:border-purple-500/20 bg-gradient-to-r from-purple-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 ring-1 ring-purple-500/20 flex items-center justify-center shrink-0">
               <span className="material-symbols-outlined text-[22px] sm:text-[26px]" data-icon="psychology">psychology</span>
             </div>
-            <div>
+            <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 mb-0.5">
                 <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-purple-500/10 text-purple-600 dark:text-purple-400">
                   Próxima Ação Prioritária
                 </span>
                 <span className="text-xs text-muted-foreground">• ~{estimatedMinutes} min</span>
               </div>
-              <h3 className="text-base sm:text-xl font-bold text-foreground">
+              <h3 className="text-base sm:text-xl font-bold text-foreground break-words">
                 {pendentesRevisao} revisões vencidas hoje
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 sm:line-clamp-none">
+              <p className="text-xs sm:text-sm text-muted-foreground break-words">
                 Reforce os conceitos no tempo ideal do FSRS antes de resolver questões inéditas.
               </p>
             </div>
@@ -279,22 +279,22 @@ export function DashboardClient({
         : `/estudar?status=new&limit=${Math.min(20, dailyRemaining)}`;
 
       return (
-        <div className="bg-card border-2 border-primary/30 bg-gradient-to-r from-primary/5 via-card to-card rounded-2xl p-5 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20 flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-[26px]" data-icon="play_arrow">play_arrow</span>
+        <div className="bg-card border-2 border-primary/30 bg-gradient-to-r from-primary/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20 flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="play_arrow">play_arrow</span>
             </div>
-            <div>
+            <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 mb-0.5">
                 <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary">
                   Meta de Hoje
                 </span>
                 <span className="text-xs text-muted-foreground">• {todayDone}/{dailyTarget} concluídas</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-foreground">
+              <h3 className="text-base sm:text-xl font-bold text-foreground break-words">
                 {dailyRemaining} questões para bater sua meta de hoje
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground break-words">
                 Tópico sugerido: <strong className="text-foreground">{sugestaoTema}</strong> {sugestaoArea ? `(${sugestaoArea})` : ""}
               </p>
             </div>
@@ -313,21 +313,21 @@ export function DashboardClient({
     // 4. Todas as metas do dia concluídas
     if (topBottleneck) {
       return (
-        <div className="bg-card border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 via-card to-card rounded-2xl p-5 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-1 ring-emerald-500/20 flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-[26px]" data-icon="check_circle">check_circle</span>
+        <div className="bg-card border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-1 ring-emerald-500/20 flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="check_circle">check_circle</span>
             </div>
-            <div>
+            <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 mb-0.5">
                 <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
                   Metas Diárias Concluídas 🎉
                 </span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-foreground">
+              <h3 className="text-base sm:text-xl font-bold text-foreground break-words">
                 Aproveite para reforçar seu maior gargalo
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground break-words">
                 {topBottleneck.subtema}: <strong className="text-amber-600 dark:text-amber-400">{topBottleneck.accuracy_pct}%</strong> em {topBottleneck.attempts} questões ({topBottleneck.wrong_count} erros)
               </p>
             </div>
@@ -344,19 +344,19 @@ export function DashboardClient({
     }
 
     return (
-      <div className="bg-card border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 via-card to-card rounded-2xl p-5 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-1 ring-emerald-500/20 flex items-center justify-center shrink-0">
-            <span className="material-symbols-outlined text-[26px]" data-icon="done_all">done_all</span>
+      <div className="bg-card border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 min-w-0">
+        <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-1 ring-emerald-500/20 flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="done_all">done_all</span>
           </div>
-          <div>
-            <h3 className="text-lg sm:text-xl font-bold text-foreground">Metas de hoje cumpridas com sucesso!</h3>
-            <p className="text-xs sm:text-sm text-muted-foreground">Você está mantendo sua consistência em dia. Descanse ou avance no cronograma semanal.</p>
+          <div className="min-w-0 flex-1">
+            <h3 className="text-base sm:text-xl font-bold text-foreground break-words">Metas de hoje cumpridas com sucesso!</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground break-words">Você está mantendo sua consistência em dia. Descanse ou avance no cronograma semanal.</p>
           </div>
         </div>
         <Link 
           href="/planner" 
-          className="w-full sm:w-auto px-4 py-2 bg-muted hover:bg-muted/80 text-foreground font-semibold rounded-xl text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5"
+          className="w-full sm:w-auto px-4 py-2 bg-muted hover:bg-muted/80 text-foreground font-semibold rounded-xl text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5 shrink-0"
         >
           Acessar Planner
         </Link>
@@ -369,24 +369,24 @@ export function DashboardClient({
       variants={containerVariants} 
       initial="hidden" 
       animate="show" 
-      className="flex flex-col gap-4 sm:gap-6 md:gap-8 pt-1 sm:pt-2 pb-10 max-w-6xl mx-auto px-0.5 sm:px-0"
+      className="flex flex-col gap-4 sm:gap-6 md:gap-8 pt-1 sm:pt-2 pb-10 max-w-6xl mx-auto w-full min-w-0 overflow-x-hidden px-0.5 sm:px-0"
     >
       {/* Banner de Modo Plantão (Offline) */}
       {isOffline && (
         <motion.div 
           variants={itemVariants}
-          className="bg-amber-500/10 border border-amber-500/30 dark:border-amber-500/20 rounded-2xl p-3.5 sm:p-4 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-foreground animate-in fade-in"
+          className="bg-amber-500/10 border border-amber-500/30 dark:border-amber-500/20 rounded-2xl p-3.5 sm:p-4 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-foreground animate-in fade-in min-w-0"
         >
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 min-w-0 flex-1">
             <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
               <span className="material-symbols-outlined text-[22px]" data-icon="cloud_off">cloud_off</span>
             </div>
-            <div>
+            <div className="min-w-0 flex-1">
               <h4 className="font-bold text-xs sm:text-sm text-foreground flex items-center gap-2">
                 Modo Plantão Ativo (Offline)
                 <span className="text-[10px] uppercase font-extrabold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-600 dark:text-amber-400 tracking-wider">Dispositivo</span>
               </h4>
-              <p className="text-[11px] sm:text-xs text-muted-foreground mt-0.5">
+              <p className="text-[11px] sm:text-xs text-muted-foreground mt-0.5 break-words">
                 Você pode estudar questões e simulados salvos. As respostas serão sincronizadas ao reconectar.
               </p>
             </div>
@@ -406,7 +406,7 @@ export function DashboardClient({
             </Link>
             <button
               onClick={() => setIsOfflineModalOpen(true)}
-              className="min-h-[44px] min-w-[44px] p-2 text-xs text-muted-foreground hover:text-foreground font-semibold rounded-xl bg-muted/40 hover:bg-muted transition-colors cursor-pointer flex items-center justify-center"
+              className="min-h-[44px] min-w-[44px] p-2 text-xs text-muted-foreground hover:text-foreground font-semibold rounded-xl bg-muted/40 hover:bg-muted transition-colors cursor-pointer flex items-center justify-center shrink-0"
               title="Gerenciar pacotes offline"
               aria-label="Gerenciar pacotes offline"
             >
@@ -417,13 +417,13 @@ export function DashboardClient({
       )}
 
       {/* Header: Saudação & Contagem Regressiva */}
-      <motion.section variants={itemVariants} className="flex flex-col gap-1">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3">
-          <div>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+      <motion.section variants={itemVariants} className="flex flex-col gap-1 w-full min-w-0">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3 w-full min-w-0">
+          <div className="min-w-0 flex-1">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-foreground truncate">
               Olá, {firstName}
             </h2>
-            <p className="text-muted-foreground text-xs sm:text-sm md:text-base mt-0.5">
+            <p className="text-muted-foreground text-xs sm:text-sm md:text-base mt-0.5 break-words">
               {subtitleMessage}
             </p>
           </div>
@@ -577,8 +577,8 @@ export function DashboardClient({
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
               {/* Pilar 1: Revisões */}
-              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/20 border border-border/40 flex flex-col justify-between gap-3">
-                <div>
+              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/20 border border-border/40 flex flex-col justify-between gap-3 min-w-0">
+                <div className="min-w-0">
                   <div className="flex items-center justify-between text-xs font-semibold text-purple-600 dark:text-purple-400 mb-1">
                     <span className="flex items-center gap-1">
                       <span className="material-symbols-outlined text-[16px]" data-icon="psychology">psychology</span> Revisão Ativa
@@ -611,8 +611,8 @@ export function DashboardClient({
               </div>
 
               {/* Pilar 2: Questões Novas */}
-              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/20 border border-border/40 flex flex-col justify-between gap-3">
-                <div>
+              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/20 border border-border/40 flex flex-col justify-between gap-3 min-w-0">
+                <div className="min-w-0">
                   <div className="flex items-center justify-between text-xs font-semibold text-blue-600 dark:text-blue-400 mb-1">
                     <span className="flex items-center gap-1">
                       <span className="material-symbols-outlined text-[16px]" data-icon="post_add">post_add</span> Questões do Dia
@@ -645,8 +645,8 @@ export function DashboardClient({
               </div>
 
               {/* Pilar 3: Tema Sugerido */}
-              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/20 border border-border/40 flex flex-col justify-between gap-3">
-                <div>
+              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/20 border border-border/40 flex flex-col justify-between gap-3 min-w-0">
+                <div className="min-w-0">
                   <div className="flex items-center justify-between text-xs font-semibold text-primary mb-1">
                     <span className="flex items-center gap-1">
                       <span className="material-symbols-outlined text-[16px]" data-icon="calendar_month">calendar_month</span> Tema Sugerido
@@ -654,10 +654,10 @@ export function DashboardClient({
                     {plannerWeekNum && <span className="text-[11px] text-muted-foreground">Semana {plannerWeekNum}</span>}
                     {isPlanCompleted && <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold">100% Concluído</span>}
                   </div>
-                  <p className="text-base font-bold text-foreground line-clamp-1" title={sugestaoTema}>
+                  <p className="text-base font-bold text-foreground line-clamp-2 break-words" title={sugestaoTema}>
                     {isPlanCompleted ? "Plano 100% Concluído! 🎉" : sugestaoTema}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                  <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2 break-words">
                     {isPlanCompleted
                       ? "Parabéns! Todas as metas do cronograma foram finalizadas."
                       : suggestedPlannerTopic
@@ -714,28 +714,32 @@ export function DashboardClient({
                 {bottlenecks.slice(0, 3).map((b) => (
                   <div 
                     key={b.subtema}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-muted/20 hover:bg-muted/35 border border-border/40 transition-all gap-2.5 sm:gap-3"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-muted/20 hover:bg-muted/35 border border-border/40 transition-all gap-2.5 sm:gap-3 min-w-0"
                   >
-                    <div className="flex flex-col min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-sm text-foreground truncate">{b.subtema}</span>
-                        <span className="px-1.5 py-0.5 rounded bg-muted text-muted-foreground text-[10px] font-bold shrink-0">{b.area}</span>
+                    <div className="flex flex-col min-w-0 flex-1">
+                      <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 sm:gap-2 min-w-0">
+                        <span className="font-bold text-sm text-foreground line-clamp-2 break-words flex-1 min-w-0" title={b.subtema}>
+                          {b.subtema}
+                        </span>
+                        <span className="px-1.5 py-0.5 rounded bg-muted text-muted-foreground text-[10px] font-bold shrink-0">
+                          {b.area}
+                        </span>
                       </div>
                       <div className="flex items-center gap-3 text-xs text-muted-foreground mt-0.5 sm:mt-1">
                         <span>Amostra: <strong className="text-foreground">{b.attempts} tentativas</strong> ({b.wrong_count} erros)</span>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto shrink-0 pt-1.5 sm:pt-0 border-t sm:border-t-0 border-border/30">
+                    <div className="flex items-center justify-between sm:justify-end gap-2.5 w-full sm:w-auto shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-border/30">
                       <span className={clsx(
-                        "text-xs font-bold px-2.5 py-1 rounded-lg",
+                        "text-xs font-bold px-2.5 py-1 rounded-lg shrink-0",
                         b.accuracy_pct < 50 ? "bg-destructive/10 text-destructive" : "bg-amber-500/10 text-amber-600 dark:text-amber-400"
                       )}>
                         {b.accuracy_pct}% acertos
                       </span>
                       <Link 
                         href={b.practice_url}
-                        className="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1 shadow-2xs"
+                        className="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1 shadow-2xs shrink-0"
                       >
                         <span className="material-symbols-outlined text-[14px]" data-icon="play_arrow">play_arrow</span> Treinar
                       </Link>
@@ -754,13 +758,13 @@ export function DashboardClient({
 
           {/* RITMO DA SEMANA (COMPACTO) */}
           {benchmarkStats && (
-            <motion.section variants={itemVariants} className="bg-card border border-border/70 rounded-3xl p-5 sm:p-6 shadow-2xs">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-                <div className="flex items-center gap-2.5">
-                  <span className="material-symbols-outlined text-blue-500 text-[20px]" data-icon="speed">speed</span>
-                  <div>
+            <motion.section variants={itemVariants} className="bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs min-w-0">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 min-w-0">
+                <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                  <span className="material-symbols-outlined text-blue-500 text-[20px] shrink-0" data-icon="speed">speed</span>
+                  <div className="min-w-0 flex-1">
                     <h3 className="text-sm font-bold text-foreground">Ritmo da Semana</h3>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-muted-foreground break-words">
                       {benchmarkStats.last7_attempts} de {benchmarkStats.weekly_target_questions} questões nos últimos 7 dias
                       {benchmarkStats.accuracy_last7 != null && (
                         <span> · <strong className="text-foreground">{Math.round(benchmarkStats.accuracy_last7 * 100)}%</strong> de acerto recente</span>
@@ -771,7 +775,7 @@ export function DashboardClient({
 
                 <Link 
                   href="/analise" 
-                  className="text-xs font-bold text-primary hover:underline flex items-center gap-1 self-start sm:self-auto"
+                  className="text-xs font-bold text-primary hover:underline flex items-center gap-1 self-start sm:self-auto shrink-0"
                 >
                   Ver análise detalhada <span className="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
                 </Link>
@@ -795,22 +799,22 @@ export function DashboardClient({
 
           {/* FAIXA ESTIMADA DE PRONTIDÃO (BENCHMARK PROBABILÍSTICO CONDICIONAL: APENAS SE >= 20 QUESTÕES) */}
           {stats.distinct_answered >= 20 && benchmarkStats && overallAccPct != null && (
-            <motion.section variants={itemVariants} className="bg-card border border-border/70 rounded-3xl p-5 sm:p-6 shadow-2xs relative overflow-hidden">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20">
+            <motion.section variants={itemVariants} className="bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs relative overflow-hidden min-w-0">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 min-w-0">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20 shrink-0">
                     <span className="material-symbols-outlined text-[18px]" data-icon="analytics">analytics</span>
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <h3 className="text-base font-bold text-foreground">Faixa Estimada de Prontidão</h3>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-muted-foreground break-words">
                       Estimativa preliminar baseada em {totalAttempts} tentativas vs. Meta de corte ({targetScorePct}%)
                     </p>
                   </div>
                 </div>
 
                 {/* Badge Probabilístico */}
-                <div>
+                <div className="shrink-0 self-start sm:self-auto">
                   {diffPct != null && diffPct >= 0 ? (
                     <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold ring-1 ring-emerald-500/20">
                       <span className="material-symbols-outlined text-[14px]" data-icon="verified">verified</span>
@@ -830,10 +834,10 @@ export function DashboardClient({
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2 p-3.5 bg-muted/20 border border-border/40 rounded-2xl">
-                <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground font-medium">Seu Acerto Geral vs. Meta</span>
-                  <span className="font-bold text-foreground">
+              <div className="flex flex-col gap-2 p-3.5 bg-muted/20 border border-border/40 rounded-2xl min-w-0">
+                <div className="flex justify-between text-xs min-w-0">
+                  <span className="text-muted-foreground font-medium truncate">Seu Acerto Geral vs. Meta</span>
+                  <span className="font-bold text-foreground shrink-0 ml-2">
                     {overallAccPct.toFixed(1)}% <span className="text-muted-foreground font-normal text-[11px]">/ Meta: {targetScorePct}%</span>
                   </span>
                 </div>
@@ -863,16 +867,16 @@ export function DashboardClient({
                 </div>
               </div>
 
-              <p className="text-[11px] text-muted-foreground mt-2">
+              <p className="text-[11px] text-muted-foreground mt-2 break-words">
                 * A acurácia por Grande Área e o desempenho em simulados refinam a projeção na aba <Link href="/analise" className="text-primary font-semibold hover:underline">Análise</Link>.
               </p>
             </motion.section>
           )}
 
           {/* RESUMO DISCRETO DE CONTEXTO (BOTTOM STRIP) */}
-          <motion.section variants={itemVariants} className="bg-card border border-border/60 rounded-2xl p-3.5 sm:px-5 sm:py-3.5 shadow-2xs">
-            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-between gap-3 text-xs">
-              <Link href="/cobertura" className="flex items-center gap-1.5 hover:text-primary transition-colors text-muted-foreground p-1">
+          <motion.section variants={itemVariants} className="bg-card border border-border/60 rounded-2xl p-3 sm:px-5 sm:py-3.5 shadow-2xs w-full min-w-0">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-between gap-2 sm:gap-3 text-xs">
+              <Link href="/cobertura" className="flex items-center gap-1.5 hover:text-primary transition-colors text-muted-foreground p-1 min-w-0 overflow-hidden">
                 <span className="material-symbols-outlined text-[16px] text-emerald-500 shrink-0" data-icon="domain_verification">domain_verification</span>
                 <span className="truncate">
                   Cobertura: <strong className="text-foreground">
@@ -882,7 +886,7 @@ export function DashboardClient({
               </Link>
 
               {errorNotebook && (
-                <Link href={errorNotebook.practice_url} className="flex items-center gap-1.5 hover:text-rose-500 transition-colors text-muted-foreground p-1">
+                <Link href={errorNotebook.practice_url} className="flex items-center gap-1.5 hover:text-rose-500 transition-colors text-muted-foreground p-1 min-w-0 overflow-hidden">
                   <span className="material-symbols-outlined text-[16px] text-rose-500 shrink-0" data-icon="edit_note">edit_note</span>
                   <span className="truncate">
                     Erros: <strong className="text-foreground">{errorNotebook.currently_unresolved_count}</strong>
@@ -890,20 +894,20 @@ export function DashboardClient({
                 </Link>
               )}
 
-              <div className="flex items-center gap-1.5 text-muted-foreground p-1">
+              <div className="flex items-center gap-1.5 text-muted-foreground p-1 min-w-0 overflow-hidden">
                 <span className="material-symbols-outlined text-[16px] text-orange-500 shrink-0" data-icon="local_fire_department">local_fire_department</span>
-                <span>
+                <span className="truncate">
                   Sequência: <strong className="text-foreground">{stats.streak_days}d</strong>
                 </span>
               </div>
 
               <button
                 onClick={() => setIsOfflineModalOpen(true)}
-                className="min-h-[40px] flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-foreground font-semibold px-3 py-2 rounded-xl bg-muted/40 hover:bg-muted transition-colors cursor-pointer border border-border/50 col-span-2 sm:col-span-1"
+                className="min-h-[40px] flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-foreground font-semibold px-3 py-2 rounded-xl bg-muted/40 hover:bg-muted transition-colors cursor-pointer border border-border/50 col-span-2 sm:col-span-1 shrink-0"
                 title="Abrir gerenciador do Modo Plantão (Offline)"
                 aria-label="Abrir gerenciador do Modo Plantão offline"
               >
-                <span className="material-symbols-outlined text-[16px] text-primary" data-icon="cloud_download">cloud_download</span>
+                <span className="material-symbols-outlined text-[16px] text-primary shrink-0" data-icon="cloud_download">cloud_download</span>
                 <span>Modo Plantão</span>
               </button>
             </div>

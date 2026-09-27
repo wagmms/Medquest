@@ -113,9 +113,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <DemoBanner />
               <div className="flex flex-1 min-h-0 w-full overflow-hidden">
                 <Sidebar />
-                <div className="flex-1 flex flex-col w-full min-w-0 bg-background overflow-y-auto">
+                <div className="flex-1 flex flex-col w-full min-w-0 bg-background overflow-y-auto overflow-x-hidden">
                   <TopNav />
-                  <main id="conteudo-principal" tabIndex={-1} className="flex-1 max-w-[1440px] mx-auto w-full p-4 sm:p-gutter md:p-margin gap-stack-lg flex flex-col pb-24 md:pb-margin relative focus:outline-none">
+                  <main id="conteudo-principal" tabIndex={-1} className="flex-1 max-w-[1440px] mx-auto w-full min-w-0 p-3 sm:p-gutter md:p-margin gap-stack-lg flex flex-col pb-24 md:pb-margin relative focus:outline-none overflow-x-hidden">
                     {children}
                   </main>
                 </div>

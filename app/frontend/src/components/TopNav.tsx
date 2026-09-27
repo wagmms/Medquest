@@ -111,18 +111,18 @@ export default function TopNav() {
 
   return (
     <>
-      <header className="app-top-nav md:hidden flex justify-between items-center w-full px-4 sm:px-5 py-2.5 h-16 pt-[max(0.625rem,env(safe-area-inset-top,0px))] bg-surface/85 backdrop-blur-2xl border-b border-border/50 z-10 sticky top-0 transition-all duration-300 shadow-xs">
-        <h1 className="font-semibold text-lg text-foreground tracking-tight flex items-center gap-2">
+      <header className="app-top-nav md:hidden flex justify-between items-center w-full px-3.5 sm:px-5 py-2.5 h-16 pt-[max(0.625rem,env(safe-area-inset-top,0px))] bg-surface/85 backdrop-blur-2xl border-b border-border/50 z-10 sticky top-0 transition-all duration-300 shadow-xs max-w-full overflow-hidden">
+        <h1 className="font-semibold text-lg text-foreground tracking-tight flex items-center gap-2 min-w-0">
           <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center shadow-xs shrink-0">
             <span className="material-symbols-outlined text-[16px]" data-icon="local_hospital">local_hospital</span>
           </div>
           <span className="truncate">MedQuest</span>
         </h1>
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           {isInstallable && (
             <button
               onClick={() => void installApp()}
-              className="flex items-center justify-center p-2 rounded-lg text-primary hover:bg-primary/10 transition-colors cursor-pointer"
+              className="flex items-center justify-center p-1.5 sm:p-2 rounded-lg text-primary hover:bg-primary/10 transition-colors cursor-pointer shrink-0"
               title="Instalar MedQuest no Android"
               aria-label="Instalar MedQuest no dispositivo"
             >
@@ -132,7 +132,7 @@ export default function TopNav() {
           <button
             onClick={() => setIsOfflineOpen(true)}
             className={clsx(
-              "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer",
+              "flex items-center gap-1 px-2 py-1.5 sm:px-2.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer shrink-0",
               isOffline
                 ? "bg-warning/20 text-warning border border-warning/30 animate-pulse"
                 : "text-muted-foreground hover:bg-surface-variant/50 hover:text-foreground"
@@ -143,12 +143,12 @@ export default function TopNav() {
             <span className="material-symbols-outlined text-[18px]" data-icon={isOffline ? "cloud_off" : "cloud_download"}>
               {isOffline ? "cloud_off" : "cloud_download"}
             </span>
-            <span className="text-[11px] font-bold">{forcedOffline ? "Plantão" : isOffline ? "Offline" : "Plantão"}</span>
+            <span className="text-[11px] font-bold hidden min-[360px]:inline">{forcedOffline ? "Plantão" : isOffline ? "Offline" : "Plantão"}</span>
           </button>
           <button 
             ref={menuButtonRef}
             onClick={() => setIsMobileMenuOpen(true)}
-            className="text-muted-foreground hover:bg-surface-variant/50 rounded-lg p-2 transition-colors flex items-center justify-center cursor-pointer"
+            className="text-muted-foreground hover:bg-surface-variant/50 rounded-lg p-1.5 sm:p-2 transition-colors flex items-center justify-center cursor-pointer shrink-0"
             aria-label="Abrir menu principal"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-navigation-drawer"

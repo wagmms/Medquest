@@ -6,7 +6,19 @@ import ts from 'typescript';
 
 // Load the actual TypeScript modules with deterministic browser/storage doubles.
 function loadModule(name, dependencies, globals = {}) {
-  dependencies = { './flashcardCache': { cacheCreatedFlashcards: async () => {} }, ...dependencies };
+  const defaultDb = {
+    getLocalOwnerId: () => 'alice',
+    isDeviceOffline: () => typeof globals.navigator?.onLine === 'boolean' ? !globals.navigator.onLine : false,
+    isForcedOffline: () => false,
+  };
+  dependencies = {
+    './flashcardCache': { cacheCreatedFlashcards: async () => {} },
+    './db': defaultDb,
+    ...dependencies,
+  };
+  if (dependencies['./db']) {
+    dependencies['./db'] = { ...defaultDb, ...dependencies['./db'] };
+  }
   const source = readFileSync(new URL(`../../src/lib/${name}.ts`, import.meta.url), 'utf8');
   const { outputText } = ts.transpileModule(source, {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
@@ -18,7 +30,7 @@ function loadModule(name, dependencies, globals = {}) {
       return dependencies[id];
     },
     console: { log() {}, warn() {}, error() {} },
-    process: { env: {} }, Headers, AbortController, TypeError,
+    process: { env: {} }, Headers, AbortController, Error, TypeError,
     crypto: globalThis.crypto, setTimeout, clearTimeout,
     ...globals,
   });

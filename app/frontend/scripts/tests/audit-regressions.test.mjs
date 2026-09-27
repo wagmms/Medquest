@@ -5,7 +5,19 @@ import test from 'node:test';
 import ts from 'typescript';
 
 function load(name, dependencies = {}, globals = {}) {
-  dependencies = { './flashcardCache': { cacheCreatedFlashcards: async () => {} }, ...dependencies };
+  const defaultDb = {
+    getLocalOwnerId: () => 'alice',
+    isDeviceOffline: () => typeof globals.navigator?.onLine === 'boolean' ? !globals.navigator.onLine : false,
+    isForcedOffline: () => false,
+  };
+  dependencies = {
+    './flashcardCache': { cacheCreatedFlashcards: async () => {} },
+    './db': defaultDb,
+    ...dependencies,
+  };
+  if (dependencies['./db']) {
+    dependencies['./db'] = { ...defaultDb, ...dependencies['./db'] };
+  }
   const source = readFileSync(new URL(`../../src/lib/${name}.ts`, import.meta.url), 'utf8');
   const exports = {};
   runInNewContext(ts.transpileModule(source, { compilerOptions: {
@@ -13,7 +25,7 @@ function load(name, dependencies = {}, globals = {}) {
   } }).outputText, { exports, require: id => {
     assert.ok(id in dependencies, `Unexpected import ${id}`); return dependencies[id];
   }, console, process: { env: {} }, setTimeout, clearTimeout, Headers, AbortController,
-  AbortSignal, TypeError, crypto: globalThis.crypto, TextEncoder, URLSearchParams, ...globals });
+  AbortSignal, Error, TypeError, crypto: globalThis.crypto, TextEncoder, URLSearchParams, ...globals });
   return exports;
 }
 function storage() {

@@ -6,7 +6,7 @@ import { api, OfflineQueuedError } from "@/lib/api";
 import { localDb, getLocalOwnerId, isLocalIdentityReady, SimuladoPackage, isPackageValid, isDeviceOffline } from "@/lib/db";
 import { getReadySimuladoPackage, downloadSimuladoPackage } from "@/lib/simuladoPackage";
 import { useWakeLock } from "@/hooks/useWakeLock";
-import { Play, Clock, ChevronLeft, ChevronRight, FileSignature, AlertTriangle, BookOpen, AlertCircle, RotateCcw, Flag, CloudOff, Sparkles, CheckCircle2, Pencil, Download, RefreshCw, Database, Eye, EyeOff, ShieldCheck, Info, Trophy } from "lucide-react";
+import { Play, Clock, ChevronLeft, ChevronRight, FileSignature, AlertTriangle, BookOpen, AlertCircle, RotateCcw, Flag, CloudOff, Sparkles, CheckCircle2, Pencil, Download, RefreshCw, Database, Eye, EyeOff, ShieldCheck, Info, Trophy, Scissors } from "lucide-react";
 
 import clsx from "clsx";
 import toast from "react-hot-toast";
@@ -43,6 +43,7 @@ interface SavedSimuladoState {
   sessionId?: string;
   plannedDurationSeconds?: number;
   savedAt: number;
+  eliminatedMap?: Record<number, string[]>;
 }
 
 function isSavedSimuladoState(value: unknown): value is SavedSimuladoState {
@@ -100,6 +101,7 @@ export function SimuladoClient({
 
   // Answers: question_id -> letter
   const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [eliminatedMap, setEliminatedMap] = useState<Record<number, string[]>>({});
   const [resultsMap, setResultsMap] = useState<Record<number, BatchAttemptResultItem>>({});
   const [queueId, setQueueId] = useState<string | undefined>(undefined);
   const [sessionId, setSessionId] = useState<string | undefined>(undefined);
@@ -274,6 +276,9 @@ export function SimuladoClient({
       setForce4Options(saved.force4Options);
       setQueueId(saved.queueId);
       setSessionId(saved.sessionId);
+      if (saved.eliminatedMap) {
+        setEliminatedMap(saved.eliminatedMap);
+      }
       setPlannedDurationSeconds(saved.plannedDurationSeconds || Math.max(0, saved.deadlineAt - Date.now()));
       setShowResultsSummary(saved.state === "RESULTS");
 
@@ -307,9 +312,10 @@ export function SimuladoClient({
         sessionId,
         plannedDurationSeconds,
         savedAt: Date.now(),
+        eliminatedMap,
       } satisfies SavedSimuladoState);
     }
-  }, [storageReady, state, queue, answers, currentIndex, resultsMap, flagged, force4Options, queueId, sessionId, plannedDurationSeconds]);
+  }, [storageReady, state, queue, answers, currentIndex, resultsMap, flagged, force4Options, queueId, sessionId, plannedDurationSeconds, eliminatedMap]);
 
   const handleDownloadOfflineSimulado = async () => {
     if (isDownloadingPackage || isOffline) return;

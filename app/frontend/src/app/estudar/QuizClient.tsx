@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { QuestionMeta, QuestionListItem, QuestionDetail, AttemptResult, FlashcardGenerateResponse } from "@/types/api";
 import { api, OfflineQueuedError } from "@/lib/api";
-import { Clock, CheckCircle2, XCircle, BookOpen, Heart, ArrowRight, Sparkles, ArrowLeft, ImageOff, Maximize, Minimize, AlertTriangle, X, CloudOff, RotateCcw, Brain, Pencil, Stethoscope, Eye, EyeOff } from "lucide-react";
+import { Clock, CheckCircle2, XCircle, BookOpen, Heart, ArrowRight, Sparkles, ArrowLeft, ImageOff, Maximize, Minimize, AlertTriangle, X, CloudOff, RotateCcw, Brain, Pencil, Stethoscope, Eye, EyeOff, Scissors } from "lucide-react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -62,6 +62,7 @@ export interface SavedQuizState {
   userWrittenAnswer?: string;
   timeSpent: number;
   savedAt: number;
+  eliminatedAlternatives?: Record<number, string[]>;
 }
 
 function isSavedQuizState(value: unknown): value is SavedQuizState {
@@ -185,6 +186,7 @@ export function QuizClient({
   
   // Quiz State
   const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
+  const [eliminatedAlternatives, setEliminatedAlternatives] = useState<Record<number, string[]>>({});
   const [userWrittenAnswer, setUserWrittenAnswer] = useState<string>("");
   const [attemptResult, setAttemptResult] = useState<AttemptResult | null>(null);
   const [isOfflineSaved, setIsOfflineSaved] = useState(false);
@@ -405,6 +407,9 @@ export function QuizClient({
         setSessionAnswers(saved.sessionAnswers);
         setSelectedLetter(saved.selectedLetter);
         setUserWrittenAnswer(saved.userWrittenAnswer || "");
+        if (saved.eliminatedAlternatives) {
+          setEliminatedAlternatives(saved.eliminatedAlternatives);
+        }
         setInitialTime(saved.timeSpent || 0);
         setState(saved.state);
         if (typeof window !== "undefined") {
@@ -452,6 +457,9 @@ export function QuizClient({
       setSessionAnswers(saved.sessionAnswers);
       setSelectedLetter(saved.selectedLetter);
       setUserWrittenAnswer(saved.userWrittenAnswer || "");
+      if (saved.eliminatedAlternatives) {
+        setEliminatedAlternatives(saved.eliminatedAlternatives);
+      }
       setInitialTime(saved.timeSpent || 0);
       setState(saved.state);
       if (typeof window !== "undefined") {
@@ -630,21 +638,22 @@ export function QuizClient({
         userWrittenAnswer,
         timeSpent: getCurrentTime(),
         savedAt: Date.now(),
+        eliminatedAlternatives,
       } satisfies SavedQuizState);
     } else if (state === "FILTERS" && !hasSavedState) {
       removeLearningSession("quiz");
     }
-  }, [storageReady, state, queue, currentIndex, filters, currentDetail, sessionAnswers, selectedLetter, userWrittenAnswer, hasSavedState, getCurrentTime]);
+  }, [storageReady, state, queue, currentIndex, filters, currentDetail, sessionAnswers, selectedLetter, userWrittenAnswer, eliminatedAlternatives, hasSavedState, getCurrentTime]);
 
   useEffect(() => {
     persistSession();
   }, [persistSession]);
 
   // Persist session before unmounting to prevent losing progress if user navigates away
-  const stateRef = useRef({ state, queue, currentIndex, filters, currentDetail, sessionAnswers, selectedLetter, userWrittenAnswer, storageReady });
+  const stateRef = useRef({ state, queue, currentIndex, filters, currentDetail, sessionAnswers, selectedLetter, userWrittenAnswer, eliminatedAlternatives, storageReady });
   useEffect(() => {
-    stateRef.current = { state, queue, currentIndex, filters, currentDetail, sessionAnswers, selectedLetter, userWrittenAnswer, storageReady };
-  }, [state, queue, currentIndex, filters, currentDetail, sessionAnswers, selectedLetter, userWrittenAnswer, storageReady]);
+    stateRef.current = { state, queue, currentIndex, filters, currentDetail, sessionAnswers, selectedLetter, userWrittenAnswer, eliminatedAlternatives, storageReady };
+  }, [state, queue, currentIndex, filters, currentDetail, sessionAnswers, selectedLetter, userWrittenAnswer, eliminatedAlternatives, storageReady]);
 
   useEffect(() => {
     return () => {
@@ -662,18 +671,45 @@ export function QuizClient({
           userWrittenAnswer: s.userWrittenAnswer,
           timeSpent: getCurrentTime(),
           savedAt: Date.now(),
+          eliminatedAlternatives: s.eliminatedAlternatives,
         } satisfies SavedQuizState);
       }
     };
   }, [getCurrentTime]);
 
+  const toggleEliminateAlternative = useCallback((letter: string) => {
+    if (!currentDetail || attemptResult || submitting) return;
+    const qid = currentDetail.id;
+    setEliminatedAlternatives((prev) => {
+      const currentList = prev[qid] || [];
+      const isEliminated = currentList.includes(letter);
+      const nextList = isEliminated
+        ? currentList.filter((l) => l !== letter)
+        : [...currentList, letter];
+      return { ...prev, [qid]: nextList };
+    });
+    if (selectedLetter === letter) {
+      setSelectedLetter(null);
+    }
+  }, [currentDetail, attemptResult, submitting, selectedLetter]);
+
   const selectAlternative = useCallback((letter: string) => {
     if (attemptResult || submitting) return;
+    if (currentDetail) {
+      const qid = currentDetail.id;
+      setEliminatedAlternatives((prev) => {
+        if (!prev[qid]?.includes(letter)) return prev;
+        return {
+          ...prev,
+          [qid]: prev[qid].filter((l) => l !== letter),
+        };
+      });
+    }
     // Persist synchronously so a reload immediately after selecting an answer
     // can still restore the in-progress session.
     persistSession(letter);
     setSelectedLetter(letter);
-  }, [attemptResult, submitting, persistSession]);
+  }, [attemptResult, submitting, persistSession, currentDetail]);
 
   // Effect to fetch dynamic meta when filters change
   useEffect(() => {
@@ -1091,6 +1127,7 @@ export function QuizClient({
     prevQuestion,
     navigateQuestion,
     selectAlternative,
+    toggleEliminate: toggleEliminateAlternative,
     disabled: Boolean(showFinishModal || isClassificationModalOpen || enlargedImage)
   });
 
@@ -1234,12 +1271,14 @@ export function QuizClient({
             <div className="text-sm font-semibold text-foreground" aria-live="polite">
              Respondidas {completedCount}/{queue.length}
           </div>
-          <div className="hidden lg:flex items-center gap-2 ml-4 px-3 py-1 bg-muted/50 rounded-full text-xs text-muted-foreground font-medium">
+          <div className="hidden xl:flex items-center gap-2 ml-4 px-3 py-1 bg-muted/50 rounded-full text-xs text-muted-foreground font-medium">
             <span className="flex items-center gap-1"><kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">A-E</kbd> ou <kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">1-5</kbd> Alternativas</span>
             <span className="w-1 h-1 rounded-full bg-border" />
-              <span className="flex items-center gap-1"><kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">Enter</kbd> Confirmar</span>
+            <span className="flex items-center gap-1"><kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">Shift+A-E</kbd> ou ✂️ Riscar</span>
             <span className="w-1 h-1 rounded-full bg-border" />
-              <span className="flex items-center gap-1"><kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">Ctrl + ➔</kbd> Navegar</span>
+            <span className="flex items-center gap-1"><kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">Enter</kbd> Confirmar</span>
+            <span className="w-1 h-1 rounded-full bg-border" />
+            <span className="flex items-center gap-1"><kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">Ctrl + ➔</kbd> Navegar</span>
           </div>
         </div>
         
@@ -1536,9 +1575,13 @@ export function QuizClient({
                 const isSelected = selectedLetter === alt.letter;
                 const isCorrect = attemptResult?.correct_letter === alt.letter || (attemptResult && isSelected && attemptResult.is_correct);
                 const isWrong = attemptResult && isSelected && !attemptResult.is_correct;
+                const isEliminated = (eliminatedAlternatives[q.id] || []).includes(alt.letter);
                 
                 let altClass = "bg-card border-border hover:bg-muted/50 hover:border-primary/30 cursor-pointer shadow-sm hover:shadow";
                 if (isSelected && !attemptResult) altClass = "bg-primary/5 border-primary/50 cursor-pointer shadow ring-1 ring-primary/20";
+                if (isEliminated && !attemptResult && !isSelected) {
+                  altClass = "bg-muted/20 border-border/60 opacity-60 hover:opacity-85 cursor-pointer shadow-none";
+                }
                 if (attemptResult) {
                   if (isCorrect) altClass = "bg-success/10 border-success/50 shadow-sm cursor-default ring-1 ring-success/20";
                   else if (isWrong) altClass = "bg-destructive/10 border-destructive/50 shadow-sm cursor-default ring-1 ring-destructive/20";
@@ -1546,8 +1589,10 @@ export function QuizClient({
                 }
 
                 return (
-                  <motion.button
-                    whileTap={!attemptResult ? { scale: 0.98 } : {}}
+                  <motion.div
+                    role="button"
+                    tabIndex={attemptResult || submitting ? -1 : 0}
+                    whileTap={!attemptResult && !submitting ? { scale: 0.99 } : {}}
                     animate={
                       attemptResult && isWrong ? { x: [-5, 5, -5, 5, 0], transition: { duration: 0.4 } } : 
                       attemptResult && isCorrect ? { scale: [1, 1.02, 1], transition: { duration: 0.4 } } : 
@@ -1555,18 +1600,61 @@ export function QuizClient({
                     }
                     key={alt.letter}
                     onClick={() => selectAlternative(alt.letter)}
-                    disabled={!!attemptResult || submitting}
+                    onKeyDown={(e) => {
+                      if (attemptResult || submitting) return;
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        selectAlternative(alt.letter);
+                      }
+                    }}
+                    onContextMenu={(e) => {
+                      if (!attemptResult && !submitting) {
+                        e.preventDefault();
+                        toggleEliminateAlternative(alt.letter);
+                      }
+                    }}
                     className={clsx(
-                      "text-left p-4 rounded-xl border transition-all flex items-start gap-4 w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                      "group relative text-left p-3.5 sm:p-4 rounded-xl border transition-all flex items-start gap-2.5 sm:gap-3 w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 select-none",
                       altClass
                     )}
                     aria-pressed={isSelected}
+                    aria-disabled={!!attemptResult || submitting}
                   >
+                    {/* Scissors Button / Spacer */}
+                    {!attemptResult ? (
+                      <button
+                        type="button"
+                        title={isEliminated ? `Restaurar alternativa ${alt.letter}` : `Riscar alternativa ${alt.letter} (Shift+${alt.letter} ou botão direito)`}
+                        aria-label={isEliminated ? `Restaurar alternativa ${alt.letter}` : `Riscar alternativa ${alt.letter}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleEliminateAlternative(alt.letter);
+                        }}
+                        disabled={submitting}
+                        className={clsx(
+                          "w-6 h-8 shrink-0 flex items-center justify-center rounded-md transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary",
+                          isEliminated
+                            ? "opacity-100 text-destructive hover:scale-110"
+                            : "opacity-0 group-hover:opacity-80 hover:opacity-100 hover:text-primary max-md:opacity-40 text-muted-foreground"
+                        )}
+                      >
+                        <Scissors size={15} className={clsx("transition-transform duration-150", isEliminated && "rotate-45")} />
+                      </button>
+                    ) : (
+                      <div className="w-6 h-8 shrink-0 flex items-center justify-center text-muted-foreground/40">
+                        {isEliminated && !isCorrect && (
+                          <Scissors size={13} className="opacity-40 rotate-45 text-destructive" />
+                        )}
+                      </div>
+                    )}
+
+                    {/* Letter Badge */}
                     <div className={clsx(
-                      "w-8 h-8 shrink-0 flex items-center justify-center rounded-lg font-bold text-sm",
+                      "w-8 h-8 shrink-0 flex items-center justify-center rounded-lg font-bold text-sm transition-colors",
                       isSelected && !attemptResult ? "bg-primary text-primary-foreground" : 
                       isCorrect ? "bg-success text-success-foreground" : 
                       isWrong ? "bg-destructive text-destructive-foreground" : 
+                      isEliminated && !attemptResult ? "bg-muted/40 text-muted-foreground/60 border border-border/50" :
                       "bg-muted text-muted-foreground"
                     )}>
                       {submitting && isSelected ? (
@@ -1575,10 +1663,15 @@ export function QuizClient({
                         alt.letter
                       )}
                     </div>
-                    <div className="pt-1.5 text-foreground leading-relaxed flex-1">
+
+                    {/* Alternative Text */}
+                    <div className={clsx(
+                      "pt-1 text-foreground leading-relaxed flex-1 transition-all",
+                      isEliminated && !isCorrect && "line-through text-muted-foreground/75 decoration-muted-foreground/60"
+                    )}>
                       {alt.text}
                     </div>
-                  </motion.button>
+                  </motion.div>
                 );
               })}
 
