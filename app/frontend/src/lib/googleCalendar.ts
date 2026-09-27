@@ -40,7 +40,7 @@ const topicTitle = (subtema: string, area: string) => `[MedQuest] 📖 ${subtema
 export function scheduleStudyBlocks(plan: PlannerWeek[], config: PlannerConfig,
   completed: PlannerTopicProgressMap = {}, now = new Date()): StudyBlock[] {
   const days = Math.max(1, Math.min(7, Math.floor(config.days_per_week || 6)));
-  const capacity = Math.max(30, Math.min(16 * 60, Math.round((config.hours_per_day || 4) * 60)));
+  const capacity = Math.max(30, Math.min(16 * 60, Math.round((config.hours_per_day || 4) * 4) * 15));
   const cursor = new Date(now);
   cursor.setHours(8, 0, 0, 0);
   if (cursor < now) cursor.setDate(cursor.getDate() + 1);
@@ -60,7 +60,7 @@ export function scheduleStudyBlocks(plan: PlannerWeek[], config: PlannerConfig,
     for (const topic of week.topics) {
       const key = topicKey(week.week, topic.subtema, topic.area);
       if (completed[`${week.week}:${topic.subtema}`] || completed[topic.subtema]) continue;
-      let remaining = Math.max(30, Math.round(topic.estimated_hours * 60));
+      let remaining = Math.max(30, Math.round(topic.estimated_hours * 4) * 15);
       if (!Number.isFinite(remaining)) throw new Error("Carga horária inválida no cronograma.");
       let part = 0;
       while (remaining > 0) {
