@@ -1,6 +1,6 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
 import { PlannerConfig } from "@/types/api";
@@ -94,6 +94,15 @@ export function PlannerWizard({ initialConfig, onClose, isModal }: PlannerWizard
   const [daysPerWeek, setDaysPerWeek] = useState(initialConfig?.days_per_week || 6);
   const [hoursPerDay, setHoursPerDay] = useState(initialConfig?.hours_per_day || 4);
   const [targetScore, setTargetScore] = useState<number | "">(initialConfig?.target_score ?? 78);
+
+  useEffect(() => {
+    if (!isModal || !onClose) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isModal, onClose]);
 
   const handleToggleInstitution = (presetId: string) => {
     if (presetId === "TODAS") {
@@ -204,6 +213,7 @@ export function PlannerWizard({ initialConfig, onClose, isModal }: PlannerWizard
         {isModal && onClose && (
           <button
             onClick={onClose}
+            aria-label="Fechar calibração"
             className="text-muted-foreground hover:text-foreground p-1.5 rounded-lg hover:bg-muted transition-colors"
           >
             <X size={18} />
@@ -250,6 +260,8 @@ export function PlannerWizard({ initialConfig, onClose, isModal }: PlannerWizard
                   type="button"
                   key={preset.id}
                   onClick={() => handleToggleInstitution(preset.id)}
+                  aria-pressed={isSelected}
+                  aria-label={`Selecionar ${preset.name}`}
                   className={clsx(
                     "p-3 rounded-xl text-left border text-xs font-medium transition-all flex flex-col justify-between gap-1 relative",
                     isSelected

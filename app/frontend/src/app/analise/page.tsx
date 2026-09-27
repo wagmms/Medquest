@@ -20,10 +20,20 @@ const AnalysisClient = dynamic(
 export default async function AnalisePage() {
   // Fazemos fetch paralelo de todos os dados do dashboard analítico
   const overviewPromise = serverApi.stats.getOverview().catch(() => null);
-  const readinessPromise = overviewPromise.then(overview =>
-    serverApi.stats.getExamReadiness(overview?.target_institution || undefined));
-  const radarPromise = overviewPromise.then(overview =>
-    serverApi.stats.getInstitutionRadar(overview?.target_institution || "USP-SP")).catch(() => null);
+  const readinessPromise = overviewPromise.then(overview => {
+    const raw = overview?.primary_institution || overview?.target_institution;
+    const inst = (raw && raw !== "Todas as Bancas" && raw !== "TODAS")
+      ? raw.split(",")[0].trim()
+      : undefined;
+    return serverApi.stats.getExamReadiness(inst);
+  });
+  const radarPromise = overviewPromise.then(overview => {
+    const raw = overview?.primary_institution || overview?.target_institution;
+    const inst = (raw && raw !== "Todas as Bancas" && raw !== "TODAS")
+      ? raw.split(",")[0].trim()
+      : "USP-SP";
+    return serverApi.stats.getInstitutionRadar(inst);
+  }).catch(() => null);
   const results = await Promise.allSettled([
     serverApi.stats.getTimeline(14),
     serverApi.stats.getWeakTopics(),
@@ -51,17 +61,32 @@ export default async function AnalisePage() {
   const fallbackReadiness = results[7].status === 'fulfilled' ? results[7].value : {
     institution: null, coverage: 0, answered: 0, available: 0, areas: [],
     disclaimer: 'Ainda não há dados suficientes para este relatório.',
+    limitations: [
+      'A prontidão estimada reflete exclusivamente as questões resolvidas no MedQuest sob o perfil de edital configurado.',
+      'Não constitui probabilidade de aprovação, garantia de classificação ou nota de corte oficial.',
+    ],
   };
   const timeline180 = results[8].status === 'fulfilled' ? results[8].value : [];
   const examReadiness = fallbackReadiness;
   const institutionRadar = await radarPromise;
-  const institutionOptions = [
 
-    ...breakdown.map(item => ({ key: item.key, label: item.label })),
-    ...(examReadiness.institution && !breakdown.some(item => item.key === examReadiness.institution)
-      ? [{ key: examReadiness.institution, label: examReadiness.institution }]
-      : []),
+  const DEFAULT_INSTITUTIONS = [
+    { key: "USP-SP", label: "USP - São Paulo" },
+    { key: "UNICAMP", label: "Unicamp" },
+    { key: "ENARE", label: "ENARE / Ebserh" },
+    { key: "SUS-SP", label: "SUS-SP" },
+    { key: "UNIFESP", label: "Unifesp / EPM" },
   ];
+
+  const breakdownOptions = breakdown.map(item => ({ key: item.key, label: item.label }));
+  const institutionOptions = breakdownOptions.length > 0
+    ? [
+        ...breakdownOptions,
+        ...(examReadiness.institution && !breakdownOptions.some(item => item.key === examReadiness.institution)
+          ? [{ key: examReadiness.institution, label: examReadiness.institution }]
+          : []),
+      ]
+    : DEFAULT_INSTITUTIONS;
 
   return (
     <div className="flex flex-col gap-8 animate-in fade-in duration-500">

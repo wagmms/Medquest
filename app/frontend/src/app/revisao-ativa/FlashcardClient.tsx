@@ -5,9 +5,9 @@ import { Flashcard, FlashcardDeck } from "@/types/api";
 import { api, OfflineQueuedError } from "@/lib/api";
 import { localDb, getLocalOwnerId } from "@/lib/db";
 import { normalizeFlashcard } from "@/lib/normalizeFlashcard";
-import { AnkiIntegrationModal } from "./components/AnkiIntegrationModal";
 import { FormattedContent } from "@/components/FormattedContent";
 import { answerAnkiCard } from "@/lib/ankiConnect";
+import dynamic from "next/dynamic";
 import {
   Sparkles,
   CheckCircle2,
@@ -21,10 +21,16 @@ import {
   Layers,
   Zap,
   Tag,
+  BookOpen,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import Link from "next/link";
+
+const AnkiIntegrationModal = dynamic(
+  () => import("./components/AnkiIntegrationModal").then((mod) => mod.AnkiIntegrationModal),
+  { ssr: false }
+);
 
 export function FlashcardClient({ subtema }: { subtema?: string }) {
   const [queue, setQueue] = useState<Flashcard[]>([]);
@@ -159,7 +165,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (queue.length === 0 || loading || submitting) return;
+      if (queue.length === 0 || loading || submitting || isAnkiModalOpen) return;
       const tag = document.activeElement?.tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
 
@@ -184,7 +190,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [queue, loading, submitting, flipped, handleReview]);
+  }, [queue, loading, submitting, flipped, isAnkiModalOpen, handleReview]);
 
   const handleReport = async () => {
     if (queue.length === 0 || submitting) return;
@@ -224,7 +230,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
               return (
                 <span
                   key={i}
-                  className="inline-block px-3 py-1 bg-purple-500/15 text-purple-600 font-bold border-b-2 border-purple-500 rounded mx-1 select-none animate-pulse"
+                  className="inline-block px-3 py-1 bg-purple-500/15 text-purple-600 dark:text-purple-400 font-bold border-b-2 border-purple-500 rounded mx-1 select-none animate-pulse"
                 >
                   [{hint || "..."}]
                 </span>
@@ -233,7 +239,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
             return (
               <span
                 key={i}
-                className="inline-block px-2.5 py-1 bg-purple-500/20 text-purple-600 border border-purple-500/40 rounded-lg mx-1 font-bold animate-in fade-in zoom-in-95 duration-200"
+                className="inline-block px-2.5 py-1 bg-purple-500/20 text-purple-600 dark:text-purple-400 border border-purple-500/40 rounded-lg mx-1 font-bold animate-in fade-in zoom-in-95 duration-200"
               >
                 {content}
               </span>
@@ -267,7 +273,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
         <div className="flex items-center gap-2.5 flex-wrap">
           {/* Seletor de Baralho */}
           {decks.length > 0 && (
-            <div className="flex items-center gap-1.5 bg-card border border-border rounded-xl px-2.5 py-1.5 text-xs shadow-sm">
+            <div className="flex items-center gap-1.5 bg-card border border-border rounded-xl px-3 py-1.5 min-h-[40px] text-xs shadow-sm">
               <Layers size={14} className="text-muted-foreground" />
               <select
                 value={selectedDeck}
@@ -289,9 +295,9 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
           <button
             type="button"
             onClick={() => setIsAnkiModalOpen(true)}
-            className="flex items-center gap-1.5 bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 border border-blue-500/30 px-3 py-1.5 rounded-xl font-bold text-xs transition-all shadow-sm"
+            className="flex items-center gap-1.5 bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-500/30 px-3.5 py-2 min-h-[40px] rounded-xl font-bold text-xs transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
-            <Zap size={14} className="text-blue-500" />
+            <Zap size={14} className="text-blue-500 dark:text-blue-400" />
             Integração Anki
           </button>
         </div>
@@ -302,7 +308,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
           <div className="relative">
             <div className="w-16 h-16 border-4 border-purple-500/10 rounded-full" />
             <div className="w-16 h-16 border-4 border-transparent border-t-purple-500 border-r-purple-500 rounded-full animate-spin absolute inset-0" />
-            <div className="absolute inset-0 flex items-center justify-center text-purple-500">
+            <div className="absolute inset-0 flex items-center justify-center text-purple-600 dark:text-purple-400">
               <BrainCircuit size={20} className="animate-pulse" />
             </div>
           </div>
@@ -348,12 +354,12 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
               href={subtema ? `/estudar?${new URLSearchParams({ subtema, mode: "adaptive", limit: "10" })}` : "/estudar"}
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:-translate-y-0.5 flex items-center gap-2 text-sm"
             >
-              <span className="material-symbols-outlined text-lg" data-icon="menu_book">menu_book</span>
+              <BookOpen size={18} />
               Estudar questões
             </Link>
             <button
               onClick={() => setIsAnkiModalOpen(true)}
-              className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 font-bold py-3 px-5 rounded-xl border border-blue-500/30 transition-all flex items-center gap-2 text-sm"
+              className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 font-bold py-3 px-5 rounded-xl border border-blue-500/30 transition-all flex items-center gap-2 text-sm"
             >
               <Zap size={16} />
               Importar do Anki (.apkg / AnkiConnect)
@@ -387,18 +393,18 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
                     setFlipped(true);
                   }
                 }}
-                role="button"
-                tabIndex={0}
-                aria-label={flipped ? "Flashcard revelado" : "Clique para revelar o flashcard"}
+                role={!flipped ? "button" : "region"}
+                tabIndex={!flipped ? 0 : -1}
+                aria-label={flipped ? "Flashcard revelado" : "Clique ou pressione Espaço para revelar o flashcard"}
               >
                 {/* Badges superiores */}
                 <div className="absolute top-4 left-4 flex items-center gap-2 flex-wrap">
                   {current.is_ai_generated ? (
-                    <div className="text-xs font-semibold text-purple-500 bg-purple-500/10 border border-purple-500/20 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                    <div className="text-xs font-semibold text-purple-600 dark:text-purple-400 bg-purple-500/10 border border-purple-500/20 px-2.5 py-1 rounded-full flex items-center gap-1.5">
                       <Sparkles size={12} /> MedQuest IA
                     </div>
                   ) : (
-                    <div className="text-xs font-semibold text-blue-500 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                    <div className="text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded-full flex items-center gap-1.5">
                       <Zap size={12} /> Anki
                     </div>
                   )}
@@ -423,7 +429,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
                     </div>
 
                     {current.source_context && (
-                      <p className="mt-3 text-xs font-semibold text-purple-600/80 uppercase tracking-wider bg-purple-500/10 py-1 px-3 rounded-full inline-block">
+                      <p className="mt-3 text-xs font-semibold text-purple-600/80 dark:text-purple-400 uppercase tracking-wider bg-purple-500/10 py-1 px-3 rounded-full inline-block">
                         Referência: {current.source_context}
                       </p>
                     )}
@@ -466,7 +472,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
 
                 {flipped && (
                   <button
-                    className="absolute top-4 right-4 text-xs font-semibold text-muted-foreground hover:text-destructive flex items-center gap-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive rounded"
+                    className="absolute top-3 right-3 min-h-[44px] min-w-[44px] p-2 text-xs font-semibold text-muted-foreground hover:text-destructive flex items-center justify-center gap-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive rounded-lg"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleReport();
@@ -474,7 +480,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
                     title="Reportar Erro no Flashcard"
                     aria-label="Reportar Erro no Flashcard"
                   >
-                    <XCircle size={14} /> Reportar
+                    <XCircle size={15} /> <span>Reportar</span>
                   </button>
                 )}
               </div>

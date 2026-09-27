@@ -25,7 +25,12 @@ const DEFAULT_STATS: OverviewStats = {
 };
 
 export default async function Dashboard() {
-  const statsPromise = serverApi.stats.getOverview().catch(() => DEFAULT_STATS);
+  const statsPromise = serverApi.stats.getOverview()
+    .then((stats) => ({ stats, hasError: false }))
+    .catch((err) => {
+      console.error("Failed to fetch dashboard overview stats:", err);
+      return { stats: DEFAULT_STATS, hasError: true };
+    });
   const userPromise = currentUser().catch(() => null);
 
   let currentPlannerWeek: PlannerWeek | null = null;
@@ -90,7 +95,9 @@ export default async function Dashboard() {
     console.error("Failed to fetch dashboard metrics", e);
   }
 
-  const [stats, user] = await Promise.all([statsPromise, userPromise]);
+  const [statsResult, user] = await Promise.all([statsPromise, userPromise]);
+  const stats = statsResult.stats;
+  const hasOverviewError = statsResult.hasError;
   const firstName = user?.firstName || "Doutor(a)";
 
   return (
@@ -105,6 +112,7 @@ export default async function Dashboard() {
       bottlenecks={bottlenecks}
       domainSummary={domainSummary}
       errorNotebook={errorNotebook}
+      hasOverviewError={hasOverviewError}
     />
   );
 }

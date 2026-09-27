@@ -51,7 +51,7 @@ async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise
     endpoint.includes("/attempt") ||
     endpoint.includes("/review") ||
     endpoint.includes("/favorite") ||
-    endpoint.includes("/planner/") ||
+    (endpoint.includes("/planner/") && !endpoint.includes("/reset")) ||
     /^\/api\/flashcards\/(save|generate|generate-batch)$/.test(endpoint)
   );
 
@@ -176,7 +176,7 @@ export const api = {
     getPredictiveScore: () => apiFetch<PredictiveScore>("/api/stats/predictive-score", { cache: 'no-store' }),
     getAtRiskTopics: () => apiFetch<AtRiskTopic[]>("/api/stats/at-risk", { cache: 'no-store' }),
     getLearningProfile: () => apiFetch<LearningProfile>("/api/stats/learning-profile", { cache: 'no-store' }),
-    getExamReadiness: (institution?: string) => apiFetch<ExamReadiness>(`/api/stats/exam-readiness${institution ? `?institution=${encodeURIComponent(institution)}` : ""}`, { cache: 'no-store' }),
+    getExamReadiness: (institution?: string, signal?: AbortSignal) => apiFetch<ExamReadiness>(`/api/stats/exam-readiness${institution ? `?institution=${encodeURIComponent(institution)}` : ""}`, { cache: 'no-store', signal }),
     getBreakdown: (by: 'institution' | 'area' | 'year') =>
       apiFetch<BreakdownStat[]>(`/api/stats/breakdown?by=${by}`, { cache: 'no-store' }),
     getBenchmark: () => apiFetch<BenchmarkStat>("/api/stats/benchmark", { cache: 'no-store' }),
@@ -225,7 +225,7 @@ export const api = {
       area_results?: Array<Record<string, unknown>>;
     }) => {
       try {
-        return await apiFetch<{ success: boolean }>(`/api/sessions/simulado`, {
+        return await apiFetch<{ success: boolean }>(`/api/simulado/sessions`, {
           method: "POST",
           body: JSON.stringify(payload)
         });
@@ -427,7 +427,7 @@ export const api = {
         throw err;
       }
     },
-    submitAttempt: (id: number, selected_letter: string, time_spent_ms: number, confidence: string = "defer", is_correct?: boolean | null, user_answer_text?: string) =>
+    submitAttempt: (id: number, selected_letter: string, time_spent_ms: number, confidence: string = "defer", is_correct?: boolean | null, user_answer_text?: string, twin_for_question_id?: number | null) =>
       apiFetch<AttemptResult>(`/api/questions/${id}/attempt`, {
         method: "POST",
         body: JSON.stringify({
@@ -435,15 +435,17 @@ export const api = {
           time_spent_ms,
           confidence,
           ...(is_correct !== undefined && is_correct !== null ? { is_correct } : {}),
-          ...(user_answer_text ? { user_answer_text } : {})
+          ...(user_answer_text ? { user_answer_text } : {}),
+          ...(twin_for_question_id ? { twin_for_question_id } : {})
         }),
       }),
-    reviewFSRS: (id: number, confidence: string, is_correct?: boolean) =>
+    reviewFSRS: (id: number, confidence: string, is_correct?: boolean, twin_for_question_id?: number | null) =>
       apiFetch<{success: boolean, next_review_date: string, is_correct?: boolean}>(`/api/questions/${id}/review`, {
         method: "POST",
         body: JSON.stringify({
           confidence,
-          ...(is_correct !== undefined ? { is_correct } : {})
+          ...(is_correct !== undefined ? { is_correct } : {}),
+          ...(twin_for_question_id ? { twin_for_question_id } : {})
         })
       }),
     toggleFavorite: (id: number) => apiFetch<{is_favorite: boolean}>(`/api/questions/${id}/favorite`, {
@@ -547,7 +549,9 @@ export const api = {
         if (typeof window !== "undefined" && localDb) {
           try {
             const uid = getLocalOwnerId();
-            const cached = await localDb.questions.where('_owner_id').equals(uid).filter(q => ids.includes(q.id)).toArray();
+            const keys: [number, string][] = ids.map(id => [id, uid]);
+            const cachedList = await localDb.questions.bulkGet(keys);
+            const cached = cachedList.filter((q): q is NonNullable<typeof q> => q != null);
             // A partial batch would make a resumed simulado render questions
             // without their alternatives. Fall back to the network instead.
             if (cached.length === ids.length) {

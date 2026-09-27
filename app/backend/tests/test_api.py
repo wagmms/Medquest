@@ -233,3 +233,27 @@ O quadro clínico detalhado aborda...
     why_b = _extract_why_wrong(explanation, "B", "")
     assert "Não se faz conduta expectante" in why_b
     assert "Alternativa (C)" not in why_b
+
+
+def test_unanswered_only_filter(client):
+    # Inicialmente, nenhuma questão respondida
+    res_all = client.get("/api/questions?unanswered_only=true")
+    assert res_all.status_code == 200
+    ids_initial = [q["id"] for q in res_all.get_json()]
+    assert 1 in ids_initial
+
+    # Responde a questão 1
+    client.post("/api/questions/1/attempt", json={"selected_letter": "B"})
+
+    # Com unanswered_only=true, questão 1 não deve vir
+    res_unanswered = client.get("/api/questions?unanswered_only=true")
+    assert res_unanswered.status_code == 200
+    ids_after = [q["id"] for q in res_unanswered.get_json()]
+    assert 1 not in ids_after
+
+    # Com unanswered_only=false, questão 1 deve vir
+    res_with_answered = client.get("/api/questions?unanswered_only=false")
+    assert res_with_answered.status_code == 200
+    ids_with_answered = [q["id"] for q in res_with_answered.get_json()]
+    assert 1 in ids_with_answered
+

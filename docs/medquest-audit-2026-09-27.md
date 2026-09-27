@@ -116,3 +116,20 @@ Reproduction harness for this session: `/tmp/medquest-audit-repro.cjs`. Validati
 3. Fix calendar scheduling, download pagination, cache invalidation and temporary-conflict retries.
 4. Restore lint/build gates and run browser regressions against the completed production build.
 5. Apply measured SSR and IndexedDB optimizations, then remove verified dead code.
+
+## Implementation follow-up
+
+The audit fixes have been implemented. The original findings above describe the pre-fix checkout.
+
+- Session reads/deletes are owner-scoped. Delayed cloud writes and sync completion events are guarded across account changes; session restoration waits for identity resolution. Different study filters now start a new session, while the unfiltered study page offers the resume banner.
+- Offline flashcard creation uses the durable request queue and displays a pending message. There are no fabricated local card IDs; confirmed responses populate the local cache. Creation and review effects are committed atomically with their idempotency response. Processing conflicts have a retryable code; authorization and payload errors remain errors.
+- Full flashcard downloads use an ID cursor. Deck deletion invalidates only the owner's matching cache, waits for pending flashcard operations, and supports legacy unnamed default-deck cards.
+- Calendar integration uses checked, paginated requests and stable event IDs. Completed topics can synchronize back to the planner. The later committed scheduling preference is preserved: each topic remains a whole block, times are rounded to 15 minutes, and the daily target may be exceeded to finish that topic. Old fragments are removed only after replacements succeed; cleanup failures are surfaced rather than swallowed. OAuth timeout/error handling from the newer commits is preserved.
+- SSR request waterfalls were reduced, direct IndexedDB key lookups replaced scans, duplicate/offline placeholder code and obsolete type packages were removed, and an explicit `cleanup-idempotency` maintenance command was added. No automatic maintenance schedule was installed.
+- The analysis page now recovers institution options on the client if its initial server fetch failed. Browser assertions were corrected for the current review completion message and intentional suppression of scores with insufficient evidence. Test cookies now match the configured test host and avoid external authentication redirects.
+
+Validation: 293 backend tests and 5 deployment tests passed. The frontend regression suite has 19 passing tests, including failed Calendar requests, partial sync recovery, legacy-fragment cleanup, account isolation, queued card creation, pagination and cache invalidation. The final complete browser run passed all 56 tests in 31.1 seconds, including analysis recovery, study resume, offline packages and flashcard review. Strict lint passes. The final production build, service-worker checks and bundle budgets passed (2,317,478 total JavaScript bytes, largest chunk 411,138 bytes); the sandbox subprocess restriction was resolved by running the build with the required execution permission, without disabling type checks. All five synthetic backend performance guardrails passed.
+
+Limits: live authenticated Clerk/Google Calendar flows and production database latency were not tested. The Material Symbols font still produces a 3.96 MB precache warning and is a separate optimization opportunity. Broad module decomposition was deferred in favor of the concrete correctness and duplication fixes.
+
+Calendar implementation references: [event IDs and insertion](https://developers.google.com/workspace/calendar/api/v3/reference/events/insert), [pagination](https://developers.google.com/workspace/calendar/api/guides/pagination), and [private extended properties](https://developers.google.com/workspace/calendar/api/guides/extended-properties).

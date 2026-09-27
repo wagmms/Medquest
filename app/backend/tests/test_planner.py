@@ -541,4 +541,96 @@ def test_generate_plan_api_no_warning_on_reload_when_time_sufficient(client):
     assert data2.get("warning") is None
 
 
+def test_planner_config_returns_primary_institution_and_list(client):
+    user_id = "user_primary_inst_test"
+    headers = {"X-User-ID": user_id}
+
+    # 1. Multi-institution configuration
+    payload_multi = {
+        "exam_date": "2026-11-15T12:00:00Z",
+        "start_date": "2026-01-01T12:00:00Z",
+        "target_institution": "USP-SP, USP-RP",
+        "target_institutions": ["USP-SP", "USP-RP"],
+    }
+    resp = client.post("/api/planner/config", json=payload_multi, headers=headers)
+    assert resp.status_code == 200
+
+    cfg_resp = client.get("/api/planner/config", headers=headers)
+    assert cfg_resp.status_code == 200
+    cfg = cfg_resp.get_json()
+    assert cfg["primary_institution"] == "USP-SP"
+    assert cfg["target_institutions"] == ["USP-SP", "USP-RP"]
+
+    # 2. National / "Todas as Bancas"
+    payload_all = {
+        "exam_date": "2026-11-15T12:00:00Z",
+        "start_date": "2026-01-01T12:00:00Z",
+        "target_institution": "Todas as Bancas",
+        "target_institutions": ["TODAS"],
+    }
+    resp2 = client.post("/api/planner/config", json=payload_all, headers=headers)
+    assert resp2.status_code == 200
+
+    cfg_resp2 = client.get("/api/planner/config", headers=headers)
+    assert cfg_resp2.status_code == 200
+    cfg2 = cfg_resp2.get_json()
+    assert cfg2["primary_institution"] is None
+    assert cfg2["target_institution"] == "Todas as Bancas"
+
+
+def test_exam_readiness_and_radar_with_composite_and_national_institutions(client, app):
+    from api.db import get_db
+
+    user_id = "user_composite_inst_test"
+    headers = {"X-User-ID": user_id}
+
+    with app.app_context():
+        db = get_db()
+        db.execute(
+            """INSERT INTO questions(id, area, subtema, stem, correct_letter, missing_alts, year, institution_code, institution_label)
+               VALUES (8801, 'Clínica Médica', 'Cardiologia', 'Stem Q', 'A', 0, 2025, 'USP-SP', 'FUVEST USP-SP'),
+                      (8802, 'Cirurgia', 'Trauma', 'Stem Q2', 'B', 0, 2025, 'USP-RP', 'USP Ribeirao')"""
+        )
+        db.commit()
+
+    # Composite query string in exam-readiness must not return 0 available questions
+    resp_multi = client.get("/api/stats/exam-readiness?institution=USP-SP%2C+USP-RP", headers=headers)
+    assert resp_multi.status_code == 200
+    data_multi = resp_multi.get_json()
+    # It extracts USP-SP, finding question 8801
+    assert any(a["available"] > 0 for a in data_multi["areas"])
+
+    # "Todas as Bancas" query string must evaluate nationally without filtering to literal "Todas as Bancas"
+    resp_all = client.get("/api/stats/exam-readiness?institution=Todas+as+Bancas", headers=headers)
+    assert resp_all.status_code == 200
+    data_all = resp_all.get_json()
+    assert any(a["available"] > 0 for a in data_all["areas"])
+
+    # Institution radar with composite config
+    client.post("/api/planner/config", json={
+        "exam_date": "2026-11-15T12:00:00Z",
+        "start_date": "2026-01-01T12:00:00Z",
+        "target_institution": "USP-SP, USP-RP",
+    }, headers=headers)
+
+    resp_radar = client.get("/api/stats/institution-radar", headers=headers)
+    assert resp_radar.status_code == 200
+    radar_data = resp_radar.get_json()
+    assert radar_data["institution"]["code"] == "USP-SP"
+
+
+def test_load_catalogs_is_memoized():
+    from api.services.planner import _load_catalogs
+
+    # Ensure caching info is available and works
+    assert hasattr(_load_catalogs, "cache_info")
+    info_before = _load_catalogs.cache_info()
+    res1 = _load_catalogs()
+    res2 = _load_catalogs()
+    assert res1 is res2
+    info_after = _load_catalogs.cache_info()
+    assert info_after.hits > info_before.hits
+
+
+
 

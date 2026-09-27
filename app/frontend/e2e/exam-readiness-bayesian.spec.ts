@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Prontidão de Prova Bayesiana por Edital', () => {
   test('renderiza prontidão estimada, intervalo de credibilidade e fatores determinantes sem promessa de aprovação', async ({ page }) => {
+    let evidenceStatus = 'insufficient';
     // Intercepta e mocka as chamadas de API no frontend
     await page.route('**/api/**', async (route) => {
 
@@ -20,7 +21,7 @@ test.describe('Prontidão de Prova Bayesiana por Edital', () => {
             readiness_score: 0.684,
             ci_lower: 0.542,
             ci_upper: 0.812,
-            evidence_status: 'insufficient',
+            evidence_status: evidenceStatus,
             edital_profile: {
               institution_code: 'USP-SP',
               institution_label: 'USP - São Paulo',
@@ -209,9 +210,9 @@ test.describe('Prontidão de Prova Bayesiana por Edital', () => {
 
     const section = page.locator('section:has-text("Prontidão Estimada por Edital")');
 
-    // 3. Confirma indicador de prontidão e intervalo de credibilidade
-    await expect(section.locator('text=68%')).toBeVisible({ timeout: 10000 });
-    await expect(section.locator('text=[54% – 81%]')).toBeVisible();
+    // Evidência insuficiente não deve exibir uma pontuação agregada.
+    await expect(section.locator('text=68%')).not.toBeVisible();
+    await expect(section.locator('text=[54% – 81%]')).not.toBeVisible();
 
     // 4. Confirma badges de evidência e status do perfil
     await expect(section.locator('text=Evidência Inicial')).toBeVisible();
@@ -221,7 +222,7 @@ test.describe('Prontidão de Prova Bayesiana por Edital', () => {
 
     // 4. Confirma aviso educativo de amostra preliminar
     await expect(section.locator('text=Amostra Preliminar')).toBeVisible();
-    await expect(section.locator('text=Com poucas tentativas nas áreas ponderadas')).toBeVisible();
+    await expect(section.getByText(/Ainda não exibimos uma pontuação de prontidão/)).toBeVisible();
 
     // 5. Confirma fatores determinantes e recomendações
     await expect(section.locator('text=Fatores Determinantes para Calibrar a Evidência')).toBeVisible();
@@ -232,10 +233,16 @@ test.describe('Prontidão de Prova Bayesiana por Edital', () => {
     await expect(studyButtons.first()).toBeVisible();
     await expect(studyButtons.first()).toHaveAttribute('href', /.*\/estudar\?area=.*/);
 
-    // 7. Garante ausência estrita de termos proibidos (sem promessa de aprovação)
+    // Com evidência em formação, pontuação e intervalo voltam a aparecer.
+    evidenceStatus = 'forming';
+    await select.selectOption('');
+    await expect(section.locator('text=68%')).toBeVisible();
+    await expect(section.locator('text=[54% – 81%]')).toBeVisible();
+
+    // 7. Garante que o aviso explícito não seja confundido com promessa de aprovação
     const pageContent = await page.content();
     expect(pageContent).not.toContain('chance de passar');
-    expect(pageContent).not.toContain('probabilidade de aprovação');
+    await expect(section.getByText('Não constitui probabilidade de aprovação, garantia de classificação ou nota de corte oficial.', { exact: true })).toBeVisible();
     expect(pageContent).not.toContain('garantia de aprovação');
   });
 });

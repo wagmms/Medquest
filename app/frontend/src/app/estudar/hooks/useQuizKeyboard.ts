@@ -17,6 +17,7 @@ interface UseQuizKeyboardProps {
   prevQuestion: () => void;
   navigateQuestion: (direction: "next" | "previous") => void;
   selectAlternative: (letter: string) => void;
+  disabled?: boolean;
 }
 
 export function useQuizKeyboard({
@@ -35,9 +36,11 @@ export function useQuizKeyboard({
   prevQuestion,
   navigateQuestion,
   selectAlternative,
+  disabled = false,
 }: UseQuizKeyboardProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (disabled) return;
       const tag = (e.target as HTMLElement).tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA') return;
       
@@ -111,5 +114,5 @@ export function useQuizKeyboard({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [state, currentDetail, loadingDetail, attemptResult, currentIndex, queue, selectedLetter, submitting, handleAttempt, handleDiscursiveReveal, handleReviewFSRS, nextQuestion, prevQuestion, navigateQuestion, selectAlternative]);
+  }, [state, currentDetail, loadingDetail, attemptResult, currentIndex, queue, selectedLetter, submitting, handleAttempt, handleDiscursiveReveal, handleReviewFSRS, nextQuestion, prevQuestion, navigateQuestion, selectAlternative, disabled]);
 }

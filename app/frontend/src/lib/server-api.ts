@@ -93,7 +93,7 @@ export const serverApi = {
   },
   stats: {
     getOverview: () => serverFetch<OverviewStats>("/api/stats/overview", { next: { tags: ['stats'] } }),
-    getCoverage: () => serverFetch<CoverageResponse>("/api/coverage", { next: { tags: ['stats'] } }),
+    getCoverage: () => serverFetch<CoverageResponse>("/api/coverage", { cache: "no-store" }),
     getTimeline: (days: number = 14) => serverFetch<TimelineStat[]>(`/api/stats/timeline?days=${days}`, { next: { tags: ['stats'] } }),
     getWeakTopics: () => serverFetch<WeakTopic[]>("/api/stats/weak-topics", { next: { tags: ['stats'] } }),
     getRecommendations: () => serverFetch<Recommendation[]>("/api/stats/recommendations", { next: { tags: ['stats'] } }),

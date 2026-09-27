@@ -2,6 +2,7 @@ import json
 import math
 import os
 from datetime import datetime, timedelta
+from functools import lru_cache
 from api.internato_config import RODIZIOS_TURMA_J
 
 USP_WEIGHTS = {
@@ -67,6 +68,7 @@ def _parse_dates_and_weeks(start_date_str, exam_date_str):
     return start_date, total_weeks, None
 
 
+@lru_cache(maxsize=1)
 def _load_catalogs():
     # Carrega o mesmo catálogo pedagógico exibido no frontend.
     planner_data_path = _resolve_data_path("plannerData.json")

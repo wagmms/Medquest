@@ -1,19 +1,39 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useUser } from "@clerk/nextjs";
 import { isLocalIdentityReady } from "@/lib/db";
 import { 
   OverviewStats, PlannerWeek, PlannerTopic,
   BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary 
 } from "@/types/api";
-import { OfflineModal } from "@/components/OfflineModal";
 import { motion, Variants } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { readLearningSession, syncSessionFromCloud } from "@/lib/sessionState";
 import { triggerConfetti } from "@/lib/confetti";
 import clsx from "clsx";
 
+const OfflineModal = dynamic(
+  () => import("@/components/OfflineModal").then((m) => m.OfflineModal),
+  { ssr: false }
+);
+
+function formatExamDate(dateStr: string): string {
+  try {
+    const parts = dateStr.slice(0, 10).split("-");
+    if (parts.length === 3) {
+      const year = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10) - 1;
+      const day = parseInt(parts[2], 10);
+      const d = new Date(year, month, day, 12, 0, 0);
+      return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
+    }
+  } catch {
+    // fallback to default parsing
+  }
+  return dateStr;
+}
 
 interface DashboardClientProps {
   stats: OverviewStats;
@@ -26,6 +46,7 @@ interface DashboardClientProps {
   bottlenecks?: BottleneckTopic[];
   domainSummary?: DomainSummaryResponse | null;
   errorNotebook?: ErrorNotebookSummary | null;
+  hasOverviewError?: boolean;
 }
 
 export function DashboardClient({ 
@@ -39,6 +60,7 @@ export function DashboardClient({
   bottlenecks = [],
   domainSummary,
   errorNotebook,
+  hasOverviewError = false,
 }: DashboardClientProps) {
   const { isLoaded: authLoaded } = useUser();
   const hasAnimated = useRef(false);
@@ -69,14 +91,14 @@ export function DashboardClient({
         "simulado",
         (val): val is { state?: string } => typeof val === "object" && val !== null
       );
-      if (hasSimulado?.state && hasSimulado.state !== "RESULTS" && hasSimulado.state !== "OFFLINE_SUBMITTED") {
+      if (hasSimulado?.state === "PLAYING" || hasSimulado?.state === "SUBMITTING") {
         setActiveSession({ kind: "simulado", url: "/simulado" });
       } else {
         const hasQuiz = readLearningSession<{ state?: string }>(
           "quiz",
           (val): val is { state?: string } => typeof val === "object" && val !== null
         );
-        if (hasQuiz?.state && hasQuiz.state !== "RESULTS") {
+        if (hasQuiz?.state === "PLAYING") {
           setActiveSession({ kind: "quiz", url: "/estudar?resume=true" });
         }
       }
@@ -140,7 +162,8 @@ export function DashboardClient({
   const topBottleneck = bottlenecks.length > 0 ? bottlenecks[0] : null;
 
   const totalAttempts = benchmarkStats?.total_attempts || stats.total_attempts || 0;
-  const targetScorePct = stats.target_score || benchmarkStats?.target_score_pct || 76;
+  const rawTarget = stats.target_score || benchmarkStats?.target_score_pct || 76;
+  const targetScorePct = rawTarget <= 1 ? rawTarget * 100 : rawTarget;
   const overallAccPct = stats.accuracy_all_attempts != null ? stats.accuracy_all_attempts * 100 : null;
   const diffPct = overallAccPct != null ? parseFloat((overallAccPct - targetScorePct).toFixed(1)) : null;
 
@@ -186,7 +209,7 @@ export function DashboardClient({
           </div>
           <Link 
             href={activeSession.url} 
-            className="w-full sm:w-auto px-5 py-2.5 font-bold bg-primary-foreground text-primary rounded-xl hover:bg-white hover:scale-[1.02] transition-all flex items-center justify-center gap-2 shadow-xs shrink-0"
+            className="w-full sm:w-auto px-5 py-2.5 font-bold bg-primary-foreground text-primary rounded-xl hover:bg-primary-foreground/90 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 shadow-xs shrink-0"
           >
             Continuar sessão <span className="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
           </Link>
@@ -222,7 +245,10 @@ export function DashboardClient({
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:flex sm:items-center gap-2 w-full sm:w-auto shrink-0">
+          <div className={clsx(
+            "gap-2 w-full sm:w-auto shrink-0",
+            flashcardsCount > 0 && srsCount > 0 ? "grid grid-cols-2 sm:flex sm:items-center" : "flex flex-col sm:flex-row sm:items-center"
+          )}>
             {flashcardsCount > 0 && (
               <Link 
                 href="/revisao-ativa" 
@@ -380,8 +406,9 @@ export function DashboardClient({
             </Link>
             <button
               onClick={() => setIsOfflineModalOpen(true)}
-              className="p-1.5 text-xs text-muted-foreground hover:text-foreground font-semibold rounded-xl bg-muted/40 hover:bg-muted transition-colors cursor-pointer"
+              className="min-h-[44px] min-w-[44px] p-2 text-xs text-muted-foreground hover:text-foreground font-semibold rounded-xl bg-muted/40 hover:bg-muted transition-colors cursor-pointer flex items-center justify-center"
               title="Gerenciar pacotes offline"
+              aria-label="Gerenciar pacotes offline"
             >
               <span className="material-symbols-outlined text-[18px]" data-icon="settings">settings</span>
             </button>
@@ -413,8 +440,8 @@ export function DashboardClient({
               <div className="flex items-center gap-2 bg-card border border-border/80 rounded-xl sm:rounded-2xl px-3 sm:px-4 py-1.5 sm:py-2 shadow-2xs">
                 <span className="material-symbols-outlined text-primary text-[16px] sm:text-[18px]" data-icon="flag">flag</span>
                 <span className="text-xs text-muted-foreground font-medium">Data-alvo:</span>
-                <span className="text-xs font-bold text-foreground">
-                  {new Date(stats.exam_date).toLocaleDateString("pt-BR", { day: "2-digit", month: "short" })}
+                <span className="text-xs font-bold text-foreground" suppressHydrationWarning>
+                  {formatExamDate(stats.exam_date)}
                 </span>
               </div>
             ) : (
@@ -430,8 +457,50 @@ export function DashboardClient({
         </div>
       </motion.section>
 
-      {/* ESTADO ZERO (ONBOARDING DIRETO) */}
-      {stats.distinct_answered === 0 ? (
+      {/* ESTADO DE ERRO / RESILIÊNCIA CONTRA FALHAS DE REDE */}
+      {hasOverviewError ? (
+        <motion.div variants={itemVariants} className="bg-card border-2 border-amber-500/30 dark:border-amber-500/20 bg-gradient-to-r from-amber-500/5 via-card to-card rounded-3xl p-6 sm:p-8 shadow-xs">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5">
+            <div className="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/30 flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-[28px]" data-icon="cloud_off">cloud_off</span>
+            </div>
+            <div className="flex-1 text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
+                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-500/15 text-amber-600 dark:text-amber-400">
+                  Instabilidade Temporária
+                </span>
+              </div>
+              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1">
+                Não foi possível sincronizar as métricas do painel
+              </h3>
+              <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mb-4">
+                Ocorreu uma falha temporária ao carregar seus dados do servidor. Seu histórico e progresso continuam seguros. Você pode recarregar a página ou continuar estudando pelo menu.
+              </p>
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
+                <button
+                  onClick={() => window.location.reload()}
+                  className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-bold rounded-xl transition-all flex items-center gap-1.5 shadow-xs cursor-pointer"
+                >
+                  <span className="material-symbols-outlined text-[16px]" data-icon="refresh">refresh</span>
+                  Tentar novamente
+                </button>
+                <Link
+                  href="/estudar"
+                  className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground border border-border text-xs font-semibold rounded-xl transition-colors"
+                >
+                  Ir para Questões
+                </Link>
+                <Link
+                  href="/simulado"
+                  className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground border border-border text-xs font-semibold rounded-xl transition-colors"
+                >
+                  Ir para Simulados
+                </Link>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      ) : stats.distinct_answered === 0 ? (
         <motion.div variants={itemVariants} className="bg-card border border-border/80 rounded-3xl p-6 sm:p-8 shadow-xs">
           <div className="flex flex-col sm:flex-row items-center gap-6 mb-6">
             <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20 shadow-inner shrink-0">
@@ -553,7 +622,14 @@ export function DashboardClient({
                   <p className="text-xl sm:text-2xl font-bold text-foreground tracking-tight">
                     {dailyRemaining > 0 ? `${dailyRemaining} restantes` : "Meta batida! 🎉"}
                   </p>
-                  <div className="w-full bg-muted rounded-full h-1.5 overflow-hidden mt-2">
+                  <div 
+                    role="progressbar"
+                    aria-valuenow={todayDone}
+                    aria-valuemin={0}
+                    aria-valuemax={dailyTarget}
+                    aria-label={`Progresso de questões diárias: ${todayDone} de ${dailyTarget}`}
+                    className="w-full bg-muted rounded-full h-1.5 overflow-hidden mt-2"
+                  >
                     <div 
                       className="bg-blue-500 h-1.5 rounded-full transition-all duration-500"
                       style={{ width: `${dailyProgressPct}%` }}
@@ -701,7 +777,14 @@ export function DashboardClient({
                 </Link>
               </div>
 
-              <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
+              <div 
+                role="progressbar"
+                aria-valuenow={Math.round(benchmarkStats.weekly_progress_pct)}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label={`Ritmo da semana: ${Math.round(benchmarkStats.weekly_progress_pct)}% concluído`}
+                className="w-full bg-muted rounded-full h-2 overflow-hidden"
+              >
                 <div 
                   className="bg-blue-500 h-2 rounded-full transition-all duration-500"
                   style={{ width: `${benchmarkStats.weekly_progress_pct}%` }}
@@ -755,7 +838,14 @@ export function DashboardClient({
                   </span>
                 </div>
 
-                <div className="relative w-full bg-muted rounded-full h-2.5 overflow-hidden ring-1 ring-inset ring-black/5 dark:ring-white/5">
+                <div 
+                  role="progressbar"
+                  aria-valuenow={Math.round(overallAccPct)}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label={`Acurácia geral: ${overallAccPct.toFixed(1)}% vs meta de corte de ${targetScorePct}%`}
+                  className="relative w-full bg-muted rounded-full h-2.5 overflow-hidden ring-1 ring-inset ring-black/5 dark:ring-white/5"
+                >
                   <div 
                     className="bg-primary h-2.5 rounded-full transition-all duration-700"
                     style={{ width: `${Math.min(100, Math.max(0, overallAccPct))}%` }}
@@ -809,8 +899,9 @@ export function DashboardClient({
 
               <button
                 onClick={() => setIsOfflineModalOpen(true)}
-                className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-foreground font-semibold px-2.5 py-1.5 rounded-lg bg-muted/40 hover:bg-muted transition-colors cursor-pointer border border-border/50 col-span-2 sm:col-span-1"
+                className="min-h-[40px] flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-foreground font-semibold px-3 py-2 rounded-xl bg-muted/40 hover:bg-muted transition-colors cursor-pointer border border-border/50 col-span-2 sm:col-span-1"
                 title="Abrir gerenciador do Modo Plantão (Offline)"
+                aria-label="Abrir gerenciador do Modo Plantão offline"
               >
                 <span className="material-symbols-outlined text-[16px] text-primary" data-icon="cloud_download">cloud_download</span>
                 <span>Modo Plantão</span>

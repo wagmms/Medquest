@@ -223,6 +223,11 @@ def _get_streak_and_target_info(db, user_id: str, now_utc: datetime, tz_offset: 
         except Exception:
             days_until_exam = None
 
+    raw_inst = config.get("target_institution")
+    primary_inst = None
+    if raw_inst and raw_inst not in ("Todas as Bancas", "TODAS"):
+        primary_inst = raw_inst.split(",")[0].strip()
+
     return {
         "streak_days": streak["days"],
         "streak": streak,
@@ -231,7 +236,8 @@ def _get_streak_and_target_info(db, user_id: str, now_utc: datetime, tz_offset: 
         "days_until_exam": days_until_exam,
         "exam_date": exam_date_str,
         "target_score": config.get("target_score"),
-        "target_institution": config.get("target_institution"),
+        "target_institution": raw_inst,
+        "primary_institution": primary_inst,
     }
 
 
@@ -755,6 +761,11 @@ def exam_readiness():
     """Prontidão estimada por instituição/edital com modelo bayesiano Beta-Binomial."""
     db = get_db()
     institution = request.args.get("institution", "").strip()[:64]
+    if institution in ("Todas as Bancas", "TODAS") or "," in institution:
+        if "," in institution:
+            institution = institution.split(",")[0].strip()
+        else:
+            institution = ""
     institution_clause = "AND q.institution_code = ?" if institution else ""
     params = [g.user_id]
     if institution:
@@ -895,10 +906,11 @@ def at_risk():
         topics_risk[subtema]["count"] += 1
         topics_risk[subtema]["min_retrievability"] = min(topics_risk[subtema]["min_retrievability"], retrievability)
 
-    # A retenção desejada padrão do FSRS é 90%; abaixo disso há risco de esquecimento.
+    # A retenção desejada padrão do FSRS para questões médicas é 85% (api/srs.py).
+    DESIRED_RETENTION = 0.85
     at_risk_list = []
     for subtema, data in topics_risk.items():
-        if data["min_retrievability"] < 0.9:
+        if data["min_retrievability"] < DESIRED_RETENTION:
             at_risk_list.append({
                 "subtema": subtema,
                 "items_count": data["count"],
@@ -1369,19 +1381,19 @@ def error_notebook_summary():
     db = get_db()
 
     row = db.execute("""
+        WITH latest_attempts AS (
+            SELECT question_id, is_correct,
+                   ROW_NUMBER() OVER (PARTITION BY question_id ORDER BY id DESC) as rn
+            FROM attempts
+            WHERE user_id = ?
+        )
         SELECT
             COUNT(DISTINCT a.question_id) AS ever_wrong_count,
-            COUNT(DISTINCT CASE WHEN last_attempt.is_correct = 0 THEN a.question_id END) AS currently_unresolved_count
+            COUNT(DISTINCT CASE WHEN la.is_correct = 0 THEN a.question_id END) AS currently_unresolved_count
         FROM attempts a
-        LEFT JOIN (
-            SELECT a1.question_id, a1.is_correct
-            FROM attempts a1
-            WHERE a1.user_id = ? AND a1.id = (
-                SELECT MAX(a2.id) FROM attempts a2 WHERE a2.user_id = ? AND a2.question_id = a1.question_id
-            )
-        ) last_attempt ON last_attempt.question_id = a.question_id
+        LEFT JOIN latest_attempts la ON la.question_id = a.question_id AND la.rn = 1
         WHERE a.user_id = ? AND a.is_correct = 0
-    """, (g.user_id, g.user_id, g.user_id)).fetchone()
+    """, (g.user_id, g.user_id)).fetchone()
 
     ever_wrong = row["ever_wrong_count"] if row and row["ever_wrong_count"] else 0
     currently_unresolved = row["currently_unresolved_count"] if row and row["currently_unresolved_count"] else 0
@@ -1441,33 +1453,43 @@ def _get_institution_label(db, institution_code: str | None) -> str:
     return l_row["institution_label"] if l_row else institution_code
 
 
-def _fetch_priority_topics(db, user_id: str, area_name: str, institution_code: str | None, inst_clause: str) -> list[dict]:
-    """Busca tópicos prioritários para estudo baseados nas estatísticas de desempenho."""
-    sub_params = [user_id, area_name]
+def _fetch_all_priority_topics(db, user_id: str, institution_code: str | None, inst_clause: str) -> dict[str, list[dict]]:
+    """Busca em lote os tópicos prioritários para todas as áreas baseados nas estatísticas de desempenho."""
+    sub_params = [user_id]
     if institution_code:
         sub_params.append(institution_code)
 
     sub_rows = db.execute(f"""
-        SELECT
-            q.subtema,
-            COUNT(DISTINCT q.id) AS sub_available,
-            COUNT(DISTINCT a.question_id) AS sub_answered,
-            COUNT(a.id) AS sub_attempts,
-            COALESCE(SUM(a.is_correct), 0) AS sub_correct
-        FROM questions q
-        LEFT JOIN attempts a ON a.question_id = q.id AND a.user_id = ?
-        WHERE q.missing_alts = 0 AND q.area = ? {inst_clause}
-              AND q.subtema IS NOT NULL AND q.subtema != ''
-        GROUP BY q.subtema
-        ORDER BY
-            (CASE WHEN COUNT(a.id) = 0 THEN 0 WHEN (CAST(COALESCE(SUM(a.is_correct), 0) AS FLOAT) / COUNT(a.id)) < 0.65 THEN 1 ELSE 2 END) ASC,
-            (CASE WHEN COUNT(a.id) > 0 THEN (CAST(COALESCE(SUM(a.is_correct), 0) AS FLOAT) / COUNT(a.id)) ELSE 0 END) ASC,
-            sub_available DESC
-        LIMIT 3
+        WITH ranked_topics AS (
+            SELECT
+                q.area,
+                q.subtema,
+                COUNT(DISTINCT q.id) AS sub_available,
+                COUNT(DISTINCT a.question_id) AS sub_answered,
+                COUNT(a.id) AS sub_attempts,
+                COALESCE(SUM(a.is_correct), 0) AS sub_correct,
+                ROW_NUMBER() OVER (
+                    PARTITION BY q.area
+                    ORDER BY
+                        (CASE WHEN COUNT(a.id) = 0 THEN 0 WHEN (CAST(COALESCE(SUM(a.is_correct), 0) AS FLOAT) / COUNT(a.id)) < 0.65 THEN 1 ELSE 2 END) ASC,
+                        (CASE WHEN COUNT(a.id) > 0 THEN (CAST(COALESCE(SUM(a.is_correct), 0) AS FLOAT) / COUNT(a.id)) ELSE 0 END) ASC,
+                        COUNT(DISTINCT q.id) DESC
+                ) AS rnk
+            FROM questions q
+            LEFT JOIN attempts a ON a.question_id = q.id AND a.user_id = ?
+            WHERE q.missing_alts = 0 AND q.area IS NOT NULL AND q.area != '' {inst_clause}
+                  AND q.subtema IS NOT NULL AND q.subtema != ''
+            GROUP BY q.area, q.subtema
+        )
+        SELECT area, subtema, sub_available, sub_answered, sub_attempts, sub_correct
+        FROM ranked_topics
+        WHERE rnk <= 3
+        ORDER BY area, rnk
     """, sub_params).fetchall()
 
-    priority_topics = []
+    priority_map: dict[str, list[dict]] = {}
     for sr in sub_rows:
+        area_name = sr["area"]
         s_att = sr["sub_attempts"]
         s_cor = sr["sub_correct"]
         s_acc = round(s_cor / s_att, 4) if s_att > 0 else None
@@ -1485,7 +1507,10 @@ def _fetch_priority_topics(db, user_id: str, area_name: str, institution_code: s
             study_params["institution"] = institution_code
             simulado_params["institutions"] = institution_code
 
-        priority_topics.append({
+        if area_name not in priority_map:
+            priority_map[area_name] = []
+
+        priority_map[area_name].append({
             "subtema": sr["subtema"],
             "available": sr["sub_available"],
             "answered": sr["sub_answered"],
@@ -1498,10 +1523,10 @@ def _fetch_priority_topics(db, user_id: str, area_name: str, institution_code: s
             "review_url": "/revisao-ativa",
         })
 
-    return priority_topics
+    return priority_map
 
 
-def _build_institution_stats(db, user_id: str, institution_code: str | None = None):
+def _build_institution_stats(db, user_id: str, institution_code: str | None = None, include_priority: bool = True):
     canonical_order = [
         "Clínica Médica",
         "Cirurgia",
@@ -1532,6 +1557,7 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
     row_map = {r["area"]: r for r in rows}
 
     label = _get_institution_label(db, institution_code)
+    priority_map = _fetch_all_priority_topics(db, user_id, institution_code, inst_clause) if include_priority else {}
 
     areas = []
     total_available = 0
@@ -1556,7 +1582,7 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
         ci_lower, ci_upper = calculate_wilson_ci(cor, att)
         sample_status = get_sample_status(att)
 
-        priority_topics = _fetch_priority_topics(db, user_id, area_name, institution_code, inst_clause)
+        priority_topics = priority_map.get(area_name, [])
 
         areas.append({
             "area": area_name,
@@ -1600,6 +1626,11 @@ def institution_radar():
     institution = request.args.get("institution", "").strip()[:64]
     compare_institution = request.args.get("compare_institution", "").strip()[:64]
 
+    if institution in ("Todas as Bancas", "TODAS") or "," in institution:
+        institution = institution.split(",")[0].strip() if "," in institution else ""
+    if compare_institution in ("Todas as Bancas", "TODAS") or "," in compare_institution:
+        compare_institution = compare_institution.split(",")[0].strip() if "," in compare_institution else ""
+
     # Se nenhuma instituição foi passada, tenta descobrir a mais praticada ou configurada
     if not institution:
         top_inst_row = db.execute("""
@@ -1616,21 +1647,25 @@ def institution_radar():
         else:
             cfg_row = db.execute("SELECT target_institution FROM planner_config WHERE user_id = ?", (g.user_id,)).fetchone()
             if cfg_row and cfg_row["target_institution"]:
-                institution = cfg_row["target_institution"]
+                raw_inst = cfg_row["target_institution"].strip()
+                if raw_inst and raw_inst not in ("Todas as Bancas", "TODAS"):
+                    institution = raw_inst.split(",")[0].strip()
+                else:
+                    institution = "USP-SP"
             else:
                 institution = "USP-SP"
 
-    primary_data = _build_institution_stats(db, g.user_id, institution)
+    primary_data = _build_institution_stats(db, g.user_id, institution, include_priority=True)
 
-    # Comparison data
+    # Comparison data (não precisa de priority_topics, economizando queries de banco)
     if compare_institution and compare_institution.upper() != institution.upper():
-        comp_stats = _build_institution_stats(db, g.user_id, compare_institution)
+        comp_stats = _build_institution_stats(db, g.user_id, compare_institution, include_priority=False)
         comparison_data = {
             "type": "institution",
             **comp_stats,
         }
     else:
-        comp_stats = _build_institution_stats(db, g.user_id, None)
+        comp_stats = _build_institution_stats(db, g.user_id, None, include_priority=False)
         comparison_data = {
             "type": "global",
             **comp_stats,

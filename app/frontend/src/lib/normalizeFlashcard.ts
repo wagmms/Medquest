@@ -28,6 +28,7 @@ function stripOptionLetter(text: string): string {
 }
 
 export function normalizeFlashcard<T extends FlashcardLike>(card: T): T {
+  if (!card) return card;
   let front = card.front || "";
   let back = card.back || "";
 
@@ -71,8 +72,8 @@ export function normalizeFlashcard<T extends FlashcardLike>(card: T): T {
         : `💡 Gabarito Oficial:\n${term}`;
     }
   } else {
-    // Even for non-legacy cards, strip option letters from cloze content
-    front = front.replace(/{{c1::[A-Ea-e][\)\.\:\-]\s*(.*?)}}/, "{{c1::$1}}");
+    // Even for non-legacy cards, strip option letters from cloze content globally across all clozes
+    front = front.replace(/{{c(\d+)::[A-Ea-e][\)\.\:\-]\s*(.*?)}}/g, "{{c$1::$2}}");
   }
 
   return {

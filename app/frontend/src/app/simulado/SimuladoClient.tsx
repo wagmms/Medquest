@@ -5,7 +5,7 @@ import { QuestionMeta, QuestionListItem, QuestionDetail, BatchAttemptItem, Batch
 import { api, OfflineQueuedError } from "@/lib/api";
 import { localDb, getLocalOwnerId, isLocalIdentityReady, SimuladoPackage, isPackageValid } from "@/lib/db";
 import { getReadySimuladoPackage, downloadSimuladoPackage } from "@/lib/simuladoPackage";
-import { Play, Clock, ChevronLeft, ChevronRight, FileSignature, AlertTriangle, BookOpen, AlertCircle, RotateCcw, Flag, CloudOff, Sparkles, CheckCircle2, Pencil, Download, RefreshCw, Database, Eye, EyeOff } from "lucide-react";
+import { Play, Clock, ChevronLeft, ChevronRight, FileSignature, AlertTriangle, BookOpen, AlertCircle, RotateCcw, Flag, CloudOff, Sparkles, CheckCircle2, Pencil, Download, RefreshCw, Database, Eye, EyeOff, ShieldCheck, Info, Trophy } from "lucide-react";
 
 import clsx from "clsx";
 import toast from "react-hot-toast";
@@ -326,7 +326,7 @@ export function SimuladoClient({
           duration_minutes: customConfig.duration_minutes,
           force_4_options: customConfig.force_4_options,
         },
-        (p) => {
+        (p: { progress: number; message: string }) => {
           setDownloadProgress(p.progress);
           setDownloadStatus(p.message);
         }
@@ -903,18 +903,19 @@ export function SimuladoClient({
     return queue.map((_, i) => i);
   }, [queue, answers, flagged, sidebarFilter]);
 
-  // Resumo por área para modal de confirmação
+  // Resumo por área para modal de confirmação e resultados
   const areaSummary = useMemo(() => {
-    const summary: Record<string, { total: number; answered: number; blank: number }> = {};
+    const summary: Record<string, { total: number; answered: number; blank: number; correct: number }> = {};
     for (const q of queue) {
       const area = q.area || "Sem área";
-      if (!summary[area]) summary[area] = { total: 0, answered: 0, blank: 0 };
+      if (!summary[area]) summary[area] = { total: 0, answered: 0, blank: 0, correct: 0 };
       summary[area].total++;
       if (answers[q.id]) summary[area].answered++;
       else summary[area].blank++;
+      if (resultsMap[q.id]?.is_correct) summary[area].correct++;
     }
     return Object.entries(summary).map(([area, data]) => ({ area, ...data }));
-  }, [queue, answers]);
+  }, [queue, answers, resultsMap]);
 
   useEffect(() => {
     if (state !== "RESULTS" || !sessionId || queue.length === 0) return;
@@ -1034,8 +1035,8 @@ export function SimuladoClient({
                     className="w-full bg-background border border-border rounded-xl p-3 text-foreground focus:ring-2 focus:ring-primary/50 transition-shadow outline-none"
                   />
                 </div>
-                <p className="text-xs text-muted-foreground mt-1.5 font-medium flex items-center gap-1">
-                  <span className="material-symbols-outlined text-[14px]">info</span>
+                <p className="text-xs text-muted-foreground mt-1.5 font-medium flex items-center gap-1.5">
+                  <Info size={14} className="shrink-0 text-muted-foreground" />
                   Multiplicado por 5 grandes áreas
                 </p>
               </div>
@@ -1050,15 +1051,15 @@ export function SimuladoClient({
                     className="w-full bg-background border border-border rounded-xl p-3 text-foreground focus:ring-2 focus:ring-primary/50 transition-shadow outline-none"
                   />
                 </div>
-                <p className="text-xs text-muted-foreground mt-1.5 font-medium flex items-center gap-1">
-                  <span className="material-symbols-outlined text-[14px]">info</span>
+                <p className="text-xs text-muted-foreground mt-1.5 font-medium flex items-center gap-1.5">
+                  <Info size={14} className="shrink-0 text-muted-foreground" />
                   Entre 15 min e 10 horas
                 </p>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
               {[{ questions: 25, minutes: 75, label: "25 · 75 min" }, { questions: 50, minutes: 150, label: "50 · 150 min" }, { questions: 100, minutes: 300, label: "100 · 300 min" }].map(preset => (
-                <button key={preset.label} type="button" onClick={() => setCustomConfig(prev => ({ ...prev, questions_per_area: preset.questions / 5, duration_minutes: preset.minutes }))} className="rounded-lg border border-border bg-background px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-muted">
+                <button key={preset.label} type="button" onClick={() => setCustomConfig(prev => ({ ...prev, questions_per_area: preset.questions / 5, duration_minutes: preset.minutes }))} className="rounded-lg border border-border bg-background px-3.5 py-2 text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-muted min-h-[36px] transition-colors">
                   {preset.label}
                 </button>
               ))}
@@ -1403,7 +1404,7 @@ export function SimuladoClient({
         {showResultsSummary ? (
           <div className="bg-card border border-border shadow-1 rounded-xl p-8 flex-1 flex flex-col items-center justify-center animate-in zoom-in-95 duration-500 overflow-y-auto">
             <div className="w-24 h-24 bg-success/20 text-success rounded-full flex items-center justify-center mb-6">
-              <span className="material-symbols-outlined text-5xl">trophy</span>
+              <Trophy size={48} className="text-success" />
             </div>
             <h2 className="text-3xl font-black text-foreground mb-2">Simulado Finalizado!</h2>
             <p className="text-muted-foreground text-lg mb-8 text-center max-w-md">
@@ -1415,20 +1416,12 @@ export function SimuladoClient({
               <h3 className="text-lg font-bold text-foreground mb-4">Desempenho por Área</h3>
               <div className="flex flex-col gap-4">
                 {areaSummary.map(row => {
-                  // Count corrects in this area
-                  let correctInArea = 0;
-                  queue.forEach(q => {
-                    const area = q.area || "Sem área";
-                    if (area === row.area && resultsMap[q.id]?.is_correct) {
-                      correctInArea++;
-                    }
-                  });
-                  const percentage = Math.round((correctInArea / row.total) * 100) || 0;
+                  const percentage = row.total > 0 ? Math.round((row.correct / row.total) * 100) : 0;
                   return (
                     <div key={row.area}>
                       <div className="flex justify-between text-sm font-medium mb-1">
                         <span>{row.area}</span>
-                        <span className="text-muted-foreground">{correctInArea} / {row.total} ({percentage}%)</span>
+                        <span className="text-muted-foreground">{row.correct} / {row.total} ({percentage}%)</span>
                       </div>
                       <div className="w-full bg-border h-2 rounded-full overflow-hidden">
                         <div
@@ -1601,7 +1594,7 @@ export function SimuladoClient({
               <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-6">
                 {qDetail.is_verified && (
                   <span className="bg-success/15 text-success border border-success/30 px-2 py-1 rounded flex items-center gap-1" title={qDetail.last_updated_at ? `Revisado em ${qDetail.last_updated_at}` : "Revisado por um médico"}>
-                    <span className="material-symbols-outlined text-[14px]" data-icon="verified_user">verified_user</span> Revisado
+                    <ShieldCheck size={14} className="shrink-0 text-success" /> Revisado
                   </span>
                 )}
                 <span className="bg-muted px-2 py-1 rounded">{qDetail.institution_code}{qDetail.is_autoral ? " (A)" : ""} {qDetail.year}</span>

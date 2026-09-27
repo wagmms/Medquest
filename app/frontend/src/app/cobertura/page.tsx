@@ -1,20 +1,33 @@
 import { CoverageResponse } from "@/types/api";
 import { CoverageClient } from "./CoverageClient";
-import { serverApi } from "@/lib/server-api";
+import { isDynamicServerUsageError, serverApi } from "@/lib/server-api";
 import { Target, Flame, CheckCircle2, BookOpen } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export default async function CoberturaPage() {
-  const data: CoverageResponse = await serverApi.stats.getCoverage();
+  let data: CoverageResponse | null = null;
+  let fetchError: string | null = null;
 
-  const totalQuestions = data.areas.reduce((acc, a) => acc + a.n_questions, 0);
-  const totalAnswered = data.areas.reduce((acc, a) => acc + a.answered_questions, 0);
+  try {
+    data = await serverApi.stats.getCoverage();
+  } catch (err: unknown) {
+    if (isDynamicServerUsageError(err)) {
+      throw err;
+    }
+    fetchError = err instanceof Error ? err.message : "Erro ao carregar dados de cobertura";
+    console.error("Erro SSR em /cobertura:", err);
+  }
+
+  const areas = data?.areas || [];
+  const hasData = areas.length > 0;
+  const totalQuestions = areas.reduce((acc, a) => acc + a.n_questions, 0);
+  const totalAnswered = areas.reduce((acc, a) => acc + a.answered_questions, 0);
   const globalProgress = totalQuestions > 0 ? (totalAnswered / totalQuestions) * 100 : 0;
 
-  const totalSubtemas = data.areas.reduce((acc, a) => acc + a.n_subtemas, 0);
-  const totalHighYield = data.areas.reduce((acc, a) => acc + (a.high_yield_count || 0), 0);
-  const highYieldMastered = data.areas.reduce((acc, a) => acc + (a.high_yield_mastered || 0), 0);
+  const totalSubtemas = areas.reduce((acc, a) => acc + a.n_subtemas, 0);
+  const totalHighYield = areas.reduce((acc, a) => acc + (a.high_yield_count || 0), 0);
+  const highYieldMastered = areas.reduce((acc, a) => acc + (a.high_yield_mastered || 0), 0);
   return (
     <div className="flex flex-col gap-8 animate-in fade-in duration-500 max-w-7xl mx-auto w-full">
       
@@ -28,8 +41,8 @@ export default async function CoberturaPage() {
             Cobertura do Banco por Temas e Módulos
           </h1>
           <p className="text-muted-foreground text-sm md:text-base max-w-3xl leading-relaxed">
-            Acompanhe o seu domínio em cada um dos <span className="font-semibold text-foreground">{totalSubtemas} módulos estruturados</span> das 5 grandes áreas. 
-            Identifique lacunas e priorize os <span className="font-semibold text-orange-500 inline-flex items-center gap-0.5"><Flame size={14} className="fill-current" /> {totalHighYield} temas de alta incidência (USP-SP / USP-RP)</span>.
+            Acompanhe o seu domínio em cada um dos <span className="font-semibold text-foreground">{hasData ? `${totalSubtemas} módulos estruturados` : "módulos estruturados"}</span> das 5 grandes áreas. 
+            Identifique lacunas e priorize os <span className="font-semibold text-orange-500 inline-flex items-center gap-0.5"><Flame size={14} className="fill-current" /> {hasData ? `${totalHighYield} temas` : "temas"} de alta incidência (USP-SP / USP-RP)</span>.
           </p>
         </div>
 
@@ -40,10 +53,10 @@ export default async function CoberturaPage() {
               <BookOpen size={12} /> Temas do Curso
             </span>
             <div className="flex items-baseline gap-1.5">
-              <span className="text-2xl font-bold text-foreground">{totalSubtemas}</span>
+              <span className="text-2xl font-bold text-foreground">{hasData ? totalSubtemas : "--"}</span>
               <span className="text-xs text-muted-foreground">módulos</span>
             </div>
-            <span className="text-[11px] text-muted-foreground mt-1">{totalQuestions.toLocaleString()} questões</span>
+            <span className="text-[11px] text-muted-foreground mt-1">{hasData ? `${totalQuestions.toLocaleString()} questões` : "Indisponível"}</span>
           </div>
 
           <div className="bg-orange-500/5 border border-orange-500/20 p-3.5 rounded-xl flex flex-col">
@@ -51,10 +64,10 @@ export default async function CoberturaPage() {
               <Flame size={12} className="fill-current" /> Alta incidência
             </span>
             <div className="flex items-baseline gap-1.5">
-              <span className="text-2xl font-bold text-orange-600 dark:text-orange-400">{totalHighYield}</span>
+              <span className="text-2xl font-bold text-orange-600 dark:text-orange-400">{hasData ? totalHighYield : "--"}</span>
               <span className="text-xs text-muted-foreground">temas</span>
             </div>
-            <span className="text-[11px] text-muted-foreground mt-1">{highYieldMastered} consolidados</span>
+            <span className="text-[11px] text-muted-foreground mt-1">{hasData ? `${highYieldMastered} consolidados` : "Indisponível"}</span>
           </div>
 
           <div className="bg-muted/40 border border-border p-3.5 rounded-xl flex flex-col col-span-2 sm:col-span-1">
@@ -62,10 +75,10 @@ export default async function CoberturaPage() {
               <CheckCircle2 size={12} /> Cobertura do banco
             </span>
             <div className="flex items-baseline gap-1.5">
-              <span className="text-2xl font-bold text-foreground">{globalProgress.toFixed(1)}%</span>
+              <span className="text-2xl font-bold text-foreground">{hasData ? `${globalProgress.toFixed(1)}%` : "--%"}</span>
             </div>
             <div className="h-1.5 w-full bg-border rounded-full overflow-hidden mt-2">
-              <div className="h-full bg-success transition-all duration-500" style={{ width: `${globalProgress}%` }} />
+              <div className="h-full bg-success transition-all duration-500" style={{ width: `${hasData ? globalProgress : 0}%` }} />
             </div>
           </div>
         </div>
@@ -73,7 +86,7 @@ export default async function CoberturaPage() {
 
       {/* Main Content */}
       <section>
-        <CoverageClient areas={data.areas} />
+        <CoverageClient initialAreas={areas} initialError={fetchError} />
       </section>
 
     </div>

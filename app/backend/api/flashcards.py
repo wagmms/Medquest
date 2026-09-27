@@ -295,8 +295,8 @@ def _save_flashcards(db, user_id, question_ids, prepared, now, lease_token=None,
                 })
             else:
                 cursor = db.execute("""
-                    INSERT INTO flashcards (question_id, front, back, created_at, next_review_date, fsrs_card, user_id, source_context, is_ai_generated)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)
+                    INSERT INTO flashcards (question_id, front, back, created_at, next_review_date, fsrs_card, user_id, source_context, is_ai_generated, deck_name)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, 'Geral')
                 """, (qid, card_data.get("front", ""), card_data.get("back", ""), now, now, None, user_id, card_data.get("context", "")))
                 new_id = getattr(cursor, "lastrowid", None)
                 if not new_id:
@@ -717,6 +717,7 @@ def _format_flashcard(item: dict) -> dict:
 
 
 @bp.route("/flashcards/review", methods=["GET"])
+@bp.route("/flashcards/due", methods=["GET"])
 def get_due_flashcards():
     db = get_db()
     now = datetime.now(timezone.utc).isoformat()
@@ -746,7 +747,7 @@ def get_due_flashcards():
 
     deck_clause = ""
     if deck and deck.lower() != "all":
-        deck_clause = " AND f.deck_name = ?"
+        deck_clause = " AND COALESCE(NULLIF(TRIM(f.deck_name), ''), 'Geral') = ?"
         params.append(deck)
 
     theme_clause = ""
@@ -864,22 +865,20 @@ def export_anki():
     due_only = request.args.get("due_only", "false").lower() == "true"
     now = datetime.now(timezone.utc).isoformat()
 
+    where_clause = "WHERE f.user_id = ? AND (f.report_status IS NULL OR TRIM(f.report_status) = '')"
+    params = [g.user_id]
     if due_only:
-        rows = db.execute("""
-            SELECT f.id, f.front, f.back, f.source_context, q.area, q.subtema, q.topic, q.institution_code
-            FROM flashcards f
-            JOIN questions q ON f.question_id = q.id
-            WHERE f.user_id = ? AND f.next_review_date <= ?
-            ORDER BY f.id ASC
-        """, (g.user_id, now)).fetchall()
-    else:
-        rows = db.execute("""
-            SELECT f.id, f.front, f.back, f.source_context, q.area, q.subtema, q.topic, q.institution_code
-            FROM flashcards f
-            JOIN questions q ON f.question_id = q.id
-            WHERE f.user_id = ?
-            ORDER BY f.id ASC
-        """, (g.user_id,)).fetchall()
+        where_clause += " AND f.next_review_date <= ?"
+        params.append(now)
+
+    rows = db.execute(f"""
+        SELECT f.id, f.front, f.back, f.source_context, f.tags, f.deck_name,
+               q.area, q.subtema, q.topic, q.institution_code
+        FROM flashcards f
+        LEFT JOIN questions q ON f.question_id = q.id
+        {where_clause}
+        ORDER BY f.id ASC
+    """, tuple(params)).fetchall()
 
     header_lines = [
         "#separator:tab",
@@ -895,6 +894,10 @@ def export_anki():
         back = (r["back"] or "").replace("\t", " ").replace("\r\n", "<br>").replace("\n", "<br>")
 
         tags = ["MedQuest"]
+        if r["deck_name"] and r["deck_name"] != "Geral":
+            deck_tag = re.sub(r"[^\w]+", "_", r["deck_name"]).strip("_")
+            if deck_tag:
+                tags.append(f"Baralho::{deck_tag}")
         if r["area"]:
             area_tag = re.sub(r"[^\w]+", "_", r["area"]).strip("_")
             tags.append(f"Area::{area_tag}")
@@ -904,6 +907,15 @@ def export_anki():
         if r["institution_code"]:
             inst_tag = re.sub(r"[^\w]+", "_", r["institution_code"]).strip("_")
             tags.append(f"Banca::{inst_tag}")
+        if r["tags"]:
+            try:
+                card_tags = json.loads(r["tags"]) if isinstance(r["tags"], str) and r["tags"].startswith("[") else [t.strip() for t in r["tags"].split() if t.strip()]
+                for ct in card_tags:
+                    clean_ct = re.sub(r"[^\w]+", "_", ct).strip("_")
+                    if clean_ct and clean_ct not in tags:
+                        tags.append(clean_ct)
+            except Exception:
+                pass
 
         tags_str = " ".join(tags)
         card_lines.append(f"{front}\t{back}\t{tags_str}")

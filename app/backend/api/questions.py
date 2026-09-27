@@ -477,7 +477,8 @@ def questions():
     where = " AND ".join(clauses)
     limit = _bounded_int(request.args.get("limit"), default=500, minimum=1, maximum=2000)
     if request.args.get("mode") == "adaptive":
-        return jsonify(rank_adaptive_candidates(db, g.user_id, where, params, limit))
+        adaptive_focus = request.args.get("adaptive_focus", "balanced")
+        return jsonify(rank_adaptive_candidates(db, g.user_id, where, params, limit, adaptive_focus=adaptive_focus))
     ids = _sample_ids(db, where, params, limit)
     if not ids:
         return jsonify([])
@@ -639,6 +640,8 @@ def submit_attempt(qid):
             next_review = None
             if payload.confidence == "defer":
                 _defer_question_review(db, qid, g.user_id)
+                if payload.twin_for_question_id:
+                    _defer_question_review(db, payload.twin_for_question_id, g.user_id)
             if payload.confidence != "defer":
                 sr = db.execute("SELECT fsrs_card FROM spaced_repetition WHERE question_id = ? AND user_id = ?", (qid, g.user_id)).fetchone()
                 card_json, next_review = srs.review(sr["fsrs_card"] if sr else None, is_correct, payload.confidence)
@@ -648,6 +651,17 @@ def submit_attempt(qid):
                     ON CONFLICT(question_id, user_id) DO UPDATE SET
                         next_review_date = excluded.next_review_date, fsrs_card = excluded.fsrs_card
                 """, (qid, next_review, card_json, g.user_id))
+
+                if payload.twin_for_question_id:
+                    orig_qid = payload.twin_for_question_id
+                    orig_sr = db.execute("SELECT fsrs_card FROM spaced_repetition WHERE question_id = ? AND user_id = ?", (orig_qid, g.user_id)).fetchone()
+                    orig_card_json, orig_next_review = srs.review(orig_sr["fsrs_card"] if orig_sr else None, is_correct, payload.confidence)
+                    db.execute("""
+                        INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id)
+                        VALUES (?, ?, ?, ?)
+                        ON CONFLICT(question_id, user_id) DO UPDATE SET
+                            next_review_date = excluded.next_review_date, fsrs_card = excluded.fsrs_card
+                    """, (orig_qid, orig_next_review, orig_card_json, g.user_id))
 
             exp = db.execute("SELECT explanation_text FROM explanations WHERE question_id = ?", (qid,)).fetchone()
             
@@ -744,6 +758,17 @@ def review_fsrs(qid):
                     next_review_date = excluded.next_review_date, fsrs_card = excluded.fsrs_card
             """, (qid, next_review, card_json, g.user_id))
 
+            if data.twin_for_question_id:
+                orig_qid = data.twin_for_question_id
+                orig_sr = db.execute("SELECT fsrs_card FROM spaced_repetition WHERE question_id = ? AND user_id = ?", (orig_qid, g.user_id)).fetchone()
+                orig_card_json, orig_next_review = srs.review(orig_sr["fsrs_card"] if orig_sr else None, is_correct_for_srs, confidence)
+                db.execute("""
+                    INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id)
+                    VALUES (?, ?, ?, ?)
+                    ON CONFLICT(question_id, user_id) DO UPDATE SET
+                        next_review_date = excluded.next_review_date, fsrs_card = excluded.fsrs_card
+                """, (orig_qid, orig_next_review, orig_card_json, g.user_id))
+
             resp_data = {"success": True, "next_review_date": next_review, "is_correct": bool(is_correct_for_srs)}
             if lease_token:
                 complete_idempotency(db, g.user_id, 200, resp_data, lease_token)
@@ -824,6 +849,8 @@ def _process_single_attempt(
     next_review = None
     if conf == "defer":
         _defer_question_review(db, item.question_id, user_id)
+        if getattr(item, "twin_for_question_id", None):
+            _defer_question_review(db, item.twin_for_question_id, user_id)
     else:
         old_card = srs_map.get(item.question_id)
         card_json, next_review = srs.review(old_card, is_correct, conf)
@@ -833,6 +860,17 @@ def _process_single_attempt(
             ON CONFLICT(question_id, user_id) DO UPDATE SET
                 next_review_date = excluded.next_review_date, fsrs_card = excluded.fsrs_card
         """, (item.question_id, next_review, card_json, user_id))
+
+        if getattr(item, "twin_for_question_id", None):
+            orig_qid = item.twin_for_question_id
+            orig_sr = db.execute("SELECT fsrs_card FROM spaced_repetition WHERE question_id = ? AND user_id = ?", (orig_qid, user_id)).fetchone()
+            orig_card_json, orig_next_review = srs.review(orig_sr["fsrs_card"] if orig_sr else None, is_correct, conf)
+            db.execute("""
+                INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id)
+                VALUES (?, ?, ?, ?)
+                ON CONFLICT(question_id, user_id) DO UPDATE SET
+                    next_review_date = excluded.next_review_date, fsrs_card = excluded.fsrs_card
+            """, (orig_qid, orig_next_review, orig_card_json, user_id))
 
     return {
         "question_id": item.question_id,

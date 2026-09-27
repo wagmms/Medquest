@@ -85,4 +85,18 @@ test.describe('normalizeFlashcard', () => {
     expect(normalized.front).toContain('{{c1::}}');
     expect(normalized.back).toContain("A opção 'X' é incorreta");
   });
+
+  test('non-legacy cards: strips option letters from multiple clozes and c2/c3 clozes', () => {
+    const card = {
+      front: 'Diagnóstico é {{c1::A. Apendicite}} e o tratamento é {{c2::B) Apendicectomia}}',
+      back: 'Gabarito'
+    };
+    const normalized = normalizeFlashcard(card);
+    expect(normalized.front).toBe('Diagnóstico é {{c1::Apendicite}} e o tratamento é {{c2::Apendicectomia}}');
+  });
+
+  test('handles null/undefined gracefully', () => {
+    expect(normalizeFlashcard(undefined as unknown as { front: string; back: string })).toBeUndefined();
+    expect(normalizeFlashcard(null as unknown as { front: string; back: string })).toBeNull();
+  });
 });

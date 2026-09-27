@@ -49,8 +49,12 @@ export function scheduleStudyBlocks(plan: PlannerWeek[], config: PlannerConfig,
   const advance = () => { cursor.setDate(cursor.getDate() + 1); used = 0; };
   const ensureDay = () => {
     while ((cursor.getDay() + 6) % 7 >= days) advance();
-    if (config.exam_date && cursor >= new Date(`${config.exam_date}T00:00:00`)) {
-      throw new Error("O cronograma não cabe antes da prova. Ajuste a carga diária ou os temas pendentes.");
+    if (config.exam_date) {
+      const examDateStr = config.exam_date.slice(0, 10);
+      const deadline = new Date(`${examDateStr}T00:00:00`);
+      if (!Number.isNaN(deadline.getTime()) && cursor >= deadline) {
+        throw new Error("O cronograma não cabe antes da prova. Ajuste a carga diária ou os temas pendentes.");
+      }
     }
   };
   for (const week of plan) {
@@ -126,7 +130,7 @@ async function getAccessToken(): Promise<string> {
           reject(new Error(`Autorização interrompida pelo Google: ${error.type}`));
         },
       }).requestAccessToken();
-    } catch (e) {
+    } catch {
       resolved = true;
       clearTimeout(timeout);
       reject(new Error("Falha ao abrir pop-up do Google. Verifique seu bloqueador de anúncios/pop-ups."));
@@ -189,13 +193,6 @@ export async function syncPlanToGoogleCalendar(plan: PlannerWeek[], options: Syn
   }
   const blocks = scheduleStudyBlocks(plan, options.config, completed);
   
-  // Clean up orphaned chunks from older fragmented schedule logic
-  for (const [key, event] of byKey.entries()) {
-    if (event.colorId !== "8" && !key.endsWith(":0")) {
-      try { await request(`${base}/${encodeURIComponent(event.id)}`, { method: "DELETE" }); } catch (e) {}
-    }
-  }
-
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   for (const [index, block] of blocks.entries()) {
     options.onProgress?.({ current: index, total: blocks.length, status: `Sincronizando ${block.title}` });
@@ -210,6 +207,13 @@ export async function syncPlanToGoogleCalendar(plan: PlannerWeek[], options: Syn
     await request(existing ? `${base}/${encodeURIComponent(id)}` : base, {
       method: existing ? "PATCH" : "POST", body: JSON.stringify(existing ? body : { ...body, id }),
     });
+  }
+  // Retire old fragments only after every replacement was successfully saved.
+  // Surface failures so the next sync can retry this cleanup.
+  for (const [key, event] of byKey.entries()) {
+    if (event.colorId !== "8" && !key.endsWith(":0")) {
+      await request(`${base}/${encodeURIComponent(event.id)}`, { method: "DELETE" });
+    }
   }
   options.onProgress?.({ current: blocks.length, total: blocks.length, status: "Sincronização concluída" });
   return { success: true, calendarId: "primary" };

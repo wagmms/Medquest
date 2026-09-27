@@ -25,6 +25,46 @@ def test_export_anki_with_generated_card(client):
     assert "Area::" in text or "Subtema::" in text
 
 
+def test_export_anki_includes_unlinked_cards_and_custom_tags(client):
+    # Import unlinked card with custom deck and tags
+    imported = client.post("/api/flashcards/import/batch", json={
+        "deck_name": "Infectologia",
+        "cards": [{
+            "front": "Qual o patógeno de {{c1::Doença de Chagas}}?",
+            "back": "Trypanosoma cruzi",
+            "tags": ["parasitologia", "chagas"],
+            "anki_nid": 88812,
+        }, {
+            "front": "Card reportado que não deve sair no export",
+            "back": "Gabarito errado",
+            "anki_nid": 88813,
+        }]
+    })
+    assert imported.status_code == 200
+
+    # Report the second card
+    cards = client.get("/api/flashcards/review?deck=Infectologia").get_json()
+    rep_card = next(c for c in cards if "Card reportado" in c["front"])
+    r_rep = client.post(f"/api/flashcards/{rep_card['id']}/report", json={"reason": "Erro"})
+    assert r_rep.status_code == 200
+
+    # Export to Anki text
+    res = client.get("/api/flashcards/export/anki")
+    assert res.status_code == 200
+    text = res.get_data(as_text=True)
+
+    # Must contain the unlinked card and its tags
+    assert "Qual o patógeno de {{c1::Doença de Chagas}}?" in text
+    assert "Trypanosoma cruzi" in text
+    assert "Baralho::Infectologia" in text
+    assert "parasitologia" in text
+    assert "chagas" in text
+
+    # Must NOT contain the reported card
+    assert "Card reportado que não deve sair no export" not in text
+
+
+
 def test_export_ics_calendar(client):
     # Salva configuração de teste
     client.post("/api/planner/config", json={

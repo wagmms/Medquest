@@ -218,6 +218,9 @@ export function ExplanationViewer({
     if (!enlargedImage) return null;
     return (
       <div 
+        role="dialog"
+        aria-modal="true"
+        aria-label="Figura Ampliada"
         className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
         onClick={() => setEnlargedImage(null)}
       >
@@ -225,8 +228,8 @@ export function ExplanationViewer({
           <button 
             type="button"
             onClick={() => setEnlargedImage(null)}
-            className="absolute -top-12 right-0 text-white/80 hover:text-white bg-black/50 p-2 rounded-full transition-colors cursor-pointer"
-            aria-label="Fechar visualização"
+            className="absolute -top-12 right-0 text-white/80 hover:text-white bg-black/50 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            aria-label="Fechar visualização de imagem"
           >
             <X size={24} />
           </button>

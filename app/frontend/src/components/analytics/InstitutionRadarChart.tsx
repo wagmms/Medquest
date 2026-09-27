@@ -148,9 +148,20 @@ export function InstitutionRadarChart({
             return (
               <g
                 key={area.area}
-                className="cursor-pointer transition-opacity"
+                className="cursor-pointer transition-opacity outline-hidden focus:outline-hidden"
+                tabIndex={0}
+                role="graphics-symbol"
+                aria-label={`${area.area}: ${acc !== null ? `${acc}% de acurácia` : "sem tentativas"}, cobertura ${Math.round(area.coverage * 100)}%`}
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
+                onFocus={() => setHoveredIdx(idx)}
+                onBlur={() => setHoveredIdx(null)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setHoveredIdx(hoveredIdx === idx ? null : idx);
+                  }
+                }}
               >
                 {/* Hover Background Highlight */}
                 {isHovered && (

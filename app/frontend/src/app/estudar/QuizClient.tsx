@@ -13,10 +13,15 @@ import { isLocalIdentityReady } from "@/lib/db";
 import { useUser } from "@clerk/nextjs";
 import { normalizeFlashcard } from "@/lib/normalizeFlashcard";
 
+import dynamic from "next/dynamic";
 import { ImageViewer } from "@/components/ImageViewer";
 import { ExplanationViewer } from "@/components/ExplanationViewer";
-import { QuestionClassificationModal } from "@/components/QuestionClassificationModal";
 import { FormattedContent, normalizeImageSrc, filterExtraImages } from "@/components/FormattedContent";
+
+const QuestionClassificationModal = dynamic(
+  () => import("@/components/QuestionClassificationModal").then((mod) => mod.QuestionClassificationModal),
+  { ssr: false }
+);
 import { useZenMode } from "@/hooks/useZenMode";
 import { QuizTimer, QuizTimerHandle } from "@/components/QuizTimer";
 import Image from "next/image";
@@ -132,7 +137,7 @@ export function QuizClient({
   const [isClassificationModalOpen, setIsClassificationModalOpen] = useState(false);
   const hasExplicitFilters = Object.keys(initialFilters).filter(k => k !== "resume").length > 0;
   const [state, setState] = useState<QuizState>(hasExplicitFilters ? "LOADING_QUEUE" : "FILTERS");
-  const [filters, setFilters] = useState<Record<string, string | string[]>>({ limit: "50", unanswered_only: "true", ...initialFilters });
+  const [filters, setFilters] = useState<Record<string, string | string[]>>({ limit: "50", status: "unanswered", unanswered_only: "true", ...initialFilters });
   const [localLimit, setLocalLimit] = useState<string>(
     typeof filters.limit === "string" ? filters.limit : "50"
   );
@@ -165,6 +170,10 @@ export function QuizClient({
   const [isUpdatingMeta, setIsUpdatingMeta] = useState(false);
   
   const [queue, setQueue] = useState<QuestionListItem[]>([]);
+  const queueRef = useRef<QuestionListItem[]>([]);
+  useEffect(() => {
+    queueRef.current = queue;
+  }, [queue]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentDetail, setCurrentDetail] = useState<QuestionDetail | null>(null);
   const [loadingDetail, setLoadingDetail] = useState(false);
@@ -221,7 +230,9 @@ export function QuizClient({
     // Se já estiver no cache, carrega instantaneamente sem tela de loading
     const cached = detailsCacheRef.current[id];
     if (cached) {
-      setCurrentDetail(cached);
+      const queueItem = queueRef.current.find(q => q.id === id);
+      const mergedCached = queueItem ? { ...queueItem, ...cached } : cached;
+      setCurrentDetail(mergedCached);
       setLoadingDetail(false);
       return;
     }
@@ -230,9 +241,11 @@ export function QuizClient({
     setCurrentDetail(null);
     try {
       const detail = await api.questions.getDetail(id);
-      detailsCacheRef.current[id] = detail;
+      const queueItem = queueRef.current.find(q => q.id === id);
+      const mergedDetail = queueItem ? { ...queueItem, ...detail } : detail;
+      detailsCacheRef.current[id] = mergedDetail;
       if (detailRequestRef.current === requestId) {
-        setCurrentDetail(detail);
+        setCurrentDetail(mergedDetail);
       }
     } catch (err) {
       console.error(`[QUIZ] Erro ao carregar questão ${id}:`, err);
@@ -561,7 +574,7 @@ export function QuizClient({
     setAttemptResult(null);
     setSessionAnswers({});
     setInitialTime(0);
-    setFilters({ limit: "50" });
+    setFilters({ limit: "50", status: "unanswered", unanswered_only: "true" });
     setLocalLimit("50");
     setHasSavedState(false);
     setSavedSessionData(null);
@@ -736,10 +749,15 @@ export function QuizClient({
     }
   };
 
-  const startRecommendedSession = useCallback((kind: "adaptive" | "review") => {
+  const startRecommendedSession = useCallback((kind: "adaptive" | "review", focus?: "coverage" | "balanced" | "retention") => {
     const limit = kind === "review" ? "20" : "30";
     setStudyMode("TUTOR");
-    const activeFilters = { limit, ...(kind === "adaptive" ? { mode: "adaptive" } : { status: "srs_due" }) };
+    const activeFilters = {
+      limit,
+      ...(kind === "adaptive"
+        ? { mode: "adaptive", adaptive_focus: focus || "balanced" }
+        : { status: "srs_due" }),
+    };
     const params = new URLSearchParams();
     for (const [key, value] of Object.entries(activeFilters)) {
       params.append(key, value as string);
@@ -755,7 +773,15 @@ export function QuizClient({
     setSubmitting(true);
 
     try {
-      const res = await api.questions.submitAttempt(currentDetail.id, selectedLetter, getCurrentTime() * 1000, "defer");
+      const res = await api.questions.submitAttempt(
+        currentDetail.id,
+        selectedLetter,
+        getCurrentTime() * 1000,
+        "defer",
+        undefined,
+        undefined,
+        currentDetail.twin_for_question_id
+      );
       setAttemptResult(res);
       setIsOfflineSaved(false);
       setSessionAnswers(prev => ({
@@ -793,7 +819,8 @@ export function QuizClient({
         getCurrentTime() * 1000, 
         "defer", 
         null,
-        userWrittenAnswer
+        userWrittenAnswer,
+        currentDetail.twin_for_question_id
       );
       setAttemptResult(res);
       setIsOfflineSaved(false);
@@ -960,7 +987,27 @@ export function QuizClient({
     const isDiscursive = Boolean(currentDetail.is_discursive || (currentDetail.alternatives || []).length <= 1);
     const institutionCode = currentDetail.institution_code;
 
-    // Optimistic UI updates - Advance immediately
+    // Optimistic UI updates - Update session answers synchronously before advancing
+    const isCorr = explicitIsCorrect !== undefined ? explicitIsCorrect : (currentAttemptResult?.is_correct ?? false);
+    const optimisticResult: AttemptResult = {
+      ...(currentAttemptResult || {
+        correct_letter: institutionCode || "A",
+        explanation: null,
+      }),
+      is_correct: isCorr,
+      next_review_date: currentAttemptResult?.next_review_date ?? null,
+    };
+
+    setSessionAnswers(prev => ({
+      ...prev,
+      [questionId]: {
+        letter: currentSelectedLetter || "A",
+        result: optimisticResult,
+        writtenAnswer: currentWrittenAnswer,
+        isDiscursive: isDiscursive
+      }
+    }));
+
     reviewLockRef.current = false;
     if (currentIndex + 1 < queue.length) {
       setCurrentIndex(prev => prev + 1);
@@ -969,21 +1016,15 @@ export function QuizClient({
       setState("FINISHED");
     }
 
-    // Call API in background
+    // Call API in background to persist FSRS card and next review date
     try {
-      const res = await api.questions.reviewFSRS(questionId, conf, explicitIsCorrect);
-      const isCorr = explicitIsCorrect !== undefined ? explicitIsCorrect : (currentAttemptResult?.is_correct ?? false);
+      const res = await api.questions.reviewFSRS(questionId, conf, explicitIsCorrect, currentDetail?.twin_for_question_id);
       const updatedResult: AttemptResult = {
-        ...(currentAttemptResult || {
-          correct_letter: institutionCode || "A",
-          explanation: null,
-          next_review_date: res.next_review_date,
-        }),
-        is_correct: isCorr,
+        ...optimisticResult,
         next_review_date: res.next_review_date,
       };
 
-      // Only update sessionAnswers (don't update attemptResult to avoid overwriting the next question's state)
+      // Reconcile next_review_date from API response
       setSessionAnswers(prev => ({
         ...prev,
         [questionId]: {
@@ -1047,7 +1088,8 @@ export function QuizClient({
     nextQuestion,
     prevQuestion,
     navigateQuestion,
-    selectAlternative
+    selectAlternative,
+    disabled: Boolean(showFinishModal || isClassificationModalOpen || enlargedImage)
   });
 
   if (state === "FILTERS") {
@@ -1107,7 +1149,7 @@ export function QuizClient({
 
         {wrongItems.length > 0 && (
           <div className="w-full bg-purple-500/10 border border-purple-500/25 rounded-2xl p-6 mb-8 text-left animate-in slide-in-from-bottom-2">
-            <div className="flex items-center gap-2.5 text-purple-600 font-bold text-base mb-2">
+            <div className="flex items-center gap-2.5 text-purple-700 dark:text-purple-400 font-bold text-base mb-2">
               <Sparkles size={20} />
               Revisão Ativa & Repetição Espaçada (FSRS)
             </div>
@@ -1182,12 +1224,12 @@ export function QuizClient({
         <div className="flex items-center gap-4">
           <button 
             onClick={handleBackToFilters}
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer min-h-[44px] px-2 -ml-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             ← Voltar
           </button>
           <div className="h-6 w-px bg-border hidden sm:block" />
-            <div className="text-sm font-semibold text-foreground">
+            <div className="text-sm font-semibold text-foreground" aria-live="polite">
              Respondidas {completedCount}/{queue.length}
           </div>
           <div className="hidden lg:flex items-center gap-2 ml-4 px-3 py-1 bg-muted/50 rounded-full text-xs text-muted-foreground font-medium">
@@ -1237,7 +1279,7 @@ export function QuizClient({
             <button 
               onClick={toggleFavorite}
               className={clsx(
-                "p-2 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 focus-visible:ring-offset-background", 
+                "p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 focus-visible:ring-offset-background", 
                 q.is_favorite ? "bg-destructive/10 text-destructive" : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
               )}
               title={q.is_favorite ? "Remover dos Favoritos" : "Favoritar"}
@@ -1329,6 +1371,15 @@ export function QuizClient({
                   </span>
                 )}
                 <span className="bg-muted px-2 py-1 rounded">{q.institution_code}{q.is_autoral ? " (A)" : ""} {q.year}</span>
+                {q.is_twin && (
+                  <span
+                    className="bg-purple-500/15 text-purple-700 dark:text-purple-300 border border-purple-500/30 px-2 py-1 rounded flex items-center gap-1 font-bold animate-in fade-in"
+                    title={q.twin_origin_institution ? `Questão Gêmea: aplicando o conceito de ${q.twin_subtema || q.subtema} (revisão de ${q.twin_origin_institution}) a um novo caso clínico para testar seu raciocínio real sem vícios de memorização.` : "Questão Gêmea: aplicando o conceito a um novo caso clínico."}
+                  >
+                    <Sparkles size={13} className="text-purple-600 dark:text-purple-400" />
+                    Questão Gêmea{q.twin_origin_institution ? ` (${q.twin_origin_institution})` : ""}
+                  </span>
+                )}
                 {(q.area || q.subtema) && (
                   <button
                     type="button"
@@ -1365,23 +1416,23 @@ export function QuizClient({
                 )}
               </div>
               
-              <div className="flex items-center gap-3 bg-muted/30 px-3 py-1.5 rounded-lg border border-border">
+              <div className="flex items-center gap-1 sm:gap-2 bg-muted/30 px-2 py-1 rounded-lg border border-border">
                 <button 
                   onClick={() => navigateQuestion("previous")}
                   disabled={currentIndex === 0 || loadingDetail}
-                  className="p-1 hover:bg-background rounded transition-colors disabled:opacity-30 disabled:hover:bg-transparent"
+                  className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-background rounded transition-colors disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   title="Questão Anterior (Seta Esquerda)"
                   aria-label="Questão Anterior"
                 >
                   <ArrowLeft size={18} aria-hidden="true" />
                 </button>
-                <span className="text-sm font-bold text-foreground min-w-[3rem] text-center">
+                <span className="text-sm font-bold text-foreground min-w-[3rem] text-center select-none">
                   {currentIndex + 1} / {queue.length}
                 </span>
                 <button 
                   onClick={() => navigateQuestion("next")}
                   disabled={loadingDetail}
-                  className="p-1 hover:bg-background rounded transition-colors disabled:opacity-30 disabled:hover:bg-transparent"
+                  className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-background rounded transition-colors disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   title="Próxima questão (Seta Direita)"
                   aria-label="Próxima Questão"
                 >
@@ -1581,13 +1632,23 @@ export function QuizClient({
                 >
                   <RotateCcw size={14} /> Sincronizar Gabarito Agora
                 </button>
-                <button
-                  onClick={nextQuestion}
-                  disabled={currentIndex === queue.length - 1}
-                  className="flex items-center gap-2 bg-primary text-primary-foreground font-bold px-4 py-2 rounded-lg transition-colors text-sm hover:bg-primary/90 disabled:opacity-50"
-                >
-                  Próxima Questão <ArrowRight size={16} />
-                </button>
+                {currentIndex === queue.length - 1 ? (
+                  <button
+                    type="button"
+                    onClick={confirmFinish}
+                    className="flex items-center gap-2 bg-primary text-primary-foreground font-bold px-4 py-2 rounded-lg transition-colors text-sm hover:bg-primary/90 cursor-pointer shadow-sm"
+                  >
+                    Finalizar Sessão <CheckCircle2 size={16} />
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={nextQuestion}
+                    className="flex items-center gap-2 bg-primary text-primary-foreground font-bold px-4 py-2 rounded-lg transition-colors text-sm hover:bg-primary/90 cursor-pointer"
+                  >
+                    Próxima Questão <ArrowRight size={16} />
+                  </button>
+                )}
               </div>
             </div>
           )}
@@ -1781,7 +1842,7 @@ export function QuizClient({
 
                   {draftFlashcard && (
                     <div className="mt-6 bg-purple-500/10 border border-purple-500/25 rounded-2xl p-5 animate-in slide-in-from-bottom-2">
-                      <div className="flex items-center gap-2 text-purple-600 font-bold text-sm mb-4">
+                      <div className="flex items-center gap-2 text-purple-700 dark:text-purple-400 font-bold text-sm mb-4">
                         <Sparkles size={16} /> Editar Flashcard
                       </div>
                       <div className="space-y-4">
@@ -1829,12 +1890,12 @@ export function QuizClient({
                   {flashcardResult && (
                     <div className="mt-6 bg-purple-500/10 border border-purple-500/25 rounded-2xl p-5 animate-in slide-in-from-bottom-2">
                       <div className="flex items-center justify-between gap-2 mb-3">
-                        <div className="flex items-center gap-2 text-purple-600 font-bold text-sm">
+                        <div className="flex items-center gap-2 text-purple-700 dark:text-purple-400 font-bold text-sm">
                           <Sparkles size={16} /> Flashcard Salvo na Revisão Ativa!
                         </div>
                         <Link 
                           href="/revisao-ativa"
-                          className="text-xs font-bold text-purple-600 hover:underline flex items-center gap-1"
+                          className="text-xs font-bold text-purple-700 dark:text-purple-400 hover:underline flex items-center gap-1"
                         >
                           Ir para Revisão Ativa →
                         </Link>

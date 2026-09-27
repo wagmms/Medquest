@@ -137,6 +137,18 @@ export function AnkiIntegrationModal({
     }
   }, [isOpen, activeTab, testConnection]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const handleFileDrop = (e: React.DragEvent) => {
@@ -274,16 +286,26 @@ export function AnkiIntegrationModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl bg-card border border-border shadow-2xl rounded-2xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-in fade-in duration-200"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="anki-modal-title"
+        className="relative w-full max-w-2xl bg-card border border-border shadow-2xl rounded-2xl overflow-hidden flex flex-col max-h-[90vh]"
+      >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-border">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center font-black text-lg">
+            <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black text-lg">
               ⚡
             </div>
             <div>
-              <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
+              <h2 id="anki-modal-title" className="text-lg font-bold text-foreground flex items-center gap-2">
                 Integração com o Anki
               </h2>
               <p className="text-xs text-muted-foreground">
@@ -292,19 +314,21 @@ export function AnkiIntegrationModal({
             </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="p-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             aria-label="Fechar modal"
           >
-            <X size={18} />
+            <X size={20} />
           </button>
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-border bg-muted/20 px-6 gap-2 pt-2">
+        <div className="flex border-b border-border bg-muted/20 px-6 gap-2 pt-2 overflow-x-auto">
           <button
+            type="button"
             onClick={() => setActiveTab("file")}
-            className={`flex items-center gap-2 px-4 py-2.5 text-xs font-bold border-b-2 transition-all ${
+            className={`flex items-center gap-2 px-4 py-3 min-h-[44px] text-xs font-bold border-b-2 transition-all shrink-0 ${
               activeTab === "file"
                 ? "border-primary text-primary"
                 : "border-transparent text-muted-foreground hover:text-foreground"
@@ -313,8 +337,9 @@ export function AnkiIntegrationModal({
             <FileArchive size={14} /> Pacote / Arquivo (.apkg, .txt)
           </button>
           <button
+            type="button"
             onClick={() => setActiveTab("connect")}
-            className={`flex items-center gap-2 px-4 py-2.5 text-xs font-bold border-b-2 transition-all ${
+            className={`flex items-center gap-2 px-4 py-3 min-h-[44px] text-xs font-bold border-b-2 transition-all shrink-0 ${
               activeTab === "connect"
                 ? "border-primary text-primary"
                 : "border-transparent text-muted-foreground hover:text-foreground"
@@ -323,8 +348,9 @@ export function AnkiIntegrationModal({
             <Radio size={14} /> AnkiConnect (Ao Vivo)
           </button>
           <button
+            type="button"
             onClick={() => setActiveTab("manage")}
-            className={`flex items-center gap-2 px-4 py-2.5 text-xs font-bold border-b-2 transition-all ${
+            className={`flex items-center gap-2 px-4 py-3 min-h-[44px] text-xs font-bold border-b-2 transition-all shrink-0 ${
               activeTab === "manage"
                 ? "border-primary text-primary"
                 : "border-transparent text-muted-foreground hover:text-foreground"
@@ -333,8 +359,9 @@ export function AnkiIntegrationModal({
             <FolderOpen size={14} /> Baralhos ({decks.length})
           </button>
           <button
+            type="button"
             onClick={() => setActiveTab("export")}
-            className={`flex items-center gap-2 px-4 py-2.5 text-xs font-bold border-b-2 transition-all ${
+            className={`flex items-center gap-2 px-4 py-3 min-h-[44px] text-xs font-bold border-b-2 transition-all shrink-0 ${
               activeTab === "export"
                 ? "border-primary text-primary"
                 : "border-transparent text-muted-foreground hover:text-foreground"
@@ -550,7 +577,7 @@ export function AnkiIntegrationModal({
                   </div>
 
                   {syncProgress && (
-                    <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl text-xs text-blue-600 font-semibold flex items-center justify-center gap-2 animate-pulse">
+                    <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl text-xs text-blue-600 dark:text-blue-400 font-semibold flex items-center justify-center gap-2 animate-pulse">
                       <Loader2 size={14} className="animate-spin" />
                       {syncProgress}
                     </div>
@@ -573,7 +600,7 @@ export function AnkiIntegrationModal({
                     type="button"
                     onClick={handlePullAnkiReviews}
                     disabled={isPullingAnkiReviews || isSyncingAnkiConnect || !selectedLocalDeck}
-                    className="w-full py-2.5 rounded-xl border border-blue-500/30 text-blue-600 font-bold text-sm hover:bg-blue-500/10 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="w-full py-2.5 rounded-xl border border-blue-500/30 text-blue-600 dark:text-blue-400 font-bold text-sm hover:bg-blue-500/10 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                   >
                     {isPullingAnkiReviews ? <Loader2 size={16} className="animate-spin" /> : <RefreshCw size={16} />}
                     Atualizar revisões feitas no Anki
@@ -670,8 +697,9 @@ export function AnkiIntegrationModal({
                           type="button"
                           onClick={() => handleDeleteDeck(d.name)}
                           disabled={deletingDeck === d.name}
-                          className="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
-                          title="Excluir baralho"
+                          className="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
+                          title={`Excluir baralho ${d.name}`}
+                          aria-label={`Excluir baralho ${d.name}`}
                         >
                           {deletingDeck === d.name ? (
                             <Loader2 size={16} className="animate-spin" />

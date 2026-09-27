@@ -4,11 +4,11 @@ export default function Loading() {
   return (
     <div className="flex flex-col gap-8 animate-in fade-in duration-500">
       {/* Header Skeleton */}
-      <section className="bg-card border border-border shadow-1 rounded-xl p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
+      <section className="bg-card border border-border shadow-sm rounded-xl p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-muted" />
         
         <div className="flex-1">
-          <h1 className="text-h1 font-bold text-foreground tracking-tight mb-2 flex items-center gap-3">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight mb-2 flex items-center gap-3">
             <Target className="text-muted" size={28} />
             Cobertura do Banco
           </h1>
@@ -26,7 +26,7 @@ export default function Loading() {
       {/* Main Content Skeleton */}
       <section className="flex flex-col gap-4">
         {[1, 2, 3, 4, 5].map((i) => (
-          <div key={i} className="bg-card border border-border rounded-lg p-5 shadow-1 flex items-center justify-between">
+          <div key={i} className="bg-card border border-border rounded-lg p-5 shadow-sm flex items-center justify-between">
             <div className="flex items-center gap-4 w-full">
               <div className="w-2 h-10 rounded-full shrink-0 bg-muted animate-pulse" />
               <div className="flex-1">

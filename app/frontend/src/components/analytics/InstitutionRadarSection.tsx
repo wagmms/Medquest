@@ -31,7 +31,13 @@ export function InstitutionRadarSection({
   const [viewMode, setViewMode] = useState<"chart" | "table">("chart");
   const [radarData, setRadarData] = useState<InstitutionRadarResponse | null>(initialData || null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
   const isFirstMount = useRef(true);
+
+  const retryFetch = () => {
+    setRetryCount(prev => prev + 1);
+  };
 
   useEffect(() => {
     if (isFirstMount.current) {
@@ -41,17 +47,20 @@ export function InstitutionRadarSection({
 
     const controller = new AbortController();
     setLoading(true);
+    setError(null);
 
     api.stats
       .getInstitutionRadar(selectedInst || undefined, compareInst || undefined, controller.signal)
       .then(data => {
         if (!controller.signal.aborted) {
           setRadarData(data);
+          setError(null);
         }
       })
       .catch(err => {
         if (!controller.signal.aborted) {
           console.error("Falha ao carregar radar comparativo:", err);
+          setError("Não foi possível carregar as métricas da banca. Verifique sua conexão e tente novamente.");
         }
       })
       .finally(() => {
@@ -63,7 +72,7 @@ export function InstitutionRadarSection({
     return () => {
       controller.abort();
     };
-  }, [selectedInst, compareInst, initialData]);
+  }, [selectedInst, compareInst, initialData, retryCount]);
 
   const handleActionClick = (action: "study" | "simulado" | "review") => {
     // Chamada autenticada não-bloqueante de observabilidade privada
@@ -123,7 +132,7 @@ export function InstitutionRadarSection({
               value={selectedInst}
               onChange={(e) => setSelectedInst(e.target.value)}
               aria-label="Selecionar banca alvo"
-              className="mt-1 bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground focus:ring-2 focus:ring-primary/20"
+              className="mt-1 bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground focus:ring-2 focus:ring-primary/20 min-h-[44px]"
             >
               {institutionOptions.map(opt => (
                 <option key={opt.key} value={opt.key}>{opt.label}</option>
@@ -137,7 +146,7 @@ export function InstitutionRadarSection({
               value={compareInst}
               onChange={(e) => setCompareInst(e.target.value)}
               aria-label="Selecionar banca para comparação"
-              className="mt-1 bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground focus:ring-2 focus:ring-primary/20"
+              className="mt-1 bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground focus:ring-2 focus:ring-primary/20 min-h-[44px]"
             >
               <option value="">Desempenho Geral</option>
               {institutionOptions
@@ -155,8 +164,9 @@ export function InstitutionRadarSection({
               <button
                 type="button"
                 onClick={() => setViewMode("chart")}
+                aria-pressed={viewMode === "chart"}
                 className={clsx(
-                  "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors cursor-pointer",
+                  "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors cursor-pointer min-h-[38px]",
                   viewMode === "chart" ? "bg-background text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
                 )}
                 aria-label="Visualização em gráfico"
@@ -168,8 +178,9 @@ export function InstitutionRadarSection({
               <button
                 type="button"
                 onClick={() => setViewMode("table")}
+                aria-pressed={viewMode === "table"}
                 className={clsx(
-                  "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors cursor-pointer",
+                  "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors cursor-pointer min-h-[38px]",
                   viewMode === "table" ? "bg-background text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
                 )}
                 aria-label="Visualização em tabela acessível"
@@ -202,6 +213,18 @@ export function InstitutionRadarSection({
       {loading ? (
         <div className="w-full h-[360px] bg-muted/20 rounded-2xl border border-border p-4 flex items-center justify-center animate-pulse">
           <p className="text-sm text-muted-foreground">Atualizando dados da banca...</p>
+        </div>
+      ) : error ? (
+        <div className="w-full min-h-[220px] bg-destructive/5 rounded-2xl border border-destructive/20 p-6 flex flex-col items-center justify-center gap-3 text-center">
+          <AlertTriangle className="text-destructive w-8 h-8" />
+          <p className="text-sm font-semibold text-foreground">{error}</p>
+          <button
+            type="button"
+            onClick={retryFetch}
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-xs font-semibold hover:bg-primary/90 transition-colors cursor-pointer min-h-[44px] inline-flex items-center justify-center"
+          >
+            Tentar novamente
+          </button>
         </div>
       ) : radarData ? (
         <div>

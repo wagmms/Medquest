@@ -54,9 +54,36 @@ def _due(next_review_date, now):
         return False
 
 
-def rank_adaptive_candidates(db, user_id, where, params, limit, now=None):
-    """Rank eligible questions without randomness and without cross-user data."""
+FOCUS_CONFIGS = {
+    "coverage": {
+        "topic_mult": 30.0,
+        "coverage_gap": 80.0,
+        "review_due": 40.0,
+        "latest_wrong": 30.0,
+        "memory_risk": 20.0,
+    },
+    "balanced": {
+        "topic_mult": 40.0,
+        "coverage_gap": 40.0,
+        "review_due": 80.0,
+        "latest_wrong": 50.0,
+        "memory_risk": 40.0,
+    },
+    "retention": {
+        "topic_mult": 50.0,
+        "coverage_gap": 10.0,
+        "review_due": 110.0,
+        "latest_wrong": 80.0,
+        "memory_risk": 60.0,
+    },
+}
+
+
+def rank_adaptive_candidates(db, user_id, where, params, limit, now=None, adaptive_focus="balanced"):
+    """Rank eligible questions with twin questions and configurable focus ratios."""
     now = _utc(now)
+    cfg = FOCUS_CONFIGS.get(adaptive_focus, FOCUS_CONFIGS["balanced"])
+
     rows = db.execute(
         f"""
         SELECT q.id, q.source_file, q.source_number, q.year, q.institution_code,
@@ -82,28 +109,105 @@ def rank_adaptive_candidates(db, user_id, where, params, limit, now=None):
         stats[0] += row["attempts"]
         stats[1] += row["correct"]
 
-    ranked = []
+    # Pool of unattempted questions from current rows, grouped by topic
+    unseen_by_topic = {}
     for row in rows:
+        if row["attempts"] == 0:
+            topic = row["subtema"] or row["topic"] or "Sem tema"
+            unseen_by_topic.setdefault(topic, []).append(row)
+
+    # Track paired twin questions: twin_id -> (orig_id, orig_inst, topic)
+    paired_twin_ids = {}
+    replaced_orig_ids = set()
+
+    for row in rows:
+        is_due = _due(row["next_review_date"], now)
+        if is_due and row["latest_correct"] == 1:
+            orig_id = row["id"]
+            orig_inst = row["institution_code"] or ""
+            topic = row["subtema"] or row["topic"] or "Sem tema"
+
+            twin_candidate = None
+            candidates = unseen_by_topic.get(topic, [])
+            for c in candidates:
+                if c["id"] not in paired_twin_ids:
+                    if c["institution_code"] != orig_inst:
+                        twin_candidate = c
+                        break
+            if twin_candidate is None:
+                for c in candidates:
+                    if c["id"] not in paired_twin_ids:
+                        twin_candidate = c
+                        break
+
+            if twin_candidate is None and topic != "Sem tema":
+                db_twin = db.execute(
+                    """
+                    SELECT q.id, q.source_file, q.source_number, q.year, q.institution_code,
+                           q.institution_label, q.topic, q.area, q.subtema,
+                           0 AS attempts, 0 AS correct, NULL AS latest_correct,
+                           NULL AS next_review_date, NULL AS fsrs_card
+                    FROM questions q
+                    WHERE q.missing_alts = 0
+                      AND COALESCE(NULLIF(q.subtema, ''), q.topic) = ?
+                      AND q.id NOT IN (SELECT question_id FROM attempts WHERE user_id = ?)
+                    ORDER BY (q.institution_code != ?) DESC, q.id ASC
+                    LIMIT 1
+                    """,
+                    (topic, user_id, orig_inst),
+                ).fetchone()
+                if db_twin and db_twin["id"] not in paired_twin_ids:
+                    twin_candidate = db_twin
+
+            if twin_candidate is not None:
+                paired_twin_ids[twin_candidate["id"]] = (orig_id, orig_inst, topic)
+                replaced_orig_ids.add(orig_id)
+
+    ranked = []
+    seen_ids = set()
+
+    for row in rows:
+        qid = row["id"]
+        if qid in replaced_orig_ids:
+            continue
+
         item = dict(row)
         metrics = fsrs_metrics(item.pop("fsrs_card"), now)
         topic = item["subtema"] or item["topic"] or "Sem tema"
-        topic_attempts, topic_correct = topic_totals[topic]
+        topic_attempts, topic_correct = topic_totals.get(topic, [0, 0])
         topic_score, _ = topic_priority(topic_attempts, topic_correct, metrics["retrievability"])
         is_due = _due(item.pop("next_review_date"), now)
         reasons = []
-        score = topic_score * 40.0
-        if is_due:
-            score += 100.0
+
+        score = topic_score * cfg["topic_mult"]
+
+        if qid in paired_twin_ids:
+            orig_id, orig_inst, orig_topic = paired_twin_ids[qid]
+            score += cfg["review_due"]
+            reasons.append("twin_concept_review")
+            item["is_twin"] = True
+            item["twin_for_question_id"] = orig_id
+            item["twin_origin_institution"] = orig_inst
+            item["twin_subtema"] = orig_topic
+        elif is_due:
+            score += cfg["review_due"]
             reasons.append("review_due")
+            item["is_twin"] = False
+        else:
+            item["is_twin"] = False
+
         if item["latest_correct"] == 0:
-            score += 30.0
+            score += cfg["latest_wrong"]
             reasons.append("latest_attempt_wrong")
-        if item["attempts"] == 0:
-            score += 20.0
+
+        if item["attempts"] == 0 and qid not in paired_twin_ids:
+            score += cfg["coverage_gap"]
             reasons.append("coverage_gap")
+
         if metrics["retrievability"] is not None and metrics["retrievability"] < 0.9:
-            score += (0.9 - metrics["retrievability"]) * 50.0
+            score += (0.9 - metrics["retrievability"]) * cfg["memory_risk"]
             reasons.append("memory_at_risk")
+
         score -= min(item["attempts"], 10) * 1.5
         item["adaptive_score"] = round(score, 3)
         item["adaptive_reasons"] = reasons or ["balanced_practice"]
@@ -112,6 +216,33 @@ def rank_adaptive_candidates(db, user_id, where, params, limit, now=None):
         item.pop("correct", None)
         item.pop("latest_correct", None)
         ranked.append(item)
+        seen_ids.add(qid)
+
+    for twin_id, (orig_id, orig_inst, orig_topic) in paired_twin_ids.items():
+        if twin_id not in seen_ids:
+            twin_row = db.execute(
+                """
+                SELECT q.id, q.source_file, q.source_number, q.year, q.institution_code,
+                       q.institution_label, q.topic, q.area, q.subtema
+                FROM questions q WHERE q.id = ?
+                """,
+                (twin_id,),
+            ).fetchone()
+            if twin_row:
+                item = dict(twin_row)
+                topic_attempts, topic_correct = topic_totals.get(orig_topic, [0, 0])
+                topic_score, _ = topic_priority(topic_attempts, topic_correct, None)
+                score = topic_score * cfg["topic_mult"] + cfg["review_due"]
+                item["is_twin"] = True
+                item["twin_for_question_id"] = orig_id
+                item["twin_origin_institution"] = orig_inst
+                item["twin_subtema"] = orig_topic
+                item["adaptive_score"] = round(score, 3)
+                item["adaptive_reasons"] = ["twin_concept_review"]
+                item["retrievability"] = None
+                ranked.append(item)
+                seen_ids.add(twin_id)
+
     ranked.sort(key=lambda item: (-item["adaptive_score"], item["id"]))
     return ranked[:limit]
 

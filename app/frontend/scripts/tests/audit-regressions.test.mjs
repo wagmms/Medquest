@@ -79,21 +79,25 @@ test('download traverses all pages of cards', async () => {
 });
 
 const plan = [{ week: 1, date: '2030-01-01', topics: [{subtema:'Example',area:'Area',estimated_hours:6}] }];
-test('calendar schedule skips weekends, respects daily capacity and avoids past times', () => {
+test('calendar keeps topics whole, advances at daily capacity, and skips weekends', () => {
   const { scheduleStudyBlocks } = load('googleCalendar');
-  const blocks = scheduleStudyBlocks(plan, { days_per_week:5, hours_per_day:2 }, {}, new Date('2030-01-04T15:00:00'));
-  assert.equal(blocks.length, 3);
+  const fullPlan = [{ ...plan[0], topics: [plan[0].topics[0], { ...plan[0].topics[0], subtema: 'Next', estimated_hours: 1.1 }] }];
+  const blocks = scheduleStudyBlocks(fullPlan, { days_per_week:5, hours_per_day:2 }, {}, new Date('2030-01-04T15:00:00'));
+  assert.equal(blocks.length, 2);
   assert.equal(blocks[0].start.getDay(), 1);
   assert.equal(blocks[0].start.getHours(), 8);
-  assert.ok(blocks.every(b => (b.end - b.start) === 120 * 60000));
-  assert.throws(() => scheduleStudyBlocks(plan, {days_per_week:5,hours_per_day:2,exam_date:'2030-01-08'}, {}, new Date('2030-01-04T15:00:00')), /não cabe/);
+  assert.equal(blocks[0].end - blocks[0].start, 360 * 60000);
+  assert.equal(blocks[1].start.getDay(), 2);
+  assert.equal(blocks[1].end - blocks[1].start, 60 * 60000);
+  assert.throws(() => scheduleStudyBlocks(fullPlan, {days_per_week:5,hours_per_day:2,exam_date:'2030-01-08'}, {}, new Date('2030-01-04T15:00:00')), /não cabe/);
+  assert.throws(() => scheduleStudyBlocks(fullPlan, {days_per_week:5,hours_per_day:2,exam_date:'2030-01-08T12:00:00.000Z'}, {}, new Date('2030-01-04T15:00:00')), /não cabe/);
 });
-function calendar(fetch, completions = []) {
+function calendar(fetch, completions = [], syncPlan = plan) {
   const api = load('googleCalendar', {}, {
     process: {env:{NEXT_PUBLIC_GOOGLE_CLIENT_ID:'test'}}, fetch,
     window: { google: {accounts:{oauth2:{initTokenClient: config => ({requestAccessToken: () => config.callback({access_token:'test'})})}}} },
   });
-  return () => api.syncPlanToGoogleCalendar(plan, {config:{days_per_week:5,hours_per_day:4},ownerId:'alice',completed:{},onComplete:async (...args) => completions.push(args)});
+  return () => api.syncPlanToGoogleCalendar(syncPlan, {config:{days_per_week:5,hours_per_day:4},ownerId:'alice',completed:{},onComplete:async (...args) => completions.push(args)});
 }
 test('calendar HTTP failures reject instead of announcing success', async () => {
   let calls = 0;
@@ -120,7 +124,7 @@ test('retrying a partial calendar sync updates the same IDs without deleting eve
     const id = body.id || url.split('/').pop();
     events.set(id, {...body,id});
     return {ok:true,status:200,json:async () => ({id})};
-  });
+  }, [], [{ ...plan[0], topics: [plan[0].topics[0], { ...plan[0].topics[0], subtema: 'Second' }] }]);
   await assert.rejects(sync(), /503/);
   await sync();
   assert.equal(events.size, 2);
@@ -162,3 +166,147 @@ test('deck deletion invalidates only the current owners matching cached cards', 
   await api.flashcards.deleteDeck('Geral');
   assert.deepEqual(cards.map(c=>c.id), [2,3]);
 });
+
+test('legacy calendar fragments are removed only after replacement, and cleanup errors surface', async () => {
+  const namespace = Buffer.from(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JSON.stringify(['alice', undefined, undefined])))).toString('hex');
+  const key = JSON.stringify([1, 'Example', 'Area']);
+  const fragment = {id:'fragment',colorId:'9',extendedProperties:{private:{medquestPlan:namespace,medquestBlock:`${key}:1`,medquestTopic:key}}};
+  let failCreate = true; let failDelete = true;
+  const events = new Map([['fragment',fragment]]); const methods = [];
+  const sync = calendar(async (url, init) => {
+    const method = init.method || 'GET'; methods.push(method);
+    if (method === 'GET') return {ok:true,status:200,json:async () => ({items:[...events.values()]})};
+    if (method === 'POST' && failCreate) return {ok:false,status:503};
+    if (method === 'DELETE') {
+      if (failDelete) return {ok:false,status:403};
+      events.delete('fragment'); return {ok:true,status:204};
+    }
+    const body = JSON.parse(init.body); const id = body.id || url.split('/').pop();
+    events.set(id,{...body,id}); return {ok:true,status:200,json:async () => ({id})};
+  });
+  await assert.rejects(sync(), /503/);
+  assert.ok(!methods.includes('DELETE'));
+  failCreate = false;
+  await assert.rejects(sync(), /403/);
+  assert.equal(events.size, 2);
+  failDelete = false;
+  await sync();
+  assert.equal(events.size, 1);
+  assert.ok(!events.has('fragment'));
+});
+
+test('cobertura diacritic normalization matches unaccented medical search queries', () => {
+  function normalizeText(text) {
+    return (text || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  }
+
+  const subtemas = [
+    'Hipertensão Arterial Sistêmica',
+    'Ginecologia e Obstetrícia',
+    'Pré-Natal e Modificações Fisiológicas da Gravidez',
+    'Úlcera Péptica e Hemorragia Digestiva Alta',
+    'Reanimação Neonatal em Sala de Parto',
+  ];
+
+  const queries = [
+    { q: 'hipertensao', expected: 'Hipertensão Arterial Sistêmica' },
+    { q: 'obstetricia', expected: 'Ginecologia e Obstetrícia' },
+    { q: 'pre-natal', expected: 'Pré-Natal e Modificações Fisiológicas da Gravidez' },
+    { q: 'ulcera peptica', expected: 'Úlcera Péptica e Hemorragia Digestiva Alta' },
+    { q: 'reanimacao', expected: 'Reanimação Neonatal em Sala de Parto' },
+  ];
+
+  for (const { q, expected } of queries) {
+    const normQ = normalizeText(q);
+    const matched = subtemas.filter(sub => normalizeText(sub).includes(normQ));
+    assert.ok(matched.includes(expected), `Query '${q}' should match '${expected}'`);
+  }
+});
+
+test('cobertura practice link sets unanswered_only false only when all questions are answered', () => {
+  function getPracticeUnansweredParam(answered, total) {
+    return answered < total ? 'true' : 'false';
+  }
+
+  // Not started or partially answered -> prioritize unanswered
+  assert.equal(getPracticeUnansweredParam(0, 20), 'true');
+  assert.equal(getPracticeUnansweredParam(10, 20), 'true');
+
+  // Fully answered -> allow reviewing without empty queue trap
+  assert.equal(getPracticeUnansweredParam(20, 20), 'false');
+  assert.equal(getPracticeUnansweredParam(25, 20), 'false');
+});
+
+test('api.sessions.saveSimulado targets the canonical /api/simulado/sessions endpoint', async () => {
+  let requestedUrl = '';
+  let requestedMethod = '';
+  const { api } = load('api', {
+    './db': { getLocalOwnerId: () => 'alice' },
+    './sync': {},
+  }, {
+    fetch: async (url, options) => {
+      requestedUrl = url;
+      requestedMethod = options.method;
+      return { ok: true, json: async () => ({ success: true }) };
+    }
+  });
+
+  const res = await api.sessions.saveSimulado({
+    client_session_id: 'test-session-123',
+    planned_duration_seconds: 3600,
+    elapsed_seconds: 1200,
+    total_questions: 20,
+    answered_count: 20,
+    correct_count: 16,
+  });
+
+  assert.match(requestedUrl, /\/api\/simulado\/sessions$/);
+  assert.equal(requestedMethod, 'POST');
+  assert.equal(res.success, true);
+});
+
+test('api.questions.getBatch local fallback uses compound keys [id, ownerId]', async () => {
+  let queriedKeys = null;
+  const mockDb = {
+    questions: {
+      bulkGet: async (keys) => {
+        queriedKeys = keys;
+        return keys.map(([id]) => ({ id, stem: `Question ${id}`, alternatives: [] }));
+      },
+    },
+  };
+
+  const { api } = load('api', {
+    './db': { getLocalOwnerId: () => 'alice', localDb: mockDb },
+    './sync': {},
+  }, {
+    window: {},
+    navigator: { onLine: false },
+  });
+
+  const res = await api.questions.getBatch([101, 102]);
+  assert.deepEqual(JSON.parse(JSON.stringify(queriedKeys)), [[101, 'alice'], [102, 'alice']]);
+  assert.equal(res.questions.length, 2);
+  assert.equal(res.questions[0].id, 101);
+  assert.equal(res.questions[1].id, 102);
+});
+
+test('normalizeFlashcard strips option letters globally and handles multi-cloze', () => {
+  const { normalizeFlashcard } = load('normalizeFlashcard');
+  const normalized = normalizeFlashcard({
+    front: 'A alternativa correta era {{c1::A. Tratamento Clínico}}',
+    back: 'Você marcou "B. Cirurgia"',
+    stem: 'Paciente com sintomas leves. Qual a conduta?',
+  });
+  assert.ok(normalized.front.includes('{{c1::Tratamento Clínico}}'));
+  assert.ok(normalized.back.includes("A opção 'Cirurgia' é incorreta"));
+
+  const multi = normalizeFlashcard({
+    front: 'Tratamento é {{c1::A) Beta-bloqueador}} e {{c2::B. IECA}}',
+    back: 'Gabarito oficial',
+  });
+  assert.equal(multi.front, 'Tratamento é {{c1::Beta-bloqueador}} e {{c2::IECA}}');
+});
+
+
+

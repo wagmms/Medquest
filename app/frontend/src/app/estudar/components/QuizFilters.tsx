@@ -1,6 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import clsx from "clsx";
-import { Filter, RotateCcw, Play, RefreshCw, Brain, SlidersHorizontal, BookOpenCheck, FileSignature, X, Search } from "lucide-react";
+import { Filter, RotateCcw, Play, RefreshCw, Brain, SlidersHorizontal, BookOpenCheck, FileSignature, X, Search, Sparkles } from "lucide-react";
 import { QuestionMeta } from "@/types/api";
 import { SubjectTreeSelector } from "@/components/SubjectTreeSelector";
 import { SavedQuizState } from "../QuizClient";
@@ -12,7 +12,7 @@ export interface QuizFiltersProps {
   resumeSavedQuiz: () => void;
   showCustomSession: boolean;
   setShowCustomSession: (val: boolean) => void;
-  startRecommendedSession: (kind: "adaptive" | "review") => void;
+  startRecommendedSession: (kind: "adaptive" | "review", focus?: "coverage" | "balanced" | "retention") => void;
   handleFilterSubmit: (e: React.FormEvent) => void;
   studyMode: "TUTOR" | "SIMULADO";
   setStudyMode: (mode: "TUTOR" | "SIMULADO") => void;
@@ -50,6 +50,7 @@ export function QuizFilters({
   showTopicTree,
   setShowTopicTree
 }: QuizFiltersProps) {
+  const [adaptiveFocus, setAdaptiveFocus] = useState<"coverage" | "balanced" | "retention">("balanced");
   const groupedInstitutions = useMemo(() => {
     const map = new Map<string, { codes: string[], n: number }>();
     for (const i of dynamicMeta?.institutions || []) {
@@ -145,14 +146,73 @@ return (
             <div className="flex items-center gap-2 text-primary font-bold"><RefreshCw size={18} /> Revisar o que venceu</div>
             <p className="mt-2 text-sm text-muted-foreground">Até 20 questões com revisão pendente. Prioridade para não deixar a memória expirar.</p>
           </button>
-          <button
-            type="button"
-            onClick={() => startRecommendedSession("adaptive")}
-            className="text-left rounded-xl border border-border bg-muted/30 p-5 transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          <div
+            className="text-left rounded-xl border border-border bg-muted/30 p-5 transition-colors hover:bg-muted/60 focus-within:ring-2 focus-within:ring-primary flex flex-col justify-between"
           >
-            <div className="flex items-center gap-2 text-foreground font-bold"><Brain size={18} className="text-primary" /> Sessão adaptativa</div>
-            <p className="mt-2 text-sm text-muted-foreground">30 questões priorizadas por lacunas, erros recentes e cobertura.</p>
-          </button>
+            <div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-foreground font-bold">
+                  <Brain size={18} className="text-primary" /> Sessão adaptativa
+                </div>
+                <button
+                  type="button"
+                  onClick={() => startRecommendedSession("adaptive", adaptiveFocus)}
+                  className="px-3 py-1 bg-primary text-primary-foreground text-xs font-bold rounded-lg hover:bg-primary/90 transition-all flex items-center gap-1 shadow-xs cursor-pointer"
+                >
+                  <Play size={12} fill="currentColor" /> Iniciar
+                </button>
+              </div>
+              <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                30 questões balanceadas com <span className="text-purple-600 dark:text-purple-400 font-semibold inline-flex items-center gap-0.5"><Sparkles size={11} /> Questões Gêmeas</span> para testar raciocínio sem decoreba.
+              </p>
+            </div>
+
+            <div className="mt-4 pt-3 border-t border-border/50">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Foco</span>
+                <span className="text-[11px] text-primary font-medium">
+                  {adaptiveFocus === "coverage" ? "70% Inéditas · 30% Revisão" :
+                   adaptiveFocus === "retention" ? "80% Revisão & Erros · 20% Inéditas" :
+                   "50% Inéditas · 50% Revisão"}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-1 bg-background p-1 rounded-lg border border-border">
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); setAdaptiveFocus("coverage"); }}
+                  className={clsx(
+                    "py-1 px-1.5 text-xs font-semibold rounded-md transition-all text-center cursor-pointer",
+                    adaptiveFocus === "coverage" ? "bg-primary text-primary-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
+                  )}
+                  title="Foco em cobrir o edital com novas questões"
+                >
+                  Cobertura
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); setAdaptiveFocus("balanced"); }}
+                  className={clsx(
+                    "py-1 px-1.5 text-xs font-semibold rounded-md transition-all text-center cursor-pointer",
+                    adaptiveFocus === "balanced" ? "bg-primary text-primary-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
+                  )}
+                  title="Equilíbrio entre questões inéditas e revisões"
+                >
+                  Equilibrado
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); setAdaptiveFocus("retention"); }}
+                  className={clsx(
+                    "py-1 px-1.5 text-xs font-semibold rounded-md transition-all text-center cursor-pointer",
+                    adaptiveFocus === "retention" ? "bg-primary text-primary-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
+                  )}
+                  title="Foco em fixação, Questões Gêmeas e correção de erros"
+                >
+                  Fixação
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
         <button
           type="button"
@@ -204,11 +264,20 @@ return (
           <label className="text-sm font-medium text-foreground">Status</label>
           <select 
             className="w-full bg-input border border-border rounded-md py-2.5 px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-            value={filters.status || ""}
-            onChange={(e) => setFilters({ ...filters, status: e.target.value })}
+            value={filters.status || (filters.unanswered_only === "true" ? "unanswered" : "")}
+            onChange={(e) => {
+              const val = e.target.value;
+              const next: Record<string, string | string[]> = { ...filters, status: val };
+              if (val === "unanswered") {
+                next.unanswered_only = "true";
+              } else if (val === "") {
+                delete next.unanswered_only;
+              }
+              setFilters(next);
+            }}
           >
-            <option className="bg-background text-foreground" value="">Todas</option>
-            <option className="bg-background text-foreground" value="unanswered">Não respondidas</option>
+            <option className="bg-background text-foreground" value="unanswered">Não respondidas (Padrão)</option>
+            <option className="bg-background text-foreground" value="">Todas (inclui já respondidas)</option>
             <option className="bg-background text-foreground" value="srs_due">Para Revisão (Repetição Espaçada)</option>
             <option className="bg-background text-foreground" value="wrong">Errei anteriormente</option>
           </select>

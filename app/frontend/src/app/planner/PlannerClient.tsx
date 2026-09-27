@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect, memo } from "react";
 import Link from "next/link";
 import { PlannerWeek, PlannerProgressMap, PlannerTopic, PlannerConfig, PlannerTopicProgressMap } from "@/types/api";
-import { api } from "@/lib/api";
+import { api, OfflineQueuedError } from "@/lib/api";
 import { getLocalOwnerId } from "@/lib/db";
 import { Check, CalendarDays, Clock, Activity, Loader2, RotateCcw, AlertTriangle, Zap, X, Play, Settings2, ExternalLink, Download, Gem, TrendingUp, AlertCircle } from "lucide-react";
 import clsx from "clsx";
@@ -78,6 +78,7 @@ const TopicRow = memo(function TopicRow({
           className="peer sr-only"
           checked={isChecked}
           onChange={() => toggleTopic(week, t.subtema, isChecked)}
+          aria-label={`Concluir tema ${t.subtema}`}
         />
         <label 
           htmlFor={key}
@@ -171,6 +172,7 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
   const [topicProgress, setTopicProgress] = useState<PlannerTopicProgressMap>(initialTopicProgress);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [showCalendarModal, setShowCalendarModal] = useState(false);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [exportingIcs, setExportingIcs] = useState(false);
   const [googleSyncing, setGoogleSyncing] = useState(false);
   const [googleSyncProgress, setGoogleSyncProgress] = useState<SyncProgress | null>(null);
@@ -231,19 +233,33 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
     return () => clearTimeout(timer);
   }, [initialTopicProgress]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (showResetConfirm) setShowResetConfirm(false);
+        if (showSettingsModal) setShowSettingsModal(false);
+        if (showCalendarModal) setShowCalendarModal(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [showResetConfirm, showSettingsModal, showCalendarModal]);
+
   const toggleTopic = async (week: number, subtema: string, currentStatus: boolean) => {
     const key = `${week}:${subtema}`;
     const completed = !currentStatus;
     setTopicProgress(prev => ({ ...prev, [key]: completed, [subtema]: completed }));
     try {
       await api.planner.markTopic(week, subtema, completed);
-    } catch {
+    } catch (error) {
+      if (error instanceof OfflineQueuedError) {
+        toast("Alteração salva offline. Sincronizará ao reconectar.", { icon: "📶" });
+        return;
+      }
       setTopicProgress(prev => ({ ...prev, [key]: currentStatus, [subtema]: currentStatus }));
       toast.error("Erro ao salvar o tema concluído.");
     }
   };
-
-  const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   const handleResetConfig = async () => {
     setShowResetConfirm(false);
@@ -252,8 +268,9 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
       await api.planner.resetConfig();
       toast.success("Progresso reiniciado com sucesso.");
       router.refresh();
-    } catch {
-      toast.error("Erro ao reiniciar progresso.");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Erro ao reiniciar progresso.";
+      toast.error(message);
       setLoadingAction(null);
     }
   };
@@ -265,8 +282,6 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
       router.push("/planner?intensive=true");
     }
   };
-
-
 
   const handleToggleStudy = async (week: number, currentStatus: boolean) => {
     const actionKey = `study-${week}`;
@@ -282,7 +297,11 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
 
     try {
       await api.planner.markStudy(week, newStatus);
-    } catch {
+    } catch (error) {
+      if (error instanceof OfflineQueuedError) {
+        toast("Status salvo offline. Sincronizará ao reconectar.", { icon: "📶" });
+        return;
+      }
       toast.error("Erro ao salvar progresso.");
       // Revert on error
       setProgress(prev => ({
@@ -300,7 +319,14 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
 
   const today = new Date();
   const totalTopics = plan.reduce((total, week) => total + week.topics.length, 0);
-  const completedTopics = Object.values(topicProgress).filter(Boolean).length;
+  const completedTopics = plan.reduce(
+    (total, week) =>
+      total +
+      week.topics.filter(
+        (t) => Boolean(topicProgress[`${week.week}:${t.subtema}`]) || Boolean(topicProgress[t.subtema])
+      ).length,
+    0
+  );
 
   return (
     <>
@@ -388,6 +414,8 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
           </div>
           <button 
             onClick={() => setShowSettingsModal(true)}
+            aria-haspopup="dialog"
+            aria-expanded={showSettingsModal}
             className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary bg-primary/10 hover:bg-primary/20 border border-primary/25 px-3 py-1.5 rounded-lg transition-colors shadow-sm"
           >
             <Settings2 size={15} />
@@ -395,6 +423,8 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
           </button>
           <button 
             onClick={() => setShowCalendarModal(true)}
+            aria-haspopup="dialog"
+            aria-expanded={showCalendarModal}
             className="flex items-center gap-1.5 text-xs sm:text-sm font-medium text-foreground bg-muted hover:bg-muted/80 px-2.5 py-1.5 rounded-lg border border-border transition-colors shadow-sm"
             title="Sincronizar cronograma com Google Agenda, Apple Calendar ou baixar arquivo .ics"
           >
@@ -404,6 +434,8 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
           <button 
             onClick={() => setShowResetConfirm(true)}
             disabled={loadingAction === "reset"}
+            aria-haspopup="dialog"
+            aria-expanded={showResetConfirm}
             className="flex items-center gap-1.5 text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 px-2.5 py-1.5 rounded-lg transition-colors"
           >
             {loadingAction === "reset" ? <Loader2 size={15} className="animate-spin" /> : <RotateCcw size={15} />}
@@ -416,7 +448,7 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
         {plan.map((week) => {
           const weekProgress = progress[week.week.toString()] || { studied: false, rev24h: false, rev7d: false, rev30d: false };
           const completedInWeek = week.topics.filter(topic => topicProgress[`${week.week}:${topic.subtema}`] || topicProgress[topic.subtema]).length;
-          const weekDate = new Date(week.date);
+          const weekDate = new Date(`${week.date.slice(0, 10)}T12:00:00`);
           // Highlight current week if it falls within this week's 7 days
           const isCurrentWeek = weekDate <= today && new Date(weekDate.getTime() + 7 * 24 * 60 * 60 * 1000) > today;
 
@@ -488,6 +520,7 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
                         checked={weekProgress.studied}
                         onChange={() => handleToggleStudy(week.week, weekProgress.studied)}
                         disabled={loadingAction === `study-${week.week}`}
+                        aria-label={`Concluir semana ${week.week}`}
                       />
                       <div className="w-5 h-5 border-2 border-muted-foreground rounded transition-colors peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
                         {loadingAction === `study-${week.week}` ? (
@@ -515,15 +548,24 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
       {showResetConfirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowResetConfirm(false)} />
-          <div className="relative bg-card border border-border rounded-2xl shadow-2xl p-6 max-w-sm w-full mx-4 animate-in fade-in zoom-in-95 duration-200">
-            <button onClick={() => setShowResetConfirm(false)} className="absolute top-4 right-4 p-1 rounded-full hover:bg-muted transition-colors text-muted-foreground">
+          <div 
+            role="dialog" 
+            aria-modal="true" 
+            aria-labelledby="reset-modal-title"
+            className="relative bg-card border border-border rounded-2xl shadow-2xl p-6 max-w-sm w-full mx-4 animate-in fade-in zoom-in-95 duration-200"
+          >
+            <button 
+              onClick={() => setShowResetConfirm(false)} 
+              aria-label="Fechar modal de confirmação"
+              className="absolute top-4 right-4 p-1 rounded-full hover:bg-muted transition-colors text-muted-foreground"
+            >
               <X size={18} />
             </button>
             <div className="flex flex-col items-center text-center gap-4">
               <div className="p-3 bg-destructive/10 rounded-full">
                 <AlertTriangle size={28} className="text-destructive" />
               </div>
-              <h3 className="text-lg font-bold text-foreground">Resetar Progresso do Planner?</h3>
+              <h3 id="reset-modal-title" className="text-lg font-bold text-foreground">Resetar Progresso do Planner?</h3>
               <p className="text-sm text-muted-foreground">Isso apagará TODO o seu progresso no planner. Esta ação não pode ser desfeita.</p>
               <div className="flex gap-3 w-full mt-2">
                 <button onClick={() => setShowResetConfirm(false)} className="flex-1 py-2.5 px-4 rounded-xl border border-border text-foreground hover:bg-muted transition-colors font-medium text-sm">Cancelar</button>
@@ -538,7 +580,12 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
       {showSettingsModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowSettingsModal(false)} />
-          <div className="relative z-10 max-h-[90vh] overflow-y-auto w-full max-w-2xl animate-in fade-in zoom-in-95 duration-200">
+          <div 
+            role="dialog" 
+            aria-modal="true" 
+            aria-label="Calibrar Perfil de Estudos"
+            className="relative z-10 max-h-[90vh] overflow-y-auto w-full max-w-2xl animate-in fade-in zoom-in-95 duration-200"
+          >
             <PlannerWizard
               initialConfig={config}
               onClose={() => setShowSettingsModal(false)}
@@ -552,9 +599,15 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
       {showCalendarModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowCalendarModal(false)} />
-          <div className="relative bg-card border border-border rounded-2xl shadow-2xl p-6 md:p-8 max-w-lg w-full z-10 animate-in fade-in zoom-in-95 duration-200">
+          <div 
+            role="dialog" 
+            aria-modal="true" 
+            aria-labelledby="calendar-modal-title"
+            className="relative bg-card border border-border rounded-2xl shadow-2xl p-6 md:p-8 max-w-lg w-full z-10 animate-in fade-in zoom-in-95 duration-200"
+          >
             <button 
               onClick={() => setShowCalendarModal(false)} 
+              aria-label="Fechar modal de sincronização"
               className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-muted transition-colors text-muted-foreground"
             >
               <X size={18} />
@@ -565,7 +618,7 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
                 <CalendarDays size={22} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-foreground">Sincronizar com Calendário</h3>
+                <h3 id="calendar-modal-title" className="text-xl font-bold text-foreground">Sincronizar com Calendário</h3>
                 <p className="text-xs text-muted-foreground">Aulas e revisões separadas com a duração real de estudo.</p>
               </div>
             </div>

@@ -248,7 +248,7 @@ test.describe('Offline Sync e Resiliência', () => {
     await page.click('button:has-text("Fácil")');
 
     // 4. Confirma que avançou para a tela de revisões concluídas
-    await expect(page.getByText(/Revisões de hoje concluídas|Tudo Revisado/i)).toBeVisible({ timeout: 10000 });
+    await expect(page.getByRole('heading', { name: 'Fila carregada concluída' })).toBeVisible({ timeout: 10000 });
   });
 
   test('preserva metodo e content-type ao manipular fila de sincronizacao', async ({ page }) => {

@@ -101,12 +101,17 @@ def planner_config():
     row_keys = row.keys() if hasattr(row, 'keys') else []
     inst_str = row["target_institution"] if "target_institution" in row_keys else None
     inst_list = [i.strip() for i in inst_str.split(",") if i.strip()] if inst_str else []
+    primary_inst = None
+    if inst_list and inst_list[0] not in ("Todas as Bancas", "TODAS"):
+        primary_inst = inst_list[0]
+
     return jsonify({
         "exam_date": row["exam_date"], "start_date": row["start_date"],
         "days_per_week": row["days_per_week"], "hours_per_day": row["hours_per_day"] if "hours_per_day" in row_keys else row["questions_per_day"],
         "target_score": row["target_score"] if "target_score" in row_keys else None,
         "target_institution": inst_str,
         "target_institutions": inst_list,
+        "primary_institution": primary_inst,
         "target_specialty": row["target_specialty"] if "target_specialty" in row_keys else None,
     })
 

@@ -1,4 +1,4 @@
-﻿import pytest
+import pytest
 
 
 def test_stats_benchmark(client):
@@ -46,6 +46,14 @@ def test_stats_error_notebook_summary(client):
     r = client.get("/api/stats/error-notebook-summary")
     assert r.status_code == 200
     data = r.get_json()
-    assert "ever_wrong_count" in data
-    assert "currently_unresolved_count" in data
+    assert data["ever_wrong_count"] >= 1
+    assert data["currently_unresolved_count"] >= 1
     assert "practice_url" in data
+
+    # Responder corretamente para resolver a questao pendente
+    client.post("/api/questions/1/attempt", json={"selected_letter": "B"})
+    r2 = client.get("/api/stats/error-notebook-summary")
+    assert r2.status_code == 200
+    data2 = r2.get_json()
+    assert data2["ever_wrong_count"] == data["ever_wrong_count"]
+    assert data2["currently_unresolved_count"] == data["currently_unresolved_count"] - 1

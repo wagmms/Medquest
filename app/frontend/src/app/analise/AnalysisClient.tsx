@@ -41,14 +41,36 @@ export function AnalysisClient({
   institutionRadar?: InstitutionRadarResponse | null;
 }) {
 
+  const [recoveredInstitutions, setRecoveredInstitutions] = useState<{ key: string; label: string }[]>([]);
+  const availableInstitutions = institutionOptions.length ? institutionOptions : recoveredInstitutions;
+  useEffect(() => {
+    if (institutionOptions.length) return;
+    let active = true;
+    api.stats.getBreakdown("institution")
+      .then(items => {
+        if (active && Array.isArray(items)) {
+          setRecoveredInstitutions(items.map(item => ({ key: item.key, label: item.label })));
+        }
+      })
+      .catch(error => console.error("Failed to recover institution options:", error));
+    return () => { active = false; };
+  }, [institutionOptions]);
+
   const [days, setDays] = useState<number>(14);
   const [localTimeline, setLocalTimeline] = useState<TimelineStat[]>(timeline);
   const [loadingTimeline, setLoadingTimeline] = useState(false);
+  const [timelineError, setTimelineError] = useState<string | null>(null);
   const [selectedInstitution, setSelectedInstitution] = useState(examReadiness.institution || "");
   const [localReadiness, setLocalReadiness] = useState(examReadiness);
   const [loadingReadiness, setLoadingReadiness] = useState(false);
+  const [readinessError, setReadinessError] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
   const isFirstMount = useRef(true);
   const isFirstReadinessMount = useRef(true);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     if (isFirstMount.current) {
@@ -58,12 +80,19 @@ export function AnalysisClient({
     
     const controller = new AbortController();
     setLoadingTimeline(true);
+    setTimelineError(null);
     api.stats.getTimeline(days, controller.signal)
       .then(data => {
-        if (!controller.signal.aborted) setLocalTimeline(data);
+        if (!controller.signal.aborted) {
+          setLocalTimeline(data);
+          setTimelineError(null);
+        }
       })
       .catch(error => {
-        if (!controller.signal.aborted) console.error("Failed to fetch timeline:", error);
+        if (!controller.signal.aborted) {
+          console.error("Failed to fetch timeline:", error);
+          setTimelineError("Não foi possível carregar a evolução de desempenho.");
+        }
       })
       .finally(() => {
         if (!controller.signal.aborted) setLoadingTimeline(false);
@@ -81,10 +110,23 @@ export function AnalysisClient({
     }
     const controller = new AbortController();
     setLoadingReadiness(true);
-    api.stats.getExamReadiness(selectedInstitution || undefined)
-      .then(data => { if (!controller.signal.aborted) setLocalReadiness(data); })
-      .catch(error => { if (!controller.signal.aborted) console.error("Failed to fetch readiness:", error); })
-      .finally(() => { if (!controller.signal.aborted) setLoadingReadiness(false); });
+    setReadinessError(null);
+    api.stats.getExamReadiness(selectedInstitution || undefined, controller.signal)
+      .then(data => {
+        if (!controller.signal.aborted) {
+          setLocalReadiness(data);
+          setReadinessError(null);
+        }
+      })
+      .catch(error => {
+        if (!controller.signal.aborted) {
+          console.error("Failed to fetch readiness:", error);
+          setReadinessError("Falha ao atualizar dados de prontidão deste edital.");
+        }
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setLoadingReadiness(false);
+      });
     return () => controller.abort();
   }, [selectedInstitution]);
 
@@ -186,16 +228,29 @@ export function AnalysisClient({
               <select
                 value={selectedInstitution}
                 onChange={(e) => setSelectedInstitution(e.target.value)}
-                className="bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground focus:ring-2 focus:ring-primary/20"
+                className="bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground focus:ring-2 focus:ring-primary/20 min-h-[44px]"
                 aria-label="Selecionar edital da instituição"
               >
                 <option value="">Banco Geral (Padrão)</option>
-                {institutionOptions.map((opt) => (
+                {availableInstitutions.map((opt) => (
                   <option key={opt.key} value={opt.key}>{opt.label}</option>
                 ))}
               </select>
             </label>
           </div>
+
+          {readinessError && (
+            <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-xs text-destructive flex items-center justify-between">
+              <span>{readinessError}</span>
+              <button
+                type="button"
+                onClick={() => setSelectedInstitution((prev) => prev)}
+                className="font-semibold underline ml-2 cursor-pointer"
+              >
+                Tentar novamente
+              </button>
+            </div>
+          )}
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
             <div className="lg:col-span-1 bg-muted/20 border border-border rounded-2xl p-5 flex flex-col justify-between gap-4">
@@ -359,7 +414,7 @@ export function AnalysisClient({
         {/* Radar Comparativo de Bancas */}
         <InstitutionRadarSection
           initialData={institutionRadar}
-          institutionOptions={institutionOptions}
+          institutionOptions={availableInstitutions}
           defaultInstitution={selectedInstitution || "USP-SP"}
         />
         
@@ -471,77 +526,86 @@ export function AnalysisClient({
 
           <div className="bg-card border border-border shadow-sm rounded-2xl p-6 h-[420px] relative overflow-hidden flex flex-col min-w-0">
             <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -z-10" />
-            <div className="flex-1 min-h-0 w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={chartBreakdown}
-                  layout="vertical"
-                  margin={{ top: 10, right: 40, left: 10, bottom: 5 }}
-                >
-                  <defs>
-                    <linearGradient id="colorSuccess" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="var(--success)" stopOpacity={0.8}/>
-                      <stop offset="100%" stopColor="var(--success)" stopOpacity={1}/>
-                    </linearGradient>
-                    <linearGradient id="colorWarning" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="var(--warning)" stopOpacity={0.8}/>
-                      <stop offset="100%" stopColor="var(--warning)" stopOpacity={1}/>
-                    </linearGradient>
-                    <linearGradient id="colorDestructive" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="var(--destructive)" stopOpacity={0.8}/>
-                      <stop offset="100%" stopColor="var(--destructive)" stopOpacity={1}/>
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="4 4" horizontal={false} stroke="var(--border)" opacity={0.5} />
-                  <XAxis type="number" domain={[0, 100]} hide />
-                  <YAxis 
-                    dataKey="shortLabel" 
-                    type="category" 
-                    axisLine={false} 
-                    tickLine={false} 
-                    width={220} 
-                    tick={{ fill: 'var(--muted-foreground)', fontSize: 13, fontWeight: 500 }} 
-                  />
-                  <Tooltip 
-                    cursor={{ fill: 'var(--muted)', opacity: 0.15 }}
-                    contentStyle={{ borderRadius: '12px', border: '1px solid var(--border)', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
-                    content={({ active, payload }) => {
-                      if (active && payload && payload.length) {
-                        const data = payload[0].payload;
-                        return (
-                          <div className="bg-popover/95 backdrop-blur-md border border-border shadow-xl rounded-xl p-4 text-sm z-50 min-w-[200px]">
-                            <p className="font-bold text-popover-foreground mb-3 text-base">{data.label}</p>
-                            <div className="flex justify-between items-center mb-2">
-                              <span className="text-muted-foreground">Tentativas</span>
-                              <span className="font-semibold text-foreground bg-muted px-2 py-0.5 rounded">{data.attempts}</span>
+            {chartBreakdown.length > 0 ? (
+              <div className="flex-1 min-h-0 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={chartBreakdown}
+                    layout="vertical"
+                    margin={{ top: 10, right: 40, left: 10, bottom: 5 }}
+                  >
+                    <defs>
+                      <linearGradient id="colorSuccess" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stopColor="var(--success)" stopOpacity={0.8}/>
+                        <stop offset="100%" stopColor="var(--success)" stopOpacity={1}/>
+                      </linearGradient>
+                      <linearGradient id="colorWarning" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stopColor="var(--warning)" stopOpacity={0.8}/>
+                        <stop offset="100%" stopColor="var(--warning)" stopOpacity={1}/>
+                      </linearGradient>
+                      <linearGradient id="colorDestructive" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stopColor="var(--destructive)" stopOpacity={0.8}/>
+                        <stop offset="100%" stopColor="var(--destructive)" stopOpacity={1}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="4 4" horizontal={false} stroke="var(--border)" opacity={0.5} />
+                    <XAxis type="number" domain={[0, 100]} hide />
+                    <YAxis 
+                      dataKey="shortLabel" 
+                      type="category" 
+                      axisLine={false} 
+                      tickLine={false} 
+                      width={220} 
+                      tick={{ fill: 'var(--muted-foreground)', fontSize: 13, fontWeight: 500 }} 
+                    />
+                    <Tooltip 
+                      cursor={{ fill: 'var(--muted)', opacity: 0.15 }}
+                      contentStyle={{ borderRadius: '12px', border: '1px solid var(--border)', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
+                      content={({ active, payload }) => {
+                        if (active && payload && payload.length) {
+                          const data = payload[0].payload;
+                          return (
+                            <div className="bg-popover/95 backdrop-blur-md border border-border shadow-xl rounded-xl p-4 text-sm z-50 min-w-[200px]">
+                              <p className="font-bold text-popover-foreground mb-3 text-base">{data.label}</p>
+                              <div className="flex justify-between items-center mb-2">
+                                <span className="text-muted-foreground">Tentativas</span>
+                                <span className="font-semibold text-foreground bg-muted px-2 py-0.5 rounded">{data.attempts}</span>
+                              </div>
+                              <div className="flex justify-between items-center mb-3">
+                                <span className="text-muted-foreground">Acertos</span>
+                                <span className="font-semibold text-success bg-success/10 px-2 py-0.5 rounded">{data.correct}</span>
+                              </div>
+                              <div className="pt-3 border-t border-border flex justify-between items-center">
+                                <span className="text-muted-foreground font-medium">Acurácia</span>
+                                <span className={clsx("font-bold text-lg", data.accPct >= 70 ? "text-success" : data.accPct >= 50 ? "text-warning" : "text-destructive")}>
+                                  {data.accPct}%
+                                </span>
+                              </div>
                             </div>
-                            <div className="flex justify-between items-center mb-3">
-                              <span className="text-muted-foreground">Acertos</span>
-                              <span className="font-semibold text-success bg-success/10 px-2 py-0.5 rounded">{data.correct}</span>
-                            </div>
-                            <div className="pt-3 border-t border-border flex justify-between items-center">
-                              <span className="text-muted-foreground font-medium">Acurácia</span>
-                              <span className={clsx("font-bold text-lg", data.accPct >= 70 ? "text-success" : data.accPct >= 50 ? "text-warning" : "text-destructive")}>
-                                {data.accPct}%
-                              </span>
-                            </div>
-                          </div>
-                        );
-                      }
-                      return null;
-                    }}
-                  />
-                  <Bar dataKey="accPct" radius={[0, 6, 6, 0]} barSize={20}>
-                    {chartBreakdown.map((entry, index) => {
-                      const acc = (entry.accuracy || 0) * 100;
-                      const fillId = acc >= 70 ? 'url(#colorSuccess)' : acc >= 50 ? 'url(#colorWarning)' : 'url(#colorDestructive)';
-                      return <Cell key={`cell-${index}`} fill={fillId} />;
-                    })}
-                    <LabelList dataKey="accPct" position="right" formatter={(val) => `${val ?? 0}%`} style={{ fill: 'var(--foreground)', fontSize: 13, fontWeight: 700 }} />
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
+                          );
+                        }
+                        return null;
+                      }}
+                    />
+                    <Bar dataKey="accPct" radius={[0, 6, 6, 0]} barSize={20}>
+                      {chartBreakdown.map((entry, index) => {
+                        const acc = (entry.accuracy || 0) * 100;
+                        const fillId = acc >= 70 ? 'url(#colorSuccess)' : acc >= 50 ? 'url(#colorWarning)' : 'url(#colorDestructive)';
+                        return <Cell key={`cell-${index}`} fill={fillId} />;
+                      })}
+                      <LabelList dataKey="accPct" position="right" formatter={(val) => `${val ?? 0}%`} style={{ fill: 'var(--foreground)', fontSize: 13, fontWeight: 700 }} />
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            ) : (
+              <div className="h-full flex flex-col items-center justify-center text-muted-foreground gap-3">
+                <svg className="w-10 h-10 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 20V10M12 20V4M6 20v-6" />
+                </svg>
+                <p>Nenhuma questão respondida ainda para gerar o desempenho por instituição.</p>
+              </div>
+            )}
           </div>
         </section>
 
@@ -565,8 +629,10 @@ export function AnalysisClient({
                   key={d}
                   onClick={() => setDays(d)}
                   disabled={loadingTimeline}
+                  aria-pressed={days === d}
+                  aria-label={`Ver evolução de ${d} dias`}
                   className={clsx(
-                    "px-3 py-1 text-sm font-medium rounded-md transition-colors cursor-pointer",
+                    "px-3 py-1.5 text-sm font-medium rounded-md transition-colors cursor-pointer min-h-[38px] min-w-[44px] inline-flex items-center justify-center",
                     days === d 
                       ? "bg-background text-foreground shadow-sm" 
                       : "text-muted-foreground hover:text-foreground hover:bg-muted/80",
@@ -578,6 +644,18 @@ export function AnalysisClient({
               ))}
             </div>
           </div>
+          {timelineError && (
+            <div className="mb-4 p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-xs text-destructive flex items-center justify-between">
+              <span>{timelineError}</span>
+              <button
+                type="button"
+                onClick={() => setDays(days)}
+                className="font-semibold underline ml-2 cursor-pointer"
+              >
+                Tentar novamente
+              </button>
+            </div>
+          )}
           <p className="text-xs text-muted-foreground -mt-3 mb-3">Acurácia por dia oscila com amostras pequenas; use a tendência junto com o volume de questões.</p>
           <div className="bg-card border border-border shadow-sm rounded-2xl p-6 h-[400px] relative overflow-hidden flex flex-col min-w-0">
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-success/5 to-transparent opacity-50 pointer-events-none" />
@@ -682,6 +760,11 @@ export function AnalysisClient({
             </div>
 
             {(() => {
+              if (!isMounted) {
+                return (
+                  <div className="w-full h-[105px] bg-muted/20 animate-pulse rounded-lg" />
+                );
+              }
               const hData = (timeline180 && timeline180.length > 0) ? timeline180 : localTimeline;
               if (!hData || hData.length === 0) {
                 return (

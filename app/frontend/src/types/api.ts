@@ -23,6 +23,7 @@ export interface OverviewStats {
   exam_date?: string | null;
   target_score?: number | null;
   target_institution?: string | null;
+  primary_institution?: string | null;
 }
 
 export interface CoverageSubtema {
@@ -270,6 +271,7 @@ export interface PlannerConfig {
   target_score?: number;
   target_institution?: string;
   target_institutions?: string[];
+  primary_institution?: string;
   target_specialty?: string;
 }
 
@@ -337,6 +339,8 @@ export interface SubtemaItem {
   n: number;
 }
 
+export type AdaptiveFocus = "coverage" | "balanced" | "retention";
+
 export interface QuestionListItem {
   id: number;
   source_file: string;
@@ -352,6 +356,10 @@ export interface QuestionListItem {
   adaptive_score?: number;
   adaptive_reasons?: string[];
   retrievability?: number | null;
+  is_twin?: boolean;
+  twin_for_question_id?: number;
+  twin_origin_institution?: string;
+  twin_subtema?: string;
 }
 
 export interface QuestionAlternative {
@@ -386,7 +394,7 @@ export interface AttemptResult {
   is_correct: boolean | null;
   correct_letter: string;
   explanation: string | null;
-  next_review_date: string;
+  next_review_date: string | null;
   is_discursive?: boolean;
 }
 
@@ -397,6 +405,7 @@ export interface BatchAttemptItem {
   confidence?: string;
   is_correct?: boolean;
   user_answer_text?: string;
+  twin_for_question_id?: number;
 }
 
 export interface BatchAttemptResultItem {

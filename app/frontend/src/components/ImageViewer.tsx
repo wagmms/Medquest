@@ -47,6 +47,9 @@ export function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Visualizador de Imagem Ampliada"
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
           onClick={onClose}
           onWheel={handleWheel}
@@ -54,8 +57,8 @@ export function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerProps) {
           {/* Botão de Fechar */}
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors bg-black/50 p-2 rounded-full"
-            aria-label="Fechar"
+            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors bg-black/50 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            aria-label="Fechar visualização de imagem"
           >
             <span className="material-symbols-outlined text-2xl">close</span>
           </button>
@@ -67,16 +70,18 @@ export function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerProps) {
           >
             <button 
               onClick={() => setScale((s) => Math.max(s - 0.5, 1))}
-              className="p-1 hover:bg-white/20 rounded-full transition-colors"
+              className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-white/20 rounded-full transition-colors cursor-pointer"
+              aria-label="Diminuir zoom"
             >
               <span className="material-symbols-outlined text-xl">zoom_out</span>
             </button>
-            <span className="text-sm font-medium min-w-[3rem] text-center">
+            <span className="text-sm font-medium min-w-[3rem] text-center select-none">
               {Math.round(scale * 100)}%
             </span>
             <button 
               onClick={() => setScale((s) => Math.min(s + 0.5, 4))}
-              className="p-1 hover:bg-white/20 rounded-full transition-colors"
+              className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-white/20 rounded-full transition-colors cursor-pointer"
+              aria-label="Aumentar zoom"
             >
               <span className="material-symbols-outlined text-xl">zoom_in</span>
             </button>

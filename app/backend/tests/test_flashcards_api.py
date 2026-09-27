@@ -315,3 +315,42 @@ def test_anki_sync_state_batch_and_no_n_plus_one(client, monkeypatch):
     assert sync_resp2.status_code == 200
     assert sync_resp2.get_json()["updated"] == 2
     assert select_count == 1
+
+
+def test_flashcards_deck_filter_geral_and_due_alias(client):
+    # Generates a card with default deck (Geral)
+    gen = client.post("/api/flashcards/generate", json={"question_id": 1, "wrong_letter": "A"})
+    assert gen.status_code == 200
+    card_id = gen.get_json()["id"]
+
+    # Also import a card into a custom deck
+    imported = client.post("/api/flashcards/import/batch", json={
+        "deck_name": "Cardiologia",
+        "cards": [{
+            "front": "Cardio Q",
+            "back": "Cardio A",
+            "anki_nid": 7771,
+        }]
+    })
+    assert imported.status_code == 200
+
+    # Query via /api/flashcards/due alias
+    r_alias = client.get("/api/flashcards/due")
+    assert r_alias.status_code == 200
+    all_due = r_alias.get_json()
+    assert any(c["id"] == card_id for c in all_due)
+
+    # Query specifically filtering for deck=Geral (must find card_id even if deck_name is NULL or 'Geral')
+    r_geral = client.get("/api/flashcards/review?deck=Geral")
+    assert r_geral.status_code == 200
+    geral_cards = r_geral.get_json()
+    assert any(c["id"] == card_id for c in geral_cards)
+    assert not any(c["front"] == "Cardio Q" for c in geral_cards)
+
+    # Query specifically filtering for deck=Cardiologia
+    r_cardio = client.get("/api/flashcards/review?deck=Cardiologia")
+    assert r_cardio.status_code == 200
+    cardio_cards = r_cardio.get_json()
+    assert len(cardio_cards) == 1
+    assert cardio_cards[0]["front"] == "Cardio Q"
+

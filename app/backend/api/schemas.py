@@ -57,6 +57,7 @@ class AttemptIn(APIInput):
     confidence: Literal["chutei", "duvida", "certeza", "defer"] | None = None
     is_correct: bool | None = None
     user_answer_text: str | None = Field(default=None, max_length=10000)
+    twin_for_question_id: int | None = None
 
 
 class BatchAttemptItem(APIInput):
@@ -66,6 +67,7 @@ class BatchAttemptItem(APIInput):
     confidence: Literal["chutei", "duvida", "certeza", "defer"] | None = None
     is_correct: bool | None = None
     user_answer_text: str | None = Field(default=None, max_length=10000)
+    twin_for_question_id: int | None = None
 
 
 class BatchAttemptIn(APIInput):
@@ -75,6 +77,7 @@ class BatchAttemptIn(APIInput):
 class ReviewIn(APIInput):
     confidence: Literal["chutei", "duvida", "certeza"]
     is_correct: bool | None = None
+    twin_for_question_id: int | None = None
 
 
 class PlannerConfigIn(APIInput):
