@@ -836,10 +836,44 @@ export function SimuladoClient({
   }, [state, queueId, queue, answers, detailsCache]);
 
 
+  const toggleEliminate = useCallback((letter: string) => {
+    if (state !== "PLAYING") return;
+    const currentQ = queue[currentIndex];
+    if (!currentQ) return;
+    const qid = currentQ.id;
+    setEliminatedMap(prev => {
+      const currentList = prev[qid] || [];
+      const isEliminated = currentList.includes(letter);
+      const nextList = isEliminated
+        ? currentList.filter(l => l !== letter)
+        : [...currentList, letter];
+      return { ...prev, [qid]: nextList };
+    });
+    // If eliminating the currently selected letter, clear answer
+    setAnswers(prev => {
+      if (prev[qid] === letter) {
+        const next = { ...prev };
+        delete next[qid];
+        return next;
+      }
+      return prev;
+    });
+  }, [state, queue, currentIndex]);
+
   const handleSelect = useCallback((letter: string) => {
     if (state !== "PLAYING") return;
     const currentQ = queue[currentIndex];
-    setAnswers(prev => ({ ...prev, [currentQ.id]: letter }));
+    if (!currentQ) return;
+    const qid = currentQ.id;
+    // Un-eliminate if selected
+    setEliminatedMap(prev => {
+      if (!prev[qid]?.includes(letter)) return prev;
+      return {
+        ...prev,
+        [qid]: prev[qid].filter(l => l !== letter)
+      };
+    });
+    setAnswers(prev => ({ ...prev, [qid]: letter }));
   }, [state, queue, currentIndex]);
 
   const toggleFlag = useCallback(() => {
@@ -886,7 +920,13 @@ export function SimuladoClient({
           if (key in idxMap) {
             const idx = idxMap[key];
             if (idx < (detail.alternatives || []).length) {
-              handleSelect(detail.alternatives[idx].letter);
+              const letter = detail.alternatives[idx].letter;
+              if (e.shiftKey || e.altKey) {
+                e.preventDefault();
+                toggleEliminate(letter);
+              } else {
+                handleSelect(letter);
+              }
             }
           }
         }
@@ -901,7 +941,7 @@ export function SimuladoClient({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [state, currentIndex, queue, detailsCache, handleSelect, toggleFlag, showAreaSummary]);
+  }, [state, currentIndex, queue, detailsCache, handleSelect, toggleEliminate, toggleFlag, showAreaSummary]);
 
 
   // Filtro de questões visíveis na sidebar
@@ -1567,8 +1607,10 @@ export function SimuladoClient({
               </button>
             </div>
 
-            <div className="hidden lg:flex items-center justify-center gap-2 px-3 py-1 bg-muted/50 rounded-full text-xs text-muted-foreground font-medium self-center">
+            <div className="hidden xl:flex items-center justify-center gap-2 px-3 py-1 bg-muted/50 rounded-full text-xs text-muted-foreground font-medium self-center">
               <span className="flex items-center gap-1"><kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">A-E</kbd> ou <kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">1-5</kbd> Selecionar</span>
+              <span className="w-1 h-1 rounded-full bg-border" />
+              <span className="flex items-center gap-1"><kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">Shift+A-E</kbd> ou ✂️ Riscar</span>
               <span className="w-1 h-1 rounded-full bg-border" />
               <span className="flex items-center gap-1"><kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">F</kbd> Marcar p/ Revisão</span>
               <span className="w-1 h-1 rounded-full bg-border" />
@@ -1706,6 +1748,7 @@ export function SimuladoClient({
                 {qDetail.alternatives.map((alt) => {
                   const isSelected = answers[qDetail.id] === alt.letter;
                   const res = resultsMap[qDetail.id];
+                  const isEliminated = (eliminatedMap[qDetail.id] || []).includes(alt.letter);
 
                   let altClass = "bg-card border-border hover:bg-muted/50 cursor-pointer";
 
@@ -1724,34 +1767,81 @@ export function SimuladoClient({
                     }
                   } else {
                     if (isSelected) altClass = "bg-primary/10 border-primary cursor-pointer ring-1 ring-primary";
+                    else if (isEliminated) altClass = "bg-muted/20 border-border/60 opacity-60 hover:opacity-85 cursor-pointer shadow-none";
                   }
 
                   return (
-                    <button
+                    <div
                       key={alt.letter}
+                      role="button"
+                      tabIndex={isReview ? -1 : 0}
                       onClick={() => !isReview && handleSelect(alt.letter)}
-                      disabled={isReview}
+                      onKeyDown={(e) => {
+                        if (isReview) return;
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          handleSelect(alt.letter);
+                        }
+                      }}
+                      onContextMenu={(e) => {
+                        if (!isReview) {
+                          e.preventDefault();
+                          toggleEliminate(alt.letter);
+                        }
+                      }}
                       aria-pressed={isSelected}
+                      aria-disabled={isReview}
                       className={clsx(
-                        "text-left p-4 rounded-xl border transition-all flex items-start gap-4 w-full",
+                        "group relative text-left p-3.5 sm:p-4 rounded-xl border transition-all flex items-start gap-2.5 sm:gap-3 w-full select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                         altClass
                       )}
                     >
+                      {/* Scissors Button / Spacer */}
+                      {!isReview ? (
+                        <button
+                          type="button"
+                          title={isEliminated ? `Restaurar alternativa ${alt.letter}` : `Riscar alternativa ${alt.letter} (Shift+${alt.letter} ou botão direito)`}
+                          aria-label={isEliminated ? `Restaurar alternativa ${alt.letter}` : `Riscar alternativa ${alt.letter}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleEliminate(alt.letter);
+                          }}
+                          className={clsx(
+                            "w-6 h-8 shrink-0 flex items-center justify-center rounded-md transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary",
+                            isEliminated
+                              ? "opacity-100 text-destructive hover:scale-110"
+                              : "opacity-0 group-hover:opacity-80 hover:opacity-100 hover:text-primary max-md:opacity-40 text-muted-foreground"
+                          )}
+                        >
+                          <Scissors size={15} className={clsx("transition-transform duration-150", isEliminated && "rotate-45")} />
+                        </button>
+                      ) : (
+                        <div className="w-6 h-8 shrink-0 flex items-center justify-center text-muted-foreground/40">
+                          {isEliminated && res && alt.letter !== res.correct_letter && (
+                            <Scissors size={13} className="opacity-40 rotate-45 text-destructive" />
+                          )}
+                        </div>
+                      )}
+
                       <div className={clsx(
-                        "w-8 h-8 shrink-0 flex items-center justify-center rounded-lg font-bold text-sm border border-transparent",
+                        "w-8 h-8 shrink-0 flex items-center justify-center rounded-lg font-bold text-sm border border-transparent transition-colors",
                         isReview && alt.letter === res?.correct_letter ? "bg-success text-success-foreground" :
                         isReview && isSelected && !res?.is_correct ? "bg-destructive text-destructive-foreground" :
                         isSelected && !isReview ? "bg-primary text-primary-foreground" :
+                        isEliminated && !isReview ? "bg-muted/40 text-muted-foreground/60 border-border/50" :
                         "bg-muted text-muted-foreground"
                       )}>
                         {alt.letter}
                       </div>
-                      <div className="pt-1.5 text-foreground leading-relaxed flex-1">
+                      <div className={clsx(
+                        "pt-1 text-foreground leading-relaxed flex-1 transition-all",
+                        isEliminated && (!isReview || alt.letter !== res?.correct_letter) && "line-through text-muted-foreground/75 decoration-muted-foreground/60"
+                      )}>
                         {!isReview && (qDetail.is_discursive || (qDetail.alternatives || []).length <= 1)
                           ? "Confirmar resposta da questão discursiva"
                           : alt.text}
                       </div>
-                    </button>
+                    </div>
                   );
                 })}
               </div>
