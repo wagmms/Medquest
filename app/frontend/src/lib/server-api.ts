@@ -92,7 +92,7 @@ export const serverApi = {
     getProgress: (subtema: string) => serverFetch<ThemeProgress>(`/api/themes/progress?${new URLSearchParams({ subtema })}`, { cache: "no-store" }),
   },
   stats: {
-    getOverview: () => serverFetch<OverviewStats>("/api/stats/overview", { next: { tags: ['stats'] } }),
+    getOverview: () => serverFetch<OverviewStats>("/api/stats/overview", { cache: "no-store" }),
     getCoverage: () => serverFetch<CoverageResponse>("/api/coverage", { cache: "no-store" }),
     getTimeline: (days: number = 14) => serverFetch<TimelineStat[]>(`/api/stats/timeline?days=${days}`, { next: { tags: ['stats'] } }),
     getWeakTopics: () => serverFetch<WeakTopic[]>("/api/stats/weak-topics", { next: { tags: ['stats'] } }),

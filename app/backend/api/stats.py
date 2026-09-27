@@ -148,7 +148,8 @@ def _get_overview_metrics(db, user_id: str, now_utc: datetime) -> dict:
             (SELECT COUNT(*) FROM spaced_repetition
              WHERE next_review_date <= ? AND user_id = ?) AS srs_due_count,
             (SELECT COUNT(*) FROM flashcards
-             WHERE next_review_date <= ? AND user_id = ?) AS flashcards_due_count,
+             WHERE next_review_date <= ? AND user_id = ?
+               AND (report_status IS NULL OR TRIM(report_status) = '')) AS flashcards_due_count,
             (SELECT SUM(is_correct) FROM attempts WHERE answered_at >= ? AND user_id = ?) AS last7_correct,
             (SELECT COUNT(*) FROM attempts WHERE answered_at >= ? AND user_id = ?) AS last7_total,
             (SELECT SUM(is_correct) FROM attempts

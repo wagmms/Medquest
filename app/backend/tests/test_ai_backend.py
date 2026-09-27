@@ -1,4 +1,4 @@
-﻿"""Testes para a suite de Inteligência Artificial Google Gemini 3.7 Flash no Backend."""
+"""Testes para a suite de Inteligência Artificial Google Gemini 3.7 Flash no Backend."""
 from api import ai
 
 
@@ -123,7 +123,7 @@ def test_flashcard_fallback_normalizes_options_without_ai(monkeypatch):
         wrong_text="A) Não tratar",
     )
 
-    assert "{{c1::Iniciar tratamento adequado}}" in card["front"]
+    assert "{{c1::Iniciar tratamento adequado" in card["front"]
     assert "Não tratar" in card["back"]
 
 

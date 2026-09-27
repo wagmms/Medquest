@@ -356,6 +356,8 @@ def format_medway_golden_explanation(
             opt_raw = exp_dict.get(f"option_{let_lower}") or exp_dict.get(f"short_option_{let_lower}") or ""
             opt_clean = clean_html_to_markdown(opt_raw)
             opt_clean_body = re.sub(r"^[A-E]\)\s*", "", opt_clean, flags=re.IGNORECASE)
+            opt_clean_body = re.sub(r"^(?:[-*•]\s*)?(?:Alternativa|Letra)\s+[A-E](?:\s*\([^)]*\))?\s*:?\s*", "", opt_clean_body, flags=re.IGNORECASE)
+            opt_clean_body = re.sub(r"^[A-E]\s*-\s*(?:Correta|Incorreta)\.?\s*", "", opt_clean_body, flags=re.IGNORECASE).strip()
 
             if let == correct_letter:
                 correct_text = (

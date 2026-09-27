@@ -91,6 +91,88 @@ def _determine_question_type(stem: str, correct_text: str) -> str:
     return "Conceito Chave"
 
 
+def _extract_key_clinical_data(stem: str) -> str:
+    """Extract key clinical findings (labs, vitals, imaging) from the stem.
+
+    Returns a compact bullet list of salient data points so that the flashcard
+    front preserves the diagnostic clues instead of losing them in a vague
+    1-sentence summary.
+    """
+    if not stem:
+        return ""
+    findings = []
+
+    # Lab values: e.g. "Hb 7,2 g/dL", "leucócitos: 18.000", "PCR 120 mg/L"
+    lab_pattern = re.compile(
+        r'(?:Hb|Hemoglobina|Ht|Hematócrito|Leucócitos|Plaquetas|PCR|VHS|'
+        r'Creatinina|Ureia|Potássio|Sódio|Glicemia|HbA1c|TSH|T4|TGO|TGP|'
+        r'Bilirrubina|Albumina|INR|TP|TTPA|Lactato|pH|pO2|pCO2|HCO3|BE|'
+        r'Troponina|BNP|NT-proBNP|Amilase|Lipase|Cálcio|Magnésio|Fósforo|'
+        r'Ferritina|Ferro sérico|Saturação de transferrina|DHL|LDH|FA|GGT|'
+        r'Fibrinogênio|D-dímero|CEA|CA-?125|CA-?19|AFP|PSA|Beta-?HCG)'
+        r'\s*[:=]?\s*[\d]+[,.]?[\d]*\s*(?:g/dL|mg/dL|mg/L|mEq/L|mmol/L|'
+        r'µg/L|ng/mL|pg/mL|U/L|mm³|/mm³|cel/mm³|%|mmHg|mUI/mL|UI/L|'
+        r'mil/mm³|×\s*10[³⁹])?',
+        re.IGNORECASE
+    )
+    for m in lab_pattern.finditer(stem):
+        findings.append(m.group().strip())
+
+    # Vital signs: e.g. "PA: 80x50 mmHg", "FC: 120 bpm", "Tax: 38,5°C"
+    vitals_pattern = re.compile(
+        r'(?:PA|Pressão arterial|FC|Frequência cardíaca|FR|Frequência respiratória|'
+        r'Tax?|Temperatura|SpO2|SatO2|Sat\.?\s*O2|Glasgow)'
+        r'\s*[:=]?\s*[\d]+[,./x]?[\d]*\s*(?:mmHg|bpm|irpm|°C|%)?',
+        re.IGNORECASE
+    )
+    for m in vitals_pattern.finditer(stem):
+        val = m.group().strip()
+        if val not in findings:
+            findings.append(val)
+
+    # Deduplicate preserving order, cap at 6 most relevant
+    seen = set()
+    unique = []
+    for f in findings:
+        key = f.lower()
+        if key not in seen:
+            seen.add(key)
+            unique.append(f)
+    return " | ".join(unique[:6])
+
+
+def _extract_clinical_pearl(explanation: str) -> str:
+    """Extract a concise clinical teaching pearl from the explanation.
+
+    Looks for patterns like 'Lembre-se:', 'Atenção:', 'Importante:', 'Dica:',
+    or bold sentences that contain a clinical rule/guideline.
+    """
+    if not explanation:
+        return ""
+    # Direct teaching patterns
+    pearl_patterns = [
+        r'(?:Lembre-se|Atenção|Importante|Dica|Regra|Conceito[- ]chave|Palavra[- ]chave|Macete):?\s*([^\n\r]+)',
+        r'\*\*(?:Lembre-se|Atenção|Importante|Dica|Regra)\*\*:?\s*([^\n\r]+)',
+    ]
+    for pat in pearl_patterns:
+        m = re.search(pat, explanation, re.IGNORECASE)
+        if m:
+            pearl = m.group(1).strip().rstrip('.')
+            if 15 < len(pearl) < 200:
+                return pearl + '.'
+    return ""
+
+
+# Mapping from question type to a short cloze hint for {{c1::answer::hint}}
+_CLOZE_HINT_MAP = {
+    "Conduta / Manejo indicado": "conduta",
+    "Diagnóstico mais provável": "diagnóstico",
+    "Investigação / Exame complementar": "exame",
+    "Mecanismo / Fisiopatologia": "mecanismo",
+    "Conceito Chave": "conceito",
+}
+
+
 def _extract_medical_cloze_fallback(
     stem: str,
     correct_text: str,
@@ -105,6 +187,7 @@ def _extract_medical_cloze_fallback(
     """
     Gera um Cloze Flashcard didático, clínico e de alta qualidade baseado no erro médico,
     com contexto do caso, pergunta clínica focada, Pulo do Gato e análise de distrator.
+    Preserva achados clínicos-chave (labs, sinais vitais) para não perder contexto.
     """
     # O fallback também é chamado diretamente quando os provedores de IA estão
     # indisponíveis; portanto, não pode depender da normalização feita pela
@@ -126,14 +209,34 @@ def _extract_medical_cloze_fallback(
     scenario = _extract_clinical_scenario(stem)
     q_type = _determine_question_type(stem, target_cloze)
     why_wrong = _extract_why_wrong(explanation, wrong_letter, wrong_clean)
+    clinical_data = _extract_key_clinical_data(stem)
+    pearl = _extract_clinical_pearl(explanation)
+    cloze_hint = _CLOZE_HINT_MAP.get(q_type, "")
     
     tag_subject = subtema or topic or area or "Caso Clínico"
     header = f"[{tag_subject}]"
-    
-    if scenario and len(scenario) > 20:
-        front = f"{header} {scenario}\n\n👉 {q_type}: {{{{c1::{target_cloze}}}}}"
+
+    # Build cloze with hint for better context retention
+    if cloze_hint:
+        cloze_str = f"{{{{c1::{target_cloze}::{cloze_hint}}}}}"
     else:
-        front = f"{header}\n\n👉 {q_type}: {{{{c1::{target_cloze}}}}}"
+        cloze_str = f"{{{{c1::{target_cloze}}}}}"
+    
+    # Build front: header + scenario + key clinical data + question
+    front_parts = [header]
+    if scenario and len(scenario) > 20:
+        front_parts.append(scenario)
+    if clinical_data:
+        front_parts.append(f"📊 {clinical_data}")
+    
+    if len(front_parts) > 1:
+        front = " ".join(front_parts[:2])  # header + scenario on same line
+        extra = front_parts[2:]  # clinical data on next line if present
+        if extra:
+            front = front + "\n" + "\n".join(extra)
+        front = front + f"\n\n👉 {q_type}: {cloze_str}"
+    else:
+        front = f"{header}\n\n👉 {q_type}: {cloze_str}"
         
     back_sections = []
     if pulo:
@@ -143,12 +246,16 @@ def _extract_medical_cloze_fallback(
         back_sections.append(f"⚠️ Por que não '{wrong_clean}'?\n{why_wrong}")
     elif wrong_clean and wrong_clean.lower() != correct_clean.lower():
         back_sections.append(f"⚠️ Atenção ao distrator:\nA opção '{wrong_clean}' é incorreta para este quadro clínico.")
+
+    # Add clinical pearl if different from pulo do gato
+    if pearl and pearl != pulo and pearl not in (pulo or ""):
+        back_sections.append(f"🎯 Pérola Clínica:\n{pearl}")
         
     if not pulo and not why_wrong and explanation:
         clean_exp = re.sub(r'(\*\*.*?\*\*|###.*?\n|##.*?\n)', '', explanation).strip()
-        sentences = [s.strip() for s in re.split(r'[\.\n]+', clean_exp) if len(s.strip()) > 15]
+        sentences = [s.strip() for s in re.split(r'[\.\\n]+', clean_exp) if len(s.strip()) > 15]
         if sentences:
-            back_sections.append(f"📚 Racional:\n{'. '.join(sentences[:2])}.")
+            back_sections.append(f"📚 Racional:\n{'. '.join(sentences[:3])}.")
             
     if not back_sections:
         back_sections.append(f"Gabarito Oficial:\n{correct_clean}")
@@ -181,6 +288,13 @@ def generate_cloze_flashcard(
     correct_clean = _clean_option_text(correct_text)
     wrong_clean = _clean_option_text(wrong_text)
 
+    # Extract key clinical data to feed into the prompt for context retention
+    clinical_data = _extract_key_clinical_data(stem)
+    clinical_data_instruction = ""
+    if clinical_data:
+        clinical_data_instruction = f"""   - OBRIGATÓRIO: Inclua os achados clínicos-chave do caso na linha de dados: "📊 {clinical_data}"
+"""
+
     prompt_wrong_section = f"""O QUE O ALUNO MARCOU (ERRADO):
 {wrong_clean}
 
@@ -190,18 +304,20 @@ A RESPOSTA CORRETA (GABARITO):
 {correct_clean}
 """
 
-    prompt_back_instructions = f"""2. No campo "back":
-   - Coloque o "💡 Pulo do Gato" (a regra de ouro médica / conduta padrão-ouro).
-   - Explique "⚠️ Por que não '{wrong_clean}'?" apontando a armadilha do distrator que fez o aluno errar.
-""" if wrong_clean else """2. No campo "back":
-   - Coloque o "💡 Pulo do Gato" (a regra de ouro médica / conduta padrão-ouro e/ou explicação central).
-"""
+    prompt_back_wrong = f"""   - "⚠️ Por que não '{wrong_clean}'?": explique a armadilha clínica do distrator em 1-2 frases — o que levaria alguém a errar e por que está errado.
+""" if wrong_clean else ""
+
+    q_type = _determine_question_type(stem, correct_clean)
+    cloze_hint = _CLOZE_HINT_MAP.get(q_type, "conceito")
 
     prompt = f"""
 Você é um preceptor médico especialista em preparação para residência médica (USP, SUS-SP, ENARE).
-O aluno deseja criar um flashcard PERFEITO no formato Cloze (Repetição Espaçada FSRS) para esta questão.
+Crie um flashcard PERFEITO no formato Cloze para repetição espaçada (FSRS).
+
+O flashcard DEVE ser autocontido — ao ler apenas o card, sem ver a questão original, o aluno deve entender o caso clínico, os achados relevantes e o que está sendo perguntado.
 
 ÁREA/TEMA: {area} - {subtema or topic}
+
 ENUNCIADO DA QUESTÃO:
 {stem}
 
@@ -209,18 +325,26 @@ ENUNCIADO DA QUESTÃO:
 COMENTÁRIO/EXPLICAÇÃO DO PROFESSOR:
 {explanation or 'Nenhuma explicação fornecida.'}
 
-DIRETRIZES OBRIGATÓRIAS:
-1. No campo "front":
-   - Inicie com a identificação do tema: "[{subtema or area or 'Caso Clínico'}]"
-   - Resuma o caso clínico essencial do enunciado em 1-2 frases claras com os achados-chave.
-   - Em seguida, coloque a pergunta clínica com a omissão cloze da resposta correta: "👉 Conduta / Diagnóstico: {{{{c1::{correct_clean}}}}}"
-   - NUNCA mencione letras de alternativas (como A, B, C, D) no texto do flashcard.
-{prompt_back_instructions}3. No campo "context": "{area} > {subtema or topic}"
+DIRETRIZES OBRIGATÓRIAS PARA O CAMPO "front":
+1. Inicie com a tag do tema: "[{subtema or area or 'Caso Clínico'}]"
+2. Resuma o cenário clínico em 2-4 frases, preservando TODOS os achados-chave:
+   - Dados demográficos relevantes (idade, sexo, comorbidades)
+   - Sinais e sintomas cardinais (tempo de evolução, localização, caráter)
+   - Achados do exame físico (sinais positivos e negativos relevantes)
+{clinical_data_instruction}3. Formule a pergunta clínica usando o cloze com hint: "👉 {q_type}: {{{{c1::{correct_clean}::{cloze_hint}}}}}"
+4. NUNCA mencione letras de alternativas (A, B, C, D) no flashcard.
+5. NUNCA comece o front com frases genéricas como "Neste caso clínico..." ou "A alternativa correta era...".
+
+DIRETRIZES OBRIGATÓRIAS PARA O CAMPO "back":
+1. "💡 Pulo do Gato:" — a regra de ouro médica que diferencia a resposta correta (1-3 frases objetivas e de alto rendimento).
+{prompt_back_wrong}2. "🎯 Pérola Clínica:" — um ensino prático memorável (mnemônico, regra, conduta-padrão ou guideline) que o aluno pode levar para a prova. Máximo 2 frases.
+
+CAMPO "context": "{area} > {subtema or topic}"
 
 Responda EXCLUSIVAMENTE em JSON válido:
 {{
-  "front": "[Tema] Resumo do caso clínico...\\n\\n👉 Pergunta clínica: {{{{c1::resposta}}}}",
-  "back": "💡 Pulo do Gato:\\n...",
+  "front": "[Tema] Cenário clínico detalhado com achados-chave...\\n📊 Dados laboratoriais/vitais relevantes\\n\\n👉 Pergunta: {{{{c1::resposta::{cloze_hint}}}}}",
+  "back": "💡 Pulo do Gato:\\n...\\n\\n⚠️ Por que não 'distrator'?\\n...\\n\\n🎯 Pérola Clínica:\\n...",
   "context": "{area} > {subtema or topic}"
 }}
 """
@@ -250,6 +374,14 @@ Responda EXCLUSIVAMENTE em JSON válido:
         # Rejeita se o back é apenas "Você marcou..." ou "Alternativa correta:"
         if back.startswith("Você marcou") or back == f"Alternativa correta: {cloze_match.group(1) if cloze_match else ''}.":
             return True
+        # Rejeita se o front tem cenário muito curto (contexto perdido)
+        # Extrai a parte do cenário (tudo antes de 👉)
+        scenario_part = front.split("👉")[0] if "👉" in front else front
+        # Remove a tag [Tema] para medir só o cenário real
+        scenario_text = re.sub(r'^\[.*?\]\s*', '', scenario_part).strip()
+        if len(scenario_text) < 30:
+            logger.info("IA retornou card com cenário muito curto (%d chars), rejeitando.", len(scenario_text))
+            return True
         return False
 
     def _sanitize_ai_card(card: dict) -> dict:
@@ -266,7 +398,7 @@ Responda EXCLUSIVAMENTE em JSON válido:
     try:
         resp = generate_content_with_fallback(
             prompt=prompt,
-            system_instruction="Você responde apenas em JSON válido com as chaves front, back e context.",
+            system_instruction="Você responde apenas em JSON válido com as chaves front, back e context. O flashcard deve ser autocontido e preservar todos os achados clínicos do caso.",
             json_mode=True,
             timeout=15
         )
