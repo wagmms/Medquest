@@ -105,13 +105,32 @@ async function getAccessToken(): Promise<string> {
     await identityScript;
   }
   return new Promise((resolve, reject) => {
-    window.google!.accounts.oauth2.initTokenClient({
-      client_id: clientId,
-      scope: "https://www.googleapis.com/auth/calendar.events",
-      callback: response => response.access_token && !response.error
-        ? resolve(response.access_token) : reject(new Error(response.error || "Autorização não recebida")),
-      error_callback: error => reject(new Error(`Autorização interrompida: ${error.type}`)),
-    }).requestAccessToken();
+    let resolved = false;
+    const timeout = setTimeout(() => {
+      if (!resolved) reject(new Error("O tempo limite para o login no Google expirou. Verifique se o pop-up não foi bloqueado ou fechado."));
+    }, 120000); // 2 minutes timeout for the user to login
+
+    try {
+      window.google!.accounts.oauth2.initTokenClient({
+        client_id: clientId,
+        scope: "https://www.googleapis.com/auth/calendar.events",
+        callback: response => {
+          resolved = true;
+          clearTimeout(timeout);
+          if (response.access_token && !response.error) resolve(response.access_token);
+          else reject(new Error(response.error || "Autorização não recebida do Google"));
+        },
+        error_callback: error => {
+          resolved = true;
+          clearTimeout(timeout);
+          reject(new Error(`Autorização interrompida pelo Google: ${error.type}`));
+        },
+      }).requestAccessToken();
+    } catch (e) {
+      resolved = true;
+      clearTimeout(timeout);
+      reject(new Error("Falha ao abrir pop-up do Google. Verifique seu bloqueador de anúncios/pop-ups."));
+    }
   });
 }
 
