@@ -227,7 +227,7 @@ export function DashboardClient({
       const flashcardsCount = stats.flashcards_due_count || 0;
 
       return (
-        <div className="bg-card border-2 border-purple-500/30 dark:border-purple-500/20 bg-gradient-to-r from-purple-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
+        <div className="shrink-0 bg-card border-2 border-purple-500/30 dark:border-purple-500/20 bg-gradient-to-r from-purple-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
           <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 ring-1 ring-purple-500/20 flex items-center justify-center shrink-0">
               <span className="material-symbols-outlined text-[22px] sm:text-[26px]" data-icon="psychology">psychology</span>
@@ -282,7 +282,7 @@ export function DashboardClient({
         : `/estudar?status=new&limit=${Math.min(20, dailyRemaining)}`;
 
       return (
-        <div className="bg-card border-2 border-primary/30 bg-gradient-to-r from-primary/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
+        <div className="shrink-0 bg-card border-2 border-primary/30 bg-gradient-to-r from-primary/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
           <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20 flex items-center justify-center shrink-0">
               <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="play_arrow">play_arrow</span>
@@ -316,7 +316,7 @@ export function DashboardClient({
     // 4. Todas as metas do dia concluídas
     if (topBottleneck) {
       return (
-        <div className="bg-card border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
+        <div className="shrink-0 bg-card border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
           <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-1 ring-emerald-500/20 flex items-center justify-center shrink-0">
               <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="check_circle">check_circle</span>
@@ -347,7 +347,7 @@ export function DashboardClient({
     }
 
     return (
-      <div className="bg-card border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 min-w-0">
+      <div className="shrink-0 bg-card border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 min-w-0">
         <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
           <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-1 ring-emerald-500/20 flex items-center justify-center shrink-0">
             <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="done_all">done_all</span>
@@ -372,7 +372,7 @@ export function DashboardClient({
       variants={containerVariants} 
       initial="hidden" 
       animate="show" 
-      className="flex flex-col gap-4 sm:gap-6 md:gap-8 pt-1 sm:pt-2 pb-10 max-w-6xl mx-auto w-full min-w-0 overflow-x-hidden px-0.5 sm:px-0"
+      className="shrink-0 flex flex-col gap-4 sm:gap-6 md:gap-8 pt-1 sm:pt-2 pb-10 max-w-6xl mx-auto w-full min-w-0 overflow-x-hidden px-0.5 sm:px-0"
     >
       {/* Banner de Modo Plantão (Offline) */}
       {isOffline && (
@@ -462,7 +462,7 @@ export function DashboardClient({
 
       {/* ESTADO DE ERRO / RESILIÊNCIA CONTRA FALHAS DE REDE */}
       {hasOverviewError ? (
-        <motion.div variants={itemVariants} className="bg-card border-2 border-amber-500/30 dark:border-amber-500/20 bg-gradient-to-r from-amber-500/5 via-card to-card rounded-3xl p-6 sm:p-8 shadow-xs">
+        <motion.div variants={itemVariants} className="shrink-0 bg-card border-2 border-amber-500/30 dark:border-amber-500/20 bg-gradient-to-r from-amber-500/5 via-card to-card rounded-3xl p-6 sm:p-8 shadow-xs">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5">
             <div className="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/30 flex items-center justify-center shrink-0">
               <span className="material-symbols-outlined text-[28px]" data-icon="cloud_off">cloud_off</span>
@@ -504,7 +504,7 @@ export function DashboardClient({
           </div>
         </motion.div>
       ) : stats.distinct_answered === 0 ? (
-        <motion.div variants={itemVariants} className="bg-card border border-border/80 rounded-3xl p-6 sm:p-8 shadow-xs">
+        <motion.div variants={itemVariants} className="shrink-0 bg-card border border-border/80 rounded-3xl p-6 sm:p-8 shadow-xs">
           <div className="flex flex-col sm:flex-row items-center gap-6 mb-6">
             <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20 shadow-inner shrink-0">
               <span className="material-symbols-outlined text-3xl" data-icon="school">school</span>
@@ -569,7 +569,7 @@ export function DashboardClient({
           </motion.section>
 
           {/* PLANO DE HOJE (Card Integrado em 3 Pilares) */}
-          <motion.section variants={itemVariants} className="bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs">
+          <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs">
             <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4 pb-2.5 sm:pb-3 border-b border-border/50">
               <div className="flex items-center gap-2 text-foreground">
                 <span className="material-symbols-outlined text-primary text-[20px]" data-icon="today">today</span>
@@ -692,7 +692,7 @@ export function DashboardClient({
           </motion.section>
 
           {/* ERROS PRIORITÁRIOS & GARGALOS CRÍTICOS (UNIFICADO) */}
-          <motion.section variants={itemVariants} className="bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs">
+          <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 sm:mb-4 pb-2.5 sm:pb-3 border-b border-border/50">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center ring-1 ring-amber-500/20 shrink-0">
@@ -766,7 +766,7 @@ export function DashboardClient({
 
           {/* RITMO DA SEMANA (COMPACTO) */}
           {benchmarkStats && (
-            <motion.section variants={itemVariants} className="bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs min-w-0">
+            <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs min-w-0">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 min-w-0">
                 <div className="flex items-center gap-2.5 min-w-0 flex-1">
                   <span className="material-symbols-outlined text-blue-500 text-[20px] shrink-0" data-icon="speed">speed</span>
@@ -807,7 +807,7 @@ export function DashboardClient({
 
           {/* FAIXA ESTIMADA DE PRONTIDÃO (BENCHMARK PROBABILÍSTICO CONDICIONAL: APENAS SE >= 20 QUESTÕES) */}
           {stats.distinct_answered >= 20 && benchmarkStats && overallAccPct != null && (
-            <motion.section variants={itemVariants} className="bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs relative overflow-hidden min-w-0">
+            <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs relative overflow-hidden min-w-0">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 min-w-0">
                 <div className="flex items-center gap-3 min-w-0 flex-1">
                   <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20 shrink-0">
@@ -882,7 +882,7 @@ export function DashboardClient({
           )}
 
           {/* RESUMO DISCRETO DE CONTEXTO (BOTTOM STRIP) */}
-          <motion.section variants={itemVariants} className="bg-card border border-border/60 rounded-2xl p-3 sm:px-5 sm:py-3.5 shadow-2xs w-full min-w-0">
+          <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/60 rounded-2xl p-3 sm:px-5 sm:py-3.5 shadow-2xs w-full min-w-0">
             <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-between gap-2 sm:gap-3 text-xs">
               <Link href="/cobertura" className="flex items-center gap-1.5 hover:text-primary transition-colors text-muted-foreground p-1 min-w-0 overflow-hidden">
                 <span className="material-symbols-outlined text-[16px] text-emerald-500 shrink-0" data-icon="domain_verification">domain_verification</span>
