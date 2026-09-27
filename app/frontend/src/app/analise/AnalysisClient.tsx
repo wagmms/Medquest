@@ -27,7 +27,9 @@ export function AnalysisClient({
   institutionOptions,
   timeline180,
   institutionRadar,
+  initialErrors = [],
 }: {
+  initialErrors?: string[];
   timeline: TimelineStat[];
   weakTopics: WeakTopic[];
   breakdown: BreakdownStat[];
@@ -59,11 +61,14 @@ export function AnalysisClient({
   const [days, setDays] = useState<number>(14);
   const [localTimeline, setLocalTimeline] = useState<TimelineStat[]>(timeline);
   const [loadingTimeline, setLoadingTimeline] = useState(false);
-  const [timelineError, setTimelineError] = useState<string | null>(null);
+  const [timelineError, setTimelineError] = useState<string | null>(initialErrors.includes("Evolução") ? "Não foi possível carregar a evolução de desempenho." : null);
+  const [timelineRetry, setTimelineRetry] = useState(0);
+  const [loadedDays, setLoadedDays] = useState(14);
   const [selectedInstitution, setSelectedInstitution] = useState(examReadiness.institution || "");
   const [localReadiness, setLocalReadiness] = useState(examReadiness);
   const [loadingReadiness, setLoadingReadiness] = useState(false);
-  const [readinessError, setReadinessError] = useState<string | null>(null);
+  const [readinessError, setReadinessError] = useState<string | null>(initialErrors.includes("Prontidão") ? "Não foi possível carregar a prontidão." : null);
+  const [readinessRetry, setReadinessRetry] = useState(0);
   const isMounted = useSyncExternalStore(
     () => () => {},
     () => true,
@@ -85,6 +90,7 @@ export function AnalysisClient({
       .then(data => {
         if (!controller.signal.aborted) {
           setLocalTimeline(data);
+          setLoadedDays(days);
           setTimelineError(null);
         }
       })
@@ -101,7 +107,7 @@ export function AnalysisClient({
     return () => {
       controller.abort();
     };
-  }, [days]);
+  }, [days, timelineRetry]);
 
   useEffect(() => {
     if (isFirstReadinessMount.current) {
@@ -128,7 +134,7 @@ export function AnalysisClient({
         if (!controller.signal.aborted) setLoadingReadiness(false);
       });
     return () => controller.abort();
-  }, [selectedInstitution]);
+  }, [selectedInstitution, readinessRetry]);
 
   const chartBreakdown = useMemo(() => {
     if (!Array.isArray(breakdown)) return [];
@@ -240,11 +246,12 @@ export function AnalysisClient({
           </div>
 
           {readinessError && (
-            <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-xs text-destructive flex items-center justify-between">
+            <div role="alert" className="rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-xs text-destructive flex items-center justify-between">
               <span>{readinessError}</span>
               <button
                 type="button"
-                onClick={() => setSelectedInstitution((prev) => prev)}
+                disabled={loadingReadiness}
+                onClick={() => setReadinessRetry(value => value + 1)}
                 className="font-semibold underline ml-2 cursor-pointer"
               >
                 Tentar novamente
@@ -252,6 +259,8 @@ export function AnalysisClient({
             </div>
           )}
 
+          {!readinessError && <div aria-busy={loadingReadiness}>
+          <p className="text-xs text-muted-foreground mb-3">Dados exibidos: {localReadiness.institution || "Todas as bancas"}{loadingReadiness ? " · Atualizando…" : ""}</p>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
             <div className="lg:col-span-1 bg-muted/20 border border-border rounded-2xl p-5 flex flex-col justify-between gap-4">
               <div className="flex items-start justify-between gap-2">
@@ -409,6 +418,7 @@ export function AnalysisClient({
               </ul>
             )}
           </div>
+          </div>}
         </section>
 
         {/* Radar Comparativo de Bancas */}
@@ -645,11 +655,12 @@ export function AnalysisClient({
             </div>
           </div>
           {timelineError && (
-            <div className="mb-4 p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-xs text-destructive flex items-center justify-between">
+            <div role="alert" className="mb-4 p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-xs text-destructive flex items-center justify-between">
               <span>{timelineError}</span>
               <button
                 type="button"
-                onClick={() => setDays(days)}
+                disabled={loadingTimeline}
+                onClick={() => setTimelineRetry(value => value + 1)}
                 className="font-semibold underline ml-2 cursor-pointer"
               >
                 Tentar novamente
@@ -657,6 +668,8 @@ export function AnalysisClient({
             </div>
           )}
           <p className="text-xs text-muted-foreground -mt-3 mb-3">Acurácia por dia oscila com amostras pequenas; use a tendência junto com o volume de questões.</p>
+          {!timelineError && <div aria-busy={loadingTimeline}>
+          <p className="text-xs text-muted-foreground mb-3">Dados exibidos: últimos {loadedDays} dias{loadingTimeline ? " · Atualizando…" : ""}</p>
           <div className="bg-card border border-border shadow-sm rounded-2xl p-6 h-[400px] relative overflow-hidden flex flex-col min-w-0">
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-success/5 to-transparent opacity-50 pointer-events-none" />
             {localTimeline.length > 0 ? (
@@ -746,6 +759,7 @@ export function AnalysisClient({
               </div>
             )}
           </div>
+          </div>}
         </section>
 
         {/* Heatmap de Consistência (Últimos 6 meses) */}

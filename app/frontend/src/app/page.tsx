@@ -33,6 +33,7 @@ export default async function Dashboard() {
     });
   const userPromise = currentUser().catch(() => null);
 
+  let hasPlannerError = false;
   let currentPlannerWeek: PlannerWeek | null = null;
   let suggestedPlannerTopic: PlannerTopic | null = null;
   let remainingPlannerMetas: number = 0;
@@ -43,21 +44,25 @@ export default async function Dashboard() {
   let errorNotebook: ErrorNotebookSummary | null = null;
 
   try {
-    const [bench, bnecks, domain, errors, config, topicProgressMap, progressMap] = await Promise.all([
+    const [bench, bnecks, domain, errors, configResult, topicsResult, progressResult] = await Promise.all([
       serverApi.stats.getBenchmark().catch(() => null),
       serverApi.stats.getBottlenecks(3).catch(() => []),
       serverApi.stats.getDomainSummary().catch(() => null),
       serverApi.stats.getErrorNotebookSummary().catch(() => null),
-      serverApi.planner.getConfig().catch(() => null),
-      serverApi.planner.getTopicProgress().catch(() => ({} as PlannerTopicProgressMap)),
-      serverApi.planner.getProgress().catch(() => ({} as PlannerProgressMap)),
+      serverApi.planner.getConfig().then(data => ({ data, failed: false })).catch(() => ({ data: null, failed: true })),
+      serverApi.planner.getTopicProgress().then(data => ({ data, failed: false })).catch(() => ({ data: {} as PlannerTopicProgressMap, failed: true })),
+      serverApi.planner.getProgress().then(data => ({ data, failed: false })).catch(() => ({ data: {} as PlannerProgressMap, failed: true })),
     ]);
+    hasPlannerError = configResult.failed || topicsResult.failed || progressResult.failed;
+    const config = configResult.data;
+    const topicProgressMap = topicsResult.data;
+    const progressMap = progressResult.data;
     benchmarkStats = bench;
     bottlenecks = bnecks;
     domainSummary = domain;
     errorNotebook = errors;
 
-    if (config && config.exam_date && config.start_date) {
+    if (!hasPlannerError && config && config.exam_date && config.start_date) {
       const planResponse = await serverApi.planner.generatePlan({
         start_date: config.start_date,
         exam_date: config.exam_date,
@@ -74,7 +79,7 @@ export default async function Dashboard() {
             continue;
           }
           const pendingTopics = (week.topics || []).filter(
-            (t) => !topicProgressMap[`${week.week}:${t.subtema}`]
+            (t) => !topicProgressMap[`${week.week}:${t.subtema}`] && !topicProgressMap[t.subtema]
           );
           if (pendingTopics.length > 0) {
             currentPlannerWeek = week;
@@ -92,6 +97,7 @@ export default async function Dashboard() {
       }
     }
   } catch (e) {
+    hasPlannerError = true;
     console.error("Failed to fetch dashboard metrics", e);
   }
 
@@ -113,6 +119,7 @@ export default async function Dashboard() {
       domainSummary={domainSummary}
       errorNotebook={errorNotebook}
       hasOverviewError={hasOverviewError}
+      hasPlannerError={hasPlannerError}
     />
   );
 }

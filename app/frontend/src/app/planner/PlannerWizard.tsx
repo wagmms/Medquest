@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { api } from "@/lib/api";
+import { api, OfflineQueuedError } from "@/lib/api";
 import { PlannerConfig } from "@/types/api";
 import {
   Calendar,
@@ -69,6 +69,20 @@ interface PlannerWizardProps {
 export function PlannerWizard({ initialConfig, onClose, isModal }: PlannerWizardProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [pendingSync, setPendingSync] = useState(false);
+  useEffect(() => {
+    if (!pendingSync) return;
+    const synced = (event: Event) => {
+      const endpoint = (event as CustomEvent<{ endpoint?: string }>).detail?.endpoint;
+      if (endpoint?.endsWith("/api/planner/config")) {
+        setPendingSync(false);
+        onClose?.();
+        router.refresh();
+      }
+    };
+    window.addEventListener("sync-item-success", synced);
+    return () => window.removeEventListener("sync-item-success", synced);
+  }, [pendingSync, router, onClose]);
   const [error, setError] = useState("");
   const [examError, setExamError] = useState(false);
 
@@ -180,6 +194,12 @@ export function PlannerWizard({ initialConfig, onClose, isModal }: PlannerWizard
       }
       router.refresh();
     } catch (err) {
+      if (err instanceof OfflineQueuedError) {
+        setPendingSync(true);
+        setLoading(false);
+        toast("Configuração salva neste dispositivo. Será aplicada ao reconectar.", { icon: "📶" });
+        return;
+      }
       const message = err instanceof Error ? err.message : "Erro ao salvar a calibração.";
       setError(message);
       setLoading(false);
@@ -229,6 +249,7 @@ export function PlannerWizard({ initialConfig, onClose, isModal }: PlannerWizard
         </div>
       </div>
 
+      {pendingSync && <p role="status" className="rounded-xl border border-primary/30 bg-primary/10 p-4 text-sm">Configuração aguardando sincronização. O novo plano estará disponível após a conexão voltar.</p>}
       {error && !examError && (
         <div className="bg-destructive/10 text-destructive text-sm p-3.5 rounded-xl mb-6 border border-destructive/20 font-medium">
           {error}
@@ -415,7 +436,7 @@ export function PlannerWizard({ initialConfig, onClose, isModal }: PlannerWizard
           )}
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || pendingSync}
             className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 rounded-xl transition-all flex items-center justify-center gap-2 text-sm shadow-md disabled:opacity-50"
           >
             {loading ? (

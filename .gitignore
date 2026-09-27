@@ -87,3 +87,5 @@ archive/legacy/data/
 .codex_build/
 .codex-finalizer/
 
+# Local pasted notes may contain credentials.
+/Pasted Text.txt

@@ -95,9 +95,15 @@ test.describe('Fluxo Completo de Simulado', () => {
   });
 
   test('inicia, responde e entrega simulado com exibição de resultados', async ({ page }) => {
+    const summaries: unknown[] = [];
     // 1. Mock de rotas do backend
     await page.route('**/api/**', async (route) => {
       const url = new URL(route.request().url());
+      if (url.pathname.endsWith('/api/simulado/sessions') && route.request().method() === 'POST') {
+        summaries.push(route.request().postDataJSON());
+        return route.fulfill({ json: { success: true } });
+      }
+
       if (url.pathname.endsWith('/api/meta')) {
         return route.fulfill({
           status: 200,
@@ -175,6 +181,8 @@ test.describe('Fluxo Completo de Simulado', () => {
     // 8. Validar tela final de resultados
     await expect(page.locator('text=Nota Final')).toBeVisible({ timeout: 10000 });
     await expect(page.locator('text=100% de Acerto')).toBeVisible();
+    await expect.poll(() => summaries.length).toBe(1);
+    expect(summaries[0]).toMatchObject({ total_questions: 2, answered_count: 2, correct_count: 2 });
   });
 
   test('retoma respostas e posição após recarregar a página', async ({ page }) => {

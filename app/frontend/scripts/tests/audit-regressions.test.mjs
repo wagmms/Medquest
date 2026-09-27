@@ -249,7 +249,7 @@ test('cobertura practice link sets unanswered_only false only when all questions
   assert.equal(getPracticeUnansweredParam(25, 20), 'false');
 });
 
-test('api.sessions.saveSimulado targets the canonical /api/simulado/sessions endpoint', async () => {
+test('api.questions.saveSimuladoSession targets the canonical /api/simulado/sessions endpoint', async () => {
   let requestedUrl = '';
   let requestedMethod = '';
   const { api } = load('api', {
@@ -263,7 +263,7 @@ test('api.sessions.saveSimulado targets the canonical /api/simulado/sessions end
     }
   });
 
-  const res = await api.sessions.saveSimulado({
+  const res = await api.questions.saveSimuladoSession({
     client_session_id: 'test-session-123',
     planned_duration_seconds: 3600,
     elapsed_seconds: 1200,
@@ -322,3 +322,24 @@ test('normalizeFlashcard strips option letters globally and handles multi-cloze'
 
 
 
+
+
+test('calendar rejects ISO exam deadlines just like date-only deadlines', () => {
+  const { scheduleStudyBlocks } = load('googleCalendar');
+  const latePlan = [{ ...plan[0], date: '2030-01-02' }];
+  for (const exam_date of ['2030-01-01', '2030-01-01T12:00:00.000Z']) {
+    assert.throws(() => scheduleStudyBlocks(latePlan, { days_per_week: 7, exam_date }, {}, new Date('2030-01-02T07:00:00')), /não cabe/);
+  }
+});
+
+test('offline exam summaries are durably queued, but planner resets are not', async () => {
+  const queued = [];
+  const { api, OfflineQueuedError } = load('api', {
+    './sync': { syncManager: { enqueue: async (...args) => { queued.push(args); return 'pending'; } } },
+  }, { window: {}, navigator: { onLine: false } });
+  await assert.rejects(api.questions.saveSimuladoSession({ client_session_id: 'exam-1', planned_duration_seconds: 60, elapsed_seconds: 30, total_questions: 1, answered_count: 1, correct_count: 1, filters: {}, area_results: [] }), OfflineQueuedError);
+  await assert.rejects(api.planner.resetConfig(), TypeError);
+  assert.equal(queued.length, 1);
+  assert.ok(queued[0][0].endsWith('/api/simulado/sessions'));
+  assert.equal(JSON.parse(queued[0][1].body).client_session_id, 'exam-1');
+});

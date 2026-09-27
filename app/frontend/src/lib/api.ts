@@ -51,6 +51,7 @@ async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise
     endpoint.includes("/attempt") ||
     endpoint.includes("/review") ||
     endpoint.includes("/favorite") ||
+    endpoint === "/api/simulado/sessions" ||
     (endpoint.includes("/planner/") && !endpoint.includes("/reset")) ||
     /^\/api\/flashcards\/(save|generate|generate-batch)$/.test(endpoint)
   );
@@ -214,26 +215,6 @@ export const api = {
       apiFetch<{success: boolean}>(`/api/sessions/${sessionType}`, {
         method: "DELETE",
       }),
-    saveSimulado: async (payload: {
-      client_session_id: string;
-      planned_duration_seconds: number;
-      elapsed_seconds: number;
-      total_questions: number;
-      answered_count: number;
-      correct_count: number;
-      filters?: Record<string, unknown>;
-      area_results?: Array<Record<string, unknown>>;
-    }) => {
-      try {
-        return await apiFetch<{ success: boolean }>(`/api/simulado/sessions`, {
-          method: "POST",
-          body: JSON.stringify(payload)
-        });
-      } catch (err) {
-        console.warn("Falha ao salvar sessao de simulado no backend:", err);
-        return { success: false };
-      }
-    }
   },
   planner: {
     getConfig: () => apiFetch<PlannerConfig>("/api/planner/config", { cache: 'no-store' }),

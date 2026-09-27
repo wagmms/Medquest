@@ -139,6 +139,7 @@ export function SimuladoClient({
   const [clientReady, setClientReady] = useState(false);
   const [storageReady, setStorageReady] = useState(false);
   const [force4Options, setForce4Options] = useState(false);
+  const summarySavedRef = useRef(new Set<string>());
   const submitLockRef = useRef(false);
   const startLockRef = useRef(false);
   const detailRequestRef = useRef(0);
@@ -545,36 +546,6 @@ export function SimuladoClient({
 
       removeLearningSession("simulado");
 
-      // Salva sessão consolidada de simulado para histórico e prontidão de prova
-      const correctCount = res.results.filter(r => r.is_correct).length;
-      const answeredCount = Object.keys(answers).length;
-      const elapsedSeconds = Math.max(1, Math.min(plannedDurationSeconds, Math.round((Date.now() - (deadlineRef.current - plannedDurationSeconds * 1000)) / 1000)));
-
-      const areaStatsMap: Record<string, { total: number; correct: number }> = {};
-      queue.forEach(q => {
-        const area = q.area || "Geral";
-        if (!areaStatsMap[area]) areaStatsMap[area] = { total: 0, correct: 0 };
-        areaStatsMap[area].total++;
-        if (rMap[q.id]?.is_correct) areaStatsMap[area].correct++;
-      });
-
-      const areaResults = Object.entries(areaStatsMap).map(([area, stats]) => ({
-        area,
-        total: stats.total,
-        correct: stats.correct,
-        pct: stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0
-      }));
-
-      api.sessions.saveSimulado({
-        client_session_id: sessionId || crypto.randomUUID(),
-        planned_duration_seconds: plannedDurationSeconds || 3600,
-        elapsed_seconds: elapsedSeconds,
-        total_questions: queue.length || 1,
-        answered_count: answeredCount,
-        correct_count: correctCount,
-        filters: (initialFilters as Record<string, unknown>) || {},
-        area_results: areaResults
-      });
     } catch (err) {
       if (err instanceof OfflineQueuedError) {
         toast("Respostas do simulado salvas no dispositivo; serão sincronizadas quando a conexão voltar.", { icon: "💾" });
@@ -589,7 +560,7 @@ export function SimuladoClient({
     } finally {
       submitLockRef.current = false;
     }
-  }, [answers, queue, plannedDurationSeconds, sessionId, initialFilters]);
+  }, [answers]);
 
   const handleGenerateSingleFlashcard = async (qid: number, wrongLetter: string) => {
     if (generatingSingleFlashcard) return;
@@ -967,7 +938,8 @@ export function SimuladoClient({
   }, [queue, answers, resultsMap]);
 
   useEffect(() => {
-    if (state !== "RESULTS" || !sessionId || queue.length === 0) return;
+    if (state !== "RESULTS" || !sessionId || queue.length === 0 || summarySavedRef.current.has(sessionId)) return;
+    summarySavedRef.current.add(sessionId);
     const correctCount = Object.values(resultsMap).filter(result => result.is_correct).length;
     const elapsedSeconds = Math.max(0, plannedDurationSeconds - timeLeft);
     void api.questions.saveSimuladoSession({
@@ -979,7 +951,11 @@ export function SimuladoClient({
       correct_count: correctCount,
       filters: hasCustomFilters ? initialFilters : customConfig,
       area_results: areaSummary.map(row => ({ ...row, correct: queue.filter(question => question.area === row.area && resultsMap[question.id]?.is_correct).length })),
-    }).catch(() => console.warn("Não foi possível registrar o resumo do simulado."));
+    }).catch(error => {
+      if (error instanceof OfflineQueuedError) return;
+      summarySavedRef.current.delete(sessionId);
+      toast.error("Não foi possível salvar o resumo do simulado. Reabra o resultado para tentar novamente.");
+    });
   }, [state, sessionId, queue, resultsMap, answers, plannedDurationSeconds, timeLeft, hasCustomFilters, initialFilters, customConfig, areaSummary]);
 
   const navigateTo = (index: number) => {

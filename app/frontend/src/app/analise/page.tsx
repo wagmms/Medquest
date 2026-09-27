@@ -46,6 +46,8 @@ export default async function AnalisePage() {
     serverApi.stats.getTimeline(180),
   ]);
 
+  const sectionNames = ["Evolução", "Temas prioritários", "Instituições", "Distratores", "Projeção", "Risco de esquecimento", "Perfil de estudo", "Prontidão", "Histórico de 180 dias"];
+  const failedSections = sectionNames.filter((_, index) => results[index].status === "rejected");
   const timeline = results[0].status === 'fulfilled' ? results[0].value : [];
   const weakTopics = results[1].status === 'fulfilled' ? results[1].value : [];
   const breakdown = results[2].status === 'fulfilled' ? results[2].value : [];
@@ -113,8 +115,13 @@ export default async function AnalisePage() {
         </div>
       </section>
 
+      {failedSections.length > 0 && <div role="alert" className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-sm">
+        Falha no carregamento inicial: {failedSections.join(", ")}. Use os controles de nova tentativa ou recarregue o relatório para recuperar as seções indisponíveis.
+        <a href="/analise" className="ml-2 font-semibold underline">Recarregar relatório</a>
+      </div>}
       {/* Main Content Dashboard */}
       <AnalysisClient
+        initialErrors={failedSections}
         timeline={timeline}
         weakTopics={weakTopics}
         breakdown={breakdown}

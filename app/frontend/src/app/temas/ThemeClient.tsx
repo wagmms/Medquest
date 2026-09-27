@@ -55,12 +55,12 @@ export function ThemeClient({ subtema, group, theme, topic, initialProgress }: {
         <h1 className="text-2xl md:text-3xl font-bold tracking-tight">{subtema}</h1>
         <p className="text-muted-foreground mt-3">Seu ponto de encontro para diagnosticar, estudar, praticar e revisar este assunto.</p>
         
-        {topic && topic.diag_accuracy != null && topic.prac_accuracy != null && progress.theory_completed && (
+        {topic && topic.diag_accuracy != null && topic.prac_accuracy != null && (
           <div className="mt-6 flex gap-4 p-5 rounded-xl border border-emerald-500/20 bg-emerald-500/5 text-emerald-900 dark:text-emerald-100">
              <TrendingUp className="text-emerald-500 shrink-0 mt-0.5" size={20} />
              <div>
-               <p className="font-semibold mb-1">Delta de Aprendizado</p>
-               <p className="text-sm">Seu desempenho no diagnóstico inicial foi de <strong>{Math.round(topic.diag_accuracy * 100)}%</strong>. Após o estudo teórico, sua prática alcançou <strong>{Math.round(topic.prac_accuracy * 100)}%</strong>. {(topic.prac_accuracy > topic.diag_accuracy) ? 'Excelente evolução!' : 'Continue praticando para fixar o conceito.'}</p>
+               <p className="font-semibold mb-1">Histórico de acertos</p>
+               <p className="text-sm">Nas primeiras cinco tentativas, você acertou <strong>{Math.round(topic.diag_accuracy * 100)}%</strong>. Nas {Math.max(0, topic.attempts - 5)} tentativas seguintes, acertou <strong>{Math.round(topic.prac_accuracy * 100)}%</strong>. Esta comparação inclui questões repetidas e não separa tentativas anteriores e posteriores ao estudo teórico.</p>
              </div>
           </div>
         )}

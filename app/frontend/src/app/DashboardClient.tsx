@@ -47,6 +47,7 @@ interface DashboardClientProps {
   domainSummary?: DomainSummaryResponse | null;
   errorNotebook?: ErrorNotebookSummary | null;
   hasOverviewError?: boolean;
+  hasPlannerError?: boolean;
 }
 
 export function DashboardClient({ 
@@ -61,6 +62,7 @@ export function DashboardClient({
   domainSummary,
   errorNotebook,
   hasOverviewError = false,
+  hasPlannerError = false,
 }: DashboardClientProps) {
   const { isLoaded: authLoaded } = useUser();
   const hasAnimated = useRef(false);
@@ -173,6 +175,7 @@ export function DashboardClient({
 
   // Subtítulo Contextual Direto
   const subtitleMessage = (() => {
+    if (hasOverviewError) return "Suas métricas estão temporariamente indisponíveis. Você pode continuar estudando pelo menu.";
     if (stats.distinct_answered === 0) {
       return "Defina seu plano e resolva 20 questões para calibrar seu diagnóstico inicial.";
     }
@@ -645,6 +648,10 @@ export function DashboardClient({
               </div>
 
               {/* Pilar 3: Tema Sugerido */}
+              {hasPlannerError ? <div role="alert" className="p-4 rounded-xl border border-amber-500/30 text-sm">
+                Não foi possível carregar seu progresso no planner.
+                <button onClick={() => window.location.reload()} className="block mt-3 font-semibold underline">Tentar novamente</button>
+              </div> : <>
               <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/20 border border-border/40 flex flex-col justify-between gap-3 min-w-0">
                 <div className="min-w-0">
                   <div className="flex items-center justify-between text-xs font-semibold text-primary mb-1">
@@ -680,6 +687,7 @@ export function DashboardClient({
                   {isPlanCompleted ? "Ver cronograma →" : "Continuar plano →"}
                 </Link>
               </div>
+              </>}
             </div>
           </motion.section>
 

@@ -161,7 +161,7 @@ test.describe('Simulado 100% Offline com Pré-download e Sincronização Posteri
 
     // 10. Confirmar que a resposta da 2ª questão e a 1ª questão foram preservadas
     await expect(page.locator('text=Paciente politraumatizado')).toBeVisible();
-    await expect(page.locator('button:has-text("Hemorragia retroperitoneal")')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByRole('button', { name: /Hemorragia retroperitoneal/ })).toHaveAttribute('aria-pressed', 'true');
 
     // 11. Finalizar e entregar o simulado sem rede
     await page.click('button:has-text("Finalizar Simulado")');

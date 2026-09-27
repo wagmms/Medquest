@@ -169,8 +169,10 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (queue.length === 0 || loading || submitting || isAnkiModalOpen) return;
-      const tag = document.activeElement?.tagName;
-      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+      if (e.defaultPrevented || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
+      const target = e.target;
+      if (target instanceof HTMLElement && (target.isContentEditable || target.closest('button, a, input, textarea, select, [role="button"], [role="dialog"]'))) return;
+      if (document.querySelector('[aria-modal="true"]')) return;
 
       if (!flipped) {
         if (e.key === "Enter" || e.key === " ") {

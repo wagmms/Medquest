@@ -245,6 +245,15 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [showResetConfirm, showSettingsModal, showCalendarModal]);
 
+  useEffect(() => {
+    const synced = (event: Event) => {
+      const endpoint = (event as CustomEvent<{ endpoint?: string }>).detail?.endpoint;
+      if (endpoint?.includes("/api/planner/")) router.refresh();
+    };
+    window.addEventListener("sync-item-success", synced);
+    return () => window.removeEventListener("sync-item-success", synced);
+  }, [router]);
+
   const toggleTopic = async (week: number, subtema: string, currentStatus: boolean) => {
     const key = `${week}:${subtema}`;
     const completed = !currentStatus;
