@@ -396,7 +396,19 @@ def format_medway_golden_explanation(
     if bib_str:
         sections.append(bib_str)
 
-    return "\n\n".join(sections)
+    res = "\n\n".join(sections)
+    if not is_discursive and options_list:
+        try:
+            from fix_misplaced_distractors import parse_and_fix_explanation
+            changed, fixed_res, _ = parse_and_fix_explanation(
+                0, correct_letter, res, [opt.get("letter", "") for opt in options_list]
+            )
+            if changed:
+                return fixed_res
+        except Exception:
+            pass
+
+    return res
 
 
 class MedwayExtractor:

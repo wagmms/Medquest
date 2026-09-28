@@ -87,22 +87,28 @@ function getOfflineFallbackHtml(): Response {
   });
 }
 
+function isValidHtmlResponse(response: Response | undefined | null): response is Response {
+  if (!response || !response.ok) return false;
+  const contentType = response.headers.get("content-type");
+  return Boolean(contentType && contentType.toLowerCase().includes("text/html"));
+}
+
 async function getOfflineStudyShell(pathname: string = OFFLINE_STUDY_SHELL_PATH): Promise<Response> {
   try {
     const cache = await caches.open(OFFLINE_STUDY_SHELL_CACHE);
-    // 1. Tenta recuperar a casca específica da rota solicitada
+    // 1. Tenta recuperar a casca específica da rota solicitada (garantindo que seja HTML válido)
     const targetShell = await cache.match(pathname, {
       ignoreSearch: true,
       ignoreVary: true,
     });
-    if (targetShell) return targetShell;
+    if (isValidHtmlResponse(targetShell)) return targetShell;
 
     // 2. Fallback para a casca padrão /estudar
     const defaultShell = await cache.match(OFFLINE_STUDY_SHELL_PATH, {
       ignoreSearch: true,
       ignoreVary: true,
     });
-    if (defaultShell) return defaultShell;
+    if (isValidHtmlResponse(defaultShell)) return defaultShell;
   } catch {
     // Cache indisponível
   }
@@ -132,7 +138,15 @@ self.addEventListener("fetch", (rawEvent: Event) => {
   // Rotas de estudo/simulado/revisão ou raiz
   event.respondWith((async () => {
     try {
-      return await fetchNavigationWithTimeout(event.request, 2800);
+      const response = await fetchNavigationWithTimeout(event.request, 2800);
+      if (isValidHtmlResponse(response)) {
+        const cache = await caches.open(OFFLINE_STUDY_SHELL_CACHE);
+        const routesToCache = ["/estudar", "/simulado", "/revisao-ativa", "/"];
+        if (routesToCache.includes(url.pathname)) {
+          cache.put(url.pathname, response.clone());
+        }
+      }
+      return response;
     } catch {
       // Se a conexão falhar ou expirar o tempo limite:
       const targetPath = url.pathname === "/" ? "/estudar" : url.pathname;
@@ -158,6 +172,22 @@ self.addEventListener("fetch", (rawEvent: Event) => {
   })());
 });
 
+async function purgeCorruptedStudyShells(): Promise<void> {
+  try {
+    const cache = await caches.open(OFFLINE_STUDY_SHELL_CACHE);
+    const keys = await cache.keys();
+    for (const request of keys) {
+      const response = await cache.match(request);
+      if (response && !isValidHtmlResponse(response)) {
+        console.warn(`[ServiceWorker] Removendo casca não-HTML corrompida: ${request.url}`);
+        await cache.delete(request);
+      }
+    }
+  } catch (err) {
+    console.warn("[ServiceWorker] Erro ao verificar cascas existentes no activate:", err);
+  }
+}
+
 async function primeOfflineShellOnActivate(): Promise<void> {
   try {
     const cache = await caches.open(OFFLINE_STUDY_SHELL_CACHE);
@@ -165,9 +195,11 @@ async function primeOfflineShellOnActivate(): Promise<void> {
     for (const route of routesToWarm) {
       try {
         const existing = await cache.match(route, { ignoreSearch: true, ignoreVary: true });
-        if (!existing) {
-          const response = await fetch(route);
-          if (response && response.ok) {
+        if (!isValidHtmlResponse(existing)) {
+          const response = await fetch(route, {
+            headers: { Accept: "text/html" },
+          });
+          if (isValidHtmlResponse(response)) {
             await cache.put(route, response);
             console.log(`[ServiceWorker] Casca offline ${route} pré-aquecida com sucesso.`);
           }
@@ -197,7 +229,7 @@ self.addEventListener("activate", (rawEvent: Event) => {
               })
           );
         }),
-        primeOfflineShellOnActivate(),
+        purgeCorruptedStudyShells().then(() => primeOfflineShellOnActivate()),
       ])
     );
   }

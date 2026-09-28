@@ -13,7 +13,7 @@ const withPWA = withPWAInit({
   // Cache the study shell as soon as the user reaches it. A package download
   // verifies this separately, but this also makes an already-open study screen
   // survive a connection loss before the first package is downloaded.
-  cacheOnFrontEndNav: true,
+  cacheOnFrontEndNav: false,
   aggressiveFrontEndNavCaching: false,
   extendDefaultRuntimeCaching: false,
   // The question bank contains thousands of images. Cache them on demand via
@@ -27,8 +27,11 @@ const withPWA = withPWAInit({
     exclude: [/\.map$/, /_next\/static\/media\/.*\.woff2?$/],
     runtimeCaching: [
       {
-        urlPattern: ({ sameOrigin, url: { pathname } }: { sameOrigin: boolean; url: { pathname: string } }) =>
-          sameOrigin && (pathname === "/estudar" || pathname === "/simulado" || pathname === "/revisao-ativa"),
+        urlPattern: ({ request, sameOrigin, url: { pathname } }: { request?: Request; sameOrigin: boolean; url: { pathname: string } }) =>
+          sameOrigin &&
+          request?.mode === "navigate" &&
+          !request?.headers?.get("RSC") &&
+          (pathname === "/estudar" || pathname === "/simulado" || pathname === "/revisao-ativa"),
         handler: "NetworkFirst",
         options: {
           cacheName: "medquest-study-shell",

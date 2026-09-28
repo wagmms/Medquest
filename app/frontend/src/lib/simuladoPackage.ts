@@ -115,8 +115,12 @@ async function primeOfflineStudyShell(): Promise<void> {
     const studyCache = await caches.open(OFFLINE_STUDY_SHELL_CACHE);
     for (const route of routesToPrime) {
       try {
-        const response = await fetch(route, { cache: "reload" });
-        if (response && response.ok) {
+        const response = await fetch(route, {
+          headers: { Accept: "text/html" },
+          cache: "reload",
+        });
+        const contentType = response?.headers?.get("content-type") || "";
+        if (response && response.ok && contentType.includes("text/html")) {
           await studyCache.put(route, response.clone());
         }
       } catch (e) {
@@ -128,8 +132,9 @@ async function primeOfflineStudyShell(): Promise<void> {
       ignoreSearch: true,
       ignoreVary: true,
     });
-    if (!cachedShell) {
-      throw new Error("A tela de estudo não pôde ser confirmada no cache local.");
+    const cachedType = cachedShell?.headers?.get("content-type") || "";
+    if (!cachedShell || !cachedShell.ok || !cachedType.includes("text/html")) {
+      throw new Error("A tela de estudo não pôde ser confirmada como HTML válido no cache local.");
     }
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
