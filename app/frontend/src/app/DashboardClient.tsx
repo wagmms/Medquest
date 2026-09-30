@@ -180,10 +180,10 @@ export function DashboardClient({
       return "Defina seu plano e resolva 20 questões para calibrar seu diagnóstico inicial.";
     }
     if (pendentesRevisao > 0) {
-      return `Foco de hoje: ${pendentesRevisao} revisões pendentes para blindar sua curva de esquecimento.`;
+      return `Foco de hoje: ${pendentesRevisao} ${pendentesRevisao === 1 ? 'revisão pendente' : 'revisões pendentes'} para blindar sua curva de esquecimento.`;
     }
     if (dailyRemaining > 0) {
-      return `Você está a ${dailyRemaining} questões de bater a meta diária de hoje.`;
+      return `Você está a ${dailyRemaining} ${dailyRemaining === 1 ? 'questão' : 'questões'} de bater a meta diária de hoje.`;
     }
     return "Todas as metas de estudo de hoje concluídas! Excelente consistência.";
   })();
@@ -240,7 +240,7 @@ export function DashboardClient({
                 <span className="text-xs text-muted-foreground">• ~{estimatedMinutes} min</span>
               </div>
               <h3 className="text-base sm:text-xl font-bold text-foreground break-words">
-                {pendentesRevisao} revisões vencidas hoje
+                {pendentesRevisao} {pendentesRevisao === 1 ? "revisão vencida" : "revisões vencidas"} hoje
               </h3>
               <p className="text-xs sm:text-sm text-muted-foreground break-words">
                 Reforce os conceitos no tempo ideal do FSRS antes de resolver questões inéditas.
@@ -295,7 +295,7 @@ export function DashboardClient({
                 <span className="text-xs text-muted-foreground">• {todayDone}/{dailyTarget} concluídas</span>
               </div>
               <h3 className="text-base sm:text-xl font-bold text-foreground break-words">
-                {dailyRemaining} questões para bater sua meta de hoje
+                {dailyRemaining} {dailyRemaining === 1 ? "questão" : "questões"} para bater sua meta de hoje
               </h3>
               <p className="text-xs sm:text-sm text-muted-foreground break-words">
                 Tópico sugerido: <strong className="text-foreground">{sugestaoTema}</strong> {sugestaoArea ? `(${sugestaoArea})` : ""}
@@ -337,7 +337,7 @@ export function DashboardClient({
                 {topErrorSubtema ? (
                   <>Foco sugerido: <strong className="text-foreground">{topErrorSubtema}</strong> ({topBottleneck?.unresolved_count || errorNotebook.currently_unresolved_count} pendentes)</>
                 ) : (
-                  <>Você possui <strong className="text-foreground">{errorNotebook.currently_unresolved_count} questões</strong> aguardando retificação.</>
+                  <>Você possui <strong className="text-foreground">{errorNotebook.currently_unresolved_count} {errorNotebook.currently_unresolved_count === 1 ? "questão" : "questões"}</strong> aguardando retificação.</>
                 )}
               </p>
             </div>
@@ -600,10 +600,10 @@ export function DashboardClient({
                     )}
                   </div>
                   <p className="text-xl sm:text-2xl font-bold text-foreground tracking-tight">
-                    {pendentesRevisao > 0 ? `${pendentesRevisao} pendentes` : "Tudo em dia!"}
+                    {pendentesRevisao > 0 ? `${pendentesRevisao} ${pendentesRevisao === 1 ? 'pendente' : 'pendentes'}` : "Tudo em dia!"}
                   </p>
                   <p className="text-xs text-muted-foreground mt-0.5">
-                    {stats.flashcards_due_count || 0} flashcards · {stats.srs_due_count || 0} questões
+                    {(stats.flashcards_due_count || 0) === 1 ? "1 flashcard" : `${stats.flashcards_due_count || 0} flashcards`} · {(stats.srs_due_count || 0) === 1 ? "1 questão" : `${stats.srs_due_count || 0} questões`}
                   </p>
                 </div>
                 {pendentesRevisao > 0 ? (
@@ -898,7 +898,7 @@ export function DashboardClient({
               <Link href="/cobertura" className="flex items-center gap-1.5 hover:text-primary transition-colors text-muted-foreground p-1 min-w-0 overflow-hidden">
                 <span className="material-symbols-outlined text-[16px] text-emerald-500 shrink-0" data-icon="domain_verification">domain_verification</span>
                 <span className="truncate">
-                  Cobertura: <strong className="text-foreground">
+                  {domainSummary ? "Domínio:" : "Cobertura:"} <strong className="text-foreground">
                     {domainSummary ? `${domainSummary.overall_domain_pct}%` : (stats.coverage_pct != null ? `${(stats.coverage_pct * 100).toFixed(0)}%` : "--")}
                   </strong>
                 </span>

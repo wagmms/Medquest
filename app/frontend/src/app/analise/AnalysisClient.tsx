@@ -451,9 +451,9 @@ export function AnalysisClient({
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3.5">
               {localReadiness.areas.map((area) => {
-                const meanPct = area.posterior_mean !== undefined
-                  ? Math.round(area.posterior_mean * 100)
-                  : (area.accuracy !== null ? Math.round(area.accuracy * 100) : null);
+                const meanPct = area.attempts > 0 
+                  ? (area.posterior_mean !== undefined ? Math.round(area.posterior_mean * 100) : (area.accuracy !== null ? Math.round(area.accuracy * 100) : null))
+                  : null;
                 const wPct = area.weight !== undefined ? Math.round(area.weight * 100) : 20;
                 const sampleBadge = area.attempts >= 20
                   ? { label: "Calibrada", cls: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20" }
