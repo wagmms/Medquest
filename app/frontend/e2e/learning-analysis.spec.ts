@@ -10,9 +10,9 @@ test('prioritizes learning evidence, preserves scope, and renders on mobile', as
   await expect(page.getByText('Você costuma errar marcando')).toHaveCount(0);
   await expect(page.getByText('Dashboard Preditivo')).toHaveCount(0);
   await expect(page.getByText(/1 de 10 questões acompanhadas/)).toBeVisible();
-  await page.getByLabel('Banca', { exact: true }).selectOption('USP-SP');
-  await page.getByLabel('Área', { exact: true }).selectOption('Clínica Médica');
-  await page.getByLabel('Tema', { exact: true }).selectOption('Hipertensão Arterial Sistêmica');
+  await page.getByRole('combobox', { name: 'Banca', exact: true }).selectOption('USP-SP');
+  await page.getByRole('combobox', { name: 'Área', exact: true }).selectOption('Clínica Médica');
+  await page.getByRole('combobox', { name: 'Tema', exact: true }).selectOption('Hipertensão Arterial Sistêmica');
   const priority = page.getByRole('region', { name: 'Suas próximas prioridades' });
   const href = await priority.getByRole('link', { name: 'Rever erros' }).getAttribute('href');
   const query = new URL(href!, 'http://localhost').searchParams;
@@ -68,9 +68,9 @@ test('only the latest filter response is shown', async ({ page }) => {
     if (params.get('institution') === 'USP-SP') await new Promise<void>(resolve => { release = resolve; });
     await route.fulfill({ json: analysisFixture(params) }).catch(() => {});
   });
-  await page.getByLabel('Banca', { exact: true }).selectOption('USP-SP');
+  await page.getByRole('combobox', { name: 'Banca', exact: true }).selectOption('USP-SP');
   await expect.poll(() => Boolean(release)).toBeTruthy();
-  await page.getByLabel('Banca', { exact: true }).selectOption('UNICAMP');
+  await page.getByRole('combobox', { name: 'Banca', exact: true }).selectOption('UNICAMP');
   const link = page.getByRole('region', { name: 'Suas próximas prioridades' }).getByRole('link', { name: 'Rever erros' });
   await expect(link).toHaveAttribute('href', /institution=UNICAMP/);
   release!();

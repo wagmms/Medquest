@@ -5,7 +5,7 @@ test('optional comparison uses first responses and retains the selected institut
   await mockAnalysis(page);
   await page.goto('/analise');
   await expect(page.getByRole('heading', { name: 'Suas próximas prioridades' })).toBeVisible();
-  await page.getByLabel('Banca', { exact: true }).selectOption('USP-SP');
+  await page.getByRole('combobox', { name: 'Banca', exact: true }).selectOption('USP-SP');
   await page.getByText('Detalhes e comparação por banca', { exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Radar Comparativo de Bancas' })).toBeVisible();
   await expect(page.getByLabel('Selecionar banca alvo')).toHaveValue('USP-SP');

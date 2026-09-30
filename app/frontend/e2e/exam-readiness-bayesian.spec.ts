@@ -5,7 +5,7 @@ test('optional area detail labels experimental weights and hides the zero-eviden
   await mockAnalysis(page);
   await page.goto('/analise');
   await expect(page.getByRole('heading', { name: 'Suas próximas prioridades' })).toBeVisible();
-  await page.getByLabel('Banca', { exact: true }).selectOption('USP-SP');
+  await page.getByRole('combobox', { name: 'Banca', exact: true }).selectOption('USP-SP');
   await page.getByText('Detalhes e comparação por banca', { exact: true }).click();
   const profile = page.getByRole('region', { name: 'Perfil por área' });
   await expect(profile.getByText(/Perfil experimental/)).toBeVisible();
