@@ -29,6 +29,16 @@ def test_stats_bottlenecks(client):
     assert r.status_code == 200
     data = r.get_json()
     assert isinstance(data, list)
+    assert len(data) >= 1
+    assert data[0]["unresolved_count"] >= 1
+    assert "status=wrong" in data[0]["practice_url"]
+
+    # Responder corretamente para resolver a questao pendente
+    client.post("/api/questions/1/attempt", json={"selected_letter": "B"})
+    r2 = client.get("/api/stats/bottlenecks")
+    assert r2.status_code == 200
+    data2 = r2.get_json()
+    assert len(data2) == 0
 
 
 def test_stats_domain_summary(client):

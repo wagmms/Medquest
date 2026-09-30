@@ -94,6 +94,7 @@ export interface BenchmarkStat {
 export interface BottleneckTopic {
   subtema: string;
   area: string;
+  unresolved_count?: number;
   attempts: number;
   correct: number;
   wrong_count: number;
@@ -180,6 +181,7 @@ export interface ReadinessKeyFactor {
   impact: string;
   recommendation: string;
   factor_type: "low_sample" | "low_accuracy" | "strength";
+  action_url?: string;
 }
 
 export interface ExamReadinessArea {

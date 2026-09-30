@@ -628,12 +628,15 @@ def _generate_key_factors(enriched_areas: list[dict]) -> list[dict]:
         w_pct = round(a_info["weight"] * 100)
         att = a_info["attempts"]
         mean_pct = round(a_info["posterior_mean"] * 100)
+        area_encoded = quote(a_info["area"])
         if att < 5:
+            needed = max(1, 5 - att)
             key_factors.append({
                 "area": a_info["area"],
                 "impact": f"Peso de {w_pct}% no edital com apenas {att} tentativa(s) observada(s).",
-                "recommendation": f"Resolver pelo menos {max(1, 5 - att)} questão(ões) em {a_info['area']} para calibrar a evidência.",
+                "recommendation": f"Resolver pelo menos {needed} questão(ões) em {a_info['area']} para calibrar a evidência.",
                 "factor_type": "low_sample",
+                "action_url": f"/estudar?area={area_encoded}&status=new&limit={max(5, needed)}",
             })
         elif a_info["posterior_mean"] < 0.60:
             key_factors.append({
@@ -641,6 +644,7 @@ def _generate_key_factors(enriched_areas: list[dict]) -> list[dict]:
                 "impact": f"Acurácia posterior estimada em {mean_pct}% (peso de {w_pct}% no edital).",
                 "recommendation": f"Revisar conceitos prioritários de {a_info['area']} para elevar a prontidão.",
                 "factor_type": "low_accuracy",
+                "action_url": f"/estudar?area={area_encoded}&status=wrong&limit=10",
             })
     return key_factors
 
@@ -764,6 +768,70 @@ def weighted_beta_credible_interval(mean: float, variance: float) -> tuple[float
     return beta_credible_interval(bounded_mean * concentration, (1.0 - bounded_mean) * concentration)
 
 
+_institution_area_totals_cache = SimpleTTLCache(300)
+
+
+def _get_available_questions_by_area(db, institution_code: str | None = None) -> dict[str, int]:
+    cache_key = institution_code or "__all__"
+    cached = _institution_area_totals_cache.get(cache_key)
+    if cached is not None:
+        return cached
+
+    clause = "AND institution_code = ?" if institution_code else ""
+    params = [institution_code] if institution_code else []
+    rows = db.execute(f"""
+        SELECT area, COUNT(id) AS available
+        FROM questions
+        WHERE missing_alts = 0 AND area IS NOT NULL AND area != ''
+              {clause}
+        GROUP BY area
+    """, params).fetchall()
+
+    totals = {row["area"]: row["available"] for row in rows}
+    _institution_area_totals_cache.set(cache_key, totals)
+    return totals
+
+
+def _get_user_area_attempts(db, user_id: str, institution_code: str | None = None) -> dict[str, dict]:
+    clause = "AND q.institution_code = ?" if institution_code else ""
+    params = [user_id]
+    if institution_code:
+        params.append(institution_code)
+
+    rows = db.execute(f"""
+        SELECT q.area,
+               COUNT(DISTINCT a.question_id) AS answered,
+               COUNT(a.id) AS attempts,
+               COALESCE(SUM(a.is_correct), 0) AS correct
+        FROM attempts a
+        JOIN questions q ON q.id = a.question_id
+        WHERE a.user_id = ? AND q.missing_alts = 0 AND q.area IS NOT NULL AND q.area != ''
+              {clause}
+        GROUP BY q.area
+    """, params).fetchall()
+
+    return {row["area"]: dict(row) for row in rows}
+
+
+def _fetch_area_records(db, user_id: str, institution_code: str | None = None) -> list[dict]:
+    avail_map = _get_available_questions_by_area(db, institution_code)
+    user_map = _get_user_area_attempts(db, user_id, institution_code)
+
+    all_areas = set(avail_map.keys()) | set(user_map.keys()) | set(CANONICAL_AREAS)
+    records = []
+    for area in all_areas:
+        u = user_map.get(area, {})
+        records.append({
+            "area": area,
+            "available": avail_map.get(area, 0),
+            "answered": u.get("answered", 0),
+            "attempts": u.get("attempts", 0),
+            "correct": u.get("correct", 0),
+        })
+    records.sort(key=lambda r: r["available"], reverse=True)
+    return records
+
+
 @bp.route("/stats/exam-readiness")
 def exam_readiness():
     """Prontidão estimada por instituição/edital com modelo bayesiano Beta-Binomial."""
@@ -774,25 +842,8 @@ def exam_readiness():
             institution = institution.split(",")[0].strip()
         else:
             institution = ""
-    institution_clause = "AND q.institution_code = ?" if institution else ""
-    params = [g.user_id]
-    if institution:
-        params.append(institution)
-    rows = db.execute(f"""
-        SELECT q.area AS area,
-               COUNT(DISTINCT q.id) AS available,
-               COUNT(DISTINCT a.question_id) AS answered,
-               COUNT(a.id) AS attempts,
-               COALESCE(SUM(a.is_correct), 0) AS correct
-        FROM questions q
-        LEFT JOIN attempts a ON a.question_id = q.id AND a.user_id = ?
-        WHERE q.missing_alts = 0 AND q.area IS NOT NULL AND q.area != ''
-              {institution_clause}
-        GROUP BY q.area
-        ORDER BY available DESC
-    """, params).fetchall()
 
-    area_records = [dict(row) for row in rows]
+    area_records = _fetch_area_records(db, g.user_id, institution or None)
     profile = get_edital_profile(institution or None)
     bayesian_calc = calculate_bayesian_readiness(area_records, profile)
 
@@ -1242,7 +1293,7 @@ def benchmark():
 
 @bp.route("/stats/bottlenecks")
 def bottlenecks():
-    """Inspirado no worst-tags-performance da Medcof: identifica os principais gargalos."""
+    """Identifica os tópicos prioritários do Caderno de Erros (com questões pendentes de retificação)."""
     db = get_db()
     try:
         limit = int(request.args.get("limit", 5))
@@ -1251,26 +1302,31 @@ def bottlenecks():
     limit = max(1, min(limit, 20))
 
     rows = db.execute("""
+        WITH latest_attempts AS (
+            SELECT question_id, is_correct,
+                   ROW_NUMBER() OVER (PARTITION BY question_id ORDER BY id DESC) as rn
+            FROM attempts
+            WHERE user_id = ?
+        )
         SELECT
             q.subtema,
             MIN(q.area) AS area,
+            COUNT(DISTINCT CASE WHEN la.is_correct = 0 THEN q.id END) AS unresolved_count,
             COUNT(a.id) AS attempts,
             SUM(a.is_correct) AS correct,
-            SUM(CASE WHEN a.is_correct = 0 THEN 1 ELSE 0 END) AS wrong_count,
-            SUM(CASE WHEN a.answered_at >= date('now', '-60 days') AND a.is_correct = 0 THEN 1 ELSE 0 END) AS recent_wrong_count,
-            SUM(CASE WHEN a.answered_at >= date('now', '-60 days') THEN 1 ELSE 0 END) AS recent_attempts
+            SUM(CASE WHEN a.is_correct = 0 THEN 1 ELSE 0 END) AS wrong_count
         FROM attempts a
         JOIN questions q ON q.id = a.question_id
+        LEFT JOIN latest_attempts la ON la.question_id = q.id AND la.rn = 1
         WHERE a.user_id = ? AND q.subtema IS NOT NULL AND q.subtema != ''
         GROUP BY q.subtema
-        HAVING attempts >= 2 AND wrong_count > 0
+        HAVING unresolved_count > 0
         ORDER BY
-            (CASE WHEN recent_attempts > 0 THEN (CAST(recent_wrong_count AS FLOAT) / recent_attempts) * 1.5 ELSE 0 END) +
-            (CAST(wrong_count AS FLOAT) / attempts) DESC,
+            unresolved_count DESC,
             wrong_count DESC,
             attempts DESC
         LIMIT ?
-    """, (g.user_id, limit)).fetchall()
+    """, (g.user_id, g.user_id, limit)).fetchall()
 
     out = []
     for r in rows:
@@ -1278,12 +1334,13 @@ def bottlenecks():
         out.append({
             "subtema": r["subtema"],
             "area": r["area"],
+            "unresolved_count": r["unresolved_count"],
             "attempts": r["attempts"],
             "correct": r["correct"],
             "wrong_count": r["wrong_count"],
             "accuracy": round(acc, 3),
             "accuracy_pct": round(acc * 100, 1),
-            "practice_url": f"/estudar?subtema={quote(r['subtema'])}&status=all&limit=10"
+            "practice_url": f"/estudar?subtema={quote(r['subtema'])}&status=wrong&limit=10"
         })
     return jsonify(out)
 
@@ -1543,27 +1600,10 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
         "Medicina Preventiva",
     ]
 
+    avail_map = _get_available_questions_by_area(db, institution_code)
+    user_map = _get_user_area_attempts(db, user_id, institution_code)
+
     inst_clause = "AND q.institution_code = ?" if institution_code else ""
-    inst_params = [user_id]
-    if institution_code:
-        inst_params.append(institution_code)
-
-    rows = db.execute(f"""
-        SELECT
-            q.area,
-            COUNT(DISTINCT q.id) AS available,
-            COUNT(DISTINCT a.question_id) AS answered,
-            COUNT(a.id) AS attempts,
-            COALESCE(SUM(a.is_correct), 0) AS correct
-        FROM questions q
-        LEFT JOIN attempts a ON a.question_id = q.id AND a.user_id = ?
-        WHERE q.missing_alts = 0 AND q.area IS NOT NULL AND q.area != ''
-              {inst_clause}
-        GROUP BY q.area
-    """, inst_params).fetchall()
-
-    row_map = {r["area"]: r for r in rows}
-
     label = _get_institution_label(db, institution_code)
     priority_map = _fetch_all_priority_topics(db, user_id, institution_code, inst_clause) if include_priority else {}
 
@@ -1574,11 +1614,11 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
     total_correct = 0
 
     for area_name in canonical_order:
-        r = row_map.get(area_name)
-        avail = r["available"] if r else 0
-        ans = r["answered"] if r else 0
-        att = r["attempts"] if r else 0
-        cor = r["correct"] if r else 0
+        u = user_map.get(area_name, {})
+        avail = avail_map.get(area_name, 0)
+        ans = u.get("answered", 0)
+        att = u.get("attempts", 0)
+        cor = u.get("correct", 0)
 
         total_available += avail
         total_answered += ans

@@ -314,33 +314,40 @@ export function DashboardClient({
     }
 
     // 4. Todas as metas do dia concluídas
-    if (topBottleneck) {
+    if (errorNotebook && errorNotebook.currently_unresolved_count > 0) {
+      const topErrorSubtema = topBottleneck ? topBottleneck.subtema : null;
+      const targetUrl = topBottleneck ? topBottleneck.practice_url : errorNotebook.practice_url;
+
       return (
-        <div className="shrink-0 bg-card border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
+        <div className="shrink-0 bg-card border border-rose-500/30 bg-gradient-to-r from-rose-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
           <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-1 ring-emerald-500/20 flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="check_circle">check_circle</span>
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400 ring-1 ring-rose-500/20 flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="edit_note">edit_note</span>
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 mb-0.5">
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-rose-500/10 text-rose-600 dark:text-rose-400">
                   Metas Diárias Concluídas 🎉
                 </span>
               </div>
               <h3 className="text-base sm:text-xl font-bold text-foreground break-words">
-                Aproveite para reforçar seu maior gargalo
+                Aproveite para limpar seu Caderno de Erros
               </h3>
               <p className="text-xs sm:text-sm text-muted-foreground break-words">
-                {topBottleneck.subtema}: <strong className="text-amber-600 dark:text-amber-400">{topBottleneck.accuracy_pct}%</strong> em {topBottleneck.attempts} questões ({topBottleneck.wrong_count} erros)
+                {topErrorSubtema ? (
+                  <>Foco sugerido: <strong className="text-foreground">{topErrorSubtema}</strong> ({topBottleneck?.unresolved_count || errorNotebook.currently_unresolved_count} pendentes)</>
+                ) : (
+                  <>Você possui <strong className="text-foreground">{errorNotebook.currently_unresolved_count} questões</strong> aguardando retificação.</>
+                )}
               </p>
             </div>
           </div>
 
           <Link 
-            href={topBottleneck.practice_url}
-            className="w-full sm:w-auto px-5 py-2.5 font-bold bg-amber-500 hover:bg-amber-600 text-white rounded-xl transition-all flex items-center justify-center gap-2 shadow-xs shrink-0"
+            href={targetUrl}
+            className="w-full sm:w-auto px-5 py-2.5 font-bold bg-rose-600 hover:bg-rose-700 text-white rounded-xl transition-all flex items-center justify-center gap-2 shadow-xs shrink-0"
           >
-            Treinar gargalo (10 Qs) <span className="material-symbols-outlined text-[18px]" data-icon="play_arrow">play_arrow</span>
+            Limpar erros <span className="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
           </Link>
         </div>
       );
@@ -691,27 +698,27 @@ export function DashboardClient({
             </div>
           </motion.section>
 
-          {/* ERROS PRIORITÁRIOS & GARGALOS CRÍTICOS (UNIFICADO) */}
+          {/* CADERNO DE ERROS & RETIFICAÇÃO ATIVA */}
           <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 sm:mb-4 pb-2.5 sm:pb-3 border-b border-border/50">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center ring-1 ring-amber-500/20 shrink-0">
-                  <span className="material-symbols-outlined text-[18px]" data-icon="report_problem">report_problem</span>
+                <div className="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center ring-1 ring-rose-500/20 shrink-0">
+                  <span className="material-symbols-outlined text-[18px]" data-icon="edit_note">edit_note</span>
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-foreground">Erros Prioritários & Gargalos</h3>
-                  <p className="text-xs text-muted-foreground">Foco estratégico nos temas com maior taxa de erro</p>
+                  <h3 className="text-base font-bold text-foreground">Caderno de Erros & Retificação</h3>
+                  <p className="text-xs text-muted-foreground">Questões com erro em aberto aguardando nova tentativa</p>
                 </div>
               </div>
 
-              {/* Badge / Acesso ao Caderno de Erros */}
+              {/* Botão para revisar todos os erros */}
               {errorNotebook && errorNotebook.currently_unresolved_count > 0 && (
                 <Link 
                   href={errorNotebook.practice_url}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-xs font-bold transition-colors self-start sm:self-auto"
                 >
-                  <span className="material-symbols-outlined text-[16px]" data-icon="edit_note">edit_note</span>
-                  <span>{errorNotebook.currently_unresolved_count} erros em aberto</span>
+                  <span className="material-symbols-outlined text-[16px]" data-icon="replay">replay</span>
+                  <span>Limpar todos ({errorNotebook.currently_unresolved_count})</span>
                   <span className="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
                 </Link>
               )}
@@ -719,47 +726,51 @@ export function DashboardClient({
 
             {bottlenecks.length > 0 ? (
               <div className="flex flex-col gap-2.5">
-                {bottlenecks.slice(0, 3).map((b) => (
-                  <div 
-                    key={b.subtema}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-muted/20 hover:bg-muted/35 border border-border/40 transition-all gap-2.5 sm:gap-3 min-w-0"
-                  >
-                    <div className="flex flex-col min-w-0 flex-1">
-                      <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 sm:gap-2 min-w-0">
-                        <span className="font-bold text-sm text-foreground line-clamp-2 break-words flex-1 min-w-0" title={b.subtema}>
-                          {b.subtema}
-                        </span>
-                        <span className="px-1.5 py-0.5 rounded bg-muted text-muted-foreground text-[10px] font-bold shrink-0">
-                          {b.area}
-                        </span>
+                {bottlenecks.slice(0, 3).map((b) => {
+                  const unresolved = b.unresolved_count ?? b.wrong_count;
+                  return (
+                    <div 
+                      key={b.subtema}
+                      className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-muted/20 hover:bg-muted/35 border border-border/40 transition-all gap-2.5 sm:gap-3 min-w-0"
+                    >
+                      <div className="flex flex-col min-w-0 flex-1">
+                        <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 sm:gap-2 min-w-0">
+                          <span className="font-bold text-sm text-foreground line-clamp-2 break-words flex-1 min-w-0" title={b.subtema}>
+                            {b.subtema}
+                          </span>
+                          <span className="px-1.5 py-0.5 rounded bg-muted text-muted-foreground text-[10px] font-bold shrink-0">
+                            {b.area}
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground mt-0.5 sm:mt-1">
+                          <span className="text-rose-600 dark:text-rose-400 font-semibold">
+                            {unresolved} {unresolved === 1 ? "questão com erro em aberto" : "questões com erro em aberto"}
+                          </span>
+                          <span className="text-muted-foreground/60">•</span>
+                          <span>{b.attempts} {b.attempts === 1 ? "tentativa" : "tentativas"} ({b.accuracy_pct}% acerto)</span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-3 text-xs text-muted-foreground mt-0.5 sm:mt-1">
-                        <span>Amostra: <strong className="text-foreground">{b.attempts} tentativas</strong> ({b.wrong_count} erros)</span>
-                      </div>
-                    </div>
 
-                    <div className="flex items-center justify-between sm:justify-end gap-2.5 w-full sm:w-auto shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-border/30">
-                      <span className={clsx(
-                        "text-xs font-bold px-2.5 py-1 rounded-lg shrink-0",
-                        b.accuracy_pct < 50 ? "bg-destructive/10 text-destructive" : "bg-amber-500/10 text-amber-600 dark:text-amber-400"
-                      )}>
-                        {b.accuracy_pct}% acertos
-                      </span>
-                      <Link 
-                        href={b.practice_url}
-                        className="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1 shadow-2xs shrink-0"
-                      >
-                        <span className="material-symbols-outlined text-[14px]" data-icon="play_arrow">play_arrow</span> Treinar
-                      </Link>
+                      <div className="flex items-center justify-between sm:justify-end gap-2.5 w-full sm:w-auto shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-border/30">
+                        <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 shrink-0">
+                          {unresolved} {unresolved === 1 ? "pendente" : "pendentes"}
+                        </span>
+                        <Link 
+                          href={b.practice_url}
+                          className="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1 shadow-2xs shrink-0"
+                        >
+                          <span className="material-symbols-outlined text-[14px]" data-icon="replay">replay</span> Retificar
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             ) : (
               <div className="py-6 text-center text-muted-foreground flex flex-col items-center justify-center gap-2">
                 <span className="material-symbols-outlined text-3xl text-emerald-500" data-icon="check_circle">check_circle</span>
-                <p className="text-sm font-semibold text-foreground">Nenhum gargalo crítico no momento!</p>
-                <p className="text-xs max-w-sm">Continue respondendo questões para calibrar o diagnóstico contínuo.</p>
+                <p className="text-sm font-semibold text-foreground">Caderno de erros 100% limpo! 🎉</p>
+                <p className="text-xs max-w-sm">Você não possui questões com erro em aberto. Continue praticando para calibrar sua preparação.</p>
               </div>
             )}
           </motion.section>

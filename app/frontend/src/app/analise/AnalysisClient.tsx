@@ -298,6 +298,72 @@ export function AnalysisClient({
                 )}
               </div>
 
+              {/* Calibração de Evidência / Intervalo Bayesiano */}
+              {!hasSufficientReadinessEvidence ? (
+                <div className="rounded-xl bg-card border border-border/80 p-3 space-y-2.5 my-auto">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-semibold text-foreground">Calibração da Evidência</span>
+                    <span className="font-mono font-medium text-amber-600 dark:text-amber-400">
+                      {localReadiness.areas.filter(a => a.attempts >= 5).length}/{localReadiness.areas.length || 5} áreas qualificadas
+                    </span>
+                  </div>
+                  <div className="h-2 w-full bg-muted rounded-full overflow-hidden flex gap-1 p-0.5">
+                    {(localReadiness.areas.length > 0 ? localReadiness.areas : Array(5).fill(null)).map((a, i) => {
+                      const att = a?.attempts ?? 0;
+                      const isQualified = att >= 5;
+                      const isStarted = att > 0;
+                      return (
+                        <div
+                          key={a?.area || i}
+                          title={a ? `${a.area}: ${att} tentativas (mínimo 5)` : undefined}
+                          className={clsx(
+                            "h-full flex-1 rounded-sm transition-all",
+                            isQualified
+                              ? "bg-emerald-500"
+                              : isStarted
+                                ? "bg-amber-400"
+                                : "bg-muted-foreground/20"
+                          )}
+                        />
+                      );
+                    })}
+                  </div>
+                  <p className="text-[11px] text-muted-foreground leading-snug">
+                    Meta mínima de 5 questões por área para produzir uma estimativa responsável e liberar a nota de prontidão.
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-2 py-1 my-auto">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <span>Intervalo de Credibilidade (95%)</span>
+                    <span className="font-mono font-semibold text-foreground">
+                      {localReadiness.ci_lower !== undefined && localReadiness.ci_upper !== undefined
+                        ? `${Math.round(localReadiness.ci_lower * 100)}% a ${Math.round(localReadiness.ci_upper * 100)}%`
+                        : "—"}
+                    </span>
+                  </div>
+                  <div className="relative h-2.5 w-full bg-muted rounded-full overflow-hidden">
+                    {localReadiness.ci_lower !== undefined && localReadiness.ci_upper !== undefined && (
+                      <div
+                        className="absolute h-full bg-primary/30 rounded-full"
+                        style={{
+                          left: `${Math.max(0, Math.round(localReadiness.ci_lower * 100))}%`,
+                          width: `${Math.max(4, Math.round((localReadiness.ci_upper - localReadiness.ci_lower) * 100))}%`,
+                        }}
+                      />
+                    )}
+                    {localReadiness.readiness_score !== undefined && (
+                      <div
+                        className="absolute top-0 h-full w-2.5 bg-primary rounded-full -ml-1 shadow-sm"
+                        style={{
+                          left: `${Math.max(0, Math.min(100, Math.round(localReadiness.readiness_score * 100)))}%`,
+                        }}
+                      />
+                    )}
+                  </div>
+                </div>
+              )}
+
               <div className="space-y-2 text-xs border-t border-border/50 pt-3">
                 <div className="flex items-center justify-between text-muted-foreground">
                   <span>Edital:</span>
@@ -341,15 +407,38 @@ export function AnalysisClient({
                 {(localReadiness.key_factors || []).slice(0, 3).map((factor, idx) => (
                   <div
                     key={idx}
-                    className="rounded-lg border border-border/70 p-3 bg-card text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                    className="rounded-xl border border-border/80 p-3.5 bg-card text-xs flex flex-col md:flex-row md:items-center justify-between gap-3 hover:border-primary/30 transition-colors"
                   >
-                    <div>
-                      <span className="font-bold text-foreground">{factor.area}: </span>
-                      <span className="text-muted-foreground">{factor.impact}</span>
+                    <div className="space-y-1 min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-foreground">{factor.area}</span>
+                        {factor.factor_type === "low_sample" ? (
+                          <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                            Poucas questões
+                          </span>
+                        ) : (
+                          <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                            Prioritário
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-muted-foreground leading-relaxed">{factor.impact}</p>
                     </div>
-                    <span className="text-primary font-medium shrink-0">
-                      {factor.recommendation}
-                    </span>
+
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 pt-2 md:pt-0 border-t md:border-t-0 border-border/40 shrink-0 max-w-full md:max-w-[50%]">
+                      <span className="text-foreground/90 font-medium text-xs leading-snug break-words">
+                        {factor.recommendation}
+                      </span>
+                      <Link
+                        href={factor.action_url || `/estudar?area=${encodeURIComponent(factor.area)}&status=new&limit=5`}
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground font-semibold text-xs hover:bg-primary/90 transition-colors shrink-0 self-start sm:self-auto cursor-pointer"
+                      >
+                        Resolver
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -360,47 +449,87 @@ export function AnalysisClient({
             <h3 className="text-sm font-bold text-foreground">
               Distribuição por Grande Área no Edital
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3.5">
               {localReadiness.areas.map((area) => {
                 const meanPct = area.posterior_mean !== undefined
                   ? Math.round(area.posterior_mean * 100)
                   : (area.accuracy !== null ? Math.round(area.accuracy * 100) : null);
                 const wPct = area.weight !== undefined ? Math.round(area.weight * 100) : 20;
+                const sampleBadge = area.attempts >= 20
+                  ? { label: "Calibrada", cls: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20" }
+                  : area.attempts >= 5
+                    ? { label: "Em formação", cls: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20" }
+                    : { label: "Amostra inicial", cls: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20" };
+
+                const ciLowerPct = area.ci_lower !== undefined ? Math.round(area.ci_lower * 100) : null;
+                const ciUpperPct = area.ci_upper !== undefined ? Math.round(area.ci_upper * 100) : null;
 
                 return (
                   <div
                     key={area.area}
-                    className="rounded-xl border border-border p-4 bg-card flex flex-col justify-between gap-3 hover:border-primary/40 transition-colors"
+                    className="rounded-xl border border-border p-4 bg-card flex flex-col justify-between gap-3.5 hover:border-primary/40 transition-colors"
                   >
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <span className="text-[11px] font-semibold text-muted-foreground uppercase">
+                    <div className="space-y-2">
+                      <div className="flex items-start justify-between gap-1.5">
+                        <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
                           Peso {wPct}%
                         </span>
-                        <h4 className="font-bold text-sm text-foreground line-clamp-1">{area.area}</h4>
-                      </div>
-                      <div className="text-right">
-                        <span className="text-base font-bold text-foreground">
-                          {meanPct !== null ? `${meanPct}%` : "—"}
+                        <span className={clsx("text-[10px] font-medium px-2 py-0.5 rounded-full border", sampleBadge.cls)}>
+                          {sampleBadge.label}
                         </span>
-                        <span className="block text-[10px] text-muted-foreground">Posterior</span>
+                      </div>
+
+                      <div className="flex items-baseline justify-between gap-2">
+                        <h4 className="font-bold text-sm text-foreground line-clamp-1" title={area.area}>
+                          {area.area}
+                        </h4>
+                        <div className="text-right shrink-0">
+                          <span className="text-lg font-black text-foreground">
+                            {meanPct !== null ? `${meanPct}%` : "—"}
+                          </span>
+                          <span className="block text-[10px] text-muted-foreground -mt-0.5">Posterior</span>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between text-xs text-muted-foreground border-t border-border/40 pt-2">
-                      <span>{area.attempts} tentativas</span>
-                      {area.ci_lower !== undefined && area.ci_upper !== undefined && (
-                        <span className="font-mono text-[11px]">
-                          [{Math.round(area.ci_lower * 100)}% – {Math.round(area.ci_upper * 100)}%]
-                        </span>
-                      )}
+                    {/* Barra visual do intervalo bayesiano */}
+                    <div className="space-y-1.5 py-1">
+                      <div className="relative h-2 w-full bg-muted rounded-full overflow-hidden">
+                        {ciLowerPct !== null && ciUpperPct !== null && (
+                          <div
+                            className="absolute h-full bg-primary/25 rounded-full"
+                            style={{
+                              left: `${Math.max(0, ciLowerPct)}%`,
+                              width: `${Math.max(4, ciUpperPct - ciLowerPct)}%`,
+                            }}
+                          />
+                        )}
+                        {meanPct !== null && (
+                          <div
+                            className="absolute top-0 h-full w-2 bg-primary rounded-full -ml-1 shadow-xs"
+                            style={{
+                              left: `${Math.max(0, Math.min(100, meanPct))}%`,
+                            }}
+                          />
+                        )}
+                      </div>
+
+                      <div className="flex items-center justify-between text-[11px] text-muted-foreground font-mono">
+                        <span className="text-muted-foreground font-sans">{area.attempts} {area.attempts === 1 ? "tentativa" : "tentativas"}</span>
+                        {ciLowerPct !== null && ciUpperPct !== null && (
+                          <span>[{ciLowerPct}% – {ciUpperPct}%]</span>
+                        )}
+                      </div>
                     </div>
 
                     <Link
                       href={area.action}
-                      className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition-colors"
+                      className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition-colors w-full"
                     >
                       Estudar Área
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
                     </Link>
                   </div>
                 );
