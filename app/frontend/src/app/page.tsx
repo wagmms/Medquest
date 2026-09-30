@@ -42,13 +42,18 @@ export default async function Dashboard() {
   let usedAggregatedPath = false;
 
   // Caminho otimizado de 1 round-trip quando getDashboardSummary está disponível
+  let backendTimedOutOrDown = false;
   if (typeof serverApi.stats.getDashboardSummary === "function") {
     const summaryResult = await serverApi.stats.getDashboardSummary()
-      .then((data) => ({ data, hasError: false }))
+      .then((data) => ({ data, hasError: false, isDown: false }))
       .catch((err) => {
         console.error("Failed to fetch dashboard summary:", err);
-        return { data: null, hasError: true };
+        const errMsg = err instanceof Error ? err.message : String(err);
+        const isDown = /timeout|timed out|econnrefused|502|503|504/i.test(errMsg);
+        return { data: null, hasError: true, isDown };
       });
+
+    backendTimedOutOrDown = summaryResult.isDown;
 
     if (!summaryResult.hasError && summaryResult.data) {
       usedAggregatedPath = true;
@@ -101,11 +106,16 @@ export default async function Dashboard() {
           console.error("Failed to generate plan for dashboard", planErr);
         }
       }
+    } else if (backendTimedOutOrDown) {
+      // Falha rápida: se o servidor estiver em cold start ou timeout, não disparar
+      // 8 requisições adicionais em cascata que apenas prolongam a espera do SSR.
+      hasOverviewError = true;
+      hasPlannerError = true;
     }
   }
 
   // Caminho granular resiliente (isolamento de falhas e compatibilidade com suítes de testes)
-  if (!usedAggregatedPath) {
+  if (!usedAggregatedPath && !backendTimedOutOrDown) {
     const statsPromise = serverApi.stats.getOverview()
       .then((s) => ({ stats: s, hasError: false }))
       .catch((err) => {

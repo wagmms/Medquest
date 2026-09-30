@@ -7,7 +7,7 @@ import {
   BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary,
   NotificationConfig, NotificationConfigUpdate, PushSubscriptionPayload,
   InstitutionRadarResponse, FlashcardDecksResponse, AnkiImportResult,
-  AuthMeResponse
+  AuthMeResponse, DashboardSummaryResponse
 } from "@/types/api";
 
 
@@ -169,6 +169,8 @@ export const api = {
   },
   stats: {
     getOverview: () => apiFetch<OverviewStats>("/api/stats/overview", { cache: 'no-store' }),
+    getDashboardSummary: (signal?: AbortSignal) =>
+      apiFetch<DashboardSummaryResponse>("/api/dashboard/summary", { cache: 'no-store', timeoutMs: 45000, signal }),
     getCoverage: () => apiFetch<CoverageResponse>("/api/coverage", { cache: 'no-store' }),
     getTimeline: (days: number = 14, signal?: AbortSignal) =>
       apiFetch<TimelineStat[]>(`/api/stats/timeline?days=${days}`, { cache: 'no-store', signal }),

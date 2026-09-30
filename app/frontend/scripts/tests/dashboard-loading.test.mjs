@@ -71,3 +71,22 @@ test('dashboard loads aggregated summary successfully in single round-trip mode'
   assert.equal(props.benchmarkStats?.status_label, 'aprovado');
 });
 
+test('dashboard fails fast on summary timeout without cascading granular requests', async () => {
+  let granularOverviewCalled = false;
+  const render = loadDashboard({
+    stats: {
+      getDashboardSummary: async () => {
+        throw new Error('Backend timeout after 15s');
+      },
+      getOverview: async () => {
+        granularOverviewCalled = true;
+        return { distinct_answered: 20 };
+      },
+    },
+  });
+  const { props } = await render();
+  assert.equal(props.hasOverviewError, true);
+  assert.equal(props.hasPlannerError, true);
+  assert.equal(granularOverviewCalled, false, 'Deveria falhar rapido sem chamar getOverview granular');
+});
+

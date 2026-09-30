@@ -4,15 +4,32 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useUser } from "@clerk/nextjs";
 import { isLocalIdentityReady } from "@/lib/db";
+import { api } from "@/lib/api";
 import { 
   OverviewStats, PlannerWeek, PlannerTopic,
-  BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary 
+  BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary,
+  DashboardSummaryResponse
 } from "@/types/api";
 import { motion, Variants } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { readLearningSession, syncSessionFromCloud } from "@/lib/sessionState";
 import { triggerConfetti } from "@/lib/confetti";
 import clsx from "clsx";
+
+const DASHBOARD_CACHE_KEY = "medquest_dashboard_cache_v1";
+
+interface DashboardCachedData {
+  stats: OverviewStats;
+  currentPlannerWeek: PlannerWeek | null;
+  suggestedPlannerTopic?: PlannerTopic | null;
+  remainingPlannerMetas?: number;
+  isPlanCompleted?: boolean;
+  benchmarkStats?: BenchmarkStat | null;
+  bottlenecks?: BottleneckTopic[];
+  domainSummary?: DomainSummaryResponse | null;
+  errorNotebook?: ErrorNotebookSummary | null;
+  timestamp: number;
+}
 
 const OfflineModal = dynamic(
   () => import("@/components/OfflineModal").then((m) => m.OfflineModal),
@@ -51,23 +68,40 @@ interface DashboardClientProps {
 }
 
 export function DashboardClient({ 
-  stats, 
-  currentPlannerWeek, 
-  suggestedPlannerTopic,
-  remainingPlannerMetas,
-  isPlanCompleted,
+  stats: initialStats, 
+  currentPlannerWeek: initialPlannerWeek, 
+  suggestedPlannerTopic: initialSuggestedPlannerTopic,
+  remainingPlannerMetas: initialRemainingPlannerMetas,
+  isPlanCompleted: initialIsPlanCompleted,
   firstName, 
-  benchmarkStats,
-  bottlenecks = [],
-  domainSummary,
-  errorNotebook,
-  hasOverviewError = false,
-  hasPlannerError = false,
+  benchmarkStats: initialBenchmarkStats,
+  bottlenecks: initialBottlenecks = [],
+  domainSummary: initialDomainSummary,
+  errorNotebook: initialErrorNotebook,
+  hasOverviewError: initialHasOverviewError = false,
+  hasPlannerError: initialHasPlannerError = false,
 }: DashboardClientProps) {
   const { isLoaded: authLoaded } = useUser();
   const hasAnimated = useRef(false);
   const [activeSession, setActiveSession] = useState<{ kind: "quiz" | "simulado"; url: string } | null>(null);
   const [isOfflineModalOpen, setIsOfflineModalOpen] = useState(false);
+
+  // Estados reativos internos para dados e auto-recuperação
+  const [stats, setStats] = useState<OverviewStats>(initialStats);
+  const [currentPlannerWeek, setCurrentPlannerWeek] = useState<PlannerWeek | null>(initialPlannerWeek);
+  const [suggestedPlannerTopic, setSuggestedPlannerTopic] = useState<PlannerTopic | null | undefined>(initialSuggestedPlannerTopic);
+  const [remainingPlannerMetas, setRemainingPlannerMetas] = useState<number>(initialRemainingPlannerMetas ?? 0);
+  const [isPlanCompleted, setIsPlanCompleted] = useState<boolean>(initialIsPlanCompleted ?? false);
+  const [benchmarkStats, setBenchmarkStats] = useState<BenchmarkStat | null | undefined>(initialBenchmarkStats);
+  const [bottlenecks, setBottlenecks] = useState<BottleneckTopic[]>(initialBottlenecks);
+  const [domainSummary, setDomainSummary] = useState<DomainSummaryResponse | null | undefined>(initialDomainSummary);
+  const [errorNotebook, setErrorNotebook] = useState<ErrorNotebookSummary | null | undefined>(initialErrorNotebook);
+  const [hasOverviewError, setHasOverviewError] = useState<boolean>(initialHasOverviewError);
+  const [hasPlannerError, setHasPlannerError] = useState<boolean>(initialHasPlannerError);
+
+  const [isReconnecting, setIsReconnecting] = useState<boolean>(false);
+  const [reconnectAttempt, setReconnectAttempt] = useState<number>(0);
+  const [isUsingCache, setIsUsingCache] = useState<boolean>(false);
 
   useEffect(() => {
     // Dispara confete se as revisões diárias estiverem zeradas e houver pelo menos 1 questão feita
@@ -147,6 +181,176 @@ export function DashboardClient({
     };
   }, []);
 
+  const applySummaryData = useCallback((summaryData: DashboardSummaryResponse) => {
+    if (summaryData.stats) {
+      setStats(summaryData.stats);
+      setHasOverviewError(false);
+    }
+    if (summaryData.benchmark !== undefined) setBenchmarkStats(summaryData.benchmark);
+    if (summaryData.bottlenecks !== undefined) setBottlenecks(summaryData.bottlenecks || []);
+    if (summaryData.domain_summary !== undefined) setDomainSummary(summaryData.domain_summary);
+    if (summaryData.error_notebook !== undefined) setErrorNotebook(summaryData.error_notebook);
+    setIsUsingCache(false);
+
+    const planner = summaryData.planner;
+    const config = planner?.config;
+    const progressMap = planner?.progress || {};
+    const topicProgressMap = planner?.topic_progress || {};
+
+    if (config && config.exam_date && config.start_date) {
+      api.planner.generatePlan({
+        start_date: config.start_date,
+        exam_date: config.exam_date,
+        hours_per_week: Math.min(168, (config.days_per_week || 5) * (config.hours_per_day || 4)),
+        intensive: false
+      }).then((planResponse) => {
+        if (planResponse.plan && planResponse.plan.length > 0) {
+          let foundWeek = null;
+          let foundTopic = null;
+          let metas = 0;
+          let completed = false;
+
+          for (const week of planResponse.plan) {
+            if (progressMap[week.week.toString()]?.studied) continue;
+            const pending = (week.topics || []).filter(
+              (t) => !topicProgressMap[`${week.week}:${t.subtema}`] && !topicProgressMap[t.subtema]
+            );
+            if (pending.length > 0) {
+              foundWeek = week;
+              foundTopic = pending[0];
+              metas = pending.length;
+              break;
+            }
+          }
+
+          if (!foundTopic && planResponse.plan.length > 0) {
+            completed = true;
+            foundWeek = planResponse.plan[planResponse.plan.length - 1];
+          }
+
+          setCurrentPlannerWeek(foundWeek);
+          setSuggestedPlannerTopic(foundTopic);
+          setRemainingPlannerMetas(metas);
+          setIsPlanCompleted(completed);
+          setHasPlannerError(false);
+        }
+      }).catch((planErr) => {
+        console.warn("[Dashboard] Erro ao sincronizar planner no cliente:", planErr);
+      });
+    }
+
+    try {
+      const cachePayload: DashboardCachedData = {
+        stats: summaryData.stats || stats,
+        currentPlannerWeek,
+        suggestedPlannerTopic,
+        remainingPlannerMetas,
+        isPlanCompleted,
+        benchmarkStats: summaryData.benchmark,
+        bottlenecks: summaryData.bottlenecks || [],
+        domainSummary: summaryData.domain_summary,
+        errorNotebook: summaryData.error_notebook,
+        timestamp: Date.now(),
+      };
+      localStorage.setItem(DASHBOARD_CACHE_KEY, JSON.stringify(cachePayload));
+    } catch {}
+  }, [currentPlannerWeek, isPlanCompleted, remainingPlannerMetas, stats, suggestedPlannerTopic]);
+
+  const fetchDashboardDataRef = useRef<((retryCount?: number) => Promise<boolean>) | null>(null);
+
+  const fetchDashboardData = useCallback(async (retryCount = 0) => {
+    setIsReconnecting(true);
+    setReconnectAttempt(retryCount + 1);
+    try {
+      const data = await api.stats.getDashboardSummary();
+      if (data && data.stats) {
+        applySummaryData(data);
+        setIsReconnecting(false);
+        setReconnectAttempt(0);
+        return true;
+      }
+    } catch (err) {
+      console.warn(`[Dashboard] Falha na tentativa ${retryCount + 1} de sincronização:`, err);
+    }
+
+    if (retryCount < 4) {
+      const delay = [2000, 4000, 6000, 10000][retryCount] || 5000;
+      setTimeout(() => {
+        void fetchDashboardDataRef.current?.(retryCount + 1);
+      }, delay);
+    } else {
+      setIsReconnecting(false);
+    }
+    return false;
+  }, [applySummaryData]);
+
+  useEffect(() => {
+    fetchDashboardDataRef.current = fetchDashboardData;
+  }, [fetchDashboardData]);
+
+  // Efeito de persistência e auto-recuperação do cache local
+  useEffect(() => {
+    if (!initialHasOverviewError) {
+      try {
+        const cachePayload: DashboardCachedData = {
+          stats: initialStats,
+          currentPlannerWeek: initialPlannerWeek,
+          suggestedPlannerTopic: initialSuggestedPlannerTopic,
+          remainingPlannerMetas: initialRemainingPlannerMetas,
+          isPlanCompleted: initialIsPlanCompleted,
+          benchmarkStats: initialBenchmarkStats,
+          bottlenecks: initialBottlenecks,
+          domainSummary: initialDomainSummary,
+          errorNotebook: initialErrorNotebook,
+          timestamp: Date.now(),
+        };
+        localStorage.setItem(DASHBOARD_CACHE_KEY, JSON.stringify(cachePayload));
+      } catch {}
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      let loadedFromCache = false;
+      try {
+        const raw = localStorage.getItem(DASHBOARD_CACHE_KEY);
+        if (raw) {
+          const cached: DashboardCachedData = JSON.parse(raw);
+          if (cached && cached.stats) {
+            setStats(cached.stats);
+            if (cached.currentPlannerWeek !== undefined) setCurrentPlannerWeek(cached.currentPlannerWeek);
+            if (cached.suggestedPlannerTopic !== undefined) setSuggestedPlannerTopic(cached.suggestedPlannerTopic);
+            if (cached.remainingPlannerMetas !== undefined) setRemainingPlannerMetas(cached.remainingPlannerMetas);
+            if (cached.isPlanCompleted !== undefined) setIsPlanCompleted(cached.isPlanCompleted);
+            if (cached.benchmarkStats !== undefined) setBenchmarkStats(cached.benchmarkStats);
+            if (cached.bottlenecks !== undefined) setBottlenecks(cached.bottlenecks);
+            if (cached.domainSummary !== undefined) setDomainSummary(cached.domainSummary);
+            if (cached.errorNotebook !== undefined) setErrorNotebook(cached.errorNotebook);
+            setHasOverviewError(false);
+            setIsUsingCache(true);
+            loadedFromCache = true;
+          }
+        }
+      } catch {}
+
+      setTimeout(() => {
+        void fetchDashboardDataRef.current?.(0);
+      }, loadedFromCache ? 600 : 100);
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, [
+    initialHasOverviewError,
+    initialStats,
+    initialPlannerWeek,
+    initialSuggestedPlannerTopic,
+    initialRemainingPlannerMetas,
+    initialIsPlanCompleted,
+    initialBenchmarkStats,
+    initialBottlenecks,
+    initialDomainSummary,
+    initialErrorNotebook,
+  ]);
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -189,7 +393,11 @@ export function DashboardClient({
 
   // Subtítulo Contextual Direto
   const subtitleMessage = (() => {
-    if (hasOverviewError) return "Suas métricas estão temporariamente indisponíveis. Você pode continuar estudando pelo menu.";
+    if (hasOverviewError) {
+      return isReconnecting
+        ? "Conectando ao servidor em nuvem e sincronizando suas métricas..."
+        : "Suas métricas estão temporariamente indisponíveis. Você pode continuar estudando pelo menu.";
+    }
     if (stats.distinct_answered === 0) {
       return "Defina seu plano e resolva 20 questões para calibrar seu diagnóstico inicial.";
     }
@@ -444,9 +652,18 @@ export function DashboardClient({
       <motion.section variants={itemVariants} className="flex flex-col gap-1 w-full min-w-0">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3 w-full min-w-0">
           <div className="min-w-0 flex-1">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-foreground truncate">
-              Olá, {firstName}
-            </h2>
+            <div className="flex flex-wrap items-center gap-2.5">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-foreground truncate">
+                Olá, {firstName}
+              </h2>
+              {isUsingCache && (
+                <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[11px] font-semibold border border-amber-500/20 shrink-0 shadow-2xs">
+                  <span className="material-symbols-outlined text-[13px] animate-spin" data-icon="sync">sync</span>
+                  <span className="hidden sm:inline">Sincronizando com a nuvem</span>
+                  <span className="sm:hidden">Sincronizando</span>
+                </div>
+              )}
+            </div>
             <p className="text-muted-foreground text-xs sm:text-sm md:text-base mt-0.5 break-words">
               {subtitleMessage}
             </p>
@@ -486,27 +703,41 @@ export function DashboardClient({
         <motion.div variants={itemVariants} className="shrink-0 bg-card border-2 border-amber-500/30 dark:border-amber-500/20 bg-gradient-to-r from-amber-500/5 via-card to-card rounded-3xl p-6 sm:p-8 shadow-xs">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5">
             <div className="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/30 flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-[28px]" data-icon="cloud_off">cloud_off</span>
+              <span className={clsx("material-symbols-outlined text-[28px]", isReconnecting && "animate-spin")} data-icon={isReconnecting ? "sync" : "cloud_off"}>
+                {isReconnecting ? "sync" : "cloud_off"}
+              </span>
             </div>
             <div className="flex-1 text-center sm:text-left">
               <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-500/15 text-amber-600 dark:text-amber-400">
-                  Instabilidade Temporária
+                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
+                  {isReconnecting && <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping inline-block" />}
+                  {isReconnecting ? "Inicializando Servidor" : "Instabilidade Temporária"}
                 </span>
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1">
-                Não foi possível sincronizar as métricas do painel
+                {isReconnecting ? "Conectando ao servidor em nuvem..." : "Não foi possível sincronizar as métricas do painel"}
               </h3>
               <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mb-4">
-                Ocorreu uma falha temporária ao carregar seus dados do servidor. Seu histórico e progresso continuam seguros. Você pode recarregar a página ou continuar estudando pelo menu.
+                {isReconnecting
+                  ? `O servidor em nuvem está inicializando (cold start). Tentativa ${reconnectAttempt} de sincronização automática em andamento... Suas métricas serão carregadas em instantes.`
+                  : "Ocorreu uma falha temporária ao carregar seus dados do servidor. Seu histórico e progresso continuam seguros. Você pode sincronizar novamente ou continuar estudando pelo menu."}
               </p>
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
                 <button
-                  onClick={() => window.location.reload()}
-                  className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-bold rounded-xl transition-all flex items-center gap-1.5 shadow-xs cursor-pointer"
+                  onClick={() => fetchDashboardData(0)}
+                  disabled={isReconnecting}
+                  className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-bold rounded-xl transition-all flex items-center gap-1.5 shadow-xs cursor-pointer disabled:opacity-60"
                 >
-                  <span className="material-symbols-outlined text-[16px]" data-icon="refresh">refresh</span>
-                  Tentar novamente
+                  <span className={clsx("material-symbols-outlined text-[16px]", isReconnecting && "animate-spin")} data-icon="refresh">
+                    refresh
+                  </span>
+                  {isReconnecting ? "Sincronizando..." : "Sincronizar agora"}
+                </button>
+                <button
+                  onClick={() => window.location.reload()}
+                  className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground border border-border text-xs font-semibold rounded-xl transition-colors cursor-pointer"
+                >
+                  Recarregar página
                 </button>
                 <Link
                   href="/estudar"
