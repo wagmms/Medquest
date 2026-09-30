@@ -23,7 +23,6 @@ export function analysisFixture(params = new URLSearchParams()): LearningAnalysi
 }
 
 export async function mockAnalysis(page: Page) {
-  await page.addInitScript(() => localStorage.setItem('medquest_onboarding_v1', 'done'));
   await page.route('**/api/**', async route => {
     const url = new URL(route.request().url());
     let body: unknown = {};

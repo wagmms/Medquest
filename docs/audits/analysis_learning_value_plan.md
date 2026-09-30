@@ -147,29 +147,3 @@ Acceptance: immediate retries cannot count as delayed retention; an overdue asse
 Retrieval practice and spaced study support delayed retention. That supports a product emphasis on answering, receiving feedback, and checking retention later; it does not validate MedQuest's FSRS calibration, its current readiness score, or any universal number of questions required for mastery. See [Roediger and Karpicke's retrieval experiments](https://pubmed.ncbi.nlm.nih.gov/16507066/) and [Cepeda and colleagues' spacing experiments](https://pubmed.ncbi.nlm.nih.gov/19439395/).
 
 Correct answers given with low confidence can also benefit from feedback. This supports surfacing explicitly reported uncertainty instead of treating all correct answers alike; see [Butler, Karpicke, and Roediger](https://pubmed.ncbi.nlm.nih.gov/18605878/). The proposed UI hierarchy and priority rules remain design recommendations, not experimentally validated outcomes for this application.
-
-## Implementation update — 2026-09-30
-
-The core learning workflow is now implemented in `/analise`:
-
-- A shared, user-isolated `/api/stats/learning-analysis` report supplies period, institution, area, and topic filters. First exposure is determined from the full history before the period is applied.
-- A priority queue precedes every results panel on desktop and mobile. It reserves up to three places for remediation and two for assessment, with separate error, new-question, and due-review actions.
-- New-question accuracy and delayed-review outcomes are separate. A question contributes at most once to each measure in a period. The last eligible review must follow at least 24 hours without an attempt on that question. This is a reporting convention and does not modify FSRS scheduling.
-- Error follow-up is reconstructed from existing answer records. An immediate correction stays pending until there is subsequent evidence after an interval. A later error invalidates previous recovery evidence. Topic counts remain visible instead of implying that the whole topic is mastered.
-- Latest recorded error state follows attempt ID, matching the existing error notebook and study queue. First exposure and review intervals use occurrence timestamps, including offline uploads. Historic confidence values remain excluded because their provenance is ambiguous.
-- Forgetting counts now include only tracked questions below the shared FSRS retention target. Due reviews are counted and linked separately; lack of memory data does not generate a reassuring success message.
-- Institution detail is optional and explicitly uses lifetime first responses. No percentage derived solely from the prior is displayed for unassessed areas. Experimental profile weights remain labeled as such; repeated answers cannot increase its assessment sample.
-- Redundant headline predictions, wrong-letter insights, the separate institution bar chart, and the activity heatmap were removed from this tab. Weekly evidence and optional institution comparisons remain available below the main learning workflow.
-- Workload estimates respect time capacity; the new report also caps the estimate at the available question count. Pending reviews are no longer described as automatically rescheduled.
-- Scope changes cancel obsolete requests and hide old results until new data arrive. Failure states provide a retry instead of substituting empty or healthy-looking results.
-
-This implementation deliberately reuses answer history instead of adding a second editable progress database. Optional pre-answer confidence and error-cause tagging remain future study-flow features, because existing records cannot safely supply those meanings. Long-term learning improvement must be evaluated through subsequent use; the implementation does not claim that interface changes alone cause improvement.
-
-Validation:
-
-- 75 backend tests passed across learning analysis, Bayesian calculations, institution comparison, adaptive practice, statistics, and API integration.
-- Production build and TypeScript checks passed, including service-worker validation and JavaScript performance budgets. The existing oversized icon-font precache warning remains unrelated to analytics.
-- Focused ESLint checks passed for the changed UI, API types, and browser tests.
-- A synthetic, in-memory SQLite report with 5,000 questions and 50,000 attempts completed in approximately 0.3 seconds locally. This is a local benchmark, not a remote Turso latency guarantee.
-- Six focused Playwright tests passed: scoped study links and mobile overflow, error/retry recovery, empty data, late-response cancellation, zero-evidence institution detail, and optional institution comparison. Tests use synthetic account data, not the live account.
-- Final desktop (1280px) and mobile (390px) screenshots were visually inspected, including the evidence and correction-follow-up sections. Mobile filters use two columns, a single priority uses the full row, and the browser check confirms no page-level horizontal overflow. All six browser tests passed again after these layout refinements.
