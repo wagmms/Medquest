@@ -193,8 +193,12 @@ def _get_overview_metrics(db, user_id: str, now_utc: datetime) -> dict:
 
 
 def _get_streak_and_target_info(db, user_id: str, now_utc: datetime, tz_offset: int) -> dict:
+    # Shift answered_at by tz_offset to get local date string
+    sign = '+' if tz_offset >= 0 else '-'
+    offset_str = f"{sign}{abs(tz_offset)} minutes"
     day_rows = db.execute(
-        "SELECT DISTINCT substr(answered_at, 1, 10) AS day FROM attempts WHERE user_id = ? ORDER BY day DESC", (user_id,)
+        "SELECT DISTINCT substr(datetime(answered_at, ?), 1, 10) AS day FROM attempts WHERE user_id = ? ORDER BY day DESC",
+        (offset_str, user_id)
     ).fetchall()
     days_studied = {r["day"] for r in day_rows}
 
@@ -207,10 +211,13 @@ def _get_streak_and_target_info(db, user_id: str, now_utc: datetime, tz_offset: 
     local_today_str = str(local_today)
     streak = responsible_streak(days_studied, local_today, config.get("days_per_week") or 6)
 
-    # Contagem de questões distintas resolvidas hoje no fuso local
+    # Calculate UTC boundaries for the local day
+    local_start = datetime(local_today.year, local_today.month, local_today.day, tzinfo=timezone.utc) - timedelta(minutes=tz_offset)
+    local_end = local_start + timedelta(days=1)
+
     today_answered_row = db.execute(
-        "SELECT COUNT(DISTINCT question_id) AS today_answered FROM attempts WHERE user_id = ? AND substr(answered_at, 1, 10) = ?",
-        (user_id, local_today_str)
+        "SELECT COUNT(DISTINCT question_id) AS today_answered FROM attempts WHERE user_id = ? AND answered_at >= ? AND answered_at < ?",
+        (user_id, local_start.isoformat(), local_end.isoformat())
     ).fetchone()
     today_answered_count = today_answered_row["today_answered"] if today_answered_row else 0
 
@@ -245,7 +252,7 @@ def _get_streak_and_target_info(db, user_id: str, now_utc: datetime, tz_offset: 
 @bp.route("/stats/overview")
 def overview():
     try:
-        tz_offset = int(request.args.get('tz_offset', 0))
+        tz_offset = int(request.args.get('tz_offset', -180))
     except (ValueError, TypeError):
         tz_offset = 0
 
