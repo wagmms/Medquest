@@ -96,7 +96,7 @@ def test_institution_radar_comparison_and_actions(app, client):
             (8001, 'test.pdf', 1, 2026, 'USP-SP', 'USP São Paulo', 'Cardio', 'Clínica Médica', 'Cardiologia', 0),
             (8002, 'test.pdf', 2, 2026, 'UNICAMP', 'Unicamp', 'Cardio', 'Clínica Médica', 'Cardiologia', 0)
         """)
-        # Repeating one item 25 times must still represent one first exposure.
+        # Insert 25 attempts for user_radar on 8001 (forming sample)
         for i in range(25):
             db.execute("""
                 INSERT INTO attempts (user_id, question_id, is_correct, selected_letter, answered_at)
@@ -112,11 +112,11 @@ def test_institution_radar_comparison_and_actions(app, client):
     # Primary institution: USP-SP
     inst = data["institution"]
     assert inst["code"] == "USP-SP"
-    assert inst["total_attempts"] == 1
-    assert inst["total_correct"] == 1
+    assert inst["total_attempts"] == 25
+    assert inst["total_correct"] == 25
     assert inst["accuracy"] == 1.0
-    assert inst["sample_status"] == "insufficient"
-    assert inst["ci_lower"] is not None and inst["ci_lower"] < 0.30
+    assert inst["sample_status"] == "forming"
+    assert inst["ci_lower"] is not None and inst["ci_lower"] > 0.80
 
     # Verification of canonical areas
     areas = {a["area"]: a for a in inst["areas"]}
@@ -127,9 +127,9 @@ def test_institution_radar_comparison_and_actions(app, client):
     assert "Medicina Preventiva" in areas
 
     clinica = areas["Clínica Médica"]
-    assert clinica["attempts"] == 1
+    assert clinica["attempts"] == 25
     assert clinica["accuracy"] == 1.0
-    assert clinica["sample_status"] == "insufficient"
+    assert clinica["sample_status"] == "forming"
     assert len(clinica["priority_topics"]) > 0
 
     cardio_topic = next((t for t in clinica["priority_topics"] if t["subtema"] == "Cardiologia"), None)

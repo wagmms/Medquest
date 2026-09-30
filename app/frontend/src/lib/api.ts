@@ -6,7 +6,7 @@ import {
   BatchFlashcardGenerateResponse, PredictiveScore, AtRiskTopic, LearningProfile, ExamReadiness,
   BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary,
   NotificationConfig, NotificationConfigUpdate, PushSubscriptionPayload,
-  InstitutionRadarResponse, FlashcardDecksResponse, AnkiImportResult, LearningAnalysis, LearningAnalysisFilters
+  InstitutionRadarResponse, FlashcardDecksResponse, AnkiImportResult
 } from "@/types/api";
 
 
@@ -167,10 +167,6 @@ export const api = {
       }),
   },
   stats: {
-    getLearningAnalysis: (filters: LearningAnalysisFilters, signal?: AbortSignal) => {
-      const params = new URLSearchParams(Object.entries(filters).map(([key, value]) => [key, String(value)]));
-      return apiFetch<LearningAnalysis>(`/api/stats/learning-analysis?${params}`, { cache: 'no-store', signal });
-    },
     getOverview: () => apiFetch<OverviewStats>("/api/stats/overview", { cache: 'no-store' }),
     getCoverage: () => apiFetch<CoverageResponse>("/api/coverage", { cache: 'no-store' }),
     getTimeline: (days: number = 14, signal?: AbortSignal) =>

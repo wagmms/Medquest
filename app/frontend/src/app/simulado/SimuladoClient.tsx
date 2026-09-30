@@ -1728,17 +1728,11 @@ export function SimuladoClient({
 
                   let altClass = "bg-card border-border hover:bg-muted/50 cursor-pointer";
 
-                  const correctLetters = (res?.correct_letter || "")
-                    .split(",")
-                    .map((l) => l.trim().toUpperCase())
-                    .filter(Boolean);
-                  const isGabarito = correctLetters.includes(alt.letter.toUpperCase());
-
                   if (isReview) {
                     altClass = "bg-card border-border opacity-60 cursor-default"; // Default inactive
 
                     if (res) {
-                      if (isGabarito) {
+                      if (alt.letter === res.correct_letter) {
                         altClass = "bg-success/20 border-success/50 cursor-default ring-2 ring-success";
                       } else if (isSelected && !res.is_correct) {
                         altClass = "bg-destructive/20 border-destructive/50 cursor-default";
@@ -1799,7 +1793,7 @@ export function SimuladoClient({
                         </button>
                       ) : (
                         <div className="w-6 h-8 shrink-0 flex items-center justify-center text-muted-foreground/40">
-                          {isEliminated && res && !isGabarito && (
+                          {isEliminated && res && alt.letter !== res.correct_letter && (
                             <Scissors size={13} className="opacity-40 rotate-45 text-destructive" />
                           )}
                         </div>
@@ -1807,7 +1801,7 @@ export function SimuladoClient({
 
                       <div className={clsx(
                         "w-8 h-8 shrink-0 flex items-center justify-center rounded-lg font-bold text-sm border border-transparent transition-colors",
-                        isReview && isGabarito ? "bg-success text-success-foreground" :
+                        isReview && alt.letter === res?.correct_letter ? "bg-success text-success-foreground" :
                         isReview && isSelected && !res?.is_correct ? "bg-destructive text-destructive-foreground" :
                         isSelected && !isReview ? "bg-primary text-primary-foreground" :
                         isEliminated && !isReview ? "bg-muted/40 text-muted-foreground/60 border-border/50" :
@@ -1817,7 +1811,7 @@ export function SimuladoClient({
                       </div>
                       <div className={clsx(
                         "pt-1 text-foreground leading-relaxed flex-1 transition-all",
-                        isEliminated && (!isReview || !isGabarito) && "line-through text-muted-foreground/75 decoration-muted-foreground/60"
+                        isEliminated && (!isReview || alt.letter !== res?.correct_letter) && "line-through text-muted-foreground/75 decoration-muted-foreground/60"
                       )}>
                         {!isReview && (qDetail.is_discursive || (qDetail.alternatives || []).length <= 1)
                           ? "Confirmar resposta da questão discursiva"

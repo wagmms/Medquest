@@ -3,18 +3,37 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useUser } from "@clerk/nextjs";
-import { useEffect, useState } from "react";
-import { ArrowRight, BookOpen, RefreshCw, Target } from "lucide-react";
-import { api } from "@/lib/api";
 import { isLocalIdentityReady } from "@/lib/db";
+import { 
+  OverviewStats, PlannerWeek, PlannerTopic,
+  BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary 
+} from "@/types/api";
+import { motion, Variants } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { readLearningSession, syncSessionFromCloud } from "@/lib/sessionState";
-import { dashboardPriorities, topicAction, topicKey, topicReason } from "@/lib/dashboardLearning";
-import type { LearningAnalysis, LearningMeasure, OverviewStats, PlannerTopic, PlannerWeek } from "@/types/api";
+import { triggerConfetti } from "@/lib/confetti";
+import clsx from "clsx";
 
-const OfflineModal = dynamic(() => import("@/components/OfflineModal").then(m => m.OfflineModal), { ssr: false });
-const panel = "rounded-2xl border border-border bg-card p-4 sm:p-6 min-w-0";
-const action = "inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
-const secondary = "inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-border px-3 py-2 text-sm font-medium hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
+const OfflineModal = dynamic(
+  () => import("@/components/OfflineModal").then((m) => m.OfflineModal),
+  { ssr: false }
+);
+
+function formatExamDate(dateStr: string): string {
+  try {
+    const parts = dateStr.slice(0, 10).split("-");
+    if (parts.length === 3) {
+      const year = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10) - 1;
+      const day = parseInt(parts[2], 10);
+      const d = new Date(year, month, day, 12, 0, 0);
+      return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
+    }
+  } catch {
+    // fallback to default parsing
+  }
+  return dateStr;
+}
 
 interface DashboardClientProps {
   stats: OverviewStats;
@@ -23,136 +42,905 @@ interface DashboardClientProps {
   remainingPlannerMetas?: number;
   isPlanCompleted?: boolean;
   firstName: string;
+  benchmarkStats?: BenchmarkStat | null;
+  bottlenecks?: BottleneckTopic[];
+  domainSummary?: DomainSummaryResponse | null;
+  errorNotebook?: ErrorNotebookSummary | null;
   hasOverviewError?: boolean;
   hasPlannerError?: boolean;
 }
 
-function result(measure: LearningMeasure) {
-  return measure.total && measure.accuracy !== null
-    ? `${Math.round(measure.accuracy * 100)}% · ${measure.correct}/${measure.total}`
-    : "Sem respostas no período";
-}
-
-function Comparison({ previous }: { previous: LearningMeasure }) {
-  return <p className="text-xs text-muted-foreground mt-2">Período anterior: {result(previous)}. A composição das questões pode mudar.</p>;
-}
-
-export function DashboardClient({ stats, currentPlannerWeek, suggestedPlannerTopic, remainingPlannerMetas = 0, isPlanCompleted, firstName, hasOverviewError = false, hasPlannerError = false }: DashboardClientProps) {
+export function DashboardClient({ 
+  stats, 
+  currentPlannerWeek, 
+  suggestedPlannerTopic,
+  remainingPlannerMetas,
+  isPlanCompleted,
+  firstName, 
+  benchmarkStats,
+  bottlenecks = [],
+  domainSummary,
+  errorNotebook,
+  hasOverviewError = false,
+  hasPlannerError = false,
+}: DashboardClientProps) {
   const { isLoaded: authLoaded } = useUser();
-  const [activeSession, setActiveSession] = useState<{ kind: string; url: string } | null>(null);
-  const [offlineOpen, setOfflineOpen] = useState(false);
-  const [offline, setOffline] = useState(false);
-  const [data, setData] = useState<LearningAnalysis | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [failed, setFailed] = useState(false);
-  const [retry, setRetry] = useState(0);
+  const hasAnimated = useRef(false);
+  const [activeSession, setActiveSession] = useState<{ kind: "quiz" | "simulado"; url: string } | null>(null);
+  const [isOfflineModalOpen, setIsOfflineModalOpen] = useState(false);
 
   useEffect(() => {
-    if (!isLocalIdentityReady(authLoaded)) return;
-    const controller = new AbortController();
-    api.stats.getLearningAnalysis({ days: 30, institution: "", area: "", subtema: "", tz_offset: -new Date().getTimezoneOffset() }, controller.signal)
-      .then(value => { if (!controller.signal.aborted) { setData(value); setFailed(false); } })
-      .catch(() => { if (!controller.signal.aborted) setFailed(true); })
-      .finally(() => { if (!controller.signal.aborted) setLoading(false); });
-    return () => controller.abort();
-  }, [authLoaded, retry]);
+    // Dispara confete se as revisões diárias estiverem zeradas e houver pelo menos 1 questão feita
+    if (stats.srs_due_count === 0 && (stats.flashcards_due_count || 0) === 0 && stats.distinct_answered > 0 && !hasAnimated.current) {
+      hasAnimated.current = true;
+      triggerConfetti();
+    }
+  }, [stats]);
 
   useEffect(() => {
     if (!isLocalIdentityReady(authLoaded)) return;
     let active = true;
-    const valid = (value: unknown): value is { state?: string } => typeof value === "object" && value !== null;
-    const check = () => {
+    // Check for active sessions
+    const checkSessions = async () => {
+      // Sincroniza da nuvem de forma assíncrona para não travar o carregamento
+      await Promise.allSettled([
+        syncSessionFromCloud<{ state?: string }>("simulado", (val): val is { state?: string } => typeof val === "object" && val !== null),
+        syncSessionFromCloud<{ state?: string }>("quiz", (val): val is { state?: string } => typeof val === "object" && val !== null)
+      ]);
+
       if (!active) return;
-      const simulado = readLearningSession("simulado", valid);
-      const quiz = readLearningSession("quiz", valid);
-      setActiveSession(simulado?.state === "PLAYING" || simulado?.state === "SUBMITTING"
-        ? { kind: "simulado", url: "/simulado" }
-        : quiz?.state === "PLAYING" ? { kind: "sessão de questões", url: "/estudar?resume=true" } : null);
+      const hasSimulado = readLearningSession<{ state?: string }>(
+        "simulado",
+        (val): val is { state?: string } => typeof val === "object" && val !== null
+      );
+      if (hasSimulado?.state === "PLAYING" || hasSimulado?.state === "SUBMITTING") {
+        setActiveSession({ kind: "simulado", url: "/simulado" });
+      } else {
+        const hasQuiz = readLearningSession<{ state?: string }>(
+          "quiz",
+          (val): val is { state?: string } => typeof val === "object" && val !== null
+        );
+        if (hasQuiz?.state === "PLAYING") {
+          setActiveSession({ kind: "quiz", url: "/estudar?resume=true" });
+        }
+      }
     };
-    check();
-    void Promise.allSettled([syncSessionFromCloud("simulado", valid), syncSessionFromCloud("quiz", valid)]).then(check);
+    void checkSessions();
     return () => { active = false; };
   }, [authLoaded]);
 
+  // Listen to open-offline-modal custom event
   useEffect(() => {
-    const update = () => setOffline(!navigator.onLine);
-    const open = () => setOfflineOpen(true);
-    update();
-    window.addEventListener("online", update);
-    window.addEventListener("offline", update);
-    window.addEventListener("open-offline-modal", open);
+    const handleOpenOffline = () => setIsOfflineModalOpen(true);
+    window.addEventListener("open-offline-modal", handleOpenOffline);
+    return () => window.removeEventListener("open-offline-modal", handleOpenOffline);
+  }, []);
+
+  const [isOffline, setIsOffline] = useState(false);
+
+  useEffect(() => {
+    const updateOnline = () => {
+      if (typeof navigator !== "undefined") {
+        setIsOffline(!navigator.onLine);
+      }
+    };
+    updateOnline();
+    window.addEventListener("online", updateOnline);
+    window.addEventListener("offline", updateOnline);
     return () => {
-      window.removeEventListener("online", update);
-      window.removeEventListener("offline", update);
-      window.removeEventListener("open-offline-modal", open);
+      window.removeEventListener("online", updateOnline);
+      window.removeEventListener("offline", updateOnline);
     };
   }, []);
 
-  const refresh = () => { setLoading(true); setFailed(false); setRetry(n => n + 1); };
-  const priorities = data ? dashboardPriorities(data) : [];
-  const nextTopic = priorities.find(t => topicAction(t));
-  const nextAction = nextTopic ? topicAction(nextTopic) : null;
-  const today = stats.today_answered ?? 0;
-  const target = Math.max(1, stats.daily_target || 20);
-  const remaining = Math.max(0, target - today);
-  const summary = data?.summary;
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.06 }
+    }
+  };
 
-  return <div className="mx-auto w-full max-w-6xl space-y-5 pb-10">
-    <header className="flex flex-wrap items-start justify-between gap-3">
-      <div><p className="text-sm font-semibold text-primary">Seu estudo de hoje</p><h1 className="text-2xl sm:text-3xl font-bold mt-1">Olá, {firstName}</h1><p className="text-sm text-muted-foreground mt-2">Escolha uma prioridade e acompanhe o que você consegue lembrar depois.</p></div>
-      {!hasOverviewError && stats.days_until_exam != null && stats.days_until_exam >= 0 && <Link href="/planner" className={secondary}>Prova em {stats.days_until_exam} dias</Link>}
-    </header>
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 8 },
+    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 320, damping: 26 } }
+  };
 
-    {offline && <aside className={`${panel} border-amber-500/40`}><p className="font-semibold">Modo Plantão · offline</p><p className="text-sm text-muted-foreground mt-1">Use questões e simulados salvos. As respostas serão sincronizadas ao reconectar.</p><div className="flex flex-wrap gap-2 mt-3"><Link href="/estudar" className={secondary}>Questões salvas</Link><Link href="/simulado" className={secondary}>Simulados salvos</Link><button onClick={() => setOfflineOpen(true)} className={secondary}>Gerenciar pacotes</button></div></aside>}
+  // Métricas de Decisão Diária
+  const pendentesRevisao = (stats.srs_due_count || 0) + (stats.flashcards_due_count || 0);
+  const dailyTarget = stats.daily_target || 20;
+  const todayDone = stats.today_answered || 0;
+  const dailyRemaining = Math.max(0, dailyTarget - todayDone);
+  const dailyProgressPct = Math.min(100, Math.round((todayDone / dailyTarget) * 100));
 
-    {activeSession && <aside className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border px-4 py-2"><p className="text-sm">Você tem uma {activeSession.kind} em andamento.</p><Link href={activeSession.url} className={secondary}>Retomar sessão <ArrowRight size={16} /></Link></aside>}
+  const sugestaoTema = suggestedPlannerTopic
+    ? suggestedPlannerTopic.subtema 
+    : (bottlenecks.length > 0 ? bottlenecks[0].subtema : "Clínica Médica");
 
-    {loading ? <section className={panel} role="status">Carregando prioridades e evidências de aprendizagem…</section>
-      : failed ? <section className={`${panel} border-amber-500/40`} role="alert"><h2 className="font-bold">Evidências temporariamente indisponíveis</h2><p className="text-sm text-muted-foreground mt-2">Não foi possível verificar seus erros e resultados. Isso não significa que suas pendências estejam zeradas.</p><div className="flex flex-wrap gap-3 mt-4"><button onClick={refresh} className={action}><RefreshCw size={16} /> Tentar novamente</button><Link href="/estudar" className={secondary}>Prática geral</Link></div></section>
-      : data && summary && <>
-        <section className={`${panel} border-primary/30 bg-primary/5`} aria-labelledby="next-action">
-          <div className="flex items-center gap-2 text-primary text-sm font-semibold"><Target size={18} /> Próximo passo</div>
-          <h2 id="next-action" className="text-xl font-bold mt-3">{nextTopic ? nextTopic.topic : summary.available === 0 ? "Nenhuma questão disponível" : "Continue avaliando sua aprendizagem"}</h2>
-          <p className="text-sm text-muted-foreground mt-2">{nextTopic ? `${nextTopic.area} · ${topicReason(nextTopic)}.` : summary.available === 0 ? "Consulte o banco de questões ou ajuste seu plano." : "Nenhuma prioridade acionável pelos critérios atuais. Isso não comprova domínio."}</p>
-          <div className="flex flex-wrap items-center gap-3 mt-4">{nextAction ? <Link href={nextAction.href} className={action}>{nextAction.label} <ArrowRight size={16} /></Link> : <Link href="/analise" className={action}>Examinar temas</Link>}<span className="text-xs text-muted-foreground">{nextAction ? "Até 10 questões por sessão. Você pode escolher outra prioridade abaixo." : "Confira os resultados e o planejamento."}</span></div>
-          {summary.answered === 0 && <p className="text-xs text-muted-foreground mt-3">Primeiras respostas ajudam a conhecer seu ponto de partida. Uma sessão inicial não comprova domínio ou prontidão para a prova.</p>}
-        </section>
+  const sugestaoArea = suggestedPlannerTopic
+    ? suggestedPlannerTopic.area
+    : (bottlenecks.length > 0 ? bottlenecks[0].area : "");
 
-        <section className={panel} aria-labelledby="priorities-title">
-          <div className="flex flex-wrap items-center justify-between gap-2"><h2 id="priorities-title" className="text-lg font-bold">Suas prioridades</h2><Link href="/analise" className={secondary}>Ver todos os temas <ArrowRight size={16} /></Link></div>
-          <p className="text-sm text-muted-foreground mt-2">Pendências atuais, com espaço para acompanhar correções e avaliar temas pouco explorados.</p>
-          <div className="grid gap-3 md:grid-cols-3 mt-4">{priorities.map(topic => <article key={topicKey(topic)} className="rounded-xl border border-border p-4 flex flex-col min-w-0">
-            <p className="text-xs text-muted-foreground">{topic.area}</p><h3 className="font-bold mt-1 break-words">{topic.topic}</h3><p className="text-sm mt-3">{topicReason(topic)}.</p>
-            <p className="text-xs text-muted-foreground mt-2">Primeiras respostas nos últimos 30 dias: {result(topic.new_questions)}.</p>
-            {topic.pending_checks > 0 && <p className="text-xs text-muted-foreground mt-2">{topic.pending_checks} correções ainda sem acerto verificado após intervalo. Acompanhe as revisões agendadas; questões inéditas avaliam outros exemplos do tema.</p>}
-            <div className="flex flex-col gap-2 mt-auto pt-4">{topic.actions.errors && <Link href={topic.actions.errors} className={secondary}>Revisar erros</Link>}{topic.actions.reviews && <Link href={topic.actions.reviews} className={secondary}>Revisar vencidas</Link>}{topic.actions.new && <Link href={topic.actions.new} className={secondary}>Praticar inéditas</Link>}{!topic.actions.errors && !topic.actions.reviews && !topic.actions.new && <p className="text-xs text-muted-foreground">Sem sessão disponível agora. Aguarde a revisão agendada ou acompanhe o tema na Análise.</p>}</div>
-          </article>)}</div>
-          {priorities.length === 0 && <p className="text-sm text-muted-foreground mt-4">Nenhum tema sinalizado pelos critérios atuais.</p>}
-          <p className="text-sm mt-4 border-t border-border pt-4">{summary.unresolved} questões com última resposta incorreta · {summary.recurring} com erros repetidos. {summary.unresolved === 0 ? "Sem erros pendentes nas questões disponíveis; correções ainda podem precisar de verificação." : "Corrigir uma resposta é o primeiro passo; conferir depois traz nova evidência."}</p>
-        </section>
+  const topBottleneck = bottlenecks.length > 0 ? bottlenecks[0] : null;
 
-        <section aria-labelledby="learning-title">
-          <div className="flex flex-wrap items-center justify-between gap-2"><h2 id="learning-title" className="text-lg font-bold">O que os resultados mostram</h2><button className={secondary} onClick={refresh} aria-label="Atualizar evidências"><RefreshCw size={16} /> Atualizar</button></div>
-          <p className="text-xs text-muted-foreground mt-2 mb-3">Todas as bancas e áreas · {data.scope.start} a {data.scope.end} · horário local. Resultados por período; acompanhamento de correções considera o histórico.</p>
-          <div className="grid gap-3 md:grid-cols-3">
-            <article className={panel}><BookOpen size={20} className="text-primary" /><h3 className="font-semibold mt-3">Questões novas</h3><p className="text-xl font-bold mt-2">{result(summary.new_questions)}</p><p className="text-xs text-muted-foreground mt-2">Acertos / questões respondidas pela primeira vez. Repetições não aumentam esta amostra.</p><Comparison previous={summary.previous_new_questions} /></article>
-            <article className={panel}><h3 className="font-semibold">Revisões após intervalo</h3><p className="text-xl font-bold mt-2">{result(summary.delayed_reviews)}</p><p className="text-xs text-muted-foreground mt-2">Última revisão elegível por questão no período, após ao menos {data.method.delayed_review_hours}h desde a resposta anterior. Não inclui flashcards.</p><Comparison previous={summary.previous_delayed_reviews} /></article>
-            <article className={panel}><h3 className="font-semibold">Correções em acompanhamento</h3><p className="text-xl font-bold mt-2">{summary.pending_checks} aguardam verificação</p><p className="text-sm mt-3">{summary.retained_corrections} com acerto após intervalo desde o último erro.</p><p className="text-xs text-muted-foreground mt-2">Um acerto imediato não encerra este acompanhamento. Um novo erro reabre a pendência; um acerto posterior não comprova domínio do tema.</p></article>
+  const totalAttempts = benchmarkStats?.total_attempts || stats.total_attempts || 0;
+  const rawTarget = stats.target_score || benchmarkStats?.target_score_pct || 76;
+  const targetScorePct = rawTarget <= 1 ? rawTarget * 100 : rawTarget;
+  const overallAccPct = stats.accuracy_all_attempts != null ? stats.accuracy_all_attempts * 100 : null;
+  const diffPct = overallAccPct != null ? parseFloat((overallAccPct - targetScorePct).toFixed(1)) : null;
+
+  // Semanas do planner
+  const plannerWeekNum = suggestedPlannerTopic ? (currentPlannerWeek?.week || null) : null;
+  const plannerMetasCount = remainingPlannerMetas !== undefined ? remainingPlannerMetas : (currentPlannerWeek?.topics?.length || 0);
+
+  // Subtítulo Contextual Direto
+  const subtitleMessage = (() => {
+    if (hasOverviewError) return "Suas métricas estão temporariamente indisponíveis. Você pode continuar estudando pelo menu.";
+    if (stats.distinct_answered === 0) {
+      return "Defina seu plano e resolva 20 questões para calibrar seu diagnóstico inicial.";
+    }
+    if (pendentesRevisao > 0) {
+      return `Foco de hoje: ${pendentesRevisao} revisões pendentes para blindar sua curva de esquecimento.`;
+    }
+    if (dailyRemaining > 0) {
+      return `Você está a ${dailyRemaining} questões de bater a meta diária de hoje.`;
+    }
+    return "Todas as metas de estudo de hoje concluídas! Excelente consistência.";
+  })();
+
+  // Determina a Ação Principal (Hero CTA)
+  const renderPrimaryAction = () => {
+    // 1. Retomar sessão ativa
+    if (activeSession) {
+      return (
+        <div className="bg-primary text-primary-foreground rounded-2xl p-4 sm:p-6 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden group min-w-0">
+          <div className="flex items-center gap-3 sm:gap-4 relative z-10 min-w-0 flex-1">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-primary-foreground/20 flex items-center justify-center text-primary-foreground shrink-0">
+              <span className="material-symbols-outlined text-[24px] sm:text-[28px]" data-icon={activeSession.kind === "simulado" ? "history_edu" : "play_lesson"}>
+                {activeSession.kind === "simulado" ? "history_edu" : "play_lesson"}
+              </span>
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary-foreground/25">
+                  Sessão em Andamento
+                </span>
+              </div>
+              <h3 className="text-base sm:text-xl font-bold break-words">Retomar {activeSession.kind === "simulado" ? "Simulado" : "Sessão de Estudos"}</h3>
+              <p className="text-xs sm:text-sm text-primary-foreground/80 font-medium break-words">Continue de onde você parou para não perder o ritmo.</p>
+            </div>
           </div>
-          <p className="text-xs text-muted-foreground mt-3">Comparação anterior: {data.scope.previous_start} a {data.scope.previous_end}. Amostras pequenas e mudanças nos temas limitam a comparação.</p>
-        </section>
-      </>}
+          <Link 
+            href={activeSession.url} 
+            className="w-full sm:w-auto px-5 py-2.5 font-bold bg-primary-foreground text-primary rounded-xl hover:bg-primary-foreground/90 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 shadow-xs shrink-0"
+          >
+            Continuar sessão <span className="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+          </Link>
+        </div>
+      );
+    }
 
-    <section className={panel} aria-labelledby="workload-title"><h2 id="workload-title" className="text-lg font-bold">Organize o trabalho de hoje</h2><p className="text-sm text-muted-foreground mt-1">Metas de atividade ajudam na rotina; completá-las não mede domínio.</p>
-      {hasOverviewError ? <div role="alert" className="mt-4"><p className="text-sm">Não foi possível carregar as contagens de hoje.</p><button className={`${secondary} mt-3`} onClick={() => window.location.reload()}>Recarregar contagens</button></div> : <div className="grid gap-4 sm:grid-cols-3 mt-4">
-        <div><h3 className="text-sm font-semibold">Questões praticadas</h3><p className="text-2xl font-bold mt-1">{today}/{target}</p><p className="text-xs text-muted-foreground mt-1">Questões distintas hoje, incluindo revisões.</p><progress className="w-full h-2 mt-3 accent-primary" value={Math.min(today, target)} max={target} aria-label="Questões distintas praticadas hoje" /><Link href={`/estudar?status=new&limit=${Math.min(10, Math.max(1, remaining))}`} className={`${secondary} mt-3`}>{remaining ? "Praticar inéditas" : "Prática extra opcional"}</Link></div>
-        <div><h3 className="text-sm font-semibold">Revisões de questões</h3><p className="text-2xl font-bold mt-1">{stats.srs_due_count ?? 0} vencidas</p><p className="text-xs text-muted-foreground mt-1">Faça uma sessão de até 10. O restante continua pendente.</p>{(stats.srs_due_count ?? 0) > 0 && <Link href="/estudar?status=srs_due&limit=10" className={`${secondary} mt-3`}>Revisar questões</Link>}</div>
-        <div><h3 className="text-sm font-semibold">Revisões de flashcards</h3><p className="text-2xl font-bold mt-1">{stats.flashcards_due_count ?? 0} vencidos</p><p className="text-xs text-muted-foreground mt-1">Fila separada das questões; escolha seu ritmo na revisão ativa.</p>{(stats.flashcards_due_count ?? 0) > 0 && <Link href="/revisao-ativa" className={`${secondary} mt-3`}>Abrir revisão ativa</Link>}</div>
-      </div>}
-      <div className="mt-5 pt-4 border-t border-border text-sm">{hasPlannerError ? <p role="alert">Seu planejamento está temporariamente indisponível. <Link className="text-primary underline" href="/planner">Abrir Planner</Link></p> : isPlanCompleted ? <p>Itens do cronograma concluídos. As evidências de aprendizagem continuam acima. <Link href="/planner" className="text-primary underline">Ver plano</Link></p> : suggestedPlannerTopic ? <p>Próximo item não concluído no Planner{currentPlannerWeek ? ` · semana ${currentPlannerWeek.week}` : ""}: <strong>{suggestedPlannerTopic.subtema}</strong> · {remainingPlannerMetas} metas restantes nessa semana. <Link href={`/estudar?${new URLSearchParams({ subtema: suggestedPlannerTopic.subtema, area: suggestedPlannerTopic.area || "", status: "new", limit: "10" })}`} className="text-primary underline">Praticar esse tema</Link></p> : <Link href="/planner" className="text-primary underline">Definir seu plano e a data da prova</Link>}</div>
-    </section>
+    // 2. Revisões vencidas no FSRS
+    if (pendentesRevisao > 0) {
+      const estimatedMinutes = Math.max(5, Math.ceil(pendentesRevisao * 1.5));
+      const srsCount = stats.srs_due_count || 0;
+      const flashcardsCount = stats.flashcards_due_count || 0;
 
-    <nav aria-label="Ferramentas de estudo" className="flex flex-wrap gap-2"><Link href="/analise" className={secondary}>Análise detalhada</Link><Link href="/cobertura" className={secondary}>Explorar cobertura</Link><Link href="/planner" className={secondary}>Planner</Link><button onClick={() => setOfflineOpen(true)} className={secondary}>Modo Plantão</button></nav>
-    <OfflineModal isOpen={offlineOpen} onClose={() => setOfflineOpen(false)} />
-  </div>;
+      return (
+        <div className="shrink-0 bg-card border-2 border-purple-500/30 dark:border-purple-500/20 bg-gradient-to-r from-purple-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 ring-1 ring-purple-500/20 flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-[22px] sm:text-[26px]" data-icon="psychology">psychology</span>
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-purple-500/10 text-purple-600 dark:text-purple-400">
+                  Próxima Ação Prioritária
+                </span>
+                <span className="text-xs text-muted-foreground">• ~{estimatedMinutes} min</span>
+              </div>
+              <h3 className="text-base sm:text-xl font-bold text-foreground break-words">
+                {pendentesRevisao} revisões vencidas hoje
+              </h3>
+              <p className="text-xs sm:text-sm text-muted-foreground break-words">
+                Reforce os conceitos no tempo ideal do FSRS antes de resolver questões inéditas.
+              </p>
+            </div>
+          </div>
+
+          <div className={clsx(
+            "gap-2 w-full sm:w-auto shrink-0",
+            flashcardsCount > 0 && srsCount > 0 ? "grid grid-cols-2 sm:flex sm:items-center" : "flex flex-col sm:flex-row sm:items-center"
+          )}>
+            {flashcardsCount > 0 && (
+              <Link 
+                href="/revisao-ativa" 
+                className="px-3 sm:px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 shadow-xs"
+              >
+                <span className="material-symbols-outlined text-[16px]" data-icon="auto_awesome">auto_awesome</span> Flashcards ({flashcardsCount})
+              </Link>
+            )}
+            {srsCount > 0 && (
+              <Link 
+                href="/estudar?status=srs_due&limit=100" 
+                className="px-3 sm:px-4 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 shadow-xs"
+              >
+                <span className="material-symbols-outlined text-[16px]" data-icon="replay">replay</span> Questões ({srsCount})
+              </Link>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    // 3. Meta diária de questões novas pendente
+    if (dailyRemaining > 0) {
+      const practiceUrl = suggestedPlannerTopic
+        ? `/estudar?subtema=${encodeURIComponent(sugestaoTema)}&status=new&limit=${Math.min(20, dailyRemaining)}`
+        : bottlenecks.length > 0
+        ? `/estudar?subtema=${encodeURIComponent(bottlenecks[0].subtema)}&status=new&limit=${Math.min(20, dailyRemaining)}`
+        : `/estudar?status=new&limit=${Math.min(20, dailyRemaining)}`;
+
+      return (
+        <div className="shrink-0 bg-card border-2 border-primary/30 bg-gradient-to-r from-primary/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20 flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="play_arrow">play_arrow</span>
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary">
+                  Meta de Hoje
+                </span>
+                <span className="text-xs text-muted-foreground">• {todayDone}/{dailyTarget} concluídas</span>
+              </div>
+              <h3 className="text-base sm:text-xl font-bold text-foreground break-words">
+                {dailyRemaining} questões para bater sua meta de hoje
+              </h3>
+              <p className="text-xs sm:text-sm text-muted-foreground break-words">
+                Tópico sugerido: <strong className="text-foreground">{sugestaoTema}</strong> {sugestaoArea ? `(${sugestaoArea})` : ""}
+              </p>
+            </div>
+          </div>
+
+          <Link 
+            href={practiceUrl}
+            className="w-full sm:w-auto px-5 py-2.5 font-bold bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-all flex items-center justify-center gap-2 shadow-xs shrink-0"
+          >
+            Iniciar bateria ({Math.min(20, dailyRemaining)} Qs) <span className="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+          </Link>
+        </div>
+      );
+    }
+
+    // 4. Todas as metas do dia concluídas
+    if (errorNotebook && errorNotebook.currently_unresolved_count > 0) {
+      const topErrorSubtema = topBottleneck ? topBottleneck.subtema : null;
+      const targetUrl = topBottleneck ? topBottleneck.practice_url : errorNotebook.practice_url;
+
+      return (
+        <div className="shrink-0 bg-card border border-rose-500/30 bg-gradient-to-r from-rose-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400 ring-1 ring-rose-500/20 flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="edit_note">edit_note</span>
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-rose-500/10 text-rose-600 dark:text-rose-400">
+                  Metas Diárias Concluídas 🎉
+                </span>
+              </div>
+              <h3 className="text-base sm:text-xl font-bold text-foreground break-words">
+                Aproveite para limpar seu Caderno de Erros
+              </h3>
+              <p className="text-xs sm:text-sm text-muted-foreground break-words">
+                {topErrorSubtema ? (
+                  <>Foco sugerido: <strong className="text-foreground">{topErrorSubtema}</strong> ({topBottleneck?.unresolved_count || errorNotebook.currently_unresolved_count} pendentes)</>
+                ) : (
+                  <>Você possui <strong className="text-foreground">{errorNotebook.currently_unresolved_count} questões</strong> aguardando retificação.</>
+                )}
+              </p>
+            </div>
+          </div>
+
+          <Link 
+            href={targetUrl}
+            className="w-full sm:w-auto px-5 py-2.5 font-bold bg-rose-600 hover:bg-rose-700 text-white rounded-xl transition-all flex items-center justify-center gap-2 shadow-xs shrink-0"
+          >
+            Limpar erros <span className="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+          </Link>
+        </div>
+      );
+    }
+
+    return (
+      <div className="shrink-0 bg-card border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 min-w-0">
+        <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-1 ring-emerald-500/20 flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="done_all">done_all</span>
+          </div>
+          <div className="min-w-0 flex-1">
+            <h3 className="text-base sm:text-xl font-bold text-foreground break-words">Metas de hoje cumpridas com sucesso!</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground break-words">Você está mantendo sua consistência em dia. Descanse ou avance no cronograma semanal.</p>
+          </div>
+        </div>
+        <Link 
+          href="/planner" 
+          className="w-full sm:w-auto px-4 py-2 bg-muted hover:bg-muted/80 text-foreground font-semibold rounded-xl text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5 shrink-0"
+        >
+          Acessar Planner
+        </Link>
+      </div>
+    );
+  };
+
+  return (
+    <motion.div 
+      variants={containerVariants} 
+      initial="hidden" 
+      animate="show" 
+      className="shrink-0 flex flex-col gap-4 sm:gap-6 md:gap-8 pt-1 sm:pt-2 pb-10 max-w-6xl mx-auto w-full min-w-0 overflow-x-hidden px-0.5 sm:px-0"
+    >
+      {/* Banner de Modo Plantão (Offline) */}
+      {isOffline && (
+        <motion.div 
+          variants={itemVariants}
+          className="bg-amber-500/10 border border-amber-500/30 dark:border-amber-500/20 rounded-2xl p-3.5 sm:p-4 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-foreground animate-in fade-in min-w-0"
+        >
+          <div className="flex items-center gap-3 min-w-0 flex-1">
+            <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-[22px]" data-icon="cloud_off">cloud_off</span>
+            </div>
+            <div className="min-w-0 flex-1">
+              <h4 className="font-bold text-xs sm:text-sm text-foreground flex items-center gap-2">
+                Modo Plantão Ativo (Offline)
+                <span className="text-[10px] uppercase font-extrabold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-600 dark:text-amber-400 tracking-wider">Dispositivo</span>
+              </h4>
+              <p className="text-[11px] sm:text-xs text-muted-foreground mt-0.5 break-words">
+                Você pode estudar questões e simulados salvos. As respostas serão sincronizadas ao reconectar.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 w-full sm:w-auto shrink-0">
+            <Link
+              href="/estudar"
+              className="flex-1 sm:flex-initial px-3 py-1.5 bg-primary text-primary-foreground font-bold text-xs rounded-xl hover:bg-primary/90 transition-all text-center"
+            >
+              Questões Offline
+            </Link>
+            <Link
+              href="/simulado"
+              className="flex-1 sm:flex-initial px-3 py-1.5 bg-card border border-border text-foreground font-bold text-xs rounded-xl hover:bg-muted transition-all text-center"
+            >
+              Simulados Offline
+            </Link>
+            <button
+              onClick={() => setIsOfflineModalOpen(true)}
+              className="min-h-[44px] min-w-[44px] p-2 text-xs text-muted-foreground hover:text-foreground font-semibold rounded-xl bg-muted/40 hover:bg-muted transition-colors cursor-pointer flex items-center justify-center shrink-0"
+              title="Gerenciar pacotes offline"
+              aria-label="Gerenciar pacotes offline"
+            >
+              <span className="material-symbols-outlined text-[18px]" data-icon="settings">settings</span>
+            </button>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Header: Saudação & Contagem Regressiva */}
+      <motion.section variants={itemVariants} className="flex flex-col gap-1 w-full min-w-0">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3 w-full min-w-0">
+          <div className="min-w-0 flex-1">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-foreground truncate">
+              Olá, {firstName}
+            </h2>
+            <p className="text-muted-foreground text-xs sm:text-sm md:text-base mt-0.5 break-words">
+              {subtitleMessage}
+            </p>
+          </div>
+
+          {/* Badge Contagem Regressiva da Prova */}
+          <div className="self-start sm:self-auto shrink-0">
+            {stats.days_until_exam != null ? (
+              <div className="flex items-center gap-2 bg-card border border-border/80 rounded-xl sm:rounded-2xl px-3 sm:px-4 py-1.5 sm:py-2 shadow-2xs">
+                <span className="material-symbols-outlined text-primary text-[16px] sm:text-[18px]" data-icon="event">event</span>
+                <span className="text-xs text-muted-foreground font-medium">Prova em:</span>
+                <span className="text-xs font-bold text-foreground">{stats.days_until_exam} dias</span>
+              </div>
+            ) : stats.exam_date ? (
+              <div className="flex items-center gap-2 bg-card border border-border/80 rounded-xl sm:rounded-2xl px-3 sm:px-4 py-1.5 sm:py-2 shadow-2xs">
+                <span className="material-symbols-outlined text-primary text-[16px] sm:text-[18px]" data-icon="flag">flag</span>
+                <span className="text-xs text-muted-foreground font-medium">Data-alvo:</span>
+                <span className="text-xs font-bold text-foreground" suppressHydrationWarning>
+                  {formatExamDate(stats.exam_date)}
+                </span>
+              </div>
+            ) : (
+              <Link 
+                href="/planner" 
+                className="flex items-center gap-1.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl sm:rounded-2xl px-3 sm:px-3.5 py-1.5 text-xs font-bold transition-colors"
+              >
+                <span className="material-symbols-outlined text-[16px]" data-icon="calendar_month">calendar_month</span>
+                Definir data da prova →
+              </Link>
+            )}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ESTADO DE ERRO / RESILIÊNCIA CONTRA FALHAS DE REDE */}
+      {hasOverviewError ? (
+        <motion.div variants={itemVariants} className="shrink-0 bg-card border-2 border-amber-500/30 dark:border-amber-500/20 bg-gradient-to-r from-amber-500/5 via-card to-card rounded-3xl p-6 sm:p-8 shadow-xs">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5">
+            <div className="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/30 flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-[28px]" data-icon="cloud_off">cloud_off</span>
+            </div>
+            <div className="flex-1 text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
+                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-500/15 text-amber-600 dark:text-amber-400">
+                  Instabilidade Temporária
+                </span>
+              </div>
+              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1">
+                Não foi possível sincronizar as métricas do painel
+              </h3>
+              <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mb-4">
+                Ocorreu uma falha temporária ao carregar seus dados do servidor. Seu histórico e progresso continuam seguros. Você pode recarregar a página ou continuar estudando pelo menu.
+              </p>
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
+                <button
+                  onClick={() => window.location.reload()}
+                  className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-bold rounded-xl transition-all flex items-center gap-1.5 shadow-xs cursor-pointer"
+                >
+                  <span className="material-symbols-outlined text-[16px]" data-icon="refresh">refresh</span>
+                  Tentar novamente
+                </button>
+                <Link
+                  href="/estudar"
+                  className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground border border-border text-xs font-semibold rounded-xl transition-colors"
+                >
+                  Ir para Questões
+                </Link>
+                <Link
+                  href="/simulado"
+                  className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground border border-border text-xs font-semibold rounded-xl transition-colors"
+                >
+                  Ir para Simulados
+                </Link>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      ) : stats.distinct_answered === 0 ? (
+        <motion.div variants={itemVariants} className="shrink-0 bg-card border border-border/80 rounded-3xl p-6 sm:p-8 shadow-xs">
+          <div className="flex flex-col sm:flex-row items-center gap-6 mb-6">
+            <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20 shadow-inner shrink-0">
+              <span className="material-symbols-outlined text-3xl" data-icon="school">school</span>
+            </div>
+            <div className="text-center sm:text-left">
+              <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1">
+                Boas-vindas ao MedQuest!
+              </h3>
+              <p className="text-sm text-muted-foreground max-w-xl">
+                Seu painel inteligente é calibrado a cada questão respondida. Siga os 2 passos abaixo para configurar seu direcionamento:
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Passo 1 */}
+            <div className="p-5 rounded-2xl bg-muted/20 border border-border/50 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-2 text-primary font-bold text-xs uppercase tracking-wider">
+                  <span className="w-5 h-5 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs">1</span>
+                  Planejamento
+                </div>
+                <h4 className="font-bold text-foreground text-base mb-1">Defina sua Prova e Meta</h4>
+                <p className="text-xs text-muted-foreground mb-4">
+                  Informe a data do seu exame e horas semanais para receber sugestões de cronograma.
+                </p>
+              </div>
+              <Link 
+                href="/planner" 
+                className="w-full py-2.5 px-4 bg-muted hover:bg-muted/80 text-foreground border border-border font-semibold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors"
+              >
+                <span className="material-symbols-outlined text-[16px]" data-icon="tune">tune</span> Configurar no Planner
+              </Link>
+            </div>
+
+            {/* Passo 2 */}
+            <div className="p-5 rounded-2xl bg-primary/5 border border-primary/20 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-2 text-primary font-bold text-xs uppercase tracking-wider">
+                  <span className="w-5 h-5 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs">2</span>
+                  Diagnóstico Inicial
+                </div>
+                <h4 className="font-bold text-foreground text-base mb-1">Faça 20 Questões de Teste</h4>
+                <p className="text-xs text-muted-foreground mb-4">
+                  Calibre seu diagnóstico inicial de pontos fracos, retenção e faixa estimada de prontidão.
+                </p>
+              </div>
+              <Link 
+                href="/estudar?limit=20" 
+                className="w-full py-2.5 px-4 bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors shadow-xs"
+              >
+                <span className="material-symbols-outlined text-[16px]" data-icon="play_arrow">play_arrow</span> Iniciar 20 Questões
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+      ) : (
+        <>
+          {/* AÇÃO PRINCIPAL / HERO PRIORITÁRIO */}
+          <motion.section variants={itemVariants}>
+            {renderPrimaryAction()}
+          </motion.section>
+
+          {/* PLANO DE HOJE (Card Integrado em 3 Pilares) */}
+          <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs">
+            <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4 pb-2.5 sm:pb-3 border-b border-border/50">
+              <div className="flex items-center gap-2 text-foreground">
+                <span className="material-symbols-outlined text-primary text-[20px]" data-icon="today">today</span>
+                <h3 className="text-base font-bold tracking-tight">Plano de Hoje</h3>
+              </div>
+              <span className="text-xs text-muted-foreground">Metas personalizadas diárias</span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+              {/* Pilar 1: Revisões */}
+              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/20 border border-border/40 flex flex-col justify-between gap-3 min-w-0">
+                <div className="min-w-0">
+                  <div className="flex items-center justify-between text-xs font-semibold text-purple-600 dark:text-purple-400 mb-1">
+                    <span className="flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[16px]" data-icon="psychology">psychology</span> Revisão Ativa
+                    </span>
+                    {pendentesRevisao === 0 && (
+                      <span className="inline-flex items-center gap-0.5 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold">
+                        <span className="material-symbols-outlined text-[14px]" data-icon="done">done</span> Em dia
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xl sm:text-2xl font-bold text-foreground tracking-tight">
+                    {pendentesRevisao > 0 ? `${pendentesRevisao} pendentes` : "Tudo em dia!"}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    {stats.flashcards_due_count || 0} flashcards · {stats.srs_due_count || 0} questões
+                  </p>
+                </div>
+                {pendentesRevisao > 0 ? (
+                  <Link 
+                    href={(stats.flashcards_due_count || 0) > 0 ? "/revisao-ativa" : "/estudar?status=srs_due&limit=100"}
+                    className="w-full py-2 bg-purple-500/10 hover:bg-purple-500/20 text-purple-700 dark:text-purple-300 font-bold rounded-xl text-xs flex items-center justify-center gap-1 transition-colors shadow-2xs"
+                  >
+                    Revisar agora →
+                  </Link>
+                ) : (
+                  <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
+                    <span className="material-symbols-outlined text-[14px]" data-icon="verified">verified</span> Sem revisões atrasadas
+                  </span>
+                )}
+              </div>
+
+              {/* Pilar 2: Questões Novas */}
+              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/20 border border-border/40 flex flex-col justify-between gap-3 min-w-0">
+                <div className="min-w-0">
+                  <div className="flex items-center justify-between text-xs font-semibold text-blue-600 dark:text-blue-400 mb-1">
+                    <span className="flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[16px]" data-icon="post_add">post_add</span> Questões do Dia
+                    </span>
+                    <span className="text-xs font-bold text-foreground">{todayDone}/{dailyTarget}</span>
+                  </div>
+                  <p className="text-xl sm:text-2xl font-bold text-foreground tracking-tight">
+                    {dailyRemaining > 0 ? `${dailyRemaining} restantes` : "Meta batida! 🎉"}
+                  </p>
+                  <div 
+                    role="progressbar"
+                    aria-valuenow={todayDone}
+                    aria-valuemin={0}
+                    aria-valuemax={dailyTarget}
+                    aria-label={`Progresso de questões diárias: ${todayDone} de ${dailyTarget}`}
+                    className="w-full bg-muted rounded-full h-1.5 overflow-hidden mt-2"
+                  >
+                    <div 
+                      className="bg-blue-500 h-1.5 rounded-full transition-all duration-500"
+                      style={{ width: `${dailyProgressPct}%` }}
+                    />
+                  </div>
+                </div>
+                <Link 
+                  href={`/estudar?status=new&limit=${Math.min(20, Math.max(5, dailyRemaining))}`}
+                  className="w-full py-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-700 dark:text-blue-300 font-bold rounded-xl text-xs flex items-center justify-center gap-1 transition-colors shadow-2xs"
+                >
+                  {dailyRemaining > 0 ? "Praticar questões →" : "Fazer questões extras →"}
+                </Link>
+              </div>
+
+              {/* Pilar 3: Tema Sugerido */}
+              {hasPlannerError ? <div role="alert" className="p-4 rounded-xl border border-amber-500/30 text-sm">
+                Não foi possível carregar seu progresso no planner.
+                <button onClick={() => window.location.reload()} className="block mt-3 font-semibold underline">Tentar novamente</button>
+              </div> : <>
+              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/20 border border-border/40 flex flex-col justify-between gap-3 min-w-0">
+                <div className="min-w-0">
+                  <div className="flex items-center justify-between text-xs font-semibold text-primary mb-1">
+                    <span className="flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[16px]" data-icon="calendar_month">calendar_month</span> Tema Sugerido
+                    </span>
+                    {plannerWeekNum && <span className="text-[11px] text-muted-foreground">Semana {plannerWeekNum}</span>}
+                    {isPlanCompleted && <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold">100% Concluído</span>}
+                  </div>
+                  <p className="text-base font-bold text-foreground line-clamp-2 break-words" title={sugestaoTema}>
+                    {isPlanCompleted ? "Plano 100% Concluído! 🎉" : sugestaoTema}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2 break-words">
+                    {isPlanCompleted
+                      ? "Parabéns! Todas as metas do cronograma foram finalizadas."
+                      : suggestedPlannerTopic
+                      ? `${plannerMetasCount} ${plannerMetasCount === 1 ? "meta restante" : "metas restantes"} no cronograma semanal`
+                      : "Baseado nas prioridades do edital"}
+                  </p>
+                </div>
+                <Link 
+                  href={
+                    isPlanCompleted
+                      ? "/planner"
+                      : suggestedPlannerTopic
+                      ? `/estudar?subtema=${encodeURIComponent(sugestaoTema)}&limit=20`
+                      : bottlenecks.length > 0
+                      ? `/estudar?subtema=${encodeURIComponent(bottlenecks[0].subtema)}&limit=20`
+                      : "/planner"
+                  }
+                  className="w-full py-2 bg-primary/10 hover:bg-primary/20 text-primary font-bold rounded-xl text-xs flex items-center justify-center gap-1 transition-colors shadow-2xs"
+                >
+                  {isPlanCompleted ? "Ver cronograma →" : "Continuar plano →"}
+                </Link>
+              </div>
+              </>}
+            </div>
+          </motion.section>
+
+          {/* CADERNO DE ERROS & RETIFICAÇÃO ATIVA */}
+          <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 sm:mb-4 pb-2.5 sm:pb-3 border-b border-border/50">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center ring-1 ring-rose-500/20 shrink-0">
+                  <span className="material-symbols-outlined text-[18px]" data-icon="edit_note">edit_note</span>
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-foreground">Caderno de Erros & Retificação</h3>
+                  <p className="text-xs text-muted-foreground">Questões com erro em aberto aguardando nova tentativa</p>
+                </div>
+              </div>
+
+              {/* Botão para revisar todos os erros */}
+              {errorNotebook && errorNotebook.currently_unresolved_count > 0 && (
+                <Link 
+                  href={errorNotebook.practice_url}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-xs font-bold transition-colors self-start sm:self-auto"
+                >
+                  <span className="material-symbols-outlined text-[16px]" data-icon="replay">replay</span>
+                  <span>Limpar todos ({errorNotebook.currently_unresolved_count})</span>
+                  <span className="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+                </Link>
+              )}
+            </div>
+
+            {bottlenecks.length > 0 ? (
+              <div className="flex flex-col gap-2.5">
+                {bottlenecks.slice(0, 3).map((b) => {
+                  const unresolved = b.unresolved_count ?? b.wrong_count;
+                  return (
+                    <div 
+                      key={b.subtema}
+                      className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-muted/20 hover:bg-muted/35 border border-border/40 transition-all gap-2.5 sm:gap-3 min-w-0"
+                    >
+                      <div className="flex flex-col min-w-0 flex-1">
+                        <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 sm:gap-2 min-w-0">
+                          <span className="font-bold text-sm text-foreground line-clamp-2 break-words flex-1 min-w-0" title={b.subtema}>
+                            {b.subtema}
+                          </span>
+                          <span className="px-1.5 py-0.5 rounded bg-muted text-muted-foreground text-[10px] font-bold shrink-0">
+                            {b.area}
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground mt-0.5 sm:mt-1">
+                          <span className="text-rose-600 dark:text-rose-400 font-semibold">
+                            {unresolved} {unresolved === 1 ? "questão com erro em aberto" : "questões com erro em aberto"}
+                          </span>
+                          <span className="text-muted-foreground/60">•</span>
+                          <span>{b.attempts} {b.attempts === 1 ? "tentativa" : "tentativas"} ({b.accuracy_pct}% acerto)</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between sm:justify-end gap-2.5 w-full sm:w-auto shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-border/30">
+                        <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 shrink-0">
+                          {unresolved} {unresolved === 1 ? "pendente" : "pendentes"}
+                        </span>
+                        <Link 
+                          href={b.practice_url}
+                          className="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1 shadow-2xs shrink-0"
+                        >
+                          <span className="material-symbols-outlined text-[14px]" data-icon="replay">replay</span> Retificar
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="py-6 text-center text-muted-foreground flex flex-col items-center justify-center gap-2">
+                <span className="material-symbols-outlined text-3xl text-emerald-500" data-icon="check_circle">check_circle</span>
+                <p className="text-sm font-semibold text-foreground">Caderno de erros 100% limpo! 🎉</p>
+                <p className="text-xs max-w-sm">Você não possui questões com erro em aberto. Continue praticando para calibrar sua preparação.</p>
+              </div>
+            )}
+          </motion.section>
+
+          {/* RITMO DA SEMANA (COMPACTO) */}
+          {benchmarkStats && (
+            <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs min-w-0">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 min-w-0">
+                <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                  <span className="material-symbols-outlined text-blue-500 text-[20px] shrink-0" data-icon="speed">speed</span>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-sm font-bold text-foreground">Ritmo da Semana</h3>
+                    <p className="text-xs text-muted-foreground break-words">
+                      {benchmarkStats.last7_attempts} de {benchmarkStats.weekly_target_questions} questões nos últimos 7 dias
+                      {benchmarkStats.accuracy_last7 != null && (
+                        <span> · <strong className="text-foreground">{Math.round(benchmarkStats.accuracy_last7 * 100)}%</strong> de acerto recente</span>
+                      )}
+                    </p>
+                  </div>
+                </div>
+
+                <Link 
+                  href="/analise" 
+                  className="text-xs font-bold text-primary hover:underline flex items-center gap-1 self-start sm:self-auto shrink-0"
+                >
+                  Ver análise detalhada <span className="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+                </Link>
+              </div>
+
+              <div 
+                role="progressbar"
+                aria-valuenow={Math.round(benchmarkStats.weekly_progress_pct)}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label={`Ritmo da semana: ${Math.round(benchmarkStats.weekly_progress_pct)}% concluído`}
+                className="w-full bg-muted rounded-full h-2 overflow-hidden"
+              >
+                <div 
+                  className="bg-blue-500 h-2 rounded-full transition-all duration-500"
+                  style={{ width: `${benchmarkStats.weekly_progress_pct}%` }}
+                />
+              </div>
+            </motion.section>
+          )}
+
+          {/* FAIXA ESTIMADA DE PRONTIDÃO (BENCHMARK PROBABILÍSTICO CONDICIONAL: APENAS SE >= 20 QUESTÕES) */}
+          {stats.distinct_answered >= 20 && benchmarkStats && overallAccPct != null && (
+            <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs relative overflow-hidden min-w-0">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 min-w-0">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20 shrink-0">
+                    <span className="material-symbols-outlined text-[18px]" data-icon="analytics">analytics</span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-base font-bold text-foreground">Faixa Estimada de Prontidão</h3>
+                    <p className="text-xs text-muted-foreground break-words">
+                      Estimativa preliminar baseada em {totalAttempts} tentativas vs. Meta de corte ({targetScorePct}%)
+                    </p>
+                  </div>
+                </div>
+
+                {/* Badge Probabilístico */}
+                <div className="shrink-0 self-start sm:self-auto">
+                  {diffPct != null && diffPct >= 0 ? (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold ring-1 ring-emerald-500/20">
+                      <span className="material-symbols-outlined text-[14px]" data-icon="verified">verified</span>
+                      Faixa Competitiva Estimada (+{diffPct}%)
+                    </span>
+                  ) : diffPct != null && diffPct >= -10 ? (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold ring-1 ring-blue-500/20">
+                      <span className="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span>
+                      Faixa de Aproximação ({diffPct}%)
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold ring-1 ring-amber-500/20">
+                      <span className="material-symbols-outlined text-[14px]" data-icon="fitness_center">fitness_center</span>
+                      Fase de Consolidação ({diffPct}%)
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2 p-3.5 bg-muted/20 border border-border/40 rounded-2xl min-w-0">
+                <div className="flex justify-between text-xs min-w-0">
+                  <span className="text-muted-foreground font-medium truncate">Seu Acerto Geral vs. Meta</span>
+                  <span className="font-bold text-foreground shrink-0 ml-2">
+                    {overallAccPct.toFixed(1)}% <span className="text-muted-foreground font-normal text-[11px]">/ Meta: {targetScorePct}%</span>
+                  </span>
+                </div>
+
+                <div 
+                  role="progressbar"
+                  aria-valuenow={Math.round(overallAccPct)}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label={`Acurácia geral: ${overallAccPct.toFixed(1)}% vs meta de corte de ${targetScorePct}%`}
+                  className="relative w-full bg-muted rounded-full h-2.5 overflow-hidden ring-1 ring-inset ring-black/5 dark:ring-white/5"
+                >
+                  <div 
+                    className="bg-primary h-2.5 rounded-full transition-all duration-700"
+                    style={{ width: `${Math.min(100, Math.max(0, overallAccPct))}%` }}
+                  />
+                  <div 
+                    className="absolute top-0 bottom-0 w-0.5 bg-foreground/80 z-20"
+                    style={{ left: `${targetScorePct}%` }}
+                    title={`Meta: ${targetScorePct}%`}
+                  />
+                </div>
+                <div className="flex justify-between text-[10px] text-muted-foreground mt-0.5">
+                  <span>0%</span>
+                  <span className="font-semibold text-foreground/80">Meta de Corte: {targetScorePct}%</span>
+                  <span>100%</span>
+                </div>
+              </div>
+
+              <p className="text-[11px] text-muted-foreground mt-2 break-words">
+                * A acurácia por Grande Área e o desempenho em simulados refinam a projeção na aba <Link href="/analise" className="text-primary font-semibold hover:underline">Análise</Link>.
+              </p>
+            </motion.section>
+          )}
+
+          {/* RESUMO DISCRETO DE CONTEXTO (BOTTOM STRIP) */}
+          <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/60 rounded-2xl p-3 sm:px-5 sm:py-3.5 shadow-2xs w-full min-w-0">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-between gap-2 sm:gap-3 text-xs">
+              <Link href="/cobertura" className="flex items-center gap-1.5 hover:text-primary transition-colors text-muted-foreground p-1 min-w-0 overflow-hidden">
+                <span className="material-symbols-outlined text-[16px] text-emerald-500 shrink-0" data-icon="domain_verification">domain_verification</span>
+                <span className="truncate">
+                  Cobertura: <strong className="text-foreground">
+                    {domainSummary ? `${domainSummary.overall_domain_pct}%` : (stats.coverage_pct != null ? `${(stats.coverage_pct * 100).toFixed(0)}%` : "--")}
+                  </strong>
+                </span>
+              </Link>
+
+              {errorNotebook && (
+                <Link href={errorNotebook.practice_url} className="flex items-center gap-1.5 hover:text-rose-500 transition-colors text-muted-foreground p-1 min-w-0 overflow-hidden">
+                  <span className="material-symbols-outlined text-[16px] text-rose-500 shrink-0" data-icon="edit_note">edit_note</span>
+                  <span className="truncate">
+                    Erros: <strong className="text-foreground">{errorNotebook.currently_unresolved_count}</strong>
+                  </span>
+                </Link>
+              )}
+
+              <div className="flex items-center gap-1.5 text-muted-foreground p-1 min-w-0 overflow-hidden">
+                <span className="material-symbols-outlined text-[16px] text-orange-500 shrink-0" data-icon="local_fire_department">local_fire_department</span>
+                <span className="truncate">
+                  Sequência: <strong className="text-foreground">{stats.streak_days}d</strong>
+                </span>
+              </div>
+
+              <button
+                onClick={() => setIsOfflineModalOpen(true)}
+                className="min-h-[40px] flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-foreground font-semibold px-3 py-2 rounded-xl bg-muted/40 hover:bg-muted transition-colors cursor-pointer border border-border/50 col-span-2 sm:col-span-1 shrink-0"
+                title="Abrir gerenciador do Modo Plantão (Offline)"
+                aria-label="Abrir gerenciador do Modo Plantão offline"
+              >
+                <span className="material-symbols-outlined text-[16px] text-primary shrink-0" data-icon="cloud_download">cloud_download</span>
+                <span>Modo Plantão</span>
+              </button>
+            </div>
+          </motion.section>
+        </>
+      )}
+
+      {/* Modal do Modo Plantão (Offline) */}
+      <OfflineModal 
+        isOpen={isOfflineModalOpen} 
+        onClose={() => setIsOfflineModalOpen(false)} 
+      />
+    </motion.div>
+  );
 }
+
+

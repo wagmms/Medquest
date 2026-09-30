@@ -669,16 +669,9 @@ def submit_attempt(qid):
             # return is_correct: None so frontend enters self-assessment mode.
             reported_is_correct = None if (is_discursive and payload.confidence == "defer" and payload.is_correct is None) else bool(is_correct)
             
-            # Resolves canonical correct letter(s) ensuring consistency between questions and alternatives
-            res_correct_letter = q["correct_letter"]
-            if correct_alts_set:
-                q_corr_set = {c.strip().upper() for c in (q["correct_letter"] or "").split(",") if c.strip()}
-                if q_corr_set != correct_alts_set:
-                    res_correct_letter = ", ".join(sorted(correct_alts_set))
-
             resp_data = {
                 "is_correct": reported_is_correct,
-                "correct_letter": res_correct_letter,
+                "correct_letter": q["correct_letter"],
                 "explanation": exp["explanation_text"] if exp else None,
                 "next_review_date": next_review,
                 "is_discursive": is_discursive,
@@ -840,17 +833,11 @@ def _process_single_attempt(
     if not correct_letter:
         return None
 
-    correct_alts = correct_alts_map.get(item.question_id)
-    if correct_alts:
-        q_corr_set = {c.strip().upper() for c in (correct_letter or "").split(",") if c.strip()}
-        if q_corr_set != correct_alts:
-            correct_letter = ", ".join(sorted(correct_alts))
-
     selected = (item.selected_letter or "A").upper()
     if item.is_correct is not None:
         is_correct = 1 if item.is_correct else 0
     else:
-        is_correct = check_is_correct(selected, correct_letter, correct_alts)
+        is_correct = check_is_correct(selected, correct_letter, correct_alts_map.get(item.question_id))
     conf = item.confidence or "certeza"
 
     db.execute(

@@ -151,7 +151,7 @@ export function InstitutionRadarChart({
                 className="cursor-pointer transition-opacity outline-hidden focus:outline-hidden"
                 tabIndex={0}
                 role="graphics-symbol"
-                aria-label={`${area.area}: ${acc !== null ? `${acc}% de acurácia` : "sem primeiras respostas"}, cobertura ${Math.round(area.coverage * 100)}%`}
+                aria-label={`${area.area}: ${acc !== null ? `${acc}% de acurácia` : "sem tentativas"}, cobertura ${Math.round(area.coverage * 100)}%`}
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
                 onFocus={() => setHoveredIdx(idx)}
@@ -273,9 +273,9 @@ export function InstitutionRadarChart({
               <div>
                 <span className="text-primary font-semibold">{institution.label}: </span>
                 <span className="font-bold text-foreground">
-                  {areas[hoveredIdx].accuracy !== null ? `${Math.round(areas[hoveredIdx].accuracy! * 100)}%` : "Sem primeiras respostas"}
+                  {areas[hoveredIdx].accuracy !== null ? `${Math.round(areas[hoveredIdx].accuracy! * 100)}%` : "Sem tentativas"}
                 </span>
-                <span className="text-muted-foreground"> ({areas[hoveredIdx].attempts} questões distintas)</span>
+                <span className="text-muted-foreground"> ({areas[hoveredIdx].attempts} tentativas)</span>
               </div>
               {areas[hoveredIdx].ci_lower !== null && areas[hoveredIdx].ci_upper !== null && (
                 <div className="text-muted-foreground">
@@ -298,7 +298,7 @@ export function InstitutionRadarChart({
             </div>
             {areas[hoveredIdx].sample_status === "insufficient" && (
               <p className="text-[11px] text-amber-600 dark:text-amber-400 font-medium pt-0.5">
-                ⚠️ Amostra insuficiente (&lt; 20 questões distintas). Alta incerteza estatística.
+                ⚠️ Amostra insuficiente (&lt; 20 tentativas). Alta incerteza estatística.
               </p>
             )}
           </div>

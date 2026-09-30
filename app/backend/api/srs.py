@@ -24,11 +24,9 @@ _QUESTION_PARAMS[2] = 18.0
 _QUESTION_PARAMS[3] = 40.0
 
 # Scheduler para questões de prova (sem passos intradia, retenção alvo 85%, intervalos longos)
-QUESTION_DESIRED_RETENTION = 0.85
-
 _question_scheduler = Scheduler(
     parameters=_QUESTION_PARAMS,
-    desired_retention=QUESTION_DESIRED_RETENTION,
+    desired_retention=0.85,
     learning_steps=(),
     relearning_steps=(),
     enable_fuzzing=False,
