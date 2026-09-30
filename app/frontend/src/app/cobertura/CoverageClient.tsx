@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { CoverageArea, CoverageSubtema } from "@/types/api";
 import { 
@@ -69,6 +69,34 @@ export function CoverageClient({
       setIsRefreshing(false);
     }
   }, []);
+
+  useEffect(() => {
+    let lastFocus = Date.now();
+    const handleFocus = () => {
+      if (typeof document !== "undefined" && document.visibilityState === "visible") {
+        if (Date.now() - lastFocus > 30000) {
+          void refreshCoverage();
+        }
+        lastFocus = Date.now();
+      }
+    };
+    const handleSync = (e: Event) => {
+      const endpoint = (e as CustomEvent<{ endpoint?: string }>).detail?.endpoint;
+      if (endpoint?.includes("/api/questions/") || endpoint?.includes("/attempt")) {
+        void refreshCoverage();
+      }
+    };
+
+    window.addEventListener("focus", handleFocus);
+    document.addEventListener("visibilitychange", handleFocus);
+    window.addEventListener("sync-item-success", handleSync);
+
+    return () => {
+      window.removeEventListener("focus", handleFocus);
+      document.removeEventListener("visibilitychange", handleFocus);
+      window.removeEventListener("sync-item-success", handleSync);
+    };
+  }, [refreshCoverage]);
 
   const getStatusTag = (status: CoverageSubtema["status"]) => {
     if (status === "mastered") {

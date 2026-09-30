@@ -7,6 +7,8 @@ import { downloadSimuladoPackage, getReadySimuladoPackage, listSimuladoPackages,
 import { useAuth } from "@clerk/nextjs";
 import { CloudOff } from "lucide-react";
 
+import { initCrossTabListener } from "@/lib/crossTab";
+
 export function SyncProvider({ guestMode = false }: { guestMode?: boolean }) {
   const { isLoaded, userId } = useAuth();
   const [queueCount, setQueueCount] = useState(0);
@@ -14,6 +16,8 @@ export function SyncProvider({ guestMode = false }: { guestMode?: boolean }) {
   useEffect(() => {
     if (!isLoaded && !guestMode) return;
     let isActive = true;
+    const cleanupCrossTab = initCrossTabListener();
+
     (window as unknown as { syncManager: typeof syncManager }).syncManager = syncManager;
     (window as unknown as { localDb: typeof localDb }).localDb = localDb;
     (window as unknown as { simuladoPackage: unknown }).simuladoPackage = {
@@ -39,6 +43,7 @@ export function SyncProvider({ guestMode = false }: { guestMode?: boolean }) {
 
     return () => {
       isActive = false;
+      cleanupCrossTab();
       window.removeEventListener('sync-queue-updated', handleUpdate);
       syncManager.cleanup();
     };

@@ -136,6 +136,36 @@ export function AnalysisClient({
     return () => controller.abort();
   }, [selectedInstitution, readinessRetry]);
 
+  useEffect(() => {
+    let lastFocus = Date.now();
+    const handleFocus = () => {
+      if (typeof document !== "undefined" && document.visibilityState === "visible") {
+        if (Date.now() - lastFocus > 30000) {
+          setTimelineRetry(r => r + 1);
+          setReadinessRetry(r => r + 1);
+        }
+        lastFocus = Date.now();
+      }
+    };
+    const handleSync = (e: Event) => {
+      const endpoint = (e as CustomEvent<{ endpoint?: string }>).detail?.endpoint;
+      if (endpoint?.includes("/api/questions/") || endpoint?.includes("/attempt") || endpoint?.includes("/simulado")) {
+        setTimelineRetry(r => r + 1);
+        setReadinessRetry(r => r + 1);
+      }
+    };
+
+    window.addEventListener("focus", handleFocus);
+    document.addEventListener("visibilitychange", handleFocus);
+    window.addEventListener("sync-item-success", handleSync);
+
+    return () => {
+      window.removeEventListener("focus", handleFocus);
+      document.removeEventListener("visibilitychange", handleFocus);
+      window.removeEventListener("sync-item-success", handleSync);
+    };
+  }, []);
+
   const chartBreakdown = useMemo(() => {
     if (!Array.isArray(breakdown)) return [];
     return breakdown.slice(0, 8).map(b => ({

@@ -5,6 +5,7 @@
 
 import { localDb, SyncItem, getLocalOwnerId } from "./db";
 import { cacheCreatedFlashcards } from "./flashcardCache";
+import { broadcastCrossTab } from "./crossTab";
 
 let isInitialized = false;
 let onlineHandler: (() => void) | null = null;
@@ -112,7 +113,7 @@ export const syncManager = {
     await this.scheduleNextSync();
 
     const pendingCount = await this.getPendingCount();
-    window.dispatchEvent(new CustomEvent("sync-queue-updated", { detail: pendingCount }));
+    broadcastCrossTab("sync-queue-updated", pendingCount);
     return id;
   },
 
@@ -253,15 +254,15 @@ export const syncManager = {
             await cacheCreatedFlashcards(responseData, uid);
           }
           await localDb.syncQueue.delete(item.id);
-          if (getLocalOwnerId() === uid) window.dispatchEvent(new CustomEvent("sync-item-success", {
-            detail: {
+          if (getLocalOwnerId() === uid) {
+            broadcastCrossTab("sync-item-success", {
               id: item.id,
               endpoint: item.endpoint,
               method: item.method,
               data: responseData,
               idempotencyKey: item.idempotency_key,
-            }
-          }));
+            });
+          }
           continue;
         }
 
@@ -336,7 +337,7 @@ export const syncManager = {
     }
 
     const remainingCount = await this.getPendingCount();
-    window.dispatchEvent(new CustomEvent("sync-queue-updated", { detail: remainingCount }));
+    broadcastCrossTab("sync-queue-updated", remainingCount);
   },
 
   async retryItem(id: string): Promise<void> {
@@ -352,7 +353,7 @@ export const syncManager = {
       last_error: undefined,
     });
     const pendingCount = await this.getPendingCount();
-    window.dispatchEvent(new CustomEvent("sync-queue-updated", { detail: pendingCount }));
+    broadcastCrossTab("sync-queue-updated", pendingCount);
     await this.scheduleNextSync();
     await this.sync();
   },
@@ -365,7 +366,7 @@ export const syncManager = {
 
     await localDb.syncQueue.delete(id);
     const pendingCount = await this.getPendingCount();
-    window.dispatchEvent(new CustomEvent("sync-queue-updated", { detail: pendingCount }));
+    broadcastCrossTab("sync-queue-updated", pendingCount);
     await this.scheduleNextSync();
   },
 

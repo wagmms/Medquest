@@ -46,6 +46,11 @@ export function removeLearningSession(kind: LearningSessionKind): void {
     clearTimeout(cloudSaveTimeouts[kind]);
     delete cloudSaveTimeouts[kind];
   }
+  // Broadcast change across tabs
+  import("./crossTab").then(({ broadcastCrossTab }) => {
+    broadcastCrossTab("learning-session-changed", { kind, state: "REMOVED" });
+  }).catch(() => {});
+
   // Fire and forget cloud delete
   const owner = getLocalOwnerId();
   import("./api").then(({ api }) => {
@@ -77,6 +82,11 @@ export function writeLearningSession(kind: LearningSessionKind, value: Record<st
     const data = { ...value, savedAt: Date.now() };
     localStorage.setItem(getLearningSessionKey(kind), JSON.stringify(data));
     
+    // Broadcast change across tabs
+    import("./crossTab").then(({ broadcastCrossTab }) => {
+      broadcastCrossTab("learning-session-changed", { kind, state: value.state });
+    }).catch(() => {});
+
     // Debounce cloud save
     if (cloudSaveTimeouts[kind]) clearTimeout(cloudSaveTimeouts[kind]);
     cloudSaveTimeouts[kind] = setTimeout(() => {

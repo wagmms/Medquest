@@ -313,7 +313,11 @@ export function setForcedOffline(enabled: boolean): void {
     } else {
       localStorage.removeItem(FORCED_OFFLINE_STORAGE_KEY);
     }
-    window.dispatchEvent(new CustomEvent("forced-offline-changed", { detail: { forced: enabled } }));
+    import("./crossTab").then(({ broadcastCrossTab }) => {
+      broadcastCrossTab("forced-offline-changed", { forced: enabled });
+    }).catch(() => {
+      window.dispatchEvent(new CustomEvent("forced-offline-changed", { detail: { forced: enabled } }));
+    });
   } catch (err) {
     console.warn("Erro ao salvar status de modo plantão forçado:", err);
   }

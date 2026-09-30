@@ -102,11 +102,25 @@ export function DashboardClient({
         );
         if (hasQuiz?.state === "PLAYING") {
           setActiveSession({ kind: "quiz", url: "/estudar?resume=true" });
+        } else {
+          setActiveSession(null);
         }
       }
     };
     void checkSessions();
-    return () => { active = false; };
+
+    const handleSessionChange = () => {
+      if (active) void checkSessions();
+    };
+
+    window.addEventListener("learning-session-changed", handleSessionChange);
+    window.addEventListener("focus", handleSessionChange);
+
+    return () => {
+      active = false;
+      window.removeEventListener("learning-session-changed", handleSessionChange);
+      window.removeEventListener("focus", handleSessionChange);
+    };
   }, [authLoaded]);
 
   // Listen to open-offline-modal custom event

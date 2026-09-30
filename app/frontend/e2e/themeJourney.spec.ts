@@ -1,59 +1,67 @@
 import { expect, test } from '@playwright/test';
-import { themeJourney } from '../src/lib/themeJourney';
+import { themeJourney, getThemeUrls } from '../src/lib/themeJourney';
 import type { LearningProfileTopic } from '../src/types/api';
 
 const topic: LearningProfileTopic = {
-  topic: 'Ética & documentação', area: 'Preventiva', available: 30,
-  answered: 5, attempts: 8, correct: 4, accuracy: 0.5, coverage: 5 / 30,
-  diag_accuracy: null, prac_accuracy: null,
-  confidence: 0.8, retrievability: 0.8, due_count: 0, priority_score: 0.5, reasons: [],
+  topic: 'Ética & documentação',
+  area: 'Preventiva',
+  available: 30,
+  answered: 5,
+  attempts: 8,
+  correct: 4,
+  accuracy: 0.5,
+  coverage: 5 / 30,
+  diag_accuracy: null,
+  prac_accuracy: null,
+  confidence: 0.8,
+  retrievability: 0.8,
+  due_count: 0,
+  priority_score: 0.5,
+  reasons: [],
 };
-test('revisões vencidas têm precedência sobre diagnóstico e prática', () => {
-  const journey = themeJourney(topic.topic, { ...topic, answered: 1, due_count: 2 });
+
+test('revisões vencidas têm precedência sobre prática quando há pendências', () => {
+  const journey = themeJourney(topic.topic, { ...topic, due_count: 3 });
   expect(journey.next.href).toBe(journey.review);
   const params = new URL(journey.next.href, 'http://localhost').searchParams;
   expect(params.get('subtema')).toBe(topic.topic);
   expect(params.get('status')).toBe('srs_due');
 });
-test('repetir uma questão não completa diagnóstico', () => {
-  const journey = themeJourney(topic.topic, { ...topic, answered: 1, attempts: 20 });
-  expect(journey.diagnosticComplete).toBe(false);
-  expect(journey.next.href).toBe(journey.diagnostic);
-});
-test('banco pequeno segue para prática sem exigir cinco questões', () => {
-  const journey = themeJourney(topic.topic, { ...topic, available: 2, answered: 2 });
-  expect(journey.diagnosticComplete).toBe(true);
-  expect(journey.next.href).toBe(journey.practice);
-});
-test('ausência de questões não indica diagnóstico concluído', () => {
-  const journey = themeJourney(topic.topic);
-  expect(journey.available).toBe(0);
-  expect(journey.diagnosticComplete).toBe(false);
+
+test('flashcards vencidos têm precedência quando não há questões vencidas', () => {
+  const journey = themeJourney(topic.topic, topic, { flashcards_due: 4, flashcards_total: 10 });
+  expect(journey.next.href).toBe(journey.flashcards);
+  const params = new URL(journey.next.href, 'http://localhost').searchParams;
+  expect(params.get('subtema')).toBe(topic.topic);
 });
 
-test('retoma apenas as questões restantes do diagnóstico', () => {
-  const journey = themeJourney(topic.topic, { ...topic, answered: 3 });
-  expect(new URL(journey.diagnostic, 'http://localhost').searchParams.get('limit')).toBe('2');
+test('prática adaptativa é a ação recomendada quando tudo está em dia', () => {
+  const journey = themeJourney(topic.topic, topic, { flashcards_due: 0, flashcards_total: 5 });
+  expect(journey.next.href).toBe(journey.practice);
+  const params = new URL(journey.next.href, 'http://localhost').searchParams;
+  expect(params.get('mode')).toBe('adaptive');
+  expect(params.get('limit')).toBe('20');
 });
-test('flashcards vencidos precedem teoria e prática', () => {
-  const journey = themeJourney(topic.topic, topic, { study_path: 'essential', theory_completed: false, flashcards_due: 2 });
-  expect(journey.next.href).toBe(journey.flashcards);
-  expect(new URL(journey.flashcards, 'http://localhost').searchParams.get('subtema')).toBe(topic.topic);
+
+test('getThemeUrls gera parâmetros corretos com limites configuráveis', () => {
+  const urls = getThemeUrls(topic.topic);
+  const reviewParams = new URL(urls.review, 'http://localhost').searchParams;
+  expect(reviewParams.get('subtema')).toBe(topic.topic);
+  expect(reviewParams.get('status')).toBe('srs_due');
+
+  const practice10 = new URL(urls.practice(10), 'http://localhost').searchParams;
+  expect(practice10.get('limit')).toBe('10');
+  expect(practice10.get('mode')).toBe('adaptive');
+
+  const practice30 = new URL(urls.practice(30), 'http://localhost').searchParams;
+  expect(practice30.get('limit')).toBe('30');
+
+  const flashcardsParams = new URL(urls.flashcards, 'http://localhost').searchParams;
+  expect(flashcardsParams.get('subtema')).toBe(topic.topic);
 });
-test('teoria pendente é recomendada depois do diagnóstico', () => {
-  const journey = themeJourney(topic.topic, topic, { study_path: 'complete', theory_completed: false, flashcards_due: 0 });
-  expect(journey.next.href).toBe('#roteiro');
-});
-test('percurso controla tamanho da prática sem alterar revisões', () => {
-  const essential = themeJourney(topic.topic, topic, { study_path: 'essential', theory_completed: true, flashcards_due: 0 });
-  const complete = themeJourney(topic.topic, topic, { study_path: 'complete', theory_completed: true, flashcards_due: 0 });
-  expect(new URL(essential.practice, 'http://localhost').searchParams.get('limit')).toBe('10');
-  expect(new URL(complete.practice, 'http://localhost').searchParams.get('limit')).toBe('20');
-  expect(essential.next.href).toBe(essential.practice);
-  expect(essential.review).toBe(complete.review);
-});
-test('tema sem questões pode oferecer estudo teórico e flashcards', () => {
-  const progress = { study_path: 'essential' as const, theory_completed: false, flashcards_due: 0 };
-  expect(themeJourney(topic.topic, undefined, progress).next.href).toBe('#roteiro');
-  expect(themeJourney(topic.topic, undefined, { ...progress, flashcards_due: 1 }).next.href).toContain('/revisao-ativa?');
+
+test('tema sem questões e sem flashcards recomenda o planner', () => {
+  const emptyTopic = { ...topic, available: 0, answered: 0, due_count: 0 };
+  const journey = themeJourney(emptyTopic.topic, emptyTopic, { flashcards_due: 0, flashcards_total: 0 });
+  expect(journey.next.href).toBe('/planner');
 });

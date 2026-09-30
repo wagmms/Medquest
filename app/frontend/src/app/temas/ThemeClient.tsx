@@ -1,131 +1,393 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, BookOpen, Brain, Target, TrendingUp } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Brain,
+  CheckCircle2,
+  Clock,
+  Layers,
+  RotateCcw,
+  Sparkles,
+  Target,
+  Zap,
+} from "lucide-react";
 import type { LearningProfileTopic, ThemeProgress } from "@/types/api";
-import { api } from "@/lib/api";
-import { themeJourney } from "@/lib/themeJourney";
+import { getThemeUrls } from "@/lib/themeJourney";
 
-export function ThemeClient({ subtema, group, theme, topic, initialProgress }: {
+export function ThemeClient({
+  subtema,
+  group,
+  theme,
+  topic,
+  initialProgress,
+}: {
   subtema: string;
   group: { area: string };
   theme: { highYield: boolean; details: string[] };
   topic?: LearningProfileTopic;
   initialProgress: ThemeProgress;
 }) {
-  const [progress, setProgress] = useState(initialProgress);
-  const [saving, setSaving] = useState(false);
-  const savingRef = useRef(false);
-  const [saveError, setSaveError] = useState("");
-  const [saveMessage, setSaveMessage] = useState("");
-  async function saveProgress(patch: Partial<Pick<ThemeProgress, "study_path" | "theory_completed">>) {
-    if (savingRef.current) return;
-    savingRef.current = true;
-    setSaving(true);
-    setSaveError("");
-    setSaveMessage("");
-    try {
-      const saved = await api.themes.saveProgress(subtema, {
-        theory_completed: progress.theory_completed, study_path: progress.study_path, ...patch,
-      });
-      setProgress(saved);
-      setSaveMessage("Progresso salvo.");
-    } catch {
-      setSaveError("Não foi possível salvar. Confira sua conexão e tente novamente.");
-    } finally {
-      savingRef.current = false;
-      setSaving(false);
-    }
-  }
-  const journey = themeJourney(subtema, topic, progress);
-  const percent = (value: number) => `${Math.round(value * 100)}%`;
-  const evidence = !topic || topic.attempts < 5 ? "Evidência inicial" : topic.attempts < 20 ? "Evidência em formação" : "Histórico em construção";
-  const stages = [
-    { title: "Diagnosticar", description: "Resolva até cinco questões inéditas. As questões já respondidas neste tema contam como ponto de partida.", status: journey.diagnosticComplete ? "Base inicial registrada" : `${Math.min(journey.answered, journey.diagnosticTarget)} de ${journey.diagnosticTarget} questões`, href: journey.diagnosticComplete ? journey.practice : journey.diagnostic, action: journey.diagnosticComplete ? "Seguir para prática" : "Iniciar diagnóstico", enabled: journey.available > 0 },
-    { title: "Estudar", description: "Use suas dificuldades para orientar a leitura ou aula do seu material de referência. Depois, retorne à prática.", status: progress.theory_completed ? "Estudo teórico concluído por você" : "Estudo teórico pendente", href: "#roteiro", action: "Ver orientação de estudo", enabled: true },
-    { title: "Praticar", description: "Sessão adaptativa no tamanho do percurso escolhido. Consulte as explicações e transforme os erros em flashcards durante a resolução.", status: `${topic?.attempts ?? 0} tentativas registradas`, href: journey.practice, action: "Praticar este tema", enabled: journey.available > 0 },
-    { title: "Revisar", description: "Retome as questões deste tema no momento indicado pelo FSRS. Revise também os flashcards vinculados a este assunto.", status: `${journey.due} questões com revisão vencida`, href: journey.review, action: "Revisar este tema", enabled: journey.due > 0 },
-  ];
+  const [practiceLimit, setPracticeLimit] = useState<10 | 20 | 30>(20);
+  const urls = getThemeUrls(subtema);
+
+  const available = topic?.available ?? 0;
+  const answered = topic?.answered ?? 0;
+  const attempts = topic?.attempts ?? 0;
+  const correct = topic?.correct ?? 0;
+  const accuracy = topic?.accuracy ?? null;
+  const retrievability = topic?.retrievability ?? null;
+  const dueCount = topic?.due_count ?? 0;
+
+  const coveragePct = available > 0 ? Math.min(100, Math.round((answered / available) * 100)) : 0;
+  const flashcardsTotal = initialProgress?.flashcards_total ?? 0;
+  const flashcardsDue = initialProgress?.flashcards_due ?? 0;
+
   return (
-    <div className="max-w-5xl mx-auto w-full flex flex-col gap-6 pb-8">
-      <Link href="/cobertura" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"><ArrowLeft size={16} /> Todos os temas</Link>
-      <section className="rounded-2xl border border-border bg-card p-6 md:p-8">
-        <p className="text-sm text-muted-foreground mb-2">{group.area}{theme.highYield ? " · Alta incidência USP" : ""}</p>
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">{subtema}</h1>
-        <p className="text-muted-foreground mt-3">Seu ponto de encontro para diagnosticar, estudar, praticar e revisar este assunto.</p>
-        
-        {topic && topic.diag_accuracy != null && topic.prac_accuracy != null && (
-          <div className="mt-6 flex gap-4 p-5 rounded-xl border border-emerald-500/20 bg-emerald-500/5 text-emerald-900 dark:text-emerald-100">
-             <TrendingUp className="text-emerald-500 shrink-0 mt-0.5" size={20} />
-             <div>
-               <p className="font-semibold mb-1">Histórico de acertos</p>
-               <p className="text-sm">Nas primeiras cinco tentativas, você acertou <strong>{Math.round(topic.diag_accuracy * 100)}%</strong>. Nas {Math.max(0, topic.attempts - 5)} tentativas seguintes, acertou <strong>{Math.round(topic.prac_accuracy * 100)}%</strong>. Esta comparação inclui questões repetidas e não separa tentativas anteriores e posteriores ao estudo teórico.</p>
-             </div>
+    <div className="max-w-5xl mx-auto w-full flex flex-col gap-6 pb-12">
+      {/* Navegação de retorno */}
+      <Link
+        href="/cobertura"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+      >
+        <ArrowLeft size={16} /> Todos os temas
+      </Link>
+
+      {/* Header do Tema */}
+      <section className="rounded-2xl border border-border bg-card p-6 md:p-8 shadow-xs">
+        <div className="flex flex-wrap items-center gap-2 mb-2">
+          <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground">
+            {group.area}
+          </span>
+          {theme.highYield && (
+            <span className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+              <Sparkles size={12} /> Alta incidência USP
+            </span>
+          )}
+        </div>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">{subtema}</h1>
+        <p className="text-muted-foreground mt-2 text-sm md:text-base">
+          Central de Prática e Revisão Espaçada. Acompanhe seu domínio, revise pendências e resolva questões adaptativas.
+        </p>
+
+        {theme.details.length > 0 && (
+          <div className="mt-5 pt-4 border-t border-border">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+              Pontos-chave do edital:
+            </p>
+            <ul className="flex flex-wrap gap-2 text-xs">
+              {theme.details.map((detail) => (
+                <li
+                  key={detail}
+                  className="px-2.5 py-1 rounded-md bg-muted/60 text-foreground border border-border"
+                >
+                  {detail}
+                </li>
+              ))}
+            </ul>
           </div>
         )}
+      </section>
 
-        <div className="mt-6 rounded-xl bg-primary/5 border border-primary/20 p-5">
-          <p className="font-semibold flex items-center gap-2"><Target size={18} /> Próximo passo</p>
-          <p className="text-sm text-muted-foreground mt-2">{journey.next.reason}</p>
-          <Link href={journey.next.href} className="inline-flex items-center gap-2 mt-4 bg-primary text-primary-foreground rounded-lg px-4 py-2 text-sm font-semibold">
-            {journey.next.label}<ArrowRight size={16} />
-          </Link>
+      {/* 4 KPIs de Desempenho */}
+      <section aria-labelledby="kpis-title">
+        <h2 id="kpis-title" className="sr-only">Indicadores de desempenho do tema</h2>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* KPI 1: Cobertura */}
+          <div className="rounded-xl border border-border bg-card p-4 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between text-muted-foreground mb-2">
+                <span className="text-xs font-medium">Cobertura</span>
+                <Target size={16} />
+              </div>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-2xl font-bold tracking-tight">{answered}</span>
+                <span className="text-xs text-muted-foreground">/ {available} q</span>
+                <span className="ml-auto text-xs font-semibold px-1.5 py-0.5 rounded bg-primary/10 text-primary">
+                  {coveragePct}%
+                </span>
+              </div>
+              <div className="w-full bg-muted rounded-full h-1.5 mt-3 overflow-hidden">
+                <div
+                  className="bg-primary h-1.5 rounded-full transition-all duration-300"
+                  style={{ width: `${coveragePct}%` }}
+                />
+              </div>
+            </div>
+            <p className="text-[11px] text-muted-foreground mt-3">
+              {attempts} {attempts === 1 ? "tentativa total" : "tentativas no total"}
+            </p>
+          </div>
+
+          {/* KPI 2: Acurácia Geral */}
+          <div className="rounded-xl border border-border bg-card p-4 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between text-muted-foreground mb-2">
+                <span className="text-xs font-medium">Acurácia Geral</span>
+                <Zap size={16} />
+              </div>
+              <p className="text-2xl font-bold tracking-tight">
+                {accuracy != null ? `${Math.round(accuracy * 100)}%` : "—"}
+              </p>
+            </div>
+            <p className="text-[11px] text-muted-foreground mt-3">
+              {attempts > 0 ? `${correct} acertos em ${attempts} tentativas` : "Nenhuma resposta registrada"}
+            </p>
+          </div>
+
+          {/* KPI 3: Retenção FSRS */}
+          <div className="rounded-xl border border-border bg-card p-4 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between text-muted-foreground mb-2">
+                <span className="text-xs font-medium">Retenção FSRS</span>
+                <Brain size={16} />
+              </div>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-2xl font-bold tracking-tight">
+                  {retrievability != null ? `${Math.round(retrievability * 100)}%` : "—"}
+                </span>
+                {retrievability != null && (
+                  <span className="text-xs text-muted-foreground">est.</span>
+                )}
+              </div>
+            </div>
+            <p className="text-[11px] text-muted-foreground mt-3">
+              {retrievability != null
+                ? "Probabilidade de recordação estimada"
+                : "Estimada após revisões FSRS"}
+            </p>
+          </div>
+
+          {/* KPI 4: Fila de Revisões */}
+          <div
+            className={`rounded-xl border p-4 flex flex-col justify-between transition-colors ${
+              dueCount > 0
+                ? "border-amber-500/40 bg-amber-500/5 dark:bg-amber-500/10"
+                : "border-border bg-card"
+            }`}
+          >
+            <div>
+              <div className="flex items-center justify-between text-muted-foreground mb-2">
+                <span className="text-xs font-medium">FSRS Vencidas</span>
+                <Clock
+                  size={16}
+                  className={dueCount > 0 ? "text-amber-600 dark:text-amber-400" : ""}
+                />
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span
+                  className={`text-2xl font-bold tracking-tight ${
+                    dueCount > 0 ? "text-amber-600 dark:text-amber-400" : ""
+                  }`}
+                >
+                  {dueCount}
+                </span>
+                <span
+                  className={`text-xs font-medium ${
+                    dueCount > 0
+                      ? "text-amber-600 dark:text-amber-400"
+                      : "text-emerald-600 dark:text-emerald-400"
+                  }`}
+                >
+                  {dueCount > 0 ? "urgentes" : "em dia"}
+                </span>
+              </div>
+            </div>
+            <p className="text-[11px] text-muted-foreground mt-3">
+              {dueCount > 0
+                ? "Aguardando repetição espaçada"
+                : "Nenhuma questão vencida agora"}
+            </p>
+          </div>
         </div>
       </section>
-      <section className="rounded-xl border border-border bg-card p-5">
-        <fieldset disabled={saving}>
-          <legend className="font-semibold mb-3">Seu percurso neste tema</legend>
-          <div className="grid sm:grid-cols-2 gap-3">
-            {([{ value: "essential", name: "Essencial", text: "Prática de até 10 questões e estudo dirigido às lacunas." }, { value: "complete", name: "Completo", text: "Prática de até 20 questões e estudo integral do assunto." }] as const).map(path => (
-              <label key={path.value} className="flex gap-3 border border-border rounded-lg p-4 cursor-pointer has-checked:border-primary has-checked:bg-primary/5">
-                <input type="radio" name="study-path" value={path.value} checked={progress.study_path === path.value} onChange={() => saveProgress({ study_path: path.value })} />
-                <span><span className="block font-semibold text-sm">{path.name}</span><span className="text-xs text-muted-foreground">{path.text}</span></span>
-              </label>
-            ))}
+
+      {/* Ações Rápidas de Estudo */}
+      <section aria-labelledby="actions-title" className="flex flex-col gap-4">
+        <div>
+          <h2 id="actions-title" className="text-lg font-semibold tracking-tight text-foreground">
+            Ações de Estudo
+          </h2>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            Escolha como prefere praticar ou revisar este tema hoje.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-4">
+          {/* Card 1: Revisar Questões Vencidas (FSRS) */}
+          <div
+            className={`rounded-xl border p-5 flex flex-col justify-between transition-all ${
+              dueCount > 0
+                ? "border-amber-500/40 bg-card shadow-xs ring-1 ring-amber-500/20"
+                : "border-border bg-card"
+            }`}
+          >
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <div
+                  className={`p-2 rounded-lg ${
+                    dueCount > 0
+                      ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                      : "bg-muted text-muted-foreground"
+                  }`}
+                >
+                  <RotateCcw size={20} />
+                </div>
+                {dueCount > 0 ? (
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400">
+                    {dueCount} {dueCount === 1 ? "vencida" : "vencidas"}
+                  </span>
+                ) : (
+                  <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                    0 pendentes
+                  </span>
+                )}
+              </div>
+              <h3 className="font-semibold text-base text-foreground">Revisar Vencidas (FSRS)</h3>
+              <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+                Repita as questões no intervalo ideal calculado pelo algoritmo para evitar o esquecimento
+                e fortalecer a retenção de longo prazo.
+              </p>
+            </div>
+
+            <div className="mt-6">
+              {dueCount > 0 ? (
+                <Link
+                  href={urls.review}
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold text-sm transition-colors shadow-xs"
+                >
+                  Revisar Agora ({dueCount}) <ArrowRight size={16} />
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  disabled
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-muted text-muted-foreground font-medium text-xs cursor-not-allowed"
+                >
+                  <CheckCircle2 size={15} className="text-emerald-500" />
+                  Nenhuma revisão pendente
+                </button>
+              )}
+            </div>
           </div>
-        </fieldset>
-        <p className="text-xs text-muted-foreground mt-3">As revisões vencidas têm prioridade nos dois percursos. Você pode trocar a qualquer momento.</p>
-        <p role="status" className="text-sm mt-2">{saving ? "Salvando…" : saveMessage}</p>
-        {saveError && <p role="alert" className="text-sm text-destructive mt-2">{saveError}</p>}
+
+          {/* Card 2: Praticar Adaptativo (Card Principal) */}
+          <div className="rounded-xl border-2 border-primary/30 bg-card p-5 flex flex-col justify-between shadow-xs relative">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                  <Zap size={20} />
+                </div>
+                <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                  Recomendado
+                </span>
+              </div>
+              <h3 className="font-semibold text-base text-foreground">Praticar Adaptativo</h3>
+              <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+                Sessão com priorização inteligente: dá preferência a questões inéditas e conceitos com
+                menor retenção neste assunto.
+              </p>
+
+              {/* Seletor rápido de quantidade de questões */}
+              <div className="mt-4 pt-3 border-t border-border">
+                <label className="block text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                  Tamanho da sessão:
+                </label>
+                <div className="grid grid-cols-3 gap-2">
+                  {([10, 20, 30] as const).map((count) => (
+                    <button
+                      key={count}
+                      type="button"
+                      onClick={() => setPracticeLimit(count)}
+                      className={`py-1.5 px-2 rounded-lg text-xs font-semibold border transition-all ${
+                        practiceLimit === count
+                          ? "bg-primary text-primary-foreground border-primary shadow-xs"
+                          : "bg-muted/40 text-muted-foreground border-border hover:border-foreground/20 hover:text-foreground"
+                      }`}
+                    >
+                      {count} questões
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              {available > 0 ? (
+                <Link
+                  href={urls.practice(practiceLimit)}
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm transition-colors shadow-xs"
+                >
+                  Iniciar Prática ({practiceLimit} q) <ArrowRight size={16} />
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  disabled
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-muted text-muted-foreground font-medium text-xs cursor-not-allowed"
+                >
+                  Sem questões disponíveis
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Card 3: Flashcards do Tema */}
+          <div className="rounded-xl border border-border bg-card p-5 flex flex-col justify-between shadow-xs">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                  <Layers size={20} />
+                </div>
+                <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
+                  {flashcardsTotal > 0
+                    ? `${flashcardsDue} pendentes / ${flashcardsTotal} total`
+                    : "0 flashcards"}
+                </span>
+              </div>
+              <h3 className="font-semibold text-base text-foreground">Flashcards do Tema</h3>
+              <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+                {flashcardsTotal > 0
+                  ? "Revise os cartões atômicos vinculados a este tema para consolidar critérios diagnósticos, condutas e doses."
+                  : "Você ainda não possui flashcards salvos para este tema. Você pode gerá-los a partir dos seus erros ao resolver questões."}
+              </p>
+            </div>
+
+            <div className="mt-6">
+              {flashcardsTotal > 0 ? (
+                <Link
+                  href={urls.flashcards}
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border border-primary/30 hover:bg-primary/10 text-primary font-semibold text-sm transition-colors"
+                >
+                  Revisar Flashcards <ArrowRight size={16} />
+                </Link>
+              ) : (
+                <Link
+                  href="/revisao-ativa"
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border border-border hover:bg-muted/40 text-muted-foreground font-medium text-xs transition-colors"
+                >
+                  Abrir Revisão Geral <ArrowRight size={14} />
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
       </section>
-      <div className="grid md:grid-cols-2 gap-4">
-        <section className="rounded-xl border border-border bg-card p-5">
-          <h2 className="font-semibold flex items-center gap-2"><BookOpen size={18} /> Atividade registrada</h2>
-          <p className="text-3xl font-bold mt-4">{journey.answered}<span className="text-base font-normal text-muted-foreground"> / {journey.available} questões</span></p>
-          <p className="text-sm text-muted-foreground mt-2">Questões distintas respondidas · {topic?.attempts ?? 0} tentativas no total.</p>
-          <p className="text-xs text-muted-foreground mt-3">{progress.theory_completed ? "Estudo teórico marcado como concluído por você." : "Estudo teórico ainda não marcado como concluído."}</p>
-        </section>
-        <section className="rounded-xl border border-border bg-card p-5">
-          <h2 className="font-semibold flex items-center gap-2"><Brain size={18} /> Aprendizado</h2>
-          <p className="text-3xl font-bold mt-4">{topic?.accuracy != null ? percent(topic.accuracy) : "Sem respostas"}<span className="text-base font-normal text-muted-foreground">{topic?.accuracy != null ? " de acertos" : ""}</span></p>
-          <p className="text-sm text-muted-foreground mt-2">{evidence} · acertos sobre todas as tentativas.</p>
-          <p className="text-xs text-muted-foreground mt-3">{topic?.retrievability != null ? `Menor retenção estimada entre as questões acompanhadas: ${percent(topic.retrievability)}.` : "Retenção ainda sem estimativa FSRS."} Concluir atividades não comprova domínio.</p>
-        </section>
-      </div>
-      <section aria-labelledby="journey-title">
-        <h2 id="journey-title" className="text-lg font-semibold mb-4">Sua jornada neste tema</h2>
-        <ol className="grid md:grid-cols-2 gap-4">
-          {stages.map((stage, index) => <li key={stage.title} className="rounded-xl border border-border bg-card p-5 flex flex-col gap-3">
-            <h3 className="font-semibold"><span className="text-primary mr-2">{index + 1}.</span>{stage.title}</h3>
-            <p className="text-sm text-muted-foreground flex-1">{stage.description}</p>
-            <p className="text-xs font-medium">{stage.status}</p>
-            {stage.title === "Revisar" && <Link href={journey.flashcards} className="text-sm font-semibold text-primary hover:underline">Flashcards do tema: {progress.flashcards_due} pendentes / {progress.flashcards_total} no total →</Link>}
-            {stage.enabled ? <Link href={stage.href} className="text-sm font-semibold text-primary hover:underline">{stage.action} →</Link> : <p className="text-sm text-muted-foreground">{stage.title === "Revisar" ? "Nenhuma questão pendente agora" : "Aguardando questões neste tema"}</p>}
-          </li>)}
-        </ol>
-      </section>
-      <section id="roteiro" className="rounded-xl border border-border bg-card p-5 scroll-mt-6">
-        <h2 className="font-semibold mb-3">Orientação de estudo</h2>
-        <p className="text-sm text-muted-foreground">Revise os conceitos que geraram dúvida ou erro no diagnóstico. Consulte seu material de referência e use as explicações das questões para aprofundar o raciocínio.</p>
-        <label className="flex items-center gap-3 my-4 text-sm font-medium cursor-pointer">
-          <input type="checkbox" checked={progress.theory_completed} disabled={saving} onChange={event => saveProgress({ theory_completed: event.target.checked })} />
-          Concluí o estudo teórico deste tema
-        </label>
-        <p className="text-xs text-muted-foreground">Este registro é pessoal e não altera seus acertos nem a estimativa de retenção.</p>
-        {theme.details.length > 0 && <ul className="list-disc pl-5 mt-3 text-sm space-y-2">{theme.details.map(detail => <li key={detail}>{detail}</li>)}</ul>}
-        <div className="flex flex-wrap gap-4 mt-4 text-sm font-semibold text-primary"><Link href="/planner">Ver meu planejamento →</Link><Link href={journey.flashcards}>Revisar flashcards deste tema →</Link></div>
-      </section>
+
+      {/* Links de Apoio */}
+      <footer className="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-border text-xs text-muted-foreground">
+        <div className="flex items-center gap-4">
+          <Link href="/planner" className="hover:text-primary transition-colors">
+            Ver planejamento semanal no Planner →
+          </Link>
+          <Link href="/cobertura" className="hover:text-primary transition-colors">
+            Ver mapa de cobertura completo →
+          </Link>
+        </div>
+        <p>MedQuest · Aprendizado Adaptativo</p>
+      </footer>
     </div>
   );
 }
