@@ -1,7 +1,6 @@
 import { serverApi } from "@/lib/server-api";
 import { 
   OverviewStats, PlannerWeek, PlannerTopic, PlannerTopicProgressMap, PlannerProgressMap,
-  BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary 
 } from "@/types/api";
 import { currentUser } from '@clerk/nextjs/server';
 import { DashboardClient } from "./DashboardClient";
@@ -38,17 +37,9 @@ export default async function Dashboard() {
   let suggestedPlannerTopic: PlannerTopic | null = null;
   let remainingPlannerMetas: number = 0;
   let isPlanCompleted: boolean = false;
-  let benchmarkStats: BenchmarkStat | null = null;
-  let bottlenecks: BottleneckTopic[] = [];
-  let domainSummary: DomainSummaryResponse | null = null;
-  let errorNotebook: ErrorNotebookSummary | null = null;
 
   try {
-    const [bench, bnecks, domain, errors, configResult, topicsResult, progressResult] = await Promise.all([
-      serverApi.stats.getBenchmark().catch(() => null),
-      serverApi.stats.getBottlenecks(3).catch(() => []),
-      serverApi.stats.getDomainSummary().catch(() => null),
-      serverApi.stats.getErrorNotebookSummary().catch(() => null),
+    const [configResult, topicsResult, progressResult] = await Promise.all([
       serverApi.planner.getConfig().then(data => ({ data, failed: false })).catch(() => ({ data: null, failed: true })),
       serverApi.planner.getTopicProgress().then(data => ({ data, failed: false })).catch(() => ({ data: {} as PlannerTopicProgressMap, failed: true })),
       serverApi.planner.getProgress().then(data => ({ data, failed: false })).catch(() => ({ data: {} as PlannerProgressMap, failed: true })),
@@ -57,10 +48,6 @@ export default async function Dashboard() {
     const config = configResult.data;
     const topicProgressMap = topicsResult.data;
     const progressMap = progressResult.data;
-    benchmarkStats = bench;
-    bottlenecks = bnecks;
-    domainSummary = domain;
-    errorNotebook = errors;
 
     if (!hasPlannerError && config && config.exam_date && config.start_date) {
       const planResponse = await serverApi.planner.generatePlan({
@@ -114,10 +101,6 @@ export default async function Dashboard() {
       remainingPlannerMetas={remainingPlannerMetas}
       isPlanCompleted={isPlanCompleted}
       firstName={firstName} 
-      benchmarkStats={benchmarkStats}
-      bottlenecks={bottlenecks}
-      domainSummary={domainSummary}
-      errorNotebook={errorNotebook}
       hasOverviewError={hasOverviewError}
       hasPlannerError={hasPlannerError}
     />

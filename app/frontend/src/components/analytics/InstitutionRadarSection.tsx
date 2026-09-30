@@ -17,12 +17,16 @@ interface InstitutionRadarSectionProps {
   initialData?: InstitutionRadarResponse | null;
   institutionOptions: { key: string; label: string }[];
   defaultInstitution?: string;
+  lockInstitution?: boolean;
+  showPriorities?: boolean;
 }
 
 export function InstitutionRadarSection({
   initialData,
   institutionOptions,
   defaultInstitution = "USP-SP",
+  lockInstitution = false,
+  showPriorities = true,
 }: InstitutionRadarSectionProps) {
   const [selectedInst, setSelectedInst] = useState<string>(
     initialData?.institution.code || defaultInstitution
@@ -120,7 +124,7 @@ export function InstitutionRadarSection({
             </h2>
           </div>
           <p className="text-sm text-muted-foreground max-w-2xl leading-relaxed">
-            Diagnóstico transparente de cobertura e acurácia por grande área, com intervalo de incerteza estatística (Wilson 95% CI) e ações diretas de estudo.
+            Primeiras respostas por grande área, em todo o histórico. Repetições não aumentam a amostra; diferenças entre bancas não são ajustadas por dificuldade.
           </p>
         </div>
 
@@ -130,6 +134,7 @@ export function InstitutionRadarSection({
             Banca Alvo
             <select
               value={selectedInst}
+              disabled={lockInstitution}
               onChange={(e) => setSelectedInst(e.target.value)}
               aria-label="Selecionar banca alvo"
               className="mt-1 bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground focus:ring-2 focus:ring-primary/20 min-h-[44px]"
@@ -200,10 +205,10 @@ export function InstitutionRadarSection({
           <AlertTriangle className="text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" size={18} />
           <div className="text-xs space-y-1">
             <p className="font-semibold text-amber-900 dark:text-amber-200">
-              Amostra em estágio inicial ({radarData.institution.total_attempts} tentativas)
+              Amostra em estágio inicial ({radarData.institution.total_attempts} questões distintas)
             </p>
             <p className="text-amber-800 dark:text-amber-300/90 leading-relaxed">
-              Com menos de 20 tentativas nesta instituição, o intervalo de incerteza é elevado e não são geradas conclusões definitivas de competitividade. Resolva mais questões para calibrar a precisão estatística.
+              Poucas questões distintas: interprete o resultado junto com o intervalo de incerteza. As amostras não são ajustadas por dificuldade e não demonstram competitividade.
             </p>
           </div>
         </div>
@@ -245,7 +250,7 @@ export function InstitutionRadarSection({
       ) : null}
 
       {/* Lacunas Prioritárias da Banca com Ações em até 2 Cliques */}
-      {allGaps.length > 0 && radarData && (
+      {showPriorities && !loading && !error && allGaps.length > 0 && radarData && (
         <div className="space-y-3 pt-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -285,7 +290,7 @@ export function InstitutionRadarSection({
                       </span>
                     ) : gap.gap_type === "low_accuracy" ? (
                       <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-destructive/10 text-destructive">
-                        {accPct}% Acerto ({gap.attempts} tent.)
+                        {accPct}% Acerto ({gap.attempts} quest.)
                       </span>
                     ) : (
                       <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-warning/10 text-warning">

@@ -31,7 +31,7 @@ export function InstitutionRadarTable({
     if (status === "insufficient") {
       return (
         <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
-          <AlertTriangle size={12} /> Amostra Insuficiente ({attempts} tent.)
+          <AlertTriangle size={12} /> Amostra Insuficiente ({attempts} quest.)
         </span>
       );
     }
@@ -41,7 +41,7 @@ export function InstitutionRadarTable({
           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          Em Formação ({attempts} tent.)
+          Em Formação ({attempts} quest.)
         </span>
       );
     }
@@ -50,7 +50,7 @@ export function InstitutionRadarTable({
         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
         </svg>
-        Confiável ({attempts} tent.)
+        Maior amostra ({attempts} quest.)
       </span>
     );
   };
@@ -101,7 +101,7 @@ export function InstitutionRadarTable({
                     {accPct !== null ? (
                       <span className="font-bold text-foreground text-base">{accPct}%</span>
                     ) : (
-                      <span className="text-muted-foreground italic">Sem tentativas</span>
+                      <span className="text-muted-foreground italic">Sem primeiras respostas</span>
                     )}
                   </td>
                   <td className="px-4 py-3.5 text-muted-foreground">
@@ -119,7 +119,7 @@ export function InstitutionRadarTable({
                       {compAccPct !== null ? (
                         <div className="flex flex-col">
                           <span className="font-medium text-foreground">{compAccPct}%</span>
-                          <span className="text-xs">{compArea?.attempts || 0} tentativas</span>
+                          <span className="text-xs">{compArea?.attempts || 0} questões distintas</span>
                         </div>
                       ) : (
                         <span className="text-xs italic">—</span>

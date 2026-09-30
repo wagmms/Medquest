@@ -1572,9 +1572,14 @@ export function QuizClient({
           ) : (
             <div className="flex flex-col gap-3">
               {(q.alternatives || []).map((alt) => {
+                const correctLetters = (attemptResult?.correct_letter || "")
+                  .split(",")
+                  .map((l) => l.trim().toUpperCase())
+                  .filter(Boolean);
                 const isSelected = selectedLetter === alt.letter;
-                const isCorrect = attemptResult?.correct_letter === alt.letter || (attemptResult && isSelected && attemptResult.is_correct);
-                const isWrong = attemptResult && isSelected && !attemptResult.is_correct;
+                const isGabarito = correctLetters.includes(alt.letter.toUpperCase());
+                const isCorrect = isGabarito || Boolean(attemptResult && isSelected && attemptResult.is_correct);
+                const isWrong = Boolean(attemptResult && isSelected && !isGabarito && !attemptResult.is_correct);
                 const isEliminated = (eliminatedAlternatives[q.id] || []).includes(alt.letter);
                 
                 let altClass = "bg-card border-border hover:bg-muted/50 hover:border-primary/30 cursor-pointer shadow-sm hover:shadow";

@@ -366,7 +366,7 @@ def build_learning_profile(db, user_id, now=None, subtema=None, limit=15):
     max_capacity = hours_per_day * 20
     reviews_to_do_today = min(due_total, max_capacity)
     backlog_pending = max(0, due_total - max_capacity)
-    questions_today = max(daily_goal, reviews_to_do_today)
+    questions_today = min(max(daily_goal, reviews_to_do_today), max_capacity)
 
     return {
         "generated_at": now.isoformat(),
@@ -387,4 +387,3 @@ def build_learning_profile(db, user_id, now=None, subtema=None, limit=15):
             "signals": ["FSRS retrievability", "accuracy with evidence confidence", "coverage", "due reviews"],
         },
     }
-

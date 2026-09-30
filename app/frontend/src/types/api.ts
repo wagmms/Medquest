@@ -75,6 +75,62 @@ export interface WeakTopic {
   accuracy: number;
 }
 
+export interface LearningMeasure {
+  correct: number;
+  total: number;
+  accuracy: number | null;
+}
+
+export interface LearningEvidence {
+  available: number;
+  answered: number;
+  unseen: number;
+  new_questions: LearningMeasure;
+  previous_new_questions: LearningMeasure;
+  delayed_reviews: LearningMeasure;
+  previous_delayed_reviews: LearningMeasure;
+  unresolved: number;
+  recurring: number;
+  corrected: number;
+  retained_corrections: number;
+  pending_checks: number;
+  due: number;
+  tracked: number;
+  at_risk: number;
+}
+
+export interface LearningTopic extends LearningEvidence {
+  area: string;
+  topic: string;
+  legacy_topic: boolean;
+  last_answered_at: string | null;
+  min_retrievability: number | null;
+  change_pp: number | null;
+  reason: "unresolved" | "reviews_due" | "low_accuracy" | "needs_assessment" | "follow_up" | "monitor";
+  follow_up: "needs_work" | "delayed_check_pending" | "retention_observed" | "needs_assessment" | "monitor";
+  actions: { errors: string | null; new: string | null; reviews: string | null };
+}
+
+export interface LearningAnalysisFilters {
+  days: number;
+  institution: string;
+  area: string;
+  subtema: string;
+  tz_offset: number;
+}
+
+export interface LearningAnalysis {
+  generated_at: string;
+  scope: LearningAnalysisFilters & { start: string; end: string; previous_start: string; previous_end: string };
+  summary: LearningEvidence;
+  topics: LearningTopic[];
+  priorities: LearningTopic[];
+  weeks: { start: string; new_questions: LearningMeasure; delayed_reviews: LearningMeasure }[];
+  options: { institutions: { key: string; label: string }[]; areas: string[]; subtemas: string[] };
+  goal: { questions: number; reviews: number; pending: number; capacity: number; hours: number };
+  method: { delayed_review_hours: number; retention_target: number; comparison_minimum: number };
+}
+
 export interface BenchmarkStat {
   accuracy_overall: number | null;
   accuracy_last7: number | null;

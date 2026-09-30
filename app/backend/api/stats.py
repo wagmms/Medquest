@@ -14,8 +14,27 @@ from .db import get_db, db_transaction
 from .questions import invalidate_user_caches
 from .observability import emit
 from .edital_profiles import EditalProfile, get_edital_profile, CANONICAL_AREAS
+from .services.learning_analysis import build_learning_analysis
+from .srs import QUESTION_DESIRED_RETENTION
 
 bp = Blueprint("stats", __name__)
+
+
+@bp.route("/stats/learning-analysis")
+def learning_analysis():
+    try:
+        days = int(request.args.get("days", 30))
+        tz_offset = int(request.args.get("tz_offset", -180))
+    except (TypeError, ValueError):
+        return jsonify({"error": "Invalid reporting period or timezone"}), 400
+    if days not in (14, 30, 90) or not -840 <= tz_offset <= 840:
+        return jsonify({"error": "Invalid reporting period or timezone"}), 400
+    return jsonify(build_learning_analysis(
+        get_db(), g.user_id, days=days, tz_offset=tz_offset,
+        institution=request.args.get("institution", "").strip()[:128],
+        area=request.args.get("area", "").strip()[:256],
+        subtema=request.args.get("subtema", "").strip()[:512],
+    ))
 
 
 
@@ -801,11 +820,15 @@ def _get_user_area_attempts(db, user_id: str, institution_code: str | None = Non
     rows = db.execute(f"""
         SELECT q.area,
                COUNT(DISTINCT a.question_id) AS answered,
-               COUNT(a.id) AS attempts,
+               COUNT(a.question_id) AS attempts,
                COALESCE(SUM(a.is_correct), 0) AS correct
-        FROM attempts a
+        FROM (
+            SELECT question_id, is_correct,
+                   ROW_NUMBER() OVER (PARTITION BY question_id ORDER BY julianday(answered_at), id) AS rn
+            FROM attempts WHERE user_id = ? AND is_correct IN (0, 1)
+        ) a
         JOIN questions q ON q.id = a.question_id
-        WHERE a.user_id = ? AND q.missing_alts = 0 AND q.area IS NOT NULL AND q.area != ''
+        WHERE a.rn = 1 AND q.missing_alts = 0 AND q.area IS NOT NULL AND q.area != ''
               {clause}
         GROUP BY q.area
     """, params).fetchall()
@@ -848,6 +871,11 @@ def exam_readiness():
     bayesian_calc = calculate_bayesian_readiness(area_records, profile)
 
     areas = bayesian_calc["enriched_areas"]
+    if institution:
+        for item in areas:
+            item["action"] += "&" + urlencode({"institution": institution})
+        for factor in bayesian_calc["key_factors"]:
+            factor["action_url"] += "&" + urlencode({"institution": institution})
     total_available = sum(item["available"] for item in areas)
     total_answered = sum(item["answered"] for item in areas)
 
@@ -956,7 +984,7 @@ def at_risk():
         if not subtema: continue
         metrics = fsrs_metrics(r["fsrs_card"])
         retrievability = metrics["retrievability"]
-        if retrievability is None:
+        if retrievability is None or retrievability >= QUESTION_DESIRED_RETENTION:
             continue
 
         if subtema not in topics_risk:
@@ -966,10 +994,9 @@ def at_risk():
         topics_risk[subtema]["min_retrievability"] = min(topics_risk[subtema]["min_retrievability"], retrievability)
 
     # A retenção desejada padrão do FSRS para questões médicas é 85% (api/srs.py).
-    DESIRED_RETENTION = 0.85
     at_risk_list = []
     for subtema, data in topics_risk.items():
-        if data["min_retrievability"] < DESIRED_RETENTION:
+        if data["min_retrievability"] < QUESTION_DESIRED_RETENTION:
             at_risk_list.append({
                 "subtema": subtema,
                 "items_count": data["count"],
