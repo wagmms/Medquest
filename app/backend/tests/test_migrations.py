@@ -69,7 +69,7 @@ def test_applied_migration_checksum_cannot_change(tmp_path: Path) -> None:
     db = sqlite3.connect(db_path)
     db.row_factory = sqlite3.Row
     db.execute("CREATE TABLE questions (id INTEGER PRIMARY KEY)")
-    db.execute("CREATE TABLE alternatives (id INTEGER PRIMARY KEY)")
+    db.execute("CREATE TABLE alternatives (id INTEGER PRIMARY KEY, question_id INTEGER)")
     db.execute("CREATE TABLE explanations (question_id INTEGER PRIMARY KEY)")
     db.execute("CREATE TABLE question_images (id INTEGER PRIMARY KEY, question_id INTEGER)")
     db.execute("CREATE TABLE attempts (id INTEGER PRIMARY KEY, user_id TEXT, question_id INTEGER, answered_at TEXT)")

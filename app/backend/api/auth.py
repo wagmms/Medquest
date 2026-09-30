@@ -6,7 +6,7 @@ import uuid
 from functools import wraps
 
 import jwt
-from flask import g, jsonify, request
+from flask import Blueprint, current_app, g, jsonify, request
 
 logger = logging.getLogger(__name__)
 
@@ -142,16 +142,40 @@ def require_auth(f):
     return decorated
 
 
+bp = Blueprint("auth", __name__)
+
+
+@bp.route("/auth/me")
+@require_auth
+def auth_me():
+    from flask import current_app
+    user_email = (getattr(g, "user_email", None) or "").strip().lower()
+    curator_emails = configured_curator_emails()
+    is_curator = bool(user_email and user_email in curator_emails)
+    if current_app.config.get("TESTING") and hasattr(g, "is_curator"):
+        is_curator = bool(g.is_curator)
+    return jsonify({
+        "user_id": g.user_id,
+        "email": user_email,
+        "is_curator": is_curator,
+    })
+
+
 def require_curator(f):
     @wraps(f)
     @require_auth
     def decorated(*args, **kwargs):
         from flask import current_app
-        if current_app.config.get("TESTING") and getattr(g, "is_curator", True):
+        user_email = (getattr(g, "user_email", None) or "").strip().lower()
+        if current_app.config.get("TESTING"):
+            if not getattr(g, "is_curator", True):
+                return jsonify({"error": "Forbidden: Acesso restrito para curadoria de conteúdo"}), 403
+            if user_email and configured_curator_emails() and user_email not in configured_curator_emails():
+                return jsonify({"error": "Forbidden: Acesso restrito para curadoria de conteúdo"}), 403
             return f(*args, **kwargs)
 
-        user_email = (getattr(g, "user_email", None) or "").strip().lower()
-        if user_email not in configured_curator_emails():
+        if not user_email or user_email not in configured_curator_emails():
             return jsonify({"error": "Forbidden: Acesso restrito para curadoria de conteúdo"}), 403
         return f(*args, **kwargs)
     return decorated
+

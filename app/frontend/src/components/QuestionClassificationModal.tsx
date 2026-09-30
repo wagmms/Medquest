@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Check, Loader2, Tag, Search, AlertCircle, RefreshCw, Trash2 } from "lucide-react";
-import { useUser } from "@clerk/nextjs";
+import { useCurator } from "@/hooks/useCurator";
 import { localDb } from "@/lib/db";
 import { api } from "@/lib/api";
 
@@ -36,8 +36,7 @@ export function QuestionClassificationModal({
   onSuccess,
   onDelete,
 }: QuestionClassificationModalProps) {
-  const { user } = useUser();
-  const isCuratorAdmin = user?.primaryEmailAddress?.emailAddress?.toLowerCase() === "moraes.wagg@gmail.com";
+  const { isCurator: isCuratorAdmin } = useCurator();
 
   const [area, setArea] = useState(currentArea || CANONICAL_AREAS[1]);
   const [subtema, setSubtema] = useState(currentSubtema || "");

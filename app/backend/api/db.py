@@ -546,6 +546,8 @@ def _create_indexes(db):
     db.execute("CREATE INDEX IF NOT EXISTS idx_questions_source ON questions (source_file)")
     db.execute("CREATE INDEX IF NOT EXISTS idx_attempts_answered_at ON attempts (answered_at)")
     db.execute("CREATE INDEX IF NOT EXISTS idx_attempts_user_answered_at ON attempts (user_id, answered_at)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_alternatives_question_id ON alternatives (question_id)")
+    db.execute("CREATE INDEX IF NOT EXISTS idx_question_images_question_id ON question_images (question_id)")
 
 
 def _setup_fts(db):

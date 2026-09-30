@@ -82,6 +82,15 @@ def sync_database(verbose: bool = True) -> bool:
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
+    # 0. Assegurar índices críticos de alta performance no Turso Cloud
+    try:
+        execute_turso_pipeline(url, token, [
+            {"type": "execute", "stmt": {"sql": "CREATE INDEX IF NOT EXISTS idx_alternatives_question_id ON alternatives (question_id)"}},
+            {"type": "execute", "stmt": {"sql": "CREATE INDEX IF NOT EXISTS idx_question_images_question_id ON question_images (question_id)"}},
+        ], timeout=30)
+    except Exception:
+        pass
+
     # 1. Obter contagens, IDs remotos e sincronizar tabela de exclusões (tombstones)
     check_reqs = [
         {"type": "execute", "stmt": {"sql": "CREATE TABLE IF NOT EXISTS deleted_questions (question_id INTEGER PRIMARY KEY, deleted_at TEXT, deleted_by TEXT)"}},

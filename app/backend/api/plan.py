@@ -95,9 +95,13 @@ def planner_config():
         invalidate_user_caches(g.user_id)
         return jsonify({"success": True})
 
-    row = db.execute("SELECT * FROM planner_config WHERE user_id = ?", (g.user_id,)).fetchone()
+    return jsonify(get_planner_config_data(db, g.user_id) or {})
+
+
+def get_planner_config_data(db, user_id: str) -> dict | None:
+    row = db.execute("SELECT * FROM planner_config WHERE user_id = ?", (user_id,)).fetchone()
     if not row:
-        return jsonify({})
+        return None
     row_keys = row.keys() if hasattr(row, 'keys') else []
     inst_str = row["target_institution"] if "target_institution" in row_keys else None
     inst_list = [i.strip() for i in inst_str.split(",") if i.strip()] if inst_str else []
@@ -105,38 +109,48 @@ def planner_config():
     if inst_list and inst_list[0] not in ("Todas as Bancas", "TODAS"):
         primary_inst = inst_list[0]
 
-    return jsonify({
-        "exam_date": row["exam_date"], "start_date": row["start_date"],
-        "days_per_week": row["days_per_week"], "hours_per_day": row["hours_per_day"] if "hours_per_day" in row_keys else row["questions_per_day"],
+    return {
+        "exam_date": row["exam_date"],
+        "start_date": row["start_date"],
+        "days_per_week": row["days_per_week"],
+        "hours_per_day": row["hours_per_day"] if "hours_per_day" in row_keys else row["questions_per_day"],
         "target_score": row["target_score"] if "target_score" in row_keys else None,
         "target_institution": inst_str,
         "target_institutions": inst_list,
         "primary_institution": primary_inst,
         "target_specialty": row["target_specialty"] if "target_specialty" in row_keys else None,
-    })
+    }
 
 
-@bp.route("/planner")
-def get_planner():
-    db = get_db()
-    rows = db.execute("SELECT * FROM planner_progress WHERE user_id = ?", (g.user_id,)).fetchall()
-    return jsonify({r["week"]: {
+def get_planner_progress_data(db, user_id: str) -> dict:
+    rows = db.execute("SELECT * FROM planner_progress WHERE user_id = ?", (user_id,)).fetchall()
+    return {str(r["week"]): {
         "studied": bool(r["studied"]), "studied_at": r["studied_at"],
         "rev24h": bool(r["rev24h"]), "rev7d": bool(r["rev7d"]), "rev30d": bool(r["rev30d"]),
-    } for r in rows})
+    } for r in rows}
 
 
-@bp.route("/planner/topics")
-def get_planner_topics():
-    db = get_db()
-    rows = db.execute("SELECT week, subtema, completed FROM planner_topic_progress WHERE user_id = ?", (g.user_id,)).fetchall()
+def get_planner_topic_progress_data(db, user_id: str) -> dict:
+    rows = db.execute("SELECT week, subtema, completed FROM planner_topic_progress WHERE user_id = ?", (user_id,)).fetchall()
     res = {}
     for r in rows:
         val = bool(r["completed"])
         res[f"{r['week']}:{r['subtema']}"] = val
         if val:
             res[r["subtema"]] = True
-    return jsonify(res)
+    return res
+
+
+@bp.route("/planner")
+def get_planner():
+    db = get_db()
+    return jsonify(get_planner_progress_data(db, g.user_id))
+
+
+@bp.route("/planner/topics")
+def get_planner_topics():
+    db = get_db()
+    return jsonify(get_planner_topic_progress_data(db, g.user_id))
 
 
 @bp.route("/planner/<int:week>/topic", methods=["POST"])

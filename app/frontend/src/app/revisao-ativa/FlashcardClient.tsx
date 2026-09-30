@@ -27,7 +27,7 @@ import {
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useUser } from "@clerk/nextjs";
+import { useCurator } from "@/hooks/useCurator";
 
 import { useWakeLock } from "@/hooks/useWakeLock";
 
@@ -48,8 +48,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
   const [lastScheduled, setLastScheduled] = useState<string | null>(null);
   const [showUpcoming, setShowUpcoming] = useState(false);
 
-  const { user } = useUser();
-  const isCurator = user?.primaryEmailAddress?.emailAddress?.toLowerCase() === "moraes.wagg@gmail.com";
+  const { isCurator } = useCurator();
   const [isDeletingCard, setIsDeletingCard] = useState(false);
   const [showDeleteCardConfirm, setShowDeleteCardConfirm] = useState(false);
 

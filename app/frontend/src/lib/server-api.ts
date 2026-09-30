@@ -4,7 +4,8 @@ import {
   ThemeProgress, OverviewStats, CoverageResponse, QuestionMeta, PlannerConfig,
   TimelineStat, WeakTopic, Recommendation, BreakdownStat, DistractorStat,
   PlannerPlanResponse, PlannerProgressMap, PlannerTopicProgressMap, PredictiveScore, AtRiskTopic, LearningProfile, ExamReadiness,
-  BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary, InstitutionRadarResponse
+  BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary, InstitutionRadarResponse,
+  DashboardSummaryResponse
 } from "@/types/api";
 
 export type { QuestionMeta };
@@ -93,6 +94,7 @@ export const serverApi = {
   },
   stats: {
     getOverview: () => serverFetch<OverviewStats>("/api/stats/overview", { cache: "no-store" }),
+    getDashboardSummary: () => serverFetch<DashboardSummaryResponse>("/api/dashboard/summary", { cache: "no-store" }),
     getCoverage: () => serverFetch<CoverageResponse>("/api/coverage", { cache: "no-store" }),
     getTimeline: (days: number = 14) => serverFetch<TimelineStat[]>(`/api/stats/timeline?days=${days}`, { next: { tags: ['stats'] } }),
     getWeakTopics: () => serverFetch<WeakTopic[]>("/api/stats/weak-topics", { next: { tags: ['stats'] } }),

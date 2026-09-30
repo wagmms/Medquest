@@ -6,7 +6,8 @@ import {
   BatchFlashcardGenerateResponse, PredictiveScore, AtRiskTopic, LearningProfile, ExamReadiness,
   BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary,
   NotificationConfig, NotificationConfigUpdate, PushSubscriptionPayload,
-  InstitutionRadarResponse, FlashcardDecksResponse, AnkiImportResult
+  InstitutionRadarResponse, FlashcardDecksResponse, AnkiImportResult,
+  AuthMeResponse
 } from "@/types/api";
 
 
@@ -200,8 +201,9 @@ export const api = {
       apiFetch<{success: boolean}>("/api/stats/reset", {
         method: "DELETE",
       }),
-
-
+  },
+  auth: {
+    getMe: (signal?: AbortSignal) => apiFetch<AuthMeResponse>("/api/auth/me", { cache: 'no-store', signal }),
   },
   sessions: {
     get: (sessionType: string) =>

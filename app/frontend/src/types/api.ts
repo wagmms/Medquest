@@ -581,3 +581,22 @@ export interface ThemeProgress {
   flashcards_total: number;
   flashcards_due: number;
 }
+
+export interface DashboardSummaryResponse {
+  stats: OverviewStats;
+  benchmark: BenchmarkStat | null;
+  bottlenecks: BottleneckTopic[];
+  domain_summary: DomainSummaryResponse | null;
+  error_notebook: ErrorNotebookSummary | null;
+  planner: {
+    config: PlannerConfig | null;
+    progress: PlannerProgressMap;
+    topic_progress: PlannerTopicProgressMap;
+  };
+}
+
+export interface AuthMeResponse {
+  user_id: string;
+  email: string | null;
+  is_curator: boolean;
+}

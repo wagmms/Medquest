@@ -661,11 +661,9 @@ def delete_deck():
 @require_curator
 def delete_flashcard(fid):
     """Exclui permanentemente um flashcard.
-    Restrito exclusivamente ao administrador / curador moraes.wagg@gmail.com.
+    Restrito exclusivamente ao administrador / curador configurado.
     """
     user_email = (getattr(g, "user_email", None) or "").strip().lower()
-    if user_email != "moraes.wagg@gmail.com":
-        return jsonify({"error": "Forbidden: Operação restrita ao administrador moraes.wagg@gmail.com"}), 403
 
     db = get_db()
     card = db.execute("SELECT id FROM flashcards WHERE id = ?", (fid,)).fetchone()

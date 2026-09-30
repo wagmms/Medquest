@@ -46,3 +46,28 @@ test('dashboard respects completed topic aliases after a topic moves to a differ
   assert.equal(props.suggestedPlannerTopic, null);
   assert.equal(props.isPlanCompleted, true);
 });
+
+test('dashboard loads aggregated summary successfully in single round-trip mode', async () => {
+  const render = loadDashboard({
+    stats: {
+      getDashboardSummary: async () => ({
+        stats: { total_questions: 100, distinct_answered: 50, streak_days: 5 },
+        benchmark: { status_label: 'aprovado' },
+        bottlenecks: [],
+        domain_summary: null,
+        error_notebook: null,
+        planner: {
+          config: { start_date: '2030-01-01', exam_date: '2030-12-01' },
+          progress: {},
+          topic_progress: {},
+        },
+      }),
+    },
+  });
+  const { props } = await render();
+  assert.equal(props.hasOverviewError, false);
+  assert.equal(props.stats.total_questions, 100);
+  assert.equal(props.stats.distinct_answered, 50);
+  assert.equal(props.benchmarkStats?.status_label, 'aprovado');
+});
+

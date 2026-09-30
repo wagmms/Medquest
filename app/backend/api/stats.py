@@ -141,10 +141,11 @@ def _get_overview_metrics(db, user_id: str, now_utc: datetime) -> dict:
             (SELECT COUNT(*) FROM attempts WHERE user_id = ?) AS total_attempts,
             (SELECT COUNT(DISTINCT question_id) FROM attempts WHERE user_id = ?) AS distinct_answered,
             (SELECT COUNT(*) FROM attempts WHERE user_id = ? AND is_correct = 1) AS correct,
-            (SELECT COUNT(*) FROM attempts a1
-             WHERE a1.user_id = ? AND a1.is_correct = 1
-               AND a1.id = (SELECT MAX(a2.id) FROM attempts a2
-                            WHERE a2.user_id = ? AND a2.question_id = a1.question_id)) AS last_correct,
+            (SELECT COUNT(*) FROM (
+                SELECT is_correct, ROW_NUMBER() OVER (PARTITION BY question_id ORDER BY id DESC) AS rn
+                FROM attempts
+                WHERE user_id = ?
+            ) WHERE rn = 1 AND is_correct = 1) AS last_correct,
             (SELECT COUNT(*) FROM spaced_repetition
              WHERE next_review_date <= ? AND user_id = ?) AS srs_due_count,
             (SELECT COUNT(*) FROM flashcards
@@ -157,7 +158,7 @@ def _get_overview_metrics(db, user_id: str, now_utc: datetime) -> dict:
             (SELECT COUNT(*) FROM attempts
              WHERE answered_at >= ? AND answered_at < ? AND user_id = ?) AS prev7_total
     """, (
-        user_id, user_id, user_id, user_id, user_id,
+        user_id, user_id, user_id, user_id,
         now_value, user_id, now_value, user_id,
         last7_start, user_id, last7_start, user_id,
         prev7_start, last7_start, user_id,
@@ -1221,11 +1222,7 @@ def distractors():
     return jsonify(out[:20])
 
 
-@bp.route("/stats/benchmark")
-def benchmark():
-    """Inspirado no benchmark de concorrentes/corte da Medway (MedBrain)."""
-    db = get_db()
-    now_utc = datetime.now(timezone.utc)
+def _get_benchmark_data(db, user_id: str, now_utc: datetime) -> dict:
     last7_start = (now_utc - timedelta(days=7)).isoformat()
 
     stats_row = db.execute("""
@@ -1236,7 +1233,7 @@ def benchmark():
             SUM(CASE WHEN a.answered_at >= ? THEN a.is_correct ELSE 0 END) AS last7_correct
         FROM attempts a
         WHERE a.user_id = ?
-    """, (last7_start, last7_start, g.user_id)).fetchone()
+    """, (last7_start, last7_start, user_id)).fetchone()
 
     total_attempts = stats_row["total_attempts"] or 0
     total_correct = stats_row["total_correct"] or 0
@@ -1248,7 +1245,7 @@ def benchmark():
 
     config = None
     try:
-        config_row = db.execute("SELECT * FROM planner_config WHERE user_id = ?", (g.user_id,)).fetchone()
+        config_row = db.execute("SELECT * FROM planner_config WHERE user_id = ?", (user_id,)).fetchone()
         if config_row:
             config = dict(config_row)
     except Exception:
@@ -1274,7 +1271,7 @@ def benchmark():
         else:
             status_label = "em_evolucao"
 
-    return jsonify({
+    return {
         "accuracy_overall": accuracy_overall,
         "accuracy_last7": accuracy_last7,
         "target_score": target_score,
@@ -1288,17 +1285,18 @@ def benchmark():
         "weekly_target_questions": weekly_target_questions,
         "weekly_progress_pct": weekly_progress_pct,
         "competitors_average_pct": 76.0
-    })
+    }
 
 
-@bp.route("/stats/bottlenecks")
-def bottlenecks():
-    """Identifica os tópicos prioritários do Caderno de Erros (com questões pendentes de retificação)."""
+@bp.route("/stats/benchmark")
+def benchmark():
+    """Inspirado no benchmark de concorrentes/corte da Medway (MedBrain)."""
     db = get_db()
-    try:
-        limit = int(request.args.get("limit", 5))
-    except (ValueError, TypeError):
-        limit = 5
+    now_utc = datetime.now(timezone.utc)
+    return jsonify(_get_benchmark_data(db, g.user_id, now_utc))
+
+
+def _get_bottlenecks_data(db, user_id: str, limit: int = 5) -> list:
     limit = max(1, min(limit, 20))
 
     rows = db.execute("""
@@ -1326,7 +1324,7 @@ def bottlenecks():
             wrong_count DESC,
             attempts DESC
         LIMIT ?
-    """, (g.user_id, g.user_id, limit)).fetchall()
+    """, (user_id, user_id, limit)).fetchall()
 
     out = []
     for r in rows:
@@ -1342,7 +1340,18 @@ def bottlenecks():
             "accuracy_pct": round(acc * 100, 1),
             "practice_url": f"/estudar?subtema={quote(r['subtema'])}&status=wrong&limit=10"
         })
-    return jsonify(out)
+    return out
+
+
+@bp.route("/stats/bottlenecks")
+def bottlenecks():
+    """Identifica os tópicos prioritários do Caderno de Erros (com questões pendentes de retificação)."""
+    db = get_db()
+    try:
+        limit = int(request.args.get("limit", 5))
+    except (ValueError, TypeError):
+        limit = 5
+    return jsonify(_get_bottlenecks_data(db, g.user_id, limit))
 
 
 def _create_area_stats(area_name: str) -> dict:
@@ -1384,11 +1393,7 @@ def _calculate_area_metrics(item: dict) -> None:
     if item["total_subtemas"] > 0:
         item["domain_pct"] = round((item["mastered_subtemas"] / item["total_subtemas"]) * 100, 1)
 
-@bp.route("/stats/domain-summary")
-def domain_summary():
-    """Inspirado no MedBrain da Medway: progresso de domínio de focos/subtemas por Grande Área."""
-    db = get_db()
-
+def _get_domain_summary_data(db, user_id: str) -> dict:
     rows = db.execute("""
         SELECT
             q.area,
@@ -1400,7 +1405,7 @@ def domain_summary():
         LEFT JOIN attempts a ON a.question_id = q.id AND a.user_id = ?
         WHERE q.missing_alts = 0 AND q.area IS NOT NULL AND q.area != '' AND q.subtema IS NOT NULL AND q.subtema != ''
         GROUP BY q.area, q.subtema
-    """, (g.user_id,)).fetchall()
+    """, (user_id,)).fetchall()
 
     areas_map = {}
     canonical_order = ["Clínica Médica", "Cirurgia", "Ginecologia e Obstetrícia", "Pediatria", "Medicina Preventiva"]
@@ -1432,19 +1437,22 @@ def domain_summary():
     total_mastered_all = sum(x["mastered_subtemas"] for x in result)
     overall_domain_pct = round((total_mastered_all / total_subtemas_all) * 100, 1) if total_subtemas_all > 0 else 0.0
 
-    return jsonify({
+    return {
         "overall_domain_pct": overall_domain_pct,
         "total_mastered": total_mastered_all,
         "total_subtemas": total_subtemas_all,
         "areas": result
-    })
+    }
 
 
-@bp.route("/stats/error-notebook-summary")
-def error_notebook_summary():
-    """Inspirado no ever-answered-wrong da Medcof: contador e resumo de questões erradas."""
+@bp.route("/stats/domain-summary")
+def domain_summary():
+    """Inspirado no MedBrain da Medway: progresso de domínio de focos/subtemas por Grande Área."""
     db = get_db()
+    return jsonify(_get_domain_summary_data(db, g.user_id))
 
+
+def _get_error_notebook_summary_data(db, user_id: str) -> dict:
     row = db.execute("""
         WITH latest_attempts AS (
             SELECT question_id, is_correct,
@@ -1458,15 +1466,61 @@ def error_notebook_summary():
         FROM attempts a
         LEFT JOIN latest_attempts la ON la.question_id = a.question_id AND la.rn = 1
         WHERE a.user_id = ? AND a.is_correct = 0
-    """, (g.user_id, g.user_id)).fetchone()
+    """, (user_id, user_id)).fetchone()
 
     ever_wrong = row["ever_wrong_count"] if row and row["ever_wrong_count"] else 0
     currently_unresolved = row["currently_unresolved_count"] if row and row["currently_unresolved_count"] else 0
 
-    return jsonify({
+    return {
         "ever_wrong_count": ever_wrong,
         "currently_unresolved_count": currently_unresolved,
         "practice_url": "/estudar?status=wrong&limit=20"
+    }
+
+
+@bp.route("/stats/error-notebook-summary")
+def error_notebook_summary():
+    """Inspirado no ever-answered-wrong da Medcof: contador e resumo de questões erradas."""
+    db = get_db()
+    return jsonify(_get_error_notebook_summary_data(db, g.user_id))
+
+
+@bp.route("/dashboard/summary")
+def dashboard_summary():
+    """Retorna todas as métricas agregadas do Dashboard em um único round-trip."""
+    db = get_db()
+    user_id = g.user_id
+    now_utc = datetime.now(timezone.utc)
+    try:
+        tz_offset = int(request.args.get("tz_offset", 0))
+    except (ValueError, TypeError):
+        tz_offset = 0
+
+    overview = _get_overview_metrics(db, user_id, now_utc)
+    streak_info = _get_streak_and_target_info(db, user_id, now_utc, tz_offset)
+    overview.update(streak_info)
+
+    benchmark_data = _get_benchmark_data(db, user_id, now_utc)
+    bottlenecks_data = _get_bottlenecks_data(db, user_id, limit=3)
+    domain_data = _get_domain_summary_data(db, user_id)
+    error_data = _get_error_notebook_summary_data(db, user_id)
+
+    from .plan import get_planner_config_data, get_planner_progress_data, get_planner_topic_progress_data
+    planner_cfg = get_planner_config_data(db, user_id)
+    planner_prog = get_planner_progress_data(db, user_id)
+    planner_topics = get_planner_topic_progress_data(db, user_id)
+
+    return jsonify({
+        "stats": overview,
+        "benchmark": benchmark_data,
+        "bottlenecks": bottlenecks_data,
+        "domain_summary": domain_data,
+        "error_notebook": error_data,
+        "planner": {
+            "config": planner_cfg,
+            "progress": planner_prog,
+            "topic_progress": planner_topics,
+        }
     })
 
 

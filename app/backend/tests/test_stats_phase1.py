@@ -67,3 +67,20 @@ def test_stats_error_notebook_summary(client):
     data2 = r2.get_json()
     assert data2["ever_wrong_count"] == data["ever_wrong_count"]
     assert data2["currently_unresolved_count"] == data["currently_unresolved_count"] - 1
+
+
+def test_dashboard_summary(client):
+    r = client.get("/api/dashboard/summary")
+    assert r.status_code == 200
+    data = r.get_json()
+    assert "stats" in data
+    assert "benchmark" in data
+    assert "bottlenecks" in data
+    assert "domain_summary" in data
+    assert "error_notebook" in data
+    assert "planner" in data
+    assert "total_questions" in data["stats"]
+    assert "config" in data["planner"]
+    assert "progress" in data["planner"]
+    assert "topic_progress" in data["planner"]
+

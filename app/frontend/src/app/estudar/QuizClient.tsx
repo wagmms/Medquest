@@ -3,12 +3,11 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { QuestionMeta, QuestionListItem, QuestionDetail, AttemptResult, FlashcardGenerateResponse } from "@/types/api";
 import { api, OfflineQueuedError } from "@/lib/api";
-import { Clock, CheckCircle2, XCircle, BookOpen, Heart, ArrowRight, Sparkles, ArrowLeft, ImageOff, Maximize, Minimize, AlertTriangle, X, CloudOff, RotateCcw, Brain, Pencil, Stethoscope, Eye, EyeOff, Scissors } from "lucide-react";
+import { Clock, CheckCircle2, XCircle, BookOpen, Heart, ArrowRight, Sparkles, ArrowLeft, ImageOff, Maximize, Minimize, AlertTriangle, CloudOff, RotateCcw, Brain, Pencil, Eye, EyeOff } from "lucide-react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { isLocalIdentityReady } from "@/lib/db";
 import { useUser } from "@clerk/nextjs";
 import { normalizeFlashcard } from "@/lib/normalizeFlashcard";
@@ -24,9 +23,12 @@ const QuestionClassificationModal = dynamic(
 );
 import { useZenMode } from "@/hooks/useZenMode";
 import { useWakeLock } from "@/hooks/useWakeLock";
+import { useCurator } from "@/hooks/useCurator";
 import { QuizTimer, QuizTimerHandle } from "@/components/QuizTimer";
 import Image from "next/image";
 import { QuizFilters } from "./components/QuizFilters";
+import { AlternativeList } from "./components/AlternativeList";
+import { PreceptorSection } from "./components/PreceptorSection";
 import {
   LEARNING_SESSION_VERSION,
   readLearningSession,
@@ -134,8 +136,8 @@ export function QuizClient({
   initialFilters?: Record<string, string | string[]>;
 }) {
   const router = useRouter();
-  const { user, isLoaded: authLoaded } = useUser();
-  const isCurator = user?.primaryEmailAddress?.emailAddress?.toLowerCase() === "moraes.wagg@gmail.com";
+  const { isLoaded: authLoaded } = useUser();
+  const { isCurator } = useCurator();
   const [isClassificationModalOpen, setIsClassificationModalOpen] = useState(false);
   const hasExplicitFilters = Object.keys(initialFilters).filter(k => k !== "resume").length > 0;
   const [state, setState] = useState<QuizState>(hasExplicitFilters ? "LOADING_QUEUE" : "FILTERS");
@@ -1571,109 +1573,15 @@ export function QuizClient({
             )
           ) : (
             <div className="flex flex-col gap-3">
-              {(q.alternatives || []).map((alt) => {
-                const isSelected = selectedLetter === alt.letter;
-                const isCorrect = attemptResult?.correct_letter === alt.letter || (attemptResult && isSelected && attemptResult.is_correct);
-                const isWrong = attemptResult && isSelected && !attemptResult.is_correct;
-                const isEliminated = (eliminatedAlternatives[q.id] || []).includes(alt.letter);
-                
-                let altClass = "bg-card border-border hover:bg-muted/50 hover:border-primary/30 cursor-pointer shadow-sm hover:shadow";
-                if (isSelected && !attemptResult) altClass = "bg-primary/5 border-primary/50 cursor-pointer shadow ring-1 ring-primary/20";
-                if (isEliminated && !attemptResult && !isSelected) {
-                  altClass = "bg-muted/20 border-border/60 opacity-60 hover:opacity-85 cursor-pointer shadow-none";
-                }
-                if (attemptResult) {
-                  if (isCorrect) altClass = "bg-success/10 border-success/50 shadow-sm cursor-default ring-1 ring-success/20";
-                  else if (isWrong) altClass = "bg-destructive/10 border-destructive/50 shadow-sm cursor-default ring-1 ring-destructive/20";
-                  else altClass = "bg-card border-border opacity-40 cursor-default";
-                }
-
-                return (
-                  <motion.div
-                    role="button"
-                    tabIndex={attemptResult || submitting ? -1 : 0}
-                    whileTap={!attemptResult && !submitting ? { scale: 0.99 } : {}}
-                    animate={
-                      attemptResult && isWrong ? { x: [-5, 5, -5, 5, 0], transition: { duration: 0.4 } } : 
-                      attemptResult && isCorrect ? { scale: [1, 1.02, 1], transition: { duration: 0.4 } } : 
-                      {}
-                    }
-                    key={alt.letter}
-                    onClick={() => selectAlternative(alt.letter)}
-                    onKeyDown={(e) => {
-                      if (attemptResult || submitting) return;
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        selectAlternative(alt.letter);
-                      }
-                    }}
-                    onContextMenu={(e) => {
-                      if (!attemptResult && !submitting) {
-                        e.preventDefault();
-                        toggleEliminateAlternative(alt.letter);
-                      }
-                    }}
-                    className={clsx(
-                      "group relative text-left p-3.5 sm:p-4 rounded-xl border transition-all flex items-start gap-2.5 sm:gap-3 w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 select-none",
-                      altClass
-                    )}
-                    aria-pressed={isSelected}
-                    aria-disabled={!!attemptResult || submitting}
-                  >
-                    {/* Scissors Button / Spacer */}
-                    {!attemptResult ? (
-                      <button
-                        type="button"
-                        title={isEliminated ? `Restaurar alternativa ${alt.letter}` : `Riscar alternativa ${alt.letter} (Shift+${alt.letter} ou botão direito)`}
-                        aria-label={isEliminated ? `Restaurar alternativa ${alt.letter}` : `Riscar alternativa ${alt.letter}`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleEliminateAlternative(alt.letter);
-                        }}
-                        disabled={submitting}
-                        className={clsx(
-                          "w-6 h-8 shrink-0 flex items-center justify-center rounded-md transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary",
-                          isEliminated
-                            ? "opacity-100 text-destructive hover:scale-110"
-                            : "opacity-0 group-hover:opacity-80 hover:opacity-100 hover:text-primary max-md:opacity-40 text-muted-foreground"
-                        )}
-                      >
-                        <Scissors size={15} className={clsx("transition-transform duration-150", isEliminated && "rotate-45")} />
-                      </button>
-                    ) : (
-                      <div className="w-6 h-8 shrink-0 flex items-center justify-center text-muted-foreground/40">
-                        {isEliminated && !isCorrect && (
-                          <Scissors size={13} className="opacity-40 rotate-45 text-destructive" />
-                        )}
-                      </div>
-                    )}
-
-                    {/* Letter Badge */}
-                    <div className={clsx(
-                      "w-8 h-8 shrink-0 flex items-center justify-center rounded-lg font-bold text-sm transition-colors",
-                      isSelected && !attemptResult ? "bg-primary text-primary-foreground" : 
-                      isCorrect ? "bg-success text-success-foreground" : 
-                      isWrong ? "bg-destructive text-destructive-foreground" : 
-                      isEliminated && !attemptResult ? "bg-muted/40 text-muted-foreground/60 border border-border/50" :
-                      "bg-muted text-muted-foreground"
-                    )}>
-                      {submitting && isSelected ? (
-                        <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                      ) : (
-                        alt.letter
-                      )}
-                    </div>
-
-                    {/* Alternative Text */}
-                    <div className={clsx(
-                      "pt-1 text-foreground leading-relaxed flex-1 transition-all",
-                      isEliminated && !isCorrect && "line-through text-muted-foreground/75 decoration-muted-foreground/60"
-                    )}>
-                      {alt.text}
-                    </div>
-                  </motion.div>
-                );
-              })}
+              <AlternativeList
+                alternatives={q.alternatives || []}
+                selectedLetter={selectedLetter}
+                attemptResult={attemptResult}
+                eliminatedLetters={eliminatedAlternatives[q.id] || []}
+                submitting={submitting}
+                onSelectAlternative={selectAlternative}
+                onToggleEliminate={toggleEliminateAlternative}
+              />
 
               {!attemptResult && !isOfflineSaved && selectedLetter && (
                 <button
@@ -1888,52 +1796,17 @@ export function QuizClient({
                   )}
 
                   {/* Preceptor AI Section */}
-                  <div className="mt-8 bg-blue-500/5 border border-blue-500/20 rounded-2xl p-5 md:p-6">
-                    <h4 className="text-blue-700 dark:text-blue-400 font-bold flex items-center gap-2 mb-3 uppercase tracking-wider text-sm">
-                      <Stethoscope size={18} /> Perguntar ao Preceptor (IA)
-                    </h4>
-                    {!preceptorResponse ? (
-                      <div className="flex flex-col gap-3">
-                        <textarea
-                          className="w-full bg-background border border-border rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none min-h-[80px]"
-                          placeholder="Ficou com alguma dúvida sobre esta questão? Pergunte ao preceptor virtual..."
-                          value={preceptorInput}
-                          onChange={(e) => setPreceptorInput(e.target.value)}
-                        />
-                        <div className="flex justify-end">
-                          <button
-                            onClick={handleAskPreceptor}
-                            disabled={askingPreceptor || !preceptorInput.trim()}
-                            className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-xl shadow-sm transition-all flex items-center gap-2 text-sm"
-                          >
-                            {askingPreceptor ? (
-                              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                            ) : (
-                              <Sparkles size={16} />
-                            )}
-                            {askingPreceptor ? "Consultando..." : "Enviar Pergunta"}
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="space-y-4">
-                        <div className="bg-background rounded-xl p-4 border border-border relative">
-                          <button 
-                            onClick={() => { setPreceptorResponse(null); setPreceptorInput(""); }}
-                            className="absolute top-2 right-2 text-muted-foreground hover:text-foreground"
-                          >
-                            <X size={16} />
-                          </button>
-                          <div className="text-sm md:text-base text-foreground leading-relaxed">
-                            <FormattedContent content={preceptorResponse.answer} />
-                          </div>
-                          <div className="mt-3 text-xs text-muted-foreground font-mono bg-muted/50 w-fit px-2 py-1 rounded">
-                            Respondido por: {preceptorResponse.model} ({preceptorResponse.source})
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                  <PreceptorSection
+                    preceptorResponse={preceptorResponse}
+                    preceptorInput={preceptorInput}
+                    askingPreceptor={askingPreceptor}
+                    onChangeInput={setPreceptorInput}
+                    onAskPreceptor={handleAskPreceptor}
+                    onClearResponse={() => {
+                      setPreceptorResponse(null);
+                      setPreceptorInput("");
+                    }}
+                  />
 
                   {draftFlashcard && (
                     <div className="mt-6 bg-purple-500/10 border border-purple-500/25 rounded-2xl p-5 animate-in slide-in-from-bottom-2">

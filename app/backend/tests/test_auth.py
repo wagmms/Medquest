@@ -51,3 +51,24 @@ def test_is_valid_uuid_v4_empty_string():
 
 def test_is_valid_uuid_v4_only_dashes():
     assert is_valid_uuid_v4("------------------------------------") is False
+
+
+def test_auth_me_endpoint(client, monkeypatch):
+    monkeypatch.setenv("CURATOR_EMAILS", "moraes.wagg@gmail.com,admin@medquest.live")
+    
+    # Usuário curador
+    r = client.get("/api/auth/me", headers={"X-User-ID": "user_123", "X-User-Email": "moraes.wagg@gmail.com"})
+    assert r.status_code == 200
+    data = r.get_json()
+    assert data["user_id"] == "user_123"
+    assert data["email"] == "moraes.wagg@gmail.com"
+    assert data["is_curator"] is True
+
+    # Usuário comum
+    r2 = client.get("/api/auth/me", headers={"X-User-ID": "user_456", "X-User-Email": "estudante@medquest.live"})
+    assert r2.status_code == 200
+    data2 = r2.get_json()
+    assert data2["user_id"] == "user_456"
+    assert data2["email"] == "estudante@medquest.live"
+    assert data2["is_curator"] is False
+

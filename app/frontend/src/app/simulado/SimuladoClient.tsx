@@ -12,6 +12,7 @@ import clsx from "clsx";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
+import { useCurator } from "@/hooks/useCurator";
 
 import { normalizeFlashcard } from "@/lib/normalizeFlashcard";
 import { LEARNING_SESSION_VERSION, readLearningSession, writeLearningSession, removeLearningSession, deadlineFromNow } from "@/lib/sessionState";
@@ -67,8 +68,8 @@ export function SimuladoClient({
   initialFilters?: Record<string, string | string[]>;
   meta?: QuestionMeta;
 }) {
-  const { user, isLoaded: authLoaded } = useUser();
-  const isCurator = user?.primaryEmailAddress?.emailAddress?.toLowerCase() === "moraes.wagg@gmail.com";
+  const { isLoaded: authLoaded } = useUser();
+  const { isCurator } = useCurator();
   const [isClassificationModalOpen, setIsClassificationModalOpen] = useState(false);
   const [state, setState] = useState<SimuladoState>("START");
   const [queue, setQueue] = useState<QuestionListItem[]>([]);
