@@ -110,7 +110,7 @@ export function AnalysisClient() {
 
   return <div className="space-y-6">
     <section className={panel} aria-label="Filtros da análise">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <label className="text-sm font-medium">Período<select className={`${control} mt-1`} value={filters.days} onChange={e => change({ days: Number(e.target.value) })}>
           <option value={14}>Últimos 14 dias</option><option value={30}>Últimos 30 dias</option><option value={90}>Últimos 90 dias</option>
         </select></label>
@@ -140,7 +140,7 @@ export function AnalysisClient() {
             <h2 id="priorities-title" className="text-xl font-bold">Suas próximas prioridades</h2>
             <p className="text-sm text-muted-foreground mt-1">Até 3 prioridades de correção e revisão, com espaço separado para avaliar temas pouco explorados.</p>
           </div></div>
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 mt-5">
+          <div className={`grid gap-4 mt-5 ${data.priorities.length > 1 ? "md:grid-cols-2 xl:grid-cols-3" : "grid-cols-1"}`}>
             {data.priorities.map(t => <article key={topicKey(t)} className="rounded-xl border border-border p-4 flex flex-col" aria-label={t.topic}>
               <span className={`text-xs font-semibold ${t.reason === "unresolved" ? "text-destructive" : "text-primary"}`}>{reasons[t.reason]}</span>
               <p className="text-xs text-muted-foreground mt-3">{t.area}</p><h3 className="font-bold mt-1">{t.topic}</h3>

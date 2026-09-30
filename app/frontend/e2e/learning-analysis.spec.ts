@@ -27,6 +27,8 @@ test('prioritizes learning evidence, preserves scope, and renders on mobile', as
   expect(priorities!.y).toBeLessThan(evidence!.y);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy();
   await page.screenshot({ path: testInfo.outputPath('analysis-mobile.png'), fullPage: true });
+  await page.getByRole('region', { name: 'Como está sua aprendizagem?' }).screenshot({ path: testInfo.outputPath('analysis-mobile-evidence.png') });
+  await page.getByRole('region', { name: 'A correção permaneceu?' }).screenshot({ path: testInfo.outputPath('analysis-mobile-followup.png') });
   expect(errors).toEqual([]);
 });
 
