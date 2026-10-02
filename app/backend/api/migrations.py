@@ -83,6 +83,9 @@ def apply_pending_migrations(db) -> list[str]:
 
         try:
             for statement in _statements(path):
+                # Comandos como ANALYZE/VACUUM não são suportados pelo driver LibSQL/Turso remoto
+                if statement.upper().rstrip(";") in ("ANALYZE", "VACUUM"):
+                    continue
                 db.execute(statement)
         except Exception:
             _record_migrations(db, records_to_insert)

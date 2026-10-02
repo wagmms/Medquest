@@ -16,5 +16,3 @@ CREATE TABLE IF NOT EXISTS question_images (
 
 CREATE INDEX IF NOT EXISTS idx_alternatives_question_id ON alternatives (question_id);
 CREATE INDEX IF NOT EXISTS idx_question_images_question_id ON question_images (question_id);
-
-ANALYZE;
