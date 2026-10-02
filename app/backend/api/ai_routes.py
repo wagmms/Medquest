@@ -46,6 +46,10 @@ def ask_question_ai(question_id):
     chat_history = body.get("chat_history", [])
 
     user_id = getattr(g, "user_id", None)
+    if not user_id:
+        guest_id = request.headers.get("X-Guest-ID") or request.headers.get("x-internal-guest-id")
+        if guest_id:
+            user_id = f"guest:{guest_id.lower()}"
     result = ai.ask_preceptor_ai(
         stem=q["stem"],
         alternatives=alts_list,

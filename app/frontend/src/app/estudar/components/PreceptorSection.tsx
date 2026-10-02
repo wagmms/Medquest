@@ -252,7 +252,23 @@ export const PreceptorSection: React.FC<PreceptorSectionProps> = ({
                   )}
 
                   {msg.role === "user" ? (
-                    <div className="font-medium whitespace-pre-wrap">{msg.content}</div>
+                    (() => {
+                      const trimmed = msg.content.trim();
+                      const action = QUICK_ACTIONS.find((a) => a.prompt === trimmed);
+                      if (action) {
+                        const Icon = action.icon;
+                        return (
+                          <div className="flex items-center gap-2 font-medium">
+                            <span className="p-1 rounded-md bg-white/20">
+                              <Icon size={14} className="text-white" />
+                            </span>
+                            <span>{action.label}</span>
+                            <span className="opacity-80 text-xs font-normal">({action.desc})</span>
+                          </div>
+                        );
+                      }
+                      return <div className="font-medium whitespace-pre-wrap">{msg.content}</div>;
+                    })()
                   ) : (
                     <div className="leading-relaxed">
                       <FormattedContent content={msg.content} />
@@ -303,7 +319,19 @@ export const PreceptorSection: React.FC<PreceptorSectionProps> = ({
           <div className="flex gap-2">
             <textarea
               className="flex-1 bg-background border border-border rounded-xl p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none min-h-[44px] max-h-[120px]"
-              placeholder="Digite sua réplica ou dúvida adicional..."
+              placeholder={(() => {
+                const lastMsg = messages[messages.length - 1];
+                if (lastMsg && lastMsg.role === "assistant") {
+                  const lower = lastMsg.content.toLowerCase();
+                  if (lower.includes("qual é a sua conduta") || lower.includes("letra da alternativa") || lower.includes("qual a sua resposta")) {
+                    return "Digite a letra da sua resposta para o desafio do preceptor (ex: Letra B)...";
+                  }
+                  if (lower.includes("pergunta 1") || lower.includes("como você responde a cada")) {
+                    return "Responda às 3 perguntas da visita beira-leito...";
+                  }
+                }
+                return "Digite sua réplica ou dúvida adicional...";
+              })()}
               rows={1}
               value={preceptorInput}
               onChange={(e) => onChangeInput(e.target.value)}

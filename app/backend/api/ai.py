@@ -478,6 +478,77 @@ Responda APENAS com o JSON. Exemplo: {{ "terms": ["...", "..."] }}
     return _cache_and_return([query])
 
 
+
+def detect_preceptor_mode(
+    user_query: str,
+    chat_history: Optional[List[Dict[str, str]]] = None
+) -> str:
+    """
+    Classifica a intenção do usuário no Preceptor IA para ativar a estratégia pedagógica ideal:
+    - 'foco': Diagnóstico adaptativo e planejamento de estudo (/foco, /diagnostico, etc.)
+    - 'conduta': Algoritmo de conduta imediata, drogas e doses (/conduta, /protocolo, etc.)
+    - 'pegadinhas': Armadilhas clássicas de bancas (/pegadinha, /pegadinhas, etc.)
+    - 'round': Sabatina beira-leito com 3 perguntas afiadas (/round, /visita, etc.)
+    - 'caso': Desafio clínico correlato inédito (/caso, /desafio, /simulado)
+    - 'replica_desafio': Aluno respondendo a um /round ou /caso prévio
+    - 'duvida_livre': Dúvida específica livre sobre a questão
+    - 'discussao_geral': Explicação global da questão (padrão quando sem foco específico)
+    """
+    q = user_query.strip().lower()
+
+    # 1. Comandos com barra explícitos
+    if q.startswith("/foco") or q.startswith("/diagnostico"):
+        return "foco"
+    if q.startswith("/conduta") or q.startswith("/protocolo") or q.startswith("/manejo"):
+        return "conduta"
+    if q.startswith("/pegadinha") or q.startswith("/armadilha"):
+        return "pegadinhas"
+    if q.startswith("/round") or q.startswith("/visita") or q.startswith("/sabatina"):
+        return "round"
+    if q.startswith("/caso") or q.startswith("/desafio") or q.startswith("/simulado"):
+        return "caso"
+
+    # 2. Expressões em linguagem natural para foco/desempenho adaptativo
+    foco_keywords = [
+        "em que focar", "em que devo focar", "focar hoje", "meus pontos fracos",
+        "minhas fraquezas", "onde estou errando", "meu desempenho", "o que revisar",
+        "o que focar", "quais temas focar", "diagnostico adaptativo"
+    ]
+    if any(kw in q for kw in foco_keywords):
+        return "foco"
+
+    # 3. Réplica a um desafio anterior (/round ou /caso)
+    if chat_history and len(chat_history) > 0 and q and not q.startswith("/"):
+        # Localiza a última mensagem do assistente
+        last_asst_msg = next(
+            (m.get("content", "") for m in reversed(chat_history) if m.get("role") == "assistant"),
+            ""
+        ).lower()
+        if last_asst_msg:
+            is_prev_case = any(term in last_asst_msg for term in [
+                "desafio clínico", "vinheta clínica", "qual é a sua conduta",
+                "alternativas:", "alternativa a", "envie a letra", "(a)", "a)"
+            ])
+            is_prev_round = any(term in last_asst_msg for term in [
+                "pergunta 1", "pergunta 2", "visita beira-leito", "vez do interno", "como você responde"
+            ])
+            if is_prev_case or is_prev_round:
+                return "replica_desafio"
+
+    # 4. Discussão geral vs dúvida livre
+    if not q:
+        return "discussao_geral"
+
+    generic_starters = [
+        "explique", "explicar", "comente", "comentar", "discussão", "discussao",
+        "por que a correta é", "gabarito", "raciocínio", "raciocinio", "raciocínio clínico"
+    ]
+    if q in generic_starters or len(q) < 5:
+        return "discussao_geral"
+
+    return "duvida_livre"
+
+
 def ask_preceptor_ai(
     stem: str,
     alternatives: list,
@@ -494,7 +565,7 @@ def ask_preceptor_ai(
 ) -> dict:
     """
     Atua como um Preceptor Médico Socrático especialista em provas de residência (USP, ENARE, SUS-SP).
-    Suporta conversação contínua multi-turn, comandos rápidos (/conduta, /pegadinhas, /round, /caso),
+    Suporta modos especializados (/foco, /conduta, /pegadinhas, /round, /caso, réplicas e dúvidas livres),
     grounding ancorado em fontes oficiais e Tool Calling adaptativo (get_student_weak_topics).
     """
     alts_formatted = "\n".join([
@@ -504,6 +575,7 @@ def ask_preceptor_ai(
     ])
 
     user_query = user_question.strip() if user_question else ""
+    mode = detect_preceptor_mode(user_query, chat_history)
 
     # 1. Recuperação RAG de fontes oficiais (Data Store)
     grounding_chunks = retrieve_medical_context(
@@ -535,73 +607,33 @@ REGRAS DE ANCORAGEM NAS FONTES:
 - Rastreabilidade: Sempre indique a qual fonte e tema a conduta pertence (ex: [Fonte: {grounding_sources[0]['source_file']}]).
 """
 
-    # 2. Detecção de Tool Calling: Diagnóstico Adaptativo & Foco de Estudo
-    cmd_lower = user_query.lower()
-    is_diagnostic_request = any(
-        phrase in cmd_lower for phrase in [
-            "/foco", "/diagnostico", "em que focar", "em que devo focar",
-            "focar hoje", "meus pontos fracos", "minhas fraquezas",
-            "onde estou errando", "meu desempenho", "o que revisar",
-            "o que focar"
-        ]
-    )
-
+    # 2. Tool Calling Adaptativo se mode == "foco"
     tool_call_meta = None
     diagnostic_block = ""
-    if is_diagnostic_request and db is not None:
-        diag_data = get_student_weak_topics(db, user_id, limit=5)
-        diagnostic_block = format_student_diagnostic_block(diag_data)
-        tool_call_meta = {
-            "name": "get_student_weak_topics",
-            "data": diag_data
-        }
+    if mode == "foco":
+        if db is not None:
+            diag_data = get_student_weak_topics(db, user_id, limit=5)
+            diagnostic_block = format_student_diagnostic_block(diag_data)
+            tool_call_meta = {
+                "name": "get_student_weak_topics",
+                "data": diag_data
+            }
+        else:
+            diagnostic_block = format_student_diagnostic_block(None)
 
-    # 3. Detecção de Playbooks e Comandos Rápidos
-    playbook_instruction = ""
-    if diagnostic_block:
-        playbook_instruction = f"""
-{diagnostic_block}
-
-DIRETRIZ DA TOOL get_student_weak_topics:
-O aluno perguntou sobre seu foco ou pontos fracos. Você deve:
-1. 🎯 **Prescrever o Plano de Ataque**: Indique com clareza quais são os subtemas de maior risco clínico identificados acima.
-2. ⏰ **Atenção ao FSRS**: Se houver questões de repetição espaçada acumuladas (srs_due_count > 0), recomende fortemente zerar as revisões antes de avançar em matérias novas.
-3. 💡 **Estratégia Recomendada**: Formule um plano prático de estudos para a sessão de hoje (ex: 'Faça 10 questões do tema X + zere a fila de repetição').
-"""
-    elif cmd_lower.startswith("/conduta"):
-        playbook_instruction = """
-COMANDO ESPECIAL DETECTADO: /conduta
-Estruture a resposta obrigatoriamente nesta sequência direta:
-1. 🚨 **Reconhecimento & Alerta**: Sinais de instabilidade, gravidade e escores formais.
-2. 🛑 **Estabilização Imediata**: Medidas de suporte inicial beira-leito.
-3. 🔬 **Investigação Dirigida**: Exames laboratoriais/imagem que alteram conduta imediata.
-4. 💊 **Terapêutica Farmacológica**: Drogas de 1ª linha, doses exatas, vias e posologia.
-5. 🏥 **Destino**: Critérios de alta, internação em enfermaria ou vaga de UTI/CTI.
-"""
-    elif cmd_lower.startswith("/pegadinhas"):
-        playbook_instruction = """
-COMANDO ESPECIAL DETECTADO: /pegadinhas
-Apresente de 3 a 5 pegadinhas clássicas das bancas da USP (SP e RP), ENARE e SUS-SP sobre o assunto desta questão.
-Explique o detalhe sutil do enunciado que induz o candidato ao erro e a regra de ouro para acertar.
-"""
-    elif cmd_lower.startswith("/round"):
-        playbook_instruction = """
-COMANDO ESPECIAL DETECTADO: /round (Simulação de Visita Beira-Leito)
-Formule 3 perguntas afiadas e práticas que um preceptor sênior faria ao interno sobre o manejo deste paciente.
-NÃO RESPONDA AS PERGUNTAS AGORA. Convide o aluno a responder para que você avalie em seguida.
-"""
-    elif cmd_lower.startswith("/caso"):
-        playbook_instruction = """
-COMANDO ESPECIAL DETECTADO: /caso (Desafio Clínico Correlato)
-Crie uma variação clínica de alta complexidade deste paciente (alterando algum parâmetro clínico ou comorbidade)
-e proponha uma pergunta de múltipla escolha com 4 alternativas (A, B, C, D). NÃO ENTREGUE O GABARITO AGORA.
-"""
-
-    # 4. Histórico de Conversação (Multi-turn)
+    # 3. Histórico de Conversação (Multi-turn), filtrando duplicidade da mensagem atual
     history_formatted = ""
     if chat_history and len(chat_history) > 0:
         history_lines = []
-        for msg in chat_history[-6:]:
+        effective_history = list(chat_history)
+        if (
+            effective_history
+            and effective_history[-1].get("role") == "user"
+            and effective_history[-1].get("content", "").strip() == user_query
+        ):
+            effective_history = effective_history[:-1]
+
+        for msg in effective_history[-6:]:
             role_label = "ALUNO" if msg.get("role") == "user" else "PRECEPTOR"
             c = msg.get("content", "").strip()
             if c:
@@ -609,38 +641,136 @@ e proponha uma pergunta de múltipla escolha com 4 alternativas (A, B, C, D). N�
         if history_lines:
             history_formatted = "### HISTÓRICO DA DISCUSSÃO CLÍNICA PRÉVIA:\n" + "\n\n".join(history_lines) + "\n\n"
 
-    turn_guideline = ""
-    if history_formatted:
-        turn_guideline = """
-DIRETRIZ DE CONTINUIDADE (MULTI-TURN):
-Esta é uma réplica contínua na discussão do caso. Mantenha total coerência com as mensagens anteriores, responda de forma fluida à dúvida ou contra-argumento do aluno e aprofunde o raciocínio clínico sem reexplicar o caso do início.
+    # 4. Construção das Diretrizes Exclusivas por Modo
+    if mode == "foco":
+        mode_instructions = f"""
+{diagnostic_block}
+
+### MODO ATIVADO: DIAGNÓSTICO ADAPTATIVO & DIRECIONAMENTO DE ESTUDOS (/foco)
+DIRETRIZES OBRIGATÓRIAS DO MODO /FOCO:
+1. ⛔ REGRA ABSOLUTA: NÃO REEXPLIQUE A QUESTÃO CLÍNICA ACIMA. O aluno acionou sua função de Mentor Pedagógico e Diretor Adaptativo para saber onde focar seus estudos.
+2. Analise os dados do aluno fornecidos pela ferramenta diagnóstica acima e estruture sua resposta exatamente nestas seções:
+   - 📊 **Raio-X de Desempenho**: Apresente a acurácia global do aluno, total de questões resolvidas e contextualize com a grande área ({area or 'Medicina Geral'}) e subtema ({subtema or 'Raciocínio Clínico'}).
+   - 🚨 **Subtemas Vulneráveis**: Identifique com precisão os subtemas com maior taxa de erro e explique o risco de perder essas questões nas grandes bancas (USP, ENARE, SUS-SP).
+   - ⏰ **Status FSRS & Revisões**: Se houver revisões pendentes (srs_due_count > 0), determine a prioridade inegociável de zerar a repetição espaçada antes de avançar para novos temas.
+   - 🎯 **Plano de Ataque Prático**: Prescreva uma meta cirúrgica para a sessão de hoje (ex: 'Zere as revisões pendentes + resolva 15 questões do subtema de maior risco').
+3. Caso o aluno não possua histórico suficiente ainda, instrua-o a fazer um bloco de calibração com os 3 temas de maior incidência estatística da residência médica nesta área.
+"""
+    elif mode == "pegadinhas":
+        mode_instructions = f"""
+### MODO ATIVADO: ARMADILHAS CLÁSSICAS DAS BANCAS (/pegadinhas)
+TEMA: {area or 'Medicina'} - {subtema or 'Clínica Médica'}
+CONCEITO DO GABARITO: Letra {correct_letter}) {correct_text}
+
+DIRETRIZES OBRIGATÓRIAS DO MODO /PEGADINHAS:
+1. ⛔ REGRA ABSOLUTA: NÃO REEXPLIQUE O CASO CLÍNICO OU A FISIOPATOLOGIA DA QUESTÃO DO ZERO. Vá direto às pegadinhas que mais derrubam candidatos!
+2. Apresente de 3 a 5 pegadinhas clássicas e recorrentes das grandes bancas (USP-SP, USP-RP, ENARE, UNIFESP, UNICAMP, SUS-SP) sobre este tema específico.
+3. Para cada pegadinha, utilize a seguinte estrutura didática e cirúrgica:
+   - 🪤 **A Casca de Banana da Banca**: Como o examinador redige o enunciado ou as alternativas para enganar o candidato (ex: doses parecidas, inversão da cronologia de conduta, medicações coadjuvantes que não salvam vidas na emergência, diagnósticos diferenciais quase idênticos).
+   - ❌ **Onde o Candidato Desatento Erra**: A armadilha mental ou raciocínio intuitivo que leva ao erro.
+   - 🎯 **Como o Futuro Residente Gabarita**: O gatilho mental, palavra-âncora no texto ou raciocínio de eliminação em segundos.
+4. Conclua com a 💡 **Regra de Ouro Anti-Pegadinha** definitiva para levar para a prova.
+"""
+    elif mode == "caso":
+        mode_instructions = f"""
+### MODO ATIVADO: NOVO DESAFIO CLÍNICO CORRELATO (/caso)
+TEMA: {area or 'Medicina'} - {subtema or 'Clínica Médica'}
+
+DIRETRIZES OBRIGATÓRIAS DO MODO /CASO:
+1. ⛔ NÃO REEXPLIQUE A QUESTÃO ANTERIOR.
+2. Crie uma NOVA vinheta clínica INÉDITA, realista, desafiadora e de padrão R1-USP sobre este tema, introduzindo uma variável clínica que exija raciocínio apurado (ex: paciente gestante, idoso com comorbidades, choque refratário, complicação aguda ou apresentação atípica).
+3. Formule uma pergunta de conduta imediata ou decisão diagnóstica beira-leito.
+4. Apresente exatamente 4 alternativas (A, B, C, D) bem estruturadas e plausíveis.
+5. ⛔ REGRA INEGOCIÁVEL: NUNCA FORNEÇA O GABARITO OU A RESPOSTA NESTA MENSAGEM.
+6. Encerre desafiando o aluno: convide-o a enviar no chat a letra da alternativa que ele escolheu para você avaliar o raciocínio dele em seguida.
+"""
+    elif mode == "round":
+        mode_instructions = f"""
+### MODO ATIVADO: SIMULAÇÃO DE VISITA BEIRA-LEITO (/round)
+PACIENTE EM DISCUSSÃO: {stem}
+
+DIRETRIZES OBRIGATÓRIAS DO MODO /ROUND:
+1. Assuma a postura de um Chefe de Clínica / Preceptor Sênior conduzindo a visita da enfermaria/emergência com os internos.
+2. Seja incisivo, técnico, prático e socrático. Contextualize brevemente a passagem de visita deste paciente.
+3. Formule exatamente 3 perguntas clínicas beira-leito afiadas que um interno precisa saber responder de pronto:
+   - 🔹 **Pergunta 1**: Reconhecimento imediato, sinais de gravidade ou primeiro passo na estabilização beira-leito.
+   - 🔹 **Pergunta 2**: Ajuste fino de dose, diluição, via de administração, contraindicação ou droga de 2ª linha.
+   - 🔹 **Pergunta 3**: Complicação iminente, tempo de monitorização ou critério de transferência/alta.
+4. ⛔ REGRA INEGOCIÁVEL: NÃO RESPONDA AS PERGUNTAS AGORA.
+5. Conclua com o convite socrático: "Diga-me, interno(a): qual é a sua conduta para cada um desses 3 pontos? Aguardo suas respostas para avaliar."
+"""
+    elif mode == "conduta":
+        mode_instructions = f"""
+### MODO ATIVADO: ALGORITMO TERAPÊUTICO BEIRA-LEITO (/conduta)
+TEMA: {area or 'Medicina'} - {subtema or 'Clínica Médica'}
+CASO: {stem}
+
+DIRETRIZES OBRIGATÓRIAS DO MODO /CONDUTA:
+1. NÃO GASTE TEMPO COM TEORIA DE CICLO BÁSICO OU DEFINIÇÕES ELEMENTARES.
+2. Apresente o protocolo de conduta imediata, objetivo e esquemático, estruturado exatamente nesta sequência:
+   - 🚨 **1. Reconhecimento & Alerta**: Sinais de alarme imediato, critérios de instabilidade e escores rápidos.
+   - 🛑 **2. Estabilização Imediata (ABCDE)**: Medidas de suporte beira-leito (posicionamento, oxigenioterapia, acessos venosos, monitorização).
+   - 💊 **3. Terapêutica Farmacológica de Escolha**: Fármacos de 1ª linha com doses exatas (adulto e pediátrica se aplicável), via, velocidade e diluição recomendada.
+   - 🔬 **4. Investigação Dirigida**: Exames prioritários beira-leito versus condutas que NUNCA devem aguardar exames.
+   - 🏥 **5. Critérios de Destino & Tempo de Observação**: Critérios objetivos para alta com segurança versus indicação de UTI/CTI.
+"""
+    elif mode == "replica_desafio":
+        mode_instructions = f"""
+### MODO ATIVADO: AVALIAÇÃO SOCRÁTICA DA RESPOSTA DO ALUNO
+O aluno está respondendo a um desafio anterior (pergunta de /round ou questão de /caso).
+RESPOSTA DO ALUNO: "{user_query}"
+
+DIRETRIZES OBRIGATÓRIAS:
+1. Avalie diretamente a resposta do aluno com precisão e clareza:
+   - Indique sem rodeios se a resposta foi CORRETA, PARCIALMENTE CORRETA ou INCORRETA.
+   - Explique o fundamento fisiopatológico e beira-leito por trás do acerto ou erro.
+2. Se a mensagem anterior continha um novo caso de múltipla escolha:
+   - Revele o gabarito oficial com a devida fundamentação clínica.
+   - Explique por que os distratores estavam incorretos.
+3. Se a mensagem anterior continha as 3 perguntas de visita beira-leito (/round):
+   - Avalie pontualmente cada uma das 3 perguntas, pontuando a conduta do aluno e corrigindo lacunas.
+4. Feche com uma orientação prática de fixação para provas de residência.
+"""
+    elif mode == "duvida_livre":
+        mode_instructions = f"""
+### MODO ATIVADO: TIRA-DÚVIDAS PONTUAL DO ALUNO
+DÚVIDA ESPECÍFICA: "{user_query}"
+
+DIRETRIZES OBRIGATÓRIAS:
+1. RESPONDA DIRETAMENTE E EXCLUSIVAMENTE À DÚVIDA DO ALUNO.
+2. Não reexplique todo o caso nem repita as 4 seções gerais se o aluno perguntou algo específico (ex: por que uma alternativa está errada, dosagem, fisiopatologia específica ou diagnóstico diferencial).
+3. Use analogias clínicas, evidências das diretrizes oficiais e raciocínio de residência médica para sanar a dúvida com clareza cristalina.
+4. Finalize com um 💡 **Pulo do Gato** específico sobre a dúvida apresentada.
+"""
+    else:  # discussao_geral
+        mode_instructions = f"""
+### MODO ATIVADO: DISCUSSÃO CLÍNICA COMPLETA DO CASO
+ENUNCIADO DA QUESTÃO: {stem}
+GABARITO OFICIAL: Letra {correct_letter} ({correct_text})
+
+FILTRO ANTI-OBVIEDADE E DIRETRIZES DE RESPOSTA:
+1. Proibido gastar espaço com semiologia introdutória trivial ou definições de dicionário.
+2. Estruture a resposta obrigatoriamente nestas 4 seções:
+   - 🩺 **Raciocínio Fisiopatológico & Decisão Beira-Leito**: Mecanismos que definem a conduta e critérios diagnósticos formais.
+   - 🎯 **Conduta Padrão-Ouro**: Justifique a abordagem terapêutica de escolha, fármacos de 1ª linha e doses essenciais. Citar a fonte consultada.
+   - ⚠️ **Análise dos Distratores & Pegadinhas de Prova**: Analise detalhadamente cada alternativa incorreta e exponha as armadilhas da banca.
+   - 💡 **Pulo do Gato**: Regra rápida de memorização ('take-home message').
 """
 
     prompt = f"""Você atua como um Preceptor Clínico Sênior do HC-FMRP-USP e Especialista em Preparação para Residência Médica (Bancas USP-SP, USP-RP, ENARE, SUS-SP).
 
 ÁREA / TEMA: {area or 'Medicina'} - {subtema or 'Raciocínio Clínico'}
-ENUNCIADO DA QUESTÃO:
+QUESTÃO DE REFERÊNCIA:
 {stem}
 
 ALTERNATIVAS:
 {alts_formatted}
 
 GABARITO OFICIAL: Letra {correct_letter} ({correct_text})
-RESPOSTA DO ALUNO: {f'Marcou Letra {user_letter}' if user_letter else 'Ainda não respondeu ou acertou'}
+RESPOSTA DO ALUNO NO QUIZ: {f'Marcou Letra {user_letter}' if user_letter else 'Ainda não respondeu ou acertou'}
 
-{history_formatted}DÚVIDA / FOCO SOLICITADO PELO ALUNO:
-{user_query or 'Explique o raciocínio fisiopatológico da questão, por que a correta é o padrão-ouro e onde está a armadilha do distrator.'}
-{grounding_instruction}
-{playbook_instruction}
-{turn_guideline}
-FILTRO ANTI-OBVIEDADE E DIRETRIZES DE RESPOSTA:
-1. Filtro Anti-Ciclo Básico: Proibido gastar espaço com semiologia introdutória trivial ou definições de dicionário.
-2. Foco Estrito:
-   - Seção 🩺 **Raciocínio Fisiopatológico & Decisão Beira-Leito**: Mecanismos que definem a conduta e critérios formais (ex.: Framingham, CURB-65, HEART).
-   - Seção 🎯 **Conduta Padrão-Ouro**: Justifique a abordagem terapêutica de escolha, fármacos de 1ª linha e doses essenciais. Citar a fonte consultada.
-   - Seção ⚠️ **Análise dos Distratores & Pegadinhas de Prova**: Identifique as armadilhas clássicas da banca nas alternativas incorretas.
-   - Seção 💡 **Pulo do Gato**: Regra rápida de memorização ('take-home message').
-3. Formate a resposta em Markdown limpo e didático. Se o aluno acionou um comando especial (/conduta, /pegadinhas, /round, /caso), priorize a estrutura exigida pelo comando.
+{history_formatted}{grounding_instruction}
+{mode_instructions}
 """
 
     try:
@@ -651,7 +781,12 @@ FILTRO ANTI-OBVIEDADE E DIRETRIZES DE RESPOSTA:
         ]
         resp = generate_content_with_fallback(
             prompt=prompt,
-            system_instruction="Você é um preceptor médico de elite que ensina raciocínio clínico para residência médica. Seja direto, prático e cite as fontes clínicas.",
+            system_instruction=(
+                "Você é um Preceptor Clínico Sênior do HC-FMRP-USP e especialista de elite em preparação para Residência Médica (USP, ENARE, SUS-SP). "
+                "Seja direto, técnico, socrático e rigoroso. "
+                "REGRA CRÍTICA DE COMUNICAÇÃO: PROIBIDO usar saudações genéricas como 'Olá futuro(a) residente!', 'Excelente desempenho!', "
+                "'Marcar a Letra X demonstra...', ou elogios bajuladores repetitivos no início. Vá direto ao conteúdo clínico solicitado sem enrolação."
+            ),
             timeout=25,
             response_validator=lambda value: len(value.strip()) >= 50,
             provider_order=preceptor_order,
@@ -670,12 +805,51 @@ FILTRO ANTI-OBVIEDADE E DIRETRIZES DE RESPOSTA:
 
     # Fallback estruturado caso todos os provedores de IA estejam fora do ar
     clean_pulo = _extract_pulo_do_gato(explanation)
-    fallback_response = f"**Raciocínio Clínico Resumido**:\nO gabarito oficial é a Letra **{correct_letter}** ({correct_text}).\n\n"
-    if clean_pulo:
-        fallback_response += f"💡 **Pulo do Gato**:\n{clean_pulo}\n\n"
-    elif explanation:
-        fallback_response += f"📚 **Fundamentação Clínica**:\n{explanation}\n\n"
-    fallback_response += f"💡 **Regra de Ouro**: Em {subtema or area or 'questões clínicas de residência'}, priorize sempre a identificação da âncora clínica no enunciado e correlacione com a conduta padrão-ouro das diretrizes vigentes."
+    if mode == "pegadinhas":
+        fallback_response = (
+            f"⚠️ **Armadilhas Clássicas de Prova ({subtema or area or 'Medicina'})**:\n"
+            f"- A principal pegadinha neste tema é a confusão entre conduta imediata e terapêuticas coadjuvantes.\n"
+            f"- O gabarito oficial é a Letra **{correct_letter}** ({correct_text}).\n\n"
+            f"💡 **Regra de Ouro**: Identifique a âncora de instabilidade no enunciado e aplique a droga de primeira linha sem atraso."
+        )
+    elif mode == "conduta":
+        fallback_response = (
+            f"🚨 **Algoritmo de Conduta Beira-Leito**:\n"
+            f"1. **Estabilização Imediata**: Priorize suporte ventilatório e hemodinâmico beira-leito.\n"
+            f"2. **Terapêutica de Escolha**: A conduta padrão-ouro é a Letra **{correct_letter}** ({correct_text}).\n\n"
+            f"💡 **Take-Home Message**: Não postergue a droga de 1ª linha para aguardar exames complementares."
+        )
+    elif mode == "round":
+        fallback_response = (
+            f"🩺 **Sabatina Beira-Leito (Perguntas ao Interno)**:\n"
+            f"1. Qual é o primeiro sinal de alarme que define gravidade imediata neste paciente?\n"
+            f"2. Qual a justificativa para a conduta indicada na Letra **{correct_letter}** em vez das alternativas?\n"
+            f"3. Quais os critérios de monitorização e destino seguro deste paciente?\n\n"
+            f"Envie suas respostas para avaliarmos a conduta!"
+        )
+    elif mode == "caso":
+        fallback_response = (
+            f"📋 **Desafio Clínico Correlato**:\n"
+            f"Considere o mesmo cenário deste paciente, mas agora apresentando piora hemodinâmica súbita refratária à conduta inicial.\n"
+            f"Qual seria o próximo passo imediato no manejo?\n"
+            f"A) Manter observação clínica\nB) Repetir a droga de primeira linha e suporte avançado\nC) Aguardar exames laboratoriais\nD) Alta precoce\n\n"
+            f"Qual a sua resposta? Digite a letra para discutir!"
+        )
+    elif mode == "foco":
+        fallback_response = (
+            f"📊 **Direcionamento Adaptativo de Estudos**:\n"
+            f"Para dominar **{subtema or area or 'este tema'}** nas provas de residência (USP, ENARE, SUS-SP):\n"
+            f"- Foque na diferenciação rápida entre condutas de 1ª linha e medidas coadjuvantes.\n"
+            f"- Mantenha a fila de repetição espaçada (FSRS) sempre em dia para reter os protocolos longos.\n\n"
+            f"💡 **Meta**: Resolva um bloco de 10 questões deste subtema para consolidar o raciocínio."
+        )
+    else:
+        fallback_response = f"**Raciocínio Clínico Resumido**:\nO gabarito oficial é a Letra **{correct_letter}** ({correct_text}).\n\n"
+        if clean_pulo:
+            fallback_response += f"💡 **Pulo do Gato**:\n{clean_pulo}\n\n"
+        elif explanation:
+            fallback_response += f"📚 **Fundamentação Clínica**:\n{explanation}\n\n"
+        fallback_response += f"💡 **Regra de Ouro**: Em {subtema or area or 'questões clínicas de residência'}, priorize sempre a identificação da âncora clínica no enunciado e correlacione com a conduta padrão-ouro das diretrizes vigentes."
 
     return {
         "answer": fallback_response,
