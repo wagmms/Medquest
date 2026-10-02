@@ -14,12 +14,13 @@ import Image from "next/image";
 
 const NAV_ITEMS = [
   { href: "/", label: "Dashboard", icon: "dashboard" },
-  { href: "/cobertura", label: "Cobertura", icon: "my_location" },
-  { href: "/analise", label: "Análise", icon: "analytics" },
-  { href: "/planner", label: "Planner", icon: "calendar_month" },
+  { href: "/buscar", label: "Busca Clínica", icon: "search" },
   { href: "/estudar", label: "Estudar", icon: "menu_book" },
   { href: "/revisao-ativa", label: "Revisão Ativa", icon: "psychology" },
   { href: "/simulado", label: "Simulados", icon: "description" },
+  { href: "/cobertura", label: "Cobertura", icon: "my_location" },
+  { href: "/analise", label: "Análise", icon: "analytics" },
+  { href: "/planner", label: "Planner", icon: "calendar_month" },
 ];
 
 export function Sidebar() {

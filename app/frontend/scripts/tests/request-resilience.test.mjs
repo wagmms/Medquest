@@ -13,11 +13,15 @@ function loadModule(name, dependencies, globals = {}) {
   };
   dependencies = {
     './flashcardCache': { cacheCreatedFlashcards: async () => {} },
+    './crossTab': { broadcastCrossTab() {}, listenCrossTab() { return () => {}; } },
     './db': defaultDb,
     ...dependencies,
   };
   if (dependencies['./db']) {
     dependencies['./db'] = { ...defaultDb, ...dependencies['./db'] };
+  }
+  if (!dependencies['./crossTab']) {
+    dependencies['./crossTab'] = { broadcastCrossTab() {}, listenCrossTab() { return () => {}; } };
   }
   const source = readFileSync(new URL(`../../src/lib/${name}.ts`, import.meta.url), 'utf8');
   const { outputText } = ts.transpileModule(source, {
@@ -78,6 +82,10 @@ function syncHarness(items) {
         count: async () => items.filter(predicate).length,
       }),
     }) }),
+    update: async (id, change) => {
+      const it = items.find(item => item.id === id);
+      if (it) Object.assign(it, change);
+    },
     delete: async id => { items.splice(items.findIndex(item => item.id === id), 1); },
   };
   const { syncManager } = loadModule('sync', {

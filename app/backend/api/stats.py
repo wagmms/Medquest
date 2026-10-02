@@ -10,6 +10,8 @@ from flask import Blueprint, g, jsonify, request
 from .services.planner import USP_WEIGHTS, get_normalized_area
 
 from .adaptive import build_learning_profile, fsrs_metrics
+from .remediation import calculate_blindspots
+from .tri_engine import evaluate_tri_performance
 from .db import get_db, db_transaction
 from .questions import invalidate_user_caches
 from .observability import emit
@@ -1352,6 +1354,39 @@ def bottlenecks():
     except (ValueError, TypeError):
         limit = 5
     return jsonify(_get_bottlenecks_data(db, g.user_id, limit))
+
+
+@bp.route("/stats/blindspots")
+def blindspots():
+    """Diagnóstico multidimensional dos pontos cegos do aluno e métricas de superação."""
+    db = get_db()
+    try:
+        limit = int(request.args.get("limit", 6))
+    except (ValueError, TypeError):
+        limit = 6
+    return jsonify(calculate_blindspots(db, g.user_id, limit=limit))
+
+
+@bp.route("/stats/tri-readiness")
+def tri_readiness():
+    """Calcula a proficiência TRI acumulada do aluno com projeção para editais."""
+    db = get_db()
+    institution = request.args.get("institution", "ENARE")
+
+    rows = db.execute("""
+        WITH latest_attempts AS (
+            SELECT question_id, is_correct,
+                   ROW_NUMBER() OVER (PARTITION BY question_id ORDER BY id DESC) as rn
+            FROM attempts
+            WHERE user_id = ?
+        )
+        SELECT question_id, is_correct
+        FROM latest_attempts
+        WHERE rn = 1
+    """, (g.user_id,)).fetchall()
+
+    responses = [{"question_id": r["question_id"], "is_correct": bool(r["is_correct"])} for r in rows]
+    return jsonify(evaluate_tri_performance(db, responses, institution_code=institution))
 
 
 def _create_area_stats(area_name: str) -> dict:

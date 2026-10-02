@@ -1,13 +1,14 @@
 import {
   ThemeProgress, OverviewStats, CoverageResponse, TimelineStat, WeakTopic, Recommendation,
   BreakdownStat, DistractorStat, PlannerConfig, PlannerProgressMap, PlannerTopicProgressMap, PlannerPlanResponse,
-  QuestionMeta, SubtemaItem, QuestionListItem, QuestionDetail, AttemptResult, SearchResult,
+  QuestionMeta, SubtemaItem, QuestionListItem, QuestionDetail, AttemptResult, SearchResult, SearchFilterOptions,
   BatchAttemptItem, BatchAttemptResult, BatchDetailResponse, Flashcard, FlashcardGenerateResponse,
   BatchFlashcardGenerateResponse, PredictiveScore, AtRiskTopic, LearningProfile, ExamReadiness,
   BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary,
   NotificationConfig, NotificationConfigUpdate, PushSubscriptionPayload,
   InstitutionRadarResponse, FlashcardDecksResponse, AnkiImportResult,
-  AuthMeResponse, DashboardSummaryResponse, PreceptorFocusResponse
+  AuthMeResponse, DashboardSummaryResponse, PreceptorFocusResponse,
+  BlindspotsResponse, TriEvaluationResponse, TriEvaluationPayload
 } from "@/types/api";
 
 
@@ -185,6 +186,13 @@ export const api = {
       apiFetch<BreakdownStat[]>(`/api/stats/breakdown?by=${by}`, { cache: 'no-store' }),
     getBenchmark: () => apiFetch<BenchmarkStat>("/api/stats/benchmark", { cache: 'no-store' }),
     getBottlenecks: (limit: number = 3) => apiFetch<BottleneckTopic[]>(`/api/stats/bottlenecks?limit=${limit}`, { cache: 'no-store' }),
+    getBlindspots: (limit: number = 6, signal?: AbortSignal) =>
+      apiFetch<BlindspotsResponse>(`/api/stats/blindspots?limit=${limit}`, { cache: 'no-store', signal }),
+    getTriReadiness: (institution?: string, signal?: AbortSignal) =>
+      apiFetch<TriEvaluationResponse>(
+        `/api/stats/tri-readiness${institution ? `?institution=${encodeURIComponent(institution)}` : ''}`,
+        { cache: 'no-store', signal }
+      ),
     getDomainSummary: () => apiFetch<DomainSummaryResponse>("/api/stats/domain-summary", { cache: 'no-store' }),
     getErrorNotebookSummary: () => apiFetch<ErrorNotebookSummary>("/api/stats/error-notebook-summary", { cache: 'no-store' }),
     getInstitutionRadar: (institution?: string, compareInstitution?: string, signal?: AbortSignal) => {
@@ -338,6 +346,20 @@ export const api = {
       if (q) params.append("q", q);
       return apiFetch<SubtemaItem[]>(`/api/subtemas?${params.toString()}`, { next: { revalidate: 60 } });
     },
+    getRemediation: (options?: { subtema?: string; area?: string; limit?: number }, signal?: AbortSignal) => {
+      const params = new URLSearchParams();
+      if (options?.subtema) params.append("subtema", options.subtema);
+      if (options?.area) params.append("area", options.area);
+      if (options?.limit) params.append("limit", String(options.limit));
+      const qs = params.toString();
+      return apiFetch<QuestionListItem[]>(`/api/questions/remediation${qs ? `?${qs}` : ''}`, { cache: 'no-store', signal });
+    },
+    evaluateTri: (payload: TriEvaluationPayload, signal?: AbortSignal) =>
+      apiFetch<TriEvaluationResponse>("/api/simulado/tri-evaluation", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        signal,
+      }),
     getList: async (filters: Record<string, string | string[]>) => {
       const getLocalFallback = async () => {
         if (typeof window !== "undefined" && localDb) {
@@ -443,8 +465,23 @@ export const api = {
     toggleFavorite: (id: number) => apiFetch<{is_favorite: boolean}>(`/api/questions/${id}/favorite`, {
       method: "POST"
     }),
-    search: (q: string, semantic: boolean = false, signal?: AbortSignal) =>
-      apiFetch<SearchResult[]>(`/api/search?q=${encodeURIComponent(q)}&semantic=${semantic}`, { cache: 'no-store', signal }),
+    search: (
+      q: string,
+      optionsOrSemantic: boolean | SearchFilterOptions = false,
+      signal?: AbortSignal
+    ) => {
+      const opts = typeof optionsOrSemantic === "boolean" ? { semantic: optionsOrSemantic } : optionsOrSemantic;
+      const params = new URLSearchParams();
+      if (q) params.set("q", q);
+      if (opts.semantic) params.set("semantic", "true");
+      if (opts.institution) params.set("institution", opts.institution);
+      if (opts.area) params.set("area", opts.area);
+      if (opts.year) params.set("year", String(opts.year));
+      if (opts.has_images) params.set("has_images", "true");
+      if (opts.limit) params.set("limit", String(opts.limit));
+      if (opts.offset) params.set("offset", String(opts.offset));
+      return apiFetch<SearchResult[]>(`/api/search?${params.toString()}`, { cache: "no-store", signal });
+    },
     askAI: (
       id: number,
       user_question?: string,

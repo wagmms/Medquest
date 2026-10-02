@@ -62,7 +62,8 @@ def ask_question_ai(question_id):
         subtema=q["subtema"] or q["topic"] or "",
         chat_history=chat_history if isinstance(chat_history, list) else None,
         user_id=user_id,
-        db=db
+        db=db,
+        question_id=question_id
     )
 
     # A resposta determinística é útil internamente como último recurso, mas

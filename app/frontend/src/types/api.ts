@@ -362,6 +362,44 @@ export interface QuestionListItem {
   twin_for_question_id?: number;
   twin_origin_institution?: string;
   twin_subtema?: string;
+  remediation_reason?: "unresolved_error" | "twin_unseen_concept" | "remediation_practice";
+}
+
+export type BlindspotSeverity = "CRITICAL" | "HIGH" | "MODERATE";
+
+export interface BlindspotItem {
+  subtema: string;
+  area: string;
+  severity: BlindspotSeverity;
+  severity_score: number;
+  unresolved_count: number;
+  wrong_count: number;
+  attempts: number;
+  correct: number;
+  accuracy_pct: number;
+  frequent_distractor?: {
+    letter: string;
+    count: number;
+  } | null;
+  fsrs_status?: {
+    min_retrievability: number | null;
+    cards_due: number;
+  };
+  clinical_insight: string;
+  workout_url: string;
+}
+
+export interface BlindspotsSummary {
+  total_blindspots: number;
+  unresolved_errors_count: number;
+  healed_count: number;
+  healing_rate_pct: number;
+  total_unique_answered: number;
+}
+
+export interface BlindspotsResponse {
+  summary: BlindspotsSummary;
+  blindspots: BlindspotItem[];
 }
 
 export interface QuestionAlternative {
@@ -427,6 +465,16 @@ export interface BatchDetailResponse {
   questions: QuestionDetail[];
 }
 
+export interface SearchFilterOptions {
+  semantic?: boolean;
+  institution?: string;
+  area?: string;
+  year?: number | string;
+  has_images?: boolean;
+  limit?: number;
+  offset?: number;
+}
+
 export interface SearchResult {
   id: number;
   institution_code: string;
@@ -436,6 +484,7 @@ export interface SearchResult {
   stem_snippet: string;
   exp_snippet: string;
   is_autoral?: boolean;
+  has_image?: boolean;
 }
 
 export interface Flashcard {
@@ -630,5 +679,36 @@ export interface PreceptorFocusResponse {
   source?: string;
   model?: string;
   generated_at?: string;
+}
+
+export interface SpecialtyCutoff {
+  specialty: string;
+  cutoff_score: number;
+  projected_score: number;
+  difference: number;
+  status: "HIGH_PROBABILITY" | "COMPETITIVE" | "NEEDS_IMPROVEMENT";
+  status_label: string;
+}
+
+export interface TriEvaluationResponse {
+  theta: number;
+  standard_error: number;
+  pedagogical_coherence_pct: number;
+  coherence_label: string;
+  institution_code: string;
+  institution_label: string;
+  projected_score: number;
+  raw_score_pct: number;
+  national_percentile: number;
+  specialty_cutoffs: SpecialtyCutoff[];
+}
+
+export interface TriEvaluationPayload {
+  responses: Array<{
+    question_id?: number;
+    id?: number;
+    is_correct: boolean;
+  }>;
+  institution_code?: string;
 }
 

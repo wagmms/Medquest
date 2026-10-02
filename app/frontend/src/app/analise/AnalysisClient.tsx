@@ -9,6 +9,7 @@ import { Clock } from "lucide-react";
 
 
 import { InstitutionRadarSection } from "@/components/analytics/InstitutionRadarSection";
+import { BlindspotsRadarSection } from "@/components/analytics/BlindspotsRadarSection";
 import {
   ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   BarChart, Cell, LabelList, Area
@@ -586,6 +587,9 @@ export function AnalysisClient({
           institutionOptions={availableInstitutions}
           defaultInstitution={selectedInstitution || "USP-SP"}
         />
+
+        {/* Radar de Pontos Cegos & Caderno de Erros Ativo */}
+        <BlindspotsRadarSection />
         
         {/* Predictive Dashboard */}
         <section className="animate-in fade-in slide-in-from-bottom-4 duration-500">

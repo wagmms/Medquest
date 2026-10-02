@@ -9,7 +9,12 @@ from urllib.parse import quote
 
 from api.gemini_pool import gemini_pool
 from .adaptive_tools import format_student_diagnostic_block, get_student_weak_topics
-from .knowledge import format_grounding_block, retrieve_medical_context
+from .knowledge import (
+    format_grounding_block,
+    retrieve_medical_context,
+    format_jurisprudence_block,
+    retrieve_jurisprudence_context,
+)
 from .universal_pool import generate_content_with_fallback
 
 logger = logging.getLogger(__name__)
@@ -564,6 +569,7 @@ def ask_preceptor_ai(
     chat_history: Optional[List[Dict[str, str]]] = None,
     user_id: Optional[str] = None,
     db: Any = None,
+    question_id: Optional[int] = None,
 ) -> dict:
     """
     Atua como um Preceptor Médico Socrático especialista em provas de residência (USP, ENARE, SUS-SP).
@@ -608,6 +614,19 @@ REGRAS DE ANCORAGEM NAS FONTES:
 - Prioridade Absoluta: Suas condutas devem ser estritamente fundamentadas nas fontes anexadas no Data Store acima.
 - Rastreabilidade: Sempre indique a qual fonte e tema a conduta pertence (ex: [Fonte: {grounding_sources[0]['source_file']}]).
 """
+
+    # 1.1 Recuperação de Jurisprudência de Bancas (43k questões do SQLite FTS5)
+    jurisprudence_items = retrieve_jurisprudence_context(
+        db=db,
+        current_question_id=question_id,
+        area=area,
+        subtema=subtema,
+        stem=stem,
+        user_question=user_query,
+        top_k=2
+    )
+    jurisprudence_block = format_jurisprudence_block(jurisprudence_items)
+    jurisprudence_instruction = f"\n{jurisprudence_block}\n" if jurisprudence_block else ""
 
     # 2. Tool Calling Adaptativo se mode == "foco"
     tool_call_meta = None
@@ -776,9 +795,20 @@ ALTERNATIVAS:
 GABARITO OFICIAL: Letra {correct_letter} ({correct_text})
 RESPOSTA DO ALUNO NO QUIZ: {f'Marcou Letra {user_letter}' if user_letter else 'Ainda não respondeu ou acertou'}
 
-{history_formatted}{grounding_instruction}
+{history_formatted}{grounding_instruction}{jurisprudence_instruction}
 {mode_instructions}
 """
+
+    jurisprudence_sources_meta = [
+        {
+            "id": p["id"],
+            "institution": p["institution"],
+            "year": p["year"],
+            "area": p["area"],
+            "subtema": p["subtema"]
+        }
+        for p in jurisprudence_items
+    ]
 
     try:
         preceptor_order = [
@@ -805,6 +835,7 @@ RESPOSTA DO ALUNO NO QUIZ: {f'Marcou Letra {user_letter}' if user_letter else 'A
                 "model": resp.get("model", "universal"),
                 "source": resp.get("source", "universal"),
                 "grounding_sources": grounding_sources,
+                "jurisprudence_sources": jurisprudence_sources_meta,
                 "tool_call": tool_call_meta
             }
     except Exception as e:
@@ -863,6 +894,7 @@ RESPOSTA DO ALUNO NO QUIZ: {f'Marcou Letra {user_letter}' if user_letter else 'A
         "model": "deterministic_fallback",
         "source": "fallback",
         "grounding_sources": grounding_sources,
+        "jurisprudence_sources": jurisprudence_sources_meta,
         "tool_call": tool_call_meta
     }
 

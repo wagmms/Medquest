@@ -9,6 +9,8 @@ from api.knowledge import (
     init_knowledge_schema,
     retrieve_medical_context,
     format_grounding_block,
+    retrieve_jurisprudence_context,
+    format_jurisprudence_block,
     _sanitize_fts_query,
 )
 from api.ai import ask_preceptor_ai
@@ -138,4 +140,69 @@ def test_ask_preceptor_ai_multiturn_and_playbooks(monkeypatch, temp_knowledge_db
     assert "answer" in res
     assert res["source"] in ("universal", "fallback", "mock_ai")
     assert isinstance(res["grounding_sources"], list)
+
+
+def test_retrieve_jurisprudence_context(tmp_path):
+    """Testa recuperação de questões análogas das bancas via questions_fts."""
+    db_file = str(tmp_path / "test_jurisprudence.db")
+    conn = sqlite3.connect(db_file)
+    conn.row_factory = sqlite3.Row
+    with conn:
+        conn.execute("""
+            CREATE TABLE questions (
+                id INTEGER PRIMARY KEY,
+                institution_label TEXT,
+                year INTEGER,
+                area TEXT,
+                subtema TEXT,
+                stem TEXT
+            )
+        """)
+        conn.execute("""
+            CREATE TABLE explanations (
+                question_id INTEGER PRIMARY KEY,
+                explanation_text TEXT
+            )
+        """)
+        conn.execute("""
+            CREATE VIRTUAL TABLE questions_fts USING fts5(
+                stem,
+                explanation
+            )
+        """)
+        conn.execute("""
+            INSERT INTO questions (id, institution_label, year, area, subtema, stem)
+            VALUES (101, 'USP-SP', 2023, 'Clínica Médica', 'Insuficiência Cardíaca', 'Paciente com congestão pulmonar e hipertensão no PS.')
+        """)
+        conn.execute("""
+            INSERT INTO explanations (question_id, explanation_text)
+            VALUES (101, 'Gabarito Letra A. Pulo do Gato: No perfil B, a banca sempre exige vasodilatador e diurético.')
+        """)
+        conn.execute("""
+            INSERT INTO questions_fts (rowid, stem, explanation)
+            VALUES (101, 'Paciente com congestão pulmonar e hipertensão no PS.', 'Gabarito Letra A. Pulo do Gato: No perfil B, a banca sempre exige vasodilatador e diurético.')
+        """)
+
+    results = retrieve_jurisprudence_context(
+        db=conn,
+        current_question_id=999,
+        area="Clínica Médica",
+        subtema="Insuficiência Cardíaca",
+        stem="Paciente com congestão pulmonar",
+        user_question="qual o vasodilatador de escolha?",
+        top_k=2
+    )
+
+    assert len(results) == 1
+    assert results[0]["id"] == 101
+    assert results[0]["institution"] == "USP-SP"
+    assert "vasodilatador" in results[0]["explanation_excerpt"]
+
+    # Formatação do bloco
+    block = format_jurisprudence_block(results)
+    assert "JURISPRUDÊNCIA DE BANCAS MÉDICAS" in block
+    assert "USP-SP" in block
+    assert "Questão #101" in block
+    conn.close()
+
 

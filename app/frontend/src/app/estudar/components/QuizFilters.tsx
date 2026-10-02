@@ -12,7 +12,7 @@ export interface QuizFiltersProps {
   resumeSavedQuiz: () => void;
   showCustomSession: boolean;
   setShowCustomSession: (val: boolean) => void;
-  startRecommendedSession: (kind: "adaptive" | "review", focus?: "coverage" | "balanced" | "retention") => void;
+  startRecommendedSession: (kind: "adaptive" | "review" | "wrong", focus?: "coverage" | "balanced" | "retention") => void;
   handleFilterSubmit: (e: React.FormEvent) => void;
   studyMode: "TUTOR" | "SIMULADO";
   setStudyMode: (mode: "TUTOR" | "SIMULADO") => void;
@@ -141,76 +141,92 @@ return (
           <button
             type="button"
             onClick={() => startRecommendedSession("review")}
-            className="text-left rounded-xl border border-primary/30 bg-primary/5 p-5 transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          >
-            <div className="flex items-center gap-2 text-primary font-bold"><RefreshCw size={18} /> Revisar o que venceu</div>
-            <p className="mt-2 text-sm text-muted-foreground">Até 20 questões com revisão pendente. Prioridade para não deixar a memória expirar.</p>
-          </button>
-          <div
-            className="text-left rounded-xl border border-border bg-muted/30 p-5 transition-colors hover:bg-muted/60 focus-within:ring-2 focus-within:ring-primary flex flex-col justify-between"
+            className="text-left rounded-xl border border-primary/30 bg-primary/5 p-4 sm:p-5 transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer flex flex-col justify-between"
           >
             <div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-foreground font-bold">
-                  <Brain size={18} className="text-primary" /> Sessão adaptativa
-                </div>
-                <button
-                  type="button"
-                  onClick={() => startRecommendedSession("adaptive", adaptiveFocus)}
-                  className="px-3 py-1 bg-primary text-primary-foreground text-xs font-bold rounded-lg hover:bg-primary/90 transition-all flex items-center gap-1 shadow-xs cursor-pointer"
-                >
-                  <Play size={12} fill="currentColor" /> Iniciar
-                </button>
-              </div>
-              <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
-                30 questões balanceadas com <span className="text-purple-600 dark:text-purple-400 font-semibold inline-flex items-center gap-0.5"><Sparkles size={11} /> Questões Gêmeas</span> para testar raciocínio sem decoreba.
-              </p>
+              <div className="flex items-center gap-2 text-primary font-bold text-sm sm:text-base"><RefreshCw size={18} /> Revisar o que venceu</div>
+              <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">Até 20 questões com repetição pendente no motor FSRS. Prioridade máxima para fixação.</p>
             </div>
+            <span className="mt-3 text-xs font-bold text-primary flex items-center gap-1">Iniciar revisão →</span>
+          </button>
 
-            <div className="mt-4 pt-3 border-t border-border/50">
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Foco</span>
-                <span className="text-[11px] text-primary font-medium">
-                  {adaptiveFocus === "coverage" ? "70% Inéditas · 30% Revisão" :
-                   adaptiveFocus === "retention" ? "80% Revisão & Erros · 20% Inéditas" :
-                   "50% Inéditas · 50% Revisão"}
-                </span>
+          <button
+            type="button"
+            onClick={() => startRecommendedSession("wrong")}
+            className="text-left rounded-xl border border-rose-500/30 bg-rose-500/5 p-4 sm:p-5 transition-colors hover:bg-rose-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 cursor-pointer flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center gap-2 text-rose-600 dark:text-rose-400 font-bold text-sm sm:text-base"><RotateCcw size={18} /> Caderno de Erros</div>
+              <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">Até 20 questões com erro em aberto. Retifique e zere suas vulnerabilidades.</p>
+            </div>
+            <span className="mt-3 text-xs font-bold text-rose-600 dark:text-rose-400 flex items-center gap-1">Retificar erros →</span>
+          </button>
+        </div>
+
+        <div
+          className="text-left rounded-xl border border-border bg-muted/30 p-5 transition-colors hover:bg-muted/60 focus-within:ring-2 focus-within:ring-primary flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-foreground font-bold text-base">
+                <Brain size={18} className="text-primary" /> Sessão Adaptativa Inteligente
               </div>
-              <div className="grid grid-cols-3 gap-1 bg-background p-1 rounded-lg border border-border">
-                <button
-                  type="button"
-                  onClick={(e) => { e.stopPropagation(); setAdaptiveFocus("coverage"); }}
-                  className={clsx(
-                    "py-1 px-1.5 text-xs font-semibold rounded-md transition-all text-center cursor-pointer",
-                    adaptiveFocus === "coverage" ? "bg-primary text-primary-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
-                  )}
-                  title="Foco em cobrir o edital com novas questões"
-                >
-                  Cobertura
-                </button>
-                <button
-                  type="button"
-                  onClick={(e) => { e.stopPropagation(); setAdaptiveFocus("balanced"); }}
-                  className={clsx(
-                    "py-1 px-1.5 text-xs font-semibold rounded-md transition-all text-center cursor-pointer",
-                    adaptiveFocus === "balanced" ? "bg-primary text-primary-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
-                  )}
-                  title="Equilíbrio entre questões inéditas e revisões"
-                >
-                  Equilibrado
-                </button>
-                <button
-                  type="button"
-                  onClick={(e) => { e.stopPropagation(); setAdaptiveFocus("retention"); }}
-                  className={clsx(
-                    "py-1 px-1.5 text-xs font-semibold rounded-md transition-all text-center cursor-pointer",
-                    adaptiveFocus === "retention" ? "bg-primary text-primary-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
-                  )}
-                  title="Foco em fixação, Questões Gêmeas e correção de erros"
-                >
-                  Fixação
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={() => startRecommendedSession("adaptive", adaptiveFocus)}
+                className="px-3.5 py-1.5 bg-primary text-primary-foreground text-xs font-bold rounded-lg hover:bg-primary/90 transition-all flex items-center gap-1.5 shadow-xs cursor-pointer"
+              >
+                <Play size={12} fill="currentColor" /> Iniciar 30 Questões
+              </button>
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+              30 questões balanceadas com <span className="text-purple-600 dark:text-purple-400 font-semibold inline-flex items-center gap-0.5"><Sparkles size={11} /> Questões Gêmeas</span> para testar raciocínio clínico sem decoreba.
+            </p>
+          </div>
+
+          <div className="mt-4 pt-3 border-t border-border/50">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Foco da Sessão</span>
+              <span className="text-[11px] text-primary font-medium">
+                {adaptiveFocus === "coverage" ? "70% Inéditas · 30% Revisão" :
+                 adaptiveFocus === "retention" ? "80% Revisão & Erros · 20% Inéditas" :
+                 "50% Inéditas · 50% Revisão"}
+              </span>
+            </div>
+            <div className="grid grid-cols-3 gap-1 bg-background p-1 rounded-lg border border-border">
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setAdaptiveFocus("coverage"); }}
+                className={clsx(
+                  "py-1 px-1.5 text-xs font-semibold rounded-md transition-all text-center cursor-pointer",
+                  adaptiveFocus === "coverage" ? "bg-primary text-primary-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
+                )}
+                title="Foco em cobrir o edital com novas questões"
+              >
+                Cobertura
+              </button>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setAdaptiveFocus("balanced"); }}
+                className={clsx(
+                  "py-1 px-1.5 text-xs font-semibold rounded-md transition-all text-center cursor-pointer",
+                  adaptiveFocus === "balanced" ? "bg-primary text-primary-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
+                )}
+                title="Equilíbrio entre questões inéditas e revisões"
+              >
+                Equilibrado
+              </button>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setAdaptiveFocus("retention"); }}
+                className={clsx(
+                  "py-1 px-1.5 text-xs font-semibold rounded-md transition-all text-center cursor-pointer",
+                  adaptiveFocus === "retention" ? "bg-primary text-primary-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
+                )}
+                title="Foco em fixação, Questões Gêmeas e correção de erros"
+              >
+                Fixação
+              </button>
             </div>
           </div>
         </div>

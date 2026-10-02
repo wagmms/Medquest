@@ -172,6 +172,97 @@ def retrieve_medical_context(
         return []
 
 
+def retrieve_jurisprudence_context(
+    db: Any,
+    current_question_id: Optional[int] = None,
+    area: str = "",
+    subtema: str = "",
+    stem: str = "",
+    user_question: str = "",
+    top_k: int = 2
+) -> List[Dict[str, Any]]:
+    """
+    Recupera resoluções comentadas de questões semelhantes de provas anteriores (Jurisprudência das Bancas).
+    Utiliza o índice FTS5 do banco de questões principal (questions_fts) com ranking BM25.
+    """
+    if db is None:
+        return []
+
+    # Extrai semente de busca combinando dúvida do aluno, subtema e palavras clínicas do enunciado
+    search_seed = f"{user_question} {subtema} {stem[:200]}".strip()
+    fts_query = _sanitize_fts_query(search_seed)
+
+    if not fts_query:
+        return []
+
+    try:
+        cur = db.execute(
+            """
+            SELECT q.id, q.institution_label, q.year, q.area, q.subtema,
+                   q.stem, e.explanation_text, fts.rank
+            FROM questions_fts fts
+            JOIN questions q ON fts.rowid = q.id
+            LEFT JOIN explanations e ON q.id = e.question_id
+            WHERE questions_fts MATCH ?
+              AND q.id != ?
+              AND LENGTH(COALESCE(e.explanation_text, '')) > 60
+            ORDER BY fts.rank
+            LIMIT ?
+            """,
+            (fts_query, current_question_id or -1, top_k)
+        )
+        rows = cur.fetchall()
+        results = []
+        for r in rows:
+            d = dict(r) if hasattr(r, "keys") else {
+                "id": r[0], "institution_label": r[1], "year": r[2],
+                "area": r[3], "subtema": r[4], "stem": r[5],
+                "explanation_text": r[6], "rank": r[7]
+            }
+            stem_clean = (d.get("stem") or "").strip()
+            expl_clean = (d.get("explanation_text") or "").strip()
+            results.append({
+                "id": d.get("id"),
+                "institution": d.get("institution_label") or "Banca Oficial",
+                "year": d.get("year") or "",
+                "area": d.get("area") or "",
+                "subtema": d.get("subtema") or "",
+                "stem_excerpt": (stem_clean[:220] + "...") if len(stem_clean) > 220 else stem_clean,
+                "explanation_excerpt": (expl_clean[:500] + "...") if len(expl_clean) > 500 else expl_clean
+            })
+        return results
+    except Exception as exc:
+        logger.warning("[Grounding] Falha ao recuperar jurisprudência de bancas: %s", exc)
+        return []
+
+
+def format_jurisprudence_block(precedents: List[Dict[str, Any]]) -> str:
+    """Formata precedentes de questões de residência para ancorar a jurisprudência das bancas no Preceptor."""
+    if not precedents:
+        return ""
+
+    blocks = []
+    for p in precedents:
+        inst = p.get("institution") or "Banca Oficial"
+        yr = f" ({p.get('year')})" if p.get("year") else ""
+        area_info = f" | {p.get('area')}" if p.get("area") else ""
+        sub_info = f" - {p.get('subtema')}" if p.get("subtema") else ""
+        header = f"• [Questão #{p.get('id')} - {inst}{yr}{area_info}{sub_info}]"
+        case_txt = f"  Caso Clínico: \"{p.get('stem_excerpt')}\""
+        expl_txt = f"  Resolução Oficial da Banca / Pulo do Gato:\n  {p.get('explanation_excerpt')}"
+        blocks.append(f"{header}\n{case_txt}\n{expl_txt}")
+
+    joined = "\n\n".join(blocks)
+    return f"""### JURISPRUDÊNCIA DE BANCAS MÉDICAS (PRECEDENTES E PEGADINHAS DE PROVAS REAIS):
+As seguintes questões reais de concursos médicos anteriores abordaram casos e temas análogos:
+
+{joined}
+
+DIRETRIZ DE JURISPRUDÊNCIA:
+Utilize estes precedentes oficiais para alertar o aluno sobre como examinadores de bancas médicas cobram o tema, destacando pegadinhas recorrentes e justificativas de bancas renomadas.
+"""
+
+
 def format_grounding_block(chunks: List[Dict[str, Any]]) -> str:
     """Formata os chunks recuperados em um bloco Markdown claro para ancorar o prompt da IA."""
     if not chunks:
@@ -197,3 +288,4 @@ Priorize estritamente estas referências para fundamentar a sua resposta e utili
 
 {joined}
 """
+

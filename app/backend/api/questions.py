@@ -11,6 +11,8 @@ from flask import Blueprint, g, jsonify, request
 
 from . import srs
 from .adaptive import rank_adaptive_candidates
+from .remediation import generate_remediation_queue
+from .tri_engine import evaluate_tri_performance
 from .db import db_transaction, get_db
 from .filters import question_filter_clauses
 from .idempotency import complete_idempotency, fail_idempotency, reserve_idempotency
@@ -261,6 +263,15 @@ def save_simulado_session():
     return jsonify({"success": True})
 
 
+@bp.route("/simulado/tri-evaluation", methods=["POST"])
+def simulado_tri_evaluation():
+    db = get_db()
+    data = request.get_json(force=True) or {}
+    attempts = data.get("attempts", [])
+    institution = data.get("institution", "ENARE")
+    return jsonify(evaluate_tri_performance(db, attempts, institution_code=institution))
+
+
 def _fts5_escape(query_str: str) -> str:
     tokens = re.findall(r"\w+", query_str, flags=re.UNICODE)
     valid_tokens = [t for t in tokens if len(t) >= 2]
@@ -284,73 +295,144 @@ def _fts5_or_query(terms: list[str]) -> str:
 def search_questions():
     db = get_db()
     q = request.args.get("q", "").strip()
-    if not q:
-        return jsonify([])
-    semantic = request.args.get("semantic", "false").lower() == "true"
-    
-    rows = []
-    # 1. Tenta consulta nativa FTS5 (otimização C SQLite)
+    institution = request.args.get("institution", "").strip()
+    area = request.args.get("area", "").strip()
+    year = request.args.get("year", "").strip()
+    has_images = request.args.get("has_images", "false").lower() in ("true", "1")
     try:
-        if semantic:
-            from .ai import expand_search_query
-            expanded_terms = expand_search_query(q)
-            fts_query = _fts5_or_query(expanded_terms)
-        else:
-            fts_query = _fts5_escape(q)
-            
-        if fts_query:
-            rows = db.execute("""
-                SELECT q.id, q.institution_code, q.year, q.area, q.subtema, q.source_file, q.editorial_status,
-                       snippet(questions_fts, 0, '<b>', '</b>', '...', 25) as stem_snippet,
-                       snippet(questions_fts, 1, '<b>', '</b>', '...', 25) as exp_snippet
-                FROM questions_fts f
-                JOIN questions q ON q.id = f.rowid
-                WHERE questions_fts MATCH ?
-                LIMIT 50
-            """, (fts_query,)).fetchall()
-    except Exception as fts_err:
-        logger.warning("FTS5 indisponivel ou consulta invalida (%s), acionando fallback", fts_err)
-        rows = []
+        limit = min(max(int(request.args.get("limit", 50)), 1), 100)
+    except (ValueError, TypeError):
+        limit = 50
+    try:
+        offset = max(int(request.args.get("offset", 0)), 0)
+    except (ValueError, TypeError):
+        offset = 0
 
-    # 2. Fallback resiliente com LIKE caso FTS5 nao encontre resultados ou nao esteja populado
-    if not rows:
-        def make_like_clauses(term_list, joiner="AND"):
-            clauses = []
-            params = []
-            for term in term_list:
-                if not term: continue
-                term_clean = term.replace("%", "").replace("_", "")
-                if len(term_clean) < 2: continue
-                clauses.append("(q.stem LIKE ? OR e.explanation_text LIKE ? OR q.area LIKE ? OR q.subtema LIKE ?)")
-                like_val = f"%{term_clean}%"
-                params.extend([like_val, like_val, like_val, like_val])
-            if not clauses:
-                return "", []
-            return f"({f' {joiner} '.join(clauses)})", params
+    if not q and not (institution or area or year or has_images):
+        return jsonify([])
 
-        if semantic:
-            from .ai import expand_search_query
-            expanded_terms = expand_search_query(q)
-            where_sql, params = make_like_clauses(expanded_terms, "OR")
-        else:
-            terms = re.findall(r"\w+", q, flags=re.UNICODE)[:12]
-            where_sql, params = make_like_clauses(terms, "AND")
+    semantic = request.args.get("semantic", "false").lower() == "true"
 
-        if where_sql:
-            rows = db.execute(f"""
-                SELECT q.id, q.institution_code, q.year, q.area, q.subtema, q.source_file, q.editorial_status,
-                       SUBSTR(q.stem, 1, 150) as stem_snippet,
-                       SUBSTR(e.explanation_text, 1, 150) as exp_snippet
-                FROM questions q
-                LEFT JOIN explanations e ON q.id = e.question_id
-                WHERE {where_sql}
-                LIMIT 50
-            """, params).fetchall()
+    # Construção de filtros adicionais SQL
+    extra_filters = []
+    extra_params = []
+    if institution:
+        extra_filters.append("q.institution_code = ?")
+        extra_params.append(institution)
+    if area:
+        extra_filters.append("q.area = ?")
+        extra_params.append(area)
+    if year:
+        try:
+            extra_filters.append("q.year = ?")
+            extra_params.append(int(year))
+        except ValueError:
+            pass
+    if has_images:
+        extra_filters.append("EXISTS (SELECT 1 FROM question_images qi WHERE qi.question_id = q.id)")
+
+    and_clause = ""
+    if extra_filters:
+        and_clause = " AND " + " AND ".join(extra_filters)
+
+    rows = []
+    # 1. Tenta consulta nativa FTS5 (otimização C SQLite) se houver termo textual
+    if q:
+        try:
+            if semantic:
+                from .ai import expand_search_query
+                expanded_terms = expand_search_query(q)
+                fts_query = _fts5_or_query(expanded_terms)
+            else:
+                fts_query = _fts5_escape(q)
+                
+            if fts_query:
+                try:
+                    sql_fts = f"""
+                        SELECT q.id, q.institution_code, q.year, q.area, q.subtema, q.source_file, q.editorial_status,
+                               snippet(questions_fts, 0, '<b>', '</b>', '...', 25) as stem_snippet,
+                               snippet(questions_fts, 1, '<b>', '</b>', '...', 25) as exp_snippet,
+                               EXISTS (SELECT 1 FROM question_images qi WHERE qi.question_id = q.id) as has_image
+                        FROM questions_fts f
+                        JOIN questions q ON q.id = f.rowid
+                        WHERE questions_fts MATCH ? {and_clause}
+                        ORDER BY bm25(questions_fts)
+                        LIMIT ? OFFSET ?
+                    """
+                    rows = db.execute(sql_fts, [fts_query, *extra_params, limit, offset]).fetchall()
+                except Exception:
+                    sql_fts = f"""
+                        SELECT q.id, q.institution_code, q.year, q.area, q.subtema, q.source_file, q.editorial_status,
+                               snippet(questions_fts, 0, '<b>', '</b>', '...', 25) as stem_snippet,
+                               snippet(questions_fts, 1, '<b>', '</b>', '...', 25) as exp_snippet,
+                               EXISTS (SELECT 1 FROM question_images qi WHERE qi.question_id = q.id) as has_image
+                        FROM questions_fts f
+                        JOIN questions q ON q.id = f.rowid
+                        WHERE questions_fts MATCH ? {and_clause}
+                        ORDER BY f.rowid DESC
+                        LIMIT ? OFFSET ?
+                    """
+                    rows = db.execute(sql_fts, [fts_query, *extra_params, limit, offset]).fetchall()
+        except Exception as fts_err:
+            logger.warning("FTS5 indisponivel ou consulta invalida (%s), acionando fallback", fts_err)
+            rows = []
+
+        # 2. Fallback resiliente com LIKE caso FTS5 nao encontre resultados ou ocorra falha
+        if not rows:
+            def make_like_clauses(term_list, joiner="AND"):
+                clauses = []
+                params = []
+                for term in term_list:
+                    if not term: continue
+                    term_clean = term.replace("%", "").replace("_", "")
+                    if len(term_clean) < 2: continue
+                    clauses.append("(q.stem LIKE ? OR e.explanation_text LIKE ? OR q.area LIKE ? OR q.subtema LIKE ?)")
+                    like_val = f"%{term_clean}%"
+                    params.extend([like_val, like_val, like_val, like_val])
+                if not clauses:
+                    return "", []
+                return f"({f' {joiner} '.join(clauses)})", params
+
+            if semantic:
+                from .ai import expand_search_query
+                expanded_terms = expand_search_query(q)
+                where_sql, params = make_like_clauses(expanded_terms, "OR")
+            else:
+                terms = re.findall(r"\w+", q, flags=re.UNICODE)[:12]
+                where_sql, params = make_like_clauses(terms, "AND")
+
+            if where_sql:
+                rows = db.execute(f"""
+                    SELECT q.id, q.institution_code, q.year, q.area, q.subtema, q.source_file, q.editorial_status,
+                           SUBSTR(q.stem, 1, 150) as stem_snippet,
+                           SUBSTR(e.explanation_text, 1, 150) as exp_snippet,
+                           EXISTS (SELECT 1 FROM question_images qi WHERE qi.question_id = q.id) as has_image
+                    FROM questions q
+                    LEFT JOIN explanations e ON q.id = e.question_id
+                    WHERE {where_sql} {and_clause}
+                    ORDER BY q.id DESC
+                    LIMIT ? OFFSET ?
+                """, [*params, *extra_params, limit, offset]).fetchall()
+    else:
+        # Busca estruturada por filtros diretos
+        where_pure = and_clause.replace(" AND ", "", 1) if and_clause else "1=1"
+        rows = db.execute(f"""
+            SELECT q.id, q.institution_code, q.year, q.area, q.subtema, q.source_file, q.editorial_status,
+                   SUBSTR(q.stem, 1, 150) as stem_snippet,
+                   SUBSTR(e.explanation_text, 1, 150) as exp_snippet,
+                   EXISTS (SELECT 1 FROM question_images qi WHERE qi.question_id = q.id) as has_image
+            FROM questions q
+            LEFT JOIN explanations e ON q.id = e.question_id
+            WHERE {where_pure}
+            ORDER BY q.id DESC
+            LIMIT ? OFFSET ?
+        """, [*extra_params, limit, offset]).fetchall()
 
     out = []
     for row in rows:
         item = dict(row)
         item["is_autoral"] = bool(item.get("editorial_status") == "autoral" or (item.get("source_file") and "AUTORAL" in str(item.get("source_file")).upper()))
+        item["has_image"] = bool(item.get("has_image", 0))
         stem_snip = item.get("stem_snippet") or ""
         if stem_snip and not stem_snip.endswith("..."):
             stem_snip += "..."
@@ -361,8 +443,6 @@ def search_questions():
         item["exp_snippet"] = exp_snip
         out.append(item)
 
-    # Consultas podem conter texto sensível. A telemetria precisa medir uso e
-    # efetividade sem persistir o conteúdo pesquisado em logs.
     record_domain_event(
         "search_executed",
         user_id=g.user_id,
@@ -476,6 +556,10 @@ def questions():
     if request.args.get("mode") == "adaptive":
         adaptive_focus = request.args.get("adaptive_focus", "balanced")
         return jsonify(rank_adaptive_candidates(db, g.user_id, where, params, limit, adaptive_focus=adaptive_focus))
+    if request.args.get("mode") == "remediation":
+        subtema = request.args.get("subtema")
+        area = request.args.get("area")
+        return jsonify(generate_remediation_queue(db, g.user_id, subtema=subtema, area=area, limit=limit))
     ids = _sample_ids(db, where, params, limit)
     if not ids:
         return jsonify([])
@@ -493,6 +577,15 @@ def questions():
         out.append(d)
     random.shuffle(out)
     return jsonify(out)
+
+
+@bp.route("/questions/remediation")
+def questions_remediation():
+    db = get_db()
+    limit = _bounded_int(request.args.get("limit"), default=10, minimum=1, maximum=50)
+    subtema = request.args.get("subtema")
+    area = request.args.get("area")
+    return jsonify(generate_remediation_queue(db, g.user_id, subtema=subtema, area=area, limit=limit))
 
 
 @bp.route("/questions/count")

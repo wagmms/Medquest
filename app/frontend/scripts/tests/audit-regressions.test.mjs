@@ -12,11 +12,15 @@ function load(name, dependencies = {}, globals = {}) {
   };
   dependencies = {
     './flashcardCache': { cacheCreatedFlashcards: async () => {} },
+    './crossTab': { broadcastCrossTab() {}, listenCrossTab() { return () => {}; } },
     './db': defaultDb,
     ...dependencies,
   };
   if (dependencies['./db']) {
     dependencies['./db'] = { ...defaultDb, ...dependencies['./db'] };
+  }
+  if (!dependencies['./crossTab']) {
+    dependencies['./crossTab'] = { broadcastCrossTab() {}, listenCrossTab() { return () => {}; } };
   }
   const source = readFileSync(new URL(`../../src/lib/${name}.ts`, import.meta.url), 'utf8');
   const exports = {};
@@ -342,4 +346,40 @@ test('offline exam summaries are durably queued, but planner resets are not', as
   assert.equal(queued.length, 1);
   assert.ok(queued[0][0].endsWith('/api/simulado/sessions'));
   assert.equal(JSON.parse(queued[0][1].body).client_session_id, 'exam-1');
+});
+
+test('api.questions.evaluateTri and api.stats.getTriReadiness dispatch correct paths and payloads', async () => {
+  const fetchCalls = [];
+  const fakeFetch = async (url, options) => {
+    fetchCalls.push({ url, options });
+    return {
+      ok: true,
+      json: async () => ({
+        theta: 1.25,
+        projected_score: 80.0,
+        specialty_cutoffs: [],
+      }),
+    };
+  };
+
+  const { api } = load('api', {
+    './sync': { syncManager: { enqueue: async () => 'pending' } },
+  }, { fetch: fakeFetch });
+
+  // Test evaluateTri
+  const triRes = await api.questions.evaluateTri({
+    responses: [{ question_id: 1, is_correct: true }],
+    institution_code: 'USP',
+  });
+  assert.equal(triRes.projected_score, 80.0);
+  assert.equal(fetchCalls.length, 1);
+  assert.ok(fetchCalls[0].url.endsWith('/api/simulado/tri-evaluation'));
+  assert.equal(fetchCalls[0].options.method, 'POST');
+  assert.equal(JSON.parse(fetchCalls[0].options.body).institution_code, 'USP');
+
+  // Test getTriReadiness
+  const readyRes = await api.stats.getTriReadiness('ENARE');
+  assert.equal(readyRes.theta, 1.25);
+  assert.equal(fetchCalls.length, 2);
+  assert.ok(fetchCalls[1].url.endsWith('/api/stats/tri-readiness?institution=ENARE'));
 });

@@ -3,11 +3,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { QuestionMeta, QuestionListItem, QuestionDetail, AttemptResult, FlashcardGenerateResponse } from "@/types/api";
 import { api, OfflineQueuedError } from "@/lib/api";
-import { Clock, CheckCircle2, XCircle, BookOpen, Heart, ArrowRight, Sparkles, ArrowLeft, ImageOff, Maximize, Minimize, AlertTriangle, CloudOff, RotateCcw, Brain, Pencil, Eye, EyeOff } from "lucide-react";
+import { Clock, CheckCircle2, XCircle, BookOpen, ArrowRight, Sparkles, ArrowLeft, ImageOff, Maximize, AlertTriangle, CloudOff, RotateCcw, Pencil, Eye, EyeOff } from "lucide-react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { isLocalIdentityReady } from "@/lib/db";
 import { useUser } from "@clerk/nextjs";
 import { normalizeFlashcard } from "@/lib/normalizeFlashcard";
@@ -24,17 +23,23 @@ const QuestionClassificationModal = dynamic(
 import { useZenMode } from "@/hooks/useZenMode";
 import { useWakeLock } from "@/hooks/useWakeLock";
 import { useCurator } from "@/hooks/useCurator";
-import { QuizTimer, QuizTimerHandle } from "@/components/QuizTimer";
+import type { QuizTimerHandle } from "@/components/QuizTimer";
 import Image from "next/image";
 import { QuizFilters } from "./components/QuizFilters";
 import { AlternativeList } from "./components/AlternativeList";
 import { PreceptorSection, ChatMessage } from "./components/PreceptorSection";
+import { QuizHeader } from "./components/QuizHeader";
+import { QuizFlashcardSection } from "./components/QuizFlashcardSection";
+const QuizSessionReportModal = dynamic(
+  () => import("./components/QuizSessionReportModal").then((mod) => mod.QuizSessionReportModal),
+  { ssr: false }
+);
+import { DiscursiveAssessmentSection } from "./components/DiscursiveAssessmentSection";
 import {
   LEARNING_SESSION_VERSION,
   readLearningSession,
   removeLearningSession,
   writeLearningSession,
-
 } from "@/lib/sessionState";
 import { useQuizKeyboard } from "./hooks/useQuizKeyboard";
 
@@ -193,6 +198,14 @@ export function QuizClient({
   const [attemptResult, setAttemptResult] = useState<AttemptResult | null>(null);
   const [isOfflineSaved, setIsOfflineSaved] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [autoFsrsOnWrong, setAutoFsrsOnWrong] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("medquest_auto_fsrs");
+      return saved === null ? true : saved === "true";
+    }
+    return true;
+  });
+  const [autoGeneratingFlashcard, setAutoGeneratingFlashcard] = useState(false);
   const [generatingFlashcard, setGeneratingFlashcard] = useState(false);
   const [savingFlashcard, setSavingFlashcard] = useState(false);
   const [flashcardResult, setFlashcardResult] = useState<FlashcardGenerateResponse | null>(null);
@@ -229,6 +242,7 @@ export function QuizClient({
     setIsOfflineSaved(false);
     setFlashcardResult(null);
     setDraftFlashcard(null);
+    setAutoGeneratingFlashcard(false);
     setChatMessages([]);
     setPreceptorInput("");
     setInitialTime(0);
@@ -789,13 +803,15 @@ export function QuizClient({
     }
   };
 
-  const startRecommendedSession = useCallback((kind: "adaptive" | "review", focus?: "coverage" | "balanced" | "retention") => {
-    const limit = kind === "review" ? "20" : "30";
+  const startRecommendedSession = useCallback((kind: "adaptive" | "review" | "wrong", focus?: "coverage" | "balanced" | "retention") => {
+    const limit = kind === "review" || kind === "wrong" ? "20" : "30";
     setStudyMode("TUTOR");
     const activeFilters = {
       limit,
       ...(kind === "adaptive"
         ? { mode: "adaptive", adaptive_focus: focus || "balanced" }
+        : kind === "wrong"
+        ? { status: "wrong" }
         : { status: "srs_due" }),
     };
     const params = new URLSearchParams();
@@ -805,6 +821,37 @@ export function QuizClient({
     window.history.replaceState(null, "", `/estudar?${params.toString()}`);
     loadQueue(activeFilters);
   }, [loadQueue]);
+
+  const triggerAutoFlashcard = useCallback(async (detail: QuestionDetail, letter: string | null) => {
+    setAutoGeneratingFlashcard(true);
+    try {
+      const res = await api.flashcards.generate(detail.id, letter || "A");
+      const normalized = normalizeFlashcard({ ...res, stem: detail.stem });
+      setFlashcardResult(normalized);
+      toast.success("⚡ Flashcard FSRS gerado e salvo para a Revisão Ativa!", { id: `auto-fc-${detail.id}` });
+    } catch (e) {
+      if (e instanceof OfflineQueuedError) {
+        toast("Flashcard FSRS agendado localmente para sincronização.", { icon: "💾", id: `auto-fc-${detail.id}` });
+      } else {
+        console.warn("Auto-FSRS flashcard silencioso falhou:", e);
+      }
+    } finally {
+      setAutoGeneratingFlashcard(false);
+    }
+  }, []);
+
+  const handleToggleAutoFsrs = useCallback(() => {
+    setAutoFsrsOnWrong(prev => {
+      const nextVal = !prev;
+      if (typeof window !== "undefined") {
+        localStorage.setItem("medquest_auto_fsrs", String(nextVal));
+      }
+      toast(nextVal ? "Auto-FSRS ativado: flashcards gerados automaticamente ao errar." : "Auto-FSRS pausado: geração manual mantida.", {
+        icon: nextVal ? "⚡" : "⚙️"
+      });
+      return nextVal;
+    });
+  }, []);
 
   const handleAttempt = useCallback(async () => {
     if (attemptLockRef.current || attemptResult || isOfflineSaved || submitting || !currentDetail || !selectedLetter) return;
@@ -829,6 +876,10 @@ export function QuizClient({
         [currentDetail.id]: { letter: selectedLetter, result: res, writtenAnswer: userWrittenAnswer }
       }));
 
+      if (res.is_correct === false && autoFsrsOnWrong) {
+        triggerAutoFlashcard(currentDetail, selectedLetter);
+      }
+
     } catch (err) {
       if (err instanceof OfflineQueuedError) {
         toast("Resposta salva neste dispositivo; será sincronizada quando a conexão voltar.", { icon: "💾" });
@@ -844,7 +895,7 @@ export function QuizClient({
       attemptLockRef.current = false;
       setSubmitting(false);
     }
-  }, [attemptResult, isOfflineSaved, submitting, currentDetail, selectedLetter, userWrittenAnswer, getCurrentTime]);
+  }, [attemptResult, isOfflineSaved, submitting, currentDetail, selectedLetter, userWrittenAnswer, getCurrentTime, autoFsrsOnWrong, triggerAutoFlashcard]);
 
   const handleDiscursiveReveal = useCallback(async () => {
     if (attemptLockRef.current || attemptResult || isOfflineSaved || submitting || !currentDetail) return;
@@ -1207,70 +1258,24 @@ export function QuizClient({
     const accuracy = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
 
     return (
-      <div className="bg-card border border-border shadow-1 rounded-2xl p-8 md:p-10 max-w-2xl mx-auto w-full text-center flex flex-col items-center animate-in zoom-in-95 duration-300">
-        <div className="w-20 h-20 bg-success/20 text-success rounded-full flex items-center justify-center mx-auto mb-6">
-          <CheckCircle2 size={40} />
-        </div>
-        <h2 className="text-2xl md:text-3xl font-black text-foreground mb-3 tracking-tight">
-          {studyMode === "TUTOR" ? "Sessão Concluída!" : "Simulado Concluído!"}
-        </h2>
-        <p className="text-muted-foreground text-base md:text-lg mb-6">
-          Você respondeu <strong className="text-foreground">{totalAnswered}</strong> {totalAnswered === 1 ? 'questão' : 'questões'} com <strong className="text-primary">{accuracy}%</strong> de acerto ({correctCount} acertos).
-        </p>
-
-        {wrongItems.length > 0 && (
-          <div className="w-full bg-purple-500/10 border border-purple-500/25 rounded-2xl p-6 mb-8 text-left animate-in slide-in-from-bottom-2">
-            <div className="flex items-center gap-2.5 text-purple-700 dark:text-purple-400 font-bold text-base mb-2">
-              <Sparkles size={20} />
-              Revisão Ativa & Repetição Espaçada (FSRS)
-            </div>
-            <p className="text-sm text-foreground/80 leading-relaxed mb-5">
-              Você errou <strong className="text-foreground">{wrongItems.length}</strong> {wrongItems.length === 1 ? 'questão' : 'questões'} nesta sessão. Transforme seus erros em flashcards com 1 clique para consolidar a memória e não esquecer mais.
-            </p>
-            
-            {batchFlashcardsResult ? (
-              <div className="flex flex-col sm:flex-row items-center gap-3">
-                <div className="flex-1 bg-success/15 border border-success/30 text-success font-semibold px-4 py-2.5 rounded-xl text-sm flex items-center gap-2">
-                  <CheckCircle2 size={18} /> {batchFlashcardsResult.count} flashcard(s) adicionado(s) à Revisão Ativa!
-                </div>
-                <Link
-                  href="/revisao-ativa"
-                  className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-all shadow-sm flex items-center gap-2 shrink-0"
-                >
-                  <Sparkles size={16} /> Praticar Flashcards
-                </Link>
-              </div>
-            ) : (
-              <button
-                onClick={handleGenerateAllWrongFlashcards}
-                disabled={generatingBatchFlashcards}
-                className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
-              >
-                {generatingBatchFlashcards ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Gerando Flashcards dos seus Erros...
-                  </>
-                ) : (
-                  <>
-                    <Sparkles size={18} />
-                    Gerar Flashcards de Todas as Erradas ({wrongItems.length})
-                  </>
-                )}
-              </button>
-            )}
-          </div>
-        )}
-
-        <div className="flex flex-wrap items-center justify-center gap-3 w-full">
-          <button 
-            onClick={handleNewSession}
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-8 rounded-xl transition-colors cursor-pointer text-sm shadow-md"
-          >
-            Nova Sessão de Estudos
-          </button>
-        </div>
-      </div>
+      <QuizSessionReportModal
+        studyMode={studyMode}
+        totalAnswered={totalAnswered}
+        correctCount={correctCount}
+        accuracy={accuracy}
+        wrongItems={wrongItems}
+        generatingBatchFlashcards={generatingBatchFlashcards}
+        batchFlashcardsResult={batchFlashcardsResult}
+        onGenerateBatchFlashcards={handleGenerateAllWrongFlashcards}
+        onBackToFilters={handleNewSession}
+        onRestartSession={() => {
+          setState("PLAYING");
+          setCurrentIndex(0);
+          if (queue.length > 0) {
+            loadQuestionDetail(queue[0].id);
+          }
+        }}
+      />
     );
   }
 
@@ -1291,79 +1296,42 @@ export function QuizClient({
         />
       )}
       {/* Top Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 bg-card border border-border shadow-1 rounded-xl p-4">
-        <div className="flex items-center gap-4">
-          <button 
-            onClick={handleBackToFilters}
-            className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer min-h-[44px] px-2 -ml-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          >
-            ← Voltar
-          </button>
-          <div className="h-6 w-px bg-border hidden sm:block" />
-            <div className="text-sm font-semibold text-foreground" aria-live="polite">
-             Respondidas {completedCount}/{queue.length}
-          </div>
-          <div className="hidden xl:flex items-center gap-2 ml-4 px-3 py-1 bg-muted/50 rounded-full text-xs text-muted-foreground font-medium">
-            <span className="flex items-center gap-1"><kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">A-E</kbd> ou <kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">1-5</kbd> Alternativas</span>
-            <span className="w-1 h-1 rounded-full bg-border" />
-            <span className="flex items-center gap-1"><kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">Shift+A-E</kbd> ou ✂️ Riscar</span>
-            <span className="w-1 h-1 rounded-full bg-border" />
-            <span className="flex items-center gap-1"><kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">Enter</kbd> Confirmar</span>
-            <span className="w-1 h-1 rounded-full bg-border" />
-            <span className="flex items-center gap-1"><kbd className="bg-background border border-border px-1.5 py-0.5 rounded text-[10px]">Ctrl + ➔</kbd> Navegar</span>
-          </div>
-        </div>
-        
-        <div className="flex items-center gap-3">
-          <button 
-            type="button"
-            onClick={handleRequestFinish}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 rounded-lg transition-colors text-xs font-bold cursor-pointer shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-            title="Finalizar sessão agora e ver seu desempenho"
-          >
-            <CheckCircle2 size={15} />
-            <span className="hidden sm:inline">Finalizar Sessão</span>
-            <span className="sm:hidden">Finalizar</span>
-          </button>
+      <QuizHeader
+        onBackToFilters={handleBackToFilters}
+        completedCount={completedCount}
+        totalCount={queue.length}
+        onRequestFinish={handleRequestFinish}
+        zenMode={zenMode}
+        onToggleZenMode={toggleZenMode}
+        quizTimerRef={quizTimerRef}
+        isTimerRunning={state === "PLAYING" && !!currentDetail && !attemptResult}
+        initialTime={initialTime}
+        hasQuestion={Boolean(q)}
+        isFavorite={q?.is_favorite}
+        onToggleFavorite={toggleFavorite}
+      />
 
-          <button 
-            onClick={toggleZenMode}
-            className="flex items-center gap-2 px-3 py-1.5 bg-muted hover:bg-muted/80 text-muted-foreground rounded-lg transition-colors border border-border text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 focus-visible:ring-offset-background"
-            title={zenMode ? "Sair do Modo Zen" : "Entrar no Modo Zen (Foco Absoluto)"}
-            aria-label={zenMode ? "Sair do Modo Zen" : "Entrar no Modo Zen"}
-          >
-            {zenMode ? (
-              <>
-                <Minimize size={14} /> Sair do Modo Zen
-              </>
-            ) : (
-              <>
-                <Maximize size={14} /> Modo Zen
-              </>
-            )}
-          </button>
-          <QuizTimer 
-            ref={quizTimerRef}
-            isRunning={state === "PLAYING" && !!currentDetail && !attemptResult}
-            initialTime={initialTime}
-            className="text-sm font-medium w-16 text-muted-foreground"
-          />
-          {q && (
-            <button 
-              onClick={toggleFavorite}
-              className={clsx(
-                "p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 focus-visible:ring-offset-background", 
-                q.is_favorite ? "bg-destructive/10 text-destructive" : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
-              )}
-              title={q.is_favorite ? "Remover dos Favoritos" : "Favoritar"}
-              aria-label={q.is_favorite ? "Remover dos Favoritos" : "Adicionar aos Favoritos"}
-              aria-pressed={q.is_favorite}
-            >
-              <Heart size={18} fill={q.is_favorite ? "currentColor" : "none"} aria-hidden="true" />
-            </button>
-          )}
+      {filters.mode === "remediation" && (
+        <div className="bg-rose-500/10 border border-rose-500/25 text-foreground rounded-xl p-3.5 flex items-center justify-between gap-3 text-xs shadow-sm">
+          <div className="flex items-center gap-2">
+            <span className="p-1 rounded-md bg-rose-500/20 text-rose-600 dark:text-rose-400 font-bold">
+              🎯 Treino de Recuperação Ativa
+            </span>
+            <span className="text-muted-foreground">
+              Focando na retificação das questões erradas e conceitos vulneráveis.
+            </span>
+          </div>
+          {queue[currentIndex]?.remediation_reason === "unresolved_error" ? (
+            <span className="hidden sm:inline-flex items-center gap-1 font-semibold text-rose-600 dark:text-rose-400">
+              Questão do Caderno de Erros
+            </span>
+          ) : queue[currentIndex]?.remediation_reason === "twin_unseen_concept" ? (
+            <span className="hidden sm:inline-flex items-center gap-1 font-semibold text-indigo-600 dark:text-indigo-400">
+              Questão Gêmea (Conceito Inédito)
+            </span>
+          ) : null}
         </div>
-      </div>
+      )}
 
       {detailError ? (
         <div className="bg-card border border-border shadow-1 rounded-xl p-8 min-h-64 flex flex-col gap-4 items-center justify-center text-center" role="alert">
@@ -1788,43 +1756,6 @@ export function QuizClient({
                     </div>
                   ) : null}
                   
-                  {/* Flashcard Generation 1-Click: Available when marked wrong, or on demand */}
-                  {attemptResult.is_correct === false && !flashcardResult && !draftFlashcard && (
-                    <div className="mt-6 p-4 rounded-2xl bg-purple-500/10 border border-purple-500/25 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 animate-in slide-in-from-bottom-2">
-                      <div>
-                        <div className="flex items-center gap-2 text-purple-700 dark:text-purple-300 font-bold text-sm">
-                          <Brain size={18} /> Fixe este aprendizado na memória
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          Adicione um flashcard com o Pulo do Gato para revisar no momento ideal (FSRS).
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2 w-full sm:w-auto shrink-0">
-                        <button 
-                          onClick={handleQuickSaveFlashcard}
-                          disabled={savingFlashcard}
-                          className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-sm transition-all disabled:opacity-50 cursor-pointer text-sm"
-                        >
-                          {savingFlashcard ? (
-                            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          ) : (
-                            <Sparkles size={16} />
-                          )}
-                          {savingFlashcard ? "Salvando..." : "Salvar Flashcard (1-Click)"}
-                        </button>
-                        <button 
-                          onClick={handleGenerateFlashcard}
-                          disabled={generatingFlashcard || savingFlashcard}
-                          title="Personalizar texto antes de salvar"
-                          className="px-3 py-2.5 rounded-xl border border-purple-500/30 hover:bg-purple-500/20 text-purple-700 dark:text-purple-300 text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1"
-                        >
-                          <Pencil size={15} />
-                          <span className="hidden md:inline">Editar</span>
-                        </button>
-                      </div>
-                    </div>
-                  )}
-
                   {/* Preceptor AI Section */}
                   <PreceptorSection
                     messages={chatMessages}
@@ -1838,147 +1769,36 @@ export function QuizClient({
                     }}
                   />
 
-                  {draftFlashcard && (
-                    <div className="mt-6 bg-purple-500/10 border border-purple-500/25 rounded-2xl p-5 animate-in slide-in-from-bottom-2">
-                      <div className="flex items-center gap-2 text-purple-700 dark:text-purple-400 font-bold text-sm mb-4">
-                        <Sparkles size={16} /> Editar Flashcard
-                      </div>
-                      <div className="space-y-4">
-                        <div>
-                          <label className="text-xs font-bold text-muted-foreground uppercase block mb-1.5">Frente</label>
-                          <textarea 
-                            value={draftFlashcard.front}
-                            onChange={(e) => setDraftFlashcard({ ...draftFlashcard, front: e.target.value })}
-                            className="w-full bg-background border border-border rounded-lg p-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary min-h-[100px]"
-                          />
-                        </div>
-                        <div>
-                          <label className="text-xs font-bold text-muted-foreground uppercase block mb-1.5">Verso</label>
-                          <textarea 
-                            value={draftFlashcard.back}
-                            onChange={(e) => setDraftFlashcard({ ...draftFlashcard, back: e.target.value })}
-                            className="w-full bg-background border border-border rounded-lg p-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary min-h-[120px]"
-                          />
-                        </div>
-                        <div className="flex justify-end gap-3 pt-2">
-                          <button 
-                            onClick={() => setDraftFlashcard(null)}
-                            disabled={savingFlashcard}
-                            className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-                          >
-                            Cancelar
-                          </button>
-                          <button 
-                            onClick={handleSaveFlashcard}
-                            disabled={savingFlashcard}
-                            className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-5 rounded-lg transition-colors text-sm shadow-sm disabled:opacity-50 cursor-pointer"
-                          >
-                            {savingFlashcard ? (
-                              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                            ) : (
-                              <BookOpen size={16} />
-                            )}
-                            Salvar Flashcard
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {flashcardResult && (
-                    <div className="mt-6 bg-purple-500/10 border border-purple-500/25 rounded-2xl p-5 animate-in slide-in-from-bottom-2">
-                      <div className="flex items-center justify-between gap-2 mb-3">
-                        <div className="flex items-center gap-2 text-purple-700 dark:text-purple-400 font-bold text-sm">
-                          <Sparkles size={16} /> Flashcard Salvo na Revisão Ativa!
-                        </div>
-                        <Link 
-                          href="/revisao-ativa"
-                          className="text-xs font-bold text-purple-700 dark:text-purple-400 hover:underline flex items-center gap-1"
-                        >
-                          Ir para Revisão Ativa →
-                        </Link>
-                      </div>
-                      <div className="text-foreground text-sm space-y-2">
-                        <div className="font-medium bg-background p-3.5 rounded-lg border border-border leading-relaxed whitespace-pre-line text-sm">
-                          <span className="text-xs font-bold text-muted-foreground uppercase block mb-1.5">Frente:</span>
-                          {flashcardResult.front}
-                        </div>
-                        {flashcardResult.back && (
-                          <div className="text-muted-foreground bg-background p-3.5 rounded-lg border border-border leading-relaxed whitespace-pre-line text-sm">
-                            <span className="text-xs font-bold text-muted-foreground uppercase block mb-1.5">Verso:</span>
-                            {flashcardResult.back}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
+                  {/* Flashcard Generation & FSRS Section */}
+                  <QuizFlashcardSection
+                    isWrong={attemptResult.is_correct === false}
+                    autoGeneratingFlashcard={autoGeneratingFlashcard}
+                    autoFsrsOnWrong={autoFsrsOnWrong}
+                    onToggleAutoFsrs={handleToggleAutoFsrs}
+                    flashcardResult={flashcardResult}
+                    draftFlashcard={draftFlashcard}
+                    savingFlashcard={savingFlashcard}
+                    generatingFlashcard={generatingFlashcard}
+                    onQuickSaveFlashcard={handleQuickSaveFlashcard}
+                    onGenerateFlashcard={handleGenerateFlashcard}
+                    onSaveFlashcard={handleSaveFlashcard}
+                    onCancelDraft={() => setDraftFlashcard(null)}
+                    onChangeDraft={setDraftFlashcard}
+                    onEditSavedFlashcard={() => {
+                      if (flashcardResult) {
+                        setDraftFlashcard({
+                          front: flashcardResult.front,
+                          back: flashcardResult.back || "",
+                          context: flashcardResult.context || ""
+                        });
+                        setFlashcardResult(null);
+                      }
+                    }}
+                  />
 
                   {/* Self-Assessment / FSRS Block */}
                   {attemptResult.is_correct === null ? (
-                    <div className="mt-8 pt-6 border-t border-border flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2">
-                      <div className="flex items-center justify-between flex-wrap gap-2">
-                        <div className="flex items-center gap-2">
-                          <span className="material-symbols-outlined text-primary text-[20px]">how_to_reg</span>
-                          <span className="text-base font-bold text-foreground">
-                            Autoavaliação da Resposta Discursiva
-                          </span>
-                        </div>
-                        <span className="text-xs text-muted-foreground">
-                          Compare sua hipótese com o padrão acima e declare:
-                        </span>
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-1">
-                        {/* Acertei */}
-                        <div className="bg-success/5 border border-success/30 rounded-xl p-4 flex flex-col gap-3">
-                          <div className="flex items-center gap-2 font-bold text-success text-sm">
-                            <CheckCircle2 size={18} /> Acertei a Questão
-                          </div>
-                          <div className="flex flex-col gap-2">
-                            <button
-                              onClick={() => handleReviewFSRS("certeza", true)}
-                              className="w-full text-left bg-card hover:bg-success/15 border border-success/30 hover:border-success text-foreground font-semibold px-3.5 py-2.5 rounded-lg text-xs flex items-center justify-between transition-colors shadow-sm cursor-pointer"
-                            >
-                              <span>🎯 Domino o Conteúdo</span>
-                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">+76 dias • Atalho: 3</span>
-                            </button>
-                            <button
-                              onClick={() => handleReviewFSRS("duvida", true)}
-                              className="w-full text-left bg-card hover:bg-success/15 border border-success/30 hover:border-success text-foreground font-semibold px-3.5 py-2.5 rounded-lg text-xs flex items-center justify-between transition-colors shadow-sm cursor-pointer"
-                            >
-                              <span>👍 Acertei com Esforço</span>
-                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">+34 dias • Atalho: 2</span>
-                            </button>
-                            <button
-                              onClick={() => handleReviewFSRS("chutei", true)}
-                              className="w-full text-left bg-card hover:bg-success/15 border border-success/30 hover:border-success text-foreground font-semibold px-3.5 py-2.5 rounded-lg text-xs flex items-center justify-between transition-colors shadow-sm cursor-pointer"
-                            >
-                              <span>🎲 Chutei / Inseguro</span>
-                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">+15 dias • Atalho: 1</span>
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Errei */}
-                        <div className="bg-destructive/5 border border-destructive/30 rounded-xl p-4 flex flex-col gap-3">
-                          <div className="flex items-center gap-2 font-bold text-destructive text-sm">
-                            <XCircle size={18} /> Errei a Questão
-                          </div>
-                          <div className="flex flex-col gap-2">
-                            <button
-                              onClick={() => handleReviewFSRS("duvida", false)}
-                              className="w-full text-left bg-card hover:bg-destructive/15 border border-destructive/30 hover:border-destructive text-foreground font-semibold px-3.5 py-2.5 rounded-lg text-xs flex items-center justify-between transition-colors shadow-sm cursor-pointer"
-                            >
-                              <span className="flex items-center gap-1.5">
-                                <RotateCcw size={14} />
-                                <span>Revisar na Próxima Semana</span>
-                              </span>
-                              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded font-normal">em 7 dias • Atalho: E</span>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <DiscursiveAssessmentSection onReviewFSRS={handleReviewFSRS} />
                   ) : attemptResult.next_review_date ? (
                     <div className="mt-8 pt-4 border-t border-border flex items-center justify-between flex-wrap gap-2 text-sm font-medium text-muted-foreground">
                       <div className="flex items-center gap-2">
