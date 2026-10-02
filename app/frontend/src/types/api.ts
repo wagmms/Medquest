@@ -600,3 +600,35 @@ export interface AuthMeResponse {
   email: string | null;
   is_curator: boolean;
 }
+
+export interface PreceptorFocusTopic {
+  topic: string;
+  area: string;
+  attempts: number;
+  correct?: number;
+  accuracy_pct: number;
+  wrong: number;
+  unresolved_count?: number;
+}
+
+export interface PreceptorFocusResponse {
+  diagnostic_data: {
+    status: string;
+    has_data: boolean;
+    overall_accuracy_pct: number;
+    total_attempts: number;
+    srs_due_count: number;
+    weak_topics: PreceptorFocusTopic[];
+    message?: string;
+  };
+  analysis_markdown?: string;
+  recommended_topic: {
+    subtema: string;
+    area: string;
+    practice_url: string;
+  };
+  source?: string;
+  model?: string;
+  generated_at?: string;
+}
+

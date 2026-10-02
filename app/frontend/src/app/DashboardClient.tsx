@@ -14,6 +14,7 @@ import { motion, Variants } from "framer-motion";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { readLearningSession, syncSessionFromCloud } from "@/lib/sessionState";
 import { triggerConfetti } from "@/lib/confetti";
+import { PreceptorFocusCard } from "@/components/PreceptorFocusCard";
 import clsx from "clsx";
 
 const DASHBOARD_CACHE_KEY = "medquest_dashboard_cache_v1";
@@ -818,6 +819,16 @@ export function DashboardClient({
           {/* AÇÃO PRINCIPAL / HERO PRIORITÁRIO */}
           <motion.section variants={itemVariants}>
             {renderPrimaryAction()}
+          </motion.section>
+
+          {/* PLANO DE ATAQUE DO PRECEPTOR IA */}
+          <motion.section variants={itemVariants}>
+            <PreceptorFocusCard
+              initialBottlenecks={bottlenecks}
+              srsDueCount={stats.srs_due_count || 0}
+              overallAccuracy={overallAccPct}
+              totalAttempts={totalAttempts}
+            />
           </motion.section>
 
           {/* PLANO DE HOJE (Card Integrado em 3 Pilares) */}

@@ -88,6 +88,56 @@ def ai_health():
     return jsonify(status)
 
 
+@bp.route("/ai/preceptor_focus", methods=["GET", "POST"])
+def preceptor_dashboard_focus():
+    """
+    Retorna o diagnóstico adaptativo e o plano de ataque do Preceptor IA
+    para o Dashboard do estudante. Suporta modo rápido (apenas métricas) e
+    modo com parecer clínico de IA.
+    """
+    db = get_db()
+    user_id = getattr(g, "user_id", None)
+    if not user_id:
+        guest_id = request.headers.get("X-Guest-ID") or request.headers.get("x-internal-guest-id")
+        if guest_id:
+            user_id = f"guest:{guest_id.lower()}"
+
+    body = request.get_json(silent=True) or {}
+    generate_ai = body.get("generate_ai", True)
+    if request.method == "GET":
+        ai_arg = request.args.get("ai", "1")
+        generate_ai = ai_arg in ("1", "true", "True")
+
+    if not generate_ai:
+        from .adaptive_tools import get_student_weak_topics
+        from urllib.parse import quote
+        diag_data = get_student_weak_topics(db, user_id, limit=5)
+        weak_list = diag_data.get("weak_topics", [])
+        if weak_list:
+            top_weak = weak_list[0]
+            rec_subtema = top_weak.get("topic", "Clínica Médica")
+            rec_area = top_weak.get("area", "")
+            rec_url = f"/estudar?subtema={quote(rec_subtema)}&limit=15"
+        else:
+            rec_subtema = "Síndromes Coronarianas Agudas"
+            rec_area = "Clínica Médica"
+            rec_url = "/estudar?area=Clinica%20Medica&limit=15"
+
+        return jsonify({
+            "diagnostic_data": diag_data,
+            "recommended_topic": {
+                "subtema": rec_subtema,
+                "area": rec_area,
+                "practice_url": rec_url,
+            },
+            "source": "database_snapshot"
+        })
+
+    result = ai.generate_preceptor_dashboard_focus(db, user_id)
+    return jsonify(result)
+
+
+
 @bp.route("/ai/prescribe_study", methods=["POST"])
 def prescribe_study():
     try:

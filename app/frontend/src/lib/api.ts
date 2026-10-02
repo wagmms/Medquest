@@ -7,7 +7,7 @@ import {
   BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary,
   NotificationConfig, NotificationConfigUpdate, PushSubscriptionPayload,
   InstitutionRadarResponse, FlashcardDecksResponse, AnkiImportResult,
-  AuthMeResponse, DashboardSummaryResponse
+  AuthMeResponse, DashboardSummaryResponse, PreceptorFocusResponse
 } from "@/types/api";
 
 
@@ -810,4 +810,18 @@ export const api = {
         body: JSON.stringify({ endpoint }),
       }),
   },
+  ai: {
+    getPreceptorFocus: (options?: { generateAi?: boolean; forceRefresh?: boolean }) => {
+      const generateAi = options?.generateAi !== false;
+      return apiFetch<PreceptorFocusResponse>("/api/ai/preceptor_focus", {
+        method: "POST",
+        body: JSON.stringify({
+          generate_ai: generateAi,
+          force_refresh: options?.forceRefresh,
+        }),
+        timeoutMs: 35000,
+      });
+    },
+  },
 };
+

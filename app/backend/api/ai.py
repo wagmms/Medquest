@@ -3,7 +3,9 @@ import logging
 import os
 import re
 import time
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
+from urllib.parse import quote
 
 from api.gemini_pool import gemini_pool
 from .adaptive_tools import format_student_diagnostic_block, get_student_weak_topics
@@ -1066,3 +1068,95 @@ A alternativa ({correct_letter}) apresenta a abordagem preconizada para o caso a
         "source": "fallback",
         "model": "deterministic_fallback"
     }
+
+
+def generate_preceptor_dashboard_focus(db, user_id: Optional[str]) -> dict:
+    """
+    Gera o diagnóstico adaptativo e o plano de ataque diário do Preceptor IA
+    para exibição direta no Dashboard (Página Inicial), sem depender de uma questão avulsa.
+    Cruza histórico de tentativas, pontos cegos frente às bancas e carga do FSRS.
+    """
+    diag_data = get_student_weak_topics(db, user_id, limit=5)
+    diag_block = format_student_diagnostic_block(diag_data)
+
+    weak_list = diag_data.get("weak_topics", [])
+    if weak_list:
+        top_weak = weak_list[0]
+        rec_subtema = top_weak.get("topic", "Clínica Médica")
+        rec_area = top_weak.get("area", "")
+        rec_url = f"/estudar?subtema={quote(rec_subtema)}&limit=15"
+    else:
+        rec_subtema = "Síndromes Coronarianas Agudas"
+        rec_area = "Clínica Médica"
+        rec_url = "/estudar?area=Clinica%20Medica&limit=15"
+
+    prompt = f"""VOCÊ É O PRECEPTOR MÉDICO SOCRÁTICO DO MEDQUEST, ESPECIALISTA EM PREPARAÇÃO PARA RESIDÊNCIA MÉDICA (USP-SP, ENARE, UNIFESP, UNICAMP, SUS-SP).
+Sua missão nesta consulta de cabeçalho/dashboard é traçar o diagnóstico e o PLANO DE ATAQUE DO DIA para o estudante.
+
+{diag_block}
+
+DIRETRIZES OBRIGATÓRIAS DO PARECER DE DASHBOARD:
+1. ⛔ REGRA ABSOLUTA: NÃO use saudações prolixas repetitivas ("Olá, futuro residente!", "Tudo bem?", etc.). Vá direto ao diagnóstico clínico e estratégico.
+2. Formate sua resposta em 4 seções cirúrgicas em Markdown:
+   📊 **Raio-X de Desempenho**: Avalie o volume de questões feitas e a taxa global de acerto. Se o aluno tiver poucos dados, enfatize a necessidade de calibração do motor.
+   🚨 **Subtemas Vulneráveis & Armadilhas das Bancas**: Aponte objetivamente os subtemas onde o aluno mais erra ou, se a conta for nova, alerte sobre os temas com maiores pegadinhas nas grandes bancas paulistas e nacionais.
+   ⏰ **Status FSRS & Curva de Esquecimento**: Indique a urgência das revisões espaçadas pendentes hoje para não perder a retenção de longo prazo.
+   🎯 **Plano de Ataque Prático do Dia**: Prescreva uma meta imediata e clara (ex: bateria de 15 questões focada no tema prioritário {rec_subtema} + zerar as revisões FSRS).
+3. Seja conciso, incisivo, motivador e focado no padrão das bancas de residência.
+"""
+
+    system_instruction = (
+        "Você é um Preceptor Médico Socrático de residência médica de excelência. "
+        "Seja direto, técnico, sem enrolação e focado na aprovação do aluno."
+    )
+
+    try:
+        resp = generate_content_with_fallback(
+            prompt=prompt,
+            system_instruction=system_instruction,
+            timeout=25
+        )
+        text = resp.get("text", "").strip()
+        if text:
+            return {
+                "diagnostic_data": diag_data,
+                "analysis_markdown": text,
+                "recommended_topic": {
+                    "subtema": rec_subtema,
+                    "area": rec_area,
+                    "practice_url": rec_url,
+                },
+                "source": resp.get("source", "universal"),
+                "model": resp.get("model", "universal"),
+                "generated_at": datetime.now(timezone.utc).isoformat()
+            }
+    except Exception as e:
+        logger.error(f"Erro ao gerar foco do Preceptor no dashboard: {e}")
+
+    # Fallback estruturado de alta fidelidade
+    fallback_analysis = f"""📊 **Raio-X de Desempenho**
+Volume atual de {diag_data.get('total_attempts', 0)} questões resolvidas com acurácia média de {diag_data.get('overall_accuracy_pct', 0.0)}%.
+
+🚨 **Subtemas Vulneráveis & Armadilhas das Bancas**
+O subtema prioritário para alavancar sua pontuação nas bancas (USP, ENARE e SUS-SP) é **{rec_subtema}** ({rec_area}). As bancas costumam explorar critérios diagnósticos e condutas imediatas beira-leito neste tema.
+
+⏰ **Status FSRS & Curva de Esquecimento**
+Você possui **{diag_data.get('srs_due_count', 0)}** revisões com repetição espaçada (FSRS) vencidas hoje. Revise-as para não permitir o decaimento sináptico dos conceitos consolidados.
+
+🎯 **Plano de Ataque Prático do Dia**
+1. Realize imediatamente uma bateria de 15 questões focada em **{rec_subtema}**.
+2. Conclua as revisões pendentes no FSRS para manter a retenção acima de 85%.
+"""
+    return {
+        "diagnostic_data": diag_data,
+        "analysis_markdown": fallback_analysis.strip(),
+        "recommended_topic": {
+            "subtema": rec_subtema,
+            "area": rec_area,
+            "practice_url": rec_url,
+        },
+        "source": "fallback",
+        "model": "deterministic_fallback",
+        "generated_at": datetime.now(timezone.utc).isoformat()
+    }
+
