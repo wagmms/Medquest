@@ -47,6 +47,7 @@ def generate_content_with_fallback(
     timeout: Optional[int] = None,
     response_validator: Optional[Callable[[str], bool]] = None,
     provider_order: Optional[list[str] | tuple[str, ...]] = None,
+    model: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Gera conteúdo via Google Gemini Pool com controle de timeout e validação."""
     order = provider_order if provider_order is not None else _provider_order()
@@ -62,15 +63,17 @@ def generate_content_with_fallback(
         float(os.environ.get("AI_PROVIDER_TIMEOUT", str(DEFAULT_PROVIDER_TIMEOUT))),
     )
     provider_timeout = float(timeout) if timeout is not None else configured_provider_timeout
+    per_request_timeout = max(5, min(14, int(provider_timeout / 2)))
 
     try:
         response = gemini_pool.generate_content(
             prompt=prompt,
             system_instruction=system_instruction,
             json_mode=json_mode,
+            model=model,
             temperature=temperature,
-            timeout=int(provider_timeout),
-            max_total_seconds=provider_timeout,
+            timeout=per_request_timeout,
+            max_total_seconds=max(provider_timeout, 35.0),
         )
         text = response.get("text", "")
         if _valid_text(text, response_validator):

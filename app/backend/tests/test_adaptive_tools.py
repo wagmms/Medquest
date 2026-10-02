@@ -99,7 +99,8 @@ def test_format_student_diagnostic_block(mock_db):
     assert "### DADOS DIAGNÓSTICOS EM TEMPO REAL DO ALUNO" in block
     assert "Insuficiência Cardíaca" in block
     assert "33.3%" in block
-    assert "1 questões prontas para revisão imediata" in block
+    assert "1 questões" in block
+    assert "Revisões Espaçadas (FSRS v6) Vencidas Hoje" in block
 
 
 def test_ask_preceptor_ai_tool_calling_trigger(mock_db, monkeypatch):

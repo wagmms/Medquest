@@ -238,11 +238,9 @@ export function PreceptorFocusCard({
                     <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple-600 dark:text-purple-400">
                       Preceptor Socrático
                     </span>
-                    {focusData?.model && (
-                      <span className="text-[10px] font-mono text-muted-foreground bg-muted px-1.5 py-0.2 rounded">
-                        {focusData.model}
-                      </span>
-                    )}
+                    <span className="text-[10px] font-medium bg-purple-500/10 text-purple-600 dark:text-purple-400 px-2 py-0.5 rounded-full border border-purple-500/20">
+                      Diagnóstico de Alto Rendimento
+                    </span>
                   </div>
                   <h3 className="text-base sm:text-lg font-bold text-foreground">
                     Raio-X de Desempenho & Diretriz do Dia

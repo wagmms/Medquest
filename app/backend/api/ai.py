@@ -1090,31 +1090,32 @@ def generate_preceptor_dashboard_focus(db, user_id: Optional[str]) -> dict:
         rec_area = "Clínica Médica"
         rec_url = "/estudar?area=Clinica%20Medica&limit=15"
 
-    prompt = f"""VOCÊ É O PRECEPTOR MÉDICO SOCRÁTICO DO MEDQUEST, ESPECIALISTA EM PREPARAÇÃO PARA RESIDÊNCIA MÉDICA (USP-SP, ENARE, UNIFESP, UNICAMP, SUS-SP).
-Sua missão nesta consulta de cabeçalho/dashboard é traçar o diagnóstico e o PLANO DE ATAQUE DO DIA para o estudante.
+    prompt = f"""VOCÊ É O PRECEPTOR MÉDICO SOCRÁTICO DO MEDQUEST, ESPECIALISTA EM PREPARAÇÃO DE ALTO RENDIMENTO PARA RESIDÊNCIA MÉDICA (USP-SP, ENARE, UNIFESP, UNICAMP, SUS-SP).
+Sua missão nesta consulta de cabeçalho/dashboard é traçar um diagnóstico adaptativo PROFUNDO e o PLANO DE ATAQUE DO DIA para o estudante.
 
 {diag_block}
 
 DIRETRIZES OBRIGATÓRIAS DO PARECER DE DASHBOARD:
 1. ⛔ REGRA ABSOLUTA: NÃO use saudações prolixas repetitivas ("Olá, futuro residente!", "Tudo bem?", etc.). Vá direto ao diagnóstico clínico e estratégico.
-2. Formate sua resposta em 4 seções cirúrgicas em Markdown:
-   📊 **Raio-X de Desempenho**: Avalie o volume de questões feitas e a taxa global de acerto. Se o aluno tiver poucos dados, enfatize a necessidade de calibração do motor.
-   🚨 **Subtemas Vulneráveis & Armadilhas das Bancas**: Aponte objetivamente os subtemas onde o aluno mais erra ou, se a conta for nova, alerte sobre os temas com maiores pegadinhas nas grandes bancas paulistas e nacionais.
-   ⏰ **Status FSRS & Curva de Esquecimento**: Indique a urgência das revisões espaçadas pendentes hoje para não perder a retenção de longo prazo.
-   🎯 **Plano de Ataque Prático do Dia**: Prescreva uma meta imediata e clara (ex: bateria de 15 questões focada no tema prioritário {rec_subtema} + zerar as revisões FSRS).
-3. Seja conciso, incisivo, motivador e focado no padrão das bancas de residência.
+2. ⛔ PROIBIÇÃO ESTATÍSTICA: NUNCA considere temas com 1 ou 2 questões como fraqueza principal. O foco deve ser estritamente onde o aluno acumulou perda real de pontos em temas de alta incidência de prova.
+3. Formate sua resposta em 4 seções cirúrgicas e aprofundadas em Markdown:
+   📊 **Raio-X de Desempenho**: Avalie o volume de questões feitas e a taxa global de acerto. Se o volume for expressivo (ex: > 100 Qs), valorize a base construída, mas aponte onde a média geral está camuflando ralos de pontos específicos.
+   🚨 **Subtemas Vulneráveis & Armadilhas das Bancas**: Analise criticamente os principais gargalos estatísticos (com foco em {rec_subtema} e nos outros temas com maior número de erros). Detalhe como as grandes bancas (USP, ENARE, UNIFESP) montam pegadinhas nesses tópicos (critérios diagnósticos, controvérsias de diretrizes, doses de emergência, condutas beira-leito).
+   ⏰ **Status FSRS & Curva de Esquecimento**: Indique a urgência das revisões espaçadas pendentes hoje e a importância de manter a retenção de longo prazo ativa antes de novos blocos.
+   🎯 **Plano de Ataque Prático do Dia**: Prescreva uma meta imediata, estruturada e sequencial (ex: bloco cirúrgico de 15 questões focado no tema prioritário {rec_subtema} + zerar pendências do FSRS).
+4. Seja incisivo, técnico, denso, sem generalidades óbvias e focado na aprovação nas bancas mais disputadas do país.
 """
 
     system_instruction = (
-        "Você é um Preceptor Médico Socrático de residência médica de excelência. "
-        "Seja direto, técnico, sem enrolação e focado na aprovação do aluno."
+        "Você é um Preceptor Médico Socrático de residência médica de excelência absoluta. "
+        "Sua análise deve ser profunda, densa, tecnicamente impecável, sem superficialidades e estritamente embasada nos dados estatísticos do aluno."
     )
 
     try:
         resp = generate_content_with_fallback(
             prompt=prompt,
             system_instruction=system_instruction,
-            timeout=25
+            timeout=35
         )
         text = resp.get("text", "").strip()
         if text:
@@ -1127,7 +1128,7 @@ DIRETRIZES OBRIGATÓRIAS DO PARECER DE DASHBOARD:
                     "practice_url": rec_url,
                 },
                 "source": resp.get("source", "universal"),
-                "model": resp.get("model", "universal"),
+                "model": resp.get("model", "Preceptor Socrático"),
                 "generated_at": datetime.now(timezone.utc).isoformat()
             }
     except Exception as e:
@@ -1135,17 +1136,19 @@ DIRETRIZES OBRIGATÓRIAS DO PARECER DE DASHBOARD:
 
     # Fallback estruturado de alta fidelidade
     fallback_analysis = f"""📊 **Raio-X de Desempenho**
-Volume atual de {diag_data.get('total_attempts', 0)} questões resolvidas com acurácia média de {diag_data.get('overall_accuracy_pct', 0.0)}%.
+Volume sólido de {diag_data.get('total_attempts', 0)} questões resolvidas com acurácia média de {diag_data.get('overall_accuracy_pct', 0.0)}%. A base está formada, mas o foco agora é estancar ralos de pontos específicos.
 
 🚨 **Subtemas Vulneráveis & Armadilhas das Bancas**
-O subtema prioritário para alavancar sua pontuação nas bancas (USP, ENARE e SUS-SP) é **{rec_subtema}** ({rec_area}). As bancas costumam explorar critérios diagnósticos e condutas imediatas beira-leito neste tema.
+O subtema prioritário com maior volume de erros acumulados é **{rec_subtema}** ({rec_area}). 
+As grandes bancas (USP, ENARE, UNIFESP e SUS-SP) cobram ativamente condutas imediatas, critérios de gravidade e decisões beira-leito neste tópico. Dominar essas pegadinhas é o que garante o salto na pontuação final.
 
 ⏰ **Status FSRS & Curva de Esquecimento**
-Você possui **{diag_data.get('srs_due_count', 0)}** revisões com repetição espaçada (FSRS) vencidas hoje. Revise-as para não permitir o decaimento sináptico dos conceitos consolidados.
+Você possui **{diag_data.get('srs_due_count', 0)}** revisões com repetição espaçada (FSRS v6) pendentes hoje. Execute essas revisões antes de iniciar blocos inéditos para manter a retenção de longo prazo blindada.
 
 🎯 **Plano de Ataque Prático do Dia**
-1. Realize imediatamente uma bateria de 15 questões focada em **{rec_subtema}**.
-2. Conclua as revisões pendentes no FSRS para manter a retenção acima de 85%.
+1. **Zerar FSRS:** Elimine as {diag_data.get('srs_due_count', 0)} revisões pendentes.
+2. **Bateria Cirúrgica:** Realize imediatamente uma bateria de 15 questões focada em **{rec_subtema}**.
+3. **Retificação Ativa:** Revise detalhadamente o gabarito de cada questão errada, anotando a pegadinha da banca no seu caderno de erros.
 """
     return {
         "diagnostic_data": diag_data,
@@ -1156,7 +1159,8 @@ Você possui **{diag_data.get('srs_due_count', 0)}** revisões com repetição e
             "practice_url": rec_url,
         },
         "source": "fallback",
-        "model": "deterministic_fallback",
+        "model": "Preceptor Socrático",
         "generated_at": datetime.now(timezone.utc).isoformat()
     }
+
 
