@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { 
   Sparkles, Target, AlertTriangle, ArrowRight, 
-  RotateCcw, Brain, CheckCircle2, ChevronRight, X, ExternalLink
+  RotateCcw, Brain, CheckCircle2, X, ExternalLink
 } from "lucide-react";
 import { BottleneckTopic, PreceptorFocusResponse } from "@/types/api";
 import { api } from "@/lib/api";
@@ -87,14 +87,10 @@ export function PreceptorFocusCard({
               </div>
             </div>
 
-            <button
-              onClick={() => handleOpenAiDiagnosis(false)}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-purple-500/30 bg-purple-500/10 px-3 py-1.5 text-xs font-bold text-purple-600 dark:text-purple-400 transition-all hover:bg-purple-500/20 active:scale-95"
-            >
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>Raio-X Completo da IA</span>
-              <ChevronRight className="h-3.5 w-3.5" />
-            </button>
+            <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/40 px-2.5 py-1 rounded-full border border-border/40">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Tempo Real</span>
+            </div>
           </div>
 
           {/* Grid de Métricas Diagnósticas */}
@@ -205,10 +201,10 @@ export function PreceptorFocusCard({
               <button
                 type="button"
                 onClick={() => handleOpenAiDiagnosis(false)}
-                className="flex-1 sm:flex-none px-4 py-2 rounded-xl border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 text-purple-600 dark:text-purple-400 font-bold text-xs transition-colors flex items-center justify-center gap-1.5"
+                className="flex-1 sm:flex-none px-4 py-2 rounded-xl border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 text-purple-600 dark:text-purple-400 font-bold text-xs transition-colors flex items-center justify-center gap-1.5 active:scale-95"
               >
-                <Brain className="h-4 w-4" />
-                <span>Ver Análise Clínica</span>
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>Raio-X do Preceptor</span>
               </button>
               
               <Link
