@@ -28,7 +28,7 @@ import { QuizTimer, QuizTimerHandle } from "@/components/QuizTimer";
 import Image from "next/image";
 import { QuizFilters } from "./components/QuizFilters";
 import { AlternativeList } from "./components/AlternativeList";
-import { PreceptorSection } from "./components/PreceptorSection";
+import { PreceptorSection, ChatMessage } from "./components/PreceptorSection";
 import {
   LEARNING_SESSION_VERSION,
   readLearningSession,
@@ -199,7 +199,7 @@ export function QuizClient({
   const [draftFlashcard, setDraftFlashcard] = useState<{front: string; back: string; context: string} | null>(null);
   const [generatingBatchFlashcards, setGeneratingBatchFlashcards] = useState(false);
   const [batchFlashcardsResult, setBatchFlashcardsResult] = useState<{ count: number } | null>(null);
-  const [preceptorResponse, setPreceptorResponse] = useState<{ answer: string; model: string; source: string } | null>(null);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [askingPreceptor, setAskingPreceptor] = useState(false);
   const [preceptorInput, setPreceptorInput] = useState("");
   
@@ -229,7 +229,7 @@ export function QuizClient({
     setIsOfflineSaved(false);
     setFlashcardResult(null);
     setDraftFlashcard(null);
-    setPreceptorResponse(null);
+    setChatMessages([]);
     setPreceptorInput("");
     setInitialTime(0);
 
@@ -987,18 +987,48 @@ export function QuizClient({
     }
   };
 
-  const handleAskPreceptor = async () => {
+  const handleSendMessage = async (overrideText?: string) => {
     if (!currentDetail) return;
+    const textToSend = (overrideText ?? preceptorInput).trim();
+    if (!textToSend) return;
+
+    const userMsg: ChatMessage = {
+      id: "u_" + Date.now(),
+      role: "user",
+      content: textToSend,
+    };
+
+    const nextHistory = [...chatMessages, userMsg];
+    setChatMessages(nextHistory);
+    setPreceptorInput("");
     setAskingPreceptor(true);
+
     try {
+      const apiHistory = nextHistory.map((m) => ({
+        role: m.role,
+        content: m.content,
+      }));
+
       const res = await api.questions.askAI(
         currentDetail.id,
-        preceptorInput || undefined,
-        selectedLetter || undefined
+        textToSend,
+        selectedLetter || undefined,
+        apiHistory
       );
-      setPreceptorResponse(res);
+
+      const assistantMsg: ChatMessage = {
+        id: "a_" + Date.now(),
+        role: "assistant",
+        content: res.answer,
+        model: res.model,
+        source: res.source,
+        grounding_sources: res.grounding_sources,
+        tool_call: res.tool_call,
+      };
+
+      setChatMessages((prev) => [...prev, assistantMsg]);
     } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : "Erro ao perguntar ao preceptor.";
+      const msg = e instanceof Error ? e.message : "Erro ao consultar o preceptor.";
       toast.error(msg);
     } finally {
       setAskingPreceptor(false);
@@ -1797,13 +1827,13 @@ export function QuizClient({
 
                   {/* Preceptor AI Section */}
                   <PreceptorSection
-                    preceptorResponse={preceptorResponse}
+                    messages={chatMessages}
                     preceptorInput={preceptorInput}
                     askingPreceptor={askingPreceptor}
                     onChangeInput={setPreceptorInput}
-                    onAskPreceptor={handleAskPreceptor}
-                    onClearResponse={() => {
-                      setPreceptorResponse(null);
+                    onSendMessage={handleSendMessage}
+                    onClearChat={() => {
+                      setChatMessages([]);
                       setPreceptorInput("");
                     }}
                   />

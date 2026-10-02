@@ -43,7 +43,9 @@ def ask_question_ai(question_id):
     body = request.get_json(silent=True) or {}
     user_question = body.get("user_question", "")
     user_letter = body.get("user_letter", "")
+    chat_history = body.get("chat_history", [])
 
+    user_id = getattr(g, "user_id", None)
     result = ai.ask_preceptor_ai(
         stem=q["stem"],
         alternatives=alts_list,
@@ -53,7 +55,10 @@ def ask_question_ai(question_id):
         user_question=user_question,
         explanation=q["explanation_text"] or "",
         area=q["area"] or "",
-        subtema=q["subtema"] or q["topic"] or ""
+        subtema=q["subtema"] or q["topic"] or "",
+        chat_history=chat_history if isinstance(chat_history, list) else None,
+        user_id=user_id,
+        db=db
     )
 
     # A resposta determinística é útil internamente como último recurso, mas

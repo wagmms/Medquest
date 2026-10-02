@@ -445,10 +445,30 @@ export const api = {
     }),
     search: (q: string, semantic: boolean = false, signal?: AbortSignal) =>
       apiFetch<SearchResult[]>(`/api/search?q=${encodeURIComponent(q)}&semantic=${semantic}`, { cache: 'no-store', signal }),
-    askAI: (id: number, user_question?: string, user_letter?: string) =>
-      apiFetch<{ answer: string; model: string; source: string }>(`/api/questions/${id}/ask_ai`, {
+    askAI: (
+      id: number,
+      user_question?: string,
+      user_letter?: string,
+      chat_history?: Array<{ role: "user" | "assistant"; content: string }>
+    ) =>
+      apiFetch<{
+        answer: string;
+        model: string;
+        source: string;
+        grounding_sources?: Array<{
+          source_file: string;
+          source_type?: string;
+          topic?: string;
+          subtopic?: string;
+          title?: string;
+        }>;
+        tool_call?: {
+          name: string;
+          data: Record<string, unknown>;
+        };
+      }>(`/api/questions/${id}/ask_ai`, {
         method: "POST",
-        body: JSON.stringify({ user_question, user_letter }),
+        body: JSON.stringify({ user_question, user_letter, chat_history }),
         timeoutMs: 35000,
       }),
     getSimuladoUSP: async () => {

@@ -3,8 +3,11 @@ import logging
 import os
 import re
 import time
+from typing import Any, Dict, List, Optional
 
 from api.gemini_pool import gemini_pool
+from .adaptive_tools import format_student_diagnostic_block, get_student_weak_topics
+from .knowledge import format_grounding_block, retrieve_medical_context
 from .universal_pool import generate_content_with_fallback
 
 logger = logging.getLogger(__name__)
@@ -484,19 +487,136 @@ def ask_preceptor_ai(
     user_question: str = "",
     explanation: str = "",
     area: str = "",
-    subtema: str = ""
+    subtema: str = "",
+    chat_history: Optional[List[Dict[str, str]]] = None,
+    user_id: Optional[str] = None,
+    db: Any = None,
 ) -> dict:
     """
     Atua como um Preceptor Médico Socrático especialista em provas de residência (USP, ENARE, SUS-SP).
-    Gera comentários e explicações clínicas inéditas por IA com alto rigor científico, fisiopatologia e foco em pegadinhas.
+    Suporta conversação contínua multi-turn, comandos rápidos (/conduta, /pegadinhas, /round, /caso),
+    grounding ancorado em fontes oficiais e Tool Calling adaptativo (get_student_weak_topics).
     """
     alts_formatted = "\n".join([
         f"{a.get('letter', '')}) {a.get('text', '')}"
         for a in alternatives
         if isinstance(a, dict)
     ])
-    
-    prompt = f"""Você é o Preceptor Clínico Virtual do MedQuest, especialista em preparação para residência médica de alto nível (USP, ENARE, SUS-SP, Unifesp, Unicamp).
+
+    user_query = user_question.strip() if user_question else ""
+
+    # 1. Recuperação RAG de fontes oficiais (Data Store)
+    grounding_chunks = retrieve_medical_context(
+        area=area,
+        subtema=subtema,
+        stem=stem,
+        user_question=user_query,
+        top_k=2
+    )
+    grounding_block = format_grounding_block(grounding_chunks)
+    grounding_sources = [
+        {
+            "source_file": c.get("source_file"),
+            "source_type": c.get("source_type"),
+            "topic": c.get("topic"),
+            "subtopic": c.get("subtopic"),
+            "title": c.get("title")
+        }
+        for c in grounding_chunks
+    ]
+
+    grounding_instruction = ""
+    if grounding_block:
+        grounding_instruction = f"""
+{grounding_block}
+
+REGRAS DE ANCORAGEM NAS FONTES:
+- Prioridade Absoluta: Suas condutas devem ser estritamente fundamentadas nas fontes anexadas no Data Store acima.
+- Rastreabilidade: Sempre indique a qual fonte e tema a conduta pertence (ex: [Fonte: {grounding_sources[0]['source_file']}]).
+"""
+
+    # 2. Detecção de Tool Calling: Diagnóstico Adaptativo & Foco de Estudo
+    cmd_lower = user_query.lower()
+    is_diagnostic_request = any(
+        phrase in cmd_lower for phrase in [
+            "/foco", "/diagnostico", "em que focar", "em que devo focar",
+            "focar hoje", "meus pontos fracos", "minhas fraquezas",
+            "onde estou errando", "meu desempenho", "o que revisar",
+            "o que focar"
+        ]
+    )
+
+    tool_call_meta = None
+    diagnostic_block = ""
+    if is_diagnostic_request and db is not None:
+        diag_data = get_student_weak_topics(db, user_id, limit=5)
+        diagnostic_block = format_student_diagnostic_block(diag_data)
+        tool_call_meta = {
+            "name": "get_student_weak_topics",
+            "data": diag_data
+        }
+
+    # 3. Detecção de Playbooks e Comandos Rápidos
+    playbook_instruction = ""
+    if diagnostic_block:
+        playbook_instruction = f"""
+{diagnostic_block}
+
+DIRETRIZ DA TOOL get_student_weak_topics:
+O aluno perguntou sobre seu foco ou pontos fracos. Você deve:
+1. 🎯 **Prescrever o Plano de Ataque**: Indique com clareza quais são os subtemas de maior risco clínico identificados acima.
+2. ⏰ **Atenção ao FSRS**: Se houver questões de repetição espaçada acumuladas (srs_due_count > 0), recomende fortemente zerar as revisões antes de avançar em matérias novas.
+3. 💡 **Estratégia Recomendada**: Formule um plano prático de estudos para a sessão de hoje (ex: 'Faça 10 questões do tema X + zere a fila de repetição').
+"""
+    elif cmd_lower.startswith("/conduta"):
+        playbook_instruction = """
+COMANDO ESPECIAL DETECTADO: /conduta
+Estruture a resposta obrigatoriamente nesta sequência direta:
+1. 🚨 **Reconhecimento & Alerta**: Sinais de instabilidade, gravidade e escores formais.
+2. 🛑 **Estabilização Imediata**: Medidas de suporte inicial beira-leito.
+3. 🔬 **Investigação Dirigida**: Exames laboratoriais/imagem que alteram conduta imediata.
+4. 💊 **Terapêutica Farmacológica**: Drogas de 1ª linha, doses exatas, vias e posologia.
+5. 🏥 **Destino**: Critérios de alta, internação em enfermaria ou vaga de UTI/CTI.
+"""
+    elif cmd_lower.startswith("/pegadinhas"):
+        playbook_instruction = """
+COMANDO ESPECIAL DETECTADO: /pegadinhas
+Apresente de 3 a 5 pegadinhas clássicas das bancas da USP (SP e RP), ENARE e SUS-SP sobre o assunto desta questão.
+Explique o detalhe sutil do enunciado que induz o candidato ao erro e a regra de ouro para acertar.
+"""
+    elif cmd_lower.startswith("/round"):
+        playbook_instruction = """
+COMANDO ESPECIAL DETECTADO: /round (Simulação de Visita Beira-Leito)
+Formule 3 perguntas afiadas e práticas que um preceptor sênior faria ao interno sobre o manejo deste paciente.
+NÃO RESPONDA AS PERGUNTAS AGORA. Convide o aluno a responder para que você avalie em seguida.
+"""
+    elif cmd_lower.startswith("/caso"):
+        playbook_instruction = """
+COMANDO ESPECIAL DETECTADO: /caso (Desafio Clínico Correlato)
+Crie uma variação clínica de alta complexidade deste paciente (alterando algum parâmetro clínico ou comorbidade)
+e proponha uma pergunta de múltipla escolha com 4 alternativas (A, B, C, D). NÃO ENTREGUE O GABARITO AGORA.
+"""
+
+    # 4. Histórico de Conversação (Multi-turn)
+    history_formatted = ""
+    if chat_history and len(chat_history) > 0:
+        history_lines = []
+        for msg in chat_history[-6:]:
+            role_label = "ALUNO" if msg.get("role") == "user" else "PRECEPTOR"
+            c = msg.get("content", "").strip()
+            if c:
+                history_lines.append(f"**{role_label}**: {c}")
+        if history_lines:
+            history_formatted = "### HISTÓRICO DA DISCUSSÃO CLÍNICA PRÉVIA:\n" + "\n\n".join(history_lines) + "\n\n"
+
+    turn_guideline = ""
+    if history_formatted:
+        turn_guideline = """
+DIRETRIZ DE CONTINUIDADE (MULTI-TURN):
+Esta é uma réplica contínua na discussão do caso. Mantenha total coerência com as mensagens anteriores, responda de forma fluida à dúvida ou contra-argumento do aluno e aprofunde o raciocínio clínico sem reexplicar o caso do início.
+"""
+
+    prompt = f"""Você atua como um Preceptor Clínico Sênior do HC-FMRP-USP e Especialista em Preparação para Residência Médica (Bancas USP-SP, USP-RP, ENARE, SUS-SP).
 
 ÁREA / TEMA: {area or 'Medicina'} - {subtema or 'Raciocínio Clínico'}
 ENUNCIADO DA QUESTÃO:
@@ -508,17 +628,19 @@ ALTERNATIVAS:
 GABARITO OFICIAL: Letra {correct_letter} ({correct_text})
 RESPOSTA DO ALUNO: {f'Marcou Letra {user_letter}' if user_letter else 'Ainda não respondeu ou acertou'}
 
-DÚVIDA / FOCO SOLICITADO:
-{user_question or 'Explique o raciocínio fisiopatológico da questão, por que a correta é o padrão-ouro e onde está a armadilha do distrator.'}
-
-INSTRUÇÕES PEDAGÓGICAS DO PRECEPTOR:
-1. Responda em tom encorajador, clínico, didático e de alta relevância para provas de residência.
-2. Forneça uma explicação clínica ORIGINAL e APROFUNDADA:
-   - Seção 🩺 **Raciocínio Fisiopatológico & Diagnóstico**: Explique o mecanismo fisiopatológico subjacente, os achados clínicos e os critérios diagnósticos.
-   - Seção 🎯 **Conduta Padrão-Ouro**: Justifique a abordagem terapêutica recomendada pelas diretrizes e consensos médicos atuais (SBP, SBC, MS, FEBRASGO, etc.).
-   - Seção ⚠️ **Análise dos Distratores & Pegadinhas**: Se o aluno errou ou pediu distratores, detalhe o porquê das alternativas incorretas serem armadilhas clássicas de banca.
-   - Seção 💡 **Regra de Ouro**: Finalize com uma 'take-home message' mnemônica ou regra de decisão indispensável para a prova.
-3. Formate a resposta em Markdown limpo, com tópicos bem estruturados e ênfase visual.
+{history_formatted}DÚVIDA / FOCO SOLICITADO PELO ALUNO:
+{user_query or 'Explique o raciocínio fisiopatológico da questão, por que a correta é o padrão-ouro e onde está a armadilha do distrator.'}
+{grounding_instruction}
+{playbook_instruction}
+{turn_guideline}
+FILTRO ANTI-OBVIEDADE E DIRETRIZES DE RESPOSTA:
+1. Filtro Anti-Ciclo Básico: Proibido gastar espaço com semiologia introdutória trivial ou definições de dicionário.
+2. Foco Estrito:
+   - Seção 🩺 **Raciocínio Fisiopatológico & Decisão Beira-Leito**: Mecanismos que definem a conduta e critérios formais (ex.: Framingham, CURB-65, HEART).
+   - Seção 🎯 **Conduta Padrão-Ouro**: Justifique a abordagem terapêutica de escolha, fármacos de 1ª linha e doses essenciais. Citar a fonte consultada.
+   - Seção ⚠️ **Análise dos Distratores & Pegadinhas de Prova**: Identifique as armadilhas clássicas da banca nas alternativas incorretas.
+   - Seção 💡 **Pulo do Gato**: Regra rápida de memorização ('take-home message').
+3. Formate a resposta em Markdown limpo e didático. Se o aluno acionou um comando especial (/conduta, /pegadinhas, /round, /caso), priorize a estrutura exigida pelo comando.
 """
 
     try:
@@ -529,11 +651,9 @@ INSTRUÇÕES PEDAGÓGICAS DO PRECEPTOR:
         ]
         resp = generate_content_with_fallback(
             prompt=prompt,
-            system_instruction="Você é um preceptor médico de elite que ensina raciocínio clínico para residência médica. Gere comentários originais, aprofundados e didáticos.",
+            system_instruction="Você é um preceptor médico de elite que ensina raciocínio clínico para residência médica. Seja direto, prático e cite as fontes clínicas.",
             timeout=25,
-            # Uma resposta curta/refusal nao deve encerrar a cadeia: o pool
-            # continua no proximo provedor ate obter uma explicacao substancial.
-            response_validator=lambda value: len(value.strip()) >= 80,
+            response_validator=lambda value: len(value.strip()) >= 50,
             provider_order=preceptor_order,
         )
         text = resp.get("text", "").strip()
@@ -541,7 +661,9 @@ INSTRUÇÕES PEDAGÓGICAS DO PRECEPTOR:
             return {
                 "answer": text,
                 "model": resp.get("model", "universal"),
-                "source": resp.get("source", "universal")
+                "source": resp.get("source", "universal"),
+                "grounding_sources": grounding_sources,
+                "tool_call": tool_call_meta
             }
     except Exception as e:
         logger.error(f"Erro no preceptor IA Universal: {e}")
@@ -554,11 +676,13 @@ INSTRUÇÕES PEDAGÓGICAS DO PRECEPTOR:
     elif explanation:
         fallback_response += f"📚 **Fundamentação Clínica**:\n{explanation}\n\n"
     fallback_response += f"💡 **Regra de Ouro**: Em {subtema or area or 'questões clínicas de residência'}, priorize sempre a identificação da âncora clínica no enunciado e correlacione com a conduta padrão-ouro das diretrizes vigentes."
-    
+
     return {
         "answer": fallback_response,
         "model": "deterministic_fallback",
-        "source": "fallback"
+        "source": "fallback",
+        "grounding_sources": grounding_sources,
+        "tool_call": tool_call_meta
     }
 
 
