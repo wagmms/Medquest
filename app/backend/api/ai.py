@@ -665,11 +665,12 @@ CONCEITO DO GABARITO: Letra {correct_letter}) {correct_text}
 DIRETRIZES OBRIGATÓRIAS DO MODO /PEGADINHAS:
 1. ⛔ REGRA ABSOLUTA: NÃO REEXPLIQUE O CASO CLÍNICO OU A FISIOPATOLOGIA DA QUESTÃO DO ZERO. Vá direto às pegadinhas que mais derrubam candidatos!
 2. Apresente de 3 a 5 pegadinhas clássicas e recorrentes das grandes bancas (USP-SP, USP-RP, ENARE, UNIFESP, UNICAMP, SUS-SP) sobre este tema específico.
-3. Para cada pegadinha, utilize a seguinte estrutura didática e cirúrgica:
-   - 🪤 **A Casca de Banana da Banca**: Como o examinador redige o enunciado ou as alternativas para enganar o candidato (ex: doses parecidas, inversão da cronologia de conduta, medicações coadjuvantes que não salvam vidas na emergência, diagnósticos diferenciais quase idênticos).
-   - ❌ **Onde o Candidato Desatento Erra**: A armadilha mental ou raciocínio intuitivo que leva ao erro.
-   - 🎯 **Como o Futuro Residente Gabarita**: O gatilho mental, palavra-âncora no texto ou raciocínio de eliminação em segundos.
-4. Conclua com a 💡 **Regra de Ouro Anti-Pegadinha** definitiva para levar para a prova.
+3. Formate OBRIGATORIAMENTE cada pegadinha com título temático numerado e bullets limpos, sem repetir cabeçalhos:
+   🪤 **Pegadinha {{N}}: {{Nome Curto do Conceito ou Ponto Crítico}}**
+   • **A Armadilha no Enunciado**: Como o examinador monta a alternativa ou o detalhe sutil no texto para induzir o erro (ex: doses parecidas, inversão de prioridade cronológica, fármacos coadjuvantes disfarçados de emergência, achados que parecem contraindicação mas não são).
+   • **O Erro Comum**: O raciocínio intuitivo precipitado que leva o candidato a errar.
+   • **Como Gabaritar**: O gatilho mental, palavra-âncora ou regra prática de eliminação para acertar em segundos.
+4. Conclua com a 💡 **Regra de Ouro Anti-Pegadinha** definitiva para memorização rápida.
 """
     elif mode == "caso":
         mode_instructions = f"""
@@ -680,9 +681,13 @@ DIRETRIZES OBRIGATÓRIAS DO MODO /CASO:
 1. ⛔ NÃO REEXPLIQUE A QUESTÃO ANTERIOR.
 2. Crie uma NOVA vinheta clínica INÉDITA, realista, desafiadora e de padrão R1-USP sobre este tema, introduzindo uma variável clínica que exija raciocínio apurado (ex: paciente gestante, idoso com comorbidades, choque refratário, complicação aguda ou apresentação atípica).
 3. Formule uma pergunta de conduta imediata ou decisão diagnóstica beira-leito.
-4. Apresente exatamente 4 alternativas (A, B, C, D) bem estruturadas e plausíveis.
+4. Apresente exatamente 4 alternativas (A, B, C, D) bem estruturadas e plausíveis:
+   A) ...
+   B) ...
+   C) ...
+   D) ...
 5. ⛔ REGRA INEGOCIÁVEL: NUNCA FORNEÇA O GABARITO OU A RESPOSTA NESTA MENSAGEM.
-6. Encerre desafiando o aluno: convide-o a enviar no chat a letra da alternativa que ele escolheu para você avaliar o raciocínio dele em seguida.
+6. Encerre desafiando o aluno: "Agora é sua vez! Envie no chat a letra da alternativa que você escolheu (A, B, C ou D) para discutirmos o raciocínio."
 """
     elif mode == "round":
         mode_instructions = f"""

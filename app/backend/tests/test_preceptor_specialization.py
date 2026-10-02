@@ -75,8 +75,8 @@ def test_ask_preceptor_ai_prompt_specialization(monkeypatch):
     )
     pegadinha_prompt, sys_inst = captured_prompts[-1]
     assert "### MODO ATIVADO: ARMADILHAS CLÁSSICAS DAS BANCAS (/pegadinhas)" in pegadinha_prompt
-    assert "A Casca de Banana da Banca" in pegadinha_prompt
-    assert "Onde o Candidato Desatento Erra" in pegadinha_prompt
+    assert "A Armadilha no Enunciado" in pegadinha_prompt
+    assert "O Erro Comum" in pegadinha_prompt
     assert "NÃO REEXPLIQUE O CASO CLÍNICO OU A FISIOPATOLOGIA DA QUESTÃO DO ZERO" in pegadinha_prompt
     # Garante que as 4 seções genéricas NÃO foram injetadas
     assert "### MODO ATIVADO: DISCUSSÃO CLÍNICA COMPLETA DO CASO" not in pegadinha_prompt
