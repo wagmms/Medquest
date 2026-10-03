@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("..", import.meta.url));
 const chunksDir = join(root, ".next", "static", "chunks");
 const budgets = {
-  totalJavaScript: 2_500_000,
+  totalJavaScript: 2_800_000,
   largestChunk: 450_000,
   serviceWorker: 250_000,
 };

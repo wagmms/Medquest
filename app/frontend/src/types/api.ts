@@ -712,3 +712,113 @@ export interface TriEvaluationPayload {
   institution_code?: string;
 }
 
+export interface OsceStation {
+  id: number;
+  code: string;
+  title: string;
+  area: string;
+  subtema: string;
+  institution: string;
+  year: number;
+  difficulty: string;
+  duration_seconds: number;
+  scenario_door_markdown: string;
+  best_score: number | null;
+  completed_attempts: number;
+}
+
+export interface OsceStationDetail {
+  id: number;
+  code: string;
+  title: string;
+  area: string;
+  subtema: string;
+  institution: string;
+  year: number;
+  difficulty: string;
+  duration_seconds: number;
+  scenario_door_markdown: string;
+  patient_persona: {
+    name?: string;
+    age?: number;
+    gender?: string;
+    chief_complaint?: string;
+  };
+  physical_exam_categories: string[];
+  vitals_available: boolean;
+  lab_imaging_catalog: Array<{
+    key: string;
+    title: string;
+  }>;
+}
+
+export interface OsceTranscriptItem {
+  sender: "candidato" | "paciente" | "examinador";
+  message: string;
+  timestamp: string;
+  elapsed_seconds?: number;
+  action_payload?: Record<string, unknown>;
+}
+
+export interface OsceChecklistItem {
+  id: string;
+  title: string;
+  category: string;
+  weight: number;
+  score_earned: number;
+  status: "cumprido_total" | "cumprido_parcial" | "nao_cumprido";
+  evidence: string;
+}
+
+export interface OscePreceptorFeedback {
+  final_score: number;
+  max_score: number;
+  approved: boolean;
+  station_title: string;
+  institution: string;
+  summary: string;
+  critical_warnings: string[];
+  shock_cards_count: number;
+}
+
+export interface OsceShockCard {
+  station_code: string;
+  front: string;
+  back: string;
+  category: string;
+  weight: number;
+}
+
+export interface OsceFinishResponse {
+  session_id: string;
+  final_score: number;
+  status: string;
+  evaluated_items: OsceChecklistItem[];
+  preceptor_feedback: OscePreceptorFeedback;
+  shock_cards: OsceShockCard[];
+  elapsed_seconds: number;
+}
+
+export interface OsceReportResponse {
+  session_id: string;
+  station_id: number;
+  code: string;
+  title: string;
+  area: string;
+  subtema: string;
+  institution: string;
+  year: number;
+  status: string;
+  start_time: string;
+  end_time?: string;
+  elapsed_seconds: number;
+  duration_seconds: number;
+  final_score: number;
+  scenario_door_markdown: string;
+  checklist_evaluation: OsceChecklistItem[];
+  critical_warnings: string[];
+  preceptor_feedback: OscePreceptorFeedback;
+  transcript: OsceTranscriptItem[];
+}
+
+

@@ -131,5 +131,59 @@ export const serverApi = {
     }),
     getProgress: () => serverFetch<PlannerProgressMap>("/api/planner", { cache: 'no-store' }),
     getTopicProgress: () => serverFetch<PlannerTopicProgressMap>("/api/planner/topics", { cache: 'no-store' }),
+  },
+  osce: {
+    getStations: (params?: { area?: string; institution?: string; difficulty?: string }) => {
+      const search = new URLSearchParams();
+      if (params?.area) search.set("area", params.area);
+      if (params?.institution) search.set("institution", params.institution);
+      if (params?.difficulty) search.set("difficulty", params.difficulty);
+      const qs = search.toString();
+      return serverFetch<{ stations: import("@/types/api").OsceStation[]; count: number }>(`/api/osce/stations${qs ? `?${qs}` : ""}`, { cache: "no-store" });
+    },
+    getStation: (stationId: number) => serverFetch<import("@/types/api").OsceStationDetail>(`/api/osce/stations/${stationId}`, { cache: "no-store" }),
+    startSession: (stationId: number, circuitSessionId?: string) => serverFetch<{
+      session_id: string;
+      station_id: number;
+      title: string;
+      duration_seconds: number;
+      start_time: string;
+      transcript: import("@/types/api").OsceTranscriptItem[];
+    }>("/api/osce/sessions/start", {
+      method: "POST",
+      body: JSON.stringify({ station_id: stationId, circuit_session_id: circuitSessionId }),
+      cache: "no-store",
+    }),
+    interact: (sessionId: string, message: string, elapsedSeconds: number) => serverFetch<{
+      reply: string;
+      sender: "paciente" | "examinador";
+      elapsed_seconds: number;
+      transcript_count: number;
+    }>(`/api/osce/sessions/${sessionId}/interact`, {
+      method: "POST",
+      body: JSON.stringify({ message, elapsed_seconds: elapsedSeconds }),
+      cache: "no-store",
+    }),
+    executeAction: (sessionId: string, actionType: string, actionTarget: string, elapsedSeconds: number) => serverFetch<{
+      action_type: string;
+      target: string;
+      examiner_message: string;
+      payload: Record<string, unknown>;
+      elapsed_seconds: number;
+    }>(`/api/osce/sessions/${sessionId}/action`, {
+      method: "POST",
+      body: JSON.stringify({ action_type: actionType, action_target: actionTarget, elapsed_seconds: elapsedSeconds }),
+      cache: "no-store",
+    }),
+    finishSession: (sessionId: string, conductNotes?: string) => serverFetch<import("@/types/api").OsceFinishResponse>(`/api/osce/sessions/${sessionId}/finish`, {
+      method: "POST",
+      body: JSON.stringify({ conduct_notes: conductNotes }),
+      cache: "no-store",
+    }),
+    getReport: (sessionId: string) => serverFetch<import("@/types/api").OsceReportResponse>(`/api/osce/sessions/${sessionId}/report`, { cache: "no-store" }),
+    exportCards: (sessionId: string) => serverFetch<{ success: boolean; exported_count: number; message: string }>(`/api/osce/sessions/${sessionId}/export_cards`, {
+      method: "POST",
+      cache: "no-store",
+    }),
   }
 };

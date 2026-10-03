@@ -282,15 +282,21 @@ class TursoConnection:
 @contextmanager
 def db_transaction(db, immediate=False):
     """Context manager para gerenciar transações e garantir rollback explícito."""
+    owns_tx = False
     try:
         if isinstance(db, TursoConnection):
             db.begin(immediate=immediate)
+            owns_tx = True
         else:
-            db.execute("BEGIN IMMEDIATE" if immediate else "BEGIN")
+            if not getattr(db, "in_transaction", False):
+                db.execute("BEGIN IMMEDIATE" if immediate else "BEGIN")
+                owns_tx = True
         yield db
-        db.commit()
+        if owns_tx:
+            db.commit()
     except Exception:
-        db.rollback()
+        if owns_tx:
+            db.rollback()
         raise
 
 def get_db():

@@ -17,6 +17,7 @@ const NAV_ITEMS = [
   { href: "/buscar", label: "Busca Clínica", icon: "search" },
   { href: "/estudar", label: "Estudar", icon: "menu_book" },
   { href: "/revisao-ativa", label: "Revisão Ativa", icon: "psychology" },
+  { href: "/osce", label: "OSCE (2ª Fase)", icon: "stethoscope" },
   { href: "/simulado", label: "Simulados", icon: "description" },
   { href: "/cobertura", label: "Cobertura", icon: "my_location" },
   { href: "/analise", label: "Análise", icon: "analytics" },
