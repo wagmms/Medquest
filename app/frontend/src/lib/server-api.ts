@@ -142,16 +142,18 @@ export const serverApi = {
       return serverFetch<{ stations: import("@/types/api").OsceStation[]; count: number }>(`/api/osce/stations${qs ? `?${qs}` : ""}`, { cache: "no-store" });
     },
     getStation: (stationId: number) => serverFetch<import("@/types/api").OsceStationDetail>(`/api/osce/stations/${stationId}`, { cache: "no-store" }),
-    startSession: (stationId: number, circuitSessionId?: string) => serverFetch<{
+    startSession: (stationId: number, circuitSessionId?: string, mode?: "blind" | "guided") => serverFetch<{
       session_id: string;
       station_id: number;
       title: string;
       duration_seconds: number;
       start_time: string;
       transcript: import("@/types/api").OsceTranscriptItem[];
+      mode?: "blind" | "guided";
+      guided_feedback?: import("@/types/api").OsceLiveFeedback;
     }>("/api/osce/sessions/start", {
       method: "POST",
-      body: JSON.stringify({ station_id: stationId, circuit_session_id: circuitSessionId }),
+      body: JSON.stringify({ station_id: stationId, circuit_session_id: circuitSessionId, mode: mode || "blind" }),
       cache: "no-store",
     }),
     interact: (sessionId: string, message: string, elapsedSeconds: number) => serverFetch<{
@@ -159,6 +161,7 @@ export const serverApi = {
       sender: "paciente" | "examinador";
       elapsed_seconds: number;
       transcript_count: number;
+      guided_feedback?: import("@/types/api").OsceLiveFeedback;
     }>(`/api/osce/sessions/${sessionId}/interact`, {
       method: "POST",
       body: JSON.stringify({ message, elapsed_seconds: elapsedSeconds }),
@@ -170,6 +173,7 @@ export const serverApi = {
       examiner_message: string;
       payload: Record<string, unknown>;
       elapsed_seconds: number;
+      guided_feedback?: import("@/types/api").OsceLiveFeedback;
     }>(`/api/osce/sessions/${sessionId}/action`, {
       method: "POST",
       body: JSON.stringify({ action_type: actionType, action_target: actionTarget, elapsed_seconds: elapsedSeconds }),
@@ -180,9 +184,32 @@ export const serverApi = {
       body: JSON.stringify({ conduct_notes: conductNotes }),
       cache: "no-store",
     }),
+    dispatchSpeech: (sessionId: string, message: string, elapsedSeconds: number) => serverFetch<import("@/types/api").OsceDispatchSpeechResponse>(`/api/osce/sessions/${sessionId}/dispatch_speech`, {
+      method: "POST",
+      body: JSON.stringify({ message, elapsed_seconds: elapsedSeconds }),
+      cache: "no-store",
+    }),
     getReport: (sessionId: string) => serverFetch<import("@/types/api").OsceReportResponse>(`/api/osce/sessions/${sessionId}/report`, { cache: "no-store" }),
     exportCards: (sessionId: string) => serverFetch<{ success: boolean; exported_count: number; message: string }>(`/api/osce/sessions/${sessionId}/export_cards`, {
       method: "POST",
+      cache: "no-store",
+    }),
+    getDrugs: () => serverFetch<{ drugs: import("@/types/api").OsceDrugItem[]; count: number }>("/api/osce/drugs", { cache: "no-store" }),
+    getProcedures: () => serverFetch<{ procedures: import("@/types/api").OsceProcedureCatalogItem[]; count: number }>("/api/osce/procedures", { cache: "no-store" }),
+    prescribe: (sessionId: string, prescription: import("@/types/api").OscePrescriptionItem[], elapsedSeconds: number) => serverFetch<import("@/types/api").OscePrescribeResponse>(`/api/osce/sessions/${sessionId}/prescribe`, {
+      method: "POST",
+      body: JSON.stringify({ prescription, elapsed_seconds: elapsedSeconds }),
+      cache: "no-store",
+    }),
+    performProcedure: (sessionId: string, procedureType: string, anatomicalSite: string, elapsedSeconds: number) => serverFetch<import("@/types/api").OsceProcedureResponse>(`/api/osce/sessions/${sessionId}/procedure`, {
+      method: "POST",
+      body: JSON.stringify({ procedure_type: procedureType, anatomical_site: anatomicalSite, elapsed_seconds: elapsedSeconds }),
+      cache: "no-store",
+    }),
+    getLiveFeedback: (sessionId: string, elapsedSeconds: number) => serverFetch<import("@/types/api").OsceLiveFeedback>(`/api/osce/sessions/${sessionId}/live_feedback?elapsed_seconds=${elapsedSeconds}`, { cache: "no-store" }),
+    generateStation: (payload?: import("@/types/api").OsceGenerateStationPayload) => serverFetch<import("@/types/api").OsceGenerateStationResponse>("/api/osce/stations/generate", {
+      method: "POST",
+      body: JSON.stringify(payload || {}),
       cache: "no-store",
     }),
   }

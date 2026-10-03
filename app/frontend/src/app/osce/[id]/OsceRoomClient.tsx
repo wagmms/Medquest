@@ -6,17 +6,30 @@ import { useRouter } from "next/navigation";
 import { 
   Stethoscope, Clock, Send, Mic, MicOff, 
   Volume2, VolumeX, FileText, Activity,
-  ChevronLeft, Award, Sparkles, AlertTriangle, ShieldCheck
+  ChevronLeft, Award, Sparkles, AlertTriangle, ShieldCheck,
+  Radio, Headphones, Zap, Eye, CheckCircle2
 } from "lucide-react";
-import { OsceStationDetail, OsceTranscriptItem, OsceFinishResponse } from "@/types/api";
+import { OsceStationDetail, OsceTranscriptItem, OsceFinishResponse, OsceSpokenQueueItem, OsceLiveFeedback } from "@/types/api";
 import { api } from "@/lib/api";
+import { PrescriptionPad } from "./PrescriptionPad";
+import { ProcedureMannequin } from "./ProcedureMannequin";
+import { GhostPreceptorHUD } from "./GhostPreceptorHUD";
+import { OscePostMortemAndRadar } from "./OscePostMortemAndRadar";
 
 interface SpeechRecognitionResultItem {
   transcript: string;
 }
 
 interface SpeechRecognitionEventLike {
-  results: Array<Array<SpeechRecognitionResultItem>>;
+  resultIndex?: number;
+  results: {
+    length: number;
+    [index: number]: {
+      length: number;
+      isFinal?: boolean;
+      [itemIndex: number]: SpeechRecognitionResultItem;
+    };
+  };
 }
 
 interface SpeechRecognitionInstance {
@@ -25,6 +38,7 @@ interface SpeechRecognitionInstance {
   interimResults: boolean;
   start: () => void;
   stop: () => void;
+  abort: () => void;
   onstart: (() => void) | null;
   onend: (() => void) | null;
   onerror: (() => void) | null;
@@ -47,7 +61,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const [transcript, setTranscript] = useState<OsceTranscriptItem[]>([]);
   const [inputText, setInputText] = useState("");
   const [conductText, setConductText] = useState("");
-  const [activeTab, setActiveTab] = useState<"physical" | "labs" | "conduct">("physical");
+  const [activeTab, setActiveTab] = useState<"physical" | "procedures" | "labs" | "conduct">("physical");
   const [vitals, setVitals] = useState<Record<string, string> | null>(null);
   const [selectedExam, setSelectedExam] = useState<{ title: string; image_url?: string; result_text?: string } | null>(null);
   const [report, setReport] = useState<OsceFinishResponse | null>(null);
@@ -57,9 +71,23 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const [isListening, setIsListening] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Estados do Modo Duplo (Prova Cega vs Treino Guiado com Preceptor Fantasma)
+  const [selectedMode, setSelectedMode] = useState<"blind" | "guided">("guided");
+  const [sessionMode, setSessionMode] = useState<"blind" | "guided">("guided");
+  const [liveFeedback, setLiveFeedback] = useState<OsceLiveFeedback | null>(null);
+
+  // Estados Exclusivos do Modo Hands-Free
+  const [handsFreeMode, setHandsFreeMode] = useState(true);
+  const [interimSpeechText, setInterimSpeechText] = useState("");
+  const [activeSpeaker, setActiveSpeaker] = useState<"examinador" | "paciente" | null>(null);
+
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const transcriptEndRef = useRef<HTMLDivElement | null>(null);
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
+  const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isAudioSpeakingRef = useRef<boolean>(false);
+  const startHandsFreeRecognitionRef = useRef<() => void>(() => {});
+  const handleDispatchSpeechRef = useRef<(spokenText: string) => Promise<void>>(async () => {});
 
   // Efeito sonoro do sino oficial da banca usando Web Audio API
   const playExamBell = useCallback((type: "warning" | "finish" | "start") => {
@@ -97,36 +125,294 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
     }
   }, []);
 
-  // Síntese de voz para a fala do paciente virtual
-  const speakPatientMessage = useCallback((text: string) => {
-    if (!voiceEnabled || typeof window === "undefined" || !("speechSynthesis" in window)) return;
-    try {
-      window.speechSynthesis.cancel();
-      const clean = text.replace(/[*_#`]/g, "");
-      const utterance = new SpeechSynthesisUtterance(clean);
-      utterance.lang = "pt-BR";
-      utterance.rate = 1.05;
-      window.speechSynthesis.speak(utterance);
-    } catch {
-      // Silencioso se der erro na síntese
-    }
-  }, [voiceEnabled]);
-
   // Autoscroll no transcript
   useEffect(() => {
     transcriptEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [transcript]);
 
+  // Síntese de áudio encadeada com vozes distintas para Examinador e Paciente
+  const speakSpokenQueue = useCallback((queue: OsceSpokenQueueItem[]) => {
+    if (!voiceEnabled || typeof window === "undefined" || !("speechSynthesis" in window) || queue.length === 0) {
+      if (handsFreeMode && phase === "exam") {
+        setTimeout(() => startHandsFreeRecognitionRef.current(), 300);
+      }
+      return;
+    }
+
+    try {
+      window.speechSynthesis.cancel();
+      isAudioSpeakingRef.current = true;
+
+      // Pausa reconhecimento para não capturar a própria voz do computador
+      if (recognitionRef.current) {
+        try { recognitionRef.current.stop(); } catch {}
+      }
+      setIsListening(false);
+
+      const voices = window.speechSynthesis.getVoices();
+      const ptVoices = voices.filter(v => v.lang.startsWith("pt"));
+
+      let idx = 0;
+      const playNext = () => {
+        if (idx >= queue.length) {
+          setActiveSpeaker(null);
+          isAudioSpeakingRef.current = false;
+          // Ao terminar a fala do sistema, se estiver no modo Hands-Free, reativa o microfone
+          if (handsFreeMode && phase === "exam") {
+            setTimeout(() => {
+              startHandsFreeRecognitionRef.current();
+            }, 300);
+          }
+          return;
+        }
+
+        const item = queue[idx];
+        idx++;
+        setActiveSpeaker(item.speaker);
+
+        const clean = item.text.replace(/[*_#`]/g, "");
+        const utterance = new SpeechSynthesisUtterance(clean);
+        utterance.lang = "pt-BR";
+
+        if (item.speaker === "examinador") {
+          // Tom firme e formal de examinador da banca
+          utterance.rate = 1.08;
+          utterance.pitch = 0.92;
+          const maleOrStandard = ptVoices.find(v => {
+            const n = v.name.toLowerCase();
+            return n.includes("daniel") || n.includes("jorge") || n.includes("male") || n.includes("ricardo");
+          });
+          if (maleOrStandard) utterance.voice = maleOrStandard;
+        } else {
+          // Voz humanizada do paciente conforme gênero e idade
+          const isFemale = station.patient_persona.gender?.toLowerCase() === "feminino";
+          utterance.rate = 0.98;
+          utterance.pitch = isFemale ? 1.15 : 0.92;
+          const matchedVoice = ptVoices.find(v => {
+            const n = v.name.toLowerCase();
+            return isFemale 
+              ? (n.includes("maria") || n.includes("francisca") || n.includes("female") || n.includes("luciana"))
+              : (n.includes("male") || n.includes("daniel") || n.includes("jorge"));
+          });
+          if (matchedVoice) utterance.voice = matchedVoice;
+        }
+
+        utterance.onend = () => {
+          playNext();
+        };
+        utterance.onerror = () => {
+          playNext();
+        };
+
+        window.speechSynthesis.speak(utterance);
+      };
+
+      playNext();
+    } catch {
+      setActiveSpeaker(null);
+      isAudioSpeakingRef.current = false;
+      if (handsFreeMode && phase === "exam") startHandsFreeRecognitionRef.current();
+    }
+  }, [voiceEnabled, handsFreeMode, phase, station.patient_persona.gender]);
+
+  // Parar microfone e timers
+  const stopRecognition = useCallback(() => {
+    if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
+    if (recognitionRef.current) {
+      try { recognitionRef.current.stop(); } catch {}
+    }
+    setIsListening(false);
+    setInterimSpeechText("");
+  }, []);
+
+  // Dispatcher Unificado de Voz (Modo Hands-Free)
+  const handleDispatchSpeech = useCallback(async (spokenText: string) => {
+    const text = spokenText.trim();
+    if (!text || !sessionId || isLoading) return;
+
+    const elapsed = (station.duration_seconds || 480) - timeLeft;
+    setIsLoading(true);
+    setInterimSpeechText("");
+
+    // Adiciona fala otimista no transcript
+    setTranscript((prev) => [
+      ...prev,
+      {
+        sender: "candidato",
+        message: text,
+        timestamp: new Date().toISOString(),
+        elapsed_seconds: elapsed
+      }
+    ]);
+
+    try {
+      const res = await api.osce.dispatchSpeech(sessionId, text, elapsed);
+
+      if (res.guided_feedback) {
+        setLiveFeedback(res.guided_feedback);
+      }
+
+      if (res.transcript && res.transcript.length > 0) {
+        setTranscript(res.transcript);
+      }
+
+      if (res.actions_executed && res.actions_executed.length > 0) {
+        for (const act of res.actions_executed) {
+          if (act.action_type === "vitals" && act.payload?.vitals) {
+            setVitals(act.payload.vitals as Record<string, string>);
+          }
+          if (act.action_type === "lab_imaging" && act.payload?.title) {
+            setSelectedExam({
+              title: String(act.payload.title),
+              image_url: act.payload.image_url ? String(act.payload.image_url) : undefined,
+              result_text: act.payload.result_text ? String(act.payload.result_text) : undefined
+            });
+            setActiveTab("labs");
+          }
+          if (act.action_type === "physical_exam") {
+            setActiveTab("physical");
+          }
+        }
+      }
+
+      if (res.spoken_queue && res.spoken_queue.length > 0) {
+        speakSpokenQueue(res.spoken_queue);
+      } else if (handsFreeMode) {
+        setTimeout(() => startHandsFreeRecognitionRef.current(), 300);
+      }
+    } catch (err) {
+      console.error("Falha no speech dispatcher:", err);
+      if (handsFreeMode) {
+        setTimeout(() => startHandsFreeRecognitionRef.current(), 300);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }, [sessionId, isLoading, station.duration_seconds, timeLeft, speakSpokenQueue, handsFreeMode]);
+
+  // Iniciar Reconhecimento Contínuo com VAD (Detecção de Silêncio)
+  const startHandsFreeRecognition = useCallback(() => {
+    if (typeof window === "undefined" || isAudioSpeakingRef.current) return;
+
+    const SpeechRecognition = (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).SpeechRecognition ||
+                              (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).webkitSpeechRecognition;
+
+    if (!SpeechRecognition) return;
+
+    try {
+      if (recognitionRef.current) {
+        try { recognitionRef.current.stop(); } catch {}
+      }
+
+      const rec = new SpeechRecognition();
+      rec.lang = "pt-BR";
+      rec.continuous = true;
+      rec.interimResults = true;
+
+      rec.onstart = () => {
+        setIsListening(true);
+      };
+
+      rec.onend = () => {
+        setIsListening(false);
+        // Reinício automático seguro se ainda estiver na fase exam e sem áudio tocando
+        if (handsFreeMode && phase === "exam" && !isAudioSpeakingRef.current && !isLoading) {
+          setTimeout(() => {
+            try { rec.start(); } catch {}
+          }, 300);
+        }
+      };
+
+      rec.onerror = () => {
+        setIsListening(false);
+      };
+
+      rec.onresult = (event: SpeechRecognitionEventLike) => {
+        let interim = "";
+        let final = "";
+
+        const resultsObj = event.results;
+        for (let i = 0; i < resultsObj.length; ++i) {
+          const item = resultsObj[i]?.[0];
+          if (item) {
+            if (resultsObj[i]?.isFinal) {
+              final += item.transcript;
+            } else {
+              interim += item.transcript;
+            }
+          }
+        }
+
+        const candidateText = (final || interim).trim();
+        if (candidateText) {
+          setInterimSpeechText(candidateText);
+
+          if (silenceTimeoutRef.current) {
+            clearTimeout(silenceTimeoutRef.current);
+          }
+
+          // Debounce de 1.4s após o candidato terminar a frase
+          silenceTimeoutRef.current = setTimeout(() => {
+            if (candidateText.length > 2 && !isAudioSpeakingRef.current) {
+              handleDispatchSpeechRef.current(candidateText);
+              setInterimSpeechText("");
+            }
+          }, 1400);
+        }
+      };
+
+      recognitionRef.current = rec;
+      rec.start();
+    } catch {
+      setIsListening(false);
+    }
+  }, [handsFreeMode, phase, isLoading]);
+
+  // Sincroniza refs para chamadas livres de ciclo
+  useEffect(() => {
+    startHandsFreeRecognitionRef.current = startHandsFreeRecognition;
+    handleDispatchSpeechRef.current = handleDispatchSpeech;
+  }, [startHandsFreeRecognition, handleDispatchSpeech]);
+
+  // Toggle do modo Hands-Free
+  const toggleHandsFreeMode = () => {
+    if (handsFreeMode) {
+      setHandsFreeMode(false);
+      stopRecognition();
+    } else {
+      setHandsFreeMode(true);
+      setTimeout(() => startHandsFreeRecognition(), 200);
+    }
+  };
+
   // Iniciar sessão
   const handleStartExam = async () => {
     setIsLoading(true);
     try {
-      const res = await api.osce.startSession(station.id, circuitId);
+      const res = await api.osce.startSession(station.id, circuitId, selectedMode);
       setSessionId(res.session_id);
+      setSessionMode(res.mode || selectedMode);
+      if (res.guided_feedback) {
+        setLiveFeedback(res.guided_feedback);
+      }
       setTranscript(res.transcript || []);
       setTimeLeft(res.duration_seconds || 480);
       setPhase("exam");
       playExamBell("start");
+
+      // Anúncio do Examinador
+      const introQueue: OsceSpokenQueueItem[] = [
+        {
+          speaker: "examinador",
+          text: "Candidato, pode entrar na sala de exame. Seu tempo de prova começou."
+        }
+      ];
+
+      if (voiceEnabled) {
+        speakSpokenQueue(introQueue);
+      } else if (handsFreeMode) {
+        setTimeout(() => startHandsFreeRecognition(), 500);
+      }
     } catch (err) {
       console.error("Falha ao iniciar estação:", err);
     } finally {
@@ -138,6 +424,10 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const handleFinishExam = useCallback(async () => {
     if (!sessionId || isLoading) return;
     if (timerRef.current) clearInterval(timerRef.current);
+    stopRecognition();
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
     setIsLoading(true);
     playExamBell("finish");
 
@@ -150,7 +440,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
     } finally {
       setIsLoading(false);
     }
-  }, [sessionId, conductText, isLoading, playExamBell]);
+  }, [sessionId, conductText, isLoading, playExamBell, stopRecognition]);
 
   // Cronômetro de Prova
   useEffect(() => {
@@ -176,80 +466,49 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
     };
   }, [phase, handleFinishExam, playExamBell]);
 
-  // Enviar mensagem ao paciente
+  // Listener de tecla Escape para interromper fala longa e retomar microfone
+  useEffect(() => {
+    if (phase !== "exam") return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (typeof window !== "undefined" && "speechSynthesis" in window) {
+          window.speechSynthesis.cancel();
+          isAudioSpeakingRef.current = false;
+          setActiveSpeaker(null);
+          if (handsFreeMode) {
+            setTimeout(() => startHandsFreeRecognition(), 200);
+          }
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [phase, handsFreeMode, startHandsFreeRecognition]);
+
+  // Enviar mensagem manual por texto ou clique
   const handleSendMessage = async (msgToSend?: string) => {
     const text = (msgToSend || inputText).trim();
     if (!text || !sessionId || isLoading) return;
 
     setInputText("");
-    const elapsed = (station.duration_seconds || 480) - timeLeft;
-
-    // Atualização otimista
-    const optimistic: OsceTranscriptItem = {
-      sender: "candidato",
-      message: text,
-      timestamp: new Date().toISOString(),
-      elapsed_seconds: elapsed
-    };
-    setTranscript((prev) => [...prev, optimistic]);
-    setIsLoading(true);
-
-    try {
-      const res = await api.osce.interact(sessionId, text, elapsed);
-      const reply: OsceTranscriptItem = {
-        sender: res.sender || "paciente",
-        message: res.reply,
-        timestamp: new Date().toISOString(),
-        elapsed_seconds: elapsed
-      };
-      setTranscript((prev) => [...prev, reply]);
-      speakPatientMessage(res.reply);
-    } catch (err) {
-      console.error("Falha no diálogo:", err);
-    } finally {
-      setIsLoading(false);
-    }
+    await handleDispatchSpeech(text);
   };
 
-  // Reconhecimento de Voz (Web Speech API)
+  // Toggle tradicional de microfone (modo avulso)
   const toggleListening = () => {
+    if (handsFreeMode) {
+      toggleHandsFreeMode();
+      return;
+    }
+
     if (isListening) {
-      recognitionRef.current?.stop();
-      setIsListening(false);
+      stopRecognition();
       return;
     }
 
-    const SpeechRecognition = (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).SpeechRecognition ||
-                              (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).webkitSpeechRecognition;
-
-    if (!SpeechRecognition) {
-      alert("Reconhecimento de voz não suportado neste navegador. Use a caixa de texto para digitar.");
-      return;
-    }
-
-    try {
-      const rec = new SpeechRecognition();
-      rec.lang = "pt-BR";
-      rec.continuous = false;
-      rec.interimResults = false;
-
-      rec.onstart = () => setIsListening(true);
-      rec.onend = () => setIsListening(false);
-      rec.onerror = () => setIsListening(false);
-
-      rec.onresult = (event: SpeechRecognitionEventLike) => {
-        const spoken = event.results[0]?.[0]?.transcript;
-        if (spoken) {
-          setInputText(spoken);
-          handleSendMessage(spoken);
-        }
-      };
-
-      recognitionRef.current = rec;
-      rec.start();
-    } catch {
-      setIsListening(false);
-    }
+    startHandsFreeRecognition();
   };
 
   // Solicitar Ação Clínica (Exame Físico / Sinais Vitais / Exames)
@@ -260,6 +519,11 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
 
     try {
       const res = await api.osce.executeAction(sessionId, actionType, target, elapsed);
+      
+      if (res.guided_feedback) {
+        setLiveFeedback(res.guided_feedback);
+      }
+
       setTranscript((prev) => [
         ...prev,
         {
@@ -287,6 +551,82 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
       setIsLoading(false);
     }
   };
+
+  // Callback de prescrição assinada na prancheta da sala de emergência
+  const handlePrescriptionSubmitted = (
+    prescriptionText: string, 
+    examinerMessage: string, 
+    spokenQueue: OsceSpokenQueueItem[],
+    guidedFeedback?: OsceLiveFeedback
+  ) => {
+    if (guidedFeedback) {
+      setLiveFeedback(guidedFeedback);
+    }
+
+    const elapsed = (station.duration_seconds || 480) - timeLeft;
+    setTranscript((prev) => [
+      ...prev,
+      {
+        sender: "examinador",
+        message: examinerMessage,
+        timestamp: new Date().toISOString(),
+        elapsed_seconds: elapsed,
+        action_payload: { type: "prescription", text: prescriptionText }
+      }
+    ]);
+
+    if (voiceEnabled && spokenQueue && spokenQueue.length > 0) {
+      speakSpokenQueue(spokenQueue);
+    }
+  };
+
+  // Callback de procedimento realizado no manequim 2D
+  const handleProcedureExecuted = (
+    title: string, 
+    findings: string, 
+    examinerMessage: string, 
+    spokenQueue: OsceSpokenQueueItem[],
+    guidedFeedback?: OsceLiveFeedback
+  ) => {
+    if (guidedFeedback) {
+      setLiveFeedback(guidedFeedback);
+    }
+
+    const elapsed = (station.duration_seconds || 480) - timeLeft;
+    setTranscript((prev) => [
+      ...prev,
+      {
+        sender: "examinador",
+        message: examinerMessage,
+        timestamp: new Date().toISOString(),
+        elapsed_seconds: elapsed,
+        action_payload: { type: "procedure", title, findings }
+      }
+    ]);
+
+    if (voiceEnabled && spokenQueue && spokenQueue.length > 0) {
+      speakSpokenQueue(spokenQueue);
+    }
+  };
+
+  // Polling suave do Preceptor Fantasma para atualizar alertas proativos baseados no tempo restante
+  useEffect(() => {
+    if (phase !== "exam" || sessionMode !== "guided" || !sessionId) return;
+
+    const interval = setInterval(async () => {
+      try {
+        const elapsed = (station.duration_seconds || 480) - timeLeft;
+        const feedback = await api.osce.getLiveFeedback(sessionId, elapsed);
+        if (feedback) {
+          setLiveFeedback(feedback);
+        }
+      } catch {
+        // Silencioso em caso de atraso na rede
+      }
+    }, 20000);
+
+    return () => clearInterval(interval);
+  }, [phase, sessionMode, sessionId, station.duration_seconds, timeLeft]);
 
   // Exportar flashcards de choque
   const handleExportShockCards = async () => {
@@ -343,6 +683,90 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
             </div>
             <div className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-line text-sm text-foreground/90">
               {station.scenario_door_markdown}
+            </div>
+          </div>
+
+          {/* Seletor de Modo de Avaliação: Treino Guiado vs Prova Cega */}
+          <div className="w-full text-left rounded-2xl border border-border bg-card p-4 md:p-6 shadow-sm space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                Escolha o Modo de Simulação
+              </span>
+              <span className="text-[11px] text-muted-foreground font-medium hidden sm:inline">
+                Pode alternar livremente a qualquer momento
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {/* Opção 1: Treino Guiado (Preceptor Fantasma) */}
+              <button
+                type="button"
+                onClick={() => setSelectedMode("guided")}
+                className={`p-4 rounded-xl border-2 text-left transition-all relative flex flex-col justify-between ${
+                  selectedMode === "guided"
+                    ? "border-primary bg-primary/10 shadow-sm ring-2 ring-primary/20"
+                    : "border-border bg-background hover:bg-muted/50"
+                }`}
+              >
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">👻</span>
+                    <div>
+                      <div className="font-bold text-sm text-foreground flex items-center gap-1.5">
+                        Treinamento Guiado
+                      </div>
+                      <div className="text-[10px] font-bold text-primary uppercase">
+                        Preceptor Fantasma Ativo
+                      </div>
+                    </div>
+                  </div>
+                  {selectedMode === "guided" && (
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Barema dinâmico com pontuação ao vivo. O Preceptor alerta sobre tempos críticos, dosagem de eletrólitos e condutas essenciais antes do fim do tempo.
+                </p>
+                <div className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-primary">
+                  <Sparkles className="w-3 h-3" />
+                  <span>Recomendado para aprendizado e fixação</span>
+                </div>
+              </button>
+
+              {/* Opção 2: Prova Cega (Banca Oficial) */}
+              <button
+                type="button"
+                onClick={() => setSelectedMode("blind")}
+                className={`p-4 rounded-xl border-2 text-left transition-all relative flex flex-col justify-between ${
+                  selectedMode === "blind"
+                    ? "border-primary bg-primary/10 shadow-sm ring-2 ring-primary/20"
+                    : "border-border bg-background hover:bg-muted/50"
+                }`}
+              >
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <div className="flex items-center gap-2">
+                    <Eye className="w-5 h-5 text-muted-foreground" />
+                    <div>
+                      <div className="font-bold text-sm text-foreground flex items-center gap-1.5">
+                        Prova Cega Oficial
+                      </div>
+                      <div className="text-[10px] font-bold text-muted-foreground uppercase">
+                        USP-RP / Unicamp / Banca Real
+                      </div>
+                    </div>
+                  </div>
+                  {selectedMode === "blind" && (
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Experiência realística de 2ª fase sem nenhuma pista visual. Cronômetro puro e barema 100% oculto até a finalização da conduta.
+                </p>
+                <div className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-muted-foreground">
+                  <ShieldCheck className="w-3 h-3" />
+                  <span>Simulação de alta pressão real</span>
+                </div>
+              </button>
             </div>
           </div>
 
@@ -419,6 +843,100 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
             </div>
           </div>
 
+          {/* HUD do Preceptor Fantasma (Modo Guiado) ou Indicador de Prova Cega */}
+          <GhostPreceptorHUD feedback={liveFeedback} mode={sessionMode} />
+
+          {/* Banner de Sala Real Hands-Free (Viva-Voz Beira-Leito) */}
+          <div className="rounded-2xl border border-primary/30 bg-gradient-to-r from-primary/10 via-background to-secondary/10 p-3.5 md:p-4 shadow-sm space-y-2.5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={toggleHandsFreeMode}
+                  className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shadow-sm ${
+                    handsFreeMode
+                      ? "bg-primary text-primary-foreground ring-2 ring-primary/40"
+                      : "bg-muted text-muted-foreground hover:bg-muted/80 border border-border"
+                  }`}
+                >
+                  <Radio className="w-3.5 h-3.5" />
+                  <span>{handsFreeMode ? "🎙️ Modo Hands-Free ATIVADO" : "Modo Hands-Free Desligado"}</span>
+                </button>
+
+                {/* Status Dinâmico de Fala / Escuta */}
+                <div className="flex items-center gap-2 text-xs">
+                  {activeSpeaker ? (
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-600 dark:text-amber-400 font-bold animate-pulse">
+                      <Volume2 className="w-3.5 h-3.5" />
+                      <span>{activeSpeaker === "examinador" ? "Examinador da Banca Falando..." : `${station.patient_persona.name || "Paciente"} Falando...`}</span>
+                      <span className="text-[10px] opacity-75 font-normal ml-1">(Esc para interromper)</span>
+                    </span>
+                  ) : isListening ? (
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                      <span className="flex gap-0.5 items-end h-3">
+                        <span className="w-1 h-2 bg-emerald-500 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                        <span className="w-1 h-3 bg-emerald-500 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                        <span className="w-1 h-2 bg-emerald-500 rounded-full animate-bounce"></span>
+                      </span>
+                      <span>Ouvindo sua voz em tempo real...</span>
+                    </span>
+                  ) : isLoading ? (
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-primary/20 text-primary font-bold animate-pulse">
+                      <Zap className="w-3.5 h-3.5" />
+                      <span>Processando comando clínico...</span>
+                    </span>
+                  ) : (
+                    <span className="text-muted-foreground text-xs">Microfone aguardando ativação</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Dica de Teclado */}
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Headphones className="w-3.5 h-3.5 text-primary hidden sm:inline" />
+                <span className="text-[11px] hidden sm:inline">Use fones de ouvido para melhor imersão •</span>
+                <kbd className="px-1.5 py-0.5 rounded bg-muted border border-border text-[10px] font-mono">Esc</kbd>
+                <span className="text-[11px] hidden md:inline">corta áudio</span>
+              </div>
+            </div>
+
+            {/* Balão de Transcrição Ao Vivo */}
+            {interimSpeechText && (
+              <div className="p-2.5 rounded-xl bg-card border border-primary/40 text-xs text-foreground flex items-center gap-2 animate-in fade-in">
+                <span className="font-bold text-primary shrink-0">Transcrição ao vivo:</span>
+                <span className="italic truncate text-foreground/90">&ldquo;{interimSpeechText}&rdquo;</span>
+              </div>
+            )}
+
+            {/* Pílulas de Exemplos de Comandos Clínicos para Treinamento Verbal */}
+            <div className="flex flex-wrap items-center gap-1.5 pt-1 text-[11px]">
+              <span className="text-muted-foreground font-semibold">Comandos por voz:</span>
+              <button
+                onClick={() => handleSendMessage("Examinador, solicito sinais vitais completos e PA")}
+                className="px-2 py-0.5 rounded-md bg-muted/60 hover:bg-primary/20 hover:text-primary transition-colors text-muted-foreground border border-border/60"
+              >
+                &ldquo;Examinador, sinais vitais&rdquo;
+              </button>
+              <button
+                onClick={() => handleSendMessage("Examinador, solicito eletrocardiograma de 12 derivações")}
+                className="px-2 py-0.5 rounded-md bg-muted/60 hover:bg-primary/20 hover:text-primary transition-colors text-muted-foreground border border-border/60"
+              >
+                &ldquo;Solicito ECG 12d&rdquo;
+              </button>
+              <button
+                onClick={() => handleSendMessage("Gostaria de realizar ausculta cardíaca e pulmonar")}
+                className="px-2 py-0.5 rounded-md bg-muted/60 hover:bg-primary/20 hover:text-primary transition-colors text-muted-foreground border border-border/60"
+              >
+                &ldquo;Ausculta cardiopulmonar&rdquo;
+              </button>
+              <button
+                onClick={() => handleSendMessage(`Olá ${station.patient_persona.name || "senhor"}, onde começou essa dor e como ela é?`)}
+                className="px-2 py-0.5 rounded-md bg-muted/60 hover:bg-primary/20 hover:text-primary transition-colors text-muted-foreground border border-border/60"
+              >
+                &ldquo;Onde começou a dor?&rdquo;
+              </button>
+            </div>
+          </div>
+
           {/* Grid Principal: Chat com Paciente (Esq) + Painel de Ações Clínicas (Dir) */}
           <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-4 min-h-0">
             {/* Coluna Esquerda: Chat & Diálogo com o Paciente (7 cols) */}
@@ -479,14 +997,16 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
               <div className="p-3 border-t border-border bg-card flex items-center gap-2">
                 <button
                   onClick={toggleListening}
-                  title={isListening ? "Parar de ouvir" : "Falar no microfone com o paciente"}
-                  className={`p-2.5 rounded-xl border transition-colors ${
-                    isListening
+                  title={handsFreeMode ? "Modo Viva-Voz contínuo ativo (clique para alternar)" : isListening ? "Parar de ouvir" : "Ativar microfone"}
+                  className={`p-2.5 rounded-xl border transition-all ${
+                    handsFreeMode && isListening
+                      ? "bg-emerald-500 text-white border-emerald-600 shadow-sm ring-2 ring-emerald-500/30 animate-pulse"
+                      : isListening
                       ? "bg-rose-500 text-white border-rose-600 animate-pulse"
                       : "bg-muted hover:bg-muted/80 text-foreground border-border"
                   }`}
                 >
-                  {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+                  {isListening ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4 opacity-70" />}
                 </button>
 
                 <input
@@ -494,7 +1014,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-                  placeholder="Pergunte ao paciente ou fale com o examinador..."
+                  placeholder={handsFreeMode ? "Modo Viva-Voz ouvindo você... (ou digite aqui se preferir)" : "Pergunte ao paciente ou fale com o examinador..."}
                   className="flex-1 bg-muted/50 border border-border rounded-xl px-3.5 py-2.5 text-xs md:text-sm focus:outline-none focus:border-primary"
                 />
 
@@ -523,6 +1043,16 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                   Exame Físico
                 </button>
                 <button
+                  onClick={() => setActiveTab("procedures")}
+                  className={`flex-1 py-2.5 text-xs font-bold text-center border-b-2 transition-colors ${
+                    activeTab === "procedures"
+                      ? "border-primary text-primary bg-background"
+                      : "border-transparent text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  Manequim & E-FAST
+                </button>
+                <button
                   onClick={() => setActiveTab("labs")}
                   className={`flex-1 py-2.5 text-xs font-bold text-center border-b-2 transition-colors ${
                     activeTab === "labs"
@@ -540,7 +1070,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                       : "border-transparent text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  Conduta / Prescrição
+                  Prescrição & Conduta
                 </button>
               </div>
 
@@ -593,7 +1123,25 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                   </div>
                 )}
 
-                {/* ABA 2: EXAMES COMPLEMENTARES */}
+                {/* ABA 2: MANEQUIM INTERATIVO & E-FAST */}
+                {activeTab === "procedures" && (
+                  <div className="space-y-4">
+                    {sessionId ? (
+                      <ProcedureMannequin
+                        sessionId={sessionId}
+                        elapsedSeconds={(station.duration_seconds || 480) - timeLeft}
+                        onProcedureExecuted={handleProcedureExecuted}
+                        isLoading={isLoading}
+                      />
+                    ) : (
+                      <div className="p-4 text-center text-muted-foreground text-xs">
+                        Iniciando sessão do manequim...
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* ABA 3: EXAMES COMPLEMENTARES */}
                 {activeTab === "labs" && (
                   <div className="space-y-4">
                     <span className="text-muted-foreground font-semibold block">
@@ -626,25 +1174,36 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                   </div>
                 )}
 
-                {/* ABA 3: CONDUTA E PRESCRIÇÃO */}
+                {/* ABA 4: PRANCHETA DE PRESCRIÇÃO E CONDUTA VERBAL */}
                 {activeTab === "conduct" && (
-                  <div className="space-y-3">
-                    <span className="text-muted-foreground font-semibold block">
-                      Verbalização de Conduta e Prescrição de Emergência:
-                    </span>
-                    <textarea
-                      value={conductText}
-                      onChange={(e) => setConductText(e.target.value)}
-                      placeholder="Ex: Prescrevo monitorização contínua, acesso venoso calibroso, AAS 300mg mastigável + Ticagrelor 180mg e aciono a hemodinâmica para angioplastia primária imediata..."
-                      className="w-full h-44 p-3 bg-muted/40 border border-border rounded-xl text-xs focus:outline-none focus:border-primary resize-none leading-relaxed"
-                    />
-                    <button
-                      onClick={handleFinishExam}
-                      disabled={isLoading || !conductText.trim()}
-                      className="w-full py-2.5 rounded-xl font-bold bg-primary text-primary-foreground hover:bg-primary/90 text-xs shadow-sm transition-transform active:scale-98"
-                    >
-                      Registrar Conduta e Concluir Prova
-                    </button>
+                  <div className="space-y-4">
+                    {sessionId && (
+                      <PrescriptionPad
+                        sessionId={sessionId}
+                        elapsedSeconds={(station.duration_seconds || 480) - timeLeft}
+                        onPrescriptionSubmitted={handlePrescriptionSubmitted}
+                        isLoading={isLoading}
+                      />
+                    )}
+
+                    <div className="pt-3 border-t border-border space-y-2">
+                      <span className="text-muted-foreground font-semibold block text-[11px]">
+                        Verbalização Final & Conclusão de Prova (Resumo da Conduta):
+                      </span>
+                      <textarea
+                        value={conductText}
+                        onChange={(e) => setConductText(e.target.value)}
+                        placeholder="Ex: Confirmo monitorização contínua, paciente estabilizado com a prescrição acima e indico laparotomia exploradora imediata..."
+                        className="w-full h-24 p-3 bg-muted/40 border border-border rounded-xl text-xs focus:outline-none focus:border-primary resize-none leading-relaxed"
+                      />
+                      <button
+                        onClick={handleFinishExam}
+                        disabled={isLoading || !conductText.trim()}
+                        className="w-full py-2.5 rounded-xl font-bold bg-primary text-primary-foreground hover:bg-primary/90 text-xs shadow-sm transition-transform active:scale-98"
+                      >
+                        Registrar Conduta e Concluir Prova
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -711,6 +1270,12 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
               </ul>
             </div>
           )}
+
+          {/* Radar de Competências Clínicas & Linha do Tempo Beira-Leito (Post-Mortem) */}
+          <OscePostMortemAndRadar 
+            timeline={report.timeline_post_mortem}
+            radar={report.competency_radar}
+          />
 
           {/* Tabela do Barema Item a Item */}
           <div className="space-y-3">

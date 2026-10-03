@@ -797,6 +797,8 @@ export interface OsceFinishResponse {
   preceptor_feedback: OscePreceptorFeedback;
   shock_cards: OsceShockCard[];
   elapsed_seconds: number;
+  timeline_post_mortem?: OsceTimelinePostMortem;
+  competency_radar?: OsceCompetencyRadar;
 }
 
 export interface OsceReportResponse {
@@ -819,6 +821,166 @@ export interface OsceReportResponse {
   critical_warnings: string[];
   preceptor_feedback: OscePreceptorFeedback;
   transcript: OsceTranscriptItem[];
+  timeline_post_mortem?: OsceTimelinePostMortem;
+  competency_radar?: OsceCompetencyRadar;
 }
+
+export interface OsceSpokenQueueItem {
+  speaker: "examinador" | "paciente";
+  text: string;
+}
+
+export interface OsceDispatchSpeechResponse {
+  transcription: string;
+  actions_executed: Array<{
+    action_type: string;
+    target: string;
+    examiner_message: string;
+    payload: Record<string, unknown>;
+    elapsed_seconds: number;
+  }>;
+  is_patient_dialogue: boolean;
+  patient_reply: string;
+  spoken_queue: OsceSpokenQueueItem[];
+  transcript: OsceTranscriptItem[];
+  elapsed_seconds: number;
+  guided_feedback?: OsceLiveFeedback;
+}
+
+export interface OsceDrugItem {
+  id: string;
+  name: string;
+  category: string;
+  default_dose: string;
+  default_unit: string;
+  routes: string[];
+  indications: string;
+  hints?: string;
+}
+
+export interface OscePrescriptionItem {
+  drug_name: string;
+  dose: string;
+  unit: string;
+  route: string;
+  notes?: string;
+}
+
+export interface OscePrescribeResponse {
+  success: boolean;
+  prescription_text: string;
+  examiner_message: string;
+  matched_criteria: string[];
+  spoken_queue: OsceSpokenQueueItem[];
+  elapsed_seconds: number;
+  guided_feedback?: OsceLiveFeedback;
+}
+
+export interface OsceProcedureCatalogItem {
+  id: string;
+  type: string;
+  name: string;
+  site: string;
+  body_region: string;
+  description: string;
+}
+
+export interface OsceProcedureResponse {
+  success: boolean;
+  procedure_type: string;
+  anatomical_site: string;
+  findings: string;
+  examiner_message: string;
+  spoken_queue: OsceSpokenQueueItem[];
+  elapsed_seconds: number;
+  guided_feedback?: OsceLiveFeedback;
+}
+
+export interface OsceLiveChecklistItem {
+  id: string;
+  title: string;
+  category: string;
+  weight: number;
+  score_earned: number;
+  completed: boolean;
+  status: "cumprido_total" | "cumprido_parcial" | "nao_cumprido";
+  matched_keywords: string[];
+}
+
+export interface OsceLiveFeedback {
+  mode: "blind" | "guided";
+  current_score: number;
+  max_score: number;
+  raw_earned: number;
+  raw_weight: number;
+  percentage: number;
+  items_status: OsceLiveChecklistItem[];
+  proactive_hints: string[];
+}
+
+export interface OsceTimelineEvent {
+  time_seconds: number;
+  time_formatted: string;
+  event_type: "start" | "vitals" | "physical_exam" | "lab_imaging" | "procedure" | "prescription" | "anamnese" | "conduct" | "hesitacao" | "omissao";
+  title: string;
+  description: string;
+  status: "timely" | "neutral" | "delayed" | "critical_gap";
+  feedback: string;
+  score_impact: string;
+}
+
+export interface OsceTimelineSummary {
+  total_events: number;
+  timely_count: number;
+  delayed_count: number;
+  critical_gaps_count: number;
+  door_to_first_action_seconds: number;
+  door_to_ecg_seconds: number | null;
+  pace_label: string;
+}
+
+export interface OsceTimelinePostMortem {
+  events: OsceTimelineEvent[];
+  summary: OsceTimelineSummary;
+}
+
+export interface OsceCompetencyDimension {
+  key: string;
+  name: string;
+  score_earned: number;
+  score_max: number;
+  percentage: number;
+  level: "Excelente" | "Satisfatório" | "Necessita Atenção";
+  description: string;
+  feedback: string;
+}
+
+export interface OsceCompetencyRadar {
+  overall_average: number;
+  strengths: string[];
+  weaknesses: string[];
+  dimensions: OsceCompetencyDimension[];
+}
+
+export interface OsceGenerateStationPayload {
+  area?: string;
+  subtema?: string;
+  difficulty?: "easy" | "medium" | "hard";
+  adaptative?: boolean;
+}
+
+export interface OsceGenerateStationResponse {
+  success: boolean;
+  station_id: number;
+  code: string;
+  title: string;
+  area: string;
+  subtema: string;
+  institution: string;
+  difficulty: string;
+  message: string;
+}
+
+
 
 

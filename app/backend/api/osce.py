@@ -1984,24 +1984,785 @@ def get_osce_station(db, station_id: int, include_barema: bool = False) -> Optio
     return station
 
 
+# =========================================================================
+# VETOR 5: MOTOR DE ESTAÇÕES INÉDITAS INFINITAS (IA DA FMRP-USP)
+# =========================================================================
+
+FMRP_USP_TEMPLATES: list[dict[str, Any]] = [
+    {
+        "area": "Clínica Médica",
+        "subtema": "Hipercalemia Grave e Eletrocardiograma",
+        "title_template": "Hipercalemia Grave com Alteração Eletrocardiográfica no HC-UE",
+        "hospital_unit": "SALA VERMELHA / UNIDADE DE EMERGÊNCIA (HC-UE FMRP-USP)",
+        "patient_names": ["Sebastião Ferreira", "Antônio Carlos dos Santos", "Benedito Prado"],
+        "age_range": (52, 68),
+        "gender": "masculino",
+        "chief_complaint": "Doutor, tô com as pernas pesadas parecendo chumbo... minhas mãos estão formigando e meu peito tá batendo esquisito...",
+        "history": "Portador de DRC estágio 4/5 não dialítica e ICC. Fez uso inadvertido de Cetoprofeno para dor lombar e ingeriu carambola nos últimos dias.",
+        "vitals": {
+            "pa": "150x90 mmHg",
+            "fc": "46 bpm (bradicardia sinusal importante)",
+            "fr": "20 irpm",
+            "sato2": "96% em ar ambiente",
+            "temp": "36.4 °C"
+        },
+        "findings": {
+            "geral": "Lúcido, orientado, hipocorado 1+/4+, afebril, eupnéico em repouso. Fraqueza muscular simétrica proximal em MMII (grau 3/5).",
+            "cardiovascular": "Bradicardia rítmica a 46 bpm, bulhas normofonéticas sem sopros, pulsos radiais cheios porém lentos.",
+            "neurologico": "Parestesias periorais e em pontas dos dedos das mãos e pés, hiporreflexia patelar bilateral sem déficit focal."
+        },
+        "lab_imaging": {
+            "ecg": {
+                "title": "Eletrocardiograma de 12 Derivações de Emergência",
+                "available": True,
+                "result_text": "Bradicardia sinusal a 46 bpm. Ondas T apiculadas, simétricas e de base estreita ('em tenda') difusas, achatamento da onda P e alargamento de QRS (130 ms). Alto risco iminente de assistolia ou fibrilação ventricular.",
+                "image_url": "/images/osce/ecg_hipercalemia.png"
+            },
+            "eletrolitos_gaso": {
+                "title": "Gasometria Venosa e Eletrólitos Séricos Urgentes",
+                "available": True,
+                "result_text": "Potássio (K+): 7.9 mEq/L (Normal: 3.5 a 5.0). Sódio: 136 mEq/L. Cálcio Iônico: 1.15 mmol/L. pH: 7.28, HCO3: 16 mEq/L, Ureia: 142 mg/dL, Creatinina: 4.8 mg/dL."
+            }
+        },
+        "barema_items": [
+            {
+                "id": "item_1",
+                "title": "Reconhecimento Imediato de Hipercalemia Grave com Instabilidade Eletrocardiográfica",
+                "description": "Correlaciona a clínica de fraqueza/parestesia com as ondas T em tenda e bradicardia do ECG, verbalizando emergência cardiológica.",
+                "weight": 1.5,
+                "category": "diagnostico",
+                "keywords": ["hipercalemia", "hiperpotassemia", "onda t em tenda", "onda t apiculada", "emergência"]
+            },
+            {
+                "id": "item_2",
+                "title": "Estabilização de Membrana com Gluconato de Cálcio 10% IV (1ª Medida Obrigatória)",
+                "description": "Prescreve Gluconato de Cálcio 10% 1 ampola (10 ml) IV lento em 3 a 5 minutos com monitorização cardíaca contínua.",
+                "weight": 2.5,
+                "category": "conduta_tratamento",
+                "keywords": ["gluconato de cálcio", "estabilização de membrana", "10%", "1 ampola", "iv lento"]
+            },
+            {
+                "id": "item_3",
+                "title": "Prescrição de Solução Polarizante (Glicoinsulina) para Shift Intracelular",
+                "description": "Prescreve Insulina Regular 10 UI associada a Glicose 50% (50g = 100ml) IV em 30 minutos para forçar entrada de potássio nas células.",
+                "weight": 2.0,
+                "category": "conduta_tratamento",
+                "keywords": ["glicoinsulina", "insulina regular", "glicose 50%", "solução polarizante", "shift"]
+            },
+            {
+                "id": "item_4",
+                "title": "Medidas Adjuvantes de Shift: Nebulização com Beta-2 Agonista e Bicarbonato",
+                "description": "Prescreve nebulização com Salbutamol/Fenoterol em altas doses (10-20 gotas) e/ou Bicarbonato de Sódio 8,4% se acidose metabólica.",
+                "weight": 1.5,
+                "category": "conduta_tratamento",
+                "keywords": ["salbutamol", "fenoterol", "nebulização", "beta-2", "bicarbonato"]
+            },
+            {
+                "id": "item_5",
+                "title": "Medidas de Esfoliação / Eliminação: Resinas de Troca e Diurético de Alça",
+                "description": "Prescreve Furosemida IV se paciente não anúrico e resina de troca (Poliestirenossulfonato de cálcio / Sorcal 30g VO).",
+                "weight": 1.0,
+                "category": "conduta_tratamento",
+                "keywords": ["furosemida", "sorcal", "resina de troca", "eliminação"]
+            },
+            {
+                "id": "item_6",
+                "title": "Indicação e Contato Imediato com a Nefrologia para Hemodiálise de Urgência",
+                "description": "Aciona a equipe de Nefrologia do HC-UE para passagem de cateter de hemodiálise (Shilley) e sessão dialítica de emergência.",
+                "weight": 1.5,
+                "category": "conduta_tratamento",
+                "keywords": ["hemodiálise", "nefrologia", "urgência dialítica", "cateter de diálise"]
+            }
+        ],
+        "critical_errors": [
+            "Administrar Insulina Regular pura sem glicose simultânea (risco de hipoglicemia grave)",
+            "Esquecer a administração de Gluconato de Cálcio em paciente com alterações eletrocardiográficas",
+            "Prescrever diurético poupador de potássio (Espironolactona)"
+        ]
+    },
+    {
+        "area": "Clínica Médica",
+        "subtema": "Intoxicação Exógena e Síndrome Colinérgica",
+        "title_template": "Intoxicação por Organofosforados na Região de Ribeirão Preto",
+        "hospital_unit": "SALA DE URGÊNCIA / UNIDADE DE EMERGÊNCIA (HC-UE FMRP-USP)",
+        "patient_names": ["Valdir Aparecido", "José Donizete", "Marcos Roberto"],
+        "age_range": (38, 55),
+        "gender": "masculino",
+        "chief_complaint": "Tô afogando... na minha própria baba... minha vista tá escura... não consigo puxar o ar...",
+        "history": "Trabalhador rural da lavoura de cana/laranja da região metropolitana de Ribeirão Preto. Deu entrada trazido por colegas após pulverizar inseticida sem equipamento de proteção.",
+        "vitals": {
+            "pa": "100x65 mmHg",
+            "fc": "50 bpm (bradicardia)",
+            "fr": "34 irpm com esforço respiratório",
+            "sato2": "87% em ar ambiente",
+            "temp": "35.8 °C"
+        },
+        "findings": {
+            "geral": "Agitado, sudorético difuso, salivação abundante escorrendo pela comissura labial, lacrimejamento e fasciculações musculares visíveis em tronco e face.",
+            "respiratorio": "Roncos e estertores crepitantes difusos em ambos os hemitórax ('pulmão encharcado' por broncorreia maciça), sibilos expiratórios.",
+            "ocular": "Miose bilateral puntiforme acentuada não reativa.",
+            "gastrointestinal": "Ruídos hidroaéreos hiperativos, diarreia e náuseas."
+        },
+        "lab_imaging": {
+            "gasometria_arterial": {
+                "title": "Gasometria Arterial sob Máscara de O2",
+                "available": True,
+                "result_text": "pH 7.24, pO2 58 mmHg, pCO2 49 mmHg, HCO3 20 mEq/L, SatO2 88%. Insuficiência respiratória mista por broncorreia maciça e broncoespasmo colinérgico."
+            }
+        },
+        "barema_items": [
+            {
+                "id": "item_1",
+                "title": "Proteção Individual da Equipe e Descontaminação Rápida do Paciente",
+                "description": "Exige uso de luvas, máscara e avental impermeável; retira imediatamente roupas contaminadas do trabalhador e lava a pele com água e sabão.",
+                "weight": 1.5,
+                "category": "conduta_tratamento",
+                "keywords": ["epi", "descontaminação", "retirar roupas", "lavagem", "paramentação"]
+            },
+            {
+                "id": "item_2",
+                "title": "Diagnóstico Clínico da Síndrome Colinérgica Aguda por Inibidores da Acetilcolinesterase",
+                "description": "Reconhece a tríade clássica muscarínica: miose puntiforme, broncorreia com estertores difusos e sialorreia associada a fasciculações nicotínicas.",
+                "weight": 2.0,
+                "category": "diagnostico",
+                "keywords": ["síndrome colinérgica", "organofosforado", "carbamato", "miose", "broncorreia"]
+            },
+            {
+                "id": "item_3",
+                "title": "Prescrição Imediata de Atropina IV em Doses Dobradas (Atropinização)",
+                "description": "Prescreve Atropina 1 a 2 mg IV a cada 3 a 5 minutos, dobrando a dose progressivamente até atingir os critérios de atropinização (secar secreções pulmonares).",
+                "weight": 2.5,
+                "category": "conduta_tratamento",
+                "keywords": ["atropina", "atropinização", "1 mg", "2 mg", "secar secreção", "iv"]
+            },
+            {
+                "id": "item_4",
+                "title": "Manejo Ventilatório: Oxigenoterapia e Aspiração das Vias Aéreas",
+                "description": "Instala oxigênio em máscara com reservatório a 10-15 L/min e realiza aspiração frequente de secreções orotraqueais.",
+                "weight": 1.5,
+                "category": "exame_fisico",
+                "keywords": ["oxigênio", "máscara com reservatório", "aspiração", "vias aéreas"]
+            },
+            {
+                "id": "item_5",
+                "title": "Prescrição de Oximas (Pralidoxima) como Reativador da Acetilcolinesterase",
+                "description": "Prescreve Pralidoxima (Contrathion) 1 a 2g IV em infusão de 30 minutos para reverter os efeitos nicotínicos (fraqueza e fasciculações).",
+                "weight": 1.5,
+                "category": "conduta_tratamento",
+                "keywords": ["pralidoxima", "contrathion", "oxima", "reativador"]
+            },
+            {
+                "id": "item_6",
+                "title": "Encaminhamento e Vaga de UTI com Monitorização Contínua",
+                "description": "Solicita leito intensivo no HC-UE com vigilância de recidiva colinérgica e síndrome intermediária.",
+                "weight": 1.0,
+                "category": "conduta_tratamento",
+                "keywords": ["uti", "leito de uti", "síndrome intermediária", "vigilância"]
+            }
+        ],
+        "critical_errors": [
+            "Suspender ou atrasar a Atropina por medo de taquicardia (a meta da atropinização é a resolução da broncorreia, não a frequência cardíaca)",
+            "Prescrever Succinilcolina para intubação orotraqueal (metabolizada pela colinesterase, causando bloqueio neuromuscular irreversível)"
+        ]
+    },
+    {
+        "area": "Cirurgia Geral",
+        "subtema": "Abdome Agudo Obstrutivo",
+        "title_template": "Volvo de Sigmoide em Paciente Chagásico no HC-UE",
+        "hospital_unit": "SALA DE EMERGÊNCIA CIRÚRGICA (HC-UE FMRP-USP)",
+        "patient_names": ["Benedito de Paula", "Geraldo Magela", "Sebastião Vicente"],
+        "age_range": (64, 78),
+        "gender": "masculino",
+        "chief_complaint": "Doutor, minha barriga tá inchando que nem um tambor... faz 4 dias que não sai nem um pingo de ar nem fezes...",
+        "history": "Natural de Minas Gerais, residente na região de Ribeirão Preto. Portador de Megaesôfago e Megacólon Chagásico de longa data.",
+        "vitals": {
+            "pa": "115x75 mmHg",
+            "fc": "98 bpm",
+            "fr": "22 irpm",
+            "sato2": "96%",
+            "temp": "36.8 °C"
+        },
+        "findings": {
+            "geral": "Fácies de desconforto, desidratado 2+/4+, lúcido e afebril.",
+            "abdome": "Abdome acentuadamente distendido, assimétrico com abaulamento oblíquo em flanco esquerdo e fossa ilíaca, timpanismo metálico difuso à percussão, ruídos hidroaéreos com timbre de luta metálica. Sem sinais francos de peritonite (abdome indolor à descompressão brusca).",
+            "toque_retal": "Ampola retal vazia, sem fezes, sem massas palpáveis ou sangue na luva."
+        },
+        "lab_imaging": {
+            "rx_abdome": {
+                "title": "Radiografia Simples de Abdome (Rotina de Abdome Agudo)",
+                "available": True,
+                "result_text": "Alça colônica maciçamente dilatada em forma de 'U' invertido com as pontas voltadas para a pelve ('sinal do grão de café' ou 'sinal da câmara de ar dupla'). Ausência de pneumoperitônio.",
+                "image_url": "/images/osce/rx_volvo_sigmoide.png"
+            }
+        },
+        "barema_items": [
+            {
+                "id": "item_1",
+                "title": "Suspeita Diagnóstica de Volvo de Sigmoide em Contexto de Doença de Chagas",
+                "description": "Correlaciona a parada de fezes e flatos com a história chagásica e distensão assimétrica, verbalizando hipótese de volvo de sigmoide.",
+                "weight": 1.5,
+                "category": "diagnostico",
+                "keywords": ["volvo", "sigmoide", "chagas", "megacólon", "obstrução intestinal"]
+            },
+            {
+                "id": "item_2",
+                "title": "Realização Obrigatória do Toque Retal",
+                "description": "Executa o exame proctológico identificando a ampola retal vazia e descartando fecaloma ou neoplasia baixa.",
+                "weight": 1.5,
+                "category": "exame_fisico",
+                "keywords": ["toque retal", "ampola vazia", "fecaloma", "proctológico"]
+            },
+            {
+                "id": "item_3",
+                "title": "Medidas de Suporte Inicial: Jejum, Sonda Nasogástrica e Hidratação Venosa",
+                "description": "Prescreve jejum absoluto, passagem de Sonda Nasogástrica aberta para descompressão e expansão com Ringer Lactato ou SF 0,9%.",
+                "weight": 2.0,
+                "category": "conduta_tratamento",
+                "keywords": ["jejum", "sonda nasogástrica", "sng", "hidratação venosa", "cristaloide"]
+            },
+            {
+                "id": "item_4",
+                "title": "Solicitação e Interpretação Precisa da Radiografia de Abdome",
+                "description": "Reconhece o clássico 'sinal do grão de café' ou 'U invertido' característico do volvo de sigmoide na radiografia simples.",
+                "weight": 2.0,
+                "category": "exames_complementares",
+                "keywords": ["rx", "grão de café", "u invertido", "radiografia simples"]
+            },
+            {
+                "id": "item_5",
+                "title": "Indicação da Descompressão Endoscópica (Colonoscopia / Sigmoidoscopia Rígida)",
+                "description": "Indica descompressão endoscópica inicial como medida de 1ª linha devido à ausência de sinais de peritonite ou necrose.",
+                "weight": 2.0,
+                "category": "conduta_tratamento",
+                "keywords": ["descompressão endoscópica", "colonoscopia", "sigmoidoscopia", "desobstrução"]
+            },
+            {
+                "id": "item_6",
+                "title": "Planejamento da Cirurgia Eletiva Posterior (Sigmoidectomia a Duhamel / Haddad)",
+                "description": "Orienta a necessidade de cirurgia definitiva programada durante a mesma internação para prevenir recidiva do volvo.",
+                "weight": 1.0,
+                "category": "conduta_tratamento",
+                "keywords": ["cirurgia definitiva", "sigmoidectomia", "duhamel", "recidiva"]
+            }
+        ],
+        "critical_errors": [
+            "Prescrever laxativos, óleo mineral ou procinéticos para o paciente com abdome agudo obstrutivo",
+            "Tentar descompressão endoscópica se houver sinais francos de peritonite (dor à descompressão brusca ou febre)"
+        ]
+    },
+    {
+        "area": "Pediatria",
+        "subtema": "Emergências Neurológicas Pediátricas",
+        "title_template": "Estado de Mal Epiléptico Febril no HC-Criança Ribeirão Preto",
+        "hospital_unit": "SALA DE EMERGÊNCIA PEDIÁTRICA (HC-CRIANÇA FMRP-USP)",
+        "patient_names": ["Enzo Gabriel", "Mateus Henrique", "Arthur Miguel"],
+        "age_range": (2, 3),
+        "gender": "masculino",
+        "chief_complaint": "Doutor, acode meu filho! Ele tá tremendo tudo sem parar faz mais de 10 minutos e tá queimando em brasa!",
+        "history": "Lactente de 2 anos, sem histórico prévio de epilepsia. Quadro de febre alta há 24h por infecção de vias aéreas, iniciou crise convulsiva tônico-clônica generalizada contínua há 12 minutos.",
+        "vitals": {
+            "pa": "95x60 mmHg",
+            "fc": "155 bpm",
+            "fr": "36 irpm",
+            "sato2": "89% em ar ambiente",
+            "temp": "39.4 °C",
+            "hgt": "108 mg/dL"
+        },
+        "findings": {
+            "geral": "Crise convulsiva tônico-clônica generalizada ativa durante a avaliação, sialorreia espumosa, cianose perioral discreta, hipertermia ao toque.",
+            "respiratorio": "Roncos de transmissão por secreções em orofaringe, tiragem intercostal discreta.",
+            "neurologico": "Movimentos clônicos síncronos dos 4 membros, desvio do olhar para cima, sem abertura ocular ao chamado."
+        },
+        "lab_imaging": {},
+        "barema_items": [
+            {
+                "id": "item_1",
+                "title": "Medidas Imediatas de Suporte Básico à Vida (Posicionamento e Vias Aéreas)",
+                "description": "Posiciona a criança em decúbito lateral, protege contra traumas, não insere objetos na boca e aspira vias aéreas.",
+                "weight": 1.5,
+                "category": "exame_fisico",
+                "keywords": ["decúbito lateral", "proteger", "vias aéreas", "não colocar objeto", "aspirar"]
+            },
+            {
+                "id": "item_2",
+                "title": "Oxigenioterapia sob Máscara de O2 e Checagem da Glicemia Capilar (HGT)",
+                "description": "Oferta O2 sob máscara com reservatório e afere HGT imediato para excluir hipoglicemia como causa da crise.",
+                "weight": 1.5,
+                "category": "exame_fisico",
+                "keywords": ["oxigênio", "máscara", "hgt", "glicemia capilar", "hipoglicemia"]
+            },
+            {
+                "id": "item_3",
+                "title": "Prescrição de Benzodiazepínico de 1ª Linha com Dose Pediátrica Correta",
+                "description": "Prescreve Diazepam 0,2 a 0,3 mg/kg IV lento (ou Midazolam 0,2 mg/kg IM/nasal/retal) para cessar a crise.",
+                "weight": 2.5,
+                "category": "conduta_tratamento",
+                "keywords": ["diazepam", "midazolam", "0.2 mg/kg", "0.3 mg/kg", "benzodiazepínico"]
+            },
+            {
+                "id": "item_4",
+                "title": "Reavaliação e Repetição do Benzodiazepínico após 5 Minutos se Persistência",
+                "description": "Cronometra o tempo e prescreve segunda dose do benzodiazepínico caso a crise não cesse em 5 minutos.",
+                "weight": 1.5,
+                "category": "conduta_tratamento",
+                "keywords": ["repetir", "5 minutos", "segunda dose"]
+            },
+            {
+                "id": "item_5",
+                "title": "Prescrição de Fenitoína IV (2ª Linha) para Estado de Mal Epiléptico",
+                "description": "Prescreve Fenitoína 20 mg/kg IV diluída em SF 0,9% em infusão lenta de 20 minutos com monitorização eletrocardiográfica.",
+                "weight": 2.0,
+                "category": "conduta_tratamento",
+                "keywords": ["fenitoína", "20 mg/kg", "segunda linha", "infusão lenta"]
+            },
+            {
+                "id": "item_6",
+                "title": "Manejo Térmico e Investigação Etiológica do Foco Infeccioso",
+                "description": "Prescreve antitérmico (Dipirona 15 mg/kg) e inicia exame físico direcionado aos focos comuns (otoscopia, oroscopia e sinais meníngeos).",
+                "weight": 1.0,
+                "category": "conduta_tratamento",
+                "keywords": ["dipirona", "antitérmico", "otoscopia", "oroscopia", "foco"]
+            }
+        ],
+        "critical_errors": [
+            "Colocar abaixador de língua ou dedos na boca da criança durante a crise convulsiva",
+            "Fazer infusão rápida em bólus de fenitoína (alto risco de bradiarritmia e PCR)",
+            "Não checar a glicemia capilar na convulsão pediátrica"
+        ]
+    },
+    {
+        "area": "Ginecologia e Obstetrícia",
+        "subtema": "Hemorragia da 2ª Metade da Gestação",
+        "title_template": "Descolamento Prematuro de Placenta (DPP) no Hospital Mater",
+        "hospital_unit": "CENTRO OBSTÉTRICO / SALA DE PARTO (HOSPITAL MATER FMRP-USP)",
+        "patient_names": ["Camila Rodrigues", "Priscila Nogueira", "Patrícia Barbosa"],
+        "age_range": (28, 36),
+        "gender": "feminino",
+        "chief_complaint": "Doutor, minha barriga tá dura que nem pedra... uma dor insuportável que não passa... e tá saindo um sangue escuro...",
+        "history": "Gestante de 34 semanas, secundigesta, hipertensa crônica em uso irregular de Metildopa. Deu entrada com dor súbita e sangramento genital escuro moderado há 1 hora.",
+        "vitals": {
+            "pa": "165x105 mmHg",
+            "fc": "112 bpm",
+            "fr": "24 irpm",
+            "sato2": "97%",
+            "bcf": "104 bpm (bradicardia fetal sustentada)"
+        },
+        "findings": {
+            "geral": "Ansiosa, fácies de intensa dor, sudorética, taquicárdica.",
+            "exame_obstetrico": "Hipertonia uterina mantida ('útero de madeira / lehn'), fundo uterino 34 cm doloroso difusamente, contrações espásticas contínuas sem período de relaxamento.",
+            "exame_especular": "Sangramento genital moderado a volumoso de cor vermelho-escura com coágulos saindo pelo colo uterino."
+        },
+        "lab_imaging": {},
+        "barema_items": [
+            {
+                "id": "item_1",
+                "title": "Diagnóstico Clínico Imediato de Descolamento Prematuro de Placenta (DPP)",
+                "description": "Reconhece o quadro cardinal: dor abdominal súbita intensa, hipertonia uterina contínua, sangramento escuro e bradicardia fetal.",
+                "weight": 2.0,
+                "category": "diagnostico",
+                "keywords": ["dpp", "descolamento prematuro de placenta", "útero de madeira", "hipertonia"]
+            },
+            {
+                "id": "item_2",
+                "title": "Posicionamento em DLE, Oxigênio e Dois Acessos Venosos Calibrosos",
+                "description": "Instala a gestante em Decúbito Lateral Esquerdo para descompressão da veia cava, oferta O2 e punciona 2 acessos venosos calibrosos (Jelco 14/16).",
+                "weight": 1.5,
+                "category": "conduta_tratamento",
+                "keywords": ["decúbito lateral esquerdo", "dle", "oxigênio", "acesso calibroso", "veia cava"]
+            },
+            {
+                "id": "item_3",
+                "title": "Amniotomia Precoce (Rotura Artificial das Membranas Ovulares)",
+                "description": "Indica e realiza amniotomia imediata para reduzir a pressão intrauterina, diminuir o extravasamento hemático e descompressão vascular.",
+                "weight": 1.5,
+                "category": "exame_fisico",
+                "keywords": ["amniotomia", "romper bolsa", "rompimento de membranas", "descompressão"]
+            },
+            {
+                "id": "item_4",
+                "title": "Indicação Imediata de Parto pela Via Mais Rápida (Cesariana de Emergência)",
+                "description": "Diante do sofrimento fetal agudo (BCF 104 bpm) e colo fechado, aciona a equipe cirúrgica e anestésica para cesariana imediata.",
+                "weight": 2.5,
+                "category": "conduta_tratamento",
+                "keywords": ["cesariana de emergência", "cesárea", "parto imediato", "sofrimento fetal"]
+            },
+            {
+                "id": "item_5",
+                "title": "Prevenção da Atonia Uterina e Útero de Couvelaire",
+                "description": "Prescreve Ocitocina IV imediata e Ácido Tranexâmico, alertando sobre o risco elevado de apoplexia uteroplacentária (útero de Couvelaire).",
+                "weight": 1.5,
+                "category": "conduta_tratamento",
+                "keywords": ["ocitocina", "útero de couvelaire", "ácido tranexâmico", "hemorragia pós-parto"]
+            },
+            {
+                "id": "item_6",
+                "title": "Solicitação de Tipagem, Coagulograma e Reserva de Hemoderivados",
+                "description": "Pede tipagem ABO/Rh, tempo de coagulação e reserva de concentrado de hemácias pelo risco iminente de coagulopatia de consumo (CIVD).",
+                "weight": 1.0,
+                "category": "exames_complementares",
+                "keywords": ["tipagem sanguínea", "coagulograma", "reserva de sangue", "civd"]
+            }
+        ],
+        "critical_errors": [
+            "Prescrever tocolíticos para tentar inibir as contrações no DPP (contraindicação absoluta)",
+            "Atrasar o encaminhamento para cesariana para aguardar resultado de exames laboratoriais ou ultrassom"
+        ]
+    },
+    {
+        "area": "Medicina Preventiva",
+        "subtema": "Arboviroses e Vigilância em Saúde",
+        "title_template": "Dengue com Sinais de Alarme no CSE Sumarezinho Ribeirão Preto",
+        "hospital_unit": "CENTRO DE SAÚDE ESCOLA SUMAREZINHO (CSE FMRP-USP)",
+        "patient_names": ["Lucas Henrique", "Felipe Augusto", "Guilherme Santos"],
+        "age_range": (21, 32),
+        "gender": "masculino",
+        "chief_complaint": "Doutor, a febre passou ontem, mas hoje minha barriga começou a doer demais, tô vomitando sem parar e quando levanto minha vista escurece...",
+        "history": "Morador do bairro Ipiranga em Ribeirão Preto. 5º dia de doença, com história de febre alta, mialgia e cefaleia retro-orbitária. Hoje apresentou defervescência com início de dor abdominal e tontura.",
+        "vitals": {
+            "pa": "Sentado: 110x70 mmHg | Em pé: 85x55 mmHg (Hipotensão postural)",
+            "fc": "104 bpm",
+            "fr": "20 irpm",
+            "sato2": "98%",
+            "temp": "36.2 °C (defervescência)"
+        },
+        "findings": {
+            "geral": "Letárgico, desidratado 2+/4+, extremidades frias, tempo de enchimento capilar de 2.5 segundos.",
+            "abdome": "Dor intensa à palpação profunda de hipocôndrio direito com fígado palpável a 3 cm do RCD (hepatomegalia dolorosa), sem irritação peritoneal.",
+            "pele": "Exantema maculopapular discreto em tronco, prova do laço positiva com 24 petéquias no quadrado de 2,5 cm."
+        },
+        "lab_imaging": {
+            "hemograma_urgente": {
+                "title": "Hemograma Completo com Hematócrito de Urgência",
+                "available": True,
+                "result_text": "Hematócrito (Ht): 52% (Concentrado - aumento > 20% do basal). Hemoglobina: 16.8 g/dL. Leucócitos: 2.800/mm³ com linfocitose atípica. Plaquetas: 48.000/mm³ (Trombocitopenia moderada a grave)."
+            }
+        },
+        "barema_items": [
+            {
+                "id": "item_1",
+                "title": "Reconhecimento da Fase Crítica da Dengue na Defervescência",
+                "description": "Identifica que o término da febre (5º dia) marca a janela de maior risco de extravasamento plasmático e choque da dengue.",
+                "weight": 1.5,
+                "category": "diagnostico",
+                "keywords": ["fase crítica", "defervescência", "extravasamento plasmático", "choque"]
+            },
+            {
+                "id": "item_2",
+                "title": "Classificação Precisa de Risco como Dengue Grupo C (Sinais de Alarme)",
+                "description": "Classifica o caso no Grupo C do Ministério da Saúde pela presença de dor abdominal contínua, vômitos persistentes e hipotensão postural.",
+                "weight": 2.0,
+                "category": "diagnostico",
+                "keywords": ["grupo c", "sinais de alarme", "classificação de risco", "dor abdominal"]
+            },
+            {
+                "id": "item_3",
+                "title": "Prescrição Imediata de Hidratação Venosa Rápida (10 ml/kg na 1ª Hora)",
+                "description": "Prescreve hidratação venosa imediata no CSE com Soro Fisiológico 0,9% ou Ringer Lactato na dose de 10 ml/kg/h em sala de observação.",
+                "weight": 2.5,
+                "category": "conduta_tratamento",
+                "keywords": ["hidratação venosa", "10 ml/kg", "sf 0,9%", "ringer lactato", "primeira hora"]
+            },
+            {
+                "id": "item_4",
+                "title": "Solicitação de Hemograma Urgente e Vigilância do Hematócrito",
+                "description": "Solicita hemograma completo imediato com ênfase na hemoconcentração (Ht > 50%) e contagem plaquetária.",
+                "weight": 1.5,
+                "category": "exames_complementares",
+                "keywords": ["hemograma", "hematócrito", "hemoconcentração", "plaquetas"]
+            },
+            {
+                "id": "item_5",
+                "title": "Contraindicação Expressa de Anti-inflamatórios Não Esteroidais (AINEs) e AAS",
+                "description": "Registra na conduta a contraindicação absoluta de AINEs (Ibuprofeno, Cetoprofeno, Diclofenaco) e AAS pelo risco de sangramento.",
+                "weight": 1.5,
+                "category": "conduta_tratamento",
+                "keywords": ["contraindicar aine", "não usar aine", "sem aas", "ibuprofeno", "sangramento"]
+            },
+            {
+                "id": "item_6",
+                "title": "Notificação Compulsória Imediata no SINAN e Ações de Vigilância Epidemiológica",
+                "description": "Preenche ficha de Notificação Compulsória de Dengue para a Vigilância Epidemiológica de Ribeirão Preto.",
+                "weight": 1.0,
+                "category": "conduta_tratamento",
+                "keywords": ["notificação compulsória", "sinan", "vigilância epidemiológica", "notificar"]
+            }
+        ],
+        "critical_errors": [
+            "Liberar o paciente para casa com hidratação oral sem internação em leito de observação (falta gravíssima)",
+            "Prescrever anti-inflamatório (Ibuprofeno, Nimesulida, Cetoprofeno) ou AAS para paciente com dengue"
+        ]
+    }
+]
+
+
+def generate_osce_station(
+    db,
+    user_id: str,
+    area: Optional[str] = None,
+    subtema: Optional[str] = None,
+    difficulty: str = "hard",
+    adaptative: bool = False
+) -> dict[str, Any]:
+    """
+    Motor de Geração de Estações Inéditas Infinitas com o padrão da FMRP-USP (Ribeirão Preto).
+    - Se adaptative=True ou area=='adaptativo': analisa o histórico do aluno (erros teóricos em attempts ou notas baixas em osce_sessions)
+      para priorizar a fraqueza clínica real.
+    - Constrói cenários de alta complexidade médica nos ambientes reais do complexo FMRP-USP
+      (HC-UE, HC-Criança, Mater, CSE Sumarezinho, UCO).
+    - Persiste a estação na tabela osce_stations com código USP-RP-AI-<hash>.
+    - Retorna os dados completos da estação criada pronta para execução na Arena OSCE.
+    """
+    import random
+    target_area = area
+    target_subtema = subtema
+
+    # 1. Raciocínio Adaptativo: Localiza fraquezas reais do aluno
+    if adaptative or not target_area or target_area.lower() in ["adaptativo", "fraquezas", "auto"]:
+        # Tenta identificar histórico recente de reprovação em OSCE
+        try:
+            low_osce = db.execute("""
+                SELECT st.area, st.subtema, AVG(s.final_score) as avg_score
+                FROM osce_sessions s
+                JOIN osce_stations st ON s.station_id = st.id
+                WHERE s.user_id = ? AND s.status = 'completed'
+                GROUP BY st.area, st.subtema
+                HAVING avg_score < 7.0
+                ORDER BY avg_score ASC
+                LIMIT 1
+            """, (user_id,)).fetchone()
+            if low_osce:
+                target_area = low_osce["area"]
+                target_subtema = low_osce["subtema"]
+        except Exception:
+            pass
+
+        # Se não achou no OSCE, verifica erros na 1ª fase (questões de prova teórica)
+        if not target_area or target_area.lower() in ["adaptativo", "fraquezas", "auto"]:
+            try:
+                worst_topic = db.execute("""
+                    SELECT q.area, q.subtema, COUNT(*) as err_count
+                    FROM attempts a
+                    JOIN questions q ON a.question_id = q.id
+                    WHERE a.is_correct = 0 AND (a.user_id = ? OR a.user_id = 1)
+                    GROUP BY q.area, q.subtema
+                    ORDER BY err_count DESC
+                    LIMIT 1
+                """, (user_id,)).fetchone()
+                if worst_topic:
+                    target_area = worst_topic["area"]
+                    target_subtema = worst_topic["subtema"]
+            except Exception:
+                pass
+
+        # Fallback de seleção aleatória entre as grandes áreas
+        if not target_area or target_area.lower() in ["adaptativo", "fraquezas", "auto"]:
+            areas_catalog = ["Clínica Médica", "Cirurgia Geral", "Pediatria", "Ginecologia e Obstetrícia", "Medicina Preventiva"]
+            target_area = random.choice(areas_catalog)
+
+    # 2. Filtra modelos disponíveis da FMRP-USP
+    matched_templates = [
+        t for t in FMRP_USP_TEMPLATES
+        if _normalize_text(t["area"]) == _normalize_text(target_area)
+    ]
+    if target_subtema:
+        sub_norm = _normalize_text(target_subtema)
+        specific_templates = [t for t in matched_templates if sub_norm in _normalize_text(t["subtema"])]
+        if specific_templates:
+            matched_templates = specific_templates
+
+    if not matched_templates:
+        matched_templates = FMRP_USP_TEMPLATES
+
+    chosen_template = random.choice(matched_templates)
+
+    # 3. Parametrização Dinâmica do Caso (Variações Inéditas de Paciente)
+    patient_name = random.choice(chosen_template["patient_names"])
+    patient_age = random.randint(chosen_template["age_range"][0], chosen_template["age_range"][1])
+    unique_hash = uuid.uuid4().hex[:8].upper()
+    station_code = f"USP-RP-AI-{unique_hash}"
+
+    # Monta cartaz na porta da estação
+    door_md = (
+        f"### ESTAÇÃO: {chosen_template['hospital_unit']}\n\n"
+        f"**Candidato(a)**:\n"
+        f"Você é o médico de plantão no complexo hospitalar da Faculdade de Medicina de Ribeirão Preto (FMRP-USP).\n\n"
+        f"**Cenário de Atendimento**:\n"
+        f"- Paciente: {patient_name}, {patient_age} anos, {chosen_template['gender']}.\n"
+        f"- Queixa de Admissão: \"{chosen_template['chief_complaint']}\"\n\n"
+        f"**Sua Tarefa Obrigatória**:\n"
+        f"1. Conduza o atendimento beira-leito imediato, realize a anamnese direcionada e acolha o paciente.\n"
+        f"2. Solicite e interprete o exame físico segmentar e os exames complementares disponíveis.\n"
+        f"3. Estabeleça o diagnóstico diferencial ou etiológico principal.\n"
+        f"4. Prescreva o plano terapêutico inicial e verbalize a conduta de encerramento da estação.\n\n"
+        f"*Tempo de prova: 8 minutos (Cronômetro Oficial FMRP-USP/FAEPA).*"
+    )
+
+    persona_payload = {
+        "name": patient_name,
+        "age": patient_age,
+        "gender": chosen_template["gender"],
+        "chief_complaint": chosen_template["chief_complaint"],
+        "past_medical_history": chosen_template["history"],
+        "allergies": "Nenhuma alergia conhecida."
+    }
+
+    physical_payload = {
+        "vitals": chosen_template["vitals"],
+        "findings": chosen_template["findings"]
+    }
+
+    labs_payload = chosen_template.get("lab_imaging", {})
+    barema_payload = {
+        "items": chosen_template["barema_items"],
+        "critical_errors": chosen_template.get("critical_errors", [])
+    }
+
+    # 4. Salva a nova estação inédita no banco
+    with db_transaction(db, immediate=True):
+        cursor = db.execute("""
+            INSERT INTO osce_stations (
+                code, title, area, subtema, institution, year,
+                difficulty, duration_seconds, scenario_door_markdown,
+                patient_persona_json, physical_exam_json,
+                lab_imaging_json, checklist_barema_json
+            ) VALUES (?, ?, ?, ?, 'USP-RP', 2026, ?, 480, ?, ?, ?, ?, ?)
+        """, (
+            station_code,
+            chosen_template["title_template"],
+            chosen_template["area"],
+            chosen_template["subtema"],
+            difficulty,
+            door_md,
+            json.dumps(persona_payload, ensure_ascii=False),
+            json.dumps(physical_payload, ensure_ascii=False),
+            json.dumps(labs_payload, ensure_ascii=False),
+            json.dumps(barema_payload, ensure_ascii=False)
+        ))
+        new_station_id = cursor.lastrowid
+
+    return {
+        "success": True,
+        "station_id": new_station_id,
+        "code": station_code,
+        "title": chosen_template["title_template"],
+        "area": chosen_template["area"],
+        "subtema": chosen_template["subtema"],
+        "institution": "USP-RP",
+        "difficulty": difficulty,
+        "message": f"Estação inédita FMRP-USP sintetizada com sucesso para {chosen_template['area']} ({chosen_template['subtema']})."
+    }
+
+
+def evaluate_live_barema_progress(
+    checklist_items: list[dict[str, Any]],
+    transcript: list[dict[str, Any]],
+    actions: list[dict[str, Any]],
+    elapsed_seconds: int = 0
+) -> dict[str, Any]:
+    """Avalia o progresso em tempo real do barema para o Modo Treino com Preceptor Fantasma."""
+    candidate_texts = [
+        t.get("message", "").lower() for t in transcript if t.get("sender") == "candidato"
+    ]
+    actions_texts = [
+        f"{a.get('action_type', '')} {a.get('action_target', '')} {a.get('findings', '')}".lower() for a in actions
+    ]
+    for a in actions:
+        if a.get("action_type") == "prescription":
+            for p in a.get("prescription_items", []):
+                actions_texts.append(f"{p.get('drug_name', '')} {p.get('dose', '')} {p.get('unit', '')} {p.get('route', '')} {p.get('notes', '')}".lower())
+
+    all_evidence = " ".join(candidate_texts + actions_texts)
+    norm_evidence = _normalize_text(all_evidence)
+
+    items_status = []
+    total_earned = 0.0
+    total_weight = 0.0
+
+    for item in checklist_items:
+        weight = float(item.get("weight", 1.0))
+        total_weight += weight
+        keywords = item.get("keywords", [])
+        matches = [kw for kw in keywords if _normalize_text(kw) in norm_evidence]
+        match_ratio = len(matches) / max(1, len(keywords))
+
+        is_completed = match_ratio >= 0.4 or len(matches) >= 2
+        is_partial = not is_completed and (match_ratio > 0.15 or len(matches) == 1)
+
+        score_earned = weight if is_completed else (round(weight * 0.5, 2) if is_partial else 0.0)
+        total_earned += score_earned
+
+        items_status.append({
+            "id": item.get("id"),
+            "title": item.get("title"),
+            "category": item.get("category"),
+            "weight": weight,
+            "score_earned": score_earned,
+            "completed": is_completed or is_partial,
+            "status": "cumprido_total" if is_completed else ("cumprido_parcial" if is_partial else "nao_cumprido"),
+            "matched_keywords": matches[:3]
+        })
+
+    # Dicas e Alertas Proativos do Preceptor Fantasma baseados no tempo e itens pendentes
+    proactive_hints = []
+    uncompleted_categories = set(i["category"] for i in items_status if not i["completed"])
+
+    if elapsed_seconds >= 180 and "exame_fisico" in uncompleted_categories:
+        proactive_hints.append("⚠️ Preceptor Fantasma: Já se passaram 3 minutos! Não se esqueça de checar os sinais vitais e o exame físico segmentar.")
+    if elapsed_seconds >= 240 and "exames_complementares" in uncompleted_categories:
+        proactive_hints.append("⚠️ Preceptor Fantasma: Metade da estação decorrida! Lembre-se de solicitar o exame complementar essencial (ECG, Labs ou Imagem).")
+    if elapsed_seconds >= 300 and ("conduta_tratamento" in uncompleted_categories or "tratamento" in uncompleted_categories):
+        proactive_hints.append("🚨 Preceptor Fantasma: Faltam 3 minutos! Inicie a prescrição de urgência na prancheta ou verbalize as medidas terapêuticas imediatas.")
+
+    normalized_score = round(min(10.0, (total_earned / max(1.0, total_weight)) * 10.0), 1)
+
+    return {
+        "mode": "guided",
+        "current_score": normalized_score,
+        "max_score": 10.0,
+        "raw_earned": round(total_earned, 2),
+        "raw_weight": round(total_weight, 2),
+        "percentage": round((total_earned / max(1.0, total_weight)) * 100),
+        "items_status": items_status,
+        "proactive_hints": proactive_hints
+    }
+
+
+def get_session_mode(actions: list[dict[str, Any]]) -> str:
+    """Extrai o modo da sessão (blind ou guided) a partir do histórico de ações."""
+    for a in actions:
+        if a.get("action_type") == "session_init" and a.get("mode"):
+            return str(a.get("mode"))
+    return "blind"
+
+
 def start_osce_session(
     db,
     station_id: int,
     user_id: str,
-    circuit_session_id: Optional[str] = None
+    circuit_session_id: Optional[str] = None,
+    mode: str = "blind"
 ) -> dict[str, Any]:
-    """Inicia uma sessão cronometrada de prova prática."""
-    station = db.execute("SELECT id, code, title, institution, duration_seconds, scenario_door_markdown FROM osce_stations WHERE id = ?", (station_id,)).fetchone()
+    """Inicia uma sessão cronometrada de prova prática no Modo Prova Cega ou Treino Guiado."""
+    station = db.execute("SELECT id, code, title, institution, duration_seconds, scenario_door_markdown, checklist_barema_json FROM osce_stations WHERE id = ?", (station_id,)).fetchone()
     if not station:
         raise ValueError(f"Estação {station_id} não encontrada.")
 
     session_id = str(uuid.uuid4())
     now_iso = datetime.now(timezone.utc).isoformat()
+    session_mode = "guided" if mode == "guided" else "blind"
 
     initial_transcript = [
         {
             "sender": "examinador",
             "message": "Candidato(a), você pode entrar na sala de exame. O tempo de prova começou.",
+            "timestamp": now_iso
+        }
+    ]
+
+    initial_actions = [
+        {
+            "action_type": "session_init",
+            "mode": session_mode,
             "timestamp": now_iso
         }
     ]
@@ -2012,11 +2773,19 @@ def start_osce_session(
                 id, station_id, user_id, circuit_session_id,
                 status, start_time, elapsed_seconds,
                 transcript_json, actions_taken_json
-            ) VALUES (?, ?, ?, ?, 'in_progress', ?, 0, ?, '[]')
+            ) VALUES (?, ?, ?, ?, 'in_progress', ?, 0, ?, ?)
         """, (
             session_id, station_id, user_id, circuit_session_id,
-            now_iso, json.dumps(initial_transcript, ensure_ascii=False)
+            now_iso, json.dumps(initial_transcript, ensure_ascii=False),
+            json.dumps(initial_actions, ensure_ascii=False)
         ))
+
+    barema_raw = json.loads(station["checklist_barema_json"] or "{}")
+    checklist_items = barema_raw.get("items", []) if isinstance(barema_raw, dict) else (barema_raw if isinstance(barema_raw, list) else [])
+
+    guided_feedback = None
+    if session_mode == "guided":
+        guided_feedback = evaluate_live_barema_progress(checklist_items, initial_transcript, initial_actions, 0)
 
     return {
         "session_id": session_id,
@@ -2026,8 +2795,34 @@ def start_osce_session(
         "institution": station["institution"],
         "duration_seconds": station["duration_seconds"],
         "start_time": now_iso,
-        "transcript": initial_transcript
+        "transcript": initial_transcript,
+        "mode": session_mode,
+        "guided_feedback": guided_feedback
     }
+
+
+def get_osce_live_feedback(db, session_id: str, user_id: str, elapsed_seconds: int = 0) -> dict[str, Any]:
+    """Retorna o progresso em tempo real do barema para o Modo Treino com Preceptor Fantasma."""
+    sess = db.execute("""
+        SELECT s.id, s.station_id, s.status, s.actions_taken_json, s.transcript_json,
+               st.checklist_barema_json
+        FROM osce_sessions s
+        JOIN osce_stations st ON s.station_id = st.id
+        WHERE s.id = ?
+    """, (session_id,)).fetchone()
+
+    if not sess:
+        raise ValueError("Sessão não encontrada.")
+
+    actions = json.loads(sess["actions_taken_json"] or "[]")
+    transcript = json.loads(sess["transcript_json"] or "[]")
+    barema_raw = json.loads(sess["checklist_barema_json"] or "{}")
+    checklist_items = barema_raw.get("items", []) if isinstance(barema_raw, dict) else (barema_raw if isinstance(barema_raw, list) else [])
+
+    mode = get_session_mode(actions)
+    feedback = evaluate_live_barema_progress(checklist_items, transcript, actions, elapsed_seconds)
+    feedback["mode"] = mode
+    return feedback
 
 
 def interact_osce_session(
@@ -2039,8 +2834,9 @@ def interact_osce_session(
 ) -> dict[str, Any]:
     """Processa fala/pergunta do aluno ao paciente virtual ou ao examinador."""
     sess = db.execute("""
-        SELECT s.id, s.station_id, s.user_id, s.status, s.transcript_json,
-               st.title, st.area, st.subtema, st.patient_persona_json, st.scenario_door_markdown
+        SELECT s.id, s.station_id, s.user_id, s.status, s.transcript_json, s.actions_taken_json,
+               st.title, st.area, st.subtema, st.patient_persona_json, st.scenario_door_markdown,
+               st.checklist_barema_json
         FROM osce_sessions s
         JOIN osce_stations st ON s.station_id = st.id
         WHERE s.id = ?
@@ -2129,12 +2925,20 @@ def interact_osce_session(
             WHERE id = ?
         """, (json.dumps(transcript, ensure_ascii=False), elapsed_seconds, session_id))
 
-    return {
+    res_payload: dict[str, Any] = {
         "reply": reply_text,
         "sender": "paciente",
         "elapsed_seconds": elapsed_seconds,
         "transcript_count": len(transcript)
     }
+
+    actions = json.loads(sess["actions_taken_json"] or "[]")
+    if get_session_mode(actions) == "guided":
+        barema_raw = json.loads(sess["checklist_barema_json"] or "{}")
+        checklist_items = barema_raw.get("items", []) if isinstance(barema_raw, dict) else (barema_raw if isinstance(barema_raw, list) else [])
+        res_payload["guided_feedback"] = evaluate_live_barema_progress(checklist_items, transcript, actions, elapsed_seconds)
+
+    return res_payload
 
 
 def execute_osce_action(
@@ -2153,7 +2957,7 @@ def execute_osce_action(
     """
     sess = db.execute("""
         SELECT s.id, s.station_id, s.status, s.actions_taken_json, s.transcript_json,
-               st.physical_exam_json, st.lab_imaging_json
+               st.physical_exam_json, st.lab_imaging_json, st.checklist_barema_json
         FROM osce_sessions s
         JOIN osce_stations st ON s.station_id = st.id
         WHERE s.id = ?
@@ -2257,12 +3061,586 @@ def execute_osce_action(
             session_id
         ))
 
-    return {
+    res_payload: dict[str, Any] = {
         "action_type": action_type,
         "target": action_target,
         "examiner_message": examiner_message,
         "payload": result_payload,
         "elapsed_seconds": elapsed_seconds
+    }
+
+    if get_session_mode(actions) == "guided":
+        barema_raw = json.loads(sess["checklist_barema_json"] or "{}")
+        checklist_items = barema_raw.get("items", []) if isinstance(barema_raw, dict) else (barema_raw if isinstance(barema_raw, list) else [])
+        res_payload["guided_feedback"] = evaluate_live_barema_progress(checklist_items, transcript, actions, elapsed_seconds)
+
+    return res_payload
+
+
+def dispatch_osce_speech(
+    db,
+    session_id: str,
+    user_id: str,
+    message: str,
+    elapsed_seconds: int = 0
+) -> dict[str, Any]:
+    """
+    Dispatcher de voz Hands-Free de alta performance para a sala prática do OSCE.
+    Analisa a fala natural do candidato e classifica/executa em tempo real:
+    1. Comandos ao Examinador (sinais vitais, exames complementares, exame físico, conduta verbalizada).
+    2. Diálogo com o Paciente Simulado (anamnese, perguntas clínicas, acolhimento).
+    3. Fila de áudio falado (spoken_queue) para execução de áudio encadeado.
+    """
+    sess = db.execute("""
+        SELECT s.id, s.station_id, s.user_id, s.status, s.actions_taken_json, s.transcript_json,
+               st.title, st.area, st.subtema, st.patient_persona_json, st.physical_exam_json, st.lab_imaging_json
+        FROM osce_sessions s
+        JOIN osce_stations st ON s.station_id = st.id
+        WHERE s.id = ?
+    """, (session_id,)).fetchone()
+
+    if not sess:
+        raise ValueError(f"Sessão {session_id} não encontrada.")
+    if sess["status"] != "in_progress":
+        return {"error": "Sessão já finalizada.", "status": sess["status"]}
+
+    clean_msg = message.strip()
+    norm_msg = _normalize_text(clean_msg)
+    if not clean_msg:
+        return {"error": "Mensagem vazia."}
+
+    exam = json.loads(sess["physical_exam_json"] or "{}")
+    labs = json.loads(sess["lab_imaging_json"] or "{}")
+    persona = json.loads(sess["patient_persona_json"] or "{}")
+
+    actions_executed = []
+    spoken_queue = []
+    is_conduct_verbalized = False
+
+    # 1. Detecta Conduta Verbalizada
+    conduct_triggers = [
+        "minha conduta", "prescrevo", "prescrever", "iniciar tratamento", "vou iniciar",
+        "encaminho para", "solicito vaga", "indico cirurgia", "indico laparotomia",
+        "passo o caso", "diagnostico e conduta", "administro"
+    ]
+    if any(trigger in norm_msg for trigger in conduct_triggers):
+        is_conduct_verbalized = True
+
+    # 2. Detecta Solicitação de Sinais Vitais
+    vitals_triggers = [
+        "sinais vitais", "vitais completos", "dados vitais", "aferir pa", "pressao arterial",
+        "frequencia cardiaca", "saturacao de o2", "temperatura axilar", "hgt", "glicemia capilar"
+    ]
+    if any(trigger in norm_msg for trigger in vitals_triggers):
+        act_res = execute_osce_action(db, session_id, user_id, "vitals", "vitals", elapsed_seconds)
+        actions_executed.append(act_res)
+        spoken_queue.append({
+            "speaker": "examinador",
+            "text": act_res["examiner_message"]
+        })
+
+    # 3. Detecta Solicitação de Exames Complementares (Labs e Imagens)
+    for k, v in labs.items():
+        norm_k = _normalize_text(k)
+        norm_title = _normalize_text(v.get("title", ""))
+        triggers = [norm_k, norm_title]
+
+        if "ecg" in norm_k or "eletro" in norm_k or "eletrocardiograma" in norm_title:
+            triggers.extend(["ecg", "eletro", "eletrocardiograma", "tracado"])
+        if "gasometria" in norm_k or "gaso" in norm_title:
+            triggers.extend(["gasometria", "gaso", "eletrolitos", "potassio", "sodio", "gaso arterial"])
+        if "rx" in norm_k or "raio" in norm_k or "radiografia" in norm_title:
+            triggers.extend(["raio x", "rx", "radiografia", "rx torax", "rx de torax"])
+        if "tomografia" in norm_k or "tc" in norm_title:
+            triggers.extend(["tomografia", "tc", "tc de torax", "tc de abdome", "angiotomografia"])
+        if "fast" in norm_k or "ultrassom" in norm_title or "efast" in norm_k:
+            triggers.extend(["fast", "e-fast", "efast", "ultrassom", "ultrasonografia", "ultrassonografia beira leito"])
+        if "troponina" in norm_k or "enzimas" in norm_title:
+            triggers.extend(["troponina", "enzimas cardiacas", "curva de troponina"])
+        if "hemograma" in norm_k or "leucocitos" in norm_title:
+            triggers.extend(["hemograma", "leucograma", "plaquetas"])
+
+        if any(trig in norm_msg for trig in triggers):
+            if not any(a.get("target") == k for a in actions_executed):
+                act_res = execute_osce_action(db, session_id, user_id, "lab_imaging", k, elapsed_seconds)
+                actions_executed.append(act_res)
+                spoken_queue.append({
+                    "speaker": "examinador",
+                    "text": act_res["examiner_message"]
+                })
+
+    # 4. Detecta Exame Físico / Ausculta
+    findings = exam.get("findings", {})
+    for segment, desc in findings.items():
+        norm_seg = _normalize_text(segment)
+        seg_triggers = [norm_seg]
+        if norm_seg == "cardiovascular":
+            seg_triggers.extend(["ausculta cardiaca", "coracao", "bulhas", "sopros"])
+        elif norm_seg == "respiratorio":
+            seg_triggers.extend(["ausculta pulmonar", "pulmao", "murmurio", "respiracao", "estertores", "sibilos"])
+        elif norm_seg == "abdome":
+            seg_triggers.extend(["palpacao do abdome", "palpar abdome", "exame do abdome", "descompressao", "blumberg", "ruidos hidroaereos"])
+        elif norm_seg == "geral":
+            seg_triggers.extend(["exame geral", "estado geral", "aspecto geral", "hidratacao", "mucosas"])
+
+        if any(trig in norm_msg for trig in seg_triggers):
+            if not any(a.get("target") == segment for a in actions_executed):
+                act_res = execute_osce_action(db, session_id, user_id, "physical_exam", segment, elapsed_seconds)
+                actions_executed.append(act_res)
+                spoken_queue.append({
+                    "speaker": "examinador",
+                    "text": act_res["examiner_message"]
+                })
+
+    # 5. Se houver conduta verbalizada, adiciona confirmação do examinador
+    if is_conduct_verbalized:
+        examiner_confirm = "Examinador registra: Conduta verbalizada pelo candidato anotada no barema."
+        spoken_queue.append({
+            "speaker": "examinador",
+            "text": examiner_confirm
+        })
+
+    # 6. Avalia se a fala também contém interação com o Paciente
+    patient_dialogue_triggers = [
+        "dona", "senhor", "senhora", "voce", "vc", "como vai", "ola", "bom dia", "boa tarde",
+        "boa noite", "onde doi", "qual e a dor", "quando comecou", "falta de ar", "remedio",
+        "toma algum", "alergia", "fuma", "bebe", "antecedentes", "familia", "febre", "vomito",
+        "vomitou", "sente", "o que aconteceu", "me conta", "calma", "estou aqui", "vamos cuidar"
+    ]
+    is_patient_dialogue = (
+        len(actions_executed) == 0 and not is_conduct_verbalized
+    ) or any(trig in norm_msg for trig in patient_dialogue_triggers)
+
+    patient_reply_text = ""
+    if is_patient_dialogue:
+        interact_res = interact_osce_session(db, session_id, user_id, clean_msg, elapsed_seconds)
+        patient_reply_text = interact_res.get("reply", "")
+        if patient_reply_text:
+            spoken_queue.append({
+                "speaker": "paciente",
+                "text": patient_reply_text
+            })
+
+    # Recupera o transcript e ações atualizados
+    updated_sess = db.execute("""
+        SELECT s.transcript_json, s.actions_taken_json, st.checklist_barema_json
+        FROM osce_sessions s
+        JOIN osce_stations st ON s.station_id = st.id
+        WHERE s.id = ?
+    """, (session_id,)).fetchone()
+    current_transcript = json.loads(updated_sess["transcript_json"] or "[]")
+    current_actions = json.loads(updated_sess["actions_taken_json"] or "[]")
+
+    res_dispatch: dict[str, Any] = {
+        "transcription": clean_msg,
+        "actions_executed": actions_executed,
+        "is_patient_dialogue": is_patient_dialogue,
+        "patient_reply": patient_reply_text,
+        "spoken_queue": spoken_queue,
+        "transcript": current_transcript,
+        "elapsed_seconds": elapsed_seconds
+    }
+
+    if get_session_mode(current_actions) == "guided":
+        barema_raw = json.loads(updated_sess["checklist_barema_json"] or "{}")
+        checklist_items = barema_raw.get("items", []) if isinstance(barema_raw, dict) else (barema_raw if isinstance(barema_raw, list) else [])
+        res_dispatch["guided_feedback"] = evaluate_live_barema_progress(checklist_items, current_transcript, current_actions, elapsed_seconds)
+
+    return res_dispatch
+
+
+def generate_timeline_post_mortem(
+    station_meta: dict[str, Any],
+    transcript: list[dict[str, Any]],
+    actions: list[dict[str, Any]],
+    evaluated_items: list[dict[str, Any]],
+    elapsed_seconds: int
+) -> dict[str, Any]:
+    """
+    Reconstitui a cronologia beira-leito da estação segundo a segundo:
+    - Identifica marcos da anamnese, sinais vitais, ECG, labs, manequim e prescrição
+    - Detecta atrasos operacionais (porta-ECG, porta-ação inicial)
+    - Detecta períodos de hesitação/inércia (> 65s sem ação)
+    - Sinaliza quebras críticas de segurança clínica
+    """
+    events = []
+
+    # 1. Evento de Abertura
+    inst_name = station_meta.get("institution", "Banca Oficial")
+    st_title = station_meta.get("title", "Estação Clínica")
+    events.append({
+        "time_seconds": 0,
+        "time_formatted": "00:00",
+        "event_type": "start",
+        "title": "Entrada na Sala de Exame",
+        "description": f"Candidato entra no consultório da banca ({inst_name} • {st_title}).",
+        "status": "neutral",
+        "feedback": "Início da contagem regressiva oficial. Boa prática: cumprimentar paciente e se identificar.",
+        "score_impact": "Início da Prova"
+    })
+
+    candidate_action_times = [0]
+
+    # 2. Processa Ações Clínicas Estruturadas
+    for act in actions:
+        sec = int(act.get("elapsed_seconds", 0))
+        act_type = act.get("action_type")
+        act_target = act.get("action_target", "")
+        payload = act.get("payload", {})
+        candidate_action_times.append(sec)
+
+        m = sec // 60
+        s = sec % 60
+        tf = f"{m:02d}:{s:02d}"
+
+        if act_type == "vitals":
+            status = "timely" if sec <= 90 else ("neutral" if sec <= 180 else "delayed")
+            feedback = (
+                "Monitorização de sinais vitais realizada com rapidez cirúrgica."
+                if status == "timely" else
+                "Sinais vitais checados adequadamente."
+                if status == "neutral" else
+                "Atenção ao tempo: em emergência, sinais vitais devem ser checados nos primeiros 90 segundos."
+            )
+            events.append({
+                "time_seconds": sec,
+                "time_formatted": tf,
+                "event_type": "vitals",
+                "title": "Aferição de Sinais Vitais & Monitor",
+                "description": "Sinais vitais checados no monitor: PA, FC, FR, SatO2 e temperatura.",
+                "status": status,
+                "feedback": feedback,
+                "score_impact": "+ Pontos Vitais"
+            })
+
+        elif act_type == "physical_exam":
+            status = "timely" if sec <= 180 else "neutral"
+            target_label = act_target.replace("_", " ").capitalize()
+            events.append({
+                "time_seconds": sec,
+                "time_formatted": tf,
+                "event_type": "physical_exam",
+                "title": f"Exame Físico: {target_label}",
+                "description": f"Palpação e ausculta direcionada ao segmento {target_label}.",
+                "status": status,
+                "feedback": f"Segmento {target_label} examinado com busca ativa de achados do barema.",
+                "score_impact": "+1.0 pt"
+            })
+
+        elif act_type == "lab_imaging":
+            target_norm = act_target.lower()
+            is_ecg = any(k in target_norm for k in ["ecg", "eletro", "eletrocardiograma"])
+            is_fast = any(k in target_norm for k in ["fast", "efast", "ultrassom"])
+
+            if is_ecg:
+                status = "timely" if sec <= 120 else ("neutral" if sec <= 240 else "delayed")
+                feedback = (
+                    "Meta Porta-ECG de excelência: solicitado em menos de 2 minutos de prova."
+                    if status == "timely" else
+                    "ECG solicitado em tempo aceitável para a queixa apresentada."
+                    if status == "neutral" else
+                    "Atraso Porta-ECG: dor torácica/isquemia exige solicitação imediata (< 2-3 min)."
+                )
+                events.append({
+                    "time_seconds": sec,
+                    "time_formatted": tf,
+                    "event_type": "lab_imaging",
+                    "title": "Solicitação de ECG 12 Derivações",
+                    "description": "Eletrocardiograma de 12 derivações entregue pela banca.",
+                    "status": status,
+                    "feedback": feedback,
+                    "score_impact": "Porta-ECG"
+                })
+            elif is_fast:
+                status = "timely" if sec <= 180 else "neutral"
+                events.append({
+                    "time_seconds": sec,
+                    "time_formatted": tf,
+                    "event_type": "procedure",
+                    "title": "Ultrassom E-FAST Beira-Leito",
+                    "description": "Rastreamento ultrassonográfico de líquido livre em janelas torácicas e abdominais.",
+                    "status": status,
+                    "feedback": "Protocolo ATLS: busca precoce de hemoperitônio ou hemo/pneumotórax.",
+                    "score_impact": "+2.0 pts"
+                })
+            else:
+                events.append({
+                    "time_seconds": sec,
+                    "time_formatted": tf,
+                    "event_type": "lab_imaging",
+                    "title": f"Exame Complementar: {act_target.upper()}",
+                    "description": f"Solicitado exame {act_target.upper()} e interpretado laudo.",
+                    "status": "neutral",
+                    "feedback": "Exame complementar solicitado e analisado junto à banca examinadora.",
+                    "score_impact": "+0.5 a 1.0 pt"
+                })
+
+        elif act_type == "prescription":
+            drugs_summary = payload.get("text", act_target)
+            status = "timely" if sec <= 360 else "delayed"
+            feedback = (
+                "Prescrição administrada oportunamente antes da fase final da estação."
+                if status == "timely" else
+                "Prescrição realizada tardiamente no final da prova. Priorize estabilização precoce."
+            )
+            events.append({
+                "time_seconds": sec,
+                "time_formatted": tf,
+                "event_type": "prescription",
+                "title": "Prescrição Farmacológica na Prancheta",
+                "description": f"Administração assinada na prancheta de emergência: {drugs_summary[:120]}...",
+                "status": status,
+                "feedback": feedback,
+                "score_impact": "Conduta Terapêutica"
+            })
+
+        elif act_type == "procedure":
+            proc_title = payload.get("title", act_target)
+            events.append({
+                "time_seconds": sec,
+                "time_formatted": tf,
+                "event_type": "procedure",
+                "title": f"Procedimento: {proc_title}",
+                "description": "Execução de procedimento beira-leito no manequim interativo.",
+                "status": "timely",
+                "feedback": "Procedimento invasivo executado com indicação e técnica corretas.",
+                "score_impact": "+2.0 pts"
+            })
+
+    # 3. Adiciona Marcos de Anamnese e Diálogo a partir do Transcript
+    for item in transcript:
+        if item.get("sender") == "candidato":
+            sec = int(item.get("elapsed_seconds", 0))
+            candidate_action_times.append(sec)
+            msg = item.get("message", "")
+            msg_lower = msg.lower()
+
+            m = sec // 60
+            s = sec % 60
+            tf = f"{m:02d}:{s:02d}"
+
+            if any(w in msg_lower for w in ["minha conduta", "prescrevo", "indico cirurgia", "encaminho", "passo o caso"]):
+                events.append({
+                    "time_seconds": sec,
+                    "time_formatted": tf,
+                    "event_type": "conduct",
+                    "title": "Verbalização da Conduta Definitiva",
+                    "description": msg[:140] + ("..." if len(msg) > 140 else ""),
+                    "status": "timely" if sec >= 240 else "neutral",
+                    "feedback": "Conduta e encaminhamento verbalizados claramente para o examinador.",
+                    "score_impact": "+1.5 pts"
+                })
+            elif len(msg) > 15 and not any(e["time_seconds"] == sec and e["event_type"] == "anamnese" for e in events):
+                events.append({
+                    "time_seconds": sec,
+                    "time_formatted": tf,
+                    "event_type": "anamnese",
+                    "title": "Interação Clínica com o Paciente",
+                    "description": f'"{msg[:110]}..."',
+                    "status": "timely" if sec <= 180 else "neutral",
+                    "feedback": "Investigação sintomática, acolhimento e escuta atenta do paciente.",
+                    "score_impact": "+ Diálogo"
+                })
+
+    # 4. Detecção de Períodos de Hesitação / Inércia (gaps >= 70s)
+    candidate_action_times.sort()
+    unique_times = sorted(list(set(candidate_action_times)))
+    for i in range(len(unique_times) - 1):
+        t1 = unique_times[i]
+        t2 = unique_times[i + 1]
+        gap = t2 - t1
+        if gap >= 70:
+            gap_mid = t1 + (gap // 2)
+            m = gap_mid // 60
+            s = gap_mid % 60
+            events.append({
+                "time_seconds": gap_mid,
+                "time_formatted": f"{m:02d}:{s:02d}",
+                "event_type": "hesitacao",
+                "title": f"Período de Hesitação ({gap}s sem ação)",
+                "description": f"Intervalo de {gap} segundos sem perguntas ou intervenções ativas do candidato.",
+                "status": "delayed",
+                "feedback": f"Atenção ao ritmo: {gap} segundos sem conduta. Na 2ª fase presencial, cada minuto ocioso consome tempo crucial de barema.",
+                "score_impact": "Ritmo Comprometido"
+            })
+
+    # 5. Omissões Críticas Específicas
+    st_title_lower = station_meta.get("title", "").lower()
+    st_subtema_lower = station_meta.get("subtema", "").lower()
+    all_targets = [str(a.get("action_target", "")).lower() for a in actions]
+    all_types = [str(a.get("action_type", "")).lower() for a in actions]
+
+    if "vitals" not in all_types:
+        events.append({
+            "time_seconds": elapsed_seconds or 480,
+            "time_formatted": f"{(elapsed_seconds or 480)//60:02d}:{(elapsed_seconds or 480)%60:02d}",
+            "event_type": "omissao",
+            "title": "Omissão Crítica: Sinais Vitais Não Checados",
+            "description": "Candidato não solicitou monitorização ou sinais vitais durante toda a estação.",
+            "status": "critical_gap",
+            "feedback": "Falta de segurança: todo atendimento beira-leito deve iniciar com a checagem dos sinais vitais.",
+            "score_impact": "Perda Grave de Barema"
+        })
+
+    if ("sca" in st_title_lower or "coronariana" in st_subtema_lower or "taquicardia" in st_title_lower) and not any("ecg" in t for t in all_targets):
+        events.append({
+            "time_seconds": elapsed_seconds or 480,
+            "time_formatted": f"{(elapsed_seconds or 480)//60:02d}:{(elapsed_seconds or 480)%60:02d}",
+            "event_type": "omissao",
+            "title": "Omissão Crítica: Eletrocardiograma Não Solicitado",
+            "description": "Em queixa de dor torácica/isquemia, o ECG de 12 derivações é item obrigatório do barema.",
+            "status": "critical_gap",
+            "feedback": "Erro eliminatório: tempo porta-ECG não atingido porque o exame não foi solicitado.",
+            "score_impact": "Eliminatório / -2.0 pts"
+        })
+
+    events.sort(key=lambda x: x["time_seconds"])
+
+    timely_count = sum(1 for e in events if e.get("status") == "timely")
+    delayed_count = sum(1 for e in events if e.get("status") == "delayed")
+    critical_count = sum(1 for e in events if e.get("status") == "critical_gap")
+
+    first_action_sec = unique_times[1] if len(unique_times) > 1 else elapsed_seconds
+    ecg_sec = next((e["time_seconds"] for e in events if "ecg" in e["title"].lower()), None)
+
+    if critical_count > 0 or delayed_count >= 3:
+        pace_label = "Hesitante / Atrasos Críticos"
+    elif timely_count >= 4 and delayed_count <= 1:
+        pace_label = "Ritmo Cirúrgico / Ágil"
+    else:
+        pace_label = "Equilibrado / Médio"
+
+    return {
+        "events": events,
+        "summary": {
+            "total_events": len(events),
+            "timely_count": timely_count,
+            "delayed_count": delayed_count,
+            "critical_gaps_count": critical_count,
+            "door_to_first_action_seconds": first_action_sec,
+            "door_to_ecg_seconds": ecg_sec,
+            "pace_label": pace_label
+        }
+    }
+
+
+def generate_competency_radar(
+    station_meta: dict[str, Any],
+    evaluated_items: list[dict[str, Any]],
+    actions: list[dict[str, Any]],
+    transcript: list[dict[str, Any]],
+    elapsed_seconds: int
+) -> dict[str, Any]:
+    """
+    Calcula o Radar de Competências Médicas em 6 dimensões fundamentais de prova prática:
+    1. Comunicação & Empatia
+    2. Raciocínio Clínico & Anamnese
+    3. Exame Físico & Habilidades Práticas
+    4. Indicação & Interpretação de Exames Complementares
+    5. Tomada de Decisão & Segurança Farmacológica
+    6. Gestão do Tempo Beira-Leito
+    """
+    category_scores = {
+        "comunicacao_empatia": {"earned": 0.0, "max": 0.0, "items": []},
+        "raciocinio_clinico": {"earned": 0.0, "max": 0.0, "items": []},
+        "exame_fisico": {"earned": 0.0, "max": 0.0, "items": []},
+        "exames_complementares": {"earned": 0.0, "max": 0.0, "items": []},
+        "seguranca_farmacologica": {"earned": 0.0, "max": 0.0, "items": []},
+        "gestao_tempo": {"earned": 0.0, "max": 0.0, "items": []}
+    }
+
+    for it in evaluated_items:
+        cat = it.get("category", "").lower()
+        earned = float(it.get("score_earned", 0.0))
+        weight = float(it.get("weight", 1.0))
+
+        if "comunicacao" in cat or "empatia" in cat or "relacao" in cat:
+            key = "comunicacao_empatia"
+        elif "anamnese" in cat or "diagnostico" in cat or "raciocinio" in cat:
+            key = "raciocinio_clinico"
+        elif "fisico" in cat or "manobra" in cat or "procedimento" in cat:
+            key = "exame_fisico"
+        elif "lab" in cat or "imagem" in cat or "complementar" in cat or ("exame" in cat and "fisico" not in cat):
+            key = "exames_complementares"
+        elif "farmaco" in cat or "prescricao" in cat or "tratamento" in cat or "conduta" in cat:
+            key = "seguranca_farmacologica"
+        else:
+            key = "raciocinio_clinico"
+
+        category_scores[key]["earned"] += earned
+        category_scores[key]["max"] += weight
+        category_scores[key]["items"].append(it)
+
+    # Competência 6: Gestão de Tempo
+    time_score_max = 2.0
+    time_score_earned = 2.0
+    if elapsed_seconds > 450:
+        time_score_earned -= 0.5
+    action_times = sorted([int(a.get("elapsed_seconds", 0)) for a in actions if a.get("elapsed_seconds")])
+    for i in range(len(action_times) - 1):
+        if action_times[i+1] - action_times[i] >= 75:
+            time_score_earned -= 0.5
+            break
+    time_score_earned = max(0.5, time_score_earned)
+    category_scores["gestao_tempo"]["earned"] = time_score_earned
+    category_scores["gestao_tempo"]["max"] = time_score_max
+
+    dim_configs = [
+        ("comunicacao_empatia", "Comunicação & Empatia", "Relação médico-paciente, acolhimento e clareza de linguagem."),
+        ("raciocinio_clinico", "Raciocínio & Anamnese", "Investigação sintomática, fatores de risco e hipótese diagnóstica."),
+        ("exame_fisico", "Exame Físico & Habilidades", "Ausculta, palpação, monitorização e procedimentos beira-leito."),
+        ("exames_complementares", "Exames Complementares", "Indicação criteriosa de ECG, imagem, gasometria e laboratoriais."),
+        ("seguranca_farmacologica", "Segurança Farmacológica", "Doses corretas, vias seguras, contraindicações e drogas prioritárias."),
+        ("gestao_tempo", "Gestão do Tempo", "Ritmo, dinamismo e tomada de decisão antes dos avisos da banca.")
+    ]
+
+    dimensions = []
+    total_pct = 0.0
+
+    for key, name, desc in dim_configs:
+        earned = category_scores[key]["earned"]
+        c_max = category_scores[key]["max"]
+        if c_max == 0:
+            c_max = 1.0
+            earned = 0.8  # Fallback padrão quando o barema da estação não foca exclusivamente nessa categoria
+
+        pct = round(min(100.0, max(0.0, (earned / c_max) * 100)), 1)
+        total_pct += pct
+
+        if pct >= 80.0:
+            level = "Excelente"
+            feedback = "Domínio seguro nesta competência. Execução precisa segundo o gabarito oficial."
+        elif pct >= 60.0:
+            level = "Satisfatório"
+            feedback = "Bom desempenho, com oportunidades de refinamento e maior agilidade."
+        else:
+            level = "Necessita Atenção"
+            feedback = "Ponto de atenção na prova prática. Revise os passos capitais no FSRS."
+
+        dimensions.append({
+            "key": key,
+            "name": name,
+            "score_earned": round(earned, 1),
+            "score_max": round(c_max, 1),
+            "percentage": pct,
+            "level": level,
+            "description": desc,
+            "feedback": feedback
+        })
+
+    overall_avg = round(total_pct / len(dimensions), 1)
+
+    sorted_dims = sorted(dimensions, key=lambda d: d["percentage"], reverse=True)
+    strengths = [d["name"] for d in sorted_dims[:2] if d["percentage"] >= 65]
+    if not strengths:
+        strengths = [sorted_dims[0]["name"]]
+    weaknesses = [d["name"] for d in sorted_dims[-2:] if d["percentage"] < 75]
+
+    return {
+        "overall_average": overall_avg,
+        "strengths": strengths,
+        "weaknesses": weaknesses,
+        "dimensions": dimensions
     }
 
 
@@ -2276,6 +3654,8 @@ def finish_osce_session(
     Finaliza a estação de prova prática e executa a auditoria completa do Barema Oficial:
     - Calcula nota ponderada de 0.0 a 10.0
     - Avalia cada item do checklist com citações de evidência
+    - Constrói a Linha do Tempo Beira-Leito ("Timeline Post-Mortem") com marcos e atrasos
+    - Computa o Radar de Competências Médicas em 6 dimensões
     - Detecta faltas eliminatórias graves
     - Sintetiza parecer clínico do Preceptor Sênior
     - Gera Flashcards de Choque no formato FSRS e Criador de Cards
@@ -2296,8 +3676,8 @@ def finish_osce_session(
     transcript = json.loads(sess["transcript_json"] or "[]")
     actions = json.loads(sess["actions_taken_json"] or "[]")
     barema_raw = json.loads(sess["checklist_barema_json"] or "{}")
-    checklist_items = barema_raw.get("items", [])
-    critical_errors = barema_raw.get("critical_errors", [])
+    checklist_items = barema_raw.get("items", []) if isinstance(barema_raw, dict) else (barema_raw if isinstance(barema_raw, list) else [])
+    critical_errors = barema_raw.get("critical_errors", []) if isinstance(barema_raw, dict) else []
 
     if conduct_notes:
         transcript.append({
@@ -2354,20 +3734,17 @@ def finish_osce_session(
             "evidence": evidence
         })
 
-        # Se não cumpriu totalmente, gera Flashcard de Choque imediato
         if status != "cumprido_total":
             shock_cards.append({
                 "station_code": sess["subtema"],
                 "front": f"🚨 [OSCE {sess['institution']} - {sess['area']}]\nQual é a conduta obrigatória segundo o barema oficial para:\n👉 **{item.get('title')}**?",
-                "back": f"💡 **Critério de Avaliação da Banca**:\n{item.get('description')}\n\n⚠️ **Palavras-chave de aprovação**: {', '.join(item.get('keywords', []))}",
+                "back": f"💡 **Critério de Avaliação da Banca**:\n{item.get('description', '')}\n\n⚠️ **Palavras-chave de aprovação**: {', '.join(item.get('keywords', []))}",
                 "category": item.get("category"),
                 "weight": weight
             })
 
-    # Normaliza a nota final em escala 0.0 a 10.0
     final_score_normalized = round(min(10.0, (total_score / max(1.0, max_score)) * 10.0), 1)
 
-    # Identifica faltas graves cometidas
     critical_warnings = []
     for err in critical_errors:
         err_lower = err.lower()
@@ -2378,7 +3755,23 @@ def finish_osce_session(
         elif "eda" in err_lower and "endoscopia" in all_evidence_corpus:
             critical_warnings.append(err)
 
-    # Parecer clínico do Preceptor Sênior
+    # Computa Timeline Post-Mortem e Radar de Competências
+    timeline_data = generate_timeline_post_mortem(
+        station_meta=dict(sess),
+        transcript=transcript,
+        actions=actions,
+        evaluated_items=evaluated_items,
+        elapsed_seconds=sess["elapsed_seconds"]
+    )
+
+    radar_data = generate_competency_radar(
+        station_meta=dict(sess),
+        evaluated_items=evaluated_items,
+        actions=actions,
+        transcript=transcript,
+        elapsed_seconds=sess["elapsed_seconds"]
+    )
+
     preceptor_feedback = {
         "final_score": final_score_normalized,
         "max_score": 10.0,
@@ -2394,7 +3787,9 @@ def finish_osce_session(
                "Atenção crítica: falhas fundamentais no barema que causariam eliminação ou pontuação insuficiente na 2ª fase presencial.")
         ),
         "critical_warnings": critical_warnings,
-        "shock_cards_count": len(shock_cards)
+        "shock_cards_count": len(shock_cards),
+        "timeline_post_mortem": timeline_data,
+        "competency_radar": radar_data
     }
 
     now_iso = datetime.now(timezone.utc).isoformat()
@@ -2424,15 +3819,17 @@ def finish_osce_session(
         "evaluated_items": evaluated_items,
         "preceptor_feedback": preceptor_feedback,
         "shock_cards": shock_cards,
-        "elapsed_seconds": sess["elapsed_seconds"]
+        "elapsed_seconds": sess["elapsed_seconds"],
+        "timeline_post_mortem": timeline_data,
+        "competency_radar": radar_data
     }
 
 
 def get_osce_session_report(db, session_id: str, user_id: str) -> Optional[dict[str, Any]]:
-    """Recupera o espelho oficial de prova e relatório detalhado pós-sessão."""
+    """Recupera o espelho oficial de prova e relatório detalhado pós-sessão com Timeline e Radar."""
     row = db.execute("""
         SELECT s.id, s.station_id, s.user_id, s.status, s.start_time, s.end_time,
-               s.elapsed_seconds, s.final_score, s.transcript_json,
+               s.elapsed_seconds, s.final_score, s.transcript_json, s.actions_taken_json,
                s.checklist_evaluation_json, s.preceptor_feedback_json,
                st.code, st.title, st.area, st.subtema, st.institution, st.year,
                st.duration_seconds, st.scenario_door_markdown
@@ -2447,6 +3844,26 @@ def get_osce_session_report(db, session_id: str, user_id: str) -> Optional[dict[
     evaluation = json.loads(row["checklist_evaluation_json"] or "{}")
     feedback = json.loads(row["preceptor_feedback_json"] or "{}")
     transcript = json.loads(row["transcript_json"] or "[]")
+    actions = json.loads(row["actions_taken_json"] or "[]")
+
+    timeline_data = feedback.get("timeline_post_mortem")
+    radar_data = feedback.get("competency_radar")
+
+    if not timeline_data or not radar_data:
+        timeline_data = generate_timeline_post_mortem(
+            station_meta=dict(row),
+            transcript=transcript,
+            actions=actions,
+            evaluated_items=evaluation.get("items", []),
+            elapsed_seconds=row["elapsed_seconds"]
+        )
+        radar_data = generate_competency_radar(
+            station_meta=dict(row),
+            evaluated_items=evaluation.get("items", []),
+            actions=actions,
+            transcript=transcript,
+            elapsed_seconds=row["elapsed_seconds"]
+        )
 
     return {
         "session_id": row["id"],
@@ -2467,7 +3884,9 @@ def get_osce_session_report(db, session_id: str, user_id: str) -> Optional[dict[
         "checklist_evaluation": evaluation.get("items", []),
         "critical_warnings": evaluation.get("critical_warnings", []),
         "preceptor_feedback": feedback,
-        "transcript": transcript
+        "transcript": transcript,
+        "timeline_post_mortem": timeline_data,
+        "competency_radar": radar_data
     }
 
 
@@ -2519,4 +3938,722 @@ def export_osce_flashcards(db, session_id: str, user_id: str) -> dict[str, Any]:
         "exported_count": exported_count,
         "message": f"{exported_count} flashcards de choque adicionados à sua revisão ativa FSRS."
     }
+
+
+# =========================================================================
+# VETOR 2: CATÁLOGOS E MOTORES DE PRESCRIÇÃO E MANEQUIM INTERATIVO
+# =========================================================================
+
+EMERGENCY_DRUGS_CATALOG: list[dict[str, Any]] = [
+    {
+        "id": "adrenalina",
+        "name": "Adrenalina (Epinefrina 1:1000 - 1 mg/ml)",
+        "category": "Ressuscitação & Aminas",
+        "default_dose": "0.5",
+        "default_unit": "mg",
+        "routes": ["IM (vasto lateral da coxa)", "EV em bólus (PCR)", "SC", "Nebulização"],
+        "indications": "Anafilaxia grave (0,01 mg/kg até 0,5mg IM), PCR (1mg EV a cada 3-5min), Laringite/Estridor",
+        "hints": "Na anafilaxia, via IM no vasto lateral é prioritária. Nunca fazer EV puro se o paciente não estiver em PCR."
+    },
+    {
+        "id": "noradrenalina",
+        "name": "Noradrenalina (Hemitartarato 2 mg/ml - ampola 4ml/8mg)",
+        "category": "Ressuscitação & Aminas",
+        "default_dose": "0.1",
+        "default_unit": "mcg/kg/min",
+        "routes": ["EV em BIC contínua"],
+        "indications": "Choque séptico refratário a volume, choque distributivo, hipotensão grave",
+        "hints": "Diluição padrão: 4 ampolas (16mg) + 234 ml SG 5% (64 mcg/ml). Titular para PAM >= 65 mmHg."
+    },
+    {
+        "id": "atropina",
+        "name": "Atropina (Sulfato 0,5 mg/ml)",
+        "category": "Ressuscitação & Aminas",
+        "default_dose": "1.0",
+        "default_unit": "mg",
+        "routes": ["EV em bólus"],
+        "indications": "Bradiarritmias sintomáticas e instáveis (1mg a cada 3-5min até máx 3mg)",
+        "hints": "Dose mínima de 0,5-1mg para evitar efeito bradicardizante paradoxal inicial."
+    },
+    {
+        "id": "amiodarona",
+        "name": "Amiodarona (Cloridrato 50 mg/ml - ampola 3ml/150mg)",
+        "category": "Antiarrítmicos & Cardiovasculares",
+        "default_dose": "300",
+        "default_unit": "mg",
+        "routes": ["EV em bólus rápido (PCR)", "EV em infusão rápida (150mg em 10min se estável)", "EV em BIC contínua"],
+        "indications": "PCR em FV/TV sem pulso refratária (300mg no 3º choque); Taquicardias ventriculares",
+        "hints": "Diluir sempre em Soro Glicosado 5% para prevenir flebite e precipitação."
+    },
+    {
+        "id": "aas",
+        "name": "AAS (Ácido Acetilsalicílico) comprimido mastigável 100mg",
+        "category": "Antiarrítmicos & Cardiovasculares",
+        "default_dose": "200",
+        "default_unit": "mg",
+        "routes": ["VO mastigado", "VO deglutido"],
+        "indications": "Síndrome Coronariana Aguda (SCA com e sem supra), AVC isquêmico agudo",
+        "hints": "Dose inicial mastigada de 160 a 325 mg (preferencialmente 200 a 300 mg) para absorção bucal imediata."
+    },
+    {
+        "id": "ticagrelor",
+        "name": "Ticagrelor comprimido 90mg",
+        "category": "Antiarrítmicos & Cardiovasculares",
+        "default_dose": "180",
+        "default_unit": "mg",
+        "routes": ["VO"],
+        "indications": "SCA com ou sem supra de ST (dupla antiagregação plaquetária em dose de ataque)",
+        "hints": "Dose de ataque: 2 comprimidos (180 mg). Preferido em relação ao clopidogrel na diretriz SBC/ESC."
+    },
+    {
+        "id": "clopidogrel",
+        "name": "Clopidogrel comprimido 75mg",
+        "category": "Antiarrítmicos & Cardiovasculares",
+        "default_dose": "300",
+        "default_unit": "mg",
+        "routes": ["VO"],
+        "indications": "SCA (se ticagrelor indisponível, contraindicado ou idoso > 75 anos trombolisado)",
+        "hints": "Dose de 300mg (angioplastia ou conservador) ou 600mg (angioplastia primária planejada imediata)."
+    },
+    {
+        "id": "enoxaparina",
+        "name": "Enoxaparina sódica seringa preenchida 40mg/60mg/80mg",
+        "category": "Antiarrítmicos & Cardiovasculares",
+        "default_dose": "1",
+        "default_unit": "mg/kg",
+        "routes": ["SC de 12/12h", "EV em bólus de 30mg (ataque se SCA com supra < 75 anos)"],
+        "indications": "Anticoagulação plena em SCA, TEP agudo, TVP",
+        "hints": "Dose plena: 1 mg/kg SC a cada 12 horas. Ajustar para 1 mg/kg 1x/dia se ClCr < 30 ml/min."
+    },
+    {
+        "id": "nitroglicerina",
+        "name": "Nitroglicerina (Tridil) ampola 50mg/10ml",
+        "category": "Antiarrítmicos & Cardiovasculares",
+        "default_dose": "5",
+        "default_unit": "mcg/min",
+        "routes": ["EV em BIC contínua"],
+        "indications": "Dor isquêmica refratária na SCA, edema agudo de pulmão hipertensivo, crise hipertensiva",
+        "hints": "Contraindicado se PA sistólica < 90 mmHg, infarto de ventrículo direito ou uso de sildenafila nas últimas 24h."
+    },
+    {
+        "id": "sf09",
+        "name": "Soro Fisiológico 0,9% (Cloreto de Sódio) bolsa 500ml / 1000ml",
+        "category": "Soluções & Expansão Volêmica",
+        "default_dose": "1000",
+        "default_unit": "ml",
+        "routes": ["EV em infusão rápida", "EV contínuo"],
+        "indications": "Expansão volêmica inicial em choque hipovolêmico, desidratação, cetoacidose diabética (1000-1500 ml na 1ª hora)",
+        "hints": "Na CAD grave, correr 15 a 20 ml/kg (cerca de 1000 a 1500 ml) na primeira hora."
+    },
+    {
+        "id": "ringers_lactate",
+        "name": "Ringer Lactato bolsa 500ml / 1000ml",
+        "category": "Soluções & Expansão Volêmica",
+        "default_dose": "1000",
+        "default_unit": "ml",
+        "routes": ["EV em infusão rápida"],
+        "indications": "Ressuscitação balanceada no trauma (ATLS 10ª ed: 1000ml restritivo), sepse, grandes queimados",
+        "hints": "Menor risco de acidose hiperclorêmica do que o soro fisiológico em grandes volumes."
+    },
+    {
+        "id": "sg5",
+        "name": "Soro Glicosado 5% bolsa 500ml",
+        "category": "Soluções & Expansão Volêmica",
+        "default_dose": "500",
+        "default_unit": "ml",
+        "routes": ["EV contínuo"],
+        "indications": "Associação na CAD quando glicemia atingir 200-250 mg/dL para fechar ânion gap sem hipoglicemia",
+        "hints": "Regra áurea do HC-FMRP: nunca suspender a insulina ao atingir 250 mg/dL, abrir o SG 5% junto!"
+    },
+    {
+        "id": "glicose50",
+        "name": "Glicose Hipertônica a 50% (ampola 10ml ou 20ml)",
+        "category": "Soluções & Expansão Volêmica",
+        "default_dose": "40",
+        "default_unit": "ml",
+        "routes": ["EV em bólus"],
+        "indications": "Hipoglicemia sintomática grave (HGT < 70 mg/dL com rebaixamento de nível de consciência)",
+        "hints": "40 a 50 ml de Glicose 50% EV rápido. Reavaliar HGT em 15 minutos."
+    },
+    {
+        "id": "kcl",
+        "name": "Cloreto de Potássio (KCl 19,1% - ampola 10ml com 25 mEq)",
+        "category": "Soluções & Expansão Volêmica",
+        "default_dose": "20",
+        "default_unit": "mEq",
+        "routes": ["EV diluído em solução (NUNCA em bólus puro!)"],
+        "indications": "Reposição de potássio na Cetoacidose Diabética (20-30 mEq/L de soro para manter K+ entre 4 e 5)",
+        "hints": "AVISO CRÍTICO: KCl puro em bólus é letal por assistolia. Sempre diluir em soro!"
+    },
+    {
+        "id": "gluconato_calcio",
+        "name": "Gluconato de Cálcio 10% ampola 10ml",
+        "category": "Soluções & Expansão Volêmica",
+        "default_dose": "1",
+        "default_unit": "ampola",
+        "routes": ["EV lento em 3 a 5 minutos"],
+        "indications": "Estabilização miocárdica na Hipercalemia grave com alterações de ECG; antídoto do sulfato de magnésio",
+        "hints": "Não reduz o potássio sérico por si só, apenas protege o miocárdio contra arritmias ventriculares."
+    },
+    {
+        "id": "insulina_regular",
+        "name": "Insulina Regular Humana frasco 100 UI/ml",
+        "category": "Endócrino & Metabólico",
+        "default_dose": "0.1",
+        "default_unit": "U/kg/h",
+        "routes": ["EV em BIC contínua", "EV em bólus de 0,1 U/kg"],
+        "indications": "Cetoacidose Diabética, Estado Hiperglicêmico Hiperosmolar, Hipercalemia grave",
+        "hints": "Diluição clássica: 100 UI em 100 ml de SF 0,9% (1 UI/ml). Checar K+ sérico antes de abrir a infusão!"
+    },
+    {
+        "id": "tranexamico",
+        "name": "Ácido Tranexâmico (Transamin) ampola 50mg/ml - 5ml (250mg) / ampola 500mg",
+        "category": "Hemostasia & Trauma",
+        "default_dose": "1",
+        "default_unit": "g",
+        "routes": ["EV em bólus de 10 min"],
+        "indications": "Politrauma grave com choque hemorrágico (CRASH-2: em < 3h 1g EV em 10 min seguido de 1g em 8h); Hemorragia pós-parto (WOMAN Trial)",
+        "hints": "Reduz mortalidade no choque hemorrágico e na atonia uterina. Deve ser feito precocemente (< 3 horas)."
+    },
+    {
+        "id": "ocitocina",
+        "name": "Ocitocina ampola 5 UI / ampola 10 UI",
+        "category": "Ginecologia & Obstetrícia",
+        "default_dose": "10",
+        "default_unit": "UI",
+        "routes": ["EV em infusão lenta / bólus lento", "EV diluída em BIC (20-40 UI em 500ml SF)", "IM"],
+        "indications": "Prevenção e tratamento de primeira linha de Hemorragia Pós-Parto por Atonia Uterina",
+        "hints": "Primeira droga de escolha para atonia uterina. Bólus IV excessivamente rápido pode causar hipotensão transitória."
+    },
+    {
+        "id": "misoprostol",
+        "name": "Misoprostol comprimido 200 mcg",
+        "category": "Ginecologia & Obstetrícia",
+        "default_dose": "800",
+        "default_unit": "mcg",
+        "routes": ["Via retal", "Via sublingual", "Via oral"],
+        "indications": "Tratamento de 2ª linha para atonia uterina na Hemorragia Pós-Parto",
+        "hints": "Dose de 800 mcg via retal ou sublingual se a hemorragia persistir após ocitocina e ácido tranexâmico."
+    },
+    {
+        "id": "sulfato_magnesio",
+        "name": "Sulfato de Magnésio 50% (ampola 10ml com 5g) / 10%",
+        "category": "Ginecologia & Obstetrícia",
+        "default_dose": "4",
+        "default_unit": "g",
+        "routes": ["EV em 15-20 min (ataque)", "EV em BIC a 1-2g/h (manutenção - Esquema Zuspan)"],
+        "indications": "Prevenção e tratamento de Eclâmpsia em gestantes com Pré-Eclâmpsia grave; Torsades de Pointes",
+        "hints": "Regra Zuspan: Ataque 4g EV em 20 min + Manutenção 1 a 2 g/h em BIC contínua. Monitorar reflexo patelar, FR e diurese."
+    },
+    {
+        "id": "hidralazina",
+        "name": "Hidralazina (Cloridrato) ampola 20mg/ml",
+        "category": "Ginecologia & Obstetrícia",
+        "default_dose": "5",
+        "default_unit": "mg",
+        "routes": ["EV lento a cada 20 min"],
+        "indications": "Crise hipertensiva na gestação (PAS >= 160 ou PAD >= 110 mmHg em Pré-eclâmpsia grave)",
+        "hints": "Dose inicial de 5mg EV lento. Repetir 5-10mg a cada 20 min se necessário (meta: PAS 140-150 e PAD 90-100 mmHg)."
+    },
+    {
+        "id": "salbutamol",
+        "name": "Salbutamol (Aerolin spray 100 mcg/dose ou gotas)",
+        "category": "Pneumologia & Alergia",
+        "default_dose": "4",
+        "default_unit": "puffs",
+        "routes": ["Inalatória com espaçador", "Nebulização"],
+        "indications": "Crise de asma aguda, exacerbação de DPOC, broncoespasmo",
+        "hints": "4 a 8 jatos com espaçador a cada 20 minutos na primeira hora de crise asmática."
+    },
+    {
+        "id": "hidrocortisona",
+        "name": "Hidrocortisona pó para solução injetável 100mg / 500mg",
+        "category": "Pneumologia & Alergia",
+        "default_dose": "200",
+        "default_unit": "mg",
+        "routes": ["EV em bólus"],
+        "indications": "Anafilaxia (segunda linha para prevenir fase tardia), Crise asmática grave, Insuficiência adrenal",
+        "hints": "Lembre-se: em anafilaxia, corticoides e anti-histamínicos NÃO substituem a Adrenalina IM prioritária!"
+    },
+    {
+        "id": "midazolam",
+        "name": "Midazolam ampola 5mg/ml ou 1mg/ml",
+        "category": "Sedação & Analgesia",
+        "default_dose": "5",
+        "default_unit": "mg",
+        "routes": ["EV lento", "IM", "Intranasal"],
+        "indications": "Estado de Mal Epiléptico (ataque inicial), Sedação consciente para cardioversão de urgência, IOT",
+        "hints": "Antídoto de reversão imediata: Flumazenil."
+    },
+    {
+        "id": "fentanil",
+        "name": "Fentanil (Citrato 50 mcg/ml - ampola 2ml/100mcg)",
+        "category": "Sedação & Analgesia",
+        "default_dose": "100",
+        "default_unit": "mcg",
+        "routes": ["EV lento"],
+        "indications": "Analgesia potente no trauma, analgesia na intubação em sequência rápida (1-3 mcg/kg)",
+        "hints": "Antídoto de reversão: Naloxona."
+    },
+    {
+        "id": "ceftriaxona",
+        "name": "Ceftriaxona pó para solução injetável 1g / 2g",
+        "category": "Antimicrobianos",
+        "default_dose": "2",
+        "default_unit": "g",
+        "routes": ["EV em infusão de 30 min", "IM"],
+        "indications": "Bundle de 1 hora da Sepse/Choque séptico; Meningite bacteriana; Profilaxia pós-violência sexual",
+        "hints": "Na sepse com choque, administrar na 1ª hora após coleta dos pares de hemoculturas."
+    }
+]
+
+PROCEDURES_CATALOG: list[dict[str, Any]] = [
+    {
+        "id": "morrison_efast",
+        "type": "efast",
+        "name": "Janela Hepatorrenal (Espaço de Morrison)",
+        "site": "morrison",
+        "body_region": "Hipocôndrio Direito (Linha Axilar Média)",
+        "description": "Transdutor posicionado no 8º a 11º EIC direito para avaliar líquido livre entre o fígado e o rim direito."
+    },
+    {
+        "id": "splenorenal_efast",
+        "type": "efast",
+        "name": "Janela Esplenorrenal (Recesso de Koller)",
+        "site": "splenorenal",
+        "body_region": "Hipocôndrio Esquerdo (Linha Axilar Posterior)",
+        "description": "Transdutor posicionado no 6º a 9º EIC esquerdo para avaliar trauma esplênico e hemoperitônio."
+    },
+    {
+        "id": "pelvic_efast",
+        "type": "efast",
+        "name": "Janela Pélvica / Suprapúbica",
+        "site": "pelvic",
+        "body_region": "Hipogástrio (Suprapúbico)",
+        "description": "Transdutor posicionado acima da sínfise púbica para avaliar líquido livre no fundo de saco peritoneal."
+    },
+    {
+        "id": "pericardial_efast",
+        "type": "efast",
+        "name": "Janela Subxifoide / Pericárdica",
+        "site": "pericardial",
+        "body_region": "Epigástrio / Subxifoide",
+        "description": "Transdutor sob o apêndice xifoide apontando para o ombro esquerdo para descartar tamponamento cardíaco."
+    },
+    {
+        "id": "pleural_right_efast",
+        "type": "efast",
+        "name": "E-FAST Pulmonar Direito (Lung Sliding)",
+        "site": "pleural_right",
+        "body_region": "2º/3º EIC Direito Linha Hemiclavicular",
+        "description": "Avaliação do deslizamento pleural anterior com ultrassom para descartar pneumotórax traumático."
+    },
+    {
+        "id": "pleural_left_efast",
+        "type": "efast",
+        "name": "E-FAST Pulmonar Esquerdo (Lung Sliding)",
+        "site": "pleural_left",
+        "body_region": "2º/3º EIC Esquerdo Linha Hemiclavicular",
+        "description": "Avaliação do deslizamento pleural anterior à esquerda com ultrassom para detecção de pneumotórax."
+    },
+    {
+        "id": "thoracocentesis_relief",
+        "type": "puncture",
+        "name": "Toracocentese de Alívio com Agulha",
+        "site": "thoracocentesis",
+        "body_region": "2º EIC Linha Hemiclavicular ou 4º/5º EIC Linha Axilar Anterior",
+        "description": "Punção com abocath calibroso na borda superior da costela para descompressão de pneumotórax hipertensivo."
+    },
+    {
+        "id": "chest_tube_drainage",
+        "type": "drainage",
+        "name": "Drenagem Torácica Fechada em Selo D'água",
+        "site": "chest_tube",
+        "body_region": "5º EIC Linha Axilar Média (Triângulo de Segurança)",
+        "description": "Toracostomia com dreno tubular 28-36 Fr em selo d'água após alívio inicial de pneumotórax ou hemotórax."
+    },
+    {
+        "id": "hamilton_maneuver",
+        "type": "maneuver",
+        "name": "Compressão Uterina Bimanual (Manobra de Hamilton)",
+        "site": "hamilton",
+        "body_region": "Pelve e Hipogástrio",
+        "description": "Mão intravaginal fechada em punho contra parede anterior do útero e mão externa comprimindo fundo uterino."
+    },
+    {
+        "id": "synchronized_cardioversion",
+        "type": "cardioversion",
+        "name": "Cardioversão Elétrica Sincronizada",
+        "site": "cardioversion",
+        "body_region": "Tórax Infraclavicular Direito e Ápice Cardíaco",
+        "description": "Aplicação de pás com gel condutor, sincronização no monitor e disparo de choque para taquicardia instável."
+    },
+    {
+        "id": "vascular_access_central",
+        "type": "vascular",
+        "name": "Acesso Venoso Central (Subclávia ou Jugular Interna)",
+        "site": "central_vein",
+        "body_region": "Região Cervical / Infraclavicular",
+        "description": "Punção venosa profunda guiada por marcos anatômicos ou ultrassom beira-leito pela técnica de Seldinger."
+    },
+    {
+        "id": "intraosseous_access",
+        "type": "vascular",
+        "name": "Punção Intraóssea (Tíbia Proximal)",
+        "site": "intraosseous",
+        "body_region": "Tíbia Proximal (2 cm abaixo da tuberosidade tibial)",
+        "description": "Acesso vascular de resgate de emergência rápida no choque pediátrico ou adulto com colapso venoso periférico."
+    }
+]
+
+
+def get_emergency_drugs_catalog() -> list[dict[str, Any]]:
+    """Retorna o catálogo completo de medicamentos da sala de emergência do OSCE."""
+    return EMERGENCY_DRUGS_CATALOG
+
+
+def get_procedures_catalog() -> list[dict[str, Any]]:
+    """Retorna o catálogo de procedimentos beira-leito e janelas E-FAST para o manequim 2D."""
+    return PROCEDURES_CATALOG
+
+
+def prescribe_osce_drugs(
+    db,
+    session_id: str,
+    user_id: str,
+    prescription_items: list[dict[str, Any]],
+    elapsed_seconds: int = 0
+) -> dict[str, Any]:
+    """
+    Processa a assinatura de uma prescrição médica estruturada na Sala Vermelha / Emergência:
+    - Analisa os fármacos e doses prescritos contra o checklist e regras clínicas da estação.
+    - Notifica a intervenção da equipe de enfermagem da banca.
+    - Enfileira fala do examinador para TTS imediato.
+    """
+    sess = db.execute("""
+        SELECT s.id, s.station_id, s.status, s.actions_taken_json, s.transcript_json,
+               st.code, st.title, st.checklist_barema_json, st.scenario_door_markdown
+        FROM osce_sessions s
+        JOIN osce_stations st ON s.station_id = st.id
+        WHERE s.id = ?
+    """, (session_id,)).fetchone()
+
+    if not sess:
+        raise ValueError("Sessão não encontrada.")
+    if sess["status"] != "in_progress":
+        return {"error": "Sessão finalizada."}
+
+    actions = json.loads(sess["actions_taken_json"] or "[]")
+    transcript = json.loads(sess["transcript_json"] or "[]")
+    barema_raw = json.loads(sess["checklist_barema_json"] or "{}")
+    barema_items = barema_raw.get("items", []) if isinstance(barema_raw, dict) else (barema_raw if isinstance(barema_raw, list) else [])
+    now_iso = datetime.now(timezone.utc).isoformat()
+
+    if not prescription_items:
+        return {"error": "Nenhum medicamento informado na prescrição."}
+
+    # Monta a descrição legível e busca correspondências no barema
+    drug_summaries: list[str] = []
+    matched_checklist_titles: list[str] = []
+
+    for item in prescription_items:
+        name = item.get("drug_name", "Medicamento").strip()
+        dose = item.get("dose", "").strip()
+        unit = item.get("unit", "").strip()
+        route = item.get("route", "").strip()
+        notes = item.get("notes", "").strip()
+
+        desc_parts = [name]
+        if dose:
+            desc_parts.append(f"{dose} {unit}".strip())
+        if route:
+            desc_parts.append(f"via {route}")
+        if notes:
+            desc_parts.append(f"({notes})")
+
+        drug_summaries.append(" ".join(desc_parts))
+
+        # Checa pertinência com os itens de tratamento do barema da estação
+        norm_item = _normalize_text(f"{name} {dose} {unit} {route} {notes}")
+        for crit in barema_items:
+            if isinstance(crit, dict) and crit.get("category") in ("conduta_tratamento", "tratamento", "conduta"):
+                for kw in crit.get("keywords", []):
+                    if _normalize_text(kw) in norm_item:
+                        if crit.get("title") not in matched_checklist_titles:
+                            matched_checklist_titles.append(crit.get("title", ""))
+
+    prescription_text = "; ".join(drug_summaries)
+    examiner_message = (
+        f"Prescrição da Sala de Emergência recebida pela equipe de enfermagem: {prescription_text}. "
+        "Fármacos checados e administrados conforme prescrito. Sinais vitais em monitorização contínua."
+    )
+
+    action_record = {
+        "action_type": "prescription",
+        "action_target": "emergency_prescription",
+        "prescription_items": prescription_items,
+        "matched_criteria": matched_checklist_titles,
+        "elapsed_seconds": elapsed_seconds,
+        "timestamp": now_iso
+    }
+
+    spoken_queue: list[dict[str, str]] = [
+        {"speaker": "examinador", "text": f"Prescrição recebida e administrada pela enfermagem beira-leito: {prescription_text}."}
+    ]
+
+    actions.append(action_record)
+    transcript.append({
+        "sender": "examinador",
+        "message": examiner_message,
+        "timestamp": now_iso,
+        "elapsed_seconds": elapsed_seconds,
+        "action_payload": {
+            "type": "prescription",
+            "items": prescription_items,
+            "matched_criteria": matched_checklist_titles
+        }
+    })
+
+    with db_transaction(db, immediate=True):
+        db.execute("""
+            UPDATE osce_sessions
+            SET actions_taken_json = ?, transcript_json = ?, elapsed_seconds = ?
+            WHERE id = ?
+        """, (
+            json.dumps(actions, ensure_ascii=False),
+            json.dumps(transcript, ensure_ascii=False),
+            elapsed_seconds,
+            session_id
+        ))
+
+    res_presc: dict[str, Any] = {
+        "success": True,
+        "prescription_text": prescription_text,
+        "examiner_message": examiner_message,
+        "matched_criteria": matched_checklist_titles,
+        "spoken_queue": spoken_queue,
+        "elapsed_seconds": elapsed_seconds
+    }
+
+    if get_session_mode(actions) == "guided":
+        res_presc["guided_feedback"] = evaluate_live_barema_progress(barema_items, transcript, actions, elapsed_seconds)
+
+    return res_presc
+
+
+def perform_osce_procedure(
+    db,
+    session_id: str,
+    user_id: str,
+    procedure_type: str,
+    anatomical_site: str,
+    elapsed_seconds: int = 0
+) -> dict[str, Any]:
+    """
+    Executa um procedimento invasivo ou varredura ultrassonográfica (E-FAST) no manequim 2D beira-leito.
+    """
+    sess = db.execute("""
+        SELECT s.id, s.station_id, s.status, s.actions_taken_json, s.transcript_json,
+               st.code, st.title, st.physical_exam_json, st.lab_imaging_json, st.checklist_barema_json
+        FROM osce_sessions s
+        JOIN osce_stations st ON s.station_id = st.id
+        WHERE s.id = ?
+    """, (session_id,)).fetchone()
+
+    if not sess:
+        raise ValueError("Sessão não encontrada.")
+    if sess["status"] != "in_progress":
+        return {"error": "Sessão finalizada."}
+
+    actions = json.loads(sess["actions_taken_json"] or "[]")
+    transcript = json.loads(sess["transcript_json"] or "[]")
+    station_code = sess["code"]
+    labs = json.loads(sess["lab_imaging_json"] or "{}")
+    now_iso = datetime.now(timezone.utc).isoformat()
+
+    site_clean = anatomical_site.strip().lower()
+    proc_type_clean = procedure_type.strip().lower()
+
+    examiner_message = ""
+    findings_desc = ""
+    is_positive_finding = False
+    image_url: Optional[str] = None
+
+    # 1. VARREDURA ULTRASSONOGRÁFICA E-FAST (POCUS)
+    if proc_type_clean == "efast" or site_clean in ("morrison", "splenorenal", "pelvic", "pericardial", "pleural_right", "pleural_left"):
+        is_trauma_fast = "FAST" in station_code or "trauma" in sess["title"].lower() or "politrauma" in sess["title"].lower()
+
+        if site_clean == "morrison":
+            if is_trauma_fast:
+                findings_desc = (
+                    "Janela Hepatorrenal (Morrison): Presença de lâmina fina de líquido livre anecoico "
+                    "no recesso entre o lobo hepático direito e o córtex renal anterior. Espaço de Morrison POSITIVO para líquido livre."
+                )
+                is_positive_finding = True
+            else:
+                findings_desc = "Janela Hepatorrenal (Morrison): Interface hepatorrenal nítida sem acúmulo de líquido anecoico."
+        elif site_clean == "splenorenal":
+            if is_trauma_fast:
+                findings_desc = (
+                    "Janela Esplenorrenal (Recesso de Koller): Presença de volumosa quantidade de líquido livre anecoico "
+                    "circundando o polo inferior e hilo do baço, com irregularidade cortical compatível com laceração esplênica ativa. FAST POSITIVO."
+                )
+                is_positive_finding = True
+            else:
+                findings_desc = "Janela Esplenorrenal: Recesso de Koller sem coleções ou líquido livre visível."
+        elif site_clean == "pelvic":
+            if is_trauma_fast:
+                findings_desc = (
+                    "Janela Pélvica / Suprapúbica: Presença de líquido livre anecoico acumulado no fundo de saco peritoneal posterior. FAST POSITIVO."
+                )
+                is_positive_finding = True
+            else:
+                findings_desc = "Janela Pélvica: Bexiga fisiologicamente preenchida, sem líquido livre em escavação pélvica."
+        elif site_clean == "pericardial":
+            findings_desc = (
+                "Janela Subxifoide / Pericárdica: Espaço pericárdico virtual preservado, sem lâmina anecoica ou "
+                "sinais de tamponamento cardíaco. Contratilidade ventricular preservada."
+            )
+        elif site_clean in ("pleural_right", "pleural_left"):
+            is_right = "right" in site_clean
+            findings_desc = (
+                f"E-FAST Pleuropulmonar {'Direito' if is_right else 'Esquerdo'}: Deslizamento pleural ('lung sliding') presente, "
+                "com linhas A fisiológicas e sinal da praia no Modo M. Ausência de pneumotórax neste hemitórax."
+            )
+        else:
+            findings_desc = f"Varredura ultrassonográfica no sítio {anatomical_site}: Estruturas anatômicas avaliadas sem coleções agudas adicionais."
+
+        examiner_message = f"Examinador entrega imagem do E-FAST: {findings_desc}"
+
+    # 2. TORACOCENTESE DE ALÍVIO COM AGULHA
+    elif proc_type_clean in ("puncture", "thoracocentesis") or "thoracocentesis" in site_clean:
+        is_pneumo = "PNEUMO" in station_code or "pneumotórax" in sess["title"].lower()
+        if is_pneumo:
+            findings_desc = (
+                "Descompressão torácica imediata com agulha no 2º EIC na linha hemiclavicular! "
+                "Ocorre escape audível e vigoroso de ar sob alta pressão! O murmúrio vesicular retorna parcialmente, "
+                "a turgência jugular atenua e a SatO2 eleva-se rapidamente para 93%."
+            )
+            is_positive_finding = True
+        else:
+            findings_desc = "Punção realizada com agulha no espaço intercostal. Não houve saída de ar sob pressão ou sangue."
+        examiner_message = f"Procedimento de Toracocentese de Alívio executado: {findings_desc}"
+
+    # 3. DRENAGEM TORÁCICA TUBULAR EM SELO D'ÁGUA
+    elif proc_type_clean in ("drainage", "chest_tube") or "chest_tube" in site_clean:
+        findings_desc = (
+            "Dreno torácico tubular 32 Fr introduzido no 5º EIC na linha axilar média (triângulo de segurança) "
+            "e conectado a selo d'água. Dreno posicionado com sucesso, fixado com ponto em bailarina. "
+            "Observa-se oscilação adequada da coluna d'água e drenagem de pequena quantidade de secreção serossanguinolenta."
+        )
+        examiner_message = f"Drenagem Torácica Fechada: {findings_desc}"
+        is_positive_finding = True
+
+    # 4. MANOBRA DE HAMILTON (COMPRESSÃO BIMANUAL UTERINA)
+    elif proc_type_clean in ("maneuver", "hamilton") or "hamilton" in site_clean:
+        is_hpp = "HPP" in station_code or "hemorragia" in sess["title"].lower() or "atonia" in sess["title"].lower()
+        if is_hpp:
+            findings_desc = (
+                "Manobra de compressão bimanual de Hamilton iniciada imediatamente: punho cerrado no fundo de saco anterior "
+                "da vagina contra a parede anterior uterina e mão abdominal tracionando o fundo para frente. "
+                "O útero contrai parcialmente sob a compressão com redução do sangramento vaginal em jato."
+            )
+            is_positive_finding = True
+        else:
+            findings_desc = "Manobra executada conforme a técnica obstétrica padrão."
+        examiner_message = f"Manobra Obstétrica Beira-Leito: {findings_desc}"
+
+    # 5. CARDIOVERSÃO ELÉTRICA SINCRONIZADA
+    elif proc_type_clean in ("cardioversion",) or "cardioversion" in site_clean:
+        is_tv = "TV" in station_code or "taquicardia" in sess["title"].lower()
+        if is_tv:
+            findings_desc = (
+                "Pás de desfibrilador posicionadas com gel (infraclavicular direita e ápice cardíaco). "
+                "Modo sincronizado ATIVADO, flag nas ondas R confirmado. Sedação rápida administrada. "
+                "A equipe afasta-se e o choque de 100 Joules é disparado! O monitor acusa reversão imediata para Ritmo Sinusal, "
+                "FC 84 bpm, pulsos amplos e PA normalizada em 115x75 mmHg!"
+            )
+            is_positive_finding = True
+        else:
+            findings_desc = "Cardioversão sincronizada realizada com choque disparado na onda R."
+        examiner_message = f"Cardioversão Elétrica Sincronizada: {findings_desc}"
+
+    # 6. ACESSO VENOSO PROFUNDO / INTRAÓSSEO
+    elif proc_type_clean in ("vascular", "intraosseous") or "intraosseous" in site_clean or "central_vein" in site_clean:
+        if "intraosseous" in site_clean or proc_type_clean == "intraosseous":
+            findings_desc = (
+                "Punção intraóssea realizada na tíbia proximal (2 cm abaixo e medial à tuberosidade tibial). "
+                "Aspiração de medula óssea positiva e infusão livre de soro sem extravasamento. Via de emergência garantida."
+            )
+        else:
+            findings_desc = (
+                "Acesso venoso central obtido por punção de veia subclávia direita sob técnica de Seldinger. "
+                "Refluxo venoso escuro livre e infusão em fluxo rápido confirmada."
+            )
+        examiner_message = f"Acesso Vascular de Urgência: {findings_desc}"
+        is_positive_finding = True
+
+    # OUTROS PROCEDIMENTOS
+    else:
+        findings_desc = f"Procedimento ({procedure_type} no sítio {anatomical_site}) realizado com sucesso pela técnica asséptica beira-leito."
+        examiner_message = f"Procedimento Beira-Leito Realizado: {findings_desc}"
+
+    action_record = {
+        "action_type": "procedure",
+        "procedure_type": procedure_type,
+        "anatomical_site": anatomical_site,
+        "findings": findings_desc,
+        "is_positive": is_positive_finding,
+        "elapsed_seconds": elapsed_seconds,
+        "timestamp": now_iso
+    }
+
+    spoken_queue: list[dict[str, str]] = [
+        {"speaker": "examinador", "text": examiner_message}
+    ]
+
+    actions.append(action_record)
+    transcript.append({
+        "sender": "examinador",
+        "message": examiner_message,
+        "timestamp": now_iso,
+        "elapsed_seconds": elapsed_seconds,
+        "action_payload": {
+            "type": "procedure",
+            "procedure_type": procedure_type,
+            "anatomical_site": anatomical_site,
+            "findings": findings_desc,
+            "image_url": image_url
+        }
+    })
+
+    with db_transaction(db, immediate=True):
+        db.execute("""
+            UPDATE osce_sessions
+            SET actions_taken_json = ?, transcript_json = ?, elapsed_seconds = ?
+            WHERE id = ?
+        """, (
+            json.dumps(actions, ensure_ascii=False),
+            json.dumps(transcript, ensure_ascii=False),
+            elapsed_seconds,
+            session_id
+        ))
+
+    res_proc: dict[str, Any] = {
+        "success": True,
+        "procedure_type": procedure_type,
+        "anatomical_site": anatomical_site,
+        "findings": findings_desc,
+        "examiner_message": examiner_message,
+        "spoken_queue": spoken_queue,
+        "elapsed_seconds": elapsed_seconds
+    }
+
+    if get_session_mode(actions) == "guided":
+        barema_raw = json.loads(sess["checklist_barema_json"] or "{}")
+        c_items = barema_raw.get("items", []) if isinstance(barema_raw, dict) else (barema_raw if isinstance(barema_raw, list) else [])
+        res_proc["guided_feedback"] = evaluate_live_barema_progress(c_items, transcript, actions, elapsed_seconds)
+
+    return res_proc
+
 
