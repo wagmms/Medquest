@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { OsceSpokenQueueItem, OsceLiveFeedback } from "@/types/api";
 import { api } from "@/lib/api";
+import { toast } from "react-hot-toast";
 
 interface ProcedureMannequinProps {
   sessionId: string;
@@ -46,10 +47,11 @@ export function ProcedureMannequin({
           desc: res.findings,
           site: siteKey
         });
+        toast.success(`Procedimento realizado: ${siteLabel}`);
         onProcedureExecuted(siteLabel, res.findings, res.examiner_message, res.spoken_queue || [], res.guided_feedback);
       }
     } catch {
-      // Erro de rede ou sessão
+      toast.error("Erro ao registrar procedimento beira-leito.");
     } finally {
       setIsProcessing(false);
     }

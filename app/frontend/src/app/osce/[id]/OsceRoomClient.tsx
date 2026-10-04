@@ -9,6 +9,7 @@ import {
   ChevronLeft, Award, Sparkles, AlertTriangle, ShieldCheck,
   Radio, Headphones, Zap, Eye, CheckCircle2
 } from "lucide-react";
+import { toast } from "react-hot-toast";
 import { OsceStationDetail, OsceTranscriptItem, OsceFinishResponse, OsceSpokenQueueItem, OsceLiveFeedback } from "@/types/api";
 import { api } from "@/lib/api";
 import { PrescriptionPad } from "./PrescriptionPad";
@@ -41,7 +42,7 @@ interface SpeechRecognitionInstance {
   abort: () => void;
   onstart: (() => void) | null;
   onend: (() => void) | null;
-  onerror: (() => void) | null;
+  onerror: ((event: { error?: string }) => void) | null;
   onresult: ((event: SpeechRecognitionEventLike) => void) | null;
 }
 
@@ -80,13 +81,15 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const [handsFreeMode, setHandsFreeMode] = useState(true);
   const [interimSpeechText, setInterimSpeechText] = useState("");
   const [activeSpeaker, setActiveSpeaker] = useState<"examinador" | "paciente" | null>(null);
+  const [micPermission, setMicPermission] = useState<"granted" | "denied" | "prompt" | "unsupported">("prompt");
+  const [micErrorMsg, setMicErrorMsg] = useState<string | null>(null);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const transcriptEndRef = useRef<HTMLDivElement | null>(null);
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
   const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isAudioSpeakingRef = useRef<boolean>(false);
-  const startHandsFreeRecognitionRef = useRef<() => void>(() => {});
+  const startListeningRef = useRef<(userTriggered?: boolean) => Promise<void>>(async () => {});
   const handleDispatchSpeechRef = useRef<(spokenText: string) => Promise<void>>(async () => {});
 
   // Efeito sonoro do sino oficial da banca usando Web Audio API
@@ -134,7 +137,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const speakSpokenQueue = useCallback((queue: OsceSpokenQueueItem[]) => {
     if (!voiceEnabled || typeof window === "undefined" || !("speechSynthesis" in window) || queue.length === 0) {
       if (handsFreeMode && phase === "exam") {
-        setTimeout(() => startHandsFreeRecognitionRef.current(), 300);
+        setTimeout(() => startListeningRef.current(false), 300);
       }
       return;
     }
@@ -149,18 +152,30 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
       }
       setIsListening(false);
 
+      // Trava de segurança para evitar que a flag fique travada caso o evento onend falhe
+      const safetyTimeout = setTimeout(() => {
+        if (isAudioSpeakingRef.current) {
+          isAudioSpeakingRef.current = false;
+          setActiveSpeaker(null);
+          if (handsFreeMode && phase === "exam") {
+            startListeningRef.current(false);
+          }
+        }
+      }, 9000);
+
       const voices = window.speechSynthesis.getVoices();
       const ptVoices = voices.filter(v => v.lang.startsWith("pt"));
 
       let idx = 0;
       const playNext = () => {
         if (idx >= queue.length) {
+          clearTimeout(safetyTimeout);
           setActiveSpeaker(null);
           isAudioSpeakingRef.current = false;
           // Ao terminar a fala do sistema, se estiver no modo Hands-Free, reativa o microfone
           if (handsFreeMode && phase === "exam") {
             setTimeout(() => {
-              startHandsFreeRecognitionRef.current();
+              startListeningRef.current(false);
             }, 300);
           }
           return;
@@ -175,7 +190,6 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
         utterance.lang = "pt-BR";
 
         if (item.speaker === "examinador") {
-          // Tom firme e formal de examinador da banca
           utterance.rate = 1.08;
           utterance.pitch = 0.92;
           const maleOrStandard = ptVoices.find(v => {
@@ -184,7 +198,6 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
           });
           if (maleOrStandard) utterance.voice = maleOrStandard;
         } else {
-          // Voz humanizada do paciente conforme gênero e idade
           const isFemale = station.patient_persona.gender?.toLowerCase() === "feminino";
           utterance.rate = 0.98;
           utterance.pitch = isFemale ? 1.15 : 0.92;
@@ -211,7 +224,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
     } catch {
       setActiveSpeaker(null);
       isAudioSpeakingRef.current = false;
-      if (handsFreeMode && phase === "exam") startHandsFreeRecognitionRef.current();
+      if (handsFreeMode && phase === "exam") startListeningRef.current(false);
     }
   }, [voiceEnabled, handsFreeMode, phase, station.patient_persona.gender]);
 
@@ -219,10 +232,41 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const stopRecognition = useCallback(() => {
     if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
     if (recognitionRef.current) {
-      try { recognitionRef.current.stop(); } catch {}
+      try { 
+        recognitionRef.current.abort(); 
+      } catch {}
+      recognitionRef.current = null;
     }
     setIsListening(false);
     setInterimSpeechText("");
+  }, []);
+
+  // Solicita permissão de microfone explicitamente via getUserMedia
+  const requestMicrophonePermission = useCallback(async (): Promise<boolean> => {
+    if (typeof window === "undefined" || !navigator.mediaDevices?.getUserMedia) {
+      setMicPermission("unsupported");
+      setMicErrorMsg("Seu navegador não suporta captura de microfone. Recomendamos Google Chrome ou Microsoft Edge.");
+      return false;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream.getTracks().forEach((track) => track.stop());
+      setMicPermission("granted");
+      setMicErrorMsg(null);
+      return true;
+    } catch (err: unknown) {
+      const errorName = err instanceof Error ? err.name : "";
+      if (errorName === "NotAllowedError" || errorName === "PermissionDeniedError") {
+        setMicPermission("denied");
+        setMicErrorMsg("Permissão de microfone negada no navegador. Clique no ícone de cadeado na barra de URL para autorizar.");
+        toast.error("Microfone bloqueado: autorize o acesso no navegador.");
+      } else {
+        setMicPermission("denied");
+        setMicErrorMsg("Nenhum microfone encontrado ou o dispositivo está ocupado.");
+        toast.error("Erro no microfone do dispositivo.");
+      }
+      return false;
+    }
   }, []);
 
   // Dispatcher Unificado de Voz (Modo Hands-Free)
@@ -278,12 +322,12 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
       if (res.spoken_queue && res.spoken_queue.length > 0) {
         speakSpokenQueue(res.spoken_queue);
       } else if (handsFreeMode) {
-        setTimeout(() => startHandsFreeRecognitionRef.current(), 300);
+        setTimeout(() => startListeningRef.current(false), 300);
       }
     } catch (err) {
       console.error("Falha no speech dispatcher:", err);
       if (handsFreeMode) {
-        setTimeout(() => startHandsFreeRecognitionRef.current(), 300);
+        setTimeout(() => startListeningRef.current(false), 300);
       }
     } finally {
       setIsLoading(false);
@@ -291,17 +335,32 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   }, [sessionId, isLoading, station.duration_seconds, timeLeft, speakSpokenQueue, handsFreeMode]);
 
   // Iniciar Reconhecimento Contínuo com VAD (Detecção de Silêncio)
-  const startHandsFreeRecognition = useCallback(() => {
-    if (typeof window === "undefined" || isAudioSpeakingRef.current) return;
+  const startListening = useCallback(async (userTriggered = false) => {
+    if (typeof window === "undefined") return;
 
     const SpeechRecognition = (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).SpeechRecognition ||
                               (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).webkitSpeechRecognition;
 
-    if (!SpeechRecognition) return;
+    if (!SpeechRecognition) {
+      setMicPermission("unsupported");
+      setMicErrorMsg("Reconhecimento de voz não suportado neste navegador. Recomendamos Google Chrome ou Microsoft Edge.");
+      if (userTriggered) {
+        toast.error("Voz não suportada neste navegador. Use Google Chrome ou Edge.");
+      }
+      return;
+    }
+
+    if (userTriggered && micPermission !== "granted") {
+      const ok = await requestMicrophonePermission();
+      if (!ok) return;
+    }
+
+    if (isAudioSpeakingRef.current) return;
 
     try {
       if (recognitionRef.current) {
-        try { recognitionRef.current.stop(); } catch {}
+        try { recognitionRef.current.abort(); } catch {}
+        recognitionRef.current = null;
       }
 
       const rec = new SpeechRecognition();
@@ -311,20 +370,31 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
 
       rec.onstart = () => {
         setIsListening(true);
+        setMicErrorMsg(null);
       };
 
       rec.onend = () => {
         setIsListening(false);
-        // Reinício automático seguro se ainda estiver na fase exam e sem áudio tocando
+        // Reinício automático seguro no modo Viva-Voz se estiver na fase exam e sem áudio tocando
         if (handsFreeMode && phase === "exam" && !isAudioSpeakingRef.current && !isLoading) {
           setTimeout(() => {
-            try { rec.start(); } catch {}
-          }, 300);
+            if (!isAudioSpeakingRef.current && !isLoading) {
+              startListeningRef.current(false);
+            }
+          }, 350);
         }
       };
 
-      rec.onerror = () => {
+      rec.onerror = (event: { error?: string }) => {
         setIsListening(false);
+        const errType = event?.error;
+        if (errType === "not-allowed" || errType === "service-not-allowed") {
+          setMicPermission("denied");
+          setMicErrorMsg("Permissão de microfone negada. Autorize no cadeado da barra de URL.");
+          if (userTriggered) toast.error("Permissão de microfone negada no navegador.");
+        } else if (errType === "audio-capture") {
+          setMicErrorMsg("Nenhum sinal de microfone detectado no dispositivo.");
+        }
       };
 
       rec.onresult = (event: SpeechRecognitionEventLike) => {
@@ -353,7 +423,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
 
           // Debounce de 1.4s após o candidato terminar a frase
           silenceTimeoutRef.current = setTimeout(() => {
-            if (candidateText.length > 2 && !isAudioSpeakingRef.current) {
+            if (candidateText.length >= 2 && !isAudioSpeakingRef.current) {
               handleDispatchSpeechRef.current(candidateText);
               setInterimSpeechText("");
             }
@@ -366,22 +436,24 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
     } catch {
       setIsListening(false);
     }
-  }, [handsFreeMode, phase, isLoading]);
+  }, [micPermission, requestMicrophonePermission, handsFreeMode, phase, isLoading]);
 
   // Sincroniza refs para chamadas livres de ciclo
   useEffect(() => {
-    startHandsFreeRecognitionRef.current = startHandsFreeRecognition;
+    startListeningRef.current = startListening;
     handleDispatchSpeechRef.current = handleDispatchSpeech;
-  }, [startHandsFreeRecognition, handleDispatchSpeech]);
+  }, [startListening, handleDispatchSpeech]);
 
-  // Toggle do modo Hands-Free
+  // Toggle do modo Hands-Free (Viva-Voz contínuo)
   const toggleHandsFreeMode = () => {
     if (handsFreeMode) {
       setHandsFreeMode(false);
       stopRecognition();
+      toast("Modo Viva-Voz contínuo desligado. Clique no microfone para falar.", { icon: "🎙️" });
     } else {
       setHandsFreeMode(true);
-      setTimeout(() => startHandsFreeRecognition(), 200);
+      toast.success("Modo Viva-Voz contínuo ativado!");
+      setTimeout(() => startListening(true), 200);
     }
   };
 
@@ -411,7 +483,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
       if (voiceEnabled) {
         speakSpokenQueue(introQueue);
       } else if (handsFreeMode) {
-        setTimeout(() => startHandsFreeRecognition(), 500);
+        setTimeout(() => startListening(false), 500);
       }
     } catch (err) {
       console.error("Falha ao iniciar estação:", err);
@@ -466,7 +538,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
     };
   }, [phase, handleFinishExam, playExamBell]);
 
-  // Listener de tecla Escape para interromper fala longa e retomar microfone
+  // Listener de tecla Escape (interrompe fala) e Espaço (Push-to-Talk)
   useEffect(() => {
     if (phase !== "exam") return;
 
@@ -477,15 +549,24 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
           isAudioSpeakingRef.current = false;
           setActiveSpeaker(null);
           if (handsFreeMode) {
-            setTimeout(() => startHandsFreeRecognition(), 200);
+            setTimeout(() => startListening(false), 200);
           }
+        }
+      }
+      // Barra de espaço fora de inputs aciona o microfone
+      if (e.code === "Space" && e.target instanceof HTMLElement && !["INPUT", "TEXTAREA"].includes(e.target.tagName)) {
+        e.preventDefault();
+        if (isListening) {
+          stopRecognition();
+        } else {
+          startListening(true);
         }
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [phase, handsFreeMode, startHandsFreeRecognition]);
+  }, [phase, handsFreeMode, isListening, startListening, stopRecognition]);
 
   // Enviar mensagem manual por texto ou clique
   const handleSendMessage = async (msgToSend?: string) => {
@@ -496,19 +577,13 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
     await handleDispatchSpeech(text);
   };
 
-  // Toggle tradicional de microfone (modo avulso)
+  // Toggle direto e intuitivo do microfone
   const toggleListening = () => {
-    if (handsFreeMode) {
-      toggleHandsFreeMode();
-      return;
-    }
-
     if (isListening) {
       stopRecognition();
-      return;
+    } else {
+      startListening(true);
     }
-
-    startHandsFreeRecognition();
   };
 
   // Solicitar Ação Clínica (Exame Físico / Sinais Vitais / Exames)
@@ -891,13 +966,32 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
               </div>
 
               {/* Dica de Teclado */}
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground flex-wrap">
                 <Headphones className="w-3.5 h-3.5 text-primary hidden sm:inline" />
-                <span className="text-[11px] hidden sm:inline">Use fones de ouvido para melhor imersão •</span>
+                <span className="text-[11px] hidden sm:inline">Use fones •</span>
+                <kbd className="px-1.5 py-0.5 rounded bg-muted border border-border text-[10px] font-mono">Espaço</kbd>
+                <span className="text-[11px]">ligar mic •</span>
                 <kbd className="px-1.5 py-0.5 rounded bg-muted border border-border text-[10px] font-mono">Esc</kbd>
-                <span className="text-[11px] hidden md:inline">corta áudio</span>
+                <span className="text-[11px] hidden md:inline">corta fala</span>
               </div>
             </div>
+
+            {/* Alerta de Diagnóstico de Microfone se houver erro */}
+            {micErrorMsg && (
+              <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-destructive/15 border border-destructive/30 text-xs text-destructive animate-in fade-in">
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 shrink-0" />
+                  <span>{micErrorMsg}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => requestMicrophonePermission().then(ok => { if (ok) startListening(true); })}
+                  className="px-2.5 py-1 rounded-lg bg-destructive text-destructive-foreground text-[11px] font-bold hover:bg-destructive/90 cursor-pointer shrink-0"
+                >
+                  Autorizar Microfone
+                </button>
+              </div>
+            )}
 
             {/* Balão de Transcrição Ao Vivo */}
             {interimSpeechText && (
@@ -996,13 +1090,12 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
               {/* Caixa de Entrada (Voz + Texto) */}
               <div className="p-3 border-t border-border bg-card flex items-center gap-2">
                 <button
+                  type="button"
                   onClick={toggleListening}
-                  title={handsFreeMode ? "Modo Viva-Voz contínuo ativo (clique para alternar)" : isListening ? "Parar de ouvir" : "Ativar microfone"}
-                  className={`p-2.5 rounded-xl border transition-all ${
-                    handsFreeMode && isListening
-                      ? "bg-emerald-500 text-white border-emerald-600 shadow-sm ring-2 ring-emerald-500/30 animate-pulse"
-                      : isListening
-                      ? "bg-rose-500 text-white border-rose-600 animate-pulse"
+                  title={isListening ? "Microfone ouvindo você (clique para pausar)" : "Ativar microfone para falar"}
+                  className={`p-2.5 rounded-xl border transition-all flex items-center justify-center shrink-0 cursor-pointer ${
+                    isListening
+                      ? "bg-emerald-500 text-white border-emerald-600 shadow-md ring-2 ring-emerald-500/40 animate-pulse"
                       : "bg-muted hover:bg-muted/80 text-foreground border-border"
                   }`}
                 >

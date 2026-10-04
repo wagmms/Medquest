@@ -7,6 +7,10 @@ import {
 } from "lucide-react";
 import { OsceDrugItem, OscePrescriptionItem, OsceSpokenQueueItem, OsceLiveFeedback } from "@/types/api";
 import { api } from "@/lib/api";
+import { toast } from "react-hot-toast";
+
+const normalizeSearch = (s: string) =>
+  s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
 
 interface PrescriptionPadProps {
   sessionId: string;
@@ -181,14 +185,14 @@ export function PrescriptionPad({
     };
   }, []);
 
-  // Filtro de fármacos com busca tolerante
+  // Filtro de fármacos com busca tolerante e normalizada sem acentos
   const filteredDrugs = useMemo(() => {
     if (!searchQuery.trim()) return catalog.slice(0, 10);
-    const q = searchQuery.toLowerCase().trim();
+    const q = normalizeSearch(searchQuery);
     return catalog.filter((d) => 
-      d.name.toLowerCase().includes(q) ||
-      d.category.toLowerCase().includes(q) ||
-      d.indications.toLowerCase().includes(q)
+      normalizeSearch(d.name).includes(q) ||
+      normalizeSearch(d.category).includes(q) ||
+      normalizeSearch(d.indications).includes(q)
     );
   }, [catalog, searchQuery]);
 
@@ -212,6 +216,7 @@ export function PrescriptionPad({
       notes: notes.trim() || undefined
     };
     setPrescribedItems((prev) => [...prev, newItem]);
+    toast.success(`${selectedDrug.name.split(" ")[0]} adicionado à folha.`);
     setSelectedDrug(null);
     setSearchQuery("");
     setDose("");
@@ -221,6 +226,7 @@ export function PrescriptionPad({
   // Remove item da folha
   const handleRemoveItem = (index: number) => {
     setPrescribedItems((prev) => prev.filter((_, i) => i !== index));
+    toast("Item removido da folha.", { icon: "🗑️" });
   };
 
   // Presets Clínicos Rápidos de Urgência
@@ -231,29 +237,34 @@ export function PrescriptionPad({
         { drug_name: "Ticagrelor comprimido 90mg", dose: "180", unit: "mg", route: "VO", notes: "Dose de ataque (2 comprimidos)" },
         { drug_name: "Enoxaparina sódica", dose: "1", unit: "mg/kg", route: "SC de 12/12h", notes: "Anticoagulação plena" }
       ]);
+      toast.success("Protocolo de SCA carregado na folha!");
     } else if (presetName === "trauma") {
       setPrescribedItems([
         { drug_name: "Ácido Tranexâmico (Transamin)", dose: "1", unit: "g", route: "EV em bólus de 10 min", notes: "Protocolo CRASH-2 / ATLS (<3h)" },
         { drug_name: "Ringer Lactato", dose: "1000", unit: "ml", route: "EV em infusão rápida", notes: "Ressuscitação balanceada restritiva" }
       ]);
+      toast.success("Protocolo de Trauma / Hemorragia carregado!");
     } else if (presetName === "cad") {
       setPrescribedItems([
         { drug_name: "Soro Fisiológico 0,9%", dose: "1000", unit: "ml", route: "EV em infusão rápida", notes: "1ª hora de expansão (15-20 ml/kg)" },
         { drug_name: "Cloreto de Potássio (KCl 19,1%)", dose: "20", unit: "mEq", route: "EV diluído em solução", notes: "Reposição para manter K+ entre 4 e 5" },
         { drug_name: "Insulina Regular Humana", dose: "0.1", unit: "U/kg/h", route: "EV em BIC contínua", notes: "Meta: queda de 50-70 mg/dL/h" }
       ]);
+      toast.success("Protocolo de CAD carregado!");
     } else if (presetName === "preeclampsia") {
       setPrescribedItems([
         { drug_name: "Sulfato de Magnésio 50%", dose: "4", unit: "g", route: "EV em 15-20 min", notes: "Dose de ataque (Esquema Zuspan)" },
         { drug_name: "Sulfato de Magnésio 50%", dose: "1", unit: "g/h", route: "EV em BIC contínua", notes: "Dose de manutenção (Zuspan)" },
         { drug_name: "Hidralazina (Cloridrato)", dose: "5", unit: "mg", route: "EV lento a cada 20 min", notes: "Controle da crise hipertensiva" }
       ]);
+      toast.success("Protocolo de Pré-Eclâmpsia carregado!");
     } else if (presetName === "atonia") {
       setPrescribedItems([
         { drug_name: "Ocitocina", dose: "10", unit: "UI", route: "EV em infusão lenta", notes: "1ª linha atonia uterina" },
         { drug_name: "Ácido Tranexâmico", dose: "1", unit: "g", route: "EV em bólus de 10 min", notes: "WOMAN Trial em < 3 horas" },
         { drug_name: "Misoprostol", dose: "800", unit: "mcg", route: "Via retal", notes: "2ª linha após ocitocina" }
       ]);
+      toast.success("Protocolo de Atonia Uterina carregado!");
     }
   };
 
@@ -267,6 +278,7 @@ export function PrescriptionPad({
     try {
       const res = await api.osce.prescribe(sessionId, prescribedItems, elapsedSeconds);
       if (res?.success) {
+        toast.success("Prescrição administrada pela enfermagem!");
         setSuccessMessage("Prescrição assinada e administrada pela equipe da Sala Vermelha!");
         onPrescriptionSubmitted(res.prescription_text, res.examiner_message, res.spoken_queue || [], res.guided_feedback);
         // Limpa a prancheta após administrar
@@ -276,7 +288,7 @@ export function PrescriptionPad({
         }, 3500);
       }
     } catch {
-      // Erro ao enviar prescrição
+      toast.error("Erro ao enviar prescrição beira-leito.");
     } finally {
       setIsSubmitting(false);
     }
