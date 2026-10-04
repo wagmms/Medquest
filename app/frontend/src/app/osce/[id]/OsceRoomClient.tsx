@@ -649,12 +649,12 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const timeFormatted = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 
   return (
-    <div className="flex-1 flex flex-col h-full w-full max-w-7xl mx-auto p-3 md:p-6 overflow-hidden">
+    <div className="flex-1 flex flex-col min-h-full w-full max-w-7xl mx-auto p-3 md:p-6">
       {/* ========================================================================= */}
       {/* FASE 1: PORTA DA ESTAÇÃO */}
       {/* ========================================================================= */}
       {phase === "door" && (
-        <div className="flex-1 flex flex-col items-center justify-center p-4 max-w-3xl mx-auto text-center space-y-6 animate-in fade-in zoom-in-95 duration-200">
+        <div className="flex-1 flex flex-col items-center p-2 sm:p-4 max-w-3xl mx-auto text-center space-y-6 w-full pb-32 animate-in fade-in zoom-in-95 duration-200">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
             <Stethoscope className="w-4 h-4" />
             <span>Porta da Estação • {station.institution}</span>
@@ -770,17 +770,17 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
             </div>
           </div>
 
-          <div className="flex items-center gap-4 pt-4">
+          <div className="sticky bottom-4 z-20 flex items-center justify-center gap-4 pt-4 pb-2 w-full max-w-xl mx-auto bg-background/90 backdrop-blur-md p-3 rounded-2xl border border-border shadow-xl">
             <Link
               href="/osce"
-              className="px-5 py-3 rounded-xl border border-border hover:bg-muted text-sm font-semibold transition-colors"
+              className="px-5 py-3 rounded-xl border border-border bg-card hover:bg-muted text-sm font-semibold transition-colors shrink-0"
             >
               Voltar ao Hub
             </Link>
             <button
               onClick={handleStartExam}
               disabled={isLoading}
-              className="flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold bg-primary text-primary-foreground hover:bg-primary/90 shadow-md transition-transform active:scale-95 text-base"
+              className="flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold bg-primary text-primary-foreground hover:bg-primary/90 shadow-md transition-transform active:scale-95 text-base cursor-pointer shrink-0"
             >
               <Stethoscope className="w-5 h-5" />
               <span>Entrar na Sala de Exame</span>
@@ -793,7 +793,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
       {/* FASE 2: SALA DE EXAME BEIRA-LEITO */}
       {/* ========================================================================= */}
       {phase === "exam" && (
-        <div className="flex-1 flex flex-col min-h-0 w-full gap-4">
+        <div className="flex-1 flex flex-col min-h-0 w-full gap-4 pb-12">
           {/* Topbar da Estação */}
           <div className="flex items-center justify-between p-3 md:p-4 rounded-2xl border border-border bg-card shadow-sm shrink-0">
             <div className="flex items-center gap-3">
@@ -1216,7 +1216,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
       {/* FASE 3: ESPELHO OFICIAL DE CORREÇÃO (BAREMA) */}
       {/* ========================================================================= */}
       {phase === "finished" && report && (
-        <div className="flex-1 flex flex-col p-4 max-w-4xl mx-auto w-full space-y-6 overflow-y-auto animate-in fade-in duration-300">
+        <div className="flex-1 flex flex-col p-4 max-w-4xl mx-auto w-full space-y-6 pb-32 animate-in fade-in duration-300">
           {/* Header do Espelho */}
           <div className="text-center space-y-2 border-b border-border pb-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase">
