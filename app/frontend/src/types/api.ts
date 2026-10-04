@@ -981,6 +981,53 @@ export interface OsceGenerateStationResponse {
   message: string;
 }
 
+export interface OsceCircuitStationItem {
+  step: number;
+  station_id: number;
+  code: string;
+  area: string;
+  subtema?: string;
+  title: string;
+  institution: string;
+  duration_seconds?: number;
+}
+
+export interface OsceCircuitPlanResponse {
+  circuit_id: string;
+  institution: string;
+  total_steps: number;
+  stations: OsceCircuitStationItem[];
+}
+
+export interface OsceCircuitStationSummaryItem {
+  step: number;
+  session_id: string;
+  station_id: number;
+  code: string;
+  area: string;
+  title: string;
+  institution: string;
+  final_score: number;
+  approved: boolean;
+  status: string;
+  critical_warnings?: string[];
+}
+
+export interface OsceCircuitSummaryResponse {
+  circuit_id: string;
+  user_id: string;
+  total_score: number;
+  max_score: number;
+  average_score: number;
+  percentage: number;
+  approved: boolean;
+  stations_completed: number;
+  total_stations: number;
+  critical_errors_count: number;
+  stations: OsceCircuitStationSummaryItem[];
+  board_feedback: string;
+}
+
 
 
 

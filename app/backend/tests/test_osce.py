@@ -646,3 +646,228 @@ def test_osce_generator_fmrp_usp(app, client):
         assert data_ped["area"] == "Pediatria"
         assert data_ped["code"].startswith("USP-RP-AI-")
 
+
+def test_clinical_safety_guard_critical_violations(app, client):
+    """Valida o motor ClinicalSafetyGuard na detecção semântica de faltas graves e contraindicações."""
+    with app.app_context():
+        db = get_db()
+        osce.seed_osce_stations(db)
+
+        # 1. Caso de Falta Grave em CAD: Prescrever Bicarbonato de Sódio de rotina com pH 7.12
+        st_cad = db.execute("SELECT id FROM osce_stations WHERE code = 'USP-RP-2024-CM-CAD'").fetchone()
+        assert st_cad is not None
+        sess_cad = client.post("/api/osce/sessions/start", json={"station_id": st_cad["id"], "mode": "blind"}).get_json()
+        sess_cad_id = sess_cad["session_id"]
+
+        # Candidato comete o erro crítico de prescrever Bicarbonato
+        res_fin_cad = client.post(
+            f"/api/osce/sessions/{sess_cad_id}/finish",
+            json={"conduct_notes": "Paciente com acidose grave pH 7.12, prescrevo Bicarbonato de Sódio de rotina para corrigir o pH e insulina venosa rápida."}
+        ).get_json()
+
+        assert "critical_warnings" in res_fin_cad["preceptor_feedback"]
+        warnings = res_fin_cad["preceptor_feedback"]["critical_warnings"]
+        assert len(warnings) >= 1
+        assert any("bicarbonato" in w.lower() for w in warnings)
+
+        # Verifica penalização no radar em segurança farmacológica
+        radar = res_fin_cad["competency_radar"]
+        dim_farmaco = next(d for d in radar["dimensions"] if d["key"] == "seguranca_farmacologica")
+        assert dim_farmaco["percentage"] <= 45.0, "Segurança farmacológica deve ser penalizada por prescrição contraindicada de bicarbonato"
+
+        # Verifica se o flashcard de choque da contraindicação foi gerado
+        shock_cards = res_fin_cad["shock_cards"]
+        assert any("CONTRAINDICAÇÃO" in c["front"] and "bicarbonato" in c["back"].lower() for c in shock_cards)
+
+
+def test_voice_hands_free_prescriptions_and_procedures(app, client):
+    """Valida execução por comando de voz de prescrições estruturadas e procedimentos no manequim."""
+    with app.app_context():
+        db = get_db()
+        osce.seed_osce_stations(db)
+
+        # 1. Prescrição Farmacológica Verbalizada
+        st_cad = db.execute("SELECT id FROM osce_stations WHERE code = 'USP-RP-2024-CM-CAD'").fetchone()
+        sess_cad = client.post("/api/osce/sessions/start", json={"station_id": st_cad["id"], "mode": "blind"}).get_json()
+        sess_id = sess_cad["session_id"]
+
+        res_voice_presc = client.post(
+            f"/api/osce/sessions/{sess_id}/dispatch_speech",
+            json={
+                "message": "Examinador, prescrevo soro fisiológico um litro rápido e cloreto de potássio vinte meq",
+                "elapsed_seconds": 60
+            }
+        ).get_json()
+
+        assert len(res_voice_presc["actions_executed"]) >= 1
+        presc_act = next((a for a in res_voice_presc["actions_executed"] if a.get("action_type") == "prescription"), None)
+        assert presc_act is not None
+        assert "prescrição" in presc_act["examiner_message"].lower() or "enfermagem" in presc_act["examiner_message"].lower()
+
+        # 2. Procedimento de Manequim Verbalizado (Pneumotórax - Punção de Alívio)
+        st_pneumo = db.execute("SELECT id FROM osce_stations WHERE code = 'EINSTEIN-2023-CG-PNEUMO'").fetchone()
+        sess_pneu = client.post("/api/osce/sessions/start", json={"station_id": st_pneumo["id"], "mode": "blind"}).get_json()
+        sess_pneu_id = sess_pneu["session_id"]
+
+        res_voice_proc = client.post(
+            f"/api/osce/sessions/{sess_pneu_id}/dispatch_speech",
+            json={
+                "message": "Examinador, realizo punção de alívio com agulha no segundo espaço intercostal",
+                "elapsed_seconds": 75
+            }
+        ).get_json()
+
+        assert len(res_voice_proc["actions_executed"]) >= 1
+        proc_act = next((a for a in res_voice_proc["actions_executed"] if a.get("action_type") == "procedure"), None)
+        assert proc_act is not None
+        assert "pressão" in proc_act["examiner_message"].lower() or "descompressão" in proc_act["examiner_message"].lower()
+
+
+def test_osce_data_modular_architecture():
+    """Garante que a separação de osce_data.py preserva os catálogos canônicos com integridade total."""
+    from api import osce_data
+    from api import osce
+
+    assert len(osce.CANONICAL_STATIONS) == len(osce_data.CANONICAL_STATIONS) == 16
+    assert len(osce.FMRP_USP_TEMPLATES) == len(osce_data.FMRP_USP_TEMPLATES) == 6
+    assert len(osce.EMERGENCY_DRUGS_CATALOG) == len(osce_data.EMERGENCY_DRUGS_CATALOG) == 26
+    assert len(osce.PROCEDURES_CATALOG) == len(osce_data.PROCEDURES_CATALOG) == 12
+
+
+def test_osce_circuit_engine(app, client):
+    """Testa a geração do plano de circuito de 5 estações e a consolidação do espelho de 0 a 50 pontos."""
+    with app.app_context():
+        db = get_db()
+        osce.seed_osce_stations(db)
+
+        # 1. Consulta plano de circuito oficial (USP-RP)
+        res_plan = client.get("/api/osce/circuits/plan?institution=USP-RP")
+        assert res_plan.status_code == 200
+        plan_data = res_plan.get_json()
+        assert plan_data["total_steps"] == 5
+        assert len(plan_data["stations"]) == 5
+        circuit_id = plan_data["circuit_id"]
+
+        # Valida que as 5 grandes especialidades estão contempladas
+        areas = [s["area"] for s in plan_data["stations"]]
+        assert "Clínica Médica" in areas
+        assert "Cirurgia Geral" in areas
+        assert "Pediatria" in areas
+        assert "Ginecologia e Obstetrícia" in areas
+        assert "Medicina Preventiva" in areas
+
+        # 2. Executa e finaliza a estação 1 dentro do circuito
+        st1 = plan_data["stations"][0]
+        start_res = client.post(
+            "/api/osce/sessions/start",
+            json={"station_id": st1["station_id"], "circuit_session_id": circuit_id, "mode": "blind"}
+        )
+        assert start_res.status_code == 201
+        sess1_id = start_res.get_json()["session_id"]
+
+        fin_res = client.post(
+            f"/api/osce/sessions/{sess1_id}/finish",
+            json={
+                "conduct_notes": (
+                    "Diagnóstico de Cetoacidose Diabética (CAD). Prescrevo expansão com Soro Fisiológico 1000 ml na primeira hora, "
+                    "reposição de cloreto de potássio KCl e infusão contínua de Insulina Regular em bomba."
+                )
+            }
+        )
+        assert fin_res.status_code == 200
+
+        # 3. Consulta sumário do circuito
+        res_sum = client.get(f"/api/osce/circuits/{circuit_id}/summary")
+        assert res_sum.status_code == 200
+        sum_data = res_sum.get_json()
+        assert sum_data["circuit_id"] == circuit_id
+        assert sum_data["stations_completed"] == 1
+        assert sum_data["max_score"] == 50.0
+        assert sum_data["total_score"] > 0
+        assert "board_feedback" in sum_data
+
+
+def test_osce_input_sanitization_and_edge_cases(app, client):
+    """Testa sanitização defensiva contra entradas malformadas, None, e strings não-numéricas."""
+    with app.app_context():
+        db = get_db()
+        osce.seed_osce_stations(db)
+        st = db.execute("SELECT id FROM osce_stations LIMIT 1").fetchone()
+        station_id = st["id"]
+
+        # 1. station_id inválido em start_session
+        res_bad_id = client.post("/api/osce/sessions/start", json={"station_id": "invalid_abc"})
+        assert res_bad_id.status_code == 400
+        assert "station_id" in res_bad_id.get_json()["error"]
+
+        res_neg_id = client.post("/api/osce/sessions/start", json={"station_id": -99})
+        assert res_neg_id.status_code == 400
+
+        # 2. Inicia sessão válida para testar rotas filhas
+        res_start = client.post("/api/osce/sessions/start", json={"station_id": station_id})
+        assert res_start.status_code == 201
+        session_id = res_start.get_json()["session_id"]
+
+        # 3. elapsed_seconds como None / string não-numérica em interact
+        res_interact = client.post(
+            f"/api/osce/sessions/{session_id}/interact",
+            json={"message": "Olá paciente, como se sente?", "elapsed_seconds": None}
+        )
+        assert res_interact.status_code == 200
+
+        # 4. elapsed_seconds inválido em dispatch_speech
+        res_speech = client.post(
+            f"/api/osce/sessions/{session_id}/dispatch_speech",
+            json={"message": "Solicito monitorização e sinais vitais", "elapsed_seconds": "not_a_number"}
+        )
+        assert res_speech.status_code == 200
+
+        # 5. elapsed_seconds inválido em action
+        res_act = client.post(
+            f"/api/osce/sessions/{session_id}/action",
+            json={"action_type": "vitals", "action_target": "vitals", "elapsed_seconds": None}
+        )
+        assert res_act.status_code == 200
+
+        # 6. elapsed_seconds inválido em prescribe
+        res_presc = client.post(
+            f"/api/osce/sessions/{session_id}/prescribe",
+            json={
+                "prescription": [{"drug_name": "Soro Fisiológico", "dose": "1000", "unit": "ml", "route": "EV"}],
+                "elapsed_seconds": "invalid_str"
+            }
+        )
+        assert res_presc.status_code == 200
+
+        # 7. elapsed_seconds inválido em procedure
+        res_proc = client.post(
+            f"/api/osce/sessions/{session_id}/procedure",
+            json={
+                "procedure_type": "efast",
+                "anatomical_site": "morrison",
+                "elapsed_seconds": None
+            }
+        )
+        assert res_proc.status_code == 200
+
+        # 8. finish com conduct_notes contendo apenas espaços em branco
+        res_fin = client.post(
+            f"/api/osce/sessions/{session_id}/finish",
+            json={"conduct_notes": "    "}
+        )
+        assert res_fin.status_code == 200
+        fin_data = res_fin.get_json()
+        assert "final_score" in fin_data
+        assert fin_data["final_score"] >= 0.0
+
+        # 9. get_station_details com IDs negativos ou inexistentes
+        res_neg = client.get("/api/osce/stations/-5")
+        assert res_neg.status_code == 404
+        res_zero = client.get("/api/osce/stations/0")
+        assert res_zero.status_code == 404
+        res_miss = client.get("/api/osce/stations/999999")
+        assert res_miss.status_code == 404
+
+
+
+

@@ -931,6 +931,12 @@ export const api = {
       method: "POST",
       body: JSON.stringify(payload || {}),
     }),
+    getCircuitPlan: (institution?: string) => {
+      const qs = institution ? `?institution=${encodeURIComponent(institution)}` : "";
+      return apiFetch<import("@/types/api").OsceCircuitPlanResponse>(`/api/osce/circuits/plan${qs}`, { cache: "no-store" });
+    },
+    getCircuitSummary: (circuitId: string) =>
+      apiFetch<import("@/types/api").OsceCircuitSummaryResponse>(`/api/osce/circuits/${circuitId}/summary`, { cache: "no-store" }),
   },
 };
 

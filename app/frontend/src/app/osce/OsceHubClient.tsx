@@ -70,12 +70,34 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
     };
   }, [stations]);
 
+  const [isStartingCircuit, setIsStartingCircuit] = useState(false);
+
   // Iniciar circuito de 5 estações
-  const handleStartCircuit = () => {
-    const firstStation = stations[0];
-    if (firstStation) {
-      const circuitId = `circuit-${Date.now()}`;
-      router.push(`/osce/${firstStation.id}?circuit=${circuitId}&step=1`);
+  const handleStartCircuit = async () => {
+    if (isStartingCircuit) return;
+    setIsStartingCircuit(true);
+    try {
+      const targetInst = selectedInst !== "Todas as Bancas" ? selectedInst : "USP-RP";
+      const plan = await api.osce.getCircuitPlan(targetInst);
+      if (plan?.stations && plan.stations.length > 0) {
+        const first = plan.stations[0];
+        router.push(`/osce/${first.station_id}?circuit=${plan.circuit_id}&step=1`);
+      } else {
+        const first = stations[0];
+        if (first) {
+          const circuitId = `circuit-${Date.now()}`;
+          router.push(`/osce/${first.id}?circuit=${circuitId}&step=1`);
+        }
+      }
+    } catch (err) {
+      console.error("Falha ao iniciar circuito:", err);
+      const first = stations[0];
+      if (first) {
+        const circuitId = `circuit-${Date.now()}`;
+        router.push(`/osce/${first.id}?circuit=${circuitId}&step=1`);
+      }
+    } finally {
+      setIsStartingCircuit(false);
     }
   };
 
@@ -224,10 +246,11 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
             </div>
             <button
               onClick={handleStartCircuit}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold bg-amber-500 hover:bg-amber-600 text-black shadow-lg transition-transform active:scale-95 shrink-0"
+              disabled={isStartingCircuit}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold bg-amber-500 hover:bg-amber-600 disabled:opacity-50 text-black shadow-lg transition-transform active:scale-95 shrink-0"
             >
-              <Play className="w-5 h-5 fill-current" />
-              <span>Entrar no Circuito Oficial</span>
+              {isStartingCircuit ? <Loader2 className="w-5 h-5 animate-spin" /> : <Play className="w-5 h-5 fill-current" />}
+              <span>{isStartingCircuit ? "Montando Circuito Oficial..." : "Entrar no Circuito Oficial"}</span>
             </button>
           </div>
         </div>

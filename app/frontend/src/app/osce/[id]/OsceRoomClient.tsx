@@ -7,7 +7,7 @@ import {
   Stethoscope, Clock, Send, Mic, MicOff, 
   Volume2, VolumeX, FileText, Activity,
   ChevronLeft, Award, Sparkles, AlertTriangle, ShieldCheck,
-  Radio, Headphones, Zap, Eye, CheckCircle2
+  Radio, Headphones, Zap, Eye, CheckCircle2, Printer
 } from "lucide-react";
 import { toast } from "react-hot-toast";
 import { OsceStationDetail, OsceTranscriptItem, OsceFinishResponse, OsceSpokenQueueItem, OsceLiveFeedback } from "@/types/api";
@@ -76,6 +76,50 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const [selectedMode, setSelectedMode] = useState<"blind" | "guided">("guided");
   const [sessionMode, setSessionMode] = useState<"blind" | "guided">("guided");
   const [liveFeedback, setLiveFeedback] = useState<OsceLiveFeedback | null>(null);
+
+  // Estados do Circuito Oficial de 5 Estações
+  const [circuitPlan, setCircuitPlan] = useState<import("@/types/api").OsceCircuitPlanResponse | null>(null);
+  const [circuitSummary, setCircuitSummary] = useState<import("@/types/api").OsceCircuitSummaryResponse | null>(null);
+  const [showCircuitModal, setShowCircuitModal] = useState(false);
+  const [isLoadingCircuit, setIsLoadingCircuit] = useState(false);
+
+  useEffect(() => {
+    if (!circuitId) return;
+    api.osce.getCircuitPlan(station.institution || "USP-RP")
+      .then((plan) => {
+        if (plan) setCircuitPlan(plan);
+      })
+      .catch(() => {});
+  }, [circuitId, station.institution]);
+
+  const handleAdvanceCircuit = () => {
+    if (!circuitPlan?.stations) {
+      router.push("/osce");
+      return;
+    }
+    const nextItem = circuitPlan.stations.find((s) => s.step === step + 1);
+    if (nextItem) {
+      router.push(`/osce/${nextItem.station_id}?circuit=${circuitId}&step=${step + 1}`);
+    } else {
+      router.push("/osce");
+    }
+  };
+
+  const handleOpenCircuitSummary = async () => {
+    if (!circuitId) return;
+    setIsLoadingCircuit(true);
+    try {
+      const summary = await api.osce.getCircuitSummary(circuitId);
+      if (summary) {
+        setCircuitSummary(summary);
+        setShowCircuitModal(true);
+      }
+    } catch {
+      toast.error("Erro ao carregar parecer global do circuito.");
+    } finally {
+      setIsLoadingCircuit(false);
+    }
+  };
 
   // Estados Exclusivos do Modo Hands-Free
   const [handsFreeMode, setHandsFreeMode] = useState<boolean>(() => {
@@ -387,6 +431,12 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
           if (act.action_type === "physical_exam") {
             setActiveTab("physical");
           }
+          if (act.action_type === "procedure") {
+            setActiveTab("procedures");
+          }
+          if (act.action_type === "prescription") {
+            setActiveTab("conduct");
+          }
         }
       }
 
@@ -533,7 +583,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   }, [startListening, handleDispatchSpeech]);
 
   // Toggle do modo Hands-Free (Viva-Voz contínuo)
-  const toggleHandsFreeMode = () => {
+  const toggleHandsFreeMode = useCallback(() => {
     if (typeof window !== "undefined") {
       const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
       if (isOpera) {
@@ -550,7 +600,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
       toast.success("Modo Viva-Voz contínuo ativado!");
       setTimeout(() => startListening(true), 200);
     }
-  };
+  }, [handsFreeMode, stopRecognition, startListening]);
 
   // Iniciar sessão
   const handleStartExam = async () => {
@@ -624,6 +674,22 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
           // Aviso aos 5 minutos (faltam 3 min)
           playExamBell("warning");
         }
+        if (prev === 60) {
+          // Aviso do último minuto (sino oficial + síntese de voz da banca + toast)
+          playExamBell("warning");
+          toast("⚠️ Atenção: Falta 1 minuto para o término da estação! Conclua suas condutas e prescrição.", {
+            icon: "⏱️",
+            duration: 6000
+          });
+          if (voiceEnabled) {
+            speakSpokenQueue([
+              {
+                speaker: "examinador",
+                text: "Atenção candidato: resta um minuto para o encerramento da estação. Conclua sua conduta."
+              }
+            ]);
+          }
+        }
         return prev - 1;
       });
     }, 1000);
@@ -631,13 +697,42 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [phase, handleFinishExam, playExamBell]);
+  }, [phase, handleFinishExam, playExamBell, voiceEnabled, speakSpokenQueue]);
 
-  // Listener de tecla Escape (interrompe fala) e Espaço (Push-to-Talk)
+  // Listener de atalhos de teclado: Abas (Alt+1..4), Microfone (Alt+M / Espaço) e Silenciar (Escape)
   useEffect(() => {
     if (phase !== "exam") return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Atalhos com tecla Alt: navegação ultrarrápida entre abas da estação
+      if (e.altKey && !e.ctrlKey && !e.shiftKey) {
+        if (e.key === "1") {
+          e.preventDefault();
+          setActiveTab("physical");
+          return;
+        }
+        if (e.key === "2") {
+          e.preventDefault();
+          setActiveTab("procedures");
+          return;
+        }
+        if (e.key === "3") {
+          e.preventDefault();
+          setActiveTab("labs");
+          return;
+        }
+        if (e.key === "4") {
+          e.preventDefault();
+          setActiveTab("conduct");
+          return;
+        }
+        if (e.key.toLowerCase() === "m") {
+          e.preventDefault();
+          toggleHandsFreeMode();
+          return;
+        }
+      }
+
       if (e.key === "Escape") {
         if (typeof window !== "undefined" && "speechSynthesis" in window) {
           window.speechSynthesis.cancel();
@@ -661,7 +756,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [phase, handsFreeMode, isListening, startListening, stopRecognition]);
+  }, [phase, handsFreeMode, isListening, startListening, stopRecognition, setActiveTab, toggleHandsFreeMode]);
 
   // Enviar mensagem manual por texto ou clique
   const handleSendMessage = async (msgToSend?: string) => {
@@ -1068,6 +1163,10 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                 <span className="text-[11px] hidden sm:inline">Use fones •</span>
                 <kbd className="px-1.5 py-0.5 rounded bg-muted border border-border text-[10px] font-mono">Espaço</kbd>
                 <span className="text-[11px]">ligar mic •</span>
+                <kbd className="px-1.5 py-0.5 rounded bg-muted border border-border text-[10px] font-mono">Alt+1..4</kbd>
+                <span className="text-[11px] hidden sm:inline">trocar abas •</span>
+                <kbd className="px-1.5 py-0.5 rounded bg-muted border border-border text-[10px] font-mono">Alt+M</kbd>
+                <span className="text-[11px] hidden sm:inline">viva-voz •</span>
                 <kbd className="px-1.5 py-0.5 rounded bg-muted border border-border text-[10px] font-mono">Esc</kbd>
                 <span className="text-[11px] hidden md:inline">corta fala</span>
               </div>
@@ -1256,43 +1355,51 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
               <div className="flex border-b border-border bg-muted/30">
                 <button
                   onClick={() => setActiveTab("physical")}
-                  className={`flex-1 py-2.5 text-xs font-bold text-center border-b-2 transition-colors ${
+                  className={`flex-1 py-2.5 text-xs font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-1 ${
                     activeTab === "physical"
                       ? "border-primary text-primary bg-background"
                       : "border-transparent text-muted-foreground hover:text-foreground"
                   }`}
+                  title="Atalho: Alt + 1"
                 >
-                  Exame Físico
+                  <span>Exame Físico</span>
+                  <span className="hidden xl:inline text-[9px] opacity-60 font-mono font-normal bg-muted/60 px-1 rounded">1</span>
                 </button>
                 <button
                   onClick={() => setActiveTab("procedures")}
-                  className={`flex-1 py-2.5 text-xs font-bold text-center border-b-2 transition-colors ${
+                  className={`flex-1 py-2.5 text-xs font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-1 ${
                     activeTab === "procedures"
                       ? "border-primary text-primary bg-background"
                       : "border-transparent text-muted-foreground hover:text-foreground"
                   }`}
+                  title="Atalho: Alt + 2"
                 >
-                  Manequim & E-FAST
+                  <span>Manequim</span>
+                  <span className="hidden xl:inline text-[9px] opacity-60 font-mono font-normal bg-muted/60 px-1 rounded">2</span>
                 </button>
                 <button
                   onClick={() => setActiveTab("labs")}
-                  className={`flex-1 py-2.5 text-xs font-bold text-center border-b-2 transition-colors ${
+                  className={`flex-1 py-2.5 text-xs font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-1 ${
                     activeTab === "labs"
                       ? "border-primary text-primary bg-background"
                       : "border-transparent text-muted-foreground hover:text-foreground"
                   }`}
+                  title="Atalho: Alt + 3"
                 >
-                  Exames Compl.
+                  <span>Exames</span>
+                  <span className="hidden xl:inline text-[9px] opacity-60 font-mono font-normal bg-muted/60 px-1 rounded">3</span>
                 </button>
                 <button
                   onClick={() => setActiveTab("conduct")}
-                  className={`flex-1 py-2.5 text-xs font-bold text-center border-b-2 transition-colors ${
+                  className={`flex-1 py-2.5 text-xs font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-1 ${
                     activeTab === "conduct"
                       ? "border-primary text-primary bg-background"
                       : "border-transparent text-muted-foreground hover:text-foreground"
                   }`}
+                  title="Atalho: Alt + 4"
                 >
-                  Prescrição & Conduta
+                  <span>Conduta</span>
+                  <span className="hidden xl:inline text-[9px] opacity-60 font-mono font-normal bg-muted/60 px-1 rounded">4</span>
                 </button>
               </div>
 
@@ -1415,15 +1522,22 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                       <textarea
                         value={conductText}
                         onChange={(e) => setConductText(e.target.value)}
-                        placeholder="Ex: Confirmo monitorização contínua, paciente estabilizado com a prescrição acima e indico laparotomia exploradora imediata..."
+                        onKeyDown={(e) => {
+                          if ((e.ctrlKey || e.metaKey) && e.key === "Enter" && conductText.trim() && !isLoading) {
+                            e.preventDefault();
+                            handleFinishExam();
+                          }
+                        }}
+                        placeholder="Ex: Confirmo monitorização contínua, paciente estabilizado com a prescrição acima e indico laparotomia exploradora imediata... (ou pressione Ctrl+Enter)"
                         className="w-full h-24 p-3 bg-muted/40 border border-border rounded-xl text-xs focus:outline-none focus:border-primary resize-none leading-relaxed"
                       />
                       <button
                         onClick={handleFinishExam}
                         disabled={isLoading || !conductText.trim()}
-                        className="w-full py-2.5 rounded-xl font-bold bg-primary text-primary-foreground hover:bg-primary/90 text-xs shadow-sm transition-transform active:scale-98"
+                        className="w-full py-2.5 rounded-xl font-bold bg-primary text-primary-foreground hover:bg-primary/90 text-xs shadow-sm transition-transform active:scale-98 flex items-center justify-center gap-1.5"
                       >
-                        Registrar Conduta e Concluir Prova
+                        <span>Registrar Conduta e Concluir Prova</span>
+                        <span className="hidden sm:inline text-[10px] opacity-70 font-mono font-normal bg-primary-foreground/20 px-1 rounded">[Ctrl+Enter]</span>
                       </button>
                     </div>
                   </div>
@@ -1438,9 +1552,28 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
       {/* FASE 3: ESPELHO OFICIAL DE CORREÇÃO (BAREMA) */}
       {/* ========================================================================= */}
       {phase === "finished" && report && (
-        <div className="flex-1 flex flex-col p-4 max-w-4xl mx-auto w-full space-y-6 pb-32 animate-in fade-in duration-300">
-          {/* Header do Espelho */}
-          <div className="text-center space-y-2 border-b border-border pb-6">
+        <div className="flex-1 flex flex-col p-4 max-w-4xl mx-auto w-full space-y-6 pb-32 animate-in fade-in duration-300 print:p-0 print:m-0 print:max-w-full print:pb-0 print:space-y-4">
+          {/* Cabeçalho Institucional Formal Exclusivo para Impressão / PDF */}
+          <div className="hidden print:block border-b-2 border-black pb-4 text-black">
+            <div className="flex justify-between items-start">
+              <div>
+                <h1 className="text-xl font-black uppercase tracking-wider">MedQuest • Prova Prática Beira-Leito (OSCE)</h1>
+                <p className="text-xs font-bold text-gray-700">Comitê de Avaliação de 2ª Fase Presencial • Parecer Oficial da Banca</p>
+              </div>
+              <div className="text-right text-xs text-gray-600 font-mono">
+                <div>Data: {new Date().toLocaleDateString("pt-BR")}</div>
+                <div>Banca: {station.institution || "USP-RP"}</div>
+              </div>
+            </div>
+            <div className="mt-3 pt-2 border-t border-gray-300 flex justify-between text-xs">
+              <span><strong>Estação:</strong> {station.title}</span>
+              <span><strong>Grande Área:</strong> {station.area}</span>
+              <span><strong>Subtema:</strong> {station.subtema}</span>
+            </div>
+          </div>
+
+          {/* Header do Espelho na Tela */}
+          <div className="text-center space-y-2 border-b border-border pb-6 print:hidden">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase">
               <Award className="w-4 h-4" />
               <span>Espelho Oficial de Correção da Banca</span>
@@ -1533,7 +1666,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
 
           {/* Exportar Flashcards de Choque */}
           {report.shock_cards?.length > 0 && (
-            <div className="p-5 rounded-2xl border border-primary/20 bg-primary/5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="p-5 rounded-2xl border border-primary/20 bg-primary/5 flex flex-col md:flex-row md:items-center justify-between gap-4 print:hidden">
               <div className="space-y-1">
                 <div className="flex items-center gap-2 font-bold text-foreground text-sm">
                   <Sparkles className="w-4 h-4 text-primary" />
@@ -1554,24 +1687,149 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
             </div>
           )}
 
-          {/* Navegação Final */}
-          <div className="flex items-center justify-between pt-4 border-t border-border">
-            <Link
-              href="/osce"
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-border hover:bg-muted text-xs font-semibold"
-            >
-              <ChevronLeft className="w-4 h-4" />
-              <span>Voltar ao Catálogo de Estações</span>
-            </Link>
+          {/* Navegação Final & Ações */}
+          <div className="flex items-center justify-between pt-4 border-t border-border print:hidden">
+            <div className="flex items-center gap-2">
+              <Link
+                href="/osce"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-border hover:bg-muted text-xs font-semibold"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                <span>Voltar ao Catálogo</span>
+              </Link>
+
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-border bg-card hover:bg-muted text-xs font-bold text-foreground transition-all shadow-sm active:scale-95 cursor-pointer"
+                title="Imprimir ou salvar parecer oficial em PDF"
+              >
+                <Printer className="w-4 h-4 text-primary" />
+                <span>Imprimir Espelho (PDF)</span>
+              </button>
+            </div>
 
             {circuitId && (
-              <button
-                onClick={() => router.push(`/osce`)}
-                className="px-5 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-bold"
-              >
-                Avançar para Próxima Estação do Circuito →
-              </button>
+              step < 5 ? (
+                <button
+                  onClick={handleAdvanceCircuit}
+                  className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-black text-xs font-bold shadow-md transition-transform active:scale-95 flex items-center gap-2 cursor-pointer"
+                >
+                  <Award className="w-4 h-4" />
+                  <span>
+                    Avançar para Estação {step + 1} de 5 {circuitPlan?.stations?.find(s => s.step === step + 1)?.area ? `(${circuitPlan.stations.find(s => s.step === step + 1)?.area})` : ""} →
+                  </span>
+                </button>
+              ) : (
+                <button
+                  onClick={handleOpenCircuitSummary}
+                  disabled={isLoadingCircuit}
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-black text-xs font-black shadow-lg transition-transform active:scale-95 flex items-center gap-2 cursor-pointer"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>{isLoadingCircuit ? "Calculando Parecer Global..." : "Parecer Final do Circuito (0 a 50 pts) 🏆"}</span>
+                </button>
+              )
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Modal / Espelho Consolidado de 2ª Fase (0 a 50 pontos) */}
+      {showCircuitModal && circuitSummary && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="bg-card border-2 border-primary/30 rounded-3xl max-w-2xl w-full p-6 md:p-8 space-y-6 shadow-2xl overflow-y-auto max-h-[90vh]">
+            <div className="text-center space-y-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 text-amber-500 text-xs font-bold uppercase tracking-wider">
+                <Award className="w-4 h-4" />
+                <span>Espelho Oficial de 2ª Fase Presencial • 5 Estações</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black text-foreground">
+                Resultado Global do Circuito
+              </h2>
+              <p className="text-xs text-muted-foreground">
+                Banca Examinadora • Faculdade de Medicina da FMRP-USP
+              </p>
+            </div>
+
+            {/* Score Big Card */}
+            <div className={`p-6 rounded-2xl border-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
+              circuitSummary.approved ? "bg-emerald-500/10 border-emerald-500/30" : "bg-rose-500/10 border-rose-500/30"
+            }`}>
+              <div>
+                <div className="text-xs uppercase font-bold text-muted-foreground">Nota Consolidada (0 a 50)</div>
+                <div className={`text-4xl font-black ${circuitSummary.approved ? "text-emerald-500" : "text-rose-500"}`}>
+                  {circuitSummary.total_score.toFixed(1)} <span className="text-xl text-muted-foreground">/ 50.0</span>
+                </div>
+                <div className="text-xs font-semibold text-foreground/80 mt-1">
+                  Aproveitamento Global: {circuitSummary.percentage}%
+                </div>
+              </div>
+
+              <div className={`px-4 py-2 rounded-xl text-xs font-black uppercase text-center ${
+                circuitSummary.approved ? "bg-emerald-500 text-black" : "bg-rose-500 text-white"
+              }`}>
+                {circuitSummary.approved ? "Aprovado na 2ª Fase ✓" : "Reprovado (Abaixo do Corte)"}
+              </div>
+            </div>
+
+            {/* Parecer da Banca */}
+            <div className="p-4 rounded-xl bg-muted/40 border border-border text-xs leading-relaxed text-foreground/90 space-y-1">
+              <span className="font-bold text-foreground block">Parecer da Banca Examinadora:</span>
+              <p>{circuitSummary.board_feedback}</p>
+            </div>
+
+            {/* Rotação das 5 Estações */}
+            <div className="space-y-2">
+              <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                Desempenho por Estação de Especialidade:
+              </div>
+              <div className="border border-border rounded-xl divide-y divide-border overflow-hidden bg-background">
+                {circuitSummary.stations.map((s) => (
+                  <div key={s.station_id} className="p-3 text-xs flex items-center justify-between gap-3">
+                    <div>
+                      <div className="font-bold text-foreground">{s.area}</div>
+                      <div className="text-[11px] text-muted-foreground line-clamp-1">{s.title}</div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <span className={`px-2 py-0.5 rounded-md font-mono font-bold text-[11px] ${
+                        s.approved ? "bg-emerald-500/15 text-emerald-500" : "bg-rose-500/15 text-rose-500"
+                      }`}>
+                        {s.final_score.toFixed(1)} / 10.0
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between pt-4 border-t border-border">
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowCircuitModal(false)}
+                  className="px-4 py-2 rounded-xl border border-border hover:bg-muted text-xs font-semibold cursor-pointer"
+                >
+                  Fechar Espelho
+                </button>
+                <button
+                  type="button"
+                  onClick={() => window.print()}
+                  className="px-3.5 py-2 rounded-xl border border-border bg-card hover:bg-muted text-xs font-bold text-foreground flex items-center gap-1.5 cursor-pointer shadow-sm active:scale-95"
+                  title="Imprimir ou Salvar Parecer Consolidado do Circuito em PDF"
+                >
+                  <Printer className="w-3.5 h-3.5 text-primary" />
+                  <span>Imprimir Circuito</span>
+                </button>
+              </div>
+              <button
+                type="button"
+                onClick={() => router.push("/osce")}
+                className="px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs font-bold hover:bg-primary/90 cursor-pointer"
+              >
+                Concluir e Voltar ao Hub
+              </button>
+            </div>
           </div>
         </div>
       )}

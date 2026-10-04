@@ -23,6 +23,17 @@ def _resolve_user_id() -> str:
     return user_id
 
 
+def _parse_elapsed_seconds(val: object) -> int:
+    """Extrai com segurança elapsed_seconds evitando Unhandled Exceptions para None/str."""
+    if val is None:
+        return 0
+    try:
+        parsed = int(val)  # type: ignore
+        return max(0, parsed)
+    except (ValueError, TypeError):
+        return 0
+
+
 @bp.route("/osce/stations", methods=["GET"])
 def list_stations():
     db = get_db()
@@ -47,6 +58,9 @@ def list_stations():
 
 @bp.route("/osce/stations/<int:station_id>", methods=["GET"])
 def get_station_details(station_id: int):
+    if station_id <= 0:
+        return jsonify({"error": "station_id inválido"}), 404
+
     db = get_db()
     station = osce.get_osce_station(db, station_id, include_barema=False)
     if not station:
@@ -60,17 +74,24 @@ def start_session():
     user_id = _resolve_user_id()
     body = request.get_json(silent=True) or {}
 
-    station_id = body.get("station_id")
+    raw_station_id = body.get("station_id")
     circuit_session_id = body.get("circuit_session_id")
     mode = body.get("mode", "blind")
 
-    if not station_id:
+    if raw_station_id is None:
         return jsonify({"error": "station_id é obrigatório"}), 400
+
+    try:
+        station_id = int(raw_station_id)
+        if station_id <= 0:
+            return jsonify({"error": "station_id deve ser um número inteiro positivo"}), 400
+    except (ValueError, TypeError):
+        return jsonify({"error": "station_id deve ser um número inteiro válido"}), 400
 
     try:
         session = osce.start_osce_session(
             db=db,
-            station_id=int(station_id),
+            station_id=station_id,
             user_id=user_id,
             circuit_session_id=circuit_session_id,
             mode=mode
@@ -87,7 +108,7 @@ def interact_session(session_id: str):
     body = request.get_json(silent=True) or {}
 
     message = body.get("message", "").strip()
-    elapsed_seconds = int(body.get("elapsed_seconds", 0))
+    elapsed_seconds = _parse_elapsed_seconds(body.get("elapsed_seconds"))
 
     if not message:
         return jsonify({"error": "Mensagem não pode ser vazia"}), 400
@@ -113,7 +134,7 @@ def dispatch_speech(session_id: str):
     body = request.get_json(silent=True) or {}
 
     message = body.get("message", "").strip()
-    elapsed_seconds = int(body.get("elapsed_seconds", 0))
+    elapsed_seconds = _parse_elapsed_seconds(body.get("elapsed_seconds"))
 
     if not message:
         return jsonify({"error": "Mensagem transcrita não pode ser vazia"}), 400
@@ -140,7 +161,7 @@ def execute_action(session_id: str):
 
     action_type = body.get("action_type", "").strip()
     action_target = body.get("action_target", "").strip()
-    elapsed_seconds = int(body.get("elapsed_seconds", 0))
+    elapsed_seconds = _parse_elapsed_seconds(body.get("elapsed_seconds"))
 
     if not action_type or not action_target:
         return jsonify({"error": "action_type e action_target são obrigatórios"}), 400
@@ -225,7 +246,7 @@ def prescribe_drugs(session_id: str):
     body = request.get_json(silent=True) or {}
 
     prescription_items = body.get("prescription", [])
-    elapsed_seconds = int(body.get("elapsed_seconds", 0))
+    elapsed_seconds = _parse_elapsed_seconds(body.get("elapsed_seconds"))
 
     if not isinstance(prescription_items, list) or not prescription_items:
         return jsonify({"error": "prescription deve ser uma lista com ao menos 1 item."}), 400
@@ -252,7 +273,7 @@ def perform_procedure(session_id: str):
 
     procedure_type = body.get("procedure_type", "").strip()
     anatomical_site = body.get("anatomical_site", "").strip()
-    elapsed_seconds = int(body.get("elapsed_seconds", 0))
+    elapsed_seconds = _parse_elapsed_seconds(body.get("elapsed_seconds"))
 
     if not procedure_type or not anatomical_site:
         return jsonify({"error": "procedure_type e anatomical_site são obrigatórios."}), 400
@@ -276,7 +297,7 @@ def get_session_live_feedback(session_id: str):
     """Consulta o progresso em tempo real do barema para o Modo Treino com Preceptor Fantasma."""
     db = get_db()
     user_id = _resolve_user_id()
-    elapsed_seconds = int(request.args.get("elapsed_seconds", 0))
+    elapsed_seconds = _parse_elapsed_seconds(request.args.get("elapsed_seconds"))
 
     try:
         feedback = osce.get_osce_live_feedback(
@@ -315,3 +336,22 @@ def generate_station():
     except Exception as e:
         logger.exception("Erro ao gerar estação inédita FMRP-USP: %s", e)
         return jsonify({"error": f"Falha ao sintetizar estação inédita: {str(e)}"}), 500
+
+
+@bp.route("/osce/circuits/plan", methods=["GET"])
+def get_circuit_plan():
+    """Retorna o plano ordenado de 5 estações do circuito oficial cobrindo as 5 especialidades."""
+    db = get_db()
+    osce.seed_osce_stations(db)
+    institution = request.args.get("institution", "USP-RP")
+    plan = osce.get_circuit_plan(db, institution=institution)
+    return jsonify(plan)
+
+
+@bp.route("/osce/circuits/<circuit_id>/summary", methods=["GET"])
+def get_circuit_summary(circuit_id: str):
+    """Retorna o espelho consolidado da 2ª fase com nota global de 0 a 50 pontos."""
+    db = get_db()
+    user_id = _resolve_user_id()
+    summary = osce.get_circuit_summary(db, circuit_id=circuit_id, user_id=user_id)
+    return jsonify(summary)

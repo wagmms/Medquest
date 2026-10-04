@@ -212,5 +212,11 @@ export const serverApi = {
       body: JSON.stringify(payload || {}),
       cache: "no-store",
     }),
+    getCircuitPlan: (institution?: string) => {
+      const qs = institution ? `?institution=${encodeURIComponent(institution)}` : "";
+      return serverFetch<import("@/types/api").OsceCircuitPlanResponse>(`/api/osce/circuits/plan${qs}`, { cache: "no-store" });
+    },
+    getCircuitSummary: (circuitId: string) =>
+      serverFetch<import("@/types/api").OsceCircuitSummaryResponse>(`/api/osce/circuits/${circuitId}/summary`, { cache: "no-store" }),
   }
 };
