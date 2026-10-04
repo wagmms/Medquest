@@ -78,11 +78,35 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const [liveFeedback, setLiveFeedback] = useState<OsceLiveFeedback | null>(null);
 
   // Estados Exclusivos do Modo Hands-Free
-  const [handsFreeMode, setHandsFreeMode] = useState(true);
+  const [handsFreeMode, setHandsFreeMode] = useState<boolean>(() => {
+    if (typeof window === "undefined") return true;
+    const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
+    return !isOpera;
+  });
   const [interimSpeechText, setInterimSpeechText] = useState("");
   const [activeSpeaker, setActiveSpeaker] = useState<"examinador" | "paciente" | null>(null);
-  const [micPermission, setMicPermission] = useState<"granted" | "denied" | "prompt" | "unsupported">("prompt");
-  const [micErrorMsg, setMicErrorMsg] = useState<string | null>(null);
+  const [micPermission, setMicPermission] = useState<"granted" | "denied" | "prompt" | "unsupported">(() => {
+    if (typeof window === "undefined") return "prompt";
+    const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
+    if (isOpera) return "unsupported";
+    const SpeechRecognition = (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).SpeechRecognition ||
+                              (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).webkitSpeechRecognition;
+    if (!SpeechRecognition) return "unsupported";
+    return "prompt";
+  });
+  const [micErrorMsg, setMicErrorMsg] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
+    if (isOpera) {
+      return "Navegador Opera detectado: O motor Google Speech de transcrição em tempo real requer Google Chrome ou Microsoft Edge. No Opera, você pode realizar a prova normalmente via chat ou atalhos rápidos!";
+    }
+    const SpeechRecognition = (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).SpeechRecognition ||
+                              (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      return "Reconhecimento de voz não suportado neste navegador. Recomendamos Google Chrome ou Microsoft Edge.";
+    }
+    return null;
+  });
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const transcriptEndRef = useRef<HTMLDivElement | null>(null);
@@ -91,6 +115,40 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const isAudioSpeakingRef = useRef<boolean>(false);
   const startListeningRef = useRef<(userTriggered?: boolean) => Promise<void>>(async () => {});
   const handleDispatchSpeechRef = useRef<(spokenText: string) => Promise<void>>(async () => {});
+
+  // Monitoramento assíncrono e reativo das permissões nativas de microfone
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
+    if (isOpera) return;
+
+    if (navigator.permissions && navigator.permissions.query) {
+      navigator.permissions.query({ name: "microphone" as PermissionName }).then((status) => {
+        if (status.state === "granted") {
+          setMicPermission("granted");
+          setMicErrorMsg(null);
+        } else if (status.state === "denied") {
+          setMicPermission("denied");
+          setMicErrorMsg("Microfone bloqueado nas permissões do navegador. Clique no ícone de cadeado 🔒 na barra de URL para autorizar.");
+        } else {
+          setMicPermission("prompt");
+        }
+
+        status.onchange = () => {
+          if (status.state === "granted") {
+            setMicPermission("granted");
+            setMicErrorMsg(null);
+          } else if (status.state === "denied") {
+            setMicPermission("denied");
+            setMicErrorMsg("Microfone bloqueado nas permissões do navegador. Clique no ícone de cadeado 🔒 na barra de URL para autorizar.");
+          } else {
+            setMicPermission("prompt");
+          }
+        };
+      }).catch(() => {});
+    }
+  }, []);
 
   // Efeito sonoro do sino oficial da banca usando Web Audio API
   const playExamBell = useCallback((type: "warning" | "finish" | "start") => {
@@ -243,27 +301,40 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
 
   // Solicita permissão de microfone explicitamente via getUserMedia
   const requestMicrophonePermission = useCallback(async (): Promise<boolean> => {
-    if (typeof window === "undefined" || !navigator.mediaDevices?.getUserMedia) {
+    if (typeof window === "undefined") return false;
+
+    // Detecta se o navegador é o Opera (que não possui suporte ao Google Speech API)
+    const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
+    if (isOpera) {
+      setMicPermission("unsupported");
+      setMicErrorMsg("Navegador Opera detectado: O motor Google Speech de transcrição contínua requer Google Chrome ou Microsoft Edge. No Opera, você pode realizar a prova normalmente via chat ou atalhos rápidos!");
+      toast("Para comandos por voz viva-voz, utilize o Google Chrome ou Edge.", { icon: "💡" });
+      return false;
+    }
+
+    if (!navigator.mediaDevices?.getUserMedia) {
       setMicPermission("unsupported");
       setMicErrorMsg("Seu navegador não suporta captura de microfone. Recomendamos Google Chrome ou Microsoft Edge.");
       return false;
     }
+
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       stream.getTracks().forEach((track) => track.stop());
       setMicPermission("granted");
       setMicErrorMsg(null);
+      toast.success("Microfone autorizado com sucesso!");
       return true;
     } catch (err: unknown) {
       const errorName = err instanceof Error ? err.name : "";
       if (errorName === "NotAllowedError" || errorName === "PermissionDeniedError") {
         setMicPermission("denied");
-        setMicErrorMsg("Permissão de microfone negada no navegador. Clique no ícone de cadeado na barra de URL para autorizar.");
-        toast.error("Microfone bloqueado: autorize o acesso no navegador.");
+        setMicErrorMsg("Microfone bloqueado no navegador: Clique no ícone de cadeado 🔒 na barra de URL e mude Microfone para 'Permitir'.");
+        toast.error("Microfone bloqueado: libere no ícone de cadeado 🔒.");
       } else {
         setMicPermission("denied");
-        setMicErrorMsg("Nenhum microfone encontrado ou o dispositivo está ocupado.");
-        toast.error("Erro no microfone do dispositivo.");
+        setMicErrorMsg("Nenhum microfone encontrado ou dispositivo em uso por outro aplicativo.");
+        toast.error("Erro no dispositivo de microfone.");
       }
       return false;
     }
@@ -338,6 +409,15 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const startListening = useCallback(async (userTriggered = false) => {
     if (typeof window === "undefined") return;
 
+    // Detecta se o navegador é o Opera (sem suporte aos servidores Google Speech)
+    const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
+    if (isOpera) {
+      if (userTriggered) {
+        toast("Para falar por viva-voz contínuo, utilize o Google Chrome ou Microsoft Edge.", { icon: "💡" });
+      }
+      return;
+    }
+
     const SpeechRecognition = (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).SpeechRecognition ||
                               (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).webkitSpeechRecognition;
 
@@ -350,9 +430,15 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
       return;
     }
 
-    if (userTriggered && micPermission !== "granted") {
-      const ok = await requestMicrophonePermission();
-      if (!ok) return;
+    // REGRA DE OURO: Se a permissão ainda não foi concedida, NUNCA tenta iniciar em background!
+    if (micPermission !== "granted") {
+      if (userTriggered) {
+        const ok = await requestMicrophonePermission();
+        if (!ok) return;
+      } else {
+        // Chamada em segundo plano aborta silenciosamente até que o usuário autorize
+        return;
+      }
     }
 
     if (isAudioSpeakingRef.current) return;
@@ -375,8 +461,8 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
 
       rec.onend = () => {
         setIsListening(false);
-        // Reinício automático seguro no modo Viva-Voz se estiver na fase exam e sem áudio tocando
-        if (handsFreeMode && phase === "exam" && !isAudioSpeakingRef.current && !isLoading) {
+        // Reinício automático seguro no modo Viva-Voz se estiver na fase exam e com permissão confirmada
+        if (handsFreeMode && phase === "exam" && !isAudioSpeakingRef.current && !isLoading && micPermission === "granted") {
           setTimeout(() => {
             if (!isAudioSpeakingRef.current && !isLoading) {
               startListeningRef.current(false);
@@ -389,9 +475,11 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
         setIsListening(false);
         const errType = event?.error;
         if (errType === "not-allowed" || errType === "service-not-allowed") {
-          setMicPermission("denied");
-          setMicErrorMsg("Permissão de microfone negada. Autorize no cadeado da barra de URL.");
-          if (userTriggered) toast.error("Permissão de microfone negada no navegador.");
+          if (userTriggered) {
+            setMicPermission("denied");
+            setMicErrorMsg("Microfone bloqueado: Clique no ícone de cadeado 🔒 na barra de URL para autorizar.");
+            toast.error("Permissão de microfone negada no navegador.");
+          }
         } else if (errType === "audio-capture") {
           setMicErrorMsg("Nenhum sinal de microfone detectado no dispositivo.");
         }
@@ -446,6 +534,13 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
 
   // Toggle do modo Hands-Free (Viva-Voz contínuo)
   const toggleHandsFreeMode = () => {
+    if (typeof window !== "undefined") {
+      const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
+      if (isOpera) {
+        toast("No Opera, o reconhecimento de fala contínuo não é suportado. Use Google Chrome ou Edge para viva-voz contínuo.", { icon: "💡" });
+        return;
+      }
+    }
     if (handsFreeMode) {
       setHandsFreeMode(false);
       stopRecognition();
@@ -959,6 +1054,8 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                       <Zap className="w-3.5 h-3.5" />
                       <span>Processando comando clínico...</span>
                     </span>
+                  ) : micPermission === "unsupported" ? (
+                    <span className="text-muted-foreground text-xs">Modo texto / atalhos ativo</span>
                   ) : (
                     <span className="text-muted-foreground text-xs">Microfone aguardando ativação</span>
                   )}
@@ -976,20 +1073,38 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
               </div>
             </div>
 
-            {/* Alerta de Diagnóstico de Microfone se houver erro */}
-            {micErrorMsg && (
-              <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-destructive/15 border border-destructive/30 text-xs text-destructive animate-in fade-in">
+            {/* Alerta de Diagnóstico ou Orientação de Microfone */}
+            {micPermission === "unsupported" && micErrorMsg && (
+              <div className="flex items-center justify-between gap-3 p-3 rounded-xl bg-blue-500/10 border border-blue-500/30 text-xs text-blue-300 animate-in fade-in">
+                <div className="flex items-start sm:items-center gap-2">
+                  <span className="text-base shrink-0">💡</span>
+                  <span className="leading-relaxed">{micErrorMsg}</span>
+                </div>
+              </div>
+            )}
+
+            {micPermission === "denied" && micErrorMsg && (
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 p-3 rounded-xl bg-destructive/15 border border-destructive/30 text-xs text-destructive animate-in fade-in">
                 <div className="flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 shrink-0" />
                   <span>{micErrorMsg}</span>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => requestMicrophonePermission().then(ok => { if (ok) startListening(true); })}
-                  className="px-2.5 py-1 rounded-lg bg-destructive text-destructive-foreground text-[11px] font-bold hover:bg-destructive/90 cursor-pointer shrink-0"
-                >
-                  Autorizar Microfone
-                </button>
+                <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                  <button
+                    type="button"
+                    onClick={() => requestMicrophonePermission().then(ok => { if (ok) startListening(true); })}
+                    className="px-2.5 py-1 rounded-lg bg-destructive text-destructive-foreground text-[11px] font-bold hover:bg-destructive/90 cursor-pointer"
+                  >
+                    Tentar Novamente
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => window.location.reload()}
+                    className="px-2.5 py-1 rounded-lg bg-muted border border-border text-foreground text-[11px] font-medium hover:bg-muted/80 cursor-pointer"
+                  >
+                    Recarregar Página
+                  </button>
+                </div>
               </div>
             )}
 
@@ -1092,14 +1207,22 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                 <button
                   type="button"
                   onClick={toggleListening}
-                  title={isListening ? "Microfone ouvindo você (clique para pausar)" : "Ativar microfone para falar"}
+                  title={
+                    micPermission === "unsupported"
+                      ? "Voz contínua requer Chrome ou Edge. No Opera, envie mensagens digitando ou pelos botões rápidos!"
+                      : isListening
+                        ? "Microfone ouvindo você (clique para pausar)"
+                        : "Ativar microfone para falar"
+                  }
                   className={`p-2.5 rounded-xl border transition-all flex items-center justify-center shrink-0 cursor-pointer ${
                     isListening
                       ? "bg-emerald-500 text-white border-emerald-600 shadow-md ring-2 ring-emerald-500/40 animate-pulse"
-                      : "bg-muted hover:bg-muted/80 text-foreground border-border"
+                      : micPermission === "unsupported"
+                        ? "bg-muted text-muted-foreground border-border hover:bg-muted/80 opacity-70"
+                        : "bg-muted hover:bg-muted/80 text-foreground border-border"
                   }`}
                 >
-                  {isListening ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4 opacity-70" />}
+                  {isListening ? <Mic className="w-4 h-4 text-white" /> : <MicOff className="w-4 h-4 opacity-70" />}
                 </button>
 
                 <input
@@ -1107,7 +1230,13 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-                  placeholder={handsFreeMode ? "Modo Viva-Voz ouvindo você... (ou digite aqui se preferir)" : "Pergunte ao paciente ou fale com o examinador..."}
+                  placeholder={
+                    isListening
+                      ? "Modo Viva-Voz ouvindo você... (ou digite aqui se preferir)"
+                      : micPermission === "unsupported"
+                        ? "Digite sua pergunta ao paciente ou examinador..."
+                        : "Pergunte ao paciente ou fale com o examinador... (ou aperte Espaço para falar)"
+                  }
                   className="flex-1 bg-muted/50 border border-border rounded-xl px-3.5 py-2.5 text-xs md:text-sm focus:outline-none focus:border-primary"
                 />
 
