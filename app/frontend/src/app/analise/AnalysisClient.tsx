@@ -483,6 +483,185 @@ export function AnalysisClient({
             </div>
           </div>
 
+          {/* Camada Analítica de Comparação Competitiva com a Banca */}
+          {localReadiness.competitive_analysis && (
+            <div className="bg-card border border-border rounded-2xl p-5 shadow-xs space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/50 pb-3">
+                <div className="flex items-center gap-2">
+                  <div className="p-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-foreground">
+                      Análise Competitiva Real da Banca & Ponderação Psicométrica
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                      Comparação item a item contra o histórico real de acertos dos candidatos nas provas oficiais desta instituição.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 text-xs">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-muted-foreground">Média da Concorrência:</span>
+                    <span className="font-bold text-foreground">
+                      {Math.round(localReadiness.competitive_analysis.candidate_mean * 100)}%
+                    </span>
+                  </div>
+                  {localReadiness.competitive_analysis.competitive_delta !== null && (
+                    <span className={clsx(
+                      "px-2 py-0.5 rounded-full text-xs font-bold",
+                      localReadiness.competitive_analysis.competitive_delta >= 0
+                        ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"
+                        : "bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20"
+                    )}>
+                      Δ {localReadiness.competitive_analysis.competitive_delta >= 0 ? `+${Math.round(localReadiness.competitive_analysis.competitive_delta * 100)}%` : `${Math.round(localReadiness.competitive_analysis.competitive_delta * 100)}%`}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Grid com Métricas: IRT Adjusted Score e Breakdown por Faixas de Dificuldade */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Score Ajustado por Dificuldade de Item */}
+                <div className="p-4 rounded-xl bg-muted/20 border border-border/80 flex flex-col justify-between">
+                  <div className="space-y-1">
+                    <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                      Ponderação por Dificuldade (IRT-like)
+                    </span>
+                    <h4 className="font-bold text-sm text-foreground">
+                      Score Ajustado por Item
+                    </h4>
+                    <p className="text-xs text-muted-foreground">
+                      Valoriza acertos em questões difíceis e penaliza erros em itens fáceis que a maioria dos candidatos acerta.
+                    </p>
+                  </div>
+                  <div className="pt-3 flex items-baseline gap-2">
+                    <span className="text-2xl font-black text-primary">
+                      {localReadiness.competitive_analysis.difficulty_adjusted_score !== null
+                        ? `${Math.round(localReadiness.competitive_analysis.difficulty_adjusted_score * 100)}%`
+                        : "—"}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {localReadiness.competitive_analysis.competitive_ratio !== null
+                        ? `(${localReadiness.competitive_analysis.competitive_ratio}x a média da banca)`
+                        : ""}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Estratificação por Dificuldade dos Itens */}
+                <div className="md:col-span-2 p-4 rounded-xl bg-muted/20 border border-border/80 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                      Desempenho Estratificado por Dificuldade da Prova
+                    </span>
+                    <span className="text-[11px] text-muted-foreground">
+                      Sua Acurácia vs Candidatos Reais
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    {/* Fácil */}
+                    {(() => {
+                      const tier = localReadiness.competitive_analysis.difficulty_breakdown.facil;
+                      const uAcc = tier.user_accuracy !== null ? Math.round(tier.user_accuracy * 100) : null;
+                      const cAcc = Math.round(tier.candidate_accuracy * 100);
+                      return (
+                        <div className="p-3 rounded-lg bg-card border border-border/60 flex flex-col justify-between gap-1.5">
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="font-semibold text-foreground">Itens Fáceis</span>
+                            <span className="text-[10px] text-muted-foreground font-mono">{tier.attempts} q.</span>
+                          </div>
+                          <div className="flex items-baseline justify-between pt-1">
+                            <span className="text-base font-bold text-foreground">
+                              {uAcc !== null ? `${uAcc}%` : "—"}
+                            </span>
+                            <span className="text-xs text-muted-foreground">
+                              Banca: {cAcc}%
+                            </span>
+                          </div>
+                          {tier.delta !== null && (
+                            <span className={clsx(
+                              "text-[10px] font-semibold self-start",
+                              tier.delta >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"
+                            )}>
+                              Δ {tier.delta >= 0 ? `+${Math.round(tier.delta * 100)}%` : `${Math.round(tier.delta * 100)}%`}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })()}
+
+                    {/* Média */}
+                    {(() => {
+                      const tier = localReadiness.competitive_analysis.difficulty_breakdown.media;
+                      const uAcc = tier.user_accuracy !== null ? Math.round(tier.user_accuracy * 100) : null;
+                      const cAcc = Math.round(tier.candidate_accuracy * 100);
+                      return (
+                        <div className="p-3 rounded-lg bg-card border border-border/60 flex flex-col justify-between gap-1.5">
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="font-semibold text-foreground">Itens Médios</span>
+                            <span className="text-[10px] text-muted-foreground font-mono">{tier.attempts} q.</span>
+                          </div>
+                          <div className="flex items-baseline justify-between pt-1">
+                            <span className="text-base font-bold text-foreground">
+                              {uAcc !== null ? `${uAcc}%` : "—"}
+                            </span>
+                            <span className="text-xs text-muted-foreground">
+                              Banca: {cAcc}%
+                            </span>
+                          </div>
+                          {tier.delta !== null && (
+                            <span className={clsx(
+                              "text-[10px] font-semibold self-start",
+                              tier.delta >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"
+                            )}>
+                              Δ {tier.delta >= 0 ? `+${Math.round(tier.delta * 100)}%` : `${Math.round(tier.delta * 100)}%`}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })()}
+
+                    {/* Difícil */}
+                    {(() => {
+                      const tier = localReadiness.competitive_analysis.difficulty_breakdown.dificil;
+                      const uAcc = tier.user_accuracy !== null ? Math.round(tier.user_accuracy * 100) : null;
+                      const cAcc = Math.round(tier.candidate_accuracy * 100);
+                      return (
+                        <div className="p-3 rounded-lg bg-card border border-border/60 flex flex-col justify-between gap-1.5">
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="font-semibold text-foreground">Itens Difíceis</span>
+                            <span className="text-[10px] text-muted-foreground font-mono">{tier.attempts} q.</span>
+                          </div>
+                          <div className="flex items-baseline justify-between pt-1">
+                            <span className="text-base font-bold text-foreground">
+                              {uAcc !== null ? `${uAcc}%` : "—"}
+                            </span>
+                            <span className="text-xs text-muted-foreground">
+                              Banca: {cAcc}%
+                            </span>
+                          </div>
+                          {tier.delta !== null && (
+                            <span className={clsx(
+                              "text-[10px] font-semibold self-start",
+                              tier.delta >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"
+                            )}>
+                              Δ {tier.delta >= 0 ? `+${Math.round(tier.delta * 100)}%` : `${Math.round(tier.delta * 100)}%`}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })()}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="space-y-3">
             <h3 className="text-sm font-bold text-foreground">
               Distribuição por Grande Área no Edital
@@ -501,6 +680,8 @@ export function AnalysisClient({
 
                 const ciLowerPct = area.ci_lower !== undefined ? Math.round(area.ci_lower * 100) : null;
                 const ciUpperPct = area.ci_upper !== undefined ? Math.round(area.ci_upper * 100) : null;
+                const candAreaPct = area.candidate_accuracy !== undefined ? Math.round(area.candidate_accuracy * 100) : null;
+                const deltaAreaPct = area.competitive_delta !== null && area.competitive_delta !== undefined ? Math.round(area.competitive_delta * 100) : null;
 
                 return (
                   <div
@@ -528,6 +709,20 @@ export function AnalysisClient({
                           <span className="block text-[10px] text-muted-foreground -mt-0.5">Posterior</span>
                         </div>
                       </div>
+
+                      {candAreaPct !== null && (
+                        <div className="flex items-center justify-between text-[11px] pt-0.5">
+                          <span className="text-muted-foreground">Banca: {candAreaPct}%</span>
+                          {deltaAreaPct !== null && (
+                            <span className={clsx(
+                              "font-semibold text-[10px] px-1 py-0.2 rounded-xs",
+                              deltaAreaPct >= 0 ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" : "bg-rose-500/10 text-rose-600 dark:text-rose-400"
+                            )}>
+                              Δ {deltaAreaPct >= 0 ? `+${deltaAreaPct}%` : `${deltaAreaPct}%`}
+                            </span>
+                          )}
+                        </div>
+                      )}
                     </div>
 
                     {/* Barra visual do intervalo bayesiano */}

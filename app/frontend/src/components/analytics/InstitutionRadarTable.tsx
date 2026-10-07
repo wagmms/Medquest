@@ -7,7 +7,7 @@ import { BookOpen, Play, AlertTriangle } from "lucide-react";
 
 interface InstitutionRadarTableProps {
   institution: RadarInstitutionData;
-  comparison?: (RadarInstitutionData & { type: "global" | "institution" }) | null;
+  comparison?: (RadarInstitutionData & { type: "global" | "institution" | "candidates" }) | null;
   onActionClick?: (action: "study" | "simulado" | "review") => void;
 }
 
@@ -67,8 +67,8 @@ export function InstitutionRadarTable({
             <tr>
               <th scope="col" className="px-4 py-3.5">Grande Área</th>
               <th scope="col" className="px-4 py-3.5">Cobertura</th>
-              <th scope="col" className="px-4 py-3.5">Acurácia (Banca)</th>
-              <th scope="col" className="px-4 py-3.5">Intervalo de Incerteza (95% CI)</th>
+              <th scope="col" className="px-4 py-3.5">Sua Acurácia</th>
+              <th scope="col" className="px-4 py-3.5">Incerteza (95% CI)</th>
               {comparison && (
                 <th scope="col" className="px-4 py-3.5">
                   {comparison.type === "global" ? "Desempenho Geral" : (comparison.label || "Comparativo")}
@@ -85,6 +85,8 @@ export function InstitutionRadarTable({
               const ciLowPct = area.ci_lower !== null ? Math.round(area.ci_lower * 100) : null;
               const ciHighPct = area.ci_upper !== null ? Math.round(area.ci_upper * 100) : null;
               const compAccPct = compArea && compArea.accuracy !== null ? Math.round(compArea.accuracy * 100) : null;
+              const candAccPct = area.candidate_accuracy !== undefined ? Math.round(area.candidate_accuracy * 100) : null;
+              const deltaPct = area.competitive_delta !== null && area.competitive_delta !== undefined ? Math.round(area.competitive_delta * 100) : null;
 
               return (
                 <tr key={area.area} className="hover:bg-muted/30 transition-colors">
@@ -99,9 +101,34 @@ export function InstitutionRadarTable({
                   </td>
                   <td className="px-4 py-3.5">
                     {accPct !== null ? (
-                      <span className="font-bold text-foreground text-base">{accPct}%</span>
+                      <div className="flex flex-col gap-0.5">
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold text-foreground text-base">{accPct}%</span>
+                          {deltaPct !== null && (
+                            <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-sm ${
+                              deltaPct >= 0 
+                                ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" 
+                                : "bg-rose-500/10 text-rose-600 dark:text-rose-400"
+                            }`}>
+                              Δ {deltaPct >= 0 ? `+${deltaPct}%` : `${deltaPct}%`}
+                            </span>
+                          )}
+                        </div>
+                        {candAccPct !== null && (
+                          <span className="text-[11px] text-muted-foreground">
+                            Banca: {candAccPct}%
+                          </span>
+                        )}
+                      </div>
                     ) : (
-                      <span className="text-muted-foreground italic">Sem tentativas</span>
+                      <div className="flex flex-col">
+                        <span className="text-muted-foreground italic">Sem tentativas</span>
+                        {candAccPct !== null && (
+                          <span className="text-[11px] text-muted-foreground">
+                            Banca: {candAccPct}%
+                          </span>
+                        )}
+                      </div>
                     )}
                   </td>
                   <td className="px-4 py-3.5 text-muted-foreground">
@@ -119,7 +146,9 @@ export function InstitutionRadarTable({
                       {compAccPct !== null ? (
                         <div className="flex flex-col">
                           <span className="font-medium text-foreground">{compAccPct}%</span>
-                          <span className="text-xs">{compArea?.attempts || 0} tentativas</span>
+                          <span className="text-xs">
+                            {comparison.type === "candidates" ? "Média concorrentes" : `${compArea?.attempts || 0} tentativas`}
+                          </span>
                         </div>
                       ) : (
                         <span className="text-xs italic">—</span>

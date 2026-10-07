@@ -612,6 +612,8 @@ export interface RadarAreaStat {
   attempts: number;
   correct: number;
   accuracy: number | null;
+  candidate_accuracy?: number;
+  competitive_delta?: number | null;
   ci_lower: number | null;
   ci_upper: number | null;
   sample_status: SampleStatus;
@@ -627,6 +629,8 @@ export interface RadarInstitutionData {
   total_attempts: number;
   total_correct: number;
   accuracy: number | null;
+  candidate_accuracy?: number;
+  competitive_delta?: number | null;
   ci_lower: number | null;
   ci_upper: number | null;
   sample_status: SampleStatus;
@@ -636,7 +640,7 @@ export interface RadarInstitutionData {
 export interface InstitutionRadarResponse {
   institution: RadarInstitutionData;
   comparison: {
-    type: "global" | "institution";
+    type: "global" | "institution" | "candidates";
   } & RadarInstitutionData;
   disclaimer: string;
   sample_thresholds: {

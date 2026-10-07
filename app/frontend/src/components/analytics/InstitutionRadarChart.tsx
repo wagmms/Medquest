@@ -7,7 +7,7 @@ import clsx from "clsx";
 
 interface InstitutionRadarChartProps {
   institution: RadarInstitutionData;
-  comparison?: (RadarInstitutionData & { type: "global" | "institution" }) | null;
+  comparison?: (RadarInstitutionData & { type: "global" | "institution" | "candidates" }) | null;
 }
 
 export function InstitutionRadarChart({
@@ -56,11 +56,14 @@ export function InstitutionRadarChart({
         <div className="flex items-center gap-4 text-xs">
           <div className="flex items-center gap-1.5 font-medium text-foreground">
             <span className="w-3 h-3 rounded-xs bg-primary inline-block" />
-            <span>{institution.label}</span>
+            <span>Sua Acurácia ({institution.label})</span>
           </div>
           {comparison && (
             <div className="flex items-center gap-1.5 font-medium text-muted-foreground">
-              <span className="w-3 h-3 rounded-xs bg-muted-foreground/40 inline-block" />
+              <span className={clsx(
+                "w-3 h-3 rounded-xs inline-block",
+                comparison.type === "candidates" ? "bg-amber-500/70 dark:bg-amber-400/70" : "bg-muted-foreground/40"
+              )} />
               <span>{comparison.type === "global" ? "Desempenho Geral" : comparison.label}</span>
             </div>
           )}
@@ -196,8 +199,8 @@ export function InstitutionRadarChart({
                     y={compY}
                     width={compBarWidth}
                     height={Math.max(2, compH)}
-                    fill="currentColor"
-                    className="text-muted-foreground/35"
+                    fill={comparison.type === "candidates" ? "rgb(245 158 11 / 0.65)" : "currentColor"}
+                    className={comparison.type === "candidates" ? "" : "text-muted-foreground/35"}
                     rx="3"
                   />
                 )}
@@ -285,16 +288,28 @@ export function InstitutionRadarChart({
                   </span>
                 </div>
               )}
-              {comparison && compMap.get(areas[hoveredIdx].area) && (
-                <div className="text-muted-foreground">
-                  <span>{comparison.type === "global" ? "Desempenho Geral" : comparison.label}: </span>
-                  <span className="font-semibold text-foreground">
-                    {compMap.get(areas[hoveredIdx].area)!.accuracy !== null
-                      ? `${Math.round(compMap.get(areas[hoveredIdx].area)!.accuracy! * 100)}%`
-                      : "—"}
-                  </span>
-                </div>
-              )}
+              {comparison && compMap.get(areas[hoveredIdx].area) && (() => {
+                const cArea = compMap.get(areas[hoveredIdx].area)!;
+                const cAcc = cArea.accuracy !== null ? Math.round(cArea.accuracy * 100) : null;
+                const uAcc = areas[hoveredIdx].accuracy !== null ? Math.round(areas[hoveredIdx].accuracy! * 100) : null;
+                const d = uAcc !== null && cAcc !== null ? uAcc - cAcc : null;
+
+                return (
+                  <div className="text-muted-foreground flex items-center gap-1.5">
+                    <span>{comparison.type === "global" ? "Desempenho Geral" : comparison.label}: </span>
+                    <span className="font-semibold text-foreground">
+                      {cAcc !== null ? `${cAcc}%` : "—"}
+                    </span>
+                    {d !== null && comparison.type === "candidates" && (
+                      <span className={`text-[10px] font-semibold px-1 py-0.2 rounded-xs ${
+                        d >= 0 ? "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10" : "text-rose-600 dark:text-rose-400 bg-rose-500/10"
+                      }`}>
+                        Δ {d >= 0 ? `+${d}%` : `${d}%`}
+                      </span>
+                    )}
+                  </div>
+                );
+              })()}
             </div>
             {areas[hoveredIdx].sample_status === "insufficient" && (
               <p className="text-[11px] text-amber-600 dark:text-amber-400 font-medium pt-0.5">

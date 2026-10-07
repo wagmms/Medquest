@@ -149,6 +149,7 @@ export function InstitutionRadarSection({
               className="mt-1 bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground focus:ring-2 focus:ring-primary/20 min-h-[44px]"
             >
               <option value="">Desempenho Geral</option>
+              <option value="CANDIDATES">Média dos Candidatos da Banca (Concorrência Real)</option>
               {institutionOptions
                 .filter(opt => opt.key !== selectedInst)
                 .map(opt => (

@@ -618,15 +618,11 @@ def _process_canonical_areas(row_map: dict, edital_profile: EditalProfile, insti
         ans = r.get("answered", 0)
         w = edital_profile.weights.get(area, 0.20)
 
-        # Prior Empírica de Bayes calibrada no desempenho real dos candidatos da banca:
-        # N_0 = 2.0 (força equivalente ao prior clássico Beta(1,1), mantendo alpha_0 + beta_0 = 2.0)
         cand_acc = bench_areas.get(area, {}).get("candidate_accuracy", 0.70)
-        alpha_0 = 2.0 * cand_acc
-        beta_0 = 2.0 * (1.0 - cand_acc)
 
-        # Posterior Beta(alpha_0 + cor, beta_0 + att - cor)
-        alpha = alpha_0 + cor
-        beta = beta_0 + (att - cor)
+        # Prior Beta(1, 1) -> Posterior Beta(1 + cor, 1 + att - cor)
+        alpha = 1.0 + cor
+        beta = 1.0 + (att - cor)
         mean_i = alpha / (alpha + beta)
         var_i = (alpha * beta) / (((alpha + beta) ** 2) * (alpha + beta + 1.0))
 
