@@ -2,13 +2,27 @@
 from datetime import datetime, timezone
 
 from flask import g
+from api.edital_profiles import resolve_institution_codes
 
 
 def question_filter_clauses(args):
     clauses = ["q.missing_alts = 0"]
     params = []
 
-    institutions = args.getlist("institution")
+    raw_institutions = args.getlist("institution")
+    institutions = []
+    for item in raw_institutions:
+        if "," in item:
+            for part in item.split(","):
+                part_clean = part.strip()
+                if part_clean:
+                    expanded = resolve_institution_codes(part_clean)
+                    institutions.extend(expanded)
+        elif item.strip():
+            expanded = resolve_institution_codes(item.strip())
+            institutions.extend(expanded)
+
+    institutions = list(dict.fromkeys(institutions))
     if institutions:
         clauses.append(f"q.institution_code IN ({','.join('?' * len(institutions))})")
         params.extend(institutions)

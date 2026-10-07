@@ -19,20 +19,30 @@ const AnalysisClient = dynamic(
 
 export default async function AnalisePage() {
   // Fazemos fetch paralelo de todos os dados do dashboard analítico
+  const ALLOWED_INSTITUTIONS = [
+    { key: "USP-SP", label: "USP - São Paulo" },
+    { key: "USP-RP", label: "USP - Ribeirão Preto" },
+    { key: "UNICAMP", label: "Unicamp" },
+    { key: "UNIFESP", label: "Unifesp / EPM" },
+    { key: "SUS-SP", label: "SUS-SP" },
+  ];
+
   const overviewPromise = serverApi.stats.getOverview().catch(() => null);
   const readinessPromise = overviewPromise.then(overview => {
     const raw = overview?.primary_institution || overview?.target_institution;
     const inst = (raw && raw !== "Todas as Bancas" && raw !== "TODAS")
       ? raw.split(",")[0].trim()
       : undefined;
-    return serverApi.stats.getExamReadiness(inst);
+    const targetInst = (inst && ALLOWED_INSTITUTIONS.some(i => i.key === inst)) ? inst : "USP-SP";
+    return serverApi.stats.getExamReadiness(targetInst);
   });
   const radarPromise = overviewPromise.then(overview => {
     const raw = overview?.primary_institution || overview?.target_institution;
     const inst = (raw && raw !== "Todas as Bancas" && raw !== "TODAS")
       ? raw.split(",")[0].trim()
       : "USP-SP";
-    return serverApi.stats.getInstitutionRadar(inst);
+    const targetInst = (inst && ALLOWED_INSTITUTIONS.some(i => i.key === inst)) ? inst : "USP-SP";
+    return serverApi.stats.getInstitutionRadar(targetInst);
   }).catch(() => null);
   const results = await Promise.allSettled([
     serverApi.stats.getTimeline(14),
@@ -61,7 +71,7 @@ export default async function AnalisePage() {
     method: { deterministic: true, signals: [] },
   };
   const fallbackReadiness = results[7].status === 'fulfilled' ? results[7].value : {
-    institution: null, coverage: 0, answered: 0, available: 0, areas: [],
+    institution: "USP-SP", coverage: 0, answered: 0, available: 0, areas: [],
     disclaimer: 'Ainda não há dados suficientes para este relatório.',
     limitations: [
       'A prontidão estimada reflete exclusivamente as questões resolvidas no MedQuest sob o perfil de edital configurado.',
@@ -72,23 +82,7 @@ export default async function AnalisePage() {
   const examReadiness = fallbackReadiness;
   const institutionRadar = await radarPromise;
 
-  const DEFAULT_INSTITUTIONS = [
-    { key: "USP-SP", label: "USP - São Paulo" },
-    { key: "UNICAMP", label: "Unicamp" },
-    { key: "ENARE", label: "ENARE / Ebserh" },
-    { key: "SUS-SP", label: "SUS-SP" },
-    { key: "UNIFESP", label: "Unifesp / EPM" },
-  ];
-
-  const breakdownOptions = breakdown.map(item => ({ key: item.key, label: item.label }));
-  const institutionOptions = breakdownOptions.length > 0
-    ? [
-        ...breakdownOptions,
-        ...(examReadiness.institution && !breakdownOptions.some(item => item.key === examReadiness.institution)
-          ? [{ key: examReadiness.institution, label: examReadiness.institution }]
-          : []),
-      ]
-    : DEFAULT_INSTITUTIONS;
+  const institutionOptions = ALLOWED_INSTITUTIONS;
 
   return (
     <div className="flex flex-col gap-8 animate-in fade-in duration-500">

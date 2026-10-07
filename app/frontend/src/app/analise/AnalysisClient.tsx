@@ -44,20 +44,15 @@ export function AnalysisClient({
   institutionRadar?: InstitutionRadarResponse | null;
 }) {
 
-  const [recoveredInstitutions, setRecoveredInstitutions] = useState<{ key: string; label: string }[]>([]);
-  const availableInstitutions = institutionOptions.length ? institutionOptions : recoveredInstitutions;
-  useEffect(() => {
-    if (institutionOptions.length) return;
-    let active = true;
-    api.stats.getBreakdown("institution")
-      .then(items => {
-        if (active && Array.isArray(items)) {
-          setRecoveredInstitutions(items.map(item => ({ key: item.key, label: item.label })));
-        }
-      })
-      .catch(error => console.error("Failed to recover institution options:", error));
-    return () => { active = false; };
-  }, [institutionOptions]);
+  const ALLOWED_ANALYSIS_INSTITUTIONS = useMemo(() => [
+    { key: "USP-SP", label: "USP - São Paulo" },
+    { key: "USP-RP", label: "USP - Ribeirão Preto" },
+    { key: "UNICAMP", label: "Unicamp" },
+    { key: "UNIFESP", label: "Unifesp / EPM" },
+    { key: "SUS-SP", label: "SUS-SP" },
+  ], []);
+
+  const availableInstitutions = institutionOptions.length ? institutionOptions : ALLOWED_ANALYSIS_INSTITUTIONS;
 
   const [days, setDays] = useState<number>(14);
   const [localTimeline, setLocalTimeline] = useState<TimelineStat[]>(timeline);
@@ -65,7 +60,7 @@ export function AnalysisClient({
   const [timelineError, setTimelineError] = useState<string | null>(initialErrors.includes("Evolução") ? "Não foi possível carregar a evolução de desempenho." : null);
   const [timelineRetry, setTimelineRetry] = useState(0);
   const [loadedDays, setLoadedDays] = useState(14);
-  const [selectedInstitution, setSelectedInstitution] = useState(examReadiness.institution || "");
+  const [selectedInstitution, setSelectedInstitution] = useState(examReadiness.institution || "USP-SP");
   const [localReadiness, setLocalReadiness] = useState(examReadiness);
   const [loadingReadiness, setLoadingReadiness] = useState(false);
   const [readinessError, setReadinessError] = useState<string | null>(initialErrors.includes("Prontidão") ? "Não foi possível carregar a prontidão." : null);
@@ -169,11 +164,15 @@ export function AnalysisClient({
 
   const chartBreakdown = useMemo(() => {
     if (!Array.isArray(breakdown)) return [];
-    return breakdown.slice(0, 8).map(b => ({
-      ...b,
-      accPct: parseFloat(((b.accuracy || 0) * 100).toFixed(1)),
-      shortLabel: `${b.label.length > 28 ? b.label.substring(0, 25) + "..." : b.label} (${b.attempts})`
-    }));
+    const allowedKeys = new Set(["USP-SP", "USP-RP", "UNICAMP", "UNIFESP", "SUS-SP"]);
+    return breakdown
+      .filter(b => allowedKeys.has(b.key))
+      .slice(0, 5)
+      .map(b => ({
+        ...b,
+        accPct: parseFloat(((b.accuracy || 0) * 100).toFixed(1)),
+        shortLabel: `${b.label.length > 28 ? b.label.substring(0, 25) + "..." : b.label} (${b.attempts})`
+      }));
   }, [breakdown]);
 
   const chartTimeline = useMemo(() => {
@@ -236,7 +235,7 @@ export function AnalysisClient({
               )}
             </div>
             <Link
-              href={`/estudar?mode=adaptive&limit=${learningProfile.goal.questions_today}`}
+              href={`/estudar?mode=adaptive&limit=${learningProfile.goal.questions_today}${selectedInstitution ? `&institution=${encodeURIComponent(selectedInstitution)}` : ""}`}
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 font-semibold text-primary-foreground hover:bg-primary/90 transition-colors cursor-pointer"
             >
               Iniciar sessão personalizada
@@ -268,7 +267,6 @@ export function AnalysisClient({
                 className="bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground focus:ring-2 focus:ring-primary/20 min-h-[44px]"
                 aria-label="Selecionar edital da instituição"
               >
-                <option value="">Banco Geral (Padrão)</option>
                 {availableInstitutions.map((opt) => (
                   <option key={opt.key} value={opt.key}>{opt.label}</option>
                 ))}
@@ -460,15 +458,24 @@ export function AnalysisClient({
                       <span className="text-foreground/90 font-medium text-xs leading-snug break-words">
                         {factor.recommendation}
                       </span>
-                      <Link
-                        href={factor.action_url || `/estudar?area=${encodeURIComponent(factor.area)}&status=new&limit=5`}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground font-semibold text-xs hover:bg-primary/90 transition-colors shrink-0 self-start sm:self-auto cursor-pointer"
-                      >
-                        Resolver
-                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </Link>
+                      {(() => {
+                        let targetUrl = factor.action_url || `/estudar?area=${encodeURIComponent(factor.area)}&status=new&limit=5`;
+                        if (selectedInstitution && !targetUrl.includes("institution=")) {
+                          const separator = targetUrl.includes("?") ? "&" : "?";
+                          targetUrl = `${targetUrl}${separator}institution=${encodeURIComponent(selectedInstitution)}`;
+                        }
+                        return (
+                          <Link
+                            href={targetUrl}
+                            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground font-semibold text-xs hover:bg-primary/90 transition-colors shrink-0 self-start sm:self-auto cursor-pointer"
+                          >
+                            Resolver
+                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </Link>
+                        );
+                      })()}
                     </div>
                   </div>
                 ))}
@@ -553,15 +560,24 @@ export function AnalysisClient({
                       </div>
                     </div>
 
-                    <Link
-                      href={area.action}
-                      className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition-colors w-full"
-                    >
-                      Estudar Área
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Link>
+                    {(() => {
+                      let areaUrl = area.action || `/estudar?area=${encodeURIComponent(area.area)}&status=new&limit=20`;
+                      if (selectedInstitution && !areaUrl.includes("institution=")) {
+                        const separator = areaUrl.includes("?") ? "&" : "?";
+                        areaUrl = `${areaUrl}${separator}institution=${encodeURIComponent(selectedInstitution)}`;
+                      }
+                      return (
+                        <Link
+                          href={areaUrl}
+                          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition-colors w-full"
+                        >
+                          Estudar Área
+                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      );
+                    })()}
                   </div>
                 );
               })}

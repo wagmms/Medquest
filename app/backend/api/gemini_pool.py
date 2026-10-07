@@ -40,6 +40,7 @@ class KeyState:
     def __init__(self, key: str, index: int):
         self.key = key
         self.index = index
+        self.consumer: str = ""
         self.cooldown_until: float = 0.0
         self.model_cooldown_until: Dict[str, float] = {}
         self.total_calls: int = 0
@@ -78,7 +79,7 @@ class KeyState:
             consecutive_429 = self.model_consecutive_429.get(model, 0) + 1
             self.model_consecutive_429[model] = consecutive_429
         else:
-            self.consecutive_429 += 1
+            consecutive_429 = self.consecutive_429 + 1
             consecutive_429 = self.consecutive_429
         # Backoff progressivo, independente para cada modelo da mesma chave.
         actual_cooldown = cooldown_seconds * min(consecutive_429, 3)
@@ -112,6 +113,7 @@ class GeminiPool:
         self.models = self._load_models(default_model)
         self.lock = threading.Lock()
         self._keys: List[KeyState] = []
+        self._consumer_cooldown_until: Dict[Tuple[str, Optional[str]], float] = {}
         self._current_index = 0
         self._load_keys(keys)
 
@@ -182,9 +184,36 @@ class GeminiPool:
         )
         return any(marker in normalized for marker in markers)
 
+    @staticmethod
+    def _extract_consumer(body: str) -> str:
+        """Extrai o identificador de projeto/consumer a partir de detalhes de erro RPC."""
+        try:
+            data = json.loads(body)
+            details = data.get("error", {}).get("details", [])
+            for item in details:
+                if isinstance(item, dict):
+                    consumer = item.get("metadata", {}).get("consumer", "")
+                    if consumer:
+                        return str(consumer).strip()
+        except Exception:
+            pass
+        match = re.search(r'"consumer"\s*:\s*"([^"]+)"', body)
+        return match.group(1).strip() if match else ""
+
     @property
     def total_keys(self) -> int:
         return len(self._keys)
+
+    def is_key_available(self, candidate: KeyState, model: Optional[str] = None) -> bool:
+        if not candidate.is_available_for(model):
+            return False
+        if candidate.consumer:
+            now = time.time()
+            if now < self._consumer_cooldown_until.get((candidate.consumer, None), 0.0):
+                return False
+            if model and now < self._consumer_cooldown_until.get((candidate.consumer, model), 0.0):
+                return False
+        return True
 
     def get_available_key(
         self, max_wait_seconds: float = 30.0, model: Optional[str] = None
@@ -200,7 +229,7 @@ class GeminiPool:
                 for _ in range(len(self._keys)):
                     candidate = self._keys[self._current_index]
                     self._current_index = (self._current_index + 1) % len(self._keys)
-                    if candidate.is_available_for(model):
+                    if self.is_key_available(candidate, model):
                         return candidate, ""
 
                 # Se todas estiverem em cooldown, calcula o menor tempo de espera
@@ -298,11 +327,27 @@ class GeminiPool:
                         # modelo. Evita desperdiçar chamadas nos demais fallbacks.
                         if quota_is_global:
                             cooldown_seconds = max(cooldown_seconds, float(os.environ.get("GEMINI_ACCOUNT_QUOTA_COOLDOWN", "86400")))
-                        key_state.mark_rate_limit(
-                            cooldown_seconds=cooldown_seconds,
-                            reason=f"HTTP 429 ({err_body[:100]})",
-                            model=None if quota_is_global else target_model,
-                        )
+
+                        consumer = self._extract_consumer(err_body)
+                        if consumer:
+                            key_state.consumer = consumer
+                            with self.lock:
+                                self._consumer_cooldown_until[(consumer, None if quota_is_global else target_model)] = (
+                                    time.time() + cooldown_seconds
+                                )
+                                for other_key in self._keys:
+                                    if other_key.consumer == consumer:
+                                        other_key.mark_rate_limit(
+                                            cooldown_seconds=cooldown_seconds,
+                                            reason=f"Consumer {consumer} rate limit",
+                                            model=None if quota_is_global else target_model,
+                                        )
+                        else:
+                            key_state.mark_rate_limit(
+                                cooldown_seconds=cooldown_seconds,
+                                reason=f"HTTP 429 ({err_body[:100]})",
+                                model=None if quota_is_global else target_model,
+                            )
                         last_exception = RuntimeError(f"Rate limit na chave #{key_state.index}: {err_body[:200]}")
                         continue
                     if e.code == 404:

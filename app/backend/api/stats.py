@@ -15,7 +15,14 @@ from .tri_engine import evaluate_tri_performance
 from .db import get_db, db_transaction
 from .questions import invalidate_user_caches
 from .observability import emit
-from .edital_profiles import EditalProfile, get_edital_profile, CANONICAL_AREAS
+from .edital_profiles import (
+    EditalProfile,
+    get_edital_profile,
+    CANONICAL_AREAS,
+    ALLOWED_ANALYSIS_INSTITUTIONS,
+    resolve_institution_codes,
+    get_canonical_institution,
+)
 
 bp = Blueprint("stats", __name__)
 
@@ -295,6 +302,41 @@ def _breakdown(db, group_col, label_col=None):
         WHERE a.user_id = ? AND q.{group_col} IS NOT NULL AND q.{group_col} != ''
         GROUP BY q.{group_col} ORDER BY attempts DESC
     """, (g.user_id,)).fetchall()
+
+    if group_col == "institution_code":
+        canonical_labels = {
+            "USP-SP": "USP - São Paulo",
+            "USP-RP": "USP - Ribeirão Preto",
+            "UNICAMP": "Unicamp",
+            "UNIFESP": "Unifesp / EPM",
+            "SUS-SP": "SUS-SP",
+        }
+        aggregated: dict[str, dict] = {
+            inst: {"key": inst, "label": canonical_labels[inst], "attempts": 0, "correct": 0}
+            for inst in ALLOWED_ANALYSIS_INSTITUTIONS
+        }
+        for r in rows:
+            canon = get_canonical_institution(r["key"])
+            if canon and canon in aggregated:
+                aggregated[canon]["attempts"] += r["attempts"]
+                aggregated[canon]["correct"] += r["correct"]
+
+        out = []
+        for inst in ALLOWED_ANALYSIS_INSTITUTIONS:
+            item = aggregated[inst]
+            att = item["attempts"]
+            cor = item["correct"]
+            acc = (cor / att) if att > 0 else 0.0
+            out.append({
+                "key": item["key"],
+                "label": item["label"],
+                "attempts": att,
+                "correct": cor,
+                "accuracy": acc,
+            })
+        out.sort(key=lambda x: x["attempts"], reverse=True)
+        return out
+
     out = []
     for r in rows:
         acc = (r["correct"] / r["attempts"]) if r["attempts"] else 0
@@ -554,7 +596,7 @@ def _aggregate_area_records(area_records: list[dict]) -> dict:
 
 
 
-def _process_canonical_areas(row_map: dict, edital_profile: EditalProfile) -> tuple[list[dict], float, float, dict]:
+def _process_canonical_areas(row_map: dict, edital_profile: EditalProfile, institution_code: str | None = None) -> tuple[list[dict], float, float, dict]:
     enriched_areas = []
     weighted_mean_sum = 0.0
     weighted_var_sum = 0.0
@@ -589,6 +631,10 @@ def _process_canonical_areas(row_map: dict, edital_profile: EditalProfile) -> tu
 
         sample_status = "reliable" if att >= 20 else ("forming" if att >= 5 else "insufficient")
 
+        action_dict = {"area": area, "status": "new", "limit": 20}
+        if institution_code:
+            action_dict["institution"] = institution_code
+
         enriched_areas.append({
             "area": area,
             "available": avail,
@@ -603,7 +649,7 @@ def _process_canonical_areas(row_map: dict, edital_profile: EditalProfile) -> tu
             "weight": round(w, 4),
             "sample": "sufficient" if att >= 20 else "limited",
             "sample_status": sample_status,
-            "action": "/estudar?" + urlencode({"area": area, "status": "new", "limit": 20}),
+            "action": "/estudar?" + urlencode(action_dict),
         })
 
     return enriched_areas, weighted_mean_sum, weighted_var_sum, area_attempts
@@ -625,8 +671,9 @@ def _determine_evidence_status(area_attempts: dict, edital_profile: EditalProfil
 
 
 
-def _generate_key_factors(enriched_areas: list[dict]) -> list[dict]:
+def _generate_key_factors(enriched_areas: list[dict], institution_code: str | None = None) -> list[dict]:
     key_factors = []
+    institution_param = f"&institution={quote(institution_code)}" if institution_code else ""
     for a_info in enriched_areas:
         w_pct = round(a_info["weight"] * 100)
         att = a_info["attempts"]
@@ -639,7 +686,7 @@ def _generate_key_factors(enriched_areas: list[dict]) -> list[dict]:
                 "impact": f"Peso de {w_pct}% no edital com apenas {att} tentativa(s) observada(s).",
                 "recommendation": f"Resolver pelo menos {needed} questão(ões) em {a_info['area']} para calibrar a evidência.",
                 "factor_type": "low_sample",
-                "action_url": f"/estudar?area={area_encoded}&status=new&limit={max(5, needed)}",
+                "action_url": f"/estudar?area={area_encoded}&status=new&limit={max(5, needed)}{institution_param}",
             })
         elif a_info["posterior_mean"] < 0.60:
             key_factors.append({
@@ -647,12 +694,12 @@ def _generate_key_factors(enriched_areas: list[dict]) -> list[dict]:
                 "impact": f"Acurácia posterior estimada em {mean_pct}% (peso de {w_pct}% no edital).",
                 "recommendation": f"Revisar conceitos prioritários de {a_info['area']} para elevar a prontidão.",
                 "factor_type": "low_accuracy",
-                "action_url": f"/estudar?area={area_encoded}&status=wrong&limit=10",
+                "action_url": f"/estudar?area={area_encoded}&status=wrong&limit=10{institution_param}",
             })
     return key_factors
 
 
-def calculate_bayesian_readiness(area_records: list[dict], edital_profile: EditalProfile) -> dict:
+def calculate_bayesian_readiness(area_records: list[dict], edital_profile: EditalProfile, institution_code: str | None = None) -> dict:
     """
     Calcula a prontidão bayesiana agregada usando modelo Beta-Binomial
     conjugado com prior plano Beta(1, 1) em cada grande área médica.
@@ -660,14 +707,14 @@ def calculate_bayesian_readiness(area_records: list[dict], edital_profile: Edita
     row_map = _aggregate_area_records(area_records)
 
     enriched_areas, weighted_mean_sum, weighted_var_sum, area_attempts = _process_canonical_areas(
-        row_map, edital_profile
+        row_map, edital_profile, institution_code=institution_code
     )
 
     readiness_score = round(weighted_mean_sum, 4)
     ci_lower, ci_upper = weighted_beta_credible_interval(weighted_mean_sum, weighted_var_sum)
 
     evidence_status = _determine_evidence_status(area_attempts, edital_profile)
-    key_factors = _generate_key_factors(enriched_areas)
+    key_factors = _generate_key_factors(enriched_areas, institution_code=institution_code)
 
     limitations = [
         "A prontidão estimada reflete exclusivamente as questões resolvidas no MedQuest sob o perfil de edital configurado.",
@@ -780,8 +827,15 @@ def _get_available_questions_by_area(db, institution_code: str | None = None) ->
     if cached is not None:
         return cached
 
-    clause = "AND institution_code = ?" if institution_code else ""
-    params = [institution_code] if institution_code else []
+    aliases = resolve_institution_codes(institution_code) if institution_code else []
+    if aliases:
+        placeholders = ",".join("?" * len(aliases))
+        clause = f"AND institution_code IN ({placeholders})"
+        params = list(aliases)
+    else:
+        clause = ""
+        params = []
+
     rows = db.execute(f"""
         SELECT area, COUNT(id) AS available
         FROM questions
@@ -796,10 +850,14 @@ def _get_available_questions_by_area(db, institution_code: str | None = None) ->
 
 
 def _get_user_area_attempts(db, user_id: str, institution_code: str | None = None) -> dict[str, dict]:
-    clause = "AND q.institution_code = ?" if institution_code else ""
-    params = [user_id]
-    if institution_code:
-        params.append(institution_code)
+    aliases = resolve_institution_codes(institution_code) if institution_code else []
+    if aliases:
+        placeholders = ",".join("?" * len(aliases))
+        clause = f"AND q.institution_code IN ({placeholders})"
+        params = [user_id] + list(aliases)
+    else:
+        clause = ""
+        params = [user_id]
 
     rows = db.execute(f"""
         SELECT q.area,
@@ -839,16 +897,18 @@ def _fetch_area_records(db, user_id: str, institution_code: str | None = None) -
 def exam_readiness():
     """Prontidão estimada por instituição/edital com modelo bayesiano Beta-Binomial."""
     db = get_db()
-    institution = request.args.get("institution", "").strip()[:64]
-    if institution in ("Todas as Bancas", "TODAS") or "," in institution:
-        if "," in institution:
-            institution = institution.split(",")[0].strip()
-        else:
-            institution = ""
+    raw_institution = request.args.get("institution", "").strip()[:64]
+    canonical = get_canonical_institution(raw_institution)
+    if canonical:
+        institution = canonical
+    elif raw_institution in ALLOWED_ANALYSIS_INSTITUTIONS:
+        institution = raw_institution
+    else:
+        institution = "USP-SP"
 
-    area_records = _fetch_area_records(db, g.user_id, institution or None)
-    profile = get_edital_profile(institution or None)
-    bayesian_calc = calculate_bayesian_readiness(area_records, profile)
+    area_records = _fetch_area_records(db, g.user_id, institution)
+    profile = get_edital_profile(institution)
+    bayesian_calc = calculate_bayesian_readiness(area_records, profile, institution_code=institution)
 
     areas = bayesian_calc["enriched_areas"]
     total_available = sum(item["available"] for item in areas)
@@ -861,7 +921,7 @@ def exam_readiness():
     )
 
     return jsonify({
-        "institution": institution or None,
+        "institution": institution,
         "institution_label": profile.institution_label,
         "coverage": round(total_answered / total_available, 4) if total_available else 0,
         "answered": total_answered,
@@ -1600,6 +1660,17 @@ def _get_institution_label(db, institution_code: str | None) -> str:
     if not institution_code:
         return "Desempenho Geral"
 
+    canonical_labels = {
+        "USP-SP": "USP - São Paulo",
+        "USP-RP": "USP - Ribeirão Preto",
+        "UNICAMP": "Unicamp",
+        "UNIFESP": "Unifesp / EPM",
+        "SUS-SP": "SUS-SP",
+    }
+    canon = get_canonical_institution(institution_code) or institution_code
+    if canon in canonical_labels:
+        return canonical_labels[canon]
+
     l_row = db.execute(
         "SELECT institution_label FROM questions WHERE institution_code = ? LIMIT 1",
         (institution_code,)
@@ -1607,10 +1678,12 @@ def _get_institution_label(db, institution_code: str | None) -> str:
     return l_row["institution_label"] if l_row else institution_code
 
 
-def _fetch_all_priority_topics(db, user_id: str, institution_code: str | None, inst_clause: str) -> dict[str, list[dict]]:
+def _fetch_all_priority_topics(db, user_id: str, institution_code: str | None, inst_clause: str, aliases: list[str] | None = None) -> dict[str, list[dict]]:
     """Busca em lote os tópicos prioritários para todas as áreas baseados nas estatísticas de desempenho."""
     sub_params = [user_id]
-    if institution_code:
+    if aliases:
+        sub_params.extend(aliases)
+    elif institution_code:
         sub_params.append(institution_code)
 
     sub_rows = db.execute(f"""
@@ -1689,12 +1762,20 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
         "Medicina Preventiva",
     ]
 
-    avail_map = _get_available_questions_by_area(db, institution_code)
-    user_map = _get_user_area_attempts(db, user_id, institution_code)
+    canon = get_canonical_institution(institution_code) if institution_code else None
+    target_code = canon or institution_code
 
-    inst_clause = "AND q.institution_code = ?" if institution_code else ""
-    label = _get_institution_label(db, institution_code)
-    priority_map = _fetch_all_priority_topics(db, user_id, institution_code, inst_clause) if include_priority else {}
+    avail_map = _get_available_questions_by_area(db, target_code)
+    user_map = _get_user_area_attempts(db, user_id, target_code)
+
+    aliases = resolve_institution_codes(target_code) if target_code else []
+    if aliases:
+        placeholders = ",".join("?" * len(aliases))
+        inst_clause = f"AND q.institution_code IN ({placeholders})"
+    else:
+        inst_clause = ""
+    label = _get_institution_label(db, target_code)
+    priority_map = _fetch_all_priority_topics(db, user_id, target_code, inst_clause, aliases=aliases) if include_priority else {}
 
     areas = []
     total_available = 0
@@ -1741,7 +1822,7 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
     overall_sample_status = get_sample_status(total_attempts)
 
     return {
-        "code": institution_code,
+        "code": target_code,
         "label": label,
         "total_available": total_available,
         "total_answered": total_answered,
@@ -1760,33 +1841,44 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
 def institution_radar():
     """Radar Comparativo de Bancas por Grande Área e Incerteza Estatística."""
     db = get_db()
-    institution = request.args.get("institution", "").strip()[:64]
-    compare_institution = request.args.get("compare_institution", "").strip()[:64]
+    raw_inst = request.args.get("institution", "").strip()[:64]
+    raw_compare = request.args.get("compare_institution", "").strip()[:64]
 
-    if institution in ("Todas as Bancas", "TODAS") or "," in institution:
-        institution = institution.split(",")[0].strip() if "," in institution else ""
-    if compare_institution in ("Todas as Bancas", "TODAS") or "," in compare_institution:
-        compare_institution = compare_institution.split(",")[0].strip() if "," in compare_institution else ""
+    if raw_inst in ("Todas as Bancas", "TODAS") or "," in raw_inst:
+        raw_inst = raw_inst.split(",")[0].strip() if "," in raw_inst else ""
+    if raw_compare in ("Todas as Bancas", "TODAS") or "," in raw_compare:
+        raw_compare = raw_compare.split(",")[0].strip() if "," in raw_compare else ""
 
-    # Se nenhuma instituição foi passada, tenta descobrir a mais praticada ou configurada
+    canon_inst = get_canonical_institution(raw_inst)
+    institution = canon_inst or (raw_inst if raw_inst in ALLOWED_ANALYSIS_INSTITUTIONS else "")
+
+    canon_compare = get_canonical_institution(raw_compare)
+    compare_institution = canon_compare or (raw_compare if raw_compare in ALLOWED_ANALYSIS_INSTITUTIONS else "")
+
+    # Se nenhuma instituição foi passada ou não pertence às 5 permitidas:
     if not institution:
-        top_inst_row = db.execute("""
+        allowed_aliases = []
+        for a_code in ALLOWED_ANALYSIS_INSTITUTIONS:
+            allowed_aliases.extend(resolve_institution_codes(a_code))
+        placeholders = ",".join("?" * len(allowed_aliases))
+        top_inst_row = db.execute(f"""
             SELECT q.institution_code, COUNT(a.id) AS n
             FROM attempts a
             JOIN questions q ON q.id = a.question_id
-            WHERE a.user_id = ? AND q.institution_code IS NOT NULL AND q.institution_code != ''
+            WHERE a.user_id = ? AND q.institution_code IN ({placeholders})
             GROUP BY q.institution_code
             ORDER BY n DESC
             LIMIT 1
-        """, (g.user_id,)).fetchone()
+        """, [g.user_id] + allowed_aliases).fetchone()
         if top_inst_row:
-            institution = top_inst_row["institution_code"]
+            institution = get_canonical_institution(top_inst_row["institution_code"]) or top_inst_row["institution_code"]
         else:
             cfg_row = db.execute("SELECT target_institution FROM planner_config WHERE user_id = ?", (g.user_id,)).fetchone()
             if cfg_row and cfg_row["target_institution"]:
-                raw_inst = cfg_row["target_institution"].strip()
-                if raw_inst and raw_inst not in ("Todas as Bancas", "TODAS"):
-                    institution = raw_inst.split(",")[0].strip()
+                planner_inst = cfg_row["target_institution"].strip().split(",")[0].strip()
+                canonical_planner = get_canonical_institution(planner_inst)
+                if canonical_planner in ALLOWED_ANALYSIS_INSTITUTIONS:
+                    institution = canonical_planner
                 else:
                     institution = "USP-SP"
             else:

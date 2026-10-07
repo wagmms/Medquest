@@ -296,7 +296,11 @@ export function InstitutionRadarSection({
 
                   <div className="flex items-center gap-2 pt-1">
                     <Link
-                      href={gap.study_url}
+                      href={
+                        selectedInst && !gap.study_url.includes("institution=")
+                          ? `${gap.study_url}${gap.study_url.includes("?") ? "&" : "?"}institution=${encodeURIComponent(selectedInst)}`
+                          : gap.study_url
+                      }
                       onClick={() => handleActionClick("study")}
                       className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-colors cursor-pointer"
                     >
@@ -305,7 +309,11 @@ export function InstitutionRadarSection({
                       </svg> Estudar Tema
                     </Link>
                     <Link
-                      href={gap.simulado_url}
+                      href={
+                        selectedInst && !gap.simulado_url.includes("institutions=") && !gap.simulado_url.includes("institution=")
+                          ? `${gap.simulado_url}${gap.simulado_url.includes("?") ? "&" : "?"}institutions=${encodeURIComponent(selectedInst)}`
+                          : gap.simulado_url
+                      }
                       onClick={() => handleActionClick("simulado")}
                       className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-xs font-semibold hover:bg-secondary/90 transition-colors cursor-pointer"
                       title="Iniciar simulado filtrado"

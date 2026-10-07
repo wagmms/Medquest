@@ -75,6 +75,21 @@ EDITAL_PROFILES_REGISTRY: Dict[str, EditalProfile] = {
             "Medicina Preventiva": 0.20,
         }),
     ),
+    "USP-RP": EditalProfile(
+        institution_code="USP-RP",
+        institution_label="USP - Ribeirão Preto",
+        version="2025.1",
+        validity_period="2025-2026",
+        curation_source="Perfil local provisório MedQuest; requer validação documental antes de uso decisório.",
+        status="experimental",
+        weights=normalize_weights({
+            "Clínica Médica": 0.20,
+            "Cirurgia": 0.20,
+            "Ginecologia e Obstetrícia": 0.20,
+            "Pediatria": 0.20,
+            "Medicina Preventiva": 0.20,
+        }),
+    ),
     "UNICAMP": EditalProfile(
         institution_code="UNICAMP",
         institution_label="Unicamp",
@@ -137,10 +152,49 @@ EDITAL_PROFILES_REGISTRY: Dict[str, EditalProfile] = {
     ),
 }
 
+# Lista canônica restrita de bancas válidas para a aba de Análise
+ALLOWED_ANALYSIS_INSTITUTIONS: list[str] = [
+    "USP-SP",
+    "USP-RP",
+    "UNICAMP",
+    "UNIFESP",
+    "SUS-SP",
+]
+
+# Mapeamento de códigos/aliases históricos no banco para as 5 bancas alvo
+INSTITUTION_ALIASES: Dict[str, list[str]] = {
+    "USP-SP": ["USP-SP", "USP SP", "USP SP 2020", "USP SP 2021", "USP SP 2022", "USP SP 2023", "USP SP 2024"],
+    "USP-RP": ["USP-RP", "USP RP 2020", "USP RP 2021", "USP RP 2022", "USP RP 2023", "USP RP 2024"],
+    "UNICAMP": ["UNICAMP"],
+    "UNIFESP": ["UNIFESP"],
+    "SUS-SP": ["SUS-SP", "SUS", "SUS SP 2020", "SUS SP 2021", "SUS SP 2022", "SUS SP 2023", "SUS SP 2024"],
+}
+
+def resolve_institution_codes(code: Optional[str]) -> list[str]:
+    """Retorna os códigos e variantes de banco para a instituição informada."""
+    if not code:
+        return []
+    cleaned = code.strip().upper()
+    for k, aliases in INSTITUTION_ALIASES.items():
+        if cleaned == k.upper():
+            return aliases
+    return [code.strip()]
+
+def get_canonical_institution(code: Optional[str]) -> Optional[str]:
+    """Mapeia um código ou alias para a instituição canônica (se pertencer às 5 bancas alvo)."""
+    if not code:
+        return None
+    cleaned = code.strip().upper()
+    for canonical, aliases in INSTITUTION_ALIASES.items():
+        if any(cleaned == a.upper() for a in aliases):
+            return canonical
+    return None
+
 
 def get_edital_profile(institution_code: Optional[str]) -> EditalProfile:
     """Recupera o perfil de edital para a instituição ou constrói fallback experimental."""
-    code = (institution_code or "").strip().upper()
+    canonical = get_canonical_institution(institution_code)
+    code = (canonical or institution_code or "").strip().upper()
     if code in EDITAL_PROFILES_REGISTRY:
         return EDITAL_PROFILES_REGISTRY[code]
 

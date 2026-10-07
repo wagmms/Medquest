@@ -230,6 +230,14 @@ def extract_gabarito(
             if let:
                 return str(let).upper()
 
+    # Tier 1c: Check full_explanation for unambiguous gold standard labels
+    full_text = exp_dict.get("full_explanation", "") or ""
+    if full_text:
+        c_matches = list(set([m.upper() for m in re.findall(r"(?:<br>|\n|^|>)\s*([A-E])\s*[-–:]\s*(?:<[^>]+>)*\s*(?<!in)corret[ao]\b", full_text, re.IGNORECASE)]))
+        inc_matches = list(set([m.upper() for m in re.findall(r"(?:<br>|\n|^|>)\s*([A-E])\s*[-–:]\s*(?:<[^>]+>)*\s*incorret[ao]\b", full_text, re.IGNORECASE)]))
+        if len(c_matches) == 1 and len(inc_matches) >= 2 and c_matches[0] not in inc_matches:
+            return c_matches[0]
+
     if not options_list:
         return "A"
 
@@ -253,6 +261,13 @@ def extract_gabarito(
             score += 100
         elif re.search(r"^\*{0,2}corret[oa]\b", first_80):
             score += 100
+
+        # Frases inequívocas de que esta opção é a resposta / gabarito (inclusive para questões que pedem a incorreta)
+        if any(w in txt_clean for w in [
+            "resposta desta questão", "resposta da questão", "gabarito desta questão", "gabarito da questão",
+            "portanto, a resposta", "portanto, o gabarito", "deve ser assinalada", "alternativa a ser assinalada"
+        ]):
+            score += 150
 
         # Contextual distractor indicators anywhere in the explanation
         if any(w in txt_clean for w in [
