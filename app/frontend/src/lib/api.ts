@@ -8,7 +8,8 @@ import {
   NotificationConfig, NotificationConfigUpdate, PushSubscriptionPayload,
   InstitutionRadarResponse, FlashcardDecksResponse, AnkiImportResult,
   AuthMeResponse, DashboardSummaryResponse, PreceptorFocusResponse,
-  BlindspotsResponse, TriEvaluationResponse, TriEvaluationPayload
+  BlindspotsResponse, TriEvaluationResponse, TriEvaluationPayload,
+  OfficialExam, SimuladoSessionItem
 } from "@/types/api";
 
 
@@ -588,6 +589,11 @@ export const api = {
       filters: Record<string, unknown>; area_results: Array<Record<string, unknown>>;
     }) => apiFetch<{success: boolean}>("/api/simulado/sessions", {
       method: "POST", body: JSON.stringify(data),
+    }),
+    getOfficialExams: () => apiFetch<{ exams: OfficialExam[] }>("/api/simulado/official-exams", { cache: "no-store" }),
+    getSimuladoSessions: () => apiFetch<{ sessions: SimuladoSessionItem[] }>("/api/simulado/sessions", { cache: "no-store" }),
+    deleteSimuladoSession: (sessionId: string) => apiFetch<{ success: boolean; deleted: boolean }>(`/api/simulado/sessions/${sessionId}`, {
+      method: "DELETE"
     }),
     submitAttemptBatch: (attempts: BatchAttemptItem[]) => apiFetch<BatchAttemptResult>(`/api/attempt/batch`, {
       method: "POST",

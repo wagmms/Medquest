@@ -184,6 +184,25 @@ export interface ReadinessKeyFactor {
   action_url?: string;
 }
 
+export interface DifficultyTierBreakdown {
+  user_accuracy: number | null;
+  candidate_accuracy: number;
+  attempts: number;
+  delta: number | null;
+}
+
+export interface CompetitiveAnalysis {
+  candidate_mean: number;
+  competitive_delta: number | null;
+  competitive_ratio: number | null;
+  difficulty_adjusted_score: number | null;
+  difficulty_breakdown: {
+    facil: DifficultyTierBreakdown;
+    media: DifficultyTierBreakdown;
+    dificil: DifficultyTierBreakdown;
+  };
+}
+
 export interface ExamReadinessArea {
   area: string;
   available: number;
@@ -192,6 +211,8 @@ export interface ExamReadinessArea {
   attempts: number;
   correct?: number;
   accuracy: number | null;
+  candidate_accuracy?: number;
+  competitive_delta?: number | null;
   posterior_mean?: number;
   ci_lower?: number;
   ci_upper?: number;
@@ -211,6 +232,9 @@ export interface ExamReadiness {
   ci_lower?: number;
   ci_upper?: number;
   evidence_status?: EvidenceStatus;
+  candidate_mean?: number;
+  competitive_delta?: number | null;
+  competitive_analysis?: CompetitiveAnalysis;
   edital_profile?: EditalProfileData;
   areas: ExamReadinessArea[];
   key_factors?: ReadinessKeyFactor[];
@@ -1027,6 +1051,36 @@ export interface OsceCircuitSummaryResponse {
   stations: OsceCircuitStationSummaryItem[];
   board_feedback: string;
 }
+
+export interface OfficialExamEdition {
+  year: number;
+  total_available: number;
+  recommended_questions: number;
+  duration_minutes: number;
+}
+
+export interface OfficialExam {
+  institution_code: string;
+  name: string;
+  full_name: string;
+  badge_color: string;
+  editions: OfficialExamEdition[];
+}
+
+export interface SimuladoSessionItem {
+  id: number;
+  client_session_id: string;
+  planned_duration_seconds: number;
+  elapsed_seconds: number;
+  total_questions: number;
+  answered_count: number;
+  correct_count: number;
+  filters: Record<string, unknown>;
+  area_results: Array<{ area: string; correct: number; total: number }>;
+  completed_at: string;
+  accuracy_percent: number;
+}
+
 
 
 

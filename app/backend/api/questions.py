@@ -14,6 +14,7 @@ from .adaptive import rank_adaptive_candidates
 from .remediation import generate_remediation_queue
 from .tri_engine import evaluate_tri_performance
 from .db import db_transaction, get_db
+from .edital_profiles import ALLOWED_ANALYSIS_INSTITUTIONS, get_canonical_institution, resolve_institution_codes
 from .filters import question_filter_clauses
 from .idempotency import complete_idempotency, fail_idempotency, reserve_idempotency
 from .observability import record_domain_event
@@ -182,7 +183,11 @@ def simulado_custom():
         data = SimuladoCustomIn.model_validate(request.get_json(force=True) or {})
     except ValidationError as e:
         return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
-    institutions = [value[:64] for value in data.institutions]
+    raw_institutions = [value[:64] for value in data.institutions]
+    institutions = []
+    for inst in raw_institutions:
+        institutions.extend(resolve_institution_codes(inst))
+    institutions = list(dict.fromkeys(institutions))
     years = [value[:4] for value in data.years]
     q_per_area = data.questions_per_area
     
@@ -228,6 +233,133 @@ def simulado_custom():
         out.append(d)
     random.shuffle(out)
     return jsonify(out)
+
+
+@bp.route("/simulado/official-exams", methods=["GET"])
+def simulado_official_exams():
+    db = get_db()
+    target_institutions = ["USP-SP", "USP-RP", "UNICAMP", "UNIFESP", "SUS-SP"]
+    
+    institution_meta = {
+        "USP-SP": {
+            "name": "USP - São Paulo",
+            "full_name": "Universidade de São Paulo (Capital)",
+            "standard_duration": 300,
+            "badge_color": "blue",
+            "typical_questions": 120,
+        },
+        "USP-RP": {
+            "name": "USP - Ribeirão Preto",
+            "full_name": "Faculdade de Medicina de Ribeirão Preto (USP)",
+            "standard_duration": 240,
+            "badge_color": "indigo",
+            "typical_questions": 100,
+        },
+        "UNICAMP": {
+            "name": "UNICAMP",
+            "full_name": "Universidade Estadual de Campinas",
+            "standard_duration": 240,
+            "badge_color": "rose",
+            "typical_questions": 80,
+        },
+        "UNIFESP": {
+            "name": "UNIFESP",
+            "full_name": "Escola Paulista de Medicina (EPM / UNIFESP)",
+            "standard_duration": 240,
+            "badge_color": "cyan",
+            "typical_questions": 100,
+        },
+        "SUS-SP": {
+            "name": "SUS-SP",
+            "full_name": "Secretaria de Estado da Saúde de São Paulo",
+            "standard_duration": 240,
+            "badge_color": "emerald",
+            "typical_questions": 100,
+        },
+    }
+
+    rows = db.execute("""
+        SELECT institution_code, year, COUNT(*) as n 
+        FROM questions 
+        WHERE missing_alts = 0 
+          AND institution_code IN ('USP-SP', 'USP', 'USP-RP', 'UNICAMP', 'UNIFESP', 'SUS-SP', 'SUS')
+        GROUP BY institution_code, year
+        ORDER BY year DESC
+    """).fetchall()
+
+    grouped_years = {inst: {} for inst in target_institutions}
+    for r in rows:
+        canon = get_canonical_institution(r["institution_code"])
+        if canon in grouped_years and r["year"]:
+            grouped_years[canon][r["year"]] = grouped_years[canon].get(r["year"], 0) + r["n"]
+
+    exams = []
+    for inst in target_institutions:
+        years_dict = grouped_years.get(inst, {})
+        editions = []
+        for y in sorted(years_dict.keys(), reverse=True):
+            count = years_dict[y]
+            meta = institution_meta.get(inst, {})
+            typical_q = meta.get("typical_questions", 100)
+            target_q = min(count, typical_q)
+            duration = meta.get("standard_duration", 240)
+            editions.append({
+                "year": y,
+                "total_available": count,
+                "recommended_questions": target_q,
+                "duration_minutes": duration,
+            })
+        
+        exams.append({
+            "institution_code": inst,
+            "name": institution_meta[inst]["name"],
+            "full_name": institution_meta[inst]["full_name"],
+            "badge_color": institution_meta[inst]["badge_color"],
+            "editions": editions,
+        })
+
+    return jsonify({"exams": exams})
+
+
+@bp.route("/simulado/sessions", methods=["GET"])
+def get_simulado_sessions():
+    db = get_db()
+    rows = db.execute("""
+        SELECT id, client_session_id, planned_duration_seconds, elapsed_seconds,
+               total_questions, answered_count, correct_count,
+               filters_json, area_results_json, completed_at
+        FROM simulado_sessions
+        WHERE user_id = ?
+        ORDER BY completed_at DESC
+        LIMIT 30
+    """, (g.user_id,)).fetchall()
+
+    sessions = []
+    for r in rows:
+        d = dict(r)
+        try:
+            d["filters"] = json.loads(d.pop("filters_json") or "{}")
+        except Exception:
+            d["filters"] = {}
+        try:
+            d["area_results"] = json.loads(d.pop("area_results_json") or "[]")
+        except Exception:
+            d["area_results"] = []
+        
+        total = d.get("total_questions", 0)
+        correct = d.get("correct_count", 0)
+        d["accuracy_percent"] = round((correct / total) * 100, 1) if total > 0 else 0.0
+        sessions.append(d)
+
+    return jsonify({"sessions": sessions})
+
+
+@bp.route("/simulado/sessions/<session_id>", methods=["DELETE"])
+def delete_simulado_session(session_id):
+    db = get_db()
+    with db_transaction(db, immediate=True):
+        res = db.execute("DELETE FROM simulado_sessions WHERE client_session_id = ? AND user_id = ?", (session_id, g.user_id))
+    return jsonify({"success": True, "deleted": res.rowcount > 0})
 
 
 @bp.route("/simulado/sessions", methods=["POST"])

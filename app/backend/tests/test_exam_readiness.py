@@ -71,3 +71,29 @@ def test_question_filter_institution_alias_expansion(client):
     # ENARE nunca deve estar no resultado de busca filtrado por USP-SP
     assert 8803 not in returned_ids
 
+
+def test_exam_readiness_candidate_benchmark_and_competitive_layer(client):
+    res = client.get("/api/stats/exam-readiness?institution=USP-SP")
+    assert res.status_code == 200
+    report = res.get_json()
+
+    # Verifica campos de benchmark
+    assert "candidate_mean" in report
+    assert "competitive_delta" in report
+    assert "competitive_analysis" in report
+
+    comp = report["competitive_analysis"]
+    assert "candidate_mean" in comp
+    assert "difficulty_adjusted_score" in comp
+    assert "difficulty_breakdown" in comp
+    assert "facil" in comp["difficulty_breakdown"]
+    assert "media" in comp["difficulty_breakdown"]
+    assert "dificil" in comp["difficulty_breakdown"]
+
+    # Verifica áreas enriquecidas com benchmark de candidatos
+    assert len(report["areas"]) > 0
+    for area in report["areas"]:
+        assert "candidate_accuracy" in area
+        assert area["candidate_accuracy"] > 0
+        assert "competitive_delta" in area
+

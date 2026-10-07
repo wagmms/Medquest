@@ -220,3 +220,29 @@ def test_institution_radar_action_endpoint(app, client, monkeypatch):
     )
     assert res_empty.status_code == 400
 
+
+def test_institution_radar_candidates_comparison(app, client):
+    headers = {"X-Guest-ID": "user_cand_test"}
+    res = client.get("/api/stats/institution-radar?institution=USP-SP&compare_institution=CANDIDATES", headers=headers)
+    assert res.status_code == 200
+    data = res.get_json()
+
+    # Primary institution possui candidate_accuracy e competitive_delta
+    primary = data["institution"]
+    assert "candidate_accuracy" in primary
+    assert primary["candidate_accuracy"] > 0
+    for a in primary["areas"]:
+        assert "candidate_accuracy" in a
+        assert a["candidate_accuracy"] > 0
+
+    # Comparison possui type="candidates" com métricas consolidadas dos candidatos da banca
+    comp = data["comparison"]
+    assert comp["type"] == "candidates"
+    assert "CANDIDATES" in comp["code"]
+    assert "Candidatos" in comp["label"]
+    assert comp["accuracy"] is not None and comp["accuracy"] > 0.60
+    assert len(comp["areas"]) == 5
+    for ca in comp["areas"]:
+        assert ca["accuracy"] > 0.60
+        assert ca["coverage"] == 1.0
+

@@ -63,6 +63,7 @@ interface SavedSimuladoState {
   plannedDurationSeconds?: number;
   savedAt: number;
   eliminatedMap?: Record<number, string[]>;
+  feedbackMode?: "exam" | "practice";
 }
 
 function isSavedSimuladoState(value: unknown): value is SavedSimuladoState {
@@ -156,6 +157,20 @@ export function SimuladoClient({
   const [clientReady, setClientReady] = useState(false);
   const [storageReady, setStorageReady] = useState(false);
   const [force4Options, setForce4Options] = useState(false);
+  const [feedbackMode, setFeedbackMode] = useState<"exam" | "practice">(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("medquest_simulado_mode");
+      if (saved === "practice" || saved === "exam") return saved;
+    }
+    return "exam";
+  });
+
+  const handleSetFeedbackMode = (mode: "exam" | "practice") => {
+    setFeedbackMode(mode);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("medquest_simulado_mode", mode);
+    }
+  };
   const summarySavedRef = useRef(new Set<string>());
   const submitLockRef = useRef(false);
   const startLockRef = useRef(false);
@@ -297,6 +312,9 @@ export function SimuladoClient({
       if (saved.eliminatedMap) {
         setEliminatedMap(saved.eliminatedMap);
       }
+      if (saved.feedbackMode) {
+        setFeedbackMode(saved.feedbackMode);
+      }
       setPlannedDurationSeconds(saved.plannedDurationSeconds || Math.max(0, saved.deadlineAt - Date.now()));
       setShowResultsSummary(saved.state === "RESULTS");
 
@@ -331,9 +349,10 @@ export function SimuladoClient({
         plannedDurationSeconds,
         savedAt: Date.now(),
         eliminatedMap,
+        feedbackMode,
       } satisfies SavedSimuladoState);
     }
-  }, [storageReady, state, queue, answers, currentIndex, resultsMap, flagged, force4Options, queueId, sessionId, plannedDurationSeconds, eliminatedMap]);
+  }, [storageReady, state, queue, answers, currentIndex, resultsMap, flagged, force4Options, queueId, sessionId, plannedDurationSeconds, eliminatedMap, feedbackMode]);
 
   const handleDownloadOfflineSimulado = async () => {
     if (isDownloadingPackage || isOffline) return;
@@ -860,7 +879,26 @@ export function SimuladoClient({
       };
     });
     setAnswers(prev => ({ ...prev, [qid]: letter }));
-  }, [state, queue, currentIndex]);
+
+    // No modo Treino/Aprendizado (Feedback imediato), valida e revela a questão na hora
+    if (feedbackMode === "practice" && !resultsMap[qid]) {
+      api.questions.submitAttempt(qid, letter, 5000, "duvida").then(res => {
+        setResultsMap(prev => ({
+          ...prev,
+          [qid]: {
+            question_id: qid,
+            is_correct: Boolean(res.is_correct),
+            correct_letter: res.correct_letter || "",
+            explanation: res.explanation || null,
+            next_review_date: res.next_review_date || new Date().toISOString(),
+            is_discursive: Boolean(res.is_discursive),
+          }
+        }));
+      }).catch(err => {
+        console.error("Erro ao validar feedback imediato em modo treino:", err);
+      });
+    }
+  }, [state, queue, currentIndex, feedbackMode, resultsMap]);
 
   const toggleFlag = useCallback(() => {
     if (state !== "PLAYING") return;
@@ -1009,6 +1047,8 @@ export function SimuladoClient({
         clientReady={clientReady}
         onResumeSimulado={resumeSimulado}
         onStartSimulado={startSimulado}
+        feedbackMode={feedbackMode}
+        setFeedbackMode={handleSetFeedbackMode}
       />
     );
   }
@@ -1285,20 +1325,20 @@ export function SimuladoClient({
                   const isSelected = answers[qDetail.id] === alt.letter;
                   const res = resultsMap[qDetail.id];
                   const isEliminated = (eliminatedMap[qDetail.id] || []).includes(alt.letter);
+                  const isQuestionResolved = isReview || (feedbackMode === "practice" && Boolean(res));
 
                   let altClass = "bg-card border-border hover:bg-muted/50 cursor-pointer";
 
-                  if (isReview) {
-                    altClass = "bg-card border-border opacity-60 cursor-default"; // Default inactive
+                  if (isQuestionResolved) {
+                    altClass = "bg-card border-border opacity-70 cursor-default";
 
                     if (res) {
                       if (alt.letter === res.correct_letter) {
-                        altClass = "bg-success/20 border-success/50 cursor-default ring-2 ring-success";
+                        altClass = "bg-success/20 border-success/60 cursor-default ring-2 ring-success";
                       } else if (isSelected && !res.is_correct) {
-                        altClass = "bg-destructive/20 border-destructive/50 cursor-default";
+                        altClass = "bg-destructive/20 border-destructive/60 cursor-default ring-1 ring-destructive";
                       }
                     } else if (isSelected) {
-                      // Se não tivermos resultado por algum motivo de falha, marcamos a que ele clicou
                       altClass = "bg-primary/20 border-primary cursor-default";
                     }
                   } else {
@@ -1310,30 +1350,30 @@ export function SimuladoClient({
                     <div
                       key={alt.letter}
                       role="button"
-                      tabIndex={isReview ? -1 : 0}
-                      onClick={() => !isReview && handleSelect(alt.letter)}
+                      tabIndex={isQuestionResolved ? -1 : 0}
+                      onClick={() => !isQuestionResolved && handleSelect(alt.letter)}
                       onKeyDown={(e) => {
-                        if (isReview) return;
+                        if (isQuestionResolved) return;
                         if (e.key === "Enter" || e.key === " ") {
                           e.preventDefault();
                           handleSelect(alt.letter);
                         }
                       }}
                       onContextMenu={(e) => {
-                        if (!isReview) {
+                        if (!isQuestionResolved) {
                           e.preventDefault();
                           toggleEliminate(alt.letter);
                         }
                       }}
                       aria-pressed={isSelected}
-                      aria-disabled={isReview}
+                      aria-disabled={isQuestionResolved}
                       className={clsx(
                         "group relative text-left p-3.5 sm:p-4 rounded-xl border transition-all flex items-start gap-2.5 sm:gap-3 w-full select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                         altClass
                       )}
                     >
                       {/* Scissors Button / Spacer */}
-                      {!isReview ? (
+                      {!isQuestionResolved ? (
                         <button
                           type="button"
                           title={isEliminated ? `Restaurar alternativa ${alt.letter}` : `Riscar alternativa ${alt.letter} (Shift+${alt.letter} ou botão direito)`}
@@ -1361,19 +1401,19 @@ export function SimuladoClient({
 
                       <div className={clsx(
                         "w-8 h-8 shrink-0 flex items-center justify-center rounded-lg font-bold text-sm border border-transparent transition-colors",
-                        isReview && alt.letter === res?.correct_letter ? "bg-success text-success-foreground" :
-                        isReview && isSelected && !res?.is_correct ? "bg-destructive text-destructive-foreground" :
-                        isSelected && !isReview ? "bg-primary text-primary-foreground" :
-                        isEliminated && !isReview ? "bg-muted/40 text-muted-foreground/60 border-border/50" :
+                        isQuestionResolved && alt.letter === res?.correct_letter ? "bg-success text-success-foreground" :
+                        isQuestionResolved && isSelected && !res?.is_correct ? "bg-destructive text-destructive-foreground" :
+                        isSelected && !isQuestionResolved ? "bg-primary text-primary-foreground" :
+                        isEliminated && !isQuestionResolved ? "bg-muted/40 text-muted-foreground/60 border-border/50" :
                         "bg-muted text-muted-foreground"
                       )}>
                         {alt.letter}
                       </div>
                       <div className={clsx(
                         "pt-1 text-foreground leading-relaxed flex-1 transition-all",
-                        isEliminated && (!isReview || alt.letter !== res?.correct_letter) && "line-through text-muted-foreground/75 decoration-muted-foreground/60"
+                        isEliminated && (!isQuestionResolved || alt.letter !== res?.correct_letter) && "line-through text-muted-foreground/75 decoration-muted-foreground/60"
                       )}>
-                        {!isReview && (qDetail.is_discursive || (qDetail.alternatives || []).length <= 1)
+                        {!isQuestionResolved && (qDetail.is_discursive || (qDetail.alternatives || []).length <= 1)
                           ? "Confirmar resposta da questão discursiva"
                           : alt.text}
                       </div>
@@ -1383,7 +1423,7 @@ export function SimuladoClient({
               </div>
 
               {/* Review Explanation */}
-              {isReview && resultsMap[qDetail.id] && (
+              {(isReview || (feedbackMode === "practice" && resultsMap[qDetail.id])) && resultsMap[qDetail.id] && (
                 <div className="mt-8 animate-in slide-in-from-bottom-4 fade-in duration-300">
                   <div className="rounded-xl border shadow-1 overflow-hidden bg-card">
                     <div className="p-6 md:p-8">

@@ -1,8 +1,25 @@
 "use client";
 
-import React from "react";
-import { FileSignature, Play, RotateCcw, AlertTriangle, CloudOff, Download, RefreshCw, Database, Info } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import {
+  FileSignature,
+  Play,
+  RotateCcw,
+  AlertTriangle,
+  Zap,
+  Sliders,
+  History,
+  GraduationCap
+} from "lucide-react";
 import { SimuladoPackage, isPackageValid } from "@/lib/db";
+import { OfficialExam, SimuladoSessionItem } from "@/types/api";
+import { api } from "@/lib/api";
+import clsx from "clsx";
+import { SimuladoCockpitHero } from "./SimuladoCockpitHero";
+import { SimuladoOfficialExams } from "./SimuladoOfficialExams";
+import { SimuladoQuickSprints } from "./SimuladoQuickSprints";
+import { SimuladoCustomBuilder } from "./SimuladoCustomBuilder";
+import { SimuladoHistoryView } from "./SimuladoHistoryView";
 
 export interface CustomConfig {
   institutions: string[];
@@ -28,7 +45,11 @@ export interface SimuladoStartScreenProps {
   clientReady: boolean;
   onResumeSimulado: () => void;
   onStartSimulado: () => void;
+  feedbackMode?: "exam" | "practice";
+  setFeedbackMode?: (mode: "exam" | "practice") => void;
 }
+
+type TabKey = "official" | "sprints" | "builder" | "history";
 
 export const SimuladoStartScreen: React.FC<SimuladoStartScreenProps> = ({
   hasCustomFilters,
@@ -46,213 +67,273 @@ export const SimuladoStartScreen: React.FC<SimuladoStartScreenProps> = ({
   clientReady,
   onResumeSimulado,
   onStartSimulado,
+  feedbackMode = "exam",
+  setFeedbackMode = () => {},
 }) => {
-  return (
-    <div className="bg-card border border-border shadow-1 rounded-2xl p-6 md:p-8 max-w-4xl mx-auto w-full flex flex-col items-center">
-      <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6 ring-1 ring-primary/20">
-        <FileSignature size={32} />
-      </div>
-      <h2 className="text-3xl font-bold text-foreground mb-3 text-center tracking-tight">
-        {hasCustomFilters ? "Simulado Personalizado" : "Novo Simulado"}
-      </h2>
-      <p className="text-muted-foreground text-base mb-8 max-w-lg text-center">
-        {hasCustomFilters
-          ? "Esta prova irá simular as condições reais de exame usando os filtros que você escolheu."
-          : "Crie um simulado com as suas próprias configurações."}
-      </p>
+  const [activeTab, setActiveTab] = useState<TabKey>("official");
+  const [officialExams, setOfficialExams] = useState<OfficialExam[]>([]);
+  const [loadingExams, setLoadingExams] = useState(true);
+  const [sessions, setSessions] = useState<SimuladoSessionItem[]>([]);
 
-      {!hasCustomFilters && (
-        <div className="w-full mb-8 bg-muted/30 p-6 rounded-2xl border border-border text-left flex flex-col gap-5 animate-in slide-in-from-top-4 fade-in duration-300">
-          <div>
-            <label className="block text-sm font-bold text-foreground mb-2">Bancas Incluídas (deixe vazio para todas)</label>
-            <div className="flex flex-wrap gap-2">
-              {groupedInstitutions.map(instGroup => (
-                <label key={instGroup.base} className="flex items-center gap-1.5 bg-background border border-border px-3 py-1.5 rounded-lg text-sm cursor-pointer hover:bg-muted transition-colors">
-                  <input
-                    type="checkbox"
-                    checked={customConfig.institutions.some(c => instGroup.codes.includes(c))}
-                    onChange={(e) => {
-                      setCustomConfig(prev => {
-                        let newInsts = [...prev.institutions];
-                        if (e.target.checked) {
-                          newInsts.push(...instGroup.codes);
-                          newInsts = Array.from(new Set(newInsts));
-                        } else {
-                          newInsts = newInsts.filter(c => !instGroup.codes.includes(c));
-                        }
-                        return { ...prev, institutions: newInsts };
-                      });
-                    }}
-                    className="rounded text-primary focus:ring-primary w-4 h-4 cursor-pointer"
-                  />
-                  {instGroup.base} {instGroup.n > 0 ? `(${instGroup.n})` : ''}
-                </label>
-              ))}
-            </div>
-          </div>
+  // Carrega Provas Oficiais e Histórico para o Cockpit
+  useEffect(() => {
+    let isMounted = true;
+    const loadData = async () => {
+      try {
+        const [examsRes, sessionsRes] = await Promise.allSettled([
+          api.questions.getOfficialExams(),
+          api.questions.getSimuladoSessions(),
+        ]);
 
-          <div>
-            <label className="block text-sm font-bold text-foreground mb-2">Anos (deixe vazio para todos)</label>
-            <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto pr-2 custom-scrollbar">
-              {(metaYears || []).map(year => String(year)).map(year => (
-                <label key={year} className="flex items-center gap-1.5 bg-background border border-border px-3 py-1.5 rounded-lg text-sm cursor-pointer hover:bg-muted transition-colors">
-                  <input
-                    type="checkbox"
-                    checked={customConfig.years.includes(year)}
-                    onChange={(event) => setCustomConfig(prev => ({
-                      ...prev,
-                      years: event.target.checked ? [...prev.years, year] : prev.years.filter(item => item !== year),
-                    }))}
-                    className="rounded text-primary focus:ring-primary w-4 h-4 cursor-pointer"
-                  />
-                  {year}
-                </label>
-              ))}
-            </div>
-          </div>
+        if (isMounted) {
+          if (examsRes.status === "fulfilled") {
+            setOfficialExams(examsRes.value.exams || []);
+          }
+          if (sessionsRes.status === "fulfilled") {
+            setSessions(sessionsRes.value.sessions || []);
+          }
+        }
+      } finally {
+        if (isMounted) setLoadingExams(false);
+      }
+    };
 
-          <div className="flex flex-col sm:flex-row gap-5">
-            <div className="flex-1">
-              <label className="block text-sm font-bold text-foreground mb-2">Questões por Área</label>
-              <div className="relative">
-                <input
-                  type="number"
-                  min="5" max="30"
-                  value={customConfig.questions_per_area}
-                  onChange={(e) => setCustomConfig(prev => ({ ...prev, questions_per_area: parseInt(e.target.value) || 20 }))}
-                  className="w-full bg-background border border-border rounded-xl p-3 text-foreground focus:ring-2 focus:ring-primary/50 transition-shadow outline-none"
-                />
-              </div>
-              <p className="text-xs text-muted-foreground mt-1.5 font-medium flex items-center gap-1.5">
-                <Info size={14} className="shrink-0 text-muted-foreground" />
-                Multiplicado por 5 grandes áreas
-              </p>
-            </div>
-            <div className="flex-1">
-              <label className="block text-sm font-bold text-foreground mb-2">Duração (minutos)</label>
-              <div className="relative">
-                <input
-                  type="number"
-                  min="15" max="600" step="15"
-                  value={customConfig.duration_minutes}
-                  onChange={(event) => setCustomConfig(prev => ({ ...prev, duration_minutes: Math.max(15, Math.min(600, parseInt(event.target.value) || 180)) }))}
-                  className="w-full bg-background border border-border rounded-xl p-3 text-foreground focus:ring-2 focus:ring-primary/50 transition-shadow outline-none"
-                />
-              </div>
-              <p className="text-xs text-muted-foreground mt-1.5 font-medium flex items-center gap-1.5">
-                <Info size={14} className="shrink-0 text-muted-foreground" />
-                Entre 15 min e 10 horas
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {[
-              { questions: 25, minutes: 75, label: "25 · 75 min" },
-              { questions: 50, minutes: 150, label: "50 · 150 min" },
-              { questions: 100, minutes: 300, label: "100 · 300 min" }
-            ].map(preset => (
-              <button 
-                key={preset.label} 
-                type="button" 
-                onClick={() => setCustomConfig(prev => ({ ...prev, questions_per_area: preset.questions / 5, duration_minutes: preset.minutes }))} 
-                className="rounded-lg border border-border bg-background px-3.5 py-2 text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-muted min-h-[36px] transition-colors cursor-pointer"
-              >
-                {preset.label}
-              </button>
-            ))}
-          </div>
-          <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
-            <input 
-              type="checkbox" 
-              checked={customConfig.force_4_options} 
-              onChange={event => setCustomConfig(prev => ({ ...prev, force_4_options: event.target.checked }))} 
-              className="rounded text-primary focus:ring-primary cursor-pointer" 
-            />
-            Adaptar questões para 4 alternativas quando possível
-          </label>
+    void loadData();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Métricas do Hero Cockpit
+  const completedCount = sessions.length;
+  const averageAccuracy =
+    completedCount > 0
+      ? sessions.reduce((acc, s) => acc + (s.accuracy_percent || 0), 0) / completedCount
+      : 0;
+  const totalTimeHours =
+    sessions.reduce((acc, s) => acc + (s.elapsed_seconds || 0), 0) / 3600;
+
+  // Handlers diretos de Provas Oficiais e Sprints
+  const handleStartOfficialExam = (
+    institution: string,
+    year: number,
+    durationMinutes: number,
+    questionsCount: number
+  ) => {
+    const questionsPerArea = Math.max(1, Math.round(questionsCount / 5));
+    setCustomConfig({
+      institutions: [institution],
+      years: [String(year)],
+      questions_per_area: questionsPerArea,
+      duration_minutes: durationMinutes,
+      force_4_options: false,
+    });
+    // Inicia imediatamente
+    setTimeout(() => {
+      onStartSimulado();
+    }, 50);
+  };
+
+  const handleStartSprint = (
+    questionsPerArea: number,
+    durationMinutes: number
+  ) => {
+    setCustomConfig({
+      institutions: ["USP-SP", "USP-RP", "UNICAMP", "UNIFESP", "SUS-SP"],
+      years: [],
+      questions_per_area: questionsPerArea,
+      duration_minutes: durationMinutes,
+      force_4_options: false,
+    });
+    // Inicia imediatamente
+    setTimeout(() => {
+      onStartSimulado();
+    }, 50);
+  };
+
+  // Se veio de filtros específicos da URL, exibe o cartão simplificado e direto
+  if (hasCustomFilters) {
+    return (
+      <div className="bg-card border border-border shadow-xs rounded-3xl p-6 md:p-8 max-w-3xl mx-auto w-full flex flex-col items-center animate-in fade-in duration-300">
+        <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6 ring-1 ring-primary/20">
+          <FileSignature size={32} />
         </div>
-      )}
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-3 text-center tracking-tight">
+          Simulado Personalizado
+        </h2>
+        <p className="text-muted-foreground text-sm sm:text-base mb-8 max-w-lg text-center leading-relaxed">
+          Esta prova irá simular as condições oficiais de exame usando o caderno de filtros que você selecionou.
+        </p>
 
-      {/* Banner de status offline / pacote pronto */}
-      {offlinePackage && isPackageValid(offlinePackage).valid && (
-        <div className="w-full max-w-lg mb-6 p-4 rounded-xl bg-success/10 border border-success/30 flex items-center justify-between gap-3 text-left animate-in fade-in">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-success/20 text-success flex items-center justify-center shrink-0">
-              <Database size={18} />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-foreground">{offlinePackage.name}</p>
-              <p className="text-[11px] text-muted-foreground">
-                {offlinePackage.details_count} questões disponíveis · Válido até {new Date(offlinePackage.expires_at).toLocaleDateString("pt-BR")}
-              </p>
-            </div>
-          </div>
-          <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-success/20 text-success shrink-0">
-            Pronto Offline
-          </span>
-        </div>
-      )}
-
-      {isOffline && (!offlinePackage || !isPackageValid(offlinePackage).valid) && (
-        <div className="w-full max-w-lg mb-6 p-4 rounded-xl bg-warning/10 border border-warning/30 flex items-center gap-3 text-left animate-in fade-in text-warning-foreground">
-          <CloudOff size={20} className="text-warning shrink-0" />
-          <p className="text-xs font-medium">
-            Você está desconectado e não possui um pacote offline válido. Conecte-se à internet para baixar um simulado.
+        <div className="bg-warning/10 text-warning-foreground border border-warning/20 rounded-2xl p-4 flex items-start gap-3 w-full max-w-lg mb-8 text-left text-sm shadow-xs">
+          <AlertTriangle size={20} className="shrink-0 mt-0.5 text-warning" />
+          <p className="font-medium text-warning-foreground/90 leading-relaxed text-xs sm:text-sm">
+            Este é um bloco de prova cronometrado. O feedback e o cálculo do seu desempenho TRI serão consolidados após a entrega final.
           </p>
         </div>
-      )}
 
-      {!hasCustomFilters && !isOffline && (
-        <div className="w-full max-w-lg mb-6 flex flex-col gap-2">
+        <div className="flex flex-col sm:flex-row gap-3 w-full max-w-lg">
+          {hasSavedState && (
+            <button
+              onClick={onResumeSimulado}
+              disabled={!clientReady}
+              aria-label="Continuar Simulado em Andamento"
+              className="flex-1 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-xs cursor-pointer disabled:opacity-60"
+            >
+              <RotateCcw size={18} />
+              Continuar Andamento
+            </button>
+          )}
+          <button
+            onClick={onStartSimulado}
+            disabled={!clientReady}
+            className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-xs hover:shadow-md cursor-pointer disabled:opacity-60"
+          >
+            <Play size={18} fill="currentColor" />
+            Iniciar Agora
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full max-w-6xl mx-auto flex flex-col items-center pb-12 animate-in fade-in duration-300">
+      {/* Cockpit Hero Banner with Live KPIs */}
+      <SimuladoCockpitHero
+        completedCount={completedCount}
+        averageAccuracy={averageAccuracy}
+        totalTimeHours={totalTimeHours}
+        isOffline={isOffline}
+        hasOfflinePackage={Boolean(offlinePackage && isPackageValid(offlinePackage).valid)}
+      />
+
+      {/* Banner de Simulado em Andamento (Salvo) */}
+      {hasSavedState && (
+        <div className="w-full mb-8 p-5 rounded-2xl bg-primary/10 border border-primary/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs animate-in slide-in-from-top-4">
+          <div className="flex items-center gap-3.5 text-left">
+            <div className="w-10 h-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center shrink-0">
+              <RotateCcw size={20} />
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-foreground">Você tem um simulado em andamento!</h4>
+              <p className="text-xs text-muted-foreground">
+                Suas respostas e o cronômetro foram salvos com segurança. Você pode retomar exatamente de onde parou.
+              </p>
+            </div>
+          </div>
           <button
             type="button"
-            onClick={onDownloadOfflineSimulado}
-            disabled={isDownloadingPackage || isOffline}
-            className="w-full py-2.5 px-4 rounded-xl border border-border bg-muted/40 hover:bg-muted text-foreground font-semibold text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+            onClick={onResumeSimulado}
+            disabled={!clientReady}
+            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground text-xs sm:text-sm font-bold transition-all shadow-xs cursor-pointer flex items-center justify-center gap-2"
           >
-            {isDownloadingPackage ? (
-              <><RefreshCw className="animate-spin" size={15} /> {downloadStatus || "Baixando..."} ({downloadProgress}%)</>
-            ) : (
-              <><Download size={15} className="text-primary" /> Baixar este Simulado para Uso Offline</>
-            )}
+            <Play size={15} fill="currentColor" /> Retomar Simulado
           </button>
-          {isDownloadingPackage && (
-            <div className="w-full bg-muted h-1.5 rounded-full overflow-hidden">
-              <div className="bg-primary h-full transition-all duration-300" style={{ width: `${downloadProgress}%` }} />
-            </div>
-          )}
         </div>
       )}
 
-      <div className="bg-warning/10 text-warning-foreground border border-warning/20 rounded-xl p-4 flex items-start gap-3 w-full max-w-lg mb-8 text-left text-sm shadow-sm">
-        <AlertTriangle size={20} className="shrink-0 mt-0.5 text-warning" />
-        <p className="font-medium text-warning-foreground/90">
-          Este é um bloco cronometrado de treino. Você não receberá feedback imediato; resultado e comentários aparecem apenas ao entregar.
-        </p>
+      {/* Cockpit Navigation Tabs */}
+      <div className="w-full flex items-center justify-start sm:justify-center border-b border-border/80 mb-8 overflow-x-auto no-scrollbar gap-1 sm:gap-2">
+        <button
+          type="button"
+          onClick={() => setActiveTab("official")}
+          className={clsx(
+            "flex items-center gap-2 py-3 px-4 font-bold text-xs sm:text-sm border-b-2 transition-all cursor-pointer whitespace-nowrap",
+            activeTab === "official"
+              ? "border-primary text-primary"
+              : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
+          )}
+        >
+          <GraduationCap size={18} />
+          <span>Provas na Íntegra (Oficiais)</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab("sprints")}
+          className={clsx(
+            "flex items-center gap-2 py-3 px-4 font-bold text-xs sm:text-sm border-b-2 transition-all cursor-pointer whitespace-nowrap",
+            activeTab === "sprints"
+              ? "border-primary text-primary"
+              : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
+          )}
+        >
+          <Zap size={18} />
+          <span>Modos Rápidos & Sprints</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab("builder")}
+          className={clsx(
+            "flex items-center gap-2 py-3 px-4 font-bold text-xs sm:text-sm border-b-2 transition-all cursor-pointer whitespace-nowrap",
+            activeTab === "builder"
+              ? "border-primary text-primary"
+              : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
+          )}
+        >
+          <Sliders size={18} />
+          <span>Construtor Sob Medida</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab("history")}
+          className={clsx(
+            "flex items-center gap-2 py-3 px-4 font-bold text-xs sm:text-sm border-b-2 transition-all cursor-pointer whitespace-nowrap",
+            activeTab === "history"
+              ? "border-primary text-primary"
+              : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
+          )}
+        >
+          <History size={18} />
+          <span>Histórico & Caderno</span>
+          {completedCount > 0 && (
+            <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-muted font-mono">
+              {completedCount}
+            </span>
+          )}
+        </button>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-3 w-full max-w-lg">
-        {hasSavedState && (
-          <button
-            onClick={onResumeSimulado}
-            disabled={!clientReady}
-            aria-label="Continuar Simulado em Andamento"
-            className="flex-1 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md disabled:opacity-60 cursor-pointer"
-          >
-            <RotateCcw size={20} />
-            Continuar Andamento
-          </button>
+      {/* Tab Panels */}
+      <div className="w-full">
+        {activeTab === "official" && (
+          <SimuladoOfficialExams
+            exams={officialExams}
+            isLoading={loadingExams}
+            onStartExam={handleStartOfficialExam}
+            onDownloadExam={onDownloadOfflineSimulado}
+            isOffline={isOffline}
+            isDownloading={isDownloadingPackage}
+          />
         )}
-        <button
-          onClick={onStartSimulado}
-          disabled={!clientReady}
-          className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md disabled:opacity-60 cursor-pointer"
-        >
-          <Play size={20} fill="currentColor" />
-          {hasSavedState
-            ? (hasCustomFilters ? "Novo Personalizado" : "Novo Simulado")
-            : (isOffline ? "Iniciar Simulado Offline" : "Iniciar Simulado")}
-        </button>
+
+        {activeTab === "sprints" && (
+          <SimuladoQuickSprints onStartSprint={handleStartSprint} />
+        )}
+
+        {activeTab === "builder" && (
+          <SimuladoCustomBuilder
+            customConfig={customConfig}
+            setCustomConfig={setCustomConfig}
+            groupedInstitutions={groupedInstitutions}
+            metaYears={metaYears}
+            feedbackMode={feedbackMode}
+            setFeedbackMode={setFeedbackMode}
+            onStartSimulado={onStartSimulado}
+            onDownloadOfflineSimulado={onDownloadOfflineSimulado}
+            isDownloadingPackage={isDownloadingPackage}
+            downloadStatus={downloadStatus}
+            downloadProgress={downloadProgress}
+            isOffline={isOffline}
+          />
+        )}
+
+        {activeTab === "history" && (
+          <SimuladoHistoryView />
+        )}
       </div>
     </div>
   );

@@ -23,6 +23,10 @@ from .edital_profiles import (
     resolve_institution_codes,
     get_canonical_institution,
 )
+from .candidate_benchmarks import (
+    get_institution_benchmark,
+    calculate_competitive_analysis,
+)
 
 bp = Blueprint("stats", __name__)
 
@@ -602,6 +606,9 @@ def _process_canonical_areas(row_map: dict, edital_profile: EditalProfile, insti
     weighted_var_sum = 0.0
     area_attempts = {}
 
+    bench = get_institution_benchmark(institution_code)
+    bench_areas = bench.get("areas", {})
+
     for area in CANONICAL_AREAS:
         norm_key = get_normalized_area(area)
         r = row_map.get(norm_key, {})
@@ -611,9 +618,15 @@ def _process_canonical_areas(row_map: dict, edital_profile: EditalProfile, insti
         ans = r.get("answered", 0)
         w = edital_profile.weights.get(area, 0.20)
 
-        # Prior Beta(1, 1) -> Posterior Beta(1 + cor, 1 + att - cor)
-        alpha = 1.0 + cor
-        beta = 1.0 + (att - cor)
+        # Prior Empírica de Bayes calibrada no desempenho real dos candidatos da banca:
+        # N_0 = 2.0 (força equivalente ao prior clássico Beta(1,1), mantendo alpha_0 + beta_0 = 2.0)
+        cand_acc = bench_areas.get(area, {}).get("candidate_accuracy", 0.70)
+        alpha_0 = 2.0 * cand_acc
+        beta_0 = 2.0 * (1.0 - cand_acc)
+
+        # Posterior Beta(alpha_0 + cor, beta_0 + att - cor)
+        alpha = alpha_0 + cor
+        beta = beta_0 + (att - cor)
         mean_i = alpha / (alpha + beta)
         var_i = (alpha * beta) / (((alpha + beta) ** 2) * (alpha + beta + 1.0))
 
@@ -628,6 +641,7 @@ def _process_canonical_areas(row_map: dict, edital_profile: EditalProfile, insti
 
         cov = round(ans / avail, 4) if avail > 0 else 0.0
         acc = round(cor / att, 4) if att > 0 else None
+        cand_delta = round(acc - cand_acc, 4) if acc is not None else None
 
         sample_status = "reliable" if att >= 20 else ("forming" if att >= 5 else "insufficient")
 
@@ -643,6 +657,8 @@ def _process_canonical_areas(row_map: dict, edital_profile: EditalProfile, insti
             "attempts": att,
             "correct": cor,
             "accuracy": acc,
+            "candidate_accuracy": round(cand_acc, 4),
+            "competitive_delta": cand_delta,
             "posterior_mean": round(mean_i, 4),
             "ci_lower": ci_lower_i,
             "ci_upper": ci_upper_i,
@@ -702,7 +718,7 @@ def _generate_key_factors(enriched_areas: list[dict], institution_code: str | No
 def calculate_bayesian_readiness(area_records: list[dict], edital_profile: EditalProfile, institution_code: str | None = None) -> dict:
     """
     Calcula a prontidão bayesiana agregada usando modelo Beta-Binomial
-    conjugado com prior plano Beta(1, 1) em cada grande área médica.
+    conjugado com prior empírico calibrado nas taxas reais dos candidatos da banca.
     """
     row_map = _aggregate_area_records(area_records)
 
@@ -716,10 +732,15 @@ def calculate_bayesian_readiness(area_records: list[dict], edital_profile: Edita
     evidence_status = _determine_evidence_status(area_attempts, edital_profile)
     key_factors = _generate_key_factors(enriched_areas, institution_code=institution_code)
 
+    bench = get_institution_benchmark(institution_code)
+    cand_overall = bench.get("overall_candidate_accuracy", 0.695)
+    competitive_delta = round(readiness_score - cand_overall, 4)
+
     limitations = [
         "A prontidão estimada reflete exclusivamente as questões resolvidas no MedQuest sob o perfil de edital configurado.",
         "Não constitui probabilidade de aprovação, garantia de classificação ou nota de corte oficial.",
         "Áreas com menos de 5 tentativas ampliam o intervalo de incerteza da prontidão global.",
+        "O modelo utiliza Empirical Bayes calibrado no histórico empírico dos candidatos oficiais da banca.",
         "O intervalo global é uma aproximação Beta por correspondência de momentos das áreas ponderadas.",
     ]
 
@@ -728,6 +749,8 @@ def calculate_bayesian_readiness(area_records: list[dict], edital_profile: Edita
         "ci_lower": ci_lower,
         "ci_upper": ci_upper,
         "evidence_status": evidence_status,
+        "candidate_mean": round(cand_overall, 4),
+        "competitive_delta": competitive_delta,
         "enriched_areas": enriched_areas,
         "key_factors": key_factors,
         "limitations": limitations,
@@ -910,6 +933,26 @@ def exam_readiness():
     profile = get_edital_profile(institution)
     bayesian_calc = calculate_bayesian_readiness(area_records, profile, institution_code=institution)
 
+    # Coleta tentativas do usuário nas questões dessa banca para calcular a camada de discriminação de itens e faixas de dificuldade
+    aliases = resolve_institution_codes(institution) if institution else []
+    if aliases:
+        placeholders = ",".join("?" * len(aliases))
+        clause = f"AND q.institution_code IN ({placeholders})"
+        params = [g.user_id] + list(aliases)
+    else:
+        clause = ""
+        params = [g.user_id]
+
+    attempts_rows = db.execute(f"""
+        SELECT a.question_id, a.is_correct
+        FROM attempts a
+        JOIN questions q ON q.id = a.question_id
+        WHERE a.user_id = ? AND q.missing_alts = 0 {clause}
+    """, params).fetchall()
+
+    attempts_records = [dict(r) for r in attempts_rows]
+    competitive_analysis = calculate_competitive_analysis(attempts_records, institution)
+
     areas = bayesian_calc["enriched_areas"]
     total_available = sum(item["available"] for item in areas)
     total_answered = sum(item["answered"] for item in areas)
@@ -930,11 +973,14 @@ def exam_readiness():
         "ci_lower": bayesian_calc["ci_lower"],
         "ci_upper": bayesian_calc["ci_upper"],
         "evidence_status": bayesian_calc["evidence_status"],
+        "candidate_mean": competitive_analysis.get("candidate_mean"),
+        "competitive_delta": competitive_analysis.get("competitive_delta"),
+        "competitive_analysis": competitive_analysis,
         "edital_profile": profile.model_dump(),
         "areas": areas,
         "key_factors": bayesian_calc["key_factors"],
         "limitations": bayesian_calc["limitations"],
-        "disclaimer": "Prontidão estimada calculada via modelo Beta-Binomial ponderado por edital. Não reflete probabilidade de aprovação.",
+        "disclaimer": "Prontidão estimada calculada via modelo Empirical Bayes ponderado por edital e calibrado na concorrência da banca.",
     })
 
 
@@ -1768,6 +1814,10 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
     avail_map = _get_available_questions_by_area(db, target_code)
     user_map = _get_user_area_attempts(db, user_id, target_code)
 
+    bench = get_institution_benchmark(target_code)
+    bench_areas = bench.get("areas", {})
+    cand_overall = bench.get("overall_candidate_accuracy", 0.695)
+
     aliases = resolve_institution_codes(target_code) if target_code else []
     if aliases:
         placeholders = ",".join("?" * len(aliases))
@@ -1800,6 +1850,9 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
         ci_lower, ci_upper = calculate_wilson_ci(cor, att)
         sample_status = get_sample_status(att)
 
+        c_acc = bench_areas.get(area_name, {}).get("candidate_accuracy", 0.70)
+        c_delta = round(acc - c_acc, 4) if acc is not None else None
+
         priority_topics = priority_map.get(area_name, [])
 
         areas.append({
@@ -1810,6 +1863,8 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
             "attempts": att,
             "correct": cor,
             "accuracy": acc,
+            "candidate_accuracy": round(c_acc, 4),
+            "competitive_delta": c_delta,
             "ci_lower": ci_lower,
             "ci_upper": ci_upper,
             "sample_status": sample_status,
@@ -1820,6 +1875,7 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
     overall_cov = round(total_answered / total_available, 4) if total_available > 0 else 0.0
     overall_ci_lower, overall_ci_upper = calculate_wilson_ci(total_correct, total_attempts)
     overall_sample_status = get_sample_status(total_attempts)
+    overall_cand_delta = round(overall_acc - cand_overall, 4) if overall_acc is not None else None
 
     return {
         "code": target_code,
@@ -1830,6 +1886,8 @@ def _build_institution_stats(db, user_id: str, institution_code: str | None = No
         "total_attempts": total_attempts,
         "total_correct": total_correct,
         "accuracy": overall_acc,
+        "candidate_accuracy": round(cand_overall, 4),
+        "competitive_delta": overall_cand_delta,
         "ci_lower": overall_ci_lower,
         "ci_upper": overall_ci_upper,
         "sample_status": overall_sample_status,
@@ -1887,7 +1945,55 @@ def institution_radar():
     primary_data = _build_institution_stats(db, g.user_id, institution, include_priority=True)
 
     # Comparison data (não precisa de priority_topics, economizando queries de banco)
-    if compare_institution and compare_institution.upper() != institution.upper():
+    if raw_compare.upper() in ("CANDIDATES", "CONCORRENCIA", "BENCHMARK"):
+        bench = get_institution_benchmark(institution)
+        bench_areas = bench.get("areas", {})
+        cand_areas = []
+        canonical_order = [
+            "Clínica Médica",
+            "Cirurgia",
+            "Ginecologia e Obstetrícia",
+            "Pediatria",
+            "Medicina Preventiva",
+        ]
+        for area_name in canonical_order:
+            c_acc = bench_areas.get(area_name, {}).get("candidate_accuracy", 0.70)
+            q_cnt = bench_areas.get(area_name, {}).get("question_count", 0)
+            cand_areas.append({
+                "area": area_name,
+                "available": q_cnt,
+                "answered": q_cnt,
+                "coverage": 1.0,
+                "attempts": q_cnt,
+                "correct": int(round(c_acc * q_cnt)),
+                "accuracy": round(c_acc, 4),
+                "ci_lower": round(c_acc, 4),
+                "ci_upper": round(c_acc, 4),
+                "candidate_accuracy": round(c_acc, 4),
+                "competitive_delta": 0.0,
+                "sample_status": "reliable",
+                "priority_topics": [],
+            })
+        cand_overall = bench.get("overall_candidate_accuracy", 0.695)
+        total_q = bench.get("total_questions", 0)
+        comparison_data = {
+            "type": "candidates",
+            "code": f"{institution}_CANDIDATES",
+            "label": f"Média Candidatos ({primary_data['label']})",
+            "total_available": total_q,
+            "total_answered": total_q,
+            "coverage": 1.0,
+            "total_attempts": total_q,
+            "total_correct": int(round(cand_overall * total_q)),
+            "accuracy": round(cand_overall, 4),
+            "ci_lower": round(cand_overall, 4),
+            "ci_upper": round(cand_overall, 4),
+            "candidate_accuracy": round(cand_overall, 4),
+            "competitive_delta": 0.0,
+            "sample_status": "reliable",
+            "areas": cand_areas,
+        }
+    elif compare_institution and compare_institution.upper() != institution.upper():
         comp_stats = _build_institution_stats(db, g.user_id, compare_institution, include_priority=False)
         comparison_data = {
             "type": "institution",
@@ -1900,7 +2006,10 @@ def institution_radar():
             **comp_stats,
         }
 
-    has_comparator = bool(compare_institution and compare_institution.upper() != institution.upper())
+    has_comparator = bool(
+        raw_compare.upper() in ("CANDIDATES", "CONCORRENCIA", "BENCHMARK")
+        or (compare_institution and compare_institution.upper() != institution.upper())
+    )
     emit(
         "institution_radar_viewed",
         has_comparator=has_comparator,
