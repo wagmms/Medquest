@@ -8,7 +8,7 @@ def test_intensive_plan_uses_high_yield_catalog():
         {"area": "Clínica Médica", "subtema": "Hipertensão Arterial Sistêmica e Crises Hipertensivas", "q_count": 12},
         {"area": "Clínica Médica", "subtema": "Tema sem prioridade cadastrada", "q_count": 12},
     ]
-    start = date.today()
+    start = date(2028, 1, 1)
     result = generate_annual_plan(
         rows,
         start.isoformat(),

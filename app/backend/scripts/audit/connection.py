@@ -12,8 +12,10 @@ def get_readonly_connection(db_path: Path) -> sqlite3.Connection:
     db = sqlite3.connect(f"{uri_path}?mode=ro", uri=True)
     db.row_factory = sqlite3.Row
     
-    # Adiciona restrição no PRAGMA para evitar queries de alteração
+    # Adiciona restrição no PRAGMA para evitar queries de alteração e acelera leitura
     db.execute("PRAGMA query_only=ON")
+    db.execute("PRAGMA mmap_size = 268435456")
+    db.execute("PRAGMA cache_size = -64000")
     
     return db
 
