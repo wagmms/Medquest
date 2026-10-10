@@ -332,7 +332,7 @@ def generate_remediation_queue(
     # 2. Completar com questões gêmeas inéditas dos mesmos subtemas (para testar fixação sem decoreba)
     needed = limit - len(queue_items)
     if needed > 0:
-        placeholders_selected = ",".join("?" * len(selected_ids)) if selected_ids else "NULL"
+        exclude_selected_clause = f"AND q.id NOT IN ({','.join('?' * len(selected_ids))})" if selected_ids else ""
         selected_params = list(selected_ids) if selected_ids else []
 
         twin_rows = db.execute(
@@ -345,7 +345,7 @@ def generate_remediation_queue(
             WHERE q.missing_alts = 0
               AND COALESCE(NULLIF(q.subtema, ''), q.topic) IN ({subtemas_placeholders})
               AND q.id NOT IN (SELECT question_id FROM attempts WHERE user_id = ?)
-              AND q.id NOT IN ({placeholders_selected})
+              {exclude_selected_clause}
             ORDER BY q.year DESC, q.id ASC
             LIMIT ?
             """,
@@ -359,7 +359,7 @@ def generate_remediation_queue(
     # 3. Fallback: se ainda faltar para o limit, aceitar qualquer questão dos subtemas que não esteja na fila
     needed_fallback = limit - len(queue_items)
     if needed_fallback > 0:
-        placeholders_selected = ",".join("?" * len(selected_ids)) if selected_ids else "NULL"
+        exclude_selected_clause = f"AND q.id NOT IN ({','.join('?' * len(selected_ids))})" if selected_ids else ""
         selected_params = list(selected_ids) if selected_ids else []
 
         fallback_q_rows = db.execute(
@@ -371,7 +371,7 @@ def generate_remediation_queue(
             FROM questions q
             WHERE q.missing_alts = 0
               AND COALESCE(NULLIF(q.subtema, ''), q.topic) IN ({subtemas_placeholders})
-              AND q.id NOT IN ({placeholders_selected})
+              {exclude_selected_clause}
             ORDER BY q.id ASC
             LIMIT ?
             """,

@@ -257,3 +257,225 @@ def test_unanswered_only_filter(client):
     ids_with_answered = [q["id"] for q in res_with_answered.get_json()]
     assert 1 in ids_with_answered
 
+
+def test_questions_filter_by_area_year_and_subtema(client):
+    # Filtro por área específica
+    res_clinica = client.get("/api/questions?area=Clínica Médica")
+    assert res_clinica.status_code == 200
+    ids_clinica = [q["id"] for q in res_clinica.get_json()]
+    assert ids_clinica == [1]
+
+    res_ped = client.get("/api/questions?area=Pediatria")
+    assert res_ped.status_code == 200
+    ids_ped = [q["id"] for q in res_ped.get_json()]
+    assert set(ids_ped) == {2, 3}
+
+    # Filtro por ano
+    res_2021 = client.get("/api/questions?year=2021")
+    assert res_2021.status_code == 200
+    assert [q["id"] for q in res_2021.get_json()] == [3]
+
+    # Múltiplos anos
+    res_mult_year = client.get("/api/questions?year=2021&year=2025")
+    assert res_mult_year.status_code == 200
+    assert set(q["id"] for q in res_mult_year.get_json()) == {1, 2, 3}
+
+    # Ano sem questões
+    res_vazio = client.get("/api/questions?year=1999")
+    assert res_vazio.status_code == 200
+    assert res_vazio.get_json() == []
+
+    # Filtro por subtema
+    res_sub = client.get("/api/questions?subtema=Imunização (PNI)")
+    assert res_sub.status_code == 200
+    assert [q["id"] for q in res_sub.get_json()] == [2]
+
+
+def test_questions_filter_status_wrong_and_answered_progression(client):
+    # Inicialmente nenhuma respondida ou errada
+    assert client.get("/api/questions?status=wrong").get_json() == []
+    assert client.get("/api/questions?status=answered").get_json() == []
+
+    # Usuário erra a questão 2 (correta é A, envia B)
+    attempt_errado = client.post("/api/questions/2/attempt", json={"selected_letter": "B"})
+    assert attempt_errado.status_code == 200
+    assert attempt_errado.get_json()["is_correct"] is False
+
+    # Deve constar em wrong e answered
+    res_wrong = client.get("/api/questions?status=wrong")
+    assert [q["id"] for q in res_wrong.get_json()] == [2]
+
+    res_answered = client.get("/api/questions?status=answered")
+    assert [q["id"] for q in res_answered.get_json()] == [2]
+
+    # Agora o usuário acerta a questão 2 (envia A)
+    attempt_certo = client.post("/api/questions/2/attempt", json={"selected_letter": "A"})
+    assert attempt_certo.status_code == 200
+    assert attempt_certo.get_json()["is_correct"] is True
+
+    # Como a última tentativa é acerto, não deve mais aparecer em status=wrong
+    res_wrong_after = client.get("/api/questions?status=wrong")
+    assert res_wrong_after.get_json() == []
+
+    # Mas continua em status=answered
+    res_answered_after = client.get("/api/questions?status=answered")
+    assert [q["id"] for q in res_answered_after.get_json()] == [2]
+
+
+def test_questions_favorite_toggle_and_filter(client):
+    # Sem favoritos inicialmente
+    assert client.get("/api/questions?favorite=1").get_json() == []
+
+    # Alterna favorito para a questão 1 (toggle padrão ativa favorito)
+    fav_on = client.post("/api/questions/1/favorite")
+    assert fav_on.status_code == 200
+    assert fav_on.get_json()["is_favorite"] is True
+
+    # Filtro favorite=1 agora inclui a questão 1
+    res_fav = client.get("/api/questions?favorite=1")
+    assert [q["id"] for q in res_fav.get_json()] == [1]
+
+    # Detalhe da questão reflete status favorito
+    detail = client.get("/api/questions/1")
+    assert detail.status_code == 200
+    assert detail.get_json()["is_favorite"] is True
+
+    # Desfavorita explicitamente
+    fav_off = client.post("/api/questions/1/favorite", json={"is_favorite": False})
+    assert fav_off.status_code == 200
+    assert fav_off.get_json()["is_favorite"] is False
+
+    # Filtro favorite=1 deve voltar a ser vazio
+    assert client.get("/api/questions?favorite=1").get_json() == []
+
+
+def test_question_detail_and_attempt_not_found(client):
+    # Detalhe de questão inexistente retorna 404
+    r_detail = client.get("/api/questions/99999")
+    assert r_detail.status_code == 404
+    assert r_detail.get_json()["error"] == "not found"
+
+    # Tentativa em questão inexistente retorna 404
+    r_attempt = client.post("/api/questions/99999/attempt", json={"selected_letter": "A"})
+    assert r_attempt.status_code == 404
+    assert r_attempt.get_json()["error"] == "not found"
+
+    # Review em questão sem tentativa retorna 400
+    r_review = client.post("/api/questions/99999/review", json={"confidence": "certeza"})
+    assert r_review.status_code == 400
+    assert r_review.get_json()["error"] == "No attempt found"
+
+
+def test_questions_count_with_filters(client):
+    # Total geral
+    c_all = client.get("/api/questions/count")
+    assert c_all.status_code == 200
+    assert c_all.get_json()["count"] == 3
+
+    # Por grande área
+    c_ped = client.get("/api/questions/count?area=Pediatria")
+    assert c_ped.status_code == 200
+    assert c_ped.get_json()["count"] == 2
+
+    # Por instituição
+    c_usp = client.get("/api/questions/count?institution=USP-SP")
+    assert c_usp.status_code == 200
+    assert c_usp.get_json()["count"] == 1
+
+    # Por área sem questões
+    c_cir = client.get("/api/questions/count?area=Cirurgia")
+    assert c_cir.status_code == 200
+    assert c_cir.get_json()["count"] == 0
+
+
+def test_stats_overview_zero_state_and_tz_offset(client):
+    # Estado inicial sem respostas
+    ov = client.get("/api/stats/overview")
+    assert ov.status_code == 200
+    body = ov.get_json()
+    assert body["total_questions"] == 3
+    assert body["distinct_answered"] == 0
+    assert body["total_attempts"] == 0
+    assert body["accuracy_all_attempts"] is None
+
+    # Parâmetro tz_offset inválido deve cair em fallback seguro
+    ov_invalid_tz = client.get("/api/stats/overview?tz_offset=invalid_offset")
+    assert ov_invalid_tz.status_code == 200
+    assert ov_invalid_tz.get_json()["total_questions"] == 3
+
+
+def test_stats_breakdown_all_dimensions_and_invalid(client):
+    # Registra uma tentativa para alimentar estatísticas
+    client.post("/api/questions/1/attempt", json={"selected_letter": "B"})
+
+    for dimension in ["area", "institution", "subtema", "year"]:
+        r = client.get(f"/api/stats/breakdown?by={dimension}")
+        assert r.status_code == 200
+        assert isinstance(r.get_json(), list)
+
+    # Dimensão inválida deve retornar 400
+    r_invalida = client.get("/api/stats/breakdown?by=hacker_column")
+    assert r_invalida.status_code == 400
+    assert r_invalida.get_json()["error"] == "invalid 'by'"
+
+
+def test_stats_timeline_and_distractors_with_attempts(client):
+    # Sem erros inicialmente, distratores retorna lista vazia
+    assert client.get("/api/stats/distractors").get_json() == []
+
+    # Submete tentativa incorreta na questão 1 (seleciona A, gabarito B)
+    client.post("/api/questions/1/attempt", json={"selected_letter": "A"})
+
+    # Distratores agora deve listar o erro
+    dist = client.get("/api/stats/distractors")
+    assert dist.status_code == 200
+    data = dist.get_json()
+    assert len(data) >= 1
+    assert data[0]["subtema"] == "Hipertensão Arterial Sistêmica"
+    assert any(c["letter"] == "A" for c in data[0]["wrong_choices"])
+
+    # Timeline registra o dia de estudo
+    tl = client.get("/api/stats/timeline")
+    assert tl.status_code == 200
+    assert len(tl.get_json()) >= 1
+
+    # Timeline aceita parâmetro days
+    assert client.get("/api/stats/timeline?days=7").status_code == 200
+    assert client.get("/api/stats/timeline?days=invalid").status_code == 200
+
+
+def test_adaptive_focus_modes_and_fallback(client):
+    # Testa os três perfis de foco adaptativo
+    for focus in ["balanced", "retention", "coverage"]:
+        r = client.get(f"/api/questions?mode=adaptive&adaptive_focus={focus}&limit=2")
+        assert r.status_code == 200
+        items = r.get_json()
+        assert len(items) <= 2
+        for item in items:
+            assert "id" in item
+            assert "adaptive_score" in item
+            assert "adaptive_reasons" in item
+
+    # Foco inválido deve fazer fallback seguro para 'balanced' sem falhar
+    r_fallback = client.get("/api/questions?mode=adaptive&adaptive_focus=desconhecido&limit=2")
+    assert r_fallback.status_code == 200
+    assert len(r_fallback.get_json()) <= 2
+
+
+def test_questions_remediation_endpoints(client):
+    # Fila de remediação sem erros do aluno cai no fallback de tópicos de alto impacto
+    rem_geral = client.get("/api/questions/remediation")
+    assert rem_geral.status_code == 200
+    assert isinstance(rem_geral.get_json(), list)
+
+    # Remediação com limite abaixo do mínimo respeita o limitador
+    rem_limit = client.get("/api/questions/remediation?limit=-5")
+    assert rem_limit.status_code == 200
+    assert len(rem_limit.get_json()) >= 1
+
+    # Remediação via rota principal com subtema
+    rem_mode = client.get("/api/questions?mode=remediation&subtema=Hipertensão+Arterial+Sistêmica")
+    assert rem_mode.status_code == 200
+    assert isinstance(rem_mode.get_json(), list)
+
+
