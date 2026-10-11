@@ -14,3 +14,4 @@ Este catálogo armazena ideias, melhorias arquiteturais e refinamentos mapeados 
 - **Prefetch inteligente de questões no modo offline**: Implementar rotina no Dexie para pre-carregar o próximo bloco de 10 questões baseado na trilha do usuário.
 - **Suporte a navegação por teclado nos modais de curadoria**: Adicionar trap-focus acessível (`react-focus-lock` ou custom hook) para usuários que utilizam exclusivamente teclado.
 - **Audit de contraste de cores nos badges de áreas médicas**: Revisar temas claro/escuro garantindo conformidade WCAG AAA (mínimo 7:1) em badges de subtemas clínicos.
+- **Estratégia de Quota Recovery e Evicção no Dexie**: Em caso de `QuotaExceededError` durante `syncQuestions`, executar purga automática de pacotes expirados de simulados (`simuladoPackages` onde `expires_at < Date.now()`) antes de abortar a operação.

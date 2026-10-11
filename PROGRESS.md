@@ -11,30 +11,30 @@
 ---
 
 ## 🔄 Próxima Tarefa em Andamento
-- [ ] Reforçar resiliência de cache em `app/frontend/src/lib/db.ts` no método `syncQuestions` assegurando tratamento defensivo de falha de conexão e rollback transacional no Dexie.
+- [ ] Criar validação de existência prévia em `app/backend/api/questions.py` na função `toggle_favorite` prevenindo inserção de `question_id` inexistente na tabela `favorites` retornando HTTP 404 (`{"error": "Questão não encontrada"}`) com cobertura de testes unitários em `app/backend/tests/test_api.py`.
 
 ---
 
 ## 📋 Backlog Prioritário (Tarefas Cirúrgicas)
-1. [ ] Criar validação de existência prévia em `app/backend/api/questions.py` na função `toggle_favorite` prevenindo inserção de `question_id` inexistente na tabela `favorites`.
-2. [ ] Implementar telemetria de latência em `app/backend/api/db.py` no método `_execute_with_reconnect` medindo tempos de roundtrip em consultas remotas LibSQL.
-3. [ ] Implementar guardrail de sanitização em `app/frontend/src/components/ExplanationViewer.tsx` na renderização de texto assegurando fallback contra marcações residuais em comentários clínicos sem alterar o conteúdo canônico.
+1. [ ] Implementar telemetria de latência em `app/backend/api/db.py` no método `_execute_with_reconnect` medindo tempos de roundtrip em consultas remotas LibSQL.
+2. [ ] Implementar guardrail de sanitização em `app/frontend/src/components/ExplanationViewer.tsx` na renderização de texto assegurando fallback contra marcações residuais em comentários clínicos sem alterar o conteúdo canônico.
+3. [ ] Implementar rotina de recuperação de quota e evicção em `app/frontend/src/lib/db.ts` no método `syncQuestions` expurgando pacotes expirados de `simuladoPackages` quando detectado `QuotaExceededError`.
 
 ---
 
 ## 💡 Sugestões de Melhorias Futuras (Buffer Recente)
-- Guardrail defensivo explícito contra drift temporal em `api/srs.py` (piso D+1).
 - Telemetria de latência para consultas remotas LibSQL/Turso Cloud em `api/db.py`.
 - Prefetch inteligente de próximas questões no modo offline do PWA via Dexie.
 - Suporte completo a navegação por teclado nos modais de curadoria médica.
 - Benchmark automatizado de carga para endpoints de fila adaptativa e remediação.
+- Estratégia de evicção de pacotes expirados sob QuotaExceededError em `db.ts`.
 
 > 💡 Catálogo completo de sugestões arquivado em [docs/SUGESTOES_FUTURAS.md](docs/SUGESTOES_FUTURAS.md)
 
 ---
 
 ## ✅ Última Tarefa Concluída
-- [x] **Testes de Estresse e Invariantes do FSRS v6 (Backend)**: Implementada suíte `TestFSRSValidation` em `app/backend/tests/test_srs.py` com 6 novos testes validando retenção 0.85, ausência estrita de passos intradia (< 24h), integridade temporal sob 25 erros consecutivos e simulação realista de 64 revisões de prova.
+- [x] **Resiliência de Cache e Rollback Transacional no Dexie (Frontend)**: Implementado método `syncQuestions` em `app/frontend/src/lib/db.ts` e refatorado `downloadSimuladoPackage` em `app/frontend/src/lib/simuladoPackage.ts` para persistência transacional atômica (`rw`) com validação prévia de integridade, isolamento de `_owner_id` e rollback automático em falhas, acompanhado de suíte unitária de 5 testes em `sync-questions-cache.test.mjs` (100% de aprovação e zero avisos de lint).
 
 > 📁 Histórico completo arquivado em [CHANGELOG.md](CHANGELOG.md)
 

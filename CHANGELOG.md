@@ -4,6 +4,14 @@ Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
 ---
 
+## [2026-10-11] - Ciclo Autoloop: Resiliência de Cache e Rollback Transacional no Dexie
+- **Resiliência e Atomicidade no Cache Offline (Frontend)**:
+  - `app/frontend/src/lib/db.ts`: Implementado método `syncQuestions` na classe `MedQuestDB` e helper exportado `syncQuestions`, provendo sincronização transacional atômica (`rw`) no Dexie com rollback automático, isolamento por `_owner_id` e validação defensiva pré-transação contra registros malformados ou IDs inválidos.
+  - `app/frontend/src/lib/simuladoPackage.ts`: Refatorado download de pacotes de simulado para persistir lotes de questões através de `localDb.syncQuestions(details, uid)`, substituindo chamada direta e frágil a `bulkPut` por operação transacional protegida contra dados parciais.
+  - `app/frontend/scripts/tests/sync-questions-cache.test.mjs`: Criada suíte com 5 testes unitários validando atomicidade, rejeição estrita de dados corrompidos antes de transações, vinculação de `_owner_id`, garantia de rollback em falhas de I/O / cota e operação segura em ambiente SSR (100% de aprovação em `npm run test:unit`).
+
+---
+
 ## [2026-10-11] - Ciclo Autoloop: Testes de Estresse e Invariantes do FSRS v6
 - **Validação de Invariantes Temporais e Estresse no Motor FSRS (Backend)**:
   - `app/backend/tests/test_srs.py`: Implementada a classe de testes `TestFSRSValidation` cobrindo calibração de parâmetros (`desired_retention=0.85`, `learning_steps=()`, `relearning_steps=()`, `_QUESTION_PARAMS`), estresse sob 25 erros consecutivos em questões e flashcards, simulação temporal realista de 64 revisões mistas, recuperação de estabilidade pós-lapso e garantia de que nenhum agendamento gere passos intradia (< 24h) ou intervalos negativos.

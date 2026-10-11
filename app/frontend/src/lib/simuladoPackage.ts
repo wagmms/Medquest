@@ -255,13 +255,8 @@ export async function downloadSimuladoPackage(
         throw new Error(`Lote parcial de detalhes retornado: recebidas ${details.length} de ${chunkIds.length} questões esperadas.`);
       }
       
-      // Salvar questões no Dexie associadas ao dono atual
-      await localDb.questions.bulkPut(
-        details.map((d) => ({
-          ...d,
-          _owner_id: uid,
-        }))
-      );
+      // Salvar questões no Dexie associadas ao dono atual com rollback transacional
+      await localDb.syncQuestions(details, uid);
 
       for (const d of details) {
         totalBytesEstimated += JSON.stringify(d).length;

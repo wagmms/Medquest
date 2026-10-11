@@ -286,12 +286,72 @@ export class MedQuestDB extends Dexie {
         simuladoPackages: "id, owner_id, status, expires_at, created_at",
       });
   }
+
+  /**
+   * Sincroniza em lote uma lista de questões com o cache do Dexie de forma transacional e atômica.
+   * Aplica validação estrutural defensiva (IDs numéricos válidos e integridade de formato)
+   * e rollback completo via transação Dexie caso ocorra qualquer falha de persistência,
+   * erro de I/O ou exceção durante o processamento.
+   *
+   * @param questions Lista de questões detalhadas para cache local
+   * @param explicitOwnerId Identificador explícito do proprietário (opcional, fallback para getLocalOwnerId())
+   * @returns Quantidade de questões persistidas com sucesso
+   */
+  async syncQuestions(
+    questions: (QuestionDetail & { _owner_id?: string })[],
+    explicitOwnerId?: string
+  ): Promise<number> {
+    if (!questions || !Array.isArray(questions) || questions.length === 0) {
+      return 0;
+    }
+
+    const ownerId = explicitOwnerId || getLocalOwnerId();
+
+    // 1. Validação defensiva pré-transacional contra dados corrompidos ou malformados
+    const preparedQuestions = questions.map((q, idx) => {
+      if (!q || typeof q !== "object") {
+        throw new Error(`[MedQuestDB] Questão inválida no índice ${idx}: registro não é um objeto.`);
+      }
+      if (typeof q.id !== "number" || isNaN(q.id) || q.id <= 0) {
+        throw new Error(`[MedQuestDB] Questão inválida no índice ${idx}: ID numérico positivo obrigatório.`);
+      }
+      return {
+        ...q,
+        _owner_id: ownerId,
+      };
+    });
+
+    // 2. Execução atômica dentro de transação de leitura/escrita com rollback automático
+    try {
+      return await this.transaction("rw", this.questions, async () => {
+        await this.questions.bulkPut(preparedQuestions);
+        return preparedQuestions.length;
+      });
+    } catch (err) {
+      console.error("[MedQuestDB] Falha na sincronização transacional de questões (rollback acionado):", err);
+      throw err;
+    }
+  }
 }
 
 export const localDb = typeof window !== "undefined" ? new MedQuestDB() : (null as unknown as MedQuestDB);
 
 if (typeof window !== "undefined" && localDb) {
   (window as unknown as { localDb?: MedQuestDB }).localDb = localDb;
+}
+
+/**
+ * Utilitário de alto nível para sincronizar questões no Dexie com rollback transacional.
+ * Retorna 0 quando executado fora do navegador ou caso localDb não esteja instanciado.
+ */
+export async function syncQuestions(
+  questions: (QuestionDetail & { _owner_id?: string })[],
+  explicitOwnerId?: string
+): Promise<number> {
+  if (typeof window === "undefined" || !localDb) {
+    return 0;
+  }
+  return localDb.syncQuestions(questions, explicitOwnerId);
 }
 
 export const FORCED_OFFLINE_STORAGE_KEY = "medquest_force_offline";
