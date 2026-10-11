@@ -4,6 +4,12 @@ Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
 ---
 
+## [2026-10-11] - Ciclo Autoloop: Testes de Estresse e Invariantes do FSRS v6
+- **Validação de Invariantes Temporais e Estresse no Motor FSRS (Backend)**:
+  - `app/backend/tests/test_srs.py`: Implementada a classe de testes `TestFSRSValidation` cobrindo calibração de parâmetros (`desired_retention=0.85`, `learning_steps=()`, `relearning_steps=()`, `_QUESTION_PARAMS`), estresse sob 25 erros consecutivos em questões e flashcards, simulação temporal realista de 64 revisões mistas, recuperação de estabilidade pós-lapso e garantia de que nenhum agendamento gere passos intradia (< 24h) ou intervalos negativos.
+
+---
+
 ## [2026-10-11] - Ciclo Autoloop: Otimização de Contagem de Questões e Cache TTL
 - **Performance e Resiliência na Contagem de Questões (Backend)**:
   - `app/backend/api/questions.py`: Implementado suporte unificado a `/api/questions/count` e `/api/questions/counts` com cache em memória `count_cache` (TTL 60s, max 1000 entradas), separando escopo de catálogo global de filtros atrelados a usuário (`status`, `unanswered_only`, `favorite`), com tempo de resposta < 10ms.

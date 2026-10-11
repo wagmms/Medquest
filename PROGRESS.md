@@ -11,29 +11,30 @@
 ---
 
 ## 🔄 Próxima Tarefa em Andamento
-- [ ] Adicionar testes de estresse em `app/backend/tests/test_srs.py` na classe `TestFSRSValidation` garantindo que intervalos de repetição FSRS v6 nunca retornem valores negativos ou passos intradia indesejados (< 24h) com retenção calibrada em 0.85.
+- [ ] Reforçar resiliência de cache em `app/frontend/src/lib/db.ts` no método `syncQuestions` assegurando tratamento defensivo de falha de conexão e rollback transacional no Dexie.
 
 ---
 
 ## 📋 Backlog Prioritário (Tarefas Cirúrgicas)
-1. [ ] Reforçar resiliência de cache em `app/frontend/src/lib/db.ts` no método `syncQuestions` assegurando tratamento defensivo de falha de conexão e rollback transacional no Dexie.
-2. [ ] Criar validação de existência prévia em `app/backend/api/questions.py` na função `toggle_favorite` prevenindo inserção de `question_id` inexistente na tabela `favorites`.
-3. [ ] Implementar telemetria de latência em `app/backend/api/db.py` no método `_execute_with_reconnect` medindo tempos de roundtrip em consultas remotas LibSQL.
+1. [ ] Criar validação de existência prévia em `app/backend/api/questions.py` na função `toggle_favorite` prevenindo inserção de `question_id` inexistente na tabela `favorites`.
+2. [ ] Implementar telemetria de latência em `app/backend/api/db.py` no método `_execute_with_reconnect` medindo tempos de roundtrip em consultas remotas LibSQL.
+3. [ ] Implementar guardrail de sanitização em `app/frontend/src/components/ExplanationViewer.tsx` na renderização de texto assegurando fallback contra marcações residuais em comentários clínicos sem alterar o conteúdo canônico.
 
 ---
 
 ## 💡 Sugestões de Melhorias Futuras (Buffer Recente)
+- Guardrail defensivo explícito contra drift temporal em `api/srs.py` (piso D+1).
 - Telemetria de latência para consultas remotas LibSQL/Turso Cloud em `api/db.py`.
 - Prefetch inteligente de próximas questões no modo offline do PWA via Dexie.
 - Suporte completo a navegação por teclado nos modais de curadoria médica.
 - Benchmark automatizado de carga para endpoints de fila adaptativa e remediação.
-- Auditoria de contraste WCAG AAA para badges de temas médicos nos modos claro e escuro.
 
 > 💡 Catálogo completo de sugestões arquivado em [docs/SUGESTOES_FUTURAS.md](docs/SUGESTOES_FUTURAS.md)
 
 ---
 
 ## ✅ Última Tarefa Concluída
-- [x] **Otimização de Contagem de Questões e Cache TTL (Backend)**: Otimizado endpoint `/api/questions/count` e alias `/api/questions/counts` em `app/backend/api/questions.py` com `count_cache` (TTL 60s, max 1000 entradas), aproveitamento do índice composto `idx_questions_area_subtema` (< 10ms), invalidação por usuário em `invalidate_user_caches` e cobertura completa em `tests/test_api.py`.
+- [x] **Testes de Estresse e Invariantes do FSRS v6 (Backend)**: Implementada suíte `TestFSRSValidation` em `app/backend/tests/test_srs.py` com 6 novos testes validando retenção 0.85, ausência estrita de passos intradia (< 24h), integridade temporal sob 25 erros consecutivos e simulação realista de 64 revisões de prova.
 
 > 📁 Histórico completo arquivado em [CHANGELOG.md](CHANGELOG.md)
+
