@@ -1198,6 +1198,12 @@ def toggle_favorite(qid):
             return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
         target_fav = data.is_favorite
 
+        q = db.execute("SELECT id FROM questions WHERE id = ?", (qid,)).fetchone()
+        if not q:
+            if lease_token:
+                fail_idempotency(db, g.user_id, lease_token)
+            return jsonify({"error": "Questão não encontrada"}), 404
+
         with db_transaction(db, immediate=True):
             if target_fav is not None:
                 if target_fav:

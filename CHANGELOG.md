@@ -4,6 +4,13 @@ Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
 ---
 
+## [2026-10-11] - Ciclo Autoloop: Validação de Existência Prévia em Favoritos
+- **Integridade Referencial e Validação de Favoritos (Backend)**:
+  - `app/backend/api/questions.py`: Implementada verificação de existência prévia de questão na rota `toggle_favorite` (`POST /api/questions/<int:qid>/favorite`), retornando HTTP 404 (`{"error": "Questão não encontrada"}`) e liberando token de idempotência caso a questão não exista no banco, prevenindo inserção de chaves órfãs na tabela `favorites`.
+  - `app/backend/tests/test_api.py`: Adicionado teste unitário `test_question_favorite_not_found` validando resposta HTTP 404 para toggle padrão, favorito explícito (`is_favorite=True`), desfavoritar explícito (`is_favorite=False`) e assegurando ausência de registros órfãos persistidos na tabela `favorites` (100% de aprovação na suíte de testes).
+
+---
+
 ## [2026-10-11] - Ciclo Autoloop: Resiliência de Cache e Rollback Transacional no Dexie
 - **Resiliência e Atomicidade no Cache Offline (Frontend)**:
   - `app/frontend/src/lib/db.ts`: Implementado método `syncQuestions` na classe `MedQuestDB` e helper exportado `syncQuestions`, provendo sincronização transacional atômica (`rw`) no Dexie com rollback automático, isolamento por `_owner_id` e validação defensiva pré-transação contra registros malformados ou IDs inválidos.

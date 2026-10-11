@@ -366,6 +366,31 @@ def test_question_detail_and_attempt_not_found(client):
     assert r_review.get_json()["error"] == "No attempt found"
 
 
+def test_question_favorite_not_found(client, app):
+    from api.db import get_db
+
+    # Favoritar questão inexistente via toggle padrão retorna 404
+    r_toggle = client.post("/api/questions/99999/favorite")
+    assert r_toggle.status_code == 404
+    assert r_toggle.get_json()["error"] == "Questão não encontrada"
+
+    # Favoritar questão inexistente explicitamente retorna 404
+    r_explicit = client.post("/api/questions/99999/favorite", json={"is_favorite": True})
+    assert r_explicit.status_code == 404
+    assert r_explicit.get_json()["error"] == "Questão não encontrada"
+
+    # Desfavoritar questão inexistente explicitamente também retorna 404
+    r_unfav = client.post("/api/questions/99999/favorite", json={"is_favorite": False})
+    assert r_unfav.status_code == 404
+    assert r_unfav.get_json()["error"] == "Questão não encontrada"
+
+    # Assegura que nenhum registro foi persistido na tabela favorites
+    with app.app_context():
+        db = get_db()
+        row = db.execute("SELECT 1 FROM favorites WHERE question_id = 99999").fetchone()
+        assert row is None
+
+
 def test_questions_count_with_filters(client):
     import time
     from api.db import get_db
