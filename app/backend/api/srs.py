@@ -8,7 +8,7 @@ Mapeia a resposta da questão para uma nota FSRS:
   - acertou (sem info)  -> Good
 """
 import json
-from datetime import timezone
+from datetime import datetime, timedelta, timezone
 
 from fsrs import Card, Rating, Scheduler
 
@@ -52,10 +52,23 @@ def _rating(is_correct, confidence):
     return _CONFIDENCE_MAP.get((confidence or "").lower(), Rating.Good)
 
 
-def review(card_json, is_correct, confidence=None, is_flashcard=False):
-    """Recebe o estado do card (JSON ou None) e devolve (novo_json, próxima_revisão_iso)."""
+def review(card_json, is_correct, confidence=None, is_flashcard=False, now=None):
+    """Recebe o estado do card (JSON ou None) e devolve (novo_json, próxima_revisão_iso).
+    
+    Aplica clamp defensivo garantindo que qualquer agendamento respeite D+1 (>= 24 horas),
+    blindando contra passos intradia acidentais, drift de relógio ou estados degenerados.
+    """
     scheduler = _flashcard_scheduler if is_flashcard else _question_scheduler
     card = Card.from_dict(json.loads(card_json)) if card_json else Card()
-    card, _log = scheduler.review_card(card, _rating(is_correct, confidence))
-    due_iso = card.due.astimezone(timezone.utc).isoformat()
+    now_utc = (now if now is not None else datetime.now(timezone.utc)).astimezone(timezone.utc)
+    card, _log = scheduler.review_card(card, _rating(is_correct, confidence), review_datetime=now_utc)
+
+    # Clamp defensivo: garantia incondicional de D+1 (>= 24 horas)
+    min_due = now_utc + timedelta(days=1)
+    card_due_utc = card.due.astimezone(timezone.utc) if card.due.tzinfo else card.due.replace(tzinfo=timezone.utc)
+    if card_due_utc < min_due:
+        card.due = min_due
+        card_due_utc = min_due
+
+    due_iso = card_due_utc.isoformat()
     return json.dumps(card.to_dict()), due_iso

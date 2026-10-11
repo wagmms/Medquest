@@ -2,6 +2,11 @@
 
 Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
+## [2026-10-11] - Ciclo Autoloop: Clamp Defensivo de Intervalo Mínimo D+1 no FSRS
+- **Integridade Temporal e Robustez no Agendamento SRS (Backend)**:
+  - `app/backend/api/srs.py`: Implementado clamp defensivo incondicional na função `review` assegurando que todo agendamento `due` gerado respeite rigorosamente `D+1` (`>= 24 horas` a partir de `now`), protegendo tanto o payload do `Card` serializado quanto o valor ISO retornado contra drift de relógio do servidor, passos intradia acidentais ou estados numéricos degenerados, mantendo suporte opcional a `now` determinístico para testes e auditorias temporais.
+  - `app/backend/tests/test_srs.py`: Adicionados testes unitários `test_defensive_clamp_forces_minimum_d_plus_one` e `test_defensive_clamp_preserves_longer_intervals` na suíte `TestFSRSValidation`, comprovando o clamp em agendamentos simulados no passado ou intradia (< 24h) e garantindo a preservação exata de intervalos legítimos de longa maturação (~7d a ~78d) (100% de aprovação na suíte de testes).
+
 ---
 
 ## [2026-10-11] - Ciclo Autoloop: Validação de Existência Prévia em Favoritos

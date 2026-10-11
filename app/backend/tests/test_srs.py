@@ -251,3 +251,67 @@ class TestFSRSValidation:
                         f"gerou agendamento intradia: {diff_seconds / 3600:.2f}h"
                     )
 
+    def test_defensive_clamp_forces_minimum_d_plus_one(self, monkeypatch):
+        """Assegura que qualquer agendamento menor que 24h ou no passado é clampado para D+1."""
+        from datetime import timedelta
+        import api.srs as srs_mod
+        from fsrs import Card
+
+        fixed_now = datetime(2026, 10, 11, 10, 0, 0, tzinfo=timezone.utc)
+        expected_min_due = fixed_now + timedelta(days=1)
+
+        # 1. Simula cenário hipotético onde o scheduler interno agendaria para apenas 2 horas à frente
+        class MockSchedulerIntraday:
+            def review_card(self, card, rating, review_datetime=None):
+                card.due = (review_datetime or fixed_now) + timedelta(hours=2)
+                return card, None
+
+        monkeypatch.setattr(srs_mod, "_question_scheduler", MockSchedulerIntraday())
+
+        card_json, due_iso = review(None, False, None, is_flashcard=False, now=fixed_now)
+        due_dt = datetime.fromisoformat(due_iso)
+
+        assert due_dt == expected_min_due, (
+            f"Esperado clamp para {expected_min_due.isoformat()}, mas obteve {due_iso}"
+        )
+        # O payload serializado do Card também deve refletir o clamp
+        card_dict = json.loads(card_json)
+        assert datetime.fromisoformat(card_dict["due"]) == expected_min_due
+
+        # 2. Simula cenário anômalo de retorno com data no passado (drift de relógio / erro de scheduler)
+        class MockSchedulerPast:
+            def review_card(self, card, rating, review_datetime=None):
+                card.due = (review_datetime or fixed_now) - timedelta(days=10)
+                return card, None
+
+        monkeypatch.setattr(srs_mod, "_flashcard_scheduler", MockSchedulerPast())
+
+        card_json_past, due_iso_past = review(None, False, "errei", is_flashcard=True, now=fixed_now)
+        due_dt_past = datetime.fromisoformat(due_iso_past)
+
+        assert due_dt_past == expected_min_due
+        card_dict_past = json.loads(card_json_past)
+        assert datetime.fromisoformat(card_dict_past["due"]) == expected_min_due
+
+    def test_defensive_clamp_preserves_longer_intervals(self):
+        """Assegura que intervalos legítimos (> 24h) são preservados sem corte indevido."""
+        from datetime import timedelta
+
+        fixed_now = datetime(2026, 10, 11, 12, 0, 0, tzinfo=timezone.utc)
+
+        # Questão com erro: ~7 dias (> 1 dia)
+        _, due_err = review(None, False, None, is_flashcard=False, now=fixed_now)
+        diff_err_days = (datetime.fromisoformat(due_err) - fixed_now).total_seconds() / 86400
+        assert 6.5 <= diff_err_days <= 7.5
+
+        # Questão com certeza: ~78 dias (> 1 dia)
+        _, due_easy = review(None, True, "certeza", is_flashcard=False, now=fixed_now)
+        diff_easy_days = (datetime.fromisoformat(due_easy) - fixed_now).total_seconds() / 86400
+        assert 76 <= diff_easy_days <= 80
+
+        # Flashcard com certeza: ~7-8 dias (> 1 dia)
+        _, due_fc_easy = review(None, True, "certeza", is_flashcard=True, now=fixed_now)
+        diff_fc_days = (datetime.fromisoformat(due_fc_easy) - fixed_now).total_seconds() / 86400
+        assert 6.0 <= diff_fc_days <= 8.5
+
+
