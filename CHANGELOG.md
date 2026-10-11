@@ -2,6 +2,14 @@
 
 Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
+## [2026-10-11] - Ciclo Autoloop: Recuperação de Quota e Evicção de Simulados Expirados no Dexie
+- **Recuperação de Quota e Evicção de Pacotes Expirados (Frontend)**:
+  - `app/frontend/src/lib/db.ts`: Implementadas a função `isQuotaExceededError` (detecção abrangente de erros de cota de armazenamento via DOMException código 22, nome, regex e wraps de transações/erros internos do Dexie) e o método transacional atômico `purgeExpiredSimuladoPackages`, purgado pacotes expirados (`status === 'expired'` ou `expires_at <= now`) da tabela `simuladoPackages` e emitindo evento `simulado-packages-purged`; integrado guardrail de recuperação em `syncQuestions` para purgar pacotes vencidos e retentar atomicamente a persistência de questões antes de abortar/relançar o erro caso não haja espaço liberado.
+  - `app/frontend/src/lib/simuladoPackage.ts`: Atualizado tratamento de erro de download de simulado para reutilizar o helper canônico `isQuotaExceededError`.
+  - `app/frontend/scripts/tests/sync-questions-cache.test.mjs`: Expandida suíte de testes com 5 novos cenários (totalizando 10 testes unitários), validando detecção de erros de cota, purga atômica e preservação de pacotes válidos, retentativa bem-sucedida após liberação de espaço, aborto com propagação de erro quando não há pacotes expirados, e execução defensiva em SSR (100% de aprovação em `npm run test:unit`, `npm run lint` e `./validate.sh fast`).
+
+---
+
 ## [2026-10-11] - Ciclo Autoloop: Guardrail de Sanitização e Parsing Defensivo em ExplanationViewer
 - **Sanitização de Delimitadores Residuais e Robustez em Explicações (Frontend)**:
   - `app/frontend/src/components/ExplanationViewer.tsx`: Implementada a função `cleanSectionDelimiters` e atualizada a função `parseExplanation` com guardrails defensivos (`try/catch`, validação estrita de tipos e fallback gracioso), eliminando delimitadores residuais órfãos (asteriscos de fechamento em cabeçalhos colon-inside como `**Cabeçalho:**`, dois-pontos soltos, divisores horizontais vazios e quebras) em todas as seções clínicas (`puloDoGato`, `raciocinioClinico`, `padraoResposta`, `alternativaCorreta` e `distratores`), eliminando distratores fantasmas e preservando estritamente a formatação legítima de listas e comentários canônicos de professores.

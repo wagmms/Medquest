@@ -3,7 +3,7 @@
  * Orquestra download determinístico, integridade, expiração e gestão de pacotes no IndexedDB (Dexie).
  */
 
-import { localDb, getLocalOwnerId, SimuladoPackage, isPackageValid } from "./db";
+import { localDb, getLocalOwnerId, SimuladoPackage, isPackageValid, isQuotaExceededError } from "./db";
 import { api } from "./api";
 import { QuestionDetail, QuestionListItem } from "@/types/api";
 
@@ -346,9 +346,7 @@ export async function downloadSimuladoPackage(
     window.dispatchEvent(new CustomEvent("simulado-package-updated", { detail: readyPackage }));
     return readyPackage;
   } catch (error) {
-    const isQuota =
-      error instanceof DOMException &&
-      (error.name === "QuotaExceededError" || error.code === 22);
+    const isQuota = isQuotaExceededError(error);
 
     const failStatus = isQuota ? "quota_exceeded" : "incomplete";
     const errorMsg = error instanceof Error ? error.message : String(error);

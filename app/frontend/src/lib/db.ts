@@ -123,6 +123,42 @@ export function isPackageValid(pkg: SimuladoPackage | null | undefined): { valid
   return { valid: true };
 }
 
+/**
+ * Detecta se o erro capturado refere-se a esgotamento de quota de armazenamento
+ * no IndexedDB, Dexie ou Web Storage (QuotaExceededError).
+ */
+export function isQuotaExceededError(err: unknown): boolean {
+  if (!err) return false;
+
+  if (typeof DOMException !== "undefined" && err instanceof DOMException) {
+    if (err.name === "QuotaExceededError" || err.code === 22) return true;
+  }
+
+  if (err instanceof Error) {
+    if (err.name === "QuotaExceededError") return true;
+    if (typeof err.message === "string" && /quota.*exceeded/i.test(err.message)) return true;
+  }
+
+  const obj = err as {
+    name?: unknown;
+    code?: unknown;
+    message?: unknown;
+    inner?: unknown;
+    failures?: unknown[];
+  };
+
+  if (obj.name === "QuotaExceededError" || obj.code === 22) return true;
+  if (typeof obj.message === "string" && /quota.*exceeded/i.test(obj.message)) return true;
+
+  if (obj.inner && isQuotaExceededError(obj.inner)) return true;
+
+  if (Array.isArray(obj.failures)) {
+    return obj.failures.some((f) => isQuotaExceededError(f));
+  }
+
+  return false;
+}
+
 export class MedQuestDB extends Dexie {
   questions!: Table<QuestionDetail & { _owner_id: string }, [number, string]>;
   flashcards!: Table<Flashcard & { _owner_id: string }, [number, string]>;
@@ -288,10 +324,61 @@ export class MedQuestDB extends Dexie {
   }
 
   /**
+   * Purga atomicamente pacotes de simulado expirados da tabela simuladoPackages,
+   * liberando espaço no IndexedDB em cenários de saturação ou QuotaExceededError.
+   * Considera expirados registros com expires_at < now ou status === 'expired'.
+   *
+   * @param now Timestamp de referência opcional (padrão Date.now())
+   * @returns Quantidade de pacotes removidos
+   */
+  async purgeExpiredSimuladoPackages(now: number = Date.now()): Promise<number> {
+    if (!this.simuladoPackages) {
+      return 0;
+    }
+
+    try {
+      return await this.transaction("rw", this.simuladoPackages, async () => {
+        const allPackages = await this.simuladoPackages.toArray();
+        const expiredIds: string[] = [];
+
+        for (const pkg of allPackages) {
+          if (!pkg) continue;
+          const isExpired =
+            pkg.status === "expired" ||
+            (typeof pkg.expires_at === "number" && pkg.expires_at > 0 && pkg.expires_at <= now);
+          if (isExpired && pkg.id) {
+            expiredIds.push(pkg.id);
+          }
+        }
+
+        if (expiredIds.length > 0) {
+          await this.simuladoPackages.bulkDelete(expiredIds);
+          if (typeof window !== "undefined" && typeof window.dispatchEvent === "function") {
+            try {
+              window.dispatchEvent(
+                new CustomEvent("simulado-packages-purged", {
+                  detail: { count: expiredIds.length, ids: expiredIds },
+                })
+              );
+            } catch {
+              // Silencia erros de dispatch em ambientes restritos/testes
+            }
+          }
+        }
+
+        return expiredIds.length;
+      });
+    } catch (err) {
+      console.error("[MedQuestDB] Erro ao expurgar pacotes de simulado expirados:", err);
+      throw err;
+    }
+  }
+
+  /**
    * Sincroniza em lote uma lista de questões com o cache do Dexie de forma transacional e atômica.
-   * Aplica validação estrutural defensiva (IDs numéricos válidos e integridade de formato)
-   * e rollback completo via transação Dexie caso ocorra qualquer falha de persistência,
-   * erro de I/O ou exceção durante o processamento.
+   * Aplica validação estrutural defensiva (IDs numéricos válidos e integridade de formato),
+   * recuperação de quota com evicção atômica de pacotes expirados de simuladoPackages
+   * e rollback completo via transação Dexie caso ocorra qualquer falha irrecuperável de persistência.
    *
    * @param questions Lista de questões detalhadas para cache local
    * @param explicitOwnerId Identificador explícito do proprietário (opcional, fallback para getLocalOwnerId())
@@ -321,13 +408,36 @@ export class MedQuestDB extends Dexie {
       };
     });
 
-    // 2. Execução atômica dentro de transação de leitura/escrita com rollback automático
+    // 2. Execução atômica dentro de transação de leitura/escrita com rollback automático e recuperação de quota
     try {
       return await this.transaction("rw", this.questions, async () => {
         await this.questions.bulkPut(preparedQuestions);
         return preparedQuestions.length;
       });
     } catch (err) {
+      if (isQuotaExceededError(err)) {
+        console.warn("[MedQuestDB] Cota de armazenamento excedida (QuotaExceededError). Executando evicção atômica de pacotes expirados...");
+        let purgedCount = 0;
+        try {
+          purgedCount = await this.purgeExpiredSimuladoPackages();
+        } catch (purgeErr) {
+          console.error("[MedQuestDB] Falha durante purga de pacotes expirados em QuotaExceededError:", purgeErr);
+        }
+
+        if (purgedCount > 0) {
+          console.warn(`[MedQuestDB] ${purgedCount} pacote(s) expirado(s) purgado(s). Retentando persistência de questões...`);
+          try {
+            return await this.transaction("rw", this.questions, async () => {
+              await this.questions.bulkPut(preparedQuestions);
+              return preparedQuestions.length;
+            });
+          } catch (retryErr) {
+            console.error("[MedQuestDB] Falha na retentativa de gravação após purga de cota:", retryErr);
+            throw retryErr;
+          }
+        }
+      }
+
       console.error("[MedQuestDB] Falha na sincronização transacional de questões (rollback acionado):", err);
       throw err;
     }
@@ -352,6 +462,17 @@ export async function syncQuestions(
     return 0;
   }
   return localDb.syncQuestions(questions, explicitOwnerId);
+}
+
+/**
+ * Utilitário de alto nível para purgar pacotes de simulado expirados no Dexie.
+ * Retorna 0 quando executado fora do navegador ou caso localDb não esteja instanciado.
+ */
+export async function purgeExpiredSimuladoPackages(now?: number): Promise<number> {
+  if (typeof window === "undefined" || !localDb) {
+    return 0;
+  }
+  return localDb.purgeExpiredSimuladoPackages(now);
 }
 
 export const FORCED_OFFLINE_STORAGE_KEY = "medquest_force_offline";
