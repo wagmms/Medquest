@@ -199,13 +199,14 @@ export function QuestionClassificationModal({
             className="bg-card border border-border rounded-3xl shadow-2xl w-full max-w-xl overflow-hidden z-10 flex flex-col relative max-h-[90vh]"
             role="dialog"
             aria-modal="true"
+            aria-labelledby="classification-modal-title"
           >
             {/* Header */}
             <div className="flex justify-between items-center px-6 py-4 border-b border-border bg-muted/30">
               <div className="flex items-center gap-2">
-                <Tag className="text-primary shrink-0" size={20} />
+                <Tag className="text-primary shrink-0" size={20} aria-hidden="true" />
                 <div>
-                  <h2 className="text-base font-bold text-foreground leading-tight">
+                  <h2 id="classification-modal-title" className="text-base font-bold text-foreground leading-tight">
                     Curadoria: Classificação da Questão #{questionId}
                   </h2>
                   <p className="text-xs text-muted-foreground">
@@ -214,12 +215,13 @@ export function QuestionClassificationModal({
                 </div>
               </div>
               <button
+                type="button"
                 onClick={() => !saving && onClose()}
                 disabled={saving}
                 className="text-muted-foreground hover:bg-muted rounded-full p-1.5 transition-colors cursor-pointer disabled:opacity-50"
-                aria-label="Fechar"
+                aria-label="Fechar modal de classificação"
               >
-                <X size={20} />
+                <X size={20} aria-hidden="true" />
               </button>
             </div>
 
@@ -237,6 +239,7 @@ export function QuestionClassificationModal({
                       <button
                         key={a}
                         type="button"
+                        aria-pressed={isSelected}
                         onClick={() => handleAreaChange(a)}
                         className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all text-left truncate cursor-pointer ${
                           isSelected
@@ -259,7 +262,7 @@ export function QuestionClassificationModal({
                   </label>
                   {loading && (
                     <span className="text-xs text-muted-foreground flex items-center gap-1">
-                      <RefreshCw size={12} className="animate-spin" /> Carregando taxonomia...
+                      <RefreshCw size={12} className="animate-spin" aria-hidden="true" /> Carregando taxonomia...
                     </span>
                   )}
                 </div>
@@ -267,6 +270,7 @@ export function QuestionClassificationModal({
                 <div className="relative">
                   <Search
                     size={16}
+                    aria-hidden="true"
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
                   />
                   <input
@@ -274,6 +278,7 @@ export function QuestionClassificationModal({
                     value={searchFilter}
                     onChange={(e) => setSearchFilter(e.target.value)}
                     placeholder="Filtrar subtema..."
+                    aria-label="Filtrar subtema canônico"
                     className="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
                   />
                 </div>
@@ -290,6 +295,7 @@ export function QuestionClassificationModal({
                         <button
                           key={s}
                           type="button"
+                          aria-pressed={isSelected}
                           onClick={() => handleSubtemaSelect(s)}
                           className={`w-full text-left px-3 py-2 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
                             isSelected
@@ -298,7 +304,7 @@ export function QuestionClassificationModal({
                           }`}
                         >
                           <span className="line-clamp-1">{s}</span>
-                          {isSelected && <Check size={14} className="text-primary shrink-0 ml-2" />}
+                          {isSelected && <Check size={14} aria-hidden="true" className="text-primary shrink-0 ml-2" />}
                         </button>
                       );
                     })
@@ -318,7 +324,7 @@ export function QuestionClassificationModal({
               {showDeleteConfirm && (
                 <div className="p-4 bg-destructive/10 border border-destructive/30 rounded-2xl flex flex-col gap-3 animate-in fade-in zoom-in-95 duration-200">
                   <div className="flex items-start gap-2.5">
-                    <AlertCircle size={18} className="text-destructive shrink-0 mt-0.5" />
+                    <AlertCircle size={18} aria-hidden="true" className="text-destructive shrink-0 mt-0.5" />
                     <div className="text-xs">
                       <p className="font-bold text-destructive">
                         Tem certeza que deseja excluir a Questão #{questionId} permanentemente?
@@ -345,12 +351,12 @@ export function QuestionClassificationModal({
                     >
                       {isDeleting ? (
                         <>
-                          <Loader2 size={13} className="animate-spin" />
+                          <Loader2 size={13} className="animate-spin" aria-hidden="true" />
                           Excluindo...
                         </>
                       ) : (
                         <>
-                          <Trash2 size={13} />
+                          <Trash2 size={13} aria-hidden="true" />
                           Confirmar Exclusão
                         </>
                       )}
@@ -362,7 +368,7 @@ export function QuestionClassificationModal({
               {/* Error Message */}
               {error && (
                 <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-xl text-destructive text-xs font-bold flex items-center gap-2">
-                  <AlertCircle size={16} className="shrink-0" />
+                  <AlertCircle size={16} aria-hidden="true" className="shrink-0" />
                   <span>{error}</span>
                 </div>
               )}
@@ -379,7 +385,7 @@ export function QuestionClassificationModal({
                     className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-destructive hover:bg-destructive/10 border border-destructive/25 transition-colors cursor-pointer disabled:opacity-50"
                     title="Excluir questão do banco de dados (Administrador)"
                   >
-                    <Trash2 size={14} />
+                    <Trash2 size={14} aria-hidden="true" />
                     Excluir Questão
                   </button>
                 )}
@@ -402,12 +408,12 @@ export function QuestionClassificationModal({
                 >
                   {saving ? (
                     <>
-                      <Loader2 size={14} className="animate-spin" />
+                      <Loader2 size={14} className="animate-spin" aria-hidden="true" />
                       Salvando...
                     </>
                   ) : (
                     <>
-                      <Check size={14} />
+                      <Check size={14} aria-hidden="true" />
                       Salvar Alteração
                     </>
                   )}

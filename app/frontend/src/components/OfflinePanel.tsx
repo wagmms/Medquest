@@ -280,11 +280,11 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
     <div className="bg-card border border-border rounded-xl p-6 shadow-sm flex flex-col gap-6">
       <div>
         <div className="flex items-center justify-between mb-4 pb-2 border-b border-border">
-          <h3 className="text-xl font-bold text-foreground flex items-center gap-2">
+          <h3 id="offline-modal-title" className="text-xl font-bold text-foreground flex items-center gap-2">
             {isOffline ? (
-              <CloudOff className="text-warning" size={24} />
+              <CloudOff className="text-warning" size={24} aria-hidden="true" />
             ) : (
-              <Database className="text-primary" size={24} />
+              <Database className="text-primary" size={24} aria-hidden="true" />
             )}
             Modo Plantão (Offline)
           </h3>

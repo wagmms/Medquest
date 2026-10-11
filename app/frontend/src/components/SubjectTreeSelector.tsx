@@ -95,16 +95,19 @@ export function SubjectTreeSelector({ selectedSubtemas, onChange, availableSubte
     <div className="flex flex-col gap-2 mt-3 max-h-[500px] overflow-y-auto overscroll-contain pr-2 custom-scrollbar">
       {tree.map(area => (
         <div key={area.area} className="shrink-0 border border-border rounded-lg overflow-hidden bg-card">
-          <div 
-            className="flex items-center gap-2 px-4 py-3 bg-muted/30 cursor-pointer hover:bg-muted/50 transition-colors select-none"
+          <button 
+            type="button"
+            aria-expanded={Boolean(expandedAreas[area.area])}
+            aria-label={`Grande Área: ${area.area}, ${expandedAreas[area.area] ? "recolher" : "expandir"}`}
+            className="w-full flex items-center gap-2 px-4 py-3 bg-muted/30 cursor-pointer hover:bg-muted/50 transition-colors select-none text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
             onClick={() => toggleArea(area.area)}
           >
-            {expandedAreas[area.area] ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
+            {expandedAreas[area.area] ? <ChevronDown size={18} aria-hidden="true" /> : <ChevronRight size={18} aria-hidden="true" />}
             <span className="font-bold text-foreground text-sm uppercase tracking-wider">{area.area}</span>
             <span className="ml-auto text-xs font-semibold bg-background px-2 py-1 rounded border border-border">
               {area.macroThemes.reduce((acc, m) => acc + m.details.length, 0)} tópicos
             </span>
-          </div>
+          </button>
           
           {expandedAreas[area.area] && (
             <div className="flex flex-col border-t border-border bg-background">

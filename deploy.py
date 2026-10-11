@@ -16,7 +16,9 @@ Outras opcoes:
 
 import argparse
 import datetime
+import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -86,8 +88,124 @@ def parse_args(cli_args=None):
     )
     parser.add_argument("--skip-db", action="store_true", help="Pular sincronizacao do banco com o Turso Cloud")
     parser.add_argument("--db-only", action="store_true", help="Executar apenas a sincronizacao do banco (sem commit/deploy)")
+    parser.add_argument("--skip-audit", action="store_true", help="Pular verificacao de auditoria cruzada do commit")
 
     return parser.parse_args(cli_args)
+
+
+# Importação canônica do módulo compartilhado de auditoria
+core_path = os.path.expanduser("~/.local/lib/autoloop_core")
+if core_path not in sys.path:
+    sys.path.insert(0, core_path)
+
+try:
+    from audit_validator import (
+        avaliar_parecer_auditoria,
+        VEREDITOS_VALIDOS,
+        SEVERIDADES_VALIDAS,
+        CAMPOS_OBRIGATORIOS_PARECER as CAMPOS_OBRIGATORIOS_SCHEMA,
+        CAMPOS_OBRIGATORIOS_FINDING
+    )
+except ImportError as exc:
+    _erro_importacao_validador = str(exc)
+
+    def avaliar_parecer_auditoria(dados, sha_esperado):
+        return False, f"FALHA CRÍTICA DE CONFIGURAÇÃO: Componente obrigatório 'audit_validator' indisponível ({_erro_importacao_validador}). Deploy bloqueado fatalmente."
+
+try:
+    from model_router import classificar_perfil_release, selecionar_modelo_auditoria, eh_projeto_habitflow
+except ImportError:
+    def classificar_perfil_release(base_sha=None, candidate_sha=None, repo_dir=None):
+        return "CLINICO_ROBUSTEZ_PRO"
+
+    def selecionar_modelo_auditoria(perfil_tarefa, repo_dir=None):
+        return {"model": "gpt-6-astra", "effort": "high", "tier": "Tier 4 - Clínico", "justificativa": "Fallback"}
+
+
+
+def adquirir_lock_deploy(root_dir):
+    """Garante exclusão mútua física para que apenas um publicador atue por vez."""
+    lock_path = os.path.join(root_dir, "data", ".deploy.lock")
+    os.makedirs(os.path.dirname(lock_path), exist_ok=True)
+    lock_file = open(lock_path, "a+")
+    try:
+        import fcntl
+        fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        return lock_file
+    except (BlockingIOError, IOError):
+        try:
+            lock_file.close()
+        except Exception:
+            pass
+        print("  [ERRO CRITICO] Bloqueio de exclusao mutua: outro processo de deploy ja esta ativo para este repositorio.\n")
+        sys.exit(1)
+
+
+def audit_and_checks_phase(skip_audit, root_dir, message=None):
+    """0. VERIFICACOES E AUDITORIA (ANTES DE QUALQUER MUTACAO NO BANCO OU GIT)"""
+    print("[0/3] Executando verificacoes de qualidade e auditoria preliminar...")
+    
+    # 0.1 Consolidação prévia do commit candidato para garantir que o SHA auditado seja exatamente o publicado
+    status_proc = subprocess.run(["git", "status", "--porcelain"], cwd=root_dir, capture_output=True, text=True)
+    if status_proc.stdout.strip():
+        print("  [i] Consolidando alteracoes locais pendentes antes da auditoria...")
+        subprocess.run(["git", "add", "-A"], cwd=root_dir, check=True)
+        msg = message or f"[deploy] Release {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}"
+        subprocess.run(["git", "commit", "-m", msg], cwd=root_dir, check=True)
+
+    # 0.2 Executa bateria de testes locais
+    tests_dir = os.path.join(root_dir, "tests")
+    if os.path.exists(tests_dir):
+        import shutil
+        test_cmd = [sys.executable, "-m", "pytest", "tests"] if shutil.which("pytest") else [sys.executable, "-m", "unittest", "discover", "tests"]
+        res_test = subprocess.run(test_cmd, cwd=root_dir, capture_output=True, text=True)
+        if res_test.returncode != 0:
+            print(f"  [ERRO CRITICO] Testes automatizados reprovados (codigo {res_test.returncode}).")
+            print(f"  {res_test.stderr.strip()[:300] or res_test.stdout.strip()[:300]}")
+            print("  Abortando deploy ANTES de qualquer sincronizacao de banco ou push.\n")
+            sys.exit(1)
+        print("  [OK] 100% dos testes automatizados aprovados.")
+
+    # 0.3 Resolução rigorosa do SHA candidato de 40 caracteres
+    res_head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root_dir, capture_output=True, text=True)
+    head_sha = res_head.stdout.strip()
+    if res_head.returncode != 0 or len(head_sha) != 40 or not all(c in "0123456789abcdefABCDEF" for c in head_sha):
+        print(f"  [ERRO CRITICO] Falha ao resolver SHA de 40 digitos do commit candidato: '{head_sha}'. Abortando.\n")
+        sys.exit(1)
+
+    # 0.4 Gate Obrigatório de Auditoria Cruzada (Padrão: ATIVO em produção)
+    exigir_auditoria = not skip_audit and (os.environ.get("MEDQUEST_CODEX_AUDIT", "1").strip().lower() in ["1", "true", "yes"])
+    if exigir_auditoria:
+        perfil_release = classificar_perfil_release(repo_dir=root_dir)
+        cfg_modelo_info = selecionar_modelo_auditoria(perfil_release, repo_dir=root_dir)
+        print(f"  [i] Verificando parecer de auditoria cruzada para {head_sha[:10]} (Perfil: {perfil_release} -> Modelo: {cfg_modelo_info['model']} [{cfg_modelo_info['effort']}])...")
+        audit_file = os.path.join(root_dir, "data", "auditorias_codex", f"audit_{head_sha}.json")
+        permitir_fallback_cota = os.environ.get("MEDQUEST_CODEX_FALLBACK_ON_QUOTA", "0").strip().lower() in ["1", "true", "yes"]
+        if not os.path.exists(audit_file):
+            if permitir_fallback_cota:
+                print(f"  [AVISO] Parecer de auditoria ausente para {head_sha[:10]} (cota esgotada). Prosseguindo deploy baseado em 100% de testes locais aprovados.")
+                print("  [OK] Verificacoes preliminares concluidas com sucesso!\n")
+                return head_sha
+            else:
+                print(f"  [ERRO CRITICO] Parecer de auditoria obrigatorio ausente para {head_sha[:10]}. Abortando deploy.\n")
+                sys.exit(1)
+
+        try:
+            with open(audit_file, "r", encoding="utf-8") as f:
+                dados_parecer = json.load(f)
+        except Exception as e:
+            print(f"  [ERRO CRITICO] Parecer de auditoria com JSON corrompido ou invalido ({e}). Abortando.\n")
+            sys.exit(1)
+
+        aprovado, motivo_bloqueio = avaliar_parecer_auditoria(dados_parecer, sha_esperado=head_sha)
+        if not aprovado:
+            print(f"  [ERRO CRITICO] DEPLOY REPROVADO NA AUDITORIA: {motivo_bloqueio}. Abortando deploy.\n")
+            sys.exit(1)
+
+        print(f"  [OK] Parecer de auditoria APROVADO sem ressalvas para {head_sha[:10]}.")
+
+    print("  [OK] Verificacoes preliminares concluidas com sucesso!\n")
+    return head_sha
 
 
 def sync_database_phase(skip_db, root_dir):
@@ -103,37 +221,36 @@ def sync_database_phase(skip_db, root_dir):
             if sync_ok:
                 print("  [OK] Banco de dados online (Turso) em sincronia total com o local!\n")
             else:
-                print("  [AVISO] Sincronizacao com o Turso finalizada com avisos.\n")
+                print("  [ERRO CRITICO] Sincronizacao com o Turso falhou! Abortando deploy para proteger producao.\n")
+                sys.exit(1)
         except Exception as e:
-            print(f"  [AVISO] Nao foi possivel sincronizar o banco com Turso: {e}\n")
+            print(f"  [ERRO CRITICO] Falha fatal ao sincronizar banco com Turso: {e}. Abortando deploy.\n")
+            sys.exit(1)
     else:
         print("[1/3] Sincronizacao do banco de dados pulada (--skip-db).\n")
 
 
-def deploy_git_phase(skip_git, message):
+def deploy_git_phase(skip_git, candidate_sha=None):
     """2. GIT LOCAL & DEPLOY NUVEM (Vercel + Render)"""
     if not skip_git:
-        print("[2/3] Processando alteracoes no repositorio local (Git)...")
+        print("[2/3] Processando publicacao no repositorio remoto (Git)...")
         status_proc = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
-        has_changes = bool(status_proc.stdout.strip())
+        if status_proc.stdout.strip():
+            print("  [ERRO CRITICO] Alteracoes nao auditadas detectadas apos a fase de auditoria! Abortando deploy.\n")
+            sys.exit(1)
 
-        if has_changes:
-            msg = message
-            if not msg:
-                timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-                if sys.stdin.isatty():
-                    user_input = input(f"  Digite a mensagem do commit (Enter para '[deploy] {timestamp}'): ").strip()
-                    msg = user_input if user_input else f"[deploy] Atualizacao {timestamp}"
-                else:
-                    msg = f"[deploy] Atualizacao {timestamp}"
+        branch_proc = subprocess.run(["git", "rev-parse", "--abbrev-ref", "HEAD"], capture_output=True, text=True)
+        branch_atual = branch_proc.stdout.strip()
+        if branch_atual != "main":
+            print(f"  [ERRO CRITICO] Branch atual '{branch_atual}' nao e 'main'. Abortando deploy.\n")
+            sys.exit(1)
 
-            print(f"  [i] Adicionando arquivos e realizando commit: '{msg}'")
-            run_command(["git", "add", "-A"])
-            run_command(["git", "commit", "-m", msg])
-        else:
-            print("  [i] Nenhuma alteracao pendente de commit local.")
+        sha_atual = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
+        if candidate_sha and sha_atual != candidate_sha:
+            print(f"  [ERRO CRITICO] Mudanca concorrente detectada: o commit HEAD atual '{sha_atual[:10]}' difere do candidato auditado '{candidate_sha[:10]}'. Abortando deploy.\n")
+            sys.exit(1)
 
-        print("  [i] Enviando commits para origin main...")
+        print("  [i] Enviando commits aprovados para origin main...")
         run_command(["git", "push", "origin", "main"])
         print("  [OK] Git push concluido com sucesso!")
         print(f"  [i] Vercel : Deploy automatico do Frontend iniciado -> {FRONTEND_PROD_URL}")
@@ -218,20 +335,32 @@ def main(cli_args=None):
     if root_dir:
         os.chdir(root_dir)
 
-    # 1. BANCO DE DADOS (LOCAL -> TURSO CLOUD ONLINE)
-    sync_database_phase(args.skip_db, root_dir)
+    # Bloqueio físico de exclusão mútua por projeto
+    _lock_handle = adquirir_lock_deploy(root_dir)
+    try:
+        # 0. VERIFICACOES E AUDITORIA PRELIMINAR (BLOQUEANTE)
+        candidate_sha = audit_and_checks_phase(args.skip_audit, root_dir, message=args.message)
 
-    if args.db_only:
-        print_summary(start_time, db_only=True)
-        return
+        # 1. BANCO DE DADOS (LOCAL -> TURSO CLOUD ONLINE)
+        sync_database_phase(args.skip_db, root_dir)
 
-    # 2. GIT LOCAL & DEPLOY NUVEM (Vercel + Render)
-    deploy_git_phase(args.skip_git, args.message)
+        if args.db_only:
+            print_summary(start_time, db_only=True)
+            return
 
-    # 3. DEPLOY REMOTO VIA SSH (OPCIONAL - APENAS SE --vps FOR ESPECIFICADO)
-    enable_vps = deploy_vps_phase(args.vps, args.skip_remote, args.user, args.host, args.key)
+        # 2. GIT LOCAL & DEPLOY NUVEM (Vercel + Render)
+        deploy_git_phase(args.skip_git, candidate_sha=candidate_sha)
 
-    print_summary(start_time, db_only=False, enable_vps=enable_vps, host=args.host)
+        # 3. DEPLOY REMOTO VIA SSH (OPCIONAL - APENAS SE --vps FOR ESPECIFICADO)
+        enable_vps = deploy_vps_phase(args.vps, args.skip_remote, args.user, args.host, args.key)
+
+        print_summary(start_time, db_only=False, enable_vps=enable_vps, host=args.host)
+    finally:
+        if _lock_handle:
+            try:
+                _lock_handle.close()
+            except Exception:
+                pass
 
 
 if __name__ == "__main__":

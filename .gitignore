@@ -89,3 +89,8 @@ archive/legacy/data/
 
 # Local pasted notes may contain credentials.
 /Pasted Text.txt
+
+# ── Runtime local / autoloop / agentes ───────────────────────────────
+data/
+.agents/
+

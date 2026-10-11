@@ -221,13 +221,18 @@ export function PreceptorFocusCard({
 
       {/* MODAL / GAVETA DO PARECER COMPLETO DA IA */}
       {isOpenModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-background/80 backdrop-blur-sm animate-in fade-in duration-200">
+        <div 
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="preceptor-focus-title"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-background/80 backdrop-blur-sm animate-in fade-in duration-200"
+        >
           <div className="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-3xl border border-border/80 bg-card shadow-2xl overflow-hidden">
             {/* Header do Modal */}
             <div className="flex items-center justify-between border-b border-border/60 p-4 sm:p-5 bg-muted/30">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-purple-500/15 text-purple-600 dark:text-purple-400 ring-1 ring-purple-500/30">
-                  <Brain className="h-5 w-5" />
+                  <Brain className="h-5 w-5" aria-hidden="true" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
@@ -238,7 +243,7 @@ export function PreceptorFocusCard({
                       Diagnóstico de Alto Rendimento
                     </span>
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold text-foreground">
+                  <h3 id="preceptor-focus-title" className="text-base sm:text-lg font-bold text-foreground">
                     Raio-X de Desempenho & Diretriz do Dia
                   </h3>
                 </div>
@@ -250,16 +255,18 @@ export function PreceptorFocusCard({
                   onClick={() => handleOpenAiDiagnosis(true)}
                   disabled={loadingAi}
                   title="Atualizar diagnóstico com IA"
-                  className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-colors disabled:opacity-50"
+                  aria-label="Atualizar diagnóstico com IA"
+                  className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-colors disabled:opacity-50 cursor-pointer"
                 >
-                  <RotateCcw className={`h-4 w-4 ${loadingAi ? "animate-spin" : ""}`} />
+                  <RotateCcw className={`h-4 w-4 ${loadingAi ? "animate-spin" : ""}`} aria-hidden="true" />
                 </button>
                 <button
                   type="button"
                   onClick={() => setIsOpenModal(false)}
-                  className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-colors"
+                  aria-label="Fechar diagnóstico do Preceptor IA"
+                  className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-colors cursor-pointer"
                 >
-                  <X className="h-5 w-5" />
+                  <X className="h-5 w-5" aria-hidden="true" />
                 </button>
               </div>
             </div>

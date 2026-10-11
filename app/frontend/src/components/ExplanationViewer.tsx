@@ -220,7 +220,7 @@ export function ExplanationViewer({
       <div 
         role="dialog"
         aria-modal="true"
-        aria-label="Figura Ampliada"
+        aria-label="Visualização de figura médica ampliada"
         className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
         onClick={() => setEnlargedImage(null)}
       >
@@ -231,12 +231,12 @@ export function ExplanationViewer({
             className="absolute -top-12 right-0 text-white/80 hover:text-white bg-black/50 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             aria-label="Fechar visualização de imagem"
           >
-            <X size={24} />
+            <X size={24} aria-hidden="true" />
           </button>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src={enlargedImage} 
-            alt="Figura Ampliada"
+            alt="Figura médica explicativa ampliada"
             className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl border border-white/10"
             onClick={(e) => e.stopPropagation()}
           />
@@ -249,7 +249,7 @@ export function ExplanationViewer({
     return (
       <div className="space-y-4">
         <div className="flex items-center gap-3 p-5 rounded-xl bg-muted/40 border border-border text-muted-foreground">
-          <AlertCircle size={18} />
+          <AlertCircle size={18} aria-hidden="true" />
           <span>Nenhum comentário oficial disponível para esta questão.</span>
         </div>
         {renderZoomModal()}
@@ -269,7 +269,7 @@ export function ExplanationViewer({
               ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 dark:text-emerald-200 w-full"
               : "bg-primary/10 border border-primary/20 text-primary w-fit"
           )}>
-            <Award size={20} className={clsx("shrink-0 mt-0.5 sm:mt-0", isDiscursiveDetected ? "text-emerald-600 dark:text-emerald-400" : "text-primary")} />
+            <Award size={20} aria-hidden="true" className={clsx("shrink-0 mt-0.5 sm:mt-0", isDiscursiveDetected ? "text-emerald-600 dark:text-emerald-400" : "text-primary")} />
             <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
               <span className="font-bold text-xs sm:text-sm uppercase tracking-wider opacity-90">
                 {isDiscursiveDetected ? "Resposta Esperada pela Banca (Gabarito):" : "Gabarito Oficial:"}
@@ -285,7 +285,7 @@ export function ExplanationViewer({
         {parsed.puloDoGato && (
           <div className="relative overflow-hidden rounded-2xl bg-amber-500/10 border border-amber-500/25 p-5 md:p-6 text-foreground shadow-sm">
             <div className="flex items-center gap-2 text-amber-700 dark:text-amber-400 font-bold text-sm md:text-base uppercase tracking-wider mb-2">
-              <Sparkles size={18} className="shrink-0 animate-pulse" />
+              <Sparkles size={18} aria-hidden="true" className="shrink-0 animate-pulse" />
               <span>Pulo do Gato</span>
             </div>
             <div className="text-foreground text-sm md:text-base leading-relaxed font-medium">
@@ -298,7 +298,7 @@ export function ExplanationViewer({
         {parsed.padraoResposta && (
           <div className="rounded-2xl bg-primary/10 border border-primary/25 p-5 md:p-6 text-foreground shadow-sm">
             <div className="flex items-center gap-2 text-primary font-bold text-sm md:text-base uppercase tracking-wider mb-2">
-              <Award size={18} className="shrink-0" />
+              <Award size={18} aria-hidden="true" className="shrink-0" />
               <span>Padrão de Resposta Oficial da Banca</span>
             </div>
             <div className="text-foreground text-sm md:text-base leading-relaxed font-medium">
@@ -311,7 +311,7 @@ export function ExplanationViewer({
         {parsed.raciocinioClinico && (
           <div className="rounded-2xl bg-blue-500/10 border border-blue-500/20 p-5 md:p-6 text-foreground">
             <div className="flex items-center gap-2 text-blue-700 dark:text-blue-400 font-bold text-sm md:text-base uppercase tracking-wider mb-2">
-              <Stethoscope size={18} className="shrink-0" />
+              <Stethoscope size={18} aria-hidden="true" className="shrink-0" />
               <span>{isDiscursiveDetected ? "Padrão de Resposta da Banca & Comentário" : "Raciocínio Clínico"}</span>
             </div>
             <div className="text-foreground text-sm md:text-base leading-relaxed">
@@ -324,7 +324,7 @@ export function ExplanationViewer({
         {!isDiscursiveDetected && parsed.alternativaCorreta && (
           <div className="rounded-2xl bg-emerald-500/10 border border-emerald-500/25 p-5 md:p-6 text-foreground">
             <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm md:text-base uppercase tracking-wider mb-2">
-              <CheckCircle2 size={18} className="shrink-0" />
+              <CheckCircle2 size={18} aria-hidden="true" className="shrink-0" />
               <span>
                 Alternativa Correta {parsed.alternativaCorreta.letter ? `(${parsed.alternativaCorreta.letter})` : (correctLetter ? `(${correctLetter})` : "")}
               </span>
@@ -339,7 +339,7 @@ export function ExplanationViewer({
         {!isDiscursiveDetected && parsed.distratores && parsed.distratores.length > 0 && (
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-muted-foreground font-bold text-xs uppercase tracking-wider px-1">
-              <XCircle size={14} className="text-rose-500" />
+              <XCircle size={14} aria-hidden="true" className="text-rose-500" />
               <span>Análise das Alternativas Incorretas</span>
             </div>
             <div className="grid gap-2.5">

@@ -174,12 +174,13 @@ def synthesize_explanation(question_id):
     if not q:
         return jsonify({"error": "Questão não encontrada"}), 404
 
-    # Se já possui explicação e não é para forçar regeneração, retorna a existente
-    if q["explanation_text"] and not data.force_regenerate:
+    # Comentários e resoluções de questões foram elaborados por professores de residência.
+    # São canônicos e congelados: nunca sobrescrever ou gastar tokens de IA tentando revisá-los.
+    if q["explanation_text"]:
         return jsonify({
             "question_id": question_id,
             "explanation_text": q["explanation_text"],
-            "source": "cached_db"
+            "source": "canonical_professor_locked"
         })
 
     alts = db.execute("""

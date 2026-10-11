@@ -32,7 +32,7 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
   onToggleEliminate,
 }) => {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3" role="region" aria-label="Alternativas da questão">
       {alternatives.map((alt) => {
         const isSelected = selectedLetter === alt.letter;
         const isCorrect =
@@ -58,6 +58,15 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
             altClass = "bg-card border-border opacity-40 cursor-default";
           }
         }
+
+        const altAriaStatus = [
+          isEliminated ? "riscada" : "",
+          isSelected ? "selecionada" : "",
+          attemptResult && isCorrect ? "gabarito correto" : "",
+          attemptResult && isWrong ? "resposta incorreta" : "",
+        ].filter(Boolean).join(", ");
+
+        const altAriaLabel = `Alternativa ${alt.letter}: ${alt.text.replace(/\s+/g, " ").trim()}${altAriaStatus ? ` (${altAriaStatus})` : ""}`;
 
         return (
           <motion.div
@@ -90,6 +99,7 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
               "group relative text-left p-3.5 sm:p-4 rounded-xl border transition-all flex items-start gap-2.5 sm:gap-3 w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 select-none",
               altClass
             )}
+            aria-label={altAriaLabel}
             aria-pressed={isSelected}
             aria-disabled={!!attemptResult || submitting}
           >
@@ -121,19 +131,21 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
               >
                 <Scissors
                   size={15}
+                  aria-hidden="true"
                   className={clsx("transition-transform duration-150", isEliminated && "rotate-45")}
                 />
               </button>
             ) : (
-              <div className="w-6 h-8 shrink-0 flex items-center justify-center text-muted-foreground/40">
+              <div className="w-6 h-8 shrink-0 flex items-center justify-center text-muted-foreground/40" aria-hidden="true">
                 {isEliminated && !isCorrect && (
-                  <Scissors size={13} className="opacity-40 rotate-45 text-destructive" />
+                  <Scissors size={13} aria-hidden="true" className="opacity-40 rotate-45 text-destructive" />
                 )}
               </div>
             )}
 
             {/* Badge da Letra */}
             <div
+              aria-hidden="true"
               className={clsx(
                 "w-8 h-8 shrink-0 flex items-center justify-center rounded-lg font-bold text-sm transition-colors",
                 isSelected && !attemptResult
@@ -156,6 +168,7 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
 
             {/* Texto da Alternativa */}
             <div
+              aria-hidden="true"
               className={clsx(
                 "pt-1 text-foreground leading-relaxed flex-1 transition-all",
                 isEliminated && !isCorrect && "line-through text-muted-foreground/75 decoration-muted-foreground/60"

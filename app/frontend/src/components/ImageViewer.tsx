@@ -60,22 +60,24 @@ export function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerProps) {
             className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors bg-black/50 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             aria-label="Fechar visualização de imagem"
           >
-            <span className="material-symbols-outlined text-2xl">close</span>
+            <span className="material-symbols-outlined text-2xl" aria-hidden="true">close</span>
           </button>
 
           {/* Controles de Zoom */}
           <div 
             className="absolute bottom-6 flex items-center gap-4 bg-black/60 px-4 py-2 rounded-full text-white/90"
             onClick={(e) => e.stopPropagation()}
+            role="toolbar"
+            aria-label="Controles de zoom da imagem"
           >
             <button 
               onClick={() => setScale((s) => Math.max(s - 0.5, 1))}
               className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-white/20 rounded-full transition-colors cursor-pointer"
               aria-label="Diminuir zoom"
             >
-              <span className="material-symbols-outlined text-xl">zoom_out</span>
+              <span className="material-symbols-outlined text-xl" aria-hidden="true">zoom_out</span>
             </button>
-            <span className="text-sm font-medium min-w-[3rem] text-center select-none">
+            <span className="text-sm font-medium min-w-[3rem] text-center select-none" aria-live="polite">
               {Math.round(scale * 100)}%
             </span>
             <button 
@@ -83,13 +85,13 @@ export function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerProps) {
               className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-white/20 rounded-full transition-colors cursor-pointer"
               aria-label="Aumentar zoom"
             >
-              <span className="material-symbols-outlined text-xl">zoom_in</span>
+              <span className="material-symbols-outlined text-xl" aria-hidden="true">zoom_in</span>
             </button>
           </div>
 
           <motion.img
             src={src}
-            alt={alt || "Imagem ampliada"}
+            alt={alt || "Imagem médica ampliada"}
             className="max-w-[95vw] max-h-[95vh] object-contain cursor-grab active:cursor-grabbing rounded-lg shadow-2xl"
             drag
             dragConstraints={{ left: -500, right: 500, top: -500, bottom: 500 }}

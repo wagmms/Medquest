@@ -99,21 +99,35 @@ function renderInline(
       const alt = mdImgMatch[1];
       const src = normalizeImageSrc(mdImgMatch[2]);
       const isFileNameAlt = !alt || /\.(png|jpe?g|webp|gif|svg|blob)$/i.test(alt) || /^(image|figura|blob|imagem)$/i.test(alt) || alt === "Figura Explicativa";
+      const imageLabel = !isFileNameAlt && alt ? `Ampliar figura: ${alt}` : "Ampliar imagem médica";
       return (
         <span key={idx} className="block my-3 text-center">
           <span 
-            className="inline-block relative group rounded-xl overflow-hidden border border-border bg-muted/20 cursor-zoom-in hover:shadow-md transition-all max-w-full"
+            role={onImageClick ? "button" : undefined}
+            tabIndex={onImageClick ? 0 : undefined}
+            aria-label={onImageClick ? imageLabel : undefined}
+            className={`inline-block relative group rounded-xl overflow-hidden border border-border bg-muted/20 max-w-full ${
+              onImageClick ? "cursor-zoom-in hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" : ""
+            }`}
             onClick={() => onImageClick && onImageClick(src)}
+            onKeyDown={(e) => {
+              if (onImageClick && (e.key === "Enter" || e.key === " ")) {
+                e.preventDefault();
+                onImageClick(src);
+              }
+            }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src={src} 
-              alt={alt || "Figura"} 
+              alt={alt || "Figura médica"} 
               className="w-full h-auto object-contain max-h-[350px] mx-auto hover:scale-[1.02] transition-transform duration-300 rounded-lg"
             />
-            <span className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center pointer-events-none">
-              <Maximize size={20} className="text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-md" />
-            </span>
+            {onImageClick && (
+              <span className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center pointer-events-none" aria-hidden="true">
+                <Maximize size={20} className="text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-md" />
+              </span>
+            )}
           </span>
           {!isFileNameAlt && (
             <span className="block text-xs text-muted-foreground mt-1 text-center italic">{alt}</span>
@@ -129,18 +143,31 @@ function renderInline(
       return (
         <span key={idx} className="block my-3 text-center">
           <span 
-            className="inline-block relative group rounded-xl overflow-hidden border border-border bg-muted/20 cursor-zoom-in hover:shadow-md transition-all max-w-full"
+            role={onImageClick ? "button" : undefined}
+            tabIndex={onImageClick ? 0 : undefined}
+            aria-label={onImageClick ? "Ampliar imagem médica" : undefined}
+            className={`inline-block relative group rounded-xl overflow-hidden border border-border bg-muted/20 max-w-full ${
+              onImageClick ? "cursor-zoom-in hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" : ""
+            }`}
             onClick={() => onImageClick && onImageClick(src)}
+            onKeyDown={(e) => {
+              if (onImageClick && (e.key === "Enter" || e.key === " ")) {
+                e.preventDefault();
+                onImageClick(src);
+              }
+            }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src={src} 
-              alt="Figura" 
+              alt="Figura médica" 
               className="w-full h-auto object-contain max-h-[350px] mx-auto hover:scale-[1.02] transition-transform duration-300 rounded-lg"
             />
-            <span className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center pointer-events-none">
-              <Maximize size={20} className="text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-md" />
-            </span>
+            {onImageClick && (
+              <span className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center pointer-events-none" aria-hidden="true">
+                <Maximize size={20} className="text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-md" />
+              </span>
+            )}
           </span>
         </span>
       );

@@ -11,33 +11,29 @@
 ---
 
 ## 🔄 Próxima Tarefa em Andamento
-- [ ] **Tipagem Estrita e Acessibilidade em Componentes de Questão (Frontend)**
-  - Revisar componentes em `app/frontend/src/components` para eliminar `any` implícito no TypeScript e assegurar atributos ARIA acessíveis.
-  - Executar `npm run lint` em `app/frontend` para garantir zero avisos.
+- [ ] Otimizar contagem de questões em `app/backend/api/question_routes.py` no endpoint `/api/questions/counts` garantindo índices compostos `idx_questions_area_subtema` e query com tempo de resposta < 10ms mantendo total compatibilidade com `TursoConnection`.
 
 ---
 
-## 📋 Backlog Prioritário (Tarefas Atômicas e Seguras)
-1. [ ] **Resiliência e Cache de Consultas SQLite Locais (Backend)**
-   - Otimizar indexação de subtemas e áreas médicas em consultas frequentes de contagem de questões.
-   - Manter total compatibilidade com `TursoConnection` em `api/db.py`.
-
-2. [ ] **Validação Defensiva de Parâmetros FSRS v6 (Backend)**
-   - Adicionar testes de estresse em `app/backend/tests/test_fsrs.py` para garantir que intervalos de repetição nunca retornem valores negativos ou passos intradia indesejados.
-
-3. [ ] **Auditoria de Componentes de Layout PWA e Offline (Frontend)**
-   - Verificar sincronização do Dexie no frontend para casos de perda momentânea de conexão de rede.
+## 📋 Backlog Prioritário (Tarefas Cirúrgicas)
+1. [ ] Adicionar testes de estresse em `app/backend/tests/test_fsrs.py` na classe `TestFSRSValidation` garantindo que intervalos de repetição nunca retornem valores negativos ou passos intradia indesejados.
+2. [ ] Reforçar resiliência de cache em `app/frontend/src/lib/db.ts` no método `syncQuestions` assegurando tratamento defensivo de falha de conexão e rollback transacional no Dexie.
+3. [ ] Criar validação de existência prévia em `app/backend/api/question_routes.py` na função `toggle_favorite` prevenindo inserção de `question_id` inexistente no banco.
 
 ---
 
-## 💡 Sugestões de Melhorias Futuras
-- Adicionar painel de telemetria de latência para consultas LibSQL/Turso.
-- Implementar prefetch inteligente de próximas questões no modo offline do PWA.
-- Validar existência de question_id em toggle_favorite para prevenir favoritos de IDs órfãos.
-- Criar benchmark automatizado de carga para endpoints de fila adaptativa e remediação.
+## 💡 Sugestões de Melhorias Futuras (Buffer Recente)
+- Telemetria de latência para consultas remotas LibSQL/Turso Cloud em `api/db.py`.
+- Prefetch inteligente de próximas questões no modo offline do PWA via Dexie.
+- Suporte completo a navegação por teclado nos modais de curadoria médica.
+- Benchmark automatizado de carga para endpoints de fila adaptativa e remediação.
+- Auditoria de contraste WCAG AAA para badges de temas médicos nos modos claro e escuro.
+
+> 💡 Catálogo completo de sugestões arquivado em [docs/SUGESTOES_FUTURAS.md](docs/SUGESTOES_FUTURAS.md)
 
 ---
 
-## ✅ Histórico de Tarefas Concluídas
-- [x] **Auditoria e Cobertura de Testes Unitários de API (Backend)** (Expandida suíte test_api.py com 10 novos testes cobrindo filtros de área/ano/subtema, status wrong/answered, toggle de favoritos, contagens, overview zero-state, distratores, modos adaptativos e correção do edge-case NOT IN (NULL) em remediation)
-- [x] **Configuração da Branch Segura autoloop/dev e Correção de Data Fixa em test_planner.py** (Setup inicial blindado)
+## ✅ Última Tarefa Concluída
+- [x] **Tipagem Estrita e Acessibilidade em Componentes de Questão (Frontend)**: Revisados e blindados componentes de questão (`AlternativeList.tsx`, `ExplanationViewer.tsx`, `QuestionClassificationModal.tsx`, `PreceptorFocusCard.tsx`, `QuizTimer.tsx`, `FormattedContent.tsx`, `ImageViewer.tsx`), eliminando riscos de tipagem, adicionando papéis semânticos ARIA, estados `aria-pressed`, `aria-hidden` em ícones decorativos e rótulos acessíveis com zero avisos no linter (`npm run lint`) e 100% de aprovação em `./validate.sh fast`.
+
+> 📁 Histórico completo arquivado em [CHANGELOG.md](CHANGELOG.md)

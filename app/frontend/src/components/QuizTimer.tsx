@@ -66,8 +66,12 @@ export const QuizTimer = forwardRef<QuizTimerHandle, QuizTimerProps>(({
   };
 
   return (
-    <div className={`flex items-center gap-1.5 font-mono ${className}`}>
-      <Clock size={16} />
+    <div 
+      role="timer"
+      aria-label={`Tempo decorrido: ${formatTime(timeSpent)}`}
+      className={`flex items-center gap-1.5 font-mono ${className}`}
+    >
+      <Clock size={16} aria-hidden="true" />
       <span>{formatTime(timeSpent)}</span>
     </div>
   );

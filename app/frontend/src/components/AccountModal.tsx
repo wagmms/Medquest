@@ -409,6 +409,8 @@ export function AccountModal({ isOpen, onClose }: AccountModalProps) {
                                     key={day.id}
                                     type="button"
                                     onClick={() => toggleDay(day.id)}
+                                    aria-pressed={isSelected}
+                                    aria-label={`Receber notificações de revisão em ${day.label}`}
                                     className={`py-1.5 text-xs font-bold rounded-lg border transition-all cursor-pointer ${
                                       isSelected
                                         ? "bg-primary text-primary-foreground border-primary"

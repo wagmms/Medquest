@@ -105,3 +105,16 @@ Ao testar ou validar alterações, utilize sempre os comandos canônicos:
   ./deploy.sh               # Sync do SQLite com Turso Cloud + Git Commit/Push
   ./deploy.sh --db-only     # Apenas sincronização de banco
   ```
+
+---
+
+## 6. Diretriz Inviolável: Bloqueio de Alteração de Comentários de Residência
+
+1. **Autoria Oficial de Professores**:
+   * Os comentários e resoluções das questões de residência médica (armazenados na tabela `explanations` e arquivos canônicos) foram elaborados diretamente por professores e especialistas médicos.
+2. **Proibição Absoluta de Revisão por IA & Zero Token Waste**:
+   * É terminantemente proibido a qualquer agente, script ou modelo de IA (Gemini, GPT/Codex) propor, sintetizar, parafrasear, reescrever ou revisar os comentários de residência.
+   * Nunca gaste tokens de IA em auditorias ou reprocessamento desses comentários.
+3. **Imutabilidade Canônica**:
+   * O banco de dados e as rotas de backend devem tratar a tabela `explanations` existente como **estritamente somente-leitura**. Nenhuma rotina de IA pode sobrescrever o conteúdo elaborado pelos professores.
+

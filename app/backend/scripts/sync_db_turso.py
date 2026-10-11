@@ -53,10 +53,29 @@ def execute_turso_pipeline(url: str, token: str, requests_list: list, timeout: i
         req = urllib.request.Request(url, data=payload, headers=headers, method="POST")
         try:
             with urllib.request.urlopen(req, timeout=timeout) as resp:
-                return json.loads(resp.read().decode("utf-8"))
+                resp_data = json.loads(resp.read().decode("utf-8"))
+                if not isinstance(resp_data, dict):
+                    raise RuntimeError("Resposta do Turso Pipeline não é um objeto JSON válido.")
+                if "error" in resp_data:
+                    raise RuntimeError(f"Erro global no Turso Pipeline: {resp_data['error']}")
+                results = resp_data.get("results")
+                if not isinstance(results, list):
+                    raise RuntimeError("Campo 'results' ausente ou inválido na resposta do Turso Pipeline.")
+                if requests_list and len(results) != len(requests_list):
+                    raise RuntimeError(f"Resposta incompleta do Turso Pipeline: esperados {len(requests_list)} resultados, mas recebidos {len(results)}.")
+                for idx, r in enumerate(results):
+                    if not isinstance(r, dict) or not r:
+                        raise RuntimeError(f"Resultado {idx+1}/{len(results)} da resposta do Turso está vazio ou não é um objeto válido.")
+                    if r.get("type") == "error" or "error" in r:
+                        err_detail = r.get("error", "Erro SQL desconhecido")
+                        raise RuntimeError(f"Erro em statement SQL {idx+1}/{len(results)} retornado pelo Turso: {err_detail}")
+                    tem_confirmacao = (r.get("type") in ("ok", "execute")) or ("response" in r and isinstance(r["response"], dict))
+                    if not tem_confirmacao:
+                        raise RuntimeError(f"Resultado {idx+1}/{len(results)} do Turso não contém confirmação válida de sucesso: {r}")
+                return resp_data
         except Exception as e:
             last_err = e
-            if attempt < retries:
+            if attempt < retries and not isinstance(e, RuntimeError):
                 time.sleep(attempt * 2)
             else:
                 raise last_err
