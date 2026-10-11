@@ -11,14 +11,14 @@
 ---
 
 ## 🔄 Próxima Tarefa em Andamento
-- [ ] Otimizar contagem de questões em `app/backend/api/question_routes.py` no endpoint `/api/questions/counts` garantindo índices compostos `idx_questions_area_subtema` e query com tempo de resposta < 10ms mantendo total compatibilidade com `TursoConnection`.
+- [ ] Adicionar testes de estresse em `app/backend/tests/test_srs.py` na classe `TestFSRSValidation` garantindo que intervalos de repetição FSRS v6 nunca retornem valores negativos ou passos intradia indesejados (< 24h) com retenção calibrada em 0.85.
 
 ---
 
 ## 📋 Backlog Prioritário (Tarefas Cirúrgicas)
-1. [ ] Adicionar testes de estresse em `app/backend/tests/test_fsrs.py` na classe `TestFSRSValidation` garantindo que intervalos de repetição nunca retornem valores negativos ou passos intradia indesejados.
-2. [ ] Reforçar resiliência de cache em `app/frontend/src/lib/db.ts` no método `syncQuestions` assegurando tratamento defensivo de falha de conexão e rollback transacional no Dexie.
-3. [ ] Criar validação de existência prévia em `app/backend/api/question_routes.py` na função `toggle_favorite` prevenindo inserção de `question_id` inexistente no banco.
+1. [ ] Reforçar resiliência de cache em `app/frontend/src/lib/db.ts` no método `syncQuestions` assegurando tratamento defensivo de falha de conexão e rollback transacional no Dexie.
+2. [ ] Criar validação de existência prévia em `app/backend/api/questions.py` na função `toggle_favorite` prevenindo inserção de `question_id` inexistente na tabela `favorites`.
+3. [ ] Implementar telemetria de latência em `app/backend/api/db.py` no método `_execute_with_reconnect` medindo tempos de roundtrip em consultas remotas LibSQL.
 
 ---
 
@@ -34,6 +34,6 @@
 ---
 
 ## ✅ Última Tarefa Concluída
-- [x] **Tipagem Estrita e Acessibilidade em Componentes de Questão (Frontend)**: Revisados e blindados componentes de questão (`AlternativeList.tsx`, `ExplanationViewer.tsx`, `QuestionClassificationModal.tsx`, `PreceptorFocusCard.tsx`, `QuizTimer.tsx`, `FormattedContent.tsx`, `ImageViewer.tsx`), eliminando riscos de tipagem, adicionando papéis semânticos ARIA, estados `aria-pressed`, `aria-hidden` em ícones decorativos e rótulos acessíveis com zero avisos no linter (`npm run lint`) e 100% de aprovação em `./validate.sh fast`.
+- [x] **Otimização de Contagem de Questões e Cache TTL (Backend)**: Otimizado endpoint `/api/questions/count` e alias `/api/questions/counts` em `app/backend/api/questions.py` com `count_cache` (TTL 60s, max 1000 entradas), aproveitamento do índice composto `idx_questions_area_subtema` (< 10ms), invalidação por usuário em `invalidate_user_caches` e cobertura completa em `tests/test_api.py`.
 
 > 📁 Histórico completo arquivado em [CHANGELOG.md](CHANGELOG.md)

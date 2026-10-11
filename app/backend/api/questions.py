@@ -66,6 +66,7 @@ class SimpleTTLCache:
                 del self.cache[key]
 
 meta_cache = SimpleTTLCache(60)
+count_cache = SimpleTTLCache(60, max_size=1000)
 
 bp = Blueprint("questions", __name__)
 
@@ -73,6 +74,7 @@ bp = Blueprint("questions", __name__)
 def invalidate_user_caches(user_id):
     """Invalidate every derived per-user view after a successful mutation."""
     meta_cache.clear_user(user_id)
+    count_cache.clear_user(user_id)
     from .stats import overview_cache
     overview_cache.clear_user(user_id)
 
@@ -721,11 +723,27 @@ def questions_remediation():
 
 
 @bp.route("/questions/count")
+@bp.route("/questions/counts")
 def questions_count():
+    normalized_args = tuple(sorted(
+        (key, tuple(sorted(values)))
+        for key, values in request.args.lists()
+    ))
+    user_dependent_keys = ("status", "unanswered_only", "favorite")
+    is_user_scoped = any(k in request.args for k in user_dependent_keys)
+    cache_key = (getattr(g, "user_id", None) if is_user_scoped else None, normalized_args)
+
+    cached = count_cache.get(cache_key)
+    if cached is not None:
+        return jsonify({"count": cached})
+
     db = get_db()
     clauses, params = question_filter_clauses(request.args)
     where = " AND ".join(clauses)
-    n = db.execute(f"SELECT COUNT(*) n FROM questions q WHERE {where}", params).fetchone()["n"]
+    row = db.execute(f"SELECT COUNT(*) AS n FROM questions q WHERE {where}", params).fetchone()
+    n = row["n"] if row else 0
+
+    count_cache.set(cache_key, n)
     return jsonify({"count": n})
 
 

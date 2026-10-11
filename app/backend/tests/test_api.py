@@ -367,15 +367,38 @@ def test_question_detail_and_attempt_not_found(client):
 
 
 def test_questions_count_with_filters(client):
-    # Total geral
+    import time
+    from api.db import get_db
+
+    # Total geral em ambos os endpoints (/count e alias /counts)
     c_all = client.get("/api/questions/count")
     assert c_all.status_code == 200
     assert c_all.get_json()["count"] == 3
 
+    c_counts = client.get("/api/questions/counts")
+    assert c_counts.status_code == 200
+    assert c_counts.get_json()["count"] == 3
+
     # Por grande área
-    c_ped = client.get("/api/questions/count?area=Pediatria")
+    c_ped = client.get("/api/questions/counts?area=Pediatria")
     assert c_ped.status_code == 200
     assert c_ped.get_json()["count"] == 2
+
+    # Por área e subtema (utilizando índice composto idx_questions_area_subtema)
+    t0 = time.perf_counter()
+    c_ped_sub = client.get("/api/questions/counts?area=Pediatria&subtema=Imunização (PNI)")
+    dt_ms = (time.perf_counter() - t0) * 1000
+    assert c_ped_sub.status_code == 200
+    assert c_ped_sub.get_json()["count"] == 1
+    assert dt_ms < 50.0  # Execução hermética muito abaixo de 10ms fora do primeiro overhead HTTP
+
+    # Segunda chamada atinge count_cache em memória com latência mínima (< 10ms)
+    t_cache_0 = time.perf_counter()
+    c_cached = client.get("/api/questions/counts?area=Pediatria&subtema=Imunização (PNI)")
+    dt_cache_ms = (time.perf_counter() - t_cache_0) * 1000
+    assert c_cached.status_code == 200
+    assert c_cached.get_json()["count"] == 1
+    assert dt_cache_ms < 10.0
 
     # Por instituição
     c_usp = client.get("/api/questions/count?institution=USP-SP")
@@ -383,9 +406,30 @@ def test_questions_count_with_filters(client):
     assert c_usp.get_json()["count"] == 1
 
     # Por área sem questões
-    c_cir = client.get("/api/questions/count?area=Cirurgia")
+    c_cir = client.get("/api/questions/counts?area=Cirurgia")
     assert c_cir.status_code == 200
     assert c_cir.get_json()["count"] == 0
+
+    # Garante que o índice composto idx_questions_area_subtema está presente no banco
+    with client.application.app_context():
+        db = get_db()
+        idx_rows = db.execute("PRAGMA index_list('questions')").fetchall()
+        idx_names = [r["name"] if isinstance(r, dict) or hasattr(r, "keys") else r[1] for r in idx_rows]
+        assert "idx_questions_area_subtema" in idx_names
+
+    # Testa invalidação de cache atrelado ao usuário após submissão de tentativa
+    c_unans_before = client.get("/api/questions/counts?status=unanswered")
+    assert c_unans_before.status_code == 200
+    assert c_unans_before.get_json()["count"] == 3
+
+    # Aluno responde questão 1
+    attempt_res = client.post("/api/questions/1/attempt", json={"selected_letter": "B"})
+    assert attempt_res.status_code == 200
+
+    # Contagem de unanswered atualizada sem cache obsoleto
+    c_unans_after = client.get("/api/questions/counts?status=unanswered")
+    assert c_unans_after.status_code == 200
+    assert c_unans_after.get_json()["count"] == 2
 
 
 def test_stats_overview_zero_state_and_tz_offset(client):

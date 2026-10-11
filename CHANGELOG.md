@@ -4,6 +4,14 @@ Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
 ---
 
+## [2026-10-11] - Ciclo Autoloop: Otimização de Contagem de Questões e Cache TTL
+- **Performance e Resiliência na Contagem de Questões (Backend)**:
+  - `app/backend/api/questions.py`: Implementado suporte unificado a `/api/questions/count` e `/api/questions/counts` com cache em memória `count_cache` (TTL 60s, max 1000 entradas), separando escopo de catálogo global de filtros atrelados a usuário (`status`, `unanswered_only`, `favorite`), com tempo de resposta < 10ms.
+  - `app/backend/api/questions.py`: Invalidação de `count_cache` por usuário integrada à rotina `invalidate_user_caches(user_id)` após respostas e revisões.
+  - `app/backend/tests/test_api.py`: Expandido teste `test_questions_count_with_filters` validando alias `/counts`, combinação de `area` e `subtema` via índice composto `idx_questions_area_subtema`, resposta imediata do cache em memória e invalidação atrelada ao usuário.
+
+---
+
 ## [2026-10-11] - Ciclo Autoloop: Tipagem Estrita e Acessibilidade em Componentes de Questão
 - **Acessibilidade e Semântica ARIA no Frontend**:
   - `app/frontend/src/app/estudar/components/AlternativeList.tsx`: Adicionado container com `role="region"` e `aria-label="Alternativas da questão"`, `aria-label` descritivo e sintetizado em cada alternativa com estado dinâmico (selecionada/riscada/gabarito), além de `aria-hidden="true"` nos ícones e marcadores visuais.
