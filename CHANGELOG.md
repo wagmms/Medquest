@@ -2,6 +2,13 @@
 
 Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
+## [2026-10-11] - Ciclo Autoloop: Guardrail de Sanitização e Parsing Defensivo em ExplanationViewer
+- **Sanitização de Delimitadores Residuais e Robustez em Explicações (Frontend)**:
+  - `app/frontend/src/components/ExplanationViewer.tsx`: Implementada a função `cleanSectionDelimiters` e atualizada a função `parseExplanation` com guardrails defensivos (`try/catch`, validação estrita de tipos e fallback gracioso), eliminando delimitadores residuais órfãos (asteriscos de fechamento em cabeçalhos colon-inside como `**Cabeçalho:**`, dois-pontos soltos, divisores horizontais vazios e quebras) em todas as seções clínicas (`puloDoGato`, `raciocinioClinico`, `padraoResposta`, `alternativaCorreta` e `distratores`), eliminando distratores fantasmas e preservando estritamente a formatação legítima de listas e comentários canônicos de professores.
+  - `app/frontend/scripts/tests/explanation-viewer-sanitization.test.mjs`: Criada suíte com 5 testes unitários cobrindo sanitização de delimitadores órfãos, fallback defensivo para dados nulos/corrompidos/não-string, comentários colon-inside, seções discursivas e isolamento de Raciocínio Clínico (100% de aprovação em `npm run test:unit` e `./validate.sh fast`).
+
+---
+
 ## [2026-10-11] - Ciclo Autoloop: Clamp Defensivo de Intervalo Mínimo D+1 no FSRS
 - **Integridade Temporal e Robustez no Agendamento SRS (Backend)**:
   - `app/backend/api/srs.py`: Implementado clamp defensivo incondicional na função `review` assegurando que todo agendamento `due` gerado respeite rigorosamente `D+1` (`>= 24 horas` a partir de `now`), protegendo tanto o payload do `Card` serializado quanto o valor ISO retornado contra drift de relógio do servidor, passos intradia acidentais ou estados numéricos degenerados, mantendo suporte opcional a `now` determinístico para testes e auditorias temporais.

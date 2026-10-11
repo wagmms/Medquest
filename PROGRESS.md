@@ -11,14 +11,14 @@
 ---
 
 ## 🔄 Próxima Tarefa em Andamento
-- [ ] Implementar guardrail de sanitização em `app/frontend/src/components/ExplanationViewer.tsx` na função `parseExplanation` assegurando fallback defensivo e limpeza de delimitadores residuais órfãos em seções clínicas sem alterar ou mutar o conteúdo canônico original.
+- [ ] Implementar rotina de recuperação de quota e evicção em `app/frontend/src/lib/db.ts` no método `syncQuestions` expurgando pacotes expirados de `simuladoPackages` quando detectado `QuotaExceededError` com testes unitários em `app/frontend/scripts/tests/sync-questions-cache.test.mjs`.
 
 ---
 
 ## 📋 Backlog Prioritário (Tarefas Cirúrgicas)
-1. [ ] Implementar rotina de recuperação de quota e evicção em `app/frontend/src/lib/db.ts` no método `syncQuestions` expurgando pacotes expirados de `simuladoPackages` quando detectado `QuotaExceededError` com testes unitários em `app/frontend/scripts/tests/sync-questions-cache.test.mjs`.
-2. [ ] Implementar recuperação defensiva e fallback para payload legado em `app/backend/api/questions.py` na rota `attempt` regenerando estado inicial caso o JSON de `user_question_fsrs` esteja corrompido com cobertura em `app/backend/tests/test_api.py`.
-3. [ ] Implementar trap-focus e atalhos de navegação por teclado em `app/frontend/src/components/QuestionClassificationModal.tsx` no componente modal assegurando conformidade WCAG 2.1 AA sem dependências externas.
+1. [ ] Implementar recuperação defensiva e fallback para payload legado em `app/backend/api/questions.py` na rota `attempt` regenerando estado inicial caso o JSON de `user_question_fsrs` esteja corrompido com cobertura em `app/backend/tests/test_api.py`.
+2. [ ] Implementar trap-focus e atalhos de navegação por teclado em `app/frontend/src/components/QuestionClassificationModal.tsx` no componente modal assegurando conformidade WCAG 2.1 AA sem dependências externas.
+3. [ ] Implementar padronização de respostas de erro e contrato JSON em `app/backend/api/questions.py` nas rotas `attempt` e `review` retornando payload estruturado `{"error": "...", "code": "..."}` com cobertura em `app/backend/tests/test_api.py`.
 
 ---
 
@@ -34,7 +34,7 @@
 ---
 
 ## ✅ Última Tarefa Concluída
-- [x] **Clamp Defensivo de Intervalo Mínimo FSRS D+1 (Backend)**: Implementado clamp defensivo na função `review` em `app/backend/api/srs.py` assegurando que qualquer agendamento `due` gerado respeite rigorosamente `D+1` (`>= 24 horas` a partir de `now`), protegendo tanto o payload do `Card` serializado quanto o valor ISO retornado contra drift de relógio do servidor, passos intradia acidentais ou estados degenerados, mantendo suporte opcional a `now` determinístico e acompanhado de testes unitários `test_defensive_clamp_forces_minimum_d_plus_one` e `test_defensive_clamp_preserves_longer_intervals` em `app/backend/tests/test_srs.py` (100% de aprovação na suíte de testes).
+- [x] **Guardrail de Sanitização em ExplanationViewer (Frontend)**: Implementada a função `cleanSectionDelimiters` e parsing defensivo em `app/frontend/src/components/ExplanationViewer.tsx` na função `parseExplanation`, assegurando fallback gracioso para entradas corrompidas/não-string e eliminando delimitadores residuais órfãos (asteriscos de cabeçalhos colon-inside `**Cabeçalho:**`, dois-pontos soltos e itens fantasmas) em todas as seções clínicas (`puloDoGato`, `raciocinioClinico`, `padraoResposta`, `alternativaCorreta` e `distratores`) sem mutar o conteúdo canônico de professores, acompanhado de suíte com 5 testes unitários em `app/frontend/scripts/tests/explanation-viewer-sanitization.test.mjs` (100% de aprovação em `npm run test:unit`, `npm run lint` e `./validate.sh fast`).
 
 > 📁 Histórico completo arquivado em [CHANGELOG.md](CHANGELOG.md)
 

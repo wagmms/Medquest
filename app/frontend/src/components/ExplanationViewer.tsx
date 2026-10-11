@@ -21,7 +21,7 @@ interface ExplanationViewerProps {
   isDiscursive?: boolean;
 }
 
-interface ParsedSection {
+export interface ParsedSection {
   gabarito?: string;
   puloDoGato?: string;
   padraoResposta?: string;
@@ -47,159 +47,223 @@ function withoutReferenceSection(text: string): string {
 }
 
 /**
- * Parses structured markdown explanations into distinct semantic sections
+ * Guardrail defensivo de sanitização para seções clínicas:
+ * Limpa delimitadores residuais órfãos gerados por quebras de cabeçalhos, asteriscos desbalanceados
+ * ou pontuações órfãs (ex: '** Incorreta', '**\n', ': ', '- : ') sem mutar ou alterar o conteúdo canônico original.
  */
-function parseExplanation(raw: string, isDiscursive?: boolean): { parsed: ParsedSection; isDiscursiveDetected: boolean } {
-  const clean = withoutReferenceSection(preprocessMarkdown(raw)).trim();
-  if (!clean) return { parsed: { fallbackText: "Nenhum comentário disponível para esta questão." }, isDiscursiveDetected: Boolean(isDiscursive) };
+export function cleanSectionDelimiters(text: string | null | undefined): string {
+  if (!text || typeof text !== "string") return "";
+  let clean = text.trim();
 
-  const isDiscursiveDetected = Boolean(
-    isDiscursive ||
-    /DISSERTATIVA|DISCURSIVA|RESPOSTA CURTA/i.test(clean) ||
-    /Anote sua principal hipótese/i.test(clean) ||
-    /Questão dissertativa/i.test(clean)
-  );
+  // 1. Remove quebras vazias e divisores horizontais residuais no início e no fim
+  clean = clean.replace(/^(?:<br\s*\/?>\s*)+/gi, "").trim();
+  clean = clean.replace(/^(?:[-*_]{3,}\s*\n+)+/g, "").trim();
+  clean = clean.replace(/(?:\s*<br\s*\/?>\s*)+$/gi, "").trim();
+  clean = clean.replace(/(?:\n+\s*[-*_]{3,})+$/g, "").trim();
 
-  const parsed: ParsedSection = {};
+  // 2. Remove delimitadores residuais órfãos no início do bloco:
+  // - Linhas que contêm exclusivamente asteriscos ou underscores soltos no topo
+  clean = clean.replace(/^[*_]{1,3}\s*\n+/g, "").trim();
+  // - Asteriscos duplos/triplos órfãos na mesma linha (ex: '** Incorreta', '** : ')
+  clean = clean.replace(/^[*_]{2,3}(?:[^\S\r\n]*[:\-–—])?[^\S\r\n]+/g, "").trim();
+  // - Asterisco único órfão com pontuação (ex: '* : ')
+  clean = clean.replace(/^[*_](?:[^\S\r\n]*[:\-–—])[^\S\r\n]+/g, "").trim();
+  // - Dois-pontos residuais ou traços seguidos de dois-pontos no início (ex: ':', ': ', '- : ')
+  clean = clean.replace(/^(?:[:\-–—][^\S\r\n]*[:]+|[:]+)\s*/g, "").trim();
 
-  // 1. Extract Gabarito
-  const gabaritoMatch = clean.match(/(?:\*\*Gabarito(?:\s+Oficial)?\*\*|Gabarito(?:\s+Oficial)?):\s*([^\n]+)/i);
-  if (gabaritoMatch) {
-    const candidate = gabaritoMatch[1].replace(/^[*_~]+|[*_~]+$/g, "").trim();
-    const isGenericPlaceholder = /^(?:DISSERTATIVA|DISCURSIVA|\(Ver Padrão|Letra\s+[A-E]$|^[A-E]$)/i.test(candidate);
-    if (isDiscursiveDetected) {
-      if (!isGenericPlaceholder && !/^(?:DISSERTATIVA|DISCURSIVA)/i.test(candidate)) {
-        parsed.gabarito = candidate;
-      }
-    } else {
-      parsed.gabarito = candidate;
-    }
+  // 3. Remove delimitadores residuais órfãos no final do bloco:
+  clean = clean.replace(/\s+[*_]{1,3}$/g, "").trim();
+  clean = clean.replace(/\s*[:]\s*$/g, "").trim();
+
+  return clean;
+}
+
+/**
+ * Parses structured markdown explanations into distinct semantic sections with defensive sanitization
+ */
+export function parseExplanation(raw: string | null | undefined, isDiscursive?: boolean): { parsed: ParsedSection; isDiscursiveDetected: boolean } {
+  const isDiscursiveDetected = Boolean(isDiscursive);
+  if (!raw || typeof raw !== "string" || !raw.trim()) {
+    return {
+      parsed: { fallbackText: "Nenhum comentário disponível para esta questão." },
+      isDiscursiveDetected
+    };
   }
 
-  // Helper to find header positions (resilient to colon inside/outside asterisks, markdown headers, etc.)
-  const distMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:Análise d[oa]s Distratores(?:[^\n*:]*)?|Distratores|Alternativas Incorretas|Análise das Alternativas Incorretas|Análise das Alternativas Verdadeiras|Alternativas Verdadeiras)\*{0,2}:?\s*/i);
-  const corrMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:Por que a Letra [^\n*:]+|Alternativa Correta(?:\s*\([A-E]\))?|Resposta Correta[^\n*:]*)\*{0,2}:?\s*/i);
-  const padraoMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:RESPOSTA OBJETIVA(?:[^\n*:]*)?|Padrão de Resposta(?:[^\n*:]*)?|Resposta Esperada|Critérios de Correção)\*{0,2}:?\s*/i);
-  const racMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:Raciocínio Clínico(?:[^\n*:]*)?|Fundamentação Teórica|Discussão do Caso(?:[^\n*:]*)?|Comentário do Caso|Resolução Detalhada(?:[^\n*:]*)?)\*{0,2}:?\s*/i);
-  const puloMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?(?:💡\s*)?(?:\*\*Pulo[\s_]+do[\s_]+Gato:?\*\*|\*\*Pulo[\s_]+do[\s_]+Gato\*\*|Pulo[\s_]+do[\s_]+Gato):?\s*/i);
-
-  // 2. Extract Distratores (Only for Multiple Choice)
-  if (!isDiscursiveDetected && distMatch && distMatch.index !== undefined) {
-    const rawDistratores = clean.slice(distMatch.index + distMatch[0].length).trim();
-    const isDummyDist = /^[-•*\s]*Revise os critérios que diferenciam as alternativas\.?$/i.test(rawDistratores);
-    if (!isDummyDist) {
-      const distratorLines = rawDistratores.split(/\n(?=(?:[-•*]\s*(?:\*\*)?Letra\s+[A-E]|(?:\*\*)?Letra\s+[A-E]))/i);
-
-      const distratoresList: Array<{ letter: string; text: string }> = [];
-      for (const item of distratorLines) {
-        const m1 = item.match(/^(?:[-•*]\s*)?(?:\*\*)?Letra\s+([A-E](?:\s*(?:,|e)\s*[A-E])?)(?:\*\*)?(?:\s*\([^)]+\))?:?\s*([\s\S]*)$/i);
-        const m2 = item.match(/^(?:[-•*]\s*)?(?:\*\*)?Letra\s+([A-E](?:\s*(?:,|e)\s*[A-E])?)(?:\s*(\([^)]+\)))\*\*?:?\s*([\s\S]*)$/i);
-        const m3 = item.match(/^(?:[-•*]\s*)?(?:\*\*)?Letra\s+([A-E](?:\s*(?:,|e)\s*[A-E])?)\*\*?:?\s*([\s\S]*)$/i);
-
-        if (m1) {
-          distratoresList.push({
-            letter: m1[1].trim(),
-            text: m1[2].trim()
-          });
-        } else if (m2) {
-          const prefix = m2[2] ? `**${m2[2]}**: ` : "";
-          distratoresList.push({
-            letter: m2[1].trim(),
-            text: prefix + m2[3].trim()
-          });
-        } else if (m3) {
-          distratoresList.push({
-            letter: m3[1].trim(),
-            text: m3[2].trim()
-          });
-        } else if (item.trim() && !/^[-•*\s]*Revise os critérios/i.test(item.trim())) {
-          distratoresList.push({
-            letter: "•",
-            text: item.replace(/^[-•*]\s*/, "").trim()
-          });
-        }
-      }
-      if (distratoresList.length > 0) {
-        parsed.distratores = distratoresList;
-      }
-    }
-  }
-
-  // 3. Extract Alternativa Correta (Only for Multiple Choice)
-  if (!isDiscursiveDetected && corrMatch && corrMatch.index !== undefined) {
-    const endIdx = distMatch && distMatch.index !== undefined && distMatch.index > corrMatch.index ? distMatch.index : clean.length;
-    const rawCorr = clean.slice(corrMatch.index + corrMatch[0].length, endIdx).trim();
-    const isDummyCorr = /Anote sua principal hipótese|Questão dissertativa|Alternativa indicada no gabarito oficial/i.test(rawCorr);
-    if (!isDummyCorr) {
-      const letterMatch = corrMatch[0].match(/(?:Letra|\()\s*([A-E](?:\s*(?:,|e)\s*[A-E])*)\b/i) || corrMatch[0].match(/Alternativa\s+Correta\s*([A-E](?:\s*(?:,|e)\s*[A-E])*)\b/i);
-      const gabLetter = parsed.gabarito?.match(/(?:Letra|\b)\s*([A-E](?:\s*(?:,|e)\s*[A-E])*)\b/i)?.[1]?.toUpperCase();
-      const parsedLetter = letterMatch ? letterMatch[1].toUpperCase() : gabLetter;
-      parsed.alternativaCorreta = {
-        letter: parsedLetter,
-        text: rawCorr
+  try {
+    const clean = withoutReferenceSection(preprocessMarkdown(raw)).trim();
+    if (!clean) {
+      return {
+        parsed: { fallbackText: "Nenhum comentário disponível para esta questão." },
+        isDiscursiveDetected
       };
     }
-  }
 
-  // 4. Extract Padrão de Resposta Explícito (se presente como seção própria)
-  if (padraoMatch && padraoMatch.index !== undefined) {
-    let endIdx = clean.length;
-    const pIdx = padraoMatch.index;
-    const nextCandidates = [corrMatch?.index, distMatch?.index].filter((idx): idx is number => idx !== undefined && idx > pIdx);
-    if (nextCandidates.length > 0) {
-      endIdx = Math.min(...nextCandidates);
+    const detectedDiscursive = Boolean(
+      isDiscursive ||
+      /DISSERTATIVA|DISCURSIVA|RESPOSTA CURTA/i.test(clean) ||
+      /Anote sua principal hipótese/i.test(clean) ||
+      /Questão dissertativa/i.test(clean)
+    );
+
+    const parsed: ParsedSection = {};
+
+    // 1. Extract Gabarito (tolerante a dois-pontos dentro ou fora de asteriscos e markdown headers)
+    const gabaritoMatch = clean.match(/(?:^|\n)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?(?:\*\*)?Gabarito(?:\s+Oficial)?(?:\*\*)?(?:\*{0,2}\s*:\s*\*{0,2}|:\s*\*{0,2}|\*{0,2}\s*:?)\s*([^\n]+)/i);
+    if (gabaritoMatch) {
+      const candidate = gabaritoMatch[1].replace(/^[*_~:]+|[*_~:]+$/g, "").trim();
+      const isGenericPlaceholder = /^(?:DISSERTATIVA|DISCURSIVA|\(Ver Padrão|Letra\s+[A-E]$|^[A-E]$)/i.test(candidate);
+      if (detectedDiscursive) {
+        if (!isGenericPlaceholder && !/^(?:DISSERTATIVA|DISCURSIVA)/i.test(candidate)) {
+          parsed.gabarito = candidate;
+        }
+      } else {
+        parsed.gabarito = candidate;
+      }
     }
-    parsed.padraoResposta = clean.slice(pIdx + padraoMatch[0].length, endIdx).trim();
-  }
 
-  // 5. Extract Raciocínio Clínico
-  if (racMatch && racMatch.index !== undefined) {
-    let endIdx = clean.length;
-    const rIdx = racMatch.index;
-    const nextCandidates = [
-      padraoMatch?.index,
-      corrMatch?.index,
-      distMatch?.index,
-    ].filter((idx): idx is number => idx !== undefined && idx > rIdx);
-    if (nextCandidates.length > 0) {
-      endIdx = Math.min(...nextCandidates);
+    // Helper regex to find header positions (resilient to colons inside/outside asterisks, markdown headers, bullets)
+    const distMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:Análise d[oa]s Distratores(?:[^\n*:]*)?|Distratores|Alternativas Incorretas|Análise das Alternativas Incorretas|Análise das Alternativas Verdadeiras|Alternativas Verdadeiras)(?:\*{0,2}\s*:\s*\*{0,2}|:\s*\*{0,2}|\*{0,2}\s*:?)\s*/i);
+    const corrMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:Por que a Letra [^\n*:]+|Alternativa Correta(?:\s*\([A-E]\))?|Resposta Correta[^\n*:]*)(?:\*{0,2}\s*:\s*\*{0,2}|:\s*\*{0,2}|\*{0,2}\s*:?)\s*/i);
+    const padraoMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:RESPOSTA OBJETIVA(?:[^\n*:]*)?|Padrão de Resposta(?:[^\n*:]*)?|Resposta Esperada|Critérios de Correção)(?:\*{0,2}\s*:\s*\*{0,2}|:\s*\*{0,2}|\*{0,2}\s*:?)\s*/i);
+    const racMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:Raciocínio Clínico(?:[^\n*:]*)?|Fundamentação Teórica|Discussão do Caso(?:[^\n*:]*)?|Comentário do Caso|Resolução Detalhada(?:[^\n*:]*)?)(?:\*{0,2}\s*:\s*\*{0,2}|:\s*\*{0,2}|\*{0,2}\s*:?)\s*/i);
+    const puloMatch = clean.match(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?(?:💡\s*)?(?:\*\*Pulo[\s_]+do[\s_]+Gato(?:\s*\*\*)?(?:\*{0,2}\s*:\s*\*{0,2}|:\s*\*{0,2}|\*{0,2}\s*:?)|Pulo[\s_]+do[\s_]+Gato(?:\*{0,2}\s*:\s*\*{0,2}|:\s*\*{0,2}|\*{0,2}\s*:?))\s*/i);
+
+    // 2. Extract Distratores (Only for Multiple Choice)
+    if (!detectedDiscursive && distMatch && distMatch.index !== undefined) {
+      const rawDistratores = cleanSectionDelimiters(clean.slice(distMatch.index + distMatch[0].length));
+      const isDummyDist = /^[-•*\s]*Revise os critérios que diferenciam as alternativas\.?$/i.test(rawDistratores);
+      if (!isDummyDist) {
+        const distratorLines = rawDistratores.split(/\n(?=(?:[-•*]\s*(?:\*\*)?Letra\s+[A-E]|(?:\*\*)?Letra\s+[A-E]))/i);
+
+        const distratoresList: Array<{ letter: string; text: string }> = [];
+        for (const rawItem of distratorLines) {
+          const item = rawItem.trim();
+          if (!item || /^[*_:\-–—•\s]+$/.test(item)) continue;
+
+          const m1 = item.match(/^(?:[-•*]\s*)?(?:\*\*)?Letra\s+([A-E](?:\s*(?:,|e)\s*[A-E])?)(?:\*\*)?(?:\s*(\([^)]+\)))?(?:\*{0,2}\s*:\s*\*{0,2}|\*{1,2}|:\s*\*{0,2}|:)?\s*([\s\S]*)$/i);
+
+          if (m1) {
+            const letter = m1[1].trim();
+            const note = m1[2] ? `**${m1[2].replace(/^[*_()]+|[*_()]+$/g, "")}**: ` : "";
+            const text = cleanSectionDelimiters(m1[3]);
+            if (text) {
+              distratoresList.push({
+                letter,
+                text: note ? `${note}${text}` : text
+              });
+            }
+          } else if (item.trim() && !/^[-•*\s]*Revise os critérios/i.test(item.trim())) {
+            const text = cleanSectionDelimiters(item.replace(/^[-•*]\s*/, ""));
+            if (text) {
+              distratoresList.push({
+                letter: "•",
+                text
+              });
+            }
+          }
+        }
+        if (distratoresList.length > 0) {
+          parsed.distratores = distratoresList;
+        }
+      }
     }
-    let racText = clean.slice(rIdx + racMatch[0].length, endIdx).trim();
-    racText = racText.replace(/\n+\s*\*\*Por que a Letra[\s\S]*$/i, "").trim();
-    racText = racText.replace(/\n+\s*\*\*Análise dos Distratores[\s\S]*$/i, "").trim();
-    parsed.raciocinioClinico = racText;
-  }
 
-  // 6. Extract Pulo do Gato
-  if (puloMatch && puloMatch.index !== undefined) {
-    let endIdx = clean.length;
-    const puIdx = puloMatch.index;
-    const nextCandidates = [
-      racMatch?.index,
-      padraoMatch?.index,
-      corrMatch?.index,
-      distMatch?.index,
-    ].filter((idx): idx is number => idx !== undefined && idx > puIdx);
-    if (nextCandidates.length > 0) {
-      endIdx = Math.min(...nextCandidates);
+    // 3. Extract Alternativa Correta (Only for Multiple Choice)
+    if (!detectedDiscursive && corrMatch && corrMatch.index !== undefined) {
+      const endIdx = distMatch && distMatch.index !== undefined && distMatch.index > corrMatch.index ? distMatch.index : clean.length;
+      let rawCorr = clean.slice(corrMatch.index + corrMatch[0].length, endIdx).trim();
+      rawCorr = rawCorr.replace(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:Análise d[oa]s Distratores|Distratores|Alternativas Incorretas)[\s\S]*$/i, "").trim();
+      rawCorr = cleanSectionDelimiters(rawCorr);
+      const isDummyCorr = /Anote sua principal hipótese|Questão dissertativa|Alternativa indicada no gabarito oficial/i.test(rawCorr);
+      if (!isDummyCorr && rawCorr) {
+        const letterMatch = corrMatch[0].match(/(?:Letra|\()\s*([A-E](?:\s*(?:,|e)\s*[A-E])*)\b/i) || corrMatch[0].match(/Alternativa\s+Correta\s*([A-E](?:\s*(?:,|e)\s*[A-E])*)\b/i);
+        const gabLetter = parsed.gabarito?.match(/(?:Letra|\b)\s*([A-E](?:\s*(?:,|e)\s*[A-E])*)\b/i)?.[1]?.toUpperCase();
+        const parsedLetter = letterMatch ? letterMatch[1].toUpperCase() : gabLetter;
+        parsed.alternativaCorreta = {
+          letter: parsedLetter,
+          text: rawCorr
+        };
+      }
     }
-    const puloText = clean.slice(puIdx + puloMatch[0].length, endIdx).trim();
-    parsed.puloDoGato = puloText;
-  }
 
-  // Deduplicate: if raciocinioClinico starts with puloDoGato, remove duplicate prefix
-  if (parsed.puloDoGato && parsed.raciocinioClinico && parsed.raciocinioClinico.startsWith(parsed.puloDoGato)) {
-    parsed.raciocinioClinico = parsed.raciocinioClinico.slice(parsed.puloDoGato.length).replace(/^[.:,\s-]+/, "").trim();
-  }
+    // 4. Extract Padrão de Resposta Explícito (se presente como seção própria)
+    if (padraoMatch && padraoMatch.index !== undefined) {
+      let endIdx = clean.length;
+      const pIdx = padraoMatch.index;
+      const nextCandidates = [corrMatch?.index, distMatch?.index].filter((idx): idx is number => idx !== undefined && idx > pIdx);
+      if (nextCandidates.length > 0) {
+        endIdx = Math.min(...nextCandidates);
+      }
+      let padraoText = clean.slice(pIdx + padraoMatch[0].length, endIdx).trim();
+      padraoText = cleanSectionDelimiters(padraoText);
+      if (padraoText) {
+        parsed.padraoResposta = padraoText;
+      }
+    }
 
-  // Fallback if structure parsing didn't find standard sections
-  if (!parsed.puloDoGato && !parsed.alternativaCorreta && !parsed.distratores && !parsed.raciocinioClinico && !parsed.padraoResposta) {
-    let cleanFallback = clean.replace(/\n+\s*\*\*Por que a Letra[\s\S]*$/i, "").trim();
-    cleanFallback = cleanFallback.replace(/\n+\s*\*\*Análise dos Distratores[\s\S]*$/i, "").trim();
-    parsed.fallbackText = cleanFallback;
-  }
+    // 5. Extract Raciocínio Clínico
+    if (racMatch && racMatch.index !== undefined) {
+      let endIdx = clean.length;
+      const rIdx = racMatch.index;
+      const nextCandidates = [
+        padraoMatch?.index,
+        corrMatch?.index,
+        distMatch?.index,
+      ].filter((idx): idx is number => idx !== undefined && idx > rIdx);
+      if (nextCandidates.length > 0) {
+        endIdx = Math.min(...nextCandidates);
+      }
+      let racText = clean.slice(rIdx + racMatch[0].length, endIdx).trim();
+      racText = racText.replace(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:Por que a Letra [^\n*:]+|Alternativa Correta(?:\s*\([A-E]\))?|Resposta Correta[^\n*:]*|Análise d[oa]s Distratores(?:[^\n*:]*)?|Distratores|Alternativas Incorretas|Padrão de Resposta(?:[^\n*:]*)?)[\s\S]*$/i, "").trim();
+      racText = cleanSectionDelimiters(racText);
+      if (racText) {
+        parsed.raciocinioClinico = racText;
+      }
+    }
 
-  return { parsed, isDiscursiveDetected };
+    // 6. Extract Pulo do Gato
+    if (puloMatch && puloMatch.index !== undefined) {
+      let endIdx = clean.length;
+      const puIdx = puloMatch.index;
+      const nextCandidates = [
+        racMatch?.index,
+        padraoMatch?.index,
+        corrMatch?.index,
+        distMatch?.index,
+      ].filter((idx): idx is number => idx !== undefined && idx > puIdx);
+      if (nextCandidates.length > 0) {
+        endIdx = Math.min(...nextCandidates);
+      }
+      let puloText = clean.slice(puIdx + puloMatch[0].length, endIdx).trim();
+      puloText = cleanSectionDelimiters(puloText);
+      if (puloText) {
+        parsed.puloDoGato = puloText;
+      }
+    }
+
+    // Deduplicate: if raciocinioClinico starts with puloDoGato, remove duplicate prefix
+    if (parsed.puloDoGato && parsed.raciocinioClinico && parsed.raciocinioClinico.startsWith(parsed.puloDoGato)) {
+      parsed.raciocinioClinico = cleanSectionDelimiters(parsed.raciocinioClinico.slice(parsed.puloDoGato.length));
+    }
+
+    // Fallback if structure parsing didn't find standard sections or if all extracted sections are empty
+    if (!parsed.puloDoGato && !parsed.alternativaCorreta && !parsed.distratores && !parsed.raciocinioClinico && !parsed.padraoResposta) {
+      let cleanFallback = clean.replace(/(?:\n|^)\s*(?:[-*+]\s+)?(?:#{1,6}\s+)?\*{0,2}(?:Por que a Letra [^\n*:]+|Alternativa Correta(?:\s*\([A-E]\))?|Resposta Correta[^\n*:]*|Análise d[oa]s Distratores(?:[^\n*:]*)?|Distratores|Alternativas Incorretas)[\s\S]*$/i, "").trim();
+      cleanFallback = cleanSectionDelimiters(cleanFallback);
+      parsed.fallbackText = cleanFallback || "Nenhum comentário disponível para esta questão.";
+    }
+
+    return { parsed, isDiscursiveDetected: detectedDiscursive };
+  } catch (err) {
+    console.error("Erro defensivo em parseExplanation:", err);
+    return {
+      parsed: {
+        fallbackText: typeof raw === "string" && raw.trim() ? raw.trim() : "Nenhum comentário disponível para esta questão."
+      },
+      isDiscursiveDetected
+    };
+  }
 }
 
 export function ExplanationViewer({ 
