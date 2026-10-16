@@ -48,6 +48,6 @@
 
 ## ✅ Última Tarefa Concluída
  
-- [x] **Auditoria e Correção Cirúrgica de Segurança (P0) e Resiliência (P1)**: Purgadas credenciais hardcoded em scripts (`deepseek_map_hours.py`, `medway_client.py`, `rewrite_medquest_explanations.py`), bloqueado script de reescrita de comentários médicos com erro canônico; implementada proteção contra Prompt Injection via `_sanitize_prompt_input` e delimitadores estruturados em `ai.py`; blindado bypass de teste em `auth.py`; implementado `CircuitBreaker` em `universal_pool.py`; integrada idempotência na rota `/simulado/sessions` em `questions.py`; adicionado fallback defensivo de purga em `db.ts` no frontend (74/74 testes unitários aprovados); validação com 399 testes de backend no pytest e `./validate.sh fast` 100% aprovado.
+- [x] **Auditoria, Correção Cirúrgica (P0/P1) e Deploy em Produção**: Purgadas credenciais hardcoded em scripts (`deepseek_map_hours.py`, `medway_client.py`, `rewrite_medquest_explanations.py`), bloqueado script de reescrita de comentários médicos com erro canônico; implementada proteção contra Prompt Injection via `_sanitize_prompt_input` em `ai.py`; blindado bypass de teste em `auth.py`; implementado `CircuitBreaker` em `universal_pool.py`; integrada idempotência em `questions.py`; corrigido mock reentrante de lock em `test_deploy.py`; sincronização 100% íntegra com Turso Cloud e deploy canônico publicado na nuvem (`https://medquest.live` e `https://medquest-188y.onrender.com` respondendo HTTP 200).
  
  > 📁 Histórico completo arquivado em [CHANGELOG.md](CHANGELOG.md)
