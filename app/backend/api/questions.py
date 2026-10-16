@@ -18,7 +18,7 @@ from .remediation import generate_remediation_queue
 from .tri_engine import evaluate_tri_performance
 from .db import db_transaction, get_db
 from .edital_profiles import ALLOWED_ANALYSIS_INSTITUTIONS, get_canonical_institution, resolve_institution_codes
-from .filters import question_filter_clauses
+from .filters import TARGET_INSTITUTION_RATIO, get_user_target_institutions, question_filter_clauses
 from .idempotency import complete_idempotency, fail_idempotency, reserve_idempotency
 from .observability import record_domain_event
 from .schemas import (
@@ -137,6 +137,42 @@ def _sample_ids(db, where_clause, params, limit):
         (*params, effective_limit),
     ).fetchall()
     return [r["id"] for r in rows]
+
+
+def _sample_prioritized_ids(db, where_clause, params, limit, target_insts, has_explicit_inst_filter=False):
+    """Amostragem com proporção prioritária das bancas-alvo do aluno com fallback de diversidade."""
+    if not target_insts or has_explicit_inst_filter or limit <= 0:
+        return _sample_ids(db, where_clause, params, limit)
+
+    target_quota = max(1, int(round(limit * TARGET_INSTITUTION_RATIO)))
+    target_quota = min(target_quota, limit)
+    placeholders = ",".join("?" * len(target_insts))
+    inst_tuple = tuple(target_insts)
+
+    # 1. Busca cota prioritária (Bancas-alvo)
+    where_target = f"{where_clause} AND q.institution_code IN ({placeholders})"
+    target_ids = _sample_ids(db, where_target, (*params, *inst_tuple), target_quota)
+
+    # 2. Busca restante nas outras bancas (Diversidade)
+    remaining_needed = limit - len(target_ids)
+    if remaining_needed <= 0:
+        return target_ids[:limit]
+
+    where_other = f"{where_clause} AND (q.institution_code NOT IN ({placeholders}) OR q.institution_code IS NULL)"
+    other_ids = _sample_ids(db, where_other, (*params, *inst_tuple), remaining_needed)
+
+    combined = list(target_ids) + list(other_ids)
+
+    # 3. Fallback se as outras bancas não atingiram o restante necessário
+    shortfall = limit - len(combined)
+    if shortfall > 0:
+        exclude_ph = ",".join("?" * len(combined))
+        where_fallback = f"{where_clause} AND q.id NOT IN ({exclude_ph})" if combined else where_clause
+        fallback_params = (*params, *combined) if combined else params
+        extra_ids = _sample_ids(db, where_fallback, fallback_params, shortfall)
+        combined.extend(extra_ids)
+
+    return combined[:limit]
 
 
 def _bounded_int(value, default, minimum, maximum):
@@ -676,6 +712,7 @@ def meta():
         "topics": [dict(r) for r in topics],
         "total_questions": total,
         "answered_questions": answered,
+        "target_institutions": sorted(list(get_user_target_institutions(db, g.user_id))),
     }
     
     meta_cache.set(cache_key, result)
@@ -709,14 +746,21 @@ def questions():
     clauses, params = question_filter_clauses(request.args)
     where = " AND ".join(clauses)
     limit = _bounded_int(request.args.get("limit"), default=500, minimum=1, maximum=2000)
+    target_insts = get_user_target_institutions(db, g.user_id)
+    has_explicit_inst = bool(request.args.getlist("institution"))
+
     if request.args.get("mode") == "adaptive":
         adaptive_focus = request.args.get("adaptive_focus", "balanced")
-        return jsonify(rank_adaptive_candidates(db, g.user_id, where, params, limit, adaptive_focus=adaptive_focus))
+        return jsonify(rank_adaptive_candidates(
+            db, g.user_id, where, params, limit, adaptive_focus=adaptive_focus, target_institutions=target_insts
+        ))
     if request.args.get("mode") == "remediation":
         subtema = request.args.get("subtema")
         area = request.args.get("area")
-        return jsonify(generate_remediation_queue(db, g.user_id, subtema=subtema, area=area, limit=limit))
-    ids = _sample_ids(db, where, params, limit)
+        return jsonify(generate_remediation_queue(
+            db, g.user_id, subtema=subtema, area=area, limit=limit, target_institutions=target_insts
+        ))
+    ids = _sample_prioritized_ids(db, where, params, limit, target_insts, has_explicit_inst_filter=has_explicit_inst)
     if not ids:
         return jsonify([])
     placeholders = ",".join("?" * len(ids))
@@ -729,7 +773,9 @@ def questions():
     out = []
     for r in rows:
         d = dict(r)
-        d["is_autoral"] = bool(d.get("editorial_status") == "autoral" or (d.get("source_file") and "AUTORAL" in d.get("source_file").upper()))
+        d["is_autoral"] = bool(d.get("editorial_status") == "autoral" or (d.get("source_file") and "AUTORAL" in str(d.get("source_file")).upper()))
+        inst = d.get("institution_code")
+        d["is_target_institution"] = bool(target_insts and (inst in target_insts or (inst and inst.upper() in target_insts)))
         out.append(d)
     random.shuffle(out)
     return jsonify(out)
@@ -741,7 +787,8 @@ def questions_remediation():
     limit = _bounded_int(request.args.get("limit"), default=10, minimum=1, maximum=50)
     subtema = request.args.get("subtema")
     area = request.args.get("area")
-    return jsonify(generate_remediation_queue(db, g.user_id, subtema=subtema, area=area, limit=limit))
+    target_insts = get_user_target_institutions(db, g.user_id)
+    return jsonify(generate_remediation_queue(db, g.user_id, subtema=subtema, area=area, limit=limit, target_institutions=target_insts))
 
 
 @bp.route("/questions/count")
@@ -816,6 +863,10 @@ def question_detail(qid):
                 "images": json.loads(cc_row["images"]) if cc_row["images"] else []
             }
 
+    target_insts = get_user_target_institutions(db, g.user_id)
+    inst = q.get("institution_code")
+    is_target_inst = bool(target_insts and (inst in target_insts or (inst and inst.upper() in target_insts)))
+
     return jsonify({
         "id": q["id"], "source_file": q["source_file"], "source_number": q["source_number"],
         "year": q["year"], "institution_code": q["institution_code"],
@@ -824,6 +875,7 @@ def question_detail(qid):
         "is_autoral": bool(q.get("editorial_status") == "autoral" or (q.get("source_file") and "AUTORAL" in str(q.get("source_file")).upper())),
         "is_discursive": bool(len(alts) <= 1),
         "is_verified": bool(q.get("is_verified", 0)),
+        "is_target_institution": is_target_inst,
         "last_updated_at": q.get("last_updated_at"),
         "technical_note": q.get("technical_note"),
         "clinical_case": cc,
@@ -1373,7 +1425,7 @@ def _filter_alternatives(alts, correct_letter):
         return [a for a in alts if a["letter"] not in to_remove_letters]
     return alts
 
-def _format_question_dict(q, alts, imgs, attempt, wrong_count, is_favorite, cc):
+def _format_question_dict(q, alts, imgs, attempt, wrong_count, is_favorite, cc, is_target_inst=False):
     return {
         "id": q["id"],
         "source_file": q["source_file"],
@@ -1388,6 +1440,7 @@ def _format_question_dict(q, alts, imgs, attempt, wrong_count, is_favorite, cc):
         "is_autoral": bool(q.get("editorial_status") == "autoral" or (q.get("source_file") and "AUTORAL" in str(q.get("source_file")).upper())),
         "is_discursive": bool(len(alts) <= 1),
         "is_verified": bool(q.get("is_verified", 0)),
+        "is_target_institution": bool(is_target_inst),
         "last_updated_at": q.get("last_updated_at"),
         "technical_note": q.get("technical_note"),
         "clinical_case": cc,
@@ -1415,6 +1468,7 @@ def question_batch_detail():
     ids = data.ids
     force_4_options = data.force_4_options
     db = get_db()
+    target_insts = get_user_target_institutions(db, g.user_id)
 
     q_map, alt_map, img_map, attempt_map, wrong_map, fav_set = _fetch_batch_data(db, ids, g.user_id)
     cc_map = _fetch_clinical_cases(db, q_map)
@@ -1429,6 +1483,9 @@ def question_batch_detail():
         if force_4_options and len(alts) > 4:
             alts = _filter_alternatives(alts, q.get("correct_letter"))
 
+        inst = q.get("institution_code")
+        is_target = bool(target_insts and (inst in target_insts or (inst and inst.upper() in target_insts)))
+
         out.append(_format_question_dict(
             q,
             alts,
@@ -1436,7 +1493,8 @@ def question_batch_detail():
             attempt_map.get(qid),
             wrong_map.get(qid, 0),
             qid in fav_set,
-            cc_map.get(q.get("clinical_case_id"))
+            cc_map.get(q.get("clinical_case_id")),
+            is_target_inst=is_target,
         ))
 
     return jsonify({"questions": out})

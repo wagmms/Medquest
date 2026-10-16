@@ -358,6 +358,7 @@ export interface QuestionMeta {
   topics?: { topic: string; n: number }[];
   total_questions: number;
   answered_questions: number;
+  target_institutions?: string[];
 }
 
 export interface SubtemaItem {
@@ -379,6 +380,7 @@ export interface QuestionListItem {
   subtema: string;
   is_autoral?: boolean;
   is_discursive?: boolean;
+  is_target_institution?: boolean;
   adaptive_score?: number;
   adaptive_reasons?: string[];
   retrievability?: number | null;

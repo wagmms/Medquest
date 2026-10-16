@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { X, ZoomIn, ZoomOut } from "lucide-react";
 
 interface ImageViewerProps {
   src: string;
@@ -60,7 +61,7 @@ export function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerProps) {
             className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors bg-black/50 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             aria-label="Fechar visualização de imagem"
           >
-            <span className="material-symbols-outlined text-2xl" aria-hidden="true">close</span>
+            <X className="w-6 h-6" aria-hidden="true" />
           </button>
 
           {/* Controles de Zoom */}
@@ -75,9 +76,9 @@ export function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerProps) {
               className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-white/20 rounded-full transition-colors cursor-pointer"
               aria-label="Diminuir zoom"
             >
-              <span className="material-symbols-outlined text-xl" aria-hidden="true">zoom_out</span>
+              <ZoomOut className="w-5 h-5" aria-hidden="true" />
             </button>
-            <span className="text-sm font-medium min-w-[3rem] text-center select-none" aria-live="polite">
+            <span className="text-sm font-mono-lab font-medium min-w-[3rem] text-center select-none tabular-nums" aria-live="polite">
               {Math.round(scale * 100)}%
             </span>
             <button 
@@ -85,7 +86,7 @@ export function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerProps) {
               className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-white/20 rounded-full transition-colors cursor-pointer"
               aria-label="Aumentar zoom"
             >
-              <span className="material-symbols-outlined text-xl" aria-hidden="true">zoom_in</span>
+              <ZoomIn className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
 

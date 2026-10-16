@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Optional
 from urllib.parse import quote
 
 from .adaptive import fsrs_metrics, _utc, _due
+from .filters import get_user_target_institutions
 from .services.planner import USP_WEIGHTS, get_normalized_area
 
 
@@ -264,9 +265,12 @@ def generate_remediation_queue(
     subtema: Optional[str] = None,
     area: Optional[str] = None,
     limit: int = 10,
+    target_institutions: Optional[set[str]] = None,
 ) -> List[Dict[str, Any]]:
     """Gera uma fila cirúrgica de treino de recuperação (Caderno de Erros + Gêmeas Inéditas)."""
     limit = max(1, min(limit, 50))
+    if target_institutions is None:
+        target_institutions = get_user_target_institutions(db, user_id)
 
     target_subtemas = []
     if subtema:
@@ -296,6 +300,17 @@ def generate_remediation_queue(
         return []
 
     subtemas_placeholders = ",".join("?" * len(target_subtemas))
+    if target_institutions:
+        target_ph = ",".join("?" * len(target_institutions))
+        inst_params = list(target_institutions)
+        order_unresolved = f"(q.institution_code IN ({target_ph})) DESC, q.id ASC"
+        order_twin = f"(q.institution_code IN ({target_ph})) DESC, q.year DESC, q.id ASC"
+        order_fallback = f"(q.institution_code IN ({target_ph})) DESC, q.id ASC"
+    else:
+        inst_params = []
+        order_unresolved = "q.id ASC"
+        order_twin = "q.year DESC, q.id ASC"
+        order_fallback = "q.id ASC"
 
     # 1. Buscar questões com erro pendente (última tentativa foi incorreta) nesses subtemas
     # Cota: ~65% das vagas
@@ -320,10 +335,10 @@ def generate_remediation_queue(
         WHERE q.missing_alts = 0
           AND la.is_correct = 0
           AND COALESCE(NULLIF(q.subtema, ''), q.topic) IN ({subtemas_placeholders})
-        ORDER BY q.id ASC
+        ORDER BY {order_unresolved}
         LIMIT ?
         """,
-        [user_id, *target_subtemas, unresolved_quota],
+        [user_id, *target_subtemas, *inst_params, unresolved_quota],
     ).fetchall()
 
     queue_items = [dict(r) for r in unresolved_rows]
@@ -346,10 +361,10 @@ def generate_remediation_queue(
               AND COALESCE(NULLIF(q.subtema, ''), q.topic) IN ({subtemas_placeholders})
               AND q.id NOT IN (SELECT question_id FROM attempts WHERE user_id = ?)
               {exclude_selected_clause}
-            ORDER BY q.year DESC, q.id ASC
+            ORDER BY {order_twin}
             LIMIT ?
             """,
-            [*target_subtemas, user_id, *selected_params, needed],
+            [*target_subtemas, user_id, *selected_params, *inst_params, needed],
         ).fetchall()
 
         for r in twin_rows:
@@ -372,20 +387,24 @@ def generate_remediation_queue(
             WHERE q.missing_alts = 0
               AND COALESCE(NULLIF(q.subtema, ''), q.topic) IN ({subtemas_placeholders})
               {exclude_selected_clause}
-            ORDER BY q.id ASC
+            ORDER BY {order_fallback}
             LIMIT ?
             """,
-            [*target_subtemas, *selected_params, needed_fallback],
+            [*target_subtemas, *selected_params, *inst_params, needed_fallback],
         ).fetchall()
 
         for r in fallback_q_rows:
             queue_items.append(dict(r))
 
-    # Formatar flags como is_autoral
+    # Formatar flags como is_autoral e is_target_institution
     for item in queue_items:
         item["is_autoral"] = bool(
             item.get("editorial_status") == "autoral"
             or (item.get("source_file") and "AUTORAL" in str(item.get("source_file")).upper())
+        )
+        inst = item.get("institution_code")
+        item["is_target_institution"] = bool(
+            target_institutions and (inst in target_institutions or (inst and str(inst).upper() in target_institutions))
         )
 
     return queue_items

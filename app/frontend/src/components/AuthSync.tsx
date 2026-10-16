@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import { Stethoscope } from "lucide-react";
 
 interface AuthSyncProps {
   ssrAuthenticated: boolean;
@@ -57,14 +58,12 @@ export function AuthSync({ ssrAuthenticated, children }: AuthSyncProps) {
             opacity: 0.2,
           }}
         />
-        <div className="relative z-10 flex flex-col items-center max-w-md w-full bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border text-center animate-in fade-in duration-300">
-          <div className="w-16 h-16 bg-primary/20 text-primary rounded-2xl flex items-center justify-center mb-6 shadow-sm animate-pulse">
-            <span className="material-symbols-outlined text-4xl" data-icon="stethoscope">
-              stethoscope
-            </span>
+        <div className="relative z-10 flex flex-col items-center max-w-md w-full bg-surface p-8 md:p-12 rounded-sm shadow-xl border border-line-subtle text-center animate-in fade-in duration-300">
+          <div className="w-16 h-16 bg-accent/15 text-accent rounded-sm flex items-center justify-center mb-6 shadow-xs animate-pulse">
+            <Stethoscope className="w-8 h-8" aria-hidden="true" />
           </div>
-          <h2 className="text-xl font-bold mb-2">Entrando no MedQuest...</h2>
-          <p className="text-sm text-muted-foreground">Sincronizando sua sessão com o servidor.</p>
+          <h2 className="text-xl font-bold mb-2 text-ink-primary">Entrando no MedQuest...</h2>
+          <p className="text-sm text-ink-secondary">Sincronizando sua sessão com o servidor.</p>
         </div>
       </div>
     );

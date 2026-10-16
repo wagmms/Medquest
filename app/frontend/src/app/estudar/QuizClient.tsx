@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { QuestionMeta, QuestionListItem, QuestionDetail, AttemptResult, FlashcardGenerateResponse } from "@/types/api";
 import { api, OfflineQueuedError } from "@/lib/api";
-import { Clock, CheckCircle2, XCircle, BookOpen, ArrowRight, Sparkles, ArrowLeft, ImageOff, Maximize, AlertTriangle, CloudOff, RotateCcw, Pencil, Eye, EyeOff } from "lucide-react";
+import { Clock, CheckCircle2, XCircle, BookOpen, ArrowRight, Sparkles, ArrowLeft, ImageOff, Maximize, AlertTriangle, CloudOff, RotateCcw, Pencil, Eye, EyeOff, Target } from "lucide-react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -43,6 +43,7 @@ import {
   writeLearningSession,
 } from "@/lib/sessionState";
 import { useQuizKeyboard } from "./hooks/useQuizKeyboard";
+import { ClinicalIcon } from "@/components/ui/ClinicalIcon";
 
 export type SessionAnswer = { 
   letter: string; 
@@ -1306,7 +1307,7 @@ export function QuizClient({
   const extraStemImages = filterExtraImages(q?.images, q?.stem);
 
   return (
-    <div className="max-w-4xl mx-auto w-full flex flex-col gap-6 pb-12 relative">
+    <div className={clsx("mx-auto w-full flex flex-col gap-4 pb-12 relative", zenMode ? "max-w-4xl" : "max-w-7xl px-2 sm:px-4")}>
       {/* Fullscreen Image Modal */}
       {enlargedImage && (
         <ImageViewer 
@@ -1332,21 +1333,21 @@ export function QuizClient({
       />
 
       {filters.mode === "remediation" && (
-        <div className="bg-rose-500/10 border border-rose-500/25 text-foreground rounded-xl p-3.5 flex items-center justify-between gap-3 text-xs shadow-sm">
+        <div className="bg-critical/5 border border-critical/25 text-ink rounded-sm px-3.5 py-2.5 flex items-center justify-between gap-3 text-xs shadow-xs">
           <div className="flex items-center gap-2">
-            <span className="p-1 rounded-md bg-rose-500/20 text-rose-600 dark:text-rose-400 font-bold">
+            <span className="px-2 py-0.5 rounded-xs bg-critical/15 text-critical font-bold font-mono-lab uppercase text-[10px]">
               🎯 Treino de Recuperação Ativa
             </span>
-            <span className="text-muted-foreground">
+            <span className="text-ink-muted">
               Focando na retificação das questões erradas e conceitos vulneráveis.
             </span>
           </div>
           {queue[currentIndex]?.remediation_reason === "unresolved_error" ? (
-            <span className="hidden sm:inline-flex items-center gap-1 font-semibold text-rose-600 dark:text-rose-400">
+            <span className="hidden sm:inline-flex items-center gap-1 font-semibold text-critical">
               Questão do Caderno de Erros
             </span>
           ) : queue[currentIndex]?.remediation_reason === "twin_unseen_concept" ? (
-            <span className="hidden sm:inline-flex items-center gap-1 font-semibold text-indigo-600 dark:text-indigo-400">
+            <span className="hidden sm:inline-flex items-center gap-1 font-semibold text-accent">
               Questão Gêmea (Conceito Inédito)
             </span>
           ) : null}
@@ -1354,42 +1355,50 @@ export function QuizClient({
       )}
 
       {detailError ? (
-        <div className="bg-card border border-border shadow-1 rounded-xl p-8 min-h-64 flex flex-col gap-4 items-center justify-center text-center" role="alert">
-          <AlertTriangle className="text-destructive" size={36} />
-          <p className="font-bold text-foreground">Erro ao carregar a questão</p>
-          <p className="text-sm text-muted-foreground max-w-md">{detailError}</p>
+        <div className="bg-surface border border-line-subtle shadow-xs rounded-sm p-8 min-h-64 flex flex-col gap-4 items-center justify-center text-center" role="alert">
+          <AlertTriangle className="text-critical" size={32} />
+          <p className="font-bold text-ink text-sm">Erro ao carregar a questão</p>
+          <p className="text-xs text-ink-muted max-w-md">{detailError}</p>
           <button
             onClick={() => queue[currentIndex] && loadQuestionDetail(queue[currentIndex].id)}
-            className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors font-semibold"
+            className="flex items-center gap-2 bg-accent text-white px-3.5 py-2 rounded-sm hover:opacity-90 transition-opacity font-semibold text-xs cursor-pointer shadow-xs"
           >
-            <RotateCcw size={16} /> Tentar novamente
+            <RotateCcw size={14} /> Tentar novamente
           </button>
         </div>
       ) : loadingDetail || !q ? (
-        <div className="flex flex-col gap-6 animate-pulse">
-          <div className="bg-card border border-border rounded-xl p-8 h-40" />
-          <div className="flex flex-col gap-4">
-            {[1, 2, 3, 4].map(i => <div key={i} className="h-14 bg-card border border-border rounded-lg" />)}
+        <div className="flex flex-col gap-4 animate-pulse">
+          <div className="bg-surface border border-line-subtle rounded-sm p-6 h-36" />
+          <div className="flex flex-col gap-2.5">
+            {[1, 2, 3, 4].map(i => <div key={i} className="h-12 bg-surface border border-line-subtle rounded-sm" />)}
           </div>
         </div>
       ) : (
-        <div className={clsx("grid gap-6 items-start", q.clinical_case ? "lg:grid-cols-2" : "grid-cols-1")}>
+        <div className={clsx(
+          "grid gap-6 items-start w-full",
+          zenMode
+            ? "grid-cols-1 max-w-4xl mx-auto"
+            : "lg:grid-cols-12"
+        )}>
           {q.clinical_case && (
-            <div className="lg:sticky lg:top-24 h-fit bg-muted/30 border-l-4 border-primary shadow-sm rounded-r-xl rounded-l-md p-6 flex flex-col gap-6">
-              <h4 className="text-sm font-bold text-primary uppercase tracking-wider flex items-center gap-2">
-                <BookOpen size={18} /> Caso Clínico
+            <div className={clsx(
+              "bg-surface border border-line-subtle border-l-4 border-l-accent shadow-xs rounded-sm p-5 md:p-6 flex flex-col gap-4",
+              !zenMode && "lg:col-span-6 lg:sticky lg:top-20 h-fit max-h-[calc(100vh-6rem)] overflow-y-auto"
+            )}>
+              <h4 className="text-xs font-bold text-accent uppercase tracking-wider flex items-center gap-2 font-mono-lab">
+                <BookOpen size={16} /> Caso Clínico Associado
               </h4>
               <FormattedContent 
                 content={q.clinical_case.stem} 
                 onImageClick={setEnlargedImage} 
-                className="text-foreground text-lg leading-relaxed" 
+                className="text-ink text-base md:text-lg leading-relaxed font-normal" 
               />
               {extraCaseImages.length > 0 && (
-                <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-2">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-1">
                   {extraCaseImages.map((img, i) => (
                     <div 
                       key={i} 
-                      className="relative group rounded-lg overflow-hidden border border-border bg-muted/20 cursor-zoom-in hover:shadow-md transition-all sm:max-w-xs"
+                      className="relative group rounded-sm overflow-hidden border border-line-subtle bg-canvas cursor-zoom-in hover:border-line-strong transition-all sm:max-w-xs"
                       onClick={() => setEnlargedImage(img)}
                     >
                       <Image
@@ -1398,7 +1407,7 @@ export function QuizClient({
                         width={800}
                         height={600}
                         unoptimized
-                        className="max-w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-300" 
+                        className="max-w-full h-auto object-cover hover:scale-[1.01] transition-transform duration-200" 
                       />
                     </div>
                   ))}
@@ -1407,227 +1416,247 @@ export function QuizClient({
             </div>
           )}
 
-          <div className="flex flex-col gap-6">
-            {/* Question Stem */}
-            <div className="bg-card border border-border shadow-1 rounded-xl p-6 md:p-8 flex flex-col gap-6">
-            {q.technical_note && (
-              <div className="bg-amber-500/15 border-2 border-amber-500/50 rounded-xl p-5 flex gap-4 text-foreground mb-2 shadow-sm">
-                <AlertTriangle className="text-amber-500 shrink-0 mt-0.5" size={24} />
-                <div className="text-sm">
-                  <p className="font-bold text-amber-600 dark:text-amber-500 mb-1 text-base uppercase tracking-wider">Atenção: Questão Histórica / Desatualizada</p>
-                  <p className="leading-relaxed font-medium">{q.technical_note}</p>
+          {/* Question Stem: quando não há caso clínico, ocupa coluna 7 no desktop */}
+          <div className={clsx("flex flex-col gap-5", !zenMode && (q.clinical_case ? "lg:col-span-6" : "lg:col-span-7"))}>
+            {/* Question Stem Card */}
+            <div className="bg-surface border border-line-subtle shadow-xs rounded-sm p-5 md:p-6 flex flex-col gap-5">
+              {q.technical_note && (
+                <div className="bg-warning/10 border border-warning/30 rounded-xs p-3.5 flex gap-3 text-ink text-xs shadow-xs">
+                  <AlertTriangle className="text-warning shrink-0 mt-0.5" size={18} />
+                  <div>
+                    <p className="font-bold text-ink mb-0.5 uppercase tracking-wider font-mono-lab text-[11px]">Atenção: Questão Histórica / Desatualizada</p>
+                    <p className="leading-relaxed">{q.technical_note}</p>
+                  </div>
+                </div>
+              )}
+              <div className="flex items-start md:items-center justify-between flex-col md:flex-row gap-3">
+                <div className="flex flex-wrap items-center gap-1.5 text-xs font-semibold uppercase tracking-wider">
+                  {q.is_verified && (
+                    <span className="bg-normal/10 text-normal border border-normal/30 px-2 py-0.5 rounded-xs flex items-center gap-1 text-[11px] font-mono-lab" title={q.last_updated_at ? `Revisado em ${q.last_updated_at}` : "Revisado por um médico"}>
+                      <ClinicalIcon name="checkCircle" size={12} /> Revisado
+                    </span>
+                  )}
+                  {Boolean(q.is_discursive || (q.alternatives || []).length <= 1) && (
+                    <span className="bg-accent/10 text-accent border border-accent/30 px-2 py-0.5 rounded-xs flex items-center gap-1 font-bold text-[11px] font-mono-lab">
+                      Discursiva
+                    </span>
+                  )}
+                  <span className="bg-canvas border border-line-subtle text-ink px-2 py-0.5 rounded-xs font-mono-lab text-[11px] font-bold">
+                    {q.institution_code}{q.is_autoral ? " (A)" : ""} {q.year}
+                  </span>
+                  {q.is_target_institution && (
+                    <span
+                      className="bg-primary/10 text-primary border border-primary/30 px-2 py-0.5 rounded-xs flex items-center gap-1 font-bold font-mono-lab text-[11px] animate-in fade-in"
+                      title="Questão da sua banca-alvo selecionada no Planejador de Residência"
+                    >
+                      <Target size={12} className="text-primary shrink-0" /> Alvo Residência
+                    </span>
+                  )}
+                  {q.is_twin && (
+                    <span
+                      className="bg-accent/10 text-accent border border-accent/30 px-2 py-0.5 rounded-xs flex items-center gap-1 font-bold font-mono-lab text-[11px] animate-in fade-in"
+                      title={q.twin_origin_institution ? `Questão Gêmea: aplicando o conceito de ${q.twin_subtema || q.subtema} (revisão de ${q.twin_origin_institution}) a um novo caso clínico para testar seu raciocínio real sem vícios de memorização.` : "Questão Gêmea: aplicando o conceito a um novo caso clínico."}
+                    >
+                      <ClinicalIcon name="sparkles" size={12} />
+                      Questão Gêmea{q.twin_origin_institution ? ` (${q.twin_origin_institution})` : ""}
+                    </span>
+                  )}
+                  {(q.area || q.subtema) && (
+                    <button
+                      type="button"
+                      onClick={toggleTopic}
+                      className="bg-canvas border border-line-subtle px-2 py-0.5 rounded-xs flex items-center gap-1.5 transition-colors hover:bg-elevated cursor-pointer text-left text-[11px] font-mono-lab text-ink-muted"
+                      title={showTopic ? "Ocultar Tema" : "Mostrar Tema"}
+                    >
+                      {showTopic ? (
+                        <>
+                          <span className="flex items-center gap-1.5">
+                            {q.area && <span>{q.area}</span>}
+                            {q.area && q.subtema && <span>&bull;</span>}
+                            {q.subtema && <span>{q.subtema}</span>}
+                          </span>
+                          <EyeOff size={12} className="text-ink-muted ml-0.5" />
+                        </>
+                      ) : (
+                        <>
+                          <span>Tema Oculto</span>
+                          <Eye size={12} className="text-ink-muted ml-0.5" />
+                        </>
+                      )}
+                    </button>
+                  )}
+                  {isCurator && (
+                    <button
+                      type="button"
+                      onClick={() => setIsClassificationModalOpen(true)}
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-xs bg-accent/10 hover:bg-accent/20 text-accent border border-accent/25 transition-colors font-bold text-[11px] font-mono-lab cursor-pointer shadow-xs"
+                      title="Editar Classificação da Questão (Curadoria)"
+                    >
+                      <Pencil size={11} /> Editar Tema
+                    </button>
+                  )}
+                </div>
+                
+                <div className="flex items-center gap-1 bg-canvas px-1.5 py-0.5 rounded-xs border border-line-subtle">
+                  <button 
+                    onClick={() => navigateQuestion("previous")}
+                    disabled={currentIndex === 0 || loadingDetail}
+                    className="p-1 min-w-[32px] min-h-[32px] flex items-center justify-center hover:bg-elevated rounded-xs transition-colors disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent text-ink-muted hover:text-ink"
+                    title="Questão Anterior (Seta Esquerda)"
+                    aria-label="Questão Anterior"
+                  >
+                    <ClinicalIcon name="arrowLeft" size={14} aria-hidden="true" />
+                  </button>
+                  <span className="text-xs font-mono-lab tabular-nums font-bold text-ink min-w-[2.5rem] text-center select-none">
+                    {currentIndex + 1} / {queue.length}
+                  </span>
+                  <button 
+                    onClick={() => navigateQuestion("next")}
+                    disabled={loadingDetail}
+                    className="p-1 min-w-[32px] min-h-[32px] flex items-center justify-center hover:bg-elevated rounded-xs transition-colors disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent text-ink-muted hover:text-ink"
+                    title="Próxima questão (Seta Direita)"
+                    aria-label="Próxima Questão"
+                  >
+                    <ClinicalIcon name="arrowRight" size={14} aria-hidden="true" />
+                  </button>
                 </div>
               </div>
-            )}
-            <div className="flex items-start md:items-center justify-between flex-col md:flex-row gap-4">
-              <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                {q.is_verified && (
-                  <span className="bg-success/15 text-success border border-success/30 px-2 py-1 rounded flex items-center gap-1" title={q.last_updated_at ? `Revisado em ${q.last_updated_at}` : "Revisado por um médico"}>
-                    <span className="material-symbols-outlined text-[14px]" data-icon="verified_user">verified_user</span> Revisado
-                  </span>
-                )}
-                {Boolean(q.is_discursive || (q.alternatives || []).length <= 1) && (
-                  <span className="bg-primary/15 text-primary border border-primary/30 px-2 py-1 rounded flex items-center gap-1 font-bold">
-                    Discursiva
-                  </span>
-                )}
-                <span className="bg-muted px-2 py-1 rounded">{q.institution_code}{q.is_autoral ? " (A)" : ""} {q.year}</span>
-                {q.is_twin && (
-                  <span
-                    className="bg-purple-500/15 text-purple-700 dark:text-purple-300 border border-purple-500/30 px-2 py-1 rounded flex items-center gap-1 font-bold animate-in fade-in"
-                    title={q.twin_origin_institution ? `Questão Gêmea: aplicando o conceito de ${q.twin_subtema || q.subtema} (revisão de ${q.twin_origin_institution}) a um novo caso clínico para testar seu raciocínio real sem vícios de memorização.` : "Questão Gêmea: aplicando o conceito a um novo caso clínico."}
-                  >
-                    <Sparkles size={13} className="text-purple-600 dark:text-purple-400" />
-                    Questão Gêmea{q.twin_origin_institution ? ` (${q.twin_origin_institution})` : ""}
-                  </span>
-                )}
-                {(q.area || q.subtema) && (
+
+              <FormattedContent 
+                content={q.stem} 
+                onImageClick={setEnlargedImage} 
+                className="text-ink text-base md:text-lg leading-relaxed font-normal" 
+              />
+
+              {extraStemImages.length > 0 && (
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-2">
+                  {extraStemImages.map((img, i) => (
+                    <div 
+                      key={i} 
+                      className="relative group rounded-sm overflow-hidden border border-line-subtle bg-canvas cursor-zoom-in hover:border-line-strong transition-all sm:max-w-sm"
+                      onClick={() => setEnlargedImage(img)}
+                    >
+                      <Image
+                        src={resolveImageUrl(img)} 
+                        alt={`Imagem ${i+1}`} 
+                        width={800}
+                        height={600}
+                        unoptimized
+                        className="max-w-full h-auto object-cover hover:scale-[1.01] transition-transform duration-200" 
+                        onError={(e) => { 
+                          e.currentTarget.style.display = 'none'; 
+                          if (e.currentTarget.nextElementSibling) {
+                            (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'flex';
+                          }
+                        }} 
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center pointer-events-none">
+                        <ClinicalIcon name="maximize" size={18} className="text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-md" />
+                      </div>
+                      <div className="hidden flex-col items-center justify-center p-6 text-ink-muted gap-2">
+                        <ImageOff size={24} />
+                        <span className="text-xs font-mono-lab">Imagem indisponível</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* PAINEL DIREITO: Alternativas, Resposta, Gabarito e FSRS */}
+          <div className={clsx(
+            "flex flex-col gap-4",
+            !zenMode && (
+              q.clinical_case
+                ? "lg:col-span-6"
+                : "lg:col-span-5 lg:sticky lg:top-20 h-fit max-h-[calc(100vh-6rem)] overflow-y-auto pr-1"
+            )
+          )}>
+            {/* Alternatives or Discursive Response */}
+            {Boolean(q.is_discursive || (q.alternatives || []).length <= 1) ? (
+              !attemptResult && (
+                <div className="bg-surface border border-line-subtle shadow-xs rounded-sm p-5 md:p-6 flex flex-col gap-3.5 animate-in fade-in duration-200">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 text-accent font-bold text-sm">
+                      <ClinicalIcon name="notes" size={16} />
+                      <span>Questão Discursiva (Resposta Aberta)</span>
+                    </div>
+                    <span className="text-[11px] font-mono-lab text-ink-muted">
+                      Atalho: <kbd className="bg-canvas px-1 py-0.5 rounded-xs border border-line-subtle text-[10px] text-ink">Ctrl+Enter</kbd>
+                    </span>
+                  </div>
+                  <p className="text-xs text-ink-muted leading-relaxed">
+                    Anote seus achados clínicos, hipótese diagnóstica ou conduta antes de revelar o gabarito e padrão oficial da banca:
+                  </p>
+                  <textarea
+                    value={userWrittenAnswer}
+                    onChange={(e) => setUserWrittenAnswer(e.target.value)}
+                    placeholder="Escreva sua hipótese diagnóstica ou conduta aqui..."
+                    rows={4}
+                    className="w-full bg-canvas border border-line-subtle focus:border-accent focus:bg-surface rounded-sm p-3.5 text-ink placeholder:text-ink-muted/60 focus:outline-none focus:ring-1 focus:ring-accent transition-all resize-y text-sm font-normal leading-relaxed min-h-[100px]"
+                    onKeyDown={(e) => {
+                      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+                        e.preventDefault();
+                        handleDiscursiveReveal();
+                      }
+                    }}
+                  />
                   <button
-                    type="button"
-                    onClick={toggleTopic}
-                    className="bg-muted px-2 py-1 rounded flex items-center gap-1.5 transition-colors hover:bg-muted/80 cursor-pointer text-left"
-                    title={showTopic ? "Ocultar Tema" : "Mostrar Tema"}
+                    onClick={handleDiscursiveReveal}
+                    disabled={submitting}
+                    className="w-full bg-accent hover:opacity-90 text-white font-bold py-3 rounded-sm transition-opacity flex items-center justify-center gap-2 shadow-xs cursor-pointer text-xs uppercase tracking-wider font-mono-lab disabled:opacity-50"
                   >
-                    {showTopic ? (
-                      <>
-                        <span className="flex items-center gap-1.5">
-                          {q.area && <span>{q.area}</span>}
-                          {q.area && q.subtema && <span>&bull;</span>}
-                          {q.subtema && <span>{q.subtema}</span>}
-                        </span>
-                        <EyeOff size={13} className="text-muted-foreground ml-0.5" />
-                      </>
+                    {submitting ? (
+                      <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
                     ) : (
                       <>
-                        <span>Tema Oculto</span>
-                        <Eye size={13} className="text-muted-foreground ml-0.5" />
+                        <ClinicalIcon name="checkCircle" size={14} />
+                        Confirmar Resposta & Ver Padrão da Banca
                       </>
                     )}
                   </button>
-                )}
-                {isCurator && (
+                </div>
+              )
+            ) : (
+              <div className="flex flex-col gap-2.5">
+                <AlternativeList
+                  alternatives={q.alternatives || []}
+                  selectedLetter={selectedLetter}
+                  attemptResult={attemptResult}
+                  eliminatedLetters={eliminatedAlternatives[q.id] || []}
+                  submitting={submitting}
+                  onSelectAlternative={selectAlternative}
+                  onToggleEliminate={toggleEliminateAlternative}
+                />
+
+                {!attemptResult && !isOfflineSaved && selectedLetter && (
                   <button
-                    type="button"
-                    onClick={() => setIsClassificationModalOpen(true)}
-                    className="inline-flex items-center gap-1 px-2 py-1 rounded bg-primary/10 hover:bg-primary/20 text-primary border border-primary/25 transition-colors font-bold text-[11px] cursor-pointer shadow-xs"
-                    title="Editar Classificação da Questão (Curadoria)"
+                    onClick={handleAttempt}
+                    disabled={submitting}
+                    className="mt-1 w-full bg-accent hover:opacity-90 text-white font-bold py-3 rounded-sm transition-opacity flex items-center justify-center shadow-xs text-xs uppercase tracking-wider font-mono-lab cursor-pointer disabled:opacity-50"
                   >
-                    <Pencil size={11} /> Editar Tema
+                    {submitting ? (
+                      <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                    ) : (
+                      "Confirmar Resposta [Enter]"
+                    )}
                   </button>
                 )}
               </div>
-              
-              <div className="flex items-center gap-1 sm:gap-2 bg-muted/30 px-2 py-1 rounded-lg border border-border">
-                <button 
-                  onClick={() => navigateQuestion("previous")}
-                  disabled={currentIndex === 0 || loadingDetail}
-                  className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-background rounded transition-colors disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                  title="Questão Anterior (Seta Esquerda)"
-                  aria-label="Questão Anterior"
-                >
-                  <ArrowLeft size={18} aria-hidden="true" />
-                </button>
-                <span className="text-sm font-bold text-foreground min-w-[3rem] text-center select-none">
-                  {currentIndex + 1} / {queue.length}
-                </span>
-                <button 
-                  onClick={() => navigateQuestion("next")}
-                  disabled={loadingDetail}
-                  className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-background rounded transition-colors disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                  title="Próxima questão (Seta Direita)"
-                  aria-label="Próxima Questão"
-                >
-                  <ArrowRight size={18} aria-hidden="true" />
-                </button>
-              </div>
-            </div>
-            
-
-            <FormattedContent 
-              content={q.stem} 
-              onImageClick={setEnlargedImage} 
-              className="text-foreground text-lg md:text-xl font-medium leading-relaxed" 
-            />
-
-            {extraStemImages.length > 0 && (
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-6">
-                {extraStemImages.map((img, i) => (
-                  <div 
-                    key={i} 
-                    className="relative group rounded-xl overflow-hidden border border-border bg-muted/20 cursor-zoom-in hover:shadow-md transition-all sm:max-w-sm"
-                    onClick={() => setEnlargedImage(img)}
-                  >
-                    <Image
-                      src={resolveImageUrl(img)} 
-                      alt={`Imagem ${i+1}`} 
-                      width={800}
-                      height={600}
-                      unoptimized
-                      className="max-w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-300" 
-                      onError={(e) => { 
-                        e.currentTarget.style.display = 'none'; 
-                        if (e.currentTarget.nextElementSibling) {
-                          (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'flex';
-                        }
-                      }} 
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center pointer-events-none">
-                      <Maximize size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-md" />
-                    </div>
-                    <div className="hidden flex-col items-center justify-center p-8 text-muted-foreground gap-2">
-                      <ImageOff size={32} />
-                      <span className="text-sm font-medium">Imagem indisponível</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
             )}
-          </div>
-
-          {/* Alternatives or Discursive Response */}
-          {Boolean(q.is_discursive || (q.alternatives || []).length <= 1) ? (
-            !attemptResult && (
-              <div className="bg-card border border-border shadow-1 rounded-2xl p-6 md:p-7 flex flex-col gap-4 animate-in fade-in duration-200">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <div className="flex items-center gap-2 text-primary font-bold text-base">
-                    <span className="material-symbols-outlined text-[20px]">edit_document</span>
-                    <span>Questão Discursiva (Resposta Aberta)</span>
-                  </div>
-                  <span className="text-xs text-muted-foreground">
-                    Atalho: <kbd className="bg-muted px-1.5 py-0.5 rounded border border-border text-[10px]">Ctrl+Enter</kbd> para confirmar
-                  </span>
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Anote seus achados clínicos, hipótese diagnóstica ou conduta antes de revelar o gabarito e padrão oficial da banca:
-                </p>
-                <textarea
-                  value={userWrittenAnswer}
-                  onChange={(e) => setUserWrittenAnswer(e.target.value)}
-                  placeholder="Escreva sua resposta ou hipótese aqui..."
-                  rows={4}
-                  className="w-full bg-input/40 border border-border focus:border-primary/50 focus:bg-background rounded-xl p-4 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all resize-y text-base font-normal leading-relaxed min-h-[110px]"
-                  onKeyDown={(e) => {
-                    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
-                      e.preventDefault();
-                      handleDiscursiveReveal();
-                    }
-                  }}
-                />
-                <button
-                  onClick={handleDiscursiveReveal}
-                  disabled={submitting}
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer text-sm disabled:opacity-50"
-                >
-                  {submitting ? (
-                    <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                  ) : (
-                    <>
-                      <CheckCircle2 size={18} />
-                      Confirmar Resposta & Ver Padrão da Banca
-                    </>
-                  )}
-                </button>
-              </div>
-            )
-          ) : (
-            <div className="flex flex-col gap-3">
-              <AlternativeList
-                alternatives={q.alternatives || []}
-                selectedLetter={selectedLetter}
-                attemptResult={attemptResult}
-                eliminatedLetters={eliminatedAlternatives[q.id] || []}
-                submitting={submitting}
-                onSelectAlternative={selectAlternative}
-                onToggleEliminate={toggleEliminateAlternative}
-              />
-
-              {!attemptResult && !isOfflineSaved && selectedLetter && (
-                <button
-                  onClick={handleAttempt}
-                  disabled={submitting}
-                  className="mt-2 w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3.5 rounded-xl transition-all flex items-center justify-center shadow-md animate-in slide-in-from-bottom-2 fade-in duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                >
-                  {submitting ? (
-                    <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                  ) : (
-                    "Confirmar Resposta"
-                  )}
-                </button>
-              )}
-            </div>
-          )}
 
           {/* Offline Saved Banner */}
           {isOfflineSaved && (
-            <div className="bg-primary/10 border border-primary/30 rounded-xl p-6 flex flex-col gap-4 text-foreground animate-in slide-in-from-bottom-2 duration-200 shadow-sm mt-2">
+            <div className="bg-accent/10 border border-accent/25 rounded-sm p-4 flex flex-col gap-3 text-ink animate-in slide-in-from-bottom-2 duration-200 shadow-xs mt-2">
               <div className="flex items-center gap-3">
-                <CloudOff className="text-primary shrink-0" size={24} />
+                <CloudOff className="text-accent shrink-0" size={20} />
                 <div>
-                  <p className="font-bold text-base">Resposta Salva Offline</p>
-                  <p className="text-sm text-muted-foreground">Sua resposta foi salva neste dispositivo e será sincronizada automaticamente assim que a conexão for restabelecida.</p>
+                  <p className="font-bold text-xs uppercase tracking-wider font-mono-lab">Resposta Salva Offline</p>
+                  <p className="text-xs text-ink-muted">Sua resposta foi salva neste dispositivo e será sincronizada automaticamente assim que a conexão for restabelecida.</p>
                 </div>
               </div>
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-primary/20">
+              <div className="flex flex-wrap items-center justify-between gap-2.5 pt-2 border-t border-accent/20">
                 <button
                   type="button"
                   onClick={async () => {
@@ -1638,9 +1667,6 @@ export function QuizClient({
                     try {
                       const { syncManager } = await import("@/lib/sync");
                       await syncManager.sync(true);
-                      // The queue dispatches sync-item-success with the original
-                      // idempotency key. Sending a second request here would create
-                      // a duplicate attempt after the queued one succeeds.
                     } catch (e) {
                       if (e instanceof OfflineQueuedError) {
                         toast("Sem conexão com a internet no momento.", { icon: "💾" });
@@ -1649,25 +1675,25 @@ export function QuizClient({
                       }
                     }
                   }}
-                  className="flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary/80 transition-colors bg-card border border-border px-3 py-2 rounded-lg"
+                  className="flex items-center gap-1.5 text-xs font-mono-lab font-bold text-accent hover:text-accent/80 transition-colors bg-surface border border-line-subtle px-2.5 py-1.5 rounded-xs"
                 >
-                  <RotateCcw size={14} /> Sincronizar Gabarito Agora
+                  <RotateCcw size={12} /> Sincronizar Gabarito Agora
                 </button>
                 {currentIndex === queue.length - 1 ? (
                   <button
                     type="button"
                     onClick={confirmFinish}
-                    className="flex items-center gap-2 bg-primary text-primary-foreground font-bold px-4 py-2 rounded-lg transition-colors text-sm hover:bg-primary/90 cursor-pointer shadow-sm"
+                    className="flex items-center gap-1.5 bg-accent text-white font-mono-lab font-bold px-3 py-1.5 rounded-xs transition-opacity text-xs hover:opacity-90 cursor-pointer shadow-xs"
                   >
-                    Finalizar Sessão <CheckCircle2 size={16} />
+                    Finalizar Sessão <CheckCircle2 size={14} />
                   </button>
                 ) : (
                   <button
                     type="button"
                     onClick={nextQuestion}
-                    className="flex items-center gap-2 bg-primary text-primary-foreground font-bold px-4 py-2 rounded-lg transition-colors text-sm hover:bg-primary/90 cursor-pointer"
+                    className="flex items-center gap-1.5 bg-accent text-white font-mono-lab font-bold px-3 py-1.5 rounded-xs transition-opacity text-xs hover:opacity-90 cursor-pointer"
                   >
-                    Próxima Questão <ArrowRight size={16} />
+                    Próxima Questão <ArrowRight size={14} />
                   </button>
                 )}
               </div>
@@ -1676,32 +1702,32 @@ export function QuizClient({
 
           {/* Explanation Block */}
           {attemptResult && (
-            <div className="animate-in slide-in-from-bottom-4 fade-in duration-300 flex flex-col gap-6">
+            <div className="animate-in slide-in-from-bottom-2 fade-in duration-200 flex flex-col gap-4">
               {/* If question is discursive, show user's written answer and the board's short expected answer */}
               {Boolean(q.is_discursive || (q.alternatives || []).length <= 1) && (
-                <div className="bg-card border border-border shadow-1 rounded-2xl p-5 md:p-6 flex flex-col gap-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-surface border border-line-subtle shadow-xs rounded-sm p-4 md:p-5 flex flex-col gap-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {userWrittenAnswer ? (
-                      <div className="flex flex-col gap-2 bg-muted/40 p-4 rounded-xl border border-border">
-                        <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                          <span className="material-symbols-outlined text-[16px]">draw</span>
+                      <div className="flex flex-col gap-1.5 bg-canvas p-3 rounded-xs border border-line-subtle">
+                        <div className="flex items-center gap-1.5 text-[11px] font-bold text-ink-muted uppercase tracking-wider font-mono-lab">
+                          <ClinicalIcon name="notes" size={13} />
                           <span>Sua Resposta Anotada</span>
                         </div>
-                        <div className="text-foreground text-base leading-relaxed whitespace-pre-wrap font-medium">
+                        <div className="text-ink text-sm leading-relaxed whitespace-pre-wrap font-normal">
                           {userWrittenAnswer}
                         </div>
                       </div>
                     ) : null}
                     {q.alternatives?.[0]?.text && !/^(?:anote sua|questão dissertativa|ver padrão)/i.test(q.alternatives[0].text) && (
                       <div className={clsx(
-                        "flex flex-col gap-2 bg-emerald-500/10 p-4 rounded-xl border border-emerald-500/25",
+                        "flex flex-col gap-1.5 bg-normal/10 p-3 rounded-xs border border-normal/25",
                         !userWrittenAnswer && "md:col-span-2"
                       )}>
-                        <div className="flex items-center gap-2 text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">
-                          <CheckCircle2 size={16} />
+                        <div className="flex items-center gap-1.5 text-[11px] font-bold text-normal uppercase tracking-wider font-mono-lab">
+                          <ClinicalIcon name="checkCircle" size={13} />
                           <span>Resposta Curta Esperada pela Banca</span>
                         </div>
-                        <div className="text-foreground text-base leading-relaxed font-bold">
+                        <div className="text-ink text-sm leading-relaxed font-bold">
                           {q.alternatives[0].text}
                         </div>
                       </div>
@@ -1711,24 +1737,24 @@ export function QuizClient({
               )}
 
               <div className={clsx(
-                "rounded-xl border shadow-1 overflow-hidden",
-                attemptResult.is_correct === true ? "bg-success/5 border-success/20" :
-                attemptResult.is_correct === false ? "bg-destructive/5 border-destructive/20" :
-                "bg-card border-border"
+                "rounded-sm border shadow-xs overflow-hidden",
+                attemptResult.is_correct === true ? "bg-normal/5 border-normal/25" :
+                attemptResult.is_correct === false ? "bg-critical/5 border-critical/25" :
+                "bg-surface border-line-subtle"
               )}>
                 <div className={clsx(
-                  "p-4 border-b flex items-center justify-between",
-                  attemptResult.is_correct === true ? "border-success/20 bg-success/10" :
-                  attemptResult.is_correct === false ? "border-destructive/20 bg-destructive/10" :
-                  "border-border bg-muted/50"
+                  "px-4 py-3 border-b flex items-center justify-between",
+                  attemptResult.is_correct === true ? "border-normal/20 bg-normal/10" :
+                  attemptResult.is_correct === false ? "border-critical/20 bg-critical/10" :
+                  "border-line-subtle bg-canvas"
                 )}>
-                  <div className="flex items-center gap-2 font-bold">
+                  <div className="flex items-center gap-2 font-bold text-sm">
                     {attemptResult.is_correct === true ? (
-                      <><CheckCircle2 className="text-success" /> <span className="text-success">Resposta Correta!</span></>
+                      <><ClinicalIcon name="checkCircle" size={16} className="text-normal" /> <span className="text-normal font-mono-lab uppercase tracking-wide">Resposta Correta</span></>
                     ) : attemptResult.is_correct === false ? (
-                      <><XCircle className="text-destructive" /> <span className="text-destructive">Resposta Incorreta</span></>
+                      <><ClinicalIcon name="crossCircle" size={16} className="text-critical" /> <span className="text-critical font-mono-lab uppercase tracking-wide">Resposta Incorreta</span></>
                     ) : (
-                      <><span className="material-symbols-outlined text-primary text-[20px]">fact_check</span> <span className="text-foreground">Padrão de Resposta Oficial</span></>
+                      <><ClinicalIcon name="checkCircle" size={16} className="text-accent" /> <span className="text-ink font-mono-lab uppercase tracking-wide">Padrão Oficial da Banca</span></>
                     )}
                   </div>
                   {attemptResult.is_correct !== null && (
@@ -1737,29 +1763,29 @@ export function QuizClient({
                         <button
                           type="button"
                           onClick={handleRequestFinish}
-                          className="flex items-center gap-1.5 bg-background border border-border hover:bg-muted font-medium text-muted-foreground hover:text-foreground px-3 py-2 rounded-md transition-colors text-xs cursor-pointer"
+                          className="flex items-center gap-1 bg-surface border border-line-subtle hover:bg-elevated font-mono-lab text-ink-muted hover:text-ink px-2.5 py-1 rounded-xs transition-colors text-[11px] cursor-pointer"
                           title="Finalizar sessão agora"
                         >
-                          <CheckCircle2 size={14} /> Finalizar
+                          <CheckCircle2 size={12} /> Finalizar
                         </button>
                       )}
                       <button
                         onClick={nextQuestion}
-                        className="flex items-center gap-2 bg-background border border-border hover:bg-muted font-bold px-4 py-2 rounded-md transition-colors text-sm cursor-pointer"
+                        className="flex items-center gap-1.5 bg-surface border border-line-subtle hover:bg-elevated font-mono-lab font-bold text-ink px-3 py-1 rounded-xs transition-colors text-xs cursor-pointer"
                       >
                         {currentIndex === queue.length - 1 ? (
-                          <>Finalizar <CheckCircle2 size={16} className="text-success" /></>
+                          <>Finalizar <CheckCircle2 size={14} className="text-normal" /></>
                         ) : (
-                          <>Próxima <ArrowRight size={16} /></>
+                          <>Próxima <ArrowRight size={14} /></>
                         )}
                       </button>
                     </div>
                   )}
                 </div>
                 
-                <div className="p-6 md:p-8">
-                  <h3 className="text-lg font-bold text-foreground mb-5 flex items-center gap-2">
-                    <BookOpen size={20} className="text-primary" />
+                <div className="p-4 md:p-6 flex flex-col gap-5">
+                  <h3 className="text-sm font-bold text-ink flex items-center gap-2 uppercase tracking-wider font-mono-lab">
+                    <ClinicalIcon name="notes" size={16} className="text-accent" />
                     {Boolean(q.is_discursive || (q.alternatives || []).length <= 1) ? "Padrão de Resposta da Banca & Comentário" : "Comentário do Professor"}
                   </h3>
                   <ExplanationViewer 
@@ -1771,7 +1797,7 @@ export function QuizClient({
                   />
 
                   {currentDetail?.times_wrong && currentDetail.times_wrong > 0 ? (
-                    <div className="mt-4 flex items-center gap-2 text-sm text-destructive font-semibold bg-destructive/10 px-3 py-1.5 rounded-full w-fit">
+                    <div className="flex items-center gap-1.5 text-xs text-critical font-mono-lab font-semibold bg-critical/10 border border-critical/20 px-2.5 py-1 rounded-xs w-fit">
                       Você já errou esta questão {currentDetail.times_wrong} {currentDetail.times_wrong === 1 ? 'vez' : 'vezes'} no passado.
                     </div>
                   ) : null}
@@ -1820,72 +1846,72 @@ export function QuizClient({
                   {attemptResult.is_correct === null ? (
                     <DiscursiveAssessmentSection onReviewFSRS={handleReviewFSRS} />
                   ) : attemptResult.next_review_date ? (
-                    <div className="mt-8 pt-4 border-t border-border flex items-center justify-between flex-wrap gap-2 text-sm font-medium text-muted-foreground">
-                      <div className="flex items-center gap-2">
-                        <Clock size={16} />
-                        Próxima revisão agendada para: {new Date(attemptResult.next_review_date).toLocaleDateString('pt-BR')}
+                    <div className="pt-3 border-t border-line-subtle flex items-center justify-between flex-wrap gap-2 text-xs font-mono-lab text-ink-muted">
+                      <div className="flex items-center gap-1.5">
+                        <Clock size={14} />
+                        Próxima revisão FSRS: {new Date(attemptResult.next_review_date).toLocaleDateString('pt-BR')}
                       </div>
                       {Boolean(q.is_discursive || (q.alternatives || []).length <= 1) && (
                         <button
                           onClick={() => setAttemptResult(prev => prev ? { ...prev, is_correct: null } : null)}
-                          className="text-xs text-primary hover:underline font-semibold cursor-pointer"
+                          className="text-xs text-accent hover:underline font-semibold cursor-pointer"
                         >
                           Alterar autoavaliação
                         </button>
                       )}
                     </div>
                   ) : (
-                    <div className="mt-8 pt-4 border-t border-border flex flex-col gap-3">
+                    <div className="pt-3 border-t border-line-subtle flex flex-col gap-2.5">
                       <div className="flex flex-col gap-0.5">
-                        <span className="text-sm font-bold text-foreground">
+                        <span className="text-xs font-bold text-ink uppercase tracking-wider font-mono-lab">
                           {attemptResult.is_correct 
                             ? "Como foi resolver essa questão?" 
-                            : "Revisão agendada (FSRS):"}
+                            : "Revisão agendada (FSRS v6):"}
                         </span>
-                        <span className="text-xs text-muted-foreground">
+                        <span className="text-[11px] text-ink-muted">
                           {attemptResult.is_correct
                             ? "Classifique seu nível de domínio para calibrar a repetição espaçada."
-                            : "Questões erradas retornam na próxima semana para fixar o conceito sem viés de gabarito."}
+                            : "Questões erradas retornam na próxima semana (D+7) para consolidação clínica."}
                         </span>
                       </div>
                       
                       {attemptResult.is_correct ? (
-                        <div className="flex flex-col sm:flex-row gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                           <button
-                            title="Acertei no chute ou com grande insegurança. O algoritmo agendará um reforço em cerca de 2 semanas."
+                            title="Acertei no chute ou com grande insegurança. Intervalo FSRS: ~15 dias."
                             onClick={() => handleReviewFSRS("chutei")}
-                            className="flex-1 bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30 font-bold py-3 px-3 rounded-xl transition-colors text-sm flex flex-col items-center justify-center gap-1 cursor-pointer"
+                            className="bg-warning/10 hover:bg-warning/20 text-ink border border-warning/30 font-bold py-2.5 px-2 rounded-xs transition-colors text-xs flex flex-col items-center justify-center gap-0.5 cursor-pointer font-mono-lab"
                           >
-                            <span className="flex items-center gap-1.5">🎲 Chutei / Inseguro</span>
-                            <span className="text-[10px] font-normal opacity-85">+15 dias • Atalho: 1</span>
+                            <span className="flex items-center gap-1 font-semibold">🎲 Chutei</span>
+                            <span className="text-[10px] text-ink-muted font-normal">+15 dias • [1]</span>
                           </button>
                           <button
-                            title="Raciocínio correto, mas exigiu reflexão ou fiquei em dúvida. O algoritmo espaçará em cerca de 1 mês."
+                            title="Raciocínio correto, mas exigiu esforço ou dúvida. Intervalo FSRS: ~34 dias."
                             onClick={() => handleReviewFSRS("duvida")}
-                            className="flex-1 bg-primary/10 hover:bg-primary/20 text-primary border-2 border-primary/50 shadow-sm font-bold py-3 px-3 rounded-xl transition-colors text-sm flex flex-col items-center justify-center gap-1 cursor-pointer"
+                            className="bg-accent/10 hover:bg-accent/20 text-ink border border-accent/40 shadow-xs font-bold py-2.5 px-2 rounded-xs transition-colors text-xs flex flex-col items-center justify-center gap-0.5 cursor-pointer font-mono-lab ring-1 ring-accent/20"
                           >
-                            <span className="flex items-center gap-1.5">👍 Acertei com Esforço</span>
-                            <span className="text-[10px] font-normal opacity-85">+34 dias • Atalho: 2 / Enter</span>
+                            <span className="flex items-center gap-1 font-semibold">👍 Com Esforço</span>
+                            <span className="text-[10px] text-accent font-normal">+34 dias • [2]</span>
                           </button>
                           <button
-                            title="Questão dominada com total convicção e clareza. Intervalo estendido para ~2,5 meses."
+                            title="Questão dominada com total convicção. Intervalo FSRS: ~76 dias."
                             onClick={() => handleReviewFSRS("certeza")}
-                            className="flex-1 bg-success/10 hover:bg-success/20 text-success border border-success/30 font-bold py-3 px-3 rounded-xl transition-colors text-sm flex flex-col items-center justify-center gap-1 cursor-pointer"
+                            className="bg-normal/10 hover:bg-normal/20 text-ink border border-normal/30 font-bold py-2.5 px-2 rounded-xs transition-colors text-xs flex flex-col items-center justify-center gap-0.5 cursor-pointer font-mono-lab"
                           >
-                            <span className="flex items-center gap-1.5">🎯 Domino o Conteúdo</span>
-                            <span className="text-[10px] font-normal opacity-85">+76 dias • Atalho: 3</span>
+                            <span className="flex items-center gap-1 font-semibold">🎯 Domino</span>
+                            <span className="text-[10px] text-normal font-normal">+76 dias • [3]</span>
                           </button>
                         </div>
                       ) : (
-                        <div className="flex flex-col sm:flex-row gap-3">
+                        <div className="flex flex-col sm:flex-row gap-2">
                           <button
-                            title="O algoritmo agendará esta questão para a próxima semana (7 dias), tempo ideal para esquecer a memória do gabarito e exercitar novamente o raciocínio clínico."
+                            title="Agendada para 7 dias no FSRS v6."
                             onClick={() => handleReviewFSRS("duvida")}
-                            className="flex-1 bg-destructive/10 hover:bg-destructive/20 text-destructive border-2 border-destructive/40 font-bold py-3.5 px-4 rounded-xl transition-colors text-sm flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                            className="flex-1 bg-critical/10 hover:bg-critical/20 text-critical border border-critical/30 font-bold py-2.5 px-3 rounded-xs transition-colors text-xs flex items-center justify-center gap-2 cursor-pointer font-mono-lab shadow-xs"
                           >
-                            <RotateCcw size={18} />
+                            <RotateCcw size={14} />
                             <span>Revisar na Próxima Semana</span>
-                            <span className="text-xs font-normal opacity-80 ml-2 py-0.5 px-2 bg-destructive/15 rounded-md">em 7 dias • Pressione Enter</span>
+                            <span className="text-[10px] font-normal py-0.5 px-1.5 bg-critical/15 rounded-xs">D+7 • [Enter]</span>
                           </button>
                         </div>
                       )}

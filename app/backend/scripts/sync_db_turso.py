@@ -252,6 +252,57 @@ def sync_database(verbose: bool = True) -> bool:
             }
         }])
 
+    # 2b. Sincronizar metadados atualizados de Questions (subtema canônico, topic, subtema_orig)
+    cur.execute("SELECT id, subtema, topic, subtema_orig FROM questions")
+    local_q_meta = {r["id"]: (r["subtema"], r["topic"], r["subtema_orig"]) for r in cur.fetchall()}
+
+    try:
+        res_q_meta = execute_turso_pipeline(url, token, [{
+            "type": "execute",
+            "stmt": {"sql": "SELECT id, subtema, topic, subtema_orig FROM questions"}
+        }], timeout=60)
+        remote_q_meta = res_q_meta["results"][0]["response"]["result"]["rows"]
+
+        questions_to_update = []
+        for r in remote_q_meta:
+            qid = int(r[0]["value"])
+            if qid in local_q_meta:
+                l_sub, l_top, l_orig = local_q_meta[qid]
+                r_sub = r[1]["value"] if r[1] else None
+                r_top = r[2]["value"] if r[2] else None
+                r_orig = r[3]["value"] if len(r) > 3 and r[3] else None
+                if l_sub != r_sub or l_top != r_top or l_orig != r_orig:
+                    questions_to_update.append((qid, l_sub, l_top, l_orig))
+
+        if questions_to_update:
+            if verbose:
+                print(f"  [+] Atualizando taxonomia de {len(questions_to_update)} questões no Turso...")
+            batch_size = 200
+            total_batches = (len(questions_to_update) + batch_size - 1) // batch_size
+            for batch_idx, i in enumerate(range(0, len(questions_to_update), batch_size), start=1):
+                chunk = questions_to_update[i:i + batch_size]
+                reqs = [{"type": "execute", "stmt": {"sql": "BEGIN"}}]
+                for qid, sub, top, orig in chunk:
+                    args = [
+                        {"type": "text", "value": sub or ""},
+                        {"type": "text", "value": top or ""},
+                        {"type": "text", "value": orig} if orig else {"type": "null"},
+                        {"type": "integer", "value": str(qid)}
+                    ]
+                    reqs.append({
+                        "type": "execute",
+                        "stmt": {
+                            "sql": "UPDATE questions SET subtema = ?, topic = ?, subtema_orig = ? WHERE id = ?",
+                            "args": args
+                        }
+                    })
+                reqs.append({"type": "execute", "stmt": {"sql": "COMMIT"}})
+                execute_turso_pipeline(url, token, reqs, timeout=60)
+                if verbose and (batch_idx % 20 == 0 or batch_idx == total_batches):
+                    print(f"      ... [Taxonomia Questões] {min(i + batch_size, len(questions_to_update))}/{len(questions_to_update)} ({batch_idx}/{total_batches} lotes)")
+    except Exception as e:
+        print(f"  [AVISO] Não foi possível verificar atualização de taxonomia no Turso: {e}")
+
     # 3. Sincronizar Alternatives faltantes
     cur.execute("SELECT * FROM alternatives")
     local_alts = cur.fetchall()

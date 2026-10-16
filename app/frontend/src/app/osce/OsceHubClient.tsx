@@ -165,65 +165,65 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto w-full space-y-8 animate-in fade-in duration-300">
-      {/* Header com Branding Radical da 2ª Fase */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/10 via-background to-secondary/10 border border-primary/20 p-6 md:p-8 shadow-sm">
+    <div className="max-w-7xl mx-auto w-full space-y-6 animate-in fade-in duration-300">
+      {/* Header com Branding Clínico de 2ª Fase */}
+      <div className="bg-surface border border-line-subtle rounded-sm p-6 md:p-8 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-semibold tracking-wide uppercase">
+          <div className="space-y-2.5">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-xs bg-accent/10 text-accent text-xs font-mono-lab uppercase font-semibold border border-accent/20">
               <Stethoscope className="w-3.5 h-3.5" />
               <span>Simulador Oficial de 2ª Fase Prática (OSCE)</span>
             </div>
-            <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+            <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-ink-primary font-sans">
               Arena OSCE & Beira-Leito
             </h1>
-            <p className="text-muted-foreground text-sm md:text-base max-w-2xl leading-relaxed">
+            <p className="text-ink-secondary text-sm max-w-2xl leading-relaxed">
               Treinamento de estações clínicas com paciente virtual falante, estetoscópio interativo, 
               exames complementares reais e <strong>Espelho de Correção Oficial</strong> das bancas 
-              com 2ª fase presencial (<span className="text-foreground font-medium">UNICAMP, UNIFESP, Einstein, Revalida INEP, SCMSP e USP-RP</span>).
+              com 2ª fase presencial (<span className="text-ink-primary font-medium">UNICAMP, UNIFESP, Einstein, Revalida INEP, SCMSP e USP-RP</span>).
             </p>
           </div>
 
-          {/* Quick Metrics */}
-          <div className="grid grid-cols-3 gap-3 md:gap-4 shrink-0 bg-card/60 backdrop-blur-md p-4 rounded-2xl border border-border">
-            <div className="text-center px-2">
-              <div className="text-2xl md:text-3xl font-black text-foreground">{stats.total}</div>
-              <div className="text-xs text-muted-foreground font-medium">Estações</div>
+          {/* Métricas Clínicas */}
+          <div className="grid grid-cols-3 gap-2 shrink-0 bg-canvas p-3 rounded-sm border border-line-subtle">
+            <div className="text-center px-3 py-1">
+              <div className="text-xl md:text-2xl font-bold font-mono-lab tabular-nums text-ink-primary">{stats.total}</div>
+              <div className="text-[11px] font-mono-lab text-ink-tertiary uppercase">Estações</div>
             </div>
-            <div className="text-center px-2 border-x border-border">
-              <div className="text-2xl md:text-3xl font-black text-primary">{stats.completed}</div>
-              <div className="text-xs text-muted-foreground font-medium">Concluídas</div>
+            <div className="text-center px-3 py-1 border-x border-line-subtle">
+              <div className="text-xl md:text-2xl font-bold font-mono-lab tabular-nums text-accent">{stats.completed}</div>
+              <div className="text-[11px] font-mono-lab text-ink-tertiary uppercase">Feitas</div>
             </div>
-            <div className="text-center px-2">
-              <div className="text-2xl md:text-3xl font-black text-emerald-500">
+            <div className="text-center px-3 py-1">
+              <div className="text-xl md:text-2xl font-bold font-mono-lab tabular-nums text-emerald-500">
                 {stats.completed > 0 ? stats.avgScore : "—"}
               </div>
-              <div className="text-xs text-muted-foreground font-medium">Média Barema</div>
+              <div className="text-[11px] font-mono-lab text-ink-tertiary uppercase">Média</div>
             </div>
           </div>
         </div>
 
         {/* Tab Selector: Treino Avulso vs Circuito Oficial */}
-        <div className="flex items-center gap-3 mt-8 border-t border-border/60 pt-6">
+        <div className="flex items-center gap-2 mt-6 border-t border-line-subtle pt-5">
           <button
             onClick={() => setActiveTab("avulso")}
-            className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
+            className={`px-3.5 py-1.5 rounded-xs text-xs font-mono-lab font-semibold transition-colors cursor-pointer ${
               activeTab === "avulso"
-                ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-muted/50 hover:bg-muted text-muted-foreground"
+                ? "bg-ink-primary text-canvas shadow-xs"
+                : "bg-canvas text-ink-secondary hover:text-ink-primary border border-line-subtle"
             }`}
           >
             Treino Avulso por Estação
           </button>
           <button
             onClick={() => setActiveTab("circuito")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xs text-xs font-mono-lab font-semibold transition-colors cursor-pointer ${
               activeTab === "circuito"
-                ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-muted/50 hover:bg-muted text-muted-foreground"
+                ? "bg-ink-primary text-canvas shadow-xs"
+                : "bg-canvas text-ink-secondary hover:text-ink-primary border border-line-subtle"
             }`}
           >
-            <Sparkles className="w-4 h-4 text-amber-400" />
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
             <span>Circuito de Prova (5 Estações)</span>
           </button>
         </div>
@@ -231,15 +231,15 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
 
       {/* Seção Circuito de Prova */}
       {activeTab === "circuito" && (
-        <div className="rounded-2xl border-2 border-amber-500/30 bg-gradient-to-r from-amber-500/10 via-background to-amber-500/5 p-6 md:p-8 space-y-4">
+        <div className="rounded-sm border border-amber-500/30 bg-surface p-5 md:p-6 space-y-4 shadow-xs">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-sm">
-                <Award className="w-4 h-4" />
-                SIMULAÇÃO DO DIA DA PROVA PRESENCIAL
+              <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-xs bg-amber-500/10 text-amber-500 text-xs font-mono-lab uppercase font-bold border border-amber-500/20">
+                <Award className="w-3.5 h-3.5" />
+                <span>Simulação do Dia da Prova Presencial</span>
               </div>
-              <h2 className="text-2xl font-bold text-foreground">Circuito de Rotação Completo</h2>
-              <p className="text-muted-foreground text-sm max-w-2xl">
+              <h2 className="text-xl font-bold text-ink-primary">Circuito de Rotação Completo</h2>
+              <p className="text-ink-secondary text-xs md:text-sm max-w-2xl leading-relaxed">
                 Você enfrentará 5 estações seguidas (Clínica Médica, Cirurgia Geral, Pediatria, Ginecologia/Obstetrícia e Preventiva). 
                 Ao fim de cada 8 minutos, o sino toca e você roda para a próxima sala. Ao final, receba o barema global da sua 2ª Fase (0 a 50 pontos).
               </p>
@@ -247,51 +247,49 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
             <button
               onClick={handleStartCircuit}
               disabled={isStartingCircuit}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold bg-amber-500 hover:bg-amber-600 disabled:opacity-50 text-black shadow-lg transition-transform active:scale-95 shrink-0"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xs font-mono-lab text-xs font-bold bg-amber-600 hover:bg-amber-500 disabled:opacity-50 text-white shadow-xs transition-colors shrink-0 cursor-pointer"
             >
-              {isStartingCircuit ? <Loader2 className="w-5 h-5 animate-spin" /> : <Play className="w-5 h-5 fill-current" />}
+              {isStartingCircuit ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4 fill-current" />}
               <span>{isStartingCircuit ? "Montando Circuito Oficial..." : "Entrar no Circuito Oficial"}</span>
             </button>
           </div>
         </div>
       )}
 
-      {/* MÓDULO 5: MOTOR DE ESTAÇÕES INÉDITAS INFINITAS VIA IA DA FMRP-USP */}
-      <div className="relative overflow-hidden rounded-3xl border-2 border-indigo-500/40 bg-gradient-to-br from-indigo-950/40 via-background to-purple-950/30 p-6 md:p-8 shadow-lg">
-        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-        
-        <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold uppercase tracking-wider border border-indigo-500/30">
-              <Zap className="w-3.5 h-3.5 text-amber-400" />
+      {/* MÓDULO: MOTOR DE ESTAÇÕES INÉDITAS INFINITAS VIA IA DA FMRP-USP */}
+      <div className="rounded-sm border border-accent/30 bg-surface p-5 md:p-7 relative overflow-hidden shadow-xs">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="space-y-2 max-w-2xl">
+            <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-xs bg-accent/10 text-accent text-xs font-mono-lab uppercase font-bold border border-accent/20">
+              <Zap className="w-3 h-3 text-amber-400" />
               <span>Motor de Estações Inéditas Infinitas • IA FMRP-USP</span>
             </div>
-            <h2 className="text-2xl md:text-3xl font-black text-foreground tracking-tight">
-              Gere Casos Inéditos Ilimitados da USP Ribeirão Preto
+            <h2 className="text-xl md:text-2xl font-bold text-ink-primary tracking-tight font-sans">
+              Gerador de Casos Inéditos da USP Ribeirão Preto
             </h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Algoritmo adaptativo calibrado com os protocolos beira-leito dos hospitais da FMRP-USP (<span className="text-foreground font-semibold">HC-UE, HC-Criança, Hospital Mater e CSE Sumarezinho</span>).
+            <p className="text-xs md:text-sm text-ink-secondary leading-relaxed">
+              Algoritmo adaptativo calibrado com os protocolos beira-leito dos hospitais da FMRP-USP (<span className="text-ink-primary font-medium">HC-UE, HC-Criança, Hospital Mater e CSE Sumarezinho</span>).
               O motor analisa seus erros e sintetiza estações focadas nas suas fraquezas clínicas com pacientes, gasometrias, ECGs e baremas oficiais.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
+          <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 shrink-0">
             {/* Botão Adaptativo de 1 Clique */}
             <button
               onClick={() => handleGenerateStation(true)}
               disabled={isGenerating}
-              className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white shadow-md shadow-indigo-500/25 transition-all transform active:scale-95 disabled:opacity-60 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-xs font-mono-lab text-xs font-bold bg-accent hover:opacity-90 text-white shadow-xs transition-opacity disabled:opacity-60 cursor-pointer"
             >
               {isGenerating ? (
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 className="w-4 h-4 animate-spin" />
               ) : (
-                <Brain className="w-5 h-5 text-amber-300" />
+                <Brain className="w-4 h-4 text-amber-300" />
               )}
               <div className="text-left">
-                <div className="text-sm font-extrabold leading-none">
+                <div className="font-bold leading-tight">
                   {isGenerating ? "Sintetizando Estação..." : "Gerar Caso Adaptativo (1 Clique)"}
                 </div>
-                <div className="text-[11px] font-medium opacity-85 mt-1">
+                <div className="text-[10px] font-normal opacity-80">
                   Prioriza minhas fragilidades clínicas
                 </div>
               </div>
@@ -301,9 +299,9 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
             <button
               onClick={() => setShowCustomGen(!showCustomGen)}
               disabled={isGenerating}
-              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold bg-background/80 hover:bg-muted text-foreground border border-indigo-500/30 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xs text-xs font-mono-lab font-medium bg-canvas hover:bg-surface text-ink-secondary hover:text-ink-primary border border-line-subtle transition-colors cursor-pointer"
             >
-              <Sliders className="w-3.5 h-3.5 text-indigo-400" />
+              <Sliders className="w-3.5 h-3.5 text-accent" />
               <span>{showCustomGen ? "Recolher Opções" : "Sintetizar por Área da FMRP-USP"}</span>
             </button>
           </div>
@@ -311,16 +309,16 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
 
         {/* Painel Expansível de Geração por Área */}
         {showCustomGen && (
-          <div className="mt-6 pt-6 border-t border-indigo-500/20 grid grid-cols-1 md:grid-cols-3 gap-4 animate-in fade-in duration-200">
-            <div className="space-y-1.5">
-              <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+          <div className="mt-5 pt-5 border-t border-line-subtle grid grid-cols-1 md:grid-cols-3 gap-3 animate-in fade-in duration-200">
+            <div className="space-y-1">
+              <label className="text-[11px] font-mono-lab font-bold text-ink-tertiary uppercase tracking-wider">
                 Especialidade Clínica
               </label>
               <select
                 value={selectedGenArea}
                 onChange={(e) => setSelectedGenArea(e.target.value)}
                 disabled={isGenerating}
-                className="w-full bg-background border border-border rounded-xl px-3 py-2 text-xs font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full bg-canvas border border-line-subtle rounded-xs px-3 py-2 text-xs font-mono-lab text-ink-primary focus:outline-none focus:border-accent"
               >
                 <option value="Clínica Médica">Clínica Médica (HC-UE / Emergência)</option>
                 <option value="Cirurgia Geral">Cirurgia Geral (HC-UE / Trauma)</option>
@@ -330,15 +328,15 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
               </select>
             </div>
 
-            <div className="space-y-1.5">
-              <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+            <div className="space-y-1">
+              <label className="text-[11px] font-mono-lab font-bold text-ink-tertiary uppercase tracking-wider">
                 Nível de Dificuldade
               </label>
               <select
                 value={selectedGenDifficulty}
                 onChange={(e) => setSelectedGenDifficulty(e.target.value as "easy" | "medium" | "hard")}
                 disabled={isGenerating}
-                className="w-full bg-background border border-border rounded-xl px-3 py-2 text-xs font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full bg-canvas border border-line-subtle rounded-xs px-3 py-2 text-xs font-mono-lab text-ink-primary focus:outline-none focus:border-accent"
               >
                 <option value="hard">R1 Alta Complexidade (Padrão Prova FMRP-USP)</option>
                 <option value="medium">R1 Moderado (Treinamento Clínico)</option>
@@ -350,10 +348,10 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
               <button
                 onClick={() => handleGenerateStation(false)}
                 disabled={isGenerating}
-                className="w-full py-2.5 px-4 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                className="w-full py-2 px-4 rounded-xs text-xs font-mono-lab font-bold bg-accent hover:opacity-90 text-white transition-opacity shadow-xs flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
               >
                 <Target className="w-3.5 h-3.5" />
-                <span>Gerar Estação Inédita desta Área</span>
+                <span>Gerar Estação Desta Área</span>
               </button>
             </div>
           </div>
@@ -361,13 +359,13 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
 
         {/* Feedback Ativo de Síntese Clínica */}
         {isGenerating && (
-          <div className="mt-5 p-4 rounded-2xl bg-indigo-950/60 border border-indigo-500/50 flex items-center gap-3 animate-pulse">
-            <Loader2 className="w-5 h-5 text-amber-400 animate-spin shrink-0" />
-            <div className="space-y-0.5">
-              <div className="text-xs font-bold text-indigo-200">
+          <div className="mt-4 p-3 rounded-xs bg-canvas border border-accent/40 flex items-center gap-3">
+            <Loader2 className="w-4 h-4 text-accent animate-spin shrink-0" />
+            <div className="space-y-0.5 font-mono-lab">
+              <div className="text-[11px] font-bold text-ink-tertiary uppercase">
                 Processador de Provas FMRP-USP em execução:
               </div>
-              <div className="text-xs text-foreground font-semibold">
+              <div className="text-xs text-ink-primary font-medium">
                 {generatingStep}
               </div>
             </div>
@@ -376,7 +374,7 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
 
         {/* Erro de Geração */}
         {generationError && (
-          <div className="mt-4 p-3 rounded-xl bg-destructive/15 border border-destructive/30 flex items-center gap-2 text-xs text-destructive">
+          <div className="mt-4 p-3 rounded-xs bg-rose-500/10 border border-rose-500/30 flex items-center gap-2 text-xs font-mono-lab text-rose-500">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>{generationError}</span>
           </div>
@@ -384,24 +382,24 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
       </div>
 
       {/* Banner de Destaque FMRP-USP */}
-      <div className="rounded-2xl border border-primary/30 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="rounded-sm border border-line-subtle bg-surface p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
         <div className="space-y-1">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
-            <span>🎯 Foco Principal: FMRP-USP / FAEPA</span>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-xs bg-accent/10 text-accent text-xs font-mono-lab uppercase font-semibold border border-accent/20">
+            <span>🎯 Foco: FMRP-USP / FAEPA</span>
           </div>
-          <h3 className="text-lg font-bold text-foreground">
+          <h3 className="text-sm font-bold text-ink-primary">
             Estações Canônicas da Prova Prática USP Ribeirão Preto
           </h3>
-          <p className="text-xs text-muted-foreground max-w-xl">
+          <p className="text-xs text-ink-secondary max-w-xl">
             Cenários reais calibrados na conduta do HC-UE, HC-Criança, Hospital Mater e Centro de Saúde Escola Sumarezinho.
           </p>
         </div>
         <button
           onClick={() => { setSelectedInst("USP-RP"); setSelectedArea("Todas as Áreas"); }}
-          className={`shrink-0 px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-sm ${
+          className={`shrink-0 px-3.5 py-1.5 rounded-xs text-xs font-mono-lab font-semibold transition-colors cursor-pointer ${
             selectedInst === "USP-RP"
-              ? "bg-primary text-primary-foreground ring-2 ring-primary/40"
-              : "bg-background hover:bg-muted text-foreground border border-border"
+              ? "bg-ink-primary text-canvas shadow-xs"
+              : "bg-canvas hover:bg-surface text-ink-primary border border-line-subtle"
           }`}
         >
           {selectedInst === "USP-RP" ? "✓ Filtrando USP-RP" : "Filtrar USP-RP"}
@@ -409,20 +407,20 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
       </div>
 
       {/* Filtros de Bancas e Especialidades */}
-      <div className="space-y-4">
-        <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+      <div className="space-y-3">
+        <div className="flex items-center gap-1.5 text-xs font-mono-lab font-semibold text-ink-tertiary uppercase tracking-wider">
           <Filter className="w-3.5 h-3.5" />
           <span>Filtrar por Banca Oficial com 2ª Fase</span>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {INSTITUTIONS.map((inst) => (
             <button
               key={inst}
               onClick={() => setSelectedInst(inst)}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+              className={`px-3 py-1 rounded-xs text-xs font-mono-lab transition-colors cursor-pointer border ${
                 selectedInst === inst
-                  ? "bg-foreground text-background"
-                  : "bg-muted/60 hover:bg-muted text-muted-foreground"
+                  ? "bg-ink-primary text-canvas border-ink-primary font-bold shadow-xs"
+                  : "bg-surface text-ink-secondary border-line-subtle hover:border-line-crisp"
               }`}
             >
               {inst}
@@ -430,15 +428,15 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-2 pt-2">
+        <div className="flex flex-wrap gap-1.5 pt-1">
           {AREAS.map((area) => (
             <button
               key={area}
               onClick={() => setSelectedArea(area)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+              className={`px-3 py-1 rounded-xs text-xs font-mono-lab transition-colors cursor-pointer border ${
                 selectedArea === area
-                  ? "bg-primary/20 text-primary border border-primary/30"
-                  : "bg-card hover:bg-muted text-muted-foreground border border-border"
+                  ? "bg-accent text-white border-accent font-bold shadow-xs"
+                  : "bg-surface text-ink-secondary border-line-subtle hover:border-line-crisp"
               }`}
             >
               {area}
@@ -448,7 +446,7 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
       </div>
 
       {/* Grid de Estações */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredStations.map((station) => {
           const isPassed = station.best_score !== null && station.best_score >= 7.0;
           const isAiGenerated = station.code?.startsWith("USP-RP-AI-");
@@ -456,63 +454,59 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
           return (
             <div
               key={station.id}
-              className={`group flex flex-col justify-between rounded-2xl border bg-card hover:shadow-md transition-all duration-200 overflow-hidden ${
-                isAiGenerated 
-                  ? "border-indigo-500/40 hover:border-indigo-500 ring-1 ring-indigo-500/20" 
-                  : "border-border hover:border-primary/40"
-              }`}
+              className="group flex flex-col justify-between rounded-sm border border-line-subtle bg-surface hover:border-line-crisp transition-all shadow-xs overflow-hidden"
             >
-              <div className="p-5 space-y-3.5">
+              <div className="p-4 space-y-3">
                 {/* Header do Card */}
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-primary/10 text-primary">
+                    <span className="px-2 py-0.5 rounded-xs text-xs font-mono-lab font-semibold uppercase bg-canvas border border-line-subtle text-ink-secondary">
                       {station.institution}
                     </span>
                     {isAiGenerated && (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wide bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                        <Zap className="w-3 h-3 text-amber-400" />
+                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-xs text-[10px] font-mono-lab font-bold uppercase bg-accent/10 text-accent border border-accent/20">
+                        <Zap className="w-2.5 h-2.5 text-amber-400" />
                         <span>IA Inédita</span>
                       </span>
                     )}
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
-                    <Clock className="w-3.5 h-3.5" />
+                  <div className="flex items-center gap-1 text-xs font-mono-lab tabular-nums text-ink-tertiary">
+                    <Clock className="w-3 h-3" />
                     <span>{Math.round(station.duration_seconds / 60)} min</span>
                   </div>
                 </div>
 
                 {/* Título & Subtema */}
                 <div>
-                  <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                  <h3 className="text-sm font-semibold text-ink-primary group-hover:text-accent transition-colors line-clamp-2">
                     {station.title}
                   </h3>
-                  <p className="text-xs text-muted-foreground mt-1 font-medium">
+                  <p className="text-xs text-ink-secondary mt-1 font-mono-lab">
                     {station.area} • {station.subtema}
                   </p>
                 </div>
 
                 {/* Score Status */}
-                <div className="pt-2 border-t border-border/50 flex items-center justify-between text-xs">
-                  <span className="text-muted-foreground">Desempenho no Barema:</span>
+                <div className="pt-2 border-t border-line-subtle flex items-center justify-between text-xs font-mono-lab">
+                  <span className="text-ink-tertiary">Desempenho Barema:</span>
                   {station.best_score !== null ? (
-                    <span className={`font-bold flex items-center gap-1 ${
+                    <span className={`font-bold tabular-nums flex items-center gap-1 ${
                       isPassed ? "text-emerald-500" : "text-rose-500"
                     }`}>
-                      {isPassed ? <CheckCircle2 className="w-3.5 h-3.5" /> : <AlertCircle className="w-3.5 h-3.5" />}
+                      {isPassed ? <CheckCircle2 className="w-3 h-3" /> : <AlertCircle className="w-3 h-3" />}
                       {station.best_score.toFixed(1)} / 10.0
                     </span>
                   ) : (
-                    <span className="text-muted-foreground/70 italic">Não realizada</span>
+                    <span className="text-ink-tertiary/70 italic text-[11px]">Não realizada</span>
                   )}
                 </div>
               </div>
 
               {/* Botão de Entrada */}
-              <div className="p-3 bg-muted/20 border-t border-border/50">
+              <div className="p-2.5 bg-canvas border-t border-line-subtle">
                 <Link
                   href={`/osce/${station.id}`}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-transform active:scale-98 shadow-sm"
+                  className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xs text-xs font-mono-lab font-semibold bg-accent/10 hover:bg-accent hover:text-white text-accent border border-accent/20 transition-colors shadow-xs"
                 >
                   <span>Abrir Porta da Estação</span>
                   <ChevronRight className="w-3.5 h-3.5" />
@@ -524,10 +518,10 @@ export function OsceHubClient({ initialStations }: OsceHubClientProps) {
       </div>
 
       {filteredStations.length === 0 && (
-        <div className="text-center py-16 border border-dashed border-border rounded-2xl p-6">
-          <AlertCircle className="w-10 h-10 text-muted-foreground mx-auto mb-3" />
-          <h3 className="text-base font-semibold text-foreground">Nenhuma estação encontrada</h3>
-          <p className="text-xs text-muted-foreground mt-1">
+        <div className="text-center py-12 border border-dashed border-line-subtle rounded-sm p-6 bg-surface">
+          <AlertCircle className="w-8 h-8 text-ink-tertiary mx-auto mb-2" />
+          <h3 className="text-sm font-semibold text-ink-primary font-mono-lab">Nenhuma estação encontrada</h3>
+          <p className="text-xs text-ink-secondary mt-1">
             Tente selecionar outros filtros de bancas ou grandes áreas.
           </p>
         </div>

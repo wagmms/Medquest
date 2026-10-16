@@ -120,6 +120,12 @@ export function QuizFilters({
         .sort((a, b) => b.n - a.n);
   }, [dynamicMeta?.institutions]);
 
+  const targetInstSet = useMemo(() => {
+    return new Set((dynamicMeta?.target_institutions || []).map(s => s.toUpperCase()));
+  }, [dynamicMeta?.target_institutions]);
+
+  const hasTargetConfigured = targetInstSet.size > 0;
+
   const selectedInstValue = useMemo(() => {
     if (!filters.institution) return "";
     const currentArr = Array.isArray(filters.institution) ? filters.institution : [filters.institution];
@@ -468,7 +474,14 @@ return (
 
       <div className="space-y-3 mt-6">
         <label className="text-sm font-medium text-foreground flex items-center justify-between">
-          <span>Instituição / Banca</span>
+          <span className="flex items-center gap-1.5 flex-wrap">
+            <span>Instituição / Banca</span>
+            {hasTargetConfigured && !filters.institution && (
+              <span className="text-[11px] font-normal text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full">
+                🎯 Priorizando suas bancas-alvo (~40%)
+              </span>
+            )}
+          </span>
           {isUpdatingMeta && <span className="text-xs text-muted-foreground animate-pulse">Atualizando...</span>}
         </label>
 
@@ -491,12 +504,19 @@ return (
              }
           }}
         >
-          <option className="bg-background text-foreground" value="">Todas as Instituições ({dynamicMeta?.total_questions ?? 0})</option>
-          {groupedInstitutions.map(g => (
-            <option className="bg-background text-foreground" key={g.base} value={g.base}>
-              {g.base} ({g.n})
-            </option>
-          ))}
+          <option className="bg-background text-foreground" value="">
+            {hasTargetConfigured
+              ? `Todas as Instituições (${dynamicMeta?.total_questions ?? 0}) • Foco nas suas bancas-alvo 🎯`
+              : `Todas as Instituições (${dynamicMeta?.total_questions ?? 0})`}
+          </option>
+          {groupedInstitutions.map(g => {
+            const isTarget = g.codes.some(c => targetInstSet.has(c.toUpperCase())) || targetInstSet.has(g.base.toUpperCase());
+            return (
+              <option className="bg-background text-foreground" key={g.base} value={g.base}>
+                {isTarget ? `🎯 ${g.base} (${g.n}) — Alvo` : `${g.base} (${g.n})`}
+              </option>
+            );
+          })}
         </select>
       </div>
         

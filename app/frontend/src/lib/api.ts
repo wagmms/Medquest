@@ -380,6 +380,13 @@ export const api = {
             cached = cached.filter(q => q.institution_code === inst);
           }
           if (cached.length > 0) {
+            if (!filters.institution && cached.some(q => Boolean((q as unknown as { is_target_institution?: boolean }).is_target_institution))) {
+              cached = [...cached].sort((a, b) => {
+                const aTarget = (a as unknown as { is_target_institution?: boolean }).is_target_institution ? 1 : 0;
+                const bTarget = (b as unknown as { is_target_institution?: boolean }).is_target_institution ? 1 : 0;
+                return bTarget - aTarget;
+              });
+            }
             const limit = typeof filters.limit === "string" ? parseInt(filters.limit, 10) : 50;
             return cached.slice(0, isNaN(limit) ? 50 : limit).map(q => ({
               id: q.id,
@@ -391,6 +398,7 @@ export const api = {
               topic: q.topic,
               area: q.area,
               subtema: q.subtema,
+              is_target_institution: Boolean((q as unknown as { is_target_institution?: boolean }).is_target_institution),
             }));
           }
         }

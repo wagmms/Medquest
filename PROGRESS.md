@@ -13,29 +13,29 @@
 
 ## 🔄 Próxima Tarefa em Andamento
 
-- [ ] **Repaginação Geral da UI/UX do MedQuest: Clinical Precision Workspace & Anti-Slop Architecture (`app/frontend/src/`)**:
-    1. **Arquivo/Módulo Alvo**: `app/frontend/src/app/globals.css`, `app/frontend/src/components/`, `app/frontend/src/app/(DashboardClient|estudar|revisao-ativa|osce)`
-    2. **Função/Componente/Seletor**: Tokens Tailwind v4, ClinicalIcon, ClinicalAppShell (Desktop + Thumb-Zone BottomNav) e telas centrais
-    3. **Comportamento Esperado / Critério de Aceite**: Erradicar visual de SaaS genérico e Material Symbols webfont; implementar paletas Radiology Dark e Ambulatório Paper; layout de split-pane para questões e dock de exames laboratoriais; FSRS v6 com atalhos 1-4 e telemetria de retenção; bottom nav mobile para plantão; 100% de aprovação na suíte de testes unitários e zero regressões.
+- [ ] **Auditoria de Atomicidade e Metadados Médicos em Módulos de Flashcards Anki (`scripts/anki/`)**:
+    1. **Arquivo/Módulo Alvo**: `scripts/anki/` (ou rotas e utilitários de flashcards em `app/backend/api/flashcards.py`)
+    2. **Função/Componente/Seletor**: Validador de esquemas e sanitizador de cards médicos
+    3. **Comportamento Esperado / Critério de Aceite**: Garantir conformidade com a diretriz inviolável de comentários canônicos somente-leitura e validar atomicidade clínica (frente/verso, cloze e tags).
 
 ---
 
 ## 📋 Backlog Prioritário (Tarefas Cirúrgicas)
 
-1. [ ] **Auditoria de Atomicidade e Metadados Médicos em Módulos de Flashcards Anki (`scripts/anki/`)**:
-    - **Arquivo/Módulo Alvo**: `scripts/anki/` (ou rotas e utilitários de flashcards em `app/backend/api/flashcards.py`)
-    - **Função/Componente/Seletor**: Validador de esquemas e sanitizador de cards médicos
-    - **Comportamento Esperado / Critério de Aceite**: Garantir conformidade com a diretriz inviolável de comentários canônicos somente-leitura e validar atomicidade clínica (frente/verso, cloze e tags).
-
-2. [ ] **Hardening de Fallback e Cache de Perfil Adaptativo em Desconexão (`app/backend/api/adaptive.py`)**:
+1. [ ] **Hardening de Fallback e Cache de Perfil Adaptativo em Desconexão (`app/backend/api/adaptive.py`)**:
     - **Arquivo/Módulo Alvo**: `app/backend/api/adaptive.py`
     - **Função/Componente/Seletor**: Funções de inferência adaptativa
     - **Comportamento Esperado / Critério de Aceite**: Garantir retorno determinístico e cache resiliente para perfil de estudo adaptativo quando a latência de banco aumentar ou em fallback offline.
 
-3. [ ] **Validação e Prevenção de Desalinhamento Temporal em Sessões de Simulado (`app/frontend/src/app/simulado/SimuladoClient.tsx`)**:
+2. [ ] **Validação e Prevenção de Desalinhamento Temporal em Sessões de Simulado (`app/frontend/src/app/simulado/SimuladoClient.tsx`)**:
     - **Arquivo/Módulo Alvo**: `app/frontend/src/app/simulado/SimuladoClient.tsx`
     - **Função/Componente/Seletor**: Hook de timer e persistência de sessão
     - **Comportamento Esperado / Critério de Aceite**: Prevenir drift de cronômetro e perda de respostas parciais em caso de suspensão de aba ou reconexão.
+
+3. [ ] **Benchmark e Otimização de Resposta em Lote para Fila Adaptativa (`app/backend/api/adaptive.py`)**:
+    - **Arquivo/Módulo Alvo**: `app/backend/api/adaptive.py`
+    - **Função/Componente/Seletor**: Rota `/api/adaptive/queue`
+    - **Comportamento Esperado / Critério de Aceite**: Reduzir latência p95 para menos de 80ms em requisições de remediação concorrente.
 
 ---
 
@@ -53,6 +53,6 @@
 
 ## ✅ Última Tarefa Concluída
 
-- [x] **Etapa 4 do Novo Simulador OSCE: Avaliação Live de Barema, Red Flags com Travas de Segurança, Espelho Oficial de 2ª Fase & Feedback do Preceptor**: Implementado o motor determinístico `RedFlagEngine` mapeando violações críticas (laceração do feixe intercostal `RF_ANAT_NEUROVASC`, cricotireoidostomia sobre istmo tireoidiano `RF_ANAT_THYROID`, choque desincronizado em taquiarritmia com pulso `RF_ELEC_UNSYNC_VT`, quebra da sequência do ATLS `RF_ABCDE_VIOLATION` e drogas de risco letal `RF_PHARM_CONTRA`) com penalização de pontos e travas de teto de nota de segurança (`caps_station_at`); calculado o Radar de 5 Competências Médicas Fundamentais (`compute_competency_radar_5d`) e emitido veredito oficial da banca (`APROVADO COM DISTINÇÃO`, `APROVADO NO LIMITE`, `REPROVADO POR TÉCNICA` e `ELIMINADO POR IATROGENIA`); criado o componente de alta precisão `<StationResultMirror />` com spider chart em SVG puro leve (<10KB, 60fps), cards de Red Flags, Parecer do Preceptor Chefe com Conduta Canônica Padrão-Ouro, tabela com filtros por bloco e evidências capturadas; adicionados 3 novos testes unitários em `TestOsceStage4EvaluationAndMirror` (28/28 testes de backend aprovados) e validação completa via `./validate.sh fast` em 20.43s.
+- [x] **Padronização Canônica de Comentários, Sanitização de Medway e Reclassificação dos 170 Temas com Gemini 4 Argon**: Executada a higienização completa das 42.827 questões do MedQuest; saneada anomalia de imagem base64 de 2,62MB no QID 35998 para PNG estático (queda de 99,6% no tamanho da linha); sanitizadas 1.388 ocorrências de prosa com 'Medway' mantendo 100% das 20.664 URLs de imagens íntegras; mapeados 302 subtemas legados via Gemini 4 Argon para a taxonomia oficial de 170 temas em `taxonomy.json` e `de_para_temas.md`, atingindo 100,00% de aderência canônica (42.827/42.827 questões) e corrigindo 21 incongruências severas de tópicos desvirtuados; implementado e executado o motor cirúrgico de precisão com 25 workers concorrentes no GCP, zerando completamente todos os distratores vazios (`- **Letra X**: Incorreta.`) sem duplicar comentários originais de professores; validação rápida `./validate.sh fast` 100% aprovada (49 testes backend e 14 lints frontend em 11.06s).
 
 > 📁 Histórico completo arquivado em [CHANGELOG.md](CHANGELOG.md)

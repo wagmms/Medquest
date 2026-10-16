@@ -32,7 +32,7 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
   onToggleEliminate,
 }) => {
   return (
-    <div className="flex flex-col gap-3" role="region" aria-label="Alternativas da questão">
+    <div className="flex flex-col gap-2.5" role="region" aria-label="Alternativas da questão">
       {alternatives.map((alt) => {
         const isSelected = selectedLetter === alt.letter;
         const isCorrect =
@@ -42,20 +42,20 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
         const isEliminated = eliminatedLetters.includes(alt.letter);
 
         let altClass =
-          "bg-card border-border hover:bg-muted/50 hover:border-primary/30 cursor-pointer shadow-sm hover:shadow";
+          "bg-surface border-line-subtle hover:bg-elevated/50 hover:border-line-strong cursor-pointer shadow-xs";
         if (isSelected && !attemptResult) {
-          altClass = "bg-primary/5 border-primary/50 cursor-pointer shadow ring-1 ring-primary/20";
+          altClass = "bg-accent/10 border-accent text-ink cursor-pointer shadow-xs ring-1 ring-accent/30";
         }
         if (isEliminated && !attemptResult && !isSelected) {
-          altClass = "bg-muted/20 border-border/60 opacity-60 hover:opacity-85 cursor-pointer shadow-none";
+          altClass = "bg-canvas/40 border-line-subtle/50 opacity-50 hover:opacity-80 cursor-pointer shadow-none";
         }
         if (attemptResult) {
           if (isCorrect) {
-            altClass = "bg-success/10 border-success/50 shadow-sm cursor-default ring-1 ring-success/20";
+            altClass = "bg-normal/10 border-normal/50 text-ink shadow-xs cursor-default ring-1 ring-normal/30";
           } else if (isWrong) {
-            altClass = "bg-destructive/10 border-destructive/50 shadow-sm cursor-default ring-1 ring-destructive/20";
+            altClass = "bg-critical/10 border-critical/50 text-ink shadow-xs cursor-default ring-1 ring-critical/30";
           } else {
-            altClass = "bg-card border-border opacity-40 cursor-default";
+            altClass = "bg-surface border-line-subtle opacity-40 cursor-default";
           }
         }
 
@@ -72,12 +72,12 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
           <motion.div
             role="button"
             tabIndex={attemptResult || submitting ? -1 : 0}
-            whileTap={!attemptResult && !submitting ? { scale: 0.99 } : {}}
+            whileTap={!attemptResult && !submitting ? { scale: 0.995 } : {}}
             animate={
               attemptResult && isWrong
-                ? { x: [-5, 5, -5, 5, 0], transition: { duration: 0.4 } }
+                ? { x: [-3, 3, -3, 3, 0], transition: { duration: 0.3 } }
                 : attemptResult && isCorrect
-                ? { scale: [1, 1.02, 1], transition: { duration: 0.4 } }
+                ? { scale: [1, 1.01, 1], transition: { duration: 0.3 } }
                 : {}
             }
             key={alt.letter}
@@ -96,7 +96,7 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
               }
             }}
             className={clsx(
-              "group relative text-left p-3.5 sm:p-4 rounded-xl border transition-all flex items-start gap-2.5 sm:gap-3 w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 select-none",
+              "group relative text-left p-3 sm:p-3.5 rounded-sm border transition-all flex items-start gap-2.5 sm:gap-3 w-full focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent select-none",
               altClass
             )}
             aria-label={altAriaLabel}
@@ -123,22 +123,22 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
                 }}
                 disabled={submitting}
                 className={clsx(
-                  "w-6 h-8 shrink-0 flex items-center justify-center rounded-md transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary",
+                  "w-6 h-7 shrink-0 flex items-center justify-center rounded-xs transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent",
                   isEliminated
-                    ? "opacity-100 text-destructive hover:scale-110"
-                    : "opacity-0 group-hover:opacity-80 hover:opacity-100 hover:text-primary max-md:opacity-40 text-muted-foreground"
+                    ? "opacity-100 text-critical hover:scale-105"
+                    : "opacity-0 group-hover:opacity-70 hover:opacity-100 hover:text-accent max-md:opacity-40 text-ink-muted"
                 )}
               >
                 <Scissors
-                  size={15}
+                  size={14}
                   aria-hidden="true"
                   className={clsx("transition-transform duration-150", isEliminated && "rotate-45")}
                 />
               </button>
             ) : (
-              <div className="w-6 h-8 shrink-0 flex items-center justify-center text-muted-foreground/40" aria-hidden="true">
+              <div className="w-6 h-7 shrink-0 flex items-center justify-center text-ink-muted/30" aria-hidden="true">
                 {isEliminated && !isCorrect && (
-                  <Scissors size={13} aria-hidden="true" className="opacity-40 rotate-45 text-destructive" />
+                  <Scissors size={12} aria-hidden="true" className="opacity-40 rotate-45 text-critical" />
                 )}
               </div>
             )}
@@ -147,20 +147,20 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
             <div
               aria-hidden="true"
               className={clsx(
-                "w-8 h-8 shrink-0 flex items-center justify-center rounded-lg font-bold text-sm transition-colors",
+                "w-7 h-7 shrink-0 flex items-center justify-center rounded-xs font-mono-lab font-bold text-xs transition-colors border",
                 isSelected && !attemptResult
-                  ? "bg-primary text-primary-foreground"
+                  ? "bg-accent text-white border-accent"
                   : isCorrect
-                  ? "bg-success text-success-foreground"
+                  ? "bg-normal text-white border-normal"
                   : isWrong
-                  ? "bg-destructive text-destructive-foreground"
+                  ? "bg-critical text-white border-critical"
                   : isEliminated && !attemptResult
-                  ? "bg-muted/40 text-muted-foreground/60 border border-border/50"
-                  : "bg-muted text-muted-foreground"
+                  ? "bg-canvas text-ink-muted/50 border-line-subtle/50"
+                  : "bg-canvas text-ink-muted border-line-subtle"
               )}
             >
               {submitting && isSelected ? (
-                <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                <div className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin" />
               ) : (
                 alt.letter
               )}
@@ -170,8 +170,8 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
             <div
               aria-hidden="true"
               className={clsx(
-                "pt-1 text-foreground leading-relaxed flex-1 transition-all",
-                isEliminated && !isCorrect && "line-through text-muted-foreground/75 decoration-muted-foreground/60"
+                "pt-0.5 text-ink leading-relaxed flex-1 text-sm md:text-base transition-all",
+                isEliminated && !isCorrect && "line-through text-ink-muted/70 decoration-ink-muted/50"
               )}
             >
               {alt.text}

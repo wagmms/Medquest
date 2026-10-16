@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 
 from fsrs import Card
 
+from .filters import get_user_target_institutions
 from .srs import _question_scheduler as _scheduler, _safe_load_card
 
 
@@ -63,6 +64,7 @@ FOCUS_CONFIGS = {
         "review_due": 40.0,
         "latest_wrong": 30.0,
         "memory_risk": 20.0,
+        "target_institution_boost": 20.0,
     },
     "balanced": {
         "topic_mult": 40.0,
@@ -70,6 +72,7 @@ FOCUS_CONFIGS = {
         "review_due": 80.0,
         "latest_wrong": 50.0,
         "memory_risk": 40.0,
+        "target_institution_boost": 25.0,
     },
     "retention": {
         "topic_mult": 50.0,
@@ -77,14 +80,17 @@ FOCUS_CONFIGS = {
         "review_due": 110.0,
         "latest_wrong": 80.0,
         "memory_risk": 60.0,
+        "target_institution_boost": 25.0,
     },
 }
 
 
-def rank_adaptive_candidates(db, user_id, where, params, limit, now=None, adaptive_focus="balanced"):
+def rank_adaptive_candidates(db, user_id, where, params, limit, now=None, adaptive_focus="balanced", target_institutions=None):
     """Rank eligible questions with twin questions and configurable focus ratios."""
     now = _utc(now)
     cfg = FOCUS_CONFIGS.get(adaptive_focus, FOCUS_CONFIGS["balanced"])
+    if target_institutions is None:
+        target_institutions = get_user_target_institutions(db, user_id)
 
     rows = db.execute(
         f"""
@@ -94,7 +100,7 @@ def rank_adaptive_candidates(db, user_id, where, params, limit, now=None, adapti
                (SELECT a2.is_correct FROM attempts a2
                 WHERE a2.user_id = ? AND a2.question_id = q.id
                 ORDER BY a2.id DESC LIMIT 1) AS latest_correct,
-               sr.next_review_date, sr.fsrs_card
+                sr.next_review_date, sr.fsrs_card
         FROM questions q
         LEFT JOIN attempts a ON a.question_id = q.id AND a.user_id = ?
         LEFT JOIN spaced_repetition sr ON sr.question_id = q.id AND sr.user_id = ?
@@ -131,11 +137,21 @@ def rank_adaptive_candidates(db, user_id, where, params, limit, now=None, adapti
 
             twin_candidate = None
             candidates = unseen_by_topic.get(topic, [])
-            for c in candidates:
-                if c["id"] not in paired_twin_ids:
-                    if c["institution_code"] != orig_inst:
+            # Prioridade 1: Candidato de banca-alvo diferente da banca de origem
+            if target_institutions:
+                for c in candidates:
+                    c_inst = c["institution_code"] or ""
+                    if c["id"] not in paired_twin_ids and c_inst != orig_inst and (c_inst in target_institutions or c_inst.upper() in target_institutions):
                         twin_candidate = c
                         break
+            # Prioridade 2: Candidato de qualquer banca diferente da banca de origem
+            if twin_candidate is None:
+                for c in candidates:
+                    if c["id"] not in paired_twin_ids:
+                        if c["institution_code"] != orig_inst:
+                            twin_candidate = c
+                            break
+            # Prioridade 3: Qualquer candidato não visto do tópico
             if twin_candidate is None:
                 for c in candidates:
                     if c["id"] not in paired_twin_ids:
@@ -143,21 +159,41 @@ def rank_adaptive_candidates(db, user_id, where, params, limit, now=None, adapti
                         break
 
             if twin_candidate is None and topic != "Sem tema":
-                db_twin = db.execute(
-                    """
-                    SELECT q.id, q.source_file, q.source_number, q.year, q.institution_code,
-                           q.institution_label, q.topic, q.area, q.subtema,
-                           0 AS attempts, 0 AS correct, NULL AS latest_correct,
-                           NULL AS next_review_date, NULL AS fsrs_card
-                    FROM questions q
-                    WHERE q.missing_alts = 0
-                      AND COALESCE(NULLIF(q.subtema, ''), q.topic) = ?
-                      AND q.id NOT IN (SELECT question_id FROM attempts WHERE user_id = ?)
-                    ORDER BY (q.institution_code != ?) DESC, q.id ASC
-                    LIMIT 1
-                    """,
-                    (topic, user_id, orig_inst),
-                ).fetchone()
+                if target_institutions:
+                    target_placeholders = ",".join("?" * len(target_institutions))
+                    db_twin = db.execute(
+                        f"""
+                        SELECT q.id, q.source_file, q.source_number, q.year, q.institution_code,
+                               q.institution_label, q.topic, q.area, q.subtema,
+                               0 AS attempts, 0 AS correct, NULL AS latest_correct,
+                               NULL AS next_review_date, NULL AS fsrs_card
+                        FROM questions q
+                        WHERE q.missing_alts = 0
+                          AND COALESCE(NULLIF(q.subtema, ''), q.topic) = ?
+                          AND q.id NOT IN (SELECT question_id FROM attempts WHERE user_id = ?)
+                        ORDER BY (q.institution_code IN ({target_placeholders})) DESC,
+                                 (q.institution_code != ?) DESC, q.id ASC
+                        LIMIT 1
+                        """,
+                        (topic, user_id, *target_institutions, orig_inst),
+                    ).fetchone()
+                else:
+                    db_twin = db.execute(
+                        """
+                        SELECT q.id, q.source_file, q.source_number, q.year, q.institution_code,
+                               q.institution_label, q.topic, q.area, q.subtema,
+                               0 AS attempts, 0 AS correct, NULL AS latest_correct,
+                               NULL AS next_review_date, NULL AS fsrs_card
+                        FROM questions q
+                        WHERE q.missing_alts = 0
+                          AND COALESCE(NULLIF(q.subtema, ''), q.topic) = ?
+                          AND q.id NOT IN (SELECT question_id FROM attempts WHERE user_id = ?)
+                        ORDER BY (q.institution_code != ?) DESC, q.id ASC
+                        LIMIT 1
+                        """,
+                        (topic, user_id, orig_inst),
+                    ).fetchone()
+
                 if db_twin and db_twin["id"] not in paired_twin_ids:
                     twin_candidate = db_twin
 
@@ -210,6 +246,14 @@ def rank_adaptive_candidates(db, user_id, where, params, limit, now=None, adapti
             score += (0.9 - metrics["retrievability"]) * cfg["memory_risk"]
             reasons.append("memory_at_risk")
 
+        # Priorização de bancas alvo selecionadas no planejador de residência
+        inst_code = item.get("institution_code")
+        is_target_inst = bool(target_institutions and (inst_code in target_institutions or (inst_code and inst_code.upper() in target_institutions)))
+        item["is_target_institution"] = is_target_inst
+        if is_target_inst:
+            score += cfg.get("target_institution_boost", 25.0)
+            reasons.append("target_institution_focus")
+
         score -= min(item["attempts"], 10) * 1.5
         item["adaptive_score"] = round(score, 3)
         item["adaptive_reasons"] = reasons or ["balanced_practice"]
@@ -235,12 +279,19 @@ def rank_adaptive_candidates(db, user_id, where, params, limit, now=None, adapti
                 topic_attempts, topic_correct = topic_totals.get(orig_topic, [0, 0])
                 topic_score, _ = topic_priority(topic_attempts, topic_correct, None)
                 score = topic_score * cfg["topic_mult"] + cfg["review_due"]
+                reasons = ["twin_concept_review"]
+                inst_code = item.get("institution_code")
+                is_target_inst = bool(target_institutions and (inst_code in target_institutions or (inst_code and inst_code.upper() in target_institutions)))
+                item["is_target_institution"] = is_target_inst
+                if is_target_inst:
+                    score += cfg.get("target_institution_boost", 25.0)
+                    reasons.append("target_institution_focus")
                 item["is_twin"] = True
                 item["twin_for_question_id"] = orig_id
                 item["twin_origin_institution"] = orig_inst
                 item["twin_subtema"] = orig_topic
                 item["adaptive_score"] = round(score, 3)
-                item["adaptive_reasons"] = ["twin_concept_review"]
+                item["adaptive_reasons"] = reasons
                 item["retrievability"] = None
                 ranked.append(item)
                 seen_ids.add(twin_id)

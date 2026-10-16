@@ -161,13 +161,18 @@ ALLOWED_ANALYSIS_INSTITUTIONS: list[str] = [
     "SUS-SP",
 ]
 
-# Mapeamento de códigos/aliases históricos no banco para as 5 bancas alvo
+# Mapeamento de códigos/aliases históricos no banco para as bancas alvo
 INSTITUTION_ALIASES: Dict[str, list[str]] = {
     "USP-SP": ["USP-SP", "USP SP", "USP SP 2020", "USP SP 2021", "USP SP 2022", "USP SP 2023", "USP SP 2024"],
     "USP-RP": ["USP-RP", "USP RP 2020", "USP RP 2021", "USP RP 2022", "USP RP 2023", "USP RP 2024"],
     "UNICAMP": ["UNICAMP"],
     "UNIFESP": ["UNIFESP"],
     "SUS-SP": ["SUS-SP", "SUS", "SUS SP 2020", "SUS SP 2021", "SUS SP 2022", "SUS SP 2023", "SUS SP 2024"],
+    "ENARE": ["ENARE"],
+    "SCMSP": ["SCMSP", "SCM", "SCM-SP", "SANTA CASA SP", "SANTA CASA DE SP"],
+    "IAMSPE": ["IAMSPE", "IAMSPE 2020", "IAMSPE 2021", "IAMSPE 2022", "IAMSPE 2023", "IAMSPE 2024"],
+    "AMRIGS": ["AMRIGS"],
+    "SCMRP": ["SCMRP", "SCMRP 2021", "SCMRP 2022", "SCMRP 2023"],
 }
 
 def resolve_institution_codes(code: Optional[str]) -> list[str]:
@@ -176,7 +181,7 @@ def resolve_institution_codes(code: Optional[str]) -> list[str]:
         return []
     cleaned = code.strip().upper()
     for k, aliases in INSTITUTION_ALIASES.items():
-        if cleaned == k.upper():
+        if cleaned == k.upper() or any(cleaned == a.upper() for a in aliases):
             return aliases
     return [code.strip()]
 

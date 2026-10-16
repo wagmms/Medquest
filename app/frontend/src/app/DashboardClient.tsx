@@ -827,60 +827,60 @@ export function DashboardClient({
           </motion.section>
 
           {/* PLANO DE HOJE (Card Integrado em 3 Pilares) */}
-          <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs">
-            <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4 pb-2.5 sm:pb-3 border-b border-border/50">
-              <div className="flex items-center gap-2 text-foreground">
-                <span className="material-symbols-outlined text-primary text-[20px]" data-icon="today">today</span>
-                <h3 className="text-base font-bold tracking-tight">Plano de Hoje</h3>
+          <motion.section variants={itemVariants} className="shrink-0 bg-surface border border-line-subtle rounded-sm p-4 sm:p-5 shadow-2xs">
+            <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4 pb-2.5 sm:pb-3 border-b border-line-subtle">
+              <div className="flex items-center gap-2 text-ink-primary">
+                <ClinicalIcon name="schedule" className="w-4 h-4 text-accent" />
+                <h3 className="text-sm font-bold tracking-tight">Plano de Hoje</h3>
               </div>
-              <span className="text-xs text-muted-foreground">Metas personalizadas diárias</span>
+              <span className="text-[11px] font-mono-lab text-ink-muted">Metas personalizadas diárias</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
               {/* Pilar 1: Revisões */}
-              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/20 border border-border/40 flex flex-col justify-between gap-3 min-w-0">
+              <div className="p-3.5 sm:p-4 rounded-xs bg-elevated/40 border border-line-subtle flex flex-col justify-between gap-3 min-w-0">
                 <div className="min-w-0">
-                  <div className="flex items-center justify-between text-xs font-semibold text-purple-600 dark:text-purple-400 mb-1">
-                    <span className="flex items-center gap-1">
-                      <span className="material-symbols-outlined text-[16px]" data-icon="psychology">psychology</span> Revisão Ativa
+                  <div className="flex items-center justify-between text-xs font-semibold text-accent mb-1">
+                    <span className="flex items-center gap-1.5">
+                      <ClinicalIcon name="psychology" className="w-3.5 h-3.5" /> Revisão Ativa
                     </span>
                     {pendentesRevisao === 0 && (
-                      <span className="inline-flex items-center gap-0.5 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold">
-                        <span className="material-symbols-outlined text-[14px]" data-icon="done">done</span> Em dia
+                      <span className="inline-flex items-center gap-0.5 text-normal text-[11px] font-bold">
+                        <ClinicalIcon name="check" className="w-3 h-3" /> Em dia
                       </span>
                     )}
                   </div>
-                  <p className="text-xl sm:text-2xl font-bold text-foreground tracking-tight">
+                  <p className="text-lg sm:text-xl font-bold text-ink-primary tracking-tight font-mono-lab tabular-nums">
                     {pendentesRevisao > 0 ? `${pendentesRevisao} ${pendentesRevisao === 1 ? 'pendente' : 'pendentes'}` : "Tudo em dia!"}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-0.5">
+                  <p className="text-xs text-ink-secondary mt-0.5 font-mono-lab tabular-nums">
                     {(stats.flashcards_due_count || 0) === 1 ? "1 flashcard" : `${stats.flashcards_due_count || 0} flashcards`} · {(stats.srs_due_count || 0) === 1 ? "1 questão" : `${stats.srs_due_count || 0} questões`}
                   </p>
                 </div>
                 {pendentesRevisao > 0 ? (
                   <Link 
                     href={(stats.flashcards_due_count || 0) > 0 ? "/revisao-ativa" : "/estudar?status=srs_due&limit=100"}
-                    className="w-full py-2 bg-purple-500/10 hover:bg-purple-500/20 text-purple-700 dark:text-purple-300 font-bold rounded-xl text-xs flex items-center justify-center gap-1 transition-colors shadow-2xs"
+                    className="w-full py-1.5 bg-surface hover:bg-elevated text-accent border border-line-subtle font-bold rounded-xs text-xs flex items-center justify-center gap-1 transition-colors shadow-2xs font-mono-lab"
                   >
-                    Revisar agora →
+                    <span>Revisar agora →</span>
                   </Link>
                 ) : (
-                  <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[14px]" data-icon="verified">verified</span> Sem revisões atrasadas
+                  <span className="text-[11px] text-normal font-semibold flex items-center gap-1">
+                    <ClinicalIcon name="check_circle" className="w-3.5 h-3.5" /> Sem revisões atrasadas
                   </span>
                 )}
               </div>
 
               {/* Pilar 2: Questões Novas */}
-              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/20 border border-border/40 flex flex-col justify-between gap-3 min-w-0">
+              <div className="p-3.5 sm:p-4 rounded-xs bg-elevated/40 border border-line-subtle flex flex-col justify-between gap-3 min-w-0">
                 <div className="min-w-0">
-                  <div className="flex items-center justify-between text-xs font-semibold text-blue-600 dark:text-blue-400 mb-1">
-                    <span className="flex items-center gap-1">
-                      <span className="material-symbols-outlined text-[16px]" data-icon="post_add">post_add</span> Questões do Dia
+                  <div className="flex items-center justify-between text-xs font-semibold text-accent mb-1">
+                    <span className="flex items-center gap-1.5">
+                      <ClinicalIcon name="description" className="w-3.5 h-3.5" /> Questões do Dia
                     </span>
-                    <span className="text-xs font-bold text-foreground">{todayDone}/{dailyTarget}</span>
+                    <span className="text-xs font-bold text-ink-primary font-mono-lab tabular-nums">{todayDone}/{dailyTarget}</span>
                   </div>
-                  <p className="text-xl sm:text-2xl font-bold text-foreground tracking-tight">
+                  <p className="text-lg sm:text-xl font-bold text-ink-primary tracking-tight font-mono-lab tabular-nums">
                     {dailyRemaining > 0 ? `${dailyRemaining} restantes` : "Meta batida! 🎉"}
                   </p>
                   <div 
@@ -889,40 +889,40 @@ export function DashboardClient({
                     aria-valuemin={0}
                     aria-valuemax={dailyTarget}
                     aria-label={`Progresso de questões diárias: ${todayDone} de ${dailyTarget}`}
-                    className="w-full bg-muted rounded-full h-1.5 overflow-hidden mt-2"
+                    className="w-full bg-line-subtle rounded-xs h-1.5 overflow-hidden mt-2"
                   >
                     <div 
-                      className="bg-blue-500 h-1.5 rounded-full transition-all duration-500"
+                      className="bg-accent h-1.5 rounded-xs transition-all duration-500"
                       style={{ width: `${dailyProgressPct}%` }}
                     />
                   </div>
                 </div>
                 <Link 
                   href={`/estudar?status=new&limit=${Math.min(20, Math.max(5, dailyRemaining))}`}
-                  className="w-full py-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-700 dark:text-blue-300 font-bold rounded-xl text-xs flex items-center justify-center gap-1 transition-colors shadow-2xs"
+                  className="w-full py-1.5 bg-surface hover:bg-elevated text-accent border border-line-subtle font-bold rounded-xs text-xs flex items-center justify-center gap-1 transition-colors shadow-2xs font-mono-lab"
                 >
                   {dailyRemaining > 0 ? "Praticar questões →" : "Fazer questões extras →"}
                 </Link>
               </div>
 
               {/* Pilar 3: Tema Sugerido */}
-              {hasPlannerError ? <div role="alert" className="p-4 rounded-xl border border-amber-500/30 text-sm">
+              {hasPlannerError ? <div role="alert" className="p-4 rounded-xs border border-warning/40 text-xs">
                 Não foi possível carregar seu progresso no planner.
-                <button onClick={() => window.location.reload()} className="block mt-3 font-semibold underline">Tentar novamente</button>
+                <button onClick={() => window.location.reload()} className="block mt-2 font-semibold underline">Tentar novamente</button>
               </div> : <>
-              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/20 border border-border/40 flex flex-col justify-between gap-3 min-w-0">
+              <div className="p-3.5 sm:p-4 rounded-xs bg-elevated/40 border border-line-subtle flex flex-col justify-between gap-3 min-w-0">
                 <div className="min-w-0">
-                  <div className="flex items-center justify-between text-xs font-semibold text-primary mb-1">
-                    <span className="flex items-center gap-1">
-                      <span className="material-symbols-outlined text-[16px]" data-icon="calendar_month">calendar_month</span> Tema Sugerido
+                  <div className="flex items-center justify-between text-xs font-semibold text-accent mb-1">
+                    <span className="flex items-center gap-1.5">
+                      <ClinicalIcon name="calendar_month" className="w-3.5 h-3.5" /> Tema Sugerido
                     </span>
-                    {plannerWeekNum && <span className="text-[11px] text-muted-foreground">Semana {plannerWeekNum}</span>}
-                    {isPlanCompleted && <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold">100% Concluído</span>}
+                    {plannerWeekNum && <span className="text-[11px] font-mono-lab text-ink-muted">Semana {plannerWeekNum}</span>}
+                    {isPlanCompleted && <span className="text-[11px] text-normal font-bold">100% Concluído</span>}
                   </div>
-                  <p className="text-base font-bold text-foreground line-clamp-2 break-words" title={sugestaoTema}>
+                  <p className="text-sm font-bold text-ink-primary line-clamp-2 break-words" title={sugestaoTema}>
                     {isPlanCompleted ? "Plano 100% Concluído! 🎉" : sugestaoTema}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2 break-words">
+                  <p className="text-xs text-ink-secondary mt-0.5 line-clamp-2 break-words">
                     {isPlanCompleted
                       ? "Parabéns! Todas as metas do cronograma foram finalizadas."
                       : suggestedPlannerTopic
@@ -940,7 +940,7 @@ export function DashboardClient({
                       ? `/estudar?subtema=${encodeURIComponent(bottlenecks[0].subtema)}&limit=20`
                       : "/planner"
                   }
-                  className="w-full py-2 bg-primary/10 hover:bg-primary/20 text-primary font-bold rounded-xl text-xs flex items-center justify-center gap-1 transition-colors shadow-2xs"
+                  className="w-full py-1.5 bg-surface hover:bg-elevated text-accent border border-line-subtle font-bold rounded-xs text-xs flex items-center justify-center gap-1 transition-colors shadow-2xs font-mono-lab"
                 >
                   {isPlanCompleted ? "Ver cronograma →" : "Continuar plano →"}
                 </Link>
@@ -950,15 +950,15 @@ export function DashboardClient({
           </motion.section>
 
           {/* CADERNO DE ERROS & RETIFICAÇÃO ATIVA */}
-          <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 sm:mb-4 pb-2.5 sm:pb-3 border-b border-border/50">
+          <motion.section variants={itemVariants} className="shrink-0 bg-surface border border-line-subtle rounded-sm p-4 sm:p-5 shadow-2xs">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 sm:mb-4 pb-2.5 sm:pb-3 border-b border-line-subtle">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center ring-1 ring-rose-500/20 shrink-0">
-                  <span className="material-symbols-outlined text-[18px]" data-icon="edit_note">edit_note</span>
+                <div className="w-7 h-7 rounded-xs bg-critical-bg text-critical border border-critical/30 flex items-center justify-center shrink-0">
+                  <ClinicalIcon name="edit" className="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-foreground">Caderno de Erros & Retificação</h3>
-                  <p className="text-xs text-muted-foreground">Questões com erro em aberto aguardando nova tentativa</p>
+                  <h3 className="text-sm font-bold text-ink-primary">Caderno de Erros & Retificação</h3>
+                  <p className="text-xs text-ink-secondary">Questões com erro em aberto aguardando nova tentativa</p>
                 </div>
               </div>
 
@@ -966,51 +966,51 @@ export function DashboardClient({
               {errorNotebook && errorNotebook.currently_unresolved_count > 0 && (
                 <Link 
                   href={errorNotebook.practice_url}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-xs font-bold transition-colors self-start sm:self-auto"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xs bg-critical-bg hover:bg-critical/20 text-critical border border-critical/30 text-xs font-bold font-mono-lab transition-colors self-start sm:self-auto"
                 >
-                  <span className="material-symbols-outlined text-[16px]" data-icon="replay">replay</span>
-                  <span>Limpar todos ({errorNotebook.currently_unresolved_count})</span>
-                  <span className="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+                  <ClinicalIcon name="refresh" className="w-3.5 h-3.5" />
+                  <span>Limpar todos (<span className="tabular-nums">{errorNotebook.currently_unresolved_count}</span>)</span>
+                  <ClinicalIcon name="arrow_forward" className="w-3.5 h-3.5" />
                 </Link>
               )}
             </div>
 
             {bottlenecks.length > 0 ? (
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col gap-2">
                 {bottlenecks.slice(0, 3).map((b) => {
                   const unresolved = b.unresolved_count ?? b.wrong_count;
                   return (
                     <div 
                       key={b.subtema}
-                      className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-muted/20 hover:bg-muted/35 border border-border/40 transition-all gap-2.5 sm:gap-3 min-w-0"
+                      className="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-xs bg-elevated/40 hover:bg-elevated border border-line-subtle transition-colors gap-2.5 min-w-0"
                     >
                       <div className="flex flex-col min-w-0 flex-1">
-                        <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 sm:gap-2 min-w-0">
-                          <span className="font-bold text-sm text-foreground line-clamp-2 break-words flex-1 min-w-0" title={b.subtema}>
+                        <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 min-w-0">
+                          <span className="font-bold text-xs text-ink-primary line-clamp-2 break-words flex-1 min-w-0" title={b.subtema}>
                             {b.subtema}
                           </span>
-                          <span className="px-1.5 py-0.5 rounded bg-muted text-muted-foreground text-[10px] font-bold shrink-0">
+                          <span className="px-1.5 py-0.5 rounded-xs bg-surface border border-line-subtle text-ink-muted text-[10px] font-mono-lab font-bold shrink-0">
                             {b.area}
                           </span>
                         </div>
-                        <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground mt-0.5 sm:mt-1">
-                          <span className="text-rose-600 dark:text-rose-400 font-semibold">
-                            {unresolved} {unresolved === 1 ? "questão com erro em aberto" : "questões com erro em aberto"}
+                        <div className="flex flex-wrap items-center gap-2 text-xs text-ink-secondary mt-0.5 font-mono-lab">
+                          <span className="text-critical font-semibold tabular-nums">
+                            {unresolved} {unresolved === 1 ? "questão com erro" : "questões com erro"}
                           </span>
-                          <span className="text-muted-foreground/60">•</span>
-                          <span>{b.attempts} {b.attempts === 1 ? "tentativa" : "tentativas"} ({b.accuracy_pct}% acerto)</span>
+                          <span className="text-ink-muted/50">•</span>
+                          <span className="tabular-nums">{b.attempts} {b.attempts === 1 ? "tentativa" : "tentativas"} ({b.accuracy_pct}% acerto)</span>
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-between sm:justify-end gap-2.5 w-full sm:w-auto shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-border/30">
-                        <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 shrink-0">
-                          {unresolved} {unresolved === 1 ? "pendente" : "pendentes"}
+                      <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto shrink-0 pt-1.5 sm:pt-0 border-t sm:border-t-0 border-line-subtle">
+                        <span className="text-xs font-mono-lab font-bold px-2 py-0.5 rounded-xs bg-critical-bg text-critical border border-critical/30 shrink-0 tabular-nums">
+                          {unresolved} pendentes
                         </span>
                         <Link 
                           href={b.practice_url}
-                          className="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl transition-colors flex items-center gap-1 shadow-2xs shrink-0"
+                          className="px-3 py-1 bg-critical hover:bg-critical/90 text-surface text-xs font-bold rounded-xs transition-colors flex items-center gap-1 shadow-2xs shrink-0"
                         >
-                          <span className="material-symbols-outlined text-[14px]" data-icon="replay">replay</span> Retificar
+                          <ClinicalIcon name="refresh" className="w-3 h-3" /> Retificar
                         </Link>
                       </div>
                     </div>
@@ -1018,9 +1018,9 @@ export function DashboardClient({
                 })}
               </div>
             ) : (
-              <div className="py-6 text-center text-muted-foreground flex flex-col items-center justify-center gap-2">
-                <span className="material-symbols-outlined text-3xl text-emerald-500" data-icon="check_circle">check_circle</span>
-                <p className="text-sm font-semibold text-foreground">Caderno de erros 100% limpo! 🎉</p>
+              <div className="py-6 text-center text-ink-secondary flex flex-col items-center justify-center gap-2">
+                <ClinicalIcon name="check_circle" className="w-6 h-6 text-normal" />
+                <p className="text-sm font-semibold text-ink-primary">Caderno de erros 100% limpo! 🎉</p>
                 <p className="text-xs max-w-sm">Você não possui questões com erro em aberto. Continue praticando para calibrar sua preparação.</p>
               </div>
             )}
@@ -1028,16 +1028,16 @@ export function DashboardClient({
 
           {/* RITMO DA SEMANA (COMPACTO) */}
           {benchmarkStats && (
-            <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs min-w-0">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 min-w-0">
-                <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                  <span className="material-symbols-outlined text-blue-500 text-[20px] shrink-0" data-icon="speed">speed</span>
+            <motion.section variants={itemVariants} className="shrink-0 bg-surface border border-line-subtle rounded-sm p-4 sm:p-5 shadow-2xs min-w-0">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2.5 min-w-0">
+                <div className="flex items-center gap-2 min-w-0 flex-1">
+                  <ClinicalIcon name="schedule" className="w-4 h-4 text-accent shrink-0" />
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-sm font-bold text-foreground">Ritmo da Semana</h3>
-                    <p className="text-xs text-muted-foreground break-words">
-                      {benchmarkStats.last7_attempts} de {benchmarkStats.weekly_target_questions} questões nos últimos 7 dias
+                    <h3 className="text-sm font-bold text-ink-primary">Ritmo da Semana</h3>
+                    <p className="text-xs text-ink-secondary font-mono-lab break-words">
+                      <span className="tabular-nums">{benchmarkStats.last7_attempts}</span> de <span className="tabular-nums">{benchmarkStats.weekly_target_questions}</span> questões nos últimos 7 dias
                       {benchmarkStats.accuracy_last7 != null && (
-                        <span> · <strong className="text-foreground">{Math.round(benchmarkStats.accuracy_last7 * 100)}%</strong> de acerto recente</span>
+                        <span> · <strong className="text-ink-primary tabular-nums">{Math.round(benchmarkStats.accuracy_last7 * 100)}%</strong> de acerto recente</span>
                       )}
                     </p>
                   </div>
@@ -1045,9 +1045,9 @@ export function DashboardClient({
 
                 <Link 
                   href="/analise" 
-                  className="text-xs font-bold text-primary hover:underline flex items-center gap-1 self-start sm:self-auto shrink-0"
+                  className="text-xs font-bold text-accent hover:underline flex items-center gap-1 self-start sm:self-auto shrink-0 font-mono-lab"
                 >
-                  Ver análise detalhada <span className="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+                  Ver análise detalhada <ClinicalIcon name="arrow_forward" className="w-3 h-3" />
                 </Link>
               </div>
 
@@ -1057,58 +1057,58 @@ export function DashboardClient({
                 aria-valuemin={0}
                 aria-valuemax={100}
                 aria-label={`Ritmo da semana: ${Math.round(benchmarkStats.weekly_progress_pct)}% concluído`}
-                className="w-full bg-muted rounded-full h-2 overflow-hidden"
+                className="w-full bg-line-subtle rounded-xs h-1.5 overflow-hidden"
               >
                 <div 
-                  className="bg-blue-500 h-2 rounded-full transition-all duration-500"
+                  className="bg-accent h-1.5 rounded-xs transition-all duration-500"
                   style={{ width: `${benchmarkStats.weekly_progress_pct}%` }}
                 />
               </div>
             </motion.section>
           )}
 
-          {/* FAIXA ESTIMADA DE PRONTIDÃO (BENCHMARK PROBABILÍSTICO CONDICIONAL: APENAS SE >= 20 QUESTÕES) */}
+          {/* FAIXA ESTIMADA DE PRONTIDÃO (BENCHMARK PROBABILÍSTICO CONDICIONAL) */}
           {stats.distinct_answered >= 20 && benchmarkStats && overallAccPct != null && (
-            <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs relative overflow-hidden min-w-0">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 min-w-0">
-                <div className="flex items-center gap-3 min-w-0 flex-1">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20 shrink-0">
-                    <span className="material-symbols-outlined text-[18px]" data-icon="analytics">analytics</span>
+            <motion.section variants={itemVariants} className="shrink-0 bg-surface border border-line-subtle rounded-sm p-4 sm:p-5 shadow-2xs relative overflow-hidden min-w-0">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 min-w-0">
+                <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                  <div className="w-7 h-7 rounded-xs bg-ink-primary text-surface flex items-center justify-center shrink-0">
+                    <ClinicalIcon name="analytics" className="w-3.5 h-3.5 text-canvas" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-base font-bold text-foreground">Faixa Estimada de Prontidão</h3>
-                    <p className="text-xs text-muted-foreground break-words">
-                      Estimativa preliminar baseada em {totalAttempts} tentativas vs. Meta de corte ({targetScorePct}%)
+                    <h3 className="text-sm font-bold text-ink-primary">Faixa Estimada de Prontidão</h3>
+                    <p className="text-xs text-ink-secondary font-mono-lab break-words">
+                      Estimativa preliminar baseada em <span className="tabular-nums">{totalAttempts}</span> tentativas vs. Meta de corte (<span className="tabular-nums">{targetScorePct}%</span>)
                     </p>
                   </div>
                 </div>
 
                 {/* Badge Probabilístico */}
-                <div className="shrink-0 self-start sm:self-auto">
+                <div className="shrink-0 self-start sm:self-auto font-mono-lab">
                   {diffPct != null && diffPct >= 0 ? (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold ring-1 ring-emerald-500/20">
-                      <span className="material-symbols-outlined text-[14px]" data-icon="verified">verified</span>
-                      Faixa Competitiva Estimada (+{diffPct}%)
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xs bg-normal-bg text-normal border border-normal/30 text-xs font-bold tabular-nums">
+                      <ClinicalIcon name="check_circle" className="w-3.5 h-3.5" />
+                      Faixa Competitiva (+{diffPct}%)
                     </span>
                   ) : diffPct != null && diffPct >= -10 ? (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold ring-1 ring-blue-500/20">
-                      <span className="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xs bg-elevated text-accent border border-line-subtle text-xs font-bold tabular-nums">
+                      <ClinicalIcon name="my_location" className="w-3.5 h-3.5" />
                       Faixa de Aproximação ({diffPct}%)
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold ring-1 ring-amber-500/20">
-                      <span className="material-symbols-outlined text-[14px]" data-icon="fitness_center">fitness_center</span>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xs bg-warning/15 text-warning border border-warning/30 text-xs font-bold tabular-nums">
+                      <ClinicalIcon name="warning" className="w-3.5 h-3.5" />
                       Fase de Consolidação ({diffPct}%)
                     </span>
                   )}
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2 p-3.5 bg-muted/20 border border-border/40 rounded-2xl min-w-0">
+              <div className="flex flex-col gap-1.5 p-3 bg-elevated/40 border border-line-subtle rounded-xs min-w-0 font-mono-lab">
                 <div className="flex justify-between text-xs min-w-0">
-                  <span className="text-muted-foreground font-medium truncate">Seu Acerto Geral vs. Meta</span>
-                  <span className="font-bold text-foreground shrink-0 ml-2">
-                    {overallAccPct.toFixed(1)}% <span className="text-muted-foreground font-normal text-[11px]">/ Meta: {targetScorePct}%</span>
+                  <span className="text-ink-secondary font-medium truncate">Seu Acerto Geral vs. Meta</span>
+                  <span className="font-bold text-ink-primary shrink-0 ml-2 tabular-nums">
+                    {overallAccPct.toFixed(1)}% <span className="text-ink-muted font-normal text-[11px]">/ Meta: {targetScorePct}%</span>
                   </span>
                 </div>
 
@@ -1118,66 +1118,66 @@ export function DashboardClient({
                   aria-valuemin={0}
                   aria-valuemax={100}
                   aria-label={`Acurácia geral: ${overallAccPct.toFixed(1)}% vs meta de corte de ${targetScorePct}%`}
-                  className="relative w-full bg-muted rounded-full h-2.5 overflow-hidden ring-1 ring-inset ring-black/5 dark:ring-white/5"
+                  className="relative w-full bg-line-subtle rounded-xs h-2 overflow-hidden"
                 >
                   <div 
-                    className="bg-primary h-2.5 rounded-full transition-all duration-700"
+                    className="bg-accent h-2 rounded-xs transition-all duration-700"
                     style={{ width: `${Math.min(100, Math.max(0, overallAccPct))}%` }}
                   />
                   <div 
-                    className="absolute top-0 bottom-0 w-0.5 bg-foreground/80 z-20"
+                    className="absolute top-0 bottom-0 w-0.5 bg-ink-primary z-20"
                     style={{ left: `${targetScorePct}%` }}
                     title={`Meta: ${targetScorePct}%`}
                   />
                 </div>
-                <div className="flex justify-between text-[10px] text-muted-foreground mt-0.5">
+                <div className="flex justify-between text-[10px] text-ink-muted mt-0.5 tabular-nums">
                   <span>0%</span>
-                  <span className="font-semibold text-foreground/80">Meta de Corte: {targetScorePct}%</span>
+                  <span className="font-semibold text-ink-primary">Meta de Corte: {targetScorePct}%</span>
                   <span>100%</span>
                 </div>
               </div>
 
-              <p className="text-[11px] text-muted-foreground mt-2 break-words">
-                * A acurácia por Grande Área e o desempenho em simulados refinam a projeção na aba <Link href="/analise" className="text-primary font-semibold hover:underline">Análise</Link>.
+              <p className="text-[11px] text-ink-muted mt-2 break-words">
+                * A acurácia por Grande Área e o desempenho em simulados refinam a projeção na aba <Link href="/analise" className="text-accent font-semibold hover:underline">Análise</Link>.
               </p>
             </motion.section>
           )}
 
           {/* RESUMO DISCRETO DE CONTEXTO (BOTTOM STRIP) */}
-          <motion.section variants={itemVariants} className="shrink-0 bg-card border border-border/60 rounded-2xl p-3 sm:px-5 sm:py-3.5 shadow-2xs w-full min-w-0">
-            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-between gap-2 sm:gap-3 text-xs">
-              <Link href="/cobertura" className="flex items-center gap-1.5 hover:text-primary transition-colors text-muted-foreground p-1 min-w-0 overflow-hidden">
-                <span className="material-symbols-outlined text-[16px] text-emerald-500 shrink-0" data-icon="domain_verification">domain_verification</span>
+          <motion.section variants={itemVariants} className="shrink-0 bg-surface border border-line-subtle rounded-sm p-3 sm:px-4 sm:py-2.5 shadow-2xs w-full min-w-0">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-between gap-2 sm:gap-3 text-xs font-mono-lab">
+              <Link href="/cobertura" className="flex items-center gap-1.5 hover:text-accent transition-colors text-ink-secondary p-1 min-w-0 overflow-hidden">
+                <ClinicalIcon name="check_circle" className="w-3.5 h-3.5 text-normal shrink-0" />
                 <span className="truncate">
-                  {domainSummary ? "Domínio:" : "Cobertura:"} <strong className="text-foreground">
+                  {domainSummary ? "Domínio:" : "Cobertura:"} <strong className="text-ink-primary tabular-nums">
                     {domainSummary ? `${domainSummary.overall_domain_pct}%` : (stats.coverage_pct != null ? `${(stats.coverage_pct * 100).toFixed(0)}%` : "--")}
                   </strong>
                 </span>
               </Link>
 
               {errorNotebook && (
-                <Link href={errorNotebook.practice_url} className="flex items-center gap-1.5 hover:text-rose-500 transition-colors text-muted-foreground p-1 min-w-0 overflow-hidden">
-                  <span className="material-symbols-outlined text-[16px] text-rose-500 shrink-0" data-icon="edit_note">edit_note</span>
+                <Link href={errorNotebook.practice_url} className="flex items-center gap-1.5 hover:text-critical transition-colors text-ink-secondary p-1 min-w-0 overflow-hidden">
+                  <ClinicalIcon name="edit" className="w-3.5 h-3.5 text-critical shrink-0" />
                   <span className="truncate">
-                    Erros: <strong className="text-foreground">{errorNotebook.currently_unresolved_count}</strong>
+                    Erros: <strong className="text-critical tabular-nums">{errorNotebook.currently_unresolved_count}</strong>
                   </span>
                 </Link>
               )}
 
-              <div className="flex items-center gap-1.5 text-muted-foreground p-1 min-w-0 overflow-hidden">
-                <span className="material-symbols-outlined text-[16px] text-orange-500 shrink-0" data-icon="local_fire_department">local_fire_department</span>
+              <div className="flex items-center gap-1.5 text-ink-secondary p-1 min-w-0 overflow-hidden">
+                <ClinicalIcon name="schedule" className="w-3.5 h-3.5 text-warning shrink-0" />
                 <span className="truncate">
-                  Sequência: <strong className="text-foreground">{stats.streak_days}d</strong>
+                  Sequência: <strong className="text-ink-primary tabular-nums">{stats.streak_days}d</strong>
                 </span>
               </div>
 
               <button
                 onClick={() => setIsOfflineModalOpen(true)}
-                className="min-h-[40px] flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-foreground font-semibold px-3 py-2 rounded-xl bg-muted/40 hover:bg-muted transition-colors cursor-pointer border border-border/50 col-span-2 sm:col-span-1 shrink-0"
+                className="flex items-center justify-center gap-1.5 text-xs text-ink-secondary hover:text-ink-primary font-semibold px-2.5 py-1 rounded-xs bg-elevated hover:bg-line-subtle transition-colors cursor-pointer border border-line-subtle col-span-2 sm:col-span-1 shrink-0"
                 title="Abrir gerenciador do Modo Plantão (Offline)"
                 aria-label="Abrir gerenciador do Modo Plantão offline"
               >
-                <span className="material-symbols-outlined text-[16px] text-primary shrink-0" data-icon="cloud_download">cloud_download</span>
+                <ClinicalIcon name="cloud_download" className="w-3.5 h-3.5 text-accent shrink-0" />
                 <span>Modo Plantão</span>
               </button>
             </div>

@@ -5,7 +5,7 @@ import { TimelineStat, WeakTopic, BreakdownStat, DistractorStat, PredictiveScore
 import Link from "next/link";
 import clsx from "clsx";
 import { api } from "@/lib/api";
-import { Clock } from "lucide-react";
+import { Clock, Calendar } from "lucide-react";
 
 
 import { InstitutionRadarSection } from "@/components/analytics/InstitutionRadarSection";
@@ -1141,7 +1141,7 @@ export function AnalysisClient({
           <div className="bg-card border border-border shadow-sm rounded-2xl p-6 relative overflow-hidden flex flex-col">
             <div className="flex items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-2 text-foreground">
-                <span className="material-symbols-outlined text-[20px] text-primary" data-icon="calendar_month">calendar_month</span>
+                <Calendar className="w-5 h-5 text-accent" aria-hidden="true" />
                 <h3 className="text-lg font-bold text-foreground">Histórico de Atividade (Últimos 6 meses)</h3>
               </div>
               <span className="text-xs text-muted-foreground hidden sm:inline-block">Consistência e volume diário</span>

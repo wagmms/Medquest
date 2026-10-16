@@ -461,55 +461,55 @@ export function MultiparameterMonitor({
         <div className="col-span-12 lg:col-span-5 grid grid-cols-2 gap-2 p-2.5 bg-[#090d18]">
           {/* Tile 1: Frequência Cardíaca (Verde) */}
           <div
-            className={`p-2.5 rounded-xl border transition-all flex flex-col justify-between ${
+            className={`p-2.5 rounded-sm border transition-all flex flex-col justify-between ${
               pulseGlow
-                ? "bg-emerald-950/50 border-emerald-400 shadow-md ring-2 ring-emerald-500/20"
+                ? "bg-emerald-950/60 border-emerald-400 shadow-sm ring-1 ring-emerald-500/30"
                 : "bg-[#0b1220] border-emerald-900/40"
             }`}
           >
             <div className="flex items-center justify-between text-xs text-emerald-400">
-              <span className="font-bold flex items-center gap-1">
-                <Heart className={`w-3.5 h-3.5 ${pulseGlow ? "scale-125 text-emerald-300 fill-emerald-300" : ""}`} />
+              <span className="font-bold font-mono-lab flex items-center gap-1 uppercase tracking-wider text-[11px]">
+                <Heart className={`w-3.5 h-3.5 ${pulseGlow ? "scale-110 text-emerald-300 fill-emerald-300" : ""}`} />
                 FC
               </span>
-              <span className="text-[10px] text-emerald-400/70 font-mono">50 - 120</span>
+              <span className="text-[10px] text-emerald-400/70 font-mono-lab tabular-nums">50 - 120</span>
             </div>
             <div className="my-1 flex items-baseline justify-between">
-              <span className="text-3xl lg:text-4xl font-extrabold text-emerald-400 tracking-tighter">
+              <span className="text-3xl lg:text-4xl font-extrabold text-emerald-400 font-mono-lab tabular-nums tracking-tighter">
                 {isMonitored.ecg ? vitals.hr : "--"}
               </span>
-              <span className="text-[11px] text-emerald-400/80 font-bold">bpm</span>
+              <span className="text-[11px] text-emerald-400/80 font-mono-lab font-bold">bpm</span>
             </div>
-            <span className="text-[10px] text-emerald-400/70 truncate">DII Contínuo</span>
+            <span className="text-[10px] text-emerald-400/70 truncate font-mono-lab">DII Contínuo</span>
           </div>
 
           {/* Tile 2: Oximetria de Pulso SpO2 (Ciano) */}
-          <div className="p-2.5 rounded-xl bg-[#0b1220] border border-cyan-900/40 flex flex-col justify-between">
+          <div className="p-2.5 rounded-sm bg-[#0b1220] border border-cyan-900/40 flex flex-col justify-between">
             <div className="flex items-center justify-between text-xs text-cyan-400">
-              <span className="font-bold">SpO2</span>
-              <span className="text-[10px] text-cyan-400/70 font-mono">92 - 100</span>
+              <span className="font-bold font-mono-lab uppercase tracking-wider text-[11px]">SpO2</span>
+              <span className="text-[10px] text-cyan-400/70 font-mono-lab tabular-nums">92 - 100</span>
             </div>
             <div className="my-1 flex items-baseline justify-between">
               <span
-                className={`text-3xl lg:text-4xl font-extrabold tracking-tighter ${
+                className={`text-3xl lg:text-4xl font-extrabold font-mono-lab tabular-nums tracking-tighter ${
                   vitals.spo2 < 90 ? "text-rose-400 animate-pulse" : "text-cyan-400"
                 }`}
               >
                 {isMonitored.spo2 ? vitals.spo2 : "--"}
               </span>
-              <span className="text-[11px] text-cyan-400/80 font-bold">%</span>
+              <span className="text-[11px] text-cyan-400/80 font-mono-lab font-bold">%</span>
             </div>
-            <span className="text-[10px] text-cyan-400/70 truncate">Sensor Digital</span>
+            <span className="text-[10px] text-cyan-400/70 truncate font-mono-lab">Sensor Digital</span>
           </div>
 
           {/* Tile 3: Pressão Arterial Não-Invasiva PNI (Branco / Âmbar) */}
-          <div className="p-2.5 rounded-xl bg-[#0b1220] border border-border/50 flex flex-col justify-between">
+          <div className="p-2.5 rounded-sm bg-[#0b1220] border border-border/50 flex flex-col justify-between">
             <div className="flex items-center justify-between text-xs text-zinc-300">
-              <span className="font-bold">PNI (PA)</span>
+              <span className="font-bold font-mono-lab uppercase tracking-wider text-[11px]">PNI (PA)</span>
               <button
                 onClick={onMeasureNibp}
                 disabled={isMeasuringNibp}
-                className="text-[10px] text-primary hover:underline flex items-center gap-1 cursor-pointer"
+                className="text-[10px] font-mono-lab text-accent hover:underline flex items-center gap-1 cursor-pointer"
               >
                 <RefreshCw className={`w-2.5 h-2.5 ${isMeasuringNibp ? "animate-spin" : ""}`} />
                 {isMeasuringNibp ? "Insufl..." : "Aferir"}
@@ -518,41 +518,41 @@ export function MultiparameterMonitor({
             <div className="my-1 flex items-baseline justify-between">
               {displayedNibp ? (
                 <div className="flex items-baseline gap-1">
-                  <span className="text-xl lg:text-2xl font-extrabold text-white tracking-tighter">
+                  <span className="text-xl lg:text-2xl font-extrabold text-white font-mono-lab tabular-nums tracking-tighter">
                     {displayedNibp.sbp}/{displayedNibp.dbp}
                   </span>
-                  <span className="text-[11px] text-muted-foreground">({displayedNibp.pam})</span>
+                  <span className="text-[11px] text-muted-foreground font-mono-lab">({displayedNibp.pam})</span>
                 </div>
               ) : (
-                <span className="text-xl font-bold text-muted-foreground">
+                <span className="text-xl font-bold text-muted-foreground font-mono-lab tabular-nums">
                   {isMeasuringNibp ? "Insufl..." : "--/--"}
                 </span>
               )}
-              <span className="text-[10px] text-muted-foreground">mmHg</span>
+              <span className="text-[10px] text-muted-foreground font-mono-lab">mmHg</span>
             </div>
-            <span className="text-[10px] text-muted-foreground truncate">
+            <span className="text-[10px] text-muted-foreground truncate font-mono-lab">
               {displayedNibp ? "Manguito Braquial" : "Aguardando aferição"}
             </span>
           </div>
 
           {/* Tile 4: Frequência Respiratória / Capnografia (Amarelo) */}
-          <div className="p-2.5 rounded-xl bg-[#0b1220] border border-amber-900/40 flex flex-col justify-between">
+          <div className="p-2.5 rounded-sm bg-[#0b1220] border border-amber-900/40 flex flex-col justify-between">
             <div className="flex items-center justify-between text-xs text-amber-400">
-              <span className="font-bold">FR & EtCO2</span>
-              <span className="text-[10px] text-amber-400/70 font-mono">12 - 20</span>
+              <span className="font-bold font-mono-lab uppercase tracking-wider text-[11px]">FR & EtCO2</span>
+              <span className="text-[10px] text-amber-400/70 font-mono-lab tabular-nums">12 - 20</span>
             </div>
             <div className="my-1 flex items-baseline justify-between">
               <div className="flex items-baseline gap-1">
-                <span className="text-2xl lg:text-3xl font-extrabold text-amber-400 tracking-tighter">
+                <span className="text-2xl lg:text-3xl font-extrabold text-amber-400 font-mono-lab tabular-nums tracking-tighter">
                   {vitals.rr}
                 </span>
-                <span className="text-[10px] text-amber-300/80">irpm</span>
+                <span className="text-[10px] text-amber-300/80 font-mono-lab">irpm</span>
               </div>
-              <span className="text-[11px] font-bold text-amber-300">
+              <span className="text-[11px] font-bold text-amber-300 font-mono-lab tabular-nums">
                 {vitals.etco2 || 36} <span className="text-[9px] font-normal">mmHg</span>
               </span>
             </div>
-            <span className="text-[10px] text-amber-400/70 truncate">
+            <span className="text-[10px] text-amber-400/70 truncate font-mono-lab">
               {vitals.gcs ? `Glasgow: ${vitals.gcs}` : "Capnografia Beira-Leito"}
             </span>
           </div>

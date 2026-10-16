@@ -84,3 +84,41 @@ def question_filter_clauses(args):
         params.append(args.get("id"))
 
     return clauses, params
+
+
+TARGET_INSTITUTION_RATIO = 0.40
+
+
+def get_user_target_institutions(db, user_id: str) -> set[str]:
+    """Retorna o conjunto expandido de institution_codes alvo do usuário (configurados no planejador de residência)."""
+    if not user_id:
+        return set()
+    try:
+        row = db.execute(
+            "SELECT target_institution FROM planner_config WHERE user_id = ?",
+            (user_id,)
+        ).fetchone()
+    except Exception:
+        return set()
+
+    if not row:
+        return set()
+
+    try:
+        raw = row["target_institution"]
+    except Exception:
+        return set()
+
+    if not raw or not isinstance(raw, str):
+        return set()
+
+    codes = set()
+    for part in raw.split(","):
+        clean = part.strip()
+        if clean and clean.upper() not in ("TODAS AS BANCAS", "TODAS", "OUTRA"):
+            expanded = resolve_institution_codes(clean)
+            for exp in expanded:
+                codes.add(exp)
+                codes.add(exp.upper())
+    return codes
+

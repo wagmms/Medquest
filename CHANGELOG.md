@@ -2,6 +2,74 @@
 
 Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
+## [2026-10-16] - Priorização Inteligente de Questões por Bancas-Alvo da Residência com Gemini 4 Argon
+- **Arquitetura de Extração e Resolução de Bancas-Alvo (`api/filters.py` e `api/edital_profiles.py`)**:
+  - Implementada a função `get_user_target_institutions(db, user_id)` para extrair de forma resiliente as faculdades/bancas selecionadas pelo aluno no Planejador de Residência (`planner_config.target_institution`).
+  - Expansão do dicionário canônico `INSTITUTION_ALIASES` cobrindo variantes históricas e sazonais para ENARE, SCMSP, IAMSPE, AMRIGS, SUS-SP, UNICAMP, UNIFESP, USP-SP e USP-RP.
+- **Amostragem Estratificada com Blend 40/60 e Fallback Gracioso (`api/questions.py` e `api/filters.py`)**:
+  - Implementada a função `_sample_prioritized_ids` com constante `TARGET_INSTITUTION_RATIO = 0.40`.
+  - Quando o usuário estuda sem restringir a uma única instituição, a fila reserva ~40% das vagas para as faculdades que ele definiu como objetivos na residência, complementando os 60% restantes com outras bancas para máxima diversidade pedagógica e amplitude de cobrança.
+  - Se a banca-alvo não possuir questões suficientes no subtema solicitado, ativa-se o fallback automático preenchendo a fila com outras bancas sem deixar vagas vazias.
+  - Se o usuário filtrar explicitamente por uma instituição na interface, o filtro estrito é 100% respeitado sem interrupções.
+- **Integração no Motor Adaptativo FSRS e Treino de Recuperação (`api/adaptive.py` e `api/remediation.py`)**:
+  - `rank_adaptive_candidates`: Adicionado `target_institution_boost: 25.0` nos perfis adaptativos (`balanced`, `retention` e `coverage`), priorizando questões inéditas e questões gêmeas das faculdades-alvo sem sobrepor revisões críticas do FSRS.
+  - `generate_remediation_queue`: Priorização de questões erradas e gêmeas inéditas das bancas-alvo na ordenação dos subtemas críticos.
+- **Metadados e Identidade Visual no Frontend (`app/frontend/src/`)**:
+  - Injeção da flag booleana `is_target_institution` em `/questions`, `/questions/:id` e `/questions/batch`.
+  - `QuizClient.tsx`: Badge `🎯 Alvo Residência` exibido em destaque no cabeçalho de cada questão pertencente às faculdades-alvo.
+  - `QuizFilters.tsx`: No seletor de instituições, exibição de indicador de foco automático `🎯 Priorizando suas bancas-alvo (~40%)` e identificadores visuais nas opções das bancas cadastradas.
+  - `lib/api.ts`: Preservação e ordenação preferencial da flag `is_target_institution` no fallback offline via IndexedDB/Dexie.
+- **Testes Unitários e de Integração (`tests/test_target_institution_study.py`)**:
+  - Suíte completa de 6 testes verificando extração, resolução de aliases, proporção 40/60, fallback em subtemas escassos, resposta de rota e boost adaptativo (100% aprovado; 416/416 testes de backend e lint do frontend zerado).
+
+## [2026-10-16] - Padronização Canônica de Comentários, Sanitização de Medway e Reclassificação dos 170 Temas com Gemini 4 Argon
+- **Saneamento da Anomalia de Armazenamento no QID 35998**:
+  - Extração cirúrgica de imagem em `base64` de 2,62 MB codificada no texto para arquivo PNG estático preservado (`app/backend/static/images/q35998_explanation.png` e `app/frontend/public/images/q35998_explanation.png`).
+  - Redução drástica do tamanho do registro no banco SQLite de 2.629.701 caracteres para 9.756 caracteres (redução de 99,6% de overhead de rede e disco).
+- **Sanitização Determinística de Referências Textuais a "Medway" (`scripts/sanitize_medway.py`)**:
+  - Aplicação de algoritmo léxico com *Token-Lock* em 12.569 questões candidatas.
+  - 1.388 ocorrências em prosa/texto ("Família Medway", "aluno Medway", "Gabarito da Medway") substituídas por terminologia neutra e institucional ("comunidade MedQuest", "aluno MedQuest", "Gabarito Comentado MedQuest").
+  - Blindagem e verificação criptográfica de 17.433 URLs de imagens de exames clínicos (`cdn.medway.com.br`, S3), garantindo **100% de paridade e zero quebra de imagens**.
+- **Reclassificação Integral dos 170 Temas Canônicos Oficiais (`scripts/map_legacy_subtemas_argon.py` e `scripts/apply_canonical_taxonomy.py`)**:
+  - Mapeamento via **Gemini 4 Argon** de 302 subtemas legados e fragmentados diretamente para a taxonomia canônica de 170 temas de residência médica (`app/backend/data/taxonomy.json` e `docs/de_para_temas.md`).
+  - Reclassificação de 13.537 questões, elevando a aderência do banco MedQuest para **100,00% (42.827/42.827 questões em temas canônicos oficiais)**, preservando o histórico em `subtema_orig`.
+  - Correção de 21 incongruências severas de `topic` (ex: questões de pneumonia ou nódulo de tireoide em homens com tópico rotulado erroneamente como "Sala de Parto" ou "Gestação").
+- **Motor de Enriquecimento Cirúrgico de Distratores com Gemini 4 Argon (`scripts/surgical_infill_precision.py`)**:
+  - Escalado para 25 workers paralelos no Google Cloud GCP, processando com altíssima velocidade e mantendo o padrão-ouro de residência médica (R1 USP, ENARE, UNICAMP).
+  - Conclusão de 100% dos distratores pendentes: **0 questões com distratores vazios restantes em todo o banco de 42.827 questões**.
+  - Preservação estrita das 20.664 URLs de imagens médicas com verificação de paridade antes do commit transacional.
+  - Validação completa com `./validate.sh fast` aprovada em 11.06s (49 testes de backend e 14 arquivos de lint).
+
+## [2026-10-16] - Repaginação Geral da UI/UX: Clinical Precision Workspace & Anti-Slop Architecture
+- **Fundação de Design System & Tokens Tailwind v4 (`app/frontend/src/app/globals.css`)**:
+  - Implementação de paletas clínicas duplas sem gradientes genéricos:
+    - *Ambulatório Paper* (modo claro / base): `--color-canvas: #f8fafc`, `--color-surface: #ffffff`, `--color-ink-primary: #0f172a`, `--color-ink-secondary: #475569`, `--color-ink-tertiary: #94a3b8`, `--color-line-subtle: #e2e8f0`, `--color-line-crisp: #cbd5e1`, `--color-accent: #0284c7`.
+    - *Radiology Dark OLED* (modo escuro `.dark`): `--color-canvas: #090d16`, `--color-surface: #0f172a`, `--color-ink-primary: #f8fafc`, `--color-ink-secondary: #94a3b8`, `--color-ink-tertiary: #475569`, `--color-line-subtle: #1e293b`, `--color-line-crisp: #334155`, `--color-accent: #38bdf8`.
+  - Tipografia de precisão clínica com hairline borders de 1px, cantos calibrados (`--radius-xs: 2px`, `--radius-sm: 4px`), fonte mono laboratorial (`font-mono-lab: "JetBrains Mono", ui-monospace, monospace`) com `tabular-nums` para cronômetros, dosagens e telemetria.
+- **Erradicação Total do Material Symbols WebFont & Criação do `<ClinicalIcon />`**:
+  - Substituição de ~180KB da webfont pesada do Google Fonts pelo componente ultraleve e tipado `ClinicalIcon.tsx`, baseado em SVGs inline tree-shaken do `lucide-react`, eliminando riscos de FOUT (Flash of Unstyled Text) e requisições bloqueantes.
+  - Varredura e higienização em todos os componentes auxiliares (`AnalysisClient.tsx`, `AuthSync.tsx`, `ImageViewer.tsx`, `DemoBanner.tsx`, `globals.css`).
+- **Navegação & Cockpit Clínico (`app/frontend/src/components/`, `DashboardClient.tsx`)**:
+  - `BottomNav.tsx`: Dock inferior ergonômico ("Thumb-Zone") para médicos em plantão e internato com toque tátil imediato e badge de pendências.
+  - `Sidebar.tsx` e `TopNav.tsx`: Navegação desktop sóbria com switcher de tema (Automático / Claro / Escuro), badges de banca (FMRP-USP, ENARE, UNICAMP) e métricas de plantão em `font-mono-lab`.
+  - `PreceptorFocusCard.tsx` e `DashboardClient.tsx`: Painel de prescrição de estudos com radar de fraquezas e telemetria FSRS.
+- **Módulo de Resolução de Questões (`src/app/estudar/`)**:
+  - Layout Split-Pane Desktop responsivo (12 colunas: enunciado e imagens médicas à esquerda; alternativas, confirmação e gabarito comentada à direita com dock sticky), eliminando rolagem excessiva e perda de contexto.
+  - `QuizHeader.tsx`: Cronômetro cirúrgico e contador de questões em `font-mono-lab tabular-nums`, filtros por banca e barra de progresso com hairlines.
+  - `AlternativeList.tsx`: Indicadores `[A]`-`[E]` em caixa mono, riscador de distratores de baixa latência (<100ms) sem oscilação de layout e preservação integral de acessibilidade.
+  - `DiscursiveAssessmentSection.tsx`: Seção discursiva com critério de correção barema oficial e autoavaliação guiada.
+- **Módulo de Revisão Ativa FSRS v6 (`src/app/revisao-ativa/`)**:
+  - `FlashcardClient.tsx`: Telemetria cognitiva FSRS v6 calibrada para questões médicas longas com intervalos projetados visíveis nos botões (`[1] Errei • Volta amanhã (D+1)`, `[2] Difícil • ~7 dias (D+7)`, `[3] Fácil • ~18 dias+ (D+18)`), atalhos ergonômicos de teclado (Espaço para virar, 1/2/3 para avaliar).
+- **Módulo OSCE & Arena de Simulação (`src/app/osce/`)**:
+  - `OsceHubClient.tsx`: Seletor de abas (Treino Avulso vs Circuito Oficial de 5 Estações), gerador de casos adaptativos FMRP-USP em estilo laboratório clínico e cards de estações com desempenho de barema em `font-mono-lab`.
+  - `MultiparameterMonitor.tsx`: Monitor hospitalar multiparamétrico industrial (`#090d18`) com formas de onda ECG, pleto e capnografia em SVG 60fps e dígitos laboratoriais `font-mono-lab tabular-nums tracking-tighter`.
+- **Validação de Qualidade & Regras Invioláveis**:
+  - 100% de aprovação na suíte de testes unitários do frontend (`npm run test:unit`: 74/74 testes passando).
+  - 100% de aprovação na suíte pytest do backend (410/410 testes passando).
+  - Build de produção do Next.js aprovado com orçamentos de performance cumpridos.
+  - Zero alterações em comentários de professores de residência médica (`explanations` canônicos preservados como estritamente somente-leitura).
+  - Zero código Google Apps Script.
+
 ## [2026-10-16] - Etapa 4 do Novo Simulador OSCE: Avaliação Live de Barema, Red Flags com Travas de Segurança, Espelho Oficial de 2ª Fase & Feedback do Preceptor
 - **Motor Determinístico de Detecção de Erros Críticos Eliminatórios (`RedFlagEngine` em `app/backend/api/osce.py`)**:
   - Implementada a função `evaluate_osce_red_flags` mapeando violações capitais de segurança do paciente:
