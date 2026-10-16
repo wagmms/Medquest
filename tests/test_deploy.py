@@ -62,13 +62,15 @@ class TestDeployScript(unittest.TestCase):
         )
         self.assertFalse(enabled)
 
+    @patch("deploy.adquirir_lock_deploy")
     @patch("deploy.audit_and_checks_phase")
     @patch("deploy.deploy_vps_phase")
     @patch("deploy.deploy_git_phase")
     @patch("deploy.sync_database_phase")
     @patch("deploy.print_summary")
-    def test_main_db_only(self, mock_summary, mock_sync, mock_git, mock_vps, mock_audit):
+    def test_main_db_only(self, mock_summary, mock_sync, mock_git, mock_vps, mock_audit, mock_lock):
         deploy.main(["--db-only"])
+        mock_lock.assert_called_once()
         mock_audit.assert_called_once()
         mock_sync.assert_called_once()
         mock_summary.assert_called_once_with(unittest.mock.ANY, db_only=True)
