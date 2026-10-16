@@ -228,6 +228,44 @@ def _build_physiology_engine(physical_exam: dict[str, Any], subtema: str = "", t
     }
 
 
+def _build_auscultation_foci(physical_exam: dict[str, Any], subtema: str = "", title: str = "") -> list[dict[str, Any]]:
+    """Gera o mapa de focos anatômicos de ausculta com síntese acústica semiológica procedural."""
+    if physical_exam.get("auscultation_foci"):
+        return physical_exam["auscultation_foci"]
+
+    findings = physical_exam.get("findings", {})
+    resp_text = _normalize_text(findings.get("respiratorio", ""))
+    card_text = _normalize_text(findings.get("cardiovascular", ""))
+    norm_meta = _normalize_text(f"{subtema} {title}")
+
+    # Determina som cardíaco principal
+    if "atrito" in card_text or "pericard" in norm_meta:
+        cardiac_sound = "PERICARDIAL_RUB"
+    elif "sopro" in card_text or "estenose" in norm_meta or "insuficiencia mitral" in norm_meta:
+        cardiac_sound = "SYSTOLIC_MURMUR"
+    else:
+        cardiac_sound = "NORMAL_HEART"
+
+    # Determina sons pulmonares
+    if "sibilo" in resp_text or "bronquio" in norm_meta or "asma" in norm_meta:
+        pulm_sound_ant = "EXPIRATORY_WHEEZES"
+        pulm_sound_post = "EXPIRATORY_WHEEZES"
+    elif "estertor" in resp_text or "crepit" in resp_text or "congestao" in resp_text or "pneumonia" in norm_meta:
+        pulm_sound_ant = "NORMAL_VESICULAR"
+        pulm_sound_post = "COARSE_CRACKLES"
+    else:
+        pulm_sound_ant = "NORMAL_VESICULAR"
+        pulm_sound_post = "NORMAL_VESICULAR"
+
+    return [
+        {"id": "FA", "label": "2º EIC Direito (Foco Aórtico)", "x": 42, "y": 28, "soundType": cardiac_sound if cardiac_sound != "NORMAL_HEART" else "NORMAL_HEART"},
+        {"id": "FP", "label": "2º EIC Esquerdo (Foco Pulmonar)", "x": 58, "y": 28, "soundType": "NORMAL_HEART"},
+        {"id": "FM", "label": "5º EIC Esquerdo (Foco Mitral)", "x": 64, "y": 48, "soundType": cardiac_sound},
+        {"id": "APD", "label": "Terço Inferior Hemitorax Direito", "x": 35, "y": 54, "soundType": pulm_sound_post},
+        {"id": "APE", "label": "Terço Médio Hemitorax Esquerdo", "x": 66, "y": 38, "soundType": pulm_sound_ant},
+    ]
+
+
 def get_osce_station(db, station_id: int, include_barema: bool = False) -> Optional[dict[str, Any]]:
     """Carrega detalhes de uma estação, mantendo o barema oculto durante a prova."""
     row = db.execute("""
@@ -268,7 +306,8 @@ def get_osce_station(db, station_id: int, include_barema: bool = False) -> Optio
             {"key": k, "title": v.get("title", k)}
             for k, v in lab_imaging.items()
         ],
-        "physiology_engine": _build_physiology_engine(physical_exam, row["subtema"], row["title"])
+        "physiology_engine": _build_physiology_engine(physical_exam, row["subtema"], row["title"]),
+        "auscultation_foci": _build_auscultation_foci(physical_exam, row["subtema"], row["title"])
     }
 
     if include_barema:
@@ -782,18 +821,136 @@ def get_osce_live_feedback(db, session_id: str, user_id: str, elapsed_seconds: i
     return feedback
 
 
+def get_hemodynamic_speech_modifier(vitals: Optional[dict[str, Any]]) -> str:
+    """Modula a capacidade fonatória e cognitiva do paciente com base nos sinais vitais reais."""
+    if not vitals:
+        return "FONAÇÃO PRESERVADA: Você consegue falar frases completas, mantendo o tom emocional compatível com sua dor."
+
+    modifiers = []
+    gcs = int(vitals.get("gcs", 15) or 15)
+    spo2 = int(vitals.get("spo2", 98) or 98)
+    rr = int(vitals.get("rr", 16) or 16)
+    hr = int(vitals.get("hr", 80) or 80)
+    sbp = int(vitals.get("sbp", 120) or 120)
+
+    if gcs <= 8:
+        return (
+            "ESTADO CRÍTICO (COMA/TORPOR PROFUNDO - GCS <= 8): Você está INCAPAZ de falar palavras inteligíveis. "
+            "Responda APENAS com sons guturais ou gemidos incompreensíveis débeis ('Uhn... ahh...') ou silêncio absoluto. "
+            "Ignore qualquer pergunta complexa e nunca formule frases."
+        )
+    elif gcs <= 12:
+        modifiers.append(
+            "CONFUSÃO MENTAL / SONOLÊNCIA (GCS 9-12): Você está sonolento e desorientado no tempo e no espaço. "
+            "Suas respostas são lentas, arrastadas, desconexas e você perde o raciocínio facilmente."
+        )
+
+    if spo2 < 88 or rr > 30:
+        modifiers.append(
+            "DISPNEIA GRAVE / FALA ENTRECORTADA (SpO2 < 88% ou FR > 30): Você só consegue pronunciar "
+            "2 a 3 palavras por vez antes de precisar puxar o ar. Use reticências e marcadores como '[puxa o ar]', "
+            "'[arfa]' constantemente (Exemplo: 'Doutor... [arfa]... falta muito... ar...')."
+        )
+
+    if sbp < 90 or hr > 130:
+        modifiers.append(
+            "CHOQUE / HIPOPERFUSÃO GRAVE: Você sente fraqueza extrema, vertigem, frio periférico e sensação de desfalecimento iminente. "
+            "Sua fala é sussurrada, fraca e hesitante."
+        )
+
+    if not modifiers:
+        return "FONAÇÃO PRESERVADA: Você consegue falar frases completas, mantendo o tom emocional compatível com sua dor ou queixa."
+
+    return " | ".join(modifiers)
+
+
+def build_patient_system_prompt(persona: dict[str, Any], current_vitals: Optional[dict[str, Any]] = None) -> str:
+    """Constrói o prompt clínico do Paciente Virtual com Information Gating e Fisiologia Fonatória."""
+    speech_modifier = get_hemodynamic_speech_modifier(current_vitals)
+    vitals_str = ""
+    if current_vitals:
+        vitals_str = (
+            f"SINAIS VITAIS ATUAIS: PA {current_vitals.get('sbp', 120)}/{current_vitals.get('dbp', 80)} mmHg | "
+            f"FC {current_vitals.get('hr', 80)} bpm | FR {current_vitals.get('rr', 16)} irpm | "
+            f"SpO2 {current_vitals.get('spo2', 98)}% | GCS {current_vitals.get('gcs', 15)}."
+        )
+
+    gated_info = {
+        "historico_patologico_pregressor": persona.get("past_medical_history") or persona.get("past_history"),
+        "medicamentos_em_uso": persona.get("medications") or persona.get("current_meds"),
+        "uso_recente_sildenafila_ou_estimulantes": persona.get("sildenafil_use") or persona.get("erectile_dysfunction_drugs"),
+        "alergias_conhecidas": persona.get("allergies"),
+        "habitos_alcool_fumo_drogas": persona.get("habits") or persona.get("substances"),
+        "historico_familiar": persona.get("family_history")
+    }
+    gated_info = {k: v for k, v in gated_info.items() if v}
+
+    return f"""Você é o Ator Padronizado de alta fidelidade em uma prova prática presencial de residência médica (OSCE - USP / UNICAMP / Revalida INEP).
+Você está interpretando o paciente: {persona.get('name', 'Paciente')}, {persona.get('age', 'Adulto')} anos, gênero {persona.get('gender', 'não informado')}.
+
+QUEIXA PRINCIPAL: {persona.get('chief_complaint')}
+
+=== REGRA DE OURO: INFORMATION GATING (BLOQUEIO DE INFORMAÇÃO) ===
+Você possui informações clínicas determinantes para o diagnóstico, mas é TERMINANTEMENTE PROIBIDO revelá-las de graça ou em perguntas genéricas.
+Você SÓ revelará os pontos abaixo se o candidato fizer uma pergunta DIRETA e ESPECÍFICA sobre o domínio correspondente:
+{json.dumps(gated_info, indent=2, ensure_ascii=False)}
+
+Diretrizes de Gating:
+- Se o candidato perguntar genericamente "Mais alguma coisa?", "Conte mais" ou "Tem algum antecedente?", diga algo neutro: "Acho que não, doutor, só essa dor e esse mal-estar mesmo".
+- Se perguntar especificamente se tomou remédio para ereção, se fuma, se abandonou a insulina, aí sim revele o dado exato.
+- Fale como paciente LEIGO. NUNCA use jargões médicos sofisticados (diga 'dor no peito', 'falta de ar', 'vômito').
+
+=== MODULAÇÃO FISIOLÓGICA DA VOZ (OBRIGATÓRIO SEGUIR NA ESCRITA) ===
+{vitals_str}
+DIRETIVA DE FONAÇÃO: {speech_modifier}
+
+Responda em no máximo 2 frases para caber no HUD cinematográfico de prova prática."""
+
+
+def build_examiner_system_prompt(station_meta: dict[str, Any], physical_exam: dict[str, Any], current_vitals: Optional[dict[str, Any]] = None) -> str:
+    """Constrói o prompt do Examinador Oficial da Banca (USP / UNICAMP / INEP)."""
+    findings = physical_exam.get("findings", {})
+    setting_level = station_meta.get("institution", "Hospital de Ensino")
+
+    return f"""Você é o Chefe de Banca Examinadora do OSCE (USP / UNICAMP / UNIFESP / INEP).
+Sua postura é IMPESSOAL, FRIA, TÉCNICA, OBJETIVA e INTRANSIGENTE com imprecisões semiológicas.
+Você não ajuda o candidato, não dá dicas, não faz perguntas socráticas e nunca elogia.
+
+AMBIENTE DA ESTAÇÃO: {setting_level} • Estação: {station_meta.get('title', '')} ({station_meta.get('area', '')} - {station_meta.get('subtema', '')}).
+
+=== REGRAS DE INTERAÇÃO DO EXAMINADOR ===
+1. EXIGÊNCIA DE ESPECIFICIDADE SEMIOLÓGICA:
+   - Se o candidato disser "Quero fazer o exame físico" ou "Vou examinar o abdome", responda friamente: "Seja específico. Qual manobra ou tempo semiológico deseja realizar e em qual topografia?"
+   - Se o candidato disser "Vou auscultar o tórax/coração/pulmão", responda: "Utilize o estetoscópio interativo diretamente no manequim à sua frente. O áudio está disponível nos focos." (NUNCA entregue o laudo da ausculta por texto!).
+
+2. BLOQUEIO DE COMPLEXIDADE E REALISMO DO SUS:
+   - Se o candidato solicitar um exame avançado ou recurso indisponível no nível de atenção atual antes de estabilizar (ex: TC em choque sem FAST prévio), responda: "Recurso indisponível nesta unidade ({setting_level})."
+
+3. ENTREGA DE EXAMES FÍSICOS ESPECÍFICOS:
+   - Se o candidato solicitar corretamente um tempo ou manobra do exame físico que não seja ausculta (ex: Sinal de Blumberg, pulsos periféricos, orofaringe, tempo de enchimento capilar, Glasgow), forneça o dado objetivo presente na matriz abaixo sem interpretar se é patológico:
+{json.dumps(findings, indent=2, ensure_ascii=False)}
+
+4. PRESCRIÇÃO E CONDUTAS TERAPÊUTICAS:
+   - Se o candidato verbalizar uma conduta com dose, via e droga completas, registre e responda apenas: "Conduta considerada."
+   - Se for vago (ex: "dou remédio pra pressão"), responda: "Especifique droga, dose e via de administração."
+
+Responda em no máximo 25 palavras, em tom seco de boletim oficial de banca."""
+
+
 def interact_osce_session(
     db,
     session_id: str,
     user_id: str,
     message: str,
-    elapsed_seconds: int = 0
+    elapsed_seconds: int = 0,
+    target: str = "PATIENT",
+    current_vitals: Optional[dict[str, Any]] = None
 ) -> dict[str, Any]:
-    """Processa fala/pergunta do aluno ao paciente virtual ou ao examinador."""
+    """Processa fala/pergunta do aluno roteada para o Paciente Virtual ou para a Banca Examinadora."""
     sess = db.execute("""
         SELECT s.id, s.station_id, s.user_id, s.status, s.transcript_json, s.actions_taken_json,
-               st.title, st.area, st.subtema, st.patient_persona_json, st.scenario_door_markdown,
-               st.checklist_barema_json
+               st.title, st.area, st.subtema, st.institution, st.patient_persona_json, st.scenario_door_markdown,
+               st.physical_exam_json, st.checklist_barema_json
         FROM osce_sessions s
         JOIN osce_stations st ON s.station_id = st.id
         WHERE s.id = ?
@@ -806,37 +963,40 @@ def interact_osce_session(
 
     transcript = json.loads(sess["transcript_json"] or "[]")
     persona = json.loads(sess["patient_persona_json"] or "{}")
+    physical_exam = json.loads(sess["physical_exam_json"] or "{}")
 
     now_iso = datetime.now(timezone.utc).isoformat()
     clean_msg = message.strip()
+    norm_target = str(target or "PATIENT").upper().strip()
+    is_examiner = norm_target in ("EXAMINER", "EXAMINADOR", "BANCA")
 
     # Adiciona a mensagem do aluno ao transcript
     transcript.append({
         "sender": "candidato",
+        "target": "examinador" if is_examiner else "paciente",
         "message": clean_msg,
         "timestamp": now_iso,
         "elapsed_seconds": elapsed_seconds
     })
 
-    # Decisão de resposta via Ator Virtual com inteligência e fallback médico
-    system_prompt = (
-        f"Você é o paciente simulado em uma prova prática presencial de residência médica (OSCE).\n"
-        f"NOME: {persona.get('name', 'Paciente')}, IDADE: {persona.get('age', 'Adulto')}, GÊNERO: {persona.get('gender', '')}.\n"
-        f"QUEIXA PRINCIPAL: {persona.get('chief_complaint')}\n"
-        f"HISTÓRICO OCULTO: {json.dumps(persona, ensure_ascii=False)}\n\n"
-        f"REGRAS DE ATUAÇÃO RIGOROSAS:\n"
-        f"1. Fale como um paciente LEIGO com dor/desconforto. NUNCA use jargões médicos como 'retroesternal', 'eclâmpsia', 'pneumoperitônio'.\n"
-        f"2. NUNCA revele o diagnóstico de graça. Só conte detalhes específicos se o médico perguntar expressamente.\n"
-        f"3. Responda em no máximo 2 a 3 frases curtas e realistas para manter a dinâmica ágil de prova.\n"
-        f"4. Se o médico se apresentar ou demonstrar empatia, responda de forma receptiva.\n"
-    )
+    # Decisão de resposta via Roteador Dual-Agent
+    station_meta = {
+        "title": sess["title"],
+        "area": sess["area"],
+        "subtema": sess["subtema"],
+        "institution": sess["institution"]
+    }
 
-    history_str = "\n".join([
-        f"{t['sender'].upper()}: {t['message']}"
-        for t in transcript[-6:]
-    ])
-
-    user_prompt = f"Diálogo recente na sala de exame:\n{history_str}\n\nResponda como o paciente {persona.get('name')}:"
+    if is_examiner:
+        system_prompt = build_examiner_system_prompt(station_meta, physical_exam, current_vitals)
+        user_prompt = f"O candidato se dirige à banca examinadora:\n\"{clean_msg}\"\n\nResponda como o examinador oficial:"
+    else:
+        system_prompt = build_patient_system_prompt(persona, current_vitals)
+        history_str = "\n".join([
+            f"{t['sender'].upper()}: {t['message']}"
+            for t in transcript[-4:]
+        ])
+        user_prompt = f"Diálogo recente na sala:\n{history_str}\n\nO candidato diz ao paciente:\n\"{clean_msg}\"\n\nResponda como o paciente {persona.get('name', '')}:"
 
     reply_text = ""
     try:
@@ -844,32 +1004,58 @@ def interact_osce_session(
             prompt=user_prompt,
             system_instruction=system_prompt,
             timeout=12,
-            temperature=0.3
+            temperature=0.2 if is_examiner else 0.5
         )
         reply_text = resp.get("text", "").strip()
     except Exception as e:
-        logger.warning(f"OSCE LLM fallback ativado: {e}")
+        logger.warning(f"OSCE LLM fallback ativado para {norm_target}: {e}")
 
     if not reply_text:
-        # Fallback determinístico contextual de alta fidelidade
+        # Fallback determinístico médico de alta fidelidade
         msg_lower = clean_msg.lower()
-        if any(w in msg_lower for w in ["dor", "onde dói", "sente", "queima", "aperta"]):
-            reply_text = persona.get("pain_characteristics") or persona.get("chief_complaint", "Dói muito aqui no peito, doutor.")
-        elif any(w in msg_lower for w in ["quando", "começou", "tempo", "horas", "minutos"]):
-            reply_text = f"Começou de repente faz pouco tempo, doutor. {persona.get('chief_complaint', '')}"
-        elif any(w in msg_lower for w in ["fuma", "cigarro", "bebe", "álcool", "remédio", "pressão", "diabete", "histórico"]):
-            reply_text = persona.get("past_medical_history") or persona.get("past_history", "Não tomo nenhum remédio doutor.")
-        elif any(w in msg_lower for w in ["falta de ar", "suor", "suando", "enjoo", "náusea", "vomit"]):
-            reply_text = persona.get("associated_symptoms", "Tô sentindo uma náusea forte e um suor frio.")
-        elif any(w in msg_lower for w in ["viagra", "sildenafila", "ereção"]):
-            reply_text = persona.get("sildenafil_use", "Não tomei nada disso não, doutor.")
-        elif any(w in msg_lower for w in ["olá", "bom dia", "boa tarde", "nome", "sou o médico", "vamos cuidar"]):
-            reply_text = f"Doutor, por favor me ajuda, tá doendo demais! {persona.get('chief_complaint', '')}"
+        if is_examiner:
+            if any(w in msg_lower for w in ["ausculta", "auscultar", "estetoscopio"]):
+                reply_text = "Utilize o estetoscópio interativo diretamente no manequim à sua frente. O áudio está disponível nos focos."
+            elif any(w in msg_lower for w in ["exame fisico", "examinar o paciente", "vou examinar", "fazer exame"]):
+                reply_text = "Seja específico. Qual manobra ou tempo semiológico deseja realizar e em qual topografia?"
+            elif any(w in msg_lower for w in ["blumberg", "descompressao", "periton"]):
+                reply_text = physical_exam.get("findings", {}).get("abdome", "Descompressão brusca indolor.")
+            elif any(w in msg_lower for w in ["prescrevo", "administro", "faco", "iniciar"]):
+                reply_text = "Conduta considerada."
+            else:
+                reply_text = "Examinador registra sua solicitação. Prossiga com o atendimento."
         else:
-            reply_text = "Entendi, doutor. O que o senhor vai fazer pra me ajudar?"
+            gcs = int(current_vitals.get("gcs", 15) or 15) if current_vitals else 15
+            spo2 = int(current_vitals.get("spo2", 98) or 98) if current_vitals else 98
+            rr = int(current_vitals.get("rr", 16) or 16) if current_vitals else 16
 
+            if gcs <= 8:
+                reply_text = "Uhn... ahh... [geme fracamente]"
+            else:
+                if any(w in msg_lower for w in ["dor", "onde dói", "sente", "queima", "aperta"]):
+                    base_reply = persona.get("pain_characteristics") or persona.get("chief_complaint", "Dói muito aqui no peito, doutor.")
+                elif any(w in msg_lower for w in ["quando", "começou", "tempo", "horas", "minutos"]):
+                    base_reply = f"Começou de repente faz pouco tempo, doutor. {persona.get('chief_complaint', '')}"
+                elif any(w in msg_lower for w in ["fuma", "cigarro", "bebe", "álcool", "remédio", "pressão", "diabete", "histórico"]):
+                    base_reply = persona.get("past_medical_history") or persona.get("past_history", "Não tomo nenhum remédio doutor.")
+                elif any(w in msg_lower for w in ["falta de ar", "suor", "suando", "enjoo", "náusea", "vomit"]):
+                    base_reply = persona.get("associated_symptoms", "Tô sentindo uma náusea forte e um suor frio.")
+                elif any(w in msg_lower for w in ["viagra", "sildenafila", "ereção"]):
+                    base_reply = persona.get("sildenafil_use", "Não tomei nada disso não, doutor.")
+                elif any(w in msg_lower for w in ["olá", "bom dia", "boa tarde", "nome", "sou o médico", "vamos cuidar"]):
+                    base_reply = f"Doutor, por favor me ajuda, tá doendo demais! {persona.get('chief_complaint', '')}"
+                else:
+                    base_reply = "Entendi, doutor. O que o senhor vai fazer pra me ajudar?"
+
+                if spo2 < 88 or rr > 30:
+                    reply_text = f"Doutor... [arfa]... {base_reply[:40]}... [puxa o ar]"
+                else:
+                    reply_text = base_reply
+
+    sender_label = "examinador" if is_examiner else "paciente"
     transcript.append({
-        "sender": "paciente",
+        "sender": sender_label,
+        "target": "candidato",
         "message": reply_text,
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "elapsed_seconds": elapsed_seconds
@@ -884,7 +1070,8 @@ def interact_osce_session(
 
     res_payload: dict[str, Any] = {
         "reply": reply_text,
-        "sender": "paciente",
+        "sender": sender_label,
+        "target": norm_target,
         "elapsed_seconds": elapsed_seconds,
         "transcript_count": len(transcript)
     }

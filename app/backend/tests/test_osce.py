@@ -901,6 +901,101 @@ def test_osce_physiology_engine(app, client):
         data = res.get_json()
         assert "physiology_engine" in data
         assert data["physiology_engine"]["initial_state"]["hr"] == 180
+        assert "auscultation_foci" in data
+        assert len(data["auscultation_foci"]) >= 4
+
+
+class TestOsceStage2DualAgentAndAuscultation:
+    """Suíte de testes para a Etapa 2: Palco Clínico Triplo, Semiotécnica Bruta e Dual-Agent Router."""
+
+    def test_hemodynamic_speech_modifier(self):
+        """Verifica a modulação fonatória de acordo com os sinais vitais reais."""
+        # 1. Coma / Torpor profundo (GCS <= 8)
+        mod_coma = osce.get_hemodynamic_speech_modifier({"gcs": 7, "spo2": 95, "rr": 16, "sbp": 120, "hr": 80})
+        assert "ESTADO CRÍTICO" in mod_coma
+        assert "Uhn... ahh..." in mod_coma
+
+        # 2. Confusão mental (GCS 9-12)
+        mod_confused = osce.get_hemodynamic_speech_modifier({"gcs": 11, "spo2": 98, "rr": 16, "sbp": 120, "hr": 80})
+        assert "CONFUSÃO MENTAL" in mod_confused
+
+        # 3. Dispneia grave / Hipoxemia
+        mod_hypox = osce.get_hemodynamic_speech_modifier({"gcs": 15, "spo2": 85, "rr": 34, "sbp": 120, "hr": 100})
+        assert "DISPNEIA GRAVE" in mod_hypox
+        assert "[arfa]" in mod_hypox
+
+        # 4. Choque / Hipoperfusão
+        mod_shock = osce.get_hemodynamic_speech_modifier({"gcs": 15, "spo2": 96, "rr": 18, "sbp": 70, "hr": 140})
+        assert "CHOQUE" in mod_shock
+
+        # 5. Normal estável
+        mod_normal = osce.get_hemodynamic_speech_modifier({"gcs": 15, "spo2": 98, "rr": 16, "sbp": 120, "hr": 75})
+        assert "FONAÇÃO PRESERVADA" in mod_normal
+
+    def test_dual_agent_interact_routing(self, app):
+        """Verifica roteamento cirúrgico de perguntas entre o Paciente e a Banca Examinadora."""
+        with app.app_context():
+            db = get_db()
+            osce.seed_osce_stations(db)
+            st = db.execute("SELECT id FROM osce_stations LIMIT 1").fetchone()
+            sess = osce.start_osce_session(db, st["id"], "user_test_stage2")
+            session_id = sess["session_id"]
+
+            # Interação dirigida ao Examinador
+            res_examiner = osce.interact_osce_session(
+                db=db,
+                session_id=session_id,
+                user_id="user_test_stage2",
+                message="Gostaria de auscultar o coração e pulmão do paciente",
+                elapsed_seconds=30,
+                target="EXAMINER",
+                current_vitals={"hr": 100, "sbp": 120, "dbp": 80, "rr": 20, "spo2": 98, "gcs": 15}
+            )
+            assert res_examiner["sender"] == "examinador"
+            assert res_examiner["target"] == "EXAMINER"
+            assert "estetoscópio" in res_examiner["reply"].lower() or "manequim" in res_examiner["reply"].lower()
+
+            # Interação dirigida ao Paciente em coma induzido
+            res_patient_coma = osce.interact_osce_session(
+                db=db,
+                session_id=session_id,
+                user_id="user_test_stage2",
+                message="Olá senhor, o que você está sentindo?",
+                elapsed_seconds=45,
+                target="PATIENT",
+                current_vitals={"hr": 100, "sbp": 120, "dbp": 80, "rr": 20, "spo2": 98, "gcs": 6}
+            )
+            assert res_patient_coma["sender"] == "paciente"
+            assert "uhn" in res_patient_coma["reply"].lower() or "ahh" in res_patient_coma["reply"].lower()
+
+    def test_http_interact_with_target_and_vitals(self, client, app):
+        """Testa rota HTTP POST /api/osce/sessions/<id>/interact com target e sinais vitais."""
+        with app.app_context():
+            db = get_db()
+            osce.seed_osce_stations(db)
+            st = db.execute("SELECT id FROM osce_stations LIMIT 1").fetchone()
+            st_id = st["id"]
+
+        # Cria sessão via HTTP
+        init_res = client.post("/api/osce/sessions/start", json={"station_id": st_id, "mode": "blind"})
+        assert init_res.status_code == 201
+        session_id = init_res.get_json()["session_id"]
+
+        # Dispara para o examinador
+        res_http = client.post(
+            f"/api/osce/sessions/{session_id}/interact",
+            json={
+                "message": "Quero fazer o exame físico completo",
+                "target": "EXAMINER",
+                "current_vitals": {"hr": 80, "sbp": 120, "dbp": 80, "rr": 16, "spo2": 98, "gcs": 15},
+                "elapsed_seconds": 15
+            }
+        )
+        assert res_http.status_code == 200
+        payload = res_http.get_json()
+        assert payload["sender"] == "examinador"
+        assert "específico" in payload["reply"].lower() or "manobra" in payload["reply"].lower() or "estetoscópio" in payload["reply"].lower()
+
 
 
 

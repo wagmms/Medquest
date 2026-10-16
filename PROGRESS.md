@@ -13,10 +13,10 @@
 
 ## 🔄 Próxima Tarefa em Andamento
 
-- [ ] **Etapa 2 do Simulador OSCE: Palco Clínico Triplo com Ator, Information Gating e Sons Reais de Ausculta (`app/frontend/src/app/osce/[id]/`)**:
-    1. **Arquivo/Módulo Alvo**: `app/frontend/src/app/osce/[id]/OsceRoomClient.tsx` (e novos componentes `ClinicalStage.tsx` / `AuscultationPlayer.tsx`)
-    2. **Função/Componente/Seletor**: Componente `ClinicalStage` e sub-rotinas de reprodução sonora semiológica
-    3. **Comportamento Esperado / Critério de Aceite**: Substituir interface de chat rolável por HUD imersivo com legendas dinâmicas estilo cinema (2 linhas), canais de voz isolados para Ator vs Examinador com Information Gating e reprodução de áudio real de ausculta cardíaca/pulmonar nos focos anatômicos.
+- [ ] **Etapa 3 do Simulador OSCE: Gestão de Insumos Críticos, Latência de Enfermagem e Manequim Cirúrgico 2D (`app/frontend/src/app/osce/[id]/`)**:
+    1. **Arquivo/Módulo Alvo**: `app/frontend/src/app/osce/[id]/ProcedureMannequin.tsx` e `app/backend/api/osce.py`
+    2. **Função/Componente/Seletor**: Componente `ProcedureMannequin` e sub-rotinas de latência de enfermagem / estoque de insumos beira-leito
+    3. **Comportamento Esperado / Critério de Aceite**: Modelar atraso temporal operacional da equipe de enfermagem para drogas venosas/intubação (latência com feedback na tela), estoque de insumos críticos por complexidade SUS e manequim interativo com zonas anatômicas ativas de punção/drenagem.
 
 ---
 
@@ -53,6 +53,6 @@
 
 ## ✅ Última Tarefa Concluída
 
-- [x] **Etapa 1 do Novo Simulador OSCE: Motor Fisiológico Reativo (VitalStateEngine) & Monitor Multiparamétrico 60fps**: Desenvolvido o hook `useVitalStateEngine` com cálculo determinístico de ciclo hemodinâmico a 1Hz, farmacocinética dinâmica (doses e drogas de emergência), jitter estocástico e simulação de manguito de PNI; construído o componente `<MultiparameterMonitor />` com renderização Canvas a 60fps de ECG contínuo DII e curva de SpO2 Pleth, sintetizador psicoacústico de bips por saturação via Web Audio API e modal tático de cardioversão sincronizada; adicionado suporte a `physiology_engine` em `osce.py` e `osce_data.py` com novo teste unitário `test_osce_physiology_engine` aprovado (18/18 testes e `validate.sh fast` em 14.97s).
+- [x] **Etapa 2 do Novo Simulador OSCE: Palco Clínico Triplo, Semiotécnica Bruta Acústica & Roteador Dual-Agent**: Criado o componente `<ClinicalStage />` com HUD cinematográfico de 2 falas com fade (eliminando chat rolável), seletor tático de canal (Paciente vs Examinador) via `Tab`, prontuário de bolso retrátil e silhueta anatômica com focos de ausculta; desenvolvido o `StethoscopeAudioEngine` sintetizando 6 sons brutos via Web Audio API modulados por FC e FR; implementado no backend (`osce.py` e `osce_routes.py`) o roteador dual-agent com modulação fonatória hemodinâmica (`get_hemodynamic_speech_modifier`), *Information Gating* estrito e postura neutra/fria da banca examinadora; adicionados 3 novos testes unitários em `TestOsceStage2DualAgentAndAuscultation` (21/21 testes passando e `validate.sh fast` em 18.59s).
 
 > 📁 Histórico completo arquivado em [CHANGELOG.md](CHANGELOG.md)

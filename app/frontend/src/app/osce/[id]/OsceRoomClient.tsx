@@ -18,6 +18,7 @@ import { GhostPreceptorHUD } from "./GhostPreceptorHUD";
 import { OscePostMortemAndRadar } from "./OscePostMortemAndRadar";
 import { useVitalStateEngine } from "./useVitalStateEngine";
 import { MultiparameterMonitor } from "./MultiparameterMonitor";
+import { ClinicalStage } from "./ClinicalStage";
 
 interface SpeechRecognitionResultItem {
   transcript: string;
@@ -770,12 +771,55 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   }, [phase, handsFreeMode, isListening, startListening, stopRecognition, setActiveTab, toggleHandsFreeMode]);
 
   // Enviar mensagem manual por texto ou clique
-  const handleSendMessage = async (msgToSend?: string) => {
+  const handleSendMessage = async (msgToSend?: string, targetOverride?: "PATIENT" | "EXAMINER") => {
     const text = (msgToSend || inputText).trim();
     if (!text || !sessionId || isLoading) return;
 
     setInputText("");
-    await handleDispatchSpeech(text);
+    if (targetOverride) {
+      const elapsed = (station.duration_seconds || 480) - timeLeft;
+      setIsLoading(true);
+      setTranscript((prev) => [
+        ...prev,
+        {
+          sender: "candidato",
+          message: text,
+          timestamp: new Date().toISOString(),
+          elapsed_seconds: elapsed,
+          target: targetOverride.toLowerCase()
+        }
+      ]);
+
+      try {
+        const res = await api.osce.interact(sessionId, text, elapsed, targetOverride, vitalEngine.vitals);
+        if (res.guided_feedback) {
+          setLiveFeedback(res.guided_feedback);
+        }
+        setTranscript((prev) => [
+          ...prev,
+          {
+            sender: res.sender as ("paciente" | "examinador"),
+            message: res.reply,
+            timestamp: new Date().toISOString(),
+            elapsed_seconds: elapsed
+          }
+        ]);
+        if (voiceEnabled) {
+          speakSpokenQueue([
+            {
+              speaker: res.sender as ("paciente" | "examinador"),
+              text: res.reply
+            }
+          ]);
+        }
+      } catch (err) {
+        console.error("Erro ao enviar mensagem pelo palco clínico:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      await handleDispatchSpeech(text);
+    }
   };
 
   // Toggle direto e intuitivo do microfone
@@ -1320,106 +1364,20 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
 
           {/* Grid Principal: Chat com Paciente (Esq) + Painel de Ações Clínicas (Dir) */}
           <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-4 min-h-0">
-            {/* Coluna Esquerda: Chat & Diálogo com o Paciente (7 cols) */}
-            <div className="lg:col-span-7 flex flex-col rounded-2xl border border-border bg-card overflow-hidden min-h-0">
-              {/* Header do Paciente */}
-              <div className="p-3 bg-muted/30 border-b border-border flex items-center justify-between text-xs">
-                <span className="font-bold text-foreground flex items-center gap-1.5">
-                  <Activity className="w-3.5 h-3.5 text-primary" />
-                  Paciente Simulado no Leito
-                </span>
-                <span className="text-muted-foreground text-xs">
-                  Queixa: &ldquo;{station.patient_persona.chief_complaint || "Dor aguda"}&rdquo;
-                </span>
-              </div>
-
-              {/* Histórico da Conversa */}
-              <div className="flex-1 p-4 overflow-y-auto space-y-3.5 text-sm">
-                {transcript.map((item, idx) => {
-                  const isCandidate = item.sender === "candidato";
-                  const isExaminer = item.sender === "examinador";
-
-                  if (isExaminer) {
-                    return (
-                      <div key={idx} className="p-3 rounded-xl bg-muted/60 border border-border text-xs text-muted-foreground space-y-1">
-                        <div className="font-bold text-foreground flex items-center gap-1.5">
-                          <ShieldCheck className="w-3.5 h-3.5 text-primary" />
-                          Examinador Oficial da Banca:
-                        </div>
-                        <p className="text-foreground/90 font-medium">{item.message}</p>
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <div
-                      key={idx}
-                      className={`flex flex-col ${isCandidate ? "items-end" : "items-start"}`}
-                    >
-                      <div className="text-[10px] text-muted-foreground mb-1 px-1">
-                        {isCandidate ? "Você (Candidato)" : station.patient_persona.name || "Paciente"}
-                      </div>
-                      <div
-                        className={`max-w-[85%] px-4 py-2.5 rounded-2xl leading-relaxed ${
-                          isCandidate
-                            ? "bg-primary text-primary-foreground rounded-tr-sm"
-                            : "bg-muted text-foreground rounded-tl-sm border border-border"
-                        }`}
-                      >
-                        {item.message}
-                      </div>
-                    </div>
-                  );
-                })}
-                <div ref={transcriptEndRef} />
-              </div>
-
-              {/* Caixa de Entrada (Voz + Texto) */}
-              <div className="p-3 border-t border-border bg-card flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={toggleListening}
-                  title={
-                    micPermission === "unsupported"
-                      ? "Voz contínua requer Chrome ou Edge. No Opera, envie mensagens digitando ou pelos botões rápidos!"
-                      : isListening
-                        ? "Microfone ouvindo você (clique para pausar)"
-                        : "Ativar microfone para falar"
-                  }
-                  className={`p-2.5 rounded-xl border transition-all flex items-center justify-center shrink-0 cursor-pointer ${
-                    isListening
-                      ? "bg-emerald-500 text-white border-emerald-600 shadow-md ring-2 ring-emerald-500/40 animate-pulse"
-                      : micPermission === "unsupported"
-                        ? "bg-muted text-muted-foreground border-border hover:bg-muted/80 opacity-70"
-                        : "bg-muted hover:bg-muted/80 text-foreground border-border"
-                  }`}
-                >
-                  {isListening ? <Mic className="w-4 h-4 text-white" /> : <MicOff className="w-4 h-4 opacity-70" />}
-                </button>
-
-                <input
-                  type="text"
-                  value={inputText}
-                  onChange={(e) => setInputText(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-                  placeholder={
-                    isListening
-                      ? "Modo Viva-Voz ouvindo você... (ou digite aqui se preferir)"
-                      : micPermission === "unsupported"
-                        ? "Digite sua pergunta ao paciente ou examinador..."
-                        : "Pergunte ao paciente ou fale com o examinador... (ou aperte Espaço para falar)"
-                  }
-                  className="flex-1 bg-muted/50 border border-border rounded-xl px-3.5 py-2.5 text-xs md:text-sm focus:outline-none focus:border-primary"
-                />
-
-                <button
-                  onClick={() => handleSendMessage()}
-                  disabled={isLoading || !inputText.trim()}
-                  className="p-2.5 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-transform active:scale-95"
-                >
-                  <Send className="w-4 h-4" />
-                </button>
-              </div>
+            {/* Coluna Esquerda: Palco Clínico Triplo & Semiotécnica Bruta (7 cols) */}
+            <div className="lg:col-span-7 flex flex-col min-h-[440px] lg:min-h-0">
+              <ClinicalStage
+                station={station}
+                vitals={vitalEngine.vitals}
+                transcript={transcript}
+                isLoading={isLoading}
+                onSendMessage={async (text, target) => {
+                  await handleSendMessage(text, target);
+                }}
+                isListening={isListening}
+                onToggleListening={toggleListening}
+                micPermission={micPermission}
+              />
             </div>
 
             {/* Coluna Direita: Ações Médicas & Exame Físico (5 cols) */}

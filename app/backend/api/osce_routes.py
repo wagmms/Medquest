@@ -107,7 +107,9 @@ def interact_session(session_id: str):
     user_id = _resolve_user_id()
     body = request.get_json(silent=True) or {}
 
-    message = body.get("message", "").strip()
+    message = (body.get("message") or body.get("utterance") or "").strip()
+    target = body.get("target", "PATIENT")
+    current_vitals = body.get("current_vitals")
     elapsed_seconds = _parse_elapsed_seconds(body.get("elapsed_seconds"))
 
     if not message:
@@ -119,7 +121,9 @@ def interact_session(session_id: str):
             session_id=session_id,
             user_id=user_id,
             message=message,
-            elapsed_seconds=elapsed_seconds
+            elapsed_seconds=elapsed_seconds,
+            target=target,
+            current_vitals=current_vitals
         )
         return jsonify(result)
     except ValueError as e:

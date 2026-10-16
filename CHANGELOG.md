@@ -2,6 +2,26 @@
 
 Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
+## [2026-10-16] - Etapa 2 do Novo Simulador OSCE: Palco Clínico Triplo, Semiotécnica Bruta Acústica & Roteador Dual-Agent
+- **Roteador Dual-Agent & Modulação Fisiológica no Backend (`app/backend/api/osce.py`, `app/backend/api/osce_routes.py`)**:
+  - Implementada função `get_hemodynamic_speech_modifier(vitals)` modulando cognição e fonação do paciente (GCS $\le 8$ restringe a gemidos guturais/silêncio, GCS 9-12 gera confusão/lentidão, $\text{SpO}_2 < 88\%$ ou $\text{FR} > 30$ corta fala em frases curtas entrecortadas com `[arfa]`/`[puxa o ar]`, choque $\text{PAS} < 90$ gera sussurros).
+  - Implementado `build_patient_system_prompt` com *Information Gating* rigoroso: paciente NUNCA entrega de bandeja fatores ocultos (sildenafila, abandono de insulina, uso de substâncias, antecedentes) sem pergunta direta e específica do aluno.
+  - Implementado `build_examiner_system_prompt` com postura neutra, técnica e fria: exigência de especificidade semiológica, bloqueio de complexidade do SUS ("Recurso indisponível nesta unidade") e proibição de laudos de ausculta em texto ("Utilize o estetoscópio interativo diretamente no manequim").
+  - Atualizada rota `/api/osce/sessions/<id>/interact` e função `interact_osce_session` recebendo `target: "PATIENT" | "EXAMINER"` e `current_vitals`.
+  - Função `_build_auscultation_foci` mapeando focos anatômicos calibrados para cada estação (cardíaco e pulmonar).
+- **Semiotécnica Bruta Acústica com Web Audio API (`app/frontend/src/app/osce/[id]/StethoscopeAudioEngine.ts`)**:
+  - Criado sintetizador DSP biomédico procedural de zero dependências externas de áudio, modulado pela FC e FR reais.
+  - Síntese de 6 fenômenos acústicos semiológicos: Murmúrio Vesicular Fisiológico, Estertores Crepitantes Teleinspiratórios (pulsos de 6ms em alta frequência), Sibilos Expiratórios Polifônicos (duplo oscilador harmônico dente de serra), Sopro Holossistólico Rude em Diamante (ruído passa-banda 240Hz), Atrito Pericárdico Trifásico (raspagem áspera 750Hz) e Bulhas B1/B2 normofonéticas.
+- **Palco Clínico Imersivo (`app/frontend/src/app/osce/[id]/ClinicalStage.tsx`)**:
+  - Destruído o formato "chat de WhatsApp": implementado HUD cinematográfico exibindo apenas as duas últimas falas com *fade-in/fade-out* (forçando atenção ativa como na prova real).
+  - Seletor tático de canal (Falar ao Paciente vs Dirigir-se ao Examinador) com atalho de teclado `Tab`.
+  - Prontuário de Bolso retrátil persistente para anotações de raciocínio clínico do aluno.
+  - Silhueta anatômica vetorial torácica com campânulas de ausculta interativas ativadas ao empunhar o estetoscópio (`ESC` para guardar).
+  - Conectado em `OsceRoomClient.tsx` recebendo sinais vitais dinâmicos do `VitalStateEngine`.
+- **Testes & Validação**:
+  - Suíte `TestOsceStage2DualAgentAndAuscultation` adicionada com 3 testes unitários novos (21/21 testes de backend passando).
+  - Validação completa com `./validate.sh fast` em 18.59s e ESLint 100% limpo.
+
 ## [2026-10-16] - Etapa 1 do Novo Simulador OSCE: Motor Fisiológico Reativo (VitalStateEngine) & Monitor Multiparamétrico 60fps
 - **Motor Fisiológico Reativo em Tempo Real (`app/frontend/src/app/osce/[id]/useVitalStateEngine.ts`)**:
   - Implementado o hook `useVitalStateEngine` com cálculo determinístico de ciclo hemodinâmico a 1Hz, modelando $S(t) = S_0 + \vec{D}_{\text{patologia}} + \sum \vec{I}_{\text{intervenções}} + \vec{\epsilon}(t)$.

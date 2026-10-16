@@ -889,7 +889,13 @@ export const api = {
       method: "POST",
       body: JSON.stringify({ station_id: stationId, circuit_session_id: circuitSessionId, mode: mode || "blind" }),
     }),
-    interact: (sessionId: string, message: string, elapsedSeconds: number) => apiFetch<{
+    interact: (
+      sessionId: string,
+      message: string,
+      elapsedSeconds: number,
+      target: "PATIENT" | "EXAMINER" = "PATIENT",
+      currentVitals?: Record<string, unknown>
+    ) => apiFetch<{
       reply: string;
       sender: "paciente" | "examinador";
       elapsed_seconds: number;
@@ -897,7 +903,12 @@ export const api = {
       guided_feedback?: import("@/types/api").OsceLiveFeedback;
     }>(`/api/osce/sessions/${sessionId}/interact`, {
       method: "POST",
-      body: JSON.stringify({ message, elapsed_seconds: elapsedSeconds }),
+      body: JSON.stringify({
+        message,
+        elapsed_seconds: elapsedSeconds,
+        target,
+        current_vitals: currentVitals
+      }),
     }),
     executeAction: (sessionId: string, actionType: string, actionTarget: string, elapsedSeconds: number) => apiFetch<{
       action_type: string;
