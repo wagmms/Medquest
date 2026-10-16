@@ -2,6 +2,33 @@
 
 Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
+## [2026-10-16] - Etapa 4 do Novo Simulador OSCE: Avaliação Live de Barema, Red Flags com Travas de Segurança, Espelho Oficial de 2ª Fase & Feedback do Preceptor
+- **Motor Determinístico de Detecção de Erros Críticos Eliminatórios (`RedFlagEngine` em `app/backend/api/osce.py`)**:
+  - Implementada a função `evaluate_osce_red_flags` mapeando violações capitais de segurança do paciente:
+    - `RF_ANAT_NEUROVASC`: Laceração do feixe vásculo-nervoso intercostal por punção na borda inferior da costela (dedução de 2.5 pts, trava teto da estação em 4.0/10.0).
+    - `RF_ANAT_THYROID`: Transfixação do istmo da glândula tireoide em cricotireoidostomia cirúrgica com hemorragia e asfixia (dedução de 3.0 pts, trava teto em 3.0/10.0).
+    - `RF_ELEC_UNSYNC_VT`: Disparo elétrico desincronizado em taquiarritmia com pulso com risco de indução de FV por fenômeno R-sobre-T (dedução de 3.0 pts, trava teto em 3.0/10.0).
+    - `RF_ABCDE_VIOLATION`: Atropelo da sequência do ATLS por solicitação de exames de imagem secundários em tórax hipertensivo antes da descompressão de alívio.
+    - `RF_PHARM_CONTRA`: Prescrição farmacológica de alto risco (betabloqueador em choque cardiogênico ou cocaína).
+  - Cálculo oficial da nota ponderada com travas de teto de segurança (`caps_station_at`) e emissão de veredito canônico: `APROVADO COM DISTINÇÃO`, `APROVADO NO LIMITE`, `REPROVADO POR TÉCNICA` e `ELIMINADO POR IATROGENIA`.
+- **Radar de 5 Competências Médicas Fundamentais (`compute_competency_radar_5d`)**:
+  - Cálculo psicométrico em 5 eixos essenciais de prova de 2ª fase: Raciocínio Clínico, Comunicação & Empatia, Semiotécnica & Habilidades Práticas, Segurança do Paciente e Eficiência SUS / Gestão do Tempo.
+- **Parecer do Preceptor Chefe & Prescrição de Remediação (`build_chief_preceptor_review`, `build_medquest_remediation`)**:
+  - Geração de parecer estruturado com resumo executivo, pontos fortes, correções críticas e a **Conduta Canônica Padrão-Ouro** adaptada ao caso da estação (passo a passo exato do R1 da USP).
+  - Prescrição dirigida de baralhos de flashcards e filtros do banco de questões para treino imediato das lacunas identificadas.
+- **Espelho Oficial de Prova de 2ª Fase no Frontend (`app/frontend/src/app/osce/[id]/StationResultMirror.tsx`)**:
+  - Interface clínica de alta precisão (estilo FUVEST/COMVEST/INEP):
+    - Header com badge da banca examinadora e nota oficial em destaque com cor temática do veredito.
+    - Seção dedicada para Red Flags / Iatrogenias Clínicas em destaque vermelho com consequência real e dedução de pontos.
+    - Spider Chart interativo em SVG puro leve (sem bibliotecas pesadas) renderizando a matriz de 5 competências.
+    - Parecer do Preceptor Chefe com caixa de destaque da Conduta Canônica Padrão-Ouro.
+    - Tabela do Checklist Barema Oficial com filtros por categoria (Anamnese, Exame Físico, Procedimento, Diagnóstico, Conduta), timestamp `[MM:SS]` e evidência real capturada da telemetria.
+    - Footer com recomendação de baralhos e botão de refazer a estação prática.
+- **Integração Completa em `OsceRoomClient.tsx` & Suíte de Testes**:
+  - Substituída a visualização rústica anterior pelo `<StationResultMirror />` completo na fase `finished`.
+  - Adicionada a suíte `TestOsceStage4EvaluationAndMirror` em `app/backend/tests/test_osce.py` (28/28 testes de backend aprovados).
+  - Validação unificada com `./validate.sh fast` em 20.43s e zero erros de lint ou tipagem TypeScript.
+
 ## [2026-10-16] - Etapa 3 do Novo Simulador OSCE: Gestão de Insumos SUS, Fila de Enfermagem com Latência & Manequim Cirúrgico 2D
 - **Manequim Cirúrgico 2D Vetorial com Iatrogenias Anatômicas (`app/frontend/src/lib/anatomy/mannequin-landmarks.ts`, `app/frontend/src/app/osce/[id]/ProcedureMannequin.tsx`)**:
   - Arquitetura vetorial cirúrgica ortográfica em SVG multicamadas de ultraprecisão (<30KB, 60fps), descartando o 3D/WebGL por inviabilidade ergonômica sob estresse temporal de 8 minutos de prova.

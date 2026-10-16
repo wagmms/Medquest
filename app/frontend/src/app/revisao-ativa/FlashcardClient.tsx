@@ -28,8 +28,8 @@ import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useCurator } from "@/hooks/useCurator";
-
 import { useWakeLock } from "@/hooks/useWakeLock";
+import { ClinicalIcon } from "@/components/ui/ClinicalIcon";
 
 const AnkiIntegrationModal = dynamic(
   () => import("./components/AnkiIntegrationModal").then((mod) => mod.AnkiIntegrationModal),
@@ -293,28 +293,34 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
   const totalDueAcrossDecks = decks.reduce((acc, d) => acc + d.due_cards, 0);
 
   return (
-    <div className="max-w-3xl mx-auto w-full flex flex-col items-center gap-6 pb-12">
-      {subtema && <div className="w-full rounded-xl border border-primary/20 bg-primary/5 p-4">
-        <p className="font-semibold">Flashcards de {subtema}</p>
-        <div className="flex flex-wrap gap-4 mt-2 text-sm text-primary"><Link href={`/temas?${new URLSearchParams({ subtema })}`}>← Voltar ao tema</Link><Link href="/revisao-ativa">Ver todos os temas</Link></div>
-      </div>}
+    <div className="max-w-3xl mx-auto w-full flex flex-col items-center gap-5 pb-12">
+      {subtema && (
+        <div className="w-full rounded-sm border border-line-subtle bg-surface p-4 shadow-xs">
+          <p className="font-semibold text-sm text-ink font-mono-lab">Flashcards: {subtema}</p>
+          <div className="flex flex-wrap gap-4 mt-1.5 text-xs font-mono-lab text-accent">
+            <Link href={`/temas?${new URLSearchParams({ subtema })}`} className="hover:underline">← Voltar ao tema</Link>
+            <Link href="/revisao-ativa" className="hover:underline">Ver todos os temas</Link>
+          </div>
+        </div>
+      )}
       {/* Header com Seletor de Baralho e Botão Anki */}
-      <div className="w-full flex items-center justify-between flex-wrap gap-3 pb-2 border-b border-border">
+      <div className="w-full flex items-center justify-between flex-wrap gap-3 pb-2.5 border-b border-line-subtle">
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2 text-purple-500 font-bold">
-            <BrainCircuit size={20} /> Revisão Ativa (SRS / FSRS)
+          <div className="flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-wider font-mono-lab">
+            <ClinicalIcon name="srs" size={16} />
+            <span>Revisão Ativa (FSRS v6)</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-2.5 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
           {/* Seletor de Baralho */}
           {decks.length > 0 && (
-            <div className="flex items-center gap-1.5 bg-card border border-border rounded-xl px-3 py-1.5 min-h-[40px] text-xs shadow-sm">
-              <Layers size={14} className="text-muted-foreground" />
+            <div className="flex items-center gap-1.5 bg-surface border border-line-subtle rounded-sm px-2.5 py-1.5 min-h-[36px] text-xs font-mono-lab shadow-xs">
+              <ClinicalIcon name="stethoscope" size={13} className="text-ink-muted" />
               <select
                 value={selectedDeck}
                 onChange={(e) => setSelectedDeck(e.target.value)}
-                className="bg-transparent font-semibold text-foreground focus:outline-none cursor-pointer"
+                className="bg-transparent font-semibold text-ink focus:outline-none cursor-pointer text-xs"
                 aria-label="Filtrar por baralho"
               >
                 <option value="all">Todos os Baralhos{subtema ? "" : ` (${totalDueAcrossDecks})`}</option>
@@ -331,87 +337,80 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
           <button
             type="button"
             onClick={() => setIsAnkiModalOpen(true)}
-            className="flex items-center gap-1.5 bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-500/30 px-3.5 py-2 min-h-[40px] rounded-xl font-bold text-xs transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="flex items-center gap-1.5 bg-accent/10 hover:bg-accent/20 text-accent border border-accent/30 px-3 py-1.5 min-h-[36px] rounded-sm font-bold text-xs font-mono-lab transition-all shadow-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent cursor-pointer"
           >
-            <Zap size={14} className="text-blue-500 dark:text-blue-400" />
-            Integração Anki
+            <ClinicalIcon name="zap" size={13} />
+            <span>Integração Anki</span>
           </button>
         </div>
       </div>
 
       {loading ? (
-        <div className="w-full min-h-[300px] bg-card border border-border shadow-1 rounded-2xl p-8 flex flex-col items-center justify-center gap-6">
-          <div className="relative">
-            <div className="w-16 h-16 border-4 border-purple-500/10 rounded-full" />
-            <div className="w-16 h-16 border-4 border-transparent border-t-purple-500 border-r-purple-500 rounded-full animate-spin absolute inset-0" />
-            <div className="absolute inset-0 flex items-center justify-center text-purple-600 dark:text-purple-400">
-              <BrainCircuit size={20} className="animate-pulse" />
-            </div>
-          </div>
-          <p className="text-muted-foreground font-medium animate-pulse">Sincronizando seus flashcards...</p>
+        <div className="w-full min-h-[300px] bg-surface border border-line-subtle shadow-xs rounded-sm p-8 flex flex-col items-center justify-center gap-4">
+          <div className="w-8 h-8 border-2 border-accent/20 border-t-accent rounded-full animate-spin" />
+          <p className="text-ink-muted font-mono-lab text-xs animate-pulse">Sincronizando seus flashcards...</p>
         </div>
       ) : queue.length === 0 ? (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-card border border-border shadow-1 rounded-xl p-12 max-w-2xl mx-auto w-full text-center flex flex-col items-center"
+          className="bg-surface border border-line-subtle shadow-xs rounded-sm p-10 max-w-2xl mx-auto w-full text-center flex flex-col items-center"
         >
-          <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-24 h-24 bg-success/20 text-success rounded-full flex items-center justify-center mx-auto mb-6"
-          >
-            <CheckCircle2 size={48} />
-          </motion.div>
-          <h2 className="text-2xl font-black text-foreground mb-3 tracking-tight">
-            {loadError ? "Revisão indisponível" : initialDueCount > 0 ? "Fila carregada concluída" : "Nenhuma revisão vencida"}
+          <div className="w-16 h-16 bg-normal/10 text-normal rounded-full flex items-center justify-center mx-auto mb-4 border border-normal/20">
+            <CheckCircle2 size={32} />
+          </div>
+          <h2 className="text-xl font-bold text-ink mb-2 tracking-tight">
+            {loadError ? "Revisão indisponível" : initialDueCount > 0 ? "Fila diária concluída" : "Nenhuma revisão pendente"}
           </h2>
-          <p className="text-muted-foreground mb-8 text-lg max-w-md">
+          <p className="text-ink-muted mb-6 text-sm max-w-md leading-relaxed">
             {loadError ? "Não foi possível verificar suas revisões agora." : initialDueCount > 0
-              ? `Você revisou ${initialDueCount} ${initialDueCount === 1 ? "cartão" : "cartões"}.`
+              ? `Você concluiu a revisão de ${initialDueCount} ${initialDueCount === 1 ? "cartão" : "cartões"}.`
               : selectedDeck !== "all"
               ? `Você não tem revisões pendentes no baralho "${selectedDeck}".`
-              : subtema ? "Não há flashcards vencidos vinculados a este tema." : "Você não tem flashcards vencidos no momento."}
+              : subtema ? "Não há flashcards vencidos vinculados a este tema." : "Você está em dia com todas as suas revisões FSRS."}
           </p>
           {loadError && (
-            <div className="mb-6 w-full rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-left text-sm text-destructive flex items-center gap-2">
-              <AlertTriangle size={18} /> {loadError}
-              <button onClick={() => void fetchDue()} className="ml-auto font-bold underline">Tentar novamente</button>
+            <div className="mb-5 w-full rounded-sm border border-critical/30 bg-critical/5 p-3 text-left text-xs text-critical flex items-center gap-2">
+              <AlertTriangle size={16} /> {loadError}
+              <button onClick={() => void fetchDue()} className="ml-auto font-bold underline font-mono-lab">Tentar novamente</button>
             </div>
           )}
-          {!loadError && initialDueCount > 0 && <button onClick={() => void fetchDue()} className="mb-4 text-primary text-sm font-semibold underline">Verificar próximas revisões</button>}
+          {!loadError && initialDueCount > 0 && <button onClick={() => void fetchDue()} className="mb-4 text-accent text-xs font-mono-lab font-semibold underline cursor-pointer">Verificar próximas revisões</button>}
           {!loadError && upcoming[0] && (
-            <p className="mb-6 text-sm text-muted-foreground flex items-center gap-2">
-              <CalendarClock size={16} /> Próximo cartão: {new Date(upcoming[0].next_review_date).toLocaleDateString("pt-BR")}
+            <p className="mb-5 text-xs text-ink-muted flex items-center gap-1.5 font-mono-lab">
+              <CalendarClock size={14} /> Próximo cartão: {new Date(upcoming[0].next_review_date).toLocaleDateString("pt-BR")}
             </p>
           )}
           <div className="flex items-center gap-3 flex-wrap justify-center">
             <Link
               href={subtema ? `/estudar?${new URLSearchParams({ subtema, mode: "adaptive", limit: "10" })}` : "/estudar"}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:-translate-y-0.5 flex items-center gap-2 text-sm"
+              className="bg-accent hover:opacity-90 text-white font-mono-lab font-bold py-2.5 px-5 rounded-sm transition-opacity shadow-xs flex items-center gap-2 text-xs uppercase tracking-wider"
             >
-              <BookOpen size={18} />
+              <BookOpen size={15} />
               Estudar questões
             </Link>
             <button
               onClick={() => setIsAnkiModalOpen(true)}
-              className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 font-bold py-3 px-5 rounded-xl border border-blue-500/30 transition-all flex items-center gap-2 text-sm"
+              className="bg-surface hover:bg-elevated text-ink font-mono-lab font-semibold py-2.5 px-4 rounded-sm border border-line-subtle transition-colors flex items-center gap-1.5 text-xs"
             >
-              <Zap size={16} />
-              Importar do Anki (.apkg / AnkiConnect)
+              <ClinicalIcon name="zap" size={14} />
+              Importar Anki (.apkg)
             </button>
           </div>
         </motion.div>
       ) : (
         <>
-          <div className="w-full flex items-center justify-between mb-2 flex-wrap gap-2">
-            <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
-              {queue.length} de {initialDueCount} restante{queue.length > 1 ? "s" : ""}
+          <div className="w-full flex items-center justify-between mb-1 flex-wrap gap-2">
+            <div className="flex items-center gap-2 text-xs font-mono-lab text-ink-muted">
+              <span>Restantes:</span>
+              <span className="font-bold text-ink tabular-nums bg-canvas border border-line-subtle px-2 py-0.5 rounded-xs">
+                {queue.length} / {initialDueCount}
+              </span>
             </div>
           </div>
 
           {lastScheduled && (
-            <div className="w-full rounded-lg border border-success/30 bg-success/10 px-4 py-2 text-sm font-medium text-success">
+            <div className="w-full rounded-xs border border-normal/25 bg-normal/10 px-3.5 py-1.5 text-xs font-mono-lab text-normal">
               Cartão agendado para {new Date(lastScheduled).toLocaleDateString("pt-BR")}.
             </div>
           )}
@@ -421,7 +420,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
             const current = queue[0];
             return (
               <div
-                className="w-full min-h-[300px] bg-card border border-border shadow-1 rounded-2xl p-8 flex flex-col items-center justify-center relative cursor-pointer hover:border-purple-500/50 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                className="w-full min-h-[300px] bg-surface border border-line-subtle shadow-xs rounded-sm p-6 md:p-8 flex flex-col items-center justify-center relative cursor-pointer hover:border-line-strong transition-colors focus:outline-none focus:ring-1 focus:ring-accent"
                 onClick={() => !flipped && setFlipped(true)}
                 onKeyDown={(e) => {
                   if ((e.key === 'Enter' || e.key === ' ') && !flipped) {
@@ -434,66 +433,66 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
                 aria-label={flipped ? "Flashcard revelado" : "Clique ou pressione Espaço para revelar o flashcard"}
               >
                 {/* Badges superiores */}
-                <div className="absolute top-4 left-4 flex items-center gap-2 flex-wrap">
+                <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 flex-wrap">
                   {current.is_ai_generated ? (
-                    <div className="text-xs font-semibold text-purple-600 dark:text-purple-400 bg-purple-500/10 border border-purple-500/20 px-2.5 py-1 rounded-full flex items-center gap-1.5">
-                      <Sparkles size={12} /> MedQuest IA
+                    <div className="text-[11px] font-mono-lab font-semibold text-accent bg-accent/10 border border-accent/25 px-2 py-0.5 rounded-xs flex items-center gap-1">
+                      <Sparkles size={11} /> MedQuest IA
                     </div>
                   ) : (
-                    <div className="text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded-full flex items-center gap-1.5">
-                      <Zap size={12} /> Anki
+                    <div className="text-[11px] font-mono-lab font-semibold text-accent bg-accent/10 border border-accent/25 px-2 py-0.5 rounded-xs flex items-center gap-1">
+                      <ClinicalIcon name="zap" size={11} /> Anki
                     </div>
                   )}
 
                   {current.deck_name && current.deck_name !== "Geral" && (
-                    <div className="text-xs font-semibold text-muted-foreground bg-muted/60 border border-border px-2.5 py-1 rounded-full flex items-center gap-1">
-                      <Layers size={11} /> {current.deck_name}
+                    <div className="text-[11px] font-mono-lab text-ink-muted bg-canvas border border-line-subtle px-2 py-0.5 rounded-xs flex items-center gap-1">
+                      <ClinicalIcon name="stethoscope" size={10} /> {current.deck_name}
                     </div>
                   )}
                 </div>
 
                 {/* Conteúdo Frente */}
-                <div className="w-full text-base md:text-lg font-medium text-foreground text-left leading-relaxed whitespace-pre-line my-6">
+                <div className="w-full text-base md:text-lg font-normal text-ink text-left leading-relaxed whitespace-pre-line my-6">
                   {renderFrontContent(current.front)}
                 </div>
 
                 {/* Conteúdo Verso */}
                 {flipped && current.back && (
-                  <div className="mt-4 pt-6 border-t border-border w-full text-left animate-in slide-in-from-bottom-3 fade-in duration-300">
-                    <div className="bg-muted/40 p-4 rounded-xl border border-border/60 text-sm md:text-base text-foreground leading-relaxed">
+                  <div className="mt-4 pt-5 border-t border-line-subtle w-full text-left animate-in slide-in-from-bottom-2 fade-in duration-200">
+                    <div className="bg-canvas p-4 rounded-xs border border-line-subtle text-sm md:text-base text-ink leading-relaxed font-normal">
                       <FormattedContent content={current.back} />
                     </div>
 
                     {current.source_context && (
-                      <p className="mt-3 text-xs font-semibold text-purple-600/80 dark:text-purple-400 uppercase tracking-wider bg-purple-500/10 py-1 px-3 rounded-full inline-block">
+                      <p className="mt-2.5 text-[11px] font-mono-lab text-ink-muted uppercase tracking-wider bg-canvas border border-line-subtle py-0.5 px-2.5 rounded-xs inline-block">
                         Referência: {current.source_context}
                       </p>
                     )}
 
                     {/* Tags do cartão */}
                     {current.tags && current.tags.length > 0 && (
-                      <div className="mt-3 flex items-center gap-1.5 flex-wrap">
+                      <div className="mt-2.5 flex items-center gap-1.5 flex-wrap">
                         {current.tags.map((t, idx) => (
                           <span
                             key={idx}
-                            className="text-[11px] font-medium text-muted-foreground bg-muted/80 px-2 py-0.5 rounded-md flex items-center gap-1"
+                            className="text-[10px] font-mono-lab text-ink-muted bg-canvas border border-line-subtle px-2 py-0.5 rounded-xs flex items-center gap-1"
                           >
-                            <Tag size={10} /> {t}
+                            <Tag size={9} /> {t}
                           </span>
                         ))}
                       </div>
                     )}
 
-                    <div className="mt-4 flex flex-wrap items-center gap-3 text-xs font-semibold text-muted-foreground">
+                    <div className="mt-3 flex flex-wrap items-center gap-3 text-xs font-mono-lab text-ink-muted">
                       {(current.area || current.subtema) && (
                         <span>{[current.area, current.subtema].filter(Boolean).join(" · ")}</span>
                       )}
                       {current.question_id && (
                         <Link
                           href={`/estudar?id=${current.question_id}`}
-                          className="inline-flex items-center gap-1 text-primary hover:underline"
+                          className="inline-flex items-center gap-1 text-accent hover:underline"
                         >
-                          <ExternalLink size={13} /> Ver questão de origem
+                          <ExternalLink size={12} /> Ver questão de origem
                         </Link>
                       )}
                     </div>
@@ -501,8 +500,8 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
                 )}
 
                 {!flipped && (
-                  <div className="absolute bottom-6 text-sm font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-                    <RotateCcw size={16} /> Clique para Revelar (Espaço)
+                  <div className="absolute bottom-5 text-xs font-mono-lab font-bold text-ink-muted uppercase tracking-wider flex items-center gap-2">
+                    <RotateCcw size={13} /> Clique ou pressione <kbd className="bg-canvas border border-line-subtle px-1.5 py-0.5 rounded-xs text-[10px] text-ink">Espaço</kbd> para revelar
                   </div>
                 )}
 
@@ -510,7 +509,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
                   {isCurator && (
                     <button
                       type="button"
-                      className="min-h-[36px] px-2.5 py-1 text-xs font-bold text-destructive/80 hover:text-destructive hover:bg-destructive/10 rounded-lg flex items-center gap-1 transition-colors cursor-pointer border border-transparent hover:border-destructive/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
+                      className="min-h-[30px] px-2 py-0.5 text-xs font-mono-lab text-critical hover:bg-critical/10 rounded-xs flex items-center gap-1 transition-colors cursor-pointer border border-transparent hover:border-critical/20 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-critical"
                       onClick={(e) => {
                         e.stopPropagation();
                         setShowDeleteCardConfirm(true);
@@ -518,13 +517,13 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
                       title="Excluir Flashcard (Curadoria)"
                       aria-label="Excluir Flashcard"
                     >
-                      <Trash2 size={14} /> <span>Excluir</span>
+                      <Trash2 size={13} /> <span>Excluir</span>
                     </button>
                   )}
                   {flipped && (
                     <button
                       type="button"
-                      className="min-h-[36px] p-2 text-xs font-semibold text-muted-foreground hover:text-destructive flex items-center justify-center gap-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive rounded-lg cursor-pointer"
+                      className="min-h-[30px] px-2 py-0.5 text-xs font-mono-lab text-ink-muted hover:text-critical flex items-center justify-center gap-1 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-critical rounded-xs cursor-pointer"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleReport();
@@ -532,7 +531,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
                       title="Reportar Erro no Flashcard"
                       aria-label="Reportar Erro no Flashcard"
                     >
-                      <XCircle size={15} /> <span>Reportar</span>
+                      <XCircle size={13} /> <span>Reportar</span>
                     </button>
                   )}
                 </div>
@@ -540,35 +539,35 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
             );
           })()}
 
-          {/* Controles de Avaliação FSRS */}
+          {/* Controles de Avaliação FSRS v6 */}
           {flipped && (
-            <div className="flex w-full gap-4 mt-4 animate-in slide-in-from-bottom-4 fade-in duration-300">
+            <div className="grid grid-cols-1 sm:grid-cols-3 w-full gap-3 mt-3 animate-in slide-in-from-bottom-2 fade-in duration-200">
               <button
-                title="O algoritmo agendará a revisão deste flashcard para amanhã, já que você não conseguiu se lembrar do conceito."
+                title="O algoritmo agendará a revisão deste flashcard para amanhã (D+1)."
                 onClick={() => handleReview("errei")}
                 disabled={submitting}
-                className="flex-1 bg-destructive/10 hover:bg-destructive/20 text-destructive border border-destructive/20 font-bold py-4 rounded-xl transition-colors flex flex-col items-center justify-center gap-1 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive focus-visible:ring-offset-2"
+                className="bg-critical/10 hover:bg-critical/20 text-critical border border-critical/30 font-bold py-3 px-3 rounded-sm transition-colors flex flex-col items-center justify-center gap-0.5 cursor-pointer font-mono-lab shadow-xs disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-critical"
               >
-                <div className="flex items-center gap-2"><XCircle size={20} /> Errei</div>
-                <span className="text-[10px] font-normal opacity-80 uppercase tracking-widest mt-1">Volta amanhã (1)</span>
+                <div className="flex items-center gap-1.5 text-xs font-bold uppercase"><XCircle size={15} /> Errei</div>
+                <span className="text-[10px] text-critical/80 font-normal">Volta amanhã (D+1) • [1]</span>
               </button>
               <button
-                title="O algoritmo aplicará um multiplicador de intervalo moderado, agendando uma revisão em breve para fixar este conceito difícil."
+                title="Conceito difícil, retornando em aproximadamente 7 dias (D+7)."
                 onClick={() => handleReview("duvida")}
                 disabled={submitting}
-                className="flex-1 bg-warning/10 hover:bg-warning/20 text-warning border border-warning/20 font-bold py-4 rounded-xl transition-colors flex flex-col items-center justify-center gap-1 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warning focus-visible:ring-offset-2"
+                className="bg-warning/10 hover:bg-warning/20 text-ink border border-warning/30 font-bold py-3 px-3 rounded-sm transition-colors flex flex-col items-center justify-center gap-0.5 cursor-pointer font-mono-lab shadow-xs disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-warning"
               >
-                <div className="flex items-center gap-2"><BrainCircuit size={20} /> Difícil</div>
-                <span className="text-[10px] font-normal opacity-80 uppercase tracking-widest mt-1">Bom tempo (2)</span>
+                <div className="flex items-center gap-1.5 text-xs font-bold uppercase text-ink"><RotateCcw size={14} className="text-warning" /> Difícil</div>
+                <span className="text-[10px] text-ink-muted font-normal">~7 dias (D+7) • [2]</span>
               </button>
               <button
-                title="O algoritmo entende que este flashcard está bem consolidado na sua memória e estenderá significativamente o intervalo para a próxima revisão."
+                title="Conceito fixado com firmeza, intervalo estendido para mais de 18 dias."
                 onClick={() => handleReview("certeza")}
                 disabled={submitting}
-                className="flex-1 bg-success/10 hover:bg-success/20 text-success border border-success/20 font-bold py-4 rounded-xl transition-colors flex flex-col items-center justify-center gap-1 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-success focus-visible:ring-offset-2"
+                className="bg-normal/10 hover:bg-normal/20 text-normal border border-normal/30 font-bold py-3 px-3 rounded-sm transition-colors flex flex-col items-center justify-center gap-0.5 cursor-pointer font-mono-lab shadow-xs disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-normal"
               >
-                <div className="flex items-center gap-2"><CheckCircle2 size={20} /> Fácil</div>
-                <span className="text-[10px] font-normal opacity-80 uppercase tracking-widest mt-1">Revisa depois (3)</span>
+                <div className="flex items-center gap-1.5 text-xs font-bold uppercase"><CheckCircle2 size={15} /> Fácil</div>
+                <span className="text-[10px] text-normal/80 font-normal">~18 dias+ (D+18) • [3]</span>
               </button>
             </div>
           )}

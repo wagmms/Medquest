@@ -13,29 +13,29 @@
 
 ## 🔄 Próxima Tarefa em Andamento
 
-- [ ] **Etapa 4 do Simulador OSCE: Avaliação Live de Barema, Espelho de Prova em 2ª Fase & Feedback do Preceptor (`app/backend/api/osce.py`, `app/frontend/src/app/osce/[id]/`)**:
-    1. **Arquivo/Módulo Alvo**: `app/backend/api/osce.py`, `app/frontend/src/app/osce/[id]/OsceRoomClient.tsx`, `app/frontend/src/app/osce/[id]/LiveBaremaModal.tsx`
-    2. **Função/Componente/Seletor**: Função `evaluate_live_barema_progress`, componente do espelho de prova pós-estação e radar de competências
-    3. **Comportamento Esperado / Critério de Aceite**: Auditoria automatizada de itens cumpridos no barema com pontuação ponderada (USP/UNICAMP/INEP), detecção de erros eliminatórios imediatos (ex: atropelo de ABCDE, iatrogenias vasculares) e geração de espelho de prova com nota final e plano de estudos corretivo.
+- [ ] **Repaginação Geral da UI/UX do MedQuest: Clinical Precision Workspace & Anti-Slop Architecture (`app/frontend/src/`)**:
+    1. **Arquivo/Módulo Alvo**: `app/frontend/src/app/globals.css`, `app/frontend/src/components/`, `app/frontend/src/app/(DashboardClient|estudar|revisao-ativa|osce)`
+    2. **Função/Componente/Seletor**: Tokens Tailwind v4, ClinicalIcon, ClinicalAppShell (Desktop + Thumb-Zone BottomNav) e telas centrais
+    3. **Comportamento Esperado / Critério de Aceite**: Erradicar visual de SaaS genérico e Material Symbols webfont; implementar paletas Radiology Dark e Ambulatório Paper; layout de split-pane para questões e dock de exames laboratoriais; FSRS v6 com atalhos 1-4 e telemetria de retenção; bottom nav mobile para plantão; 100% de aprovação na suíte de testes unitários e zero regressões.
 
 ---
 
 ## 📋 Backlog Prioritário (Tarefas Cirúrgicas)
 
-1. [ ] **Repaginação Geral da UI/UX do MedQuest: Clinical Precision Workspace & Anti-Slop Architecture (`app/frontend/src/`)**:
-    - **Arquivo/Módulo Alvo**: `app/frontend/src/app/globals.css`, `app/frontend/src/components/`, `app/frontend/src/app/(DashboardClient|estudar|revisao-ativa|osce)`
-    - **Função/Componente/Seletor**: Tokens Tailwind v4, ClinicalIcon, ClinicalAppShell (Desktop + Thumb-Zone BottomNav) e telas centrais
-    - **Comportamento Esperado / Critério de Aceite**: Erradicar visual de SaaS genérico e Material Symbols webfont; implementar paletas Radiology Dark e Ambulatório Paper; layout de split-pane para questões e dock de exames laboratoriais; FSRS v6 com atalhos 1-4 e telemetria de retenção; bottom nav mobile para plantão; 100% de aprovação na suíte de testes unitários e zero regressões.
-
-2. [ ] **Auditoria de Atomicidade e Metadados Médicos em Módulos de Flashcards Anki (`scripts/anki/`)**:
+1. [ ] **Auditoria de Atomicidade e Metadados Médicos em Módulos de Flashcards Anki (`scripts/anki/`)**:
     - **Arquivo/Módulo Alvo**: `scripts/anki/` (ou rotas e utilitários de flashcards em `app/backend/api/flashcards.py`)
     - **Função/Componente/Seletor**: Validador de esquemas e sanitizador de cards médicos
     - **Comportamento Esperado / Critério de Aceite**: Garantir conformidade com a diretriz inviolável de comentários canônicos somente-leitura e validar atomicidade clínica (frente/verso, cloze e tags).
 
-3. [ ] **Hardening de Fallback e Cache de Perfil Adaptativo em Desconexão (`app/backend/api/adaptive.py`)**:
+2. [ ] **Hardening de Fallback e Cache de Perfil Adaptativo em Desconexão (`app/backend/api/adaptive.py`)**:
     - **Arquivo/Módulo Alvo**: `app/backend/api/adaptive.py`
     - **Função/Componente/Seletor**: Funções de inferência adaptativa
     - **Comportamento Esperado / Critério de Aceite**: Garantir retorno determinístico e cache resiliente para perfil de estudo adaptativo quando a latência de banco aumentar ou em fallback offline.
+
+3. [ ] **Validação e Prevenção de Desalinhamento Temporal em Sessões de Simulado (`app/frontend/src/app/simulado/SimuladoClient.tsx`)**:
+    - **Arquivo/Módulo Alvo**: `app/frontend/src/app/simulado/SimuladoClient.tsx`
+    - **Função/Componente/Seletor**: Hook de timer e persistência de sessão
+    - **Comportamento Esperado / Critério de Aceite**: Prevenir drift de cronômetro e perda de respostas parciais em caso de suspensão de aba ou reconexão.
 
 ---
 
@@ -53,6 +53,6 @@
 
 ## ✅ Última Tarefa Concluída
 
-- [x] **Etapa 3 do Novo Simulador OSCE: Gestão de Insumos SUS, Fila de Enfermagem com Latência & Manequim Cirúrgico 2D**: Desenvolvido o manequim vetorial multicamadas em SVG cirúrgico (<30KB, 60fps) com mapeamento milimétrico de marcos anatômicos e hitboxes de segurança vs iatrogenia (toracocentese em borda superior vs laceração intercostal em borda inferior; cricotireoidostomia vs lesão do istmo tireoidiano; dreno de tórax no 5º EIC; janelas completas do E-FAST e acesso vascular); implementadas matrizes de insumos dos 3 níveis de complexidade do SUS (UBS, UPA e Terciário) com bloqueio físico de materiais; criada a fila de enfermagem assíncrona com latência clínica real (20-40s) e preempção em choque; criados 4 novos testes unitários em `TestOsceStage3MannequinAndProcedures` (25/25 testes de backend passando) e validação completa com `./validate.sh fast` em 16.41s.
+- [x] **Etapa 4 do Novo Simulador OSCE: Avaliação Live de Barema, Red Flags com Travas de Segurança, Espelho Oficial de 2ª Fase & Feedback do Preceptor**: Implementado o motor determinístico `RedFlagEngine` mapeando violações críticas (laceração do feixe intercostal `RF_ANAT_NEUROVASC`, cricotireoidostomia sobre istmo tireoidiano `RF_ANAT_THYROID`, choque desincronizado em taquiarritmia com pulso `RF_ELEC_UNSYNC_VT`, quebra da sequência do ATLS `RF_ABCDE_VIOLATION` e drogas de risco letal `RF_PHARM_CONTRA`) com penalização de pontos e travas de teto de nota de segurança (`caps_station_at`); calculado o Radar de 5 Competências Médicas Fundamentais (`compute_competency_radar_5d`) e emitido veredito oficial da banca (`APROVADO COM DISTINÇÃO`, `APROVADO NO LIMITE`, `REPROVADO POR TÉCNICA` e `ELIMINADO POR IATROGENIA`); criado o componente de alta precisão `<StationResultMirror />` com spider chart em SVG puro leve (<10KB, 60fps), cards de Red Flags, Parecer do Preceptor Chefe com Conduta Canônica Padrão-Ouro, tabela com filtros por bloco e evidências capturadas; adicionados 3 novos testes unitários em `TestOsceStage4EvaluationAndMirror` (28/28 testes de backend aprovados) e validação completa via `./validate.sh fast` em 20.43s.
 
 > 📁 Histórico completo arquivado em [CHANGELOG.md](CHANGELOG.md)

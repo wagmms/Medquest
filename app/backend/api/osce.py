@@ -1883,6 +1883,234 @@ def generate_competency_radar(
     }
 
 
+def evaluate_osce_red_flags(
+    actions: list[dict[str, Any]],
+    transcript: list[dict[str, Any]],
+    station_meta: dict[str, Any],
+    checklist_items: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """
+    Motor Determinístico de Detecção de Erros Críticos Eliminatórios (Red Flags Engine).
+    Identifica iatrogenias anatômicas, quebra de sequência do ATLS e prescrições de risco letal.
+    """
+    red_flags: list[dict[str, Any]] = []
+    proc_actions = [a for a in actions if a.get("action_type") == "procedure"]
+    exam_actions = [a for a in actions if a.get("action_type") in ("exam", "vitals", "labs", "imaging")]
+
+    # 1. IATROGENIA ANATÔMICA: Borda Inferior da Costela (Feixe Vásculo-Nervoso Intercostal)
+    for p in proc_actions:
+        site = str(p.get("anatomical_site", "")).lower()
+        proc = str(p.get("procedure_type", "")).lower()
+        elapsed = p.get("elapsed_seconds", 0)
+
+        if "inferior_border" in site or ("iatrogenic" in site and ("thoracocentesis" in proc or "relief" in proc or "r2" in site)):
+            red_flags.append({
+                "code": "RF_ANAT_NEUROVASC",
+                "title": "Lesão Iatrogênica do Feixe Vásculo-Nervoso Intercostal",
+                "description": "Punção realizada rente à BORDA INFERIOR da costela superior. Risco iminente de hemotórax maciço por laceração de artéria e veia intercostais.",
+                "timestamp_sec": elapsed,
+                "score_deduction": 2.5,
+                "caps_station_at": 4.0,
+                "clinical_consequence": "Hemotórax iatrogênico agudo decorrente de sítio cirúrgico incorreto."
+            })
+
+        # 2. IATROGENIA ANATÔMICA: Cricotireoidostomia sobre o Istmo da Tireoide
+        if "thyroid_gland" in site or ("iatrogenic" in site and ("crico" in proc or "cricothyroidotomy" in site or "thyroid" in site)):
+            red_flags.append({
+                "code": "RF_ANAT_THYROID",
+                "title": "Erro Anatômico Crítico em Via Aérea Cirúrgica",
+                "description": "Incisão cirúrgica realizada sobre o istmo da glândula tireoide em vez da membrana cricotireoidea.",
+                "timestamp_sec": elapsed,
+                "score_deduction": 3.0,
+                "caps_station_at": 3.0,
+                "clinical_consequence": "Hemorragia cervical maciça com inundação traqueal e impossibilidade de oxigenação."
+            })
+
+    # 3. IATROGENIA ELÉTRICA: Choque Desincronizado em Taquicardia com Pulso
+    for a in actions:
+        if a.get("action_type") == "cardioversion" or (a.get("action_type") == "procedure" and "cardioversion" in str(a.get("procedure_type", "")).lower()):
+            if a.get("sync") is False or "desincronizado" in str(a.get("findings", "")).lower():
+                red_flags.append({
+                    "code": "RF_ELEC_UNSYNC_VT",
+                    "title": "Choque Desincronizado em Taquiarritmia com Pulso",
+                    "description": "Disparo elétrico não-sincronizado aplicado em paciente com pulso presente (Fenômeno R-sobre-T).",
+                    "timestamp_sec": a.get("elapsed_seconds", 0),
+                    "score_deduction": 3.0,
+                    "caps_station_at": 3.0,
+                    "clinical_consequence": "Indução iatrogênica de Fibrilação Ventricular e Parada Cardiorrespiratória."
+                })
+
+    # 4. ATROPELO DA SEQUÊNCIA DO ATLS (Quebra do ABCDE)
+    station_code = str(station_meta.get("code", "")).upper()
+    is_trauma = any(k in station_code for k in ("FAST", "TRAUMA", "PNEUMO")) or "trauma" in str(station_meta.get("title", "")).lower()
+    if is_trauma:
+        imaging_requests = [a for a in exam_actions if any(term in str(a.get("action_target", "")).lower() for term in ("tc", "tomografia", "raio", "rx"))]
+        has_decompression = any("thoracocentesis" in str(p.get("procedure_type", "")).lower() or "chest_tube" in str(p.get("procedure_type", "")).lower() for p in proc_actions)
+        if imaging_requests and not has_decompression and "PNEUMO" in station_code:
+            first_img_time = imaging_requests[0].get("elapsed_seconds", 0)
+            red_flags.append({
+                "code": "RF_ABCDE_VIOLATION",
+                "title": "Atropelo da Sequência do ATLS (Quebra do ABCDE)",
+                "description": "Solicitou exames de imagem secundários antes de realizar a descompressão de emergência em tórax hipertensivo.",
+                "timestamp_sec": first_img_time,
+                "score_deduction": 2.0,
+                "caps_station_at": 4.5,
+                "clinical_consequence": "Atraso crítico na reversão de choque obstrutivo com evolução para PCR em AESP."
+            })
+
+    # 5. IATROGENIA FARMACOLÓGICA DE RISCO
+    candidate_all_text = " ".join([str(t.get("message", "")).lower() for t in transcript if t.get("sender") == "candidato"])
+    subtema_lower = str(station_meta.get("subtema", "")).lower()
+    if any(drug in candidate_all_text for drug in ("betabloqueador", "metoprolol", "propranolol", "atenolol")):
+        if any(term in subtema_lower for term in ("sca", "infarto", "choque", "cocaína")):
+            red_flags.append({
+                "code": "RF_PHARM_CONTRA",
+                "title": "Prescrição Farmacológica de Alto Risco",
+                "description": "Prescrição de betabloqueador em vigência de choque cardiogênico ou sinais de congestão pulmonar aguda.",
+                "timestamp_sec": 0,
+                "score_deduction": 2.0,
+                "caps_station_at": 4.5,
+                "clinical_consequence": "Depressão miocárdica aguda e agravamento de choque cardiogênico."
+            })
+
+    return red_flags
+
+
+def compute_competency_radar_5d(
+    station_meta: dict[str, Any],
+    evaluated_items: list[dict[str, Any]],
+    actions: list[dict[str, Any]],
+    transcript: list[dict[str, Any]],
+    elapsed_seconds: int,
+    red_flags: list[dict[str, Any]]
+) -> dict[str, Any]:
+    """Computa o Radar Psicométrico em 5 Dimensões Médicas Fundamentais (0 a 100)."""
+    # 1. Raciocínio Clínico
+    diag_items = [it for it in evaluated_items if any(k in str(it.get("category", "")).lower() for k in ("anamnese", "diagnostico", "raciocinio"))]
+    diag_pct = (sum(it.get("score_earned", 0.0) for it in diag_items) / max(1.0, sum(it.get("weight", 1.0) for it in diag_items))) * 100 if diag_items else 75.0
+
+    # 2. Comunicação & Empatia
+    cand_dialogue_count = len([t for t in transcript if t.get("sender") == "candidato" and t.get("target") != "EXAMINER"])
+    comm_pct = min(100.0, max(40.0, cand_dialogue_count * 14.0 + 30.0))
+
+    # 3. Semiotécnica & Habilidades Práticas
+    proc_items = [it for it in evaluated_items if any(k in str(it.get("category", "")).lower() for k in ("fisico", "procedimento", "manobra", "ausculta"))]
+    proc_pct = (sum(it.get("score_earned", 0.0) for it in proc_items) / max(1.0, sum(it.get("weight", 1.0) for it in proc_items))) * 100 if proc_items else 70.0
+
+    # 4. Segurança do Paciente (Penalizado por Red Flags)
+    safety_pct = 100.0
+    for rf in red_flags:
+        safety_pct -= 25.0
+    safety_pct = max(10.0, min(100.0, safety_pct))
+
+    # 5. Gestão do SUS & Eficiência Temporal
+    first_action_time = min([int(a.get("elapsed_seconds", 0)) for a in actions if a.get("elapsed_seconds")], default=150)
+    time_pct = 95.0 if first_action_time <= 90 else (75.0 if first_action_time <= 150 else 50.0)
+
+    return {
+        "clinical_reasoning": round(diag_pct, 1),
+        "communication_empathy": round(comm_pct, 1),
+        "surgical_semiotics": round(proc_pct, 1),
+        "patient_safety": round(safety_pct, 1),
+        "sus_time_efficiency": round(time_pct, 1)
+    }
+
+
+def build_chief_preceptor_review(
+    station_meta: dict[str, Any],
+    evaluated_items: list[dict[str, Any]],
+    red_flags: list[dict[str, Any]],
+    final_score: float
+) -> dict[str, Any]:
+    """Sintetiza parecer executivo de alto rendimento no padrão de preceptor de residência médica."""
+    subtema = str(station_meta.get("subtema", "")).upper()
+    title = str(station_meta.get("title", ""))
+    inst = str(station_meta.get("institution", "USP-RP"))
+
+    # Pontos Fortes
+    full_items = [it.get("title") for it in evaluated_items if it.get("status") == "cumprido_total"]
+    what_went_well = full_items[:3] if full_items else ["Atendimento iniciado dentro do tempo limite oficial."]
+
+    # Correções Críticas
+    critical_corrections = [rf.get("description") for rf in red_flags]
+    if not critical_corrections:
+        unfulfilled = [it.get("title") for it in evaluated_items if it.get("status") == "nao_cumprido"]
+        critical_corrections = unfulfilled[:3] if unfulfilled else ["Manter ritmo de prova e verbalização clara das condutas."]
+
+    # Conduta Canônica Padrão-Ouro por subtema
+    if "PNEUMO" in subtema or "PNEUMOTÓRAX" in title.upper():
+        canonical = (
+            "1. Reconhecimento clínico imediato de Pneumotórax Hipertensivo (hipotensão, turgência jugular, MV abolido e timpanismo unilateral).\n"
+            "2. Proibido solicitar Raio-X ou TC de tórax: o diagnóstico é puramente clínico!\n"
+            "3. Descompressão imediata por toracocentese de alívio com Jelco 14G na borda superior da costela no 2º EIC LHC ou 5º EIC LAA.\n"
+            "4. Monitorização contínua com oxigênio suplementar em máscara não-reinalante.\n"
+            "5. Solicitação imediata à enfermagem da bandeja de toracostomia tubular com dreno 28-32 Fr em selo d'água."
+        )
+    elif "SCA" in subtema or "CORONARIANA" in title.upper():
+        canonical = (
+            "1. ECG de 12 derivações realizado e laudado em menos de 10 minutos (meta ATLS/AHA).\n"
+            "2. Monitorização multiparamétrica, acesso venoso calibroso e oxigênio se SpO2 < 90%.\n"
+            "3. Terapia anti-isquêmica e antiplaquetária dupla imediata: AAS 200-300 mg mastigado + Ticagrelor 180 mg ou Clopidogrel 300-600 mg.\n"
+            "4. Nitrato sublingual se dor refratária (contraindicado em infarto de VD ou uso de sildenafila nas últimas 24h).\n"
+            "5. Acionamento do laboratório de hemodinâmica para angioplastia primária com tempo porta-balão < 90 minutos."
+        )
+    elif "TV" in subtema or "TAQUICARDIA" in title.upper():
+        canonical = (
+            "1. Avaliação rápida de estabilidade hemodinâmica (Dor torácica anginosa, Dispneia/congestão, Hipotensão, Rebaixamento do sensório).\n"
+            "2. Em paciente instável: Cardioversão Elétrica SINCRONIZADA imediata (100 J bifásico) com sedação rápida (Fentanil + Midazolam ou Etomidato).\n"
+            "3. Garantir confirmação da marcação das ondas R (SYNC ativo) antes do disparo elétrico.\n"
+            "4. Reavaliação imediata de ritmo e pulso pós-choque."
+        )
+    elif "HPP" in subtema or "HEMORRAGIA" in title.upper():
+        canonical = (
+            "1. Mapeamento da etiologia pelos 4 T's (Tônus 70%, Trauma, Tecido, Trombina).\n"
+            "2. Massagem uterina bimanual imediata (Manobra de Hamilton) associada a ocitocina IV em infusão contínua.\n"
+            "3. Acessos calibrosos 14-16G, coleta de tipagem sanguínea com prova cruzada e prova do coágulo beira-leito.\n"
+            "4. Ácido tranexâmico 1g IV infundido nos primeiros 10 minutos de sangramento ativo."
+        )
+    else:
+        canonical = (
+            f"Atendimento padrão {inst}: Abordagem sistemática, anamnese direcionada, exame físico segmentar, "
+            f"solicitação criteriosa de exames laboratoriais/imagem e prescrição de conduta padrão com doses e vias explícitas."
+        )
+
+    summary = (
+        f"Desempenho oficial de {final_score:.1f}/10.0 na estação de {title} ({inst}). "
+        + ("Excelente maturidade clínica, execução ágil dos passos capitais e segurança no manejo de emergência."
+           if final_score >= 8.5 else
+           "Atendimento consistente, mas com lacunas técnicas ou hesitações de conduta que limitaram a pontuação final."
+           if final_score >= 7.0 else
+           "Pontuação abaixo da nota de corte da banca examinadora. Identificadas falhas metodológicas ou violações de segurança que exigem remediação.")
+    )
+
+    return {
+        "executive_summary": summary,
+        "what_went_well": what_went_well,
+        "critical_corrections": critical_corrections,
+        "gold_standard_canonical_conduct": canonical
+    }
+
+
+def build_medquest_remediation(
+    station_meta: dict[str, Any],
+    weaknesses: list[str]
+) -> dict[str, Any]:
+    """Gera prescrição de estudo focado para remediação no MedQuest."""
+    area = str(station_meta.get("area", "Clínica Médica"))
+    subtema = str(station_meta.get("subtema", "Emergências"))
+
+    return {
+        "recommended_flashcard_decks": [
+            f"5º Ano - {area} ({subtema})",
+            f"R1 USP/UNICAMP - Protocolos de Emergência Beira-Leito"
+        ],
+        "recommended_qbank_filters": [
+            {"specialty": area, "subtopic": subtema, "difficulty": "Médio / Difícil"}
+        ],
+        "suggested_retry_station_id": str(station_meta.get("id", ""))
+    }
+
+
 def finish_osce_session(
     db,
     session_id: str,
@@ -1890,14 +2118,13 @@ def finish_osce_session(
     conduct_notes: Optional[str] = None
 ) -> dict[str, Any]:
     """
-    Finaliza a estação de prova prática e executa a auditoria completa do Barema Oficial:
-    - Calcula nota ponderada de 0.0 a 10.0
-    - Avalia cada item do checklist com citações de evidência
-    - Constrói a Linha do Tempo Beira-Leito ("Timeline Post-Mortem") com marcos e atrasos
-    - Computa o Radar de Competências Médicas em 6 dimensões
-    - Detecta faltas eliminatórias graves
-    - Sintetiza parecer clínico do Preceptor Sênior
-    - Gera Flashcards de Choque no formato FSRS e Criador de Cards
+    Finaliza a estação de prova prática e executa a auditoria completa do Barema Oficial (Etapa 4):
+    - Motor Determinístico de Red Flags (Iatrogenias, ABCDE, Farmacologia e Choque)
+    - Cálculo de Nota Bruta, Deduções e Travas de Teto de Segurança (caps_station_at)
+    - Emissão do Veredito Oficial da Banca (APROVADO COM DISTINÇÃO, LIMITE, REPROVADO, ELIMINADO)
+    - Radar de 5 Competências Médicas Fundamentais
+    - Parecer do Preceptor Chefe com Conduta Canônica Padrão-Ouro
+    - Prescrição de Remediação no MedQuest e Flashcards de Choque
     """
     sess = db.execute("""
         SELECT s.id, s.station_id, s.user_id, s.start_time, s.elapsed_seconds,
@@ -1931,7 +2158,8 @@ def finish_osce_session(
         str(t.get("message") or "").lower() for t in transcript if t.get("sender") == "candidato"
     ]
     actions_texts = [
-        f"{a.get('action_type', '')} {a.get('action_target', '')}".lower() for a in actions
+        f"{a.get('action_type', '')} {a.get('action_target', '')} {a.get('anatomical_site', '')} {a.get('findings', '')}".lower()
+        for a in actions
     ]
     all_evidence_corpus = " ".join(candidate_texts + actions_texts)
     norm_evidence_corpus = _normalize_text(all_evidence_corpus)
@@ -1965,12 +2193,19 @@ def finish_osce_session(
         total_score += earned
         evaluated_items.append({
             "id": item.get("id"),
+            "criterion_id": str(item.get("id", "")),
+            "code": str(item.get("code", item.get("id", "ITEM"))),
             "title": item.get("title"),
-            "category": item.get("category"),
+            "description": item.get("description", item.get("title", "")),
+            "category": item.get("category", "Geral"),
             "weight": weight,
+            "max_score": weight,
             "score_earned": earned,
-            "status": status,
-            "evidence": evidence
+            "awarded_score": earned,
+            "status": "FULL" if status == "cumprido_total" else ("PARTIAL" if status == "cumprido_parcial" else "NONE"),
+            "timestamp_achieved_sec": int(sess["elapsed_seconds"] or 0) if status != "nao_cumprido" else None,
+            "evidence": evidence,
+            "evidence_citation": evidence
         })
 
         if status != "cumprido_total":
@@ -1982,14 +2217,53 @@ def finish_osce_session(
                 "weight": weight
             })
 
-    final_score_normalized = round(min(10.0, (total_score / max(1.0, max_score)) * 10.0), 1)
+    raw_score_normalized = round(min(10.0, (total_score / max(1.0, max_score)) * 10.0), 1)
 
+    # 1. Auditoria Avançada de Red Flags (Etapa 4)
+    red_flags = evaluate_osce_red_flags(
+        actions=actions,
+        transcript=transcript,
+        station_meta=dict(sess),
+        checklist_items=checklist_items
+    )
+
+    # Auditoria Legada de Segurança Clínica
     critical_warnings = evaluate_critical_safety_violations(
         critical_errors=critical_errors,
         evidence_text=all_evidence_corpus,
         actions=actions,
         station_meta=dict(sess)
     )
+    for warn in critical_warnings:
+        if not any(rf["title"] == warn for rf in red_flags):
+            red_flags.append({
+                "code": "RF_CLINICAL_SAFETY",
+                "title": "Violação de Segurança Clínica",
+                "description": warn,
+                "timestamp_sec": 0,
+                "score_deduction": 1.5,
+                "clinical_consequence": "Quebra de diretriz de segurança estabelecida no barema."
+            })
+
+    # 2. Cálculo da Nota Final com Dedução e Travas de Teto (Caps)
+    total_penalty = round(sum(rf.get("score_deduction", 0.0) for rf in red_flags), 1)
+    computed_final = max(0.0, raw_score_normalized - total_penalty)
+
+    # Aplica trava de teto máximo de segurança (Fatal Flaw)
+    min_cap = min([rf["caps_station_at"] for rf in red_flags if "caps_station_at" in rf], default=None)
+    if min_cap is not None:
+        computed_final = min(computed_final, min_cap)
+    final_score_normalized = round(computed_final, 1)
+
+    # 3. Determinação do Veredito Oficial da Banca
+    if any(rf.get("caps_station_at", 10.0) <= 4.0 for rf in red_flags):
+        headline_verdict = "ELIMINADO POR IATROGENIA"
+    elif final_score_normalized < 7.0:
+        headline_verdict = "REPROVADO POR TÉCNICA"
+    elif final_score_normalized < 8.5:
+        headline_verdict = "APROVADO NO LIMITE"
+    else:
+        headline_verdict = "APROVADO COM DISTINÇÃO"
 
     # Gera Flashcards de Choque específicos para contraindicações graves violadas
     for warn in critical_warnings:
@@ -2008,7 +2282,26 @@ def finish_osce_session(
             "weight": 2.0
         })
 
-    # Computa Timeline Post-Mortem e Radar de Competências
+    # Gera Flashcards de Choque específicos para Red Flags anatômicas / cirúrgicas
+    for rf in red_flags:
+        if rf.get("code") != "RF_CLINICAL_SAFETY":
+            shock_cards.append({
+                "station_code": sess["subtema"],
+                "front": (
+                    f"🚨 [ERRO CRÍTICO / CONTRAINDICAÇÃO - {sess['institution']}]\n"
+                    f"Qual é o risco fatal de:\n"
+                    f"👉 **{rf['title']}**?"
+                ),
+                "back": (
+                    f"⛔ **Consequência Clínica**:\n{rf['clinical_consequence']}\n\n"
+                    f"⚠️ **Descrição da Falha**: {rf['description']}\n\n"
+                    "Em prova de 2ª fase presencial, esta falha acarreta eliminação imediata ou corte severo de nota."
+                ),
+                "category": "seguranca_paciente",
+                "weight": 2.5
+            })
+
+    # 4. Computa Timeline Post-Mortem e Radar de Competências em 5D
     timeline_data = generate_timeline_post_mortem(
         station_meta=dict(sess),
         transcript=transcript,
@@ -2017,33 +2310,56 @@ def finish_osce_session(
         elapsed_seconds=sess["elapsed_seconds"]
     )
 
+    radar_5d = compute_competency_radar_5d(
+        station_meta=dict(sess),
+        evaluated_items=evaluated_items,
+        actions=actions,
+        transcript=transcript,
+        elapsed_seconds=sess["elapsed_seconds"],
+        red_flags=red_flags
+    )
+
     radar_data = generate_competency_radar(
         station_meta=dict(sess),
         evaluated_items=evaluated_items,
         actions=actions,
         transcript=transcript,
         elapsed_seconds=sess["elapsed_seconds"],
-        critical_warnings=critical_warnings
+        critical_warnings=[rf["description"] for rf in red_flags]
+    )
+
+    chief_review = build_chief_preceptor_review(
+        station_meta=dict(sess),
+        evaluated_items=evaluated_items,
+        red_flags=red_flags,
+        final_score=final_score_normalized
+    )
+
+    medquest_remediation = build_medquest_remediation(
+        station_meta=dict(sess),
+        weaknesses=radar_data.get("weaknesses", [])
     )
 
     preceptor_feedback = {
+        "headline_verdict": headline_verdict,
+        "raw_score": raw_score_normalized,
+        "penalty_deduction": total_penalty,
         "final_score": final_score_normalized,
+        "cutoff_score": 7.0,
         "max_score": 10.0,
-        "approved": final_score_normalized >= 7.0,
+        "approved": final_score_normalized >= 7.0 and headline_verdict != "ELIMINADO POR IATROGENIA",
         "station_title": sess["title"],
         "institution": sess["institution"],
-        "summary": (
-            f"Desempenho de {final_score_normalized}/10.0 na estação de {sess['title']} ({sess['institution']}). "
-            + ("Excelente domínio técnico beira-leito, com atendimento estruturado e cumprimento dos pontos capitais da banca."
-               if final_score_normalized >= 8.5 else
-               "Atendimento satisfatório, porém com perda de pontos em passos operacionais e justificativa de conduta."
-               if final_score_normalized >= 6.0 else
-               "Atenção crítica: falhas fundamentais no barema que causariam eliminação ou pontuação insuficiente na 2ª fase presencial.")
-        ),
-        "critical_warnings": critical_warnings,
+        "summary": chief_review["executive_summary"],
+        "competency_radar_5d": radar_5d,
+        "competency_radar": radar_data,
+        "evaluated_items": evaluated_items,
+        "red_flags_triggered": red_flags,
+        "critical_warnings": [rf["description"] for rf in red_flags],
+        "chief_preceptor_review": chief_review,
+        "medquest_remediation": medquest_remediation,
         "shock_cards_count": len(shock_cards),
-        "timeline_post_mortem": timeline_data,
-        "competency_radar": radar_data
+        "timeline_post_mortem": timeline_data
     }
 
     now_iso = datetime.now(timezone.utc).isoformat()
@@ -2060,7 +2376,7 @@ def finish_osce_session(
         """, (
             now_iso,
             final_score_normalized,
-            json.dumps({"items": evaluated_items, "critical_warnings": critical_warnings}, ensure_ascii=False),
+            json.dumps({"items": evaluated_items, "critical_warnings": [rf["description"] for rf in red_flags], "red_flags": red_flags}, ensure_ascii=False),
             json.dumps(preceptor_feedback, ensure_ascii=False),
             json.dumps(transcript, ensure_ascii=False),
             session_id
@@ -2069,9 +2385,17 @@ def finish_osce_session(
     return {
         "session_id": session_id,
         "final_score": final_score_normalized,
+        "raw_score": raw_score_normalized,
+        "penalty_deduction": total_penalty,
+        "headline_verdict": headline_verdict,
+        "approved": preceptor_feedback["approved"],
         "status": "completed",
         "evaluated_items": evaluated_items,
+        "red_flags_triggered": red_flags,
         "preceptor_feedback": preceptor_feedback,
+        "chief_preceptor_review": chief_review,
+        "competency_radar_5d": radar_5d,
+        "medquest_remediation": medquest_remediation,
         "shock_cards": shock_cards,
         "elapsed_seconds": sess["elapsed_seconds"],
         "timeline_post_mortem": timeline_data,

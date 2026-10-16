@@ -15,7 +15,8 @@ import { api } from "@/lib/api";
 import { PrescriptionPad } from "./PrescriptionPad";
 import { ProcedureMannequin } from "./ProcedureMannequin";
 import { GhostPreceptorHUD } from "./GhostPreceptorHUD";
-import { OscePostMortemAndRadar } from "./OscePostMortemAndRadar";
+import { StationResultMirror } from "./StationResultMirror";
+import { PreceptorFeedback } from "@/types/osce-evaluation";
 import { useVitalStateEngine } from "./useVitalStateEngine";
 import { MultiparameterMonitor } from "./MultiparameterMonitor";
 import { ClinicalStage } from "./ClinicalStage";
@@ -1637,97 +1638,17 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
             </div>
           </div>
 
-          {/* Header do Espelho na Tela */}
-          <div className="text-center space-y-2 border-b border-border pb-6 print:hidden">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase">
-              <Award className="w-4 h-4" />
-              <span>Espelho Oficial de Correção da Banca</span>
-            </div>
-            <h1 className="text-2xl md:text-3xl font-black text-foreground">
-              {station.title} ({station.institution})
-            </h1>
-            <div className="text-xs text-muted-foreground font-medium">
-              Avaliação e Barema de 2ª Fase Presencial
-            </div>
-          </div>
-
-          {/* Card da Nota Oficial */}
-          <div className={`p-6 rounded-2xl border-2 flex flex-col md:flex-row md:items-center justify-between gap-4 ${
-            report.preceptor_feedback.approved
-              ? "bg-emerald-500/10 border-emerald-500/30"
-              : "bg-rose-500/10 border-rose-500/30"
-          }`}>
-            <div className="space-y-1">
-              <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                Nota Final Obtida
-              </div>
-              <div className={`text-4xl font-black ${
-                report.preceptor_feedback.approved ? "text-emerald-500" : "text-rose-500"
-              }`}>
-                {report.final_score.toFixed(1)} <span className="text-xl text-muted-foreground">/ 10.0</span>
-              </div>
-              <div className="text-xs font-semibold text-foreground/90">
-                {report.preceptor_feedback.approved ? "Aprovado na Estação" : "Pontuação Insuficiente / Reprovado"}
-              </div>
-            </div>
-
-            <div className="text-xs max-w-md text-foreground/80 leading-relaxed">
-              {report.preceptor_feedback.summary}
-            </div>
-          </div>
-
-          {/* Alertas de Erros Críticos Eliminatórios */}
-          {report.preceptor_feedback.critical_warnings?.length > 0 && (
-            <div className="p-4 rounded-xl border border-rose-500/30 bg-rose-500/5 space-y-2">
-              <div className="flex items-center gap-2 text-rose-500 font-bold text-xs">
-                <AlertTriangle className="w-4 h-4" />
-                FALTAS GRAVES / CONDUTAS DE RISCO IDENTIFICADAS:
-              </div>
-              <ul className="list-disc list-inside text-xs text-rose-400 space-y-1">
-                {report.preceptor_feedback.critical_warnings.map((warn, i) => (
-                  <li key={i}>{warn}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Radar de Competências Clínicas & Linha do Tempo Beira-Leito (Post-Mortem) */}
-          <OscePostMortemAndRadar 
-            timeline={report.timeline_post_mortem}
-            radar={report.competency_radar}
+          {/* Espelho Oficial de 2ª Fase & Radar de Competências (Etapa 4) */}
+          <StationResultMirror
+            feedback={report.preceptor_feedback as unknown as PreceptorFeedback}
+            stationTitle={station.title}
+            institution={station.institution || "USP-RP"}
+            area={station.area}
+            subtema={station.subtema}
+            elapsedSeconds={(station.duration_seconds || 480) - timeLeft}
+            onRetryStation={() => window.location.reload()}
+            onGoBack={() => router.push("/osce")}
           />
-
-          {/* Tabela do Barema Item a Item */}
-          <div className="space-y-3">
-            <h3 className="text-sm font-bold text-foreground">
-              Checklist Oficial do Barema de Correção:
-            </h3>
-
-            <div className="border border-border rounded-2xl overflow-hidden divide-y divide-border bg-card">
-              {report.evaluated_items.map((item) => (
-                <div key={item.id} className="p-4 space-y-2 text-xs">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-bold text-foreground text-sm">
-                      {item.title}
-                    </span>
-                    <span className={`px-2.5 py-1 rounded-md text-[11px] font-bold ${
-                      item.status === "cumprido_total"
-                        ? "bg-emerald-500/15 text-emerald-500"
-                        : item.status === "cumprido_parcial"
-                        ? "bg-amber-500/15 text-amber-500"
-                        : "bg-rose-500/15 text-rose-500"
-                    }`}>
-                      {item.score_earned.toFixed(1)} / {item.weight.toFixed(1)} pts
-                    </span>
-                  </div>
-
-                  <p className="text-muted-foreground text-xs leading-relaxed">
-                    <strong>Evidência:</strong> {item.evidence}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* Exportar Flashcards de Choque */}
           {report.shock_cards?.length > 0 && (

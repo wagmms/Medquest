@@ -1151,3 +1151,116 @@ class TestOsceStage3MannequinAndProcedures:
             assert "selo d'água" in res_drain["findings"].lower()
             assert "bailarina" in res_drain["findings"].lower()
 
+
+class TestOsceStage4EvaluationAndMirror:
+    """Suíte de testes para a Etapa 4: Avaliação de Barema, Red Flags, Espelho Oficial e Feedback do Preceptor."""
+
+    def test_finish_osce_session_with_red_flag_capping(self, app):
+        """Verifica detecção de Red Flag anatômica, teto de nota de segurança e veredito de eliminação."""
+        with app.app_context():
+            db = get_db()
+            osce.seed_osce_stations(db)
+            st = db.execute("SELECT id FROM osce_stations LIMIT 1").fetchone()
+            sess = osce.start_osce_session(db, st["id"], "user_stage4_iatro")
+            session_id = sess["session_id"]
+
+            # Candidato comete iatrogenia crítica: corte sobre o istmo da tireoide
+            osce.perform_osce_procedure(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage4_iatro",
+                procedure_type="surgical_cricothyroidotomy",
+                anatomical_site="iatrogenic_thyroid_gland",
+                elapsed_seconds=120
+            )
+
+            # Finaliza a estação
+            res = osce.finish_osce_session(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage4_iatro",
+                conduct_notes="Realizei cricotireoidostomia rápida sem intercorrências."
+            )
+
+            assert res["status"] == "completed"
+            assert len(res["red_flags_triggered"]) >= 1
+            rf = res["red_flags_triggered"][0]
+            assert rf["code"] == "RF_ANAT_THYROID"
+            assert "istmo da glândula tireoide" in rf["description"].lower()
+            # Trava de teto de nota de segurança (Fatal Flaw: caps at 3.0)
+            assert res["final_score"] <= 3.0
+            assert res["headline_verdict"] == "ELIMINADO POR IATROGENIA"
+            assert res["approved"] is False
+
+    def test_finish_osce_session_approved_with_distinction(self, app):
+        """Verifica atendimento exemplar: nota alta, radar 5D completo e conduta padrão-ouro."""
+        with app.app_context():
+            db = get_db()
+            osce.seed_osce_stations(db)
+            st = db.execute("SELECT id FROM osce_stations WHERE code = 'UNICAMP-2024-CM-SCA'").fetchone()
+            if not st:
+                st = db.execute("SELECT id FROM osce_stations LIMIT 1").fetchone()
+            session_id = osce.start_osce_session(db, st["id"], "user_stage4_gold")["session_id"]
+
+            # Diálogo de anamnese rico
+            osce.interact_osce_session(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage4_gold",
+                message="Olá senhor, sou o médico de plantão. Vou cuidar da sua dor no peito. Quando começou a queimação e irradia para o braço?",
+                elapsed_seconds=30,
+                target="PATIENT"
+            )
+
+            # Solicitação de ECG, monitor e exames
+            osce.execute_osce_action(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage4_gold",
+                action_type="exam",
+                action_target="ecg",
+                elapsed_seconds=60
+            )
+
+            # Finalização com conduta farmacológica padrão-ouro
+            res = osce.finish_osce_session(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage4_gold",
+                conduct_notes="Solicito ECG de 12 derivações em < 10 min, monitorização, oxigênio, AAS 300mg mastigado, Ticagrelor 180mg, analgesia e encaminho para cateterismo de urgência / hemodinâmica para angioplastia primária."
+            )
+
+            assert res["status"] == "completed"
+            assert res["final_score"] >= 7.0
+            assert res["approved"] is True
+            assert res["headline_verdict"] in ("APROVADO COM DISTINÇÃO", "APROVADO NO LIMITE")
+
+            # Radar de 5 Competências presente
+            radar_5d = res["competency_radar_5d"]
+            assert "clinical_reasoning" in radar_5d
+            assert "communication_empathy" in radar_5d
+            assert "surgical_semiotics" in radar_5d
+            assert "patient_safety" in radar_5d
+            assert "sus_time_efficiency" in radar_5d
+
+            # Parecer do Preceptor Chefe com Conduta Canônica
+            review = res["chief_preceptor_review"]
+            assert len(review["what_went_well"]) >= 1
+            assert "gold_standard_canonical_conduct" in review
+            assert len(review["gold_standard_canonical_conduct"]) > 20
+
+    def test_get_osce_session_report_endpoint(self, app):
+        """Verifica recuperação do espelho de prova completo via get_osce_session_report."""
+        with app.app_context():
+            db = get_db()
+            osce.seed_osce_stations(db)
+            st = db.execute("SELECT id FROM osce_stations LIMIT 1").fetchone()
+            session_id = osce.start_osce_session(db, st["id"], "user_stage4_report")["session_id"]
+            osce.finish_osce_session(db, session_id, "user_stage4_report", conduct_notes="Conduta padrão.")
+
+            report = osce.get_osce_session_report(db, session_id, "user_stage4_report")
+            assert report is not None
+            assert report["status"] == "completed"
+            assert "preceptor_feedback" in report
+            assert "checklist_evaluation" in report
+
