@@ -48,6 +48,43 @@ CANONICAL_STATIONS: list[dict[str, Any]] = [
                 "temp": "36.2 °C",
                 "hgt": "HI (> 500 mg/dL)"
             },
+            "physiology_engine": {
+                "initial_state": {
+                    "hr": 128,
+                    "sbp": 90,
+                    "dbp": 60,
+                    "spo2": 97,
+                    "rr": 32,
+                    "temp": 36.2,
+                    "gcs": 13,
+                    "rhythm": "SINUS_TACHYCARDIA",
+                    "etco2": 22,
+                    "perfusion_index": 1.2
+                },
+                "natural_progression": [
+                    {
+                        "condition": "time_elapsed > 180 && !interventions.includes('sf09')",
+                        "effects_per_minute": {"sbp": -5, "dbp": -3, "hr": +4, "gcs": -1}
+                    }
+                ],
+                "intervention_modifiers": {
+                    "sf09": {
+                        "onset_seconds": 15,
+                        "duration_seconds": 120,
+                        "delta_vitals": {"sbp": +18, "dbp": +10, "hr": -16}
+                    },
+                    "insulina": {
+                        "onset_seconds": 20,
+                        "duration_seconds": 180,
+                        "delta_vitals": {"hr": -8, "rr": -6}
+                    },
+                    "kcl": {
+                        "onset_seconds": 15,
+                        "duration_seconds": 120,
+                        "delta_vitals": {"hr": -4}
+                    }
+                }
+            },
             "findings": {
                 "geral": "Torporoso, abertura ocular ao chamado verbal, hálito cetônico marcante (odor de maçã podre), desidratação grave 3+/4+ com mucosas secas e olhos encovados.",
                 "respiratorio": "Hiperpneia profunda e rápida com incursões toracoabdominais amplas (respiração ácida de Kussmaul), murmúrio vesicular simétrico sem ruídos adventícios.",
@@ -281,6 +318,48 @@ CANONICAL_STATIONS: list[dict[str, Any]] = [
                 "fr": "26 irpm",
                 "sato2": "95% em máscara de O2 com colar cervical",
                 "temp": "35.8 °C (hipotermia)"
+            },
+            "physiology_engine": {
+                "initial_state": {
+                    "hr": 134,
+                    "sbp": 80,
+                    "dbp": 50,
+                    "spo2": 95,
+                    "rr": 26,
+                    "temp": 35.8,
+                    "gcs": 14,
+                    "rhythm": "SINUS_TACHYCARDIA",
+                    "etco2": 28,
+                    "perfusion_index": 0.6
+                },
+                "natural_progression": [
+                    {
+                        "condition": "time_elapsed > 120 && !interventions.includes('sangue_111')",
+                        "effects_per_minute": {"sbp": -10, "dbp": -6, "hr": +8, "gcs": -2}
+                    },
+                    {
+                        "condition": "sbp < 50",
+                        "trigger_state": "CARDIAC_ARREST_PEA",
+                        "override_vitals": {"hr": 35, "sbp": 0, "dbp": 0, "spo2": 0, "rr": 0, "gcs": 3, "rhythm": "PEA"}
+                    }
+                ],
+                "intervention_modifiers": {
+                    "sangue_111": {
+                        "onset_seconds": 20,
+                        "duration_seconds": 120,
+                        "delta_vitals": {"sbp": +22, "dbp": +14, "hr": -20, "gcs": +1}
+                    },
+                    "acido_tranexamico": {
+                        "onset_seconds": 10,
+                        "duration_seconds": 120,
+                        "delta_vitals": {"sbp": +6, "dbp": +4}
+                    },
+                    "sf09": {
+                        "onset_seconds": 15,
+                        "duration_seconds": 60,
+                        "delta_vitals": {"sbp": +8, "dbp": +4, "hr": -6}
+                    }
+                }
             },
             "findings": {
                 "atls_a": "Via aérea pérvia, falando com voz pastosa, colar cervical bem posicionado e alinhado.",
@@ -1379,6 +1458,62 @@ CANONICAL_STATIONS: list[dict[str, Any]] = [
                 "fc": "180 bpm",
                 "fr": "26 irpm",
                 "sato2": "91% em ar ambiente"
+            },
+            "physiology_engine": {
+                "initial_state": {
+                    "hr": 180,
+                    "sbp": 75,
+                    "dbp": 45,
+                    "spo2": 91,
+                    "rr": 26,
+                    "temp": 36.2,
+                    "gcs": 13,
+                    "rhythm": "VENTRICULAR_TACHYCARDIA",
+                    "etco2": 32,
+                    "perfusion_index": 0.8
+                },
+                "natural_progression": [
+                    {
+                        "condition": "time_elapsed > 180 && !interventions.includes('cardioversion')",
+                        "effects_per_minute": {"sbp": -8, "dbp": -4, "spo2": -3, "gcs": -1}
+                    },
+                    {
+                        "condition": "sbp < 55",
+                        "trigger_state": "CARDIAC_ARREST_VF",
+                        "override_vitals": {"hr": 240, "sbp": 0, "dbp": 0, "spo2": 0, "rr": 0, "gcs": 3, "rhythm": "VENTRICULAR_FIBRILLATION"}
+                    }
+                ],
+                "intervention_modifiers": {
+                    "cardioversion_sync": {
+                        "instant": True,
+                        "condition": "rhythm == 'VENTRICULAR_TACHYCARDIA'",
+                        "target_vitals": {"hr": 84, "sbp": 118, "dbp": 74, "spo2": 97, "rr": 18, "gcs": 15, "rhythm": "NORMAL_SINUS"}
+                    },
+                    "cardioversion_unsync": {
+                        "instant": True,
+                        "iatrogenic_alert": "R_ON_T_VF",
+                        "target_vitals": {"hr": 260, "sbp": 0, "dbp": 0, "spo2": 0, "rr": 0, "gcs": 3, "rhythm": "VENTRICULAR_FIBRILLATION"}
+                    },
+                    "amiodarona": {
+                        "onset_seconds": 15,
+                        "duration_seconds": 60,
+                        "delta_vitals": {"sbp": -15, "dbp": -10, "hr": -10, "gcs": -2},
+                        "iatrogenic_alert": "IATROGENIC_HYPOTENSION_IN_SHOCK"
+                    },
+                    "sf09": {
+                        "onset_seconds": 10,
+                        "duration_seconds": 60,
+                        "delta_vitals": {"sbp": +6, "dbp": +3}
+                    },
+                    "midazolam": {
+                        "onset_seconds": 8,
+                        "delta_vitals": {"gcs": -3, "sbp": -4}
+                    },
+                    "etomidato": {
+                        "onset_seconds": 6,
+                        "delta_vitals": {"gcs": -3}
+                    }
+                }
             },
             "findings": {
                 "geral": "Sonolenta, má perfusão periférica, tempo de enchimento capilar de 4 segundos, sudorese profusa e pele fria.",

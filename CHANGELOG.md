@@ -2,6 +2,23 @@
 
 Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
+## [2026-10-16] - Etapa 1 do Novo Simulador OSCE: Motor Fisiológico Reativo (VitalStateEngine) & Monitor Multiparamétrico 60fps
+- **Motor Fisiológico Reativo em Tempo Real (`app/frontend/src/app/osce/[id]/useVitalStateEngine.ts`)**:
+  - Implementado o hook `useVitalStateEngine` com cálculo determinístico de ciclo hemodinâmico a 1Hz, modelando $S(t) = S_0 + \vec{D}_{\text{patologia}} + \sum \vec{I}_{\text{intervenções}} + \vec{\epsilon}(t)$.
+  - Incorporada farmacocinética dinâmica (latência de início *onset*, pico e duração) para infusões de cristaloides, amiodarona, adenosina, noradrenalina, insulina e protocolo de transfusão maciça (1:1:1).
+  - Adicionado jitter estocástico fisiológico ($\pm 1\%$) para oscilação natural dos parâmetros numéricos.
+  - Implementada simulação de manguito de Pressão Não-Invasiva (PNI) com atraso de insuflação e cálculo da Pressão Arterial Média (PAM).
+- **Monitor Multiparamétrico Virtual da Sala Vermelha (`app/frontend/src/app/osce/[id]/MultiparameterMonitor.tsx`)**:
+  - Renderização contínua a 60 fps em HTML5 `<canvas>` com feixe de varredura (*sweep bar*) para traçados de ECG DII (verde) e Pletismografia de Oximetria SpO2 (ciano).
+  - Formas de onda procedurais para ritmos clínicos: Ritmo Sinusal, Taquicardia Sinusal, TSV, Taquicardia Ventricular Monomórfica, Fibrilação Ventricular e Assistolia.
+  - Sintetizador Psicoacústico via Web Audio API: bips na sístole modulados pela oximetria ($f = 440 + (\text{SpO}_2 - 80) \times 18\text{ Hz}$) e alarmes normatizados IEC com silenciamento por 2 minutos.
+  - Modal tático de cardioversor/desfibrilador manual permitindo choque sincronizado ou desincronizado (com disparo de FV iatrogênica em caso de choque desincronizado em TV com pulso).
+- **Backend & Modelagem de Fisiologia (`app/backend/api/osce.py`, `app/backend/api/osce_data.py`)**:
+  - Função `_build_physiology_engine` com fallback determinístico e regras de progressão natural calibradas para as estações de choque e arritmias (`UNIFESP-2024-CM-TV`, `USP-RP-2024-CM-CAD`, `USP-RP-2023-CG-FAST`).
+  - Atualizado endpoint `GET /api/osce/stations/<id>` expondo `physiology_engine` estruturado.
+  - Novo teste unitário `test_osce_physiology_engine` em `app/backend/tests/test_osce.py` (18/18 testes aprovados).
+  - Validação completa com `./validate.sh fast` (14.97s, zero erros de ESLint e testes verdes).
+
 ## [2026-10-15] - Execução Argon: Correções Cirúrgicas de Segurança (P0) e Resiliência de IA/Idempotência (P1)
 - **Segurança de Credenciais e Governança Canônica (`app/backend/scripts/`)**:
   - `deepseek_map_hours.py`: Eliminada credencial Bearer da API DeepSeek exposta em texto claro; implementada leitura obrigatória via `os.environ["DEEPSEEK_API_KEY"]` com *fail-fast*.

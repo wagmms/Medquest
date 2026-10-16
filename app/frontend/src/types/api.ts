@@ -755,6 +755,42 @@ export interface OsceStation {
   completed_attempts: number;
 }
 
+export interface OscePhysiologyVitals {
+  hr: number;
+  sbp: number;
+  dbp: number;
+  spo2: number;
+  rr: number;
+  temp?: number;
+  gcs?: number;
+  rhythm: string;
+  etco2?: number;
+  perfusion_index?: number;
+}
+
+export interface OsceNaturalProgressionRule {
+  condition: string;
+  effects_per_minute?: Partial<Record<"hr" | "sbp" | "dbp" | "spo2" | "rr" | "gcs" | "etco2", number>>;
+  trigger_state?: string;
+  override_vitals?: Partial<OscePhysiologyVitals>;
+}
+
+export interface OsceInterventionModifier {
+  onset_seconds?: number;
+  duration_seconds?: number;
+  condition?: string;
+  delta_vitals?: Partial<Record<"hr" | "sbp" | "dbp" | "spo2" | "rr" | "gcs" | "etco2", number>>;
+  target_vitals?: Partial<OscePhysiologyVitals>;
+  iatrogenic_alert?: string;
+  instant?: boolean;
+}
+
+export interface OscePhysiologyEngineConfig {
+  initial_state: OscePhysiologyVitals;
+  natural_progression?: OsceNaturalProgressionRule[];
+  intervention_modifiers?: Record<string, OsceInterventionModifier>;
+}
+
 export interface OsceStationDetail {
   id: number;
   code: string;
@@ -778,6 +814,7 @@ export interface OsceStationDetail {
     key: string;
     title: string;
   }>;
+  physiology_engine?: OscePhysiologyEngineConfig;
 }
 
 export interface OsceTranscriptItem {

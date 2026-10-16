@@ -869,5 +869,40 @@ def test_osce_input_sanitization_and_edge_cases(app, client):
         assert res_miss.status_code == 404
 
 
+def test_osce_physiology_engine(app, client):
+    """Testa a extração e retorno do motor de fisiologia dinâmica nas estações OSCE."""
+    with app.app_context():
+        db = get_db()
+        osce.seed_osce_stations(db)
+
+        # 1. Estação de Taquicardia Ventricular (UNIFESP-2024-CM-TV) com regras explícitas
+        tv_station = db.execute("SELECT id FROM osce_stations WHERE code = 'UNIFESP-2024-CM-TV'").fetchone()
+        assert tv_station is not None
+        details = osce.get_osce_station(db, tv_station["id"])
+        assert "physiology_engine" in details
+        pe = details["physiology_engine"]
+        assert pe["initial_state"]["rhythm"] == "VENTRICULAR_TACHYCARDIA"
+        assert pe["initial_state"]["hr"] == 180
+        assert pe["initial_state"]["sbp"] == 75
+        assert "cardioversion_sync" in pe["intervention_modifiers"]
+
+        # 2. Estação de Cetoacidose Diabética (USP-RP-2024-CM-CAD)
+        cad_station = db.execute("SELECT id FROM osce_stations WHERE code = 'USP-RP-2024-CM-CAD'").fetchone()
+        assert cad_station is not None
+        cad_details = osce.get_osce_station(db, cad_station["id"])
+        cad_pe = cad_details["physiology_engine"]
+        assert cad_pe["initial_state"]["rhythm"] == "SINUS_TACHYCARDIA"
+        assert cad_pe["initial_state"]["hr"] == 128
+        assert "sf09" in cad_pe["intervention_modifiers"]
+
+        # 3. Rota HTTP GET /api/osce/stations/<id> retorna physiology_engine
+        res = client.get(f"/api/osce/stations/{tv_station['id']}")
+        assert res.status_code == 200
+        data = res.get_json()
+        assert "physiology_engine" in data
+        assert data["physiology_engine"]["initial_state"]["hr"] == 180
+
+
+
 
 

@@ -139,6 +139,95 @@ def list_osce_stations(
     return result
 
 
+def _build_physiology_engine(physical_exam: dict[str, Any], subtema: str = "", title: str = "") -> dict[str, Any]:
+    """Retorna o motor de fisiologia dinâmica da estação com fallback determinístico sanitizado."""
+    if physical_exam.get("physiology_engine"):
+        return physical_exam["physiology_engine"]
+
+    vitals = physical_exam.get("vitals", {})
+    if not vitals:
+        return {
+            "initial_state": {
+                "hr": 75,
+                "sbp": 120,
+                "dbp": 80,
+                "spo2": 98,
+                "rr": 16,
+                "temp": 36.5,
+                "gcs": 15,
+                "rhythm": "NORMAL_SINUS",
+                "etco2": 38,
+                "perfusion_index": 2.5
+            },
+            "natural_progression": [],
+            "intervention_modifiers": {}
+        }
+
+    # Extrai FC
+    fc_val = 80
+    fc_match = re.search(r"\b(\d{2,3})\b", vitals.get("fc", ""))
+    if fc_match:
+        fc_val = int(fc_match.group(1))
+
+    # Extrai PA
+    sbp_val = 120
+    dbp_val = 80
+    pa_match = re.search(r"(\d{2,3})\s*[xX/]\s*(\d{2,3})", vitals.get("pa", ""))
+    if pa_match:
+        sbp_val = int(pa_match.group(1))
+        dbp_val = int(pa_match.group(2))
+
+    # Extrai SpO2
+    spo2_val = 97
+    spo2_match = re.search(r"(\d{2,3})%", vitals.get("sato2", ""))
+    if spo2_match:
+        spo2_val = int(spo2_match.group(1))
+
+    # Extrai FR
+    rr_val = 16
+    rr_match = re.search(r"\b(\d{1,2})\b", vitals.get("fr", ""))
+    if rr_match:
+        rr_val = int(rr_match.group(1))
+
+    # Extrai Temp
+    temp_val = 36.5
+    temp_match = re.search(r"(\d{2}[.,]\d)", vitals.get("temp", ""))
+    if temp_match:
+        temp_val = float(temp_match.group(1).replace(",", "."))
+
+    # Determina ritmo basal
+    norm_meta = _normalize_text(f"{subtema} {title}")
+    if "taquicardia ventricular" in norm_meta or "monomorfica" in norm_meta:
+        rhythm = "VENTRICULAR_TACHYCARDIA"
+    elif "fibrilacao" in norm_meta:
+        rhythm = "AFIB"
+    elif "supraventricular" in norm_meta or "tsv" in norm_meta:
+        rhythm = "UNSTABLE_SVT"
+    elif fc_val >= 100:
+        rhythm = "SINUS_TACHYCARDIA"
+    elif fc_val < 50:
+        rhythm = "SINUS_BRADYCARDIA"
+    else:
+        rhythm = "NORMAL_SINUS"
+
+    return {
+        "initial_state": {
+            "hr": fc_val,
+            "sbp": sbp_val,
+            "dbp": dbp_val,
+            "spo2": spo2_val,
+            "rr": rr_val,
+            "temp": temp_val,
+            "gcs": 15 if sbp_val >= 90 else 13,
+            "rhythm": rhythm,
+            "etco2": 38 if rr_val <= 24 else 28,
+            "perfusion_index": 2.2 if sbp_val >= 90 else 0.8
+        },
+        "natural_progression": [],
+        "intervention_modifiers": {}
+    }
+
+
 def get_osce_station(db, station_id: int, include_barema: bool = False) -> Optional[dict[str, Any]]:
     """Carrega detalhes de uma estação, mantendo o barema oculto durante a prova."""
     row = db.execute("""
@@ -178,7 +267,8 @@ def get_osce_station(db, station_id: int, include_barema: bool = False) -> Optio
         "lab_imaging_catalog": [
             {"key": k, "title": v.get("title", k)}
             for k, v in lab_imaging.items()
-        ]
+        ],
+        "physiology_engine": _build_physiology_engine(physical_exam, row["subtema"], row["title"])
     }
 
     if include_barema:

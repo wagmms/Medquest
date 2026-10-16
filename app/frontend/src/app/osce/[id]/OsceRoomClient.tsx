@@ -16,6 +16,8 @@ import { PrescriptionPad } from "./PrescriptionPad";
 import { ProcedureMannequin } from "./ProcedureMannequin";
 import { GhostPreceptorHUD } from "./GhostPreceptorHUD";
 import { OscePostMortemAndRadar } from "./OscePostMortemAndRadar";
+import { useVitalStateEngine } from "./useVitalStateEngine";
+import { MultiparameterMonitor } from "./MultiparameterMonitor";
 
 interface SpeechRecognitionResultItem {
   transcript: string;
@@ -76,6 +78,15 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const [selectedMode, setSelectedMode] = useState<"blind" | "guided">("guided");
   const [sessionMode, setSessionMode] = useState<"blind" | "guided">("guided");
   const [liveFeedback, setLiveFeedback] = useState<OsceLiveFeedback | null>(null);
+
+  // Motor Fisiológico Dinâmico Beira-Leito (VitalStateEngine)
+  const vitalEngine = useVitalStateEngine({
+    initialConfig: station.physiology_engine,
+    fallbackVitals: vitals,
+    durationSeconds: station.duration_seconds || 480,
+    timeLeft,
+    isActive: phase === "exam",
+  });
 
   // Estados do Circuito Oficial de 5 Estações
   const [circuitPlan, setCircuitPlan] = useState<import("@/types/api").OsceCircuitPlanResponse | null>(null);
@@ -800,8 +811,12 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
         }
       ]);
 
-      if (actionType === "vitals" && res.payload.vitals) {
-        setVitals(res.payload.vitals as Record<string, string>);
+      if (actionType === "vitals") {
+        vitalEngine.connectSensors(["all"]);
+        vitalEngine.measureNibp();
+        if (res.payload.vitals) {
+          setVitals(res.payload.vitals as Record<string, string>);
+        }
       }
       if (actionType === "lab_imaging" && res.payload.title) {
         setSelectedExam({
@@ -826,6 +841,41 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   ) => {
     if (guidedFeedback) {
       setLiveFeedback(guidedFeedback);
+    }
+
+    // Alimenta o motor fisiológico com as drogas administradas
+    if (prescriptionText) {
+      const lower = prescriptionText.toLowerCase();
+      if (lower.includes("adrenalina") || lower.includes("epinefrina")) {
+        vitalEngine.applyIntervention("adrenalina", "Adrenalina");
+      }
+      if (lower.includes("noradrenalina")) {
+        vitalEngine.applyIntervention("noradrenalina", "Noradrenalina");
+      }
+      if (lower.includes("amiodarona")) {
+        vitalEngine.applyIntervention("amiodarona", "Amiodarona");
+      }
+      if (lower.includes("adenosina")) {
+        vitalEngine.applyIntervention("adenosina", "Adenosina");
+      }
+      if (lower.includes("sf 0,9") || lower.includes("soro") || lower.includes("cristaloide")) {
+        vitalEngine.applyIntervention("sf09", "Soro Fisiológico 0,9%");
+      }
+      if (lower.includes("insulina")) {
+        vitalEngine.applyIntervention("insulina", "Insulina Regular");
+      }
+      if (lower.includes("kcl") || lower.includes("potassio")) {
+        vitalEngine.applyIntervention("kcl", "Cloreto de Potássio");
+      }
+      if (lower.includes("sangue") || lower.includes("transfusao") || lower.includes("1:1:1")) {
+        vitalEngine.applyIntervention("sangue_111", "Transfusão Maciça 1:1:1");
+      }
+      if (lower.includes("tranexamico") || lower.includes("transamin")) {
+        vitalEngine.applyIntervention("acido_tranexamico", "Ácido Tranexâmico");
+      }
+      if (lower.includes("midazolam") || lower.includes("etomidato") || lower.includes("fentanil")) {
+        vitalEngine.applyIntervention("sedacao", "Sedação / Analgesia");
+      }
     }
 
     const elapsed = (station.duration_seconds || 480) - timeLeft;
@@ -855,6 +905,13 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   ) => {
     if (guidedFeedback) {
       setLiveFeedback(guidedFeedback);
+    }
+
+    // Alimenta o motor fisiológico com o procedimento realizado
+    if (title.toLowerCase().includes("cardiovers") || title.toLowerCase().includes("choque")) {
+      vitalEngine.executeCardioversion(true, 100);
+    } else {
+      vitalEngine.applyIntervention("procedure", title);
     }
 
     const elapsed = (station.duration_seconds || 480) - timeLeft;
@@ -1245,6 +1302,22 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
             </div>
           </div>
 
+          {/* MONITOR MULTIPARAMÉTRICO VIRTUAL EM TEMPO REAL (SALA VERMELHA) */}
+          <MultiparameterMonitor
+            vitals={vitalEngine.vitals}
+            isMonitored={vitalEngine.isMonitored}
+            displayedNibp={vitalEngine.displayedNibp}
+            isMeasuringNibp={vitalEngine.isMeasuringNibp}
+            activeAlarms={vitalEngine.activeAlarms}
+            isAlarmSilenced={vitalEngine.isAlarmSilenced}
+            isAudioMuted={vitalEngine.isAudioMuted}
+            onMeasureNibp={vitalEngine.measureNibp}
+            onConnectSensors={vitalEngine.connectSensors}
+            onSilenceAlarms={vitalEngine.silenceAlarms}
+            onToggleAudio={vitalEngine.toggleAudio}
+            onExecuteCardioversion={vitalEngine.executeCardioversion}
+          />
+
           {/* Grid Principal: Chat com Paciente (Esq) + Painel de Ações Clínicas (Dir) */}
           <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-4 min-h-0">
             {/* Coluna Esquerda: Chat & Diálogo com o Paciente (7 cols) */}
@@ -1419,15 +1492,49 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                       </button>
                     </div>
 
-                    {/* Sinais Vitais Exibidos */}
-                    {vitals && (
+                    {/* Sinais Vitais Exibidos Dinâmicos */}
+                    {(vitals || vitalEngine.isMonitored.ecg || vitalEngine.displayedNibp) && (
                       <div className="grid grid-cols-3 gap-2 p-3 rounded-xl bg-muted/20 border border-border font-mono text-[11px]">
-                        <div>PA: <span className="font-bold text-foreground">{vitals.pa}</span></div>
-                        <div>FC: <span className="font-bold text-foreground">{vitals.fc}</span></div>
-                        <div>FR: <span className="font-bold text-foreground">{vitals.fr}</span></div>
-                        <div>SatO2: <span className="font-bold text-foreground">{vitals.sato2}</span></div>
-                        <div>Temp: <span className="font-bold text-foreground">{vitals.temp}</span></div>
-                        {vitals.hgt && <div>Glic: <span className="font-bold text-foreground">{vitals.hgt}</span></div>}
+                        <div>
+                          PA:{" "}
+                          <span className="font-bold text-foreground">
+                            {vitalEngine.displayedNibp
+                              ? `${vitalEngine.displayedNibp.sbp}x${vitalEngine.displayedNibp.dbp}`
+                              : vitalEngine.isMeasuringNibp
+                              ? "Aferindo..."
+                              : vitals?.pa || "--/--"}
+                          </span>
+                        </div>
+                        <div>
+                          FC:{" "}
+                          <span className="font-bold text-emerald-500">
+                            {vitalEngine.isMonitored.ecg ? `${vitalEngine.vitals.hr} bpm` : vitals?.fc || "--"}
+                          </span>
+                        </div>
+                        <div>
+                          FR:{" "}
+                          <span className="font-bold text-foreground">
+                            {vitalEngine.vitals.rr} irpm
+                          </span>
+                        </div>
+                        <div>
+                          SatO2:{" "}
+                          <span className="font-bold text-cyan-500">
+                            {vitalEngine.isMonitored.spo2 ? `${vitalEngine.vitals.spo2}%` : vitals?.sato2 || "--"}
+                          </span>
+                        </div>
+                        <div>
+                          Temp:{" "}
+                          <span className="font-bold text-foreground">
+                            {vitalEngine.vitals.temp || 36.5} °C
+                          </span>
+                        </div>
+                        <div>
+                          Ritmo:{" "}
+                          <span className="font-bold text-emerald-500 truncate block text-[10px]">
+                            {vitalEngine.vitals.rhythm}
+                          </span>
+                        </div>
                       </div>
                     )}
 
