@@ -354,16 +354,63 @@ def test_question_detail_and_attempt_not_found(client):
     r_detail = client.get("/api/questions/99999")
     assert r_detail.status_code == 404
     assert r_detail.get_json()["error"] == "not found"
+    assert r_detail.get_json()["code"] == "QUESTION_NOT_FOUND"
 
     # Tentativa em questão inexistente retorna 404
     r_attempt = client.post("/api/questions/99999/attempt", json={"selected_letter": "A"})
     assert r_attempt.status_code == 404
     assert r_attempt.get_json()["error"] == "not found"
+    assert r_attempt.get_json()["code"] == "QUESTION_NOT_FOUND"
 
     # Review em questão sem tentativa retorna 400
     r_review = client.post("/api/questions/99999/review", json={"confidence": "certeza"})
     assert r_review.status_code == 400
     assert r_review.get_json()["error"] == "No attempt found"
+    assert r_review.get_json()["code"] == "NO_ATTEMPT_FOUND"
+
+
+def test_attempt_and_review_invalid_input_standard_code(client):
+    r_inv_att = client.post("/api/questions/1/attempt", json={"selected_letter": "Z"})
+    assert r_inv_att.status_code == 400
+    assert r_inv_att.get_json()["code"] == "INVALID_INPUT"
+
+    r_inv_rev = client.post("/api/questions/1/review", json={"confidence": "invalido"})
+    assert r_inv_rev.status_code == 400
+    assert r_inv_rev.get_json()["code"] == "INVALID_INPUT"
+
+
+def test_attempt_e_review_recupera_fsrs_card_corrompido(client, app):
+    """Garante que registros corrompidos na tabela spaced_repetition sejam regenerados sem erro 500."""
+    from api.db import get_db
+    with app.app_context():
+        db = get_db()
+        db.execute(
+            "INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id) VALUES (?, ?, ?, ?)",
+            (1, "2026-10-10T12:00:00+00:00", "{malformed_json_truncado: true", "1")
+        )
+        db.commit()
+
+    # Tentativa deve recuperar com estado padrão e retornar 200
+    r_attempt = client.post("/api/questions/1/attempt", json={"selected_letter": "B", "confidence": "certeza"})
+    assert r_attempt.status_code == 200
+    body = r_attempt.get_json()
+    assert body["is_correct"] is True
+    assert body["next_review_date"] is not None
+
+    # Corrompe novamente com dicionário inválido para testar rota de review
+    with app.app_context():
+        db = get_db()
+        db.execute(
+            "UPDATE spaced_repetition SET fsrs_card = ? WHERE question_id = ? AND user_id = ?",
+            ("{\"schema_invalido\": 999}", 1, "1")
+        )
+        db.commit()
+
+    # Passa is_correct para ativar recálculo FSRS na retificação/autoavaliação
+    r_review = client.post("/api/questions/1/review", json={"confidence": "duvida", "is_correct": True})
+    assert r_review.status_code == 200
+    assert r_review.get_json()["success"] is True
+    assert r_review.get_json()["next_review_date"] is not None
 
 
 def test_question_favorite_not_found(client, app):

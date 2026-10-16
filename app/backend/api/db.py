@@ -1,6 +1,7 @@
 """Acesso ao banco (SQLite / Turso) e criação/evolução de tabelas."""
 import logging
 import os
+import re
 import sqlite3
 from contextlib import contextmanager
 from threading import local
@@ -79,8 +80,19 @@ def _reconnect_turso(turso_url, turso_token, failed_client=None):
     return _connect_turso(turso_url, turso_token)
 
 
+_WRITE_KEYWORDS_RE = re.compile(
+    r"\b(INSERT|UPDATE|DELETE|REPLACE|DROP|ALTER|CREATE|ATTACH|DETACH|VACUUM|REINDEX)\b",
+    re.IGNORECASE,
+)
+
+
 def _is_read_only_query(sql):
-    return sql.strip().upper().startswith(("SELECT", "WITH", "PRAGMA", "EXPLAIN"))
+    cleaned = (sql or "").strip()
+    upper = cleaned.upper()
+    if not upper.startswith(("SELECT", "WITH", "PRAGMA", "EXPLAIN")):
+        return False
+    # Impede que CTEs com escrita (WITH ... DELETE/UPDATE) sejam tratadas como leitura
+    return _WRITE_KEYWORDS_RE.search(cleaned) is None
 
 
 class TursoRow(dict):
@@ -101,10 +113,12 @@ class TursoCursor:
     def __init__(self, cursor):
         self.cursor = cursor
         self.columns = [column[0] for column in (getattr(cursor, "description", None) or [])]
+        self._lastrowid = getattr(cursor, "lastrowid", None) if cursor else None
+        self._rowcount = getattr(cursor, "rowcount", 0) if cursor else 0
         self._closed = False
-        
-    def __del__(self):
-        self.close()
+        # Statements de escrita (sem colunas) são fechados imediatamente
+        if not self.columns:
+            self.close()
         
     def fetchone(self):
         if self.cursor is None:
@@ -137,6 +151,21 @@ class TursoCursor:
     @property
     def rowcount(self):
         return getattr(self.cursor, "rowcount", 0) if self.cursor else 0
+
+def _sanitize_params(parameters):
+    """Sanitiza parâmetros preservando dicts/sequências sem corromper binários silenciosamente."""
+    if isinstance(parameters, dict):
+        return {
+            k: (v.decode("utf-8", "replace") if isinstance(v, bytes) else v)
+            for k, v in parameters.items()
+        }
+    if isinstance(parameters, (list, tuple)):
+        return [
+            x.decode("utf-8", "replace") if isinstance(x, bytes) else x
+            for x in parameters
+        ]
+    return list(parameters)
+
 
 class TursoConnection:
     def __init__(self, client, persistent=False, reconnect=None):
@@ -184,8 +213,7 @@ class TursoConnection:
         self.tx = True
 
     def execute(self, sql, parameters=()):
-        args = list(parameters)
-        clean_args = [x if not isinstance(x, bytes) else x.decode('utf-8', 'ignore') for x in args]
+        clean_args = _sanitize_params(parameters)
         try:
             cursor = self._execute_with_reconnect(sql, clean_args, retry_stale_stream=not self.tx)
             return TursoCursor(cursor)
@@ -199,20 +227,7 @@ class TursoConnection:
             raise
 
     def executemany(self, sql, seq_of_parameters=()):
-        clean_seq = []
-        for params in seq_of_parameters:
-            if isinstance(params, dict):
-                clean_seq.append({
-                    k: (v if not isinstance(v, bytes) else v.decode('utf-8', 'ignore'))
-                    for k, v in params.items()
-                })
-            elif isinstance(params, (list, tuple)):
-                clean_seq.append([
-                    x if not isinstance(x, bytes) else x.decode('utf-8', 'ignore')
-                    for x in params
-                ])
-            else:
-                clean_seq.append(params)
+        clean_seq = [_sanitize_params(params) for params in seq_of_parameters]
         try:
             cursor = self._executemany_with_reconnect(sql, clean_seq, retry_stale_stream=not self.tx)
             return TursoCursor(cursor)
@@ -262,6 +277,16 @@ class TursoConnection:
     def commit(self):
         try:
             self.client.commit()
+        except Exception as e:
+            try:
+                self.client.rollback()
+            except Exception:
+                if self.persistent and self._reconnect and _is_stale_turso_stream(e):
+                    try:
+                        self.client = self._reconnect(self.client)
+                    except Exception:
+                        pass
+            raise
         finally:
             self.tx = False
                 
@@ -282,22 +307,37 @@ class TursoConnection:
 @contextmanager
 def db_transaction(db, immediate=False):
     """Context manager para gerenciar transações e garantir rollback explícito."""
-    owns_tx = False
-    try:
-        if isinstance(db, TursoConnection):
+    if isinstance(db, TursoConnection):
+        owns_tx = not db.tx
+        if owns_tx:
             db.begin(immediate=immediate)
-            owns_tx = True
+        try:
+            yield db
+            if owns_tx:
+                db.commit()
+        except Exception:
+            if owns_tx:
+                db.rollback()
+            raise
+    else:
+        if not getattr(db, "in_transaction", False):
+            db.execute("BEGIN IMMEDIATE" if immediate else "BEGIN")
+            try:
+                yield db
+                db.commit()
+            except Exception:
+                db.rollback()
+                raise
         else:
-            if not getattr(db, "in_transaction", False):
-                db.execute("BEGIN IMMEDIATE" if immediate else "BEGIN")
-                owns_tx = True
-        yield db
-        if owns_tx:
-            db.commit()
-    except Exception:
-        if owns_tx:
-            db.rollback()
-        raise
+            sp_name = f"sp_{os.urandom(4).hex()}"
+            db.execute(f"SAVEPOINT {sp_name}")
+            try:
+                yield db
+                db.execute(f"RELEASE SAVEPOINT {sp_name}")
+            except Exception:
+                db.execute(f"ROLLBACK TO SAVEPOINT {sp_name}")
+                db.execute(f"RELEASE SAVEPOINT {sp_name}")
+                raise
 
 def get_db():
     from flask import current_app

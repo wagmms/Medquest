@@ -62,11 +62,20 @@ def configured_curator_emails() -> frozenset[str]:
         if email.strip()
     )
 
+def _is_testing_env(app) -> bool:
+    """Verifica se o ambiente de teste está ativo de forma estritamente isolada de produção."""
+    return bool(
+        app.config.get("TESTING")
+        and os.environ.get("FLASK_ENV") != "production"
+        and not os.environ.get("RENDER")
+    )
+
+
 def require_auth(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         from flask import current_app
-        if current_app.config.get("TESTING"):
+        if _is_testing_env(current_app):
             if "X-User-ID" in request.headers:
                 g.user_id = request.headers["X-User-ID"]
             elif "X-Guest-ID" in request.headers:
@@ -152,7 +161,7 @@ def auth_me():
     user_email = (getattr(g, "user_email", None) or "").strip().lower()
     curator_emails = configured_curator_emails()
     is_curator = bool(user_email and user_email in curator_emails)
-    if current_app.config.get("TESTING") and hasattr(g, "is_curator"):
+    if _is_testing_env(current_app) and hasattr(g, "is_curator"):
         is_curator = bool(g.is_curator)
     return jsonify({
         "user_id": g.user_id,
@@ -167,7 +176,7 @@ def require_curator(f):
     def decorated(*args, **kwargs):
         from flask import current_app
         user_email = (getattr(g, "user_email", None) or "").strip().lower()
-        if current_app.config.get("TESTING"):
+        if _is_testing_env(current_app):
             if not getattr(g, "is_curator", True):
                 return jsonify({"error": "Forbidden: Acesso restrito para curadoria de conteúdo"}), 403
             if user_email and configured_curator_emails() and user_email not in configured_curator_emails():

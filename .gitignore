@@ -93,4 +93,9 @@ archive/legacy/data/
 # ── Runtime local / autoloop / agentes ───────────────────────────────
 data/
 .agents/
+*.jsonl
+inspecionar.py
+export_batch.py
+tests/repros/
+
 

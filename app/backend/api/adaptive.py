@@ -3,9 +3,9 @@ import json
 import math
 from datetime import datetime, timezone
 
-from fsrs import Card, Scheduler
+from fsrs import Card
 
-_scheduler = Scheduler(enable_fuzzing=False)
+from .srs import _question_scheduler as _scheduler, _safe_load_card
 
 
 def _utc(value=None):
@@ -18,18 +18,20 @@ def _utc(value=None):
 
 
 def fsrs_metrics(card_json, now=None):
-    """Return safe FSRS metrics; corrupt/legacy cards remain usable."""
+    """Return safe FSRS metrics using calibrated question scheduler; corrupt/legacy cards remain usable."""
     if not card_json:
         return {"retrievability": None, "stability": None, "difficulty": None}
     try:
-        card = Card.from_dict(json.loads(card_json))
+        card = _safe_load_card(card_json)
+        if card.stability is None:
+            return {"retrievability": None, "stability": None, "difficulty": None}
         retrievability = _scheduler.get_card_retrievability(card, _utc(now))
         return {
             "retrievability": round(max(0.0, min(1.0, float(retrievability))), 4),
             "stability": round(float(card.stability), 4) if card.stability is not None else None,
             "difficulty": round(float(card.difficulty), 4) if card.difficulty is not None else None,
         }
-    except (TypeError, ValueError, KeyError, json.JSONDecodeError):
+    except (TypeError, ValueError, KeyError):
         return {"retrievability": None, "stability": None, "difficulty": None}
 
 

@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Check, Loader2, Tag, Search, AlertCircle, RefreshCw, Trash2 } from "lucide-react";
 import { useCurator } from "@/hooks/useCurator";
 import { localDb } from "@/lib/db";
 import { api } from "@/lib/api";
+import { getFocusableElements, handleModalKeyNavigation } from "@/lib/modalAccessibility";
 
 const CANONICAL_AREAS = [
   "Cirurgia",
@@ -49,6 +50,10 @@ export function QuestionClassificationModal({
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [prevOpen, setPrevOpen] = useState(isOpen);
+
+  const modalRef = useRef<HTMLDivElement>(null);
+  const triggerElementRef = useRef<HTMLElement | null>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Sync state when modal open status changes
   if (isOpen !== prevOpen) {
@@ -116,7 +121,7 @@ export function QuestionClassificationModal({
     setTopic(selectedSub);
   };
 
-  const handleSave = async () => {
+  const handleSave = useCallback(async () => {
     if (!area || !subtema) {
       setError("Selecione a área e o subtema canônico.");
       return;
@@ -149,7 +154,7 @@ export function QuestionClassificationModal({
     } finally {
       setSaving(false);
     }
-  };
+  }, [area, subtema, topic, questionId, onSuccess, onClose]);
 
   const handleDelete = async () => {
     setIsDeleting(true);
@@ -179,6 +184,65 @@ export function QuestionClassificationModal({
     }
   };
 
+  // Gerenciamento de foco ao abrir e fechar o modal
+  useEffect(() => {
+    if (isOpen) {
+      triggerElementRef.current = (document.activeElement as HTMLElement) || null;
+      const timer = setTimeout(() => {
+        if (searchInputRef.current) {
+          searchInputRef.current.focus();
+        } else if (modalRef.current) {
+          modalRef.current.focus();
+        }
+      }, 50);
+      return () => clearTimeout(timer);
+    } else if (triggerElementRef.current && typeof triggerElementRef.current.focus === "function") {
+      triggerElementRef.current.focus();
+    }
+  }, [isOpen]);
+
+  // Listener para teclas Escape, Ctrl/Cmd+Enter e Trap-Focus (Tab / Shift+Tab)
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      handleModalKeyNavigation(e, {
+        isOpen,
+        showConfirmDialog: showDeleteConfirm,
+        isBusy: saving || isDeleting,
+        canSubmit: Boolean(area && subtema),
+        onClose,
+        onCancelConfirm: () => setShowDeleteConfirm(false),
+        onSubmit: () => {
+          void handleSave();
+        },
+        getFocusables: () => getFocusableElements(modalRef.current),
+        activeElement: document.activeElement,
+        preventDefault: () => e.preventDefault(),
+        stopPropagation: () => e.stopPropagation(),
+      });
+    },
+    [isOpen, showDeleteConfirm, saving, isDeleting, area, subtema, onClose, handleSave]
+  );
+
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [isOpen, handleKeyDown]);
+
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (filteredSubtemas.length === 1) {
+        handleSubtemaSelect(filteredSubtemas[0]);
+      } else if (filteredSubtemas.length > 0 && !subtema) {
+        handleSubtemaSelect(filteredSubtemas[0]);
+      }
+    }
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -192,14 +256,17 @@ export function QuestionClassificationModal({
           />
 
           <motion.div
+            ref={modalRef}
+            tabIndex={-1}
             initial={{ scale: 0.95, opacity: 0, y: 15 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 15 }}
             transition={{ type: "spring", duration: 0.35, bounce: 0.12 }}
-            className="bg-card border border-border rounded-3xl shadow-2xl w-full max-w-xl overflow-hidden z-10 flex flex-col relative max-h-[90vh]"
+            className="bg-card border border-border rounded-3xl shadow-2xl w-full max-w-xl overflow-hidden z-10 flex flex-col relative max-h-[90vh] focus-visible:outline-none"
             role="dialog"
             aria-modal="true"
             aria-labelledby="classification-modal-title"
+            aria-describedby="classification-modal-description"
           >
             {/* Header */}
             <div className="flex justify-between items-center px-6 py-4 border-b border-border bg-muted/30">
@@ -209,7 +276,7 @@ export function QuestionClassificationModal({
                   <h2 id="classification-modal-title" className="text-base font-bold text-foreground leading-tight">
                     Curadoria: Classificação da Questão #{questionId}
                   </h2>
-                  <p className="text-xs text-muted-foreground">
+                  <p id="classification-modal-description" className="text-xs text-muted-foreground">
                     Ajuste de grande área, subtema canônico e tópico da questão.
                   </p>
                 </div>
@@ -218,7 +285,7 @@ export function QuestionClassificationModal({
                 type="button"
                 onClick={() => !saving && onClose()}
                 disabled={saving}
-                className="text-muted-foreground hover:bg-muted rounded-full p-1.5 transition-colors cursor-pointer disabled:opacity-50"
+                className="text-muted-foreground hover:bg-muted rounded-full p-1.5 transition-colors cursor-pointer disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 aria-label="Fechar modal de classificação"
               >
                 <X size={20} aria-hidden="true" />
@@ -241,7 +308,7 @@ export function QuestionClassificationModal({
                         type="button"
                         aria-pressed={isSelected}
                         onClick={() => handleAreaChange(a)}
-                        className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all text-left truncate cursor-pointer ${
+                        className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all text-left truncate cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                           isSelected
                             ? "bg-primary text-primary-foreground border-primary shadow-sm"
                             : "bg-muted/40 text-foreground border-border hover:bg-muted hover:border-border/80"
@@ -274,12 +341,14 @@ export function QuestionClassificationModal({
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
                   />
                   <input
+                    ref={searchInputRef}
                     type="text"
                     value={searchFilter}
                     onChange={(e) => setSearchFilter(e.target.value)}
-                    placeholder="Filtrar subtema..."
+                    onKeyDown={handleSearchKeyDown}
+                    placeholder="Filtrar subtema... (Enter para selecionar)"
                     aria-label="Filtrar subtema canônico"
-                    className="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+                    className="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus-visible:ring-2 focus-visible:ring-primary"
                   />
                 </div>
 
@@ -297,7 +366,7 @@ export function QuestionClassificationModal({
                           type="button"
                           aria-pressed={isSelected}
                           onClick={() => handleSubtemaSelect(s)}
-                          className={`w-full text-left px-3 py-2 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
+                          className={`w-full text-left px-3 py-2 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                             isSelected
                               ? "bg-primary/10 text-primary font-bold"
                               : "hover:bg-muted/60 text-foreground"
@@ -339,7 +408,7 @@ export function QuestionClassificationModal({
                       type="button"
                       onClick={() => setShowDeleteConfirm(false)}
                       disabled={isDeleting}
-                      className="px-3 py-1.5 rounded-xl text-xs font-semibold border border-border text-foreground hover:bg-muted transition-colors cursor-pointer disabled:opacity-50"
+                      className="px-3 py-1.5 rounded-xl text-xs font-semibold border border-border text-foreground hover:bg-muted transition-colors cursor-pointer disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                     >
                       Cancelar
                     </button>
@@ -347,7 +416,7 @@ export function QuestionClassificationModal({
                       type="button"
                       onClick={handleDelete}
                       disabled={isDeleting}
-                      className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-all flex items-center gap-1.5 cursor-pointer shadow-xs disabled:opacity-50"
+                      className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-all flex items-center gap-1.5 cursor-pointer shadow-xs disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-destructive focus-visible:outline-none"
                     >
                       {isDeleting ? (
                         <>
@@ -382,7 +451,7 @@ export function QuestionClassificationModal({
                     type="button"
                     onClick={() => setShowDeleteConfirm(true)}
                     disabled={saving || isDeleting}
-                    className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-destructive hover:bg-destructive/10 border border-destructive/25 transition-colors cursor-pointer disabled:opacity-50"
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-destructive hover:bg-destructive/10 border border-destructive/25 transition-colors cursor-pointer disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-destructive focus-visible:outline-none"
                     title="Excluir questão do banco de dados (Administrador)"
                   >
                     <Trash2 size={14} aria-hidden="true" />
@@ -396,7 +465,7 @@ export function QuestionClassificationModal({
                   type="button"
                   onClick={onClose}
                   disabled={saving || isDeleting}
-                  className="px-4 py-2 rounded-xl text-xs font-bold border border-border text-foreground hover:bg-muted transition-colors cursor-pointer disabled:opacity-50"
+                  className="px-4 py-2 rounded-xl text-xs font-bold border border-border text-foreground hover:bg-muted transition-colors cursor-pointer disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                   Cancelar
                 </button>
@@ -404,7 +473,7 @@ export function QuestionClassificationModal({
                   type="button"
                   onClick={handleSave}
                   disabled={saving || isDeleting || !subtema || showDeleteConfirm}
-                  className="px-5 py-2 rounded-xl text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                  className="px-5 py-2 rounded-xl text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-sm focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                   {saving ? (
                     <>

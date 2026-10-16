@@ -338,17 +338,20 @@ export class MedQuestDB extends Dexie {
 
     try {
       return await this.transaction("rw", this.simuladoPackages, async () => {
-        const allPackages = await this.simuladoPackages.toArray();
-        const expiredIds: string[] = [];
+        let expiredIds: string[] = [];
 
-        for (const pkg of allPackages) {
-          if (!pkg) continue;
-          const isExpired =
-            pkg.status === "expired" ||
-            (typeof pkg.expires_at === "number" && pkg.expires_at > 0 && pkg.expires_at <= now);
-          if (isExpired && pkg.id) {
-            expiredIds.push(pkg.id);
-          }
+        if (typeof this.simuladoPackages.where === "function") {
+          const [byTimeIds, byStatusIds] = await Promise.all([
+            this.simuladoPackages.where("expires_at").between(1, now, true, true).primaryKeys(),
+            this.simuladoPackages.where("status").equals("expired").primaryKeys(),
+          ]);
+          expiredIds = Array.from(new Set([...byTimeIds, ...byStatusIds])).filter(Boolean) as string[];
+        } else if (typeof this.simuladoPackages.toArray === "function") {
+          const allPkgs = (await this.simuladoPackages.toArray()) as Array<{ id: string; status?: string; expires_at?: number }>;
+          expiredIds = allPkgs
+            .filter((p) => p.status === "expired" || (typeof p.expires_at === "number" && p.expires_at > 0 && p.expires_at <= now))
+            .map((p) => p.id)
+            .filter(Boolean);
         }
 
         if (expiredIds.length > 0) {
@@ -442,11 +445,36 @@ export class MedQuestDB extends Dexie {
       throw err;
     }
   }
+
+  /**
+   * Consulta rapidamente em lote quais IDs de questão já estão cacheados no Dexie para o proprietário.
+   */
+  async getCachedQuestionIds(
+    ids: number[],
+    explicitOwnerId?: string
+  ): Promise<Set<number>> {
+    if (!ids || !Array.isArray(ids) || ids.length === 0) {
+      return new Set();
+    }
+    const ownerId = explicitOwnerId || getLocalOwnerId();
+    try {
+      const keys: [number, string][] = ids.map((id) => [id, ownerId]);
+      const cachedList = await this.questions.bulkGet(keys);
+      const found = new Set<number>();
+      cachedList.forEach((q) => {
+        if (q && typeof q.id === "number") found.add(q.id);
+      });
+      return found;
+    } catch (err) {
+      console.warn("[MedQuestDB] Erro ao consultar IDs cacheados:", err);
+      return new Set();
+    }
+  }
 }
 
 export const localDb = typeof window !== "undefined" ? new MedQuestDB() : (null as unknown as MedQuestDB);
 
-if (typeof window !== "undefined" && localDb) {
+if (typeof window !== "undefined" && localDb && process.env.NODE_ENV !== "production") {
   (window as unknown as { localDb?: MedQuestDB }).localDb = localDb;
 }
 
@@ -462,6 +490,20 @@ export async function syncQuestions(
     return 0;
   }
   return localDb.syncQuestions(questions, explicitOwnerId);
+}
+
+/**
+ * Utilitário de alto nível para consultar em lote quais IDs já constam em cache local.
+ * Retorna Set vazio fora do navegador ou caso localDb não esteja instanciado.
+ */
+export async function getCachedQuestionIds(
+  ids: number[],
+  explicitOwnerId?: string
+): Promise<Set<number>> {
+  if (typeof window === "undefined" || !localDb) {
+    return new Set();
+  }
+  return localDb.getCachedQuestionIds(ids, explicitOwnerId);
 }
 
 /**

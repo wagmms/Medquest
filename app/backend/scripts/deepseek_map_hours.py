@@ -1,11 +1,15 @@
 import json
+import os
 import requests
 
 def call_deepseek(prompt):
+    api_key = os.environ.get("DEEPSEEK_API_KEY")
+    if not api_key:
+        raise ValueError("DEEPSEEK_API_KEY environment variable is required")
     url = "https://api.deepseek.com/v1/chat/completions"
     headers = {
         "Content-Type": "application/json",
-        "Authorization": "Bearer sk-2dc9602f50834037a65e670c2d4aada0"
+        "Authorization": f"Bearer {api_key}"
     }
     data = {
         "model": "deepseek-chat",

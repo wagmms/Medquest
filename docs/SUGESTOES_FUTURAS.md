@@ -9,6 +9,9 @@ Este catálogo armazena ideias, melhorias arquiteturais e refinamentos mapeados 
 - **Padronização de respostas 404 e contrato JSON em api/questions.py**: Uniformizar endpoints `/attempt`, `/review` e `/favorite` com payloads estruturados e chaves semânticas consistentes (`error`, `message`, `question_id`).
 - **Benchmark automatizado de carga**: Criar rotina de carga para testar endpoints de fila adaptativa e remediação (`/api/adaptive/queue`, `/api/questions/remediation`) sob concorrência.
 - **Validação e fallback para payload FSRS legado em api/questions.py**: Implementar recuperação defensiva graciosa nas rotas `/attempt` e `/twin` caso um registro legado em `user_question_fsrs` contenha JSON malformado ou corrompido, evitando erro 500 no fluxo de estudo.
+- **Detecção estrita de mutação em CTEs e suporte a dicts em db.py**: Refinar `_is_read_only_query` com regex de palavras-chave (`INSERT|UPDATE|DELETE`) para evitar replay indevido de CTEs de escrita e garantir suporte pleno a parâmetros nomeados (`dict`) em `execute()`.
+- **Unificação da fonte de verdade do Scheduler FSRS em adaptive.py**: Importar `_question_scheduler` de `srs.py` em `adaptive.py`, garantindo paridade matemática de $R(t)$ com a calibração de retenção 0.85 para medicina.
+- **Liberação do Lock antes de sleep e filtro de thinking tokens no gemini_pool.py**: Prevenir bloqueio de threads WSGI em espera de rate limit e descartar fragmentos `thought: true` do Gemini 2.5 nas explicações finais.
 
 ### Frontend & PWA
 - **Prefetch inteligente de questões no modo offline**: Implementar rotina no Dexie para pre-carregar o próximo bloco de 10 questões baseado na trilha do usuário.
@@ -16,3 +19,5 @@ Este catálogo armazena ideias, melhorias arquiteturais e refinamentos mapeados 
 - **Audit de contraste de cores nos badges de áreas médicas**: Revisar temas claro/escuro garantindo conformidade WCAG AAA (mínimo 7:1) em badges de subtemas clínicos.
 - [Concluído] **Estratégia de Quota Recovery e Evicção no Dexie**: Em caso de `QuotaExceededError` durante `syncQuestions`, purga atômica de pacotes expirados de simulados (`simuladoPackages`) com retentativa transacional e testes unitários.
 - **Purga Seletiva de Imagens Órfãs no Cache Storage (`medquest-image-cache`)**: Em cenários de esgotamento extremo de espaço onde a evicção do IndexedDB não seja suficiente, expurgar do Cache Storage imagens pertencentes a simulados removidos.
+- **Purga de pacotes por índices no Dexie**: Refinar `purgeExpiredSimuladoPackages` para consultar diretamente os índices `expires_at` e `status` no IndexedDB sem `toArray()`.
+

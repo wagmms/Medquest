@@ -45,6 +45,32 @@ def test_review_existing_card():
     assert diff_days >= 6.5
 
 
+def test_review_recupera_json_corrompido_ou_invalido():
+    """Garante que payloads malformados ou esquemas corrompidos não gerem exceção."""
+    # 1. String JSON inválida/truncada
+    card_json_1, due_iso_1 = review("{corrompido: true", True, "certeza")
+    assert card_json_1 is not None
+    assert due_iso_1 is not None
+    dict_1 = json.loads(card_json_1)
+    assert "due" in dict_1
+    assert "state" in dict_1
+
+    # 2. JSON válido mas tipo não-objeto (array ou número)
+    card_json_2, due_iso_2 = review("[1, 2, 3]", False, None)
+    assert card_json_2 is not None
+    assert due_iso_2 is not None
+
+    # 3. Dicionário com chaves incompatíveis
+    card_json_3, due_iso_3 = review('{"chave_aleatoria": 42}', True, "duvida")
+    assert card_json_3 is not None
+    assert due_iso_3 is not None
+
+    # 4. String vazia
+    card_json_4, due_iso_4 = review("", True, "chutei")
+    assert card_json_4 is not None
+    assert due_iso_4 is not None
+
+
 def test_review_question_intervals(monkeypatch):
     import api.srs as srs_mod
     monkeypatch.setattr(srs_mod._question_scheduler, "enable_fuzzing", False)

@@ -204,20 +204,37 @@ def synthesize_explanation(question_id):
         subtema=q["subtema"] or q["topic"] or ""
     )
 
-    # Persiste na tabela explanations se sintetizado com sucesso
+    synthesized_text = (result.get("explanation_text") or "").strip()
+    if not synthesized_text or result.get("source") == "fallback":
+        return jsonify({
+            "error": "Não foi possível sintetizar a explicação no momento.",
+            "source": result.get("source", "error")
+        }), 503
+
+    now_iso = datetime.now(timezone.utc).isoformat()
+    # Persiste na tabela explanations apenas se não houver explicação canônica existente
     with db_transaction(db, immediate=True):
-        existing_exp = db.execute("SELECT question_id FROM explanations WHERE question_id = ?", (question_id,)).fetchone()
-        if existing_exp:
+        existing_exp = db.execute(
+            "SELECT explanation_text FROM explanations WHERE question_id = ?",
+            (question_id,)
+        ).fetchone()
+        if existing_exp and existing_exp["explanation_text"] and existing_exp["explanation_text"].strip():
+            return jsonify({
+                "question_id": question_id,
+                "explanation_text": existing_exp["explanation_text"],
+                "source": "canonical_professor_locked"
+            })
+        elif existing_exp:
             db.execute("""
                 UPDATE explanations
-                SET explanation_text = ?
-                WHERE question_id = ?
-            """, (result.get("explanation_text", ""), question_id))
+                SET explanation_text = ?, generated_at = ?
+                WHERE question_id = ? AND (explanation_text IS NULL OR TRIM(explanation_text) = '')
+            """, (synthesized_text, now_iso, question_id))
         else:
             db.execute("""
-                INSERT INTO explanations (question_id, explanation_text)
-                VALUES (?, ?)
-            """, (question_id, result.get("explanation_text", "")))
+                INSERT INTO explanations (question_id, explanation_text, generated_at)
+                VALUES (?, ?, ?)
+            """, (question_id, synthesized_text, now_iso))
 
     from .questions import invalidate_user_caches
     invalidate_user_caches(getattr(g, "user_id", None))
@@ -225,6 +242,60 @@ def synthesize_explanation(question_id):
     return jsonify({
         "question_id": question_id,
         "explanation_text": result.get("explanation_text"),
-        "source": result.get("source"),
+        "source": "ai_synthesized",
         "model": result.get("model")
     })
+
+
+@bp.route("/ai/analyze-image", methods=["POST"])
+def analyze_medical_image():
+    """
+    Endpoint para análise multimodal de exames de imagem médica (ECG, RX, TC, Dermato, Lab).
+    Suporta upload multipart/form-data ('image') ou JSON com 'image_base64'.
+    """
+    from .medical_vision import analisar_exame_imagem
+
+    image_bytes = None
+    mime_type = "image/jpeg"
+    modality = "auto"
+    clinical_context = None
+
+    # 1. Verifica se veio via multipart/form-data
+    if "image" in request.files:
+        uploaded_file = request.files["image"]
+        image_bytes = uploaded_file.read()
+        mime_type = uploaded_file.content_type or "image/jpeg"
+        modality = request.form.get("modality", "auto")
+        clinical_context = request.form.get("clinical_context")
+    else:
+        # 2. Verifica se veio via JSON
+        body = request.get_json(silent=True) or {}
+        b64_data = body.get("image_base64")
+        if b64_data:
+            import base64
+            # Remove data URL prefix se presente
+            if "," in b64_data:
+                b64_data = b64_data.split(",", 1)[1]
+            try:
+                image_bytes = base64.b64decode(b64_data)
+            except Exception:
+                return jsonify({"error": "Base64 de imagem inválido.", "code": "INVALID_IMAGE_BASE64"}), 400
+        mime_type = body.get("mime_type", "image/jpeg")
+        modality = body.get("modality", "auto")
+        clinical_context = body.get("clinical_context")
+
+    if not image_bytes or len(image_bytes) == 0:
+        return jsonify({
+            "error": "Nenhuma imagem foi fornecida para análise.",
+            "code": "MISSING_IMAGE"
+        }), 400
+
+    resultado = analisar_exame_imagem(
+        dados_bytes=image_bytes,
+        mime_type=mime_type,
+        modalidade=modality,
+        contexto_clinico=clinical_context,
+    )
+
+    return jsonify(resultado), 200
+

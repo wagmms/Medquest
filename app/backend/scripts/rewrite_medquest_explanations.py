@@ -46,16 +46,20 @@ def load_env():
 load_env()
 
 # Configurações padrão dos provedores
+# ATENÇÃO: Diretriz Global: Bloqueio Absoluto de Alteração de Comentários de Residência Médica.
+# Os comentários e resoluções foram elaborados e revisados diretamente por professores e especialistas médicos.
+# São materiais canônicos e congelados. É expressamente proibido reescrever explicações com IA.
+raise RuntimeError(
+    "EXECUÇÃO BLOQUEADA: Diretriz Global de Imutabilidade Canônica. "
+    "Comentários de professores de residência médica são estritamente somente-leitura."
+)
+
 YUNQIAO_URL = "https://yunqiaoapi.com/v1/chat/completions"
-DEFAULT_YUNQIAO_KEYS = [
-    os.environ.get("YUNQIAO_API_KEY", "sk-2pqLEozeRTA1kaORC1dHNv3u5R8RkgukcVXByDgQOQrBr3iT")
-]
+DEFAULT_YUNQIAO_KEYS = [k for k in [os.environ.get("YUNQIAO_API_KEY", "")] if k]
 DEFAULT_YUNQIAO_MODEL = "claude-haiku-4-5"
 
 SOMAAPI_URL = "https://somaapi.com/v1/chat/completions"
-DEFAULT_SOMA_KEYS = [
-    os.environ.get("SOMAAPI_KEY", "sk-f9CuFhW85HXOW3Z7TObNSi0pYFCH69euabKFQkF9EnVQov00")
-]
+DEFAULT_SOMA_KEYS = [k for k in [os.environ.get("SOMAAPI_KEY", "")] if k]
 DEFAULT_SOMA_MODEL = "claude-haiku-4-5-20251001"
 
 GEMINI_KEYS_RAW = os.environ.get("GEMINI_API_KEYS", "") or os.environ.get("GEMINI_API_KEY", "")

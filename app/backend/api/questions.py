@@ -1,5 +1,6 @@
 """Blueprint: metadados, listagem/fila de estudo, detalhe, tentativa e favoritos."""
 import json
+import logging
 import os
 import random
 import re
@@ -8,6 +9,8 @@ from datetime import datetime, timedelta, timezone
 from threading import Lock
 
 from flask import Blueprint, g, jsonify, request
+
+logger = logging.getLogger(__name__)
 
 from . import srs
 from .adaptive import rank_adaptive_candidates
@@ -366,35 +369,54 @@ def delete_simulado_session(session_id):
 
 @bp.route("/simulado/sessions", methods=["POST"])
 def save_simulado_session():
-    try:
-        data = SimuladoSessionIn.model_validate(request.get_json(force=True) or {})
-    except ValidationError as e:
-        return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
     db = get_db()
-    completed_at = datetime.now(timezone.utc).isoformat()
-    with db_transaction(db, immediate=True):
-        db.execute("""INSERT INTO simulado_sessions
-            (client_session_id, planned_duration_seconds, elapsed_seconds, total_questions, answered_count,
-             correct_count, filters_json, area_results_json, completed_at, user_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ON CONFLICT(user_id, client_session_id) DO UPDATE SET
-              planned_duration_seconds=excluded.planned_duration_seconds, elapsed_seconds=excluded.elapsed_seconds,
-              total_questions=excluded.total_questions, answered_count=excluded.answered_count,
-              correct_count=excluded.correct_count, filters_json=excluded.filters_json,
-              area_results_json=excluded.area_results_json, completed_at=excluded.completed_at
-        """, (data.client_session_id, data.planned_duration_seconds, data.elapsed_seconds,
-               data.total_questions, data.answered_count, data.correct_count,
-               json.dumps(data.filters), json.dumps(data.area_results), completed_at, g.user_id))
-    record_domain_event(
-        "simulado_completed",
-        user_id=g.user_id,
-        session_id=data.client_session_id,
-        total_questions=data.total_questions,
-        answered_count=data.answered_count,
-        correct_count=data.correct_count,
-        elapsed_seconds=data.elapsed_seconds,
-    )
-    return jsonify({"success": True})
+    raw_payload = request.get_data()
+    cached_resp, err_resp, lease_token = reserve_idempotency(db, g.user_id, request.path, request.method, raw_payload)
+    if cached_resp is not None:
+        return cached_resp
+    if err_resp is not None:
+        return err_resp
+
+    try:
+        try:
+            data = SimuladoSessionIn.model_validate(request.get_json(force=True) or {})
+        except ValidationError as e:
+            if lease_token:
+                fail_idempotency(db, g.user_id, lease_token)
+            return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
+
+        completed_at = datetime.now(timezone.utc).isoformat()
+        with db_transaction(db, immediate=True):
+            db.execute("""INSERT INTO simulado_sessions
+                (client_session_id, planned_duration_seconds, elapsed_seconds, total_questions, answered_count,
+                 correct_count, filters_json, area_results_json, completed_at, user_id)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(user_id, client_session_id) DO UPDATE SET
+                  planned_duration_seconds=excluded.planned_duration_seconds, elapsed_seconds=excluded.elapsed_seconds,
+                  total_questions=excluded.total_questions, answered_count=excluded.answered_count,
+                  correct_count=excluded.correct_count, filters_json=excluded.filters_json,
+                  area_results_json=excluded.area_results_json, completed_at=excluded.completed_at
+            """, (data.client_session_id, data.planned_duration_seconds, data.elapsed_seconds,
+                   data.total_questions, data.answered_count, data.correct_count,
+                   json.dumps(data.filters), json.dumps(data.area_results), completed_at, g.user_id))
+
+        record_domain_event(
+            "simulado_completed",
+            user_id=g.user_id,
+            session_id=data.client_session_id,
+            total_questions=data.total_questions,
+            answered_count=data.answered_count,
+            correct_count=data.correct_count,
+            elapsed_seconds=data.elapsed_seconds,
+        )
+        resp_data = {"success": True}
+        if lease_token:
+            complete_idempotency(db, g.user_id, 200, resp_data, lease_token)
+        return jsonify(resp_data)
+    except Exception:
+        if lease_token:
+            fail_idempotency(db, g.user_id, lease_token)
+        raise
 
 
 @bp.route("/simulado/tri-evaluation", methods=["POST"])
@@ -782,7 +804,7 @@ def question_detail(qid):
         is_favorite = db.execute(queries[5][0], queries[5][1]).fetchone()
         
     if not q:
-        return jsonify({"error": "not found"}), 404
+        return jsonify({"error": "not found", "code": "QUESTION_NOT_FOUND"}), 404
     q = dict(q)
         
     cc = None
@@ -843,13 +865,13 @@ def submit_attempt(qid):
         except ValidationError as e:
             if lease_token:
                 fail_idempotency(db, g.user_id, lease_token)
-            return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
+            return jsonify({"error": "invalid input", "code": "INVALID_INPUT", "details": validation_errors(e)}), 400
 
         q = db.execute("SELECT correct_letter, area, subtema FROM questions WHERE id = ?", (qid,)).fetchone()
         if not q:
             if lease_token:
                 fail_idempotency(db, g.user_id, lease_token)
-            return jsonify({"error": "not found"}), 404
+            return jsonify({"error": "not found", "code": "QUESTION_NOT_FOUND"}), 404
 
         alts_count = db.execute("SELECT COUNT(*) as n FROM alternatives WHERE question_id = ?", (qid,)).fetchone()["n"]
         is_discursive = bool(alts_count <= 1)
@@ -884,7 +906,11 @@ def submit_attempt(qid):
                     _defer_question_review(db, payload.twin_for_question_id, g.user_id)
             if payload.confidence != "defer":
                 sr = db.execute("SELECT fsrs_card FROM spaced_repetition WHERE question_id = ? AND user_id = ?", (qid, g.user_id)).fetchone()
-                card_json, next_review = srs.review(sr["fsrs_card"] if sr else None, is_correct, payload.confidence)
+                try:
+                    card_json, next_review = srs.review(sr["fsrs_card"] if sr else None, is_correct, payload.confidence)
+                except Exception as srs_err:
+                    logger.warning("Erro ao calcular FSRS na tentativa da questão %s: %s. Usando estado limpo.", qid, srs_err)
+                    card_json, next_review = srs.review(None, is_correct, payload.confidence)
                 db.execute("""
                     INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id)
                     VALUES (?, ?, ?, ?)
@@ -895,7 +921,11 @@ def submit_attempt(qid):
                 if payload.twin_for_question_id:
                     orig_qid = payload.twin_for_question_id
                     orig_sr = db.execute("SELECT fsrs_card FROM spaced_repetition WHERE question_id = ? AND user_id = ?", (orig_qid, g.user_id)).fetchone()
-                    orig_card_json, orig_next_review = srs.review(orig_sr["fsrs_card"] if orig_sr else None, is_correct, payload.confidence)
+                    try:
+                        orig_card_json, orig_next_review = srs.review(orig_sr["fsrs_card"] if orig_sr else None, is_correct, payload.confidence)
+                    except Exception as srs_err:
+                        logger.warning("Erro ao calcular FSRS na questão espelho %s: %s. Usando estado limpo.", orig_qid, srs_err)
+                        orig_card_json, orig_next_review = srs.review(None, is_correct, payload.confidence)
                     db.execute("""
                         INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id)
                         VALUES (?, ?, ?, ?)
@@ -955,7 +985,7 @@ def review_fsrs(qid):
         except ValidationError as e:
             if lease_token:
                 fail_idempotency(db, g.user_id, lease_token)
-            return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
+            return jsonify({"error": "invalid input", "code": "INVALID_INPUT", "details": validation_errors(e)}), 400
         confidence = data.confidence
 
         with db_transaction(db, immediate=True):
@@ -964,7 +994,7 @@ def review_fsrs(qid):
                 (qid, g.user_id)
             ).fetchone()
             if not last_attempt:
-                resp_data = {"error": "No attempt found"}
+                resp_data = {"error": "No attempt found", "code": "NO_ATTEMPT_FOUND"}
                 if lease_token:
                     complete_idempotency(db, g.user_id, 400, resp_data, lease_token)
                 return jsonify(resp_data), 400
@@ -990,7 +1020,11 @@ def review_fsrs(qid):
                 return jsonify(resp_data)
 
             sr = db.execute("SELECT fsrs_card FROM spaced_repetition WHERE question_id = ? AND user_id = ?", (qid, g.user_id)).fetchone()
-            card_json, next_review = srs.review(sr["fsrs_card"] if sr else None, is_correct_for_srs, confidence)
+            try:
+                card_json, next_review = srs.review(sr["fsrs_card"] if sr else None, is_correct_for_srs, confidence)
+            except Exception as srs_err:
+                logger.warning("Erro ao calcular FSRS na revisão da questão %s: %s. Usando estado limpo.", qid, srs_err)
+                card_json, next_review = srs.review(None, is_correct_for_srs, confidence)
             db.execute("""
                 INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id)
                 VALUES (?, ?, ?, ?)
@@ -1001,7 +1035,11 @@ def review_fsrs(qid):
             if data.twin_for_question_id:
                 orig_qid = data.twin_for_question_id
                 orig_sr = db.execute("SELECT fsrs_card FROM spaced_repetition WHERE question_id = ? AND user_id = ?", (orig_qid, g.user_id)).fetchone()
-                orig_card_json, orig_next_review = srs.review(orig_sr["fsrs_card"] if orig_sr else None, is_correct_for_srs, confidence)
+                try:
+                    orig_card_json, orig_next_review = srs.review(orig_sr["fsrs_card"] if orig_sr else None, is_correct_for_srs, confidence)
+                except Exception as srs_err:
+                    logger.warning("Erro ao calcular FSRS na questão espelho %s: %s. Usando estado limpo.", orig_qid, srs_err)
+                    orig_card_json, orig_next_review = srs.review(None, is_correct_for_srs, confidence)
                 db.execute("""
                     INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id)
                     VALUES (?, ?, ?, ?)
@@ -1093,7 +1131,11 @@ def _process_single_attempt(
             _defer_question_review(db, item.twin_for_question_id, user_id)
     else:
         old_card = srs_map.get(item.question_id)
-        card_json, next_review = srs.review(old_card, is_correct, conf)
+        try:
+            card_json, next_review = srs.review(old_card, is_correct, conf)
+        except Exception as srs_err:
+            logger.warning("Erro ao calcular FSRS no lote para questão %s: %s. Usando estado limpo.", item.question_id, srs_err)
+            card_json, next_review = srs.review(None, is_correct, conf)
         db.execute("""
             INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id)
             VALUES (?, ?, ?, ?)
@@ -1104,7 +1146,11 @@ def _process_single_attempt(
         if getattr(item, "twin_for_question_id", None):
             orig_qid = item.twin_for_question_id
             orig_sr = db.execute("SELECT fsrs_card FROM spaced_repetition WHERE question_id = ? AND user_id = ?", (orig_qid, user_id)).fetchone()
-            orig_card_json, orig_next_review = srs.review(orig_sr["fsrs_card"] if orig_sr else None, is_correct, conf)
+            try:
+                orig_card_json, orig_next_review = srs.review(orig_sr["fsrs_card"] if orig_sr else None, is_correct, conf)
+            except Exception as srs_err:
+                logger.warning("Erro ao calcular FSRS no lote para questão espelho %s: %s. Usando estado limpo.", orig_qid, srs_err)
+                orig_card_json, orig_next_review = srs.review(None, is_correct, conf)
             db.execute("""
                 INSERT INTO spaced_repetition (question_id, next_review_date, fsrs_card, user_id)
                 VALUES (?, ?, ?, ?)

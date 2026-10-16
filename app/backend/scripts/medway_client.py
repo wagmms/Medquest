@@ -17,12 +17,8 @@ import urllib.parse
 import urllib.request
 from typing import Any, Dict, List, Optional
 
-FIREBASE_API_KEY = "AIzaSyCOOvkFhuLp-MXInY5AJNsnbNc9Qg41vo8"
-DEFAULT_REFRESH_TOKEN = (
-    "AMf-vBwTrDnbkiTbNZXO7-hQtPMzzwUJag8_YFvw_xewL2fwX-8tqsHLGbuEOcUON286hqMCAEDavFolAxajH"
-    "ByVLzjMty_8sFTgBPOxeMbN_3iRHzE0SvExXZE9uiw3EY5CMm_koZ12OGQ34YWR28Ha51b9dMKe8RUzkEdIU"
-    "j0tOg_JS2G15VTj9g6oec_TOA1bz5mLmtUPgJ9uvVC0ZyT-ZIMO8Up7PEAGhWt9HD6xJzcrzGb9xyQ"
-)
+FIREBASE_API_KEY = os.environ.get("FIREBASE_API_KEY", "")
+DEFAULT_REFRESH_TOKEN = os.environ.get("MEDWAY_REFRESH_TOKEN", "")
 
 
 CACHE_FILE = os.path.expanduser("~/.medway_session.json")

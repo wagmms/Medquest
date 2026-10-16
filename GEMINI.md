@@ -118,3 +118,21 @@ Ao testar ou validar alterações, utilize sempre os comandos canônicos:
 3. **Imutabilidade Canônica**:
    * O banco de dados e as rotas de backend devem tratar a tabela `explanations` existente como **estritamente somente-leitura**. Nenhuma rotina de IA pode sobrescrever o conteúdo elaborado pelos professores.
 
+---
+
+## 7. Diretrizes de Auto-Aprimoramento Contínuo (`self-improving-agent` & `.learnings/`)
+
+1. **Estrutura de Registro Ativo**:
+   * O repositório utiliza a skill `self-improving-agent` com arquivos de log dedicados em `.learnings/`:
+     * `.learnings/LEARNINGS.md`: Correções (`correction`), insights (`insight`), lacunas de conhecimento (`knowledge_gap`) e boas práticas (`best_practice`).
+     * `.learnings/ERRORS.md`: Falhas de comandos, exceções e erros de integração.
+     * `.learnings/FEATURE_REQUESTS.md`: Novas funcionalidades solicitadas pelo usuário.
+2. **Ciclo de Triage & Prevenção de Recorrência (`Pattern-Key`)**:
+   * Antes de registrar um novo aprendizado ou erro, pesquise padrões existentes: `grep -n "Pattern-Key:" .learnings/*.md`.
+   * Caso o padrão já exista, incremente `Recurrence-Count` e atualize `Last-Seen` em vez de duplicar entradas.
+3. **Promoção para a Memória Canônica do Projeto**:
+   * Padrões recorrentes (`Recurrence-Count >= 3` em tarefas distintas) e decisões de arquitetura duráveis devem ser promovidos como regras em `GEMINI.md` ou nos arquivos de documentação técnica correspondentes, referenciando a origem (`Source: .learnings/LEARNINGS.md#LRN-...`).
+4. **Governança e Regras Invioláveis**:
+   * O processo de auto-aprimoramento é estritamente subordinado às regras globais: é proibido gerar código em Google Apps Script (GAS) e é expressamente proibido alterar comentários de professores de residência médica.
+
+

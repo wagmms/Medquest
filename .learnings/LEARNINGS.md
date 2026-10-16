@@ -1,0 +1,131 @@
+# Learnings
+
+Corrections, insights, and knowledge gaps captured during development.
+
+**Categories**: correction | insight | knowledge_gap | best_practice
+**Areas**: frontend | backend | infra | tests | docs | config
+**Statuses**: pending | in_progress | resolved | wont_fix | promoted | promoted_to_skill
+
+## Status Definitions
+
+| Status | Meaning |
+|--------|---------|
+| `pending` | Not yet addressed |
+| `in_progress` | Actively being worked on |
+| `resolved` | Issue fixed or knowledge integrated |
+| `wont_fix` | Decided not to address (reason in Resolution) |
+| `promoted` | Elevated to SOUL.md, TOOLS.md, or AGENTS.md |
+| `promoted_to_skill` | Extracted as a reusable skill |
+
+Status is not validation. A fixed incident or repeated observation does not prove a reusable rule. Use Maintenance for scoped evidence and active-guidance disposition; preserve historical observations and earlier reviews. Initialize legacy entries only on relevant review.
+
+## Entry Template
+
+Copy this entry when logging; replace placeholders. Unknown classifications stay unknown until triage. Do not copy an example's validation as evidence.
+
+```markdown
+## [LRN-YYYYMMDD-XXX] correction | insight | knowledge_gap | best_practice
+
+**Logged**: ISO-8601 timestamp
+**Priority**: low | medium | high | critical
+**Status**: pending
+**Area**: frontend | backend | infra | tests | docs | config
+
+### Summary
+One-line description of what was learned
+
+### Details
+What happened, the correction, and the limits of what was observed
+
+### Suggested Action
+Specific fix or improvement to make
+
+### Metadata
+- Source: conversation | error | user_feedback
+- Related Files: path/to/file.ext
+- Tags: tag1, tag2
+- See Also: related learning ID, if any
+- Pattern-Key: area.symptom
+- Recurrence-Count: 1
+- First-Seen: YYYY-MM-DD
+- Last-Seen: YYYY-MM-DD
+
+### Maintenance
+- Claim: unknown — identify the reusable inference/instruction during triage
+- Scope: unknown
+- Authority: unknown
+- Decay: unknown / unknown
+- Revalidate: before relying on the claim, establish scope/authority and choose the cause-specific check and trigger
+- Validation: pending
+- Evidence: none yet
+- Disposition: retain — provisional, not validated
+- Guidance: none
+
+---
+```
+
+Choose type (`reality`, `decision`, `dependency`, `relevance`) and rate (`fast`, `medium`, `slow`, `durable`) using the skill's Maintenance instructions, not age/status. Record actual check date, source/version/configuration, and result. Missing/conflicting evidence is `unresolved`. Add dated review notes for retain/revise/externalize/retire; preserve old claims and promotion history. Reviews never increase recurrence counts or Last-Seen.
+
+## Skill Extraction Fields
+
+When a learning is promoted to a skill, add these fields:
+
+```markdown
+**Status**: promoted_to_skill
+**Skill-Path**: skills/skill-name
+```
+
+Only create/modify skill assets with explicit scoped approval. Record the promotion date and target section in the learning's history/Guidance, and the original file + learning ID in the skill. `promoted_to_skill` does not establish current validity.
+
+Example:
+```markdown
+## [LRN-20250115-001] best_practice
+
+**Logged**: 2025-01-15T10:00:00Z
+**Priority**: high
+**Status**: promoted_to_skill
+**Skill-Path**: skills/docker-m1-fixes
+**Area**: infra
+
+### Summary
+Docker build fails on Apple Silicon due to platform mismatch
+...
+```
+
+---
+
+## [LRN-20261012-001] best_practice
+
+**Logged**: 2026-10-12T11:20:00-03:00
+**Priority**: high
+**Status**: promoted
+**Area**: backend
+
+### Summary
+Calibração FSRS v6 para retenção médica (0.85) e imutabilidade dos comentários de residência médica
+
+### Details
+O MedQuest calibra o scheduler FSRS v6 para retenção desejada de 0.85 com intervalos iniciais ampliados (Again=3.5d, Hard=8.0d, Good=18.0d, Easy=40.0d) e ausência de passos intradia em questões longas. Além disso, as explicações e comentários da tabela `explanations` foram redigidos por professores especialistas e são imutáveis (somente-leitura para qualquer agente de IA).
+
+### Suggested Action
+Consultar sempre `app/backend/api/srs.py` e `GEMINI.md` antes de qualquer alteração de regras SRS ou rotas de questões. Nunca submeter explicações de residência a reescrita ou revisão por IA.
+
+### Metadata
+- Source: user_feedback
+- Related Files: app/backend/api/srs.py, GEMINI.md
+- Tags: srs, fsrs, explanations, guardrail
+- Pattern-Key: backend.fsrs-calibration
+- Recurrence-Count: 1
+- First-Seen: 2026-10-12
+- Last-Seen: 2026-10-12
+
+### Maintenance
+- Claim: Manter scheduler FSRS v6 calibrado (retenção 0.85) e tratar explicações médicas como estritamente somente-leitura
+- Scope: app/backend/api/srs.py, GEMINI.md, tabela explanations
+- Authority: GEMINI.md#secao-3-e-6
+- Decay: reality / durable
+- Revalidate: quando houver alteração de especificação clínica ou protocolo pedagógico
+- Validation: verified
+- Evidence: 2026-10-12, validado com testes unitários em app/backend/tests/test_srs.py e regras invioláveis em GEMINI.md
+- Disposition: retain — ativo e canônico
+- Guidance: GEMINI.md

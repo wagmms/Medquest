@@ -79,10 +79,10 @@ class KeyState:
             consecutive_429 = self.model_consecutive_429.get(model, 0) + 1
             self.model_consecutive_429[model] = consecutive_429
         else:
-            consecutive_429 = self.consecutive_429 + 1
+            self.consecutive_429 += 1
             consecutive_429 = self.consecutive_429
         # Backoff progressivo, independente para cada modelo da mesma chave.
-        actual_cooldown = cooldown_seconds * min(consecutive_429, 3)
+        actual_cooldown = cooldown_seconds * max(1, min(consecutive_429, 3))
         cooldown_until = time.time() + actual_cooldown
         if model:
             self.model_cooldown_until[model] = cooldown_until
@@ -218,13 +218,13 @@ class GeminiPool:
     def get_available_key(
         self, max_wait_seconds: float = 30.0, model: Optional[str] = None
     ) -> Tuple[Optional[KeyState], str]:
-        """Obtém a próxima chave disponível via Round-Robin com checagem de cooldown."""
-        with self.lock:
-            if not self._keys:
-                return None, "Nenhuma chave registrada no pool."
+        """Obtém a próxima chave disponível via Round-Robin sem bloquear o lock durante sleep."""
+        start_time = time.time()
+        while time.time() - start_time <= max_wait_seconds:
+            with self.lock:
+                if not self._keys:
+                    return None, "Nenhuma chave registrada no pool."
 
-            start_time = time.time()
-            while time.time() - start_time <= max_wait_seconds:
                 # Tenta encontrar uma chave pronta
                 for _ in range(len(self._keys)):
                     candidate = self._keys[self._current_index]
@@ -237,17 +237,19 @@ class GeminiPool:
                     k.model_cooldown_until.get(model, k.cooldown_until) if model else k.cooldown_until
                     for k in self._keys
                 ) - time.time()
-                if min_wait <= 0:
-                    continue
-                if min_wait > (max_wait_seconds - (time.time() - start_time)):
-                    break
-                time.sleep(min(min_wait + 0.1, 2.0))
 
-            return None, "Todas as chaves do pool estão em cooldown/rate limit."
+            if min_wait <= 0:
+                continue
+            if min_wait > (max_wait_seconds - (time.time() - start_time)):
+                break
+            time.sleep(min(min_wait + 0.1, 2.0))
+
+        return None, "Todas as chaves do pool estão em cooldown/rate limit."
 
     def generate_content(
         self,
-        prompt: str,
+        prompt: str = "",
+        parts: Optional[List[Dict[str, Any]]] = None,
         system_instruction: Optional[str] = None,
         json_mode: bool = False,
         model: Optional[str] = None,
@@ -255,17 +257,24 @@ class GeminiPool:
         max_retries: int = 4,
         timeout: int = 25,
         max_total_seconds: Optional[float] = None,
+        thinking_budget: Optional[int] = None,
     ) -> Dict[str, Any]:
         """
         Executa uma chamada ao Gemini com fallback automático entre chaves e modelos.
+        Suporta chamadas de texto puro (via prompt) ou multimodais (via parts contendo inlineData).
         Retorna dicionário contendo 'text', 'raw_response', e 'key_index'.
         """
+        conteudo_parts = parts if parts is not None else [{"text": prompt}]
         payload: Dict[str, Any] = {
-            "contents": [{"parts": [{"text": prompt}]}],
+            "contents": [{"parts": conteudo_parts}],
             "generationConfig": {
                 "temperature": temperature
             }
         }
+        if thinking_budget is not None and thinking_budget > 0:
+            payload["generationConfig"]["thinkingConfig"] = {
+                "thinkingBudget": thinking_budget
+            }
         if json_mode:
             payload["generationConfig"]["responseMimeType"] = "application/json"
         if system_instruction:
@@ -311,8 +320,15 @@ class GeminiPool:
                         candidates = data.get("candidates", [])
                         if not candidates:
                             raise ValueError(f"Resposta vazia ou bloqueada por filtro de segurança: {data}")
-                        parts = candidates[0].get("content", {}).get("parts", [])
-                        text = parts[0].get("text", "") if parts else ""
+                        resp_parts = candidates[0].get("content", {}).get("parts", [])
+                        text_chunks = [
+                            p.get("text", "")
+                            for p in resp_parts
+                            if isinstance(p, dict) and not p.get("thought", False) and p.get("text")
+                        ]
+                        text = "\n".join(text_chunks).strip()
+                        if not text and resp_parts:
+                            text = resp_parts[-1].get("text", "")
                         return {"text": text, "raw": data, "key_index": key_state.index, "model": target_model}
 
                 except urllib.error.HTTPError as e:
@@ -452,3 +468,9 @@ class GeminiPool:
 
 # Instância Singleton global para uso em todo o backend
 gemini_pool = GeminiPool()
+
+
+def get_gemini_pool() -> GeminiPool:
+    """Retorna a instância singleton do GeminiPool."""
+    return gemini_pool
+

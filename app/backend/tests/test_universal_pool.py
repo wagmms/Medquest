@@ -7,8 +7,10 @@ from api import universal_pool
 @pytest.fixture(autouse=True)
 def clear_provider_cooldowns():
     universal_pool._cooldowns.clear()
+    universal_pool.circuit_breaker.reset()
     yield
     universal_pool._cooldowns.clear()
+    universal_pool.circuit_breaker.reset()
 
 
 def test_gemini_generation_success(monkeypatch):
@@ -84,3 +86,34 @@ def test_provider_status_contains_gemini_and_no_secrets(monkeypatch):
     assert "ollama" not in status["providers"]
     # Garante que timeouts estão estruturados
     assert "global_budget_seconds" in status["timeouts"]
+
+
+def test_circuit_breaker_fast_fail(monkeypatch):
+    monkeypatch.setattr(universal_pool.gemini_pool, "_keys", [object()])
+
+    def fail_always(**_):
+        raise RuntimeError("Google Gemini indisponível")
+
+    monkeypatch.setattr(universal_pool.gemini_pool, "generate_content", fail_always)
+
+    # Dispara falhas consecutivas até atingir o threshold (5)
+    for _ in range(5):
+        with pytest.raises(RuntimeError):
+            universal_pool.generate_content_with_fallback("prompt")
+
+    assert universal_pool.circuit_breaker.state == "OPEN"
+
+    # A 6ª tentativa deve falhar imediatamente sem chamar o gerador
+    called = False
+    def spy_fail(**_):
+        nonlocal called
+        called = True
+        raise RuntimeError("Nao deveria ser chamado")
+
+    monkeypatch.setattr(universal_pool.gemini_pool, "generate_content", spy_fail)
+    with pytest.raises(RuntimeError) as exc_info:
+        universal_pool.generate_content_with_fallback("prompt")
+
+    assert "circuito aberto - Fast-Fail" in str(exc_info.value)
+    assert not called
+

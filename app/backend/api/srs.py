@@ -8,9 +8,12 @@ Mapeia a resposta da questão para uma nota FSRS:
   - acertou (sem info)  -> Good
 """
 import json
+import logging
 from datetime import datetime, timedelta, timezone
 
 from fsrs import Card, Rating, Scheduler
+
+logger = logging.getLogger(__name__)
 
 # Parâmetros padrão do FSRS v6
 _DEFAULT_PARAMS = list(Scheduler().parameters)
@@ -52,6 +55,24 @@ def _rating(is_correct, confidence):
     return _CONFIDENCE_MAP.get((confidence or "").lower(), Rating.Good)
 
 
+def _safe_load_card(card_json: str | None) -> Card:
+    """Carrega um Card FSRS a partir do JSON de forma defensiva.
+
+    Caso o JSON esteja ausente, corrompido, truncado ou com esquema incompatível,
+    regenera um Card padrão limpo, prevenindo erros 500 no fluxo de estudo.
+    """
+    if not card_json:
+        return Card()
+    try:
+        data = json.loads(card_json)
+        if isinstance(data, dict):
+            return Card.from_dict(data)
+        logger.warning("Payload de fsrs_card não é um dicionário JSON válido. Regenerando Card padrão.")
+    except Exception as exc:
+        logger.warning("Falha ao deserializar fsrs_card (%s). Regenerando Card padrão.", exc)
+    return Card()
+
+
 def review(card_json, is_correct, confidence=None, is_flashcard=False, now=None):
     """Recebe o estado do card (JSON ou None) e devolve (novo_json, próxima_revisão_iso).
     
@@ -59,7 +80,7 @@ def review(card_json, is_correct, confidence=None, is_flashcard=False, now=None)
     blindando contra passos intradia acidentais, drift de relógio ou estados degenerados.
     """
     scheduler = _flashcard_scheduler if is_flashcard else _question_scheduler
-    card = Card.from_dict(json.loads(card_json)) if card_json else Card()
+    card = _safe_load_card(card_json)
     now_utc = (now if now is not None else datetime.now(timezone.utc)).astimezone(timezone.utc)
     card, _log = scheduler.review_card(card, _rating(is_correct, confidence), review_datetime=now_utc)
 

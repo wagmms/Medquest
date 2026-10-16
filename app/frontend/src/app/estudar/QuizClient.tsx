@@ -8,6 +8,7 @@ import clsx from "clsx";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { isLocalIdentityReady } from "@/lib/db";
+import { prefetchQuestionsByIds } from "@/lib/syncQueue";
 import { useUser } from "@clerk/nextjs";
 import { normalizeFlashcard } from "@/lib/normalizeFlashcard";
 
@@ -278,30 +279,42 @@ export function QuizClient({
     }
   }, []);
 
-  // Pré-carregamento em segundo plano das próximas questões
+  // Pré-carregamento em segundo plano das próximas questões (Dexie + Cache em Memória)
   useEffect(() => {
     if (state !== "PLAYING" || queue.length === 0) return;
 
     const nextIds = [
       queue[currentIndex + 1]?.id,
       queue[currentIndex + 2]?.id,
+      queue[currentIndex + 3]?.id,
     ].filter((id): id is number => typeof id === "number" && !detailsCacheRef.current[id] && !prefetchingRef.current.has(id));
 
     if (nextIds.length === 0) return;
 
     for (const nextId of nextIds) {
       prefetchingRef.current.add(nextId);
-      api.questions.getDetail(nextId)
-        .then((detail) => {
-          detailsCacheRef.current[nextId] = detail;
-        })
-        .catch(() => {
-          // Ignora falhas de prefetch em segundo plano
-        })
-        .finally(() => {
-          prefetchingRef.current.delete(nextId);
-        });
     }
+
+    // Persiste no Dexie em lote via syncQueue e popula cache em memória para 0ms
+    prefetchQuestionsByIds(nextIds)
+      .then(async () => {
+        for (const nextId of nextIds) {
+          try {
+            const detail = await api.questions.getDetail(nextId);
+            detailsCacheRef.current[nextId] = detail;
+          } catch {
+            // Ignora falhas de prefetch em segundo plano
+          }
+        }
+      })
+      .catch(() => {
+        // Ignora falhas de prefetch em segundo plano
+      })
+      .finally(() => {
+        for (const nextId of nextIds) {
+          prefetchingRef.current.delete(nextId);
+        }
+      });
   }, [state, queue, currentIndex]);
 
   const loadQueue = useCallback(async (activeFilters: Record<string, string | string[]>) => {
@@ -324,6 +337,12 @@ export function QuizClient({
         setAttemptResult(null);
         setState("PLAYING");
         loadQuestionDetail(qList[0].id);
+
+        // Pré-carrega transacionalmente no Dexie as 10 próximas questões da fila
+        const upcomingIds = qList.slice(1, 11).map((q) => q.id);
+        if (upcomingIds.length > 0) {
+          prefetchQuestionsByIds(upcomingIds).catch(() => {});
+        }
       } else {
         if (typeof window !== "undefined") {
           sessionStorage.removeItem("medquest_active_quiz");
@@ -1116,8 +1135,9 @@ export function QuizClient({
         explanation: null,
       }),
       is_correct: isCorr,
-      next_review_date: currentAttemptResult?.next_review_date ?? null,
+      next_review_date: currentAttemptResult?.next_review_date ?? new Date().toISOString(),
     };
+    attemptResultRef.current = optimisticResult;
 
     setSessionAnswers(prev => ({
       ...prev,

@@ -1,9 +1,57 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import clsx from "clsx";
 import { Filter, RotateCcw, Play, RefreshCw, Brain, SlidersHorizontal, BookOpenCheck, FileSignature, X, Search, Sparkles } from "lucide-react";
 import { QuestionMeta } from "@/types/api";
 import { SubjectTreeSelector } from "@/components/SubjectTreeSelector";
 import { SavedQuizState } from "../QuizClient";
+
+interface SubtemaChipProps {
+  subtema: string;
+  onRemove: (subtema: string) => void;
+}
+
+const SubtemaChip = React.memo(function SubtemaChip({ subtema, onRemove }: SubtemaChipProps) {
+  return (
+    <span className="bg-primary/10 text-primary border border-primary/20 px-3 py-1.5 rounded-full text-sm flex items-center gap-1.5 animate-in zoom-in-95 duration-200">
+      <span className="max-w-[200px] truncate">{subtema}</span>
+      <button
+        type="button"
+        onClick={() => onRemove(subtema)}
+        className="hover:text-destructive hover:bg-destructive/10 rounded-full p-0.5 transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-destructive focus-visible:outline-none"
+        aria-label={`Remover subtema ${subtema}`}
+      >
+        <X size={14} aria-hidden="true" />
+      </button>
+    </span>
+  );
+});
+
+interface SubtemaDropdownItemProps {
+  subtema: string;
+  count: number;
+  onSelect: (subtema: string) => void;
+}
+
+const SubtemaDropdownItem = React.memo(function SubtemaDropdownItem({
+  subtema,
+  count,
+  onSelect,
+}: SubtemaDropdownItemProps) {
+  return (
+    <button
+      type="button"
+      role="option"
+      aria-selected="false"
+      onClick={() => onSelect(subtema)}
+      className="w-full text-left flex items-center justify-between px-4 py-2.5 hover:bg-muted text-sm border-b border-border/50 last:border-0 cursor-pointer focus-visible:bg-muted focus-visible:outline-none"
+    >
+      <span className="truncate pr-4 text-foreground">{subtema}</span>
+      <span className="text-xs font-medium text-muted-foreground bg-muted px-2 py-0.5 rounded-full shrink-0">
+        {count}
+      </span>
+    </button>
+  );
+});
 
 export interface QuizFiltersProps {
   hasSavedState: boolean;
@@ -85,6 +133,71 @@ export function QuizFilters({
     if (group && currentArr.length === 1) return group.base; 
     return "";
   }, [filters.institution, groupedInstitutions]);
+
+  // Subtemas selecionados normalizados em array e Set para busca O(1)
+  const selectedSubtemas = useMemo(() => {
+    if (Array.isArray(filters.subtema)) return filters.subtema;
+    if (typeof filters.subtema === "string" && filters.subtema.trim().length > 0) return [filters.subtema];
+    return [];
+  }, [filters.subtema]);
+
+  const selectedSubtemasSet = useMemo(() => new Set(selectedSubtemas), [selectedSubtemas]);
+
+  // Lista memoizada de subtemas filtrados pela busca textual (elimina duplo filter/slice inline no render)
+  const filteredSearchSubtemas = useMemo(() => {
+    const query = subtemaSearch.trim().toLowerCase();
+    if (!query || !dynamicMeta?.subtemas) return [];
+    return dynamicMeta.subtemas
+      .filter((s) => !selectedSubtemasSet.has(s.subtema) && s.subtema.toLowerCase().includes(query))
+      .slice(0, 50);
+  }, [dynamicMeta, subtemaSearch, selectedSubtemasSet]);
+
+  // Callbacks memoizados para manipulação de subtemas
+  const handleRemoveSubtema = useCallback((subtemaToRemove: string) => {
+    setFilters((prev) => {
+      const current = Array.isArray(prev.subtema)
+        ? prev.subtema
+        : prev.subtema ? [prev.subtema as string] : [];
+      const next = current.filter((x) => x !== subtemaToRemove);
+      const updated = { ...prev };
+      if (next.length > 0) {
+        updated.subtema = next;
+      } else {
+        delete updated.subtema;
+      }
+      return updated;
+    });
+  }, [setFilters]);
+
+  const handleClearAllSubtemas = useCallback(() => {
+    setFilters((prev) => {
+      const updated = { ...prev };
+      delete updated.subtema;
+      return updated;
+    });
+  }, [setFilters]);
+
+  const handleAddSubtema = useCallback((subtemaToAdd: string) => {
+    setFilters((prev) => {
+      const current = Array.isArray(prev.subtema)
+        ? [...prev.subtema]
+        : prev.subtema ? [prev.subtema as string] : [];
+      if (!current.includes(subtemaToAdd)) {
+        current.push(subtemaToAdd);
+      }
+      return { ...prev, subtema: current };
+    });
+    setSubtemaSearch("");
+  }, [setFilters, setSubtemaSearch]);
+
+  const handleSubtemaInputKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (filteredSearchSubtemas.length > 0) {
+        handleAddSubtema(filteredSearchSubtemas[0].subtema);
+      }
+    }
+  }, [filteredSearchSubtemas, handleAddSubtema]);
 
 return (
   <div className="bg-card border border-border shadow-1 rounded-xl p-8 max-w-2xl mx-auto w-full">
@@ -394,35 +507,15 @@ return (
           </label>
           
           {/* Chips of selected subtemas */}
-          {Array.isArray(filters.subtema) && filters.subtema.length > 0 && (
+          {selectedSubtemas.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-3">
-              {filters.subtema.map(sub => (
-                <span key={sub} className="bg-primary/10 text-primary border border-primary/20 px-3 py-1.5 rounded-full text-sm flex items-center gap-1.5 animate-in zoom-in-95 duration-200">
-                  <span className="max-w-[200px] truncate">{sub}</span>
-                  <button 
-                    type="button" 
-                    onClick={() => {
-                      const current = (filters.subtema as string[]).filter(x => x !== sub);
-                      const newFilters = { ...filters };
-                      if (current.length > 0) newFilters.subtema = current;
-                      else delete newFilters.subtema;
-                      setFilters(newFilters);
-                    }} 
-                    className="hover:text-destructive hover:bg-destructive/10 rounded-full p-0.5 transition-colors"
-                    aria-label="Remover"
-                  >
-                    <X size={14} />
-                  </button>
-                </span>
+              {selectedSubtemas.map((sub) => (
+                <SubtemaChip key={sub} subtema={sub} onRemove={handleRemoveSubtema} />
               ))}
               <button 
                 type="button" 
-                onClick={() => {
-                  const newFilters = { ...filters };
-                  delete newFilters.subtema;
-                  setFilters(newFilters);
-                }}
-                className="text-xs text-muted-foreground hover:text-foreground underline px-2 py-1.5"
+                onClick={handleClearAllSubtemas}
+                className="text-xs text-muted-foreground hover:text-foreground underline px-2 py-1.5 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
               >
                 Limpar todos
               </button>
@@ -432,46 +525,38 @@ return (
           <div className="relative">
             <input
               type="text"
-              placeholder="Buscar subtema para adicionar..."
+              placeholder="Buscar subtema para adicionar... (Enter para selecionar)"
               value={subtemaSearch}
               onChange={(e) => setSubtemaSearch(e.target.value)}
+              onKeyDown={handleSubtemaInputKeyDown}
               className="w-full bg-input border border-border rounded-md py-2.5 px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary pl-9"
+              aria-label="Buscar subtema para adicionar"
             />
             <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-              <Search size={16} />
+              <Search size={16} aria-hidden="true" />
             </div>
           </div>
           
           {subtemaSearch.trim().length > 0 && (
-            <div className="absolute z-50 w-full mt-1 bg-card border border-border rounded-md shadow-lg max-h-60 overflow-y-auto">
-              {dynamicMeta.subtemas
-                ?.filter(s => s.subtema.toLowerCase().includes(subtemaSearch.toLowerCase()))
-                .filter(s => !(Array.isArray(filters.subtema) && filters.subtema.includes(s.subtema)))
-                .length === 0 && (
-                  <div className="px-4 py-3 text-sm text-muted-foreground italic">
-                    Nenhum subtema disponível encontrado.
-                  </div>
+            <div
+              role="listbox"
+              aria-label="Sugestões de subtemas"
+              className="absolute z-50 w-full mt-1 bg-card border border-border rounded-md shadow-lg max-h-60 overflow-y-auto"
+            >
+              {filteredSearchSubtemas.length === 0 ? (
+                <div className="px-4 py-3 text-sm text-muted-foreground italic">
+                  Nenhum subtema disponível encontrado.
+                </div>
+              ) : (
+                filteredSearchSubtemas.map((s) => (
+                  <SubtemaDropdownItem
+                    key={s.subtema}
+                    subtema={s.subtema}
+                    count={s.n}
+                    onSelect={handleAddSubtema}
+                  />
+                ))
               )}
-              {dynamicMeta.subtemas
-                ?.filter(s => s.subtema.toLowerCase().includes(subtemaSearch.toLowerCase()))
-                .filter(s => !(Array.isArray(filters.subtema) && filters.subtema.includes(s.subtema)))
-                .slice(0, 50)
-                .map(s => (
-                  <button 
-                    key={s.subtema} 
-                    type="button"
-                    onClick={() => {
-                      const current = Array.isArray(filters.subtema) ? [...filters.subtema] : (filters.subtema ? [filters.subtema as string] : []);
-                      current.push(s.subtema);
-                      setFilters({ ...filters, subtema: current });
-                      setSubtemaSearch("");
-                    }}
-                    className="w-full text-left flex items-center justify-between px-4 py-2.5 hover:bg-muted text-sm border-b border-border/50 last:border-0"
-                  >
-                    <span className="truncate pr-4">{s.subtema}</span>
-                    <span className="text-xs font-medium text-muted-foreground bg-muted px-2 py-0.5 rounded-full shrink-0">{s.n}</span>
-                  </button>
-              ))}
             </div>
           )}
           
