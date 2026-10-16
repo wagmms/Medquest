@@ -2,6 +2,28 @@
 
 Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
+## [2026-10-16] - Etapa 3 do Novo Simulador OSCE: Gestão de Insumos SUS, Fila de Enfermagem com Latência & Manequim Cirúrgico 2D
+- **Manequim Cirúrgico 2D Vetorial com Iatrogenias Anatômicas (`app/frontend/src/lib/anatomy/mannequin-landmarks.ts`, `app/frontend/src/app/osce/[id]/ProcedureMannequin.tsx`)**:
+  - Arquitetura vetorial cirúrgica ortográfica em SVG multicamadas de ultraprecisão (<30KB, 60fps), descartando o 3D/WebGL por inviabilidade ergonômica sob estresse temporal de 8 minutos de prova.
+  - Mapeamento milimétrico de hitboxes anatômicos seguros e zonas de perigo iatrogênico:
+    - Toracocentese de alívio: diferenciação da borda superior da costela (segura) vs borda inferior (iatrogenia grave por laceração da artéria intercostal).
+    - Cricotireoidostomia de emergência: incisão na membrana cricotireoidea vs incisão baixa sobre o istmo da glândula tireoide (hemorragia maciça).
+    - Drenagem torácica tubular no 5º EIC na linha axilar média (triângulo de segurança de Bülau) com fixação em bailarina.
+    - Janelas completas do E-FAST (POCUS): Espaço de Morrison (RUQ), Recesso de Koller / Esplenorrenal (LUQ), Janela Pélvica / Suprapúbica e Janela Subxifoide / Pericárdica.
+    - Acesso vascular de emergência: Punção intraóssea tibial proximal vs Cateterismo venoso central por técnica de Seldinger.
+  - Alternância rápida entre Modo Treino Anatômico (com guias visuais e hitboxes transparentes) e Modo Prova Real (silhueta cirúrgica nua sem pistas visuais).
+- **Gestão de Insumos Críticos e Matrizes de Atenção do SUS (`app/frontend/src/types/osce-stage3.ts`)**:
+  - Matrizes de insumos calibradas para três níveis de complexidade: `UBS` (Atenção Básica), `UPA` (Pronto Atendimento) e `TERTIARY_TRAUMA` (Hospital Terciário).
+  - Bloqueio físico de condutas: procedimentos cirúrgicos complexos (ex: dreno de tórax) exigem preparação prévia de bandeja de instrumentação (`requiresPreparedSupplyId`), impedindo realização sem material esterilizado.
+- **Fila de Enfermagem com Latência Realista (`app/frontend/src/lib/engine/nursing-queue-engine.ts`)**:
+  - Catálogo de ordens de enfermagem (`NURSING_CATALOG`) com latência clínica real (20 a 40 segundos por ordem).
+  - Gerenciador de fila `NursingQueueManager` respeitando dimensionamento de equipe (`maxNurses` por complexidade do SUS) e priorização com preempção de tarefas em PCR / choque circulatório.
+- **Backend & Avaliação de Procedimentos (`app/backend/api/osce.py`)**:
+  - Atualizada a função `perform_osce_procedure` para auditar os novos sítios cirúrgicos, registrar achados do E-FAST com entrega de imagem, e pontuar desfechos ou iatrogenias no barema oficial.
+- **Testes & Validação**:
+  - Criada classe `TestOsceStage3MannequinAndProcedures` em `app/backend/tests/test_osce.py` cobrindo janelas E-FAST, iatrogenias de borda de costela e tireoide, acesso intraósseo e dreno torácico (25/25 testes de backend aprovados).
+  - Suíte completa validada com `./validate.sh fast` em 16.41s e zero erros de lint ou tipagem TypeScript.
+
 ## [2026-10-16] - Etapa 2 do Novo Simulador OSCE: Palco Clínico Triplo, Semiotécnica Bruta Acústica & Roteador Dual-Agent
 - **Roteador Dual-Agent & Modulação Fisiológica no Backend (`app/backend/api/osce.py`, `app/backend/api/osce_routes.py`)**:
   - Implementada função `get_hemodynamic_speech_modifier(vitals)` modulando cognição e fonação do paciente (GCS $\le 8$ restringe a gemidos guturais/silêncio, GCS 9-12 gera confusão/lentidão, $\text{SpO}_2 < 88\%$ ou $\text{FR} > 30$ corta fala em frases curtas entrecortadas com `[arfa]`/`[puxa o ar]`, choque $\text{PAS} < 90$ gera sussurros).

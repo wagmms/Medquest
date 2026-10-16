@@ -894,7 +894,7 @@ export const api = {
       message: string,
       elapsedSeconds: number,
       target: "PATIENT" | "EXAMINER" = "PATIENT",
-      currentVitals?: Record<string, unknown>
+      currentVitals?: import("@/types/api").OscePhysiologyVitals | Record<string, unknown>
     ) => apiFetch<{
       reply: string;
       sender: "paciente" | "examinador";

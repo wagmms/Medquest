@@ -60,61 +60,58 @@ export function PreceptorFocusCard({
       {/* CARD PRINCIPAL NO DASHBOARD */}
       <section 
         aria-label="Plano de Ataque do Preceptor IA"
-        className="shrink-0 relative overflow-hidden rounded-2xl sm:rounded-3xl border border-purple-500/30 bg-gradient-to-br from-purple-950/20 via-card to-card p-4 sm:p-6 shadow-sm transition-all hover:border-purple-500/50 group"
+        className="shrink-0 relative overflow-hidden rounded-sm border border-line-subtle bg-surface p-4 sm:p-5 shadow-2xs transition-colors hover:border-line-strong group"
       >
-        {/* Glow decorativo de fundo */}
-        <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-purple-500/10 blur-3xl" />
-        
-        <div className="relative z-10 flex flex-col gap-4">
+        <div className="relative z-10 flex flex-col gap-3.5">
           {/* Header do Card */}
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line-subtle pb-2.5">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-purple-500/15 text-purple-600 dark:text-purple-400 ring-1 ring-purple-500/30">
-                <Brain className="h-4 w-4" />
+              <div className="flex h-7 w-7 items-center justify-center rounded-xs bg-ink-primary text-surface shadow-2xs">
+                <Brain className="h-3.5 w-3.5 text-canvas" />
               </div>
               <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] font-mono-lab font-bold uppercase tracking-wider text-accent">
                     Preceptor IA
                   </span>
-                  <span className="rounded bg-purple-500/10 px-1.5 py-0.2 text-[10px] font-bold text-purple-600 dark:text-purple-400">
-                    Adaptativo
+                  <span className="rounded-xs bg-elevated border border-line-subtle px-1.5 py-0.5 text-[9px] font-mono-lab font-bold text-ink-secondary">
+                    ADAPTATIVO
                   </span>
                 </div>
-                <h3 className="text-sm sm:text-base font-bold text-foreground">
+                <h3 className="text-sm font-bold text-ink-primary">
                   Plano de Ataque do Dia
                 </h3>
               </div>
             </div>
 
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/40 px-2.5 py-1 rounded-full border border-border/40">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Tempo Real</span>
+            <div className="flex items-center gap-1.5 text-[11px] font-mono-lab text-ink-secondary bg-elevated px-2 py-0.5 rounded-xs border border-line-subtle">
+              <span className="h-1.5 w-1.5 rounded-full bg-normal animate-pulse" />
+              <span>TEMPO REAL</span>
             </div>
           </div>
 
           {/* Grid de Métricas Diagnósticas */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {/* Bloco 1: Tema Vulnerável Prioritário */}
-            <div className="flex flex-col justify-between rounded-xl sm:rounded-2xl border border-border/50 bg-muted/20 p-3.5">
+            <div className="flex flex-col justify-between rounded-xs border border-line-subtle bg-elevated/40 p-3">
               <div className="flex items-start justify-between gap-2">
-                <div className="flex items-center gap-1.5 text-xs font-semibold text-rose-600 dark:text-rose-400">
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-critical">
                   <AlertTriangle className="h-3.5 w-3.5 shrink-0" />
                   <span>Subtema Prioritário de Retificação</span>
                 </div>
-                <span className="rounded-md bg-muted px-1.5 py-0.5 text-[10px] font-bold text-muted-foreground shrink-0">
+                <span className="rounded-xs bg-surface border border-line-subtle px-1.5 py-0.5 text-[10px] font-mono-lab font-bold text-ink-secondary shrink-0">
                   {currentArea}
                 </span>
               </div>
 
               <div className="mt-2">
-                <h4 className="text-sm sm:text-base font-bold text-foreground line-clamp-1" title={currentSubtema}>
+                <h4 className="text-sm font-bold text-ink-primary line-clamp-1" title={currentSubtema}>
                   {currentSubtema}
                 </h4>
-                <p className="text-xs text-muted-foreground mt-0.5">
+                <p className="text-xs text-ink-secondary mt-0.5">
                   {topBottleneck ? (
                     <>
-                      <strong className="text-rose-600 dark:text-rose-400 font-semibold">{topBottleneck.unresolved_count ?? topBottleneck.wrong_count} erros</strong> pendentes ({topBottleneck.accuracy_pct}% de acerto)
+                      <strong className="text-critical font-mono-lab font-semibold tabular-nums">{topBottleneck.unresolved_count ?? topBottleneck.wrong_count} erros</strong> pendentes (<span className="font-mono-lab tabular-nums">{topBottleneck.accuracy_pct}%</span> de acerto)
                     </>
                   ) : (
                     "Tema estratégico com alto peso nas bancas paulistas e nacionais."
@@ -122,11 +119,11 @@ export function PreceptorFocusCard({
                 </p>
               </div>
 
-              <div className="mt-3 pt-2 border-t border-border/30 flex items-center justify-between">
-                <span className="text-[11px] text-muted-foreground">Meta sugerida: 15 Qs</span>
+              <div className="mt-2.5 pt-2 border-t border-line-subtle/80 flex items-center justify-between">
+                <span className="text-[11px] font-mono-lab text-ink-muted">Meta sugerida: 15 Qs</span>
                 <Link
                   href={practiceUrl}
-                  className="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1"
+                  className="text-xs font-bold text-accent hover:underline inline-flex items-center gap-1"
                 >
                   Praticar este tema <ArrowRight className="h-3 w-3" />
                 </Link>
@@ -134,30 +131,30 @@ export function PreceptorFocusCard({
             </div>
 
             {/* Bloco 2: Curva de Esquecimento (FSRS) */}
-            <div className="flex flex-col justify-between rounded-xl sm:rounded-2xl border border-border/50 bg-muted/20 p-3.5">
+            <div className="flex flex-col justify-between rounded-xs border border-line-subtle bg-elevated/40 p-3">
               <div className="flex items-start justify-between gap-2">
-                <div className="flex items-center gap-1.5 text-xs font-semibold text-purple-600 dark:text-purple-400">
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-accent">
                   <Target className="h-3.5 w-3.5 shrink-0" />
                   <span>Repetição Espaçada (FSRS v6)</span>
                 </div>
-                <span className="rounded-md bg-purple-500/10 px-1.5 py-0.5 text-[10px] font-bold text-purple-600 dark:text-purple-400 shrink-0">
-                  Curva de Retenção
+                <span className="rounded-xs bg-surface border border-line-subtle px-1.5 py-0.5 text-[10px] font-mono-lab font-bold text-accent shrink-0">
+                  RETENÇÃO
                 </span>
               </div>
 
               <div className="mt-2">
-                <h4 className="text-sm sm:text-base font-bold text-foreground">
+                <h4 className="text-sm font-bold text-ink-primary">
                   {srsDueCount > 0 ? (
-                    <span className="text-purple-600 dark:text-purple-400">
+                    <span className="text-accent font-mono-lab tabular-nums">
                       {srsDueCount} {srsDueCount === 1 ? "revisão pronta hoje" : "revisões prontas hoje"}
                     </span>
                   ) : (
-                    <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
-                      <CheckCircle2 className="h-4 w-4" /> Todas as revisões em dia!
+                    <span className="text-normal flex items-center gap-1.5">
+                      <CheckCircle2 className="h-3.5 w-3.5" /> Todas as revisões em dia!
                     </span>
                   )}
                 </h4>
-                <p className="text-xs text-muted-foreground mt-0.5">
+                <p className="text-xs text-ink-secondary mt-0.5">
                   {srsDueCount > 0 
                     ? "Revise antes de fazer questões novas para garantir retenção > 85%."
                     : "Sua retenção de longo prazo está blindada para este ciclo."
@@ -165,8 +162,8 @@ export function PreceptorFocusCard({
                 </p>
               </div>
 
-              <div className="mt-3 pt-2 border-t border-border/30 flex items-center justify-between">
-                <span className="text-[11px] text-muted-foreground">
+              <div className="mt-2.5 pt-2 border-t border-line-subtle/80 flex items-center justify-between">
+                <span className="text-[11px] font-mono-lab text-ink-muted tabular-nums">
                   {overallAccuracy != null 
                     ? `${Math.round(overallAccuracy)}% acerto (${totalAttempts} Qs)` 
                     : `${totalAttempts} Qs feitas`}
@@ -174,14 +171,14 @@ export function PreceptorFocusCard({
                 {srsDueCount > 0 ? (
                   <Link
                     href="/estudar?status=srs_due&limit=100"
-                    className="text-xs font-bold text-purple-600 dark:text-purple-400 hover:underline inline-flex items-center gap-1"
+                    className="text-xs font-bold text-accent hover:underline inline-flex items-center gap-1"
                   >
                     Revisar agora <ArrowRight className="h-3 w-3" />
                   </Link>
                 ) : (
                   <Link
                     href="/revisao-ativa"
-                    className="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1"
+                    className="text-xs font-bold text-accent hover:underline inline-flex items-center gap-1"
                   >
                     Ver flashcards <ArrowRight className="h-3 w-3" />
                   </Link>
@@ -191,9 +188,9 @@ export function PreceptorFocusCard({
           </div>
 
           {/* Barra de Ação Rápida */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
-            <div className="text-xs text-muted-foreground flex items-center gap-2 self-start sm:self-auto">
-              <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2.5 pt-1">
+            <div className="text-xs text-ink-muted flex items-center gap-1.5 self-start sm:self-auto">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-normal" />
               <span>Algoritmo calibrado com base no seu histórico real de tentativas</span>
             </div>
 
@@ -201,15 +198,15 @@ export function PreceptorFocusCard({
               <button
                 type="button"
                 onClick={() => handleOpenAiDiagnosis(false)}
-                className="flex-1 sm:flex-none px-4 py-2 rounded-xl border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 text-purple-600 dark:text-purple-400 font-bold text-xs transition-colors flex items-center justify-center gap-1.5 active:scale-95"
+                className="flex-1 sm:flex-none px-3 py-1.5 rounded-xs border border-line-subtle bg-elevated hover:bg-line-subtle text-ink-primary font-bold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
               >
-                <Sparkles className="h-3.5 w-3.5" />
+                <Sparkles className="h-3.5 w-3.5 text-accent" />
                 <span>Raio-X do Preceptor</span>
               </button>
               
               <Link
                 href={practiceUrl}
-                className="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                className="flex-1 sm:flex-none px-3.5 py-1.5 rounded-xs bg-ink-primary hover:bg-ink-primary/90 text-surface font-bold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-2xs"
               >
                 <span>Iniciar Bateria do Foco (15 Qs)</span>
                 <ArrowRight className="h-3.5 w-3.5" />

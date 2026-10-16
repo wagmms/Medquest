@@ -996,8 +996,158 @@ class TestOsceStage2DualAgentAndAuscultation:
         assert payload["sender"] == "examinador"
         assert "específico" in payload["reply"].lower() or "manobra" in payload["reply"].lower() or "estetoscópio" in payload["reply"].lower()
 
+class TestOsceStage3MannequinAndProcedures:
+    """Suíte de testes para a Etapa 3: Manequim Cirúrgico 2D, Insumos e Iatrogenias Anatômicas."""
 
+    def test_efast_windows_evaluation(self, app):
+        """Verifica execução e detecção de janelas do E-FAST (Morrison, Esplenorrenal, Pélvica, Subxifoide)."""
+        with app.app_context():
+            db = get_db()
+            osce.seed_osce_stations(db)
+            st = db.execute("SELECT id FROM osce_stations LIMIT 1").fetchone()
+            sess = osce.start_osce_session(db, st["id"], "user_stage3_test")
+            session_id = sess["session_id"]
 
+            # 1. Janela de Morrison (RUQ)
+            res_morrison = osce.perform_osce_procedure(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage3_test",
+                procedure_type="fast",
+                anatomical_site="efast_morrison_ruq",
+                elapsed_seconds=60
+            )
+            assert res_morrison["success"] is True
+            assert "Morrison" in res_morrison["findings"] or "Hepatorrenal" in res_morrison["findings"]
 
+            # 2. Janela Esplenorrenal (LUQ)
+            res_luq = osce.perform_osce_procedure(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage3_test",
+                procedure_type="fast",
+                anatomical_site="efast_splenorenal_luq",
+                elapsed_seconds=75
+            )
+            assert res_luq["success"] is True
+            assert "Esplenorrenal" in res_luq["findings"]
 
+            # 3. Janela Subxifoide / Pericárdica
+            res_peri = osce.perform_osce_procedure(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage3_test",
+                procedure_type="fast",
+                anatomical_site="efast_subxiphoid_pericardial",
+                elapsed_seconds=90
+            )
+            assert res_peri["success"] is True
+            assert "Subxifoide" in res_peri["findings"]
+
+    def test_thoracocentesis_iatrogenic_vs_safe_border(self, app):
+        """Testa diferenciação milimétrica entre borda superior (segura) e borda inferior (iatrogenia vascular)."""
+        with app.app_context():
+            db = get_db()
+            osce.seed_osce_stations(db)
+            st = db.execute("SELECT id FROM osce_stations LIMIT 1").fetchone()
+            sess = osce.start_osce_session(db, st["id"], "user_stage3_test")
+            session_id = sess["session_id"]
+
+            # Iatrogenia: Borda inferior com laceração intercostal
+            res_iatro = osce.perform_osce_procedure(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage3_test",
+                procedure_type="thoracocentesis_relief",
+                anatomical_site="needle_thoracocentesis_r2_inferior_border",
+                elapsed_seconds=120
+            )
+            assert res_iatro["success"] is True
+            assert "IATROGENIA GRAVE" in res_iatro["findings"]
+            assert "artéria intercostal" in res_iatro["findings"].lower()
+            assert res_iatro["is_positive"] is False
+
+            # Borda superior: Segura
+            res_safe = osce.perform_osce_procedure(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage3_test",
+                procedure_type="thoracocentesis_relief",
+                anatomical_site="needle_thoracocentesis_r2_safe",
+                elapsed_seconds=140
+            )
+            assert res_safe["success"] is True
+            assert "Descompressão torácica" in res_safe["findings"]
+            assert res_safe["is_positive"] is True
+
+    def test_surgical_cricothyroidotomy_vs_thyroid_iatrogenesis(self, app):
+        """Testa cricotireoidostomia correta vs incisão iatrogênica em glândula tireoide."""
+        with app.app_context():
+            db = get_db()
+            osce.seed_osce_stations(db)
+            st = db.execute("SELECT id FROM osce_stations LIMIT 1").fetchone()
+            sess = osce.start_osce_session(db, st["id"], "user_stage3_test")
+            session_id = sess["session_id"]
+
+            # Iatrogenia: Istmo da tireoide
+            res_iatro_crico = osce.perform_osce_procedure(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage3_test",
+                procedure_type="surgical_cricothyroidotomy",
+                anatomical_site="iatrogenic_thyroid_gland",
+                elapsed_seconds=180
+            )
+            assert res_iatro_crico["success"] is True
+            assert "IATROGENIA CRÍTICA" in res_iatro_crico["findings"]
+            assert "istmo da tireoide" in res_iatro_crico["findings"].lower()
+            assert res_iatro_crico["is_positive"] is False
+
+            # Sucesso: Membrana cricotireoidea
+            res_safe_crico = osce.perform_osce_procedure(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage3_test",
+                procedure_type="surgical_cricothyroidotomy",
+                anatomical_site="cricothyroid_membrane",
+                elapsed_seconds=210
+            )
+            assert res_safe_crico["success"] is True
+            assert "Cricotireoidostomia cirúrgica de emergência executada com perfeição" in res_safe_crico["findings"]
+            assert res_safe_crico["is_positive"] is True
+
+    def test_intraosseous_and_chest_tube(self, app):
+        """Verifica acesso intraósseo tibial e dreno de tórax no 5º EIC."""
+        with app.app_context():
+            db = get_db()
+            osce.seed_osce_stations(db)
+            st = db.execute("SELECT id FROM osce_stations LIMIT 1").fetchone()
+            sess = osce.start_osce_session(db, st["id"], "user_stage3_test")
+            session_id = sess["session_id"]
+
+            # Intraósseo
+            res_io = osce.perform_osce_procedure(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage3_test",
+                procedure_type="intraosseous_access",
+                anatomical_site="io_proximal_tibia",
+                elapsed_seconds=230
+            )
+            assert res_io["success"] is True
+            assert "intraóssea" in res_io["findings"].lower()
+            assert "tuberosidade tibial" in res_io["findings"].lower()
+
+            # Dreno de tórax 5º EIC
+            res_drain = osce.perform_osce_procedure(
+                db=db,
+                session_id=session_id,
+                user_id="user_stage3_test",
+                procedure_type="chest_tube_insertion",
+                anatomical_site="chest_tube_5th_ics_midaxillary",
+                elapsed_seconds=250
+            )
+            assert res_drain["success"] is True
+            assert "selo d'água" in res_drain["findings"].lower()
+            assert "bailarina" in res_drain["findings"].lower()
 

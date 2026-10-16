@@ -10,7 +10,6 @@ import {
   Volume2,
   VolumeX,
   Send,
-  HelpCircle,
 } from "lucide-react";
 import {
   stethoscopeEngine,
@@ -44,8 +43,8 @@ interface ClinicalStageProps {
     dbp: number;
     rr: number;
     spo2: number;
-    temp: number;
-    gcs: number;
+    temp?: number;
+    gcs?: number;
   };
   transcript: OsceTranscriptItem[];
   isLoading: boolean;
@@ -63,7 +62,7 @@ export function ClinicalStage({
   onSendMessage,
   isListening = false,
   onToggleListening,
-  micPermission = "prompt",
+  micPermission: _micPermission = "prompt",
 }: ClinicalStageProps) {
   // Canal Tático de Comunicação: PACIENTE vs EXAMINADOR
   const [activeChannel, setActiveChannel] = useState<"PATIENT" | "EXAMINER">("PATIENT");

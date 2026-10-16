@@ -13,6 +13,8 @@ import clsx from "clsx";
 import { isDeviceOffline, isForcedOffline } from "@/lib/db";
 import { usePwaInstall } from "@/hooks/usePwaInstall";
 
+import { ClinicalIcon } from "@/components/ui/ClinicalIcon";
+
 const NAV_ITEMS = [
   { href: "/", label: "Dashboard", icon: "dashboard" },
   { href: "/buscar", label: "Busca Clínica", icon: "search" },
@@ -113,59 +115,57 @@ export default function TopNav() {
 
   return (
     <>
-      <header className="app-top-nav md:hidden flex justify-between items-center w-full px-3.5 sm:px-5 py-2.5 h-16 pt-[max(0.625rem,env(safe-area-inset-top,0px))] bg-surface/85 backdrop-blur-2xl border-b border-border/50 z-10 sticky top-0 transition-all duration-300 shadow-xs max-w-full overflow-hidden">
-        <h1 className="font-semibold text-lg text-foreground tracking-tight flex items-center gap-2 min-w-0">
-          <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center shadow-xs shrink-0">
-            <span className="material-symbols-outlined text-[16px]" data-icon="local_hospital">local_hospital</span>
+      <header className="app-top-nav md:hidden flex justify-between items-center w-full px-3.5 sm:px-4 py-2 h-14 bg-surface border-b border-line-subtle z-10 sticky top-0 transition-colors max-w-full overflow-hidden select-none">
+        <h1 className="font-semibold text-base text-ink-primary tracking-tight flex items-center gap-2 min-w-0">
+          <div className="w-7 h-7 rounded-xs bg-ink-primary text-surface flex items-center justify-center shadow-2xs shrink-0">
+            <ClinicalIcon name="local_hospital" className="w-3.5 h-3.5 text-canvas" strokeWidth={2.2} />
           </div>
           <span className="truncate">MedQuest</span>
         </h1>
-        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 shrink-0">
           {isInstallable && (
             <button
               onClick={() => void installApp()}
-              className="flex items-center justify-center p-1.5 sm:p-2 rounded-lg text-primary hover:bg-primary/10 transition-colors cursor-pointer shrink-0"
+              className="flex items-center justify-center p-1.5 rounded-xs text-accent hover:bg-elevated transition-colors cursor-pointer shrink-0"
               title="Instalar MedQuest no Android"
               aria-label="Instalar MedQuest no dispositivo"
             >
-              <span className="material-symbols-outlined text-[20px]" data-icon="install_mobile">install_mobile</span>
+              <ClinicalIcon name="cloud_download" className="w-4 h-4" />
             </button>
           )}
           <button
             onClick={() => setIsOfflineOpen(true)}
             className={clsx(
-              "flex items-center gap-1 px-2 py-1.5 sm:px-2.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer shrink-0",
-              isOffline
-                ? "bg-warning/20 text-warning border border-warning/30 animate-pulse"
-                : "text-muted-foreground hover:bg-surface-variant/50 hover:text-foreground"
+              "flex items-center gap-1 px-2 py-1 rounded-xs text-xs font-mono-lab font-semibold transition-colors cursor-pointer shrink-0 border",
+              isOffline || forcedOffline
+                ? "bg-warning/20 border-warning/40 text-warning animate-pulse"
+                : "border-line-subtle text-ink-secondary hover:bg-elevated hover:text-ink-primary"
             )}
             title={forcedOffline ? "Modo Plantão Forçado Ativo" : isOffline ? "Você está no Modo Plantão (Offline)" : "Abrir Modo Plantão (Offline)"}
             aria-label={forcedOffline ? "Modo Plantão Forçado Ativo" : isOffline ? "Modo Plantão Offline Ativo" : "Abrir Modo Plantão"}
           >
-            <span className="material-symbols-outlined text-[18px]" data-icon={isOffline ? "cloud_off" : "cloud_download"}>
-              {isOffline ? "cloud_off" : "cloud_download"}
-            </span>
-            <span className="text-[11px] font-bold hidden min-[360px]:inline">{forcedOffline ? "Plantão" : isOffline ? "Offline" : "Plantão"}</span>
+            <ClinicalIcon name={isOffline || forcedOffline ? "cloud_off" : "cloud_download"} className="w-3.5 h-3.5 shrink-0" />
+            <span className="text-[11px] hidden min-[360px]:inline">{forcedOffline ? "Plantão" : isOffline ? "Offline" : "Plantão"}</span>
           </button>
           <button 
             ref={menuButtonRef}
             onClick={() => setIsMobileMenuOpen(true)}
-            className="text-muted-foreground hover:bg-surface-variant/50 rounded-lg p-1.5 sm:p-2 transition-colors flex items-center justify-center cursor-pointer shrink-0"
+            className="text-ink-secondary hover:bg-elevated rounded-xs p-1.5 transition-colors flex items-center justify-center cursor-pointer shrink-0 border border-line-subtle"
             aria-label="Abrir menu principal"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-navigation-drawer"
           >
-            <span className="material-symbols-outlined text-[22px]" data-icon="menu">menu</span>
+            <ClinicalIcon name="menu" className="w-4 h-4" />
           </button>
           <button 
             onClick={() => setIsModalOpen(true)}
-            className="relative w-8 h-8 rounded-full bg-muted overflow-hidden ring-1 ring-border shadow-xs flex items-center justify-center cursor-pointer hover:opacity-85 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary/50 shrink-0 ml-0.5"
+            className="relative w-7 h-7 rounded-full bg-elevated border border-line-subtle overflow-hidden shadow-2xs flex items-center justify-center cursor-pointer hover:opacity-85 transition-opacity focus:outline-none focus:ring-1 focus:ring-accent shrink-0 ml-0.5"
             aria-label="Abrir minha conta"
           >
             {isLoaded && user?.imageUrl ? (
-              <Image src={user.imageUrl} alt="Avatar" fill sizes="32px" className="object-cover" />
+              <Image src={user.imageUrl} alt="Avatar" fill sizes="28px" className="object-cover" />
             ) : (
-              <span className="material-symbols-outlined text-[18px] text-muted-foreground" data-icon="person">person</span>
+              <ClinicalIcon name="person" className="w-3.5 h-3.5 text-ink-muted" />
             )}
           </button>
         </div>
@@ -174,7 +174,7 @@ export default function TopNav() {
       {/* Mobile Drawer Overlay */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden transition-opacity"
+          className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 md:hidden transition-opacity"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
@@ -186,25 +186,25 @@ export default function TopNav() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="mobile-menu-title"
-        className="fixed top-0 left-0 h-full w-[min(20rem,85vw)] bg-background/95 backdrop-blur-2xl z-50 shadow-2xl md:hidden border-r border-border/50 flex flex-col pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]"
+        className="fixed top-0 left-0 h-full w-[min(20rem,85vw)] bg-surface border-r border-line-subtle z-50 shadow-2xl md:hidden flex flex-col pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]"
       >
-        <div className="flex items-center justify-between p-4 border-b border-border/50">
+        <div className="flex items-center justify-between p-3.5 border-b border-line-subtle">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center shadow-sm">
-              <span className="material-symbols-outlined text-[16px]" data-icon="local_hospital">local_hospital</span>
+            <div className="w-7 h-7 rounded-xs bg-ink-primary text-surface flex items-center justify-center shadow-2xs">
+              <ClinicalIcon name="local_hospital" className="w-3.5 h-3.5 text-canvas" strokeWidth={2.2} />
             </div>
-            <h2 id="mobile-menu-title" className="font-semibold text-lg text-foreground tracking-tight">Menu</h2>
+            <h2 id="mobile-menu-title" className="font-semibold text-base text-ink-primary tracking-tight">Menu Clínico</h2>
           </div>
           <button 
             id="mobile-menu-close"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="p-2 rounded-md hover:bg-surface-variant/50 transition-colors text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
+            className="p-1.5 rounded-xs hover:bg-elevated transition-colors text-ink-secondary cursor-pointer"
             aria-label="Fechar menu"
           >
-            <span className="material-symbols-outlined text-[20px]">close</span>
+            <ClinicalIcon name="close" className="w-4 h-4" />
           </button>
         </div>
-        <nav className="flex-1 overflow-y-auto p-4 space-y-1.5" aria-label="Navegação principal">
+        <nav className="flex-1 overflow-y-auto p-3 space-y-1" aria-label="Navegação principal">
           {NAV_ITEMS.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -214,28 +214,28 @@ export default function TopNav() {
                 onClick={(e) => handleNavClick(e, item.href)}
                 aria-current={isActive ? "page" : undefined}
                 className={clsx(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium",
+                  "flex items-center gap-2.5 px-3 py-2 rounded-xs transition-colors text-xs font-medium",
                   isActive 
-                    ? "bg-primary text-primary-foreground shadow-sm" 
-                    : "text-muted-foreground hover:bg-surface-variant/50 hover:text-foreground"
+                    ? "bg-elevated text-ink-primary font-semibold border border-line-subtle shadow-2xs" 
+                    : "text-ink-secondary hover:bg-elevated hover:text-ink-primary"
                 )}
               >
-                <span className={clsx("material-symbols-outlined text-[20px]", isActive && "font-variation-settings-'FILL' 1")} data-icon={item.icon}>{item.icon}</span>
+                <ClinicalIcon name={item.icon} className={clsx("w-4 h-4", isActive ? "text-accent" : "text-ink-muted")} />
                 <span>{item.label}</span>
               </Link>
             );
           })}
         </nav>
         {/* Controles secundários movidos para o rodapé do menu mobile */}
-        <div className="p-4 border-t border-border/50 flex items-center justify-between gap-2 bg-muted/20">
+        <div className="p-3 border-t border-line-subtle flex items-center justify-between gap-2 bg-elevated/40">
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <button
               onClick={toggleZenMode}
-              className="text-muted-foreground hover:bg-surface-variant/50 rounded-lg p-2 text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
+              className="text-ink-secondary hover:bg-elevated rounded-xs p-1.5 text-xs font-mono-lab flex items-center gap-1.5 cursor-pointer border border-line-subtle"
               title={isZenMode ? "Sair do Modo Zen" : "Entrar no Modo Zen (Z)"}
             >
-              <span className="material-symbols-outlined text-[18px]">{isZenMode ? "fullscreen_exit" : "fullscreen"}</span>
+              <ClinicalIcon name={isZenMode ? "fullscreen_exit" : "fullscreen"} className="w-3.5 h-3.5" />
               <span>{isZenMode ? "Sair Zen" : "Modo Zen"}</span>
             </button>
           </div>
@@ -244,9 +244,9 @@ export default function TopNav() {
               setIsMobileMenuOpen(false);
               setIsOfflineOpen(true);
             }}
-            className="flex items-center gap-1 text-xs text-primary font-bold px-2.5 py-1.5 rounded-lg hover:bg-primary/10 transition-colors cursor-pointer"
+            className="flex items-center gap-1 text-xs text-accent font-mono-lab font-bold px-2.5 py-1.5 rounded-xs border border-line-subtle hover:bg-elevated transition-colors cursor-pointer"
           >
-            <span className="material-symbols-outlined text-[16px]" data-icon="cloud_download">cloud_download</span>
+            <ClinicalIcon name="cloud_download" className="w-3.5 h-3.5" />
             <span>Plantão</span>
           </button>
         </div>

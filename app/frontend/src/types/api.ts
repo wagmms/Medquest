@@ -822,6 +822,7 @@ export interface OsceTranscriptItem {
   message: string;
   timestamp: string;
   elapsed_seconds?: number;
+  target?: "PATIENT" | "EXAMINER" | string;
   action_payload?: Record<string, unknown>;
 }
 

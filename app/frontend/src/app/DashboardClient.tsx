@@ -15,6 +15,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { readLearningSession, syncSessionFromCloud } from "@/lib/sessionState";
 import { triggerConfetti } from "@/lib/confetti";
 import { PreceptorFocusCard } from "@/components/PreceptorFocusCard";
+import { ClinicalIcon } from "@/components/ui/ClinicalIcon";
 import clsx from "clsx";
 
 const DASHBOARD_CACHE_KEY = "medquest_dashboard_cache_v1";
@@ -416,28 +417,26 @@ export function DashboardClient({
     // 1. Retomar sessão ativa
     if (activeSession) {
       return (
-        <div className="bg-primary text-primary-foreground rounded-2xl p-4 sm:p-6 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden group min-w-0">
+        <div className="bg-surface border border-line-strong rounded-sm p-4 sm:p-5 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
           <div className="flex items-center gap-3 sm:gap-4 relative z-10 min-w-0 flex-1">
-            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-primary-foreground/20 flex items-center justify-center text-primary-foreground shrink-0">
-              <span className="material-symbols-outlined text-[24px] sm:text-[28px]" data-icon={activeSession.kind === "simulado" ? "history_edu" : "play_lesson"}>
-                {activeSession.kind === "simulado" ? "history_edu" : "play_lesson"}
-              </span>
+            <div className="w-10 h-10 rounded-xs bg-ink-primary text-surface flex items-center justify-center shrink-0 shadow-2xs">
+              <ClinicalIcon name={activeSession.kind === "simulado" ? "description" : "menu_book"} className="w-5 h-5 text-canvas" />
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 mb-0.5">
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary-foreground/25">
+                <span className="px-1.5 py-0.5 rounded-xs text-[10px] font-mono-lab font-bold uppercase tracking-wider bg-elevated border border-line-subtle text-accent">
                   Sessão em Andamento
                 </span>
               </div>
-              <h3 className="text-base sm:text-xl font-bold break-words">Retomar {activeSession.kind === "simulado" ? "Simulado" : "Sessão de Estudos"}</h3>
-              <p className="text-xs sm:text-sm text-primary-foreground/80 font-medium break-words">Continue de onde você parou para não perder o ritmo.</p>
+              <h3 className="text-sm sm:text-base font-bold text-ink-primary break-words">Retomar {activeSession.kind === "simulado" ? "Simulado" : "Sessão de Estudos"}</h3>
+              <p className="text-xs text-ink-secondary font-medium break-words">Continue de onde você parou para não perder o ritmo.</p>
             </div>
           </div>
           <Link 
             href={activeSession.url} 
-            className="w-full sm:w-auto px-5 py-2.5 font-bold bg-primary-foreground text-primary rounded-xl hover:bg-primary-foreground/90 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 shadow-xs shrink-0"
+            className="w-full sm:w-auto px-4 py-2 font-bold bg-ink-primary text-surface rounded-xs hover:bg-ink-primary/90 transition-all flex items-center justify-center gap-1.5 shadow-2xs shrink-0 text-xs"
           >
-            Continuar sessão <span className="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+            Continuar sessão <ClinicalIcon name="arrow_forward" className="w-3.5 h-3.5" />
           </Link>
         </div>
       );
@@ -450,22 +449,22 @@ export function DashboardClient({
       const flashcardsCount = stats.flashcards_due_count || 0;
 
       return (
-        <div className="shrink-0 bg-card border-2 border-purple-500/30 dark:border-purple-500/20 bg-gradient-to-r from-purple-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
+        <div className="shrink-0 bg-surface border border-line-strong rounded-sm p-4 sm:p-5 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
           <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 ring-1 ring-purple-500/20 flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-[22px] sm:text-[26px]" data-icon="psychology">psychology</span>
+            <div className="w-10 h-10 rounded-xs bg-accent/10 border border-accent/30 text-accent flex items-center justify-center shrink-0">
+              <ClinicalIcon name="psychology" className="w-5 h-5" />
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 mb-0.5">
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-purple-500/10 text-purple-600 dark:text-purple-400">
-                  Próxima Ação Prioritária
+                <span className="px-1.5 py-0.5 rounded-xs text-[10px] font-mono-lab font-bold uppercase tracking-wider bg-elevated border border-line-subtle text-accent">
+                  Ação Prioritária FSRS
                 </span>
-                <span className="text-xs text-muted-foreground">• ~{estimatedMinutes} min</span>
+                <span className="text-xs font-mono-lab text-ink-muted tabular-nums">• ~{estimatedMinutes} min</span>
               </div>
-              <h3 className="text-base sm:text-xl font-bold text-foreground break-words">
-                {pendentesRevisao} {pendentesRevisao === 1 ? "revisão vencida" : "revisões vencidas"} hoje
+              <h3 className="text-sm sm:text-base font-bold text-ink-primary break-words">
+                <span className="font-mono-lab tabular-nums text-accent">{pendentesRevisao}</span> {pendentesRevisao === 1 ? "revisão vencida" : "revisões vencidas"} hoje
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground break-words">
+              <p className="text-xs text-ink-secondary break-words">
                 Reforce os conceitos no tempo ideal do FSRS antes de resolver questões inéditas.
               </p>
             </div>
@@ -478,17 +477,17 @@ export function DashboardClient({
             {flashcardsCount > 0 && (
               <Link 
                 href="/revisao-ativa" 
-                className="px-3 sm:px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 shadow-xs"
+                className="px-3.5 py-2 bg-elevated hover:bg-line-subtle text-ink-primary font-bold rounded-xs text-xs transition-colors flex items-center justify-center gap-1.5 border border-line-subtle"
               >
-                <span className="material-symbols-outlined text-[16px]" data-icon="auto_awesome">auto_awesome</span> Flashcards ({flashcardsCount})
+                <ClinicalIcon name="sparkles" className="w-3.5 h-3.5 text-accent" /> Flashcards (<span className="font-mono-lab tabular-nums">{flashcardsCount}</span>)
               </Link>
             )}
             {srsCount > 0 && (
               <Link 
                 href="/estudar?status=srs_due&limit=100" 
-                className="px-3 sm:px-4 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 shadow-xs"
+                className="px-3.5 py-2 bg-ink-primary hover:bg-ink-primary/90 text-surface font-bold rounded-xs text-xs transition-colors flex items-center justify-center gap-1.5 shadow-2xs"
               >
-                <span className="material-symbols-outlined text-[16px]" data-icon="replay">replay</span> Questões ({srsCount})
+                <ClinicalIcon name="refresh" className="w-3.5 h-3.5" /> Questões (<span className="font-mono-lab tabular-nums">{srsCount}</span>)
               </Link>
             )}
           </div>
@@ -505,32 +504,32 @@ export function DashboardClient({
         : `/estudar?status=new&limit=${Math.min(20, dailyRemaining)}`;
 
       return (
-        <div className="shrink-0 bg-card border-2 border-primary/30 bg-gradient-to-r from-primary/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
+        <div className="shrink-0 bg-surface border border-line-subtle rounded-sm p-4 sm:p-5 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
           <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20 flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="play_arrow">play_arrow</span>
+            <div className="w-10 h-10 rounded-xs bg-elevated border border-line-subtle text-accent flex items-center justify-center shrink-0">
+              <ClinicalIcon name="play_arrow" className="w-5 h-5" />
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 mb-0.5">
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary">
+                <span className="px-1.5 py-0.5 rounded-xs text-[10px] font-mono-lab font-bold uppercase tracking-wider bg-elevated border border-line-subtle text-accent">
                   Meta de Hoje
                 </span>
-                <span className="text-xs text-muted-foreground">• {todayDone}/{dailyTarget} concluídas</span>
+                <span className="text-xs font-mono-lab text-ink-muted tabular-nums">• {todayDone}/{dailyTarget} concluídas</span>
               </div>
-              <h3 className="text-base sm:text-xl font-bold text-foreground break-words">
-                {dailyRemaining} {dailyRemaining === 1 ? "questão" : "questões"} para bater sua meta de hoje
+              <h3 className="text-sm sm:text-base font-bold text-ink-primary break-words">
+                <span className="font-mono-lab tabular-nums text-accent">{dailyRemaining}</span> {dailyRemaining === 1 ? "questão" : "questões"} para bater sua meta de hoje
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground break-words">
-                Tópico sugerido: <strong className="text-foreground">{sugestaoTema}</strong> {sugestaoArea ? `(${sugestaoArea})` : ""}
+              <p className="text-xs text-ink-secondary break-words">
+                Tópico sugerido: <strong className="text-ink-primary">{sugestaoTema}</strong> {sugestaoArea ? `(${sugestaoArea})` : ""}
               </p>
             </div>
           </div>
 
           <Link 
             href={practiceUrl}
-            className="w-full sm:w-auto px-5 py-2.5 font-bold bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-all flex items-center justify-center gap-2 shadow-xs shrink-0"
+            className="w-full sm:w-auto px-4 py-2 font-bold bg-ink-primary text-surface rounded-xs hover:bg-ink-primary/90 transition-all flex items-center justify-center gap-1.5 shadow-2xs shrink-0 text-xs"
           >
-            Iniciar bateria ({Math.min(20, dailyRemaining)} Qs) <span className="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+            Iniciar bateria (<span className="font-mono-lab tabular-nums">{Math.min(20, dailyRemaining)}</span> Qs) <ClinicalIcon name="arrow_forward" className="w-3.5 h-3.5" />
           </Link>
         </div>
       );
@@ -542,25 +541,25 @@ export function DashboardClient({
       const targetUrl = topBottleneck ? topBottleneck.practice_url : errorNotebook.practice_url;
 
       return (
-        <div className="shrink-0 bg-card border border-rose-500/30 bg-gradient-to-r from-rose-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
+        <div className="shrink-0 bg-surface border border-critical/30 rounded-sm p-4 sm:p-5 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
           <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400 ring-1 ring-rose-500/20 flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="edit_note">edit_note</span>
+            <div className="w-10 h-10 rounded-xs bg-critical-bg border border-critical/30 text-critical flex items-center justify-center shrink-0">
+              <ClinicalIcon name="edit" className="w-5 h-5" />
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 mb-0.5">
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-rose-500/10 text-rose-600 dark:text-rose-400">
+                <span className="px-1.5 py-0.5 rounded-xs text-[10px] font-mono-lab font-bold uppercase tracking-wider bg-critical-bg text-critical">
                   Metas Diárias Concluídas 🎉
                 </span>
               </div>
-              <h3 className="text-base sm:text-xl font-bold text-foreground break-words">
+              <h3 className="text-sm sm:text-base font-bold text-ink-primary break-words">
                 Aproveite para limpar seu Caderno de Erros
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground break-words">
+              <p className="text-xs text-ink-secondary break-words">
                 {topErrorSubtema ? (
-                  <>Foco sugerido: <strong className="text-foreground">{topErrorSubtema}</strong> ({topBottleneck?.unresolved_count || errorNotebook.currently_unresolved_count} pendentes)</>
+                  <>Foco sugerido: <strong className="text-ink-primary">{topErrorSubtema}</strong> (<span className="font-mono-lab tabular-nums">{topBottleneck?.unresolved_count || errorNotebook.currently_unresolved_count}</span> pendentes)</>
                 ) : (
-                  <>Você possui <strong className="text-foreground">{errorNotebook.currently_unresolved_count} {errorNotebook.currently_unresolved_count === 1 ? "questão" : "questões"}</strong> aguardando retificação.</>
+                  <>Você possui <strong className="text-ink-primary font-mono-lab tabular-nums">{errorNotebook.currently_unresolved_count} {errorNotebook.currently_unresolved_count === 1 ? "questão" : "questões"}</strong> aguardando retificação.</>
                 )}
               </p>
             </div>
@@ -568,28 +567,28 @@ export function DashboardClient({
 
           <Link 
             href={targetUrl}
-            className="w-full sm:w-auto px-5 py-2.5 font-bold bg-rose-600 hover:bg-rose-700 text-white rounded-xl transition-all flex items-center justify-center gap-2 shadow-xs shrink-0"
+            className="w-full sm:w-auto px-4 py-2 font-bold bg-critical text-surface rounded-xs hover:bg-critical/90 transition-all flex items-center justify-center gap-1.5 shadow-2xs shrink-0 text-xs"
           >
-            Limpar erros <span className="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+            Limpar erros <ClinicalIcon name="arrow_forward" className="w-3.5 h-3.5" />
           </Link>
         </div>
       );
     }
 
     return (
-      <div className="shrink-0 bg-card border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 via-card to-card rounded-2xl p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 min-w-0">
+      <div className="shrink-0 bg-surface border border-normal/30 rounded-sm p-4 sm:p-5 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 min-w-0">
         <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-1 ring-emerald-500/20 flex items-center justify-center shrink-0">
-            <span className="material-symbols-outlined text-[24px] sm:text-[26px]" data-icon="done_all">done_all</span>
+          <div className="w-10 h-10 rounded-xs bg-normal-bg border border-normal/30 text-normal flex items-center justify-center shrink-0">
+            <ClinicalIcon name="check_circle" className="w-5 h-5" />
           </div>
           <div className="min-w-0 flex-1">
-            <h3 className="text-base sm:text-xl font-bold text-foreground break-words">Metas de hoje cumpridas com sucesso!</h3>
-            <p className="text-xs sm:text-sm text-muted-foreground break-words">Você está mantendo sua consistência em dia. Descanse ou avance no cronograma semanal.</p>
+            <h3 className="text-sm sm:text-base font-bold text-ink-primary break-words">Metas de hoje cumpridas com sucesso!</h3>
+            <p className="text-xs text-ink-secondary break-words">Você está mantendo sua consistência em dia. Descanse ou avance no cronograma semanal.</p>
           </div>
         </div>
         <Link 
           href="/planner" 
-          className="w-full sm:w-auto px-4 py-2 bg-muted hover:bg-muted/80 text-foreground font-semibold rounded-xl text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5 shrink-0"
+          className="w-full sm:w-auto px-3.5 py-1.5 bg-elevated hover:bg-line-subtle text-ink-primary font-semibold rounded-xs text-xs transition-colors flex items-center justify-center gap-1.5 shrink-0 border border-line-subtle"
         >
           Acessar Planner
         </Link>
@@ -602,24 +601,24 @@ export function DashboardClient({
       variants={containerVariants} 
       initial="hidden" 
       animate="show" 
-      className="shrink-0 flex flex-col gap-4 sm:gap-6 md:gap-8 pt-1 sm:pt-2 pb-10 max-w-6xl mx-auto w-full min-w-0 overflow-x-hidden px-0.5 sm:px-0"
+      className="shrink-0 flex flex-col gap-4 sm:gap-6 pt-1 sm:pt-2 pb-10 max-w-6xl mx-auto w-full min-w-0 overflow-x-hidden px-0.5 sm:px-0"
     >
       {/* Banner de Modo Plantão (Offline) */}
       {isOffline && (
         <motion.div 
           variants={itemVariants}
-          className="bg-amber-500/10 border border-amber-500/30 dark:border-amber-500/20 rounded-2xl p-3.5 sm:p-4 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-foreground animate-in fade-in min-w-0"
+          className="bg-surface border border-warning/40 rounded-sm p-3.5 sm:p-4 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-ink-primary animate-in fade-in min-w-0"
         >
           <div className="flex items-center gap-3 min-w-0 flex-1">
-            <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-[22px]" data-icon="cloud_off">cloud_off</span>
+            <div className="w-8 h-8 rounded-xs bg-warning/15 text-warning flex items-center justify-center shrink-0 border border-warning/30">
+              <ClinicalIcon name="cloud_off" className="w-4 h-4" />
             </div>
             <div className="min-w-0 flex-1">
-              <h4 className="font-bold text-xs sm:text-sm text-foreground flex items-center gap-2">
+              <h4 className="font-bold text-xs sm:text-sm text-ink-primary flex items-center gap-2">
                 Modo Plantão Ativo (Offline)
-                <span className="text-[10px] uppercase font-extrabold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-600 dark:text-amber-400 tracking-wider">Dispositivo</span>
+                <span className="text-[10px] font-mono-lab uppercase font-extrabold px-1.5 py-0.2 rounded-xs bg-warning/15 text-warning border border-warning/30 tracking-wider">Dispositivo</span>
               </h4>
-              <p className="text-[11px] sm:text-xs text-muted-foreground mt-0.5 break-words">
+              <p className="text-[11px] sm:text-xs text-ink-secondary mt-0.5 break-words">
                 Você pode estudar questões e simulados salvos. As respostas serão sincronizadas ao reconectar.
               </p>
             </div>
@@ -627,23 +626,23 @@ export function DashboardClient({
           <div className="flex items-center gap-2 w-full sm:w-auto shrink-0">
             <Link
               href="/estudar"
-              className="flex-1 sm:flex-initial px-3 py-1.5 bg-primary text-primary-foreground font-bold text-xs rounded-xl hover:bg-primary/90 transition-all text-center"
+              className="flex-1 sm:flex-initial px-3 py-1.5 bg-ink-primary text-surface font-bold text-xs rounded-xs hover:bg-ink-primary/90 transition-all text-center shadow-2xs"
             >
               Questões Offline
             </Link>
             <Link
               href="/simulado"
-              className="flex-1 sm:flex-initial px-3 py-1.5 bg-card border border-border text-foreground font-bold text-xs rounded-xl hover:bg-muted transition-all text-center"
+              className="flex-1 sm:flex-initial px-3 py-1.5 bg-surface border border-line-subtle text-ink-primary font-bold text-xs rounded-xs hover:bg-elevated transition-all text-center"
             >
               Simulados Offline
             </Link>
             <button
               onClick={() => setIsOfflineModalOpen(true)}
-              className="min-h-[44px] min-w-[44px] p-2 text-xs text-muted-foreground hover:text-foreground font-semibold rounded-xl bg-muted/40 hover:bg-muted transition-colors cursor-pointer flex items-center justify-center shrink-0"
+              className="p-1.5 text-xs text-ink-secondary hover:text-ink-primary font-semibold rounded-xs bg-elevated hover:bg-line-subtle border border-line-subtle transition-colors cursor-pointer flex items-center justify-center shrink-0"
               title="Gerenciar pacotes offline"
               aria-label="Gerenciar pacotes offline"
             >
-              <span className="material-symbols-outlined text-[18px]" data-icon="settings">settings</span>
+              <ClinicalIcon name="settings" className="w-4 h-4" />
             </button>
           </div>
         </motion.div>
@@ -654,18 +653,18 @@ export function DashboardClient({
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3 w-full min-w-0">
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2.5">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-foreground truncate">
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-ink-primary truncate">
                 Olá, {firstName}
               </h2>
               {isUsingCache && (
-                <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[11px] font-semibold border border-amber-500/20 shrink-0 shadow-2xs">
-                  <span className="material-symbols-outlined text-[13px] animate-spin" data-icon="sync">sync</span>
+                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-xs bg-elevated text-warning text-[11px] font-mono-lab font-semibold border border-warning/30 shrink-0 shadow-2xs">
+                  <ClinicalIcon name="refresh" className="w-3 h-3 animate-spin" />
                   <span className="hidden sm:inline">Sincronizando com a nuvem</span>
                   <span className="sm:hidden">Sincronizando</span>
                 </div>
               )}
             </div>
-            <p className="text-muted-foreground text-xs sm:text-sm md:text-base mt-0.5 break-words">
+            <p className="text-ink-secondary text-xs sm:text-sm mt-0.5 break-words">
               {subtitleMessage}
             </p>
           </div>
@@ -673,26 +672,26 @@ export function DashboardClient({
           {/* Badge Contagem Regressiva da Prova */}
           <div className="self-start sm:self-auto shrink-0">
             {stats.days_until_exam != null ? (
-              <div className="flex items-center gap-2 bg-card border border-border/80 rounded-xl sm:rounded-2xl px-3 sm:px-4 py-1.5 sm:py-2 shadow-2xs">
-                <span className="material-symbols-outlined text-primary text-[16px] sm:text-[18px]" data-icon="event">event</span>
-                <span className="text-xs text-muted-foreground font-medium">Prova em:</span>
-                <span className="text-xs font-bold text-foreground">{stats.days_until_exam} dias</span>
+              <div className="flex items-center gap-2 bg-surface border border-line-subtle rounded-xs px-3 py-1.5 shadow-2xs font-mono-lab">
+                <ClinicalIcon name="schedule" className="w-3.5 h-3.5 text-accent" />
+                <span className="text-xs text-ink-secondary font-medium">Prova em:</span>
+                <span className="text-xs font-bold text-ink-primary tabular-nums">{stats.days_until_exam} dias</span>
               </div>
             ) : stats.exam_date ? (
-              <div className="flex items-center gap-2 bg-card border border-border/80 rounded-xl sm:rounded-2xl px-3 sm:px-4 py-1.5 sm:py-2 shadow-2xs">
-                <span className="material-symbols-outlined text-primary text-[16px] sm:text-[18px]" data-icon="flag">flag</span>
-                <span className="text-xs text-muted-foreground font-medium">Data-alvo:</span>
-                <span className="text-xs font-bold text-foreground" suppressHydrationWarning>
+              <div className="flex items-center gap-2 bg-surface border border-line-subtle rounded-xs px-3 py-1.5 shadow-2xs font-mono-lab">
+                <ClinicalIcon name="schedule" className="w-3.5 h-3.5 text-accent" />
+                <span className="text-xs text-ink-secondary font-medium">Data-alvo:</span>
+                <span className="text-xs font-bold text-ink-primary" suppressHydrationWarning>
                   {formatExamDate(stats.exam_date)}
                 </span>
               </div>
             ) : (
               <Link 
                 href="/planner" 
-                className="flex items-center gap-1.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl sm:rounded-2xl px-3 sm:px-3.5 py-1.5 text-xs font-bold transition-colors"
+                className="flex items-center gap-1.5 bg-surface hover:bg-elevated text-accent border border-line-subtle rounded-xs px-3 py-1.5 text-xs font-mono-lab font-bold transition-colors shadow-2xs"
               >
-                <span className="material-symbols-outlined text-[16px]" data-icon="calendar_month">calendar_month</span>
-                Definir data da prova →
+                <ClinicalIcon name="calendar_month" className="w-3.5 h-3.5" />
+                <span>Definir data da prova →</span>
               </Link>
             )}
           </div>
@@ -701,54 +700,50 @@ export function DashboardClient({
 
       {/* ESTADO DE ERRO / RESILIÊNCIA CONTRA FALHAS DE REDE */}
       {hasOverviewError ? (
-        <motion.div variants={itemVariants} className="shrink-0 bg-card border-2 border-amber-500/30 dark:border-amber-500/20 bg-gradient-to-r from-amber-500/5 via-card to-card rounded-3xl p-6 sm:p-8 shadow-xs">
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5">
-            <div className="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/30 flex items-center justify-center shrink-0">
-              <span className={clsx("material-symbols-outlined text-[28px]", isReconnecting && "animate-spin")} data-icon={isReconnecting ? "sync" : "cloud_off"}>
-                {isReconnecting ? "sync" : "cloud_off"}
-              </span>
+        <motion.div variants={itemVariants} className="shrink-0 bg-surface border border-warning/40 rounded-sm p-5 sm:p-6 shadow-2xs">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+            <div className="w-10 h-10 rounded-xs bg-warning/15 text-warning border border-warning/30 flex items-center justify-center shrink-0">
+              <ClinicalIcon name={isReconnecting ? "refresh" : "cloud_off"} className={clsx("w-5 h-5", isReconnecting && "animate-spin")} />
             </div>
             <div className="flex-1 text-center sm:text-left">
               <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
-                  {isReconnecting && <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping inline-block" />}
+                <span className="px-1.5 py-0.5 rounded-xs text-[10px] font-mono-lab font-bold uppercase tracking-wider bg-warning/15 text-warning border border-warning/30 flex items-center gap-1.5">
+                  {isReconnecting && <span className="w-1.5 h-1.5 rounded-full bg-warning animate-ping inline-block" />}
                   {isReconnecting ? "Inicializando Servidor" : "Instabilidade Temporária"}
                 </span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1">
+              <h3 className="text-base sm:text-lg font-bold text-ink-primary mb-1">
                 {isReconnecting ? "Conectando ao servidor em nuvem..." : "Não foi possível sincronizar as métricas do painel"}
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mb-4">
+              <p className="text-xs text-ink-secondary max-w-xl mb-3.5">
                 {isReconnecting
                   ? `O servidor em nuvem está inicializando (cold start). Tentativa ${reconnectAttempt} de sincronização automática em andamento... Suas métricas serão carregadas em instantes.`
                   : "Ocorreu uma falha temporária ao carregar seus dados do servidor. Seu histórico e progresso continuam seguros. Você pode sincronizar novamente ou continuar estudando pelo menu."}
               </p>
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
                 <button
                   onClick={() => fetchDashboardData(0)}
                   disabled={isReconnecting}
-                  className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-bold rounded-xl transition-all flex items-center gap-1.5 shadow-xs cursor-pointer disabled:opacity-60"
+                  className="px-3.5 py-1.5 bg-ink-primary hover:bg-ink-primary/90 text-surface text-xs font-bold rounded-xs transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer disabled:opacity-60"
                 >
-                  <span className={clsx("material-symbols-outlined text-[16px]", isReconnecting && "animate-spin")} data-icon="refresh">
-                    refresh
-                  </span>
-                  {isReconnecting ? "Sincronizando..." : "Sincronizar agora"}
+                  <ClinicalIcon name="refresh" className={clsx("w-3.5 h-3.5", isReconnecting && "animate-spin")} />
+                  <span>{isReconnecting ? "Sincronizando..." : "Sincronizar agora"}</span>
                 </button>
                 <button
                   onClick={() => window.location.reload()}
-                  className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground border border-border text-xs font-semibold rounded-xl transition-colors cursor-pointer"
+                  className="px-3.5 py-1.5 bg-surface hover:bg-elevated text-ink-primary border border-line-subtle text-xs font-semibold rounded-xs transition-colors cursor-pointer"
                 >
                   Recarregar página
                 </button>
                 <Link
                   href="/estudar"
-                  className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground border border-border text-xs font-semibold rounded-xl transition-colors"
+                  className="px-3.5 py-1.5 bg-surface hover:bg-elevated text-ink-primary border border-line-subtle text-xs font-semibold rounded-xs transition-colors"
                 >
                   Ir para Questões
                 </Link>
                 <Link
                   href="/simulado"
-                  className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground border border-border text-xs font-semibold rounded-xl transition-colors"
+                  className="px-3.5 py-1.5 bg-surface hover:bg-elevated text-ink-primary border border-line-subtle text-xs font-semibold rounded-xs transition-colors"
                 >
                   Ir para Simulados
                 </Link>
@@ -757,59 +752,59 @@ export function DashboardClient({
           </div>
         </motion.div>
       ) : stats.distinct_answered === 0 ? (
-        <motion.div variants={itemVariants} className="shrink-0 bg-card border border-border/80 rounded-3xl p-6 sm:p-8 shadow-xs">
-          <div className="flex flex-col sm:flex-row items-center gap-6 mb-6">
-            <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20 shadow-inner shrink-0">
-              <span className="material-symbols-outlined text-3xl" data-icon="school">school</span>
+        <motion.div variants={itemVariants} className="shrink-0 bg-surface border border-line-subtle rounded-sm p-5 sm:p-6 shadow-2xs">
+          <div className="flex flex-col sm:flex-row items-center gap-4 mb-5">
+            <div className="w-12 h-12 rounded-xs bg-ink-primary text-surface flex items-center justify-center shadow-2xs shrink-0">
+              <ClinicalIcon name="local_hospital" className="w-6 h-6 text-canvas" />
             </div>
             <div className="text-center sm:text-left">
-              <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1">
+              <h3 className="text-lg sm:text-xl font-bold text-ink-primary mb-0.5">
                 Boas-vindas ao MedQuest!
               </h3>
-              <p className="text-sm text-muted-foreground max-w-xl">
+              <p className="text-xs text-ink-secondary max-w-xl">
                 Seu painel inteligente é calibrado a cada questão respondida. Siga os 2 passos abaixo para configurar seu direcionamento:
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {/* Passo 1 */}
-            <div className="p-5 rounded-2xl bg-muted/20 border border-border/50 flex flex-col justify-between">
+            <div className="p-4 rounded-xs bg-elevated/40 border border-line-subtle flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-2 mb-2 text-primary font-bold text-xs uppercase tracking-wider">
-                  <span className="w-5 h-5 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs">1</span>
+                <div className="flex items-center gap-1.5 mb-1.5 text-accent font-mono-lab font-bold text-xs uppercase tracking-wider">
+                  <span className="w-4 h-4 rounded-xs bg-accent text-accent-fg flex items-center justify-center text-[10px]">1</span>
                   Planejamento
                 </div>
-                <h4 className="font-bold text-foreground text-base mb-1">Defina sua Prova e Meta</h4>
-                <p className="text-xs text-muted-foreground mb-4">
+                <h4 className="font-bold text-ink-primary text-sm mb-1">Defina sua Prova e Meta</h4>
+                <p className="text-xs text-ink-secondary mb-3">
                   Informe a data do seu exame e horas semanais para receber sugestões de cronograma.
                 </p>
               </div>
               <Link 
                 href="/planner" 
-                className="w-full py-2.5 px-4 bg-muted hover:bg-muted/80 text-foreground border border-border font-semibold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors"
+                className="w-full py-2 px-3 bg-surface hover:bg-elevated text-ink-primary border border-line-subtle font-bold rounded-xs text-xs flex items-center justify-center gap-1.5 transition-colors shadow-2xs"
               >
-                <span className="material-symbols-outlined text-[16px]" data-icon="tune">tune</span> Configurar no Planner
+                <span>Configurar no Planner →</span>
               </Link>
             </div>
 
             {/* Passo 2 */}
-            <div className="p-5 rounded-2xl bg-primary/5 border border-primary/20 flex flex-col justify-between">
+            <div className="p-4 rounded-xs bg-elevated/40 border border-line-subtle flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-2 mb-2 text-primary font-bold text-xs uppercase tracking-wider">
-                  <span className="w-5 h-5 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs">2</span>
+                <div className="flex items-center gap-1.5 mb-1.5 text-accent font-mono-lab font-bold text-xs uppercase tracking-wider">
+                  <span className="w-4 h-4 rounded-xs bg-accent text-accent-fg flex items-center justify-center text-[10px]">2</span>
                   Diagnóstico Inicial
                 </div>
-                <h4 className="font-bold text-foreground text-base mb-1">Faça 20 Questões de Teste</h4>
-                <p className="text-xs text-muted-foreground mb-4">
+                <h4 className="font-bold text-ink-primary text-sm mb-1">Faça 20 Questões de Teste</h4>
+                <p className="text-xs text-ink-secondary mb-3">
                   Calibre seu diagnóstico inicial de pontos fracos, retenção e faixa estimada de prontidão.
                 </p>
               </div>
               <Link 
                 href="/estudar?limit=20" 
-                className="w-full py-2.5 px-4 bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors shadow-xs"
+                className="w-full py-2 px-3 bg-ink-primary hover:bg-ink-primary/90 text-surface font-bold rounded-xs text-xs flex items-center justify-center gap-1.5 transition-colors shadow-2xs"
               >
-                <span className="material-symbols-outlined text-[16px]" data-icon="play_arrow">play_arrow</span> Iniciar 20 Questões
+                <ClinicalIcon name="play_arrow" className="w-3.5 h-3.5" /> <span>Iniciar 20 Questões</span>
               </Link>
             </div>
           </div>

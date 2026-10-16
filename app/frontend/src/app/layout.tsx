@@ -60,6 +60,9 @@ export const metadata: Metadata = {
   },
 };
 
+import { BottomNav } from "@/components/BottomNav";
+import { ClinicalIcon } from "@/components/ui/ClinicalIcon";
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { userId } = await auth();
   const cookieStore = await cookies();
@@ -73,7 +76,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         suppressHydrationWarning
       >
         <head>
-          {/* Local Material Symbols injected via globals.css or layout import */}
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -88,20 +90,19 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           />
         </head>
-        <body className="h-screen flex overflow-hidden bg-background text-on-background selection:bg-primary/20 selection:text-primary">
+        <body className="h-screen flex overflow-hidden bg-background text-on-background selection:bg-accent/20 selection:text-accent">
           <WebVitals />
           <a href="#conteudo-principal" className="skip-link">Pular para o conteúdo principal</a>
           {!userId && !isDemoMode ? (
             <AuthSync ssrAuthenticated={false}>
-              <div className="flex w-full h-full items-start justify-center p-8 bg-background relative overflow-y-auto">
-                <div className="absolute inset-0 bg-primary/5" style={{ backgroundImage: "radial-gradient(circle, var(--primary) 1px, transparent 1px)", backgroundSize: "32px 32px", opacity: 0.2 }} />
-                <div className="relative z-10 flex flex-col items-center max-w-md w-full bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border">
-                  <div className="w-16 h-16 bg-primary/20 text-primary rounded-2xl flex items-center justify-center mb-6 shadow-sm">
-                    <span className="material-symbols-outlined text-4xl" data-icon="stethoscope">stethoscope</span>
+              <div className="flex w-full h-full items-start justify-center p-6 bg-background relative overflow-y-auto">
+                <div className="relative z-10 flex flex-col items-center max-w-md w-full bg-surface p-6 sm:p-8 rounded-sm border border-line-subtle shadow-lg my-auto">
+                  <div className="w-12 h-12 bg-ink-primary text-surface rounded-xs flex items-center justify-center mb-4 shadow-2xs">
+                    <ClinicalIcon name="local_hospital" className="w-6 h-6 text-canvas" strokeWidth={2.2} />
                   </div>
-                  <h1 className="text-2xl font-bold text-center mb-2">Bem-vindo ao MedQuest</h1>
-                  <p className="text-muted-foreground text-center mb-8 text-sm">Faça login para salvar seu progresso diário ou experimente sem compromisso.</p>
-                  <div className="w-full flex justify-center border-b border-border pb-8">
+                  <h1 className="text-xl font-bold text-ink-primary text-center mb-1">MedQuest Clinical Workspace</h1>
+                  <p className="text-ink-secondary text-center mb-6 text-xs">A melhor plataforma de estudos e raciocínio clínico para a Residência Médica.</p>
+                  <div className="w-full flex justify-center border-b border-line-subtle pb-6 mb-4">
                     <SignIn routing="hash" fallbackRedirectUrl="/" forceRedirectUrl="/" />
                   </div>
                   <DemoButton />
@@ -115,9 +116,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 <Sidebar />
                 <div className="flex-1 flex flex-col w-full min-w-0 bg-background overflow-y-auto overflow-x-hidden">
                   <TopNav />
-                  <main id="conteudo-principal" tabIndex={-1} className="flex-1 max-w-[1440px] mx-auto w-full min-w-0 p-3 sm:p-gutter md:p-margin gap-stack-lg flex flex-col pb-24 md:pb-margin relative focus:outline-none overflow-x-hidden">
+                  <main id="conteudo-principal" tabIndex={-1} className="flex-1 max-w-[1440px] mx-auto w-full min-w-0 p-3 sm:p-gutter md:p-margin gap-stack-lg flex flex-col pb-20 md:pb-margin relative focus:outline-none overflow-x-hidden">
                     {children}
                   </main>
+                  <BottomNav />
                 </div>
               </div>
               <OnboardingTour />

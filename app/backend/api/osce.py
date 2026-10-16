@@ -2387,10 +2387,14 @@ def perform_osce_procedure(
     image_url: Optional[str] = None
 
     # 1. VARREDURA ULTRASSONOGRÁFICA E-FAST (POCUS)
-    if proc_type_clean == "efast" or site_clean in ("morrison", "splenorenal", "pelvic", "pericardial", "pleural_right", "pleural_left"):
+    if proc_type_clean in ("efast", "efast_probe", "fast") or site_clean in (
+        "morrison", "splenorenal", "pelvic", "pericardial", "pleural_right", "pleural_left",
+        "efast_ruq_morrison", "efast_morrison_ruq", "efast_luq_splenorenal", "efast_splenorenal_luq",
+        "efast_subxiphoid_pericardial", "efast_suprapubic_pelvic"
+    ):
         is_trauma_fast = "FAST" in station_code or "trauma" in sess["title"].lower() or "politrauma" in sess["title"].lower()
 
-        if site_clean == "morrison":
+        if site_clean in ("morrison", "efast_ruq_morrison", "efast_morrison_ruq"):
             if is_trauma_fast:
                 findings_desc = (
                     "Janela Hepatorrenal (Morrison): Presença de lâmina fina de líquido livre anecoico "
@@ -2399,7 +2403,7 @@ def perform_osce_procedure(
                 is_positive_finding = True
             else:
                 findings_desc = "Janela Hepatorrenal (Morrison): Interface hepatorrenal nítida sem acúmulo de líquido anecoico."
-        elif site_clean == "splenorenal":
+        elif site_clean in ("splenorenal", "efast_luq_splenorenal", "efast_splenorenal_luq"):
             if is_trauma_fast:
                 findings_desc = (
                     "Janela Esplenorrenal (Recesso de Koller): Presença de volumosa quantidade de líquido livre anecoico "
@@ -2408,7 +2412,7 @@ def perform_osce_procedure(
                 is_positive_finding = True
             else:
                 findings_desc = "Janela Esplenorrenal: Recesso de Koller sem coleções ou líquido livre visível."
-        elif site_clean == "pelvic":
+        elif site_clean in ("pelvic", "efast_suprapubic_pelvic"):
             if is_trauma_fast:
                 findings_desc = (
                     "Janela Pélvica / Suprapúbica: Presença de líquido livre anecoico acumulado no fundo de saco peritoneal posterior. FAST POSITIVO."
@@ -2416,7 +2420,7 @@ def perform_osce_procedure(
                 is_positive_finding = True
             else:
                 findings_desc = "Janela Pélvica: Bexiga fisiologicamente preenchida, sem líquido livre em escavação pélvica."
-        elif site_clean == "pericardial":
+        elif site_clean in ("pericardial", "efast_subxiphoid_pericardial"):
             findings_desc = (
                 "Janela Subxifoide / Pericárdica: Espaço pericárdico virtual preservado, sem lâmina anecoica ou "
                 "sinais de tamponamento cardíaco. Contratilidade ventricular preservada."
@@ -2432,31 +2436,51 @@ def perform_osce_procedure(
 
         examiner_message = f"Examinador entrega imagem do E-FAST: {findings_desc}"
 
-    # 2. TORACOCENTESE DE ALÍVIO COM AGULHA
-    elif proc_type_clean in ("puncture", "thoracocentesis") or "thoracocentesis" in site_clean:
-        is_pneumo = "PNEUMO" in station_code or "pneumotórax" in sess["title"].lower()
-        if is_pneumo:
+    # 2. TORACOCENTESE DE ALÍVIO COM AGULHA & IATROGENIA DE BORDA DE COSTELA
+    elif proc_type_clean in ("puncture", "thoracocentesis", "thoracocentesis_relief") or "thoracocentesis" in site_clean:
+        if "inferior_border" in site_clean or "iatrogenic" in site_clean:
             findings_desc = (
-                "Descompressão torácica imediata com agulha no 2º EIC na linha hemiclavicular! "
-                "Ocorre escape audível e vigoroso de ar sob alta pressão! O murmúrio vesicular retorna parcialmente, "
-                "a turgência jugular atenua e a SatO2 eleva-se rapidamente para 93%."
+                "IATROGENIA GRAVE: Agulha introduzida rente à BORDA INFERIOR da costela superior, "
+                "lacerando a artéria intercostal! Observa-se saída de sangue vivo em jato pulsátil e piora hemodinâmica imediata (Hemotórax Iatrogênico)!"
+            )
+            is_positive_finding = False
+        else:
+            findings_desc = (
+                "Descompressão torácica com Jelco calibroso na borda superior da costela! "
+                "Ocorre escape audível e vigoroso de ar sob alta pressão (\"HISS\" audível)! "
+                "A turgência jugular atenua e a expansão torácica melhora expressivamente."
             )
             is_positive_finding = True
-        else:
-            findings_desc = "Punção realizada com agulha no espaço intercostal. Não houve saída de ar sob pressão ou sangue."
-        examiner_message = f"Procedimento de Toracocentese de Alívio executado: {findings_desc}"
+        examiner_message = f"Procedimento de Toracocentese de Alívio: {findings_desc}"
 
     # 3. DRENAGEM TORÁCICA TUBULAR EM SELO D'ÁGUA
-    elif proc_type_clean in ("drainage", "chest_tube") or "chest_tube" in site_clean:
+    elif proc_type_clean in ("drainage", "chest_tube", "chest_tube_insertion") or "chest_tube" in site_clean:
         findings_desc = (
             "Dreno torácico tubular 32 Fr introduzido no 5º EIC na linha axilar média (triângulo de segurança) "
-            "e conectado a selo d'água. Dreno posicionado com sucesso, fixado com ponto em bailarina. "
-            "Observa-se oscilação adequada da coluna d'água e drenagem de pequena quantidade de secreção serossanguinolenta."
+            "e conectado a selo d'água. Dreno posicionado com sucesso e fixado com bailarina. "
+            "Observa-se oscilação adequada da coluna d'água e drenagem gasosa/serossanguinolenta imediata."
         )
         examiner_message = f"Drenagem Torácica Fechada: {findings_desc}"
         is_positive_finding = True
 
-    # 4. MANOBRA DE HAMILTON (COMPRESSÃO BIMANUAL UTERINA)
+    # 4. VIA AÉREA CIRÚRGICA / CRICOTIREOIDOSTOMIA
+    elif proc_type_clean in ("cricothyroidotomy", "surgical_cricothyroidotomy") or "cricoid" in site_clean or "thyroid" in site_clean:
+        if "thyroid_gland" in site_clean or "iatrogenic" in site_clean:
+            findings_desc = (
+                "IATROGENIA CRÍTICA: Incisão cirúrgica realizada ABAIXO da cartilagem cricoide sobre o istmo da tireoide! "
+                "Hemorragia cervical maciça imediata inundando o campo cirúrgico e a traqueia!"
+            )
+            is_positive_finding = False
+        else:
+            findings_desc = (
+                "Cricotireoidostomia cirúrgica de emergência executada com perfeição: incisão horizontal na membrana cricotireoidea, "
+                "dilatação com pinça hemostática, introdução de tubo traqueal nº 6.0 e balonete insuflado. "
+                "Ventilação mecânica restabelecida com expansão torácica bilateral simétrica!"
+            )
+            is_positive_finding = True
+        examiner_message = f"Via Aérea Cirúrgica de Emergência: {findings_desc}"
+
+    # 5. MANOBRA DE HAMILTON (COMPRESSÃO BIMANUAL UTERINA)
     elif proc_type_clean in ("maneuver", "hamilton") or "hamilton" in site_clean:
         is_hpp = "HPP" in station_code or "hemorragia" in sess["title"].lower() or "atonia" in sess["title"].lower()
         if is_hpp:
@@ -2470,7 +2494,7 @@ def perform_osce_procedure(
             findings_desc = "Manobra executada conforme a técnica obstétrica padrão."
         examiner_message = f"Manobra Obstétrica Beira-Leito: {findings_desc}"
 
-    # 5. CARDIOVERSÃO ELÉTRICA SINCRONIZADA
+    # 6. CARDIOVERSÃO ELÉTRICA SINCRONIZADA
     elif proc_type_clean in ("cardioversion",) or "cardioversion" in site_clean:
         is_tv = "TV" in station_code or "taquicardia" in sess["title"].lower()
         if is_tv:
@@ -2485,16 +2509,16 @@ def perform_osce_procedure(
             findings_desc = "Cardioversão sincronizada realizada com choque disparado na onda R."
         examiner_message = f"Cardioversão Elétrica Sincronizada: {findings_desc}"
 
-    # 6. ACESSO VENOSO PROFUNDO / INTRAÓSSEO
-    elif proc_type_clean in ("vascular", "intraosseous") or "intraosseous" in site_clean or "central_vein" in site_clean:
-        if "intraosseous" in site_clean or proc_type_clean == "intraosseous":
+    # 7. ACESSO VENOSO PROFUNDO / INTRAÓSSEO
+    elif proc_type_clean in ("vascular", "intraosseous", "intraosseous_access", "central_line_insertion") or "intraosseous" in site_clean or "central_vein" in site_clean or "seldinger" in site_clean or "tibia" in site_clean:
+        if "intraosseous" in site_clean or "tibia" in site_clean or proc_type_clean in ("intraosseous", "intraosseous_access"):
             findings_desc = (
                 "Punção intraóssea realizada na tíbia proximal (2 cm abaixo e medial à tuberosidade tibial). "
                 "Aspiração de medula óssea positiva e infusão livre de soro sem extravasamento. Via de emergência garantida."
             )
         else:
             findings_desc = (
-                "Acesso venoso central obtido por punção de veia subclávia direita sob técnica de Seldinger. "
+                "Acesso venoso central obtido por punção de veia jugular interna direita sob técnica de Seldinger. "
                 "Refluxo venoso escuro livre e infusão em fluxo rápido confirmada."
             )
         examiner_message = f"Acesso Vascular de Urgência: {findings_desc}"
@@ -2551,6 +2575,7 @@ def perform_osce_procedure(
         "procedure_type": procedure_type,
         "anatomical_site": anatomical_site,
         "findings": findings_desc,
+        "is_positive": is_positive_finding,
         "examiner_message": examiner_message,
         "spoken_queue": spoken_queue,
         "elapsed_seconds": elapsed_seconds
