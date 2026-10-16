@@ -268,9 +268,9 @@ def sync_database(verbose: bool = True) -> bool:
             qid = int(r[0]["value"])
             if qid in local_q_meta:
                 l_sub, l_top, l_orig = local_q_meta[qid]
-                r_sub = r[1]["value"] if r[1] else None
-                r_top = r[2]["value"] if r[2] else None
-                r_orig = r[3]["value"] if len(r) > 3 and r[3] else None
+                r_sub = r[1].get("value") if len(r) > 1 and isinstance(r[1], dict) else None
+                r_top = r[2].get("value") if len(r) > 2 and isinstance(r[2], dict) else None
+                r_orig = r[3].get("value") if len(r) > 3 and isinstance(r[3], dict) else None
                 if l_sub != r_sub or l_top != r_top or l_orig != r_orig:
                     questions_to_update.append((qid, l_sub, l_top, l_orig))
 
