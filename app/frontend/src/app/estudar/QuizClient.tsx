@@ -1564,13 +1564,13 @@ export function QuizClient({
             </div>
           </div>
 
-          {/* PAINEL DIREITO: Alternativas, Resposta, Gabarito e FSRS */}
+          {/* PAINEL DIREITO: Alternativas e Ações de Resposta */}
           <div className={clsx(
             "flex flex-col gap-4",
             !zenMode && (
               q.clinical_case
                 ? "lg:col-span-6"
-                : "lg:col-span-5 lg:sticky lg:top-20 h-fit max-h-[calc(100vh-6rem)] overflow-y-auto pr-1"
+                : "lg:col-span-5"
             )
           )}>
             {/* Alternatives or Discursive Response */}
@@ -1699,10 +1699,14 @@ export function QuizClient({
               </div>
             </div>
           )}
+          </div>
 
-          {/* Explanation Block */}
+          {/* BLOCO PÓS-TENTATIVA (Abaixo da Questão em Largura Total) */}
           {attemptResult && (
-            <div className="animate-in slide-in-from-bottom-2 fade-in duration-200 flex flex-col gap-4">
+            <div className={clsx(
+              "w-full flex flex-col gap-5 animate-in slide-in-from-bottom-2 fade-in duration-200",
+              !zenMode && "lg:col-span-12"
+            )}>
               {/* If question is discursive, show user's written answer and the board's short expected answer */}
               {Boolean(q.is_discursive || (q.alternatives || []).length <= 1) && (
                 <div className="bg-surface border border-line-subtle shadow-xs rounded-sm p-4 md:p-5 flex flex-col gap-3">
@@ -1802,45 +1806,48 @@ export function QuizClient({
                     </div>
                   ) : null}
                   
-                  {/* Preceptor AI Section */}
-                  <PreceptorSection
-                    messages={chatMessages}
-                    preceptorInput={preceptorInput}
-                    askingPreceptor={askingPreceptor}
-                    onChangeInput={setPreceptorInput}
-                    onSendMessage={handleSendMessage}
-                    onClearChat={() => {
-                      setChatMessages([]);
-                      setPreceptorInput("");
-                    }}
-                  />
+                  {/* Ferramentas de Estudo Ativo: Preceptor AI e Flashcards em grid de 2 colunas no desktop */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-start">
+                    {/* Preceptor AI Section */}
+                    <PreceptorSection
+                      messages={chatMessages}
+                      preceptorInput={preceptorInput}
+                      askingPreceptor={askingPreceptor}
+                      onChangeInput={setPreceptorInput}
+                      onSendMessage={handleSendMessage}
+                      onClearChat={() => {
+                        setChatMessages([]);
+                        setPreceptorInput("");
+                      }}
+                    />
 
-                  {/* Flashcard Generation & FSRS Section */}
-                  <QuizFlashcardSection
-                    isWrong={attemptResult.is_correct === false}
-                    autoGeneratingFlashcard={autoGeneratingFlashcard}
-                    autoFsrsOnWrong={autoFsrsOnWrong}
-                    onToggleAutoFsrs={handleToggleAutoFsrs}
-                    flashcardResult={flashcardResult}
-                    draftFlashcard={draftFlashcard}
-                    savingFlashcard={savingFlashcard}
-                    generatingFlashcard={generatingFlashcard}
-                    onQuickSaveFlashcard={handleQuickSaveFlashcard}
-                    onGenerateFlashcard={handleGenerateFlashcard}
-                    onSaveFlashcard={handleSaveFlashcard}
-                    onCancelDraft={() => setDraftFlashcard(null)}
-                    onChangeDraft={setDraftFlashcard}
-                    onEditSavedFlashcard={() => {
-                      if (flashcardResult) {
-                        setDraftFlashcard({
-                          front: flashcardResult.front,
-                          back: flashcardResult.back || "",
-                          context: flashcardResult.context || ""
-                        });
-                        setFlashcardResult(null);
-                      }
-                    }}
-                  />
+                    {/* Flashcard Generation & FSRS Section */}
+                    <QuizFlashcardSection
+                      isWrong={attemptResult.is_correct === false}
+                      autoGeneratingFlashcard={autoGeneratingFlashcard}
+                      autoFsrsOnWrong={autoFsrsOnWrong}
+                      onToggleAutoFsrs={handleToggleAutoFsrs}
+                      flashcardResult={flashcardResult}
+                      draftFlashcard={draftFlashcard}
+                      savingFlashcard={savingFlashcard}
+                      generatingFlashcard={generatingFlashcard}
+                      onQuickSaveFlashcard={handleQuickSaveFlashcard}
+                      onGenerateFlashcard={handleGenerateFlashcard}
+                      onSaveFlashcard={handleSaveFlashcard}
+                      onCancelDraft={() => setDraftFlashcard(null)}
+                      onChangeDraft={setDraftFlashcard}
+                      onEditSavedFlashcard={() => {
+                        if (flashcardResult) {
+                          setDraftFlashcard({
+                            front: flashcardResult.front,
+                            back: flashcardResult.back || "",
+                            context: flashcardResult.context || ""
+                          });
+                          setFlashcardResult(null);
+                        }
+                      }}
+                    />
+                  </div>
 
                   {/* Self-Assessment / FSRS Block */}
                   {attemptResult.is_correct === null ? (
@@ -1921,7 +1928,6 @@ export function QuizClient({
               </div>
             </div>
           )}
-          </div>
         </div>
       )}
 
