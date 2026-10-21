@@ -20,7 +20,7 @@ BASE_DIR = "/home/wagmoraes/Projetos IA/MedQuest/app/backend"
 DB_PATH = os.path.join(BASE_DIR, "medquest.db")
 SUBTEMA_MAP_PATH = os.path.join(BASE_DIR, "data", "subtema_map.json")
 CHECKPOINT_DIR = os.path.join(BASE_DIR, "data", "audit_checkpoints")
-CANONICAL_THEMES_PATH = "/tmp/170_temas_canonicos.txt"
+CANONICAL_THEMES_PATH = os.path.join(BASE_DIR, "data", "170_temas_canonicos.txt")
 
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
@@ -132,20 +132,22 @@ def apply_to_sqlite(items, smap):
     conn.execute("BEGIN TRANSACTION")
     try:
         for item in items:
-            if item["decisao"] == "RECLASSIFICAR":
-                qid = item["id"]
+            qid = item["id"]
+            dec = item.get("decisao", "MANTER")
+            old_sub = item.get("subtema_atual")
+            old_area = item.get("area_atual")
+            rationale = item.get("raciocinio_clinico", "")
+            
+            if dec == "RECLASSIFICAR":
                 new_sub = item["novo_subtema"]
                 new_area = item["nova_area"]
                 new_sid = smap.get(new_sub, "")
-                old_sub = item["subtema_atual"]
-                old_area = item["area_atual"]
-                rationale = item["raciocinio_clinico"]
 
                 c.execute("""
                     UPDATE questions 
-                    SET subtema = ?, area = ?, subtema_id = ?
+                    SET subtema = ?, area = ?, subtema_id = ?, review_date = ?
                     WHERE id = ?
-                """, (new_sub, new_area, new_sid, qid))
+                """, (new_sub, new_area, new_sid, now, qid))
 
                 c.execute("""
                     INSERT INTO reclassification_audit 
@@ -153,6 +155,13 @@ def apply_to_sqlite(items, smap):
                     VALUES (?, ?, ?, ?, ?, 0.99, ?, "gemini-4-argon", 1, ?)
                 """, (qid, old_area, old_sub, new_area, new_sub, rationale, now))
                 reclass_count += 1
+            else:
+                c.execute("UPDATE questions SET review_date = ? WHERE id = ?", (now, qid))
+                c.execute("""
+                    INSERT INTO reclassification_audit 
+                    (question_id, old_area, old_subtema, new_area, new_subtema, confidence, rationale, model_used, applied, classified_at)
+                    VALUES (?, ?, ?, ?, ?, 1.0, ?, "gemini-4-argon", 0, ?)
+                """, (qid, old_area, old_sub, old_area, old_sub, rationale, now))
         conn.commit()
     except Exception as e:
         conn.rollback()
@@ -177,9 +186,16 @@ def process_batch(batch_idx, batch_questions, prompt_path, valid_themes, smap):
         "-o", out_file
     ]
 
-    t0 = time.time()
-    res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    elapsed = time.time() - t0
+    max_attempts = 2
+    for attempt in range(1, max_attempts + 1):
+        t0 = time.time()
+        res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        elapsed = time.time() - t0
+
+        if res.returncode == 0 and os.path.exists(out_file):
+            break
+        if attempt < max_attempts:
+            time.sleep(3 * attempt)
 
     if res.returncode != 0 or not os.path.exists(out_file):
         try:
@@ -275,9 +291,10 @@ def main():
         query += " AND q.topic != q.subtema AND q.topic IS NOT NULL"
 
     query += """
+    AND (q.review_date IS NULL OR q.review_date = '')
     AND q.id NOT IN (
         SELECT question_id FROM reclassification_audit 
-        WHERE classified_at >= datetime('now', '-1 day')
+        WHERE classified_at >= datetime('now', '-7 days')
     )
     ORDER BY q.id
     LIMIT ?
