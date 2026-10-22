@@ -183,7 +183,7 @@ def audit_and_checks_phase(skip_audit, root_dir, message=None):
         permitir_fallback_cota = os.environ.get("MEDQUEST_CODEX_FALLBACK_ON_QUOTA", "0").strip().lower() in ["1", "true", "yes"]
         if not os.path.exists(audit_file):
             if permitir_fallback_cota:
-                print(f"  [AVISO] Parecer de auditoria ausente para {head_sha[:10]} (cota esgotada). Prosseguindo deploy baseado em 100% de testes locais aprovados.")
+                print(f"  [AVISO] Parecer de auditoria ausente para {head_sha[:10]}. Prosseguindo deploy baseado em 100% de testes locais aprovados.")
                 print("  [OK] Verificacoes preliminares concluidas com sucesso!\n")
                 return head_sha
             else:

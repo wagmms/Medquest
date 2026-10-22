@@ -211,7 +211,12 @@ def process_batch(batch_idx, batch_questions, prompt_path, valid_themes, smap):
 
     try:
         with open(out_file, "r", encoding="utf-8") as f:
-            data = json.load(f)
+            raw_text = f.read().strip()
+        if raw_text.startswith("```"):
+            raw_text = raw_text.split("\n", 1)[1] if "\n" in raw_text else raw_text
+            if raw_text.endswith("```"):
+                raw_text = raw_text.rsplit("```", 1)[0].strip()
+        data = json.loads(raw_text)
     except Exception as e:
         return {
             "batch_idx": batch_idx,
