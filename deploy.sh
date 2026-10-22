@@ -25,4 +25,8 @@ else
     PYTHON_BIN="python3"
 fi
 
+# Em execucoes manuais via ./deploy.sh, permite prosseguir caso 100% dos testes
+# locais passem e o commit manual nao possua parecer pre-gerado pelo AutoLoop.
+export MEDQUEST_CODEX_FALLBACK_ON_QUOTA="${MEDQUEST_CODEX_FALLBACK_ON_QUOTA:-1}"
+
 "$PYTHON_BIN" deploy.py "$@"
