@@ -146,36 +146,37 @@ class TestDeployScript(unittest.TestCase):
 
         mock_subproc.side_effect = fake_run
 
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            audit_dir = os.path.join(tmp_dir, "data", "auditorias_codex")
-            os.makedirs(audit_dir, exist_ok=True)
-            audit_path = os.path.join(audit_dir, f"audit_{sha_teste}.json")
+        with patch.dict(os.environ, {"MEDQUEST_CODEX_FALLBACK_ON_QUOTA": "0"}):
+            with tempfile.TemporaryDirectory() as tmp_dir:
+                audit_dir = os.path.join(tmp_dir, "data", "auditorias_codex")
+                os.makedirs(audit_dir, exist_ok=True)
+                audit_path = os.path.join(audit_dir, f"audit_{sha_teste}.json")
 
-            # 1. Parecer contendo verdict: fail
-            with open(audit_path, "w", encoding="utf-8") as f:
-                json.dump({"candidate_sha": sha_teste, "verdict": "fail", "summary": "Bad", "findings": [], "limitations": [], "required_followups": []}, f)
-            with self.assertRaises(SystemExit) as cm:
-                deploy.audit_and_checks_phase(skip_audit=False, root_dir=tmp_dir)
-            self.assertEqual(cm.exception.code, 1)
+                # 1. Parecer contendo verdict: fail
+                with open(audit_path, "w", encoding="utf-8") as f:
+                    json.dump({"candidate_sha": sha_teste, "verdict": "fail", "summary": "Bad", "findings": [], "limitations": [], "required_followups": []}, f)
+                with self.assertRaises(SystemExit) as cm:
+                    deploy.audit_and_checks_phase(skip_audit=False, root_dir=tmp_dir)
+                self.assertEqual(cm.exception.code, 1)
 
-            # 2. Parecer contendo JSON corrompido
-            with open(audit_path, "w", encoding="utf-8") as f:
-                f.write("INVALID JSON CONTENT {{{")
-            with self.assertRaises(SystemExit) as cm2:
-                deploy.audit_and_checks_phase(skip_audit=False, root_dir=tmp_dir)
-            self.assertEqual(cm2.exception.code, 1)
+                # 2. Parecer contendo JSON corrompido
+                with open(audit_path, "w", encoding="utf-8") as f:
+                    f.write("INVALID JSON CONTENT {{{")
+                with self.assertRaises(SystemExit) as cm2:
+                    deploy.audit_and_checks_phase(skip_audit=False, root_dir=tmp_dir)
+                self.assertEqual(cm2.exception.code, 1)
 
-            # 3. Parecer ausente (arquivo deletado)
-            os.remove(audit_path)
-            with self.assertRaises(SystemExit) as cm3:
-                deploy.audit_and_checks_phase(skip_audit=False, root_dir=tmp_dir)
-            self.assertEqual(cm3.exception.code, 1)
+                # 3. Parecer ausente (arquivo deletado)
+                os.remove(audit_path)
+                with self.assertRaises(SystemExit) as cm3:
+                    deploy.audit_and_checks_phase(skip_audit=False, root_dir=tmp_dir)
+                self.assertEqual(cm3.exception.code, 1)
 
-            # 4. Parecer aprovado limpo -> deve passar sem SystemExit e retornar o SHA
-            with open(audit_path, "w", encoding="utf-8") as f:
-                json.dump({"candidate_sha": sha_teste, "verdict": "pass", "summary": "Approved", "findings": [], "limitations": [], "required_followups": []}, f)
-            ret_sha = deploy.audit_and_checks_phase(skip_audit=False, root_dir=tmp_dir)
-            self.assertEqual(ret_sha, sha_teste)
+                # 4. Parecer aprovado limpo -> deve passar sem SystemExit e retornar o SHA
+                with open(audit_path, "w", encoding="utf-8") as f:
+                    json.dump({"candidate_sha": sha_teste, "verdict": "pass", "summary": "Approved", "findings": [], "limitations": [], "required_followups": []}, f)
+                ret_sha = deploy.audit_and_checks_phase(skip_audit=False, root_dir=tmp_dir)
+                self.assertEqual(ret_sha, sha_teste)
 
     def test_turso_pipeline_empty_result_item_raises_runtime_error(self):
         """Comprova que resposta do Turso com objeto vazio em results [{}] levanta RuntimeError."""

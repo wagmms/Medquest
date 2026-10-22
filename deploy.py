@@ -158,7 +158,9 @@ def audit_and_checks_phase(skip_audit, root_dir, message=None):
     if os.path.exists(tests_dir):
         import shutil
         test_cmd = [sys.executable, "-m", "pytest", "tests"] if shutil.which("pytest") else [sys.executable, "-m", "unittest", "discover", "tests"]
-        res_test = subprocess.run(test_cmd, cwd=root_dir, capture_output=True, text=True)
+        test_env = os.environ.copy()
+        test_env["MEDQUEST_CODEX_FALLBACK_ON_QUOTA"] = "0"
+        res_test = subprocess.run(test_cmd, cwd=root_dir, capture_output=True, text=True, env=test_env)
         if res_test.returncode != 0:
             print(f"  [ERRO CRITICO] Testes automatizados reprovados (codigo {res_test.returncode}).")
             print(f"  {res_test.stderr.strip()[:300] or res_test.stdout.strip()[:300]}")
