@@ -462,13 +462,14 @@ export const api = {
           ...(twin_for_question_id ? { twin_for_question_id } : {})
         }),
       }),
-    reviewFSRS: (id: number, confidence: string, is_correct?: boolean, twin_for_question_id?: number | null) =>
+    reviewFSRS: (id: number, confidence: string, is_correct?: boolean, twin_for_question_id?: number | null, attempt_id?: number | null) =>
       apiFetch<{success: boolean, next_review_date: string, is_correct?: boolean}>(`/api/questions/${id}/review`, {
         method: "POST",
         body: JSON.stringify({
           confidence,
           ...(is_correct !== undefined ? { is_correct } : {}),
-          ...(twin_for_question_id ? { twin_for_question_id } : {})
+          ...(twin_for_question_id ? { twin_for_question_id } : {}),
+          ...(attempt_id ? { attempt_id } : {})
         })
       }),
     toggleFavorite: (id: number) => apiFetch<{is_favorite: boolean}>(`/api/questions/${id}/favorite`, {

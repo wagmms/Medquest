@@ -624,7 +624,11 @@ def sync_anki_scheduling_state():
             db.executemany(
                 """UPDATE flashcards
                    SET anki_cid = ?, anki_reps = ?, anki_lapses = ?,
-                       anki_synced_at = ?, next_review_date = ?
+                       anki_synced_at = ?,
+                       next_review_date = CASE
+                           WHEN fsrs_card IS NULL OR TRIM(fsrs_card) = '' THEN ?
+                           ELSE next_review_date
+                       END
                    WHERE id = ? AND user_id = ?""",
                 update_params,
             )

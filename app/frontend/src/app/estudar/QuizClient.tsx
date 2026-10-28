@@ -234,6 +234,7 @@ export function QuizClient({
   const attemptLockRef = useRef(false);
   const reviewLockRef = useRef(false);
   const favoriteLockRef = useRef(false);
+  const reviewedQuestionsRef = useRef<Set<number>>(new Set());
 
   const loadQuestionDetail = useCallback(async (id: number) => {
     const requestId = ++detailRequestRef.current;
@@ -534,33 +535,50 @@ export function QuizClient({
   const ensureCurrentQuestionReviewed = useCallback(() => {
     const cur = currentDetailRef.current;
     const att = attemptResultRef.current;
-    if (cur && att && !att.next_review_date) {
+    if (cur && att && !att.next_review_date && !reviewedQuestionsRef.current.has(cur.id)) {
       const qid = cur.id;
       const explicitCorr = att.is_correct;
       if (explicitCorr !== null && explicitCorr !== undefined) {
-        api.questions.reviewFSRS(qid, "duvida", explicitCorr).then(res => {
-          setSessionAnswers(prev => {
-            const current = prev[qid];
-            if (!current) return prev;
-            return {
-              ...prev,
-              [qid]: {
-                ...current,
-                result: current.result ? { ...current.result, next_review_date: res.next_review_date } : undefined
-              }
-            };
+        reviewedQuestionsRef.current.add(qid);
+        api.questions
+          .reviewFSRS(qid, "duvida", explicitCorr, cur.twin_for_question_id, att.attempt_id)
+          .then(res => {
+            setSessionAnswers(prev => {
+              const current = prev[qid];
+              if (!current) return prev;
+              return {
+                ...prev,
+                [qid]: {
+                  ...current,
+                  result: current.result ? { ...current.result, next_review_date: res.next_review_date } : undefined
+                }
+              };
+            });
+          })
+          .catch(() => {
+            reviewedQuestionsRef.current.delete(qid);
           });
-        }).catch(() => {});
       }
     }
   }, []);
 
   useEffect(() => {
+    const reviewedSet = reviewedQuestionsRef.current;
     return () => {
       const cur = currentDetailRef.current;
       const att = attemptResultRef.current;
-      if (cur && att && !att.next_review_date && att.is_correct !== null && att.is_correct !== undefined) {
-        api.questions.reviewFSRS(cur.id, "duvida", att.is_correct).catch(() => {});
+      if (
+        cur &&
+        att &&
+        !att.next_review_date &&
+        !reviewedSet.has(cur.id) &&
+        att.is_correct !== null &&
+        att.is_correct !== undefined
+      ) {
+        reviewedSet.add(cur.id);
+        api.questions
+          .reviewFSRS(cur.id, "duvida", att.is_correct, cur.twin_for_question_id, att.attempt_id)
+          .catch(() => {});
       }
     };
   }, []);
@@ -1122,6 +1140,7 @@ export function QuizClient({
 
     // Snapshot variables for background request
     const questionId = currentDetail.id;
+    const twinQuestionId = currentDetail.twin_for_question_id;
     const currentAttemptResult = attemptResult;
     const currentSelectedLetter = selectedLetter;
     const currentWrittenAnswer = userWrittenAnswer;
@@ -1130,15 +1149,21 @@ export function QuizClient({
 
     // Optimistic UI updates - Update session answers synchronously before advancing
     const isCorr = explicitIsCorrect !== undefined ? explicitIsCorrect : (currentAttemptResult?.is_correct ?? false);
+    const optimisticDays = !isCorr ? 7 : conf === "chutei" ? 15 : conf === "certeza" ? 76 : 34;
+    const optimisticDueIso =
+      currentAttemptResult?.next_review_date ??
+      new Date(Date.now() + optimisticDays * 86400_000).toISOString();
+
     const optimisticResult: AttemptResult = {
       ...(currentAttemptResult || {
         correct_letter: institutionCode || "A",
         explanation: null,
       }),
       is_correct: isCorr,
-      next_review_date: currentAttemptResult?.next_review_date ?? new Date().toISOString(),
+      next_review_date: optimisticDueIso,
     };
     attemptResultRef.current = optimisticResult;
+    reviewedQuestionsRef.current.add(questionId);
 
     setSessionAnswers(prev => ({
       ...prev,
@@ -1160,7 +1185,13 @@ export function QuizClient({
 
     // Call API in background to persist FSRS card and next review date
     try {
-      const res = await api.questions.reviewFSRS(questionId, conf, explicitIsCorrect, currentDetail?.twin_for_question_id);
+      const res = await api.questions.reviewFSRS(
+        questionId,
+        conf,
+        explicitIsCorrect,
+        twinQuestionId,
+        currentAttemptResult?.attempt_id
+      );
       const updatedResult: AttemptResult = {
         ...optimisticResult,
         next_review_date: res.next_review_date,
@@ -1177,6 +1208,7 @@ export function QuizClient({
         }
       }));
     } catch {
+      reviewedQuestionsRef.current.delete(questionId);
       toast.error("Erro ao salvar revisão (FSRS) em background.");
     }
   }, [currentDetail, attemptResult, selectedLetter, userWrittenAnswer, currentIndex, queue, loadQuestionDetail]);

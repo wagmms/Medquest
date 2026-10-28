@@ -70,7 +70,7 @@ FOCUS_CONFIGS = {
         "topic_mult": 40.0,
         "coverage_gap": 40.0,
         "review_due": 80.0,
-        "latest_wrong": 50.0,
+        "latest_wrong": 55.0,
         "memory_risk": 40.0,
         "target_institution_boost": 25.0,
     },

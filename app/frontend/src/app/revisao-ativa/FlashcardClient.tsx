@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Flashcard, FlashcardDeck } from "@/types/api";
 import { api, OfflineQueuedError } from "@/lib/api";
 import { localDb, getLocalOwnerId } from "@/lib/db";
@@ -56,6 +56,7 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
   const [decks, setDecks] = useState<FlashcardDeck[]>([]);
   const [selectedDeck, setSelectedDeck] = useState<string>("all");
   const [isAnkiModalOpen, setIsAnkiModalOpen] = useState(false);
+  const ankiUnreachableRef = useRef(false);
 
   const loadDecks = useCallback(async () => {
     try {
@@ -84,17 +85,21 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
       setInitialDueCount(normalizedCards.length);
       setUpcoming(upcomingCards.map(normalizeFlashcard));
 
-      // Migração automática de cartões legados no IndexedDB local
-      if (typeof window !== "undefined" && localDb) {
+      // Migração automática de cartões legados no IndexedDB local em transação única
+      if (typeof window !== "undefined" && localDb && normalizedCards.length > 0) {
         const uid = getLocalOwnerId();
-        for (const card of normalizedCards) {
-          localDb.flashcards
-            .update([card.id, uid], {
-              front: card.front,
-              back: card.back,
-            })
-            .catch(() => {});
-        }
+        void localDb
+          .transaction("rw", localDb.flashcards, async () => {
+            await Promise.all(
+              normalizedCards.map(card =>
+                localDb.flashcards.update([card.id, uid], {
+                  front: card.front,
+                  back: card.back,
+                })
+              )
+            );
+          })
+          .catch(() => {});
       }
     } catch (error) {
       if (!signal?.aborted) {
@@ -114,25 +119,11 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
     // Atualização Otimista da Interface
     setQueue(prev => prev.slice(1));
     setFlipped(false);
-    
 
     try {
       const result = await api.flashcards.review(currentCard.id, confidence);
       setLastScheduled(result.next_review_date);
-      if (currentCard.anki_cid) {
-        try {
-          const ankiState = await answerAnkiCard(currentCard.anki_cid, confidence);
-          if (ankiState) {
-            await api.flashcards.syncAnkiStates([ankiState]);
-            toast.success("Avaliação sincronizada com o Anki.");
-          }
-        } catch (ankiError) {
-          // The MedQuest review is already saved. The user can retry a pull
-          // from the Anki modal without losing their study progress.
-          console.warn("Falha ao enviar avaliação ao Anki:", ankiError);
-          toast("Avaliação salva no MedQuest; não foi possível enviá-la ao Anki agora.", { icon: "⚠️" });
-        }
-      }
+
       if (localDb) {
         try {
           const uid = getLocalOwnerId();
@@ -140,6 +131,22 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
         } catch {
           // ignore local cleanup error
         }
+      }
+
+      // Sincronização secundária e não-bloqueante com AnkiConnect (se ativo na máquina local)
+      if (currentCard.anki_cid && !ankiUnreachableRef.current) {
+        const ankiCid = currentCard.anki_cid;
+        void (async () => {
+          try {
+            const ankiState = await answerAnkiCard(ankiCid, confidence);
+            if (ankiState) {
+              await api.flashcards.syncAnkiStates([ankiState]);
+            }
+          } catch (ankiError) {
+            ankiUnreachableRef.current = true;
+            console.warn("Falha ao enviar avaliação ao Anki (circuit breaker ativado na sessão):", ankiError);
+          }
+        })();
       }
     } catch (err) {
       if (err instanceof OfflineQueuedError) {
@@ -552,22 +559,22 @@ export function FlashcardClient({ subtema }: { subtema?: string }) {
                 <span className="text-[10px] text-critical/80 font-normal">Volta amanhã (D+1) • [1]</span>
               </button>
               <button
-                title="Conceito difícil, retornando em aproximadamente 7 dias (D+7)."
+                title="Conceito com retenção parcial, retornando em aproximadamente 2 a 3 dias."
                 onClick={() => handleReview("duvida")}
                 disabled={submitting}
                 className="bg-warning/10 hover:bg-warning/20 text-ink border border-warning/30 font-bold py-3 px-3 rounded-sm transition-colors flex flex-col items-center justify-center gap-0.5 cursor-pointer font-mono-lab shadow-xs disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-warning"
               >
                 <div className="flex items-center gap-1.5 text-xs font-bold uppercase text-ink"><RotateCcw size={14} className="text-warning" /> Difícil</div>
-                <span className="text-[10px] text-ink-muted font-normal">~7 dias (D+7) • [2]</span>
+                <span className="text-[10px] text-ink-muted font-normal">~2-3 dias (D+2) • [2]</span>
               </button>
               <button
-                title="Conceito fixado com firmeza, intervalo estendido para mais de 18 dias."
+                title="Conceito fixado com firmeza, retornando em aproximadamente 7 a 8 dias."
                 onClick={() => handleReview("certeza")}
                 disabled={submitting}
                 className="bg-normal/10 hover:bg-normal/20 text-normal border border-normal/30 font-bold py-3 px-3 rounded-sm transition-colors flex flex-col items-center justify-center gap-0.5 cursor-pointer font-mono-lab shadow-xs disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-normal"
               >
                 <div className="flex items-center gap-1.5 text-xs font-bold uppercase"><CheckCircle2 size={15} /> Fácil</div>
-                <span className="text-[10px] text-normal/80 font-normal">~18 dias+ (D+18) • [3]</span>
+                <span className="text-[10px] text-normal/80 font-normal">~7-8 dias (D+7) • [3]</span>
               </button>
             </div>
           )}

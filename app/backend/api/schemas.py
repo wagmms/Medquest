@@ -80,6 +80,7 @@ class ReviewIn(APIInput):
     confidence: Literal["chutei", "duvida", "certeza"]
     is_correct: bool | None = None
     twin_for_question_id: int | None = None
+    attempt_id: int | None = None
 
 
 class PlannerConfigIn(APIInput):

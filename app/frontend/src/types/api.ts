@@ -462,6 +462,7 @@ export interface AttemptResult {
   explanation: string | null;
   next_review_date: string | null;
   is_discursive?: boolean;
+  attempt_id?: number | null;
 }
 
 export interface BatchAttemptItem {

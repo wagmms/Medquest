@@ -962,12 +962,19 @@ def submit_attempt(qid):
                 is_correct = check_is_correct(selected, q["correct_letter"], correct_alts_set)
 
             observed_at = _resolve_answered_at(payload.answered_at)
-            db.execute(
+            cursor = db.execute(
                 """INSERT INTO attempts (question_id, selected_letter, is_correct, answered_at, time_spent_ms, confidence, user_id)
                    VALUES (?,?,?,?,?,?,?)""",
                 (qid, selected, is_correct, observed_at,
                  payload.time_spent_ms, payload.confidence, g.user_id),
             )
+            attempt_id = getattr(cursor, "lastrowid", None)
+            if not attempt_id:
+                att_row = db.execute(
+                    "SELECT id FROM attempts WHERE question_id = ? AND user_id = ? ORDER BY id DESC LIMIT 1",
+                    (qid, g.user_id),
+                ).fetchone()
+                attempt_id = att_row["id"] if att_row else None
 
             # Repetição espaçada (FSRS)
             next_review = None
@@ -1016,6 +1023,7 @@ def submit_attempt(qid):
                 "explanation": exp["explanation_text"] if exp else None,
                 "next_review_date": next_review,
                 "is_discursive": is_discursive,
+                "attempt_id": attempt_id,
             }
 
             if lease_token:
@@ -1060,15 +1068,49 @@ def review_fsrs(qid):
         confidence = data.confidence
 
         with db_transaction(db, immediate=True):
-            last_attempt = db.execute(
-                "SELECT id, is_correct, confidence FROM attempts WHERE question_id = ? AND user_id = ? ORDER BY id DESC LIMIT 1",
-                (qid, g.user_id)
-            ).fetchone()
+            if getattr(data, "attempt_id", None) is not None:
+                last_attempt = db.execute(
+                    "SELECT id, is_correct, confidence FROM attempts WHERE id = ? AND question_id = ? AND user_id = ?",
+                    (data.attempt_id, qid, g.user_id)
+                ).fetchone()
+            else:
+                last_attempt = None
+
+            if not last_attempt:
+                last_attempt = db.execute(
+                    "SELECT id, is_correct, confidence FROM attempts WHERE question_id = ? AND user_id = ? ORDER BY id DESC LIMIT 1",
+                    (qid, g.user_id)
+                ).fetchone()
+
             if not last_attempt:
                 resp_data = {"error": "No attempt found", "code": "NO_ATTEMPT_FOUND"}
                 if lease_token:
                     complete_idempotency(db, g.user_id, 400, resp_data, lease_token)
                 return jsonify(resp_data), 400
+
+            prev_confidence = last_attempt["confidence"]
+            prev_is_correct = int(bool(last_attempt["is_correct"]))
+            is_rectification = (
+                data.is_correct is not None
+                and int(bool(data.is_correct)) != prev_is_correct
+            )
+
+            # Evita avanço duplo no FSRS se esta tentativa já havia sido classificada antes
+            # (mesmo que o cliente envie is_correct explícito em chamadas automáticas de fallback)
+            if prev_confidence not in ("defer", None) and not is_rectification:
+                existing_sr = db.execute(
+                    "SELECT next_review_date FROM spaced_repetition WHERE question_id = ? AND user_id = ?",
+                    (qid, g.user_id),
+                ).fetchone()
+                resp_data = {
+                    "success": True,
+                    "next_review_date": existing_sr["next_review_date"] if existing_sr else None,
+                    "is_correct": bool(prev_is_correct),
+                    "warning": "Confiança atualizada, mas FSRS retido na primeira impressão para evitar avanço duplo.",
+                }
+                if lease_token:
+                    complete_idempotency(db, g.user_id, 200, resp_data, lease_token)
+                return jsonify(resp_data)
 
             is_correct_for_srs = last_attempt["is_correct"]
             if data.is_correct is not None:
@@ -1082,13 +1124,6 @@ def review_fsrs(qid):
                     "UPDATE attempts SET confidence = ? WHERE id = ?",
                     (confidence, last_attempt["id"])
                 )
-
-            # Evita avanço duplo no FSRS se o cartão já havia sido classificado antes nesta tentativa (a menos que seja retificação de autoavaliação)
-            if last_attempt["confidence"] != "defer" and last_attempt["confidence"] is not None and data.is_correct is None:
-                resp_data = {"success": True, "warning": "Confiança atualizada, mas FSRS retido na primeira impressão para evitar avanço duplo."}
-                if lease_token:
-                    complete_idempotency(db, g.user_id, 200, resp_data, lease_token)
-                return jsonify(resp_data)
 
             sr = db.execute("SELECT fsrs_card FROM spaced_repetition WHERE question_id = ? AND user_id = ?", (qid, g.user_id)).fetchone()
             try:

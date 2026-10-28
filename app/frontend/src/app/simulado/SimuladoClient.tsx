@@ -178,6 +178,8 @@ export function SimuladoClient({
   const dialogInitialFocusRef = useRef<HTMLButtonElement>(null);
   const customConfigLoadedRef = useRef(false);
   const syncResolutionRef = useRef<"idle" | "pending" | "confirmed_results" | "removed_no_results" | "terminal_failed">("idle");
+  const hasAutoSubmittedRef = useRef(false);
+  const inFlightPracticeRef = useRef<Map<number, Promise<void>>>(new Map());
 
   const [isOffline, setIsOffline] = useState(false);
   useWakeLock(state === "PLAYING");
@@ -304,6 +306,12 @@ export function SimuladoClient({
       const remainingSeconds = Math.max(0, Math.ceil((saved.deadlineAt - Date.now()) / 1000));
       deadlineRef.current = saved.deadlineAt;
       setTimeLeft(remainingSeconds);
+      if (saved.state === "PLAYING" && remainingSeconds === 0) {
+        hasAutoSubmittedRef.current = true;
+        setShowAreaSummary(true);
+      } else {
+        hasAutoSubmittedRef.current = false;
+      }
       setCurrentIndex(saved.currentIndex);
       setResultsMap(saved.resultsMap);
       setFlagged(saved.flagged);
@@ -334,7 +342,7 @@ export function SimuladoClient({
 
   useEffect(() => {
     if (!storageReady) return;
-    if (state === "PLAYING" || state === "RESULTS" || state === "OFFLINE_SUBMITTED") {
+    if (state === "PLAYING" || state === "OFFLINE_SUBMITTED") {
       writeLearningSession("simulado", {
         version: LEARNING_SESSION_VERSION,
         state,
@@ -461,6 +469,7 @@ export function SimuladoClient({
         setAnswers({});
         setResultsMap({});
         setFlagged({});
+        hasAutoSubmittedRef.current = false;
         setState("PLAYING");
         toast.success(`Iniciando Simulado Offline: ${readyPkg.name}`);
         startLockRef.current = false;
@@ -498,6 +507,7 @@ export function SimuladoClient({
       setAnswers({});
       setResultsMap({});
       setFlagged({});
+      hasAutoSubmittedRef.current = false;
       setState("PLAYING");
 
       // Batch prefetch all question details in one request
@@ -559,6 +569,10 @@ export function SimuladoClient({
     setState("SUBMITTING");
     if (timerRef.current) clearInterval(timerRef.current);
 
+    if (inFlightPracticeRef.current.size > 0) {
+      await Promise.allSettled(Array.from(inFlightPracticeRef.current.values()));
+    }
+
     const pendingQuestionIds = Object.keys(answers)
       .map(qIdStr => parseInt(qIdStr, 10))
       .filter(qId => !resultsMap[qId]);
@@ -600,9 +614,12 @@ export function SimuladoClient({
         setQueueId(err.localId);
         setState("OFFLINE_SUBMITTED");
       } else {
-
         toast.error("Erro ao enviar simulado. Tente novamente.");
         setState("PLAYING");
+        if (deadlineRef.current <= Date.now()) {
+          hasAutoSubmittedRef.current = true;
+          setShowAreaSummary(true);
+        }
       }
     } finally {
       submitLockRef.current = false;
@@ -694,14 +711,30 @@ export function SimuladoClient({
   // Timer Effect
   useEffect(() => {
     if (state === "PLAYING") {
-      timerRef.current = setInterval(() => {
+      const updateRemaining = () => {
         const remaining = Math.max(0, Math.ceil((deadlineRef.current - Date.now()) / 1000));
         setTimeLeft(remaining);
         if (remaining === 0) {
           if (timerRef.current) clearInterval(timerRef.current);
-          setTimeout(() => submitSimuladoRef.current(), 0);
+          if (!hasAutoSubmittedRef.current) {
+            hasAutoSubmittedRef.current = true;
+            setTimeout(() => submitSimuladoRef.current(), 0);
+          }
         }
-      }, 1000);
+      };
+
+      timerRef.current = setInterval(updateRemaining, 1000);
+      const handleVisibilityChange = () => {
+        if (document.visibilityState === "visible") {
+          updateRemaining();
+        }
+      };
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+
+      return () => {
+        if (timerRef.current) clearInterval(timerRef.current);
+        document.removeEventListener("visibilitychange", handleVisibilityChange);
+      };
     } else {
       if (timerRef.current) clearInterval(timerRef.current);
     }
@@ -896,8 +929,8 @@ export function SimuladoClient({
     setAnswers(prev => ({ ...prev, [qid]: letter }));
 
     // No modo Treino/Aprendizado (Feedback imediato), valida e revela a questão na hora
-    if (feedbackMode === "practice" && !resultsMap[qid]) {
-      api.questions.submitAttempt(qid, letter, 5000, "duvida").then(res => {
+    if (feedbackMode === "practice" && !resultsMap[qid] && !inFlightPracticeRef.current.has(qid)) {
+      const p = api.questions.submitAttempt(qid, letter, 5000, "duvida").then(res => {
         setResultsMap(prev => ({
           ...prev,
           [qid]: {
@@ -911,7 +944,10 @@ export function SimuladoClient({
         }));
       }).catch(err => {
         console.error("Erro ao validar feedback imediato em modo treino:", err);
+      }).finally(() => {
+        inFlightPracticeRef.current.delete(qid);
       });
+      inFlightPracticeRef.current.set(qid, p);
     }
   }, [state, queue, currentIndex, feedbackMode, resultsMap]);
 
