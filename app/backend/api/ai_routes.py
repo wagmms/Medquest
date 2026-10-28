@@ -1,4 +1,6 @@
 """Rotas de IA: Preceptor IA, diagnósticos de provedores, prescrição de estudo e síntese de explicação."""
+from datetime import datetime, timezone
+
 from flask import Blueprint, g, jsonify, request
 
 from . import ai
@@ -176,7 +178,7 @@ def synthesize_explanation(question_id):
 
     # Comentários e resoluções de questões foram elaborados por professores de residência.
     # São canônicos e congelados: nunca sobrescrever ou gastar tokens de IA tentando revisá-los.
-    if q["explanation_text"]:
+    if q["explanation_text"] and q["explanation_text"].strip():
         return jsonify({
             "question_id": question_id,
             "explanation_text": q["explanation_text"],

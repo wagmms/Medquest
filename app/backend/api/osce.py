@@ -35,8 +35,16 @@ from .osce_data import (
     PROCEDURES_CATALOG,
 )
 
-def seed_osce_stations(db) -> int:
+def seed_osce_stations(db, force: bool = False) -> int:
     """Insere ou atualiza o catálogo canônico de estações de prova prática."""
+    if not force:
+        try:
+            row = db.execute("SELECT COUNT(*) AS n FROM osce_stations").fetchone()
+            if row and int(row["n"] or 0) >= len(CANONICAL_STATIONS):
+                return 0
+        except Exception:
+            pass
+
     inserted = 0
     with db_transaction(db, immediate=True):
         for st in CANONICAL_STATIONS:
@@ -332,6 +340,30 @@ def get_osce_station(db, station_id: int, include_barema: bool = False) -> Optio
 # VETOR DE SEGURANÇA CLÍNICA BEIRA-LEITO (ClinicalSafetyGuard)
 # =========================================================================
 
+_NEGATION_PREFIXES = (
+    "nao ", "nunca ", "jamais ", "sem ", "evitar ", "evito ",
+    "contraindicad", "proibid", "nao faco ", "nao prescrevo ", "nao administrar "
+)
+
+
+def _has_affirmative_mention(spoken_norm: str, prescribed_norm: str, terms: list[str]) -> bool:
+    """Retorna True se algum termo foi prescrito na prancheta ou mencionado sem negação explícita."""
+    if any(t in prescribed_norm for t in terms):
+        return True
+    for term in terms:
+        start = 0
+        while True:
+            idx = spoken_norm.find(term, start)
+            if idx == -1:
+                break
+            window_start = max(0, idx - 45)
+            prefix = spoken_norm[window_start:idx]
+            if not any(neg in prefix for neg in _NEGATION_PREFIXES):
+                return True
+            start = idx + len(term)
+    return False
+
+
 def evaluate_critical_safety_violations(
     critical_errors: list[str],
     evidence_text: str,
@@ -367,24 +399,24 @@ def evaluate_critical_safety_violations(
 
         # 1. Bicarbonato em Cetoacidose Diabética (pH > 6.9)
         if "bicarbonato" in err_norm:
-            if any(term in full_corpus for term in ["bicarbonato", "nahco3", "bicarb"]):
+            if _has_affirmative_mention(norm_evidence, all_prescribed_drugs, ["bicarbonato", "nahco3", "bicarb"]):
                 flagged = True
 
         # 2. Insulina sem dosar/checar Potássio
         elif "potassio" in err_norm and "insulina" in err_norm:
-            has_insulin = any(term in full_corpus for term in ["insulina", "bic de insulina", "insulina regular"])
+            has_insulin = _has_affirmative_mention(norm_evidence, all_prescribed_drugs, ["insulina", "bic de insulina", "insulina regular"])
             checked_k = any(term in full_corpus for term in ["potassio", "k+", "gasometria", "eletrolitos", "kcl"])
             if has_insulin and not checked_k:
                 flagged = True
 
         # 3. Suspender insulina precocemente ao atingir 250 mg/dL na CAD
         elif "suspender" in err_norm and "insulina" in err_norm:
-            if any(phrase in full_corpus for phrase in ["suspender insulina", "desligo a insulina", "parar a insulina"]):
+            if _has_affirmative_mention(norm_evidence, all_prescribed_drugs, ["suspender insulina", "desligo a insulina", "parar a insulina"]):
                 flagged = True
 
         # 4. Fibrinolítico / Trombolítico em SCA sem supra
         elif "trombolitico" in err_norm or "fibrinolitico" in err_norm:
-            if any(term in full_corpus for term in ["trombolise", "alteplase", "tenecteplase", "estreptoquinase", "metalyse", "actilyse"]):
+            if _has_affirmative_mention(norm_evidence, all_prescribed_drugs, ["trombolise", "alteplase", "tenecteplase", "estreptoquinase", "metalyse", "actilyse"]):
                 flagged = True
 
         # 5. Nitrato em suspeita de infarto de VD ou uso de sildenafila
@@ -447,8 +479,11 @@ def evaluate_critical_safety_violations(
 
         # 15. Insulina pura sem glicose na Hipercalemia Grave
         elif "insulina" in err_norm and "glicose" in err_norm and "hipercalemia" in station_subtema:
-            has_insulin = any("insulina" in full_corpus for _ in [1])
-            has_glucose = any(term in full_corpus for term in ["glicose 50", "glicose 10", "glicoinsulina", "sg 50"])
+            has_insulin = _has_affirmative_mention(norm_evidence, all_prescribed_drugs, ["insulina"])
+            has_glucose = any(
+                term in full_corpus
+                for term in ["glicose", "glicosado", "glicoinsulina", "sg 50", "sg50", "sg 10", "sg10", "dextrose"]
+            )
             if has_insulin and not has_glucose:
                 flagged = True
 

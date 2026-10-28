@@ -58,6 +58,7 @@ class AttemptIn(APIInput):
     is_correct: bool | None = None
     user_answer_text: str | None = Field(default=None, max_length=10000)
     twin_for_question_id: int | None = None
+    answered_at: str | None = Field(default=None, max_length=64)
 
 
 class BatchAttemptItem(APIInput):
@@ -68,6 +69,7 @@ class BatchAttemptItem(APIInput):
     is_correct: bool | None = None
     user_answer_text: str | None = Field(default=None, max_length=10000)
     twin_for_question_id: int | None = None
+    answered_at: str | None = Field(default=None, max_length=64)
 
 
 class BatchAttemptIn(APIInput):

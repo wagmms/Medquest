@@ -889,6 +889,24 @@ def question_detail(qid):
     })
 
 
+def _resolve_answered_at(client_iso: str | None, fallback_now: datetime | None = None) -> str:
+    """Valida e aplica clamp defensivo no timestamp da tentativa contra clock skew."""
+    server_now = (fallback_now or datetime.now(timezone.utc)).astimezone(timezone.utc)
+    if not client_iso:
+        return server_now.isoformat()
+    try:
+        parsed = datetime.fromisoformat(str(client_iso).strip().replace("Z", "+00:00"))
+        parsed_utc = parsed.astimezone(timezone.utc) if parsed.tzinfo else parsed.replace(tzinfo=timezone.utc)
+        min_allowed = server_now - timedelta(days=30)
+        if parsed_utc > server_now:
+            parsed_utc = server_now
+        elif parsed_utc < min_allowed:
+            parsed_utc = server_now
+        return parsed_utc.isoformat()
+    except (ValueError, TypeError):
+        return server_now.isoformat()
+
+
 def _defer_question_review(db, qid, user_id):
     """Give an unrated answer a day of rest without inventing an FSRS rating."""
     resume_at = (datetime.now(timezone.utc) + timedelta(days=1)).isoformat()
@@ -943,10 +961,11 @@ def submit_attempt(qid):
             else:
                 is_correct = check_is_correct(selected, q["correct_letter"], correct_alts_set)
 
+            observed_at = _resolve_answered_at(payload.answered_at)
             db.execute(
                 """INSERT INTO attempts (question_id, selected_letter, is_correct, answered_at, time_spent_ms, confidence, user_id)
                    VALUES (?,?,?,?,?,?,?)""",
-                (qid, selected, is_correct, datetime.now(timezone.utc).isoformat(),
+                (qid, selected, is_correct, observed_at,
                  payload.time_spent_ms, payload.confidence, g.user_id),
             )
 
@@ -1169,11 +1188,12 @@ def _process_single_attempt(
     else:
         is_correct = check_is_correct(selected, correct_letter, correct_alts_map.get(item.question_id))
     conf = item.confidence or "certeza"
+    item_answered_at = _resolve_answered_at(getattr(item, "answered_at", None)) if getattr(item, "answered_at", None) else answered_at
 
     db.execute(
         """INSERT INTO attempts (question_id, selected_letter, is_correct, answered_at, time_spent_ms, confidence, user_id)
            VALUES (?,?,?,?,?,?,?)""",
-        (item.question_id, selected, is_correct, answered_at, item.time_spent_ms, conf, user_id),
+        (item.question_id, selected, is_correct, item_answered_at, item.time_spent_ms, conf, user_id),
     )
 
     next_review = None

@@ -146,10 +146,14 @@ class TursoCursor:
         
     @property
     def lastrowid(self):
+        if self._lastrowid is not None:
+            return self._lastrowid
         return getattr(self.cursor, "lastrowid", None) if self.cursor else None
 
     @property
     def rowcount(self):
+        if self._rowcount is not None:
+            return self._rowcount
         return getattr(self.cursor, "rowcount", 0) if self.cursor else 0
 
 def _sanitize_params(parameters):
@@ -293,8 +297,12 @@ class TursoConnection:
     def rollback(self):
         try:
             self.client.rollback()
-        except Exception:
-            pass
+        except Exception as e:
+            if self.persistent and self._reconnect and _is_stale_turso_stream(e):
+                try:
+                    self.client = self._reconnect(self.client)
+                except Exception:
+                    pass
         finally:
             self.tx = False
         
@@ -378,10 +386,14 @@ def close_db(exception=None):
     db = g.pop("db", None)
     if db is not None:
         if exception:
-            if hasattr(db, "rollback"):
-                db.rollback()
-            else:
-                db.execute("ROLLBACK") if hasattr(db, "in_transaction") and getattr(db, "in_transaction", False) else None
+            if isinstance(db, TursoConnection):
+                if db.tx:
+                    db.rollback()
+            elif getattr(db, "in_transaction", False):
+                if hasattr(db, "rollback"):
+                    db.rollback()
+                else:
+                    db.execute("ROLLBACK")
         db.close()
 
 def _table_cols(db, table):

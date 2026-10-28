@@ -301,8 +301,9 @@ export function SimuladoClient({
       setState(saved.state);
       setQueue(saved.queue);
       setAnswers(saved.answers);
+      const remainingSeconds = Math.max(0, Math.ceil((saved.deadlineAt - Date.now()) / 1000));
       deadlineRef.current = saved.deadlineAt;
-      setTimeLeft(Math.max(0, Math.ceil((saved.deadlineAt - Date.now()) / 1000)));
+      setTimeLeft(remainingSeconds);
       setCurrentIndex(saved.currentIndex);
       setResultsMap(saved.resultsMap);
       setFlagged(saved.flagged);
@@ -315,7 +316,7 @@ export function SimuladoClient({
       if (saved.feedbackMode) {
         setFeedbackMode(saved.feedbackMode);
       }
-      setPlannedDurationSeconds(saved.plannedDurationSeconds || Math.max(0, saved.deadlineAt - Date.now()));
+      setPlannedDurationSeconds(saved.plannedDurationSeconds || remainingSeconds);
       setShowResultsSummary(saved.state === "RESULTS");
 
       const ids = saved.queue.map((question: QuestionListItem) => question.id);
@@ -558,22 +559,34 @@ export function SimuladoClient({
     setState("SUBMITTING");
     if (timerRef.current) clearInterval(timerRef.current);
 
-    const attempts: BatchAttemptItem[] = Object.keys(answers).map(qIdStr => {
-      const qId = parseInt(qIdStr);
-      return {
-        question_id: qId,
-        selected_letter: answers[qId],
-        confidence: "duvida" // We don't ask for confidence in Simulado, default to duvida
-      };
-    });
+    const pendingQuestionIds = Object.keys(answers)
+      .map(qIdStr => parseInt(qIdStr, 10))
+      .filter(qId => !resultsMap[qId]);
+
+    if (pendingQuestionIds.length === 0 && Object.keys(resultsMap).length > 0) {
+      setState("RESULTS");
+      setShowResultsSummary(true);
+      setCurrentIndex(0);
+      removeLearningSession("simulado");
+      submitLockRef.current = false;
+      return;
+    }
+
+    const attempts: BatchAttemptItem[] = pendingQuestionIds.map(qId => ({
+      question_id: qId,
+      selected_letter: answers[qId],
+      confidence: "duvida" // We don't ask for confidence in Simulado, default to duvida
+    }));
 
     try {
       const res = await api.questions.submitAttemptBatch(attempts);
-      const rMap: Record<number, BatchAttemptResultItem> = {};
-      res.results.forEach(r => {
-        rMap[r.question_id] = r;
+      setResultsMap(prev => {
+        const next = { ...prev };
+        res.results.forEach(r => {
+          next[r.question_id] = r;
+        });
+        return next;
       });
-      setResultsMap(rMap);
       setState("RESULTS");
       setShowResultsSummary(true);
       setCurrentIndex(0); // Go back to first question to review
@@ -594,7 +607,7 @@ export function SimuladoClient({
     } finally {
       submitLockRef.current = false;
     }
-  }, [answers]);
+  }, [answers, resultsMap]);
 
   const handleGenerateSingleFlashcard = async (qid: number, wrongLetter: string) => {
     if (generatingSingleFlashcard) return;
@@ -760,11 +773,13 @@ export function SimuladoClient({
       if (res && Array.isArray(res.results) && res.results.length > 0) {
         // a) Sucesso confirmado com resultados do servidor
         syncResolutionRef.current = "confirmed_results";
-        const rMap: Record<number, BatchAttemptResultItem> = {};
-        res.results.forEach(r => {
-          rMap[r.question_id] = r;
+        setResultsMap(prev => {
+          const next = { ...prev };
+          res.results!.forEach(r => {
+            next[r.question_id] = r;
+          });
+          return next;
         });
-        setResultsMap(rMap);
         removeLearningSession("simulado");
         setHasSavedState(false);
         setState("RESULTS");
@@ -778,16 +793,16 @@ export function SimuladoClient({
         queue.forEach(q => {
           const detail = detailsCache[q.id];
           const selected = answers[q.id];
-          const correctLetter = (detail && "correct_letter" in detail ? (detail as { correct_letter?: string }).correct_letter : undefined) || "A";
+          const correctLetter = (detail && "correct_letter" in detail ? (detail as { correct_letter?: string }).correct_letter : undefined) || "";
           rMap[q.id] = {
             question_id: q.id,
-            is_correct: selected === correctLetter,
+            is_correct: Boolean(selected && correctLetter && selected === correctLetter),
             correct_letter: correctLetter,
             explanation: (detail && "explanation" in detail ? (detail as { explanation?: string }).explanation : undefined) || detail?.technical_note || null,
             next_review_date: new Date().toISOString(),
           };
         });
-        setResultsMap(rMap);
+        setResultsMap(prev => ({ ...rMap, ...prev }));
         removeLearningSession("simulado");
         setHasSavedState(false);
         setState("RESULTS");

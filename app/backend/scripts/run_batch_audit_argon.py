@@ -189,11 +189,14 @@ def process_batch(batch_idx, batch_questions, prompt_path, valid_themes, smap):
     max_attempts = 2
     for attempt in range(1, max_attempts + 1):
         t0 = time.time()
-        res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        elapsed = time.time() - t0
-
-        if res.returncode == 0 and os.path.exists(out_file):
-            break
+        try:
+            res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=240)
+            elapsed = time.time() - t0
+            if res.returncode == 0 and os.path.exists(out_file):
+                break
+        except subprocess.TimeoutExpired:
+            elapsed = time.time() - t0
+            res = subprocess.CompletedProcess(cmd, returncode=124, stdout="", stderr="TimeoutExpired (240s)")
         if attempt < max_attempts:
             time.sleep(3 * attempt)
 

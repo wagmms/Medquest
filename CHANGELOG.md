@@ -2,6 +2,31 @@
 
 Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
+## [2026-10-28] - Auditoria de Resiliência Concorrente, Blindagem FSRS e Fidelidade Temporal Offline com Gemini 4 Argon
+- **Persistência Segura & Isolamento Transacional LibSQL (`api/db.py`)**:
+  - `TursoCursor`: Métodos `@property def lastrowid` e `@property def rowcount` agora retornam os atributos previamente preservados no construtor antes do fechamento do statement de escrita.
+  - `TursoConnection`: Condicionamento de `close_db` exclusivamente a conexões em transação ativa (`db.tx` ou `in_transaction`), eliminando chamadas de rollback redundantes. Tratamento resiliente de reconexão automática caso o fechamento do canal falhe no meio do rollback.
+- **Blindagem de Símbolos & Imutabilidade Canônica (`api/ai_routes.py`)**:
+  - Correção de `NameError` com a importação de `datetime` e `timezone`.
+  - Blindagem estrita das resoluções canônicas de professores (`canonical_professor_locked`), retornando imediatamente se houver texto cadastrado.
+- **Fidelidade Temporal & Validação Defensiva Contra Clock Skew (`api/schemas.py` e `api/questions.py`)**:
+  - Adicionado campo opcional `answered_at` em `AttemptIn` e `BatchAttemptItem`, permitindo que tentativas resolvidas offline preservem o instante real da resolução no histórico.
+  - Implementada a função `_resolve_answered_at()` com *clamp* defensivo que rejeita relógio adiantado no cliente (limitando ao instante atual do servidor) e descarta datas anteriores a 30 dias.
+  - `_process_single_attempt` e `submit_attempt` atualizados para gravar o timestamp de resolução observado.
+- **Resiliência do Simulado & Fim do Avanço Duplo do FSRS (`app/frontend/src/app/simulado/SimuladoClient.tsx`)**:
+  - Modo Treino (`feedbackMode === "practice"`): `submitSimulado()` filtra questões já submetidas individualmente em tempo real contra `resultsMap`, prevenindo duplicação de tentativas no banco e avanço duplo do scheduler FSRS.
+  - Fallback Offline: Remoção do fallback cego `|| "A"` em `handleSyncSuccess`, corrigindo a avaliação de acerto e evitando falso gabarito.
+  - Correção Temporal: Em `resumeSimulado()`, ajuste do cálculo de `plannedDurationSeconds` para utilizar segundos em vez de milissegundos.
+- **Fórmula de Prioridade com Cobertura Real no Motor Adaptativo (`api/adaptive.py`)**:
+  - `rank_adaptive_candidates`: `topic_totals` atualizado para computar `[attempts, correct, available, answered]`.
+  - Cálculo e repasse da taxa de cobertura real (`topic_coverage = topic_answered / topic_available`) como 4º argumento de `topic_priority` tanto para questões regulares quanto para questões gêmeas, eliminando a penalidade fixa de `coverage=0.0`.
+- **Prevenção de Write-on-GET e Segurança Clínica no OSCE (`api/osce.py`)**:
+  - `seed_osce_stations`: Adicionada verificação prévia de contagem antes de abrir transação de escrita, eliminando contenção desnecessária em `GET /osce/stations`.
+  - `ClinicalSafetyGuard`: Criada função `_has_affirmative_mention()` que analisa janela sintática de negação precedente (`"nao"`, `"nunca"`, `"jamais"`, `"contraindicad"`, `"sem"`), evitando punir candidatos que verbalizam contraindicações.
+  - Harmonização do catálogo de Hipercalemia Grave aceitando `"Soro Glicosado 50%"` e variantes cadastradas na prancheta.
+- **Validação Automatizada**:
+  - `./validate.sh fast` 100% aprovado (114 testes de backend e lint do frontend em 18.50s).
+
 ## [2026-10-16] - Priorização Inteligente de Questões por Bancas-Alvo da Residência com Gemini 4 Argon
 - **Arquitetura de Extração e Resolução de Bancas-Alvo (`api/filters.py` e `api/edital_profiles.py`)**:
   - Implementada a função `get_user_target_institutions(db, user_id)` para extrair de forma resiliente as faculdades/bancas selecionadas pelo aluno no Planejador de Residência (`planner_config.target_institution`).

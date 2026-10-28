@@ -113,9 +113,12 @@ def rank_adaptive_candidates(db, user_id, where, params, limit, now=None, adapti
     topic_totals = {}
     for row in rows:
         topic = row["subtema"] or row["topic"] or "Sem tema"
-        stats = topic_totals.setdefault(topic, [0, 0])
+        stats = topic_totals.setdefault(topic, [0, 0, 0, 0])
         stats[0] += row["attempts"]
         stats[1] += row["correct"]
+        stats[2] += 1
+        if row["attempts"] > 0:
+            stats[3] += 1
 
     # Pool of unattempted questions from current rows, grouped by topic
     unseen_by_topic = {}
@@ -212,8 +215,9 @@ def rank_adaptive_candidates(db, user_id, where, params, limit, now=None, adapti
         item = dict(row)
         metrics = fsrs_metrics(item.pop("fsrs_card"), now)
         topic = item["subtema"] or item["topic"] or "Sem tema"
-        topic_attempts, topic_correct = topic_totals.get(topic, [0, 0])
-        topic_score, _ = topic_priority(topic_attempts, topic_correct, metrics["retrievability"])
+        topic_attempts, topic_correct, topic_avail, topic_answered = topic_totals.get(topic, [0, 0, 0, 0])
+        topic_coverage = (topic_answered / topic_avail) if topic_avail > 0 else 0.0
+        topic_score, _ = topic_priority(topic_attempts, topic_correct, metrics["retrievability"], coverage=topic_coverage)
         is_due = _due(item.pop("next_review_date"), now)
         reasons = []
 
@@ -276,8 +280,9 @@ def rank_adaptive_candidates(db, user_id, where, params, limit, now=None, adapti
             ).fetchone()
             if twin_row:
                 item = dict(twin_row)
-                topic_attempts, topic_correct = topic_totals.get(orig_topic, [0, 0])
-                topic_score, _ = topic_priority(topic_attempts, topic_correct, None)
+                topic_attempts, topic_correct, topic_avail, topic_answered = topic_totals.get(orig_topic, [0, 0, 0, 0])
+                topic_coverage = (topic_answered / topic_avail) if topic_avail > 0 else 0.0
+                topic_score, _ = topic_priority(topic_attempts, topic_correct, None, coverage=topic_coverage)
                 score = topic_score * cfg["topic_mult"] + cfg["review_due"]
                 reasons = ["twin_concept_review"]
                 inst_code = item.get("institution_code")
