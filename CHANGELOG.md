@@ -2,6 +2,21 @@
 
 Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
+## [2026-11-06] - Racionalização de Overengineering: Quarentena de Scripts e Desacoplamento do OSCE
+- **Expurgo e Quarentena de 374 Scripts Legados (`app/backend/scripts/` e raiz)**:
+  - Auditoria arquitetural de complexidade executada pelo Gemini 4 Argon identificou 382 scripts na pasta de scripts (incluindo 21 variações de sincronizadores com Turso, 50 `check_*.py` avulsos e dezenas de testes soltos).
+  - Análise de árvore sintática (AST) determinou exatamente as dependências ativas dos pipelines (`audit/`, `validate.py`, `sync_db_turso.py`, `check_performance_guardrails.py`, `content_repair.py`, `taxonomy_sync.py`, `extract.py`, etc.).
+  - Moveram-se com segurança 374 scripts legados/one-offs para `archive/legacy_backend_scripts/` e duplicatas de scripts de SO da raiz (`deploy.bat`, `deploy.ps1`, `validate.ps1`) para `archive/legacy_root_scripts/` via `git mv`, preservando 100% do histórico e `git blame`.
+  - A pasta `app/backend/scripts/` foi enxugada de 382 arquivos para apenas os 13 módulos canônicos vitais.
+- **Desacoplamento de Dados Estáticos Clínicos do OSCE (`app/backend/api/osce_data.py`)**:
+  - Extração de 2.816 linhas de dados estáticos em Python (casos clínicos da USP-RP, checklists, baremas, fármacos e procedimentos) para o arquivo canônico desacoplado `app/backend/data/osce/canonical_stations.json` (157 KB).
+  - `app/backend/api/osce_data.py` transformado em um facade leve e seguro com cache em memória via `lru_cache` de apenas 28 linhas, eliminando 2.788 linhas de Python no backend e otimizando o tempo de boot dos workers da API.
+- **Trava de Regressão Anti-Bloat (`app/backend/tests/test_pipeline_registry.py`)**:
+  - Substituída a asserção legada que tolerava inchaço (`total_python_scripts >= 300`) por uma trava estrita anti-bloat (`3 < total_python_scripts < 50`), impedindo regressão ou acúmulo descontrolado de scripts no diretório ativo.
+- **Validação de Estabilidade**:
+  - 100% dos 419 testes do backend aprovados (`pytest`).
+  - Suíte de validação rápida (`./validate.sh fast`) concluída em 1.30s.
+
 ## [2026-11-05] - Renderização de Alternativas com Imagem Médica e Dupla Redundância Offline
 - **Diagnóstico & Auditoria Global de Imagens de Questões**:
   - Identificada a causa raiz da exibição de tags literais HTML `<img src="...">` nas alternativas de questões médicas (como a questão 8920 da USP-SP 2024 de Distócia de Espáduas). O React escapava `{alt.text}` cru nas interfaces de estudo e simulado.

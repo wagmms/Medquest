@@ -91,7 +91,7 @@ archive/legacy/data/
 /Pasted Text.txt
 
 # ── Runtime local / autoloop / agentes ───────────────────────────────
-data/
+/data/
 .agents/
 *.jsonl
 inspecionar.py

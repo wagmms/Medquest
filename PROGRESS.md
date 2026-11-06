@@ -13,29 +13,29 @@
 
 ## 🔄 Próxima Tarefa em Andamento
 
-- [ ] **Auditoria de Atomicidade e Metadados Médicos em Módulos de Flashcards Anki (`scripts/anki/`)**:
-    1. **Arquivo/Módulo Alvo**: `scripts/anki/` (ou rotas e utilitários de flashcards em `app/backend/api/flashcards.py`)
-    2. **Função/Componente/Seletor**: Validador de esquemas e sanitizador de cards médicos
-    3. **Comportamento Esperado / Critério de Aceite**: Garantir conformidade com a diretriz inviolável de comentários canônicos somente-leitura e validar atomicidade clínica (frente/verso, cloze e tags).
+- [ ] **Fatiamento Modular do Motor de Simulação Clínica OSCE (`app/backend/api/osce.py`)**:
+    1. **Arquivo/Módulo Alvo**: `app/backend/api/osce.py` (3.087 linhas)
+    2. **Função/Componente/Seletor**: Desacoplamento da engine de fisiologia, modificadores hemodinâmicos de fala e avaliador de barema
+    3. **Comportamento Esperado / Critério de Aceite**: Extrair lógica de fisiologia para `api/services/osce/physiology.py` e avaliador de barema para `api/services/osce/grading.py`, mantendo a rota HTTP em `api/osce_routes.py` e 100% dos testes do OSCE verdes.
 
 ---
 
 ## 📋 Backlog Prioritário (Tarefas Cirúrgicas)
 
-1. [ ] **Hardening de Fallback e Cache de Perfil Adaptativo em Desconexão (`app/backend/api/adaptive.py`)**:
+1. [ ] **Consolidação e Enxugamento da Camada de IA (`app/backend/api/universal_pool.py`)**:
+    - **Arquivo/Módulo Alvo**: `app/backend/api/universal_pool.py` e `app/backend/api/gemini_pool.py`
+    - **Função/Componente/Seletor**: Camada de pool e Circuit Breaker
+    - **Comportamento Esperado / Critério de Aceite**: Fundir a camada redundante `universal_pool.py` no `gemini_pool.py`, simplificando as chamadas e mantendo proteção de timeout e resiliência de rate limit.
+
+2. [ ] **Isolamento de Matemática Psicométrica e Prontidão Bayesiana (`app/backend/api/stats.py`)**:
+    - **Arquivo/Módulo Alvo**: `app/backend/api/stats.py` (2.045 linhas)
+    - **Função/Componente/Seletor**: Funções `_beta_continued_fraction`, `regularized_incomplete_beta` e `calculate_bayesian_readiness`
+    - **Comportamento Esperado / Critério de Aceite**: Mover funções matemáticas pesadas para serviço isolado `services/psychometrics.py`, reduzindo a complexidade ciclomática do controlador de estatísticas.
+
+3. [ ] **Hardening de Fallback e Cache de Perfil Adaptativo em Desconexão (`app/backend/api/adaptive.py`)**:
     - **Arquivo/Módulo Alvo**: `app/backend/api/adaptive.py`
     - **Função/Componente/Seletor**: Funções de inferência adaptativa
     - **Comportamento Esperado / Critério de Aceite**: Garantir retorno determinístico e cache resiliente para perfil de estudo adaptativo quando a latência de banco aumentar ou em fallback offline.
-
-2. [ ] **Validação e Prevenção de Desalinhamento Temporal em Sessões de Simulado (`app/frontend/src/app/simulado/SimuladoClient.tsx`)**:
-    - **Arquivo/Módulo Alvo**: `app/frontend/src/app/simulado/SimuladoClient.tsx`
-    - **Função/Componente/Seletor**: Hook de timer e persistência de sessão
-    - **Comportamento Esperado / Critério de Aceite**: Prevenir drift de cronômetro e perda de respostas parciais em caso de suspensão de aba ou reconexão.
-
-3. [ ] **Benchmark e Otimização de Resposta em Lote para Fila Adaptativa (`app/backend/api/adaptive.py`)**:
-    - **Arquivo/Módulo Alvo**: `app/backend/api/adaptive.py`
-    - **Função/Componente/Seletor**: Rota `/api/adaptive/queue`
-    - **Comportamento Esperado / Critério de Aceite**: Reduzir latência p95 para menos de 80ms em requisições de remediação concorrente.
 
 ---
 
@@ -53,6 +53,6 @@
 
 ## ✅ Última Tarefa Concluída
 
-- [x] **Renderização de Alternativas com Imagem Médica e Resiliência de Mídia (`AlternativeContent.tsx`)**: Resolvido o vazamento de tags HTML cruas (`<img src="...">`) nas alternativas de questões médicas (47 questões da USP-SP com 188 alternativas de imagem auditadas). Criado o componente unificado `AlternativeContent.tsx` com proporção clínica calibrada (`max-h-40 sm:max-h-48 md:max-h-56`), botão de zoom para tela cheia com `ImageViewer`, opacidade e escala de cinza para alternativas eliminadas, sanitização de leitores de tela em `aria-label` e fallback automático local para `/api/images/medcof/usp_sp/`; integradas as telas de Estudo (`AlternativeList.tsx` e `QuizClient.tsx`) e Simulado (`SimuladoClient.tsx`), com download preventivo das 188 imagens no backend estático e higienização de snippets FTS5 em `app/backend/api/questions.py`; suíte de testes 100% verde (419 testes aprovados, TypeScript limpo, ESLint 0 erros e `./validate.sh fast` em 11s).
+- [x] **Racionalização de Overengineering: Quarentena de Scripts e Desacoplamento do OSCE**: Arquivados com segurança 374 scripts legados em `archive/legacy_backend_scripts/` e duplicatas de SO da raiz em `archive/legacy_root_scripts/` via `git mv` (preservando 100% do histórico e git blame); reduzida a pasta `app/backend/scripts/` de 382 arquivos para apenas os 13 módulos vitais; extraídas 2.816 linhas de dados estáticos clínicos de `osce_data.py` para `app/backend/data/osce/canonical_stations.json`, transformando `osce_data.py` em facade leve de 28 linhas com `lru_cache`; adicionada trava anti-bloat em `test_pipeline_registry.py`; 100% dos 419 testes aprovados e `./validate.sh fast` em 1.30s.
 
 > 📁 Histórico completo arquivado em [CHANGELOG.md](CHANGELOG.md)

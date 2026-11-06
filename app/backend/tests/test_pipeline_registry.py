@@ -11,7 +11,7 @@ from scripts.pipeline import inventory, load_manifest
 
 def test_manifest_classifies_unlisted_scripts_as_legacy() -> None:
     report = inventory(load_manifest())
-    assert report["total_python_scripts"] >= 300
+    assert 3 < report["total_python_scripts"] < 50  # Trava anti-bloat pos-arquivamento (atual: 13)
     assert report["critical"] == 2
     assert report["important"] == 1
     assert report["legacy"] > 0
