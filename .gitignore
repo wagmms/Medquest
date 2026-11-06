@@ -91,7 +91,9 @@ archive/legacy/data/
 /Pasted Text.txt
 
 # ── Runtime local / autoloop / agentes ───────────────────────────────
-/data/
+data/
+!app/backend/data/osce/
+!app/backend/data/osce/**
 .agents/
 *.jsonl
 inspecionar.py
