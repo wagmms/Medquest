@@ -626,10 +626,17 @@ def search_questions():
         item["is_autoral"] = bool(item.get("editorial_status") == "autoral" or (item.get("source_file") and "AUTORAL" in str(item.get("source_file")).upper()))
         item["has_image"] = bool(item.get("has_image", 0))
         stem_snip = item.get("stem_snippet") or ""
+        # Remove eventuais tags de imagem e URLs soltas que poluem o snippet da busca
+        stem_snip = re.sub(r'!\[.*?\]\(.*?\)', '', stem_snip)
+        stem_snip = re.sub(r'<img\b[^>]*>', '', stem_snip)
+        stem_snip = re.sub(r'\s+', ' ', stem_snip).strip()
         if stem_snip and not stem_snip.endswith("..."):
             stem_snip += "..."
         item["stem_snippet"] = stem_snip
         exp_snip = item.get("exp_snippet") or ""
+        exp_snip = re.sub(r'!\[.*?\]\(.*?\)', '', exp_snip)
+        exp_snip = re.sub(r'<img\b[^>]*>', '', exp_snip)
+        exp_snip = re.sub(r'\s+', ' ', exp_snip).strip()
         if exp_snip and not exp_snip.endswith("..."):
             exp_snip += "..."
         item["exp_snippet"] = exp_snip

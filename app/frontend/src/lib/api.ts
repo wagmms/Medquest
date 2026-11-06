@@ -282,6 +282,17 @@ export const api = {
         method: "POST",
         body: JSON.stringify({ subtema, completed }),
       }),
+    moveTopic: (data: { subtema: string; source_week: number; target_week: number; target_index?: number; mode?: "standard" | "intensive" }) =>
+      apiFetch<{
+        success: boolean;
+        subtema: string;
+        source_week: number;
+        target_week: number;
+        target_index?: number;
+      }>("/api/planner/move-topic", {
+        method: "POST",
+        body: JSON.stringify(data),
+      }),
     markRevision: (week: number, type: 'rev24h' | 'rev7d' | 'rev30d', checked: boolean) =>
       apiFetch<{success: boolean}>(`/api/planner/${week}/revision`, {
         method: "POST",

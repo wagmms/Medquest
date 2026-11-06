@@ -424,12 +424,22 @@ def build_plan_from_schedule(
         w_num = int(r["week"])
         weeks_map.setdefault(w_num, []).append(r["subtema"])
 
+    total_weeks = None
+    if exam_date_str:
+        _, total_weeks_calc, err = _parse_dates_and_weeks(start_date_str, exam_date_str)
+        if not err and total_weeks_calc:
+            total_weeks = total_weeks_calc
+
+    max_scheduled_week = max([int(r["week"]) for r in schedule_rows], default=1)
+    num_weeks = max(total_weeks or 0, max_scheduled_week)
+    all_week_numbers = list(range(1, num_weeks + 1)) if num_weeks > 0 else sorted(weeks_map.keys())
+
     plan = []
 
-    for week_num in sorted(weeks_map.keys()):
+    for week_num in all_week_numbers:
         week_topics = []
         current_week_hours = 0.0
-        for subtema in weeks_map[week_num]:
+        for subtema in weeks_map.get(week_num, []):
             meta = meta_dict.get(subtema)
             if not meta:
                 continue

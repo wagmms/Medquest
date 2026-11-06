@@ -129,3 +129,39 @@ Consultar sempre `app/backend/api/srs.py` e `GEMINI.md` antes de qualquer altera
 - Evidence: 2026-10-12, validado com testes unitários em app/backend/tests/test_srs.py e regras invioláveis em GEMINI.md
 - Disposition: retain — ativo e canônico
 - Guidance: GEMINI.md
+
+## [LRN-20261105-001] correction
+**Logged**: 2026-11-05T21:05:00-03:00
+**Priority**: high
+**Status**: verified
+**Area**: frontend
+
+### Summary
+Renderização de alternativas compostas por imagens (HTML `<img>` / Markdown) no Quiz e Simulado
+
+### Details
+Questões de imagem de concursos médicos (ex: USP-SP com tomografias, ECGs e manobras obstétricas) possuem 188 alternativas em 47 questões cadastradas como `<img src="...">`. Anteriormente, `AlternativeList.tsx` e `SimuladoClient.tsx` renderizavam `{alt.text}` cru como texto literal, fazendo com que a tag HTML vazasse na UI. Criou-se o componente canônico `AlternativeContent.tsx`, que renderiza a imagem com proporção controlada, zoom interativo no `ImageViewer`, suporte a estado riscado com escala de cinza, dupla redundância com fallback para `/api/images/medcof/usp_sp/` e sanitização de `aria-label`.
+
+### Suggested Action
+Sempre utilizar `AlternativeContent` ao renderizar textos de alternativas e gabaritos curtos em qualquer novo componente ou modal, garantindo suporte a imagens, formatação médica e acessibilidade.
+
+### Metadata
+- Source: user_feedback
+- Related Files: app/frontend/src/components/AlternativeContent.tsx, app/frontend/src/app/estudar/components/AlternativeList.tsx, app/frontend/src/app/simulado/SimuladoClient.tsx, app/frontend/src/app/estudar/QuizClient.tsx
+- Tags: frontend, images, alternatives, accessibility, zoom
+- Pattern-Key: frontend.image-alternatives-rendering
+- Recurrence-Count: 1
+- First-Seen: 2026-11-05
+- Last-Seen: 2026-11-05
+
+### Maintenance
+- Claim: Alternativas com tags de imagem e markdown devem ser renderizadas através de AlternativeContent com suporte a zoom e fallback local
+- Scope: app/frontend/src/components/AlternativeContent.tsx, app/frontend/src/app/estudar/, app/frontend/src/app/simulado/
+- Authority: Antigravity Code Review / User Report
+- Decay: reality / durable
+- Revalidate: em alterações de arquitetura de renderização de questões
+- Validation: verified
+- Evidence: 2026-11-05, validado com lint, build TypeScript e ./validate.sh fast
+- Disposition: retain — ativo e canônico
+- Guidance: GEMINI.md
+

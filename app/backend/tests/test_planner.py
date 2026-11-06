@@ -632,5 +632,114 @@ def test_load_catalogs_is_memoized():
     assert info_after.hits > info_before.hits
 
 
+def test_planner_move_topic_between_weeks(client, app):
+    from api.db import get_db
+
+    user_id = "user_move_topic_test"
+    headers = {"X-User-ID": user_id}
+    start = date.today()
+    exam = (start + timedelta(weeks=10)).isoformat()
+    payload = {"start_date": start.isoformat(), "exam_date": exam, "hours_per_week": 20}
+
+    # Gera plano inicial
+    resp = client.post("/api/generate_plan", json=payload, headers=headers)
+    assert resp.status_code == 200
+    plan = resp.get_json()["plan"]
+    assert len(plan) >= 2
+    assert len(plan[0]["topics"]) > 0
+
+    topic_to_move = plan[0]["topics"][0]["subtema"]
+
+    # Mover da semana 1 para o final da semana 2
+    move_resp = client.post("/api/planner/move-topic", json={
+        "subtema": topic_to_move,
+        "source_week": 1,
+        "target_week": 2,
+    }, headers=headers)
+    assert move_resp.status_code == 200
+    move_data = move_resp.get_json()
+    assert move_data["success"] is True
+    assert move_data["subtema"] == topic_to_move
+    assert move_data["source_week"] == 1
+    assert move_data["target_week"] == 2
+
+    # Verificar se generate_plan subsequente reflete o tópico na semana 2
+    resp2 = client.post("/api/generate_plan", json=payload, headers=headers)
+    assert resp2.status_code == 200
+    plan2 = resp2.get_json()["plan"]
+
+    week1_subtemas = [t["subtema"] for t in plan2[0]["topics"]]
+    week2_subtemas = [t["subtema"] for t in plan2[1]["topics"]]
+
+    assert topic_to_move not in week1_subtemas
+    assert topic_to_move in week2_subtemas
+
+
+def test_planner_reorder_topic_within_same_week(client, app):
+    user_id = "user_reorder_same_week_test"
+    headers = {"X-User-ID": user_id}
+    start = date.today()
+    exam = (start + timedelta(weeks=10)).isoformat()
+    payload = {"start_date": start.isoformat(), "exam_date": exam, "hours_per_week": 30}
+
+    resp = client.post("/api/generate_plan", json=payload, headers=headers)
+    assert resp.status_code == 200
+    plan = resp.get_json()["plan"]
+    week1_topics = [t["subtema"] for t in plan[0]["topics"]]
+    assert len(week1_topics) >= 2
+
+    last_topic = week1_topics[-1]
+
+    # Mover o último tópico para a primeira posição (índice 0) da mesma semana 1
+    move_resp = client.post("/api/planner/move-topic", json={
+        "subtema": last_topic,
+        "source_week": 1,
+        "target_week": 1,
+        "target_index": 0
+    }, headers=headers)
+    assert move_resp.status_code == 200
+
+    resp2 = client.post("/api/generate_plan", json=payload, headers=headers)
+    assert resp2.status_code == 200
+    plan2 = resp2.get_json()["plan"]
+    week1_topics_after = [t["subtema"] for t in plan2[0]["topics"]]
+
+    assert week1_topics_after[0] == last_topic
+
+
+def test_planner_move_topic_preserves_completion_progress(client, app):
+    user_id = "user_move_topic_prog_test"
+    headers = {"X-User-ID": user_id}
+    start = date.today()
+    exam = (start + timedelta(weeks=10)).isoformat()
+    payload = {"start_date": start.isoformat(), "exam_date": exam, "hours_per_week": 20}
+
+    resp = client.post("/api/generate_plan", json=payload, headers=headers)
+    assert resp.status_code == 200
+    plan = resp.get_json()["plan"]
+    topic = plan[0]["topics"][0]["subtema"]
+
+    # Marca tópico como concluído na semana 1
+    resp_mark = client.post("/api/planner/1/topic", json={"subtema": topic, "completed": True}, headers=headers)
+    assert resp_mark.status_code == 200
+
+    # Confirma que está concluído
+    topics_progress = client.get("/api/planner/topics", headers=headers).get_json()
+    assert topics_progress.get(f"1:{topic}") is True
+
+    # Move para a semana 3
+    move_resp = client.post("/api/planner/move-topic", json={
+        "subtema": topic,
+        "source_week": 1,
+        "target_week": 3,
+    }, headers=headers)
+    assert move_resp.status_code == 200
+
+    # Confirma que o progresso agora está associado à semana 3
+    topics_progress_after = client.get("/api/planner/topics", headers=headers).get_json()
+    assert topics_progress_after.get(f"3:{topic}") is True
+
+
+
 
 

@@ -104,6 +104,14 @@ class PlannerTopicProgressIn(APIInput):
     completed: bool = False
 
 
+class PlannerMoveTopicIn(APIInput):
+    subtema: str = Field(min_length=1, max_length=500)
+    source_week: int = Field(ge=1, le=100)
+    target_week: int = Field(ge=1, le=100)
+    target_index: int | None = Field(default=None, ge=0)
+    mode: Literal["standard", "intensive"] = "standard"
+
+
 class PlannerRevisionIn(APIInput):
     type: Literal["rev24h", "rev7d", "rev30d"]
     checked: bool = False

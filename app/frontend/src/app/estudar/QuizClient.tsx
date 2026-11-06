@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { QuestionMeta, QuestionListItem, QuestionDetail, AttemptResult, FlashcardGenerateResponse } from "@/types/api";
 import { api, OfflineQueuedError } from "@/lib/api";
-import { Clock, CheckCircle2, XCircle, BookOpen, ArrowRight, Sparkles, ArrowLeft, ImageOff, Maximize, AlertTriangle, CloudOff, RotateCcw, Pencil, Eye, EyeOff, Target } from "lucide-react";
+import { Clock, CheckCircle2, BookOpen, ArrowRight, ImageOff, AlertTriangle, CloudOff, RotateCcw, Pencil, Eye, EyeOff, Target } from "lucide-react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -28,6 +28,7 @@ import type { QuizTimerHandle } from "@/components/QuizTimer";
 import Image from "next/image";
 import { QuizFilters } from "./components/QuizFilters";
 import { AlternativeList } from "./components/AlternativeList";
+import { AlternativeContent } from "@/components/AlternativeContent";
 import { PreceptorSection, ChatMessage } from "./components/PreceptorSection";
 import { QuizHeader } from "./components/QuizHeader";
 import { QuizFlashcardSection } from "./components/QuizFlashcardSection";
@@ -1660,6 +1661,7 @@ export function QuizClient({
                   submitting={submitting}
                   onSelectAlternative={selectAlternative}
                   onToggleEliminate={toggleEliminateAlternative}
+                  onImageClick={setEnlargedImage}
                 />
 
                 {!attemptResult && !isOfflineSaved && selectedLetter && (
@@ -1764,7 +1766,7 @@ export function QuizClient({
                           <span>Resposta Curta Esperada pela Banca</span>
                         </div>
                         <div className="text-ink text-sm leading-relaxed font-bold">
-                          {q.alternatives[0].text}
+                          <AlternativeContent content={q.alternatives[0].text} onImageClick={setEnlargedImage} />
                         </div>
                       </div>
                     )}

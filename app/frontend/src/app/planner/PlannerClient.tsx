@@ -1,12 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
 
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useCallback } from "react";
 import Link from "next/link";
 import { PlannerWeek, PlannerProgressMap, PlannerTopic, PlannerConfig, PlannerTopicProgressMap } from "@/types/api";
 import { api, OfflineQueuedError } from "@/lib/api";
 import { getLocalOwnerId } from "@/lib/db";
-import { Check, CalendarDays, Clock, Activity, Loader2, RotateCcw, AlertTriangle, Zap, X, Play, Settings2, ExternalLink, Download, Gem, TrendingUp, AlertCircle } from "lucide-react";
+import { Check, CalendarDays, Clock, Activity, Loader2, RotateCcw, AlertTriangle, Zap, X, Play, Settings2, ExternalLink, Download, Gem, TrendingUp, AlertCircle, GripVertical, ArrowUpDown, ArrowRight } from "lucide-react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import { PlannerWizard } from "./PlannerWizard";
@@ -34,7 +34,14 @@ const TopicRow = memo(function TopicRow({
   week,
   weekDate,
   topicIndex,
-  daysPerWeek
+  daysPerWeek,
+  isDragging,
+  isDragOverBefore,
+  onDragStart,
+  onDragEnd,
+  onDragOver,
+  onDrop,
+  onOpenMoveModal,
 }: { 
   t: PlannerTopic; 
   completed: boolean;
@@ -43,6 +50,13 @@ const TopicRow = memo(function TopicRow({
   weekDate?: Date;
   topicIndex?: number;
   daysPerWeek?: number;
+  isDragging?: boolean;
+  isDragOverBefore?: boolean;
+  onDragStart?: (e: React.DragEvent) => void;
+  onDragEnd?: (e: React.DragEvent) => void;
+  onDragOver?: (e: React.DragEvent) => void;
+  onDrop?: (e: React.DragEvent) => void;
+  onOpenMoveModal?: () => void;
 }) {
     const key = `planner-topic-${week}-${t.subtema}`;
   const isChecked = completed;
@@ -70,85 +84,122 @@ const TopicRow = memo(function TopicRow({
   })();
 
   return (
-    <div className="flex items-start gap-3 py-2.5 px-3 rounded-xl border border-transparent hover:border-border/50 hover:bg-muted/20 transition-all group">
-      <div className="relative flex items-center mt-0.5 shrink-0">
-        <input 
-          type="checkbox"
-          id={key}
-          className="peer sr-only"
-          checked={isChecked}
-          onChange={() => toggleTopic(week, t.subtema, isChecked)}
-          aria-label={`Concluir tema ${t.subtema}`}
-        />
-        <label 
-          htmlFor={key}
-          className="w-4 h-4 border border-muted-foreground/40 rounded transition-colors peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center cursor-pointer hover:border-primary/60"
+    <div className="relative flex flex-col">
+      {isDragOverBefore && (
+        <div className="h-1.5 w-full bg-primary rounded-full mb-1 shadow-sm ring-2 ring-primary/40 animate-pulse transition-all" />
+      )}
+      <div 
+        draggable={Boolean(onDragStart)}
+        onDragStart={onDragStart}
+        onDragEnd={onDragEnd}
+        onDragOver={onDragOver}
+        onDrop={onDrop}
+        className={clsx(
+          "flex items-start gap-2.5 py-2.5 px-3 rounded-xl border transition-all group",
+          isDragging 
+            ? "opacity-30 border-dashed border-primary bg-primary/10 scale-[0.99] shadow-inner" 
+            : "border-transparent hover:border-border/60 hover:bg-muted/20"
+        )}
+      >
+        {/* Grip Drag Handle */}
+        <div 
+          className="mt-1 shrink-0 text-muted-foreground/40 group-hover:text-primary cursor-grab active:cursor-grabbing hover:bg-primary/10 p-1 rounded-md transition-colors"
+          title="Segure e arraste este bloco para mudar de semana ou reorganizar"
+          aria-label="Arrastar bloco"
         >
-          <Check size={10} className={clsx("text-primary-foreground transition-opacity", isChecked ? "opacity-100" : "opacity-0")} strokeWidth={4} />
-        </label>
-      </div>
+          <GripVertical size={16} />
+        </div>
 
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 flex-wrap">
+        <div className="relative flex items-center mt-1 shrink-0">
+          <input 
+            type="checkbox"
+            id={key}
+            className="peer sr-only"
+            checked={isChecked}
+            onChange={() => toggleTopic(week, t.subtema, isChecked)}
+            aria-label={`Concluir tema ${t.subtema}`}
+          />
           <label 
             htmlFor={key}
-            className={clsx(
-              "font-semibold text-sm leading-snug cursor-pointer transition-colors", 
-              isChecked ? "text-muted-foreground line-through opacity-70" : "text-foreground group-hover:text-primary"
-            )}
+            className="w-4 h-4 border border-muted-foreground/40 rounded transition-colors peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center cursor-pointer hover:border-primary/60"
           >
-            {t.subtema}
+            <Check size={10} className={clsx("text-primary-foreground transition-opacity", isChecked ? "opacity-100" : "opacity-0")} strokeWidth={4} />
           </label>
-          {t.priority_tier && t.priority_tier !== "Normal" && (
-            <span
-              title={t.priority_explanation || "Recomendação adaptativa"}
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <label 
+              htmlFor={key}
               className={clsx(
-                "inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold border cursor-help",
-                t.priority_tier === "Diamante" ? "bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/20" :
-                t.priority_tier === "Alta" ? "bg-red-500/10 text-red-700 dark:text-red-400 border-red-500/20" :
-                "bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/20"
+                "font-semibold text-sm leading-snug cursor-pointer transition-colors", 
+                isChecked ? "text-muted-foreground line-through opacity-70" : "text-foreground group-hover:text-primary"
               )}
             >
-              {t.priority_tier === "Diamante" ? <Gem size={12} className="fill-current" /> :
-               t.priority_tier === "Alta" ? <TrendingUp size={12} /> : 
-               <AlertCircle size={12} />}
-              {t.priority_tier}
+              {t.subtema}
+            </label>
+            {t.priority_tier && t.priority_tier !== "Normal" && (
+              <span
+                title={t.priority_explanation || "Recomendação adaptativa"}
+                className={clsx(
+                  "inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold border cursor-help",
+                  t.priority_tier === "Diamante" ? "bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/20" :
+                  t.priority_tier === "Alta" ? "bg-red-500/10 text-red-700 dark:text-red-400 border-red-500/20" :
+                  "bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/20"
+                )}
+              >
+                {t.priority_tier === "Diamante" ? <Gem size={12} className="fill-current" /> :
+                 t.priority_tier === "Alta" ? <TrendingUp size={12} /> : 
+                 <AlertCircle size={12} />}
+                {t.priority_tier}
+              </span>
+            )}
+          </div>
+
+          <div className="text-xs text-muted-foreground flex items-center flex-wrap gap-1.5 mt-1.5">
+            <span className={clsx("font-medium", getAreaColorClass(t.area).split(" ")[1])}>{t.area}</span>
+            <span>•</span>
+            <span className="flex items-center gap-1">
+              <Clock size={11} /> {formatHours(t.estimated_theory_hours)}h teóricas + {formatHours(t.estimated_practice_hours)}h questões = {formatHours(t.estimated_hours)}h
             </span>
-          )}
-        </div>
+            <span>•</span>
+            <span>{t.questions_available} questões disponíveis</span>
+          </div>
 
-        <div className="text-xs text-muted-foreground flex items-center flex-wrap gap-1.5 mt-1.5">
-          <span className={clsx("font-medium", getAreaColorClass(t.area).split(" ")[1])}>{t.area}</span>
-          <span>•</span>
-          <span className="flex items-center gap-1">
-            <Clock size={11} /> {formatHours(t.estimated_theory_hours)}h teóricas + {formatHours(t.estimated_practice_hours)}h questões = {formatHours(t.estimated_hours)}h
-          </span>
-          <span>•</span>
-          <span>{t.questions_available} questões disponíveis</span>
-        </div>
-
-        <div className="mt-2.5 flex items-center gap-2 flex-wrap">
-          <Link href={`/temas?subtema=${encodeURIComponent(t.subtema)}`} className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-lg">
-            Abrir tema
-          </Link>
-          <Link 
-            href={`/estudar?subtema=${encodeURIComponent(t.subtema)}&limit=25`}
-            className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary/10 hover:bg-primary/20 text-primary text-xs font-semibold rounded-lg transition-colors border border-primary/20"
-          >
-            <Play size={11} className="fill-primary" /> Praticar Questões
-          </Link>
-          {gcalUrl && (
-            <a
-              href={gcalUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 px-2.5 py-1 bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground text-xs font-medium rounded-lg transition-colors border border-border"
-              title="Adicionar esta aula à sua agenda pessoal do Google (100% editável e móvel)"
+          <div className="mt-2.5 flex items-center gap-2 flex-wrap">
+            <Link href={`/temas?subtema=${encodeURIComponent(t.subtema)}`} className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-lg">
+              Abrir tema
+            </Link>
+            <Link 
+              href={`/estudar?subtema=${encodeURIComponent(t.subtema)}&limit=25`}
+              className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary/10 hover:bg-primary/20 text-primary text-xs font-semibold rounded-lg transition-colors border border-primary/20"
             >
-              <CalendarDays size={12} className="text-primary" />
-              + Google Agenda
-            </a>
-          )}
+              <Play size={11} className="fill-primary" /> Praticar Questões
+            </Link>
+            {onOpenMoveModal && (
+              <button
+                type="button"
+                onClick={onOpenMoveModal}
+                className="inline-flex items-center gap-1 px-2.5 py-1 bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground text-xs font-medium rounded-lg transition-colors border border-border"
+                title="Mover este tema para outra semana"
+              >
+                <ArrowUpDown size={12} className="text-primary" />
+                Mover semana
+              </button>
+            )}
+            {gcalUrl && (
+              <a
+                href={gcalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2.5 py-1 bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground text-xs font-medium rounded-lg transition-colors border border-border"
+                title="Adicionar esta aula à sua agenda pessoal do Google (100% editável e móvel)"
+              >
+                <CalendarDays size={12} className="text-primary" />
+                + Google Agenda
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -167,6 +218,7 @@ interface PlannerClientProps {
 
 export function PlannerClient({ plan, initialProgress, initialTopicProgress, warning, isIntensive, config }: PlannerClientProps) {
   const router = useRouter();
+  const [currentPlan, setCurrentPlan] = useState<PlannerWeek[]>(plan);
   const [progress, setProgress] = useState<PlannerProgressMap>(initialProgress);
   const [loadingAction, setLoadingAction] = useState<string | null>(null);
   const [topicProgress, setTopicProgress] = useState<PlannerTopicProgressMap>(initialTopicProgress);
@@ -176,6 +228,20 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
   const [exportingIcs, setExportingIcs] = useState(false);
   const [googleSyncing, setGoogleSyncing] = useState(false);
   const [googleSyncProgress, setGoogleSyncProgress] = useState<SyncProgress | null>(null);
+
+  // Estados para Drag & Drop e reordenação entre semanas
+  const [draggedTopic, setDraggedTopic] = useState<{ week: number; subtema: string; index: number } | null>(null);
+  const [dragOverWeek, setDragOverWeek] = useState<number | null>(null);
+  const [dragOverTopicIndex, setDragOverTopicIndex] = useState<{ week: number; index: number } | null>(null);
+  const [isMoving, setIsMoving] = useState(false);
+  const [moveModalTopic, setMoveModalTopic] = useState<{ subtema: string; currentWeek: number; targetWeek: number } | null>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCurrentPlan(plan);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [plan]);
 
   const handleExportIcs = async () => {
     setExportingIcs(true);
@@ -195,7 +261,7 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
     setGoogleSyncProgress({ current: 0, total: 100, status: "Conectando ao Google Agenda..." });
     try {
       const owner = getLocalOwnerId();
-      const res = await syncPlanToGoogleCalendar(plan, {
+      const res = await syncPlanToGoogleCalendar(currentPlan, {
         config: config || {}, ownerId: owner, completed: topicProgress,
         onProgress: setGoogleSyncProgress,
         onComplete: async (week, subtema) => {
@@ -239,11 +305,12 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
         if (showResetConfirm) setShowResetConfirm(false);
         if (showSettingsModal) setShowSettingsModal(false);
         if (showCalendarModal) setShowCalendarModal(false);
+        if (moveModalTopic) setMoveModalTopic(null);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [showResetConfirm, showSettingsModal, showCalendarModal]);
+  }, [showResetConfirm, showSettingsModal, showCalendarModal, moveModalTopic]);
 
   useEffect(() => {
     const synced = (event: Event) => {
@@ -253,6 +320,167 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
     window.addEventListener("sync-item-success", synced);
     return () => window.removeEventListener("sync-item-success", synced);
   }, [router]);
+
+  const handleMoveTopic = useCallback(async (
+    subtema: string,
+    sourceWeek: number,
+    targetWeek: number,
+    targetIndex?: number
+  ) => {
+    const sourceWeekObj = currentPlan.find(w => w.week === sourceWeek);
+    const curIdx = sourceWeekObj?.topics.findIndex(t => t.subtema === subtema);
+
+    // Evitar no-op quando solto na mesma posição dentro da mesma semana
+    if (sourceWeek === targetWeek && targetIndex !== undefined && (curIdx === targetIndex || curIdx === targetIndex - 1)) {
+      setDraggedTopic(null);
+      setDragOverWeek(null);
+      setDragOverTopicIndex(null);
+      return;
+    }
+
+    const previousPlan = currentPlan;
+    let topicToMove: PlannerTopic | null = null;
+
+    // 1. Atualizar currentPlan de forma otimista
+    const newPlan = currentPlan.map(w => {
+      if (w.week === sourceWeek) {
+        const found = w.topics.find(t => t.subtema === subtema);
+        if (found) topicToMove = found;
+        const filtered = w.topics.filter(t => t.subtema !== subtema);
+        const allocated = filtered.reduce((acc, t) => acc + (t.estimated_hours || 0), 0);
+        return {
+          ...w,
+          topics: filtered,
+          allocated_hours: Math.round(allocated * 10) / 10
+        };
+      }
+      return w;
+    }).map(w => {
+      if (w.week === targetWeek && topicToMove) {
+        const updatedTopics = [...w.topics];
+        if (targetIndex !== undefined && targetIndex >= 0 && targetIndex <= updatedTopics.length) {
+          updatedTopics.splice(targetIndex, 0, topicToMove);
+        } else {
+          updatedTopics.push(topicToMove);
+        }
+        const allocated = updatedTopics.reduce((acc, t) => acc + (t.estimated_hours || 0), 0);
+        return {
+          ...w,
+          topics: updatedTopics,
+          allocated_hours: Math.round(allocated * 10) / 10
+        };
+      }
+      return w;
+    });
+
+    setCurrentPlan(newPlan);
+
+    // 2. Atualizar topicProgress se mudou de semana
+    if (sourceWeek !== targetWeek) {
+      setTopicProgress(prev => {
+        const wasCompleted = Boolean(prev[`${sourceWeek}:${subtema}`] || prev[subtema]);
+        const nextProg = { ...prev };
+        delete nextProg[`${sourceWeek}:${subtema}`];
+        if (wasCompleted) {
+          nextProg[`${targetWeek}:${subtema}`] = true;
+          nextProg[subtema] = true;
+        }
+        return nextProg;
+      });
+    }
+
+    setDraggedTopic(null);
+    setDragOverWeek(null);
+    setDragOverTopicIndex(null);
+
+    // 3. Chamada de API com tratamento offline
+    try {
+      setIsMoving(true);
+      await api.planner.moveTopic({
+        subtema,
+        source_week: sourceWeek,
+        target_week: targetWeek,
+        target_index: targetIndex,
+        mode: isIntensive ? "intensive" : "standard"
+      });
+      toast.success(`"${subtema}" movido para a Semana ${targetWeek}!`);
+    } catch (error) {
+      if (error instanceof OfflineQueuedError) {
+        toast("Alteração salva offline. Sincronizará ao reconectar.", { icon: "📶" });
+        return;
+      }
+      setCurrentPlan(previousPlan);
+      toast.error("Erro ao mover tema de semana.");
+    } finally {
+      setIsMoving(false);
+    }
+  }, [currentPlan, isIntensive]);
+
+  const handleDragStart = (week: number, subtema: string, index: number, e: React.DragEvent) => {
+    e.dataTransfer.setData("application/json", JSON.stringify({ week, subtema, index }));
+    e.dataTransfer.effectAllowed = "move";
+    setDraggedTopic({ week, subtema, index });
+  };
+
+  const handleDragEnd = () => {
+    setDraggedTopic(null);
+    setDragOverWeek(null);
+    setDragOverTopicIndex(null);
+  };
+
+  const handleWeekDragOver = (e: React.DragEvent, weekNum: number) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+    if (dragOverWeek !== weekNum) {
+      setDragOverWeek(weekNum);
+    }
+  };
+
+  const handleWeekDrop = (e: React.DragEvent, targetWeek: number) => {
+    e.preventDefault();
+    let item = draggedTopic;
+    if (!item) {
+      try {
+        const raw = e.dataTransfer.getData("application/json");
+        if (raw) item = JSON.parse(raw);
+      } catch {
+        // fallback
+      }
+    }
+    if (item) {
+      handleMoveTopic(item.subtema, item.week, targetWeek);
+    }
+    setDraggedTopic(null);
+    setDragOverWeek(null);
+    setDragOverTopicIndex(null);
+  };
+
+  const handleTopicDragOver = (e: React.DragEvent, weekNum: number, topicIdx: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.dataTransfer.dropEffect = "move";
+    setDragOverTopicIndex({ week: weekNum, index: topicIdx });
+  };
+
+  const handleTopicDrop = (e: React.DragEvent, targetWeek: number, targetIdx: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    let item = draggedTopic;
+    if (!item) {
+      try {
+        const raw = e.dataTransfer.getData("application/json");
+        if (raw) item = JSON.parse(raw);
+      } catch {
+        // fallback
+      }
+    }
+    if (item) {
+      handleMoveTopic(item.subtema, item.week, targetWeek, targetIdx);
+    }
+    setDraggedTopic(null);
+    setDragOverWeek(null);
+    setDragOverTopicIndex(null);
+  };
 
   const toggleTopic = async (week: number, subtema: string, currentStatus: boolean) => {
     const key = `${week}:${subtema}`;
@@ -327,8 +555,8 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
   };
 
   const today = new Date();
-  const totalTopics = plan.reduce((total, week) => total + week.topics.length, 0);
-  const completedTopics = plan.reduce(
+  const totalTopics = currentPlan.reduce((total, week) => total + week.topics.length, 0);
+  const completedTopics = currentPlan.reduce(
     (total, week) =>
       total +
       week.topics.filter(
@@ -379,7 +607,7 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
             <CalendarDays className="text-primary" size={28} />
             Seu Cronograma de Estudos
           </h2>
-          <p className="text-muted-foreground text-sm">Cronograma estruturado por carga, cobertura e temas de alta incidência.</p>
+          <p className="text-muted-foreground text-sm">Cronograma estruturado por carga, cobertura e temas de alta incidência. Arraste matérias para mover entre semanas.</p>
           {config?.target_institution && (
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground mt-1.5 flex-wrap">
               {config.target_institution.split(",").map((instName, idx) => (
@@ -454,18 +682,23 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
       </div>
 
       <div className="space-y-4">
-        {plan.map((week) => {
+        {currentPlan.map((week) => {
           const weekProgress = progress[week.week.toString()] || { studied: false, rev24h: false, rev7d: false, rev30d: false };
           const completedInWeek = week.topics.filter(topic => topicProgress[`${week.week}:${topic.subtema}`] || topicProgress[topic.subtema]).length;
           const weekDate = new Date(`${week.date.slice(0, 10)}T12:00:00`);
           // Highlight current week if it falls within this week's 7 days
           const isCurrentWeek = weekDate <= today && new Date(weekDate.getTime() + 7 * 24 * 60 * 60 * 1000) > today;
+          const isOverloaded = week.allocated_hours > week.recommended_hours;
+          const isOverDropWeek = dragOverWeek === week.week;
 
           return (
             <div 
               key={week.week} 
+              onDragOver={(e) => handleWeekDragOver(e, week.week)}
+              onDrop={(e) => handleWeekDrop(e, week.week)}
               className={clsx(
-                "bg-card border rounded-xl overflow-hidden shadow-1 flex flex-col md:flex-row transition-colors",
+                "bg-card border rounded-xl overflow-hidden shadow-1 flex flex-col md:flex-row transition-all",
+                isOverDropWeek ? "border-primary ring-2 ring-primary/40 bg-primary/[0.02]" :
                 isCurrentWeek ? "border-primary ring-1 ring-primary/20" : "border-border",
                 weekProgress.studied ? "opacity-75" : "opacity-100"
               )}
@@ -473,13 +706,18 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
               {/* Left Column (Info) */}
               <div className="p-5 flex-1 flex flex-col gap-4">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 flex-wrap">
                     <span className="text-sm font-bold text-muted-foreground bg-muted px-2.5 py-1 rounded-md">
                       Semana {week.week}
                     </span>
                     <span className="text-sm text-muted-foreground flex items-center gap-2">
                       {weekDate.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })}
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-secondary/50 text-secondary-foreground font-medium">
+                      <span className={clsx(
+                        "text-xs px-2 py-0.5 rounded-full font-medium transition-colors",
+                        isOverloaded 
+                          ? "bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 font-semibold" 
+                          : "bg-secondary/50 text-secondary-foreground"
+                      )}>
                        {week.allocated_hours}h / {week.recommended_hours}h
                       </span>
                     </span>
@@ -492,21 +730,41 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3 min-h-[40px]">
                   {week.topics.map((t, idx) => (
                     <TopicRow 
-                      key={idx} 
+                      key={t.subtema} 
                       t={t} 
-                       completed={Boolean(topicProgress[`${week.week}:${t.subtema}`]) || Boolean(topicProgress[t.subtema])}
-                       toggleTopic={toggleTopic}
-                       week={week.week}
+                      completed={Boolean(topicProgress[`${week.week}:${t.subtema}`]) || Boolean(topicProgress[t.subtema])}
+                      toggleTopic={toggleTopic}
+                      week={week.week}
                       weekDate={weekDate}
                       topicIndex={idx}
                       daysPerWeek={config?.days_per_week || 6}
+                      isDragging={draggedTopic?.subtema === t.subtema}
+                      isDragOverBefore={dragOverTopicIndex?.week === week.week && dragOverTopicIndex?.index === idx && draggedTopic?.subtema !== t.subtema}
+                      onDragStart={(e) => handleDragStart(week.week, t.subtema, idx, e)}
+                      onDragEnd={handleDragEnd}
+                      onDragOver={(e) => handleTopicDragOver(e, week.week, idx)}
+                      onDrop={(e) => handleTopicDrop(e, week.week, idx)}
+                      onOpenMoveModal={() => setMoveModalTopic({ subtema: t.subtema, currentWeek: week.week, targetWeek: week.week })}
                     />
                   ))}
                   {week.topics.length === 0 && (
-                    <div className="text-sm text-muted-foreground italic">Semana de revisão geral ou descanso.</div>
+                    <div 
+                      onDragOver={(e) => handleWeekDragOver(e, week.week)}
+                      onDrop={(e) => handleWeekDrop(e, week.week)}
+                      className={clsx(
+                        "py-7 px-4 border-2 border-dashed rounded-xl text-center transition-all flex flex-col items-center justify-center gap-1.5",
+                        isOverDropWeek 
+                          ? "border-primary bg-primary/10 text-primary scale-[1.01]" 
+                          : "border-border text-muted-foreground bg-muted/10 hover:border-primary/40"
+                      )}
+                    >
+                      <CalendarDays size={20} className="opacity-60" />
+                      <span className="text-xs font-semibold">Semana sem matérias (descanso ou revisão)</span>
+                      <span className="text-[11px] opacity-75">Arraste temas para cá para agendar nesta semana.</span>
+                    </div>
                   )}
                 </div>
               </div>
@@ -689,6 +947,91 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
 
             <div className="mt-5 text-[11px] text-muted-foreground text-center bg-muted/20 p-2.5 rounded-lg border border-border/50">
               💡 <strong>Dica:</strong> Você também pode clicar no botão <strong>+ Google Agenda</strong> ao lado de qualquer aula individual no Planner para adicioná-la diretamente à sua agenda pessoal com horário 100% editável.
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Accessible & Mobile Move Modal */}
+      {moveModalTopic && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMoveModalTopic(null)} />
+          <div 
+            role="dialog" 
+            aria-modal="true" 
+            aria-labelledby="move-modal-title"
+            className="relative bg-card border border-border rounded-2xl shadow-2xl p-6 max-w-sm w-full z-10 animate-in fade-in zoom-in-95 duration-200"
+          >
+            <button 
+              onClick={() => setMoveModalTopic(null)} 
+              aria-label="Fechar"
+              className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-muted transition-colors text-muted-foreground"
+            >
+              <X size={18} />
+            </button>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center border border-primary/20 shrink-0">
+                  <ArrowUpDown size={20} />
+                </div>
+                <div>
+                  <h3 id="move-modal-title" className="text-base font-bold text-foreground">Mover Tema</h3>
+                  <p className="text-xs text-muted-foreground">Escolha a semana de destino</p>
+                </div>
+              </div>
+
+              <div className="bg-muted/40 border border-border/60 rounded-xl p-3">
+                <span className="text-xs font-semibold text-foreground block truncate" title={moveModalTopic.subtema}>
+                  {moveModalTopic.subtema}
+                </span>
+                <span className="text-[11px] text-muted-foreground mt-0.5 block">
+                  Semana atual: <strong className="text-foreground">Semana {moveModalTopic.currentWeek}</strong>
+                </span>
+              </div>
+
+              <div className="space-y-1.5">
+                <label htmlFor="target-week-select" className="text-xs font-semibold text-foreground">
+                  Mover para:
+                </label>
+                <select
+                  id="target-week-select"
+                  value={moveModalTopic.targetWeek}
+                  onChange={(e) => setMoveModalTopic(prev => prev ? { ...prev, targetWeek: Number(e.target.value) } : null)}
+                  className="w-full bg-background border border-border rounded-xl px-3 py-2.5 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary shadow-sm"
+                >
+                  {currentPlan.map((w) => {
+                    const wDate = new Date(`${w.date.slice(0, 10)}T12:00:00`);
+                    return (
+                      <option key={w.week} value={w.week}>
+                        Semana {w.week} ({wDate.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })}) • {w.topics.length} temas ({w.allocated_hours}h/{w.recommended_hours}h)
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+
+              <div className="flex gap-2 pt-2">
+                <button 
+                  type="button"
+                  onClick={() => setMoveModalTopic(null)} 
+                  className="flex-1 py-2 px-3 rounded-xl border border-border text-foreground hover:bg-muted text-xs font-medium transition-colors"
+                >
+                  Cancelar
+                </button>
+                <button 
+                  type="button"
+                  disabled={isMoving}
+                  onClick={async () => {
+                    const { subtema, currentWeek, targetWeek } = moveModalTopic;
+                    setMoveModalTopic(null);
+                    await handleMoveTopic(subtema, currentWeek, targetWeek);
+                  }} 
+                  className="flex-1 py-2 px-3 rounded-xl bg-primary text-primary-foreground text-xs font-bold hover:bg-primary/90 transition-colors flex items-center justify-center gap-1.5 shadow-sm disabled:opacity-50"
+                >
+                  {isMoving ? <Loader2 size={13} className="animate-spin" /> : <ArrowRight size={13} />}
+                  Confirmar
+                </button>
+              </div>
             </div>
           </div>
         </div>

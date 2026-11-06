@@ -37,6 +37,7 @@ const QuestionClassificationModal = dynamic(
   { ssr: false }
 );
 import { FormattedContent, normalizeImageSrc, filterExtraImages } from "@/components/FormattedContent";
+import { AlternativeContent, getAlternativePlainText } from "@/components/AlternativeContent";
 import Image from "next/image";
 import { SimuladoStartScreen } from "./components/SimuladoStartScreen";
 import { SimuladoResultsView } from "./components/SimuladoResultsView";
@@ -1418,6 +1419,7 @@ export function SimuladoClient({
                       }}
                       aria-pressed={isSelected}
                       aria-disabled={isQuestionResolved}
+                      aria-label={`Alternativa ${alt.letter}: ${getAlternativePlainText(alt.text)}`}
                       className={clsx(
                         "group relative text-left p-3.5 sm:p-4 rounded-xl border transition-all flex items-start gap-2.5 sm:gap-3 w-full select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                         altClass
@@ -1464,9 +1466,15 @@ export function SimuladoClient({
                         "pt-1 text-foreground leading-relaxed flex-1 transition-all",
                         isEliminated && (!isQuestionResolved || alt.letter !== res?.correct_letter) && "line-through text-muted-foreground/75 decoration-muted-foreground/60"
                       )}>
-                        {!isQuestionResolved && (qDetail.is_discursive || (qDetail.alternatives || []).length <= 1)
-                          ? "Confirmar resposta da questão discursiva"
-                          : alt.text}
+                        {!isQuestionResolved && (qDetail.is_discursive || (qDetail.alternatives || []).length <= 1) ? (
+                          "Confirmar resposta da questão discursiva"
+                        ) : (
+                          <AlternativeContent
+                            content={alt.text}
+                            isEliminated={isEliminated && (!isQuestionResolved || alt.letter !== res?.correct_letter)}
+                            onImageClick={setEnlargedImage}
+                          />
+                        )}
                       </div>
                     </div>
                   );

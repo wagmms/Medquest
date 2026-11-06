@@ -348,6 +348,14 @@ export interface PlannerTopicProgressMap {
   [topicId: string]: boolean;
 }
 
+export interface PlannerMoveTopicPayload {
+  subtema: string;
+  source_week: number;
+  target_week: number;
+  target_index?: number;
+  mode?: "standard" | "intensive";
+}
+
 export interface QuestionMeta {
   institutions: { institution_code: string; institution_label: string; n: number }[];
   years: number[];

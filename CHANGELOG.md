@@ -2,6 +2,47 @@
 
 Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
+## [2026-11-05] - Renderização de Alternativas com Imagem Médica e Dupla Redundância Offline
+- **Diagnóstico & Auditoria Global de Imagens de Questões**:
+  - Identificada a causa raiz da exibição de tags literais HTML `<img src="...">` nas alternativas de questões médicas (como a questão 8920 da USP-SP 2024 de Distócia de Espáduas). O React escapava `{alt.text}` cru nas interfaces de estudo e simulado.
+  - Varredura de 100% das tabelas e colunas do banco de dados SQLite (`medquest.db`): detectadas exatamente 188 alternativas com imagens em 47 questões de alto rendimento da USP-SP (AVC com tomografias, Abdome Agudo com radiografias, Arritmias/PCR com ECG, manobras obstétricas e reanimação neonatal).
+  - Testadas as 188 URLs na AWS S3 (100% ativas com HTTP 200). Baixadas preventivamente todas as 188 imagens para o backend estático local (`app/backend/static/images/medcof/usp_sp/`), garantindo soberania de dados e resiliência offline contra quedas ou restrições de CDN externo.
+- **Componente Canônico de Renderização de Alternativas (`app/frontend/src/components/AlternativeContent.tsx`)**:
+  - Criado o componente unificado `AlternativeContent` com suporte a tags HTML `<img>` e Markdown `![]()`.
+  - Altura e proporção clínica controlada (`max-h-40 sm:max-h-48 md:max-h-56`) para visualização harmônica ao lado do badge da letra da alternativa, sem distorção nem estouro de layout.
+  - Botão de Zoom dedicado no canto da imagem (`Maximize`) com `e.stopPropagation()`, permitindo abrir a imagem em tela cheia no `ImageViewer` sem selecionar acidentalmente a opção.
+  - Efeito visual de eliminação (`isEliminated`): imagem esmaecida em escala de cinza (`opacity-40 grayscale hover:opacity-70`) ao riscar com a tesoura ou atalho de teclado.
+  - Dupla redundância: handler `onError` com fallback automático para `/api/images/medcof/usp_sp/...` caso a URL externa falhe.
+  - Acessibilidade: gerador `getAlternativePlainText` para `aria-label`, substituindo tags de imagem por descrições amigáveis legíveis para sintetizadores de voz.
+- **Integração nas Telas de Estudo e Simulado**:
+  - `app/frontend/src/app/estudar/components/AlternativeList.tsx`: substituição de `{alt.text}` por `AlternativeContent`, integração com `onImageClick` e sanitização de `aria-label`.
+  - `app/frontend/src/app/estudar/QuizClient.tsx`: conexão do callback `onImageClick={setEnlargedImage}` com a lista de alternativas e renderização formatada do padrão de resposta em questões discursivas.
+  - `app/frontend/src/app/simulado/SimuladoClient.tsx`: substituição de `{alt.text}` por `AlternativeContent` e integração com `onImageClick={setEnlargedImage}`.
+  - `app/backend/api/questions.py`: higienização nos snippets de busca FTS5 para remover tags e links de imagem que quebravam a listagem de resultados.
+- **Validação e Testes**:
+  - Suíte completa do backend aprovada (419 testes no `pytest`), compilação TypeScript limpa (`tsc --noEmit`), ESLint zerado e `./validate.sh fast` concluído com sucesso em 11s.
+
+
+## [2026-11-04] - Arrastar Blocos do Planner Entre Semanas e Reordenação Interativa
+- **Persistência Transacional no Backend (`app/backend/api/plan.py` e `schemas.py`)**:
+  - Criado o endpoint `POST /api/planner/move-topic` com schema `PlannerMoveTopicIn` validado via Pydantic (subtema, source_week, target_week, target_index e mode).
+  - Reordenação atômica no banco SQLite/Turso na tabela `planner_schedule`, com recálculo de `display_order` nas semanas afetadas.
+  - Sincronização automática do progresso concluído do tema (`planner_topic_progress`) para a nova semana de destino.
+  - Invalidação de cache do usuário e disparo de evento de observabilidade `planner_topic_moved`.
+- **Preservação de Semanas no Scheduler (`app/backend/api/services/planner.py`)**:
+  - `build_plan_from_schedule` aprimorado para iterar sobre todas as semanas do cronograma (`range(1, num_weeks + 1)`), garantindo que semanas que ficarem temporariamente sem matérias não sumam do plano e possam receber blocos arrastados.
+- **Interface e Interação de Drag & Drop no Frontend (`app/frontend/src/app/planner/PlannerClient.tsx`)**:
+  - Implementado Drag & Drop nativo HTML5 com handle `GripVertical` em cada card de tema (`TopicRow`).
+  - Feedback visual responsivo: item em arraste semitransparente, linha indicadora de inserção entre tópicos, destaque na semana alvo durante o hover.
+  - Drop zone dedicada e acolhedora para semanas de descanso ou sem matérias cadastradas.
+  - Recálculo dinâmico otimista de carga horária semanal (`allocated_hours`), total de temas e progresso concluído.
+  - Badge de aviso caso a carga horária alocada em uma semana ultrapasse a meta recomendada.
+  - Modal acessível "Mover semana" via botão rápido no card, garantindo 100% de usabilidade em celulares, tablets (touch) e navegação por teclado.
+  - Suporte offline transparente com enfileiramento resiliente no `syncManager`.
+- **Suíte de Testes Automatizados (`app/backend/tests/test_planner.py`)**:
+  - Adicionados testes para movimentação de temas entre semanas diferentes, reordenação de itens na mesma semana, preservação de conclusão e manutenção de semanas vazias.
+  - 100% dos testes aprovados (419 testes de backend e lint do frontend zerado; `./validate.sh fast` em 11s).
+
 ## [2026-10-28] - Auditoria de Resiliência Concorrente, Blindagem FSRS e Fidelidade Temporal Offline com Gemini 4 Argon
 - **Persistência Segura & Isolamento Transacional LibSQL (`api/db.py`)**:
   - `TursoCursor`: Métodos `@property def lastrowid` e `@property def rowcount` agora retornam os atributos previamente preservados no construtor antes do fechamento do statement de escrita.

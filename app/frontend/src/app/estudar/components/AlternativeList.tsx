@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Scissors } from "lucide-react";
 import clsx from "clsx";
 import { AttemptResult } from "@/types/api";
+import { AlternativeContent, getAlternativePlainText } from "@/components/AlternativeContent";
 
 export interface AlternativeItem {
   letter: string;
@@ -20,6 +21,7 @@ export interface AlternativeListProps {
   submitting: boolean;
   onSelectAlternative: (letter: string) => void;
   onToggleEliminate: (letter: string) => void;
+  onImageClick?: (url: string) => void;
 }
 
 export const AlternativeList: React.FC<AlternativeListProps> = ({
@@ -30,6 +32,7 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
   submitting,
   onSelectAlternative,
   onToggleEliminate,
+  onImageClick,
 }) => {
   return (
     <div className="flex flex-col gap-2.5" role="region" aria-label="Alternativas da questão">
@@ -66,7 +69,8 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
           attemptResult && isWrong ? "resposta incorreta" : "",
         ].filter(Boolean).join(", ");
 
-        const altAriaLabel = `Alternativa ${alt.letter}: ${alt.text.replace(/\s+/g, " ").trim()}${altAriaStatus ? ` (${altAriaStatus})` : ""}`;
+        const plainText = getAlternativePlainText(alt.text);
+        const altAriaLabel = `Alternativa ${alt.letter}: ${plainText}${altAriaStatus ? ` (${altAriaStatus})` : ""}`;
 
         return (
           <motion.div
@@ -174,7 +178,11 @@ export const AlternativeList: React.FC<AlternativeListProps> = ({
                 isEliminated && !isCorrect && "line-through text-ink-muted/70 decoration-ink-muted/50"
               )}
             >
-              {alt.text}
+              <AlternativeContent
+                content={alt.text}
+                isEliminated={isEliminated && !isCorrect}
+                onImageClick={onImageClick}
+              />
             </div>
           </motion.div>
         );

@@ -13,6 +13,7 @@ from .questions import invalidate_user_caches
 from .schemas import (
     GeneratePlanIn,
     PlannerConfigIn,
+    PlannerMoveTopicIn,
     PlannerRevisionIn,
     PlannerStudyIn,
     PlannerTopicProgressIn,
@@ -171,6 +172,126 @@ def planner_topic(week):
     if completed:
         record_domain_event("planner_topic_completed", user_id=g.user_id, week=week, subtema=data.subtema)
     return jsonify({"success": True, "completed": bool(completed)})
+
+
+@bp.route("/planner/move-topic", methods=["POST"])
+def planner_move_topic():
+    try:
+        data = PlannerMoveTopicIn.model_validate(request.get_json(force=True) or {})
+    except ValidationError as e:
+        return jsonify({"error": "invalid input", "details": validation_errors(e)}), 400
+
+    db = get_db()
+    schedule_rows = db.execute(
+        "SELECT week, subtema, display_order FROM planner_schedule WHERE user_id = ? AND mode = ? ORDER BY week ASC, display_order ASC",
+        (g.user_id, data.mode)
+    ).fetchall()
+
+    now_iso = datetime.now(timezone.utc).isoformat()
+
+    # Se ainda não houver schedule salvo, popula a partir do plano gerado
+    if not schedule_rows:
+        start_date, exam_date, days, hours_per_week = _get_planner_config(db, g.user_id)
+        rows, answered_map = _fetch_plan_data(db, g.user_id)
+        adaptive_signals = get_adaptive_signals_by_topic(db, g.user_id)
+        plan = generate_annual_plan(
+            rows, start_date, exam_date, hours_per_week,
+            intensive=(data.mode == "intensive"), user_progress=answered_map,
+            adaptive_signals=adaptive_signals
+        )
+        if isinstance(plan, dict) and plan.get("plan"):
+            insert_records = []
+            for w in plan["plan"]:
+                week_num = int(w["week"])
+                for order_idx, t in enumerate(w.get("topics", [])):
+                    insert_records.append((g.user_id, data.mode, week_num, t["subtema"], order_idx, now_iso))
+            if insert_records:
+                with db_transaction(db, immediate=True):
+                    db.execute("DELETE FROM planner_schedule WHERE user_id = ? AND mode = ?", (g.user_id, data.mode))
+                    db.executemany("""
+                        INSERT INTO planner_schedule (user_id, mode, week, subtema, display_order, created_at)
+                        VALUES (?, ?, ?, ?, ?, ?)
+                    """, insert_records)
+            schedule_rows = db.execute(
+                "SELECT week, subtema, display_order FROM planner_schedule WHERE user_id = ? AND mode = ? ORDER BY week ASC, display_order ASC",
+                (g.user_id, data.mode)
+            ).fetchall()
+
+    if not schedule_rows:
+        return jsonify({"error": "Cronograma não encontrado"}), 404
+
+    weeks_map = {}
+    for r in schedule_rows:
+        w_num = int(r["week"])
+        weeks_map.setdefault(w_num, []).append(r["subtema"])
+
+    source_week = data.source_week
+    target_week = data.target_week
+    subtema = data.subtema
+
+    # Se o subtema não estiver exatamente na source_week indicada pelo cliente, procurar onde ele está
+    found_week = None
+    for w_num, topics in weeks_map.items():
+        if subtema in topics:
+            found_week = w_num
+            break
+
+    if found_week is not None:
+        source_week = found_week
+        weeks_map[source_week].remove(subtema)
+    else:
+        return jsonify({"error": f"Subtema '{subtema}' não encontrado no cronograma"}), 404
+
+    if target_week not in weeks_map:
+        weeks_map[target_week] = []
+
+    if data.target_index is not None and 0 <= data.target_index <= len(weeks_map[target_week]):
+        weeks_map[target_week].insert(data.target_index, subtema)
+    else:
+        weeks_map[target_week].append(subtema)
+
+    affected_weeks = {source_week, target_week}
+    with db_transaction(db, immediate=True):
+        placeholders = ",".join("?" * len(affected_weeks))
+        db.execute(
+            f"DELETE FROM planner_schedule WHERE user_id = ? AND mode = ? AND week IN ({placeholders})",
+            (g.user_id, data.mode, *affected_weeks)
+        )
+        insert_records = []
+        for w_num in affected_weeks:
+            for order_idx, s in enumerate(weeks_map.get(w_num, [])):
+                insert_records.append((g.user_id, data.mode, w_num, s, order_idx, now_iso))
+        if insert_records:
+            db.executemany("""
+                INSERT INTO planner_schedule (user_id, mode, week, subtema, display_order, created_at)
+                VALUES (?, ?, ?, ?, ?, ?)
+            """, insert_records)
+
+        # Atualizar planner_topic_progress para a nova semana se moveu de semana
+        if source_week != target_week:
+            db.execute("""
+                UPDATE planner_topic_progress
+                SET week = ?
+                WHERE user_id = ? AND subtema = ? AND week = ?
+            """, (target_week, g.user_id, subtema, source_week))
+
+    invalidate_user_caches(g.user_id)
+    record_domain_event(
+        "planner_topic_moved",
+        user_id=g.user_id,
+        subtema=subtema,
+        source_week=source_week,
+        target_week=target_week,
+        target_index=data.target_index
+    )
+
+    return jsonify({
+        "success": True,
+        "subtema": subtema,
+        "source_week": source_week,
+        "target_week": target_week,
+        "target_index": data.target_index
+    })
 
 
 @bp.route("/planner/<int:week>/study", methods=["POST"])
