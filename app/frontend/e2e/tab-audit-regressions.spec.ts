@@ -4,31 +4,6 @@ test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('medquest_onboarding_v1', 'done'));
 });
 
-for (const key of ['Enter', 'Space']) {
-  for (const [label, confidence] of [['Errei', 'errei'], ['Difícil', 'duvida'], ['Fácil', 'certeza']]) {
-    test(`review: ${key} on ${label} preserves the chosen grade`, async ({ page }) => {
-      const grades: string[] = [];
-      await page.route('**/api/**', async route => {
-        const url = new URL(route.request().url());
-        let body: unknown = {};
-        if (url.pathname.endsWith('/flashcards/decks')) body = { decks: [] };
-        else if (url.pathname.endsWith('/flashcards/review')) body = url.searchParams.has('scope') ? [] : [{ id: 101, question_id: 1, front: 'Audit {{c1::answer}}', back: 'Explanation', next_review_date: '2020-01-01' }];
-        else if (url.pathname.endsWith('/flashcards/101/review')) {
-          grades.push(route.request().postDataJSON().confidence);
-          body = { next_review_date: '2030-01-01' };
-        }
-        await route.fulfill({ json: body });
-      });
-      await page.goto('/revisao-ativa');
-      await page.getByText('Clique para Revelar').click();
-      await page.getByRole('button', { name: new RegExp(label) }).focus();
-      await page.keyboard.press(key);
-      await expect(page.getByRole('heading', { name: 'Fila carregada concluída' })).toBeVisible();
-      expect(grades).toEqual([confidence]);
-    });
-  }
-}
-
 test('analysis: failed requests hide stale data and retry the unchanged filter', async ({ page }) => {
   let readinessRequests = 0;
   let timelineRequests = 0;

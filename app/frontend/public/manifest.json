@@ -64,18 +64,6 @@
           "sizes": "192x192"
         }
       ]
-    },
-    {
-      "name": "Revisão Ativa (FSRS)",
-      "short_name": "Flashcards",
-      "description": "Revisar flashcards médicos com repetição espaçada",
-      "url": "/revisao-ativa",
-      "icons": [
-        {
-          "src": "/icon-192x192.png",
-          "sizes": "192x192"
-        }
-      ]
     }
   ]
 }

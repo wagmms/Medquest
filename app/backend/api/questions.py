@@ -6,13 +6,13 @@ import random
 import re
 import time
 from datetime import datetime, timedelta, timezone
-from threading import Lock
 
 from flask import Blueprint, g, jsonify, request
 
 logger = logging.getLogger(__name__)
 
 from . import srs
+from .cache import SimpleTTLCache
 from .adaptive import rank_adaptive_candidates
 from .remediation import generate_remediation_queue
 from .tri_engine import evaluate_tri_performance
@@ -33,40 +33,6 @@ from .schemas import (
     validation_errors,
 )
 
-
-class SimpleTTLCache:
-    def __init__(self, ttl_seconds, max_size=500):
-        self.ttl = ttl_seconds
-        self.max_size = max_size
-        self.cache = {}
-        self.lock = Lock()
-        
-    def get(self, key):
-        with self.lock:
-            if key in self.cache:
-                value, expiry = self.cache[key]
-                if time.time() < expiry:
-                    return value
-                else:
-                    del self.cache[key]
-            return None
-            
-    def set(self, key, value):
-        with self.lock:
-            now = time.time()
-            stale = [k for k, (v, exp) in self.cache.items() if now >= exp]
-            for k in stale:
-                del self.cache[k]
-            if len(self.cache) >= self.max_size:
-                oldest = min(self.cache.keys(), key=lambda k: self.cache[k][1])
-                del self.cache[oldest]
-            self.cache[key] = (value, now + self.ttl)
-
-    def clear_user(self, user_id):
-        with self.lock:
-            keys = [key for key in self.cache if isinstance(key, tuple) and key[0] == user_id]
-            for key in keys:
-                del self.cache[key]
 
 meta_cache = SimpleTTLCache(60)
 count_cache = SimpleTTLCache(60, max_size=1000)

@@ -51,7 +51,7 @@ const INSTRUMENTS: InstrumentMeta[] = [
 
 interface ProcedureMannequinProps {
   sessionId: string;
-  elapsedSeconds: number;
+  getElapsedSeconds: () => number;
   onProcedureExecuted: (
     title: string,
     findings: string,
@@ -65,7 +65,7 @@ interface ProcedureMannequinProps {
 
 export function ProcedureMannequin({
   sessionId,
-  elapsedSeconds,
+  getElapsedSeconds,
   onProcedureExecuted,
   isLoading = false,
   institution = "USP-RP",
@@ -127,7 +127,7 @@ export function ProcedureMannequin({
 
   // Solicitar preparo à equipe de enfermagem
   const handleOrderNursing = (orderCode: string) => {
-    const res = queueManagerRef.current.orderTask(orderCode, elapsedSeconds * 1000);
+    const res = queueManagerRef.current.orderTask(orderCode, getElapsedSeconds() * 1000);
     if (!res.accepted) {
       toast.error(res.rejectionReason || "Pedido não autorizado no momento.", { duration: 4500 });
     } else if (res.task) {
@@ -172,7 +172,7 @@ export function ProcedureMannequin({
     setActiveSite(hitbox.id);
 
     try {
-      const res = await api.osce.performProcedure(sessionId, activeInstrument, hitbox.id, elapsedSeconds);
+      const res = await api.osce.performProcedure(sessionId, activeInstrument, hitbox.id, getElapsedSeconds());
       if (res?.success) {
         setPerformedProcedures((prev) => [...prev, `${activeInstrument}@${hitbox.id}`]);
         toast.success(`Procedimento executado: ${hitbox.name}`);
@@ -189,7 +189,7 @@ export function ProcedureMannequin({
     } finally {
       setIsProcessing(false);
     }
-  }, [activeInstrument, completedEffects, elapsedSeconds, facility, isLoading, isProcessing, onProcedureExecuted, sessionId]);
+  }, [activeInstrument, completedEffects, facility, getElapsedSeconds, isLoading, isProcessing, onProcedureExecuted, sessionId]);
 
   const activeMeta = INSTRUMENTS.find((i) => i.id === activeInstrument);
 

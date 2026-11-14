@@ -52,7 +52,6 @@ class MedQuestGraph:
             # Telas Frontend
             ("tela:/estudar", "Banco de Questões", "tela_frontend"),
             ("tela:/simulado", "Cockpit de Simulados", "tela_frontend"),
-            ("tela:/revisao-ativa", "Flashcards FSRS", "tela_frontend"),
             ("tela:/osce", "Estações Práticas OSCE", "tela_frontend"),
             ("tela:/analise", "Dashboard TRI & Estatísticas", "tela_frontend"),
             ("tela:/planner", "Cronograma & Metas", "tela_frontend"),

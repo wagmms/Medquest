@@ -12,7 +12,6 @@ import {
   CheckCircle2,
   Play,
   BookOpen,
-  Layers,
   Smartphone,
   Sun,
   ShieldCheck,
@@ -25,11 +24,8 @@ import {
   SyncItem,
   SimuladoPackage,
   isPackageValid,
-  isForcedOffline,
   setForcedOffline,
-  isDeviceOffline,
 } from "@/lib/db";
-import { api } from "@/lib/api";
 import { syncManager } from "@/lib/sync";
 import {
   downloadSimuladoPackage,
@@ -37,18 +33,18 @@ import {
   listSimuladoPackages,
   deleteSimuladoPackage,
 } from "@/lib/simuladoPackage";
+import { useOfflineStatus } from "@/lib/useOfflineStatus";
 import { useWakeLock } from "@/hooks/useWakeLock";
 import { usePwaInstall } from "@/hooks/usePwaInstall";
 import toast from "react-hot-toast";
 
 export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
-  const [isOffline, setIsOffline] = useState(false);
-  const [forcedOffline, setForcedOfflineState] = useState(false);
+  const { isOffline, forcedOffline } = useOfflineStatus();
   const [storageInfo, setStorageInfo] = useState<{ usedMb: number; quotaMb: number; persisted: boolean } | null>(null);
   const { isSupported: isWakeLockSupported, isActive: isWakeLockActive, toggleWakeLock } = useWakeLock();
   const { isInstallable, installApp } = usePwaInstall();
 
-  const [stats, setStats] = useState({ questions: 0, flashcards: 0, queue: 0 });
+  const [stats, setStats] = useState({ questions: 0, queue: 0 });
   const [packages, setPackages] = useState<SimuladoPackage[]>([]);
   const [activePackage, setActivePackage] = useState<SimuladoPackage | null>(null);
   const [failedItems, setFailedItems] = useState<SyncItem[]>([]);
@@ -69,13 +65,12 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
     try {
       const uid = getLocalOwnerId();
       const questions = await localDb.questions.where('_owner_id').equals(uid).count();
-      const flashcards = await localDb.flashcards.where('_owner_id').equals(uid).count();
       const queue = await localDb.syncQueue.where('owner_id').equals(uid).filter(i => i.status === "pending").count();
       const failed = await syncManager.getFailedItems();
       const pkgList = await listSimuladoPackages(uid);
       const readyPkg = await getReadySimuladoPackage(uid);
 
-      setStats({ questions, flashcards, queue });
+      setStats({ questions, queue });
       setFailedItems(failed);
       setPackages(pkgList);
       setActivePackage(readyPkg);
@@ -106,16 +101,6 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
   }, []);
 
   useEffect(() => {
-    const updateOnline = () => {
-      setIsOffline(isDeviceOffline());
-      setForcedOfflineState(isForcedOffline());
-    };
-
-    updateOnline();
-    window.addEventListener("online", updateOnline);
-    window.addEventListener("offline", updateOnline);
-    window.addEventListener("forced-offline-changed", updateOnline);
-
     // Initial stats
     const initialStatsTimer = setTimeout(() => void updateStats(), 0);
 
@@ -126,9 +111,6 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
     window.addEventListener("simulado-package-updated", handlePackageUpdate);
 
     return () => {
-      window.removeEventListener("online", updateOnline);
-      window.removeEventListener("offline", updateOnline);
-      window.removeEventListener("forced-offline-changed", updateOnline);
       window.removeEventListener("sync-queue-updated", handleQueueUpdate);
       window.removeEventListener("simulado-package-updated", handlePackageUpdate);
       clearTimeout(initialStatsTimer);
@@ -142,19 +124,6 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
     setDownloadStatus("Iniciando download do pacote...");
 
     try {
-      // Baixar flashcards devidos
-      setDownloadStatus("Buscando flashcards para revisão...");
-      setDownloadProgress(10);
-      const uid = getLocalOwnerId();
-      const flashcards = await api.flashcards.downloadAll();
-      if (getLocalOwnerId() !== uid) throw new Error("A conta ativa mudou durante o download.");
-      if (localDb) {
-        await localDb.transaction("rw", localDb.flashcards, async () => {
-          await localDb.flashcards.where('_owner_id').equals(uid).delete();
-          await localDb.flashcards.bulkPut(flashcards.map(f => ({ ...f, _owner_id: uid })));
-        });
-      }
-
       // Baixar pacote de simulado
       const questionsPerArea = Math.max(5, Math.round(questionCount / 5));
       await downloadSimuladoPackage(
@@ -251,8 +220,6 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
   const handleToggleForcedOffline = () => {
     const next = !forcedOffline;
     setForcedOffline(next);
-    setForcedOfflineState(next);
-    setIsOffline(isDeviceOffline());
     if (next) {
       toast.success("Modo Plantão forçado ativado (0ms latência local).");
     } else {
@@ -469,14 +436,10 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
           </div>
         )}
 
-        <div className="grid grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-2 gap-4 mb-6">
           <div className="bg-muted/50 rounded-lg p-3 text-center border border-border">
             <p className="text-xs text-muted-foreground uppercase font-semibold">Questões</p>
             <p className="text-2xl font-bold text-foreground">{stats.questions}</p>
-          </div>
-          <div className="bg-muted/50 rounded-lg p-3 text-center border border-border">
-            <p className="text-xs text-muted-foreground uppercase font-semibold">Flashcards</p>
-            <p className="text-2xl font-bold text-foreground">{stats.flashcards}</p>
           </div>
           <div className="bg-muted/50 rounded-lg p-3 text-center border border-border relative">
             <p className="text-xs text-muted-foreground uppercase font-semibold">Fila (Envios)</p>
@@ -529,10 +492,10 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
             )}
           </button>
 
-          {(stats.questions > 0 || stats.flashcards > 0 || packages.length > 0) && !isDownloading && (
+          {(stats.questions > 0 || packages.length > 0) && !isDownloading && (
             <button
               onClick={handleClearOfflineData}
-              title="Limpar questões e flashcards salvos neste dispositivo"
+              title="Limpar questões e pacotes salvos neste dispositivo"
               className="flex items-center justify-center gap-1.5 px-4 py-3 rounded-lg border border-border bg-card hover:bg-destructive/10 hover:border-destructive/30 hover:text-destructive text-muted-foreground font-medium text-xs transition-colors"
             >
               <Trash2 size={16} /> Limpar
@@ -556,12 +519,12 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
         )}
 
         {/* Atalhos para estudo quando há conteúdo baixado */}
-        {(stats.questions > 0 || stats.flashcards > 0) && (
+        {stats.questions > 0 && (
           <div className="mt-6 pt-5 border-t border-border/80 flex flex-col gap-3">
             <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
               Acesso Rápido ao Conteúdo Local:
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Link
                 href="/simulado"
                 onClick={() => onClose?.()}
@@ -577,14 +540,6 @@ export function OfflinePanel({ onClose }: { onClose?: () => void } = {}) {
               >
                 <BookOpen size={14} className="text-primary" />
                 Banco de Questões
-              </Link>
-              <Link
-                href="/revisao-ativa"
-                onClick={() => onClose?.()}
-                className="flex items-center justify-center gap-2 p-2.5 rounded-lg bg-muted/40 hover:bg-muted text-foreground border border-border font-medium text-xs transition-colors"
-              >
-                <Layers size={14} className="text-purple-500" />
-                Flashcards Offline
               </Link>
             </div>
           </div>

@@ -2,8 +2,8 @@ import {
   ThemeProgress, OverviewStats, CoverageResponse, TimelineStat, WeakTopic, Recommendation,
   BreakdownStat, DistractorStat, PlannerConfig, PlannerProgressMap, PlannerTopicProgressMap, PlannerPlanResponse,
   QuestionMeta, SubtemaItem, QuestionListItem, QuestionDetail, AttemptResult, SearchResult, SearchFilterOptions,
-  BatchAttemptItem, BatchAttemptResult, BatchDetailResponse, Flashcard, FlashcardGenerateResponse,
-  BatchFlashcardGenerateResponse, PredictiveScore, AtRiskTopic, LearningProfile, ExamReadiness,
+  BatchAttemptItem, BatchAttemptResult, BatchDetailResponse, Flashcard,
+  PredictiveScore, AtRiskTopic, LearningProfile, ExamReadiness,
   BenchmarkStat, BottleneckTopic, DomainSummaryResponse, ErrorNotebookSummary,
   NotificationConfig, NotificationConfigUpdate, PushSubscriptionPayload,
   InstitutionRadarResponse, FlashcardDecksResponse, AnkiImportResult,
@@ -18,7 +18,6 @@ const API_BASE = process.env.NEXT_PUBLIC_APP_URL ||
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` :
   (typeof window !== "undefined" ? "" : "http://localhost:3000")));
 
-import { cacheCreatedFlashcards } from "./flashcardCache";
 import { syncManager } from "./sync";
 import { localDb, getLocalOwnerId, isDeviceOffline } from "./db";
 
@@ -55,8 +54,7 @@ async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise
     endpoint.includes("/review") ||
     endpoint.includes("/favorite") ||
     endpoint === "/api/simulado/sessions" ||
-    (endpoint.includes("/planner/") && !endpoint.includes("/reset")) ||
-    /^\/api\/flashcards\/(save|generate|generate-batch)$/.test(endpoint)
+    (endpoint.includes("/planner/") && !endpoint.includes("/reset"))
   );
 
   let idempotencyKey: string | undefined;
@@ -127,9 +125,6 @@ async function apiFetch<T>(endpoint: string, options?: ApiFetchOptions): Promise
     }
 
     const data = await response.json();
-    if (requestOwner && /^\/api\/flashcards\/(save|generate|generate-batch)$/.test(endpoint)) {
-      await cacheCreatedFlashcards(data, requestOwner);
-    }
     return data;
   } catch (error) {
     // Aborto intencional iniciado pelo chamador
@@ -664,22 +659,6 @@ export const api = {
           method: "DELETE",
         }
       ),
-    preview: (question_id: number, wrong_letter?: string) =>
-      apiFetch<{ front: string; back: string; context: string }>("/api/flashcards/preview", {
-        method: "POST", body: JSON.stringify({ question_id, wrong_letter: wrong_letter || "" }),
-      }),
-    save: (question_id: number, front: string, back: string, context: string) =>
-      apiFetch<FlashcardGenerateResponse>("/api/flashcards/save", {
-        method: "POST", body: JSON.stringify({ question_id, front, back, context }),
-      }),
-    generate: (question_id: number, wrong_letter: string) =>
-      apiFetch<FlashcardGenerateResponse>("/api/flashcards/generate", {
-        method: "POST", body: JSON.stringify({ question_id, wrong_letter }), timeoutMs: 125000,
-      }),
-    generateBatch: (items: Array<{ question_id: number; wrong_letter: string }>) =>
-      apiFetch<BatchFlashcardGenerateResponse>("/api/flashcards/generate-batch", {
-        method: "POST", body: JSON.stringify({ items }), timeoutMs: 125000,
-      }),
     downloadAll: async (): Promise<Flashcard[]> => {
       const cards: Flashcard[] = [];
       let afterId = 0;
@@ -950,9 +929,6 @@ export const api = {
       body: JSON.stringify({ message, elapsed_seconds: elapsedSeconds }),
     }),
     getReport: (sessionId: string) => apiFetch<import("@/types/api").OsceReportResponse>(`/api/osce/sessions/${sessionId}/report`, { cache: "no-store" }),
-    exportCards: (sessionId: string) => apiFetch<{ success: boolean; exported_count: number; message: string }>(`/api/osce/sessions/${sessionId}/export_cards`, {
-      method: "POST",
-    }),
     getDrugs: () => apiFetch<{ drugs: import("@/types/api").OsceDrugItem[]; count: number }>("/api/osce/drugs", { cache: "no-store" }),
     getProcedures: () => apiFetch<{ procedures: import("@/types/api").OsceProcedureCatalogItem[]; count: number }>("/api/osce/procedures", { cache: "no-store" }),
     prescribe: (sessionId: string, prescription: import("@/types/api").OscePrescriptionItem[], elapsedSeconds: number) => apiFetch<import("@/types/api").OscePrescribeResponse>(`/api/osce/sessions/${sessionId}/prescribe`, {

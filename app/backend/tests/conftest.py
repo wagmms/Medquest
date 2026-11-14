@@ -6,22 +6,7 @@ import pytest
 
 from api import create_app
 
-# Estes arquivos são diagnósticos manuais que acessam banco/serviços reais no
-# momento da importação. Eles permanecem úteis para manutenção, mas não fazem
-# parte da suíte hermética executada pelo pytest.
-collect_ignore = [
-    "test.py",
-    "test_ai.py",
-    "test_api_root.py",
-    "test_db.py",
-    "test_expand.py",
-    "test_flashcards.py",
-    "test_meta.py",
-    "test_raw_turso.py",
-    "test_turso.py",
-    "test_turso2.py",
-    "test_turso3.py",
-]
+collect_ignore: list[str] = []
 
 SCHEMA_AND_SEED = """
 CREATE TABLE questions(
@@ -54,6 +39,11 @@ def app(tmp_path):
     con.close()
     os.environ["MEDQUEST_DB"] = str(dbfile)
     try:
+        from api.questions import count_cache, meta_cache
+        from api.stats import overview_cache
+        meta_cache.cache.clear()
+        count_cache.cache.clear()
+        overview_cache.cache.clear()
         app = create_app(testing=True)
         yield app
     finally:
@@ -67,21 +57,20 @@ def client(app):
 
 
 @pytest.fixture(autouse=True)
-def mock_ai_providers_hermetic(monkeypatch, request):
+def mock_ai_providers_hermetic(monkeypatch):
     """Garante que a suíte de testes seja 100% hermética, rápida e offline por padrão."""
-    if os.environ.get("RUN_LIVE_AI") == "1" or "test_universal_pool" in request.node.nodeid:
+    if os.environ.get("RUN_LIVE_AI") == "1":
         return
 
-    from api import ai, universal_pool, gemini_pool
+    from api import ai, gemini_pool, osce
 
     def fake_generate_content_with_fallback(prompt, system_instruction=None, json_mode=False, **kwargs):
-        # Se as chaves do Gemini Pool foram explicitamente zeradas no teste, simula indisponibilidade
         if gemini_pool.gemini_pool.total_keys == 0:
             raise RuntimeError("Todos os provedores de IA falharam (simulando indisponibilidade).")
 
         if json_mode:
             return {
-                "text": '{"front": "Paciente com quadro de HAS. 👉 Conduta: {{c1::Iniciar tratamento adequado}}", "back": "💡 Pulo do Gato:\\nEm pacientes com hipertensão, iniciar conduta padrão.", "context": "Clínica Médica > Hipertensão", "why_wrong": "Opção incorreta", "terms": ["hipertensao", "has", "pressao alta"]}',
+                "text": '{"terms": ["hipertensao", "has", "pressao alta"]}',
                 "source": "mock_ai",
                 "model": "mock-flash"
             }
@@ -91,9 +80,13 @@ def mock_ai_providers_hermetic(monkeypatch, request):
             "model": "mock-flash"
         }
 
-    monkeypatch.setattr(universal_pool, "generate_content_with_fallback", fake_generate_content_with_fallback)
+    monkeypatch.setattr(gemini_pool, "generate_content_with_fallback", fake_generate_content_with_fallback)
     monkeypatch.setattr(ai, "generate_content_with_fallback", fake_generate_content_with_fallback)
-    monkeypatch.setattr("api.ai.generate_content_with_fallback", fake_generate_content_with_fallback)
+    monkeypatch.setattr(
+        osce,
+        "generate_content_with_fallback",
+        lambda *args, **kwargs: {"text": "", "source": "mock_osce_fallback", "model": "mock-flash"},
+    )
 
 
 

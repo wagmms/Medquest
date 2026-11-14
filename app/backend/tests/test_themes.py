@@ -49,12 +49,18 @@ def test_theme_validation_and_versioned_route(client):
         assert response.status_code == 400
 
 
-def test_flashcard_theme_filter_scopes_due_upcoming_all_and_counts(client):
-    first = client.post('/api/flashcards/save', json={'question_id': 1, 'front': 'Front 1', 'back': 'Back 1'})
-    second = client.post('/api/flashcards/save', json={'question_id': 2, 'front': 'Front 2', 'back': 'Back 2'})
-    assert first.status_code in (200, 201)
-    assert second.status_code in (200, 201)
-    fid = first.get_json()['id']
+def test_flashcard_theme_filter_scopes_due_upcoming_all_and_counts(client, app):
+    from api.db import get_db, db_transaction
+    with app.app_context():
+        db = get_db()
+        with db_transaction(db):
+            cur1 = db.execute(
+                "INSERT INTO flashcards (question_id, front, back, created_at, next_review_date, user_id) VALUES (1, 'Front 1', 'Back 1', '2026-01-01', '2026-01-01', '1')"
+            )
+            fid = cur1.lastrowid
+            db.execute(
+                "INSERT INTO flashcards (question_id, front, back, created_at, next_review_date, user_id) VALUES (2, 'Front 2', 'Back 2', '2026-01-01', '2026-01-01', '1')"
+            )
     query = {'subtema': THEME}
     due = client.get('/api/flashcards/review', query_string=query).get_json()
     assert [card['id'] for card in due] == [fid]

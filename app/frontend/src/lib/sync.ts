@@ -4,7 +4,6 @@
  */
 
 import { localDb, SyncItem, getLocalOwnerId } from "./db";
-import { cacheCreatedFlashcards } from "./flashcardCache";
 import { broadcastCrossTab } from "./crossTab";
 
 let isInitialized = false;
@@ -249,9 +248,6 @@ export const syncManager = {
             }
           } catch {
             // ignore parse error if response is not JSON
-          }
-          if (/\/flashcards\/(save|generate|generate-batch)$/.test(item.endpoint)) {
-            await cacheCreatedFlashcards(responseData, uid);
           }
           await localDb.syncQueue.delete(item.id);
           if (getLocalOwnerId() === uid) {

@@ -12,7 +12,7 @@ test('PWA runtimeCaching strictly ignores RSC requests and non-navigate requests
       sameOrigin &&
       request?.mode === 'navigate' &&
       !request?.headers?.get('RSC') &&
-      (pathname === '/estudar' || pathname === '/simulado' || pathname === '/revisao-ativa')
+      (pathname === '/estudar' || pathname === '/simulado')
     );
   };
 

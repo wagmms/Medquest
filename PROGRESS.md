@@ -13,24 +13,24 @@
 
 ## 🔄 Próxima Tarefa em Andamento
 
-- [ ] **Fatiamento Modular do Motor de Simulação Clínica OSCE (`app/backend/api/osce.py`)**:
-    1. **Arquivo/Módulo Alvo**: `app/backend/api/osce.py` (3.087 linhas)
-    2. **Função/Componente/Seletor**: Desacoplamento da engine de fisiologia, modificadores hemodinâmicos de fala e avaliador de barema
-    3. **Comportamento Esperado / Critério de Aceite**: Extrair lógica de fisiologia para `api/services/osce/physiology.py` e avaliador de barema para `api/services/osce/grading.py`, mantendo a rota HTTP em `api/osce_routes.py` e 100% dos testes do OSCE verdes.
+- [ ] **Isolamento de Matemática Psicométrica e Prontidão Bayesiana (`app/backend/api/stats.py`)**:
+    1. **Arquivo/Módulo Alvo**: `app/backend/api/stats.py`
+    2. **Função/Componente/Seletor**: Funções `_beta_continued_fraction`, `regularized_incomplete_beta` e `calculate_bayesian_readiness`
+    3. **Comportamento Esperado / Critério de Aceite**: Mover funções matemáticas pesadas para serviço isolado `app/backend/api/services/psychometrics.py`, reexportando os símbolos públicos em `stats.py` para manter compatibilidade e 100% da suíte `pytest` verde.
 
 ---
 
 ## 📋 Backlog Prioritário (Tarefas Cirúrgicas)
 
-1. [ ] **Consolidação e Enxugamento da Camada de IA (`app/backend/api/universal_pool.py`)**:
-    - **Arquivo/Módulo Alvo**: `app/backend/api/universal_pool.py` e `app/backend/api/gemini_pool.py`
-    - **Função/Componente/Seletor**: Camada de pool e Circuit Breaker
-    - **Comportamento Esperado / Critério de Aceite**: Fundir a camada redundante `universal_pool.py` no `gemini_pool.py`, simplificando as chamadas e mantendo proteção de timeout e resiliência de rate limit.
+1. [ ] **Separação de Serviço do Motor de Questões (`app/backend/api/questions.py`)**:
+    - **Arquivo/Módulo Alvo**: `app/backend/api/questions.py`
+    - **Função/Componente/Seletor**: Regras de filtragem SRS/caderno de erros e paginação de questões fora dos handlers HTTP
+    - **Comportamento Esperado / Critério de Aceite**: Extrair queries e montagem de payload para `app/backend/api/services/questions_service.py`, preservando contratos de resposta e caches em `api/cache.py`.
 
-2. [ ] **Isolamento de Matemática Psicométrica e Prontidão Bayesiana (`app/backend/api/stats.py`)**:
-    - **Arquivo/Módulo Alvo**: `app/backend/api/stats.py` (2.045 linhas)
-    - **Função/Componente/Seletor**: Funções `_beta_continued_fraction`, `regularized_incomplete_beta` e `calculate_bayesian_readiness`
-    - **Comportamento Esperado / Critério de Aceite**: Mover funções matemáticas pesadas para serviço isolado `services/psychometrics.py`, reduzindo a complexidade ciclomática do controlador de estatísticas.
+2. [ ] **Fatiamento Restante da Fisiologia OSCE (`app/backend/api/osce.py`)**:
+    - **Arquivo/Módulo Alvo**: `app/backend/api/osce.py`
+    - **Função/Componente/Seletor**: Engine fisiológica e ciclo de vida de sessão após a extração já concluída de `osce_prompts.py` e `osce_evaluation.py`
+    - **Comportamento Esperado / Critério de Aceite**: Extrair a engine fisiológica restante para `app/backend/api/osce_physiology.py`, mantendo reexports em `osce.py` e 100% dos testes do OSCE verdes.
 
 3. [ ] **Hardening de Fallback e Cache de Perfil Adaptativo em Desconexão (`app/backend/api/adaptive.py`)**:
     - **Arquivo/Módulo Alvo**: `app/backend/api/adaptive.py`
@@ -53,6 +53,6 @@
 
 ## ✅ Última Tarefa Concluída
 
-- [x] **Racionalização de Overengineering: Quarentena de Scripts e Desacoplamento do OSCE**: Arquivados com segurança 374 scripts legados em `archive/legacy_backend_scripts/` e duplicatas de SO da raiz em `archive/legacy_root_scripts/` via `git mv` (preservando 100% do histórico e git blame); reduzida a pasta `app/backend/scripts/` de 382 arquivos para apenas os 13 módulos vitais; extraídas 2.816 linhas de dados estáticos clínicos de `osce_data.py` para `app/backend/data/osce/canonical_stations.json`, transformando `osce_data.py` em facade leve de 28 linhas com `lru_cache`; adicionada trava anti-bloat em `test_pipeline_registry.py`; 100% dos 419 testes aprovados e `./validate.sh fast` em 1.30s.
+- [x] **Sincronização `Medquest-aistudio`, Hardening de Segurança e Refatoração Arquitetural (2026-11-14)**: Removidos `/revisao-ativa` no frontend (`manifest.json`, `OfflinePanel.tsx`), endpoints/código morto (`synthesize_explanation`, `prescribe_study`, `analyze-image`, `medical_vision.py`, `universal_pool.py`, frontend estático legado preservando `static/images/`, duplicatas `canonical_*.json` na raiz); aplicadas `@require_auth`, `get_current_user_id()` e idempotência OSCE; isolados `<SessionTimer>` e `useOsceAudio.ts` no frontend (`useOfflineStatus`, `navigation.ts`); unificados `SimpleTTLCache` em `api/cache.py`, `_fetch_attempt_rollup` SQL CTE em `stats.py` e extraídos `osce_prompts.py` + `osce_evaluation.py`.
 
 > 📁 Histórico completo arquivado em [CHANGELOG.md](CHANGELOG.md)

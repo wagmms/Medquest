@@ -5,7 +5,9 @@ import logging
 from flask import Blueprint, g, jsonify, request
 
 from . import osce
+from .auth import require_auth
 from .db import get_db, db_transaction
+from .idempotency import complete_idempotency, fail_idempotency, reserve_idempotency
 
 logger = logging.getLogger(__name__)
 
@@ -13,14 +15,7 @@ bp = Blueprint("osce", __name__)
 
 
 def _resolve_user_id() -> str:
-    user_id = getattr(g, "user_id", None)
-    if not user_id:
-        guest_id = request.headers.get("X-Guest-ID") or request.headers.get("x-internal-guest-id")
-        if guest_id:
-            user_id = f"guest:{guest_id.lower()}"
-        else:
-            user_id = "guest:anonymous"
-    return user_id
+    return getattr(g, "user_id", "1")
 
 
 def _parse_elapsed_seconds(val: object) -> int:
@@ -69,36 +64,61 @@ def get_station_details(station_id: int):
 
 
 @bp.route("/osce/sessions/start", methods=["POST"])
+@require_auth
 def start_session():
     db = get_db()
     user_id = _resolve_user_id()
-    body = request.get_json(silent=True) or {}
-
-    raw_station_id = body.get("station_id")
-    circuit_session_id = body.get("circuit_session_id")
-    mode = body.get("mode", "blind")
-
-    if raw_station_id is None:
-        return jsonify({"error": "station_id é obrigatório"}), 400
-
-    try:
-        station_id = int(raw_station_id)
-        if station_id <= 0:
-            return jsonify({"error": "station_id deve ser um número inteiro positivo"}), 400
-    except (ValueError, TypeError):
-        return jsonify({"error": "station_id deve ser um número inteiro válido"}), 400
+    raw_payload = request.get_data()
+    cached_resp, err_resp, lease_token = reserve_idempotency(
+        db, user_id, request.path, request.method, raw_payload
+    )
+    if cached_resp is not None:
+        return cached_resp
+    if err_resp is not None:
+        return err_resp
 
     try:
-        session = osce.start_osce_session(
-            db=db,
-            station_id=station_id,
-            user_id=user_id,
-            circuit_session_id=circuit_session_id,
-            mode=mode
-        )
-        return jsonify(session), 201
-    except ValueError as e:
-        return jsonify({"error": str(e)}), 404
+        body = request.get_json(silent=True) or {}
+        raw_station_id = body.get("station_id")
+        circuit_session_id = body.get("circuit_session_id")
+        mode = body.get("mode", "blind")
+
+        if raw_station_id is None:
+            if lease_token:
+                fail_idempotency(db, user_id, lease_token)
+            return jsonify({"error": "station_id é obrigatório"}), 400
+
+        try:
+            station_id = int(raw_station_id)
+            if station_id <= 0:
+                if lease_token:
+                    fail_idempotency(db, user_id, lease_token)
+                return jsonify({"error": "station_id deve ser um número inteiro positivo"}), 400
+        except (ValueError, TypeError):
+            if lease_token:
+                fail_idempotency(db, user_id, lease_token)
+            return jsonify({"error": "station_id deve ser um número inteiro válido"}), 400
+
+        try:
+            session = osce.start_osce_session(
+                db=db,
+                station_id=station_id,
+                user_id=user_id,
+                circuit_session_id=circuit_session_id,
+                mode=mode
+            )
+            if lease_token:
+                with db_transaction(db, immediate=True):
+                    complete_idempotency(db, user_id, 201, session, lease_token)
+            return jsonify(session), 201
+        except ValueError as e:
+            if lease_token:
+                fail_idempotency(db, user_id, lease_token)
+            return jsonify({"error": str(e)}), 404
+    except Exception:
+        if lease_token:
+            fail_idempotency(db, user_id, lease_token)
+        raise
 
 
 @bp.route("/osce/sessions/<session_id>/interact", methods=["POST"])
@@ -185,23 +205,42 @@ def execute_action(session_id: str):
 
 
 @bp.route("/osce/sessions/<session_id>/finish", methods=["POST"])
+@require_auth
 def finish_session(session_id: str):
     db = get_db()
     user_id = _resolve_user_id()
-    body = request.get_json(silent=True) or {}
-
-    conduct_notes = body.get("conduct_notes")
+    raw_payload = request.get_data()
+    cached_resp, err_resp, lease_token = reserve_idempotency(
+        db, user_id, request.path, request.method, raw_payload
+    )
+    if cached_resp is not None:
+        return cached_resp
+    if err_resp is not None:
+        return err_resp
 
     try:
-        result = osce.finish_osce_session(
-            db=db,
-            session_id=session_id,
-            user_id=user_id,
-            conduct_notes=conduct_notes
-        )
-        return jsonify(result)
-    except ValueError as e:
-        return jsonify({"error": str(e)}), 404
+        body = request.get_json(silent=True) or {}
+        conduct_notes = body.get("conduct_notes")
+
+        try:
+            result = osce.finish_osce_session(
+                db=db,
+                session_id=session_id,
+                user_id=user_id,
+                conduct_notes=conduct_notes
+            )
+            if lease_token:
+                with db_transaction(db, immediate=True):
+                    complete_idempotency(db, user_id, 200, result, lease_token)
+            return jsonify(result)
+        except ValueError as e:
+            if lease_token:
+                fail_idempotency(db, user_id, lease_token)
+            return jsonify({"error": str(e)}), 404
+    except Exception:
+        if lease_token:
+            fail_idempotency(db, user_id, lease_token)
+        raise
 
 
 @bp.route("/osce/sessions/<session_id>/report", methods=["GET"])
@@ -213,19 +252,6 @@ def get_report(session_id: str):
     if not report:
         return jsonify({"error": "Relatório de sessão não encontrado"}), 404
     return jsonify(report)
-
-
-@bp.route("/osce/sessions/<session_id>/export_cards", methods=["POST"])
-def export_shock_cards(session_id: str):
-    """Exporta os Flashcards de Choque do barema diretamente para a tabela de flashcards do MedQuest."""
-    db = get_db()
-    user_id = _resolve_user_id()
-
-    try:
-        res = osce.export_osce_flashcards(db, session_id, user_id)
-        return jsonify(res)
-    except ValueError as e:
-        return jsonify({"error": str(e)}), 404
 
 
 @bp.route("/osce/drugs", methods=["GET"])

@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { 
-  Stethoscope, Clock, Send, Mic, MicOff, 
-  Volume2, VolumeX, FileText, Activity,
+  Stethoscope, Clock, FileText,
+  Volume2, VolumeX,
   ChevronLeft, Award, Sparkles, AlertTriangle, ShieldCheck,
   Radio, Headphones, Zap, Eye, CheckCircle2, Printer
 } from "lucide-react";
@@ -18,37 +18,10 @@ import { GhostPreceptorHUD } from "./GhostPreceptorHUD";
 import { StationResultMirror } from "./StationResultMirror";
 import { PreceptorFeedback } from "@/types/osce-evaluation";
 import { useVitalStateEngine } from "./useVitalStateEngine";
+import { useOsceAudio } from "./useOsceAudio";
+import { SessionTimer } from "@/components/ui/SessionTimer";
 import { MultiparameterMonitor } from "./MultiparameterMonitor";
 import { ClinicalStage } from "./ClinicalStage";
-
-interface SpeechRecognitionResultItem {
-  transcript: string;
-}
-
-interface SpeechRecognitionEventLike {
-  resultIndex?: number;
-  results: {
-    length: number;
-    [index: number]: {
-      length: number;
-      isFinal?: boolean;
-      [itemIndex: number]: SpeechRecognitionResultItem;
-    };
-  };
-}
-
-interface SpeechRecognitionInstance {
-  lang: string;
-  continuous: boolean;
-  interimResults: boolean;
-  start: () => void;
-  stop: () => void;
-  abort: () => void;
-  onstart: (() => void) | null;
-  onend: (() => void) | null;
-  onerror: ((event: { error?: string }) => void) | null;
-  onresult: ((event: SpeechRecognitionEventLike) => void) | null;
-}
 
 interface OsceRoomClientProps {
   station: OsceStationDetail;
@@ -62,7 +35,13 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   // Fases: 'door' (porta da estação) | 'exam' (sala de exame) | 'finished' (espelho da banca)
   const [phase, setPhase] = useState<"door" | "exam" | "finished">("door");
   const [sessionId, setSessionId] = useState<string | null>(null);
-  const [timeLeft, setTimeLeft] = useState<number>(station.duration_seconds || 480);
+  const defaultDuration = station.duration_seconds || 480;
+  const [examTiming, setExamTiming] = useState<{ duration: number; deadlineAt: number }>({
+    duration: defaultDuration,
+    deadlineAt: 0,
+  });
+  const examTimingRef = useRef(examTiming);
+  const [finalElapsedSeconds, setFinalElapsedSeconds] = useState(0);
   const [transcript, setTranscript] = useState<OsceTranscriptItem[]>([]);
   const [inputText, setInputText] = useState("");
   const [conductText, setConductText] = useState("");
@@ -70,11 +49,14 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const [vitals, setVitals] = useState<Record<string, string> | null>(null);
   const [selectedExam, setSelectedExam] = useState<{ title: string; image_url?: string; result_text?: string } | null>(null);
   const [report, setReport] = useState<OsceFinishResponse | null>(null);
-  const [isExportingCards, setIsExportingCards] = useState(false);
-  const [cardsExported, setCardsExported] = useState(false);
-  const [voiceEnabled, setVoiceEnabled] = useState(true);
-  const [isListening, setIsListening] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const getElapsedSeconds = useCallback(() => {
+    const { duration, deadlineAt } = examTimingRef.current;
+    if (deadlineAt <= 0) return 0;
+    const remaining = Math.max(0, Math.ceil((deadlineAt - Date.now()) / 1000));
+    return Math.max(0, duration - remaining);
+  }, []);
 
   // Estados do Modo Duplo (Prova Cega vs Treino Guiado com Preceptor Fantasma)
   const [selectedMode, setSelectedMode] = useState<"blind" | "guided">("guided");
@@ -85,8 +67,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   const vitalEngine = useVitalStateEngine({
     initialConfig: station.physiology_engine,
     fallbackVitals: vitals,
-    durationSeconds: station.duration_seconds || 480,
-    timeLeft,
+    getElapsedSeconds,
     isActive: phase === "exam",
   });
 
@@ -134,275 +115,50 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
     }
   };
 
-  // Estados Exclusivos do Modo Hands-Free
-  const [handsFreeMode, setHandsFreeMode] = useState<boolean>(() => {
-    if (typeof window === "undefined") return true;
-    const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
-    return !isOpera;
-  });
-  const [interimSpeechText, setInterimSpeechText] = useState("");
-  const [activeSpeaker, setActiveSpeaker] = useState<"examinador" | "paciente" | null>(null);
-  const [micPermission, setMicPermission] = useState<"granted" | "denied" | "prompt" | "unsupported">(() => {
-    if (typeof window === "undefined") return "prompt";
-    const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
-    if (isOpera) return "unsupported";
-    const SpeechRecognition = (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).SpeechRecognition ||
-                              (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).webkitSpeechRecognition;
-    if (!SpeechRecognition) return "unsupported";
-    return "prompt";
-  });
-  const [micErrorMsg, setMicErrorMsg] = useState<string | null>(() => {
-    if (typeof window === "undefined") return null;
-    const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
-    if (isOpera) {
-      return "Navegador Opera detectado: O motor Google Speech de transcrição em tempo real requer Google Chrome ou Microsoft Edge. No Opera, você pode realizar a prova normalmente via chat ou atalhos rápidos!";
-    }
-    const SpeechRecognition = (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).SpeechRecognition ||
-                              (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      return "Reconhecimento de voz não suportado neste navegador. Recomendamos Google Chrome ou Microsoft Edge.";
-    }
-    return null;
-  });
-
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
   const transcriptEndRef = useRef<HTMLDivElement | null>(null);
-  const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
-  const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const isAudioSpeakingRef = useRef<boolean>(false);
-  const startListeningRef = useRef<(userTriggered?: boolean) => Promise<void>>(async () => {});
   const handleDispatchSpeechRef = useRef<(spokenText: string) => Promise<void>>(async () => {});
+  const dispatchSpeechViaRef = useCallback(
+    (spokenText: string) => handleDispatchSpeechRef.current(spokenText),
+    []
+  );
 
-  // Monitoramento assíncrono e reativo das permissões nativas de microfone
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
-    if (isOpera) return;
-
-    if (navigator.permissions && navigator.permissions.query) {
-      navigator.permissions.query({ name: "microphone" as PermissionName }).then((status) => {
-        if (status.state === "granted") {
-          setMicPermission("granted");
-          setMicErrorMsg(null);
-        } else if (status.state === "denied") {
-          setMicPermission("denied");
-          setMicErrorMsg("Microfone bloqueado nas permissões do navegador. Clique no ícone de cadeado 🔒 na barra de URL para autorizar.");
-        } else {
-          setMicPermission("prompt");
-        }
-
-        status.onchange = () => {
-          if (status.state === "granted") {
-            setMicPermission("granted");
-            setMicErrorMsg(null);
-          } else if (status.state === "denied") {
-            setMicPermission("denied");
-            setMicErrorMsg("Microfone bloqueado nas permissões do navegador. Clique no ícone de cadeado 🔒 na barra de URL para autorizar.");
-          } else {
-            setMicPermission("prompt");
-          }
-        };
-      }).catch(() => {});
-    }
-  }, []);
-
-  // Efeito sonoro do sino oficial da banca usando Web Audio API
-  const playExamBell = useCallback((type: "warning" | "finish" | "start") => {
-    try {
-      const audioCtx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      if (type === "warning") {
-        // Sino duplo aos 5 minutos
-        osc.frequency.setValueAtTime(660, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 1.2);
-      } else if (type === "finish") {
-        // Sino grave de encerramento
-        osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.0);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 2.0);
-      } else {
-        // Sinal de início
-        osc.frequency.setValueAtTime(880, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.8);
-      }
-    } catch {
-      // AudioContext não suportado ou bloqueado
-    }
-  }, []);
+  const {
+    voiceEnabled,
+    setVoiceEnabled,
+    isListening,
+    handsFreeMode,
+    interimSpeechText,
+    setInterimSpeechText,
+    activeSpeaker,
+    micPermission,
+    micErrorMsg,
+    playExamBell,
+    stopRecognition,
+    speakSpokenQueue,
+    cancelSpeechSynthesis,
+    requestMicrophonePermission,
+    startListening,
+    toggleHandsFreeMode,
+    toggleListening,
+    resumeAfterSpeechFailure,
+  } = useOsceAudio({
+    phase,
+    patientGender: station.patient_persona.gender,
+    isLoading,
+    onDispatchSpeech: dispatchSpeechViaRef,
+  });
 
   // Autoscroll no transcript
   useEffect(() => {
     transcriptEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [transcript]);
 
-  // Síntese de áudio encadeada com vozes distintas para Examinador e Paciente
-  const speakSpokenQueue = useCallback((queue: OsceSpokenQueueItem[]) => {
-    if (!voiceEnabled || typeof window === "undefined" || !("speechSynthesis" in window) || queue.length === 0) {
-      if (handsFreeMode && phase === "exam") {
-        setTimeout(() => startListeningRef.current(false), 300);
-      }
-      return;
-    }
-
-    try {
-      window.speechSynthesis.cancel();
-      isAudioSpeakingRef.current = true;
-
-      // Pausa reconhecimento para não capturar a própria voz do computador
-      if (recognitionRef.current) {
-        try { recognitionRef.current.stop(); } catch {}
-      }
-      setIsListening(false);
-
-      // Trava de segurança para evitar que a flag fique travada caso o evento onend falhe
-      const safetyTimeout = setTimeout(() => {
-        if (isAudioSpeakingRef.current) {
-          isAudioSpeakingRef.current = false;
-          setActiveSpeaker(null);
-          if (handsFreeMode && phase === "exam") {
-            startListeningRef.current(false);
-          }
-        }
-      }, 9000);
-
-      const voices = window.speechSynthesis.getVoices();
-      const ptVoices = voices.filter(v => v.lang.startsWith("pt"));
-
-      let idx = 0;
-      const playNext = () => {
-        if (idx >= queue.length) {
-          clearTimeout(safetyTimeout);
-          setActiveSpeaker(null);
-          isAudioSpeakingRef.current = false;
-          // Ao terminar a fala do sistema, se estiver no modo Hands-Free, reativa o microfone
-          if (handsFreeMode && phase === "exam") {
-            setTimeout(() => {
-              startListeningRef.current(false);
-            }, 300);
-          }
-          return;
-        }
-
-        const item = queue[idx];
-        idx++;
-        setActiveSpeaker(item.speaker);
-
-        const clean = item.text.replace(/[*_#`]/g, "");
-        const utterance = new SpeechSynthesisUtterance(clean);
-        utterance.lang = "pt-BR";
-
-        if (item.speaker === "examinador") {
-          utterance.rate = 1.08;
-          utterance.pitch = 0.92;
-          const maleOrStandard = ptVoices.find(v => {
-            const n = v.name.toLowerCase();
-            return n.includes("daniel") || n.includes("jorge") || n.includes("male") || n.includes("ricardo");
-          });
-          if (maleOrStandard) utterance.voice = maleOrStandard;
-        } else {
-          const isFemale = station.patient_persona.gender?.toLowerCase() === "feminino";
-          utterance.rate = 0.98;
-          utterance.pitch = isFemale ? 1.15 : 0.92;
-          const matchedVoice = ptVoices.find(v => {
-            const n = v.name.toLowerCase();
-            return isFemale 
-              ? (n.includes("maria") || n.includes("francisca") || n.includes("female") || n.includes("luciana"))
-              : (n.includes("male") || n.includes("daniel") || n.includes("jorge"));
-          });
-          if (matchedVoice) utterance.voice = matchedVoice;
-        }
-
-        utterance.onend = () => {
-          playNext();
-        };
-        utterance.onerror = () => {
-          playNext();
-        };
-
-        window.speechSynthesis.speak(utterance);
-      };
-
-      playNext();
-    } catch {
-      setActiveSpeaker(null);
-      isAudioSpeakingRef.current = false;
-      if (handsFreeMode && phase === "exam") startListeningRef.current(false);
-    }
-  }, [voiceEnabled, handsFreeMode, phase, station.patient_persona.gender]);
-
-  // Parar microfone e timers
-  const stopRecognition = useCallback(() => {
-    if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
-    if (recognitionRef.current) {
-      try { 
-        recognitionRef.current.abort(); 
-      } catch {}
-      recognitionRef.current = null;
-    }
-    setIsListening(false);
-    setInterimSpeechText("");
-  }, []);
-
-  // Solicita permissão de microfone explicitamente via getUserMedia
-  const requestMicrophonePermission = useCallback(async (): Promise<boolean> => {
-    if (typeof window === "undefined") return false;
-
-    // Detecta se o navegador é o Opera (que não possui suporte ao Google Speech API)
-    const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
-    if (isOpera) {
-      setMicPermission("unsupported");
-      setMicErrorMsg("Navegador Opera detectado: O motor Google Speech de transcrição contínua requer Google Chrome ou Microsoft Edge. No Opera, você pode realizar a prova normalmente via chat ou atalhos rápidos!");
-      toast("Para comandos por voz viva-voz, utilize o Google Chrome ou Edge.", { icon: "💡" });
-      return false;
-    }
-
-    if (!navigator.mediaDevices?.getUserMedia) {
-      setMicPermission("unsupported");
-      setMicErrorMsg("Seu navegador não suporta captura de microfone. Recomendamos Google Chrome ou Microsoft Edge.");
-      return false;
-    }
-
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      stream.getTracks().forEach((track) => track.stop());
-      setMicPermission("granted");
-      setMicErrorMsg(null);
-      toast.success("Microfone autorizado com sucesso!");
-      return true;
-    } catch (err: unknown) {
-      const errorName = err instanceof Error ? err.name : "";
-      if (errorName === "NotAllowedError" || errorName === "PermissionDeniedError") {
-        setMicPermission("denied");
-        setMicErrorMsg("Microfone bloqueado no navegador: Clique no ícone de cadeado 🔒 na barra de URL e mude Microfone para 'Permitir'.");
-        toast.error("Microfone bloqueado: libere no ícone de cadeado 🔒.");
-      } else {
-        setMicPermission("denied");
-        setMicErrorMsg("Nenhum microfone encontrado ou dispositivo em uso por outro aplicativo.");
-        toast.error("Erro no dispositivo de microfone.");
-      }
-      return false;
-    }
-  }, []);
-
   // Dispatcher Unificado de Voz (Modo Hands-Free)
   const handleDispatchSpeech = useCallback(async (spokenText: string) => {
     const text = spokenText.trim();
     if (!text || !sessionId || isLoading) return;
 
-    const elapsed = (station.duration_seconds || 480) - timeLeft;
+    const elapsed = getElapsedSeconds();
     setIsLoading(true);
     setInterimSpeechText("");
 
@@ -455,165 +211,21 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
 
       if (res.spoken_queue && res.spoken_queue.length > 0) {
         speakSpokenQueue(res.spoken_queue);
-      } else if (handsFreeMode) {
-        setTimeout(() => startListeningRef.current(false), 300);
+      } else {
+        resumeAfterSpeechFailure();
       }
     } catch (err) {
       console.error("Falha no speech dispatcher:", err);
-      if (handsFreeMode) {
-        setTimeout(() => startListeningRef.current(false), 300);
-      }
+      resumeAfterSpeechFailure();
     } finally {
       setIsLoading(false);
     }
-  }, [sessionId, isLoading, station.duration_seconds, timeLeft, speakSpokenQueue, handsFreeMode]);
+  }, [sessionId, isLoading, getElapsedSeconds, setInterimSpeechText, speakSpokenQueue, resumeAfterSpeechFailure]);
 
-  // Iniciar Reconhecimento Contínuo com VAD (Detecção de Silêncio)
-  const startListening = useCallback(async (userTriggered = false) => {
-    if (typeof window === "undefined") return;
-
-    // Detecta se o navegador é o Opera (sem suporte aos servidores Google Speech)
-    const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
-    if (isOpera) {
-      if (userTriggered) {
-        toast("Para falar por viva-voz contínuo, utilize o Google Chrome ou Microsoft Edge.", { icon: "💡" });
-      }
-      return;
-    }
-
-    const SpeechRecognition = (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).SpeechRecognition ||
-                              (window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance }).webkitSpeechRecognition;
-
-    if (!SpeechRecognition) {
-      setMicPermission("unsupported");
-      setMicErrorMsg("Reconhecimento de voz não suportado neste navegador. Recomendamos Google Chrome ou Microsoft Edge.");
-      if (userTriggered) {
-        toast.error("Voz não suportada neste navegador. Use Google Chrome ou Edge.");
-      }
-      return;
-    }
-
-    // REGRA DE OURO: Se a permissão ainda não foi concedida, NUNCA tenta iniciar em background!
-    if (micPermission !== "granted") {
-      if (userTriggered) {
-        const ok = await requestMicrophonePermission();
-        if (!ok) return;
-      } else {
-        // Chamada em segundo plano aborta silenciosamente até que o usuário autorize
-        return;
-      }
-    }
-
-    if (isAudioSpeakingRef.current) return;
-
-    try {
-      if (recognitionRef.current) {
-        try { recognitionRef.current.abort(); } catch {}
-        recognitionRef.current = null;
-      }
-
-      const rec = new SpeechRecognition();
-      rec.lang = "pt-BR";
-      rec.continuous = true;
-      rec.interimResults = true;
-
-      rec.onstart = () => {
-        setIsListening(true);
-        setMicErrorMsg(null);
-      };
-
-      rec.onend = () => {
-        setIsListening(false);
-        // Reinício automático seguro no modo Viva-Voz se estiver na fase exam e com permissão confirmada
-        if (handsFreeMode && phase === "exam" && !isAudioSpeakingRef.current && !isLoading && micPermission === "granted") {
-          setTimeout(() => {
-            if (!isAudioSpeakingRef.current && !isLoading) {
-              startListeningRef.current(false);
-            }
-          }, 350);
-        }
-      };
-
-      rec.onerror = (event: { error?: string }) => {
-        setIsListening(false);
-        const errType = event?.error;
-        if (errType === "not-allowed" || errType === "service-not-allowed") {
-          if (userTriggered) {
-            setMicPermission("denied");
-            setMicErrorMsg("Microfone bloqueado: Clique no ícone de cadeado 🔒 na barra de URL para autorizar.");
-            toast.error("Permissão de microfone negada no navegador.");
-          }
-        } else if (errType === "audio-capture") {
-          setMicErrorMsg("Nenhum sinal de microfone detectado no dispositivo.");
-        }
-      };
-
-      rec.onresult = (event: SpeechRecognitionEventLike) => {
-        let interim = "";
-        let final = "";
-
-        const resultsObj = event.results;
-        for (let i = 0; i < resultsObj.length; ++i) {
-          const item = resultsObj[i]?.[0];
-          if (item) {
-            if (resultsObj[i]?.isFinal) {
-              final += item.transcript;
-            } else {
-              interim += item.transcript;
-            }
-          }
-        }
-
-        const candidateText = (final || interim).trim();
-        if (candidateText) {
-          setInterimSpeechText(candidateText);
-
-          if (silenceTimeoutRef.current) {
-            clearTimeout(silenceTimeoutRef.current);
-          }
-
-          // Debounce de 1.4s após o candidato terminar a frase
-          silenceTimeoutRef.current = setTimeout(() => {
-            if (candidateText.length >= 2 && !isAudioSpeakingRef.current) {
-              handleDispatchSpeechRef.current(candidateText);
-              setInterimSpeechText("");
-            }
-          }, 1400);
-        }
-      };
-
-      recognitionRef.current = rec;
-      rec.start();
-    } catch {
-      setIsListening(false);
-    }
-  }, [micPermission, requestMicrophonePermission, handsFreeMode, phase, isLoading]);
-
-  // Sincroniza refs para chamadas livres de ciclo
+  // Sincroniza ref para chamadas livres de ciclo
   useEffect(() => {
-    startListeningRef.current = startListening;
     handleDispatchSpeechRef.current = handleDispatchSpeech;
-  }, [startListening, handleDispatchSpeech]);
-
-  // Toggle do modo Hands-Free (Viva-Voz contínuo)
-  const toggleHandsFreeMode = useCallback(() => {
-    if (typeof window !== "undefined") {
-      const isOpera = /OPR\//i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent);
-      if (isOpera) {
-        toast("No Opera, o reconhecimento de fala contínuo não é suportado. Use Google Chrome ou Edge para viva-voz contínuo.", { icon: "💡" });
-        return;
-      }
-    }
-    if (handsFreeMode) {
-      setHandsFreeMode(false);
-      stopRecognition();
-      toast("Modo Viva-Voz contínuo desligado. Clique no microfone para falar.", { icon: "🎙️" });
-    } else {
-      setHandsFreeMode(true);
-      toast.success("Modo Viva-Voz contínuo ativado!");
-      setTimeout(() => startListening(true), 200);
-    }
-  }, [handsFreeMode, stopRecognition, startListening]);
+  }, [handleDispatchSpeech]);
 
   // Iniciar sessão
   const handleStartExam = async () => {
@@ -626,7 +238,10 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
         setLiveFeedback(res.guided_feedback);
       }
       setTranscript(res.transcript || []);
-      setTimeLeft(res.duration_seconds || 480);
+      const duration = res.duration_seconds || 480;
+      const nextTiming = { duration, deadlineAt: Date.now() + duration * 1000 };
+      examTimingRef.current = nextTiming;
+      setExamTiming(nextTiming);
       setPhase("exam");
       playExamBell("start");
 
@@ -653,7 +268,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
   // Finalizar sessão
   const handleFinishExam = useCallback(async () => {
     if (!sessionId || isLoading) return;
-    if (timerRef.current) clearInterval(timerRef.current);
+    setFinalElapsedSeconds(getElapsedSeconds());
     stopRecognition();
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
@@ -670,47 +285,29 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
     } finally {
       setIsLoading(false);
     }
-  }, [sessionId, conductText, isLoading, playExamBell, stopRecognition]);
+  }, [sessionId, conductText, isLoading, getElapsedSeconds, playExamBell, stopRecognition]);
 
-  // Cronômetro de Prova
-  useEffect(() => {
-    if (phase !== "exam") return;
-
-    timerRef.current = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          if (timerRef.current) clearInterval(timerRef.current);
-          handleFinishExam();
-          return 0;
+  const timerMilestones = useMemo(
+    () => ({
+      180: () => playExamBell("warning"),
+      60: () => {
+        playExamBell("warning");
+        toast("⚠️ Atenção: Falta 1 minuto para o término da estação! Conclua suas condutas e prescrição.", {
+          icon: "⏱️",
+          duration: 6000
+        });
+        if (voiceEnabled) {
+          speakSpokenQueue([
+            {
+              speaker: "examinador",
+              text: "Atenção candidato: resta um minuto para o encerramento da estação. Conclua sua conduta."
+            }
+          ]);
         }
-        if (prev === 180) {
-          // Aviso aos 5 minutos (faltam 3 min)
-          playExamBell("warning");
-        }
-        if (prev === 60) {
-          // Aviso do último minuto (sino oficial + síntese de voz da banca + toast)
-          playExamBell("warning");
-          toast("⚠️ Atenção: Falta 1 minuto para o término da estação! Conclua suas condutas e prescrição.", {
-            icon: "⏱️",
-            duration: 6000
-          });
-          if (voiceEnabled) {
-            speakSpokenQueue([
-              {
-                speaker: "examinador",
-                text: "Atenção candidato: resta um minuto para o encerramento da estação. Conclua sua conduta."
-              }
-            ]);
-          }
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [phase, handleFinishExam, playExamBell, voiceEnabled, speakSpokenQueue]);
+      },
+    }),
+    [playExamBell, voiceEnabled, speakSpokenQueue]
+  );
 
   // Listener de atalhos de teclado: Abas (Alt+1..4), Microfone (Alt+M / Espaço) e Silenciar (Escape)
   useEffect(() => {
@@ -747,14 +344,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
       }
 
       if (e.key === "Escape") {
-        if (typeof window !== "undefined" && "speechSynthesis" in window) {
-          window.speechSynthesis.cancel();
-          isAudioSpeakingRef.current = false;
-          setActiveSpeaker(null);
-          if (handsFreeMode) {
-            setTimeout(() => startListening(false), 200);
-          }
-        }
+        cancelSpeechSynthesis();
       }
       // Barra de espaço fora de inputs aciona o microfone
       if (e.code === "Space" && e.target instanceof HTMLElement && !["INPUT", "TEXTAREA"].includes(e.target.tagName)) {
@@ -769,7 +359,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [phase, handsFreeMode, isListening, startListening, stopRecognition, setActiveTab, toggleHandsFreeMode]);
+  }, [phase, isListening, startListening, stopRecognition, setActiveTab, toggleHandsFreeMode, cancelSpeechSynthesis]);
 
   // Enviar mensagem manual por texto ou clique
   const handleSendMessage = async (msgToSend?: string, targetOverride?: "PATIENT" | "EXAMINER") => {
@@ -778,7 +368,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
 
     setInputText("");
     if (targetOverride) {
-      const elapsed = (station.duration_seconds || 480) - timeLeft;
+      const elapsed = getElapsedSeconds();
       setIsLoading(true);
       setTranscript((prev) => [
         ...prev,
@@ -823,19 +413,10 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
     }
   };
 
-  // Toggle direto e intuitivo do microfone
-  const toggleListening = () => {
-    if (isListening) {
-      stopRecognition();
-    } else {
-      startListening(true);
-    }
-  };
-
   // Solicitar Ação Clínica (Exame Físico / Sinais Vitais / Exames)
   const handleClinicalAction = async (actionType: "physical_exam" | "vitals" | "lab_imaging", target: string) => {
     if (!sessionId || isLoading) return;
-    const elapsed = (station.duration_seconds || 480) - timeLeft;
+    const elapsed = getElapsedSeconds();
     setIsLoading(true);
 
     try {
@@ -923,7 +504,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
       }
     }
 
-    const elapsed = (station.duration_seconds || 480) - timeLeft;
+    const elapsed = getElapsedSeconds();
     setTranscript((prev) => [
       ...prev,
       {
@@ -959,7 +540,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
       vitalEngine.applyIntervention("procedure", title);
     }
 
-    const elapsed = (station.duration_seconds || 480) - timeLeft;
+    const elapsed = getElapsedSeconds();
     setTranscript((prev) => [
       ...prev,
       {
@@ -976,13 +557,13 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
     }
   };
 
-  // Polling suave do Preceptor Fantasma para atualizar alertas proativos baseados no tempo restante
+  // Polling suave do Preceptor Fantasma para atualizar alertas proativos baseados no tempo decorrido
   useEffect(() => {
     if (phase !== "exam" || sessionMode !== "guided" || !sessionId) return;
 
     const interval = setInterval(async () => {
       try {
-        const elapsed = (station.duration_seconds || 480) - timeLeft;
+        const elapsed = getElapsedSeconds();
         const feedback = await api.osce.getLiveFeedback(sessionId, elapsed);
         if (feedback) {
           setLiveFeedback(feedback);
@@ -993,27 +574,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
     }, 20000);
 
     return () => clearInterval(interval);
-  }, [phase, sessionMode, sessionId, station.duration_seconds, timeLeft]);
-
-  // Exportar flashcards de choque
-  const handleExportShockCards = async () => {
-    if (!sessionId || isExportingCards || cardsExported) return;
-    setIsExportingCards(true);
-    try {
-      const res = await api.osce.exportCards(sessionId);
-      if (res.success) {
-        setCardsExported(true);
-      }
-    } catch (err) {
-      console.error("Falha ao exportar flashcards:", err);
-    } finally {
-      setIsExportingCards(false);
-    }
-  };
-
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  const timeFormatted = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  }, [phase, sessionMode, sessionId, getElapsedSeconds]);
 
   return (
     <div className="flex-1 flex flex-col min-h-full w-full max-w-7xl mx-auto p-3 md:p-6">
@@ -1189,16 +750,15 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                 {voiceEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
               </button>
 
-              <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-mono text-base font-black border ${
-                timeLeft < 60 
-                  ? "bg-rose-500/10 text-rose-500 border-rose-500/30 animate-pulse" 
-                  : timeLeft < 180 
-                  ? "bg-amber-500/10 text-amber-500 border-amber-500/30" 
-                  : "bg-emerald-500/10 text-emerald-500 border-emerald-500/30"
-              }`}>
-                <Clock className="w-4 h-4" />
-                <span>{timeFormatted}</span>
-              </div>
+              <SessionTimer
+                deadlineAt={examTiming.deadlineAt}
+                fallbackSeconds={examTiming.duration}
+                active={phase === "exam"}
+                format="mmss"
+                variant="osce"
+                milestones={timerMilestones}
+                onExpire={handleFinishExam}
+              />
 
               <button
                 onClick={handleFinishExam}
@@ -1524,7 +1084,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                     {sessionId ? (
                       <ProcedureMannequin
                         sessionId={sessionId}
-                        elapsedSeconds={(station.duration_seconds || 480) - timeLeft}
+                        getElapsedSeconds={getElapsedSeconds}
                         onProcedureExecuted={handleProcedureExecuted}
                         isLoading={isLoading}
                       />
@@ -1575,7 +1135,7 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
                     {sessionId && (
                       <PrescriptionPad
                         sessionId={sessionId}
-                        elapsedSeconds={(station.duration_seconds || 480) - timeLeft}
+                        getElapsedSeconds={getElapsedSeconds}
                         onPrescriptionSubmitted={handlePrescriptionSubmitted}
                         isLoading={isLoading}
                       />
@@ -1645,33 +1205,10 @@ export function OsceRoomClient({ station, circuitId, step = 1 }: OsceRoomClientP
             institution={station.institution || "USP-RP"}
             area={station.area}
             subtema={station.subtema}
-            elapsedSeconds={(station.duration_seconds || 480) - timeLeft}
+            elapsedSeconds={finalElapsedSeconds}
             onRetryStation={() => window.location.reload()}
             onGoBack={() => router.push("/osce")}
           />
-
-          {/* Exportar Flashcards de Choque */}
-          {report.shock_cards?.length > 0 && (
-            <div className="p-5 rounded-2xl border border-primary/20 bg-primary/5 flex flex-col md:flex-row md:items-center justify-between gap-4 print:hidden">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 font-bold text-foreground text-sm">
-                  <Sparkles className="w-4 h-4 text-primary" />
-                  Flashcards de Choque do Barema
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  Identificamos {report.shock_cards.length} pontos não cumpridos. Adicione-os à sua fila de repetição espaçada FSRS para nunca mais errar em prova.
-                </p>
-              </div>
-
-              <button
-                onClick={handleExportShockCards}
-                disabled={isExportingCards || cardsExported}
-                className="px-5 py-2.5 rounded-xl font-bold bg-primary text-primary-foreground hover:bg-primary/90 text-xs shadow-sm transition-transform active:scale-95 shrink-0"
-              >
-                {cardsExported ? "Cards Adicionados ao FSRS ✓" : isExportingCards ? "Exportando..." : "Exportar Flashcards de Choque"}
-              </button>
-            </div>
-          )}
 
           {/* Navegação Final & Ações */}
           <div className="flex items-center justify-between pt-4 border-t border-border print:hidden">

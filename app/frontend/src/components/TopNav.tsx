@@ -10,22 +10,11 @@ import { ThemeToggle } from "./ThemeToggle";
 import { useZenMode } from "@/hooks/useZenMode";
 import Image from "next/image";
 import clsx from "clsx";
-import { isDeviceOffline, isForcedOffline } from "@/lib/db";
+import { useOfflineStatus } from "@/lib/useOfflineStatus";
+import { NAV_ITEMS } from "@/lib/navigation";
 import { usePwaInstall } from "@/hooks/usePwaInstall";
 
 import { ClinicalIcon } from "@/components/ui/ClinicalIcon";
-
-const NAV_ITEMS = [
-  { href: "/", label: "Dashboard", icon: "dashboard" },
-  { href: "/buscar", label: "Busca Clínica", icon: "search" },
-  { href: "/estudar", label: "Estudar", icon: "menu_book" },
-  { href: "/revisao-ativa", label: "Revisão Ativa", icon: "psychology" },
-  { href: "/osce", label: "OSCE (2ª Fase)", icon: "stethoscope" },
-  { href: "/simulado", label: "Simulados", icon: "description" },
-  { href: "/cobertura", label: "Cobertura", icon: "my_location" },
-  { href: "/analise", label: "Análise", icon: "analytics" },
-  { href: "/planner", label: "Planner", icon: "calendar_month" },
-];
 
 export default function TopNav() {
   const { user, isLoaded } = useUser();
@@ -93,25 +82,8 @@ export default function TopNav() {
     };
   }, [isMobileMenuOpen]);
 
-  const [isOffline, setIsOffline] = useState(false);
-  const [forcedOffline, setForcedOffline] = useState(false);
+  const { isOffline, forcedOffline } = useOfflineStatus();
   const { isInstallable, installApp } = usePwaInstall();
-
-  useEffect(() => {
-    const updateOnlineStatus = () => {
-      setIsOffline(isDeviceOffline());
-      setForcedOffline(isForcedOffline());
-    };
-    updateOnlineStatus();
-    window.addEventListener("online", updateOnlineStatus);
-    window.addEventListener("offline", updateOnlineStatus);
-    window.addEventListener("forced-offline-changed", updateOnlineStatus);
-    return () => {
-      window.removeEventListener("online", updateOnlineStatus);
-      window.removeEventListener("offline", updateOnlineStatus);
-      window.removeEventListener("forced-offline-changed", updateOnlineStatus);
-    };
-  }, []);
 
   return (
     <>

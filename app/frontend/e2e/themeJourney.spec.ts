@@ -28,15 +28,8 @@ test('revisões vencidas têm precedência sobre prática quando há pendências
   expect(params.get('status')).toBe('srs_due');
 });
 
-test('flashcards vencidos têm precedência quando não há questões vencidas', () => {
-  const journey = themeJourney(topic.topic, topic, { flashcards_due: 4, flashcards_total: 10 });
-  expect(journey.next.href).toBe(journey.flashcards);
-  const params = new URL(journey.next.href, 'http://localhost').searchParams;
-  expect(params.get('subtema')).toBe(topic.topic);
-});
-
 test('prática adaptativa é a ação recomendada quando tudo está em dia', () => {
-  const journey = themeJourney(topic.topic, topic, { flashcards_due: 0, flashcards_total: 5 });
+  const journey = themeJourney(topic.topic, topic, { study_path: 'complete' });
   expect(journey.next.href).toBe(journey.practice);
   const params = new URL(journey.next.href, 'http://localhost').searchParams;
   expect(params.get('mode')).toBe('adaptive');
@@ -55,13 +48,10 @@ test('getThemeUrls gera parâmetros corretos com limites configuráveis', () => 
 
   const practice30 = new URL(urls.practice(30), 'http://localhost').searchParams;
   expect(practice30.get('limit')).toBe('30');
-
-  const flashcardsParams = new URL(urls.flashcards, 'http://localhost').searchParams;
-  expect(flashcardsParams.get('subtema')).toBe(topic.topic);
 });
 
-test('tema sem questões e sem flashcards recomenda o planner', () => {
+test('tema sem questões recomenda o planner', () => {
   const emptyTopic = { ...topic, available: 0, answered: 0, due_count: 0 };
-  const journey = themeJourney(emptyTopic.topic, emptyTopic, { flashcards_due: 0, flashcards_total: 0 });
+  const journey = themeJourney(emptyTopic.topic, emptyTopic, { study_path: 'complete' });
   expect(journey.next.href).toBe('/planner');
 });

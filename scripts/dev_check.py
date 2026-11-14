@@ -133,8 +133,7 @@ def map_backend_tests(changed_files):
             "tests/test_planner.py",
             "tests/test_observability.py",
         ],
-        "app/backend/api/universal_pool.py": [
-            "tests/test_universal_pool.py",
+        "app/backend/api/gemini_pool.py": [
             "tests/test_ai_backend.py",
         ],
         "app/backend/api/db.py": [
@@ -171,19 +170,29 @@ def map_backend_tests(changed_files):
                 test_files.update(mapping[f])
             elif f.startswith("app/backend/migrations/"):
                 test_files.update(["tests/test_migrations.py", "tests/test_flashcards_api.py"])
-            elif f.startswith("app/backend/tests/"):
+            elif (
+                f.startswith("app/backend/tests/")
+                and Path(f).name.startswith("test_")
+                and f.endswith(".py")
+            ):
                 rel_test = f.replace("app/backend/", "")
                 test_files.add(rel_test)
 
+    # Arquivos removidos aparecem no diff e nao podem ser passados ao pytest.
+    test_files = {t for t in test_files if (BACKEND_DIR / t).is_file()}
+
     # Se houve alteração no backend mas nenhum teste específico mapeado, rodar testes prioritários
     if has_backend_changes and not test_files:
-        test_files.update([
-            "tests/test_api.py",
-            "tests/test_observability.py",
-            "tests/test_planner.py",
-        ])
+        test_files.update(
+            t for t in [
+                "tests/test_api.py",
+                "tests/test_observability.py",
+                "tests/test_planner.py",
+            ]
+            if (BACKEND_DIR / t).is_file()
+        )
 
-    return list(test_files)
+    return sorted(test_files)
 
 
 def run_command(cmd, cwd, step_name):

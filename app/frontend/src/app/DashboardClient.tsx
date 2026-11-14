@@ -4,6 +4,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useUser } from "@clerk/nextjs";
 import { isLocalIdentityReady } from "@/lib/db";
+import { useOfflineStatus } from "@/lib/useOfflineStatus";
 import { api } from "@/lib/api";
 import { 
   OverviewStats, PlannerWeek, PlannerTopic,
@@ -107,7 +108,7 @@ export function DashboardClient({
 
   useEffect(() => {
     // Dispara confete se as revisões diárias estiverem zeradas e houver pelo menos 1 questão feita
-    if (stats.srs_due_count === 0 && (stats.flashcards_due_count || 0) === 0 && stats.distinct_answered > 0 && !hasAnimated.current) {
+    if (stats.srs_due_count === 0 && stats.distinct_answered > 0 && !hasAnimated.current) {
       hasAnimated.current = true;
       triggerConfetti();
     }
@@ -166,22 +167,7 @@ export function DashboardClient({
     return () => window.removeEventListener("open-offline-modal", handleOpenOffline);
   }, []);
 
-  const [isOffline, setIsOffline] = useState(false);
-
-  useEffect(() => {
-    const updateOnline = () => {
-      if (typeof navigator !== "undefined") {
-        setIsOffline(!navigator.onLine);
-      }
-    };
-    updateOnline();
-    window.addEventListener("online", updateOnline);
-    window.addEventListener("offline", updateOnline);
-    return () => {
-      window.removeEventListener("online", updateOnline);
-      window.removeEventListener("offline", updateOnline);
-    };
-  }, []);
+  const { isAnyOffline: isOffline } = useOfflineStatus();
 
   const applySummaryData = useCallback((summaryData: DashboardSummaryResponse) => {
     if (summaryData.stats) {
@@ -367,7 +353,7 @@ export function DashboardClient({
   };
 
   // Métricas de Decisão Diária
-  const pendentesRevisao = (stats.srs_due_count || 0) + (stats.flashcards_due_count || 0);
+  const pendentesRevisao = stats.srs_due_count || 0;
   const dailyTarget = stats.daily_target || 20;
   const todayDone = stats.today_answered || 0;
   const dailyRemaining = Math.max(0, dailyTarget - todayDone);
@@ -446,7 +432,6 @@ export function DashboardClient({
     if (pendentesRevisao > 0) {
       const estimatedMinutes = Math.max(5, Math.ceil(pendentesRevisao * 1.5));
       const srsCount = stats.srs_due_count || 0;
-      const flashcardsCount = stats.flashcards_due_count || 0;
 
       return (
         <div className="shrink-0 bg-surface border border-line-strong rounded-sm p-4 sm:p-5 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative overflow-hidden min-w-0">
@@ -470,18 +455,7 @@ export function DashboardClient({
             </div>
           </div>
 
-          <div className={clsx(
-            "gap-2 w-full sm:w-auto shrink-0",
-            flashcardsCount > 0 && srsCount > 0 ? "grid grid-cols-2 sm:flex sm:items-center" : "flex flex-col sm:flex-row sm:items-center"
-          )}>
-            {flashcardsCount > 0 && (
-              <Link 
-                href="/revisao-ativa" 
-                className="px-3.5 py-2 bg-elevated hover:bg-line-subtle text-ink-primary font-bold rounded-xs text-xs transition-colors flex items-center justify-center gap-1.5 border border-line-subtle"
-              >
-                <ClinicalIcon name="sparkles" className="w-3.5 h-3.5 text-accent" /> Flashcards (<span className="font-mono-lab tabular-nums">{flashcardsCount}</span>)
-              </Link>
-            )}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 w-full sm:w-auto shrink-0">
             {srsCount > 0 && (
               <Link 
                 href="/estudar?status=srs_due&limit=100" 
@@ -842,7 +816,7 @@ export function DashboardClient({
                 <div className="min-w-0">
                   <div className="flex items-center justify-between text-xs font-semibold text-accent mb-1">
                     <span className="flex items-center gap-1.5">
-                      <ClinicalIcon name="psychology" className="w-3.5 h-3.5" /> Revisão Ativa
+                      <ClinicalIcon name="psychology" className="w-3.5 h-3.5" /> Revisão FSRS
                     </span>
                     {pendentesRevisao === 0 && (
                       <span className="inline-flex items-center gap-0.5 text-normal text-[11px] font-bold">
@@ -854,12 +828,12 @@ export function DashboardClient({
                     {pendentesRevisao > 0 ? `${pendentesRevisao} ${pendentesRevisao === 1 ? 'pendente' : 'pendentes'}` : "Tudo em dia!"}
                   </p>
                   <p className="text-xs text-ink-secondary mt-0.5 font-mono-lab tabular-nums">
-                    {(stats.flashcards_due_count || 0) === 1 ? "1 flashcard" : `${stats.flashcards_due_count || 0} flashcards`} · {(stats.srs_due_count || 0) === 1 ? "1 questão" : `${stats.srs_due_count || 0} questões`}
+                    {(stats.srs_due_count || 0) === 1 ? "1 questão vencida" : `${stats.srs_due_count || 0} questões vencidas`}
                   </p>
                 </div>
                 {pendentesRevisao > 0 ? (
                   <Link 
-                    href={(stats.flashcards_due_count || 0) > 0 ? "/revisao-ativa" : "/estudar?status=srs_due&limit=100"}
+                    href="/estudar?status=srs_due&limit=100"
                     className="w-full py-1.5 bg-surface hover:bg-elevated text-accent border border-line-subtle font-bold rounded-xs text-xs flex items-center justify-center gap-1 transition-colors shadow-2xs font-mono-lab"
                   >
                     <span>Revisar agora →</span>

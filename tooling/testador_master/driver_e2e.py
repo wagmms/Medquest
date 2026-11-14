@@ -111,7 +111,7 @@ class DriverE2E(DriverBase):
         card_id: Optional[int] = None,
         rating: str = "Good",
     ) -> ResultadoAcao:
-        """Simula o estudo de flashcard na tela /revisao-ativa."""
+        """Mantido por compatibilidade; revisao-ativa foi removida e a normalização FSRS é validada unitariamente."""
         return self._executar_spec_playwright("normalizeFlashcard.spec.ts")
 
     def executar_simulado(

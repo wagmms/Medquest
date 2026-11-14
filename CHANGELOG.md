@@ -2,6 +2,13 @@
 
 Histórico completo de ciclos, sprints e melhorias entregues no repositório.
 
+## [2026-11-14] - Sincronização Medquest-aistudio, Hardening de Segurança e Refatoração Arquitetural
+- **Remoção Completa de Flashcards / `/revisao-ativa` no MedQuest**: Removida geração/edição Cloze de flashcards, rota/atalho remanescente `/revisao-ativa` em `app/frontend/public/manifest.json` e chamadas legadas em `OfflinePanel.tsx`, mantendo `api/flashcards.py` isolado conforme arquitetura atual.
+- **Segurança & Diretriz `explanations` Read-Only**: Removidas as rotas e funções `POST /api/questions/<qid>/synthesize_explanation` (`synthesize_question_explanation`), `POST /api/ai/prescribe_study`, `POST /api/ai/analyze-image`, `app/backend/api/medical_vision.py` e `app/backend/api/universal_pool.py`; aplicado `@require_auth` e `get_current_user_id()` em `app/backend/api/ai_routes.py`; adicionada idempotência (`reserve_idempotency` / `complete_idempotency`) nas rotas OSCE `start` e `finish` (`app/backend/api/osce_routes.py`).
+- **Limpeza de Código Morto & Unificação Taxonomia/Planner**: Excluído frontend legado em `app/backend/static/` (preservando `app/backend/static/images/`), scripts obsoletos de geração/cura de cards e cópias duplicadas na raiz (`canonical_modules_170.json`, `canonical_taxonomy_170.json`, `canonical_themes_verified.json`); unificado `_get_planner_metadata` em `app/backend/api/stats.py` via `api.services.planner._load_catalogs`.
+- **Modularização Frontend & Isolamento de Timers**: Criado `SessionTimer.tsx`, extraído `useOsceAudio.ts` de `OsceRoomClient.tsx`, adotado `useOfflineStatus()` em `SimuladoClient.tsx` e `DashboardClient.tsx` e centralizada navegação em `navigation.ts`, eliminando re-renders a cada 1s nas telas de Simulado e OSCE.
+- **Modularização Backend & SQL CTE `/dashboard/summary`**: Criado `app/backend/api/cache.py` (`SimpleTTLCache` compartilhado com chaveamento em tupla corrigindo invalidação de `overview_cache`), consolidadas queries de tentativas em `_fetch_attempt_rollup` (`WITH user_attempts AS ...` CTE) e reuso único de `planner_config` em `dashboard_summary()`, e extraídos `app/backend/api/osce_prompts.py` e `app/backend/api/osce_evaluation.py` a partir de `app/backend/api/osce.py`.
+
 ## [2026-11-06] - Racionalização de Overengineering: Quarentena de Scripts e Desacoplamento do OSCE
 - **Expurgo e Quarentena de 374 Scripts Legados (`app/backend/scripts/` e raiz)**:
   - Auditoria arquitetural de complexidade executada pelo Gemini 4 Argon identificou 382 scripts na pasta de scripts (incluindo 21 variações de sincronizadores com Turso, 50 `check_*.py` avulsos e dezenas de testes soltos).

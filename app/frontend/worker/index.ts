@@ -72,7 +72,6 @@ function getOfflineFallbackHtml(): Response {
     <div class="btn-group">
       <a href="/estudar" class="btn btn-primary">Abrir Questões Offline</a>
       <a href="/simulado" class="btn btn-secondary">Abrir Simulados Offline</a>
-      <a href="/revisao-ativa" class="btn btn-secondary">Revisar Flashcards Offline</a>
       <button onclick="window.location.reload()" class="btn btn-secondary" style="margin-top: 6px;">Tentar Reconectar</button>
     </div>
   </div>
@@ -141,7 +140,7 @@ self.addEventListener("fetch", (rawEvent: Event) => {
       const response = await fetchNavigationWithTimeout(event.request, 2800);
       if (isValidHtmlResponse(response)) {
         const cache = await caches.open(OFFLINE_STUDY_SHELL_CACHE);
-        const routesToCache = ["/estudar", "/simulado", "/revisao-ativa", "/"];
+        const routesToCache = ["/estudar", "/simulado", "/"];
         if (routesToCache.includes(url.pathname)) {
           cache.put(url.pathname, response.clone());
         }
@@ -191,7 +190,7 @@ async function purgeCorruptedStudyShells(): Promise<void> {
 async function primeOfflineShellOnActivate(): Promise<void> {
   try {
     const cache = await caches.open(OFFLINE_STUDY_SHELL_CACHE);
-    const routesToWarm = ["/estudar", "/simulado", "/revisao-ativa"];
+    const routesToWarm = ["/estudar", "/simulado"];
     for (const route of routesToWarm) {
       try {
         const existing = await cache.match(route, { ignoreSearch: true, ignoreVary: true });
@@ -272,7 +271,7 @@ self.addEventListener("push", (rawEvent: Event) => {
   const event = rawEvent as PushEvent;
   let title = "MedQuest";
   let body = "Você tem revisões pendentes para hoje. Mantenha seu ritmo de estudos!";
-  let url = "/revisao-ativa";
+  let url = "/estudar?status=srs_due&limit=100";
   let tag = "medquest-fsrs-review";
 
   if (event.data) {
@@ -311,7 +310,7 @@ function getSafeInternalUrl(rawUrl: unknown): string {
   ) {
     return rawUrl;
   }
-  return "/revisao-ativa";
+  return "/estudar?status=srs_due&limit=100";
 }
 
 // Handler de clique na notificação

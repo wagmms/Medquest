@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { QuestionListItem, BatchAttemptResultItem } from "@/types/api";
 import { Grid as FixedSizeGrid, CellComponentProps } from "react-window";
 import { AutoSizer } from "react-virtualized-auto-sizer";
+import { SessionTimer } from "@/components/ui/SessionTimer";
 
 export interface SimuladoNavGridProps {
   isReview: boolean;
@@ -15,8 +16,9 @@ export interface SimuladoNavGridProps {
   flagged: Record<number, boolean>;
   currentIndex: number;
   onNavigateTo: (index: number) => void;
-  timeLeft: number;
-  formatTime: (seconds: number) => string;
+  deadlineAt: number;
+  isPlaying: boolean;
+  onTimeExpire?: () => void;
   showResultsSummary: boolean;
   onHideResultsSummary: () => void;
   onFinishSimulado: () => void;
@@ -30,8 +32,9 @@ export const SimuladoNavGrid: React.FC<SimuladoNavGridProps> = ({
   flagged,
   currentIndex,
   onNavigateTo,
-  timeLeft,
-  formatTime,
+  deadlineAt,
+  isPlaying,
+  onTimeExpire,
   showResultsSummary,
   onHideResultsSummary,
   onFinishSimulado,
@@ -74,12 +77,14 @@ export const SimuladoNavGrid: React.FC<SimuladoNavGridProps> = ({
             <span className="text-sm font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
               <Clock size={16} /> Tempo
             </span>
-            <div className={clsx(
-              "text-2xl lg:text-3xl font-black font-mono",
-              timeLeft < 1800 ? "text-destructive animate-pulse" : "text-foreground"
-            )}>
-              {formatTime(timeLeft)}
-            </div>
+            <SessionTimer
+              deadlineAt={deadlineAt}
+              fallbackSeconds={6 * 60 * 60}
+              active={isPlaying}
+              format="hhmmss"
+              variant="simulado"
+              onExpire={onTimeExpire}
+            />
           </>
         )}
       </div>

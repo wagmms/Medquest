@@ -112,10 +112,9 @@ test('mostra erro recuperável quando uma questão falha ao carregar', async ({ 
   await expect(page.getByText('Qual o tratamento inicial')).toBeVisible();
 });
 
-test('remove botão de IA e permite gerar flashcard após erro', async ({ page, context }) => {
+test('não exibe botões de criação de flashcard após erro na questão', async ({ page, context }) => {
   await context.addCookies([{ name: 'medquest_demo', value: '1', domain: 'localhost', path: '/' }]);
   
-  let flashcardGenerated = false;
   await page.route('**/api/**', async route => {
     const path = new URL(route.request().url()).pathname;
     if (path.endsWith('/api/meta')) {
@@ -126,31 +125,6 @@ test('remove botão de IA e permite gerar flashcard após erro', async ({ page, 
         status: 200,
         contentType: 'application/json',
         body: JSON.stringify({ is_correct: false, correct_letter: 'B', explanation: 'Tratamento individualizado.', next_review_date: null }),
-      });
-    }
-    if (path.endsWith('/api/flashcards/preview')) {
-      return route.fulfill({
-        status: 200,
-        contentType: 'application/json',
-        body: JSON.stringify({
-          front: 'Neste caso clínico, a conduta indicada é {{c1::Mudança de estilo de vida}}.',
-          back: 'Tratamento individualizado.',
-          context: 'HAS'
-        })
-      });
-    }
-    if (path.endsWith('/api/flashcards/save') || path.endsWith('/api/flashcards/generate')) {
-      flashcardGenerated = true;
-      return route.fulfill({
-        status: 200,
-        contentType: 'application/json',
-        body: JSON.stringify({
-          id: 42,
-          question_id: 1,
-          front: 'Neste caso clínico, a conduta indicada é {{c1::Mudança de estilo de vida}}.',
-          back: 'Tratamento individualizado.',
-          context: 'HAS'
-        })
       });
     }
     if (path.endsWith('/api/questions/1')) {
@@ -167,17 +141,9 @@ test('remove botão de IA e permite gerar flashcard após erro', async ({ page, 
   await page.getByRole('button', { name: /Internação imediata/ }).click();
   await page.getByRole('button', { name: 'Confirmar Resposta' }).click();
 
-  // Verifica que o botão de explicar com IA NÃO existe
+  // Verifica que nem botão de explicar com IA nem botão de criar flashcard existem
   await expect(page.getByRole('button', { name: /Explicar com IA/i })).not.toBeVisible();
-
-  // Verifica e clica no botão de gerar/salvar flashcard
-  const flashcardBtn = page.getByRole('button', { name: /Salvar Flashcard|Gerar Flashcard|Criar Flashcard/i });
-  await expect(flashcardBtn).toBeVisible();
-  await flashcardBtn.click();
-
-  // Verifica que o flashcard foi gerado e exibido
-  await expect(page.getByText(/Flashcard Salvo/i)).toBeVisible();
-  expect(flashcardGenerated).toBe(true);
+  await expect(page.getByRole('button', { name: /Salvar Flashcard|Gerar Flashcard|Criar Flashcard/i })).not.toBeVisible();
 });
 
 

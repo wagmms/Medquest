@@ -138,7 +138,7 @@ def test_institution_radar_comparison_and_actions(app, client):
     assert "institution=USP-SP" in cardio_topic["study_url"]
     assert "/simulado?" in cardio_topic["simulado_url"]
     assert "institutions=USP-SP" in cardio_topic["simulado_url"]
-    assert "/revisao-ativa" == cardio_topic["review_url"]
+    assert "/estudar?status=srs_due" == cardio_topic["review_url"]
 
 
     # Comparison institution: UNICAMP

@@ -4,45 +4,24 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { 
-  LayoutDashboard, 
-  BookOpen, 
-  BrainCircuit, 
-  Stethoscope, 
-  Menu as MenuIcon, 
-  X, 
-  Search, 
-  FileText, 
-  Target, 
-  BarChart3, 
-  Calendar,
+import {
+  Menu as MenuIcon,
+  X,
   CloudOff,
   CloudDownload,
-  Moon,
-  Sun,
   Maximize2,
-  Minimize2
+  Minimize2,
 } from "lucide-react";
 import { useZenMode } from "@/hooks/useZenMode";
 import { ThemeToggle } from "./ThemeToggle";
 import { OfflineModal } from "./OfflineModal";
 import { AccountModal } from "./AccountModal";
-import { isDeviceOffline, isForcedOffline } from "@/lib/db";
-
-const PRIMARY_BOTTOM_ITEMS = [
-  { href: "/", label: "Cockpit", icon: LayoutDashboard },
-  { href: "/estudar", label: "Estudar", icon: BookOpen },
-  { href: "/revisao-ativa", label: "FSRS", icon: BrainCircuit },
-  { href: "/osce", label: "OSCE", icon: Stethoscope },
-];
-
-const MORE_NAV_ITEMS = [
-  { href: "/buscar", label: "Busca Clínica", icon: Search },
-  { href: "/simulado", label: "Simulados", icon: FileText },
-  { href: "/cobertura", label: "Matriz de Cobertura", icon: Target },
-  { href: "/analise", label: "Análise de Desempenho", icon: BarChart3 },
-  { href: "/planner", label: "Planner Anual", icon: Calendar },
-];
+import { useOfflineStatus } from "@/lib/useOfflineStatus";
+import {
+  PRIMARY_BOTTOM_NAV_ITEMS,
+  MORE_BOTTOM_NAV_ITEMS,
+} from "@/lib/navigation";
+import { ClinicalIcon } from "@/components/ui/ClinicalIcon";
 
 export function BottomNav() {
   const pathname = usePathname();
@@ -50,15 +29,13 @@ export function BottomNav() {
   const [isOfflineOpen, setIsOfflineOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
   const { isZenMode, toggleZenMode } = useZenMode();
-
-  const isOffline = typeof window !== "undefined" ? isDeviceOffline() : false;
-  const forcedOffline = typeof window !== "undefined" ? isForcedOffline() : false;
+  const { isOffline, forcedOffline } = useOfflineStatus();
 
   return (
     <>
       {/* DRAWER "MAIS" PARA ROTAS COMPLEMENTARES NO MOBILE */}
       {isMoreOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 md:hidden animate-in fade-in duration-150"
           onClick={() => setIsMoreOpen(false)}
         />
@@ -85,9 +62,8 @@ export function BottomNav() {
           </div>
 
           <div className="overflow-y-auto p-2 space-y-1">
-            {MORE_NAV_ITEMS.map((item) => {
+            {MORE_BOTTOM_NAV_ITEMS.map((item) => {
               const isActive = pathname === item.href;
-              const Icon = item.icon;
               return (
                 <Link
                   key={item.href}
@@ -100,7 +76,7 @@ export function BottomNav() {
                       : "text-ink-secondary hover:bg-elevated hover:text-ink-primary"
                   )}
                 >
-                  <Icon className="w-4 h-4 shrink-0" strokeWidth={1.8} />
+                  <ClinicalIcon name={item.icon} className="w-4 h-4 shrink-0" strokeWidth={1.8} />
                   <span>{item.label}</span>
                 </Link>
               );
@@ -144,9 +120,8 @@ export function BottomNav() {
         className="fixed bottom-0 left-0 right-0 z-30 md:hidden bg-surface/95 backdrop-blur-md border-t border-line-subtle pb-[env(safe-area-inset-bottom,0px)] shadow-lg"
       >
         <div className="flex items-center justify-around h-14 px-1 max-w-lg mx-auto">
-          {PRIMARY_BOTTOM_ITEMS.map((item) => {
+          {PRIMARY_BOTTOM_NAV_ITEMS.map((item) => {
             const isActive = pathname === item.href;
-            const Icon = item.icon;
             return (
               <Link
                 key={item.href}
@@ -161,8 +136,8 @@ export function BottomNav() {
                 {isActive && (
                   <span className="absolute top-0 w-8 h-0.5 bg-accent rounded-full" />
                 )}
-                <Icon className="w-4 h-4" strokeWidth={isActive ? 2.2 : 1.75} />
-                <span className="tracking-tight">{item.label}</span>
+                <ClinicalIcon name={item.icon} className="w-4 h-4" strokeWidth={isActive ? 2.2 : 1.75} />
+                <span className="tracking-tight">{item.bottomLabel || item.label}</span>
               </Link>
             );
           })}
@@ -172,7 +147,7 @@ export function BottomNav() {
             onClick={() => setIsMoreOpen(!isMoreOpen)}
             className={clsx(
               "flex flex-col items-center justify-center flex-1 h-full py-1 gap-0.5 text-[10px] font-medium transition-colors cursor-pointer",
-              isMoreOpen || MORE_NAV_ITEMS.some((i) => i.href === pathname)
+              isMoreOpen || MORE_BOTTOM_NAV_ITEMS.some((i) => i.href === pathname)
                 ? "text-accent font-semibold"
                 : "text-ink-muted hover:text-ink-primary"
             )}

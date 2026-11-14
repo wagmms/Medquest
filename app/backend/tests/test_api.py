@@ -210,7 +210,7 @@ def test_attempt_gabarito_duplo_e_anulada(client):
 
 
 def test_pulo_do_gato_extraction_preserves_depth():
-    from api.ai import _extract_pulo_do_gato, _extract_why_wrong
+    from api.ai import _extract_pulo_do_gato
     explanation = """**Gabarito Oficial**: Letra A
 
 **Pulo do Gato**: A otite média aguda requer identificação de abaulamento da membrana timpânica.
@@ -219,20 +219,12 @@ def test_pulo_do_gato_extraction_preserves_depth():
 
 **Raciocínio Clínico**:
 O quadro clínico detalhado aborda...
-
-**Análise dos Distratores**:
-- **Alternativa (B)**: Não se faz conduta expectante em lactente menor de 6 meses.
-- **Alternativa (C)**: Ciprofloxacino não é a primeira linha em otite aguda não supurada.
 """
     pulo = _extract_pulo_do_gato(explanation)
     assert "abaulamento da membrana" in pulo
     assert "- Âncoras:" in pulo
     assert "- Conduta: amoxicilina 90 mg/kg/dia" in pulo
     assert "Raciocínio Clínico" not in pulo
-
-    why_b = _extract_why_wrong(explanation, "B", "")
-    assert "Não se faz conduta expectante" in why_b
-    assert "Alternativa (C)" not in why_b
 
 
 def test_unanswered_only_filter(client):

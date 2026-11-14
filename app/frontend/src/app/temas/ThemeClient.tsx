@@ -8,7 +8,6 @@ import {
   Brain,
   CheckCircle2,
   Clock,
-  Layers,
   RotateCcw,
   Sparkles,
   Target,
@@ -22,13 +21,12 @@ export function ThemeClient({
   group,
   theme,
   topic,
-  initialProgress,
 }: {
   subtema: string;
   group: { area: string };
   theme: { highYield: boolean; details: string[] };
   topic?: LearningProfileTopic;
-  initialProgress: ThemeProgress;
+  initialProgress?: ThemeProgress;
 }) {
   const [practiceLimit, setPracticeLimit] = useState<10 | 20 | 30>(20);
   const urls = getThemeUrls(subtema);
@@ -42,8 +40,6 @@ export function ThemeClient({
   const dueCount = topic?.due_count ?? 0;
 
   const coveragePct = available > 0 ? Math.min(100, Math.round((answered / available) * 100)) : 0;
-  const flashcardsTotal = initialProgress?.flashcards_total ?? 0;
-  const flashcardsDue = initialProgress?.flashcards_due ?? 0;
 
   return (
     <div className="max-w-5xl mx-auto w-full flex flex-col gap-6 pb-12">
@@ -215,7 +211,7 @@ export function ThemeClient({
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           {/* Card 1: Revisar Questões Vencidas (FSRS) */}
           <div
             className={`rounded-xl border p-5 flex flex-col justify-between transition-all ${
@@ -330,46 +326,6 @@ export function ThemeClient({
                 >
                   Sem questões disponíveis
                 </button>
-              )}
-            </div>
-          </div>
-
-          {/* Card 3: Flashcards do Tema */}
-          <div className="rounded-xl border border-border bg-card p-5 flex flex-col justify-between shadow-xs">
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                  <Layers size={20} />
-                </div>
-                <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
-                  {flashcardsTotal > 0
-                    ? `${flashcardsDue} pendentes / ${flashcardsTotal} total`
-                    : "0 flashcards"}
-                </span>
-              </div>
-              <h3 className="font-semibold text-base text-foreground">Flashcards do Tema</h3>
-              <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
-                {flashcardsTotal > 0
-                  ? "Revise os cartões atômicos vinculados a este tema para consolidar critérios diagnósticos, condutas e doses."
-                  : "Você ainda não possui flashcards salvos para este tema. Você pode gerá-los a partir dos seus erros ao resolver questões."}
-              </p>
-            </div>
-
-            <div className="mt-6">
-              {flashcardsTotal > 0 ? (
-                <Link
-                  href={urls.flashcards}
-                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border border-primary/30 hover:bg-primary/10 text-primary font-semibold text-sm transition-colors"
-                >
-                  Revisar Flashcards <ArrowRight size={16} />
-                </Link>
-              ) : (
-                <Link
-                  href="/revisao-ativa"
-                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border border-border hover:bg-muted/40 text-muted-foreground font-medium text-xs transition-colors"
-                >
-                  Abrir Revisão Geral <ArrowRight size={14} />
-                </Link>
               )}
             </div>
           </div>

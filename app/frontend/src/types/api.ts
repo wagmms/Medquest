@@ -560,20 +560,6 @@ export interface AnkiImportResult {
   decks: string[];
 }
 
-export interface FlashcardGenerateResponse {
-  id: number;
-  question_id: number;
-  front: string;
-  back: string;
-  context?: string;
-}
-
-export interface BatchFlashcardGenerateResponse {
-  success: boolean;
-  count: number;
-  flashcards: FlashcardGenerateResponse[];
-}
-
 export interface NotificationConfig {
   enabled: boolean;
   preferred_hour: number;

@@ -110,7 +110,7 @@ async function primeOfflineStudyShell(): Promise<void> {
     throw new Error("Cache Storage não está disponível neste navegador.");
   }
 
-  const routesToPrime = ["/estudar", "/simulado", "/revisao-ativa"];
+  const routesToPrime = ["/estudar", "/simulado"];
   try {
     const studyCache = await caches.open(OFFLINE_STUDY_SHELL_CACHE);
     for (const route of routesToPrime) {

@@ -7,7 +7,8 @@ from urllib.parse import urlencode, quote
 
 from flask import Blueprint, g, jsonify, request
 
-from .services.planner import USP_WEIGHTS, get_normalized_area
+from .cache import SimpleTTLCache
+from .services.planner import USP_WEIGHTS, get_normalized_area, _load_catalogs
 
 from .adaptive import build_learning_profile, fsrs_metrics
 from .remediation import calculate_blindspots
@@ -34,47 +35,6 @@ bp = Blueprint("stats", __name__)
 
 
 
-
-from threading import Lock
-
-
-class SimpleTTLCache:
-    def __init__(self, ttl_seconds, max_size=500):
-        self.ttl = ttl_seconds
-        self.max_size = max_size
-        self.cache = {}
-        self.expiry = {}
-        self.lock = Lock()
-
-    def get(self, key):
-        with self.lock:
-            if key in self.cache and time.time() < self.expiry[key]:
-                return self.cache[key]
-            if key in self.cache:
-                del self.cache[key]
-                del self.expiry[key]
-            return None
-
-    def set(self, key, value):
-        with self.lock:
-            now = time.time()
-            stale = [k for k, exp in self.expiry.items() if now >= exp]
-            for k in stale:
-                del self.cache[k]
-                del self.expiry[k]
-            if len(self.cache) >= self.max_size:
-                oldest = min(self.expiry, key=self.expiry.get)
-                del self.cache[oldest]
-                del self.expiry[oldest]
-            self.cache[key] = value
-            self.expiry[key] = now + self.ttl
-
-    def clear_user(self, user_id):
-        with self.lock:
-            keys_to_delete = [k for k in self.cache.keys() if str(k).startswith(str(user_id))]
-            for k in keys_to_delete:
-                del self.cache[k]
-                del self.expiry[k]
 
 overview_cache = SimpleTTLCache(60)
 _area_totals_cache = SimpleTTLCache(300)
@@ -141,42 +101,53 @@ def responsible_streak(days_studied, today, days_per_week=6):
         "policy": "rest_days_preserve_continuity",
     }
 
-def _get_overview_metrics(db, user_id: str, now_utc: datetime) -> dict:
+def _fetch_attempt_rollup(db, user_id: str, now_utc: datetime):
     last7_start = (now_utc - timedelta(days=7)).isoformat()
     prev7_start = (now_utc - timedelta(days=14)).isoformat()
     now_value = now_utc.isoformat()
 
-    # Turso is remote in production. Keep the dashboard summary to one round
-    # trip rather than issuing a separate remote query for each metric.
-    overview = db.execute("""
+    # Uma única varredura com CTE em attempts consolida métricas gerais,
+    # janela de 7/14 dias, última tentativa e caderno de erros.
+    return db.execute("""
+        WITH user_attempts AS (
+            SELECT
+                question_id,
+                is_correct,
+                answered_at,
+                ROW_NUMBER() OVER (PARTITION BY question_id ORDER BY id DESC) AS rn
+            FROM attempts
+            WHERE user_id = ?
+        )
         SELECT
             (SELECT COUNT(*) FROM questions WHERE missing_alts = 0) AS total_q,
-            (SELECT COUNT(*) FROM attempts WHERE user_id = ?) AS total_attempts,
-            (SELECT COUNT(DISTINCT question_id) FROM attempts WHERE user_id = ?) AS distinct_answered,
-            (SELECT COUNT(*) FROM attempts WHERE user_id = ? AND is_correct = 1) AS correct,
-            (SELECT COUNT(*) FROM (
-                SELECT is_correct, ROW_NUMBER() OVER (PARTITION BY question_id ORDER BY id DESC) AS rn
-                FROM attempts
-                WHERE user_id = ?
-            ) WHERE rn = 1 AND is_correct = 1) AS last_correct,
+            COUNT(*) AS total_attempts,
+            COUNT(DISTINCT question_id) AS distinct_answered,
+            COALESCE(SUM(is_correct), 0) AS correct,
+            COALESCE(SUM(CASE WHEN rn = 1 AND is_correct = 1 THEN 1 ELSE 0 END), 0) AS last_correct,
+            COALESCE(SUM(CASE WHEN answered_at >= ? THEN is_correct ELSE 0 END), 0) AS last7_correct,
+            COALESCE(SUM(CASE WHEN answered_at >= ? THEN 1 ELSE 0 END), 0) AS last7_total,
+            COALESCE(SUM(CASE WHEN answered_at >= ? AND answered_at < ? THEN is_correct ELSE 0 END), 0) AS prev7_correct,
+            COALESCE(SUM(CASE WHEN answered_at >= ? AND answered_at < ? THEN 1 ELSE 0 END), 0) AS prev7_total,
+            COUNT(DISTINCT CASE WHEN is_correct = 0 THEN question_id END) AS ever_wrong_count,
+            COUNT(DISTINCT CASE WHEN rn = 1 AND is_correct = 0 THEN question_id END) AS currently_unresolved_count,
             (SELECT COUNT(*) FROM spaced_repetition
              WHERE next_review_date <= ? AND user_id = ?) AS srs_due_count,
             (SELECT COUNT(*) FROM flashcards
              WHERE next_review_date <= ? AND user_id = ?
-               AND (report_status IS NULL OR TRIM(report_status) = '')) AS flashcards_due_count,
-            (SELECT SUM(is_correct) FROM attempts WHERE answered_at >= ? AND user_id = ?) AS last7_correct,
-            (SELECT COUNT(*) FROM attempts WHERE answered_at >= ? AND user_id = ?) AS last7_total,
-            (SELECT SUM(is_correct) FROM attempts
-             WHERE answered_at >= ? AND answered_at < ? AND user_id = ?) AS prev7_correct,
-            (SELECT COUNT(*) FROM attempts
-             WHERE answered_at >= ? AND answered_at < ? AND user_id = ?) AS prev7_total
+               AND (report_status IS NULL OR TRIM(report_status) = '')) AS flashcards_due_count
+        FROM user_attempts
     """, (
-        user_id, user_id, user_id, user_id,
-        now_value, user_id, now_value, user_id,
-        last7_start, user_id, last7_start, user_id,
-        prev7_start, last7_start, user_id,
-        prev7_start, last7_start, user_id,
+        user_id,
+        last7_start, last7_start,
+        prev7_start, last7_start,
+        prev7_start, last7_start,
+        now_value, user_id,
+        now_value, user_id,
     )).fetchone()
+
+
+def _get_overview_metrics(db, user_id: str, now_utc: datetime, rollup=None) -> dict:
+    overview = rollup if rollup is not None else _fetch_attempt_rollup(db, user_id, now_utc)
 
     total_q = overview["total_q"]
     total_attempts = overview["total_attempts"]
@@ -206,7 +177,7 @@ def _get_overview_metrics(db, user_id: str, now_utc: datetime) -> dict:
     }
 
 
-def _get_streak_and_target_info(db, user_id: str, now_utc: datetime, tz_offset: int) -> dict:
+def _get_streak_and_target_info(db, user_id: str, now_utc: datetime, tz_offset: int, config: dict | None = None) -> dict:
     # Shift answered_at by tz_offset to get local date string
     sign = '+' if tz_offset >= 0 else '-'
     offset_str = f"{sign}{abs(tz_offset)} minutes"
@@ -216,10 +187,11 @@ def _get_streak_and_target_info(db, user_id: str, now_utc: datetime, tz_offset: 
     ).fetchall()
     days_studied = {r["day"] for r in day_rows}
 
-    config_row = db.execute(
-        "SELECT * FROM planner_config WHERE user_id = ?", (user_id,)
-    ).fetchone()
-    config = dict(config_row) if config_row else {}
+    if config is None:
+        config_row = db.execute(
+            "SELECT * FROM planner_config WHERE user_id = ?", (user_id,)
+        ).fetchone()
+        config = dict(config_row) if config_row else {}
 
     local_today = (now_utc + timedelta(minutes=tz_offset)).date()
     local_today_str = str(local_today)
@@ -270,7 +242,7 @@ def overview():
     except (ValueError, TypeError):
         tz_offset = 0
 
-    cache_key = f"{g.user_id}_{tz_offset}"
+    cache_key = (g.user_id, "overview", tz_offset)
     cached = overview_cache.get(cache_key)
     if cached:
         return jsonify(cached)
@@ -1107,28 +1079,9 @@ def reset_stats():
     return jsonify({"success": True})
 
 
-_cached_planner_meta = None
-_cached_kat_subs = None
-
-
 def _get_planner_metadata():
-    global _cached_planner_meta, _cached_kat_subs
-    if _cached_planner_meta is None:
-        planner_data_path = os.path.join(os.path.dirname(__file__), "..", "scripts", "plannerData.json")
-        try:
-            with open(planner_data_path, "r", encoding="utf-8") as f:
-                _cached_planner_meta = json.load(f)
-        except Exception:
-            _cached_planner_meta = []
-    if _cached_kat_subs is None:
-        kat_path = os.path.join(os.path.dirname(__file__), "..", "scripts", "katomartCourseDurations.json")
-        try:
-            with open(kat_path, "r", encoding="utf-8") as f:
-                kat = json.load(f)
-                _cached_kat_subs = kat.get("subtemas", {})
-        except Exception:
-            _cached_kat_subs = {}
-    return _cached_planner_meta, _cached_kat_subs
+    planner_meta, kat_subs, _ = _load_catalogs()
+    return planner_meta, kat_subs
 
 
 def _build_coverage_structure(planner_meta, kat_subs, q_map, u_map, summary_only):
@@ -1326,34 +1279,46 @@ def distractors():
     return jsonify(out[:20])
 
 
-def _get_benchmark_data(db, user_id: str, now_utc: datetime) -> dict:
-    last7_start = (now_utc - timedelta(days=7)).isoformat()
+def _get_benchmark_data(
+    db,
+    user_id: str,
+    now_utc: datetime,
+    rollup=None,
+    config: dict | None = None,
+) -> dict:
+    if rollup is not None:
+        total_attempts = rollup["total_attempts"] or 0
+        total_correct = rollup["correct"] or 0
+        last7_attempts = rollup["last7_total"] or 0
+        last7_correct = rollup["last7_correct"] or 0
+    else:
+        last7_start = (now_utc - timedelta(days=7)).isoformat()
 
-    stats_row = db.execute("""
-        SELECT
-            COUNT(a.id) AS total_attempts,
-            SUM(a.is_correct) AS total_correct,
-            SUM(CASE WHEN a.answered_at >= ? THEN 1 ELSE 0 END) AS last7_attempts,
-            SUM(CASE WHEN a.answered_at >= ? THEN a.is_correct ELSE 0 END) AS last7_correct
-        FROM attempts a
-        WHERE a.user_id = ?
-    """, (last7_start, last7_start, user_id)).fetchone()
+        stats_row = db.execute("""
+            SELECT
+                COUNT(a.id) AS total_attempts,
+                SUM(a.is_correct) AS total_correct,
+                SUM(CASE WHEN a.answered_at >= ? THEN 1 ELSE 0 END) AS last7_attempts,
+                SUM(CASE WHEN a.answered_at >= ? THEN a.is_correct ELSE 0 END) AS last7_correct
+            FROM attempts a
+            WHERE a.user_id = ?
+        """, (last7_start, last7_start, user_id)).fetchone()
 
-    total_attempts = stats_row["total_attempts"] or 0
-    total_correct = stats_row["total_correct"] or 0
-    last7_attempts = stats_row["last7_attempts"] or 0
-    last7_correct = stats_row["last7_correct"] or 0
+        total_attempts = stats_row["total_attempts"] or 0
+        total_correct = stats_row["total_correct"] or 0
+        last7_attempts = stats_row["last7_attempts"] or 0
+        last7_correct = stats_row["last7_correct"] or 0
 
     accuracy_overall = (total_correct / total_attempts) if total_attempts > 0 else None
     accuracy_last7 = (last7_correct / last7_attempts) if last7_attempts > 0 else None
 
-    config = None
-    try:
-        config_row = db.execute("SELECT * FROM planner_config WHERE user_id = ?", (user_id,)).fetchone()
-        if config_row:
-            config = dict(config_row)
-    except Exception:
-        config = None
+    if config is None:
+        try:
+            config_row = db.execute("SELECT * FROM planner_config WHERE user_id = ?", (user_id,)).fetchone()
+            if config_row:
+                config = dict(config_row)
+        except Exception:
+            config = None
 
     target_score_pct = (config.get("target_score") if config and config.get("target_score") else 76.0)
     target_score = target_score_pct / 100.0
@@ -1589,24 +1554,28 @@ def domain_summary():
     return jsonify(_get_domain_summary_data(db, g.user_id))
 
 
-def _get_error_notebook_summary_data(db, user_id: str) -> dict:
-    row = db.execute("""
-        WITH latest_attempts AS (
-            SELECT question_id, is_correct,
-                   ROW_NUMBER() OVER (PARTITION BY question_id ORDER BY id DESC) as rn
-            FROM attempts
-            WHERE user_id = ?
-        )
-        SELECT
-            COUNT(DISTINCT a.question_id) AS ever_wrong_count,
-            COUNT(DISTINCT CASE WHEN la.is_correct = 0 THEN a.question_id END) AS currently_unresolved_count
-        FROM attempts a
-        LEFT JOIN latest_attempts la ON la.question_id = a.question_id AND la.rn = 1
-        WHERE a.user_id = ? AND a.is_correct = 0
-    """, (user_id, user_id)).fetchone()
+def _get_error_notebook_summary_data(db, user_id: str, rollup=None) -> dict:
+    if rollup is not None:
+        ever_wrong = rollup["ever_wrong_count"] or 0
+        currently_unresolved = rollup["currently_unresolved_count"] or 0
+    else:
+        row = db.execute("""
+            WITH latest_attempts AS (
+                SELECT question_id, is_correct,
+                       ROW_NUMBER() OVER (PARTITION BY question_id ORDER BY id DESC) as rn
+                FROM attempts
+                WHERE user_id = ?
+            )
+            SELECT
+                COUNT(DISTINCT a.question_id) AS ever_wrong_count,
+                COUNT(DISTINCT CASE WHEN la.is_correct = 0 THEN a.question_id END) AS currently_unresolved_count
+            FROM attempts a
+            LEFT JOIN latest_attempts la ON la.question_id = a.question_id AND la.rn = 1
+            WHERE a.user_id = ? AND a.is_correct = 0
+        """, (user_id, user_id)).fetchone()
 
-    ever_wrong = row["ever_wrong_count"] if row and row["ever_wrong_count"] else 0
-    currently_unresolved = row["currently_unresolved_count"] if row and row["currently_unresolved_count"] else 0
+        ever_wrong = row["ever_wrong_count"] if row and row["ever_wrong_count"] else 0
+        currently_unresolved = row["currently_unresolved_count"] if row and row["currently_unresolved_count"] else 0
 
     return {
         "ever_wrong_count": ever_wrong,
@@ -1622,9 +1591,30 @@ def error_notebook_summary():
     return jsonify(_get_error_notebook_summary_data(db, g.user_id))
 
 
+def _format_planner_config_from_row(raw_config: dict | None) -> dict | None:
+    if not raw_config:
+        return None
+    inst_str = raw_config.get("target_institution")
+    inst_list = [i.strip() for i in inst_str.split(",") if i.strip()] if inst_str else []
+    primary_inst = None
+    if inst_list and inst_list[0] not in ("Todas as Bancas", "TODAS"):
+        primary_inst = inst_list[0]
+    return {
+        "exam_date": raw_config.get("exam_date"),
+        "start_date": raw_config.get("start_date"),
+        "days_per_week": raw_config.get("days_per_week"),
+        "hours_per_day": raw_config.get("hours_per_day", raw_config.get("questions_per_day")),
+        "target_score": raw_config.get("target_score"),
+        "target_institution": inst_str,
+        "target_institutions": inst_list,
+        "primary_institution": primary_inst,
+        "target_specialty": raw_config.get("target_specialty"),
+    }
+
+
 @bp.route("/dashboard/summary")
 def dashboard_summary():
-    """Retorna todas as métricas agregadas do Dashboard em um único round-trip."""
+    """Retorna todas as métricas agregadas do Dashboard em um único round-trip com cache por usuário."""
     db = get_db()
     user_id = g.user_id
     now_utc = datetime.now(timezone.utc)
@@ -1633,21 +1623,30 @@ def dashboard_summary():
     except (ValueError, TypeError):
         tz_offset = 0
 
-    overview = _get_overview_metrics(db, user_id, now_utc)
-    streak_info = _get_streak_and_target_info(db, user_id, now_utc, tz_offset)
+    cache_key = (user_id, "dashboard_summary", tz_offset)
+    cached_payload = overview_cache.get(cache_key)
+    if cached_payload is not None:
+        return jsonify(cached_payload)
+
+    rollup = _fetch_attempt_rollup(db, user_id, now_utc)
+    config_row = db.execute("SELECT * FROM planner_config WHERE user_id = ?", (user_id,)).fetchone()
+    raw_config = dict(config_row) if config_row else {}
+
+    overview = _get_overview_metrics(db, user_id, now_utc, rollup=rollup)
+    streak_info = _get_streak_and_target_info(db, user_id, now_utc, tz_offset, config=raw_config)
     overview.update(streak_info)
 
-    benchmark_data = _get_benchmark_data(db, user_id, now_utc)
+    benchmark_data = _get_benchmark_data(db, user_id, now_utc, rollup=rollup, config=raw_config or None)
     bottlenecks_data = _get_bottlenecks_data(db, user_id, limit=3)
     domain_data = _get_domain_summary_data(db, user_id)
-    error_data = _get_error_notebook_summary_data(db, user_id)
+    error_data = _get_error_notebook_summary_data(db, user_id, rollup=rollup)
 
-    from .plan import get_planner_config_data, get_planner_progress_data, get_planner_topic_progress_data
-    planner_cfg = get_planner_config_data(db, user_id)
+    from .plan import get_planner_progress_data, get_planner_topic_progress_data
+    planner_cfg = _format_planner_config_from_row(raw_config)
     planner_prog = get_planner_progress_data(db, user_id)
     planner_topics = get_planner_topic_progress_data(db, user_id)
 
-    return jsonify({
+    payload = {
         "stats": overview,
         "benchmark": benchmark_data,
         "bottlenecks": bottlenecks_data,
@@ -1658,7 +1657,9 @@ def dashboard_summary():
             "progress": planner_prog,
             "topic_progress": planner_topics,
         }
-    })
+    }
+    overview_cache.set(cache_key, payload)
+    return jsonify(payload)
 
 
 def calculate_wilson_ci(k: int, n: int, confidence: float = 0.95) -> tuple[float | None, float | None]:
@@ -1789,7 +1790,7 @@ def _fetch_all_priority_topics(db, user_id: str, institution_code: str | None, i
             "gap_type": gap_type,
             "study_url": f"/estudar?{urlencode(study_params)}",
             "simulado_url": f"/simulado?{urlencode(simulado_params)}",
-            "review_url": "/revisao-ativa",
+            "review_url": "/estudar?status=srs_due",
         })
 
     return priority_map

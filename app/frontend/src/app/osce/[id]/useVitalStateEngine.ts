@@ -32,8 +32,7 @@ export interface DisplayedNibp {
 export interface UseVitalStateEngineProps {
   initialConfig?: OscePhysiologyEngineConfig | null;
   fallbackVitals?: Record<string, string> | null;
-  durationSeconds: number;
-  timeLeft: number;
+  getElapsedSeconds: () => number;
   isActive: boolean;
 }
 
@@ -91,10 +90,13 @@ function parseFallbackVitals(vitals?: Record<string, string> | null): OscePhysio
 export function useVitalStateEngine({
   initialConfig,
   fallbackVitals,
-  durationSeconds,
-  timeLeft,
+  getElapsedSeconds,
   isActive,
 }: UseVitalStateEngineProps) {
+  const getElapsedSecondsRef = useRef(getElapsedSeconds);
+  useEffect(() => {
+    getElapsedSecondsRef.current = getElapsedSeconds;
+  }, [getElapsedSeconds]);
   // Estado base inicial
   const baseVitals = useMemo<OscePhysiologyVitals>(() => {
     if (initialConfig?.initial_state) {
@@ -144,7 +146,10 @@ export function useVitalStateEngine({
     setVitals(baseVitals);
   }
 
-  const elapsedSeconds = Math.max(0, durationSeconds - timeLeft);
+  const interventionsRef = useRef(interventions);
+  useEffect(() => {
+    interventionsRef.current = interventions;
+  }, [interventions]);
 
   // Aferir PNI sob demanda
   const measureNibp = useCallback(() => {
@@ -152,19 +157,20 @@ export function useVitalStateEngine({
     setIsMeasuringNibp(true);
 
     setTimeout(() => {
+      const elapsedNow = getElapsedSecondsRef.current();
       setVitals((curr) => {
         const pam = Math.round((curr.sbp + 2 * curr.dbp) / 3);
         setDisplayedNibp({
           sbp: curr.sbp,
           dbp: curr.dbp,
           pam,
-          measuredAtElapsed: elapsedSeconds,
+          measuredAtElapsed: elapsedNow,
         });
         return curr;
       });
       setIsMeasuringNibp(false);
     }, 2800);
-  }, [isMeasuringNibp, elapsedSeconds]);
+  }, [isMeasuringNibp]);
 
   // Conectar sensores beira-leito
   const connectSensors = useCallback(
@@ -215,7 +221,7 @@ export function useVitalStateEngine({
         id: `interv-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
         key,
         label,
-        appliedAtElapsed: elapsedSeconds,
+        appliedAtElapsed: getElapsedSecondsRef.current(),
         modifier,
         active: true,
       };
@@ -235,7 +241,7 @@ export function useVitalStateEngine({
         setIatrogenicAlerts((prev) => [...prev, modifier.iatrogenic_alert!]);
       }
     },
-    [initialConfig, elapsedSeconds]
+    [initialConfig]
   );
 
   // Executar cardioversão elétrica / desfibrilação
@@ -294,11 +300,15 @@ export function useVitalStateEngine({
     if (!isActive) return;
 
     const interval = setInterval(() => {
+      const elapsedSeconds = getElapsedSecondsRef.current();
+      const activeInterventions = interventionsRef.current;
+      let snapshotForHistory: OscePhysiologyVitals | null = null;
+
       setVitals((curr) => {
         let updated = { ...curr };
 
         // 1. Aplica modificadores de intervenções ativas (farmacocinética)
-        interventions.forEach((item) => {
+        activeInterventions.forEach((item) => {
           const deltaT = elapsedSeconds - item.appliedAtElapsed;
           const onset = item.modifier.onset_seconds || 10;
           const duration = item.modifier.duration_seconds || 60;
@@ -316,7 +326,7 @@ export function useVitalStateEngine({
 
         // 2. Aplica progressão natural (deterioração se sem intervenção)
         if (initialConfig?.natural_progression) {
-          const appliedKeys = interventions.map((i) => i.key);
+          const appliedKeys = activeInterventions.map((i) => i.key);
           initialConfig.natural_progression.forEach((rule) => {
             const conditionMet =
               (rule.condition.includes("time_elapsed > 120") && elapsedSeconds > 120) ||
@@ -356,28 +366,30 @@ export function useVitalStateEngine({
         updated.hr = Math.max(0, Math.min(260, Math.round(updated.hr)));
         updated.spo2 = Math.max(0, Math.min(100, Math.round(updated.spo2)));
 
+        snapshotForHistory = updated;
         return updated;
       });
 
       // Grava no histórico a cada 5 segundos
-      if (elapsedSeconds % 5 === 0) {
+      if (elapsedSeconds % 5 === 0 && snapshotForHistory) {
+        const snap: OscePhysiologyVitals = snapshotForHistory;
         setVitalsHistory((prev) => [
           ...prev,
           {
             elapsed: elapsedSeconds,
-            hr: vitals.hr,
-            sbp: vitals.sbp,
-            dbp: vitals.dbp,
-            pam: Math.round((vitals.sbp + 2 * vitals.dbp) / 3),
-            spo2: vitals.spo2,
-            rhythm: vitals.rhythm,
+            hr: snap.hr,
+            sbp: snap.sbp,
+            dbp: snap.dbp,
+            pam: Math.round((snap.sbp + 2 * snap.dbp) / 3),
+            spo2: snap.spo2,
+            rhythm: snap.rhythm,
           },
         ]);
       }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isActive, elapsedSeconds, interventions, initialConfig, vitals]);
+  }, [isActive, initialConfig]);
 
   // Lista de alarmes ativos
   const activeAlarms = useMemo<VitalAlarm[]>(() => {

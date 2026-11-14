@@ -214,43 +214,6 @@ test.describe('Offline Sync e Resiliência', () => {
     await expect(page.locator('text=Simulado Salvo Offline')).toBeVisible({ timeout: 10000 });
   });
 
-  test('permite revisar flashcards 100% offline sem travamento', async ({ page }) => {
-    const TEST_OWNER = 'test_owner_flashcard';
-    await page.addInitScript((owner) => {
-      localStorage.setItem('medquest_local_owner', owner);
-    }, TEST_OWNER);
-
-    await page.route('**/api/meta**', async (route) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(MOCK_META) }));
-    await page.route('**/api/flashcards/**', async (route) => route.abort('failed'));
-
-    // 1. Acessa /revisao-ativa, aguarda localDb, popula e recarrega
-    await page.goto('/revisao-ativa');
-    await page.waitForFunction(() => typeof (window as unknown as { localDb?: { flashcards: { put: (item: unknown) => Promise<unknown> } } }).localDb !== 'undefined');
-    await page.evaluate(async (ownerId) => {
-      const win = window as unknown as { localDb: { flashcards: { put: (item: unknown) => Promise<unknown> } } };
-      await win.localDb.flashcards.put({
-        id: 101,
-        question_id: 1,
-        front: "O tratamento de primeira linha de HAS é {{c1::estilo de vida}}.",
-        back: "Mudança de estilo de vida e monitoramento.",
-        next_review_date: "2026-08-20T00:00:00Z",
-        _owner_id: ownerId,
-      });
-    }, TEST_OWNER);
-    await page.reload();
-
-    // 2. Verifica a tela de flashcards offline carregada
-    await expect(page.locator('text=Clique para Revelar')).toBeVisible({ timeout: 10000 });
-
-    // 3. Revela e responde
-    await page.click('text=Clique para Revelar');
-    await expect(page.locator('button:has-text("Fácil")')).toBeVisible({ timeout: 5000 });
-    await page.click('button:has-text("Fácil")');
-
-    // 4. Confirma que avançou para a tela de revisões concluídas
-    await expect(page.getByRole('heading', { name: 'Fila carregada concluída' })).toBeVisible({ timeout: 10000 });
-  });
-
   test('preserva metodo e content-type ao manipular fila de sincronizacao', async ({ page }) => {
     await page.goto('/estudar?area=Cl%C3%ADnica+M%C3%A9dica');
     await page.waitForFunction(() => typeof (window as unknown as { syncManager?: unknown }).syncManager !== 'undefined');

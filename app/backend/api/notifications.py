@@ -356,7 +356,7 @@ def cron_dispatch():
     generic_payload = {
         "title": "MedQuest",
         "body": "Você tem revisões pendentes para hoje. Mantenha seu ritmo de estudos!",
-        "url": "/revisao-ativa",
+        "url": "/estudar?status=srs_due&limit=100",
         "tag": "medquest-fsrs-review",
     }
 

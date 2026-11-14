@@ -20,10 +20,8 @@ def _load_raw_taxonomy() -> Dict[str, List[str]]:
         return _TAXONOMY_CACHE
 
     backend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-    root_dir = os.path.abspath(os.path.join(backend_dir, "..", ".."))
     candidates = [
         os.path.join(backend_dir, "data", "canonical_taxonomy_170.json"),
-        os.path.join(root_dir, "canonical_taxonomy_170.json"),
         os.path.join(backend_dir, "data", "canonical_taxonomy.json"),
         os.path.join(backend_dir, "data", "taxonomy.json"),
     ]

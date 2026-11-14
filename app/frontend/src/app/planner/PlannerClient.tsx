@@ -772,7 +772,7 @@ export function PlannerClient({ plan, initialProgress, initialTopicProgress, war
               {/* Right Column (Checklist) */}
               <div className="bg-card-2 p-5 border-t md:border-t-0 md:border-l border-border md:w-72 shrink-0 flex flex-col justify-center">
                 <h3 className="text-sm font-semibold text-foreground mb-2 uppercase tracking-wider">Status da semana</h3>
-                <p className="text-xs text-muted-foreground mb-4">As revisões são gerenciadas pela Revisão Ativa conforme o FSRS.</p>
+                <p className="text-xs text-muted-foreground mb-4">As revisões espaçadas de questões são gerenciadas pelo FSRS.</p>
                 <div className="flex flex-col gap-3">
                   
                   {/* Master Study Checkbox */}

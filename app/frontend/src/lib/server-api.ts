@@ -190,10 +190,6 @@ export const serverApi = {
       cache: "no-store",
     }),
     getReport: (sessionId: string) => serverFetch<import("@/types/api").OsceReportResponse>(`/api/osce/sessions/${sessionId}/report`, { cache: "no-store" }),
-    exportCards: (sessionId: string) => serverFetch<{ success: boolean; exported_count: number; message: string }>(`/api/osce/sessions/${sessionId}/export_cards`, {
-      method: "POST",
-      cache: "no-store",
-    }),
     getDrugs: () => serverFetch<{ drugs: import("@/types/api").OsceDrugItem[]; count: number }>("/api/osce/drugs", { cache: "no-store" }),
     getProcedures: () => serverFetch<{ procedures: import("@/types/api").OsceProcedureCatalogItem[]; count: number }>("/api/osce/procedures", { cache: "no-store" }),
     prescribe: (sessionId: string, prescription: import("@/types/api").OscePrescriptionItem[], elapsedSeconds: number) => serverFetch<import("@/types/api").OscePrescribeResponse>(`/api/osce/sessions/${sessionId}/prescribe`, {

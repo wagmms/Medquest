@@ -190,11 +190,6 @@ def test_osce_api_routes(client):
     assert resp_rep.status_code == 200
     assert resp_rep.get_json()["session_id"] == session_id
 
-    # POST /api/osce/sessions/<id>/export_cards
-    resp_exp = client.post(f"/api/osce/sessions/{session_id}/export_cards")
-    assert resp_exp.status_code == 200
-    assert resp_exp.get_json()["success"] is True
-
 
 def test_usp_rp_cad_station_lifecycle(app):
     """Testa estação oficial da USP-RP de Cetoacidose Diabética no HC-UE."""
@@ -266,11 +261,6 @@ def test_usp_rp_cad_station_lifecycle(app):
         assert finish_res["status"] == "completed"
         assert finish_res["final_score"] >= 8.0, f"Score obtido {finish_res['final_score']} deveria ser >= 8.0"
         assert finish_res["preceptor_feedback"]["approved"] is True
-
-        # 6. Exportação de Flashcards de Choque
-        export_res = osce.export_osce_flashcards(db, session_id, user_id)
-        assert export_res["success"] is True
-        assert export_res["cards_created"] >= 1
 
 
 def test_osce_speech_dispatcher(app, client):

@@ -1,26 +1,25 @@
 """Testes de integração herméticos para o blueprint de flashcards."""
 
 
-def test_flashcards_generate_and_review(client):
-    # Gera flashcard a partir do erro na questão 1 (resposta certa B, marcou A)
-    r = client.post("/api/flashcards/generate", json={
-        "question_id": 1,
-        "wrong_letter": "A"
+def test_flashcards_import_and_review(client):
+    # Importa flashcard via lote Anki
+    r = client.post("/api/flashcards/import/batch", json={
+        "deck_name": "Geral",
+        "cards": [{
+            "front": "Qual a primeira escolha na HAS estágio 1?",
+            "back": "IECA, BRA, BCC ou Tiazídico",
+            "anki_nid": 91001,
+        }]
     })
     assert r.status_code == 200
-    data = r.get_json()
-    assert "id" in data
-    assert data["question_id"] == 1
-    assert "front" in data
-    assert "back" in data
-    fid = data["id"]
+    assert r.get_json()["new_cards"] == 1
 
     # Consulta flashcards vencidos
     r_due = client.get("/api/flashcards/review")
     assert r_due.status_code == 200
     due_list = r_due.get_json()
     assert len(due_list) >= 1
-    assert any(card["id"] == fid for card in due_list)
+    fid = due_list[0]["id"]
 
     # Executa revisão do flashcard com 'certeza'
     r_rev = client.post(f"/api/flashcards/{fid}/review", json={
@@ -46,17 +45,6 @@ def test_flashcards_generate_and_review(client):
 
 
 def test_flashcards_validation_errors(client):
-    # Campos obrigatórios ausentes
-    r = client.post("/api/flashcards/generate", json={})
-    assert r.status_code == 400
-
-    # Questão inexistente
-    r = client.post("/api/flashcards/generate", json={
-        "question_id": 9999,
-        "wrong_letter": "A"
-    })
-    assert r.status_code == 404
-
     # Confiança inválida no review
     r = client.post("/api/flashcards/1/review", json={
         "confidence": "invalido"
@@ -73,34 +61,11 @@ def test_flashcards_validation_errors(client):
     r = client.post("/api/flashcards/1/report", json={})
     assert r.status_code == 400
 
-    # Campos desconhecidos não podem atravessar a whitelist do schema.
-    r = client.post("/api/flashcards/save", json={
-        "question_id": 1,
-        "front": "card",
-        "user_id": "another-user",
-    })
-    assert r.status_code == 400
-
-
-def test_flashcards_duplicate_prevention(client):
-    # Gera primeira vez
-    r1 = client.post("/api/flashcards/generate", json={
-        "question_id": 1,
-        "wrong_letter": "A"
-    })
-    assert r1.status_code == 200
-    fid1 = r1.get_json()["id"]
-
-    # Gera novamente para a mesma questão
-    r2 = client.post("/api/flashcards/generate", json={
-        "question_id": 1,
-        "wrong_letter": "A"
-    })
-    assert r2.status_code == 200
-    fid2 = r2.get_json()["id"]
-
-    # Deve reutilizar o mesmo ID sem duplicar o cartão
-    assert fid1 == fid2
+    # Rotas de criação removidas retornam 404
+    assert client.post("/api/flashcards/generate", json={"question_id": 1}).status_code == 404
+    assert client.post("/api/flashcards/save", json={"question_id": 1, "front": "card"}).status_code == 404
+    assert client.post("/api/flashcards/preview", json={"question_id": 1}).status_code == 404
+    assert client.post("/api/flashcards/generate-batch", json={"items": []}).status_code == 404
 
 
 def test_imported_anki_cards_do_not_require_a_medquest_question(client):
@@ -144,65 +109,6 @@ def test_simulado_session_is_saved(client):
     assert response.get_json()["success"] is True
 
 
-def test_flashcards_generate_batch(client):
-    r = client.post("/api/flashcards/generate-batch", json={
-        "items": [
-            {"question_id": 1, "wrong_letter": "A"},
-            {"question_id": 2, "wrong_letter": "B"},
-            {"question_id": 9999, "wrong_letter": "A"}  # Questão inválida ignorada graciosamente
-        ]
-    })
-    assert r.status_code == 200
-    data = r.get_json()
-    assert data["success"] is True
-    assert data["count"] >= 1
-    assert len(data["flashcards"]) >= 1
-
-
-def test_flashcards_batch_rejects_duplicates_and_avoids_n_plus_one(client, monkeypatch):
-    duplicate = client.post("/api/flashcards/generate-batch", json={
-        "items": [
-            {"question_id": 1, "wrong_letter": "A"},
-            {"question_id": 1, "wrong_letter": "A"},
-        ]
-    })
-    assert duplicate.status_code == 400
-
-    from api import db as db_module
-    from api import flashcards as flashcards_module
-
-    select_count = 0
-
-    class CountingConnection:
-        def __init__(self, connection):
-            self.connection = connection
-
-        def execute(self, sql, parameters=()):
-            nonlocal select_count
-            if sql.lstrip().upper().startswith("SELECT"):
-                select_count += 1
-            return self.connection.execute(sql, parameters)
-
-        def commit(self):
-            self.connection.commit()
-
-        def rollback(self):
-            self.connection.rollback()
-
-    monkeypatch.setattr(
-        flashcards_module,
-        "get_db",
-        lambda: CountingConnection(db_module.get_db()),
-    )
-    response = client.post("/api/flashcards/generate-batch", json={
-        "items": [
-            {"question_id": 1, "wrong_letter": "A"},
-            {"question_id": 2, "wrong_letter": "B"},
-        ]
-    })
-    assert response.status_code == 200
-    assert response.get_json()["count"] == 2
-    assert select_count == 3
 
 
 def test_bounded_int():
@@ -318,10 +224,17 @@ def test_anki_sync_state_batch_and_no_n_plus_one(client, monkeypatch):
 
 
 def test_flashcards_deck_filter_geral_and_due_alias(client):
-    # Generates a card with default deck (Geral)
-    gen = client.post("/api/flashcards/generate", json={"question_id": 1, "wrong_letter": "A"})
+    # Imports a card with default deck (Geral)
+    gen = client.post("/api/flashcards/import/batch", json={
+        "deck_name": "Geral",
+        "cards": [{
+            "front": "Geral Q",
+            "back": "Geral A",
+            "anki_nid": 7770,
+        }]
+    })
     assert gen.status_code == 200
-    card_id = gen.get_json()["id"]
+    card_id = client.get("/api/flashcards/review?deck=Geral").get_json()[0]["id"]
 
     # Also import a card into a custom deck
     imported = client.post("/api/flashcards/import/batch", json={

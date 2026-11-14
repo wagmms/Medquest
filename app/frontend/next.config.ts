@@ -31,7 +31,7 @@ const withPWA = withPWAInit({
           sameOrigin &&
           request?.mode === "navigate" &&
           !request?.headers?.get("RSC") &&
-          (pathname === "/estudar" || pathname === "/simulado" || pathname === "/revisao-ativa"),
+          (pathname === "/estudar" || pathname === "/simulado"),
         handler: "NetworkFirst",
         options: {
           cacheName: "medquest-study-shell",

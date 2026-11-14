@@ -177,10 +177,10 @@ export function PreceptorFocusCard({
                   </Link>
                 ) : (
                   <Link
-                    href="/revisao-ativa"
+                    href="/estudar"
                     className="text-xs font-bold text-accent hover:underline inline-flex items-center gap-1"
                   >
-                    Ver flashcards <ArrowRight className="h-3 w-3" />
+                    Praticar questões <ArrowRight className="h-3 w-3" />
                   </Link>
                 )}
               </div>

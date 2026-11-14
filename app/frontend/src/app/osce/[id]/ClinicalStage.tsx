@@ -62,7 +62,7 @@ export function ClinicalStage({
   onSendMessage,
   isListening = false,
   onToggleListening,
-  micPermission: _micPermission = "prompt",
+  micPermission = "prompt",
 }: ClinicalStageProps) {
   // Canal Tático de Comunicação: PACIENTE vs EXAMINADOR
   const [activeChannel, setActiveChannel] = useState<"PATIENT" | "EXAMINER">("PATIENT");
@@ -387,10 +387,23 @@ export function ClinicalStage({
             <button
               type="button"
               onClick={onToggleListening}
-              className={`absolute right-2.5 top-1/2 -translate-y-1/2 p-1 rounded-md transition-colors ${
-                isListening ? "text-emerald-400 animate-pulse" : "text-slate-500 hover:text-slate-300"
+              disabled={micPermission === "unsupported"}
+              className={`absolute right-2.5 top-1/2 -translate-y-1/2 p-1 rounded-md transition-colors disabled:opacity-40 ${
+                isListening
+                  ? "text-emerald-400 animate-pulse"
+                  : micPermission === "denied"
+                  ? "text-rose-400 hover:text-rose-300"
+                  : "text-slate-500 hover:text-slate-300"
               }`}
-              title={isListening ? "Microfone ativo" : "Ativar microfone"}
+              title={
+                micPermission === "unsupported"
+                  ? "Microfone indisponível neste navegador"
+                  : micPermission === "denied"
+                  ? "Permissão de microfone bloqueada"
+                  : isListening
+                  ? "Microfone ativo"
+                  : "Ativar microfone"
+              }
             >
               <Mic className="w-4 h-4" />
             </button>

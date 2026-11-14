@@ -162,52 +162,6 @@ class FavoriteIn(APIInput):
     is_favorite: bool | None = None
 
 
-class FlashcardGenerateIn(APIInput):
-    question_id: int = Field(gt=0)
-    wrong_letter: str = Field(default="", max_length=10)
-
-    @field_validator("wrong_letter", mode="before")
-    @classmethod
-    def sanitize_wrong_letter(cls, v):
-        if not v:
-            return ""
-        s = str(v).strip()
-        c = s[:1].upper()
-        return c if c in "ABCDE" else ""
-
-
-class FlashcardPreviewIn(APIInput):
-    question_id: int = Field(gt=0)
-    wrong_letter: str = Field(default="", max_length=10)
-
-    @field_validator("wrong_letter", mode="before")
-    @classmethod
-    def sanitize_wrong_letter(cls, v):
-        if not v:
-            return ""
-        s = str(v).strip()
-        c = s[:1].upper()
-        return c if c in "ABCDE" else ""
-
-
-class FlashcardSaveIn(APIInput):
-    question_id: int = Field(gt=0)
-    front: str = Field(min_length=1, max_length=10_000)
-    back: str = Field(default="", max_length=20_000)
-    context: str = Field(default="", max_length=2_000)
-
-
-class FlashcardBatchIn(APIInput):
-    items: list[FlashcardGenerateIn] = Field(min_length=1, max_length=50)
-
-    @model_validator(mode="after")
-    def unique_questions(self):
-        question_ids = [item.question_id for item in self.items]
-        if len(question_ids) != len(set(question_ids)):
-            raise ValueError("items must contain unique question_id values")
-        return self
-
-
 class FlashcardReviewIn(APIInput):
     confidence: Literal["errei", "duvida", "certeza"]
 
@@ -249,15 +203,6 @@ class AnkiDeleteDeckIn(APIInput):
     deck_name: str = Field(min_length=1, max_length=200)
 
 
-class PrescribeStudyIn(APIInput):
-    target_institution: str | None = Field(default=None, max_length=100)
-    weak_topics: list[dict] | None = Field(default=None, max_length=20)
-    distractors: list[dict] | None = Field(default=None, max_length=20)
-    at_risk_topics: list[dict] | None = Field(default=None, max_length=20)
-
-
-class SynthesizeExplanationIn(APIInput):
-    force_regenerate: bool = False
 
 
 class NotificationConfigIn(APIInput):

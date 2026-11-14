@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { QuestionMeta, QuestionListItem, QuestionDetail, AttemptResult, FlashcardGenerateResponse } from "@/types/api";
+import { QuestionMeta, QuestionListItem, QuestionDetail, AttemptResult } from "@/types/api";
 import { api, OfflineQueuedError } from "@/lib/api";
 import { Clock, CheckCircle2, BookOpen, ArrowRight, ImageOff, AlertTriangle, CloudOff, RotateCcw, Pencil, Eye, EyeOff, Target } from "lucide-react";
 import clsx from "clsx";
@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import { isLocalIdentityReady } from "@/lib/db";
 import { prefetchQuestionsByIds } from "@/lib/syncQueue";
 import { useUser } from "@clerk/nextjs";
-import { normalizeFlashcard } from "@/lib/normalizeFlashcard";
 
 import dynamic from "next/dynamic";
 import { ImageViewer } from "@/components/ImageViewer";
@@ -31,7 +30,6 @@ import { AlternativeList } from "./components/AlternativeList";
 import { AlternativeContent } from "@/components/AlternativeContent";
 import { PreceptorSection, ChatMessage } from "./components/PreceptorSection";
 import { QuizHeader } from "./components/QuizHeader";
-import { QuizFlashcardSection } from "./components/QuizFlashcardSection";
 const QuizSessionReportModal = dynamic(
   () => import("./components/QuizSessionReportModal").then((mod) => mod.QuizSessionReportModal),
   { ssr: false }
@@ -201,20 +199,6 @@ export function QuizClient({
   const [attemptResult, setAttemptResult] = useState<AttemptResult | null>(null);
   const [isOfflineSaved, setIsOfflineSaved] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [autoFsrsOnWrong, setAutoFsrsOnWrong] = useState<boolean>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("medquest_auto_fsrs");
-      return saved === null ? true : saved === "true";
-    }
-    return true;
-  });
-  const [autoGeneratingFlashcard, setAutoGeneratingFlashcard] = useState(false);
-  const [generatingFlashcard, setGeneratingFlashcard] = useState(false);
-  const [savingFlashcard, setSavingFlashcard] = useState(false);
-  const [flashcardResult, setFlashcardResult] = useState<FlashcardGenerateResponse | null>(null);
-  const [draftFlashcard, setDraftFlashcard] = useState<{front: string; back: string; context: string} | null>(null);
-  const [generatingBatchFlashcards, setGeneratingBatchFlashcards] = useState(false);
-  const [batchFlashcardsResult, setBatchFlashcardsResult] = useState<{ count: number } | null>(null);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [askingPreceptor, setAskingPreceptor] = useState(false);
   const [preceptorInput, setPreceptorInput] = useState("");
@@ -244,9 +228,6 @@ export function QuizClient({
     setSelectedLetter(null);
     setUserWrittenAnswer("");
     setIsOfflineSaved(false);
-    setFlashcardResult(null);
-    setDraftFlashcard(null);
-    setAutoGeneratingFlashcard(false);
     setChatMessages([]);
     setPreceptorInput("");
     setInitialTime(0);
@@ -674,7 +655,6 @@ export function QuizClient({
   }, [initialFilters, state, filters, loadQueue, resumeSavedQuiz, handleBackToFilters]);
 
   const handleNewSession = useCallback(() => {
-    setBatchFlashcardsResult(null);
     handleBackToFilters();
   }, [handleBackToFilters]);
 
@@ -861,37 +841,6 @@ export function QuizClient({
     loadQueue(activeFilters);
   }, [loadQueue]);
 
-  const triggerAutoFlashcard = useCallback(async (detail: QuestionDetail, letter: string | null) => {
-    setAutoGeneratingFlashcard(true);
-    try {
-      const res = await api.flashcards.generate(detail.id, letter || "A");
-      const normalized = normalizeFlashcard({ ...res, stem: detail.stem });
-      setFlashcardResult(normalized);
-      toast.success("⚡ Flashcard FSRS gerado e salvo para a Revisão Ativa!", { id: `auto-fc-${detail.id}` });
-    } catch (e) {
-      if (e instanceof OfflineQueuedError) {
-        toast("Flashcard FSRS agendado localmente para sincronização.", { icon: "💾", id: `auto-fc-${detail.id}` });
-      } else {
-        console.warn("Auto-FSRS flashcard silencioso falhou:", e);
-      }
-    } finally {
-      setAutoGeneratingFlashcard(false);
-    }
-  }, []);
-
-  const handleToggleAutoFsrs = useCallback(() => {
-    setAutoFsrsOnWrong(prev => {
-      const nextVal = !prev;
-      if (typeof window !== "undefined") {
-        localStorage.setItem("medquest_auto_fsrs", String(nextVal));
-      }
-      toast(nextVal ? "Auto-FSRS ativado: flashcards gerados automaticamente ao errar." : "Auto-FSRS pausado: geração manual mantida.", {
-        icon: nextVal ? "⚡" : "⚙️"
-      });
-      return nextVal;
-    });
-  }, []);
-
   const handleAttempt = useCallback(async () => {
     if (attemptLockRef.current || attemptResult || isOfflineSaved || submitting || !currentDetail || !selectedLetter) return;
     attemptLockRef.current = true;
@@ -915,10 +864,6 @@ export function QuizClient({
         [currentDetail.id]: { letter: selectedLetter, result: res, writtenAnswer: userWrittenAnswer }
       }));
 
-      if (res.is_correct === false && autoFsrsOnWrong) {
-        triggerAutoFlashcard(currentDetail, selectedLetter);
-      }
-
     } catch (err) {
       if (err instanceof OfflineQueuedError) {
         toast("Resposta salva neste dispositivo; será sincronizada quando a conexão voltar.", { icon: "💾" });
@@ -934,7 +879,7 @@ export function QuizClient({
       attemptLockRef.current = false;
       setSubmitting(false);
     }
-  }, [attemptResult, isOfflineSaved, submitting, currentDetail, selectedLetter, userWrittenAnswer, getCurrentTime, autoFsrsOnWrong, triggerAutoFlashcard]);
+  }, [attemptResult, isOfflineSaved, submitting, currentDetail, selectedLetter, userWrittenAnswer, getCurrentTime]);
 
   const handleDiscursiveReveal = useCallback(async () => {
     if (attemptLockRef.current || attemptResult || isOfflineSaved || submitting || !currentDetail) return;
@@ -974,108 +919,6 @@ export function QuizClient({
       setSubmitting(false);
     }
   }, [attemptResult, isOfflineSaved, submitting, currentDetail, userWrittenAnswer, getCurrentTime]);
-
-  const handleQuickSaveFlashcard = async () => {
-    if (!currentDetail) return;
-    setSavingFlashcard(true);
-    try {
-      const res = await api.flashcards.generate(currentDetail.id, selectedLetter || "A");
-      const normalized = normalizeFlashcard({ ...res, stem: currentDetail.stem });
-      setFlashcardResult(normalized);
-      setDraftFlashcard(null);
-      toast.success("Flashcard adicionado à Revisão Ativa de amanhã!");
-    } catch (error) {
-      if (error instanceof OfflineQueuedError) {
-        toast("Flashcard aguardando sincronização. Ficará disponível para revisão após o envio.", { icon: "💾" });
-      } else {
-        toast.error("Erro ao criar flashcard instantâneo.");
-      }
-    } finally {
-      setSavingFlashcard(false);
-    }
-  };
-
-  const handleGenerateFlashcard = async () => {
-    if (!currentDetail) return;
-    setGeneratingFlashcard(true);
-    setDraftFlashcard(null);
-    try {
-      const res = await api.flashcards.preview(currentDetail.id, selectedLetter || undefined);
-      setDraftFlashcard({
-        front: res.front,
-        back: res.back,
-        context: res.context
-      });
-    } catch {
-      toast.error("Erro ao gerar prévia do flashcard.");
-    } finally {
-      setGeneratingFlashcard(false);
-    }
-  };
-
-  const handleSaveFlashcard = async () => {
-    if (!currentDetail || !draftFlashcard) return;
-    setSavingFlashcard(true);
-    try {
-      const res = await api.flashcards.save(
-        currentDetail.id, 
-        draftFlashcard.front, 
-        draftFlashcard.back, 
-        draftFlashcard.context
-      );
-      const normalized = normalizeFlashcard({ ...res, stem: currentDetail.stem });
-      setFlashcardResult(normalized);
-      setDraftFlashcard(null);
-      toast.success("Flashcard criado e inserido na sua Revisão Ativa!");
-    } catch (error) {
-      if (error instanceof OfflineQueuedError) {
-        toast("Flashcard aguardando sincronização. Ficará disponível para revisão após o envio.", { icon: "💾" });
-      } else {
-        toast.error("Erro ao salvar flashcard.");
-      }
-    } finally {
-      setSavingFlashcard(false);
-    }
-  };
-
-  const handleGenerateAllWrongFlashcards = async () => {
-    const seen = new Set<number>();
-    const wrongItems: Array<{ question_id: number; wrong_letter: string }> = [];
-    for (const [qidStr, ans] of Object.entries(sessionAnswers)) {
-      const qid = Number(qidStr);
-      if (ans.result && !ans.result.is_correct && !seen.has(qid)) {
-        seen.add(qid);
-        const rawLetter = (ans.letter || "A").trim().slice(0, 1).toUpperCase();
-        const wrong_letter = /^[A-E]$/.test(rawLetter) ? rawLetter : "A";
-        wrongItems.push({ question_id: qid, wrong_letter });
-      }
-    }
-
-    if (wrongItems.length === 0) {
-      toast("Nenhuma questão errada encontrada nesta sessão.", { icon: "ℹ️" });
-      return;
-    }
-
-    setGeneratingBatchFlashcards(true);
-    try {
-      const res = await api.flashcards.generateBatch(wrongItems);
-      setBatchFlashcardsResult({ count: res.count });
-      if (res.count > 0) {
-        toast.success(`${res.count} flashcard(s) criado(s) e adicionado(s) à Revisão Ativa!`);
-      } else {
-        toast("Nenhum novo flashcard criado (já cadastrados).", { icon: "ℹ️" });
-      }
-    } catch (e) {
-      console.error("Erro ao gerar flashcards em lote:", e);
-      if (e instanceof OfflineQueuedError) {
-        toast("Criação de flashcards aguardando sincronização.", { icon: "💾" });
-      } else {
-        toast.error("Erro ao gerar flashcards em lote.");
-      }
-    } finally {
-      setGeneratingBatchFlashcards(false);
-    }
-  };
 
   const handleSendMessage = async (overrideText?: string) => {
     if (!currentDetail) return;
@@ -1318,9 +1161,6 @@ export function QuizClient({
         correctCount={correctCount}
         accuracy={accuracy}
         wrongItems={wrongItems}
-        generatingBatchFlashcards={generatingBatchFlashcards}
-        batchFlashcardsResult={batchFlashcardsResult}
-        onGenerateBatchFlashcards={handleGenerateAllWrongFlashcards}
         onBackToFilters={handleNewSession}
         onRestartSession={() => {
           setState("PLAYING");
@@ -1840,9 +1680,8 @@ export function QuizClient({
                     </div>
                   ) : null}
                   
-                  {/* Ferramentas de Estudo Ativo: Preceptor AI e Flashcards em grid de 2 colunas no desktop */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-start">
-                    {/* Preceptor AI Section */}
+                  {/* Ferramenta de Estudo Ativo: Preceptor AI */}
+                  <div className="w-full">
                     <PreceptorSection
                       messages={chatMessages}
                       preceptorInput={preceptorInput}
@@ -1852,33 +1691,6 @@ export function QuizClient({
                       onClearChat={() => {
                         setChatMessages([]);
                         setPreceptorInput("");
-                      }}
-                    />
-
-                    {/* Flashcard Generation & FSRS Section */}
-                    <QuizFlashcardSection
-                      isWrong={attemptResult.is_correct === false}
-                      autoGeneratingFlashcard={autoGeneratingFlashcard}
-                      autoFsrsOnWrong={autoFsrsOnWrong}
-                      onToggleAutoFsrs={handleToggleAutoFsrs}
-                      flashcardResult={flashcardResult}
-                      draftFlashcard={draftFlashcard}
-                      savingFlashcard={savingFlashcard}
-                      generatingFlashcard={generatingFlashcard}
-                      onQuickSaveFlashcard={handleQuickSaveFlashcard}
-                      onGenerateFlashcard={handleGenerateFlashcard}
-                      onSaveFlashcard={handleSaveFlashcard}
-                      onCancelDraft={() => setDraftFlashcard(null)}
-                      onChangeDraft={setDraftFlashcard}
-                      onEditSavedFlashcard={() => {
-                        if (flashcardResult) {
-                          setDraftFlashcard({
-                            front: flashcardResult.front,
-                            back: flashcardResult.back || "",
-                            context: flashcardResult.context || ""
-                          });
-                          setFlashcardResult(null);
-                        }
                       }}
                     />
                   </div>
@@ -2032,7 +1844,7 @@ export function QuizClient({
             <div className="bg-muted/40 rounded-xl p-3.5 border border-border/60 text-sm text-foreground/90 leading-relaxed">
               Você respondeu <strong className="text-foreground">{completedCount}</strong> de <strong className="text-foreground">{queue.length}</strong> questões. Restam {queue.length - completedCount} não respondidas.
               <p className="mt-2 text-xs text-muted-foreground">
-                Todas as questões já respondidas terão suas revisões (FSRS) preservadas. Ao finalizar, você verá seu relatório de acertos e poderá gerar flashcards dos seus erros.
+                Todas as questões já respondidas terão suas revisões (FSRS) preservadas. Ao finalizar, você verá seu relatório de acertos e o diagnóstico da sessão.
               </p>
             </div>
 

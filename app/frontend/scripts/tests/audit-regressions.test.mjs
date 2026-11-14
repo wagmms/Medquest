@@ -11,7 +11,6 @@ function load(name, dependencies = {}, globals = {}) {
     isForcedOffline: () => false,
   };
   dependencies = {
-    './flashcardCache': { cacheCreatedFlashcards: async () => {} },
     './crossTab': { broadcastCrossTab() {}, listenCrossTab() { return () => {}; } },
     './db': defaultDb,
     ...dependencies,
@@ -61,25 +60,30 @@ test('a delayed session write is cancelled when the active account changes', asy
   assert.equal(calls, 0);
 });
 
-test('offline card creation is durable and cannot return a fabricated server ID', async () => {
+test('offline flashcard review and simulado session writes are durably queued', async () => {
   const queued = [];
   const { api, OfflineQueuedError } = load('api', {
     './db': { getLocalOwnerId: () => 'alice' }, './sync': { syncManager: { enqueue: async (...args) => { queued.push(args); return 'pending'; } } },
   }, { window: {}, navigator: { onLine: false } });
-  await assert.rejects(api.flashcards.save(1, 'Front', 'Back', 'Context'), OfflineQueuedError);
-  await assert.rejects(api.flashcards.generate(1, 'A'), OfflineQueuedError);
-  await assert.rejects(api.flashcards.generateBatch([{ question_id: 1, wrong_letter: 'A' }]), OfflineQueuedError);
-  assert.equal(queued.length, 3);
-  assert.equal(JSON.parse(queued[0][1].body).front, 'Front');
-  assert.ok(queued.every(item => item[2]));
+  await assert.rejects(api.flashcards.review(1, 'certeza'), OfflineQueuedError);
+  await assert.rejects(api.questions.saveSimuladoSession({
+    client_session_id: 'sim-1',
+    planned_duration_seconds: 600,
+    elapsed_seconds: 300,
+    total_questions: 10,
+    answered_count: 10,
+    correct_count: 8,
+  }), OfflineQueuedError);
+  assert.equal(queued.length, 2);
+  assert.equal(JSON.parse(queued[0][1].body).confidence, 'certeza');
 });
 
-test('server authorization failures are not disguised as local card saves', async () => {
+test('server authorization failures are not disguised as local offline queue writes', async () => {
   let queued = 0;
   const { api } = load('api', { './db': { getLocalOwnerId: () => 'alice' }, './sync': { syncManager: { enqueue: async () => { queued++; } } } }, {
     window: {}, navigator: { onLine: true }, fetch: async () => ({ ok: false, status: 403, json: async () => ({ error: 'Forbidden' }) }),
   });
-  await assert.rejects(api.flashcards.save(1, 'Front', 'Back', 'Context'), /Forbidden/);
+  await assert.rejects(api.flashcards.review(1, 'certeza'), /Forbidden/);
   assert.equal(queued, 0);
 });
 
@@ -168,7 +172,7 @@ test('a request started by Alice is not queued as Bob after an account switch', 
   const { api } = load('api', {'./db':{getLocalOwnerId: () => owner},'./sync':{syncManager:{enqueue:async () => {queued++;}}}}, {
     window:{},navigator:{onLine:true},fetch:async () => {owner = 'bob'; throw new TypeError('Network failed');},
   });
-  await assert.rejects(api.flashcards.save(1,'Front','Back','Context'), /Network failed/);
+  await assert.rejects(api.flashcards.review(1, 'certeza'), /Network failed/);
   assert.equal(queued, 0);
 });
 

@@ -14,7 +14,7 @@ const normalizeSearch = (s: string) =>
 
 interface PrescriptionPadProps {
   sessionId: string;
-  elapsedSeconds: number;
+  getElapsedSeconds: () => number;
   onPrescriptionSubmitted: (
     prescriptionText: string, 
     examinerMessage: string, 
@@ -149,7 +149,7 @@ const FALLBACK_DRUGS: OsceDrugItem[] = [
 
 export function PrescriptionPad({
   sessionId,
-  elapsedSeconds,
+  getElapsedSeconds,
   onPrescriptionSubmitted,
   isLoading = false
 }: PrescriptionPadProps) {
@@ -276,7 +276,7 @@ export function PrescriptionPad({
     setSuccessMessage(null);
 
     try {
-      const res = await api.osce.prescribe(sessionId, prescribedItems, elapsedSeconds);
+      const res = await api.osce.prescribe(sessionId, prescribedItems, getElapsedSeconds());
       if (res?.success) {
         toast.success("Prescrição administrada pela enfermagem!");
         setSuccessMessage("Prescrição assinada e administrada pela equipe da Sala Vermelha!");

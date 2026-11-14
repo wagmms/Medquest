@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
@@ -9,46 +9,18 @@ import { AccountModal } from "./AccountModal";
 import { OfflineModal } from "./OfflineModal";
 import { ThemeToggle } from "./ThemeToggle";
 import { useZenMode } from "@/hooks/useZenMode";
-import { isDeviceOffline, isForcedOffline } from "@/lib/db";
+import { useOfflineStatus } from "@/lib/useOfflineStatus";
+import { NAV_ITEMS } from "@/lib/navigation";
 import { ClinicalIcon } from "@/components/ui/ClinicalIcon";
 import Image from "next/image";
-
-const NAV_ITEMS = [
-  { href: "/", label: "Dashboard", icon: "dashboard" },
-  { href: "/buscar", label: "Busca Clínica", icon: "search" },
-  { href: "/estudar", label: "Estudar", icon: "menu_book" },
-  { href: "/revisao-ativa", label: "Revisão Ativa", icon: "psychology" },
-  { href: "/osce", label: "OSCE (2ª Fase)", icon: "stethoscope" },
-  { href: "/simulado", label: "Simulados", icon: "description" },
-  { href: "/cobertura", label: "Cobertura", icon: "my_location" },
-  { href: "/analise", label: "Análise", icon: "analytics" },
-  { href: "/planner", label: "Planner", icon: "calendar_month" },
-];
 
 export function Sidebar() {
   const pathname = usePathname();
   const { user, isLoaded } = useUser();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOfflineOpen, setIsOfflineOpen] = useState(false);
-  const [isOffline, setIsOffline] = useState(false);
-  const [forcedOffline, setForcedOffline] = useState(false);
+  const { isOffline, forcedOffline } = useOfflineStatus();
   const { isZenMode, toggleZenMode } = useZenMode();
-
-  useEffect(() => {
-    const updateOnline = () => {
-      setIsOffline(isDeviceOffline());
-      setForcedOffline(isForcedOffline());
-    };
-    updateOnline();
-    window.addEventListener("online", updateOnline);
-    window.addEventListener("offline", updateOnline);
-    window.addEventListener("forced-offline-changed", updateOnline);
-    return () => {
-      window.removeEventListener("online", updateOnline);
-      window.removeEventListener("offline", updateOnline);
-      window.removeEventListener("forced-offline-changed", updateOnline);
-    };
-  }, []);
 
   return (
     <>

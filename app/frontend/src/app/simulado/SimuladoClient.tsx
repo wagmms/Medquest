@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { QuestionMeta, QuestionListItem, QuestionDetail, BatchAttemptItem, BatchAttemptResultItem, FlashcardGenerateResponse } from "@/types/api";
+import { QuestionMeta, QuestionListItem, QuestionDetail, BatchAttemptItem, BatchAttemptResultItem } from "@/types/api";
 import { api, OfflineQueuedError } from "@/lib/api";
 import { localDb, getLocalOwnerId, isLocalIdentityReady, SimuladoPackage, isPackageValid, isDeviceOffline } from "@/lib/db";
+import { useOfflineStatus } from "@/lib/useOfflineStatus";
 import { getReadySimuladoPackage, downloadSimuladoPackage } from "@/lib/simuladoPackage";
 import { useWakeLock } from "@/hooks/useWakeLock";
 import {
@@ -12,7 +13,6 @@ import {
   AlertCircle,
   RotateCcw,
   CloudOff,
-  Sparkles,
   Pencil,
   Eye,
   EyeOff,
@@ -22,11 +22,9 @@ import {
 
 import clsx from "clsx";
 import toast from "react-hot-toast";
-import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import { useCurator } from "@/hooks/useCurator";
 
-import { normalizeFlashcard } from "@/lib/normalizeFlashcard";
 import { LEARNING_SESSION_VERSION, readLearningSession, writeLearningSession, removeLearningSession, deadlineFromNow } from "@/lib/sessionState";
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
@@ -129,21 +127,13 @@ export function SimuladoClient({
   const [plannedDurationSeconds, setPlannedDurationSeconds] = useState(0);
   const [isSyncingOffline, setIsSyncingOffline] = useState(false);
 
-  // Flashcards
-  const [generatingBatchFlashcards, setGeneratingBatchFlashcards] = useState(false);
-  const [batchFlashcardsResult, setBatchFlashcardsResult] = useState<{ count: number } | null>(null);
-  const [questionFlashcardsMap, setQuestionFlashcardsMap] = useState<Record<number, FlashcardGenerateResponse>>({});
-  const [generatingSingleFlashcard, setGeneratingSingleFlashcard] = useState<number | null>(null);
-  const [draftFlashcardsMap, setDraftFlashcardsMap] = useState<Record<number, { front: string; back: string; context: string }>>({});
-  const [savingSingleFlashcard, setSavingSingleFlashcard] = useState<number | null>(null);
-
   // Marcar para revisar
   const [flagged, setFlagged] = useState<Record<number, boolean>>({});
 
   // Duração proporcional: 3 min/questão (120 Qs = 6h), arredondado
-  const [timeLeft, setTimeLeft] = useState(6 * 60 * 60);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const [deadlineAt, setDeadlineAt] = useState(0);
   const deadlineRef = useRef(0);
+  const remainingAtSubmitRef = useRef(0);
   const hasCustomFilters = Object.keys(initialFilters).length > 0;
 
   const [customConfig, setCustomConfig] = useState({
@@ -182,7 +172,7 @@ export function SimuladoClient({
   const hasAutoSubmittedRef = useRef(false);
   const inFlightPracticeRef = useRef<Map<number, Promise<void>>>(new Map());
 
-  const [isOffline, setIsOffline] = useState(false);
+  const { isAnyOffline: isOffline } = useOfflineStatus();
   useWakeLock(state === "PLAYING");
 
   const [offlinePackage, setOfflinePackage] = useState<SimuladoPackage | null>(null);
@@ -229,25 +219,14 @@ export function SimuladoClient({
   }, []);
 
   useEffect(() => {
-    const updateOnline = () => {
-      setIsOffline(isDeviceOffline());
-      void refreshOfflinePackage();
-    };
-
     const initialTimer = setTimeout(() => {
-      updateOnline();
+      void refreshOfflinePackage();
     }, 0);
 
-    window.addEventListener("online", updateOnline);
-    window.addEventListener("offline", updateOnline);
-    window.addEventListener("forced-offline-changed", updateOnline);
     window.addEventListener("simulado-package-updated", refreshOfflinePackage);
 
     return () => {
       clearTimeout(initialTimer);
-      window.removeEventListener("online", updateOnline);
-      window.removeEventListener("offline", updateOnline);
-      window.removeEventListener("forced-offline-changed", updateOnline);
       window.removeEventListener("simulado-package-updated", refreshOfflinePackage);
     };
   }, [refreshOfflinePackage]);
@@ -306,7 +285,7 @@ export function SimuladoClient({
       setAnswers(saved.answers);
       const remainingSeconds = Math.max(0, Math.ceil((saved.deadlineAt - Date.now()) / 1000));
       deadlineRef.current = saved.deadlineAt;
-      setTimeLeft(remainingSeconds);
+      setDeadlineAt(saved.deadlineAt);
       if (saved.state === "PLAYING" && remainingSeconds === 0) {
         hasAutoSubmittedRef.current = true;
         setShowAreaSummary(true);
@@ -458,10 +437,11 @@ export function SimuladoClient({
 
         const durationMinutes = readyPkg.config.duration_minutes || Math.round((qList.length / 20) * 60);
         const calcTime = Math.round(durationMinutes * 60);
+        const nextDeadline = deadlineFromNow(calcTime);
 
-        setTimeLeft(calcTime);
         setPlannedDurationSeconds(calcTime);
-        deadlineRef.current = deadlineFromNow(calcTime);
+        deadlineRef.current = nextDeadline;
+        setDeadlineAt(nextDeadline);
         setForce4Options(readyPkg.config.force_4_options || false);
         setSessionId(crypto.randomUUID());
 
@@ -497,9 +477,10 @@ export function SimuladoClient({
       }
 
       const calcTime = Math.round(durationHours * 60 * 60);
-      setTimeLeft(calcTime);
+      const nextDeadline = deadlineFromNow(calcTime);
       setPlannedDurationSeconds(calcTime);
-      deadlineRef.current = deadlineFromNow(calcTime);
+      deadlineRef.current = nextDeadline;
+      setDeadlineAt(nextDeadline);
       setForce4Options(isForce4Options);
       setSessionId(crypto.randomUUID());
 
@@ -567,8 +548,11 @@ export function SimuladoClient({
   const submitSimulado = useCallback(async () => {
     if (submitLockRef.current) return;
     submitLockRef.current = true;
+    remainingAtSubmitRef.current =
+      deadlineRef.current > 0
+        ? Math.max(0, Math.ceil((deadlineRef.current - Date.now()) / 1000))
+        : 0;
     setState("SUBMITTING");
-    if (timerRef.current) clearInterval(timerRef.current);
 
     if (inFlightPracticeRef.current.size > 0) {
       await Promise.allSettled(Array.from(inFlightPracticeRef.current.values()));
@@ -627,122 +611,17 @@ export function SimuladoClient({
     }
   }, [answers, resultsMap]);
 
-  const handleGenerateSingleFlashcard = async (qid: number, wrongLetter: string) => {
-    if (generatingSingleFlashcard) return;
-    setGeneratingSingleFlashcard(qid);
-    try {
-      const res = await api.flashcards.preview(qid, wrongLetter || undefined);
-      setDraftFlashcardsMap(prev => ({ ...prev, [qid]: res }));
-    } catch {
-      toast.error("Erro ao gerar prévia do flashcard.");
-    } finally {
-      setGeneratingSingleFlashcard(null);
-    }
-  };
-
-  const handleSaveSingleFlashcard = async (qid: number) => {
-    const draft = draftFlashcardsMap[qid];
-    if (!draft || savingSingleFlashcard) return;
-    setSavingSingleFlashcard(qid);
-    try {
-      const res = await api.flashcards.save(qid, draft.front, draft.back, draft.context);
-      const qDetail = detailsCache[qid];
-      const normalized = normalizeFlashcard({ ...res, stem: qDetail?.stem || "" });
-      setQuestionFlashcardsMap(prev => ({ ...prev, [qid]: normalized }));
-      setDraftFlashcardsMap(prev => {
-        const next = { ...prev };
-        delete next[qid];
-        return next;
-      });
-      toast.success("Flashcard criado e inserido na sua Revisão Ativa!");
-    } catch (error) {
-      if (error instanceof OfflineQueuedError) {
-        toast("Flashcard aguardando sincronização. Ficará disponível para revisão após o envio.", { icon: "💾" });
-      } else {
-        toast.error("Erro ao salvar flashcard.");
-      }
-    } finally {
-      setSavingSingleFlashcard(null);
-    }
-  };
-
-  const handleGenerateAllSimuladoWrongFlashcards = async () => {
-    const seen = new Set<number>();
-    const wrongItems: Array<{ question_id: number; wrong_letter: string }> = [];
-    for (const q of queue) {
-      if (resultsMap[q.id] && !resultsMap[q.id].is_correct && !seen.has(q.id)) {
-        seen.add(q.id);
-        const rawLetter = (answers[q.id] || "A").trim().slice(0, 1).toUpperCase();
-        const wrong_letter = /^[A-E]$/.test(rawLetter) ? rawLetter : "A";
-        wrongItems.push({ question_id: q.id, wrong_letter });
-      }
-    }
-
-    if (wrongItems.length === 0) {
-      toast("Nenhuma questão errada encontrada neste simulado.", { icon: "ℹ️" });
-      return;
-    }
-
-    setGeneratingBatchFlashcards(true);
-    try {
-      const res = await api.flashcards.generateBatch(wrongItems);
-      setBatchFlashcardsResult({ count: res.count });
-      if (res.count > 0) {
-        toast.success(`${res.count} flashcard(s) criado(s) e adicionado(s) à Revisão Ativa!`);
-      } else {
-        toast("Nenhum novo flashcard criado (já cadastrados).", { icon: "ℹ️" });
-      }
-    } catch (e) {
-      console.error("Erro ao gerar flashcards em lote no simulado:", e);
-      if (e instanceof OfflineQueuedError) {
-        toast("Criação de flashcards aguardando sincronização.", { icon: "💾" });
-      } else {
-        toast.error("Erro ao gerar flashcards em lote.");
-      }
-    } finally {
-      setGeneratingBatchFlashcards(false);
-    }
-  };
-
   const submitSimuladoRef = useRef(submitSimulado);
   useEffect(() => {
     submitSimuladoRef.current = submitSimulado;
   }, [submitSimulado]);
 
-  // Timer Effect
-  useEffect(() => {
-    if (state === "PLAYING") {
-      const updateRemaining = () => {
-        const remaining = Math.max(0, Math.ceil((deadlineRef.current - Date.now()) / 1000));
-        setTimeLeft(remaining);
-        if (remaining === 0) {
-          if (timerRef.current) clearInterval(timerRef.current);
-          if (!hasAutoSubmittedRef.current) {
-            hasAutoSubmittedRef.current = true;
-            setTimeout(() => submitSimuladoRef.current(), 0);
-          }
-        }
-      };
-
-      timerRef.current = setInterval(updateRemaining, 1000);
-      const handleVisibilityChange = () => {
-        if (document.visibilityState === "visible") {
-          updateRemaining();
-        }
-      };
-      document.addEventListener("visibilitychange", handleVisibilityChange);
-
-      return () => {
-        if (timerRef.current) clearInterval(timerRef.current);
-        document.removeEventListener("visibilitychange", handleVisibilityChange);
-      };
-    } else {
-      if (timerRef.current) clearInterval(timerRef.current);
+  const handleTimerExpire = useCallback(() => {
+    if (!hasAutoSubmittedRef.current) {
+      hasAutoSubmittedRef.current = true;
+      setTimeout(() => submitSimuladoRef.current(), 0);
     }
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [state]);
+  }, []);
 
   const handleManualSyncSimulado = useCallback(async () => {
     if (isSyncingOffline) return;
@@ -1039,7 +918,7 @@ export function SimuladoClient({
     if (state !== "RESULTS" || !sessionId || queue.length === 0 || summarySavedRef.current.has(sessionId)) return;
     summarySavedRef.current.add(sessionId);
     const correctCount = Object.values(resultsMap).filter(result => result.is_correct).length;
-    const elapsedSeconds = Math.max(0, plannedDurationSeconds - timeLeft);
+    const elapsedSeconds = Math.max(0, plannedDurationSeconds - remainingAtSubmitRef.current);
     void api.questions.saveSimuladoSession({
       client_session_id: sessionId,
       planned_duration_seconds: plannedDurationSeconds || 1,
@@ -1054,7 +933,7 @@ export function SimuladoClient({
       summarySavedRef.current.delete(sessionId);
       toast.error("Não foi possível salvar o resumo do simulado. Reabra o resultado para tentar novamente.");
     });
-  }, [state, sessionId, queue, resultsMap, answers, plannedDurationSeconds, timeLeft, hasCustomFilters, initialFilters, customConfig, areaSummary]);
+  }, [state, sessionId, queue, resultsMap, answers, plannedDurationSeconds, hasCustomFilters, initialFilters, customConfig, areaSummary]);
 
   const navigateTo = (index: number) => {
     if (index >= 0 && index < queue.length) {
@@ -1072,13 +951,6 @@ export function SimuladoClient({
       return;
     }
     setShowAreaSummary(true);
-  };
-
-  const formatTime = (seconds: number) => {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    const s = seconds % 60;
-    return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   };
 
   if (state === "START") {
@@ -1184,8 +1056,9 @@ export function SimuladoClient({
         flagged={flagged}
         currentIndex={currentIndex}
         onNavigateTo={navigateTo}
-        timeLeft={timeLeft}
-        formatTime={formatTime}
+        deadlineAt={deadlineAt}
+        isPlaying={state === "PLAYING"}
+        onTimeExpire={handleTimerExpire}
         showResultsSummary={showResultsSummary}
         onHideResultsSummary={() => setShowResultsSummary(false)}
         onFinishSimulado={finishSimulado}
@@ -1199,9 +1072,6 @@ export function SimuladoClient({
             queue={queue}
             answers={answers}
             areaSummary={areaSummary}
-            batchFlashcardsResult={batchFlashcardsResult}
-            generatingBatchFlashcards={generatingBatchFlashcards}
-            onGenerateBatchFlashcards={handleGenerateAllSimuladoWrongFlashcards}
             onStartReview={() => setShowResultsSummary(false)}
             initialInstitution={customConfig.institutions?.[0] || queue[0]?.institution_code || "ENARE"}
           />
@@ -1497,102 +1367,6 @@ export function SimuladoClient({
                         userLetter={answers[qDetail.id] || undefined}
                         isDiscursive={Boolean(qDetail.is_discursive || (qDetail.alternatives || []).length <= 1)}
                       />
-
-                      {!questionFlashcardsMap[qDetail.id] && !draftFlashcardsMap[qDetail.id] && (
-                        <div className="mt-6 pt-5 border-t border-border">
-                          <button
-                            onClick={() => handleGenerateSingleFlashcard(qDetail.id, answers[qDetail.id] || "")}
-                            disabled={generatingSingleFlashcard === qDetail.id}
-                            className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-2.5 px-5 rounded-xl shadow-sm transition-all disabled:opacity-50 cursor-pointer text-sm"
-                          >
-                            {generatingSingleFlashcard === qDetail.id ? (
-                              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                            ) : (
-                              <Sparkles size={16} />
-                            )}
-                            {generatingSingleFlashcard === qDetail.id ? "Gerando Flashcard com IA..." : "Criar Flashcard com IA"}
-                          </button>
-                        </div>
-                      )}
-
-                      {draftFlashcardsMap[qDetail.id] && (
-                        <div className="mt-6 pt-5 border-t border-border">
-                          <div className="bg-purple-500/10 border border-purple-500/25 rounded-2xl p-5 animate-in slide-in-from-bottom-2 text-left">
-                            <div className="flex items-center gap-2 text-purple-600 font-bold text-sm mb-4">
-                              <Sparkles size={16} /> Editar Flashcard
-                            </div>
-                            <div className="space-y-4">
-                              <div>
-                                <label className="text-xs font-bold text-muted-foreground uppercase block mb-1.5">Frente</label>
-                                <textarea
-                                  value={draftFlashcardsMap[qDetail.id].front}
-                                  onChange={(e) => setDraftFlashcardsMap(prev => ({ ...prev, [qDetail.id]: { ...prev[qDetail.id], front: e.target.value } }))}
-                                  className="w-full bg-background border border-border rounded-lg p-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary min-h-[100px]"
-                                />
-                              </div>
-                              <div>
-                                <label className="text-xs font-bold text-muted-foreground uppercase block mb-1.5">Verso</label>
-                                <textarea
-                                  value={draftFlashcardsMap[qDetail.id].back}
-                                  onChange={(e) => setDraftFlashcardsMap(prev => ({ ...prev, [qDetail.id]: { ...prev[qDetail.id], back: e.target.value } }))}
-                                  className="w-full bg-background border border-border rounded-lg p-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary min-h-[120px]"
-                                />
-                              </div>
-                              <div className="flex justify-end gap-3 pt-2">
-                                <button
-                                  onClick={() => setDraftFlashcardsMap(prev => { const next = {...prev}; delete next[qDetail.id]; return next; })}
-                                  disabled={savingSingleFlashcard === qDetail.id}
-                                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                                >
-                                  Cancelar
-                                </button>
-                                <button
-                                  onClick={() => handleSaveSingleFlashcard(qDetail.id)}
-                                  disabled={savingSingleFlashcard === qDetail.id}
-                                  className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-5 rounded-lg transition-colors text-sm shadow-sm disabled:opacity-50"
-                                >
-                                  {savingSingleFlashcard === qDetail.id ? (
-                                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                  ) : (
-                                    <BookOpen size={16} />
-                                  )}
-                                  Salvar Flashcard
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {questionFlashcardsMap[qDetail.id] && (
-                        <div className="mt-6 pt-5 border-t border-border">
-                          <div className="bg-purple-500/10 border border-purple-500/25 rounded-2xl p-5 animate-in slide-in-from-bottom-2 text-left">
-                            <div className="flex items-center justify-between gap-2 mb-3">
-                              <div className="flex items-center gap-2 text-purple-600 font-bold text-sm">
-                                <Sparkles size={16} /> Flashcard Salvo na Revisão Ativa!
-                              </div>
-                              <Link
-                                href="/revisao-ativa"
-                                className="text-xs font-bold text-purple-600 hover:underline flex items-center gap-1"
-                              >
-                                Ir para Revisão Ativa →
-                              </Link>
-                            </div>
-                            <div className="text-foreground text-sm space-y-2">
-                              <div className="font-medium bg-background p-3.5 rounded-lg border border-border leading-relaxed whitespace-pre-line text-sm">
-                                <span className="text-xs font-bold text-muted-foreground uppercase block mb-1.5">Frente:</span>
-                                {questionFlashcardsMap[qDetail.id].front}
-                              </div>
-                              {questionFlashcardsMap[qDetail.id].back && (
-                                <div className="text-muted-foreground bg-background p-3.5 rounded-lg border border-border leading-relaxed whitespace-pre-line text-sm">
-                                  <span className="text-xs font-bold text-muted-foreground uppercase block mb-1.5">Verso:</span>
-                                  {questionFlashcardsMap[qDetail.id].back}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      )}
                     </div>
                   </div>
                 </div>
