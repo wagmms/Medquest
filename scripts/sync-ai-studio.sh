@@ -2,11 +2,11 @@
 set -euo pipefail
 
 # Sincroniza um snapshot enxuto (apenas código-fonte e configs essenciais)
-# da branch atual do MedQuest para o repositório espelho wagmms/Medquest-aistudio,
+# da branch atual do MedQuest para o repositório espelho wagmmss/Medquest-aistudio,
 # mantendo o repositório principal e o deploy (Vercel/Render) intactos.
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-TARGET_REMOTE="${AI_STUDIO_REMOTE:-https://github.com/wagmms/Medquest-aistudio.git}"
+TARGET_REMOTE="${AI_STUDIO_REMOTE:-https://github.com/wagmmss/Medquest-aistudio.git}"
 TMP_DIR="$(mktemp -d)"
 
 cleanup() {
