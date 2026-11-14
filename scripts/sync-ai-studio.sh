@@ -26,6 +26,23 @@ git archive --format=tar HEAD \
   ':!archive' \
   | tar -x -C "$TMP_DIR"
 
+cat > "$TMP_DIR/package.json" <<'EOF'
+{
+  "name": "medquest-aistudio",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "app/frontend"
+  ],
+  "scripts": {
+    "dev": "npm --prefix app/frontend run dev",
+    "build": "npm --prefix app/frontend run build",
+    "start": "npm --prefix app/frontend run start",
+    "lint": "npm --prefix app/frontend run lint"
+  }
+}
+EOF
+
 FILE_COUNT="$(find "$TMP_DIR" -type f | wc -l)"
 TOTAL_SIZE="$(du -sh "$TMP_DIR" | cut -f1)"
 echo "Snapshot gerado: ${FILE_COUNT} arquivos (${TOTAL_SIZE})."

@@ -31,6 +31,8 @@ COMMIT_COUNT="$(git rev-list --count "${ROOT_COMMIT}..HEAD")"
 echo "Encontrados ${COMMIT_COUNT} commit(s) novos no AI Studio. Gerando patch..."
 
 git diff --binary "${ROOT_COMMIT}..HEAD" -- . \
+  ':!package.json' \
+  ':!package-lock.json' \
   ':!app/backend/data' \
   ':!app/backend/static/images' \
   ':!app/frontend/public/images' \
