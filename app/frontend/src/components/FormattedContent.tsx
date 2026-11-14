@@ -28,6 +28,13 @@ export function normalizeImageSrc(url: string | null | undefined): string {
   if (!src.startsWith("http://") && !src.startsWith("https://") && !src.startsWith("/api/") && !src.startsWith("/")) {
     src = `/api/images/${src}`;
   }
+  if (src.startsWith("http://") || src.startsWith("https://")) {
+    try {
+      src = encodeURI(decodeURI(src)).replace(/\(/g, "%28").replace(/\)/g, "%29");
+    } catch {
+      src = src.replace(/ /g, "%20").replace(/\(/g, "%28").replace(/\)/g, "%29");
+    }
+  }
   return src;
 }
 
@@ -223,6 +230,23 @@ export function preprocessMarkdown(content: string): string {
   raw = raw.replace(/\*\*(!\[.*?\]\(.*?\))\*\*/g, "\n\n$1\n\n");
   raw = raw.replace(/\*\*(<img\b[^>]*>)\*\*/g, "\n\n$1\n\n");
   raw = raw.replace(/\/api\/images\/images\//g, "/api/images/").trim();
+
+  // Normaliza URLs de imagens Markdown com espaços ou parênteses no nome (ex: "Sem título-1 (1).png")
+  // para evitar fechamento prematuro da tag Markdown ![alt](url) pelo caractere ')' interno.
+  raw = raw.replace(
+    /!\[([^\]]*)\]\((https?:\/\/[^\r\n]+?\.(?:png|jpe?g|webp|gif|svg|blob|bmp|tiff)(?:\?[^\r\n\s\)]*)?)\)/gi,
+    (_match, alt, url) => {
+      try {
+        const trimmed = url.trim();
+        const unquoted = decodeURI(trimmed);
+        const encoded = encodeURI(unquoted).replace(/\(/g, "%28").replace(/\)/g, "%29");
+        return `![${alt}](${encoded})`;
+      } catch {
+        const fallback = url.trim().replace(/ /g, "%20").replace(/\(/g, "%28").replace(/\)/g, "%29");
+        return `![${alt}](${fallback})`;
+      }
+    }
+  );
 
   // 1. Remove raw scripts, styles, XML, and HTML comments (e.g. Word comments)
   raw = raw.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "");

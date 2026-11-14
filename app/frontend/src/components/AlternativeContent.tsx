@@ -95,15 +95,31 @@ export const AlternativeContent: React.FC<AlternativeContentProps> = ({
 }) => {
   if (!content) return null;
 
+  // Normaliza URLs de imagens Markdown com espaços ou parênteses no nome para evitar quebra de tag
+  const sanitizedContent = content.replace(
+    /!\[([^\]]*)\]\((https?:\/\/[^\r\n]+?\.(?:png|jpe?g|webp|gif|svg|blob|bmp|tiff)(?:\?[^\r\n\s\)]*)?)\)/gi,
+    (_match, alt, url) => {
+      try {
+        const trimmed = url.trim();
+        const unquoted = decodeURI(trimmed);
+        const encoded = encodeURI(unquoted).replace(/\(/g, "%28").replace(/\)/g, "%29");
+        return `![${alt}](${encoded})`;
+      } catch {
+        const fallback = url.trim().replace(/ /g, "%20").replace(/\(/g, "%28").replace(/\)/g, "%29");
+        return `![${alt}](${fallback})`;
+      }
+    }
+  );
+
   // Detecta se há imagens (HTML ou Markdown)
   const tokenRegex = /(<img\b[^>]*\bsrc\s*=\s*['"][^'"]+['"][^>]*>|!\[.*?\]\(.*?\))/gi;
-  const parts = content.split(tokenRegex);
+  const parts = sanitizedContent.split(tokenRegex);
 
   // Se for texto simples sem imagem
-  if (parts.length === 1 && !/<img\b/i.test(content) && !/!\[.*?\]\(.*?\)/.test(content)) {
+  if (parts.length === 1 && !/<img\b/i.test(sanitizedContent) && !/!\[.*?\]\(.*?\)/.test(sanitizedContent)) {
     return (
       <span className={clsx("inline-block", isEliminated && "line-through text-ink-muted/70 decoration-ink-muted/50", className)}>
-        {renderInlineText(content)}
+        {renderInlineText(sanitizedContent)}
       </span>
     );
   }
